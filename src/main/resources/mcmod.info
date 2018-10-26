@@ -1,0 +1,16 @@
+[
+{
+  "modid": "tolkienmobs",
+  "name": "Tolkien Tweaks Mobs",
+  "description": "Various mobs for map building",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["GreatOrator"],
+  "credits": "Brandon3055 for being an awesome friend for so very long and encouraging me to do this",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
