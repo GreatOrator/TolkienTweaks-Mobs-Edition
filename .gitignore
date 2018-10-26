@@ -2,8 +2,8 @@
 
 ## Client and Server ##
 
-**/journeymap/colorpalette*
-
+.gradle/
+gradle*
 # Created by https://www.gitignore.io
 
 ### OSX ###
