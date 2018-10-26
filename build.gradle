@@ -24,6 +24,9 @@ minecraft {
     version = "1.12.2-14.23.5.2771"
     runDir = "run"
     mappings = "snapshot_20171003"
+    
+    replaceIn "TolkienMobs.java"
+    replace "@VERSION@", project.version
 }
 
 dependencies {

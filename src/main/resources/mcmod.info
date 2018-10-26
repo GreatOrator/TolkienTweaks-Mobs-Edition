@@ -5,12 +5,14 @@
   "description": "Various mobs for map building",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "tolkiencraft.com/",
   "updateUrl": "",
-  "authorList": ["GreatOrator"],
+  "authorList": ["GreatOrator", ""],
   "credits": "Brandon3055 for being an awesome friend for so very long and encouraging me to do this",
-  "logoFile": "",
+  "logoFile": "assets/tolkienmobs/logo.png",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": [
+    "mod_MinecraftForge"
+  ]
 }
 ]
