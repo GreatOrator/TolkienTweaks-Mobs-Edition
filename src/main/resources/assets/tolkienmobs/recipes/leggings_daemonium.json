@@ -1,11 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "result": {
-    "item": "tolkienmobs:nugget_daemonium",
-    "count": 9
+    "item": "tolkienmobs:leggings_daemonium",
+    "count": 1
   },
   "pattern": [
-    "B"
+    "BBB",
+    "B B",
+    "B B"
   ],
   "key": {
     "B": {

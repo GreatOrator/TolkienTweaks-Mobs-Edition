@@ -2,13 +2,14 @@ package com.greatorator.tolkienmobs.objects.tools;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.ItemInit;
+import com.greatorator.tolkienmobs.util.Reference;
 import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
 import net.minecraft.item.ItemHoe;
 
 public class ToolHoe extends ItemHoe implements IHasModel {
     public ToolHoe(String name, ToolMaterial material){
             super(material);
-            setUnlocalizedName(name);
+            setUnlocalizedName(Reference.MODID + ":" + name);
             setRegistryName(name);
             setCreativeTab(TolkienMobs.TTMOBS);
 
