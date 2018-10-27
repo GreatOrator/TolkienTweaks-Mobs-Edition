@@ -31,7 +31,7 @@ public class RegistryHandler {
             {
                 ((IHasModel)item).registerModels();
             } else {
-                TolkienMobs.proxy.Register(item);
+                TolkienMobs.proxy.register(item);
             }
         }
 
@@ -41,7 +41,7 @@ public class RegistryHandler {
             {
                 ((IHasModel)block).registerModels();
             } else {
-                TolkienMobs.proxy.Register(block);
+                TolkienMobs.proxy.register(block);
             }
         }
     }

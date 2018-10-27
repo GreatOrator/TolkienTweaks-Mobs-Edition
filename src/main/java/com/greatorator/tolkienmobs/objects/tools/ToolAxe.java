@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.objects.tools;
 import com.google.common.collect.Sets;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.ItemInit;
+import com.greatorator.tolkienmobs.util.Reference;
 import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -19,7 +20,7 @@ public class ToolAxe extends ItemTool implements IHasModel {
     public ToolAxe(String name, ToolMaterial material)
     {
         super(material, EFFECTIVE_ON);
-        setUnlocalizedName(name);
+        setUnlocalizedName(Reference.MODID + ":" + name);
         setRegistryName(name);
         setCreativeTab(TolkienMobs.TTMOBS);
 

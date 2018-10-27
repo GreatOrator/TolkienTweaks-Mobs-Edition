@@ -1,22 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-
-  "pattern":
-  [
-    "B"
-  ],
-
-  "key":
-  {
-    "B":
-    {
-      "item": "tolkienmobs:nugget_daemonium",
-      "count": 9
-    }
+  "result": {
+    "item": "tolkienmobs:ingot_daemonium",
+    "count": 1
   },
-
-  "result":
-  {
-    "item": "tolkienmobs:ingot_daemonium"
+  "pattern": [
+    "BBB",
+    "BBB",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "tolkienmobs:nugget_daemonium"
+    }
   }
 }

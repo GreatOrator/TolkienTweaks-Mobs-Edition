@@ -20,7 +20,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void Register(Object o) {
+    public void register(Object o) {
         if(o instanceof Block) {
             Block toRegister = (Block) o;
             String name = toRegister.getRegistryName().toString();
@@ -32,7 +32,7 @@ public class ClientProxy extends CommonProxy {
         } else {
             String s = o.toString();
             Throwable t = new Throwable(s);
-            IllegalArgumentException exeption = new IllegalArgumentException("Please give a registerable object as an Argument!!", t);
+            throw new IllegalArgumentException("Please give a registerable object as an Argument!!", t);
         }
     }
 }

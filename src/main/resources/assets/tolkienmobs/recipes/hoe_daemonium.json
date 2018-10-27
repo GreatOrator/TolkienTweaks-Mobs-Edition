@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "item": "tolkienmobs:hoe_daemonium",
+    "count": 1
+  },
+
+  "pattern":   [
+    "BB",
+    "S",
+    "S"
+  ],
+  "key":
+  {
+    "B": {
+      "item": "tolkienmobs:ingot_daemonium"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  }
+}

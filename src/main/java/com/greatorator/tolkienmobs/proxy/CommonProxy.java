@@ -9,6 +9,6 @@ public class CommonProxy {
     public void registerVariantRenderer(Item item, int meta, String filename, String id) {
     }
 
-    public void Register(Object o) {
+    public void register(Object o) {
     }
 }

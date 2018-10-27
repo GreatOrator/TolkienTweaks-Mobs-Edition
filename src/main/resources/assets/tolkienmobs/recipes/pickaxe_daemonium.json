@@ -1,17 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "result": {
-    "item": "tolkienmobs:block_daemonium",
+    "item": "tolkienmobs:pickaxe_daemonium",
     "count": 1
   },
-  "pattern": [
+
+  "pattern":   [
     "BBB",
-    "BBB",
-    "BBB"
+    " S ",
+    " S "
   ],
-  "key": {
+  "key":
+  {
     "B": {
       "item": "tolkienmobs:ingot_daemonium"
+    },
+    "S": {
+      "item": "minecraft:stick"
     }
   }
 }
