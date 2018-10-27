@@ -1,0 +1,24 @@
+//Item Groups
+
+itemGroup.TolkienTweaksMobs=TolkienTweaks Mobs Edition
+
+//Item Information
+
+item.tolkienmobs:ingot_daemonium.name=Daemonium Ingot
+item.tolkienmobs:dust_daemonium.name=Daemonium Dust
+item.tolkienmobs:nugget_daemonium.name=Daemonium Nugget
+
+item.tolkienmobs:axe_daemonium.name=Daemonium Axe
+item.tolkienmobs:hoe_daemonium.name=Daemonium Hoe
+item.tolkienmobs:pickaxe_daemonium.name=Daemonium Pickaxe
+item.tolkienmobs:shovel_daemonium.name=Daemonium Shovel
+item.tolkienmobs:sword_daemonium.name=Daemonium Sword
+
+item.tolkienmobs:helmet_daemonium.name=Daemonium Helmet
+item.tolkienmobs:chestplate_daemonium.name=Daemonium Chestplate
+item.tolkienmobs:leggings_daemonium.name=Daemonium Leggings
+item.tolkienmobs:boots_daemonium.name=Daemonium Boots
+
+//Tile Information
+
+tile.tolkienmobs:block_daemonium.name=Daemonium Block
