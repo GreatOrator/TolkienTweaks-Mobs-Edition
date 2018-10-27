@@ -1,1 +1,11 @@
-entity.TreeEnt.name=Tree Ent
+//Item Groups
+
+itemGroup.TolkienTweaksMobs=TolkienTweaks Mobs Edition
+
+//Item Information
+
+item.tolkienmobs:ingot_daemonium.name=Daemonium Ingot
+
+//Tile Information
+
+tile.tolkienmobs:block_daemonium.name=Daemonium Block

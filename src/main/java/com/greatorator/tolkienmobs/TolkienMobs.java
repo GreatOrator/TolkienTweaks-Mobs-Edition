@@ -1,28 +1,32 @@
 package com.greatorator.tolkienmobs;
 
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
+import com.greatorator.tolkienmobs.util.Reference;
+import com.greatorator.tolkienmobs.util.handlers.RegistryHandler;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.apache.logging.log4j.Logger;
 
-@Mod(modid = TolkienMobs.MODID, version = TolkienMobs.VERSION)
-public class TolkienMobs
-{
-    public static final String MODID = "tolkienmobs";
-    public static final String VERSION = "@VERSION@";
+@Mod(modid = Reference.MODID, name = Reference.NAME, version = Reference.VERSION)
 
-    @SidedProxy(clientSide = "com.greatorator.tolkienmobs.proxy.ClientProxy", serverSide = "com.greatorator.tolkienmobs.proxy.ServerProxy")
-    public static CommonProxy proxy;
-
-    @Mod.Instance
+public class TolkienMobs {
+    @Instance
     public static TolkienMobs instance;
 
-    public static Logger logger;
+    @SidedProxy(clientSide = Reference.CLIENT, serverSide = Reference.COMMON)
+    public static CommonProxy proxy;
 
-    @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event){
-        logger = event.getModLog();
-        proxy.preInit(event);
-    }
+    public static final CreativeTabs TTMOBS = new TTMobsTab("TolkienTweaksMobs");
+
+    @EventHandler
+    public static void preInit(FMLPreInitializationEvent event) {RegistryHandler.preInitRegistries();}
+    @EventHandler
+    public static void init(FMLInitializationEvent event) {RegistryHandler.initRegistries();}
+    @EventHandler
+    public static void postInit(FMLPostInitializationEvent event) {RegistryHandler.postInitRegistries();}
 }
