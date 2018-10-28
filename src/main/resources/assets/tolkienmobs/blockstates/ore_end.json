@@ -1,0 +1,7 @@
+{
+  "variants":
+  {
+    "variant=aluminium": { "model": "tolkienmobs:ore_end_aluminium" },
+    "variant=daemonium": { "model": "tolkienmobs:ore_end_daemonium" }
+  }
+}
