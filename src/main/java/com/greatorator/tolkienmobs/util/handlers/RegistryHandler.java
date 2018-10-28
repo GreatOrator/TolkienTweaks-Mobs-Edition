@@ -4,12 +4,14 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.BlockInit;
 import com.greatorator.tolkienmobs.init.ItemInit;
 import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
+import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @EventBusSubscriber
 public class RegistryHandler {
@@ -47,6 +49,7 @@ public class RegistryHandler {
     }
 
     public static void preInitRegistries(){
+        GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
     }
 
     public static void initRegistries(){
