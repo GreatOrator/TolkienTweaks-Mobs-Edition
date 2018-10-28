@@ -22,3 +22,9 @@ item.tolkienmobs:boots_daemonium.name=Daemonium Boots
 //Tile Information
 
 tile.tolkienmobs:block_daemonium.name=Daemonium Block
+tile.tolkienmobs:ore_overworld_daemonium.name=Daemonium Ore
+tile.tolkienmobs:ore_nether_daemonium.name=Fiery Daemonium Ore
+tile.tolkienmobs:ore_end_daemonium.name=Ender Daemonium Ore
+tile.tolkienmobs:ore_overworld_aluminium.name=Aluminium Ore
+tile.tolkienmobs:ore_nether_aluminium.name=Fiery Aluminium Ore
+tile.tolkienmobs:ore_end_aluminium.name=Ender Aluminium Ore
