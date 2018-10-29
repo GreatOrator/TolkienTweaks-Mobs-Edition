@@ -1,0 +1,17 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "type": {
+      "daemonium":  { "textures": {"all":  "tolkienmobs:blocks/ore_daemonium"} },
+      "aluminium": { "textures": {"all":  "tolkienmobs:blocks/ore_aluminium"} },
+      "nether_daemonium":  { "textures": {"all":  "tolkienmobs:blocks/ore_nether_daemonium"} },
+      "nether_aluminium": { "textures": {"all":  "tolkienmobs:blocks/ore_nether_aluminium"} },
+      "ender_daemonium":  { "textures": {"all":  "tolkienmobs:blocks/ore_ender_daemonium"} },
+      "ender_aluminium": { "textures": {"all":  "tolkienmobs:blocks/ore_ender_aluminium"} }
+    }
+  }
+}

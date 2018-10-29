@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.world.gen;
 
 import com.greatorator.tolkienmobs.init.BlockInit;
 import com.greatorator.tolkienmobs.objects.blocks.BlockOres;
-import com.greatorator.tolkienmobs.util.handlers.EnumHandler;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -22,13 +21,13 @@ public class WorldGenCustomOres implements IWorldGenerator
 
     public WorldGenCustomOres()
     {
-        ore_nether_daemonium = new WorldGenMinable(BlockInit.ORE_NETHER.getDefaultState().withProperty(BlockOres.VARIANT, EnumHandler.EnumType.DAEMONIUM), 9, BlockMatcher.forBlock(Blocks.NETHERRACK));
-        ore_overworld_daemonium = new WorldGenMinable(BlockInit.ORE_OVERWORLD.getDefaultState().withProperty(BlockOres.VARIANT, EnumHandler.EnumType.DAEMONIUM), 9, BlockMatcher.forBlock(Blocks.STONE));
-        ore_end_daemonium = new WorldGenMinable(BlockInit.ORE_END.getDefaultState().withProperty(BlockOres.VARIANT, EnumHandler.EnumType.DAEMONIUM), 9, BlockMatcher.forBlock(Blocks.END_STONE));
+        ore_nether_daemonium = new WorldGenMinable(BlockInit.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.NETHER_DAEMONIUM), 9, BlockMatcher.forBlock(Blocks.NETHERRACK));
+        ore_overworld_daemonium = new WorldGenMinable(BlockInit.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.DAEMONIUM), 9, BlockMatcher.forBlock(Blocks.STONE));
+        ore_end_daemonium = new WorldGenMinable(BlockInit.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.ENDER_DAEMONIUM), 9, BlockMatcher.forBlock(Blocks.END_STONE));
 
-        ore_nether_aluminium = new WorldGenMinable(BlockInit.ORE_NETHER.getDefaultState().withProperty(BlockOres.VARIANT, EnumHandler.EnumType.ALUMINIUM), 9, BlockMatcher.forBlock(Blocks.NETHERRACK));
-        ore_overworld_aluminium = new WorldGenMinable(BlockInit.ORE_OVERWORLD.getDefaultState().withProperty(BlockOres.VARIANT, EnumHandler.EnumType.ALUMINIUM), 9, BlockMatcher.forBlock(Blocks.STONE));
-        ore_end_aluminium = new WorldGenMinable(BlockInit.ORE_END.getDefaultState().withProperty(BlockOres.VARIANT, EnumHandler.EnumType.ALUMINIUM), 9, BlockMatcher.forBlock(Blocks.END_STONE));
+        ore_nether_aluminium = new WorldGenMinable(BlockInit.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.NETHER_ALUMINIUM), 9, BlockMatcher.forBlock(Blocks.NETHERRACK));
+        ore_overworld_aluminium = new WorldGenMinable(BlockInit.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.ALUMINIUM), 9, BlockMatcher.forBlock(Blocks.STONE));
+        ore_end_aluminium = new WorldGenMinable(BlockInit.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.ENDER_ALUMINIUM), 9, BlockMatcher.forBlock(Blocks.END_STONE));
     }
 
     @Override

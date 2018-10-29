@@ -1,7 +1,0 @@
-{
-  "variants":
-  {
-    "variant=aluminium": { "model": "tolkienmobs:ore_overworld_aluminium" },
-    "variant=daemonium": { "model": "tolkienmobs:ore_overworld_daemonium" }
-  }
-}
