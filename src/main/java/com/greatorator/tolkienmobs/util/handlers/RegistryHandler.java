@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.util.handlers;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.init.BiomeInit;
 import com.greatorator.tolkienmobs.init.BlockInit;
 import com.greatorator.tolkienmobs.init.ItemInit;
 import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
@@ -50,6 +51,8 @@ public class RegistryHandler {
 
     public static void preInitRegistries(){
         GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
+
+        BiomeInit.registerBiomes();
     }
 
     public static void initRegistries(){
