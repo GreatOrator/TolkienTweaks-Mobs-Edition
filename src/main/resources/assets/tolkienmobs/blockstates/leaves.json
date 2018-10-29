@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "check_decay=true,decayable=true,variant=mallorn": { "model": "tolkienmobs:leaves_mallorn" },
+        "check_decay=true,decayable=false,variant=mallorn": { "model": "tolkienmobs:leaves_mallorn" },
+        "check_decay=false,decayable=true,variant=mallorn": { "model": "tolkienmobs:leaves_mallorn" },
+        "check_decay=false,decayable=false,variant=mallorn": { "model": "tolkienmobs:leaves_mallorn" },
+        
+        "check_decay=true,decayable=true,variant=mirkwood": { "model": "tolkienmobs:leaves_mirkwood" },
+        "check_decay=true,decayable=false,variant=mirkwood": { "model": "tolkienmobs:leaves_mirkwood" },
+        "check_decay=false,decayable=true,variant=mirkwood": { "model": "tolkienmobs:leaves_mirkwood" },
+        "check_decay=false,decayable=false,variant=mirkwood": { "model": "tolkienmobs:leaves_mirkwood" }
+    }
+}

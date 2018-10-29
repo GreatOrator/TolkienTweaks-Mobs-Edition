@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "axis=y,variant=mallorn": { "model": "tolkienmobs:log_mallorn" },
+        "axis=z,variant=mallorn": { "model": "tolkienmobs:log_mallorn", "x": 90 },
+        "axis=x,variant=mallorn": { "model": "tolkienmobs:log_mallorn", "x": 90, "y": 90 },
+        "axis=none,variant=mallorn": { "model": "tolkienmobs:log_mallorn" },
+        
+        "axis=y,variant=mirkwood": { "model": "tolkienmobs:log_mirkwood" },
+        "axis=z,variant=mirkwood": { "model": "tolkienmobs:log_mirkwood", "x": 90 },
+        "axis=x,variant=mirkwood": { "model": "tolkienmobs:log_mirkwood", "x": 90, "y": 90 },
+        "axis=none,variant=mirkwood": { "model": "tolkienmobs:log_mirkwood" }
+    }
+}

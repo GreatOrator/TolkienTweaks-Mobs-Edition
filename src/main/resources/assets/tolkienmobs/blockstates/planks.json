@@ -1,0 +1,7 @@
+{
+    "variants": 
+    {
+        "variant=mallorn": { "model": "tolkienmobs:planks_mallorn" },
+        "variant=mirkwood": { "model": "tolkienmobs:planks_mirkwood" }
+    }
+}
