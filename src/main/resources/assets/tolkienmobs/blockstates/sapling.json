@@ -1,10 +1,19 @@
 {
-    "variants": 
-    {
-        "stage=0,variant=mallorn": { "model": "tolkienmobs:sapling_mallorn" },
-        "stage=1,variant=mallorn": { "model": "tolkienmobs:sapling_mallorn" },
-        
-        "stage=0,variant=mirkwood": { "model": "tolkienmobs:sapling_mirkwood" },
-        "stage=1,variant=mirkwood": { "model": "tolkienmobs:sapling_mirkwood" }
+    "forge_marker": 1,
+    "defaults": {
+        "model": "minecraft:cross",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "stage":  {
+            "0": {},
+            "1": {}
+        },
+        "variant": {
+            "mallorn":  { "textures": {"cross":  "tolkienmobs:blocks/sapling_aluminium"} },
+            "mirkwood": { "textures": {"cross":  "tolkienmobs:blocks/sapling_copper"} }
+        },
+        "inventory": [{}],
+        "normal": [{}]
     }
 }

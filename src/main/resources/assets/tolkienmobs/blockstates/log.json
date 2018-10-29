@@ -1,13 +1,43 @@
 {
-    "variants": {
-        "axis=y,variant=mallorn": { "model": "tolkienmobs:log_mallorn" },
-        "axis=z,variant=mallorn": { "model": "tolkienmobs:log_mallorn", "x": 90 },
-        "axis=x,variant=mallorn": { "model": "tolkienmobs:log_mallorn", "x": 90, "y": 90 },
-        "axis=none,variant=mallorn": { "model": "tolkienmobs:log_mallorn" },
-        
-        "axis=y,variant=mirkwood": { "model": "tolkienmobs:log_mirkwood" },
-        "axis=z,variant=mirkwood": { "model": "tolkienmobs:log_mirkwood", "x": 90 },
-        "axis=x,variant=mirkwood": { "model": "tolkienmobs:log_mirkwood", "x": 90, "y": 90 },
-        "axis=none,variant=mirkwood": { "model": "tolkienmobs:log_mirkwood" }
-    }
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube",
+    "textures": {
+      "particle": "tolkienmobs:blocks/log_copper",
+      "down": "tolkienmobs:blocks/log_copper_top",
+      "up": "tolkienmobs:blocks/log_copper_top",
+      "north": "tolkienmobs:blocks/log_copper",
+      "south": "tolkienmobs:blocks/log_copper",
+      "east": "tolkienmobs:blocks/log_copper",
+      "west": "tolkienmobs:blocks/log_copper"
+    },
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "axis": {
+      "y": {},
+      "z": {"x": 90},
+      "x": {
+        "x": 90,
+        "y": 90
+      },
+      "none": {}
+    },
+    "variant": {
+      "mallorn": {},
+      "mirkwood": {
+        "textures": {
+          "particle": "tolkienmobs:blocks/log_aluminium",
+          "down": "tolkienmobs:blocks/log_aluminium_top",
+          "up": "tolkienmobs:blocks/log_aluminium_top",
+          "north": "tolkienmobs:blocks/log_aluminium",
+          "south": "tolkienmobs:blocks/log_aluminium",
+          "east": "tolkienmobs:blocks/log_aluminium",
+          "west": "tolkienmobs:blocks/log_aluminium"
+        }
+      }
+    },
+    "inventory": [{}],
+    "normal": [{}]
+  }
 }

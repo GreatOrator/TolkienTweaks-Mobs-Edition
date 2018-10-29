@@ -1,13 +1,23 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "model": "minecraft:cube_all",
+        "transform": "forge:default-block"
+    },
     "variants": {
-        "check_decay=true,decayable=true,variant=mallorn": { "model": "tolkienmobs:leaves_mallorn" },
-        "check_decay=true,decayable=false,variant=mallorn": { "model": "tolkienmobs:leaves_mallorn" },
-        "check_decay=false,decayable=true,variant=mallorn": { "model": "tolkienmobs:leaves_mallorn" },
-        "check_decay=false,decayable=false,variant=mallorn": { "model": "tolkienmobs:leaves_mallorn" },
-        
-        "check_decay=true,decayable=true,variant=mirkwood": { "model": "tolkienmobs:leaves_mirkwood" },
-        "check_decay=true,decayable=false,variant=mirkwood": { "model": "tolkienmobs:leaves_mirkwood" },
-        "check_decay=false,decayable=true,variant=mirkwood": { "model": "tolkienmobs:leaves_mirkwood" },
-        "check_decay=false,decayable=false,variant=mirkwood": { "model": "tolkienmobs:leaves_mirkwood" }
+        "check_decay":  {
+            "true": {},
+            "false": {}
+        },
+        "decayable":  {
+            "true": {},
+            "false": {}
+        },
+        "variant": {
+            "mallorn":  { "textures": {"all":  "tolkienmobs:blocks/leaves_aluminium"} },
+            "mirkwood": { "textures": {"all":  "tolkienmobs:blocks/leaves_copper"} }
+        },
+        "inventory": [{}],
+        "normal": [{}]
     }
 }

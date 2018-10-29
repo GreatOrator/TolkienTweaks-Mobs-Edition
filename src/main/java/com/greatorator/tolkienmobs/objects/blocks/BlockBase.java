@@ -6,13 +6,14 @@ import com.greatorator.tolkienmobs.init.ItemInit;
 import com.greatorator.tolkienmobs.objects.blocks.item.ItemBlockBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class BlockBase extends Block {
 
+    private ItemBlock item;
     public Map<Integer, String> nameOverrides = new HashMap<>();
 
     public BlockBase(String name) {
@@ -29,7 +30,7 @@ public class BlockBase extends Block {
         setCreativeTab(TolkienMobs.TTMOBS);
 
         BlockInit.BLOCKS.add(this);
-        ItemInit.ITEMS.add(new ItemBlockBase(this).setRegistryName(this.getRegistryName()));
+        ItemInit.ITEMS.add(item = (ItemBlock) new ItemBlockBase(this).setRegistryName(this.getRegistryName()));
     }
 
     /**
@@ -40,7 +41,7 @@ public class BlockBase extends Block {
      */
     public BlockBase addName(int meta, String name) {
         nameOverrides.put(meta, name);
-        Item.getItemFromBlock(this).setHasSubtypes(true);
+        item.setHasSubtypes(true);
         return this;
     }
 }

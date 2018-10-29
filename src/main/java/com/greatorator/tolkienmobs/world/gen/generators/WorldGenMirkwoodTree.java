@@ -4,7 +4,6 @@ import com.greatorator.tolkienmobs.init.BlockInit;
 import com.greatorator.tolkienmobs.objects.blocks.BlockLeaf;
 import com.greatorator.tolkienmobs.objects.blocks.BlockLogs;
 import com.greatorator.tolkienmobs.objects.blocks.BlockSaplings;
-import com.greatorator.tolkienmobs.util.handlers.EnumHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -17,8 +16,8 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import java.util.Random;
 
 public class WorldGenMirkwoodTree extends WorldGenAbstractTree {
-    public static final IBlockState LOG = BlockInit.LOGS.getDefaultState().withProperty(BlockLogs.VARIANT, EnumHandler.EnumType.MIRKWOOD);
-    public static final IBlockState LEAF = BlockInit.LEAVES.getDefaultState().withProperty(BlockLeaf.VARIANT, EnumHandler.EnumType.MIRKWOOD);
+    public static final IBlockState LOG = BlockInit.LOGS.getDefaultState().withProperty(BlockLogs.VARIANT, BlockLogs.EnumType.MIRKWOOD);
+    public static final IBlockState LEAF = BlockInit.LEAVES.getDefaultState().withProperty(BlockLeaf.VARIANT, BlockLogs.EnumType.MIRKWOOD);
 
     private final int minHeight;
 

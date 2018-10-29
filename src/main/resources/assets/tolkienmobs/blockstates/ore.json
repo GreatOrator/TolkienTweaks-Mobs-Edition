@@ -12,6 +12,8 @@
       "nether_aluminium": { "textures": {"all":  "tolkienmobs:blocks/ore_nether_aluminium"} },
       "ender_daemonium":  { "textures": {"all":  "tolkienmobs:blocks/ore_ender_daemonium"} },
       "ender_aluminium": { "textures": {"all":  "tolkienmobs:blocks/ore_ender_aluminium"} }
-    }
+    },
+    "inventory": [{}],
+    "normal": [{}]
   }
 }
