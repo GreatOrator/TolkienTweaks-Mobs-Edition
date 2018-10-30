@@ -33,6 +33,7 @@ public class BlockLeaf extends BlockLeaves implements IMetaName, IHasModel {
         setUnlocalizedName(Reference.MODID + ":" + name);
         setRegistryName(name);
         setSoundType(SoundType.PLANT);
+        leavesFancy = true;
         setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.MALLORN).withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
         setCreativeTab(TolkienMobs.TTMOBS);
 

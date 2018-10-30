@@ -12,6 +12,7 @@ import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -43,6 +44,7 @@ public class BlockSaplings extends BlockBush implements IGrowable, IMetaName, IH
     {
         setUnlocalizedName(Reference.MODID + ":" + name);
         setRegistryName(name);
+        setSoundType(SoundType.PLANT);
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.MALLORN).withProperty(STAGE, 0));
         setCreativeTab(TolkienMobs.TTMOBS);
 
