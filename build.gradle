@@ -1,42 +1,152 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
-//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
+repositories {
+    maven {
+        name = "Covers Maven"
+        url = "http://maven.covers1624.net"
+    }
+    maven {
+        name 'CB Maven'
+        url "http://chickenbones.net/maven/"
+    }
+    maven {
+        name "JEI Maven"
+        url "http://dvs1.progwml6.com/files/maven"
+    }
+}
 
-version = "1.12.2-0.0.11"
-group = "com.greatorator.tolkienmobs" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+// Define properties file
+ext.configFile = file "build.properties"
+
+configFile.withReader {
+    // Load config.  It shall from now be referenced as simply config or project.config
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+version = "${config.mc_version}-${config.mod_version}"
+group = "com.greatorator.tolkienmobs"
 archivesBaseName = "TolkienMobs"
 
-sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
-compileJava {
-    sourceCompatibility = targetCompatibility = '1.8'
-}
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
 
 minecraft {
-    version = "1.12.2-14.23.5.2771"
+    version = config.mc_version + "-" + config.forge_version
     runDir = "run"
-    mappings = "snapshot_20171003"
+    mappings = "${config.mappings}"
+    replace '${mod_version}', project.config.mod_version
+    replaceIn "TolkienMobs.java"
+    makeObfSourceJar = false
 }
 
+String buildNo = "0" //This will be used when this project is put on jenkins
+if (System.getenv("BUILD_NUMBER") != null) {
+    buildNo = System.getenv("BUILD_NUMBER")
+}
+version = version + ".${buildNo}"
+
 dependencies {
+    compile "com.brandon3055.brandonscore:BrandonsCore:${config.mc_version}-${config.bcore_version}:deobf"
+    compile "codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:deobf"
 }
 
 processResources {
     inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+    inputs.property "mc_version", project.minecraft.version
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version': project.version, 'mc_version': project.minecraft.version
     }
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
+    }
+    rename '(.+_at.cfg)', 'META-INF/$1'
+}
+
+def commonManifest = {
+//    attributes 'FMLAT': 'TolkientMobs_at.cfg' //Not currently needed but if the mod ever needs an access transformer this line just has to be uncommented.
+}
+
+jar {
+    classifier = 'universal'
+    manifest commonManifest
+}
+
+task srcJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+    manifest commonManifest
+}
+
+// Tell the artifact system about our extra jars
+artifacts {
+    archives srcJar, deobfJar
+}
+
+//This will upload the jars to maven when this project is setup on jenkins.
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            if (project.hasProperty("local_maven")) {
+                repository(url: "file://${local_maven}")
+                pom {
+                    groupId = project.group
+                    version = project.version
+                    artifactId = project.archivesBaseName
+                    project {
+                        name project.archivesBaseName
+                        packaging 'jar'
+                        description 'TolkienMobs'
+                        url 'https://github.com/GreatOrator/TolkienTweaks-Mobs'
+                        scm {
+                            url 'https://github.com/GreatOrator/TolkienTweaks-Mobs'
+                            connection 'scm:git:git@github.com:GreatOrator/TolkienTweaks-Mobs.git'
+                            developerConnection 'scm:git:git@github.com:GreatOrator/TolkienTweaks-Mobs.git'
+                        }
+                        issueManagement {
+                            system 'github'
+                            url 'https://github.com/GreatOrator/TolkienTweaks-Mobs/issues'
+                        }
+                        licenses {
+                            license {
+                                name 'License'
+                                url 'https://raw.githubusercontent.com/GreatOrator/TolkienTweaks-Mobs/master/LICENSE.txt'
+                                distribution 'repo'
+                            }
+                        }
+                        developers {
+                            developer {
+                                id 'GreatOrator'
+                                name 'GreatOrator'
+                                roles { role 'developer' }
+                            }
+                        }
+                    }
+                }
+            } else {
+                println 'Maven upload triggered but no local_maven property found!'
+            }
+        }
     }
 }
