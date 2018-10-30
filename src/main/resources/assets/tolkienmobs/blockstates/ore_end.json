@@ -1,7 +1,7 @@
 {
   "variants":
   {
-    "variant=aluminium": { "model": "tolkienmobs:ore_end_aluminium" },
-    "variant=daemonium": { "model": "tolkienmobs:ore_end_daemonium" }
+    "variant=morguliron": { "model": "tolkienmobs:ore_end_morguliron" },
+    "variant=mithril": { "model": "tolkienmobs:ore_end_mithril" }
   }
 }

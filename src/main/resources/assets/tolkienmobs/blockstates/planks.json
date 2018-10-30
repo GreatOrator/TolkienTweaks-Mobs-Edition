@@ -1,7 +1,15 @@
 {
-    "variants": 
-    {
-        "variant=mallorn": { "model": "tolkienmobs:planks_mallorn" },
-        "variant=mirkwood": { "model": "tolkienmobs:planks_mirkwood" }
+    "forge_marker": 1,
+    "defaults": {
+        "model": "minecraft:cube_all",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "variant": {
+            "mallorn":  { "textures": {"all":  "tolkienmobs:blocks/planks_mirkwood"} },
+            "mirkwood": { "textures": {"all":  "tolkienmobs:blocks/planks_mallorn"} }
+        },
+        "inventory": [{}],
+        "normal": [{}]
     }
 }

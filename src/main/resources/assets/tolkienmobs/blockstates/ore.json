@@ -1,0 +1,19 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "type": {
+      "mithril":  { "textures": {"all":  "tolkienmobs:blocks/ore_mithril"} },
+      "morguliron": { "textures": {"all":  "tolkienmobs:blocks/ore_morguliron"} },
+      "nether_mithril":  { "textures": {"all":  "tolkienmobs:blocks/ore_nether_mithril"} },
+      "nether_morguliron": { "textures": {"all":  "tolkienmobs:blocks/ore_nether_morguliron"} },
+      "ender_mithril":  { "textures": {"all":  "tolkienmobs:blocks/ore_ender_mithril"} },
+      "ender_morguliron": { "textures": {"all":  "tolkienmobs:blocks/ore_ender_morguliron"} }
+    },
+    "inventory": [{}],
+    "normal": [{}]
+  }
+}

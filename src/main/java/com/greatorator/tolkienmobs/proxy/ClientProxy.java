@@ -1,22 +1,21 @@
 package com.greatorator.tolkienmobs.proxy;
 
+import com.greatorator.tolkienmobs.objects.blocks.item.ItemBlockBase;
 import com.greatorator.tolkienmobs.util.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 
 public class ClientProxy extends CommonProxy {
     @Override
-    public void registerItemRenderer(Item item, int meta, String id) {
-        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), id));
+    public void registerItemRenderer(Item item, int meta, String variant) {
+        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), variant));
     }
 
     @Override
-    public void registerVariantRenderer(Item item, int meta, String filename, String id) {
-        ModelLoader.setCustomModelResourceLocation(item, meta,
-                new ModelResourceLocation(new ResourceLocation(Reference.MODID, filename), id));
+    public void registerItemRenderer(Item item, int meta, String name, String variant) {
+        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Reference.MODID + ":" + name, variant));
     }
 
     @Override
@@ -25,6 +24,7 @@ public class ClientProxy extends CommonProxy {
             Block toRegister = (Block) o;
             String name = toRegister.getRegistryName().toString();
             registerItemRenderer(Item.getItemFromBlock(toRegister), 0, name);
+        } else if (o instanceof ItemBlockBase) {
         } else if (o instanceof Item) {
             Item toRegister = (Item) o;
             String name = toRegister.getRegistryName().toString();

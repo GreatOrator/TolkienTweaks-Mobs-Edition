@@ -1,6 +1,8 @@
 package com.greatorator.tolkienmobs.world.gen;
 
 import com.greatorator.tolkienmobs.world.biomes.BiomeBindbole;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;

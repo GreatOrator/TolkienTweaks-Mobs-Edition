@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "item": "tolkienmobs:axe_mithril",
+    "count": 1
+  },
+
+  "pattern":   [
+    "BB",
+    "BS",
+    " S"
+  ],
+  "key":
+  {
+    "B": {
+      "item": "tolkienmobs:ingot_mithril"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  }
+}

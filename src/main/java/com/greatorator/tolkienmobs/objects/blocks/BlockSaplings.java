@@ -3,13 +3,15 @@ package com.greatorator.tolkienmobs.objects.blocks;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.BlockInit;
 import com.greatorator.tolkienmobs.init.ItemInit;
-import com.greatorator.tolkienmobs.objects.blocks.item.ItemBlockVariants;
-import com.greatorator.tolkienmobs.util.handlers.EnumHandler;
+import com.greatorator.tolkienmobs.objects.blocks.BlockLogs.EnumType;
+import com.greatorator.tolkienmobs.objects.blocks.item.ItemBlockBase;
+import com.greatorator.tolkienmobs.util.Reference;
 import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
 import com.greatorator.tolkienmobs.util.interfaces.IMetaName;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -30,36 +32,28 @@ import net.minecraftforge.event.terraingen.TerrainGen;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
-import com.google.common.base.Predicate;
-
 public class BlockSaplings extends BlockBush implements IGrowable, IMetaName, IHasModel
 {
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
     protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
 
-    public static final PropertyEnum<EnumHandler.EnumType> VARIANT = PropertyEnum.<EnumHandler.EnumType>create("variant", EnumHandler.EnumType.class, new Predicate<EnumHandler.EnumType>()
-    {
-        public boolean apply(@Nullable EnumHandler.EnumType apply)
-        {
-            return apply.getMeta() < 2;
-        }
-    });
-
-    private String name;
+    public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.<EnumType>create("variant", EnumType.class);
 
     public BlockSaplings(String name)
     {
-        setUnlocalizedName(name);
+        setUnlocalizedName(Reference.MODID + ":" + name);
         setRegistryName(name);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumHandler.EnumType.MALLORN).withProperty(STAGE, Integer.valueOf(0)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.MALLORN).withProperty(STAGE, 0));
         setCreativeTab(TolkienMobs.TTMOBS);
 
-        this.name = name;
-
+        //This is not an idea solution. Things get harder when you dont use the base block.
         BlockInit.BLOCKS.add(this);
-        ItemInit.ITEMS.add(new ItemBlockVariants(this).setRegistryName(this.getRegistryName()));
+        ItemBlockBase item = new ItemBlockBase(this);
+        item.setRegistryName(this.getRegistryName());
+        for (EnumType type : EnumType.values()) {
+            item.addName(type.meta, "sapling_" + type.name);
+        }
+        ItemInit.ITEMS.add(item);
     }
 
     //Sapling Shape
@@ -91,51 +85,50 @@ public class BlockSaplings extends BlockBush implements IGrowable, IMetaName, IH
     @Override
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
     {
-        for(EnumHandler.EnumType customblockplanks$enumtype : EnumHandler.EnumType.values())
+        for(EnumType type : EnumType.values())
         {
-            items.add(new ItemStack(this, 1, customblockplanks$enumtype.getMeta()));
+            items.add(new ItemStack(this, 1, type.getMeta()));
         }
     }
 
     @Override
     public int damageDropped(IBlockState state)
     {
-        return ((EnumHandler.EnumType)state.getValue(VARIANT)).getMeta();
+        return state.getValue(VARIANT).getMeta();
     }
 
     @Override
     public String getSpecialName(ItemStack stack)
     {
-        return EnumHandler.EnumType.values()[stack.getItemDamage()].getName();
+        return EnumType.values()[stack.getItemDamage()].getName();
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(VARIANT, EnumHandler.EnumType.byMetadata(meta & 1)).withProperty(STAGE, Integer.valueOf((meta & 8) >> 3));
+        return this.getDefaultState().withProperty(VARIANT, EnumType.byMetadata(meta & 1)).withProperty(STAGE, Integer.valueOf((meta & 8) >> 3));
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
         int i = 0;
-        i = i | ((EnumHandler.EnumType)state.getValue(VARIANT)).getMeta();
-        i = i | ((Integer)state.getValue(STAGE)).intValue() << 3;
+        i = i | state.getValue(VARIANT).getMeta();
+        i = i | state.getValue(STAGE) << 3;
         return i;
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {VARIANT, STAGE});
+        return new BlockStateContainer(this, VARIANT, STAGE);
     }
 
     @Override
     public void registerModels()
     {
-        for(int i = 0; i < EnumHandler.EnumType.values().length; i++)
-        {
-            TolkienMobs.proxy.registerVariantRenderer(Item.getItemFromBlock(this), i, "sapling_" + EnumHandler.EnumType.values()[i].getName(), "inventory");
+        for (EnumType type : EnumType.values()) {
+            TolkienMobs.proxy.registerItemRenderer(Item.getItemFromBlock(this), type.meta, "stage=0,variant=" + type.name);
         }
     }
 
@@ -145,7 +138,7 @@ public class BlockSaplings extends BlockBush implements IGrowable, IMetaName, IH
     @Override
     public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
     {
-        if(((Integer)state.getValue(STAGE)).intValue() == 0)
+        if(state.getValue(STAGE) == 0)
         {
             worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
         }
@@ -158,11 +151,11 @@ public class BlockSaplings extends BlockBush implements IGrowable, IMetaName, IH
     public void generateTree(World world, Random rand, BlockPos pos, IBlockState state)
     {
         if(!TerrainGen.saplingGrowTree(world, rand, pos)) return;
-        WorldGenerator gen = (WorldGenerator)(rand.nextInt(10) == 0 ? new WorldGenBigTree(false) : new WorldGenTrees(false));
+        WorldGenerator gen = (rand.nextInt(10) == 0 ? new WorldGenBigTree(false) : new WorldGenTrees(false));
         boolean flag = false;
         int i = 0, j = 0;
 
-        switch((EnumHandler.EnumType)state.getValue(VARIANT))
+        switch(state.getValue(VARIANT))
         {
             case MALLORN:
                 gen = new WorldGenMallornTree();
