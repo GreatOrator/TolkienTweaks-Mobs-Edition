@@ -17,24 +17,24 @@ public class ItemInit {
     public static final List<Item> ITEMS = new ArrayList<Item>();
 
     //Material
-    public static final Item.ToolMaterial TOOL_DAEMONIUM = EnumHelper.addToolMaterial("tool_daemonium", 2, 180, 5.0F, 1.5F, 5);
-    public static final ItemArmor.ArmorMaterial ARMOR_DAEMONIUM = EnumHelper.addArmorMaterial("armour_daemonium", Reference.MODID + ":daemonium", 20, new int[]{6, 7, 7, 6}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
+    public static final Item.ToolMaterial TOOL_MITHRIL = EnumHelper.addToolMaterial("tool_mithril", 2, 180, 5.0F, 1.5F, 5);
+    public static final ItemArmor.ArmorMaterial ARMOR_MITHRIL = EnumHelper.addArmorMaterial("armour_mithril", Reference.MODID + ":mithril", 20, new int[]{6, 7, 7, 6}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
 
     //Items
-    public static final Item INGOT_DAEMONIUM = new ItemBase("ingot_daemonium");
-    public static final Item NUGGET_DAEMONIUM = new ItemBase("nugget_daemonium");
-    public static final Item DUST_DAEMONIUM = new ItemBase("dust_daemonium");
+    public static final Item INGOT_MITHRIL = new ItemBase("ingot_mithril");
+    public static final Item NUGGET_MITHRIL = new ItemBase("nugget_mithril");
+    public static final Item DUST_MITHRIL = new ItemBase("dust_mithril");
 
     //Tools
-    public static final Item AXE_DAEMONIUM = new ToolAxe("axe_daemonium", TOOL_DAEMONIUM);
-    public static final Item HOE_DAEMONIUM = new ToolHoe("hoe_daemonium", TOOL_DAEMONIUM);
-    public static final Item PICKAXE_DAEMONIUM = new ToolPickaxe("pickaxe_daemonium", TOOL_DAEMONIUM);
-    public static final Item SHOVEL_DAEMONIUM = new ToolShovel("shovel_daemonium", TOOL_DAEMONIUM);
-    public static final Item SWORD_DAEMONIUM = new ToolSword("sword_daemonium", TOOL_DAEMONIUM);
+    public static final Item AXE_MITHRIL = new ToolAxe("axe_mithril", TOOL_MITHRIL);
+    public static final Item HOE_MITHRIL = new ToolHoe("hoe_mithril", TOOL_MITHRIL);
+    public static final Item PICKAXE_MITHRIL = new ToolPickaxe("pickaxe_mithril", TOOL_MITHRIL);
+    public static final Item SHOVEL_MITHRIL = new ToolShovel("shovel_mithril", TOOL_MITHRIL);
+    public static final Item SWORD_MITHRIL = new ToolSword("sword_mithril", TOOL_MITHRIL);
 
     //Armor
-    public static final Item HELMET_DAEMONIUM = new ArmorBase("helmet_daemonium", ARMOR_DAEMONIUM, 1, EntityEquipmentSlot.HEAD);
-    public static final Item CHESTPLATE_DAEMONIUM = new ArmorBase("chestplate_daemonium", ARMOR_DAEMONIUM, 1, EntityEquipmentSlot.CHEST);
-    public static final Item LEGGINGS_DAEMONIUM = new ArmorBase("leggings_daemonium", ARMOR_DAEMONIUM, 2, EntityEquipmentSlot.LEGS);
-    public static final Item BOOTS_DAEMONIUM = new ArmorBase("boots_daemonium", ARMOR_DAEMONIUM, 1, EntityEquipmentSlot.FEET);
+    public static final Item HELMET_MITHRIL = new ArmorBase("helmet_mithril", ARMOR_MITHRIL, 1, EntityEquipmentSlot.HEAD);
+    public static final Item CHESTPLATE_MITHRIL = new ArmorBase("chestplate_mithril", ARMOR_MITHRIL, 1, EntityEquipmentSlot.CHEST);
+    public static final Item LEGGINGS_MITHRIL = new ArmorBase("leggings_mithril", ARMOR_MITHRIL, 2, EntityEquipmentSlot.LEGS);
+    public static final Item BOOTS_MITHRIL = new ArmorBase("boots_mithril", ARMOR_MITHRIL, 1, EntityEquipmentSlot.FEET);
 }

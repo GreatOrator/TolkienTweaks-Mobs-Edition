@@ -1,0 +1,7 @@
+{
+  "variants":
+  {
+    "variant=morguliron": { "model": "tolkienmobs:ore_overworld_morguliron" },
+    "variant=mithril": { "model": "tolkienmobs:ore_overworld_mithril" }
+  }
+}

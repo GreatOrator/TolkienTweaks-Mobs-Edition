@@ -6,8 +6,8 @@
     },
     "variants": {
         "variant": {
-            "mallorn":  { "textures": {"all":  "tolkienmobs:blocks/planks_aluminium"} },
-            "mirkwood": { "textures": {"all":  "tolkienmobs:blocks/planks_copper"} }
+            "mallorn":  { "textures": {"all":  "tolkienmobs:blocks/planks_mirkwood"} },
+            "mirkwood": { "textures": {"all":  "tolkienmobs:blocks/planks_mallorn"} }
         },
         "inventory": [{}],
         "normal": [{}]

@@ -10,7 +10,7 @@ import java.util.List;
 public class BlockInit {
     public static final List<Block> BLOCKS = new ArrayList<Block>();
 
-    public static final Block BLOCK_DAEMONIUM = new BlockBase("block_daemonium", Material.IRON);
+    public static final Block BLOCK_MITHRIL = new BlockBase("block_mithril", Material.IRON);
     public static final Block ORE = new BlockOres("ore");
 
     public static final Block PLANKS = new BlockPlank("planks");

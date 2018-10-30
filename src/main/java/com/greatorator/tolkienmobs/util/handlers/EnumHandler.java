@@ -10,8 +10,8 @@
 //{
 //    public static enum EnumType implements IStringSerializable
 //    {
-//        DAEMONIUM(0, "daemonium"),
-//        ALUMINIUM(1, "aluminium");
+//        MITHRIL(0, "mithril"),
+//        MORGULIRON(1, "morguliron");
 //
 //        private static final EnumType[] META_LOOKUP = new EnumType[values().length];
 //        private final int meta;

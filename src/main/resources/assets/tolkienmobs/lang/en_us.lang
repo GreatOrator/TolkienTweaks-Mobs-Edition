@@ -4,27 +4,42 @@ itemGroup.TolkienTweaksMobs=TolkienTweaks Mobs Edition
 
 //Item Information
 
-item.tolkienmobs:ingot_daemonium.name=Daemonium Ingot
-item.tolkienmobs:dust_daemonium.name=Daemonium Dust
-item.tolkienmobs:nugget_daemonium.name=Daemonium Nugget
+item.tolkienmobs:ingot_mithril.name=Mithril Ingot
+item.tolkienmobs:dust_mithril.name=Mithril Dust
+item.tolkienmobs:nugget_mithril.name=Mithril Nugget
 
-item.tolkienmobs:axe_daemonium.name=Daemonium Axe
-item.tolkienmobs:hoe_daemonium.name=Daemonium Hoe
-item.tolkienmobs:pickaxe_daemonium.name=Daemonium Pickaxe
-item.tolkienmobs:shovel_daemonium.name=Daemonium Shovel
-item.tolkienmobs:sword_daemonium.name=Daemonium Sword
+item.tolkienmobs:axe_mithril.name=Mithril Axe
+item.tolkienmobs:hoe_mithril.name=Mithril Hoe
+item.tolkienmobs:pickaxe_mithril.name=Mithril Pickaxe
+item.tolkienmobs:shovel_mithril.name=Mithril Shovel
+item.tolkienmobs:sword_mithril.name=Mithril Sword
 
-item.tolkienmobs:helmet_daemonium.name=Daemonium Helmet
-item.tolkienmobs:chestplate_daemonium.name=Daemonium Chestplate
-item.tolkienmobs:leggings_daemonium.name=Daemonium Leggings
-item.tolkienmobs:boots_daemonium.name=Daemonium Boots
+item.tolkienmobs:helmet_mithril.name=Mithril Helmet
+item.tolkienmobs:chestplate_mithril.name=Mithril Chestplate
+item.tolkienmobs:leggings_mithril.name=Mithril Leggings
+item.tolkienmobs:boots_mithril.name=Mithril Boots
 
 //Tile Information
 
-tile.tolkienmobs:block_daemonium.name=Daemonium Block
-tile.tolkienmobs:ore_daemonium.name=Daemonium Ore
-tile.tolkienmobs:ore_nether_daemonium.name=Fiery Daemonium Ore
-tile.tolkienmobs:ore_ender_daemonium.name=Ender Daemonium Ore
-tile.tolkienmobs:ore_aluminium.name=Aluminium Ore
-tile.tolkienmobs:ore_nether_aluminium.name=Fiery Aluminium Ore
-tile.tolkienmobs:ore_ender_aluminium.name=Ender Aluminium Ore
+tile.tolkienmobs:block_mithril.name=Mithril Block
+tile.tolkienmobs:ore_mithril.name=Mithril Ore
+tile.tolkienmobs:ore_nether_mithril.name=Fiery Mithril Ore
+tile.tolkienmobs:ore_ender_mithril.name=Ender Mithril Ore
+tile.tolkienmobs:ore_morguliron.name=Morgul Iron Ore
+tile.tolkienmobs:ore_nether_morguliron.name=Fiery Morgul Iron Ore
+tile.tolkienmobs:ore_ender_morguliron.name=Ender Morgul Iron Ore
+tile.tolkienmobs:planks_mallorn.name=Mallorn Planks
+tile.tolkienmobs:leaves_mallorn.name=Mallorn Leaves
+tile.tolkienmobs:log_mallorn.name=Mallorn Log
+tile.tolkienmobs:sapling_mallorn.name=Mallorn Sapling
+tile.tolkienmobs:planks_mirkwood.name=Mirkwood Planks
+tile.tolkienmobs:leaves_mirkwood.name=Mirkwood Leaves
+tile.tolkienmobs:log_mirkwood.name=Mirkwood Log
+tile.tolkienmobs:sapling_mirkwood.name=Mirkwood Sapling
+
+
+
+
+
+
+

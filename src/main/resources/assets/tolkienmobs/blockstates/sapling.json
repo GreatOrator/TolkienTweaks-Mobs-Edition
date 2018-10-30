@@ -10,8 +10,8 @@
             "1": {}
         },
         "variant": {
-            "mallorn":  { "textures": {"cross":  "tolkienmobs:blocks/sapling_aluminium"} },
-            "mirkwood": { "textures": {"cross":  "tolkienmobs:blocks/sapling_copper"} }
+            "mallorn":  { "textures": {"cross":  "tolkienmobs:blocks/sapling_mallorn"} },
+            "mirkwood": { "textures": {"cross":  "tolkienmobs:blocks/sapling_mirkwood"} }
         },
         "inventory": [{}],
         "normal": [{}]

@@ -14,8 +14,8 @@
             "false": {}
         },
         "variant": {
-            "mallorn":  { "textures": {"all":  "tolkienmobs:blocks/leaves_aluminium"} },
-            "mirkwood": { "textures": {"all":  "tolkienmobs:blocks/leaves_copper"} }
+            "mallorn":  { "textures": {"all":  "tolkienmobs:blocks/leaves_mallorn"} },
+            "mirkwood": { "textures": {"all":  "tolkienmobs:blocks/leaves_mirkwood"} }
         },
         "inventory": [{}],
         "normal": [{}]

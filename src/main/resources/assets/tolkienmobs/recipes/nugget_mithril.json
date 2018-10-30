@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "item": "tolkienmobs:nugget_mithril",
+    "count": 9
+  },
+  "pattern": [
+    "B"
+  ],
+  "key": {
+    "B": {
+      "item": "tolkienmobs:ingot_mithril"
+    }
+  }
+}

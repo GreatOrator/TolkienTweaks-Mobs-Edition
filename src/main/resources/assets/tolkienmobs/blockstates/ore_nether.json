@@ -1,0 +1,7 @@
+{
+  "variants":
+  {
+    "variant=morguliron": { "model": "tolkienmobs:ore_nether_morguliron" },
+    "variant=mithril": { "model": "tolkienmobs:ore_nether_mithril" }
+  }
+}

@@ -23,7 +23,7 @@ public class BlockOres extends BlockBase implements IHasModel {
     public BlockOres(String name) {
         super(name, Material.ROCK);
         this.setHarvestLevel("pickaxe", 1);
-        setDefaultState(this.blockState.getBaseState().withProperty(ORE_TYPE, EnumType.DAEMONIUM));
+        setDefaultState(this.blockState.getBaseState().withProperty(ORE_TYPE, EnumType.MITHRIL));
 
         //Thanks to BlockBase this is all you have to do to add sub types
         for (EnumType type : EnumType.values()) {
@@ -86,12 +86,12 @@ public class BlockOres extends BlockBase implements IHasModel {
 
     //This does not need to be off in its own helper class. It belongs to this block so it should be in this block's class
     public enum EnumType implements IStringSerializable {
-        DAEMONIUM(0, "daemonium"),
-        ALUMINIUM(1, "aluminium"),
-        NETHER_DAEMONIUM(2, "nether_daemonium"),
-        NETHER_ALUMINIUM(3, "nether_aluminium"),
-        ENDER_DAEMONIUM(4, "ender_daemonium"),
-        ENDER_ALUMINIUM(5, "ender_aluminium");
+        MITHRIL(0, "mithril"),
+        MORGULIRON(1, "morguliron"),
+        NETHER_MITHRIL(2, "nether_mithril"),
+        NETHER_MORGULIRON(3, "nether_morguliron"),
+        ENDER_MITHRIL(4, "ender_mithril"),
+        ENDER_MORGULIRON(5, "ender_morguliron");
 
         private static final EnumType[] META_LOOKUP = new EnumType[values().length];
         private final int meta;
