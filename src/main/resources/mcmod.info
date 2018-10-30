@@ -4,7 +4,7 @@
   "name": "Tolkien Tweaks Mobs",
   "description": "Various mobs for map building",
   "version": "${version}",
-  "mcversion": "${mcversion}",
+  "mcversion": "${mc_version}",
   "url": "tolkiencraft.com/",
   "updateUrl": "",
   "authorList": ["GreatOrator", ""],

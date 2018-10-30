@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.world.gen.generators;
 
-import com.greatorator.tolkienmobs.init.BlockInit;
 import com.greatorator.tolkienmobs.block.BlockLeaf;
 import com.greatorator.tolkienmobs.block.BlockLogs;
 import com.greatorator.tolkienmobs.block.BlockSaplings;
+import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -16,8 +16,8 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import java.util.Random;
 
 public class WorldGenMirkwoodTree extends WorldGenAbstractTree {
-    public static final IBlockState LOG = BlockInit.LOGS.getDefaultState().withProperty(BlockLogs.VARIANT, BlockLogs.EnumType.MIRKWOOD);
-    public static final IBlockState LEAF = BlockInit.LEAVES.getDefaultState().withProperty(BlockLeaf.VARIANT, BlockLogs.EnumType.MIRKWOOD);
+    public static final IBlockState LOG = TTMFeatures.LOGS.getDefaultState().withProperty(BlockLogs.VARIANT, BlockLogs.EnumType.MIRKWOOD);
+    public static final IBlockState LEAF = TTMFeatures.LEAVES.getDefaultState().withProperty(BlockLeaf.VARIANT, BlockLogs.EnumType.MIRKWOOD);
 
     private final int minHeight;
 
@@ -72,7 +72,7 @@ public class WorldGenMirkwoodTree extends WorldGenAbstractTree {
         {
             BlockPos down = pos.down();
             IBlockState state = world.getBlockState(down);
-            boolean isSoil = state.getBlock().canSustainPlant(state, world, down, EnumFacing.UP, (BlockSaplings)BlockInit.SAPLINGS);
+            boolean isSoil = state.getBlock().canSustainPlant(state, world, down, EnumFacing.UP, (BlockSaplings)TTMFeatures.SAPLINGS);
 
             if(isSoil && y < world.getHeight() - height - 1)
             {

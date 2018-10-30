@@ -1,0 +1,24 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "textures": {
+      "layer0": "blocks/dirt"
+    },
+    "transform": "forge:default-tool"
+  },
+  "variants": {
+    "type": {
+      "axe_mithril":     {"textures": {"layer0": "tolkienmobs:items/axe_mithril"}},
+      "hoe_mithril":    {"textures": {"layer0": "tolkienmobs:items/hoe_mithril"}},
+      "pickaxe_mithril":      {"textures": {"layer0": "tolkienmobs:items/pickaxe_mithril"}},
+      "shovel_mithril":  {"textures": {"layer0": "tolkienmobs:items/shovel_mithril"}},
+      "sword_mithril": {"textures": {"layer0": "tolkienmobs:items/sword_mithril"}},
+      "axe_morguliron":   {"textures": {"layer0": "tolkienmobs:items/axe_morguliron"}},
+      "hoe_morguliron":   {"textures": {"layer0": "tolkienmobs:items/hoe_morguliron"}},
+      "pickaxe_morguliron":   {"textures": {"layer0": "tolkienmobs:items/pickaxe_morguliron"}},
+      "shovel_morguliron":   {"textures": {"layer0": "tolkienmobs:items/shovel_morguliron"}},
+      "sword_morguliron":   {"textures": {"layer0": "tolkienmobs:items/sword_morguliron"}}
+    }
+  }
+}

@@ -1,8 +1,7 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.greatorator.tolkienmobs.TolkienMobs;
+import com.brandon3055.brandonscore.blocks.BlockBCore;
 import com.greatorator.tolkienmobs.block.BlockLogs.EnumType;
-import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -17,15 +16,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class BlockPlank extends BlockBase implements IHasModel {
+public class BlockPlank extends BlockBCore {
     public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
 
 
-    public BlockPlank(String name) {
-        super(name, Material.WOOD);
+    public BlockPlank() {
+        super(Material.WOOD);
         setSoundType(SoundType.WOOD);
         setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.MALLORN));
-        setCreativeTab(TolkienMobs.TTMOBS);
 
         for (EnumType type : EnumType.values()) {
             addName(type.meta, "planks_" + type.name);
@@ -62,12 +60,5 @@ public class BlockPlank extends BlockBase implements IHasModel {
     @Override
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, VARIANT);
-    }
-
-    @Override
-    public void registerModels() {
-        for (EnumType type : EnumType.values()) {
-            TolkienMobs.proxy.registerItemRenderer(Item.getItemFromBlock(this), type.meta, "variant=" + type.name);
-        }
     }
 }

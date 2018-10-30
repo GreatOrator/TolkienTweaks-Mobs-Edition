@@ -1,12 +1,8 @@
 package com.greatorator.tolkienmobs.block;
 
+import com.brandon3055.brandonscore.lib.IBCoreBlock;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.BlockLogs.EnumType;
-import com.greatorator.tolkienmobs.block.itemblock.ItemBlockBase;
-import com.greatorator.tolkienmobs.init.BlockInit;
-import com.greatorator.tolkienmobs.init.ItemInit;
-import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
-import com.greatorator.tolkienmobs.util.interfaces.IMetaName;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
 import net.minecraft.block.BlockBush;
@@ -18,7 +14,6 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -30,31 +25,21 @@ import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
+import java.util.Map;
 import java.util.Random;
 
-public class BlockSaplings extends BlockBush implements IGrowable, IMetaName, IHasModel
+public class BlockSaplings extends BlockBush implements IGrowable, IBCoreBlock
 {
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
     protected static final AxisAlignedBB SAPLING_AABB = new AxisAlignedBB(0.09999999403953552D, 0.0D, 0.09999999403953552D, 0.8999999761581421D, 0.800000011920929D, 0.8999999761581421D);
 
     public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.<EnumType>create("variant", EnumType.class);
 
-    public BlockSaplings(String name)
+    public BlockSaplings()
     {
-        setUnlocalizedName(TolkienMobs.MODID + ":" + name);
-        setRegistryName(name);
         setSoundType(SoundType.PLANT);
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.MALLORN).withProperty(STAGE, 0));
         setCreativeTab(TolkienMobs.TTMOBS);
-
-        //This is not an idea solution. Things get harder when you dont use the base block.
-        BlockInit.BLOCKS.add(this);
-        ItemBlockBase item = new ItemBlockBase(this);
-        item.setRegistryName(this.getRegistryName());
-        for (EnumType type : EnumType.values()) {
-            item.addName(type.meta, "sapling_" + type.name);
-        }
-        ItemInit.ITEMS.add(item);
     }
 
     //Sapling Shape
@@ -99,12 +84,6 @@ public class BlockSaplings extends BlockBush implements IGrowable, IMetaName, IH
     }
 
     @Override
-    public String getSpecialName(ItemStack stack)
-    {
-        return EnumType.values()[stack.getItemDamage()].getName();
-    }
-
-    @Override
     public IBlockState getStateFromMeta(int meta)
     {
         return this.getDefaultState().withProperty(VARIANT, EnumType.byMetadata(meta & 1)).withProperty(STAGE, Integer.valueOf((meta & 8) >> 3));
@@ -125,16 +104,7 @@ public class BlockSaplings extends BlockBush implements IGrowable, IMetaName, IH
         return new BlockStateContainer(this, VARIANT, STAGE);
     }
 
-    @Override
-    public void registerModels()
-    {
-        for (EnumType type : EnumType.values()) {
-            TolkienMobs.proxy.registerItemRenderer(Item.getItemFromBlock(this), type.meta, "stage=0,variant=" + type.name);
-        }
-    }
-
     //Tree Code
-
 
     @Override
     public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
@@ -211,6 +181,16 @@ public class BlockSaplings extends BlockBush implements IGrowable, IMetaName, IH
     protected boolean canSustainBush(IBlockState state)
     {
         return state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.FARMLAND;
+    }
+
+    @Override
+    public boolean hasSubItemTypes() {
+        return true;
+    }
+
+    @Override
+    public Map<Integer, String> getNameOverrides() {
+        return EnumType.SAPLING_NAME_LOOKUP;
     }
 }
 

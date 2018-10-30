@@ -1,0 +1,22 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "builtin/generated",
+    "textures": {
+      "layer0": "blocks/dirt"
+    },
+    "transform": "forge:default-tool"
+  },
+  "variants": {
+    "type": {
+      "helmet_mithril":        {"textures": {"layer0": "tolkienmobs:items/helmet_mithril"}},
+      "chestplate_mithril":    {"textures": {"layer0": "tolkienmobs:items/chestplate_mithril"}},
+      "leggings_mithril":      {"textures": {"layer0": "tolkienmobs:items/leggings_mithril"}},
+      "boots_mithril":         {"textures": {"layer0": "tolkienmobs:items/boots_mithril"}},
+      "helmet_morguliron":     {"textures": {"layer0": "tolkienmobs:items/helmet_morguliron"}},
+      "chestplate_morguliron": {"textures": {"layer0": "tolkienmobs:items/chestplate_morguliron"}},
+      "leggings_morguliron":   {"textures": {"layer0": "tolkienmobs:items/leggings_morguliron"}},
+      "boots_morguliron":      {"textures": {"layer0": "tolkienmobs:items/boots_morguliron"}}
+    }
+  }
+}

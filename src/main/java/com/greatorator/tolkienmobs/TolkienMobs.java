@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs;
 
 import com.brandon3055.brandonscore.BrandonsCore;
+import com.brandon3055.brandonscore.registry.ModFeatureParser;
 import com.greatorator.tolkienmobs.client.TTMobsTab;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
@@ -36,6 +37,7 @@ public class TolkienMobs {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        ModFeatureParser.registerModFeatures(MODID);//This is a call to let BC know when its time to register our stuff.
         proxy.preInit(event);
     }
 

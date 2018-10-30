@@ -1,11 +1,6 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.block.itemblock.ItemBlockBase;
-import com.greatorator.tolkienmobs.init.BlockInit;
-import com.greatorator.tolkienmobs.init.ItemInit;
-import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
-import com.greatorator.tolkienmobs.util.interfaces.IMetaName;
+import com.brandon3055.brandonscore.lib.IBCoreBlock;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyEnum;
@@ -21,24 +16,15 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockLogs extends BlockLog implements IHasModel, IMetaName {
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class BlockLogs extends BlockLog implements IBCoreBlock {
     public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
 
-    public BlockLogs(String name) {
-        setUnlocalizedName(TolkienMobs.MODID + ":" + name);
-        setRegistryName(name);
+    public BlockLogs() {
         setSoundType(SoundType.WOOD);
         setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.MALLORN).withProperty(LOG_AXIS, EnumAxis.Y));
-        setCreativeTab(TolkienMobs.TTMOBS);
-
-        //This is not an idea solution. Things get harder when you dont use the base block.
-        BlockInit.BLOCKS.add(this);
-        ItemBlockBase item = new ItemBlockBase(this);
-        item.setRegistryName(this.getRegistryName());
-        for (EnumType type : EnumType.values()) {
-            item.addName(type.meta, "log_" + type.name);
-        }
-        ItemInit.ITEMS.add(item);
     }
 
     @Override
@@ -109,20 +95,18 @@ public class BlockLogs extends BlockLog implements IHasModel, IMetaName {
         return state.getValue(VARIANT).getMeta();
     }
 
-    @Override
-    public String getSpecialName(ItemStack stack) {
-        return EnumType.values()[stack.getItemDamage()].getName();
-    }
-
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         return this.getStateFromMeta(meta).withProperty(LOG_AXIS, BlockLog.EnumAxis.fromFacingAxis(facing.getAxis())).withProperty(VARIANT, EnumType.byMetadata(meta));
     }
 
     @Override
-    public void registerModels() {
-        for (EnumType type : EnumType.values()) {
-            TolkienMobs.proxy.registerItemRenderer(Item.getItemFromBlock(this), type.meta, "log", "axis=y,variant=" + type.name);
-        }
+    public boolean hasSubItemTypes() {
+        return true;
+    }
+
+    @Override
+    public Map<Integer, String> getNameOverrides() {
+        return EnumType.LOG_NAME_LOOKUP;
     }
 
     public enum EnumType implements IStringSerializable {
@@ -130,13 +114,17 @@ public class BlockLogs extends BlockLog implements IHasModel, IMetaName {
         MIRKWOOD(1, "mirkwood");
 
         private static final EnumType[] META_LOOKUP = new EnumType[values().length];
-        public final int meta;
-        public final String name;
+        public static final Map<Integer, String> LOG_NAME_LOOKUP = new LinkedHashMap<>();
+        public static final Map<Integer, String> LEAF_NAME_LOOKUP = new LinkedHashMap<>();
+        public static final Map<Integer, String> SAPLING_NAME_LOOKUP = new LinkedHashMap<>();
 
         EnumType(int meta, String name) {
             this.meta = meta;
             this.name = name;
         }
+
+        public final int meta;
+        public final String name;
 
         public int getMeta() {
             return meta;
@@ -158,6 +146,9 @@ public class BlockLogs extends BlockLog implements IHasModel, IMetaName {
         static {
             for (EnumType type : values()) {
                 META_LOOKUP[type.getMeta()] = type;
+                LOG_NAME_LOOKUP.put(type.meta, "log_" + type.name);
+                LEAF_NAME_LOOKUP.put(type.meta, "leaves_" + type.name);
+                SAPLING_NAME_LOOKUP.put(type.meta, "sapling_" + type.name);
             }
         }
     }

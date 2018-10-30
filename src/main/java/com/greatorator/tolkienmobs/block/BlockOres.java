@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
+import com.brandon3055.brandonscore.blocks.BlockBCore;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -9,7 +8,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
@@ -17,11 +15,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class BlockOres extends BlockBase implements IHasModel {
+public class BlockOres extends BlockBCore {
     public static final PropertyEnum<EnumType> ORE_TYPE = PropertyEnum.create("type", EnumType.class);
 
-    public BlockOres(String name) {
-        super(name, Material.ROCK);
+    public BlockOres() {
+        super(Material.ROCK);
         this.setHarvestLevel("pickaxe", 1);
         setDefaultState(this.blockState.getBaseState().withProperty(ORE_TYPE, EnumType.MITHRIL));
 
@@ -76,13 +74,6 @@ public class BlockOres extends BlockBase implements IHasModel {
 
     //endregion
 
-    @Override
-    public void registerModels() {
-        for (EnumType type : EnumType.values()) {
-            addName(type.meta, "ore_" + type.name);
-            TolkienMobs.proxy.registerItemRenderer(Item.getItemFromBlock(this), type.meta, "type=" + type.name);
-        }
-    }
 
     //This does not need to be off in its own helper class. It belongs to this block so it should be in this block's class
     public enum EnumType implements IStringSerializable {

@@ -67,12 +67,18 @@ dependencies {
 }
 
 processResources {
+    // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mc_version", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
+        // replace version and mc_version
         expand 'version': project.version, 'mc_version': project.minecraft.version
     }
+
+    // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
@@ -80,7 +86,7 @@ processResources {
 }
 
 def commonManifest = {
-//    attributes 'FMLAT': 'TolkientMobs_at.cfg' //Not currently needed but if the mod ever needs an access transformer this line just has to be uncommented.
+    attributes 'FMLAT': 'TolkienMobs_at.cfg'
 }
 
 jar {

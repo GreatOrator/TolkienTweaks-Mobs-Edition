@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.world.gen;
 
-import com.greatorator.tolkienmobs.init.BlockInit;
 import com.greatorator.tolkienmobs.block.BlockOres;
+import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -21,13 +21,13 @@ public class WorldGenCustomOres implements IWorldGenerator
 
     public WorldGenCustomOres()
     {
-        ore_nether_mithril = new WorldGenMinable(BlockInit.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.NETHER_MITHRIL), 9, BlockMatcher.forBlock(Blocks.NETHERRACK));
-        ore_overworld_mithril = new WorldGenMinable(BlockInit.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.MITHRIL), 9, BlockMatcher.forBlock(Blocks.STONE));
-        ore_end_mithril = new WorldGenMinable(BlockInit.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.ENDER_MITHRIL), 9, BlockMatcher.forBlock(Blocks.END_STONE));
+        ore_nether_mithril = new WorldGenMinable(TTMFeatures.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.NETHER_MITHRIL), 9, BlockMatcher.forBlock(Blocks.NETHERRACK));
+        ore_overworld_mithril = new WorldGenMinable(TTMFeatures.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.MITHRIL), 9, BlockMatcher.forBlock(Blocks.STONE));
+        ore_end_mithril = new WorldGenMinable(TTMFeatures.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.ENDER_MITHRIL), 9, BlockMatcher.forBlock(Blocks.END_STONE));
 
-        ore_nether_morguliron = new WorldGenMinable(BlockInit.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.NETHER_MORGULIRON), 9, BlockMatcher.forBlock(Blocks.NETHERRACK));
-        ore_overworld_morguliron = new WorldGenMinable(BlockInit.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.MORGULIRON), 9, BlockMatcher.forBlock(Blocks.STONE));
-        ore_end_morguliron = new WorldGenMinable(BlockInit.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.ENDER_MORGULIRON), 9, BlockMatcher.forBlock(Blocks.END_STONE));
+        ore_nether_morguliron = new WorldGenMinable(TTMFeatures.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.NETHER_MORGULIRON), 9, BlockMatcher.forBlock(Blocks.NETHERRACK));
+        ore_overworld_morguliron = new WorldGenMinable(TTMFeatures.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.MORGULIRON), 9, BlockMatcher.forBlock(Blocks.STONE));
+        ore_end_morguliron = new WorldGenMinable(TTMFeatures.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.ENDER_MORGULIRON), 9, BlockMatcher.forBlock(Blocks.END_STONE));
     }
 
     @Override

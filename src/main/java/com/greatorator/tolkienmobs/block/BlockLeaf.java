@@ -1,11 +1,6 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.block.itemblock.ItemBlockBase;
-import com.greatorator.tolkienmobs.init.BlockInit;
-import com.greatorator.tolkienmobs.init.ItemInit;
-import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
-import com.greatorator.tolkienmobs.util.interfaces.IMetaName;
+import com.brandon3055.brandonscore.lib.IBCoreBlock;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
@@ -22,28 +17,17 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Map;
 
 import static com.greatorator.tolkienmobs.block.BlockLogs.EnumType;
 
-public class BlockLeaf extends BlockLeaves implements IMetaName, IHasModel {
+public class BlockLeaf extends BlockLeaves implements IBCoreBlock {
     public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
 
-    public BlockLeaf(String name) {
-        setUnlocalizedName(TolkienMobs.MODID + ":" + name);
-        setRegistryName(name);
+    public BlockLeaf() {
         setSoundType(SoundType.PLANT);
         leavesFancy = true;
         setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.MALLORN).withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
-        setCreativeTab(TolkienMobs.TTMOBS);
-
-        //This is not an idea solution. Things get harder when you dont use the base block.
-        BlockInit.BLOCKS.add(this);
-        ItemBlockBase item = new ItemBlockBase(this);
-        item.setRegistryName(this.getRegistryName());
-        for (EnumType type : EnumType.values()) {
-            item.addName(type.meta, "leaves_" + type.name);
-        }
-        ItemInit.ITEMS.add(item);
     }
 
     @Override
@@ -84,11 +68,6 @@ public class BlockLeaf extends BlockLeaves implements IMetaName, IHasModel {
     }
 
     @Override
-    public String getSpecialName(ItemStack stack) {
-        return EnumType.values()[stack.getItemDamage()].getName();
-    }
-
-    @Override
     protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance) {
     }
 
@@ -123,10 +102,12 @@ public class BlockLeaf extends BlockLeaves implements IMetaName, IHasModel {
     }
 
     @Override
-    public void registerModels() {
-        for (EnumType type : EnumType.values()) {
-            TolkienMobs.proxy.registerItemRenderer(Item.getItemFromBlock(this), type.meta, "check_decay=false,decayable=false,variant=" + type.name);
-        }
+    public boolean hasSubItemTypes() {
+        return true;
     }
 
+    @Override
+    public Map<Integer, String> getNameOverrides() {
+        return EnumType.LEAF_NAME_LOOKUP;
+    }
 }

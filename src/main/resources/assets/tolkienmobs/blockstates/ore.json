@@ -12,8 +12,6 @@
       "nether_morguliron": { "textures": {"all":  "tolkienmobs:blocks/ore_nether_morguliron"} },
       "ender_mithril":  { "textures": {"all":  "tolkienmobs:blocks/ore_ender_mithril"} },
       "ender_morguliron": { "textures": {"all":  "tolkienmobs:blocks/ore_ender_morguliron"} }
-    },
-    "inventory": [{}],
-    "normal": [{}]
+    }
   }
 }

@@ -1,32 +1,23 @@
 package com.greatorator.tolkienmobs.proxy;
 
-import com.greatorator.tolkienmobs.util.handlers.RegistryHandler;
-import net.minecraft.item.Item;
+import com.greatorator.tolkienmobs.init.BiomeInit;
+import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) {
-        RegistryHandler.preInitRegistries();
+        GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
+        BiomeInit.registerBiomes();
     }
 
     public void init(FMLInitializationEvent event) {
-        RegistryHandler.initRegistries();
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-        RegistryHandler.postInitRegistries();
     }
 
-
-    public void registerItemRenderer(Item item, int meta, String variant) {
-    }
-
-    public void registerItemRenderer(Item item, int meta, String name, String variant) {
-    }
-
-    public void register(Object o) {
-    }
 }
