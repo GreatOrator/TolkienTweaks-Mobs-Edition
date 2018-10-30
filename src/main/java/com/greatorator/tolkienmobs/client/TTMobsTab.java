@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs;
+package com.greatorator.tolkienmobs.client;
 
 import com.greatorator.tolkienmobs.init.ItemInit;
 import net.minecraft.creativetab.CreativeTabs;

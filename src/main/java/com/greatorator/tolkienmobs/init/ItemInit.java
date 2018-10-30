@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.init;
 
-import com.greatorator.tolkienmobs.objects.armor.ArmorBase;
-import com.greatorator.tolkienmobs.objects.items.ItemBase;
-import com.greatorator.tolkienmobs.objects.tools.*;
-import com.greatorator.tolkienmobs.util.Reference;
+import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.item.armor.ArmorBase;
+import com.greatorator.tolkienmobs.item.tools.*;
+import com.greatorator.tolkienmobs.item.ItemBase;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -18,9 +18,9 @@ public class ItemInit {
 
     //Material
     public static final Item.ToolMaterial TOOL_MITHRIL = EnumHelper.addToolMaterial("tool_mithril", 2, 180, 5.0F, 1.5F, 5);
-    public static final ItemArmor.ArmorMaterial ARMOR_MITHRIL = EnumHelper.addArmorMaterial("armour_mithril", Reference.MODID + ":mithril", 20, new int[]{6, 7, 7, 6}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
+    public static final ItemArmor.ArmorMaterial ARMOR_MITHRIL = EnumHelper.addArmorMaterial("armour_mithril", TolkienMobs.MODID + ":mithril", 20, new int[]{6, 7, 7, 6}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
     public static final Item.ToolMaterial TOOL_MORGULIRON = EnumHelper.addToolMaterial("tool_morguliron", 2, 180, 5.0F, 1.5F, 5);
-    public static final ItemArmor.ArmorMaterial ARMOR_MORGULIRON = EnumHelper.addArmorMaterial("armour_morguliron", Reference.MODID + ":morguliron", 20, new int[]{6, 7, 7, 6}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
+    public static final ItemArmor.ArmorMaterial ARMOR_MORGULIRON = EnumHelper.addArmorMaterial("armour_morguliron", TolkienMobs.MODID + ":morguliron", 20, new int[]{6, 7, 7, 6}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
 
     //Items
     public static final Item INGOT_MITHRIL = new ItemBase("ingot_mithril");

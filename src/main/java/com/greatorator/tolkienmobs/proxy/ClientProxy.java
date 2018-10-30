@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.proxy;
 
-import com.greatorator.tolkienmobs.objects.blocks.item.ItemBlockBase;
-import com.greatorator.tolkienmobs.util.Reference;
+import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.block.itemblock.ItemBlockBase;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -15,7 +15,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerItemRenderer(Item item, int meta, String name, String variant) {
-        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Reference.MODID + ":" + name, variant));
+        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(TolkienMobs.MODID + ":" + name, variant));
     }
 
     @Override

@@ -1,10 +1,9 @@
-package com.greatorator.tolkienmobs.objects.blocks;
+package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.block.itemblock.ItemBlockBase;
 import com.greatorator.tolkienmobs.init.BlockInit;
 import com.greatorator.tolkienmobs.init.ItemInit;
-import com.greatorator.tolkienmobs.objects.blocks.item.ItemBlockBase;
-import com.greatorator.tolkienmobs.util.Reference;
 import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
 import com.greatorator.tolkienmobs.util.interfaces.IMetaName;
 import net.minecraft.block.BlockLog;
@@ -26,7 +25,7 @@ public class BlockLogs extends BlockLog implements IHasModel, IMetaName {
     public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
 
     public BlockLogs(String name) {
-        setUnlocalizedName(Reference.MODID + ":" + name);
+        setUnlocalizedName(TolkienMobs.MODID + ":" + name);
         setRegistryName(name);
         setSoundType(SoundType.WOOD);
         setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.MALLORN).withProperty(LOG_AXIS, EnumAxis.Y));

@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.world.gen;
 
 import com.greatorator.tolkienmobs.init.BlockInit;
-import com.greatorator.tolkienmobs.objects.blocks.BlockOres;
+import com.greatorator.tolkienmobs.block.BlockOres;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;

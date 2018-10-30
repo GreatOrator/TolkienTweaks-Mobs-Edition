@@ -1,10 +1,9 @@
-package com.greatorator.tolkienmobs.objects.blocks;
+package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.block.itemblock.ItemBlockBase;
 import com.greatorator.tolkienmobs.init.BlockInit;
 import com.greatorator.tolkienmobs.init.ItemInit;
-import com.greatorator.tolkienmobs.objects.blocks.item.ItemBlockBase;
-import com.greatorator.tolkienmobs.util.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
@@ -12,6 +11,7 @@ import net.minecraft.item.ItemBlock;
 import java.util.HashMap;
 import java.util.Map;
 
+@Deprecated
 public class BlockBase extends Block {
 
     private ItemBlock item;
@@ -29,7 +29,7 @@ public class BlockBase extends Block {
 
         setRegistryName(name);
         setCreativeTab(TolkienMobs.TTMOBS);
-        setUnlocalizedName(Reference.MODID + ":" + name);
+        setUnlocalizedName(TolkienMobs.MODID + ":" + name);
 
         BlockInit.BLOCKS.add(this);
         ItemInit.ITEMS.add(item = (ItemBlock) new ItemBlockBase(this).setRegistryName(this.getRegistryName()));

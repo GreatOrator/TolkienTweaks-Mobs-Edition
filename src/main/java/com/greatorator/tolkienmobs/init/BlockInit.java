@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.init;
 
-import com.greatorator.tolkienmobs.objects.blocks.*;
+import com.greatorator.tolkienmobs.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 

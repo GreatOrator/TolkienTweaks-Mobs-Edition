@@ -1,6 +1,6 @@
-package com.greatorator.tolkienmobs.objects.blocks.item;
+package com.greatorator.tolkienmobs.block.itemblock;
 
-import com.greatorator.tolkienmobs.objects.blocks.BlockBase;
+import com.greatorator.tolkienmobs.block.BlockBase;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import java.util.HashMap;
 import java.util.Map;
 
+@Deprecated
 public class ItemBlockBase extends ItemBlock {
     private String registryDomain = null;
     public Map<Integer, String> nameOverrides = new HashMap<>();

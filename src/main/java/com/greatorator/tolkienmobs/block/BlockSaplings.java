@@ -1,11 +1,10 @@
-package com.greatorator.tolkienmobs.objects.blocks;
+package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.block.BlockLogs.EnumType;
+import com.greatorator.tolkienmobs.block.itemblock.ItemBlockBase;
 import com.greatorator.tolkienmobs.init.BlockInit;
 import com.greatorator.tolkienmobs.init.ItemInit;
-import com.greatorator.tolkienmobs.objects.blocks.BlockLogs.EnumType;
-import com.greatorator.tolkienmobs.objects.blocks.item.ItemBlockBase;
-import com.greatorator.tolkienmobs.util.Reference;
 import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
 import com.greatorator.tolkienmobs.util.interfaces.IMetaName;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
@@ -42,7 +41,7 @@ public class BlockSaplings extends BlockBush implements IGrowable, IMetaName, IH
 
     public BlockSaplings(String name)
     {
-        setUnlocalizedName(Reference.MODID + ":" + name);
+        setUnlocalizedName(TolkienMobs.MODID + ":" + name);
         setRegistryName(name);
         setSoundType(SoundType.PLANT);
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.MALLORN).withProperty(STAGE, 0));

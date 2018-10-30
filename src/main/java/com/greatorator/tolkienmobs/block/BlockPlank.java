@@ -1,7 +1,7 @@
-package com.greatorator.tolkienmobs.objects.blocks;
+package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.objects.blocks.BlockLogs.EnumType;
+import com.greatorator.tolkienmobs.block.BlockLogs.EnumType;
 import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;

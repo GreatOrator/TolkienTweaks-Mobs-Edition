@@ -1,10 +1,9 @@
-package com.greatorator.tolkienmobs.objects.blocks;
+package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.block.itemblock.ItemBlockBase;
 import com.greatorator.tolkienmobs.init.BlockInit;
 import com.greatorator.tolkienmobs.init.ItemInit;
-import com.greatorator.tolkienmobs.objects.blocks.item.ItemBlockBase;
-import com.greatorator.tolkienmobs.util.Reference;
 import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
 import com.greatorator.tolkienmobs.util.interfaces.IMetaName;
 import net.minecraft.block.BlockLeaves;
@@ -24,13 +23,13 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-import static com.greatorator.tolkienmobs.objects.blocks.BlockLogs.*;
+import static com.greatorator.tolkienmobs.block.BlockLogs.EnumType;
 
 public class BlockLeaf extends BlockLeaves implements IMetaName, IHasModel {
     public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
 
     public BlockLeaf(String name) {
-        setUnlocalizedName(Reference.MODID + ":" + name);
+        setUnlocalizedName(TolkienMobs.MODID + ":" + name);
         setRegistryName(name);
         setSoundType(SoundType.PLANT);
         leavesFancy = true;

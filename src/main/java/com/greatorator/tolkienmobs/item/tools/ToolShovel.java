@@ -1,15 +1,14 @@
-package com.greatorator.tolkienmobs.objects.tools;
+package com.greatorator.tolkienmobs.item.tools;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.ItemInit;
-import com.greatorator.tolkienmobs.util.Reference;
 import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
 import net.minecraft.item.ItemSpade;
 
 public class ToolShovel extends ItemSpade implements IHasModel {
     public ToolShovel(String name, ToolMaterial material) {
             super(material);
-            setUnlocalizedName(Reference.MODID + ":" + name);
+            setUnlocalizedName(TolkienMobs.MODID + ":" + name);
             setRegistryName(name);
             setCreativeTab(TolkienMobs.TTMOBS);
 

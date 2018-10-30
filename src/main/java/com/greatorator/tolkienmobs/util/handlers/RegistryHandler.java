@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+@Deprecated //This is technically the better way to register things but this does not actually matter until 1.13 (BC will support this in 1.13)
 @EventBusSubscriber
 public class RegistryHandler {
     @SubscribeEvent

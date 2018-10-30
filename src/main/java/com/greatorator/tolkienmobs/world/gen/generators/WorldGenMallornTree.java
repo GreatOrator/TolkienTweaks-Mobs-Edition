@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.world.gen.generators;
 
 import com.greatorator.tolkienmobs.init.BlockInit;
-import com.greatorator.tolkienmobs.objects.blocks.BlockLeaf;
-import com.greatorator.tolkienmobs.objects.blocks.BlockLogs;
-import com.greatorator.tolkienmobs.objects.blocks.BlockSaplings;
+import com.greatorator.tolkienmobs.block.BlockLogs;
+import com.greatorator.tolkienmobs.block.BlockLeaf;
+import com.greatorator.tolkienmobs.block.BlockSaplings;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

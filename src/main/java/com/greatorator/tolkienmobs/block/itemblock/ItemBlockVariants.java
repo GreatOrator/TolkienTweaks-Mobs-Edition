@@ -1,10 +1,11 @@
-package com.greatorator.tolkienmobs.objects.blocks.item;
+package com.greatorator.tolkienmobs.block.itemblock;
 
 import com.greatorator.tolkienmobs.util.interfaces.IMetaName;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
+@Deprecated
 public class ItemBlockVariants extends ItemBlock
 {
     public ItemBlockVariants(Block block)

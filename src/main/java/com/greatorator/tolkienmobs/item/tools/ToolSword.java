@@ -1,15 +1,14 @@
-package com.greatorator.tolkienmobs.objects.tools;
+package com.greatorator.tolkienmobs.item.tools;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.ItemInit;
-import com.greatorator.tolkienmobs.util.Reference;
 import com.greatorator.tolkienmobs.util.interfaces.IHasModel;
-import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.ItemSword;
 
-public class ToolPickaxe extends ItemPickaxe implements IHasModel {
-    public ToolPickaxe(String name, ToolMaterial material){
+public class ToolSword  extends ItemSword implements IHasModel {
+    public ToolSword(String name, ToolMaterial material) {
             super(material);
-            setUnlocalizedName(Reference.MODID + ":" + name);
+            setUnlocalizedName(TolkienMobs.MODID + ":" + name);
             setRegistryName(name);
             setCreativeTab(TolkienMobs.TTMOBS);
 
