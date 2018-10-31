@@ -12,7 +12,6 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nonnull;
 
 public class RenderTreeEnt extends RenderLiving<EntityTreeEnt> {
-
     private ResourceLocation mobTexture = new ResourceLocation("tolkienmobs:textures/entity/treeent.png");
 
     public static final Factory FACTORY = new Factory();

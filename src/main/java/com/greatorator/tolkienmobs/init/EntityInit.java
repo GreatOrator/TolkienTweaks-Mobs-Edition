@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.EntityTreeEnt;
 import com.greatorator.tolkienmobs.entity.entityrender.RenderTreeEnt;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -21,7 +22,7 @@ public class EntityInit
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "treeent"), EntityTreeEnt.class, "TreeEnt", id++, TolkienMobs.instance, 64, 3, true, 0x996600, 0x00ff00);
 
         // We want our mob to spawn naturally.
-        EntityRegistry.addSpawn(EntityTreeEnt.class, 100, 3, 5, EnumCreatureType.MONSTER);
+        EntityRegistry.addSpawn(EntityTreeEnt.class, 100, 3, 5, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.ICE_PLAINS);
 
         // This is the loot table for our mob
         LootTableList.register(EntityTreeEnt.LOOT);
