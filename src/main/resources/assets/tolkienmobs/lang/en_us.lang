@@ -58,6 +58,10 @@ tile.tolkienmobs:sapling_mirkwood.name=Mirkwood Sapling
 //Entities
 entity.tolkienmobs:tree_ent.name=Tree Ent
 
+//Creative Tabs
+itemGroup.tolkienmobs:tools=Tolkien Tools
+itemGroup.tolkienmobs:mats=Tolkien Materials
+itemGroup.tolkienmobs:spawn=Tolkien Mobs
 
 
 

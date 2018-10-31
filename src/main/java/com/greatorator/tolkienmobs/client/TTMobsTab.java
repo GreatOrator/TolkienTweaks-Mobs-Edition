@@ -1,30 +1,53 @@
 package com.greatorator.tolkienmobs.client;
 
-import com.greatorator.tolkienmobs.init.TTMFeatures;
+import com.greatorator.tolkienmobs.TolkienMobs;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityList;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.util.NonNullList;
 
-public class TTMobsTab extends CreativeTabs
-{
-    private String label;
-    private int tab;
+import java.util.function.Supplier;
 
-    static ItemStack itemStackIngot = ItemStack.EMPTY;
+public class TTMobsTab extends CreativeTabs {
+    private final Supplier<Item> itemSupplier;
 
-    public TTMobsTab(int id, String modid, String label, int tab) {
-        super(id, modid);
-        this.label = label;
-        this.tab = tab;
+    public TTMobsTab(String label, Supplier<Item> itemSupplier) {
+        super(TolkienMobs.MODID + ":" + label);
+        this.itemSupplier = itemSupplier;
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public ItemStack getIconItemStack() {
-        if (tab == 0) {
+    public ItemStack getTabIconItem() {
+        return new ItemStack(itemSupplier.get());
+    }
 
+    public static class SpawnTab extends TTMobsTab {
+        private ItemStack icon = ItemStack.EMPTY;
+
+        public SpawnTab(String label, Supplier<Item> itemSupplier) {
+            super(label, itemSupplier);
         }
-    public TTMobsTab(String label) { super("TolkienTweaksMobs"); }
-    public ItemStack getTabIconItem() { return new ItemStack(TTMFeatures.INGOT_MITHRIL);}
+
+        @Override
+        public void displayAllRelevantItems(NonNullList<ItemStack> list) {
+            for (EntityList.EntityEggInfo info : EntityList.ENTITY_EGGS.values()) {
+                if (info.spawnedID.getResourceDomain().equals(TolkienMobs.MODID)) {
+                    ItemStack itemstack = new ItemStack(Items.SPAWN_EGG, 1);
+                    ItemMonsterPlacer.applyEntityIdToItemStack(itemstack, info.spawnedID);
+                    list.add(itemstack);
+                    icon = itemstack;
+                }
+            }
+        }
+
+        @Override
+        public ItemStack getTabIconItem() {
+            if (!icon.isEmpty()) {
+                return icon;
+            }
+            return super.getTabIconItem();
+        }
+    }
 }

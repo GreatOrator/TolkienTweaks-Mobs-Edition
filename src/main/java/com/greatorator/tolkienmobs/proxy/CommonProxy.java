@@ -13,8 +13,8 @@ public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event)
     {
         GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
-
         BiomeInit.registerBiomes();
+        EntityInit.init(); //NO! This Stays! Bad GreatOrator! xD
     }
 
     public void init(FMLInitializationEvent event) {

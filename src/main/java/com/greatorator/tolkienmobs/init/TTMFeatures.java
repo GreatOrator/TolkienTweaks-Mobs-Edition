@@ -9,7 +9,7 @@ import com.brandon3055.brandonscore.registry.ModFeature;
 import com.brandon3055.brandonscore.registry.ModFeatures;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.*;
-import com.greatorator.tolkienmobs.item.TTMSpawnEgg;
+
 import com.greatorator.tolkienmobs.item.tools.ToolAxe;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -29,7 +29,7 @@ import javax.annotation.Nullable;
 @ModFeatures(modid = TolkienMobs.MODID) //This is what allows Brandon's Core to find this class and load all of its features
 public class TTMFeatures implements IModFeatures {
 
-    private CreativeTabs[] tabs = new CreativeTabs[]{TolkienMobs.toolsAndArmor, TolkienMobs.worldgenAndMaterials, TolkienMobs.mobsSpawn};
+    private CreativeTabs[] tabs = new CreativeTabs[]{TolkienMobs.tabToolsArmor, TolkienMobs.tabWorldMats, TolkienMobs.tabMobsSpawn};
 
     @Nullable
     @Override
@@ -44,26 +44,24 @@ public class TTMFeatures implements IModFeatures {
     public static ItemArmor.ArmorMaterial ARMOR_MORGULIRON = EnumHelper.addArmorMaterial("armour_morguliron", TolkienMobs.MODID + ":morguliron", 20, new int[]{6, 7, 7, 6}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
 
     //region Simple Items
-    @ModFeature(name = "ingot_mithril", stateOverride = "simple_items#type=ingot_mithril")
+    @ModFeature(name = "ingot_mithril", stateOverride = "simple_items#type=ingot_mithril", cTab = 1)
     public static Item INGOT_MITHRIL = new ItemBCore();
 
-    @ModFeature(name = "ingot_morguliron", stateOverride = "simple_items#type=ingot_morguliron")
+    @ModFeature(name = "ingot_morguliron", stateOverride = "simple_items#type=ingot_morguliron", cTab = 1)
     public static Item INGOT_MORGULIRON = new ItemBCore();
 
-    @ModFeature(name = "nugget_mithril", stateOverride = "simple_items#type=nugget_mithril")
+    @ModFeature(name = "nugget_mithril", stateOverride = "simple_items#type=nugget_mithril", cTab = 1)
     public static Item NUGGET_MITHRIL = new ItemBCore();
 
-    @ModFeature(name = "nugget_morguliron", stateOverride = "simple_items#type=nugget_morguliron")
+    @ModFeature(name = "nugget_morguliron", stateOverride = "simple_items#type=nugget_morguliron", cTab = 1)
     public static Item NUGGET_MORGULIRON = new ItemBCore();
 
-    @ModFeature(name = "dust_mithril", stateOverride = "simple_items#type=dust_mithril")
+    @ModFeature(name = "dust_mithril", stateOverride = "simple_items#type=dust_mithril", cTab = 1)
     public static Item DUST_MITHRIL = new ItemBCore();
 
-    @ModFeature(name = "dust_morguliron", stateOverride = "simple_items#type=dust_morguliron")
+    @ModFeature(name = "dust_morguliron", stateOverride = "simple_items#type=dust_morguliron", cTab = 1)
     public static Item DUST_MORGULIRON = new ItemBCore();
 
-    @ModFeature(name = "spawn_egg", stateOverride = "simple_items#type=spawn_egg")
-    public static Item SPAWN_EGG = new TTMSpawnEgg();
     //endregion
 
     //region Tools
@@ -126,26 +124,26 @@ public class TTMFeatures implements IModFeatures {
 
     //region Simple Blocks
 
-    @ModFeature(name = "block_mithril")
+    @ModFeature(name = "block_mithril", cTab = 1)
     public static final Block BLOCK_MITHRIL = new BlockBCore(Material.IRON).setHardness(1.5F).setResistance(10F);
 
-    @ModFeature(name = "block_morguliron")
+    @ModFeature(name = "block_morguliron", cTab = 1)
     public static final Block BLOCK_MORGULIRON = new BlockBCore(Material.IRON).setHardness(1.5F).setResistance(10F);
 
-    @ModFeature(name = "ore", variantMap = {"0:type=mithril", "1:type=morguliron", "2:type=nether_mithril", "3:type=nether_morguliron", "4:type=ender_mithril", "5:type=ender_morguliron"}, itemBlock = ItemBlockBCore.class)
+    @ModFeature(name = "ore", variantMap = {"0:type=mithril", "1:type=morguliron", "2:type=nether_mithril", "3:type=nether_morguliron", "4:type=ender_mithril", "5:type=ender_morguliron"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block ORE = new BlockOres();
 
-    @ModFeature(name = "planks", variantMap = {"0:variant=mallorn", "1:variant=mirkwood"}, itemBlock = ItemBlockBCore.class)
+    @ModFeature(name = "planks", variantMap = {"0:variant=mallorn", "1:variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block PLANKS = new BlockPlank();
 
-    @ModFeature(name = "log", variantMap = {"0:axis=y,variant=mallorn", "1:axis=y,variant=mirkwood"}, itemBlock = ItemBlockBCore.class)
+    @ModFeature(name = "log", variantMap = {"0:axis=y,variant=mallorn", "1:axis=y,variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block LOGS = new BlockLogs();
 
     //                                             //TODO add a way to avoid this mess in 1.13...
-    @ModFeature(name = "leaves", variantMap = {"0:check_decay=false,decayable=false,variant=mallorn", "1:check_decay=false,decayable=false,variant=mirkwood"}, itemBlock = ItemBlockBCore.class)
+    @ModFeature(name = "leaves", variantMap = {"0:check_decay=false,decayable=false,variant=mallorn", "1:check_decay=false,decayable=false,variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block LEAVES = new BlockLeaf();
 
-    @ModFeature(name = "sapling", variantMap = {"0:stage=0,variant=mallorn", "1:stage=0,variant=mirkwood"}, itemBlock = ItemBlockBCore.class)
+    @ModFeature(name = "sapling", variantMap = {"0:stage=0,variant=mallorn", "1:stage=0,variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block SAPLINGS = new BlockSaplings();
 
     //endregion

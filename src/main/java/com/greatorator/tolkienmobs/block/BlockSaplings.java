@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.block;
 
 import com.brandon3055.brandonscore.lib.IBCoreBlock;
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.BlockLogs.EnumType;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
@@ -39,7 +38,6 @@ public class BlockSaplings extends BlockBush implements IGrowable, IBCoreBlock
     {
         setSoundType(SoundType.PLANT);
         this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.MALLORN).withProperty(STAGE, 0));
-        setCreativeTab(TolkienMobs.TTMOBS);
     }
 
     //Sapling Shape
