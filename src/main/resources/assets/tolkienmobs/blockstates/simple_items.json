@@ -14,7 +14,13 @@
       "dust_mithril":      {"textures": {"layer0": "tolkienmobs:items/dust_mithril"}},
       "ingot_morguliron":  {"textures": {"layer0": "tolkienmobs:items/ingot_morguliron"}},
       "nugget_morguliron": {"textures": {"layer0": "tolkienmobs:items/nugget_morguliron"}},
-      "dust_morguliron":   {"textures": {"layer0": "tolkienmobs:items/dust_morguliron"}}
+      "dust_morguliron":   {"textures": {"layer0": "tolkienmobs:items/dust_morguliron"}},
+      "spawn_egg":  {
+        "textures": {
+          "layer0": "items/spawn_egg",
+          "layer1": "items/spawn_egg_overlay"
+        }
+      }
     }
   }
 }

@@ -9,6 +9,7 @@ import com.brandon3055.brandonscore.registry.ModFeature;
 import com.brandon3055.brandonscore.registry.ModFeatures;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.*;
+import com.greatorator.tolkienmobs.item.TTMSpawnEgg;
 import com.greatorator.tolkienmobs.item.tools.ToolAxe;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -58,6 +59,9 @@ public class TTMFeatures implements IModFeatures {
 
     @ModFeature(name = "dust_morguliron", stateOverride = "simple_items#type=dust_morguliron")
     public static Item DUST_MORGULIRON = new ItemBCore();
+
+    @ModFeature(name = "spawn_egg", stateOverride = "simple_items#type=spawn_egg")
+    public static Item SPAWN_EGG = new TTMSpawnEgg();
     //endregion
 
     //region Tools
