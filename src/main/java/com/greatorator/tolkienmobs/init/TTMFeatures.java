@@ -29,10 +29,12 @@ import javax.annotation.Nullable;
 @ModFeatures(modid = TolkienMobs.MODID) //This is what allows Brandon's Core to find this class and load all of its features
 public class TTMFeatures implements IModFeatures {
 
+    private CreativeTabs[] tabs = new CreativeTabs[]{TolkienMobs.toolsAndArmor, TolkienMobs.worldgenAndMaterials, TolkienMobs.mobsSpawn};
+
     @Nullable
     @Override
     public CreativeTabs getCreativeTab(Feature feature) {
-        return TolkienMobs.TTMOBS; //And with that everything in your mod will be in your creative tab!
+        return feature.creativeTab() == -1 ? null : tabs[feature.creativeTab()];
     }
 
     //Material //I don't like the fact that this exists here but... for now this is fine.

@@ -15,10 +15,6 @@ public class CommonProxy {
         GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
 
         BiomeInit.registerBiomes();
-
-        EntityInit.init();
-
-        System.out.println("Entities Registered");
     }
 
     public void init(FMLInitializationEvent event) {

@@ -1,11 +1,11 @@
 //Item Groups
 
-itemGroup.TolkienTweaksMobs=TolkienTweaks Mobs Edition-Tools&Armor
-itemGroup.toolAndWeapons=TolkienTweaks Mobs Edition-Tools&Armor
+itemGroup.toolsAndArmor=TolkienTweaks Mobs Edition-Tools&Armor
 itemGroup.worldgenAndMaterials=TolkienTweaks Mobs Edition-World Gen
 itemGroup.mobsSpawn=TolkienTweaks Mobs Edition-Mobs
 
 //Item Information
+item.tolkienmobs:spawn_egg.name=Spawn
 
 item.tolkienmobs:ingot_mithril.name=Mithril Ingot
 item.tolkienmobs:dust_mithril.name=Mithril Dust
@@ -56,7 +56,7 @@ tile.tolkienmobs:log_mirkwood.name=Mirkwood Log
 tile.tolkienmobs:sapling_mirkwood.name=Mirkwood Sapling
 
 //Entities
-entity.tolkienmobs:TreeEnt.name=Tree Ent
+entity.tolkienmobs:tree_ent.name=Tree Ent
 
 
 

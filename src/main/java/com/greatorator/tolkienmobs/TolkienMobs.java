@@ -30,7 +30,9 @@ public class TolkienMobs {
     @SidedProxy(clientSide = TolkienMobs.CLIENT_PROXY, serverSide = TolkienMobs.COMMON_PROXY)
     public static CommonProxy proxy;
 
-    public static CreativeTabs TTMOBS = new TTMobsTab("TolkienTweaksMobs");
+    public static CreativeTabs tabToolsArmor = new TTMobsTab(CreativeTabs.getNextID(), TolkienMobs.MODID, "toolsAndArmor", 0);
+    public static CreativeTabs tabWorldMats = new TTMobsTab(CreativeTabs.getNextID(), TolkienMobs.MODID, "worldgenAndMaterials", 1);
+    public static CreativeTabs tabMobsSpawn = new TTMobsTab(CreativeTabs.getNextID(), TolkienMobs.MODID, "mobsSpawn", 2);
 
     //I like to run the init events through the proxy because for one thing it makes your main class a lot cleaner
     //And it also makes it dead simple to manage client/server side code
