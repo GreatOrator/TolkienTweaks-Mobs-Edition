@@ -34,7 +34,7 @@ public class TTMFeatures implements IModFeatures {
         return TolkienMobs.TTMOBS; //And with that everything in your mod will be in your creative tab!
     }
 
-    //Material //I dont like the fact that this exists here but... for now this is fine.
+    //Material //I don't like the fact that this exists here but... for now this is fine.
     public static Item.ToolMaterial TOOL_MITHRIL = EnumHelper.addToolMaterial("tool_mithril", 2, 180, 5.0F, 1.5F, 5);
     public static ItemArmor.ArmorMaterial ARMOR_MITHRIL = EnumHelper.addArmorMaterial("armour_mithril", TolkienMobs.MODID + ":mithril", 20, new int[]{6, 7, 7, 6}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
     public static Item.ToolMaterial TOOL_MORGULIRON = EnumHelper.addToolMaterial("tool_morguliron", 2, 180, 5.0F, 1.5F, 5);
@@ -145,6 +145,10 @@ public class TTMFeatures implements IModFeatures {
     //endregion
 
     //region Tile Entities
-    //Maybe latter
+    //    //Maybe latter
+    //    //endregion
+
+    //region Mobs
+
     //endregion
 }
