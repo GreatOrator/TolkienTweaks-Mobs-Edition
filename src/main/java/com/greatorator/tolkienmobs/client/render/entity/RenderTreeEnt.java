@@ -1,10 +1,9 @@
-package com.greatorator.tolkienmobs.entity.entityrender;
+package com.greatorator.tolkienmobs.client.render.entity;
 
 import com.greatorator.tolkienmobs.entity.EntityTreeEnt;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;

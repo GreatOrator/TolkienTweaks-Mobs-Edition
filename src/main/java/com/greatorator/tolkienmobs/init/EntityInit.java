@@ -2,15 +2,11 @@ package com.greatorator.tolkienmobs.init;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.EntityTreeEnt;
-import com.greatorator.tolkienmobs.entity.entityrender.RenderTreeEnt;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityInit
 {
@@ -26,9 +22,5 @@ public class EntityInit
 
         // This is the loot table for our mob
         LootTableList.register(EntityTreeEnt.LOOT);
-    }
-    @SideOnly(Side.CLIENT)
-    public static void initModels() {
-        RenderingRegistry.registerEntityRenderingHandler(EntityTreeEnt.class, RenderTreeEnt.FACTORY);
     }
 }
