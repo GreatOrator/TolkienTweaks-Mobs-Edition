@@ -15,7 +15,7 @@ public class EntityInit
         System.out.println("Registering Entities");
         // Every entity in our mod has an ID (local to this mod)
         int id = 1;
-        EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "treeent"), EntityTreeEnt.class, "TreeEnt", id++, TolkienMobs.instance, 64, 3, true, 0x996600, 0x00ff00);
+        EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "treeent"), EntityTreeEnt.class, "tree_ent", id++, TolkienMobs.instance, 64, 3, true, 0x996600, 0x00ff00);
 
         // We want our mob to spawn naturally.
         EntityRegistry.addSpawn(EntityTreeEnt.class, 100, 3, 5, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.ICE_PLAINS);
