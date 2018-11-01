@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.entity;
 
+import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.EntityTreeEnt;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.model.ModelZombie;
@@ -11,7 +12,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nonnull;
 
 public class RenderTreeEnt extends RenderLiving<EntityTreeEnt> {
-    private ResourceLocation mobTexture = new ResourceLocation("tolkienmobs:textures/entity/treeent.png");
+    private ResourceLocation mobTexture = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/treeent.png");
 
     public static final Factory FACTORY = new Factory();
 
