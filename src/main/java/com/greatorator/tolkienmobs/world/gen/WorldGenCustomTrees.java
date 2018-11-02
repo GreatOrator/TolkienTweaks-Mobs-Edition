@@ -1,12 +1,12 @@
 package com.greatorator.tolkienmobs.world.gen;
 
-import com.greatorator.tolkienmobs.world.biomes.BiomeBindbole;
+import com.greatorator.tolkienmobs.world.biomes.BiomeLorinand;
+import com.greatorator.tolkienmobs.world.biomes.BiomeMirkwood;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.biome.BiomePlains;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -32,8 +32,8 @@ public class WorldGenCustomTrees implements IWorldGenerator
 
             case 0:
 
-                runGenerator(MALLORN, world, random, chunkX, chunkZ, 3, -1, 0, BiomeBindbole.class);
-                runGenerator(MIRKWOOD, world, random, chunkX, chunkZ, 3, -1, 0, BiomePlains.class);
+                runGenerator(MALLORN, world, random, chunkX, chunkZ, 3, -1, 0, BiomeLorinand.class);
+                runGenerator(MIRKWOOD, world, random, chunkX, chunkZ, 3, -1, 0, BiomeMirkwood.class);
 
                 break;
 

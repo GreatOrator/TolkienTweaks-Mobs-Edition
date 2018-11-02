@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.init;
 
-import com.greatorator.tolkienmobs.world.biomes.BiomeBindbole;
+import com.greatorator.tolkienmobs.world.biomes.BiomeLorinand;
+import com.greatorator.tolkienmobs.world.biomes.BiomeMirkwood;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
@@ -11,22 +12,24 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class BiomeInit
 {
-    public static final Biome BINDBOLE = new BiomeBindbole();
+    public static final Biome LORINAND = new BiomeLorinand();
+    public static final Biome MIRKWOOD = new BiomeMirkwood();
 
     public static void registerBiomes()
     {
-        initBiome(BINDBOLE, "Bindbole", BiomeType.WARM, Type.SWAMP, Type.PLAINS, Type.SPOOKY);
+        System.out.println("Making new discoveries possible!");
+        initBiome(LORINAND, "Lorinand", BiomeType.WARM, Type.PLAINS, Type.FOREST, Type.MAGICAL);
+        initBiome(MIRKWOOD, "Mirkwood", BiomeType.COOL, Type.SWAMP, Type.FOREST, Type.SPOOKY);
+        System.out.println("Let the discoveries begin!");
     }
 
     private static Biome initBiome(Biome biome, String name, BiomeType biomeType, Type... types)
     {
         biome.setRegistryName(name);
         ForgeRegistries.BIOMES.register(biome);
-        System.out.println("Making new discoveries possible!");
         BiomeDictionary.addTypes(biome, types);
         BiomeManager.addBiome(biomeType, new BiomeEntry(biome, 10));
         BiomeManager.addSpawnBiome(biome);
-        System.out.println("Let the discoveries begin!");
         return biome;
     }
 }
