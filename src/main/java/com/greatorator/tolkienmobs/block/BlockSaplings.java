@@ -130,7 +130,7 @@ public class BlockSaplings extends BlockBush implements IGrowable, IBCoreBlock
                 gen = new WorldGenMallornTree();
                 break;
             case MIRKWOOD:
-                gen = new WorldGenMirkwoodTree();
+                gen = new WorldGenMirkwoodTree(false);
                 break;
         }
 

@@ -19,7 +19,7 @@ import java.util.Random;
 public class WorldGenCustomTrees implements IWorldGenerator
 {
     private final WorldGenerator MALLORN = new WorldGenMallornTree();
-    private final WorldGenerator MIRKWOOD = new WorldGenMirkwoodTree();
+    private final WorldGenerator MIRKWOOD = new WorldGenMirkwoodTree(false);
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)

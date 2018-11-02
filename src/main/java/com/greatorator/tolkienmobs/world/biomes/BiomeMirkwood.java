@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class BiomeMirkwood extends Biome {
 
-    protected static final WorldGenAbstractTree TREE = new WorldGenMirkwoodTree();
+    protected static final WorldGenAbstractTree TREE = new WorldGenMirkwoodTree(false);
 
     public BiomeMirkwood()
     {
