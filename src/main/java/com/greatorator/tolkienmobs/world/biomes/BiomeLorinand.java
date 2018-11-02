@@ -58,7 +58,7 @@ public class BiomeLorinand extends Biome {
     public int getGrassColorAtPos(BlockPos pos)
     {
         double d0 = GRASS_COLOR_NOISE.getValue((double)pos.getX() * 0.0225D, (double)pos.getZ() * 0.0225D);
-        return d0 < -0.1D ? 5011004 : 7006317;
+        return d0 < -0.1D ? 7006317 : 7006317;
     }
 
     @SideOnly(Side.CLIENT)

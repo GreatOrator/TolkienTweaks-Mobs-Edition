@@ -22,7 +22,7 @@ public class BiomeMirkwood extends Biome {
                 .setBaseHeight(.15F)
                 .setHeightVariation(.1F)
                 .setTemperature(1.0F)
-                .setWaterColor(3091822));
+                .setWaterColor(3091811));
 
         topBlock = Blocks.GRASS.getDefaultState();
         fillerBlock = Blocks.DIRT.getDefaultState();
@@ -53,12 +53,12 @@ public class BiomeMirkwood extends Biome {
     public int getGrassColorAtPos(BlockPos pos)
     {
         double d0 = GRASS_COLOR_NOISE.getValue((double)pos.getX() * 0.0225D, (double)pos.getZ() * 0.0225D);
-        return d0 < -0.1D ? 733213 : 733213;
+        return d0 < -0.1D ? 738353 : 738353;
     }
 
     @SideOnly(Side.CLIENT)
     public int getFoliageColorAtPos(BlockPos pos)
     {
-        return 733213;
+        return 738353;
     }
 }
