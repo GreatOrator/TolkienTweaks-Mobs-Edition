@@ -22,11 +22,11 @@ public class BiomeInit
     {
         biome.setRegistryName(name);
         ForgeRegistries.BIOMES.register(biome);
-        System.out.println("Biome Registered");
+        System.out.println("Making new discoveries possible!");
         BiomeDictionary.addTypes(biome, types);
         BiomeManager.addBiome(biomeType, new BiomeEntry(biome, 10));
         BiomeManager.addSpawnBiome(biome);
-        System.out.println("Biome Added");
+        System.out.println("Let the discoveries begin!");
         return biome;
     }
 }

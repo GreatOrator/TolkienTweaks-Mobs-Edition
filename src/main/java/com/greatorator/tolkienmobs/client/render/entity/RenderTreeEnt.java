@@ -2,8 +2,8 @@ package com.greatorator.tolkienmobs.client.render.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.EntityTreeEnt;
+import com.greatorator.tolkienmobs.entity.model.ModelTreeEnt;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.model.ModelZombie;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
@@ -19,7 +19,7 @@ public class RenderTreeEnt extends RenderLiving<EntityTreeEnt> {
     public RenderTreeEnt(RenderManager rendermanagerIn) {
         // We use the vanilla zombie model here and we simply
         // retexture it. Of course you can make your own model
-        super(rendermanagerIn, new ModelZombie(), 0.5F);
+        super(rendermanagerIn, new ModelTreeEnt(), 0.5F);
     }
 
     @Override

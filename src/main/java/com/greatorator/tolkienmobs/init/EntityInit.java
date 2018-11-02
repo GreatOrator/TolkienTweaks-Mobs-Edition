@@ -12,7 +12,7 @@ public class EntityInit
 {
     public static void init() {
 
-        System.out.println("Registering Entities");
+        System.out.println("Deciding what fauna to add");
         // Every entity in our mod has an ID (local to this mod)
         int id = 1;
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "treeent"), EntityTreeEnt.class, "tree_ent", id++, TolkienMobs.instance, 64, 3, true, 0x996600, 0x00ff00);
@@ -22,5 +22,7 @@ public class EntityInit
 
         // This is the loot table for our mob
         LootTableList.register(EntityTreeEnt.LOOT);
+
+        System.out.println("All done adding fauna");
     }
 }

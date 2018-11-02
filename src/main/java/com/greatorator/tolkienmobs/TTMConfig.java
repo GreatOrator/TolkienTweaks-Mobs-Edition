@@ -1,10 +1,13 @@
 package com.greatorator.tolkienmobs;
 
+import com.brandon3055.brandonscore.handlers.FileHandler;
 import com.brandon3055.brandonscore.registry.IModConfigHelper;
 import com.brandon3055.brandonscore.registry.ModConfigContainer;
 import com.brandon3055.brandonscore.registry.ModConfigProperty;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+import java.io.File;
 
 /**
  * Created by brandon3055 on 31/10/18.
@@ -13,7 +16,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class TTMConfig implements IModConfigHelper {
     @Override
     public Configuration createConfiguration(FMLPreInitializationEvent event) {
-        return new Configuration(event.getSuggestedConfigurationFile(), true);
+        return new Configuration(new File(FileHandler.rootConfigFolder, "tolkienmobs.cfg"), true);
     }
 
     @Override

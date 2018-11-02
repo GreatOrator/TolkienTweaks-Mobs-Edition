@@ -31,7 +31,7 @@ public class EntityTreeEnt extends EntityMob {
 
     public EntityTreeEnt(World worldIn) {
         super(worldIn);
-        setSize(0.6F, 1.95F);
+        setSize(0.6F, 2.15F);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class EntityTreeEnt extends EntityMob {
         super.applyEntityAttributes();
         // Here we set various attributes for our mob. Like maximum health, armor, speed, ...
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.13D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.0D);
     }
