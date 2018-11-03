@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "item": "tolkienmobs:chestplate_morguliron",
+    "count": 1
+  },
+  "pattern": [
+    "B B",
+    "BBB",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "tolkienmobs:ingot_morguliron"
+    }
+  }
+}

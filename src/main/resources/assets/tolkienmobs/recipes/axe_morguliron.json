@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "item": "tolkienmobs:axe_morguliron",
+    "count": 1
+  },
+
+  "pattern":   [
+    "BB",
+    "BS",
+    " S"
+  ],
+  "key":
+  {
+    "B": {
+      "item": "tolkienmobs:ingot_morguliron"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  }
+}

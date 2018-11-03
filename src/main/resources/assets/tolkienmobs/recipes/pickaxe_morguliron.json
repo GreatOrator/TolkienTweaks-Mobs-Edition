@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "item": "tolkienmobs:pickaxe_morguliron",
+    "count": 1
+  },
+
+  "pattern":   [
+    "BBB",
+    " S ",
+    " S "
+  ],
+  "key":
+  {
+    "B": {
+      "item": "tolkienmobs:ingot_morguliron"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  }
+}

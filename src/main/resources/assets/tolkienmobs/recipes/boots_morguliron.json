@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "item": "tolkienmobs:boots_morguliron",
+    "count": 1
+  },
+  "pattern": [
+    "B B",
+    "B B"
+  ],
+  "key": {
+    "B": {
+      "item": "tolkienmobs:ingot_morguliron"
+    }
+  }
+}

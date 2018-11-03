@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "item": "tolkienmobs:leggings_morguliron",
+    "count": 1
+  },
+  "pattern": [
+    "BBB",
+    "B B",
+    "B B"
+  ],
+  "key": {
+    "B": {
+      "item": "tolkienmobs:ingot_morguliron"
+    }
+  }
+}
