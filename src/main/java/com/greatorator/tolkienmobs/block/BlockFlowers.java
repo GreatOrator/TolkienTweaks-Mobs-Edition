@@ -73,7 +73,8 @@ public class BlockFlowers extends BlockBush {
     }
 
     public enum EnumType implements IStringSerializable {
-        MIRKWOOD(0, "mirkwood");
+        MIRKWOOD(0, "mirkwood"),
+        SIMBELMYNE(1,"simbelmyne");
 
         private static final BlockFlowers.EnumType[] META_LOOKUP = new BlockFlowers.EnumType[values().length];
         private final int meta;

@@ -6,7 +6,16 @@
   },
   "variants": {
     "variant": {
-      "mirkwood": { "textures": {"cross":  "tolkienmobs:blocks/flower_mirkwood"} }
+      "mirkwood": { 
+		"textures": {
+		  "cross":  "tolkienmobs:blocks/flower_mirkwood"
+		}
+	  },
+	  "simbelmyne": { 
+		"textures": {
+		  "cross":  "tolkienmobs:blocks/flower_simbelmyne"
+		}
+	  }
     },
     "inventory": [{}],
     "normal": [{}]

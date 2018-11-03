@@ -49,6 +49,7 @@ tile.tolkienmobs:leaves_mirkwood.name=Mirkwood Leaves
 tile.tolkienmobs:log_mirkwood.name=Mirkwood Log
 tile.tolkienmobs:sapling_mirkwood.name=Mirkwood Sapling
 tile.tolkienmobs:flower_mirkwood.name=Seregon
+tile.tolkienmobs:flower_simbelmyne.name=Simbelmyne
 
 //Entities
 entity.tree_ent.name=Tree Ent

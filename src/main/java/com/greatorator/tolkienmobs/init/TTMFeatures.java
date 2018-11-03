@@ -146,7 +146,7 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "sapling", variantMap = {"0:stage=0,variant=mallorn", "1:stage=0,variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block SAPLINGS = new BlockSaplings();
 
-    @ModFeature(name = "flower", variantMap = {"0:variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
+    @ModFeature(name = "flower", variantMap = {"0:variant=simbelmyne", "1:variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block FLOWERS = new BlockFlowers();
 
     //endregion
