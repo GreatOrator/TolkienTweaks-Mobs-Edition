@@ -18,7 +18,7 @@ import java.util.Random;
 
 public class WorldGenCustomTrees implements IWorldGenerator
 {
-    private final WorldGenerator MALLORN = new WorldGenMallornTree();
+    private final WorldGenerator MALLORN = new WorldGenMallornTree(false);
     private final WorldGenerator MIRKWOOD = new WorldGenMirkwoodTree(false);
 
     @Override

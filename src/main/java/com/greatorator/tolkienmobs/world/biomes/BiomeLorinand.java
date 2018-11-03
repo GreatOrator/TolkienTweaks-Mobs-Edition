@@ -19,7 +19,7 @@ import java.util.Random;
 
 public class BiomeLorinand extends Biome {
 
-    protected static final WorldGenAbstractTree TREE = new WorldGenMallornTree();
+    protected static final WorldGenAbstractTree TREE = new WorldGenMallornTree(false);
 
     public BiomeLorinand()
     {

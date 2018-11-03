@@ -127,7 +127,7 @@ public class BlockSaplings extends BlockBush implements IGrowable, IBCoreBlock
         switch(state.getValue(VARIANT))
         {
             case MALLORN:
-                gen = new WorldGenMallornTree();
+                gen = new WorldGenMallornTree(false);
                 break;
             case MIRKWOOD:
                 gen = new WorldGenMirkwoodTree(false);
