@@ -34,18 +34,17 @@ public class BiomeLorinand extends Biome {
 
         this.decorator = this.createBiomeDecorator();
         this.decorator.treesPerChunk = 6;
+        this.decorator.waterlilyPerChunk = 3;
+        this.decorator.flowersPerChunk = 20;
+        this.decorator.grassPerChunk = 15;
+        this.decorator.generateFalls = true;
 
         this.spawnableCaveCreatureList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityTreeEnt.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombie.class, 95, 4, 4));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombieVillager.class, 5, 1, 1));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySkeleton.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWitch.class, 5, 1, 1));
-        this.spawnableCaveCreatureList.add(new Biome.SpawnListEntry(EntityBat.class, 10, 8, 8));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityTreeEnt.class, 100, 1, 1));
     }
 
     @Override

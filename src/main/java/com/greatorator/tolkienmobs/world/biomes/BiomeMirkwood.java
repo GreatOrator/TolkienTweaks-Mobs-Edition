@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
+import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.init.Blocks;
@@ -20,15 +21,21 @@ public class BiomeMirkwood extends Biome {
     {
         super(new BiomeProperties("Mirkwood")
                 .setBaseHeight(.15F)
-                .setHeightVariation(.1F)
-                .setTemperature(1.0F)
+                .setHeightVariation(.3F)
+                .setTemperature(0.6F)
                 .setWaterColor(3091811));
 
         topBlock = Blocks.GRASS.getDefaultState();
         fillerBlock = Blocks.DIRT.getDefaultState();
 
         this.decorator = this.createBiomeDecorator();
-        this.decorator.treesPerChunk = 6;
+        this.decorator.treesPerChunk = 8;
+        this.decorator.deadBushPerChunk = 10;
+        this.decorator.flowersPerChunk = 5;
+        this.decorator.grassPerChunk = 10;
+        this.decorator.mushroomsPerChunk = 24;
+        this.decorator.bigMushroomsPerChunk = 1;
+        this.decorator.generateFalls = false;
 
         this.spawnableCaveCreatureList.clear();
         this.spawnableCreatureList.clear();
@@ -47,6 +54,11 @@ public class BiomeMirkwood extends Biome {
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
         return TREE;
+    }
+
+    public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, BlockPos pos)
+    {
+        return BlockFlower.EnumFlowerType.BLUE_ORCHID;
     }
 
     @SideOnly(Side.CLIENT)
