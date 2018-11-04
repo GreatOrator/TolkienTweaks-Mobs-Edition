@@ -6,7 +6,6 @@ import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -39,6 +38,10 @@ public class BiomeMirkwood extends Biome {
         this.decorator.mushroomsPerChunk = 24;
         this.decorator.bigMushroomsPerChunk = 1;
         this.decorator.generateFalls = false;
+        
+        //this.skyColor = 5988193;
+        this.fogColor = 5988193;
+        this.fogDensity = 0.5F;
 
         this.spawnableCaveCreatureList.clear();
         this.spawnableCreatureList.clear();
@@ -51,21 +54,6 @@ public class BiomeMirkwood extends Biome {
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySkeleton.class, 100, 4, 4));
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWitch.class, 5, 1, 1));
         this.spawnableCaveCreatureList.add(new Biome.SpawnListEntry(EntityBat.class, 10, 8, 8));
-    }
-
-    @SideOnly(priority = EventPriority.NORMAL, receiveCanceled = true)
-    @SubscribeEvent
-    public void onFogDensityRender(EntityViewRenderEvent.FogDensity event){
-        event.setDensity(0.5F);
-        event.setCanceled(true);
-    }
-    
-    @SideOnly(priority = EventPriority.NORMAL, receiveCanceled = true)
-    @SubscribeEvent
-    public void onFogColorRender(EntityViewRenderEvent.FogColors event){
-        event.setRed(0xFF);
-        event.setGreen(0xFF);
-        event.setBlue(0xFF);
     }
     
     @Override
