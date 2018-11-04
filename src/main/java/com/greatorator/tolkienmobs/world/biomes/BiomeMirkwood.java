@@ -4,12 +4,12 @@ import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntityBat;
-import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
-import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -39,10 +39,6 @@ public class BiomeMirkwood extends Biome {
         this.decorator.bigMushroomsPerChunk = 1;
         this.decorator.generateFalls = false;
         
-        //this.skyColor = 5988193;
-        this.fogColor = 5988193;
-        this.fogDensity = 0.5F;
-
         this.spawnableCaveCreatureList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
@@ -55,7 +51,22 @@ public class BiomeMirkwood extends Biome {
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWitch.class, 5, 1, 1));
         this.spawnableCaveCreatureList.add(new Biome.SpawnListEntry(EntityBat.class, 10, 8, 8));
     }
-    
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void onFogDensityRender(EntityViewRenderEvent.FogDensity event){
+        event.setDensity(0.5F);
+        event.setCanceled(true);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void onFogColorRender(EntityViewRenderEvent.FogColors event){
+        event.setRed(0x5B);
+        event.setGreen(0x5F);
+        event.setBlue(0x61);
+    }
+
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
