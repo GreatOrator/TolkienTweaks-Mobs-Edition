@@ -29,6 +29,7 @@ public class BiomeLorinand extends Biome {
                 .setTemperature(1.0F)
                 .setWaterColor(54011));
 
+        System.out.println("Making the land beautiful...");
         topBlock = Blocks.GRASS.getDefaultState();
         fillerBlock = Blocks.DIRT.getDefaultState();
 

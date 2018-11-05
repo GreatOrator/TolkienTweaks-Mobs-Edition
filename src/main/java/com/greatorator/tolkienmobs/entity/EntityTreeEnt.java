@@ -32,6 +32,7 @@ public class EntityTreeEnt extends EntityMob {
     public EntityTreeEnt(World worldIn) {
         super(worldIn);
         setSize(0.6F, 2.15F);
+        System.out.println("Inviting the forest protectors...");
     }
 
     @Override

@@ -5,6 +5,8 @@ import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
+import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
+import net.minecraftforge.client.event.EntityViewRenderEvent.FogDensity;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -21,12 +23,14 @@ public class BiomeMirkwood extends Biome {
 
     public BiomeMirkwood()
     {
+
         super(new BiomeProperties("Mirkwood")
                 .setBaseHeight(.15F)
                 .setHeightVariation(.3F)
                 .setTemperature(0.6F)
                 .setWaterColor(3091811));
 
+        System.out.println("Preparing for the necromancer's return...");
         topBlock = Blocks.GRASS.getDefaultState();
         fillerBlock = Blocks.DIRT.getDefaultState();
 
@@ -38,7 +42,7 @@ public class BiomeMirkwood extends Biome {
         this.decorator.mushroomsPerChunk = 24;
         this.decorator.bigMushroomsPerChunk = 1;
         this.decorator.generateFalls = false;
-        
+
         this.spawnableCaveCreatureList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
@@ -66,6 +70,14 @@ public class BiomeMirkwood extends Biome {
         event.setGreen(0x5F);
         event.setBlue(0x61);
     }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void onRenderFog(EntityViewRenderEvent.RenderFogEvent event){
+        event.getFogMode();
+        event.getFarPlaneDistance();
+    }
+
 
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
