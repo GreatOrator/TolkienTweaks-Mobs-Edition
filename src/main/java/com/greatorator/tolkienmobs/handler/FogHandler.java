@@ -21,9 +21,8 @@ public class FogHandler {
         System.out.println("PING");
 
         float density = 10F;
-        float start = 1F;
-        float end = 16F;
 
+        //Colors in rgb by dividing each RGB value by 255
         float r = 0.3568627450980392F;
         float g = 0.3725490196078431F;
         float b = 0.3803921568627451F;
@@ -31,8 +30,8 @@ public class FogHandler {
         GlStateManager.glFog(2918, this.setFogColorBuffer(r, g, b, 1.0F));
         GlStateManager.setFog(GlStateManager.FogMode.LINEAR);
         GlStateManager.setFogDensity(density);
-        GlStateManager.setFogStart(start);
-        GlStateManager.setFogEnd(Math.min(end, 128F));
+        GlStateManager.setFogStart(1F);
+        GlStateManager.setFogEnd(16F);
     }
 
     private FloatBuffer setFogColorBuffer(float red, float green, float blue, float alpha){
