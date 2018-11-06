@@ -20,9 +20,10 @@ public class FogHandler {
     public void onRenderFog(EntityViewRenderEvent.RenderFogEvent event){
         System.out.println("PING");
 
+        //Will need to toy around with value, but need to set as a variable as well
         float density = 10F;
 
-        //Colors in rgb by dividing each RGB value by 255
+        //Colors in rgb by dividing each RGB value by 255, needs to be a variable
         float r = 0.3568627450980392F;
         float g = 0.3725490196078431F;
         float b = 0.3803921568627451F;
