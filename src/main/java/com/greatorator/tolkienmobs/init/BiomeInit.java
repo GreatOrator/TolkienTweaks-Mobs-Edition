@@ -20,7 +20,6 @@ public class BiomeInit
         System.out.println("Making new discoveries possible!");
         initBiome(LORINAND, "Lorinand", BiomeType.WARM, Type.PLAINS, Type.FOREST, Type.MAGICAL);
         initBiome(MIRKWOOD, "Mirkwood", BiomeType.COOL, Type.SWAMP, Type.FOREST, Type.SPOOKY);
-        System.out.println("Let the discoveries begin!");
     }
 
     private static Biome initBiome(Biome biome, String name, BiomeType biomeType, Type... types)

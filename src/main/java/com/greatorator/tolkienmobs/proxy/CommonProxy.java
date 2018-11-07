@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.init.BiomeInit;
+import com.greatorator.tolkienmobs.init.CraftingInit;
 import com.greatorator.tolkienmobs.init.EntityInit;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomTrees;
@@ -17,6 +18,7 @@ public class CommonProxy {
         GameRegistry.registerWorldGenerator(new WorldGenCustomTrees(), 0);
         BiomeInit.registerBiomes();
         EntityInit.init(); //NO! This Stays! Bad GreatOrator! xD
+        CraftingInit.init();
     }
 
     public void init(FMLInitializationEvent event) {

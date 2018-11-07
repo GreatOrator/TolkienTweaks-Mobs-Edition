@@ -10,7 +10,8 @@
   ],
   "key": {
     "B": {
-		"item": "tolkienmobs:flower_mirkwood"
+		"item": "tolkienmobs:flower",
+        "data": 1
     }
   }
 }

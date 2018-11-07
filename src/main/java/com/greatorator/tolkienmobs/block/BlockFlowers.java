@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.block;
 
+import com.brandon3055.brandonscore.lib.IBCoreBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
@@ -15,7 +16,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
-public class BlockFlowers extends BlockBush {
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class BlockFlowers extends BlockBush implements IBCoreBlock {
 
     public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.<EnumType>create("variant", EnumType.class);
 
@@ -28,6 +32,18 @@ public class BlockFlowers extends BlockBush {
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
         return super.getBoundingBox(state, source, pos).offset(state.getOffset(source, pos));
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
     }
 
     @Override
@@ -72,24 +88,36 @@ public class BlockFlowers extends BlockBush {
         return state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.FARMLAND;
     }
 
-    public enum EnumType implements IStringSerializable {
-        MIRKWOOD(0, "mirkwood"),
-        SIMBELMYNE(1,"simbelmyne");
+    @Override
+    public boolean hasSubItemTypes() {
+        return true;
+    }
 
-        private static final BlockFlowers.EnumType[] META_LOOKUP = new BlockFlowers.EnumType[values().length];
-        private final int meta;
-        private final String name;
+    @Override
+    public Map<Integer, String> getNameOverrides() {
+        return EnumType.FLOWER_NAME_LOOKUP;
+    }
+
+    public enum EnumType implements IStringSerializable {
+        SIMBELMYNE(0,"simbelmyne"),
+        MIRKWOOD(1, "mirkwood");
+
+        private static final EnumType[] META_LOOKUP = new EnumType[values().length];
+        public static final Map<Integer, String> FLOWER_NAME_LOOKUP = new LinkedHashMap<>();
 
         EnumType(int meta, String name) {
             this.meta = meta;
             this.name = name;
         }
 
+        public final int meta;
+        public final String name;
+
         public int getMeta() {
             return meta;
         }
 
-        public static BlockFlowers.EnumType byMetadata(int meta) {
+        public static EnumType byMetadata(int meta) {
             if (meta < 0 || meta >= META_LOOKUP.length) {
                 meta = 0;
             }
@@ -99,13 +127,13 @@ public class BlockFlowers extends BlockBush {
 
         @Override
         public String getName() {
-
             return this.name;
         }
 
         static {
-            for (BlockFlowers.EnumType type : values()) {
+            for (EnumType type : values()) {
                 META_LOOKUP[type.getMeta()] = type;
+                FLOWER_NAME_LOOKUP.put(type.meta, "flower_" + type.name);
             }
         }
     }

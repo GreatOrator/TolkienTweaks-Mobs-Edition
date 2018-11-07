@@ -10,7 +10,8 @@
   ],
   "key": {
     "B": {
-		"item": "tolkienmobs:flower_simbelmyne"
+		"item": "tolkienmobs:flower",
+        "data": 0
     }
   }
 }
