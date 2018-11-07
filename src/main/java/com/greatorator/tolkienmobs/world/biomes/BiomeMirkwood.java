@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntityBat;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -13,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BiomeMirkwood extends Biome {
+public class BiomeMirkwood extends Biome implements IFogyBiome {
 
     protected static final WorldGenAbstractTree TREE = new WorldGenMirkwoodTree(false);
 
@@ -74,5 +75,15 @@ public class BiomeMirkwood extends Biome {
     public int getFoliageColorAtPos(BlockPos pos)
     {
         return 738353;
+    }
+
+    @Override
+    public int getFogColour(EntityPlayer player) {
+        return 0x5b5f61;
+    }
+
+    @Override
+    public float getFogDensity(EntityPlayer player) {
+        return 0.2F;
     }
 }

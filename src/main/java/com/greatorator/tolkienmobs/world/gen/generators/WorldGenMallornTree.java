@@ -12,12 +12,12 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
-import java.util.Random;
 import java.util.List;
+import java.util.Random;
 
 public class WorldGenMallornTree extends WorldGenAbstractTree {
     public static final IBlockState LOG = TTMFeatures.LOGS.getDefaultState().withProperty(BlockLogs.VARIANT, BlockLogs.EnumType.MALLORN);
-    public static final IBlockState LEAF = TTMFeatures.LEAVES.getDefaultState().withProperty(BlockLeaf.VARIANT, BlockLogs.EnumType.MALLORN);
+    public static final IBlockState LEAF = TTMFeatures.LEAVES.getDefaultState().withProperty(BlockLeaf.VARIANT, BlockLogs.EnumType.MALLORN).withProperty(BlockLeaf.CHECK_DECAY, false); //You dont want every tree you generate to immediately start checking leaf decay.
 
     private Random rand;
     private World world;

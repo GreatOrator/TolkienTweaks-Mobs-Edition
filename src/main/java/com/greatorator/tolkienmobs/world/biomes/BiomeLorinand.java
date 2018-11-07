@@ -2,12 +2,7 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.entity.EntityTreeEnt;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.monster.EntityWitch;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.monster.EntityZombieVillager;
-import net.minecraft.entity.passive.EntityBat;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -17,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BiomeLorinand extends Biome {
+public class BiomeLorinand extends Biome implements IFogyBiome {
 
     protected static final WorldGenAbstractTree TREE = new WorldGenMallornTree(false);
 
@@ -65,5 +60,15 @@ public class BiomeLorinand extends Biome {
     public int getFoliageColorAtPos(BlockPos pos)
     {
         return 7006317;
+    }
+
+    @Override
+    public int getFogColour(EntityPlayer player) {
+        return 0x8bFF8b;
+    }
+
+    @Override
+    public float getFogDensity(EntityPlayer player) {
+        return 0.03F;
     }
 }

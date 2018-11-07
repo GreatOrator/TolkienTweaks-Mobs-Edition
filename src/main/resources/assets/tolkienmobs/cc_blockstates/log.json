@@ -1,0 +1,60 @@
+{
+  "ccl_marker": 1,
+  "variant_sets": ["axis,variant"],
+  "defaults": {
+    "model": "minecraft:cube",
+    "transform": "ccl:default-block"
+  },
+  "variants": {
+    "variant": {
+      "mallorn": {
+        "textures": {
+          "particle": "tolkienmobs:blocks/log_mallorn",
+          "down": "tolkienmobs:blocks/log_mallorn_top",
+          "up": "tolkienmobs:blocks/log_mallorn_top",
+          "north": "tolkienmobs:blocks/log_mallorn",
+          "south": "tolkienmobs:blocks/log_mallorn",
+          "east": "tolkienmobs:blocks/log_mallorn",
+          "west": "tolkienmobs:blocks/log_mallorn"
+        }
+      },
+      "mirkwood": {
+        "textures": {
+          "particle": "tolkienmobs:blocks/log_mirkwood",
+          "down": "tolkienmobs:blocks/log_mirkwood_top",
+          "up": "tolkienmobs:blocks/log_mirkwood_top",
+          "north": "tolkienmobs:blocks/log_mirkwood",
+          "south": "tolkienmobs:blocks/log_mirkwood",
+          "east": "tolkienmobs:blocks/log_mirkwood",
+          "west": "tolkienmobs:blocks/log_mirkwood"
+        }
+      }
+    },
+    "axis": {
+      "y": {},
+      "z": {"x": 90},
+      "x": {
+        "x": 90,
+        "y": 90
+      },
+      "none": {
+        "variants": {
+          "variant": {
+            "mallorn": {
+              "textures": {
+                "up": "tolkienmobs:blocks/log_mallorn",
+                "down": "tolkienmobs:blocks/log_mallorn"
+              }
+            },
+            "mirkwood": {
+              "textures": {
+                "up": "tolkienmobs:blocks/log_mirkwood",
+                "down": "tolkienmobs:blocks/log_mirkwood"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

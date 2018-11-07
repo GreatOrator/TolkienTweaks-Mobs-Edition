@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class WorldGenMirkwoodTree extends WorldGenAbstractTree {
     public static final IBlockState LOG = TTMFeatures.LOGS.getDefaultState().withProperty(BlockLogs.VARIANT, BlockLogs.EnumType.MIRKWOOD);
-    public static final IBlockState LEAF = TTMFeatures.LEAVES.getDefaultState().withProperty(BlockLeaf.VARIANT, BlockLogs.EnumType.MIRKWOOD);
+    public static final IBlockState LEAF = TTMFeatures.LEAVES.getDefaultState().withProperty(BlockLeaf.VARIANT, BlockLogs.EnumType.MIRKWOOD).withProperty(BlockLeaf.CHECK_DECAY, false); //You dont want every tree you generate to immediately start checking leaf decay.
 
     public WorldGenMirkwoodTree(boolean notify)
     {
