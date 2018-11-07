@@ -19,15 +19,18 @@ public abstract class WoodSlab extends BlockSlab
 {
 	public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.create("variant", EnumType.class);
 
-	public WoodSlab()
+	public WoodSlab(String name, float hardness, float resistance)
 	{
 		super(Material.WOOD);
 		setSoundType(SoundType.WOOD);
 		setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.MALLORN));
+		setUnlocalizedName(name);
+		setHardness(hardness);
+		setResistance(resistance);
 
-		for (EnumType type : EnumType.values()) {
-			addName(type.meta, "slab_" + type.name);
-		}
+		//for (EnumType type : EnumType.values()) {
+		//	addName(type.meta, "slab_" + type.name);
+		//}
 		IBlockState state = this.blockState.getBaseState();
 		
 		if(!this.isDouble())
