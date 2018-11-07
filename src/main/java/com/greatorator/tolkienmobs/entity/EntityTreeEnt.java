@@ -24,7 +24,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 public class EntityTreeEnt extends EntityMob {
-    // We reuse the zombie model which has arms that need to be raised when the zombie is attacking:
     private static final DataParameter<Boolean> ARMS_RAISED = EntityDataManager.createKey(EntityTreeEnt.class, DataSerializers.BOOLEAN);
 
     public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/treeent");
@@ -32,7 +31,6 @@ public class EntityTreeEnt extends EntityMob {
     public EntityTreeEnt(World worldIn) {
         super(worldIn);
         setSize(0.6F, 2.15F);
-//        System.out.println("Inviting the forest protectors...");
     }
 
     @Override

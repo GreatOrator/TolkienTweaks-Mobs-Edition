@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
-public class BiomeLorinand extends Biome implements IFogyBiome {
+public class BiomeLorinand extends Biome {
 
     protected static final WorldGenAbstractTree TREE = new WorldGenMallornTree(false);
 
@@ -54,21 +54,5 @@ public class BiomeLorinand extends Biome implements IFogyBiome {
     {
         double d0 = GRASS_COLOR_NOISE.getValue((double)pos.getX() * 0.0225D, (double)pos.getZ() * 0.0225D);
         return d0 < -0.1D ? 7006317 : 7006317;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public int getFoliageColorAtPos(BlockPos pos)
-    {
-        return 7006317;
-    }
-
-    @Override
-    public int getFogColour(EntityPlayer player) {
-        return 0x8bFF8b;
-    }
-
-    @Override
-    public float getFogDensity(EntityPlayer player) {
-        return 0.03F;
     }
 }

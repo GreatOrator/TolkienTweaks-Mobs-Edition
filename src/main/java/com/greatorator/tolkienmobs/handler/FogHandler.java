@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.nio.FloatBuffer;
 
-//@EventBusSubscriber //Dont need to do this AND manually register to the event bus. Just do one or the other. (Prefer EVENT_BUS.register)
+//@EventBusSubscriber //Don't need to do this AND manually register to the event bus. Just do one or the other. (Prefer EVENT_BUS.register)
 public class FogHandler {
     private final FloatBuffer fogBuffer = GLAllocation.createDirectFloatBuffer(16);
 
@@ -25,7 +25,7 @@ public class FogHandler {
 
     private float targetDensity = 0;
     private float density = 0;
-    private int[] colour = {0, 0, 0, 0}; //ARGB we dont need A but we get it when we unpack the hex colour.
+    private int[] colour = {0, 0, 0, 0}; //ARGB we don't need A but we get it when we unpack the hex colour.
 
 
     @SubscribeEvent

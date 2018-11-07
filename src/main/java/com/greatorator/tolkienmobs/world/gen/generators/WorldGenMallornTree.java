@@ -5,6 +5,7 @@ import com.greatorator.tolkienmobs.block.BlockLeaf;
 import com.greatorator.tolkienmobs.block.BlockLogs;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -223,7 +224,7 @@ public class WorldGenMallornTree extends WorldGenAbstractTree {
             }
         }
 
-        return blocklogs$enumaxis;
+        return BlockLog.EnumAxis.NONE;
     }
 
     /**
