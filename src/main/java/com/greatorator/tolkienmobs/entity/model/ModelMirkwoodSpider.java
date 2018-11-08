@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -127,6 +128,10 @@ public class ModelMirkwoodSpider extends ModelBase {
         this.SpiderLegF.render(f5);
         this.SpiderLegE.render(f5);
         this.SpiderLegA.render(f5);
+        this.SpiderHead.addChild(this.SpiderMandibleA1);
+        this.SpiderHead.addChild(this.SpiderMandibleA2);
+        this.SpiderHead.addChild(this.SpiderMandibleB1);
+        this.SpiderHead.addChild(this.SpiderMandibleB2);
     }
 
     /**
@@ -136,5 +141,54 @@ public class ModelMirkwoodSpider extends ModelBase {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
+    }
+
+    @Override
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn){
+        this.SpiderHead.rotateAngleY = netHeadYaw * 0.017453292F;
+        this.SpiderHead.rotateAngleX = headPitch * 0.017453292F;
+
+        this.SpiderLegA.rotateAngleZ = -((float)Math.PI / 4F);
+        this.SpiderLegB.rotateAngleZ = ((float)Math.PI / 4F);
+        this.SpiderLegC.rotateAngleZ = -0.58119464F;
+        this.SpiderLegD.rotateAngleZ = 0.58119464F;
+        this.SpiderLegE.rotateAngleZ = -0.58119464F;
+        this.SpiderLegF.rotateAngleZ = 0.58119464F;
+        this.SpiderLegG.rotateAngleZ = -((float)Math.PI / 4F);
+        this.SpiderLegH.rotateAngleZ = ((float)Math.PI / 4F);
+        float f1 = -0.0F;
+        float f2 = 0.3926991F;
+        this.SpiderLegA.rotateAngleY = ((float)Math.PI / 4F);
+        this.SpiderLegB.rotateAngleY = -((float)Math.PI / 4F);
+        this.SpiderLegC.rotateAngleY = 0.3926991F;
+        this.SpiderLegD.rotateAngleY = -0.3926991F;
+        this.SpiderLegE.rotateAngleY = -0.3926991F;
+        this.SpiderLegF.rotateAngleY = 0.3926991F;
+        this.SpiderLegG.rotateAngleY = -((float)Math.PI / 4F);
+        this.SpiderLegH.rotateAngleY = ((float)Math.PI / 4F);
+        float f3 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + 0.0F) * 0.4F) * limbSwingAmount;
+        float f4 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + (float)Math.PI) * 0.4F) * limbSwingAmount;
+        float f5 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + ((float)Math.PI / 2F)) * 0.4F) * limbSwingAmount;
+        float f6 = -(MathHelper.cos(limbSwing * 0.6662F * 2.0F + ((float)Math.PI * 3F / 2F)) * 0.4F) * limbSwingAmount;
+        float f7 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + 0.0F) * 0.4F) * limbSwingAmount;
+        float f8 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + (float)Math.PI) * 0.4F) * limbSwingAmount;
+        float f9 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + ((float)Math.PI / 2F)) * 0.4F) * limbSwingAmount;
+        float f10 = Math.abs(MathHelper.sin(limbSwing * 0.6662F + ((float)Math.PI * 3F / 2F)) * 0.4F) * limbSwingAmount;
+        this.SpiderLegA.rotateAngleY += f3;
+        this.SpiderLegB.rotateAngleY += -f3;
+        this.SpiderLegC.rotateAngleY += f4;
+        this.SpiderLegD.rotateAngleY += -f4;
+        this.SpiderLegE.rotateAngleY += f5;
+        this.SpiderLegF.rotateAngleY += -f5;
+        this.SpiderLegG.rotateAngleY += f6;
+        this.SpiderLegH.rotateAngleY += -f6;
+        this.SpiderLegA.rotateAngleZ += f7;
+        this.SpiderLegB.rotateAngleZ += -f7;
+        this.SpiderLegC.rotateAngleZ += f8;
+        this.SpiderLegD.rotateAngleZ += -f8;
+        this.SpiderLegE.rotateAngleZ += f9;
+        this.SpiderLegF.rotateAngleZ += -f9;
+        this.SpiderLegG.rotateAngleZ += f10;
+        this.SpiderLegH.rotateAngleZ += -f10;
     }
 }

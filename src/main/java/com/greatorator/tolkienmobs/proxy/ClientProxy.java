@@ -1,6 +1,8 @@
 package com.greatorator.tolkienmobs.proxy;
 
+import com.greatorator.tolkienmobs.client.render.entity.RenderMirkwoodSpider;
 import com.greatorator.tolkienmobs.client.render.entity.RenderTreeEnt;
+import com.greatorator.tolkienmobs.entity.EntityMirkwoodSpider;
 import com.greatorator.tolkienmobs.entity.EntityTreeEnt;
 import com.greatorator.tolkienmobs.handler.FogHandler;
 import net.minecraftforge.common.MinecraftForge;
@@ -16,6 +18,7 @@ public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
         RenderingRegistry.registerEntityRenderingHandler(EntityTreeEnt.class, RenderTreeEnt.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityMirkwoodSpider.class, RenderMirkwoodSpider.FACTORY);
     }
 
     @Override

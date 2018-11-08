@@ -1,109 +1,254 @@
 package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.entity.entityai.EntityAITreeEntAttack;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.block.Block;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.PathNavigate;
+import net.minecraft.pathfinding.PathNavigateClimber;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.datafix.DataFixer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class EntityMirkwoodSpider extends EntityMob {
-    private static final DataParameter<Boolean> ARMS_RAISED = EntityDataManager.createKey(EntityMirkwoodSpider.class, DataSerializers.BOOLEAN);
 
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/treeent");
+    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/mirkwoodspider");
+    private static final DataParameter<Byte> CLIMBING = EntityDataManager.<Byte>createKey(EntityMirkwoodSpider.class, DataSerializers.BYTE);
 
     public EntityMirkwoodSpider(World worldIn) {
         super(worldIn);
-        setSize(0.6F, 2.15F);
+        this.setSize(1.4F, 0.9F);
     }
 
-    @Override
+    public static void registerFixesSpider(DataFixer fixer) {
+        EntityLiving.registerFixesMob(fixer, EntityMirkwoodSpider.class);
+    }
+
+    protected void initEntityAI() {
+        this.tasks.addTask(1, new EntityAISwimming(this));
+        this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
+        this.tasks.addTask(4, new EntityMirkwoodSpider.AISpiderAttack(this));
+        this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 0.8D));
+        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(6, new EntityAILookIdle(this));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
+        this.targetTasks.addTask(2, new EntityMirkwoodSpider.AISpiderTarget(this, EntityPlayer.class));
+        this.targetTasks.addTask(3, new EntityMirkwoodSpider.AISpiderTarget(this, EntityIronGolem.class));
+    }
+
+    /**
+     * Returns the Y offset from the entity's position for any entity riding this one.
+     */
+    public double getMountedYOffset() {
+        return (double) (this.height * 0.5F);
+    }
+
+    /**
+     * Returns new PathNavigateGround instance
+     */
+    protected PathNavigate createNavigator(World worldIn) {
+        return new PathNavigateClimber(this, worldIn);
+    }
+
     protected void entityInit() {
         super.entityInit();
-        this.getDataManager().register(ARMS_RAISED, Boolean.valueOf(false));
+        this.dataManager.register(CLIMBING, Byte.valueOf((byte) 0));
     }
 
-    @Override
-    protected void applyEntityAttributes() {
-        super.applyEntityAttributes();
-        // Here we set various attributes for our mob. Like maximum health, armor, speed, ...
-        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.0D);
-    }
+    /**
+     * Called to update the entity's position/logic.
+     */
+    public void onUpdate() {
+        super.onUpdate();
 
-    public void setArmsRaised(boolean armsRaised) {
-        this.getDataManager().set(ARMS_RAISED, Boolean.valueOf(armsRaised));
-    }
-
-    @SideOnly(Side.CLIENT)
-    public boolean isArmsRaised() {
-        return this.getDataManager().get(ARMS_RAISED).booleanValue();
-    }
-
-    @Override
-    protected void initEntityAI() {
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAITreeEntAttack(this, 1.0D, false));
-        this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
-        this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
-        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(8, new EntityAILookIdle(this));
-        this.applyEntityAI();
-    }
-
-    private void applyEntityAI() {
-        this.tasks.addTask(6, new EntityAIMoveThroughVillage(this, 1.0D, false));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityPigZombie.class}));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityVillager.class, false));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityIronGolem.class, true));
-    }
-
-    @Override
-    public boolean attackEntityAsMob(Entity entityIn) {
-        if (super.attackEntityAsMob(entityIn)) {
-            if (entityIn instanceof EntityLivingBase) {
-                // This zombie gives health boost and regeneration when it attacks
-                ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 200));
-                ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200));
-            }
-            return true;
-        } else {
-            return false;
+        if (!this.world.isRemote) {
+            this.setBesideClimbableBlock(this.collidedHorizontally);
         }
     }
 
-    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
+    }
+
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.ENTITY_SPIDER_AMBIENT;
+    }
+
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return SoundEvents.ENTITY_SPIDER_HURT;
+    }
+
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.ENTITY_SPIDER_DEATH;
+    }
+
+    protected void playStepSound(BlockPos pos, Block blockIn) {
+        this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.15F, 1.0F);
+    }
+
+    /**
+     * Returns true if this entity should move as if it were on a ladder (either because it's actually on a ladder, or
+     * for AI reasons)
+     */
+    public boolean isOnLadder() {
+        return this.isBesideClimbableBlock();
+    }
+
+    /**
+     * Sets the Entity inside a web block.
+     */
+    public void setInWeb() {
+    }
+
+    /**
+     * Get this Entity's EnumCreatureAttribute
+     */
+    public EnumCreatureAttribute getCreatureAttribute() {
+        return EnumCreatureAttribute.ARTHROPOD;
+    }
+
+    public boolean isPotionApplicable(PotionEffect potioneffectIn) {
+        return potioneffectIn.getPotion() == MobEffects.POISON ? false : super.isPotionApplicable(potioneffectIn);
+    }
+
+    /**
+     * Returns true if the WatchableObject (Byte) is 0x01 otherwise returns false. The WatchableObject is updated using
+     * setBesideClimableBlock.
+     */
+    public boolean isBesideClimbableBlock() {
+        return (((Byte) this.dataManager.get(CLIMBING)).byteValue() & 1) != 0;
+    }
+
+    /**
+     * Updates the WatchableObject (Byte) created in entityInit(), setting it to 0x01 if par1 is true or 0x00 if it is
+     * false.
+     */
+    public void setBesideClimbableBlock(boolean climbing) {
+        byte b0 = ((Byte) this.dataManager.get(CLIMBING)).byteValue();
+
+        if (climbing) {
+            b0 = (byte) (b0 | 1);
+        } else {
+            b0 = (byte) (b0 & -2);
+        }
+
+        this.dataManager.set(CLIMBING, Byte.valueOf(b0));
+    }
+
+    /**
+     * Called only once on an entity when first time spawned, via egg, mob spawner, natural spawning etc, but not called
+     * when entity is reloaded from nbt. Mainly used for initializing attributes and inventory
+     */
     @Nullable
-    protected ResourceLocation getLootTable() {
-        return LOOT;
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        livingdata = super.onInitialSpawn(difficulty, livingdata);
+
+        if (this.world.rand.nextInt(100) == 0) {
+            EntitySkeleton entityskeleton = new EntitySkeleton(this.world);
+            entityskeleton.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+            entityskeleton.onInitialSpawn(difficulty, (IEntityLivingData) null);
+            this.world.spawnEntity(entityskeleton);
+            entityskeleton.startRiding(this);
+        }
+
+        if (livingdata == null) {
+            livingdata = new EntityMirkwoodSpider.GroupData();
+
+            if (this.world.getDifficulty() == EnumDifficulty.HARD && this.world.rand.nextFloat() < 0.1F * difficulty.getClampedAdditionalDifficulty()) {
+                ((EntityMirkwoodSpider.GroupData) livingdata).setRandomEffect(this.world.rand);
+            }
+        }
+
+        if (livingdata instanceof EntityMirkwoodSpider.GroupData) {
+            Potion potion = ((EntityMirkwoodSpider.GroupData) livingdata).effect;
+
+            if (potion != null) {
+                this.addPotionEffect(new PotionEffect(potion, Integer.MAX_VALUE));
+            }
+        }
+
+        return livingdata;
     }
 
-    @Override
-    protected boolean isValidLightLevel() {
-        return true;
+    public float getEyeHeight() {
+        return 0.65F;
     }
 
-    @Override
-    public int getMaxSpawnedInChunk() {
-        return 5;
+    static class AISpiderAttack extends EntityAIAttackMelee {
+        public AISpiderAttack(EntityMirkwoodSpider spider) {
+            super(spider, 1.0D, true);
+        }
+
+        /**
+         * Returns whether an in-progress EntityAIBase should continue executing
+         */
+        public boolean shouldContinueExecuting() {
+            float f = this.attacker.getBrightness();
+
+            if (f >= 0.5F && this.attacker.getRNG().nextInt(100) == 0) {
+                this.attacker.setAttackTarget((EntityLivingBase) null);
+                return false;
+            } else {
+                return super.shouldContinueExecuting();
+            }
+        }
+
+        protected double getAttackReachSqr(EntityLivingBase attackTarget) {
+            return (double) (4.0F + attackTarget.width);
+        }
+    }
+
+    static class AISpiderTarget<T extends EntityLivingBase> extends EntityAINearestAttackableTarget<T> {
+        public AISpiderTarget(EntityMirkwoodSpider spider, Class<T> classTarget) {
+            super(spider, classTarget, true);
+        }
+
+        /**
+         * Returns whether the EntityAIBase should begin execution.
+         */
+        public boolean shouldExecute() {
+            float f = this.taskOwner.getBrightness();
+            return f >= 0.5F ? false : super.shouldExecute();
+        }
+    }
+
+    public static class GroupData implements IEntityLivingData {
+        public Potion effect;
+
+        public void setRandomEffect(Random rand) {
+            int i = rand.nextInt(5);
+
+            if (i <= 1) {
+                this.effect = MobEffects.SPEED;
+            } else if (i <= 2) {
+                this.effect = MobEffects.STRENGTH;
+            } else if (i <= 3) {
+                this.effect = MobEffects.REGENERATION;
+            } else if (i <= 4) {
+                this.effect = MobEffects.INVISIBILITY;
+            }
+        }
     }
 }
