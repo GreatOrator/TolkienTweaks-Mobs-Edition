@@ -139,7 +139,7 @@ public class TTMFeatures implements IModFeatures {
     public static final Block LOGS = new BlockLogs();
 
     //@ModFeature(name = "slab", variantMap = {"0:variant=mallorn", "1:variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
-   // public static final Block SLAB = new BlockSlabs();
+    //public static final Block SLAB = new BlockSlabs();
 
     //                                             //TODO add a way to avoid this mess in 1.13...
     @ModFeature(name = "leaves", variantMap = {"0:check_decay=false,decayable=false,variant=mallorn", "1:check_decay=false,decayable=false,variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
