@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.entity.model;
+package com.greatorator.tolkienmobs.client.render.model;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -6,7 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
 /**
- * com.greatorator.tolkienmobs.entity.model.ModelTreeEnt - GreatOrator
+ * com.greatorator.tolkienmobs.client.render.model.ModelTreeEnt - GreatOrator
  */
 public class ModelTreeEnt extends ModelBase {
     public ModelRenderer EntBody;
