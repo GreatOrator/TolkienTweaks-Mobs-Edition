@@ -88,10 +88,14 @@ public class ModelMirkwoodSpider extends ModelBase {
         this.SpiderLegA.setRotationPoint(4.0F, 15.0F, -1.0F);
         this.SpiderLegA.addBox(-1.0F, -1.0F, -1.0F, 16, 2, 2, 0.0F);
         this.setRotateAngle(SpiderLegA, 0.0F, 0.7853981633974483F, 0.7853981633974483F);
+        this.SpiderHead.addChild(this.SpiderMandibleA1);
+        this.SpiderMandibleA1.addChild(this.SpiderMandibleA2);
+        this.SpiderHead.addChild(this.SpiderMandibleB1);
+        this.SpiderMandibleB1.addChild(this.SpiderMandibleB2);
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.SpiderLegB.render(f5);
         this.SpiderMandibleB2.render(f5);
         this.SpiderLegC.render(f5);
@@ -128,10 +132,6 @@ public class ModelMirkwoodSpider extends ModelBase {
         this.SpiderLegF.render(f5);
         this.SpiderLegE.render(f5);
         this.SpiderLegA.render(f5);
-        this.SpiderHead.addChild(this.SpiderMandibleA1);
-        this.SpiderHead.addChild(this.SpiderMandibleA2);
-        this.SpiderHead.addChild(this.SpiderMandibleB1);
-        this.SpiderHead.addChild(this.SpiderMandibleB2);
     }
 
     /**
