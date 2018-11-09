@@ -54,8 +54,9 @@ tile.tolkienmobs:flower_mirkwood.name=Seregon
 tile.tolkienmobs:flower_simbelmyne.name=Simbelmyne
 
 //Entities
-entity.tree_ent.name=Tree Ent
+entity.tree_ent.name=Huron
 entity.mirkwood_spider.name=Mirkwood Spider
+entity.goblin.name=Mountain Goblin
 
 //Creative Tabs
 itemGroup.tolkienmobs:tools=TolkienTweaks Tools

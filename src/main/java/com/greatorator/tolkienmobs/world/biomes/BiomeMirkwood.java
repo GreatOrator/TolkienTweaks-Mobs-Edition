@@ -1,9 +1,8 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
+import com.greatorator.tolkienmobs.entity.EntityMirkwoodSpider;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
 import net.minecraft.block.BlockFlower;
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -45,12 +44,7 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySpider.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombie.class, 95, 4, 4));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityZombieVillager.class, 5, 1, 1));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntitySkeleton.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWitch.class, 5, 1, 1));
-        this.spawnableCaveCreatureList.add(new Biome.SpawnListEntry(EntityBat.class, 10, 8, 8));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityMirkwoodSpider.class, 100, 1, 1));
     }
 
     @Override
