@@ -169,24 +169,24 @@ public class ModelMirkwoodSpider extends ModelBase {
         this.setRotateAngle(SpiderLegH3, -0.747000919853573F, 0.47123889803846897F, -1.1205013797803596F);
         this.SpiderHead.addChild(this.SpiderMandibleA1);
         this.SpiderHead.addChild(this.SpiderMandibleB1);
-        this.SpiderMandibleA1.addChild(this.SpiderMandibleA2);
-        this.SpiderMandibleB1.addChild(this.SpiderMandibleB2);
+        this.SpiderHead.addChild(this.SpiderMandibleA2);
+        this.SpiderHead.addChild(this.SpiderMandibleB2);
         this.SpiderLegA.addChild(this.SpiderLegA2);
-        this.SpiderLegA2.addChild(this.SpiderLegA3);
+        this.SpiderLegA.addChild(this.SpiderLegA3);
         this.SpiderLegB.addChild(this.SpiderLegB2);
-        this.SpiderLegB2.addChild(this.SpiderLegB3);
+        this.SpiderLegB.addChild(this.SpiderLegB3);
         this.SpiderLegC.addChild(this.SpiderLegC2);
-        this.SpiderLegC2.addChild(this.SpiderLegC3);
+        this.SpiderLegC.addChild(this.SpiderLegC3);
         this.SpiderLegD.addChild(this.SpiderLegD2);
-        this.SpiderLegD2.addChild(this.SpiderLegD3);
+        this.SpiderLegD.addChild(this.SpiderLegD3);
         this.SpiderLegE.addChild(this.SpiderLegE2);
-        this.SpiderLegE2.addChild(this.SpiderLegE3);
+        this.SpiderLegE.addChild(this.SpiderLegE3);
         this.SpiderLegF.addChild(this.SpiderLegF2);
-        this.SpiderLegF2.addChild(this.SpiderLegF3);
+        this.SpiderLegF.addChild(this.SpiderLegF3);
         this.SpiderLegG.addChild(this.SpiderLegG2);
-        this.SpiderLegG2.addChild(this.SpiderLegG3);
+        this.SpiderLegG.addChild(this.SpiderLegG3);
         this.SpiderLegH.addChild(this.SpiderLegH2);
-        this.SpiderLegH2.addChild(this.SpiderLegH3);
+        this.SpiderLegH.addChild(this.SpiderLegH3);
 
     }
 
