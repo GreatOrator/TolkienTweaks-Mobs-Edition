@@ -81,7 +81,7 @@ public class EntityTreeEnt extends EntityMob {
     public boolean attackEntityAsMob(Entity entityIn) {
         if (super.attackEntityAsMob(entityIn)) {
             if (entityIn instanceof EntityLivingBase) {
-                // This zombie gives health boost and regeneration when it attacks
+                // This Huron gives health boost and regeneration when it attacks
                 ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.HEALTH_BOOST, 200));
                 ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200));
             }

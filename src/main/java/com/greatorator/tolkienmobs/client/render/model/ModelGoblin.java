@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model;
 
-import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
@@ -8,7 +8,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * Goblin - GreatOrator
  */
-public class ModelGoblin extends ModelBase {
+public class ModelGoblin extends ModelBiped {
     public ModelRenderer GoblinLegL;
     public ModelRenderer GoblinLegR;
     public ModelRenderer GoblinShoulderR;

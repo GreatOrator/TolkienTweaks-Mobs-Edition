@@ -2,15 +2,24 @@ package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAIGoblinAttack;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.init.MobEffects;
+import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -18,6 +27,7 @@ import javax.annotation.Nullable;
 public class EntityGoblin extends EntityMob {
     private static final DataParameter<Boolean> ARMS_RAISED = EntityDataManager.createKey(EntityGoblin.class, DataSerializers.BOOLEAN);
     public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/goblin");
+    private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 1.2D, false);
 
     public EntityGoblin(World worldIn) {
         super(worldIn);
@@ -45,11 +55,67 @@ public class EntityGoblin extends EntityMob {
         this.getDataManager().set(ARMS_RAISED, Boolean.valueOf(armsRaised));
     }
 
+    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
+    {
+        super.setEquipmentBasedOnDifficulty(difficulty);
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.STONE_SWORD));
+    }
+
+    protected void setEnchantmentBasedOnDifficulty(DifficultyInstance difficulty)
+    {
+    }
+
+    @Nullable
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
+    {
+        IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+        this.setCombatTask();
+        return ientitylivingdata;
+    }
+
+    public void setCombatTask()
+    {
+        ItemStack itemstack = this.getHeldItemMainhand();
+
+        if (itemstack.getItem() == Items.BOW)
+        {
+        }
+        else
+        {
+            this.tasks.addTask(4, this.aiAttackOnCollide);
+        }
+
+    }
+
+    public boolean attackEntityAsMob(Entity entityIn)
+    {
+        if (!super.attackEntityAsMob(entityIn))
+        {
+            return false;
+        }
+        else
+        {
+            if (entityIn instanceof EntityLivingBase)
+            {
+                ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 200));
+            }
+
+            return true;
+        }
+    }
+
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(2, new EntityAIGoblinAttack(this, 1.0D, false));
+        this.applyEntityAI();
+    }
+
+    private void applyEntityAI() {
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityPigZombie.class}));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
     }
 
     @Override
