@@ -43,7 +43,7 @@
       "entries": [
         {
           "type": "item",
-          "name": "minecraft:diamond",
+          "name": "tolkienmobs:sword_morguliron",
           "weight": 1
         }
       ]

@@ -43,8 +43,17 @@
       "entries": [
         {
           "type": "item",
-          "name": "minecraft:diamond",
-          "weight": 1
+          "name": "minecraft:web",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 2,
+                "max": 6
+              }
+            }
+          ]
         }
       ]
     }

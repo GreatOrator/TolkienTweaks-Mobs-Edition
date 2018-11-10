@@ -1,6 +1,10 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
+import com.greatorator.tolkienmobs.block.BlockFlowers;
+import com.greatorator.tolkienmobs.entity.EntityGoblin;
 import com.greatorator.tolkienmobs.entity.EntityMirkwoodSpider;
+import com.greatorator.tolkienmobs.init.TTMFeatures;
+import com.greatorator.tolkienmobs.world.gen.WorldGenCustomFlowers;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,8 +37,8 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
         this.decorator = this.createBiomeDecorator();
         this.decorator.treesPerChunk = 8;
         this.decorator.deadBushPerChunk = 10;
-        this.decorator.flowersPerChunk = 5;
-        this.decorator.grassPerChunk = 10;
+        this.decorator.flowerGen = new WorldGenCustomFlowers();
+        this.decorator.grassPerChunk = 5;
         this.decorator.mushroomsPerChunk = 24;
         this.decorator.bigMushroomsPerChunk = 1;
         this.decorator.generateFalls = false;
@@ -45,6 +49,7 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
         this.spawnableWaterCreatureList.clear();
 
         this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityMirkwoodSpider.class, 100, 1, 1));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityGoblin.class, 100, 3, 6));
     }
 
     @Override
@@ -53,9 +58,9 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
         return TREE;
     }
 
-    public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, BlockPos pos)
-    {
-        return BlockFlower.EnumFlowerType.BLUE_ORCHID;
+    @Override
+    public void addDefaultFlowers() {
+        addFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.MIRKWOOD), 10);
     }
 
     @SideOnly(Side.CLIENT)
