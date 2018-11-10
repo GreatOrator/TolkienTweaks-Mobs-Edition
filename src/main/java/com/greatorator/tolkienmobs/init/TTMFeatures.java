@@ -154,7 +154,7 @@ public class TTMFeatures implements IModFeatures {
     public static final Block SAPLINGS = new BlockSaplings();
 
     @ModFeature(name = "flower", variantMap = {"0:variant=simbelmyne", "1:variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
-    public static final Block FLOWERS = new BlockFlowers();
+    public static final BlockFlowers FLOWERS = new BlockFlowers();
 
     //endregion
 

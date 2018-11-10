@@ -4,9 +4,7 @@ import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.EntityGoblin;
 import com.greatorator.tolkienmobs.entity.EntityMirkwoodSpider;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
-import com.greatorator.tolkienmobs.world.gen.WorldGenCustomFlowers;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
-import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -37,7 +35,6 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
         this.decorator = this.createBiomeDecorator();
         this.decorator.treesPerChunk = 8;
         this.decorator.deadBushPerChunk = 10;
-        this.decorator.flowerGen = new WorldGenCustomFlowers();
         this.decorator.grassPerChunk = 5;
         this.decorator.mushroomsPerChunk = 24;
         this.decorator.bigMushroomsPerChunk = 1;
