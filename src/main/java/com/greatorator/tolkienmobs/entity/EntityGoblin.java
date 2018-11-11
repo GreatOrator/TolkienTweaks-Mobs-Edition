@@ -25,6 +25,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class EntityGoblin extends EntityMob {
+    private int texture_index;
     private static final DataParameter<Boolean> ARMS_RAISED = EntityDataManager.createKey(EntityGoblin.class, DataSerializers.BOOLEAN);
     public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/goblin");
     private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 1.2D, false);
@@ -32,6 +33,11 @@ public class EntityGoblin extends EntityMob {
     public EntityGoblin(World worldIn) {
         super(worldIn);
         this.setSize(0.9F, 0.8F);
+        this.texture_index = rand.nextInt(16);
+    }
+    
+    public int getTextureIndex() {
+        return this.texture_index;
     }
 
     @Override
