@@ -39,7 +39,7 @@ public class CraftingInit {
         //Wood Blocks
         OreDictionary.registerOre("logWood", new ItemStack(TTMFeatures.LOGS));
         OreDictionary.registerOre("plankWood", TTMFeatures.PLANKS);
-        //OreDictionary.registerOre("slabWood", TTMFeatures.SLAB);
+        OreDictionary.registerOre("slabWood", TTMFeatures.HALF_SLAB);
         //OreDictionary.registerOre("stairWood", new ItemStack(TTMFeatures.STAIR));
 
         //Plant life
