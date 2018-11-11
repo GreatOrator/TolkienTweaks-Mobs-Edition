@@ -12,7 +12,12 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nonnull;
 
 public class RenderGoblin extends RenderLiving<EntityGoblin> {
-    private ResourceLocation mobTexture = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goblin.png");
+    private static final ResourceLocation mobTexture = new ResourceLocation[3];
+    static {
+        for (int i = 0; i < 3; i++) {
+            textures[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goblin" + i + ".png");
+        }
+    }
 
     public static final RenderGoblin.Factory FACTORY = new RenderGoblin.Factory();
 
@@ -22,8 +27,9 @@ public class RenderGoblin extends RenderLiving<EntityGoblin> {
 
     @Override
     @Nonnull
-    protected ResourceLocation getEntityTexture(@Nonnull EntityGoblin entity) {
-        return mobTexture;
+    protected ResourceLocation getEntityTexture(@Nonnull Entity entity) {
+        int index = ((EntityGoblin) entity).getTextureIndex();
+        return mobTexture[index];
     }
 
     public static class Factory implements IRenderFactory<EntityGoblin> {
