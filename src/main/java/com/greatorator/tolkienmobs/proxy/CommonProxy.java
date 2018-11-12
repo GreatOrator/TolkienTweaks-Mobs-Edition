@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.handler.TerrainEventHandler;
 import com.greatorator.tolkienmobs.init.BiomeInit;
 import com.greatorator.tolkienmobs.init.CraftingInit;
 import com.greatorator.tolkienmobs.init.EntityInit;
+import com.greatorator.tolkienmobs.init.FoodInit;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomTrees;
 import net.minecraftforge.common.MinecraftForge;
@@ -21,6 +22,7 @@ public class CommonProxy {
         BiomeInit.registerBiomes();
         EntityInit.init(); //NO! This Stays! Bad GreatOrator! xD
         CraftingInit.init();
+        FoodInit.init();
 
         MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainEventHandler());
     }

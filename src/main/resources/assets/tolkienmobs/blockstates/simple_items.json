@@ -14,7 +14,8 @@
       "dust_mithril":      {"textures": {"layer0": "tolkienmobs:items/dust_mithril"}},
       "ingot_morguliron":  {"textures": {"layer0": "tolkienmobs:items/ingot_morguliron"}},
       "nugget_morguliron": {"textures": {"layer0": "tolkienmobs:items/nugget_morguliron"}},
-      "dust_morguliron":   {"textures": {"layer0": "tolkienmobs:items/dust_morguliron"}}
+      "dust_morguliron":   {"textures": {"layer0": "tolkienmobs:items/dust_morguliron"}},
+      "food_lembas":   {"textures": {"layer0": "tolkienmobs:items/food_lembas"}}
     }
   }
 }

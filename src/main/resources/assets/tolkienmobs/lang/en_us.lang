@@ -28,6 +28,9 @@ item.tolkienmobs:chestplate_morguliron.name=Morgul Iron Chestplate
 item.tolkienmobs:leggings_morguliron.name=Morgul Iron Leggings
 item.tolkienmobs:boots_morguliron.name=Morgul Iron Boots
 
+//Food Information
+item.tolkienmobs:food_lembas.name=Lembas
+
 //Tile Information
 
 tile.tolkienmobs:block_mithril.name=Mithril Block
@@ -62,6 +65,7 @@ entity.goblin.name=Mountain Goblin
 itemGroup.tolkienmobs:tools=TolkienTweaks Tools
 itemGroup.tolkienmobs:mats=TolkienTweaks Materials
 itemGroup.tolkienmobs:spawn=TolkienTweaks Mobs
+itemGroup.tolkienmobs:food=TolkienTweaks Food
 
 
 

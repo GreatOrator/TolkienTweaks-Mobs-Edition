@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAIGoblinAttack;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -21,10 +22,11 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import javax.annotation.Nullable;
 
-public class EntityGoblin extends EntityMob {
+public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnData {
     private int texture_index;
     private static final DataParameter<Boolean> ARMS_RAISED = EntityDataManager.createKey(EntityGoblin.class, DataSerializers.BOOLEAN);
     public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/goblin");
@@ -33,7 +35,7 @@ public class EntityGoblin extends EntityMob {
     public EntityGoblin(World worldIn) {
         super(worldIn);
         this.setSize(0.9F, 0.8F);
-        this.texture_index = rand.nextInt(16);
+        this.texture_index = rand.nextInt(4);
     }
     
     public int getTextureIndex() {
@@ -138,5 +140,15 @@ public class EntityGoblin extends EntityMob {
     @Override
     public int getMaxSpawnedInChunk() {
         return 5;
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer) {
+        buffer.writeInt(this.texture_index);
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf buffer) {
+        this.texture_index = buffer.readInt();
     }
 }

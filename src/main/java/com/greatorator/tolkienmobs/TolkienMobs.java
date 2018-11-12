@@ -35,6 +35,7 @@ public class TolkienMobs {
     public static CreativeTabs tabToolsArmor = new TTMobsTab("tools", () -> TTMFeatures.AXE_MITHRIL);
     public static CreativeTabs tabWorldMats = new TTMobsTab("mats", () -> TTMFeatures.INGOT_MITHRIL);
     public static CreativeTabs tabMobsSpawn = new TTMobsTab.SpawnTab("spawn", () -> Items.SPAWN_EGG);
+    public static CreativeTabs tabFoodItems = new TTMobsTab("food", () -> TTMFeatures.LEMBAS);
 
     //I like to run the init events through the proxy because for one thing it makes your main class a lot cleaner
     //And it also makes it dead simple to manage client/server side code

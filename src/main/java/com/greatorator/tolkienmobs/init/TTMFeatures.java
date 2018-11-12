@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 @ModFeatures(modid = TolkienMobs.MODID) //This is what allows Brandon's Core to find this class and load all of its features
 public class TTMFeatures implements IModFeatures {
 
-    private CreativeTabs[] tabs = new CreativeTabs[]{TolkienMobs.tabToolsArmor, TolkienMobs.tabWorldMats, TolkienMobs.tabMobsSpawn};
+    private CreativeTabs[] tabs = new CreativeTabs[]{TolkienMobs.tabToolsArmor, TolkienMobs.tabWorldMats, TolkienMobs.tabMobsSpawn, TolkienMobs.tabFoodItems};
 
     @Nullable
     @Override
@@ -162,7 +162,9 @@ public class TTMFeatures implements IModFeatures {
     //    //Maybe latter
     //    //endregion
 
-    //region Mobs
+    //region Food
+    @ModFeature(name = "food_lembas", stateOverride = "simple_items#type=food_lembas", cTab = 3)
+    public static Item LEMBAS = new ItemBCore();
 
     //endregion
 }
