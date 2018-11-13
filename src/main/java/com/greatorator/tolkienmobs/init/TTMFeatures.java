@@ -11,13 +11,16 @@ import com.brandon3055.brandonscore.registry.ModFeatures;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.block.itemblock.ItemBlockSlabs;
+import com.greatorator.tolkienmobs.handler.ItemTTMFood;
 import com.greatorator.tolkienmobs.item.tools.ToolAxe;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.*;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -164,7 +167,7 @@ public class TTMFeatures implements IModFeatures {
 
     //region Food
     @ModFeature(name = "food_lembas", stateOverride = "simple_items#type=food_lembas", cTab = 3)
-    public static Item LEMBAS = new ItemBCore();
+    public static Item LEMBAS = new ItemTTMFood(20, 20, false,new PotionEffect(MobEffects.ABSORPTION,12000,5), new PotionEffect(MobEffects.REGENERATION,100,5));
 
     //endregion
 }

@@ -102,16 +102,6 @@ public class BlockLeaf extends BlockLeaves implements IBCoreBlock {
     }
 
     @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public BlockRenderLayer getBlockLayer() {
-        return BlockRenderLayer.TRANSLUCENT;
-    }
-
-    @Override
     public boolean hasSubItemTypes() {
         return true;
     }

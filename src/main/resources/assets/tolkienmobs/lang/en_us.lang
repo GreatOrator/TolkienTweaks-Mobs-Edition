@@ -60,6 +60,7 @@ tile.tolkienmobs:flower_simbelmyne.name=Simbelmyne
 entity.tree_ent.name=Huron
 entity.mirkwood_spider.name=Mirkwood Spider
 entity.goblin.name=Mountain Goblin
+entity.mordor_orc.name=Mordor Orc
 
 //Creative Tabs
 itemGroup.tolkienmobs:tools=TolkienTweaks Tools
