@@ -1,5 +1,5 @@
 {
-    "parent": "planks/outer_stair",
+    "parent": "planks/mallorn_outer_stairs",
     "textures": {
         "bottom": "tolkienmobs:planks/planks_mallorn",
         "top": "tolkienmobs:planks/planks_mallorn",

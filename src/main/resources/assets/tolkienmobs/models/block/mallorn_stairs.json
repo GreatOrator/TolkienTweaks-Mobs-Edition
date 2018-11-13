@@ -1,5 +1,5 @@
 {
-    "parent": "tolkienmobs:planks/stair",
+    "parent": "tolkienmobs:planks/mallorn_stairs",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],
