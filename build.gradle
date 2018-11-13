@@ -63,6 +63,7 @@ version = version + ".${buildNo}"
 
 dependencies {
     compile "com.brandon3055.brandonscore:BrandonsCore:${config.mc_version}-${config.bcore_version}:deobf"
+    compile "com.brandon3055.tolkientweaks:TolkienTweaks:${config.mc_version}-${config.tt_version}:deobf"
     compile "codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:deobf"
 }
 
