@@ -10,15 +10,32 @@ import net.minecraft.world.World;
 
 public class ItemTTMFood extends ItemFood {
     private PotionEffect[] effects;
+    public int[] hungerValues;
+    public float[] saturationModifiers;
 
-    public ItemTTMFood(int amount, boolean isWolfFood, PotionEffect...potionEffects) {
-        super(amount, isWolfFood);
+    public ItemTTMFood(int[] hungerValues, boolean isWolfFood, PotionEffect...potionEffects) {
+        super(0, false);
+        this.hungerValues = hungerValues;
         this.effects = potionEffects;
     }
 
-    public ItemTTMFood(int amount, float saturation, boolean isWolfFood, PotionEffect...potionEffects) {
-        super(amount, saturation, isWolfFood);
+    public ItemTTMFood(int[] hungerValues, float[] saturationModifiers, boolean isWolfFood, PotionEffect...potionEffects) {
+        super(0, 0, false);
+        this.hungerValues = hungerValues;
+        this.saturationModifiers = saturationModifiers;
         this.effects = potionEffects;
+    }
+
+    @Override
+    public int getHealAmount(ItemStack itemStack)
+    {
+        return hungerValues[itemStack.getItemDamage()];
+    }
+
+    @Override
+    public float getSaturationModifier(ItemStack itemStack)
+    {
+        return saturationModifiers[itemStack.getItemDamage()];
     }
 
     @Override

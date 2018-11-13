@@ -167,7 +167,7 @@ public class TTMFeatures implements IModFeatures {
 
     //region Food
     @ModFeature(name = "food_lembas", stateOverride = "simple_items#type=food_lembas", cTab = 3)
-    public static Item LEMBAS = new ItemTTMFood(20, 20, false,new PotionEffect(MobEffects.ABSORPTION,12000,5), new PotionEffect(MobEffects.REGENERATION,100,5));
+    public static Item LEMBAS = new ItemTTMFood(20, 20, new PotionEffect(MobEffects.ABSORPTION,12000,5), new PotionEffect(MobEffects.REGENERATION,100,5));
 
     //endregion
 }
