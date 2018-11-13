@@ -16,8 +16,14 @@ public class CraftingInit {
     private static void addSmeltingRecipes(){
         //Furnace
         GameRegistry.addSmelting(TTMFeatures.LOGS, new ItemStack(Items.COAL, 1, 1), 0.15F);
+        GameRegistry.addSmelting(TTMFeatures.DUST_MITHRIL, new ItemStack(TTMFeatures.INGOT_MITHRIL, 1), 0.15F);
+        GameRegistry.addSmelting(TTMFeatures.DUST_MORGULIRON, new ItemStack(TTMFeatures.INGOT_MORGULIRON, 1), 0.15F);
         GameRegistry.addSmelting(new ItemStack(TTMFeatures.ORE,1,0), new ItemStack(TTMFeatures.INGOT_MITHRIL, 1), 0.15F);
+        GameRegistry.addSmelting(new ItemStack(TTMFeatures.ORE,1,2), new ItemStack(TTMFeatures.INGOT_MITHRIL, 1), 0.15F);
+        GameRegistry.addSmelting(new ItemStack(TTMFeatures.ORE,1,4), new ItemStack(TTMFeatures.INGOT_MITHRIL, 1), 0.15F);
         GameRegistry.addSmelting(new ItemStack(TTMFeatures.ORE,1,1), new ItemStack(TTMFeatures.INGOT_MORGULIRON, 1), 0.15F);
+        GameRegistry.addSmelting(new ItemStack(TTMFeatures.ORE,1,3), new ItemStack(TTMFeatures.INGOT_MORGULIRON, 1), 0.15F);
+        GameRegistry.addSmelting(new ItemStack(TTMFeatures.ORE,1,5), new ItemStack(TTMFeatures.INGOT_MORGULIRON, 1), 0.15F);
     }
 
     private static void addOreRegistration(){
@@ -34,7 +40,11 @@ public class CraftingInit {
 
         //Ores
         OreDictionary.registerOre("oreMithril", new ItemStack(TTMFeatures.ORE,1,0));
+        OreDictionary.registerOre("oreMithril", new ItemStack(TTMFeatures.ORE,1,2));
+        OreDictionary.registerOre("oreMithril", new ItemStack(TTMFeatures.ORE,1,4));
         OreDictionary.registerOre("oreSteel", new ItemStack(TTMFeatures.ORE,1,1));
+        OreDictionary.registerOre("oreSteel", new ItemStack(TTMFeatures.ORE,1,3));
+        OreDictionary.registerOre("oreSteel", new ItemStack(TTMFeatures.ORE,1,5));
 
         //Wood Blocks
         OreDictionary.registerOre("logWood", new ItemStack(TTMFeatures.LOGS));
