@@ -149,6 +149,9 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "double_slab", itemBlock = NoItemBlock.class)
     public static final BlockSlabs DOUBLE_SLAB = new BlockDoubleSlabs();
 
+    //@ModFeature(name = "stairs", variantMap = {"0:variant=mallorn", "1:variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
+    //public static final Block STAIRS = new BlockStair(PLANKS.getDefaultState());
+
     //                                             //TODO add a way to avoid this mess in 1.13...
     @ModFeature(name = "leaves", variantMap = {"0:check_decay=false,decayable=false,variant=mallorn", "1:check_decay=false,decayable=false,variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block LEAVES = new BlockLeaf();
