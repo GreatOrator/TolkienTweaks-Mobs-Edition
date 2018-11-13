@@ -34,7 +34,7 @@ public class EntityMordorOrc extends EntityMob implements IEntityAdditionalSpawn
 
     public EntityMordorOrc(World worldIn) {
         super(worldIn);
-        this.setSize(0.9F, 0.8F);
+        this.setSize(1.0F, 2.1F);
         this.texture_index = rand.nextInt(4);
     }
     
@@ -55,8 +55,8 @@ public class EntityMordorOrc extends EntityMob implements IEntityAdditionalSpawn
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(5.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
     }
 
     public void setArmsRaised(boolean armsRaised) {

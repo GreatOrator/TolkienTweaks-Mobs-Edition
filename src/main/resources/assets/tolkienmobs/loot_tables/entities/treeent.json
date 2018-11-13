@@ -6,51 +6,62 @@
       "entries": [
         {
           "type": "item",
-          "name": "minecraft:diamond",
           "weight": 1,
+          "name": "minecraft:stick",
+          "conditions": [
+            {
+              "condition": "killed_by_player"
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "tolkienmobs:log",
+          "conditions": [
+            {
+              "condition": "killed_by_player"
+            }
+          ],
           "functions": [
             {
               "function": "set_count",
               "count": {
-                "min": 0,
-                "max": 2
+                "min": 1,
+                "max": 3
               }
             },
             {
-              "function": "looting_enchant",
-              "count": {
+              "function": "set_data",
+              "data": {
                 "min": 0,
                 "max": 1
               }
             }
           ]
-        }
-      ]
-    },
-    {
-      "name": "tolkienmobs:tree_ent",
-      "conditions": [
-        {
-          "condition": "killed_by_player"
         },
         {
-          "condition": "random_chance_with_looting",
-          "chance": 0.05,
-          "looting_multiplier": 0.01
-        }
-      ],
-      "rolls": 1,
-      "entries": [
-        {
           "type": "item",
-          "name": "minecraft:stick",
           "weight": 1,
+          "name": "tolkienmobs:leaves",
+          "conditions": [
+            {
+              "condition": "killed_by_player"
+            }
+          ],
           "functions": [
             {
               "function": "set_count",
               "count": {
-                "min": 2,
-                "max": 6
+                "min": 1,
+                "max": 3
+              }
+            },
+            {
+              "function": "set_data",
+              "data": {
+                "min": 0,
+                "max": 1
               }
             }
           ]
