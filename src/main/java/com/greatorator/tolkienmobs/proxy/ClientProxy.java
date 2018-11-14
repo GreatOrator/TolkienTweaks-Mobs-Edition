@@ -1,13 +1,7 @@
 package com.greatorator.tolkienmobs.proxy;
 
-import com.greatorator.tolkienmobs.client.render.entity.RenderGoblin;
-import com.greatorator.tolkienmobs.client.render.entity.RenderMirkwoodSpider;
-import com.greatorator.tolkienmobs.client.render.entity.RenderMordorOrc;
-import com.greatorator.tolkienmobs.client.render.entity.RenderTreeEnt;
-import com.greatorator.tolkienmobs.entity.EntityGoblin;
-import com.greatorator.tolkienmobs.entity.EntityMirkwoodSpider;
-import com.greatorator.tolkienmobs.entity.EntityMordorOrc;
-import com.greatorator.tolkienmobs.entity.EntityTreeEnt;
+import com.greatorator.tolkienmobs.client.render.entity.*;
+import com.greatorator.tolkienmobs.entity.*;
 import com.greatorator.tolkienmobs.handler.FogHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -25,6 +19,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityMirkwoodSpider.class, RenderMirkwoodSpider.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityGoblin.class, RenderGoblin.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityMordorOrc.class, RenderMordorOrc.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityWarg.class, RenderWarg.FACTORY);
     }
 
     @Override

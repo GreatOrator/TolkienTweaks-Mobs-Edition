@@ -45,11 +45,13 @@ tile.tolkienmobs:ore_ender_morguliron.name=Ender Morgul Iron Ore
 
 tile.tolkienmobs:planks_mallorn.name=Mallorn Planks
 tile.tolkienmobs:slab_mallorn.name=Mallorn Slab
+tile.tolkienmobs:mallorn_stairs.name=Mallorn Stairs
 tile.tolkienmobs:leaves_mallorn.name=Mallorn Leaves
 tile.tolkienmobs:log_mallorn.name=Mallorn Log
 tile.tolkienmobs:sapling_mallorn.name=Mallorn Sapling
 tile.tolkienmobs:planks_mirkwood.name=Mirkwood Planks
 tile.tolkienmobs:slab_mirkwood.name=Mirkwood Slab
+tile.tolkienmobs:mirkwood_stairs.name=Mirkwood Stairs
 tile.tolkienmobs:leaves_mirkwood.name=Mirkwood Leaves
 tile.tolkienmobs:log_mirkwood.name=Mirkwood Log
 tile.tolkienmobs:sapling_mirkwood.name=Mirkwood Sapling
@@ -61,6 +63,7 @@ entity.tree_ent.name=Huron
 entity.mirkwood_spider.name=Mirkwood Spider
 entity.goblin.name=Mountain Goblin
 entity.mordor_orc.name=Mordor Orc
+entity.warg.name=Warg
 
 //Creative Tabs
 itemGroup.tolkienmobs:tools=TolkienTweaks Tools
