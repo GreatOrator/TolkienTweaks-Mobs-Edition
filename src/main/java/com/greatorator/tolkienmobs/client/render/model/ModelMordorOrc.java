@@ -26,6 +26,10 @@ public class ModelMordorOrc extends ModelBiped {
     public ModelRenderer Tooth4;
     public ModelRenderer OrcHairTop;
     public ModelRenderer OrcHairBack;
+    public ModelRenderer OrcEar1;
+    public ModelRenderer OrcEar2;
+    public ModelRenderer OrcEar3;
+    public ModelRenderer OrcEar4;
     public ModelRenderer OrcBodyUpper;
     public ModelRenderer OrcArmRUpper;
 
@@ -90,19 +94,39 @@ public class ModelMordorOrc extends ModelBiped {
         this.Tooth4 = new ModelRenderer(this, 4, 4);
         this.Tooth4.setRotationPoint(-2.2F, -1.0F, -3.7F);
         this.Tooth4.addBox(-0.5F, -0.5F, -0.5F, 1, 2, 1, 0.0F);
-        this.OrcHead.addChild(this.Tooth1);
-        this.OrcArmL.addChild(this.OrcArmLUpper);
-        this.OrcArmR.addChild(this.OrcArmRUpper);
-        this.OrcHead.addChild(this.OrcBrowR);
-        this.OrcHead.addChild(this.OrcHairBack);
-        this.OrcHead.addChild(this.Tooth2);
+        this.OrcEar1 = new ModelRenderer(this, 0, 12);
+        this.OrcEar1.setRotationPoint(4.0F, -4.5F, 0.0F);
+        this.OrcEar1.addBox(-0.5F, -0.5F, -0.5F, 1, 1, 4, 0.0F);
+        this.setRotateAngle(OrcEar1, 0.6108652381980153F, 0.0F, 0.0F);
+        this.OrcEar2 = new ModelRenderer(this, 0, 12);
+        this.OrcEar2.setRotationPoint(4.0F, -3.7F, 0.6F);
+        this.OrcEar2.addBox(-0.5F, -0.5F, -0.5F, 1, 1, 3, 0.0F);
+        this.setRotateAngle(OrcEar2, 0.6108652381980153F, 0.0F, 0.0F);
+        this.OrcEar3 = new ModelRenderer(this, 0, 12);
+        this.OrcEar3.setRotationPoint(-4.0F, -4.5F, 0.0F);
+        this.OrcEar3.addBox(-0.5F, -0.5F, -0.5F, 1, 1, 4, 0.0F);
+        this.setRotateAngle(OrcEar3, 0.6108652381980153F, 0.0F, 0.0F);
+        this.OrcEar4 = new ModelRenderer(this, 0, 12);
+        this.OrcEar4.setRotationPoint(-4.0F, -3.7F, 0.6F);
+        this.OrcEar4.addBox(-0.5F, -0.5F, -0.5F, 1, 1, 3, 0.0F);
+        this.setRotateAngle(OrcEar4, 0.6108652381980153F, 0.0F, 0.0F);
         this.OrcHead.addChild(this.OrcBrowL);
-        this.OrcHead.addChild(this.Tooth3);
-        this.OrcHead.addChild(this.OrcHairTop);
-        this.OrcHead.addChild(this.OrcNose);
-        this.OrcBody.addChild(this.OrcBodyUpper);
-        this.OrcHead.addChild(this.OrcJaw);
+        this.OrcHead.addChild(this.OrcEar4);
         this.OrcHead.addChild(this.Tooth4);
+        this.OrcHead.addChild(this.OrcBrowR);
+        this.OrcHead.addChild(this.OrcEar1);
+        this.OrcHead.addChild(this.OrcNose);
+        this.OrcHead.addChild(this.OrcEar2);
+        this.OrcArmL.addChild(this.OrcArmLUpper);
+        this.OrcHead.addChild(this.OrcJaw);
+        this.OrcHead.addChild(this.OrcHairTop);
+        this.OrcHead.addChild(this.OrcHairBack);
+        this.OrcHead.addChild(this.Tooth1);
+        this.OrcHead.addChild(this.Tooth2);
+        this.OrcBody.addChild(this.OrcBodyUpper);
+        this.OrcHead.addChild(this.OrcEar3);
+        this.OrcHead.addChild(this.Tooth3);
+        this.OrcArmR.addChild(this.OrcArmRUpper);
     }
 
     @Override

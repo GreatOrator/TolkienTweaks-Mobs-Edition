@@ -17,7 +17,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -42,7 +41,7 @@ public class EntityWarg extends EntityWolf {
 
     public EntityWarg(World worldIn) {
         super(worldIn);
-        this.setSize(1.1F, 1.1F);
+        this.setSize(2.1F, 2.2F);
         this.setTamed(false);
         this.texture_index = rand.nextInt(4);
     }
@@ -176,6 +175,35 @@ public class EntityWarg extends EntityWolf {
         }
     }
 
+    public boolean shouldAttackEntity(EntityLivingBase target, EntityLivingBase owner)
+    {
+        if (!(target instanceof EntitySheep) && !(target instanceof EntityRabbit))
+        {
+            if (target instanceof EntityWarg)
+            {
+                EntityWarg entitywarg = (EntityWarg)target;
+
+                if (entitywarg.isTamed() && entitywarg.getOwner() == owner)
+                {
+                    return false;
+                }
+            }
+
+            if (target instanceof EntityPlayer && owner instanceof EntityPlayer && !((EntityPlayer)owner).canAttackPlayer((EntityPlayer)target))
+            {
+                return false;
+            }
+            else
+            {
+                return !(target instanceof EntityPlayer);
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     @SideOnly(Side.CLIENT)
     public boolean isWolfWet()
     {
@@ -186,58 +214,6 @@ public class EntityWarg extends EntityWolf {
     public float getShadingWhileWet(float p_70915_1_)
     {
         return 0.75F + (this.prevTimeWolfIsShaking + (this.timeWolfIsShaking - this.prevTimeWolfIsShaking) * p_70915_1_) / 2.0F * 0.25F;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public float getShakeAngle(float p_70923_1_, float p_70923_2_)
-    {
-        float f = (this.prevTimeWolfIsShaking + (this.timeWolfIsShaking - this.prevTimeWolfIsShaking) * p_70923_1_ + p_70923_2_) / 1.8F;
-
-        if (f < 0.0F)
-        {
-            f = 0.0F;
-        }
-        else if (f > 1.0F)
-        {
-            f = 1.0F;
-        }
-
-        return MathHelper.sin(f * (float)Math.PI) * MathHelper.sin(f * (float)Math.PI * 11.0F) * 0.15F * (float)Math.PI;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public float getInterestedAngle(float p_70917_1_)
-    {
-        return (this.headRotationCourseOld + (this.headRotationCourse - this.headRotationCourseOld) * p_70917_1_) * 0.15F * (float)Math.PI;
-    }
-
-    public float getEyeHeight()
-    {
-        return this.height * 0.8F;
-    }
-
-    public boolean attackEntityFrom(DamageSource source, float amount)
-    {
-        if (this.isEntityInvulnerable(source))
-        {
-            return false;
-        }
-        else
-        {
-            Entity entity = source.getTrueSource();
-
-            if (this.aiSit != null)
-            {
-                this.aiSit.setSitting(false);
-            }
-
-            if (entity != null && !(entity instanceof EntityPlayer) && !(entity instanceof EntityArrow))
-            {
-                amount = (amount + 1.0F) / 2.0F;
-            }
-
-            return super.attackEntityFrom(source, amount);
-        }
     }
 
     public boolean attackEntityAsMob(Entity entityIn)
@@ -270,7 +246,7 @@ public class EntityWarg extends EntityWolf {
     @SideOnly(Side.CLIENT)
     public float getTailRotation()
     {
-        return 1.5393804F;
+        return 0.7696902F;
     }
 
     public int getTextureIndex() {
