@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.handler.TerrainEventHandler;
 import com.greatorator.tolkienmobs.init.BiomeInit;
 import com.greatorator.tolkienmobs.init.CraftingInit;
 import com.greatorator.tolkienmobs.init.EntityInit;
+import com.greatorator.tolkienmobs.init.ProfessionInit;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomTrees;
 import net.minecraftforge.common.MinecraftForge;
@@ -26,6 +27,7 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent event) {
+        ProfessionInit.associateCareersAndTrades();
     }
 
     public void postInit(FMLPostInitializationEvent event) {

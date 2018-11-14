@@ -53,11 +53,15 @@ public class EntityWarg extends EntityWolf {
         this.tasks.addTask(8, new EntityAIWanderAvoidWater(this, 1.0D));
         this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityMordorOrc.class, 8.0F));
         this.tasks.addTask(10, new EntityAILookIdle(this));
-        this.tasks.addTask(3, new EntityAIHurtByTarget(this, true, new Class[]{EntityWarg.class}));
+        this.applyEntityAI();
+    }
 
-        this.tasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
-        this.tasks.addTask(5, new EntityAINearestAttackableTarget(this, EntitySheep.class, false));
-        this.tasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityRabbit.class, false));
+    private void applyEntityAI() {
+        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true, new Class[]{EntityWarg.class}));
+        this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
+        this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntitySheep.class, false));
+        this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityRabbit.class, false));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHobbit.class, true));
     }
 
     @Override

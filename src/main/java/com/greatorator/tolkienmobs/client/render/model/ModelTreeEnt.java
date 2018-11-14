@@ -7,7 +7,7 @@ import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
 /**
- * com.greatorator.tolkienmobs.client.render.model.ModelTreeEnt - GreatOrator
+ * Huron - GreatOrator
  */
 public class ModelTreeEnt extends ModelBase {
     public ModelRenderer EntBody;
@@ -75,9 +75,6 @@ public class ModelTreeEnt extends ModelBase {
         this.EntBody.render(f5);
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;

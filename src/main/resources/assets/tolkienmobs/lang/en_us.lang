@@ -64,6 +64,7 @@ entity.mirkwood_spider.name=Mirkwood Spider
 entity.goblin.name=Mountain Goblin
 entity.mordor_orc.name=Mordor Orc
 entity.warg.name=Warg
+entity.hobbit.name=Hobbit
 
 //Creative Tabs
 itemGroup.tolkienmobs:tools=TolkienTweaks Tools

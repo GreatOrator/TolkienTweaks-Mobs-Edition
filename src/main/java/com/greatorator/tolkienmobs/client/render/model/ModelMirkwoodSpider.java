@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.MathHelper;
 
 /**
- * com.greatorator.tolkienmobs.client.render.model.ModelMirkwoodSpider - GreatOrator
+ * Mirkwood Spider - GreatOrator
  */
 public class ModelMirkwoodSpider extends ModelBase {
     public ModelRenderer SpiderHead;
@@ -226,9 +226,6 @@ public class ModelMirkwoodSpider extends ModelBase {
         GlStateManager.popMatrix();
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;

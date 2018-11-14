@@ -1,14 +1,12 @@
 package com.greatorator.tolkienmobs.client.render.model;
 
-import com.greatorator.tolkienmobs.entity.EntityWarg;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 /**
- * ModelWarg - GreatOrator
+ * Warg - GreatOrator
  */
 public class ModelWarg extends ModelBase {
     public ModelRenderer WargLegFL;
@@ -188,9 +186,6 @@ public class ModelWarg extends ModelBase {
         this.WargNeck.render(f5);
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
