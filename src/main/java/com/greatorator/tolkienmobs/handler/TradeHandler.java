@@ -12,12 +12,12 @@ import java.util.Random;
 public class TradeHandler implements EntityVillager.ITradeList {
 
     private ItemStack stackToBuy;
-    private ItemStack stackToPay1;
+    private ItemStack stackToPay;
     private EntityVillager.PriceInfo price;
 
     public TradeHandler(ItemStack stackToBuy, ItemStack stackToPay, int priceFrom, int priceTo){
         this.stackToBuy = stackToBuy;
-        this.stackToPay1 = stackToPay;
+        this.stackToPay = stackToPay;
         this.price = new EntityVillager.PriceInfo(priceFrom, priceTo);
     }
 
@@ -30,9 +30,11 @@ public class TradeHandler implements EntityVillager.ITradeList {
             actualPrice = price.getPrice(random);
         }
 
-        ItemStack stackToPay = new ItemStack(Items.EMERALD, actualPrice, 0);
+        ItemStack buyItemStack = this.stackToBuy.copy();
+        ItemStack sellItemStack = this.stackToPay.copy();
+        sellItemStack.setCount(actualPrice);
 
-        recipeList.add(new MerchantRecipe(stackToPay, stackToBuy));
+        recipeList.add(new MerchantRecipe(sellItemStack, buyItemStack));
     }
 
 }

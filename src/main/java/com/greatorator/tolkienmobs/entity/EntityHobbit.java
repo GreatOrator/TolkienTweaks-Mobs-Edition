@@ -4,7 +4,7 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.*;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.ResourceLocation;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import javax.annotation.Nullable;
 
-public class EntityHobbit extends EntityMob implements IEntityAdditionalSpawnData {
+public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpawnData {
     private int texture_index;
     public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/hobbit");
 
