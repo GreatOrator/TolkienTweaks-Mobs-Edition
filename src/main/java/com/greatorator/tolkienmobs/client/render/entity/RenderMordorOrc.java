@@ -15,7 +15,7 @@ public class RenderMordorOrc extends RenderLiving<EntityMordorOrc> {
     private static final ResourceLocation[] mobTexture = new ResourceLocation[4];
     static {
         for (int i = 0; i < 4; i++) {
-            mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/mordororc" + i + ".png");
+            mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/orc/mordororc" + i + ".png");
         }
     }
 

@@ -17,7 +17,7 @@ public class RenderGoblin extends RenderLiving<EntityGoblin> {
     private static final ResourceLocation[] mobTexture = new ResourceLocation[4];
     static {
         for (int i = 0; i < 4; i++) {
-            mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goblin" + i + ".png");
+            mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goblin/goblin" + i + ".png");
         }
     }
 

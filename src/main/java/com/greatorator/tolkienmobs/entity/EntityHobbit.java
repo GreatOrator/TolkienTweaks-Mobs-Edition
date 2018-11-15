@@ -34,9 +34,7 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
 //        if (!profession.getRegistryName().equals(ProfessionInit.getCoinBanker().getRegistryName()) ){
 //            profession = VillagerRegistry.instance().getRegistry().getValue(new ResourceLocation(TolkienMobs.MODID + ":coin_trader"));
 //        }
-//        //this.prof = profession;
 //        super.setProfession(profession);
-//        //this.setProfession(VillagerRegistry.getId(profession));
 //    }
 
     @Override

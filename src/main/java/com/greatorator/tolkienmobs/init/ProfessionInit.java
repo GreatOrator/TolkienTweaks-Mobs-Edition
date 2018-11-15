@@ -21,9 +21,11 @@ import static com.brandon3055.tolkientweaks.TTFeatures.silver_coin;
 public class ProfessionInit {
     /** Professions */
     public static VillagerProfession coin_trader;
+    public static VillagerProfession grocery_store;
 
     /** Careers */
     public static VillagerCareer coin_banker;
+    public static VillagerCareer store_clerk;
 
     /** Let's make it so people have a life choice to make. */
     @Mod.EventBusSubscriber(modid = TolkienMobs.MODID)
@@ -37,9 +39,14 @@ public class ProfessionInit {
             System.out.println("Putting out now hiring signs...");
 
             coin_trader = new VillagerRegistry.VillagerProfession(TolkienMobs.MODID+":coin_trader",
-                    TolkienMobs.MODID+":textures/entities/coin_trader.png",
-                    TolkienMobs.MODID+":textures/entities/coin_trader.png");
+                    TolkienMobs.MODID+":textures/entity/profession/coin_trader.png",
+                    TolkienMobs.MODID+":textures/entity/profession/coin_trader.png");
             registry.register(coin_trader);
+
+            grocery_store = new VillagerRegistry.VillagerProfession(TolkienMobs.MODID+":grocery_store",
+                    TolkienMobs.MODID+":textures/entity/profession/grocery_store.png",
+                    TolkienMobs.MODID+":textures/entity/profession/grocery_store.png");
+            registry.register(grocery_store);
         }
     }
 
@@ -55,6 +62,9 @@ public class ProfessionInit {
                 .addTrade(2, new TradeHandler(new ItemStack(silver_coin,64), new ItemStack(gold_coin),1, 1))
                 .addTrade(2, new TradeHandler(new ItemStack(brons_coin,64), new ItemStack(silver_coin),1, 1));
 
+        store_clerk = (new VillagerCareer(grocery_store, "store_clerk"))
+                .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.LEMBAS), new ItemStack(brons_coin),5, 36));
+
         // DEBUG
         System.out.println("All positions are now filled, thank you for applying.");
     }
@@ -62,5 +72,9 @@ public class ProfessionInit {
     /** Here's where we make specific Professions available for entities */
     public static VillagerRegistry.VillagerProfession getCoinBanker() {
         return coin_trader;
+    }
+
+    public static VillagerRegistry.VillagerProfession getGroceryStore() {
+        return grocery_store;
     }
 }

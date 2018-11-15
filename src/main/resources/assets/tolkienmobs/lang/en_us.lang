@@ -66,6 +66,7 @@ entity.mordor_orc.name=Mordor Orc
 entity.warg.name=Warg
 entity.hobbit.name=Hobbit
 entity.Villager.coin_banker=Coin Banker
+entity.Villager.store_clerk=Grocer
 
 //Creative Tabs
 itemGroup.tolkienmobs:tools=TolkienTweaks Tools
