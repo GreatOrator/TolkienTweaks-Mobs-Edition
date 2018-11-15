@@ -65,6 +65,7 @@ entity.goblin.name=Mountain Goblin
 entity.mordor_orc.name=Mordor Orc
 entity.warg.name=Warg
 entity.hobbit.name=Hobbit
+entity.Villager.coin_banker=Coin Banker
 
 //Creative Tabs
 itemGroup.tolkienmobs:tools=TolkienTweaks Tools
