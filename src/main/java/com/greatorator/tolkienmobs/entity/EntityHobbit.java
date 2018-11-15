@@ -29,6 +29,16 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
         return this.texture_index;
     }
 
+    /** Let's try to decide which entity will do what work */
+//    public void setProfession(VillagerRegistry.VillagerProfession profession) {
+//        if (!profession.getRegistryName().equals(ProfessionInit.getCoinBanker().getRegistryName()) ){
+//            profession = VillagerRegistry.instance().getRegistry().getValue(new ResourceLocation(TolkienMobs.MODID + ":coin_trader"));
+//        }
+//        //this.prof = profession;
+//        super.setProfession(profession);
+//        //this.setProfession(VillagerRegistry.getId(profession));
+//    }
+
     @Override
     protected void entityInit() {
         super.entityInit();

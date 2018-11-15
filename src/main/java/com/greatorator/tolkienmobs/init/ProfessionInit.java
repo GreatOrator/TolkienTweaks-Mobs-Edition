@@ -19,12 +19,13 @@ import static com.brandon3055.tolkientweaks.TTFeatures.silver_coin;
 
 @GameRegistry.ObjectHolder(TolkienMobs.MODID)
 public class ProfessionInit {
-    //Professions
+    /** Professions */
     public static VillagerProfession coin_trader;
 
-    //Careers
+    /** Careers */
     public static VillagerCareer coin_banker;
 
+    /** Let's make it so people have a life choice to make. */
     @Mod.EventBusSubscriber(modid = TolkienMobs.MODID)
     public static class RegistrationHandler {
         @SubscribeEvent
@@ -42,6 +43,7 @@ public class ProfessionInit {
         }
     }
 
+    /** Now that we have Professions, what are they going to do with their lives? */
     public static void associateCareersAndTrades()
     {
         // DEBUG
@@ -52,5 +54,13 @@ public class ProfessionInit {
                 .addTrade(1, new TradeHandler(new ItemStack(gold_coin), new ItemStack(silver_coin),64, 64))
                 .addTrade(2, new TradeHandler(new ItemStack(silver_coin,64), new ItemStack(gold_coin),1, 1))
                 .addTrade(2, new TradeHandler(new ItemStack(brons_coin,64), new ItemStack(silver_coin),1, 1));
+
+        // DEBUG
+        System.out.println("All positions are now filled, thank you for applying.");
+    }
+
+    /** Here's where we make specific Professions available for entities */
+    public static VillagerRegistry.VillagerProfession getCoinBanker() {
+        return coin_trader;
     }
 }
