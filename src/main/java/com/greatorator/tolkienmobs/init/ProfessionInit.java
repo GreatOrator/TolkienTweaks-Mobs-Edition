@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.init;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.handler.TradeHandler;
+import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -36,7 +37,7 @@ public class ProfessionInit {
             final IForgeRegistry<VillagerProfession> registry = event.getRegistry();
 
             // DEBUG
-            System.out.println("Putting out now hiring signs...");
+            LogHelperTTM.info("Putting out now hiring signs...");
 
             coin_trader = new VillagerRegistry.VillagerProfession(TolkienMobs.MODID+":coin_trader",
                     TolkienMobs.MODID+":textures/entity/profession/coin_trader.png",
@@ -54,7 +55,7 @@ public class ProfessionInit {
     public static void associateCareersAndTrades()
     {
         // DEBUG
-        System.out.println("Taking in applications for employment...");
+        LogHelperTTM.info("Taking in applications for employment...");
 
         coin_banker = (new VillagerCareer(coin_trader, "coin_banker"))
                 .addTrade(1, new TradeHandler(new ItemStack(silver_coin), new ItemStack(brons_coin),64, 64))
@@ -66,7 +67,7 @@ public class ProfessionInit {
                 .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.LEMBAS), new ItemStack(brons_coin),5, 36));
 
         // DEBUG
-        System.out.println("All positions are now filled, thank you for applying.");
+        LogHelperTTM.info("All positions are now filled, thank you for applying.");
     }
 
     /** Here's where we make specific Professions available for entities */

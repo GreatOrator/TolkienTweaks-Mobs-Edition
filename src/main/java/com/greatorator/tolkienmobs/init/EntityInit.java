@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.init;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.*;
+import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
@@ -12,7 +13,7 @@ public class EntityInit
 {
     public static void init() {
 
-        System.out.println("Adding all the various fauna to see!");
+        LogHelperTTM.info("Adding all the various fauna to see!");
         /** Every entity in our mod has an ID (local to this mod) */
         int id = 1;
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "treeent"), EntityTreeEnt.class, "tree_ent", id++, TolkienMobs.instance, 64, 3, true, 0x414D25, 0x996600);
@@ -38,6 +39,6 @@ public class EntityInit
         LootTableList.register(EntityWarg.LOOT);
         LootTableList.register(EntityHobbit.LOOT);
 
-        System.out.println("I chose you mobi-chu!");
+        LogHelperTTM.info("I chose you mobi-chu!");
     }
 }

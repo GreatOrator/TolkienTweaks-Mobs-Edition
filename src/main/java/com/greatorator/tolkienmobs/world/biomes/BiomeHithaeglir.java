@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.EntityGoblin;
 import com.greatorator.tolkienmobs.entity.EntityMirkwoodSpider;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
+import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -29,7 +30,7 @@ public class BiomeHithaeglir extends Biome implements IFogyBiome {
                 .setSnowEnabled()
                 .setWaterColor(3091811));
 
-        System.out.println("Far over the misty mountains cold...");
+        LogHelperTTM.info("Far over the misty mountains cold...");
         topBlock = Blocks.SNOW.getDefaultState();
         fillerBlock = Blocks.DIRT.getDefaultState();
 

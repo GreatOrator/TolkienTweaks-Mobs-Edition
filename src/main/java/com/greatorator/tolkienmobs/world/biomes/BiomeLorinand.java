@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.entity.EntityTreeEnt;
+import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -25,7 +26,7 @@ public class BiomeLorinand extends Biome {
                 .setRainfall(0.4F)
                 .setWaterColor(54011));
 
-        System.out.println("Making the land beautiful...");
+        LogHelperTTM.info("Making the land beautiful...");
         topBlock = Blocks.GRASS.getDefaultState();
         fillerBlock = Blocks.DIRT.getDefaultState();
 

@@ -6,8 +6,10 @@ import com.brandon3055.tolkientweaks.TolkienTweaks;
 import com.greatorator.tolkienmobs.client.TTMobsTab;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
+import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -15,7 +17,9 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.VillagerRegistry;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = TolkienMobs.MODID, name = TolkienMobs.NAME, version = TolkienMobs.VERSION, dependencies = TolkienMobs.DEPENDENCIES, guiFactory = TolkienMobs.GUI_FACTORY)
 public class TolkienMobs {
@@ -39,6 +43,20 @@ public class TolkienMobs {
     public static CreativeTabs tabMobsSpawn = new TTMobsTab.SpawnTab("spawn", () -> Items.SPAWN_EGG);
     public static CreativeTabs tabFoodItems = new TTMobsTab("food", () -> TTMFeatures.LEMBAS);
 
+    public TolkienMobs() {
+        Logger ttLog = LogManager.getLogger("tolkientweaks");
+        Logger bcLog = LogManager.getLogger("brandonscore");
+        LogHelperTTM.info("Meeting of the Fellowship started! Waiting for the rest of the party to arrive...");
+        if (Loader.isModLoaded("tolkientweaks")) {
+            ttLog.log(Level.INFO, "You shall have my axe!");
+            bcLog.log(Level.INFO, "...and you shall have my bow!");
+            LogHelperTTM.info("Together we shall be the Fellowship of the Mods!");
+        }
+        else {
+            ttLog.log(Level.INFO, "...");
+            LogHelperTTM.info("No party, no play!");
+        }
+    }
     //I like to run the init events through the proxy because for one thing it makes your main class a lot cleaner
     //And it also makes it dead simple to manage client/server side code
 

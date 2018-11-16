@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.init;
 
+import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.biomes.BiomeLorinand;
 import com.greatorator.tolkienmobs.world.biomes.BiomeMirkwood;
 import com.greatorator.tolkienmobs.world.biomes.BiomeHithaeglir;
@@ -19,11 +20,11 @@ public class BiomeInit
 
     public static void registerBiomes()
     {
-        System.out.println("Making new discoveries possible!");
+        LogHelperTTM.info("Making new discoveries possible!");
         initBiome(LORINAND, "Lorinand", BiomeType.WARM, Type.PLAINS, Type.FOREST, Type.MAGICAL);
         initBiome(MIRKWOOD, "Mirkwood", BiomeType.COOL, Type.SWAMP, Type.FOREST, Type.SPOOKY);
         initBiome(HITHAEGLIR, "Hithaeglir ", BiomeType.ICY, Type.MOUNTAIN, Type.DEAD, Type.SPARSE);
-        System.out.println("New lands to explore get!");
+        LogHelperTTM.info("New lands to explore get!");
     }
 
     private static Biome initBiome(Biome biome, String name, BiomeType biomeType, Type... types)

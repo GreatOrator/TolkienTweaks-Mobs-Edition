@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.init;
 
 
+import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.item.ItemStack;
 import net.minecraft.init.Items;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -9,12 +10,12 @@ import net.minecraftforge.oredict.OreDictionary;
 public class CraftingInit {
     public static void init()
     {
-        System.out.println("Making everyone aware of our existence...");
+        LogHelperTTM.info("Making everyone aware of our existence...");
 
         addOreRegistration();
         addSmeltingRecipes();
 
-        System.out.println("World now fully aware!");
+        LogHelperTTM.info("World now fully aware!");
     }
 
     private static void addSmeltingRecipes(){
