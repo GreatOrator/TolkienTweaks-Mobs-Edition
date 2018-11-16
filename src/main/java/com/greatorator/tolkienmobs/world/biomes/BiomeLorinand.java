@@ -19,9 +19,10 @@ public class BiomeLorinand extends Biome {
     public BiomeLorinand()
     {
         super(new BiomeProperties("Lorinand")
-                .setBaseHeight(.15F)
-                .setHeightVariation(.1F)
-                .setTemperature(1.0F)
+                .setBaseHeight(0.125F)
+                .setHeightVariation(0.05F)
+                .setTemperature(0.8F)
+                .setRainfall(0.4F)
                 .setWaterColor(54011));
 
         System.out.println("Making the land beautiful...");

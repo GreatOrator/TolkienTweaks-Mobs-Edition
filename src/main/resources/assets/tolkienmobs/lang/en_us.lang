@@ -74,6 +74,10 @@ itemGroup.tolkienmobs:mats=TolkienTweaks Materials
 itemGroup.tolkienmobs:spawn=TolkienTweaks Mobs
 itemGroup.tolkienmobs:food=TolkienTweaks Food
 
+//Miscellaneous
+generator.Arda=Middle-earth
+generator.Arda.info=Adventure in the lands of Middle-earth
+
 
 
 

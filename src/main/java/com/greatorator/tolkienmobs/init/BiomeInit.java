@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.init;
 
 import com.greatorator.tolkienmobs.world.biomes.BiomeLorinand;
 import com.greatorator.tolkienmobs.world.biomes.BiomeMirkwood;
+import com.greatorator.tolkienmobs.world.biomes.BiomeHithaeglir;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
@@ -14,12 +15,15 @@ public class BiomeInit
 {
     public static final Biome LORINAND = new BiomeLorinand();
     public static final Biome MIRKWOOD = new BiomeMirkwood();
+    public static final Biome HITHAEGLIR = new BiomeHithaeglir();
 
     public static void registerBiomes()
     {
         System.out.println("Making new discoveries possible!");
         initBiome(LORINAND, "Lorinand", BiomeType.WARM, Type.PLAINS, Type.FOREST, Type.MAGICAL);
         initBiome(MIRKWOOD, "Mirkwood", BiomeType.COOL, Type.SWAMP, Type.FOREST, Type.SPOOKY);
+        initBiome(HITHAEGLIR, "Hithaeglir ", BiomeType.ICY, Type.MOUNTAIN, Type.DEAD, Type.SPARSE);
+        System.out.println("New lands to explore get!");
     }
 
     private static Biome initBiome(Biome biome, String name, BiomeType biomeType, Type... types)
