@@ -8,7 +8,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * Goblin - GreatOrator
  */
-public class ModelGoblin extends ModelBiped {
+public class ModelGoblin extends ModelTolkienMobs {
     public ModelRenderer GoblinLegL;
     public ModelRenderer GoblinLegR;
     public ModelRenderer GoblinShoulderR;
