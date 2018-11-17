@@ -21,6 +21,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityMordorOrc.class, RenderMordorOrc.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityWarg.class, RenderWarg.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityHobbit.class, RenderHobbit.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityMumakil.class, RenderHerds.getRenderFactory(new ModelMumakil(), 2.0F))); 
     }
 
     @Override
