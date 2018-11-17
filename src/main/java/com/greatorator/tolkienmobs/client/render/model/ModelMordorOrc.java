@@ -8,7 +8,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * Mordor Orc - GreatOrator
  */
-public class ModelMordorOrc extends ModelBiped {
+public class ModelMordorOrc extends ModelTolkienMobs {
     public ModelRenderer OrcArmL;
     public ModelRenderer OrcLegL;
     public ModelRenderer OrcHead;
