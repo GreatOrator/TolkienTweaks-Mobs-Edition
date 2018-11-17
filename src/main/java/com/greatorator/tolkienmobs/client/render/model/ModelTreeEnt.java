@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL11;
 /**
  * Huron - GreatOrator
  */
-public class ModelTreeEnt extends ModelBase {
+public class ModelTreeEnt extends ModelTolkienMobs {
     public ModelRenderer EntBody;
     public ModelRenderer EntLegBR;
     public ModelRenderer EntLegFR;
