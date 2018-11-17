@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity;
 
-import com.greatorator.tolkienmobs.entities.IModEntity;
-import com.greatorator.tolkienmobs.registries.ModSounds;
+import com.greatorator.tolkienmobs.entity.entityai.IModEntity;
+import com.greatorator.tolkienmobs.init;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
