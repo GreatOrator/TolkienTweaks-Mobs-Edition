@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL11;
 /**
  * Hobbit - GreatOrator
  */
-public class ModelHobbit extends ModelBiped {
+public class ModelHobbit extends ModelTolkienMobs {
     public ModelRenderer HobbitArmL;
     public ModelRenderer HobbitLegL;
     public ModelRenderer HobbitBody;
