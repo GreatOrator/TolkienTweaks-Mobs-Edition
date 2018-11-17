@@ -8,7 +8,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * Warg - GreatOrator
  */
-public class ModelWarg extends ModelBase {
+public class ModelWarg extends ModelTolkienMobs {
     public ModelRenderer WargLegFL;
     public ModelRenderer WargLegRL;
     public ModelRenderer WargLegRR;
