@@ -115,7 +115,7 @@ public class EntityHerds extends EntityAnimal implements IModEntity
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return ModSounds.soundAmbientElephant;
+        return SoundInit.soundAmbientElephant;
     }
 
     /**
@@ -127,7 +127,7 @@ public class EntityHerds extends EntityAnimal implements IModEntity
     @Override
     protected SoundEvent getHurtSound(DamageSource parDamageSource)
     {
-        return ModSounds.soundHurtElephant;
+        return SoundInit.soundHurtElephant;
     }
 
     /**
@@ -138,7 +138,7 @@ public class EntityHerds extends EntityAnimal implements IModEntity
     @Override
     protected SoundEvent getDeathSound()
     {
-        return ModSounds.soundHurtElephant;
+        return SoundInit.soundHurtElephant;
     }
 
 //    @Override
