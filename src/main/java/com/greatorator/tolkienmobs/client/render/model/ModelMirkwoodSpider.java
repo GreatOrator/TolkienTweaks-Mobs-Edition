@@ -9,7 +9,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * Mirkwood Spider - GreatOrator
  */
-public class ModelMirkwoodSpider extends ModelBase {
+public class ModelMirkwoodSpider extends ModelTolkienMobs {
     public ModelRenderer SpiderHead;
     public ModelRenderer SpiderMandibleA1;
     public ModelRenderer SpiderMandibleA2;
