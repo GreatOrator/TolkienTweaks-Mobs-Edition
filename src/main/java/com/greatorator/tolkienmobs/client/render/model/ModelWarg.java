@@ -1,8 +1,10 @@
 package com.greatorator.tolkienmobs.client.render.model;
 
+import com.greatorator.tolkienmobs.entity.EntityWarg;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 /**
@@ -190,6 +192,12 @@ public class ModelWarg extends ModelTolkienMobs {
         modelRenderer.rotateAngleX = x;
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
+    }
+
+    @Override
+    public void setLivingAnimations(EntityLivingBase parEntityLivingBase, float parLimbSwingAngle, float parMaxLimbSwingDistance, float parHeadAngleChangeRate)
+    {
+        WargTail.rotateAngleY = MathHelper.cos(parLimbSwingAngle * 0.6662F) * 1.4F * parMaxLimbSwingDistance;
     }
 
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)

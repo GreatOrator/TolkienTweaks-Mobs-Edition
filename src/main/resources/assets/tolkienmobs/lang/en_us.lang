@@ -65,6 +65,7 @@ entity.goblin.name=Mountain Goblin
 entity.mordor_orc.name=Mordor Orc
 entity.warg.name=Warg
 entity.hobbit.name=Hobbit
+entity.mumakil.name=Mumakil
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer
 

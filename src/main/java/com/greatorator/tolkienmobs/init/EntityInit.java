@@ -22,6 +22,7 @@ public class EntityInit
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mordororc"), EntityMordorOrc.class, "mordor_orc", id++, TolkienMobs.instance, 64, 3, true, 0x414D25, 0x3d0099);
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "warg"), EntityWarg.class, "warg", id++, TolkienMobs.instance, 64, 3, true, 0x414D25, 0xFFA000);
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "hobbit"), EntityHobbit.class, "hobbit", id++, TolkienMobs.instance, 64, 3, true, 0x414D25, 0xFF32FF);
+        EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mumakil"), EntityMumakil.class, "mumakil", id++, TolkienMobs.instance, 64, 3, true, 0x414D25, 0x5D696C);
 
         /** If we want our mobs to spawn naturally. */
         EntityRegistry.addSpawn(EntityTreeEnt.class, 100, 3, 5, EnumCreatureType.MONSTER, Biomes.FOREST, Biomes.FOREST_HILLS);
@@ -30,6 +31,7 @@ public class EntityInit
         EntityRegistry.addSpawn(EntityMordorOrc.class, 100, 3, 5, EnumCreatureType.MONSTER, Biomes.PLAINS);
         EntityRegistry.addSpawn(EntityWarg.class, 100, 3, 5, EnumCreatureType.MONSTER, Biomes.PLAINS);
         EntityRegistry.addSpawn(EntityHobbit.class, 100, 3, 5, EnumCreatureType.CREATURE, Biomes.PLAINS);
+        EntityRegistry.addSpawn(EntityMumakil.class, 100, 3, 5, EnumCreatureType.MONSTER, Biomes.DESERT);
 
         /** These are the loot table for our mobs */
         LootTableList.register(EntityTreeEnt.LOOT);
@@ -38,6 +40,7 @@ public class EntityInit
         LootTableList.register(EntityMordorOrc.LOOT);
         LootTableList.register(EntityWarg.LOOT);
         LootTableList.register(EntityHobbit.LOOT);
+        LootTableList.register(EntityMumakil.LOOT);
 
         LogHelperTTM.info("I chose you mobi-chu!");
     }

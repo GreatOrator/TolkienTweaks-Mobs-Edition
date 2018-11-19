@@ -1,8 +1,7 @@
 package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.entity.entityai.IModEntity;
-import com.greatorator.tolkienmobs.init;
-
+import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -115,7 +114,7 @@ public class EntityHerds extends EntityAnimal implements IModEntity
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return SoundInit.soundAmbientElephant;
+        return SoundInit.soundAmbientMumakil;
     }
 
     /**
@@ -127,7 +126,7 @@ public class EntityHerds extends EntityAnimal implements IModEntity
     @Override
     protected SoundEvent getHurtSound(DamageSource parDamageSource)
     {
-        return SoundInit.soundHurtElephant;
+        return SoundInit.soundHurtMumakil;
     }
 
     /**
@@ -138,7 +137,7 @@ public class EntityHerds extends EntityAnimal implements IModEntity
     @Override
     protected SoundEvent getDeathSound()
     {
-        return SoundInit.soundHurtElephant;
+        return SoundInit.soundHurtMumakil;
     }
 
 //    @Override
@@ -280,8 +279,6 @@ public class EntityHerds extends EntityAnimal implements IModEntity
     @Override
     public boolean attackEntityFrom(DamageSource par1DamageSource, float parDamageAmount)
     {
-    	// DEBUG
-    	System.out.println("EntityHerds attackEntityFrom on client = "+world.isRemote);
     	
     	if (!world.isRemote)
     	{
@@ -335,17 +332,11 @@ public class EntityHerds extends EntityAnimal implements IModEntity
         {
             setRearingCounter(REARING_TICKS_MAX);
             dataManager.set(IS_REARING, true);
-            // DEBUG
-            System.out.println("Rearing instead of fleeing");
-            System.out.println("rearingCounter = "+getRearingCounter());
           }
         else
         {
             setRearingCounter(0);
             dataManager.set(IS_REARING, false);
-            // DEBUG
-            System.out.println("Finished Rearing");
-            System.out.println("rearingCounter = "+getRearingCounter());
            }
     }
     
@@ -358,19 +349,13 @@ public class EntityHerds extends EntityAnimal implements IModEntity
     {
         return dataManager.get(IS_REARING);
     }
-    
-    /* (non-Javadoc)
-     * @see com.blogspot.jabelarminecraft.wildanimals.entities.IModEntity#setScaleFactor(float)
-     */
+
     @Override
     public void setScaleFactor(float parScaleFactor)
     {
         dataManager.set(SCALE_FACTOR, Math.abs(parScaleFactor));
     }
-    
-    /* (non-Javadoc)
-     * @see com.blogspot.jabelarminecraft.wildanimals.entities.IModEntity#getScaleFactor()
-     */
+
     @Override
     public float getScaleFactor()
     {
@@ -423,9 +408,6 @@ public class EntityHerds extends EntityAnimal implements IModEntity
         return (getRearingCounter()==REARING_TICKS_MAX);
     }
 
-   /* (non-Javadoc)
-    * @see net.minecraft.entity.passive.EntityAnimal#writeEntityToNBT(net.minecraft.nbt.NBTTagCompound)
-    */
    @Override
    public void writeEntityToNBT(NBTTagCompound compound)
     {
@@ -435,9 +417,6 @@ public class EntityHerds extends EntityAnimal implements IModEntity
         compound.setBoolean("isRearing", isRearing());
     }
 
-    /* (non-Javadoc)
-     * @see net.minecraft.entity.passive.EntityAnimal#readEntityFromNBT(net.minecraft.nbt.NBTTagCompound)
-     */
     @Override
 	public void readEntityFromNBT(NBTTagCompound compound)
     {

@@ -1,0 +1,18 @@
+{
+  "mob.mumakil.say":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/mumakil/mumakil_say"
+    ]
+  },
+  "mob.mumakil.hurt":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/mumakil/mumakil_hurt"
+    ]
+  }
+}

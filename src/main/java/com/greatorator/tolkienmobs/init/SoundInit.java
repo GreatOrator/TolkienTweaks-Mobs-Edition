@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.init;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -16,12 +17,10 @@ public class SoundInit
     // instantiate SoundEvents
 	
 // elephant
-	@ObjectHolder("mob.elephant.say")
-    public static final SoundEvent soundAmbientElephant = null;
-	@ObjectHolder("mob.elephant.hurt")
-    public static final SoundEvent soundHurtElephant = null;
-//	@ObjectHolder("mob.elephant.hurt")
-//    public static final SoundEvent soundDeathElephant = new SoundEvent(new ResourceLocation("wildanimals:mob.elephant.hurt"));
+	@ObjectHolder("mob.mumakil.say")
+    public static final SoundEvent soundAmbientMumakil = null;
+	@ObjectHolder("mob.mumakil.hurt")
+    public static final SoundEvent soundHurtMumakil = null;
        
 	/**
 	 * Initialize this mod's {@link Block}s with any post-registration data.
@@ -30,7 +29,7 @@ public class SoundInit
 	{
 	}
 
-	@Mod.EventBusSubscriber(modid = MainMod.MODID)
+	@Mod.EventBusSubscriber(modid = TolkienMobs.MODID)
 	public static class RegistrationHandler 
 	{
 		/**
@@ -43,17 +42,17 @@ public class SoundInit
 		{
 			final String[] arraySoundEvents = {				    
 				    // elephant
-					"mob.elephant.say",
-					"mob.elephant.hurt"
+					"mob.mumakil.say",
+					"mob.mumakil.hurt"
 			};
 
 			final IForgeRegistry<SoundEvent> registry = event.getRegistry();
 
-	        System.out.println("Registering sound events");
+			LogHelperTTM.info("Composing the sounds of the Aiur...");
 
 	        for (final String soundName : arraySoundEvents) 
 	        {
-				registry.register(new SoundEvent(new ResourceLocation(MainMod.MODID, soundName)).setRegistryName(soundName));
+				registry.register(new SoundEvent(new ResourceLocation(TolkienMobs.MODID, soundName)).setRegistryName(soundName));
 			}
 
 			initialize();
