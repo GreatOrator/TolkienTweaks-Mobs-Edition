@@ -70,6 +70,7 @@ entity.warg.name=Warg
 entity.hobbit.name=Hobbit
 entity.mumakil.name=Mumakil
 entity.crebain.name=Crebain
+entity.cave_troll.name=Cave Troll
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer
 

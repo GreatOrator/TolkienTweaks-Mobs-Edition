@@ -6,6 +6,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
+/**
+ * Mumakil - GreatOrator
+ */
 public class ModelMumakil extends ModelTolkienMobs {
     public ModelRenderer MumuLegFL;
     public ModelRenderer MumuLegFR;
