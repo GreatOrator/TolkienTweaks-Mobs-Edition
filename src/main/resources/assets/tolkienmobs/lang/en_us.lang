@@ -31,8 +31,11 @@ item.tolkienmobs:boots_morguliron.name=Morgul Iron Boots
 //Food Information
 item.tolkienmobs:food_lembas.name=Lembas
 
-//Tile Information
+//Monster Drops
+item.tolkienmobs:feather_crebain.name=Crebain Feather
+item.tolkienmobs:leather_mumakil.name=Mumakil Hide
 
+//Tile Information
 tile.tolkienmobs:block_mithril.name=Mithril Block
 tile.tolkienmobs:block_morguliron.name=Morgul Iron Block
 

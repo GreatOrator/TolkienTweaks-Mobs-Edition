@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.entity;
 
 import com.google.common.base.Optional;
 
+import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.entityai.AIStates;
 import com.greatorator.tolkienmobs.entity.entityai.IModEntity;
 import com.greatorator.tolkienmobs.entity.entityai.ProcessStateCrebain;
@@ -33,10 +34,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.scoreboard.Team;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -57,6 +55,7 @@ public class EntityCrebain extends EntityFlying implements IModEntity {
 
     protected final AttributeModifier TAMED_MODIFIER = new AttributeModifier("Tamed health and attack boost", 2.0D, 0);
 
+    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/crebain");
     public ProcessStateCrebain aiProcessState;
     public UpdateStateCrebain aiUpdateState;
     protected int randFactor;
@@ -80,7 +79,7 @@ public class EntityCrebain extends EntityFlying implements IModEntity {
         dataManager.register(SCALE_FACTOR, 1.0F);
         dataManager.register(STATE, AIStates.STATE_TAKING_OFF);
         dataManager.register(SOAR_CLOCKWISE, world.rand.nextBoolean());
-        dataManager.register(SOAR_HEIGHT, (float)(126-randFactor));
+        dataManager.register(SOAR_HEIGHT, (float)(64-randFactor));
         dataManager.register(ANCHOR_POS, new BlockPos(posX, posY, posZ));
         dataManager.register(OWNER_UUID, Optional.absent());
         dataManager.register(LEG_BAND_COLOR, Integer.valueOf(EnumDyeColor.RED.getDyeDamage()));
@@ -165,19 +164,6 @@ public class EntityCrebain extends EntityFlying implements IModEntity {
     public boolean canAttackClass(Class parClass)
     {
         return true;
-    }
-
-    @Override
-    public Item getDropItem()
-    {
-        return Items.FEATHER;
-    }
-
-    @Override
-    protected void dropFewItems(boolean parRecentlyHitByPlayer, int parLootLevel)
-    {
-        dropItem(Items.FEATHER, parLootLevel+1);
-        return;
     }
 
     @Override

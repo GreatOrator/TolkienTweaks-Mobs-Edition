@@ -65,6 +65,10 @@ public class CraftingInit {
         /** Foodstuffs */
         OreDictionary.registerOre("foodLembas", new ItemStack(TTMFeatures.LEMBAS));
 
+        /** Monster Drops */
+        OreDictionary.registerOre("feather", new ItemStack(TTMFeatures.CREBAIN_FEATHER));
+        OreDictionary.registerOre("leather", new ItemStack(TTMFeatures.MUMAKIL_LEATHER));
+
 
     }
 }

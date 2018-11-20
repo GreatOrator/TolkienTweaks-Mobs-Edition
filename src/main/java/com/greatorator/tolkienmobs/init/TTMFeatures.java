@@ -164,8 +164,11 @@ public class TTMFeatures implements IModFeatures {
 
     //endregion
 
-    //region Tile Entities
-    //    //Maybe latter
+    //region Basic Items
+    @ModFeature(name = "feather_crebain", stateOverride = "simple_items#type=feather_crebain", cTab = 1)
+    public static Item CREBAIN_FEATHER = new ItemBCore();
+    @ModFeature(name = "leather_mumakil", stateOverride = "simple_items#type=leather_mumakil", cTab = 1)
+    public static Item MUMAKIL_LEATHER = new ItemBCore();
     //    //endregion
 
     //region Food
