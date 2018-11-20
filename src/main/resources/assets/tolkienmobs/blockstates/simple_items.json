@@ -15,7 +15,9 @@
       "ingot_morguliron":  {"textures": {"layer0": "tolkienmobs:items/ingot_morguliron"}},
       "nugget_morguliron": {"textures": {"layer0": "tolkienmobs:items/nugget_morguliron"}},
       "dust_morguliron":   {"textures": {"layer0": "tolkienmobs:items/dust_morguliron"}},
-      "food_lembas":   {"textures": {"layer0": "tolkienmobs:items/food_lembas"}}
+      "food_lembas":   {"textures": {"layer0": "tolkienmobs:items/food_lembas"}},
+      "feather_crebain":   {"textures": {"layer0": "tolkienmobs:items/feather_crebain"}},
+      "leather_mumakil":   {"textures": {"layer0": "tolkienmobs:items/leather_mumakil"}}
     }
   }
 }
