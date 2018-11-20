@@ -21,6 +21,15 @@ public class SoundInit
     public static final SoundEvent soundAmbientMumakil = null;
 	@ObjectHolder("mob.mumakil.hurt")
     public static final SoundEvent soundHurtMumakil = null;
+
+	@ObjectHolder("mob.crebain.hurt")
+	public static final SoundEvent soundDeathCrebain = null;
+	@ObjectHolder("mob.crebain.call")
+	public static final SoundEvent soundCallCrebain = null;
+	@ObjectHolder("mob.crebain.flapping")
+	public static final SoundEvent soundFlappingCrebain = null;
+	@ObjectHolder("mob.crebain.flapping")
+	public static final SoundEvent soundHurtCrebain = null;
        
 	/**
 	 * Initialize this mod's {@link Block}s with any post-registration data.
@@ -43,7 +52,12 @@ public class SoundInit
 			final String[] arraySoundEvents = {				    
 				    // elephant
 					"mob.mumakil.say",
-					"mob.mumakil.hurt"
+					"mob.mumakil.hurt",
+
+					"mob.crebain.hurt",
+					"mob.crebain.call",
+					"mob.crebain.death",
+					"mob.crebain.flapping"
 			};
 
 			final IForgeRegistry<SoundEvent> registry = event.getRegistry();

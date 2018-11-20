@@ -14,5 +14,40 @@
     [
       "tolkienmobs:mob/mumakil/mumakil_hurt"
     ]
+  },
+  "mob.crebain.call":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/crebain/crebain_cry0",
+      "tolkienmobs:mob/crebain/crebain_cry1",
+      "tolkienmobs:mob/crebain/crebain_cry2",
+      "tolkienmobs:mob/crebain/crebain_cry3"
+    ]
+  },
+  "mob.crebain.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/crebain/crebain_death"
+    ]
+  },
+  "mob.crebain.flapping":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/crebain/crebain_flapping"
+    ]
+  },
+  "mob.crebain.hurt":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/crebain/crebain_hurt"
+    ]
   }
 }

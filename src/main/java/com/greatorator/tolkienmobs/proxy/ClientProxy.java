@@ -22,6 +22,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityWarg.class, RenderWarg.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityHobbit.class, RenderHobbit.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityMumakil.class, RenderMumakil.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityCrebain.class, RenderCrebain.FACTORY);
     }
 
     @Override
