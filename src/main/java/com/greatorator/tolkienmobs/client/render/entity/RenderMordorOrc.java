@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.client.render.entity;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.model.ModelMordorOrc;
 import com.greatorator.tolkienmobs.entity.EntityMordorOrc;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -32,6 +33,10 @@ public class RenderMordorOrc extends RenderLiving<EntityMordorOrc> {
     protected ResourceLocation getEntityTexture(EntityMordorOrc entity) {
         int index = entity.getTextureIndex();
         return mobTexture[index];
+    }
+
+    public void transformHeldFull3DItemLayer() {
+        GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
     }
 
     public static class Factory implements IRenderFactory<EntityMordorOrc> {

@@ -136,6 +136,27 @@ public class ModelGoblin extends ModelTolkienMobs {
         modelRenderer.rotateAngleZ = z;
     }
 
+    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
+    {
+        this.rightArmPose = ModelBiped.ArmPose.EMPTY;
+        this.leftArmPose = ModelBiped.ArmPose.EMPTY;
+        ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
+
+        if (itemstack.getItem() == Items.BOW && ((EntityGoblin)entitylivingbaseIn).isSwingingArms())
+        {
+            if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT)
+            {
+                this.rightArmPose = ModelBiped.ArmPose.BOW_AND_ARROW;
+            }
+            else
+            {
+                this.leftArmPose = ModelBiped.ArmPose.BOW_AND_ARROW;
+            }
+        }
+
+        super.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
+    }
+
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {

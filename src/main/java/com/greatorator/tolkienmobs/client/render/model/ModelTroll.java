@@ -1,11 +1,14 @@
 package com.greatorator.tolkienmobs.client.render.model;
 
 import com.greatorator.tolkienmobs.entity.EntityTroll;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
@@ -144,6 +147,27 @@ public class ModelTroll extends ModelTolkienMobs {
         modelRenderer.rotateAngleZ = z;
     }
 
+    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
+    {
+        this.rightArmPose = ModelBiped.ArmPose.EMPTY;
+        this.leftArmPose = ModelBiped.ArmPose.EMPTY;
+        ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
+
+        if (itemstack.getItem() == Items.BOW && ((EntityTroll)entitylivingbaseIn).isSwingingArms())
+        {
+            if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT)
+            {
+                this.rightArmPose = ModelBiped.ArmPose.BOW_AND_ARROW;
+            }
+            else
+            {
+                this.leftArmPose = ModelBiped.ArmPose.BOW_AND_ARROW;
+            }
+        }
+
+        super.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
+    }
+
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
@@ -178,5 +202,14 @@ public class ModelTroll extends ModelTolkienMobs {
 
         this.TrollNeck.rotateAngleY = netHeadYaw * 0.017453292F;
         this.TrollNeck.rotateAngleX = headPitch * 0.017453292F;
+    }
+
+    public void postRenderArm(float scale, EnumHandSide side)
+    {
+        float f = side == EnumHandSide.RIGHT ? 1.0F : -1.0F;
+        ModelRenderer modelrenderer = this.getArmForSide(side);
+        modelrenderer.rotationPointX += f;
+        modelrenderer.postRender(scale);
+        modelrenderer.rotationPointX -= f;
     }
 }

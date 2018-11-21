@@ -34,7 +34,20 @@ public class EntityMordorOrc extends EntityMob implements IEntityAdditionalSpawn
     public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/mordororc");
 
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityMordorOrc.class, DataSerializers.BOOLEAN);
-    private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false);
+    private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false)
+    {
+        public void resetTask()
+        {
+            super.resetTask();
+            EntityMordorOrc.this.setSwingingArms(false);
+        }
+
+        public void startExecuting()
+        {
+            super.startExecuting();
+            EntityMordorOrc.this.setSwingingArms(true);
+        }
+    };
 
     public EntityMordorOrc(World worldIn) {
         super(worldIn);
