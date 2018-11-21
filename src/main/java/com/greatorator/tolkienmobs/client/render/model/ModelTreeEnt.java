@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.client.render.model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
+import org.lwjgl.opengl.GL11;
 
 /**
  * Huron - GreatOrator
@@ -63,6 +64,11 @@ public class ModelTreeEnt extends ModelTolkienMobs {
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        float scaleFactor = 1.8F;
+        GL11.glPushMatrix();
+        GL11.glTranslatef(0F, 1.5F-1.5F*scaleFactor, 0F);
+        GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
+
         this.EntLegBR.render(f5);
         this.EntHead.render(f5);
         this.EntLegFR.render(f5);
@@ -71,6 +77,8 @@ public class ModelTreeEnt extends ModelTolkienMobs {
         this.EntArmL.render(f5);
         this.EntLegBL.render(f5);
         this.EntBody.render(f5);
+
+        GL11.glPopMatrix();
     }
 
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {

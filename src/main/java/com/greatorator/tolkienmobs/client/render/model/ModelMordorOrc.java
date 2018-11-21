@@ -162,11 +162,11 @@ public class ModelMordorOrc extends ModelTolkienMobs {
         {
             if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT)
             {
-                this.rightArmPose = ModelBiped.ArmPose.BOW_AND_ARROW;
+                this.rightArmPose = ModelBiped.ArmPose.ITEM;
             }
             else
             {
-                this.leftArmPose = ModelBiped.ArmPose.BOW_AND_ARROW;
+                this.leftArmPose = ModelBiped.ArmPose.ITEM;
             }
         }
 
