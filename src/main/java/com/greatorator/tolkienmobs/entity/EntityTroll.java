@@ -1,9 +1,10 @@
 package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.entity.entityai.EntityAIOrcAttack;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITrollAttack;
+import com.greatorator.tolkienmobs.init.SoundInit;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -18,7 +19,10 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -33,7 +37,7 @@ public class EntityTroll extends EntityMob implements IEntityAdditionalSpawnData
 
     public EntityTroll(World worldIn) {
         super(worldIn);
-        this.setSize(1.7F, 2.3F);
+        this.setSize(3.4F, 4.6F);
         this.texture_index = rand.nextInt(4);
     }
 
@@ -65,6 +69,36 @@ public class EntityTroll extends EntityMob implements IEntityAdditionalSpawnData
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
         this.setCombatTask();
         return ientitylivingdata;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return SoundInit.soundIdleTroll;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource parDamageSource)
+    {
+        return SoundInit.soundHurtTroll;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return SoundInit.soundDeathTroll;
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pos, Block blockIn)
+    {
+        this.playSound(SoundInit.soundStepTroll, 0.15F, 1.0F);
+    }
+
+    @Override
+    protected float getSoundVolume()
+    {
+        return 0.4F;
     }
 
     public void setArmsRaised(boolean armsRaised) {

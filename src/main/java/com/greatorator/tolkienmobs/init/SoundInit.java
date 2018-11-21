@@ -16,12 +16,13 @@ public class SoundInit
 {
     // instantiate SoundEvents
 	
-// elephant
+	/** Mumakil */
 	@ObjectHolder("mob.mumakil.say")
     public static final SoundEvent soundAmbientMumakil = null;
 	@ObjectHolder("mob.mumakil.hurt")
     public static final SoundEvent soundHurtMumakil = null;
 
+	/** Crebain */
 	@ObjectHolder("mob.crebain.hurt")
 	public static final SoundEvent soundDeathCrebain = null;
 	@ObjectHolder("mob.crebain.call")
@@ -30,6 +31,18 @@ public class SoundInit
 	public static final SoundEvent soundFlappingCrebain = null;
 	@ObjectHolder("mob.crebain.flapping")
 	public static final SoundEvent soundHurtCrebain = null;
+
+	/** Troll */
+	@ObjectHolder("mob.troll.hurt")
+	public static final SoundEvent soundHurtTroll = null;
+	@ObjectHolder("mob.troll.idle")
+	public static final SoundEvent soundIdleTroll = null;
+	@ObjectHolder("mob.troll.death")
+	public static final SoundEvent soundDeathTroll = null;
+	@ObjectHolder("mob.troll.angry")
+	public static final SoundEvent soundAngryTroll = null;
+	@ObjectHolder("mob.troll.step")
+	public static final SoundEvent soundStepTroll = null;
        
 	/**
 	 * Initialize this mod's {@link Block}s with any post-registration data.
@@ -50,14 +63,23 @@ public class SoundInit
 		public static void onEvent(final RegistryEvent.Register<SoundEvent> event) 
 		{
 			final String[] arraySoundEvents = {				    
-				    // elephant
+				    /** Mumakil */
 					"mob.mumakil.say",
 					"mob.mumakil.hurt",
 
+					/** Crebain */
 					"mob.crebain.hurt",
 					"mob.crebain.call",
 					"mob.crebain.death",
-					"mob.crebain.flapping"
+					"mob.crebain.flapping",
+
+					/** Troll */
+					"mob.troll.hurt",
+					"mob.troll.idle",
+					"mob.troll.death",
+					"mob.troll.angry",
+					"mob.troll.step"
+
 			};
 
 			final IForgeRegistry<SoundEvent> registry = event.getRegistry();

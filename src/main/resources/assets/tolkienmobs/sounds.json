@@ -49,5 +49,50 @@
     [
       "tolkienmobs:mob/crebain/crebain_hurt"
     ]
+  },
+  "mob.troll.hurt":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/troll/troll_hurt"
+    ]
+  },
+  "mob.troll.angry":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/troll/troll_angry"
+    ]
+  },
+  "mob.troll.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/troll/troll_death"
+    ]
+  },
+  "mob.troll.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/troll/troll_say1",
+      "tolkienmobs:mob/troll/troll_say2",
+      "tolkienmobs:mob/troll/troll_say3"
+    ]
+  },
+  "mob.troll.step":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/troll/troll_step1",
+      "tolkienmobs:mob/troll/troll_step2",
+      "tolkienmobs:mob/troll/troll_step3",
+      "tolkienmobs:mob/troll/troll_step4"
+    ]
   }
 }

@@ -30,6 +30,7 @@ item.tolkienmobs:boots_morguliron.name=Morgul Iron Boots
 
 //Food Information
 item.tolkienmobs:food_lembas.name=Lembas
+item.tolkienmobs:monster_flesh.name=Monster Flesh
 
 //Monster Drops
 item.tolkienmobs:feather_crebain.name=Crebain Feather

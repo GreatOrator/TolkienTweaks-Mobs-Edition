@@ -18,7 +18,7 @@ public class EntityMumakil extends EntityHerds
 	{
 		super(par1World);
 
-    	setScaleFactor(2.5F);
+    	setScaleFactor(4.5F);
         this.setSize(2.2F*getScaleFactor(), 2.7F*getScaleFactor());
         this.texture_index = rand.nextInt(4);
 	}
