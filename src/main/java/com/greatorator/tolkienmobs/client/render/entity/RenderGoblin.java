@@ -6,6 +6,7 @@ import com.greatorator.tolkienmobs.entity.EntityGoblin;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
@@ -25,6 +26,7 @@ public class RenderGoblin extends RenderLiving<EntityGoblin> {
 
     public RenderGoblin(RenderManager rendermanagerIn) {
         super(rendermanagerIn, new ModelGoblin(), 0.5F);
+        this.addLayer(new LayerHeldItem(this));
     }
 
     @Nullable

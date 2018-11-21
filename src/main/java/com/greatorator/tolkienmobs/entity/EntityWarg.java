@@ -28,6 +28,7 @@ import javax.annotation.Nullable;
 public class EntityWarg extends EntityWolf {
     private int texture_index;
     public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/warg");
+
     /** Float used to smooth the rotation of the wolf head */
     private float headRotationCourse;
     private float headRotationCourseOld;

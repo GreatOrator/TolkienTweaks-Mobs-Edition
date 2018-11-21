@@ -1,8 +1,14 @@
 package com.greatorator.tolkienmobs.client.render.model;
 
+import com.greatorator.tolkienmobs.entity.EntityGoblin;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 
 /**
@@ -133,12 +139,45 @@ public class ModelGoblin extends ModelTolkienMobs {
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
+        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
+        ItemStack itemstack = ((EntityLivingBase)entityIn).getHeldItemMainhand();
+        EntityGoblin entitygoblin = (EntityGoblin)entityIn;
+
+
+        if (entitygoblin.isSwingingArms() && (itemstack.isEmpty() || itemstack.getItem() != Items.BOW)) {
+            float f = MathHelper.sin(this.swingProgress * (float)Math.PI);
+            float f1 = MathHelper.sin((1.0F - (1.0F - this.swingProgress) * (1.0F - this.swingProgress)) * (float)Math.PI);
+            this.GoblinShoulderL.rotateAngleZ = 0.0F;
+            this.GoblinShoulderR.rotateAngleZ = 0.0F;
+            this.GoblinShoulderL.rotateAngleY = -(0.1F - f * 0.6F);
+            this.GoblinShoulderR.rotateAngleY = 0.1F - f * 0.6F;
+            this.GoblinShoulderL.rotateAngleX = -((float)Math.PI / 2F);
+            this.GoblinShoulderR.rotateAngleX = -((float)Math.PI / 2F);
+            this.GoblinShoulderL.rotateAngleX -= f * 1.2F - f1 * 0.4F;
+            this.GoblinShoulderR.rotateAngleX -= f * 1.2F - f1 * 0.4F;
+            this.GoblinShoulderL.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
+            this.GoblinShoulderR.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
+            this.GoblinShoulderL.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+            this.GoblinShoulderR.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+        }
+        else {
+            this.GoblinShoulderR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+            this.GoblinShoulderL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        }
+
         this.GoblinLegL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.GoblinLegR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-        this.GoblinShoulderR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.GoblinShoulderL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
 
         this.GoblinHead.rotateAngleY = netHeadYaw * 0.017453292F;
         this.GoblinHead.rotateAngleX = headPitch * 0.017453292F;
+    }
+
+    public void postRenderArm(float scale, EnumHandSide side)
+    {
+        float f = side == EnumHandSide.RIGHT ? 1.0F : -1.0F;
+        ModelRenderer modelrenderer = this.getArmForSide(side);
+        modelrenderer.rotationPointX += f;
+        modelrenderer.postRender(scale);
+        modelrenderer.rotationPointX -= f;
     }
 }

@@ -33,8 +33,8 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class EntityMirkwoodSpider extends EntityMob {
-
     public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/mirkwoodspider");
+
     private static final DataParameter<Byte> CLIMBING = EntityDataManager.<Byte>createKey(EntityMirkwoodSpider.class, DataSerializers.BYTE);
 
     public EntityMirkwoodSpider(World worldIn) {
@@ -62,6 +62,17 @@ public class EntityMirkwoodSpider extends EntityMob {
         this.targetTasks.addTask(3, new EntityMirkwoodSpider.AISpiderTarget(this, EntityIronGolem.class));
     }
 
+    protected void entityInit() {
+        super.entityInit();
+        this.dataManager.register(CLIMBING, Byte.valueOf((byte) 0));
+    }
+
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
+    }
+
     /**
      * Returns the Y offset from the entity's position for any entity riding this one.
      */
@@ -76,11 +87,6 @@ public class EntityMirkwoodSpider extends EntityMob {
         return new PathNavigateClimber(this, worldIn);
     }
 
-    protected void entityInit() {
-        super.entityInit();
-        this.dataManager.register(CLIMBING, Byte.valueOf((byte) 0));
-    }
-
     /**
      * Called to update the entity's position/logic.
      */
@@ -90,12 +96,6 @@ public class EntityMirkwoodSpider extends EntityMob {
         if (!this.world.isRemote) {
             this.setBesideClimbableBlock(this.collidedHorizontally);
         }
-    }
-
-    protected void applyEntityAttributes() {
-        super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
     }
 
     protected SoundEvent getAmbientSound() {

@@ -6,6 +6,7 @@ import com.greatorator.tolkienmobs.entity.EntityMordorOrc;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
@@ -23,6 +24,7 @@ public class RenderMordorOrc extends RenderLiving<EntityMordorOrc> {
 
     public RenderMordorOrc(RenderManager rendermanagerIn) {
         super(rendermanagerIn, new ModelMordorOrc(), 0.5F);
+        this.addLayer(new LayerHeldItem(this));
     }
 
     @Nullable

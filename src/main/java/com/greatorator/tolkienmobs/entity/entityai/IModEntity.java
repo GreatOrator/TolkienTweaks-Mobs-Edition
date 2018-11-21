@@ -14,7 +14,6 @@ public interface IModEntity
      *
      * @param parScaleFactor the new scale factor
      */
-    // common encapsulation methods
     void setScaleFactor(float parScaleFactor);
     
     /**

@@ -1,11 +1,11 @@
 package com.greatorator.tolkienmobs.client.render.model;
 
-import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 /** Borrowed from Jabelar https://github.com/jabelar */
-public class ModelTolkienMobs extends ModelBase
+public class ModelTolkienMobs extends ModelBiped
 {
     // create an animation cycle
     // for movement based animations you need to measure distance moved

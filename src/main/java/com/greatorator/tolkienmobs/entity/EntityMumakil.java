@@ -9,8 +9,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 /** Borrowed from Jabelar https://github.com/jabelar */
-public class EntityMumakil extends EntityHerds
-{
+public class EntityMumakil extends EntityHerds {
     private int texture_index;
     public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/mumakil");
 

@@ -45,6 +45,8 @@ import java.util.UUID;
 
 /** Borrowed from Jabelar https://github.com/jabelar */
 public class EntityCrebain extends EntityFlying implements IModEntity {
+    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/crebain");
+
     protected static final DataParameter<Float> SCALE_FACTOR = EntityDataManager.<Float>createKey(EntityCrebain.class, DataSerializers.FLOAT);
     protected static final DataParameter<Integer> STATE = EntityDataManager.<Integer>createKey(EntityCrebain.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SOAR_CLOCKWISE = EntityDataManager.<Boolean>createKey(EntityCrebain.class, DataSerializers.BOOLEAN);
@@ -54,8 +56,6 @@ public class EntityCrebain extends EntityFlying implements IModEntity {
     protected static final DataParameter<Integer> LEG_BAND_COLOR = EntityDataManager.<Integer>createKey(EntityCrebain.class, DataSerializers.VARINT);
 
     protected final AttributeModifier TAMED_MODIFIER = new AttributeModifier("Tamed health and attack boost", 2.0D, 0);
-
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/crebain");
     public ProcessStateCrebain aiProcessState;
     public UpdateStateCrebain aiUpdateState;
     protected int randFactor;

@@ -1,7 +1,11 @@
 package com.greatorator.tolkienmobs.client.render.model;
 
+import com.greatorator.tolkienmobs.entity.EntityTroll;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
@@ -143,10 +147,34 @@ public class ModelTroll extends ModelTolkienMobs {
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
-        this.TrollLegR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.TrollLegL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-        this.TrollArmR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.TrollArmL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
+        ItemStack itemstack = ((EntityLivingBase)entityIn).getHeldItemMainhand();
+        EntityTroll entitytroll = (EntityTroll)entityIn;
+
+
+        if (entitytroll.isSwingingArms() && (itemstack.isEmpty() || itemstack.getItem() != Items.BOW)) {
+            float f = MathHelper.sin(this.swingProgress * (float)Math.PI);
+            float f1 = MathHelper.sin((1.0F - (1.0F - this.swingProgress) * (1.0F - this.swingProgress)) * (float)Math.PI);
+            this.TrollArmL.rotateAngleZ = 0.0F;
+            this.TrollArmR.rotateAngleZ = 0.0F;
+            this.TrollArmL.rotateAngleY = -(0.1F - f * 0.6F);
+            this.TrollArmR.rotateAngleY = 0.1F - f * 0.6F;
+            this.TrollArmL.rotateAngleX = -((float)Math.PI / 2F);
+            this.TrollArmR.rotateAngleX = -((float)Math.PI / 2F);
+            this.TrollArmL.rotateAngleX -= f * 1.2F - f1 * 0.4F;
+            this.TrollArmR.rotateAngleX -= f * 1.2F - f1 * 0.4F;
+            this.TrollArmL.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
+            this.TrollArmR.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
+            this.TrollArmL.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+            this.TrollArmR.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+        }
+        else {
+            this.TrollArmR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+            this.TrollArmL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        }
+
+        this.TrollLegL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.TrollLegR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
 
         this.TrollNeck.rotateAngleY = netHeadYaw * 0.017453292F;
         this.TrollNeck.rotateAngleX = headPitch * 0.017453292F;

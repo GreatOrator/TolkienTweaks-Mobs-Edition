@@ -1,8 +1,12 @@
 package com.greatorator.tolkienmobs.client.render.model;
 
 
+import com.greatorator.tolkienmobs.entity.EntityMordorOrc;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 
 /**
@@ -148,10 +152,34 @@ public class ModelMordorOrc extends ModelTolkienMobs {
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
+        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
+        ItemStack itemstack = ((EntityLivingBase)entityIn).getHeldItemMainhand();
+        EntityMordorOrc entitymordororc = (EntityMordorOrc)entityIn;
+
+
+        if (entitymordororc.isSwingingArms() && (itemstack.isEmpty() || itemstack.getItem() != Items.BOW)) {
+            float f = MathHelper.sin(this.swingProgress * (float)Math.PI);
+            float f1 = MathHelper.sin((1.0F - (1.0F - this.swingProgress) * (1.0F - this.swingProgress)) * (float)Math.PI);
+            this.OrcArmL.rotateAngleZ = 0.0F;
+            this.OrcArmR.rotateAngleZ = 0.0F;
+            this.OrcArmL.rotateAngleY = -(0.1F - f * 0.6F);
+            this.OrcArmR.rotateAngleY = 0.1F - f * 0.6F;
+            this.OrcArmL.rotateAngleX = -((float)Math.PI / 2F);
+            this.OrcArmR.rotateAngleX = -((float)Math.PI / 2F);
+            this.OrcArmL.rotateAngleX -= f * 1.2F - f1 * 0.4F;
+            this.OrcArmR.rotateAngleX -= f * 1.2F - f1 * 0.4F;
+            this.OrcArmL.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
+            this.OrcArmR.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
+            this.OrcArmL.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+            this.OrcArmR.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
+        }
+        else {
+            this.OrcArmR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+            this.OrcArmL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        }
+
         this.OrcLegL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.OrcLegR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-        this.OrcArmR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.OrcArmL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
 
         this.OrcHead.rotateAngleY = netHeadYaw * 0.017453292F;
         this.OrcHead.rotateAngleX = headPitch * 0.017453292F;

@@ -1,8 +1,9 @@
 package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.entity.entityai.EntityAITrollAttack;
+import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.init.SoundInit;
+import com.greatorator.tolkienmobs.init.TTMFeatures;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -14,6 +15,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -24,16 +26,20 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
 public class EntityTroll extends EntityMob implements IEntityAdditionalSpawnData {
     private int texture_index;
-    private static final DataParameter<Boolean> ARMS_RAISED = EntityDataManager.createKey(EntityMordorOrc.class, DataSerializers.BOOLEAN);
     public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/cavetroll");
-    private final EntityAIAttackMelee aiAttackOnCollide = new EntityAIAttackMelee(this, 1.2D, false);
+
+    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityTroll.class, DataSerializers.BOOLEAN);
+    private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false);
 
     public EntityTroll(World worldIn) {
         super(worldIn);
@@ -45,10 +51,24 @@ public class EntityTroll extends EntityMob implements IEntityAdditionalSpawnData
         return this.texture_index;
     }
 
+    protected void initEntityAI() {
+        this.tasks.addTask(1, new EntityAISwimming(this));
+        this.tasks.addTask(6, new EntityAILookIdle(this));
+        this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(2, new EntityAITTMAttack(this, 3.0D, false));
+        this.applyEntityAI();
+    }
+
+    private void applyEntityAI() {
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityTroll.class}));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHobbit.class, true));
+    }
+
     @Override
     protected void entityInit() {
         super.entityInit();
-        this.getDataManager().register(ARMS_RAISED, Boolean.valueOf(false));
+        this.dataManager.register(SWINGING_ARMS, Boolean.valueOf(false));
     }
 
     @Override
@@ -60,6 +80,12 @@ public class EntityTroll extends EntityMob implements IEntityAdditionalSpawnData
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(5.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
+    }
+
+    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
+    {
+        super.setEquipmentBasedOnDifficulty(difficulty);
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(TTMFeatures.AXE_MORGULIRON));
     }
 
     @Nullable
@@ -101,22 +127,31 @@ public class EntityTroll extends EntityMob implements IEntityAdditionalSpawnData
         return 0.4F;
     }
 
-    public void setArmsRaised(boolean armsRaised) {
-        this.getDataManager().set(ARMS_RAISED, Boolean.valueOf(armsRaised));
-    }
-
     public void setCombatTask()
     {
-        ItemStack itemstack = this.getHeldItemMainhand();
-
-        if (itemstack.getItem() == Items.BOW)
+        if (this.world != null && !this.world.isRemote)
         {
-        }
-        else
-        {
-            this.tasks.addTask(4, this.aiAttackOnCollide);
-        }
+            this.tasks.removeTask(this.aiAttackOnCollide);
+            //   this.tasks.removeTask(this.aiArrowAttack);
+            ItemStack itemstack = this.getHeldItemMainhand();
 
+            if (itemstack.getItem() == TTMFeatures.AXE_MORGULIRON)
+            {
+                this.tasks.addTask(4, this.aiAttackOnCollide);
+            }
+            else
+            {
+                int i = 20;
+
+                if (this.world.getDifficulty() != EnumDifficulty.HARD)
+                {
+                    i = 40;
+                }
+
+                //   this.aiArrowAttack.setAttackCooldown(i);
+                //   this.tasks.addTask(4, this.aiArrowAttack);
+            }
+        }
     }
 
     public boolean attackEntityAsMob(Entity entityIn)
@@ -129,25 +164,32 @@ public class EntityTroll extends EntityMob implements IEntityAdditionalSpawnData
         {
             if (entityIn instanceof EntityLivingBase)
             {
-                ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 200));
+                ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 0));
             }
 
             return true;
         }
     }
 
-    protected void initEntityAI() {
-        this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(6, new EntityAILookIdle(this));
-        this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
-        this.tasks.addTask(2, new EntityAITrollAttack(this, 1.0D, false));
-        this.applyEntityAI();
+    public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack)
+    {
+        super.setItemStackToSlot(slotIn, stack);
+
+        if (!this.world.isRemote && slotIn == EntityEquipmentSlot.MAINHAND)
+        {
+            this.setCombatTask();
+        }
     }
 
-    private void applyEntityAI() {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityTroll.class}));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHobbit.class, true));
+    @SideOnly(Side.CLIENT)
+    public boolean isSwingingArms()
+    {
+        return ((Boolean)this.dataManager.get(SWINGING_ARMS)).booleanValue();
+    }
+
+    public void setSwingingArms(boolean swingingArms)
+    {
+        this.dataManager.set(SWINGING_ARMS, Boolean.valueOf(swingingArms));
     }
 
     @Override
