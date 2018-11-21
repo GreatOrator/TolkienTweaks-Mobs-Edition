@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.entity.entityai.IModEntity;
 import com.greatorator.tolkienmobs.init.SoundInit;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -28,6 +29,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -117,6 +119,12 @@ public class EntityHerds extends EntityAnimal implements IModEntity
     protected SoundEvent getDeathSound()
     {
         return SoundInit.soundHurtMumakil;
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pos, Block blockIn)
+    {
+        this.playSound(SoundInit.soundStepTroll, 0.25F, 1.0F);
     }
 
     @Override
