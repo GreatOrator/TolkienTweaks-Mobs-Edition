@@ -77,7 +77,6 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
     @Override
     protected void entityInit() {
         super.entityInit();
-        this.setCombatTask();
         this.dataManager.register(SWINGING_ARMS, Boolean.valueOf(false));
     }
 
@@ -107,6 +106,7 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
     {
         IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+        this.setCombatTask();
         return ientitylivingdata;
     }
 
