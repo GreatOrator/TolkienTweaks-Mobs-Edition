@@ -3,7 +3,6 @@ package com.greatorator.tolkienmobs.entity;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
-import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -52,6 +51,7 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
     public EntityGoblin(World worldIn) {
         super(worldIn);
         this.setSize(0.9F, 0.8F);
+        this.setCombatTask();
         this.texture_index = rand.nextInt(4);
     }
     
@@ -77,7 +77,7 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
     @Override
     protected void entityInit() {
         super.entityInit();
-        this.dataManager.register(SWINGING_ARMS, Boolean.valueOf(false));
+        this.dataManager.register(SWINGING_ARMS, Boolean.valueOf(true));
     }
 
     @Override
@@ -106,6 +106,7 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
     {
         IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+        this.setEquipmentBasedOnDifficulty(difficulty);
         this.setCombatTask();
         return ientitylivingdata;
     }

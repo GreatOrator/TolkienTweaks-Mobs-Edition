@@ -3,11 +3,11 @@ package com.greatorator.tolkienmobs.client.render.entity;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.model.ModelGoblin;
 import com.greatorator.tolkienmobs.entity.EntityGoblin;
+import com.greatorator.tolkienmobs.handler.LayerTTMHeldItem;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
@@ -24,8 +24,8 @@ public class RenderGoblin extends RenderLiving<EntityGoblin> {
     public static final RenderGoblin.Factory FACTORY = new RenderGoblin.Factory();
 
     public RenderGoblin(RenderManager rendermanagerIn) {
-        super(rendermanagerIn, new ModelGoblin(), 0.5F);
-        this.addLayer(new LayerHeldItem(this));
+        super(rendermanagerIn, new ModelGoblin(), 0.25F);
+        this.addLayer(new LayerTTMHeldItem(this));
     }
 
     @Nullable
