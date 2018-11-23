@@ -11,6 +11,7 @@ import com.brandon3055.brandonscore.registry.ModFeatures;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.block.itemblock.ItemBlockSlabs;
+import com.greatorator.tolkienmobs.handler.ItemTTMAmmo;
 import com.greatorator.tolkienmobs.handler.ItemTTMFood;
 import com.greatorator.tolkienmobs.item.tools.ToolAxe;
 import net.minecraft.block.Block;
@@ -25,6 +26,8 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import javax.annotation.Nullable;
+
+import static com.greatorator.tolkienmobs.init.SoundInit.soundBoulderShoot;
 
 /**
  * Created by brandon3055 on 31/10/18.
@@ -65,7 +68,6 @@ public class TTMFeatures implements IModFeatures {
 
     @ModFeature(name = "dust_morguliron", stateOverride = "simple_items#type=dust_morguliron", cTab = 1)
     public static Item DUST_MORGULIRON = new ItemBCore();
-
     //endregion
 
     //region Tools
@@ -127,7 +129,6 @@ public class TTMFeatures implements IModFeatures {
     //endregion
 
     //region Simple Blocks
-
     @ModFeature(name = "block_mithril", cTab = 1)
     public static final Block BLOCK_MITHRIL = new BlockBCore(Material.IRON).setHardness(1.5F).setResistance(10F);
 
@@ -161,7 +162,6 @@ public class TTMFeatures implements IModFeatures {
 
     @ModFeature(name = "flower", variantMap = {"0:variant=simbelmyne", "1:variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final BlockFlowers FLOWERS = new BlockFlowers();
-
     //endregion
 
     //region Basic Items
@@ -169,13 +169,17 @@ public class TTMFeatures implements IModFeatures {
     public static Item CREBAIN_FEATHER = new ItemBCore();
     @ModFeature(name = "leather_mumakil", stateOverride = "simple_items#type=leather_mumakil", cTab = 1)
     public static Item MUMAKIL_LEATHER = new ItemBCore();
-    //    //endregion
+    //endregion
 
     //region Food
     @ModFeature(name = "food_lembas", stateOverride = "simple_items#type=food_lembas", cTab = 3)
     public static Item LEMBAS = new ItemTTMFood(20, 20, new PotionEffect(MobEffects.ABSORPTION,12000,5), new PotionEffect(MobEffects.REGENERATION,100,5));
     @ModFeature(name = "monster_flesh", stateOverride = "simple_items#type=monster_flesh", cTab = 3)
     public static Item MONSTER_FLESH = new ItemTTMFood(5, 2, new PotionEffect(MobEffects.HUNGER,100,2));
+    //endregion
 
+    //region Ammo
+    @ModFeature(name = "ammo_boulder", stateOverride = "simple_items#type=ammo_boulder", cTab = 1)
+    public static Item AMMO_BOULDER = new ItemTTMAmmo(16,SoundInit.soundBoulderShoot);
     //endregion
 }

@@ -94,5 +94,13 @@
       "tolkienmobs:mob/troll/troll_step3",
       "tolkienmobs:mob/troll/troll_step4"
     ]
+  },
+  "entity.boulder.shoot":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:entity/ammo/ammo_boulder_shoot"
+    ]
   }
 }

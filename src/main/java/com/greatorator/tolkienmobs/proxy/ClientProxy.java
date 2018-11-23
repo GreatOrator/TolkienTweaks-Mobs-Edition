@@ -1,7 +1,9 @@
 package com.greatorator.tolkienmobs.proxy;
 
+import com.greatorator.tolkienmobs.client.render.entity.RenderBoulder;
 import com.greatorator.tolkienmobs.client.render.entity.*;
 import com.greatorator.tolkienmobs.entity.*;
+import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
 import com.greatorator.tolkienmobs.handler.FogHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -24,6 +26,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityMumakil.class, RenderMumakil.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityCrebain.class, RenderCrebain.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTroll.class, RenderTroll.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityAmmo.class, RenderBoulder.FACTORY);
     }
 
     @Override

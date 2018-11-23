@@ -43,7 +43,11 @@ public class SoundInit
 	public static final SoundEvent soundAngryTroll = null;
 	@ObjectHolder("mob.troll.step")
 	public static final SoundEvent soundStepTroll = null;
-       
+
+	/** Miscellaneous */
+	@ObjectHolder("entity.boulder.shoot")
+	public static final SoundEvent soundBoulderShoot = null;
+
 	/**
 	 * Initialize this mod's {@link Block}s with any post-registration data.
 	 */
@@ -78,7 +82,10 @@ public class SoundInit
 					"mob.troll.idle",
 					"mob.troll.death",
 					"mob.troll.angry",
-					"mob.troll.step"
+					"mob.troll.step",
+
+					/** Miscellaneous */
+					"entity.boulder.shoot"
 
 			};
 

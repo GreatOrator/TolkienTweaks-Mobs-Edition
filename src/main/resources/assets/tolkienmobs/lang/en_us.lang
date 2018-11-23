@@ -28,6 +28,9 @@ item.tolkienmobs:chestplate_morguliron.name=Morgul Iron Chestplate
 item.tolkienmobs:leggings_morguliron.name=Morgul Iron Leggings
 item.tolkienmobs:boots_morguliron.name=Morgul Iron Boots
 
+//Ammo Information
+item.tolkienmobs:ammo_boulder.name=Boulder
+
 //Food Information
 item.tolkienmobs:food_lembas.name=Lembas
 item.tolkienmobs:monster_flesh.name=Monster Flesh
