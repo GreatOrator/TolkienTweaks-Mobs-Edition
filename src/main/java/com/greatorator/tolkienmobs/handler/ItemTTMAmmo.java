@@ -20,13 +20,13 @@ public class ItemTTMAmmo extends ItemSnowball {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
+        worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, soundAmmo, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+        playerIn.addStat(StatList.getObjectUseStats(this));
 
         if (!playerIn.capabilities.isCreativeMode)
         {
             itemstack.shrink(1);
         }
-
-        worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, soundAmmo, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
         if (!worldIn.isRemote)
         {
@@ -35,7 +35,6 @@ public class ItemTTMAmmo extends ItemSnowball {
             worldIn.spawnEntity(entityboulder);
         }
 
-        playerIn.addStat(StatList.getObjectUseStats(this));
         return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
     }
 }

@@ -1,14 +1,13 @@
 package com.greatorator.tolkienmobs.client.render.entity;
 
+import codechicken.lib.render.item.CCRenderItem;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
-import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -16,23 +15,20 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-
 @SideOnly(Side.CLIENT)
-public class RenderBoulder<T extends Entity> extends Render<EntityAmmo> {
+public class RenderBoulder extends Render<EntityAmmo> {
+    public static Factory FACTORY = new Factory();
     protected final Item item;
     private final RenderItem itemRenderer;
+    private EntityAmmo entityIn;
 
-    public RenderBoulder(RenderManager renderManagerIn, Item itemIn, RenderItem itemRendererIn)
-    {
-        super(renderManagerIn);
+    public RenderBoulder(RenderManager renderManager, Item itemIn, RenderItem itemRendererIn) {
+        super(renderManager);
         this.item = itemIn;
         this.itemRenderer = itemRendererIn;
     }
 
-    public static final RenderBoulder.Factory FACTORY = new RenderBoulder.Factory();
-
-    public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(EntityAmmo entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)x, (float)y, (float)z);
@@ -61,23 +57,21 @@ public class RenderBoulder<T extends Entity> extends Render<EntityAmmo> {
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    public ItemStack getStackToRender(T entityIn)
+    public ItemStack getStackToRender(EntityAmmo entityIn)
     {
+        this.entityIn = entityIn;
         return new ItemStack(this.item);
     }
 
-    @Nullable
     @Override
     protected ResourceLocation getEntityTexture(EntityAmmo entity) {
         return new ResourceLocation(TolkienMobs.MODID + ":textures/items/ammo_boulder.png");
     }
 
-    public static class Factory implements IRenderFactory<EntityAmmo> {
-
+    public static class Factory implements IRenderFactory<EntityAmmo>{
         @Override
         public Render<? super EntityAmmo> createRenderFor(RenderManager manager) {
             return new RenderBoulder(manager);
         }
-
     }
 }

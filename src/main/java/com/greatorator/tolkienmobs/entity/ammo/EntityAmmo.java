@@ -21,11 +21,6 @@ public class EntityAmmo extends EntityThrowable {
         super(worldIn, throwerIn);
     }
 
-    public EntityAmmo(World worldIn, double x, double y, double z)
-    {
-        super(worldIn, x, y, z);
-    }
-
     /**
      * Handler for {@link World#setEntityState}
      */
