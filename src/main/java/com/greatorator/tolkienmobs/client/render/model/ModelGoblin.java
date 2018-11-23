@@ -18,8 +18,6 @@ import net.minecraft.util.math.MathHelper;
 public class ModelGoblin extends ModelTolkienMobs {
     public ModelRenderer GoblinLegL;
     public ModelRenderer GoblinLegR;
-    public ModelRenderer GoblinShoulderR;
-    public ModelRenderer GoblinShoulderL;
     public ModelRenderer GoblinBody;
     public ModelRenderer GoblinHead;
     public ModelRenderer GoblinArmR;
@@ -79,11 +77,11 @@ public class ModelGoblin extends ModelTolkienMobs {
         this.GoblinEarR1.addBox(0.0F, 0.0F, 0.0F, 5, 1, 1, 0.0F);
         this.GoblinEarR1.mirror = true;
         this.GoblinEarL3 = new ModelRenderer(this, 38, 0);
-        this.GoblinEarL3.setRotationPoint(0.0F, 2.0F, 0.0F);
-        this.GoblinEarL3.addBox(-3.0F, 0.0F, 0.0F, 3, 1, 1, 0.0F);
-        this.GoblinShoulderR = new ModelRenderer(this, 0, 29);
-        this.GoblinShoulderR.setRotationPoint(3.5F, 16.5F, 0.0F);
-        this.GoblinShoulderR.addBox(-1.0F, 0.0F, -1.0F, 2, 1, 2, 0.0F);
+        this.GoblinEarL3.setRotationPoint(2.0F, 2.0F, 0.0F);
+        this.GoblinEarL3.addBox(0.0F, 0.0F, 0.0F, 3, 1, 1, 0.0F);
+        this.bipedLeftArm = new ModelRenderer(this, 0, 29);
+        this.bipedLeftArm.setRotationPoint(3.5F, 16.5F, 0.0F);
+        this.bipedLeftArm.addBox(-1.0F, 0.0F, -1.0F, 2, 1, 2, 0.0F);
         this.GoblinToothR = new ModelRenderer(this, 0, 2);
         this.GoblinToothR.setRotationPoint(1.5F, 6.0F, -2.2F);
         this.GoblinToothR.addBox(0.0F, 0.0F, 0.0F, 1, 1, 1, 0.0F);
@@ -93,9 +91,9 @@ public class ModelGoblin extends ModelTolkienMobs {
         this.GoblinHair1 = new ModelRenderer(this, 46, 0);
         this.GoblinHair1.setRotationPoint(0.0F, -0.2F, -1.5F);
         this.GoblinHair1.addBox(-1.0F, -0.5F, 0.0F, 2, 1, 5, 0.0F);
-        this.GoblinShoulderL = new ModelRenderer(this, 8, 29);
-        this.GoblinShoulderL.setRotationPoint(-3.5F, 16.5F, 0.0F);
-        this.GoblinShoulderL.addBox(-1.0F, 0.0F, -1.0F, 2, 1, 2, 0.0F);
+        this.bipedRightArm = new ModelRenderer(this, 8, 29);
+        this.bipedRightArm.setRotationPoint(-3.5F, 16.5F, 0.0F);
+        this.bipedRightArm.addBox(-1.0F, 0.0F, -1.0F, 2, 1, 2, 0.0F);
         this.GoblinEarL2 = new ModelRenderer(this, 36, 2);
         this.GoblinEarL2.setRotationPoint(0.0F, 1.0F, 0.0F);
         this.GoblinEarL2.addBox(-4.0F, 0.0F, 0.0F, 4, 1, 1, 0.0F);
@@ -107,29 +105,29 @@ public class ModelGoblin extends ModelTolkienMobs {
         this.GoblinHandR.addBox(-1.0F, 0.0F, -1.0F, 3, 3, 3, 0.0F);
         this.GoblinHead.addChild(this.GoblinToothL);
         this.GoblinHead.addChild(this.GoblinEarL1);
-        this.GoblinShoulderR.addChild(this.GoblinArmR);
+        this.bipedLeftArm.addChild(this.GoblinArmR);
         this.GoblinEarR1.addChild(this.GoblinEarR3);
         this.GoblinHead.addChild(this.GoblinHair2);
         this.GoblinHead.addChild(this.GoblinMouth);
-        this.GoblinShoulderL.addChild(this.GoblinHandL);
+        this.bipedRightArm.addChild(this.GoblinHandL);
         this.GoblinEarR1.addChild(this.GoblinEarR2);
         this.GoblinHead.addChild(this.GoblinEarR1);
         this.GoblinEarL1.addChild(this.GoblinEarL3);
         this.GoblinHead.addChild(this.GoblinToothR);
         this.GoblinHead.addChild(this.GoblinHair1);
         this.GoblinEarL1.addChild(this.GoblinEarL2);
-        this.GoblinShoulderL.addChild(this.GoblinArmL);
-        this.GoblinShoulderR.addChild(this.GoblinHandR);
+        this.bipedRightArm.addChild(this.GoblinArmL);
+        this.bipedLeftArm.addChild(this.GoblinHandR);
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.GoblinBody.render(f5);
         this.GoblinLegR.render(f5);
         this.GoblinHead.render(f5);
-        this.GoblinShoulderR.render(f5);
+        this.bipedLeftArm.render(f5);
         this.GoblinLegL.render(f5);
-        this.GoblinShoulderL.render(f5);
+        this.bipedRightArm.render(f5);
     }
 
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
@@ -138,20 +136,16 @@ public class ModelGoblin extends ModelTolkienMobs {
         modelRenderer.rotateAngleZ = z;
     }
 
-    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
-    {
+    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
         this.rightArmPose = ModelBiped.ArmPose.EMPTY;
         this.leftArmPose = ModelBiped.ArmPose.EMPTY;
         ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
 
-        if (itemstack.getItem() == TTMFeatures.SWORD_MORGULIRON && ((EntityGoblin)entitylivingbaseIn).isSwingingArms())
-        {
-            if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT)
-            {
+        if (itemstack.getItem() == Items.BOW && ((EntityGoblin) entitylivingbaseIn).isSwingingArms()) {
+            if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT) {
                 this.rightArmPose = ModelBiped.ArmPose.ITEM;
             }
-            else
-            {
+            else {
                 this.leftArmPose = ModelBiped.ArmPose.ITEM;
             }
         }
@@ -160,47 +154,23 @@ public class ModelGoblin extends ModelTolkienMobs {
     }
 
     @Override
-    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
-    {
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
-        ItemStack itemstack = ((EntityLivingBase)entityIn).getHeldItemMainhand();
-        EntityGoblin entitygoblin = (EntityGoblin)entityIn;
 
-
-        if (entitygoblin.isSwingingArms() && (itemstack.isEmpty() || itemstack.getItem() != TTMFeatures.SWORD_MORGULIRON)) {
-            float f = MathHelper.sin(this.swingProgress * (float)Math.PI);
-            float f1 = MathHelper.sin((1.0F - (1.0F - this.swingProgress) * (1.0F - this.swingProgress)) * (float)Math.PI);
-            this.GoblinShoulderL.rotateAngleZ = 0.0F;
-            this.GoblinShoulderR.rotateAngleZ = 0.0F;
-            this.GoblinShoulderL.rotateAngleY = -(0.1F - f * 0.6F);
-            this.GoblinShoulderR.rotateAngleY = 0.1F - f * 0.6F;
-            this.GoblinShoulderL.rotateAngleX = -((float)Math.PI / 2F);
-            this.GoblinShoulderR.rotateAngleX = -((float)Math.PI / 2F);
-            this.GoblinShoulderL.rotateAngleX -= f * 1.2F - f1 * 0.4F;
-            this.GoblinShoulderR.rotateAngleX -= f * 1.2F - f1 * 0.4F;
-            this.GoblinShoulderL.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-            this.GoblinShoulderR.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-            this.GoblinShoulderL.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
-            this.GoblinShoulderR.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
-        }
-        else {
-            this.GoblinShoulderR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-            this.GoblinShoulderL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        }
+        this.bipedLeftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.bipedRightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 
         this.GoblinLegL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.GoblinLegR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+        this.GoblinLegR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 
         this.GoblinHead.rotateAngleY = netHeadYaw * 0.017453292F;
         this.GoblinHead.rotateAngleX = headPitch * 0.017453292F;
 
-        // flick ears
-        GoblinEarR1.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(entityIn.ticksExisted*3)), 6) * degToRad(15);
-        GoblinEarL1.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(entityIn.ticksExisted*3)), 6) * degToRad(-15);
+        this.bipedRightArm.rotationPointX = -3.5F;
+        this.bipedLeftArm.rotationPointX = 3.5F;
     }
 
-    public void postRenderArm(float scale, EnumHandSide side)
-    {
+    public void postRenderArm(float scale, EnumHandSide side) {
         float f = side == EnumHandSide.RIGHT ? 1.0F : -1.0F;
         ModelRenderer modelrenderer = this.getArmForSide(side);
         modelrenderer.rotationPointX += f;
