@@ -77,8 +77,8 @@ public class ModelGoblin extends ModelTolkienMobs {
         this.GoblinEarR1.addBox(0.0F, 0.0F, 0.0F, 5, 1, 1, 0.0F);
         this.GoblinEarR1.mirror = true;
         this.GoblinEarL3 = new ModelRenderer(this, 38, 0);
-        this.GoblinEarL3.setRotationPoint(2.0F, 2.0F, 0.0F);
-        this.GoblinEarL3.addBox(0.0F, 0.0F, 0.0F, 3, 1, 1, 0.0F);
+        this.GoblinEarL3.setRotationPoint(0.0F, 2.0F, 0.0F);
+        this.GoblinEarL3.addBox(-3.0F, 0.0F, 0.0F, 3, 1, 1, 0.0F);
         this.bipedLeftArm = new ModelRenderer(this, 0, 29);
         this.bipedLeftArm.setRotationPoint(3.5F, 16.5F, 0.0F);
         this.bipedLeftArm.addBox(-1.0F, 0.0F, -1.0F, 2, 1, 2, 0.0F);
@@ -168,6 +168,10 @@ public class ModelGoblin extends ModelTolkienMobs {
 
         this.bipedRightArm.rotationPointX = -3.5F;
         this.bipedLeftArm.rotationPointX = 3.5F;
+
+        // flick ears
+        GoblinEarR1.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(entityIn.ticksExisted*3)), 6) * degToRad(15);	        this.bipedLeftArm.rotationPointX = 3.5F;
+        GoblinEarL1.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(entityIn.ticksExisted*3)), 6) * degToRad(-15);
     }
 
     public void postRenderArm(float scale, EnumHandSide side) {

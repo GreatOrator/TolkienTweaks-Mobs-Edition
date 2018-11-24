@@ -16,11 +16,9 @@ import net.minecraft.util.math.MathHelper;
  * Mordor Orc - GreatOrator
  */
 public class ModelMordorOrc extends ModelTolkienMobs {
-    public ModelRenderer OrcArmL;
     public ModelRenderer OrcLegL;
     public ModelRenderer OrcHead;
     public ModelRenderer OrcBody;
-    public ModelRenderer OrcArmR;
     public ModelRenderer OrcLegR;
     public ModelRenderer OrcArmLUpper;
     public ModelRenderer OrcNose;
@@ -67,9 +65,9 @@ public class ModelMordorOrc extends ModelTolkienMobs {
         this.Tooth2 = new ModelRenderer(this, 0, 4);
         this.Tooth2.setRotationPoint(-3.7F, -2.0F, -3.7F);
         this.Tooth2.addBox(-0.5F, -0.5F, -0.5F, 1, 2, 1, 0.0F);
-        this.OrcArmL = new ModelRenderer(this, 40, 48);
-        this.OrcArmL.setRotationPoint(-7.0F, 2.5F, 0.0F);
-        this.OrcArmL.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+        this.bipedLeftArm = new ModelRenderer(this, 40, 48);
+        this.bipedLeftArm.setRotationPoint(-7.0F, 2.5F, 0.0F);
+        this.bipedLeftArm.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
         this.OrcBrowL = new ModelRenderer(this, 32, 0);
         this.OrcBrowL.setRotationPoint(-2.8F, -6.0F, -3.8F);
         this.OrcBrowL.addBox(-0.5F, -0.5F, -0.5F, 3, 1, 1, 0.0F);
@@ -82,9 +80,9 @@ public class ModelMordorOrc extends ModelTolkienMobs {
         this.OrcLegR = new ModelRenderer(this, 72, 48);
         this.OrcLegR.setRotationPoint(1.9F, 12.0F, 0.0F);
         this.OrcLegR.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
-        this.OrcArmR = new ModelRenderer(this, 24, 48);
-        this.OrcArmR.setRotationPoint(7.0F, 2.5F, 0.0F);
-        this.OrcArmR.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+        this.bipedRightArm = new ModelRenderer(this, 24, 48);
+        this.bipedRightArm.setRotationPoint(7.0F, 2.5F, 0.0F);
+        this.bipedRightArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
         this.OrcNose = new ModelRenderer(this, 25, 0);
         this.OrcNose.setRotationPoint(0.0F, -3.5F, -3.7F);
         this.OrcNose.addBox(-0.5F, -0.5F, -0.5F, 1, 1, 1, 0.0F);
@@ -124,7 +122,7 @@ public class ModelMordorOrc extends ModelTolkienMobs {
         this.OrcHead.addChild(this.OrcEar1);
         this.OrcHead.addChild(this.OrcNose);
         this.OrcHead.addChild(this.OrcEar2);
-        this.OrcArmL.addChild(this.OrcArmLUpper);
+        this.bipedLeftArm.addChild(this.OrcArmLUpper);
         this.OrcHead.addChild(this.OrcJaw);
         this.OrcHead.addChild(this.OrcHairTop);
         this.OrcHead.addChild(this.OrcHairBack);
@@ -133,16 +131,16 @@ public class ModelMordorOrc extends ModelTolkienMobs {
         this.OrcBody.addChild(this.OrcBodyUpper);
         this.OrcHead.addChild(this.OrcEar3);
         this.OrcHead.addChild(this.Tooth3);
-        this.OrcArmR.addChild(this.OrcArmRUpper);
+        this.bipedRightArm.addChild(this.OrcArmRUpper);
     }
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.OrcHead.render(f5);
         this.OrcBody.render(f5);
-        this.OrcArmL.render(f5);
+        this.bipedLeftArm.render(f5);
         this.OrcLegR.render(f5);
-        this.OrcArmR.render(f5);
+        this.bipedRightArm.render(f5);
         this.OrcLegL.render(f5);
     }
 
@@ -177,36 +175,18 @@ public class ModelMordorOrc extends ModelTolkienMobs {
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
-        ItemStack itemstack = ((EntityLivingBase)entityIn).getHeldItemMainhand();
-        EntityMordorOrc entitymordororc = (EntityMordorOrc)entityIn;
 
-
-        if (entitymordororc.isSwingingArms() && (itemstack.isEmpty() || itemstack.getItem() != Items.BOW)) {
-            float f = MathHelper.sin(this.swingProgress * (float)Math.PI);
-            float f1 = MathHelper.sin((1.0F - (1.0F - this.swingProgress) * (1.0F - this.swingProgress)) * (float)Math.PI);
-            this.OrcArmL.rotateAngleZ = 0.0F;
-            this.OrcArmR.rotateAngleZ = 0.0F;
-            this.OrcArmL.rotateAngleY = -(0.1F - f * 0.6F);
-            this.OrcArmR.rotateAngleY = 0.1F - f * 0.6F;
-            this.OrcArmL.rotateAngleX = -((float)Math.PI / 2F);
-            this.OrcArmR.rotateAngleX = -((float)Math.PI / 2F);
-            this.OrcArmL.rotateAngleX -= f * 1.2F - f1 * 0.4F;
-            this.OrcArmR.rotateAngleX -= f * 1.2F - f1 * 0.4F;
-            this.OrcArmL.rotateAngleZ += MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-            this.OrcArmR.rotateAngleZ -= MathHelper.cos(ageInTicks * 0.09F) * 0.05F + 0.05F;
-            this.OrcArmL.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
-            this.OrcArmR.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
-        }
-        else {
-            this.OrcArmR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-            this.OrcArmL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        }
+        this.bipedLeftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.bipedRightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 
         this.OrcLegL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.OrcLegR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+        this.OrcLegR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 
         this.OrcHead.rotateAngleY = netHeadYaw * 0.017453292F;
         this.OrcHead.rotateAngleX = headPitch * 0.017453292F;
+
+        this.bipedRightArm.rotationPointX = -8.9F;
+        this.bipedLeftArm.rotationPointX = 8.9F;
     }
 
     public void postRenderArm(float scale, EnumHandSide side)

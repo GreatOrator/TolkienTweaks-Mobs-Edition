@@ -1,8 +1,9 @@
-package com.greatorator.tolkienmobs.client.render.entity;
+package com.greatorator.tolkienmobs.client.render.entity.ammo;
 
-import codechicken.lib.render.item.CCRenderItem;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
+import com.greatorator.tolkienmobs.init.TTMFeatures;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -14,6 +15,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 public class RenderBoulder extends Render<EntityAmmo> {
@@ -63,6 +66,7 @@ public class RenderBoulder extends Render<EntityAmmo> {
         return new ItemStack(this.item);
     }
 
+    @Nullable
     @Override
     protected ResourceLocation getEntityTexture(EntityAmmo entity) {
         return new ResourceLocation(TolkienMobs.MODID + ":textures/items/ammo_boulder.png");
@@ -71,7 +75,7 @@ public class RenderBoulder extends Render<EntityAmmo> {
     public static class Factory implements IRenderFactory<EntityAmmo>{
         @Override
         public Render<? super EntityAmmo> createRenderFor(RenderManager manager) {
-            return new RenderBoulder(manager);
+            return new RenderBoulder(manager, TTMFeatures.AMMO_BOULDER, Minecraft.getMinecraft().getRenderItem());
         }
     }
 }

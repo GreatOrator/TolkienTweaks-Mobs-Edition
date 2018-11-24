@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.proxy;
 
-import com.greatorator.tolkienmobs.client.render.entity.RenderBoulder;
 import com.greatorator.tolkienmobs.client.render.entity.*;
+import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderBoulder;
 import com.greatorator.tolkienmobs.entity.*;
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
 import com.greatorator.tolkienmobs.handler.FogHandler;

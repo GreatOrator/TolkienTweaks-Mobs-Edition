@@ -105,6 +105,7 @@ public class EntityMordorOrc extends EntityMob implements IEntityAdditionalSpawn
     {
         IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+        this.setEquipmentBasedOnDifficulty(difficulty);
         this.setCombatTask();
         return ientitylivingdata;
     }
