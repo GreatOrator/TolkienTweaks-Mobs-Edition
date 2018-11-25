@@ -180,6 +180,6 @@ public class TTMFeatures implements IModFeatures {
 
     //region Ammo
     @ModFeature(name = "ammo_boulder", stateOverride = "simple_items#type=ammo_boulder", cTab = 1)
-    public static Item AMMO_BOULDER = new ItemTTMAmmo(16,SoundInit.soundBoulderShoot);
+    public static Item AMMO_BOULDER = new ItemTTMAmmo(16);
     //endregion
 }

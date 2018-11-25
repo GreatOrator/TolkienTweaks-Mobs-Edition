@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.handler;
 
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
+import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemSnowball;
 import net.minecraft.item.ItemStack;
@@ -10,10 +11,7 @@ import net.minecraft.world.World;
 
 public class ItemTTMAmmo extends ItemSnowball {
 
-    private SoundEvent soundAmmo;
-
-    public ItemTTMAmmo(int maxStackSize, SoundEvent soundAmmo) {
-        this.soundAmmo = soundAmmo;
+    public ItemTTMAmmo(int maxStackSize) {
         this.maxStackSize = maxStackSize;
     }
 
@@ -27,7 +25,7 @@ public class ItemTTMAmmo extends ItemSnowball {
             itemstack.shrink(1);
         }
 
-        worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, soundAmmo, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+        worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundInit.soundBoulderShoot, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 
         if (!worldIn.isRemote)
         {
