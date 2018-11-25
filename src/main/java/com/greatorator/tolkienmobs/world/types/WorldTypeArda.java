@@ -6,9 +6,9 @@ import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.layer.GenLayer;
 
 public class WorldTypeArda extends WorldType {
-    public WorldTypeArda()
+    public WorldTypeArda(String name)
     {
-        super("Arda");
+        super(name);
     }
 
     @Override

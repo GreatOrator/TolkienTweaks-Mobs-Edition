@@ -34,7 +34,7 @@ public class CommonProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-        WorldType ARDA = new WorldTypeArda();
+        WorldType ARDA = new WorldTypeArda("Arda");
     }
 
 }
