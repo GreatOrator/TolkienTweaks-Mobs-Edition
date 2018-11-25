@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.init;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.*;
+import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;
