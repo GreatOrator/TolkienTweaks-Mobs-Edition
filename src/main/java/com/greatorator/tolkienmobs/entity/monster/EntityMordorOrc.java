@@ -51,7 +51,7 @@ public class EntityMordorOrc extends EntityMob implements IEntityAdditionalSpawn
 
     public EntityMordorOrc(World worldIn) {
         super(worldIn);
-        this.setSize(1.0F, 2.1F);
+        this.setSize(1.0F, 1.8F);
         this.texture_index = rand.nextInt(4);
     }
     
