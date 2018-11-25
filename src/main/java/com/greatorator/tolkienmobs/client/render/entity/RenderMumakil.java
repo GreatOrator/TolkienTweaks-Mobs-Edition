@@ -2,15 +2,11 @@ package com.greatorator.tolkienmobs.client.render.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.model.ModelMumakil;
-import com.greatorator.tolkienmobs.entity.EntityHerds;
 
-import com.greatorator.tolkienmobs.entity.EntityMumakil;
-import net.minecraft.client.model.ModelBase;
+import com.greatorator.tolkienmobs.entity.monster.EntityMumakil;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 

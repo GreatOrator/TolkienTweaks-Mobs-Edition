@@ -1,9 +1,8 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
-import com.greatorator.tolkienmobs.entity.EntityTreeEnt;
+import com.greatorator.tolkienmobs.entity.monster.EntityTreeEnt;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;

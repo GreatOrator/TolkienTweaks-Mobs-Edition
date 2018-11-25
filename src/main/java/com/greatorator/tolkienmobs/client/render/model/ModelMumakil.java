@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model;
 
-import com.greatorator.tolkienmobs.entity.EntityMumakil;
+import com.greatorator.tolkienmobs.entity.monster.EntityMumakil;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;

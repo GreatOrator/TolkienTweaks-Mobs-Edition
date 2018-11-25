@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.entityai;
 
-import com.greatorator.tolkienmobs.entity.EntityCrebain;
+import com.greatorator.tolkienmobs.entity.monster.EntityCrebain;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.entity.EntityLivingBase;

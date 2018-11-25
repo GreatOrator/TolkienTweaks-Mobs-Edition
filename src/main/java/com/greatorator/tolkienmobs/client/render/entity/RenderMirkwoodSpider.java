@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.entity.EntityMirkwoodSpider;
+import com.greatorator.tolkienmobs.entity.monster.EntityMirkwoodSpider;
 import com.greatorator.tolkienmobs.client.render.model.ModelMirkwoodSpider;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;

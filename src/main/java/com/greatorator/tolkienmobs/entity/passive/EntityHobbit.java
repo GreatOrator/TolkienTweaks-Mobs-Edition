@@ -1,6 +1,10 @@
-package com.greatorator.tolkienmobs.entity;
+package com.greatorator.tolkienmobs.entity.passive;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.entity.monster.EntityGoblin;
+import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
+import com.greatorator.tolkienmobs.entity.monster.EntityTroll;
+import com.greatorator.tolkienmobs.entity.monster.EntityWarg;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -8,7 +12,6 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 

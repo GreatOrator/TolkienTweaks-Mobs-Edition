@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.client.render.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.model.ModelTroll;
-import com.greatorator.tolkienmobs.entity.EntityTroll;
+import com.greatorator.tolkienmobs.entity.monster.EntityTroll;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;

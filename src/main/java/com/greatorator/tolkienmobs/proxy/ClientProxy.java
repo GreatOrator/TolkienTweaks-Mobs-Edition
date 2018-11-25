@@ -2,8 +2,9 @@ package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.client.render.entity.*;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderBoulder;
-import com.greatorator.tolkienmobs.entity.*;
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
+import com.greatorator.tolkienmobs.entity.monster.*;
+import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import com.greatorator.tolkienmobs.handler.FogHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;

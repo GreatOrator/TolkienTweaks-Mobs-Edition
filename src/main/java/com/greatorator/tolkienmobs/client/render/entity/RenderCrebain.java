@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.client.render.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.model.ModelCrebain;
-import com.greatorator.tolkienmobs.entity.EntityCrebain;
+import com.greatorator.tolkienmobs.entity.monster.EntityCrebain;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;

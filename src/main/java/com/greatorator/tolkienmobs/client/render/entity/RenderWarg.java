@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.client.render.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.model.ModelWarg;
-import com.greatorator.tolkienmobs.entity.EntityWarg;
+import com.greatorator.tolkienmobs.entity.monster.EntityWarg;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;

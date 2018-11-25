@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model;
 
-import com.greatorator.tolkienmobs.entity.EntityCrebain;
+import com.greatorator.tolkienmobs.entity.monster.EntityCrebain;
 import com.greatorator.tolkienmobs.entity.entityai.AIStates;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

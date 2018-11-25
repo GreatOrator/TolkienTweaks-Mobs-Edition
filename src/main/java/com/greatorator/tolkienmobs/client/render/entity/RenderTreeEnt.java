@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.entity.EntityTreeEnt;
+import com.greatorator.tolkienmobs.entity.monster.EntityTreeEnt;
 import com.greatorator.tolkienmobs.client.render.model.ModelTreeEnt;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.Render;

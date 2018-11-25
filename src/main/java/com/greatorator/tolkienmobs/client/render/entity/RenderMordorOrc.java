@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.client.render.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.model.ModelMordorOrc;
-import com.greatorator.tolkienmobs.entity.EntityMordorOrc;
+import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;

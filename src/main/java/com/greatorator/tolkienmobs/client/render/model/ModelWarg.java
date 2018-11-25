@@ -1,7 +1,5 @@
 package com.greatorator.tolkienmobs.client.render.model;
 
-import com.greatorator.tolkienmobs.entity.EntityWarg;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.entityai;
 
-import com.greatorator.tolkienmobs.entity.EntityCrebain;
+import com.greatorator.tolkienmobs.entity.monster.EntityCrebain;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;

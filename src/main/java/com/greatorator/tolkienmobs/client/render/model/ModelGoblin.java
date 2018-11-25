@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model;
 
-import com.greatorator.tolkienmobs.entity.EntityGoblin;
-import com.greatorator.tolkienmobs.init.TTMFeatures;
+import com.greatorator.tolkienmobs.entity.monster.EntityGoblin;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

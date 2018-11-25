@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.block.BlockFlowers;
-import com.greatorator.tolkienmobs.entity.EntityGoblin;
-import com.greatorator.tolkienmobs.entity.EntityMirkwoodSpider;
+import com.greatorator.tolkienmobs.entity.monster.EntityGoblin;
+import com.greatorator.tolkienmobs.entity.monster.EntityMirkwoodSpider;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;

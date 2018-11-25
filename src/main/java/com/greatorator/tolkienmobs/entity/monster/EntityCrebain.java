@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.entity;
+package com.greatorator.tolkienmobs.entity.monster;
 
 
 import com.google.common.base.Optional;
@@ -10,7 +10,6 @@ import com.greatorator.tolkienmobs.entity.entityai.ProcessStateCrebain;
 import com.greatorator.tolkienmobs.entity.entityai.UpdateStateCrebain;
 import com.greatorator.tolkienmobs.events.CrebainTameEvent;
 import com.greatorator.tolkienmobs.init.SoundInit;
-import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityFlying;
@@ -22,11 +21,9 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityParrot;
 import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
