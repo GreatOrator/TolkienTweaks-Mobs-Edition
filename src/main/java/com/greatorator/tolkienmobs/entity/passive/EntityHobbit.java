@@ -23,7 +23,7 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
 
     public EntityHobbit(World worldIn) {
         super(worldIn);
-        this.setSize(0.9F, 0.8F);
+        this.setSize(0.9F, 0.9F);
         ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
         this.texture_index = rand.nextInt(4);
     }

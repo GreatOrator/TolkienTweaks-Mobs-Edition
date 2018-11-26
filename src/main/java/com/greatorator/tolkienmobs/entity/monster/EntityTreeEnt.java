@@ -30,7 +30,7 @@ public class EntityTreeEnt extends EntityMob implements IRangedAttackMob {
 
     public EntityTreeEnt(World worldIn) {
         super(worldIn);
-        setSize(1.35F, 3.5F);
+        setSize(1.35F, 3.7F);
     }
 
     @Override
