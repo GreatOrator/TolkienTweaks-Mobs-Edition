@@ -66,7 +66,7 @@ tile.tolkienmobs:flower_mirkwood.name=Seregon
 tile.tolkienmobs:flower_simbelmyne.name=Simbelmyne
 
 //Entities
-entity.tree_ent.name=Huron
+entity.huron.name=Huron
 entity.mirkwood_spider.name=Mirkwood Spider
 entity.goblin.name=Mountain Goblin
 entity.mordor_orc.name=Mordor Orc
@@ -77,6 +77,7 @@ entity.crebain.name=Crebain
 entity.cave_troll.name=Cave Troll
 entity.uruk_hai.name=Uruk Hai
 entity.dwarf.name=Dwarf
+entity.tree_ent.name=Tree Ent
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer
 

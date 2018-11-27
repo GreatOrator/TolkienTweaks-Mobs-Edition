@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
-import com.greatorator.tolkienmobs.entity.monster.EntityTreeEnt;
+import com.greatorator.tolkienmobs.entity.monster.EntityHuron;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
 import net.minecraft.init.Blocks;
@@ -41,7 +41,7 @@ public class BiomeLorinand extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityTreeEnt.class, 100, 1, 1));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityHuron.class, 100, 1, 1));
     }
 
     @Override
