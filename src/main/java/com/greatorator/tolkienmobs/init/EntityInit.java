@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.init;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
 import com.greatorator.tolkienmobs.entity.monster.*;
+import com.greatorator.tolkienmobs.entity.passive.EntityDwarf;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.entity.EnumCreatureType;
@@ -28,6 +29,7 @@ public class EntityInit
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mumakil"), EntityMumakil.class, "mumakil", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x5D696C);
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "crebain"), EntityCrebain.class, "crebain", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x8B0000);
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "cavetroll"), EntityTroll.class, "cave_troll", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x808000);
+        EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "dwarf"), EntityDwarf.class, "dwarf", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x8080FF);
         
         /** Non-mob Entities */
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "boulder"), EntityAmmo.class, "ammo_boulder", id++, TolkienMobs.instance, 64, 3, true);
@@ -41,7 +43,8 @@ public class EntityInit
         EntityRegistry.addSpawn(EntityHobbit.class, 100, 2, 4, EnumCreatureType.CREATURE, Biomes.PLAINS);
         EntityRegistry.addSpawn(EntityMumakil.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.DESERT);
         EntityRegistry.addSpawn(EntityCrebain.class, 100, 3, 8, EnumCreatureType.MONSTER, Biomes.FOREST);
-        EntityRegistry.addSpawn(EntityTroll.class, 100, 3, 8, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
+        EntityRegistry.addSpawn(EntityTroll.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
+        EntityRegistry.addSpawn(EntityDwarf.class, 100, 2, 5, EnumCreatureType.CREATURE, Biomes.EXTREME_HILLS);
 
         /** These are the loot table for our mobs */
         LootTableList.register(EntityTreeEnt.LOOT);
@@ -53,6 +56,7 @@ public class EntityInit
         LootTableList.register(EntityMumakil.LOOT);
         LootTableList.register(EntityCrebain.LOOT);
         LootTableList.register(EntityTroll.LOOT);
+        LootTableList.register(EntityDwarf.LOOT);
 
         LogHelperTTM.info("I chose you mobi-chu!");
     }
