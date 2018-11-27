@@ -1,10 +1,8 @@
-package com.greatorator.tolkienmobs.client.render.entity;
+package com.greatorator.tolkienmobs.client.render.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.render.model.ModelDwarf;
-import com.greatorator.tolkienmobs.client.render.model.ModelMordorOrc;
-import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
-import com.greatorator.tolkienmobs.entity.passive.EntityDwarf;
+import com.greatorator.tolkienmobs.client.render.model.monster.ModelGoblin;
+import com.greatorator.tolkienmobs.entity.monster.EntityGoblin;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;
@@ -21,18 +19,18 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nullable;
 
-public class RenderDwarf extends RenderLiving<EntityDwarf> {
+public class RenderGoblin extends RenderLiving<EntityGoblin> {
     private static final ResourceLocation[] mobTexture = new ResourceLocation[4];
     static {
         for (int i = 0; i < 4; i++) {
-            mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/dwarf/dwarf" + i + ".png");
+            mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goblin/goblin" + i + ".png");
         }
     }
 
-    public static final RenderDwarf.Factory FACTORY = new RenderDwarf.Factory();
+    public static final RenderGoblin.Factory FACTORY = new RenderGoblin.Factory();
 
-    public RenderDwarf(RenderManager rendermanagerIn) {
-        super(rendermanagerIn, new ModelDwarf(), 0.5F);
+    public RenderGoblin(RenderManager rendermanagerIn) {
+        super(rendermanagerIn, new ModelGoblin(), 0.5F);
         this.addLayer(new LayerHeldItem(this){
             @Override
             public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
@@ -68,12 +66,12 @@ public class RenderDwarf extends RenderLiving<EntityDwarf> {
                         GlStateManager.translate(0.0F, 0.2F, 0.0F);
                     }
                     // Forge: moved this call down, fixes incorrect offset while sneaking.
-    //                    GlStateManager.translate(0.0F, 0.625F, 0);
+//                    GlStateManager.translate(0.0F, 0.625F, 0);
                     this.translateToHand(handSide);
                     GlStateManager.rotate(-100.0F, 1.0F, 0.0F, 0.0F);
                     GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
                     boolean flag = handSide == EnumHandSide.LEFT;
-                    GlStateManager.translate((float)(flag ? -1 : 1) / 16.0F, -0.05F, -(0.8F));
+                    GlStateManager.translate((float)(flag ? -1 : 1) / 16.0F, 0.025F, -(0.325F));
                     Minecraft.getMinecraft().getItemRenderer().renderItemSide(entity, stack, transform, flag);
                     GlStateManager.popMatrix();
                 }
@@ -81,27 +79,27 @@ public class RenderDwarf extends RenderLiving<EntityDwarf> {
 
             @Override
             protected void translateToHand(EnumHandSide p_191361_1_) {
-                ((ModelBiped)this.livingEntityRenderer.getMainModel()).postRenderArm(0.08F, p_191361_1_);
+                ((ModelBiped)this.livingEntityRenderer.getMainModel()).postRenderArm(0.0625F, p_191361_1_);
             }
         });
     }
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(EntityDwarf entity) {
+    protected ResourceLocation getEntityTexture(EntityGoblin entity) {
         int index = entity.getTextureIndex();
         return mobTexture[index];
     }
 
     public void transformHeldFull3DItemLayer() {
-        GlStateManager.translate(-2.0F, 0.1875F, 0.0F);
+//        GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
     }
 
-    public static class Factory implements IRenderFactory<EntityDwarf> {
+    public static class Factory implements IRenderFactory<EntityGoblin> {
 
         @Override
-        public Render<? super EntityDwarf> createRenderFor(RenderManager manager) {
-            return new RenderDwarf(manager);
+        public Render<? super EntityGoblin> createRenderFor(RenderManager manager) {
+            return new RenderGoblin(manager);
         }
 
     }

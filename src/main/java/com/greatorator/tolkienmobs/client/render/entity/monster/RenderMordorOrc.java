@@ -1,8 +1,8 @@
-package com.greatorator.tolkienmobs.client.render.entity;
+package com.greatorator.tolkienmobs.client.render.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.render.model.ModelTroll;
-import com.greatorator.tolkienmobs.entity.monster.EntityTroll;
+import com.greatorator.tolkienmobs.client.render.model.monster.ModelMordorOrc;
+import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;
@@ -19,18 +19,18 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nullable;
 
-public class RenderTroll extends RenderLiving<EntityTroll> {
+public class RenderMordorOrc extends RenderLiving<EntityMordorOrc> {
     private static final ResourceLocation[] mobTexture = new ResourceLocation[4];
     static {
         for (int i = 0; i < 4; i++) {
-            mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/troll/cave_troll" + i + ".png");
+            mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/orc/mordororc" + i + ".png");
         }
     }
 
-    public static final RenderTroll.Factory FACTORY = new RenderTroll.Factory();
+    public static final RenderMordorOrc.Factory FACTORY = new RenderMordorOrc.Factory();
 
-    public RenderTroll(RenderManager rendermanagerIn) {
-        super(rendermanagerIn, new ModelTroll(), 1.9F);
+    public RenderMordorOrc(RenderManager rendermanagerIn) {
+        super(rendermanagerIn, new ModelMordorOrc(), 0.5F);
         this.addLayer(new LayerHeldItem(this){
             @Override
             public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
@@ -66,12 +66,12 @@ public class RenderTroll extends RenderLiving<EntityTroll> {
                         GlStateManager.translate(0.0F, 0.2F, 0.0F);
                     }
                     // Forge: moved this call down, fixes incorrect offset while sneaking.
-//                    GlStateManager.translate(0.0F, 0.625F, 0);
+    //                    GlStateManager.translate(0.0F, 0.625F, 0);
                     this.translateToHand(handSide);
                     GlStateManager.rotate(-100.0F, 1.0F, 0.0F, 0.0F);
                     GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
                     boolean flag = handSide == EnumHandSide.LEFT;
-                    GlStateManager.translate((float)(flag ? -1 : 1) / 16.0F, 0.25F, -(1.25F));
+                    GlStateManager.translate((float)(flag ? -1 : 1) / 16.0F, 0.02F, -(0.7F));
                     Minecraft.getMinecraft().getItemRenderer().renderItemSide(entity, stack, transform, flag);
                     GlStateManager.popMatrix();
                 }
@@ -79,27 +79,27 @@ public class RenderTroll extends RenderLiving<EntityTroll> {
 
             @Override
             protected void translateToHand(EnumHandSide p_191361_1_) {
-                ((ModelBiped)this.livingEntityRenderer.getMainModel()).postRenderArm(0.1825F, p_191361_1_);
+                ((ModelBiped)this.livingEntityRenderer.getMainModel()).postRenderArm(0.05F, p_191361_1_);
             }
         });
     }
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(EntityTroll entity) {
+    protected ResourceLocation getEntityTexture(EntityMordorOrc entity) {
         int index = entity.getTextureIndex();
         return mobTexture[index];
     }
 
     public void transformHeldFull3DItemLayer() {
-        GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
+        GlStateManager.translate(-2.0F, 0.1875F, 0.0F);
     }
 
-    public static class Factory implements IRenderFactory<EntityTroll> {
+    public static class Factory implements IRenderFactory<EntityMordorOrc> {
 
         @Override
-        public Render<? super EntityTroll> createRenderFor(RenderManager manager) {
-            return new RenderTroll(manager);
+        public Render<? super EntityMordorOrc> createRenderFor(RenderManager manager) {
+            return new RenderMordorOrc(manager);
         }
 
     }

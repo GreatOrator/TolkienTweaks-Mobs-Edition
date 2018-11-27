@@ -1,7 +1,9 @@
 package com.greatorator.tolkienmobs.proxy;
 
-import com.greatorator.tolkienmobs.client.render.entity.*;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderBoulder;
+import com.greatorator.tolkienmobs.client.render.entity.monster.*;
+import com.greatorator.tolkienmobs.client.render.entity.passive.RenderDwarf;
+import com.greatorator.tolkienmobs.client.render.entity.passive.RenderHobbit;
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
 import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.entity.passive.EntityDwarf;

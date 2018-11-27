@@ -1,7 +1,7 @@
-package com.greatorator.tolkienmobs.client.render.entity;
+package com.greatorator.tolkienmobs.client.render.entity.passive;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.render.model.ModelHobbit;
+import com.greatorator.tolkienmobs.client.render.model.passive.ModelHobbit;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;

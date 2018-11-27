@@ -1,7 +1,7 @@
-package com.greatorator.tolkienmobs.client.render.entity;
+package com.greatorator.tolkienmobs.client.render.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.render.model.ModelMumakil;
+import com.greatorator.tolkienmobs.client.render.model.monster.ModelMumakil;
 
 import com.greatorator.tolkienmobs.entity.monster.EntityMumakil;
 import net.minecraft.client.renderer.entity.Render;
