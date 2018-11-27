@@ -75,6 +75,7 @@ entity.hobbit.name=Hobbit
 entity.mumakil.name=Mumakil
 entity.crebain.name=Crebain
 entity.cave_troll.name=Cave Troll
+entity.uruk_hai.name=Uruk Hai
 entity.dwarf.name=Dwarf
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer
