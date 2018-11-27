@@ -6,6 +6,7 @@ import com.greatorator.tolkienmobs.init.CraftingInit;
 import com.greatorator.tolkienmobs.init.EntityInit;
 import com.greatorator.tolkienmobs.init.ProfessionInit;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
+import com.greatorator.tolkienmobs.world.gen.WorldGenCustomStructures;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomTrees;
 import com.greatorator.tolkienmobs.world.types.WorldTypeArda;
 import net.minecraft.world.WorldType;
@@ -21,6 +22,7 @@ public class CommonProxy {
     {
         GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
         GameRegistry.registerWorldGenerator(new WorldGenCustomTrees(), 0);
+        GameRegistry.registerWorldGenerator(new WorldGenCustomStructures(), 0);
         BiomeInit.registerBiomes();
         EntityInit.init();
         CraftingInit.init();

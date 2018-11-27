@@ -12,6 +12,7 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
@@ -89,5 +90,12 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
     @Override
     public void readSpawnData(ByteBuf buffer) {
         this.texture_index = buffer.readInt();
+    }
+
+    public EntityHobbit createChild(EntityAgeable ageable)
+    {
+        EntityHobbit entityhobbit = new EntityHobbit(this.world);
+        entityhobbit.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(entityhobbit)), (IEntityLivingData)null);
+        return entityhobbit;
     }
 }

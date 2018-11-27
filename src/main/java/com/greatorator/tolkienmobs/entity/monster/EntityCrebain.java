@@ -76,7 +76,7 @@ public class EntityCrebain extends EntityFlying implements IModEntity {
         dataManager.register(SCALE_FACTOR, 1.0F);
         dataManager.register(STATE, AIStates.STATE_TAKING_OFF);
         dataManager.register(SOAR_CLOCKWISE, world.rand.nextBoolean());
-        dataManager.register(SOAR_HEIGHT, (float)(64-randFactor));
+        dataManager.register(SOAR_HEIGHT, (float)(128-randFactor));
         dataManager.register(ANCHOR_POS, new BlockPos(posX, posY, posZ));
         dataManager.register(OWNER_UUID, Optional.absent());
         dataManager.register(LEG_BAND_COLOR, Integer.valueOf(EnumDyeColor.RED.getDyeDamage()));
