@@ -6,6 +6,7 @@ import com.greatorator.tolkienmobs.entity.monster.EntityGoblin;
 import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
 import com.greatorator.tolkienmobs.entity.monster.EntityTroll;
 import com.greatorator.tolkienmobs.entity.monster.EntityWarg;
+import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.*;
@@ -21,6 +22,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
@@ -34,22 +36,6 @@ import javax.annotation.Nullable;
 public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpawnData {
     private int texture_index;
     public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/dwarf");
-
-    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityMordorOrc.class, DataSerializers.BOOLEAN);
-    private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false)
-    {
-        public void resetTask()
-        {
-            super.resetTask();
-            EntityDwarf.this.setSwingingArms(false);
-        }
-
-        public void startExecuting()
-        {
-            super.startExecuting();
-            EntityDwarf.this.setSwingingArms(true);
-        }
-    };
 
     public EntityDwarf(World worldIn) {
         super(worldIn);
@@ -108,35 +94,13 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
     {
         IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
         this.setEquipmentBasedOnDifficulty(difficulty);
-        this.setCombatTask();
         return ientitylivingdata;
     }
 
-    public void setCombatTask()
+    @Override
+    protected SoundEvent getAmbientSound()
     {
-        if (this.world != null && !this.world.isRemote)
-        {
-            this.tasks.removeTask(this.aiAttackOnCollide);
-            //   this.tasks.removeTask(this.aiArrowAttack);
-            ItemStack itemstack = this.getHeldItemMainhand();
-
-            if (itemstack.getItem() == TTMFeatures.AXE_MITHRIL)
-            {
-                this.tasks.addTask(4, this.aiAttackOnCollide);
-            }
-            else
-            {
-                int i = 20;
-
-                if (this.world.getDifficulty() != EnumDifficulty.HARD)
-                {
-                    i = 40;
-                }
-
-                //   this.aiArrowAttack.setAttackCooldown(i);
-                //   this.tasks.addTask(4, this.aiArrowAttack);
-            }
-        }
+        return SoundInit.soundIdleDwarf;
     }
 
     public boolean attackEntityAsMob(Entity entityIn)
@@ -154,27 +118,6 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
 
             return true;
         }
-    }
-
-    public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack)
-    {
-        super.setItemStackToSlot(slotIn, stack);
-
-        if (!this.world.isRemote && slotIn == EntityEquipmentSlot.MAINHAND)
-        {
-            this.setCombatTask();
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public boolean isSwingingArms()
-    {
-        return ((Boolean)this.dataManager.get(SWINGING_ARMS)).booleanValue();
-    }
-
-    public void setSwingingArms(boolean swingingArms)
-    {
-        this.dataManager.set(SWINGING_ARMS, Boolean.valueOf(swingingArms));
     }
 
     /** Let's try to decide which entity will do what work */

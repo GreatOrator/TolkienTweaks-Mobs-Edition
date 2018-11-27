@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
+import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
@@ -20,6 +21,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -110,6 +112,12 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
         this.setEquipmentBasedOnDifficulty(difficulty);
         this.setCombatTask();
         return ientitylivingdata;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return SoundInit.soundIdleGoblin;
     }
 
     public void setCombatTask()

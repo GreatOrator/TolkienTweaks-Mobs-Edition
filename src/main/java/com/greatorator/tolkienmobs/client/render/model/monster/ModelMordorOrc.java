@@ -1,6 +1,7 @@
-package com.greatorator.tolkienmobs.client.render.model;
+package com.greatorator.tolkienmobs.client.render.model.monster;
 
 
+import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
 import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;

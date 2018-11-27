@@ -1,5 +1,6 @@
-package com.greatorator.tolkienmobs.client.render.model;
+package com.greatorator.tolkienmobs.client.render.model.passive;
 
+import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
 import com.greatorator.tolkienmobs.entity.passive.EntityDwarf;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
@@ -13,8 +14,7 @@ import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 
 /**
- * ModelDwarf - GreatOrator
- * Created using Tabula 7.0.0
+ * Dwarf - GreatOrator
  */
 public class ModelDwarf extends ModelTolkienMobs {
     public ModelRenderer DwarfBody;
@@ -126,7 +126,7 @@ public class ModelDwarf extends ModelTolkienMobs {
         this.bipedLeftArm = new ModelRenderer(this, 42, 16);
         this.bipedLeftArm.mirror = true;
         this.bipedLeftArm.setRotationPoint(6.0F, 2.0F, 0.0F);
-        this.bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 9, 4, 0.0F);
+        this.bipedLeftArm.addBox(0.0F, -2.0F, -2.0F, 4, 9, 4, 0.0F);
         this.DwarfBeard3 = new ModelRenderer(this, 0, 62);
         this.DwarfBeard3.setRotationPoint(-0.5F, 0.7F, 0.0F);
         this.DwarfBeard3.addBox(-0.5F, -0.5F, -0.5F, 1, 1, 1, 0.0F);
@@ -199,7 +199,7 @@ public class ModelDwarf extends ModelTolkienMobs {
         this.leftArmPose = ModelBiped.ArmPose.EMPTY;
         ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
 
-        if (itemstack.getItem() == Items.BOW && ((EntityDwarf)entitylivingbaseIn).isSwingingArms())
+        if (itemstack.getItem() == Items.BOW)
         {
             if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT)
             {

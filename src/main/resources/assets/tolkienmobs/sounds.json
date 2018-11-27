@@ -102,5 +102,25 @@
     [
       "tolkienmobs:entity/ammo/ammo_boulder_shoot"
     ]
+  },
+  "mob.dwarf.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/dwarf/dwarf_say1",
+      "tolkienmobs:mob/dwarf/dwarf_say2",
+      "tolkienmobs:mob/dwarf/dwarf_say3",
+      "tolkienmobs:mob/dwarf/dwarf_say4"
+    ]
+  },
+  "mob.goblin.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/goblin/goblin_say1",
+      "tolkienmobs:mob/goblin/goblin_say2"
+    ]
   }
 }

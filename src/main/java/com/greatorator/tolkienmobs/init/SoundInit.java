@@ -44,6 +44,14 @@ public class SoundInit
 	@ObjectHolder("mob.troll.step")
 	public static final SoundEvent soundStepTroll = null;
 
+	/** Dwarf */
+	@ObjectHolder("mob.dwarf.idle")
+	public static final SoundEvent soundIdleDwarf = null;
+
+	/** Goblin */
+	@ObjectHolder("mob.goblin.idle")
+	public static final SoundEvent soundIdleGoblin = null;
+
 	/** Miscellaneous */
 	@ObjectHolder("entity.boulder.shoot")
 	public static final SoundEvent soundBoulderShoot = null;
@@ -83,6 +91,12 @@ public class SoundInit
 					"mob.troll.death",
 					"mob.troll.angry",
 					"mob.troll.step",
+
+					/** Dwarf */
+					"mob.dwarf.idle",
+
+					/** Goblin */
+					"mob.goblin.idle",
 
 					/** Miscellaneous */
 					"entity.boulder.shoot"

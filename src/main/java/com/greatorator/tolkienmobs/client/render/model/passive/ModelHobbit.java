@@ -1,5 +1,6 @@
-package com.greatorator.tolkienmobs.client.render.model;
+package com.greatorator.tolkienmobs.client.render.model.passive;
 
+import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
