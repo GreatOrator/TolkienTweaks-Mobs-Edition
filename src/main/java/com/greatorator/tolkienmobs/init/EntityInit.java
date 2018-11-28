@@ -20,7 +20,8 @@ public class EntityInit
         /** Every entity in our mod has an ID (local to this mod) */
         /** Monsters */
         int id = 1;
-        EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "treeent"), EntityTreeEnt.class, "tree_ent", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x8B4513);
+        EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "huron"), EntityHuron.class, "huron", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x8B4513);
+        EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "treeent"), EntityTreeEnt.class, "tree_ent", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x8BFF13);
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mirkwoodspider"), EntityMirkwoodSpider.class, "mirkwood_spider", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0xB8860B);
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "goblin"), EntityGoblin.class, "goblin", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x556B2F);
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mordororc"), EntityMordorOrc.class, "mordor_orc", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x4B0082);
@@ -39,6 +40,7 @@ public class EntityInit
 
         /** If we want our mobs to spawn naturally. */
         /** Monsters */
+        EntityRegistry.addSpawn(EntityHuron.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.FOREST, Biomes.FOREST_HILLS);
         EntityRegistry.addSpawn(EntityTreeEnt.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.FOREST, Biomes.FOREST_HILLS);
         EntityRegistry.addSpawn(EntityMirkwoodSpider.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.SWAMPLAND);
         EntityRegistry.addSpawn(EntityGoblin.class, 100, 4, 9, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
@@ -55,6 +57,7 @@ public class EntityInit
 
         /** These are the loot table for our mobs */
         /** Monsters */
+        LootTableList.register(EntityHuron.LOOT);
         LootTableList.register(EntityTreeEnt.LOOT);
         LootTableList.register(EntityMirkwoodSpider.LOOT);
         LootTableList.register(EntityGoblin.LOOT);

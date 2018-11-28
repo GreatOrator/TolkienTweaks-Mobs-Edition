@@ -2,35 +2,36 @@ package com.greatorator.tolkienmobs.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
-import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
+import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import com.greatorator.tolkienmobs.init.SoundInit;
-import com.greatorator.tolkienmobs.init.TTMFeatures;
-import net.minecraft.entity.*;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.init.MobEffects;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import javax.annotation.Nullable;
 
-public class EntityTreeEnt extends EntityMob implements IRangedAttackMob {
+public class EntityTreeEnt extends EntityMob implements IRangedAttackMob, IEntityAdditionalSpawnData {
+    private int texture_index;
     public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/treeent");
 
     public EntityTreeEnt(World worldIn) {
         super(worldIn);
-        setSize(1.35F, 3.7F);
+        setSize(1.35F, 5.5F);
+        this.texture_index = rand.nextInt(4);
+    }
+
+    public int getTextureIndex() {
+        return this.texture_index;
     }
 
     @Override
@@ -40,8 +41,8 @@ public class EntityTreeEnt extends EntityMob implements IRangedAttackMob {
 
     private void applyEntityAI() {
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityTreeEnt.class}));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityMordorOrc.class, false));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityUrukHai.class, false));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityGoblin.class, true));
     }
 
@@ -52,6 +53,7 @@ public class EntityTreeEnt extends EntityMob implements IRangedAttackMob {
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityHobbit.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.applyEntityAI();
     }
@@ -106,5 +108,15 @@ public class EntityTreeEnt extends EntityMob implements IRangedAttackMob {
     @Override
     public void setSwingingArms(boolean swingingArms) {
 
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer) {
+        buffer.writeInt(this.texture_index);
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf buffer) {
+        this.texture_index = buffer.readInt();
     }
 }
