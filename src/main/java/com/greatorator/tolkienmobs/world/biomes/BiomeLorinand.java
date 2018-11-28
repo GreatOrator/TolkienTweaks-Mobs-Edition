@@ -40,8 +40,6 @@ public class BiomeLorinand extends Biome {
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
-
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityHuron.class, 100, 1, 1));
     }
 
     @Override

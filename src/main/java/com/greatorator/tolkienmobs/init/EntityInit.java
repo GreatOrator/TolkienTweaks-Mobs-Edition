@@ -30,6 +30,7 @@ public class EntityInit
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mumakil"), EntityMumakil.class, "mumakil", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x5D696C);
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "crebain"), EntityCrebain.class, "crebain", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x8B0000);
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "cavetroll"), EntityTroll.class, "cave_troll", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x808000);
+        EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "barrowwight"), EntityBarrowWight.class, "barrow_wight", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x80FFFF);
 
         /** Passive */
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "dwarf"), EntityDwarf.class, "dwarf", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x8080FF);
@@ -50,6 +51,7 @@ public class EntityInit
         EntityRegistry.addSpawn(EntityMumakil.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.DESERT);
         EntityRegistry.addSpawn(EntityCrebain.class, 100, 1, 3, EnumCreatureType.MONSTER, Biomes.TAIGA_HILLS);
         EntityRegistry.addSpawn(EntityTroll.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
+        EntityRegistry.addSpawn(EntityBarrowWight.class, 100, 1, 4, EnumCreatureType.MONSTER, Biomes.SWAMPLAND);
 
         /** Passive */
         EntityRegistry.addSpawn(EntityDwarf.class, 100, 2, 4, EnumCreatureType.CREATURE, Biomes.EXTREME_HILLS);
@@ -67,6 +69,7 @@ public class EntityInit
         LootTableList.register(EntityMumakil.LOOT);
         LootTableList.register(EntityCrebain.LOOT);
         LootTableList.register(EntityTroll.LOOT);
+        LootTableList.register(EntityBarrowWight.LOOT);
 
         /** Passive */
         LootTableList.register(EntityDwarf.LOOT);

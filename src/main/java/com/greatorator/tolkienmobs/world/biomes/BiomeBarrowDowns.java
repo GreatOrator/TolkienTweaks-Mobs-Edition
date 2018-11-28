@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
+import com.greatorator.tolkienmobs.entity.monster.EntityBarrowWight;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -31,6 +32,8 @@ public class BiomeBarrowDowns extends Biome implements IFogyBiome {
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
+
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityBarrowWight.class, 100, 1, 3));
     }
 
     @SideOnly(Side.CLIENT)

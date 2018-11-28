@@ -29,32 +29,32 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class EntityUrukHai extends EntityMob implements IEntityAdditionalSpawnData {
+public class EntityBarrowWight extends EntityMob implements IEntityAdditionalSpawnData {
     private int texture_index;
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/urukhai");
+    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/barrowwight");
 
-    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityUrukHai.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityBarrowWight.class, DataSerializers.BOOLEAN);
     private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false)
     {
         public void resetTask()
         {
             super.resetTask();
-            EntityUrukHai.this.setSwingingArms(false);
+            EntityBarrowWight.this.setSwingingArms(false);
         }
 
         public void startExecuting()
         {
             super.startExecuting();
-            EntityUrukHai.this.setSwingingArms(true);
+            EntityBarrowWight.this.setSwingingArms(true);
         }
     };
 
-    public EntityUrukHai(World worldIn) {
+    public EntityBarrowWight(World worldIn) {
         super(worldIn);
-        this.setSize(1.0F, 2.6F);
+        this.setSize(1.0F, 2.0F);
         this.texture_index = rand.nextInt(4);
     }
-    
+
     public int getTextureIndex() {
         return this.texture_index;
     }
@@ -68,7 +68,7 @@ public class EntityUrukHai extends EntityMob implements IEntityAdditionalSpawnDa
     }
 
     private void applyEntityAI() {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityUrukHai.class}));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityBarrowWight.class}));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHobbit.class, true));
     }
@@ -86,8 +86,8 @@ public class EntityUrukHai extends EntityMob implements IEntityAdditionalSpawnDa
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(8.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(34.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(5.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25.0D);
     }
 
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
@@ -147,7 +147,7 @@ public class EntityUrukHai extends EntityMob implements IEntityAdditionalSpawnDa
         {
             if (entityIn instanceof EntityLivingBase)
             {
-                ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 0));
+                ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 1));
             }
 
             return true;
@@ -188,7 +188,7 @@ public class EntityUrukHai extends EntityMob implements IEntityAdditionalSpawnDa
 
     @Override
     public int getMaxSpawnedInChunk() {
-        return 5;
+        return 4;
     }
 
     @Override

@@ -183,7 +183,7 @@ public class EntityMordorOrc extends EntityMob implements IEntityAdditionalSpawn
 
     @Override
     protected boolean isValidLightLevel() {
-        return false;
+        return true;
     }
 
     @Override
