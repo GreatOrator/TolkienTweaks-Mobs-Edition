@@ -89,8 +89,8 @@ public class EntityTroll extends EntityMob implements IEntityAdditionalSpawnData
         // Here we set various attributes for our mob. Like maximum health, armor, speed, ...
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.15D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(5.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(11.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(9.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
     }
 

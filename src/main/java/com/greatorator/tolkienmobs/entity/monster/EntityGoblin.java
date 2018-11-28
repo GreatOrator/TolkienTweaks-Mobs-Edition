@@ -74,7 +74,7 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityGoblin.class}));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHobbit.class, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHuron.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTreeEnt.class, true));
     }
 
     @Override

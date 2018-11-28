@@ -48,11 +48,11 @@ public class EntityInit
         EntityRegistry.addSpawn(EntityUrukHai.class, 100, 1, 3, EnumCreatureType.MONSTER, Biomes.PLAINS);
         EntityRegistry.addSpawn(EntityWarg.class, 100, 3, 5, EnumCreatureType.MONSTER, Biomes.PLAINS);
         EntityRegistry.addSpawn(EntityMumakil.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.DESERT);
-        EntityRegistry.addSpawn(EntityCrebain.class, 100, 3, 8, EnumCreatureType.MONSTER, Biomes.FOREST);
+        EntityRegistry.addSpawn(EntityCrebain.class, 100, 1, 3, EnumCreatureType.MONSTER, Biomes.TAIGA_HILLS);
         EntityRegistry.addSpawn(EntityTroll.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
 
         /** Passive */
-        EntityRegistry.addSpawn(EntityDwarf.class, 100, 2, 5, EnumCreatureType.CREATURE, Biomes.EXTREME_HILLS);
+        EntityRegistry.addSpawn(EntityDwarf.class, 100, 2, 4, EnumCreatureType.CREATURE, Biomes.EXTREME_HILLS);
         EntityRegistry.addSpawn(EntityHobbit.class, 100, 2, 4, EnumCreatureType.CREATURE, Biomes.PLAINS);
 
         /** These are the loot table for our mobs */

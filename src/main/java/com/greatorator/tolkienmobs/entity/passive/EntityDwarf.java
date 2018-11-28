@@ -1,10 +1,7 @@
 package com.greatorator.tolkienmobs.entity.passive;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.entity.monster.EntityGoblin;
-import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
-import com.greatorator.tolkienmobs.entity.monster.EntityTroll;
-import com.greatorator.tolkienmobs.entity.monster.EntityWarg;
+import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import io.netty.buffer.ByteBuf;
@@ -71,9 +68,9 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
         super.applyEntityAttributes();
 
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(1.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(3.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30D);
+        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(9.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(26.0D);
     }
 
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)

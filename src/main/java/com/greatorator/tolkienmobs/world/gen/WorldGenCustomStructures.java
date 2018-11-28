@@ -1,6 +1,8 @@
 package com.greatorator.tolkienmobs.world.gen;
 
+import com.greatorator.tolkienmobs.world.biomes.BiomeBarrowDowns;
 import com.greatorator.tolkienmobs.world.biomes.BiomeLorinand;
+import com.greatorator.tolkienmobs.world.biomes.BiomeMirkwood;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenStructure;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -12,13 +14,11 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class WorldGenCustomStructures implements IWorldGenerator {
-    public static final WorldGenStructure MALLORN_TREE = new WorldGenStructure("mallorntree");
-
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         switch (world.provider.getDimension()) {
@@ -32,7 +32,11 @@ public class WorldGenCustomStructures implements IWorldGenerator {
 
             case 0:
 
-                generateStructure(MALLORN_TREE, world, random, chunkX, chunkZ, 40, Blocks.GRASS, BiomeLorinand.class);
+                generateStructure(new WorldGenStructure("mallorntree"), world, random, chunkX, chunkZ, 40, Blocks.GRASS, BiomeLorinand.class);
+                generateStructure(new WorldGenStructure("mirkwoodtree"), world, random, chunkX, chunkZ, 10, Blocks.GRASS, BiomeMirkwood.class);
+                generateStructure(new WorldGenStructure("greatbarrow"), world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeBarrowDowns.class);
+                generateStructure(new WorldGenStructure("stonespike"), world, random, chunkX, chunkZ, 5, Blocks.GRASS, BiomeBarrowDowns.class);
+                generateStructure(new WorldGenStructure("deadtree"), world, random, chunkX, chunkZ, 5, Blocks.GRASS, BiomeBarrowDowns.class);
 
                 break;
 
@@ -42,7 +46,7 @@ public class WorldGenCustomStructures implements IWorldGenerator {
     }
 
     private void generateStructure(WorldGenerator generator, World world, Random random, int chunkX, int chunkZ, int chance, Block topBlock, Class<?>... classes) {
-        ArrayList<Class<?>> classesList = new ArrayList<Class<?>>(Arrays.asList(classes));
+        List<Class<?>> classesList = Arrays.asList(classes);
 
         int x = (chunkX * 16) + random.nextInt(15);
         int z = (chunkZ * 16) + random.nextInt(15);

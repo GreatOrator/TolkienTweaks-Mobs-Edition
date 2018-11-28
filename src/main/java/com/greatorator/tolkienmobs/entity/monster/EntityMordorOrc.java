@@ -87,7 +87,7 @@ public class EntityMordorOrc extends EntityMob implements IEntityAdditionalSpawn
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(5.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25.0D);
     }
 
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)

@@ -33,6 +33,7 @@ public class GenLayerArda extends GenLayer {
         biomes[desertIdx].add(new net.minecraftforge.common.BiomeManager.BiomeEntry(BiomeInit.LORINAND, 30));
         biomes[desertIdx].add(new net.minecraftforge.common.BiomeManager.BiomeEntry(BiomeInit.MIRKWOOD, 30));
         biomes[desertIdx].add(new net.minecraftforge.common.BiomeManager.BiomeEntry(BiomeInit.HITHAEGLIR, 30));
+        biomes[desertIdx].add(new net.minecraftforge.common.BiomeManager.BiomeEntry(BiomeInit.BARROW_DOWNS, 30));
 
         if (p_i45560_4_ == WorldType.DEFAULT_1_1)
         {
@@ -40,6 +41,7 @@ public class GenLayerArda extends GenLayer {
             biomes[desertIdx].add(new net.minecraftforge.common.BiomeManager.BiomeEntry(BiomeInit.LORINAND, 10));
             biomes[desertIdx].add(new net.minecraftforge.common.BiomeManager.BiomeEntry(BiomeInit.MIRKWOOD, 10));
             biomes[desertIdx].add(new net.minecraftforge.common.BiomeManager.BiomeEntry(BiomeInit.HITHAEGLIR, 10));
+            biomes[desertIdx].add(new net.minecraftforge.common.BiomeManager.BiomeEntry(BiomeInit.BARROW_DOWNS, 10));
             this.settings = null;
         }
         else

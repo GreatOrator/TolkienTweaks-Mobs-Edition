@@ -1,10 +1,7 @@
 package com.greatorator.tolkienmobs.entity.passive;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.entity.monster.EntityGoblin;
-import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
-import com.greatorator.tolkienmobs.entity.monster.EntityTroll;
-import com.greatorator.tolkienmobs.entity.monster.EntityWarg;
+import com.greatorator.tolkienmobs.entity.monster.*;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -35,10 +32,11 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
 
     protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityTroll.class, 8.0F, 1.6D, 1.6D));
-        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityMordorOrc.class, 8.0F, 1.6D, 1.6D));
-        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityGoblin.class, 12.0F, 1.8D, 1.8D));
-        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityWarg.class, 8.0F, 1.8D, 1.8D));
+        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityTroll.class, 8.0F, 0.8D, 0.8D));
+        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityMordorOrc.class, 8.0F, 0.8D, 0.8D));
+        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityUrukHai.class, 8.0F, 0.8D, 0.8D));
+        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityGoblin.class, 12.0F, 0.8D, 0.8D));
+        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityWarg.class, 8.0F, 0.8D, 0.8D));
         this.tasks.addTask(2, new EntityAIMoveIndoors(this));
         this.tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
         this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
@@ -60,7 +58,7 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
     }
 
     /** Let's try to decide which entity will do what work */

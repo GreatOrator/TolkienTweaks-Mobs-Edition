@@ -54,6 +54,7 @@ public class EntityTreeEnt extends EntityMob implements IRangedAttackMob, IEntit
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityHobbit.class, 8.0F));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityGoblin.class, true));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.applyEntityAI();
     }
@@ -64,8 +65,9 @@ public class EntityTreeEnt extends EntityMob implements IRangedAttackMob, IEntit
         // Here we set various attributes for our mob. Like maximum health, armor, speed, ...
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(10.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(9.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(45.0D);
     }
 
     @Nullable
