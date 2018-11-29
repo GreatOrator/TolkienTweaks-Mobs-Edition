@@ -41,21 +41,21 @@ public class EntityInit
 
         /** If we want our mobs to spawn naturally. */
         /** Monsters */
-        EntityRegistry.addSpawn(EntityHuron.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.FOREST, Biomes.FOREST_HILLS);
+        EntityRegistry.addSpawn(EntityHuron.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.FOREST, BiomeInit.MIRKWOOD);
         EntityRegistry.addSpawn(EntityTreeEnt.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.FOREST, Biomes.FOREST_HILLS);
-        EntityRegistry.addSpawn(EntityMirkwoodSpider.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.SWAMPLAND);
-        EntityRegistry.addSpawn(EntityGoblin.class, 100, 4, 9, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
-        EntityRegistry.addSpawn(EntityMordorOrc.class, 100, 3, 5, EnumCreatureType.MONSTER, Biomes.PLAINS);
-        EntityRegistry.addSpawn(EntityUrukHai.class, 100, 1, 3, EnumCreatureType.MONSTER, Biomes.PLAINS);
-        EntityRegistry.addSpawn(EntityWarg.class, 100, 3, 5, EnumCreatureType.MONSTER, Biomes.PLAINS);
-        EntityRegistry.addSpawn(EntityMumakil.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.DESERT);
-        EntityRegistry.addSpawn(EntityCrebain.class, 100, 1, 3, EnumCreatureType.MONSTER, Biomes.TAIGA_HILLS);
-        EntityRegistry.addSpawn(EntityTroll.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
-        EntityRegistry.addSpawn(EntityBarrowWight.class, 100, 1, 4, EnumCreatureType.MONSTER, Biomes.SWAMPLAND);
+        EntityRegistry.addSpawn(EntityMirkwoodSpider.class, 100, 1, 2, EnumCreatureType.MONSTER, BiomeInit.MIRKWOOD);
+        EntityRegistry.addSpawn(EntityGoblin.class, 100, 2, 5, EnumCreatureType.MONSTER, BiomeInit.HITHAEGLIR);
+        EntityRegistry.addSpawn(EntityMordorOrc.class, 100, 1, 3, EnumCreatureType.MONSTER, BiomeInit.DAGORLAD);
+        EntityRegistry.addSpawn(EntityUrukHai.class, 100, 1, 3, EnumCreatureType.MONSTER, BiomeInit.DAGORLAD);
+        EntityRegistry.addSpawn(EntityWarg.class, 100, 1, 3, EnumCreatureType.MONSTER, BiomeInit.DAGORLAD);
+        EntityRegistry.addSpawn(EntityMumakil.class, 100, 1, 1, EnumCreatureType.MONSTER, BiomeInit.HARADWAITH);
+        EntityRegistry.addSpawn(EntityCrebain.class, 100, 1, 3, EnumCreatureType.MONSTER, BiomeInit.HITHAEGLIR);
+        EntityRegistry.addSpawn(EntityTroll.class, 100, 1, 2, EnumCreatureType.MONSTER, BiomeInit.HITHAEGLIR);
+        EntityRegistry.addSpawn(EntityBarrowWight.class, 100, 1, 3, EnumCreatureType.MONSTER, BiomeInit.BARROW_DOWNS);
 
         /** Passive */
         EntityRegistry.addSpawn(EntityDwarf.class, 100, 2, 4, EnumCreatureType.CREATURE, Biomes.EXTREME_HILLS);
-        EntityRegistry.addSpawn(EntityHobbit.class, 100, 2, 4, EnumCreatureType.CREATURE, Biomes.PLAINS);
+        EntityRegistry.addSpawn(EntityHobbit.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.SHIRE);
 
         /** These are the loot table for our mobs */
         /** Monsters */

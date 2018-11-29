@@ -1,10 +1,7 @@
 package com.greatorator.tolkienmobs.init;
 
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-import com.greatorator.tolkienmobs.world.biomes.BiomeBarrowDowns;
-import com.greatorator.tolkienmobs.world.biomes.BiomeLorinand;
-import com.greatorator.tolkienmobs.world.biomes.BiomeMirkwood;
-import com.greatorator.tolkienmobs.world.biomes.BiomeHithaeglir;
+import com.greatorator.tolkienmobs.world.biomes.*;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
@@ -19,6 +16,9 @@ public class BiomeInit
     public static final Biome MIRKWOOD = new BiomeMirkwood();
     public static final Biome HITHAEGLIR = new BiomeHithaeglir();
     public static final Biome BARROW_DOWNS = new BiomeBarrowDowns();
+    public static final Biome HARADWAITH = new BiomeHaradwaith();
+    public static final Biome DAGORLAD = new BiomeDagorlad();
+    public static final Biome SHIRE = new BiomeShire();
 
     public static void registerBiomes()
     {
@@ -26,7 +26,10 @@ public class BiomeInit
         initBiome(LORINAND, "Lorinand", BiomeType.WARM, Type.PLAINS, Type.FOREST, Type.MAGICAL);
         initBiome(MIRKWOOD, "Mirkwood", BiomeType.COOL, Type.SWAMP, Type.FOREST, Type.SPOOKY);
         initBiome(HITHAEGLIR, "Hithaeglir ", BiomeType.ICY, Type.MOUNTAIN, Type.DEAD, Type.SPARSE);
-        initBiome(BARROW_DOWNS, "Tyrn Gorthad ", BiomeType.WARM, Type.PLAINS, Type.DEAD, Type.SPOOKY);
+        initBiome(BARROW_DOWNS, "Tyrn Gorthad ", BiomeType.COOL, Type.PLAINS, Type.DEAD, Type.SPOOKY);
+        initBiome(HARADWAITH, "Haradwaith ", BiomeType.DESERT, Type.DRY, Type.DEAD, Type.SPARSE);
+        initBiome(DAGORLAD, "The Brown Lands ", BiomeType.WARM, Type.DRY, Type.LUSH);
+        initBiome(SHIRE, "The Shire ", BiomeType.WARM, Type.PLAINS, Type.LUSH);
         LogHelperTTM.info("New lands to explore get!");
     }
 

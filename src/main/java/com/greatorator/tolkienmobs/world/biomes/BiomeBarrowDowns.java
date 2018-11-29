@@ -40,13 +40,13 @@ public class BiomeBarrowDowns extends Biome implements IFogyBiome {
     public int getGrassColorAtPos(BlockPos pos)
     {
         double d0 = GRASS_COLOR_NOISE.getValue((double)pos.getX() * 0.0225D, (double)pos.getZ() * 0.0225D);
-        return d0 < -0.1D ? 11847093 : 11847093;
+        return d0 < -0.1D ? 14481884 : 14481884;
     }
 
     @SideOnly(Side.CLIENT)
     public int getFoliageColorAtPos(BlockPos pos)
     {
-        return 11847093;
+        return 14481884;
     }
 
     @Override

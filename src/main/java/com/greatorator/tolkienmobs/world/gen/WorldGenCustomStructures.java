@@ -3,15 +3,18 @@ package com.greatorator.tolkienmobs.world.gen;
 import com.greatorator.tolkienmobs.world.biomes.BiomeBarrowDowns;
 import com.greatorator.tolkienmobs.world.biomes.BiomeLorinand;
 import com.greatorator.tolkienmobs.world.biomes.BiomeMirkwood;
+import com.greatorator.tolkienmobs.world.biomes.BiomeShire;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenStructure;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.Arrays;
@@ -37,6 +40,8 @@ public class WorldGenCustomStructures implements IWorldGenerator {
                 generateStructure(new WorldGenStructure("greatbarrow"), world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeBarrowDowns.class);
                 generateStructure(new WorldGenStructure("stonespike"), world, random, chunkX, chunkZ, 5, Blocks.GRASS, BiomeBarrowDowns.class);
                 generateStructure(new WorldGenStructure("deadtree"), world, random, chunkX, chunkZ, 5, Blocks.GRASS, BiomeBarrowDowns.class);
+                generateStructure(new WorldGenStructure("hobbithouse1"), world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeShire.class);
+                generateStructure(new WorldGenStructure("hobbithouse2"), world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeShire.class);
 
                 break;
 
