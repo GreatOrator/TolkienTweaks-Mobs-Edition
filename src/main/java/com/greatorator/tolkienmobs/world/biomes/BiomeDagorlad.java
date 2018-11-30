@@ -9,6 +9,7 @@ import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -147,5 +148,13 @@ public class BiomeDagorlad extends Biome {
     public int getFoliageColorAtPos(BlockPos pos)
     {
         return 14596231;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getSkyColorByTemp(float currentTemperature)
+    {
+        currentTemperature = currentTemperature / 3.0F;
+        currentTemperature = MathHelper.clamp(currentTemperature, -1.0F, 1.0F);
+        return MathHelper.hsvToRGB(0.62222224F - currentTemperature * 0.05F, 0.5F + currentTemperature * 0.1F, 1.0F);
     }
 }

@@ -188,7 +188,7 @@ public class EntityMordorOrc extends EntityMob implements IEntityAdditionalSpawn
 
     @Override
     public int getMaxSpawnedInChunk() {
-        return 5;
+        return 3;
     }
 
     @Override

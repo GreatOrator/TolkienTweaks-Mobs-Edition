@@ -237,6 +237,11 @@ public class EntityMirkwoodSpider extends EntityMob {
         }
     }
 
+    @Override
+    public int getMaxSpawnedInChunk() {
+        return 2;
+    }
+
     public static class GroupData implements IEntityLivingData {
         public Potion effect;
 

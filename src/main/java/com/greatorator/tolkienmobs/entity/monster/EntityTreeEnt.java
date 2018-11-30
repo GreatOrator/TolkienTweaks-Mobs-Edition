@@ -91,7 +91,7 @@ public class EntityTreeEnt extends EntityMob implements IRangedAttackMob, IEntit
 
     @Override
     public int getMaxSpawnedInChunk() {
-        return 5;
+        return 1;
     }
 
     @Override

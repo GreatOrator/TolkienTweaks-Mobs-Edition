@@ -78,7 +78,7 @@ public class EntityHuron extends EntityMob implements IRangedAttackMob {
 
     @Override
     public int getMaxSpawnedInChunk() {
-        return 5;
+        return 2;
     }
 
     @Override

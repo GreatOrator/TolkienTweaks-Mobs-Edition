@@ -19,9 +19,15 @@ public class BiomeProviderTTM extends BiomeProvider {
         allowedBiomes.add(BiomeInit.LORINAND);
         allowedBiomes.add(BiomeInit.HITHAEGLIR);
         allowedBiomes.add(BiomeInit.BARROW_DOWNS);
+        allowedBiomes.add(BiomeInit.DAGORLAD);
+        allowedBiomes.add(BiomeInit.GLADDEN);
+        allowedBiomes.add(BiomeInit.HARADWAITH);
+        allowedBiomes.add(BiomeInit.SHIRE);
+        allowedBiomes.add(BiomeInit.IRON_HILLS);
+        allowedBiomes.add(BiomeInit.FIRIEN);
 
         getBiomesToSpawnIn().clear();
-        getBiomesToSpawnIn().add(BiomeInit.LORINAND);
+        getBiomesToSpawnIn().add(BiomeInit.GLADDEN);
     }
 
     @Override

@@ -41,6 +41,11 @@ public class EntityMumakil extends EntityHerds {
     }
 
     @Override
+    public int getMaxSpawnedInChunk() {
+        return 2;
+    }
+
+    @Override
     public EntityMumakil createChild(EntityAgeable par1EntityAgeable)
     {
         return new EntityMumakil(world);

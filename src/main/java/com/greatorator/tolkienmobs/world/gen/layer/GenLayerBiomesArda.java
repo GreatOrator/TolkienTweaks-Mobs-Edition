@@ -13,7 +13,10 @@ public class GenLayerBiomesArda extends GenLayer {
             BiomeInit.BARROW_DOWNS,
             BiomeInit.HARADWAITH,
             BiomeInit.DAGORLAD,
-            BiomeInit.SHIRE
+            BiomeInit.SHIRE,
+            BiomeInit.FIRIEN,
+            BiomeInit.GLADDEN,
+            BiomeInit.IRON_HILLS
     };
 
     public GenLayerBiomesArda(long seed, GenLayer genlayer) {

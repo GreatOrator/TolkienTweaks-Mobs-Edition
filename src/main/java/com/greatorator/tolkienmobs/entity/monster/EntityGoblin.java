@@ -198,7 +198,7 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
 
     @Override
     public int getMaxSpawnedInChunk() {
-        return 5;
+        return 3;
     }
 
     @Override

@@ -310,28 +310,5 @@ public class ModelMumakil extends ModelTolkienMobs {
             MumuTrunk2.rotateAngleX = degToRad(-20);
             MumuTrunk3.rotateAngleX = degToRad(110);
         }
-
-        // perform rearing animation if appropriate
-        if (parEntity.isRearing())
-        {
-            int rearingCounter = parEntity.getRearingCounter();
-//        	// DEBUG
-//        	System.out.println("ModelElephant entity is rearing with rearing counter = "+rearingCounter);
-
-            // move retain connection between body parts, hind legs stay where they were
-            MumuNeck.setRotationPoint(MumuNeckRotPointXDefault, MumuNeckRotPointYDefault+rearingOffsetCycle[rearingCounter][0], MumuNeckRotPointZDefault+rearingOffsetCycle[rearingCounter][1]);
-            MumuBody.setRotationPoint(MumuBodyRotPointXDefault, MumuBodyRotPointYDefault+rearingOffsetCycle[rearingCounter][2], MumuBodyRotPointZDefault+rearingOffsetCycle[rearingCounter][3]);
-            MumuLegFL.setRotationPoint(MumuLegFLRotPointXDefault, MumuLegFLRotPointYDefault+rearingOffsetCycle[rearingCounter][4], MumuLegFLRotPointZDefault+rearingOffsetCycle[rearingCounter][5]);
-            MumuLegFR.setRotationPoint(MumuLegFRRotPointXDefault, MumuLegFRRotPointYDefault+rearingOffsetCycle[rearingCounter][6], MumuLegFRRotPointZDefault+rearingOffsetCycle[rearingCounter][7]);
-
-            // rotate for rearing
-            MumuBody.rotateAngleX += degToRad(rearingAngleCycle[rearingCounter][0]);
-            MumuNeck.rotateAngleX += degToRad(rearingAngleCycle[rearingCounter][0]);
-            MumuTrunk1.rotateAngleX = degToRad(rearingAngleCycle[rearingCounter][1]);
-            MumuTrunk2.rotateAngleX = degToRad(rearingAngleCycle[rearingCounter][2]);
-            MumuTrunk3.rotateAngleX = degToRad(rearingAngleCycle[rearingCounter][3]);
-            MumuLegFL.rotateAngleX = degToRad(rearingAngleCycle[rearingCounter][0]);
-            MumuLegFR.rotateAngleX = degToRad(rearingAngleCycle[rearingCounter][0]);
-        }
     }
 }

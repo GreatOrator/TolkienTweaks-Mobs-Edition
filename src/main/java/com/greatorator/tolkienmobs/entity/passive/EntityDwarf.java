@@ -29,7 +29,7 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
 
     public EntityDwarf(World worldIn) {
         super(worldIn);
-        this.setSize(1.0F, 1.0F);
+        this.setSize(1.0F, 1.7F);
         ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
         this.texture_index = rand.nextInt(4);
     }
@@ -68,7 +68,7 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
         super.applyEntityAttributes();
 
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(9.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(26.0D);
     }

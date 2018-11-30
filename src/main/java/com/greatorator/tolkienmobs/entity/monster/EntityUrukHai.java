@@ -188,7 +188,7 @@ public class EntityUrukHai extends EntityMob implements IEntityAdditionalSpawnDa
 
     @Override
     public int getMaxSpawnedInChunk() {
-        return 5;
+        return 3;
     }
 
     @Override

@@ -188,7 +188,7 @@ public class EntityBarrowWight extends EntityMob implements IEntityAdditionalSpa
 
     @Override
     public int getMaxSpawnedInChunk() {
-        return 4;
+        return 2;
     }
 
     @Override

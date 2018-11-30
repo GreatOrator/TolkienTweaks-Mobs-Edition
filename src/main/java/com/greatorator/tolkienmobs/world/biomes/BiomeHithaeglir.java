@@ -1,10 +1,12 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.entity.monster.EntityGoblin;
+import com.greatorator.tolkienmobs.entity.monster.EntityTroll;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenTaiga2;
@@ -73,5 +75,13 @@ public class BiomeHithaeglir extends Biome implements IFogyBiome {
     @Override
     public float getFogDensity(EntityPlayer player) {
         return 0.1F;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getSkyColorByTemp(float currentTemperature)
+    {
+        currentTemperature = currentTemperature / 3.0F;
+        currentTemperature = MathHelper.clamp(currentTemperature, -1.0F, 1.0F);
+        return MathHelper.hsvToRGB(0.62222224F - currentTemperature * 0.05F, 0.5F + currentTemperature * 0.1F, 1.0F);
     }
 }

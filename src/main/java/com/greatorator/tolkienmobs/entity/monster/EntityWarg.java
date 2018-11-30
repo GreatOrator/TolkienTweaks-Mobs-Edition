@@ -247,6 +247,11 @@ public class EntityWarg extends EntityWolf {
         }
     }
 
+    @Override
+    public int getMaxSpawnedInChunk() {
+        return 2;
+    }
+
     @SideOnly(Side.CLIENT)
     public float getTailRotation()
     {

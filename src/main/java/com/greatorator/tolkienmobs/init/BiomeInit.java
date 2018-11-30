@@ -12,24 +12,35 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class BiomeInit
 {
+
     public static final Biome LORINAND = new BiomeLorinand();
     public static final Biome MIRKWOOD = new BiomeMirkwood();
     public static final Biome HITHAEGLIR = new BiomeHithaeglir();
     public static final Biome BARROW_DOWNS = new BiomeBarrowDowns();
     public static final Biome HARADWAITH = new BiomeHaradwaith();
     public static final Biome DAGORLAD = new BiomeDagorlad();
+
+    /** Passive Biomes */
     public static final Biome SHIRE = new BiomeShire();
+    public static final Biome GLADDEN = new BiomeGladden();
+    public static final Biome IRON_HILLS = new BiomeIronHills();
+    public static final Biome FIRIEN = new BiomeFirien();
 
     public static void registerBiomes()
     {
         LogHelperTTM.info("Making new discoveries possible!");
         initBiome(LORINAND, "Lorinand", BiomeType.WARM, Type.PLAINS, Type.FOREST, Type.MAGICAL);
         initBiome(MIRKWOOD, "Mirkwood", BiomeType.COOL, Type.SWAMP, Type.FOREST, Type.SPOOKY);
-        initBiome(HITHAEGLIR, "Hithaeglir ", BiomeType.ICY, Type.MOUNTAIN, Type.DEAD, Type.SPARSE);
-        initBiome(BARROW_DOWNS, "Tyrn Gorthad ", BiomeType.COOL, Type.PLAINS, Type.DEAD, Type.SPOOKY);
-        initBiome(HARADWAITH, "Haradwaith ", BiomeType.DESERT, Type.DRY, Type.DEAD, Type.SPARSE);
-        initBiome(DAGORLAD, "The Brown Lands ", BiomeType.WARM, Type.DRY, Type.LUSH);
-        initBiome(SHIRE, "The Shire ", BiomeType.WARM, Type.PLAINS, Type.LUSH);
+        initBiome(HITHAEGLIR, "Hithaeglir", BiomeType.ICY, Type.MOUNTAIN, Type.DEAD, Type.SPARSE);
+        initBiome(BARROW_DOWNS, "Tyrn Gorthad", BiomeType.COOL, Type.PLAINS, Type.DEAD, Type.SPOOKY);
+        initBiome(HARADWAITH, "Haradwaith", BiomeType.DESERT,Type.HOT, Type.DRY, Type.DEAD, Type.SPARSE);
+        initBiome(DAGORLAD, "The Brown Lands", BiomeType.WARM, Type.PLAINS, Type.DRY, Type.LUSH);
+
+        /** Passive Biomes */
+        initBiome(SHIRE, "The Shire", BiomeType.WARM, Type.PLAINS, Type.LUSH);
+        initBiome(GLADDEN, "Gladden Fields", BiomeType.WARM, Type.PLAINS, Type.LUSH);
+        initBiome(IRON_HILLS, "Iron Hills", BiomeType.COOL, Type.MOUNTAIN, Type.SPARSE);
+        initBiome(FIRIEN, "Firien Wood", BiomeType.COOL, Type.FOREST, Type.LUSH);
         LogHelperTTM.info("New lands to explore get!");
     }
 

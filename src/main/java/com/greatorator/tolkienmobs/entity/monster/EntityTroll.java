@@ -218,7 +218,7 @@ public class EntityTroll extends EntityMob implements IEntityAdditionalSpawnData
 
     @Override
     public int getMaxSpawnedInChunk() {
-        return 5;
+        return 1;
     }
 
     @Override

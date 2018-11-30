@@ -353,7 +353,7 @@ public class EntityCrebain extends EntityFlying implements IModEntity {
     @Override
     public int getMaxSpawnedInChunk()
     {
-        return 8;
+        return 2;
     }
 
     @Override
