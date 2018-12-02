@@ -6,6 +6,7 @@ import com.greatorator.tolkienmobs.client.render.entity.passive.RenderDwarf;
 import com.greatorator.tolkienmobs.client.render.entity.passive.RenderElves;
 import com.greatorator.tolkienmobs.client.render.entity.passive.RenderHobbit;
 import com.greatorator.tolkienmobs.client.render.entity.passive.RenderHuman;
+import com.greatorator.tolkienmobs.client.render.model.monster.ModelMumakil;
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
 import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.entity.passive.EntityDwarf;
@@ -15,6 +16,7 @@ import com.greatorator.tolkienmobs.entity.passive.EntityHuman;
 import com.greatorator.tolkienmobs.handler.FogHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -40,7 +42,14 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGoblin.class, RenderGoblin.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityMordorOrc.class, RenderMordorOrc.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityWarg.class, RenderWarg.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityMumakil.class, RenderMumakil.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(
+                EntityMumakil.class,
+                RenderHerdAnimal.getRenderFactory(
+                        new ModelMumakil(),
+                        2.0F,
+                        new ResourceLocation("tolkienmobs:textures/entity/mumakil/mumakil0.png")
+                )
+        );
         RenderingRegistry.registerEntityRenderingHandler(EntityCrebain.class, RenderCrebain.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTroll.class, RenderTroll.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityUrukHai.class, RenderUrukHai.FACTORY);

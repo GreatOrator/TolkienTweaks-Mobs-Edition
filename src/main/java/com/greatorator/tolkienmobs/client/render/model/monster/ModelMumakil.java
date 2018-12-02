@@ -37,6 +37,13 @@ public class ModelMumakil extends ModelTolkienMobs {
     public ModelRenderer MumuTrunk2;
     public ModelRenderer MumuTrunk3;
 
+    /** Allows customization of baby animal */
+    public ModelRenderer childSkull;
+    public ModelRenderer childNeck;
+    public ModelRenderer childEarL;
+    public ModelRenderer childEarR;
+    public ModelRenderer childTrunk1;
+
     // need some variables to help revert positions after a rearing animation
     protected float MumuNeckRotPointXDefault;
     protected float MumuNeckRotPointYDefault;
@@ -51,8 +58,12 @@ public class ModelMumakil extends ModelTolkienMobs {
     protected float MumuLegFRRotPointYDefault;
     protected float MumuLegFRRotPointZDefault;
 
-    // create an animation cycle for the rearing
-    // rearingCount will be the animation cycle counter
+    /** Allows customization of baby animal */
+    protected float childNeckRotPointXDefault;
+    protected float childNeckRotPointYDefault;
+    protected float childNeckRotPointZDefault;
+
+    /** create an animation cycle for the rearing rearingCount will be the animation cycle counter */
     protected static float[][] rearingOffsetCycle = new float[][]
             {
                     // {headOffsetY, headoffsetZ, bodyOffsetY, bodyOffsetZ, MumuLegFLOffsetY, MumuLegFLOffsetZ, MumuLegFROffsetY, MumuLegFROffsetZ}
@@ -111,7 +122,6 @@ public class ModelMumakil extends ModelTolkienMobs {
     protected float field_78151_h = 4.0F;
 
     public ModelMumakil() {
-        int par1 = 1;
         this.textureWidth = 256;
         this.textureHeight = 256;
 
@@ -145,7 +155,7 @@ public class ModelMumakil extends ModelTolkienMobs {
         this.setRotateAngle(MumuTuskFL2, 0.9250245035569946F, -0.2617993877991494F, 0.0F);
         this.MumuNeck = new ModelRenderer(this, 176, 0);
         MumuNeckRotPointXDefault = 0F;
-        MumuNeckRotPointYDefault = (float) (-17.5 - par1);
+        MumuNeckRotPointYDefault = -18F;
         MumuNeckRotPointZDefault = -21.5F;
         this.MumuNeck.setRotationPoint(MumuNeckRotPointXDefault, MumuNeckRotPointYDefault, MumuNeckRotPointZDefault);
         this.MumuNeck.addBox(-5.5F, -5.5F, -10.5F, 11, 11, 11, 0.0F);
@@ -176,13 +186,13 @@ public class ModelMumakil extends ModelTolkienMobs {
         this.setRotateAngle(MumuTuskRL1, 1.0471975511965976F, -0.6108652381980153F, 0.0F);
         this.MumuLegFR = new ModelRenderer(this, 44, 0);
         MumuLegFRRotPointXDefault = 8.0F;
-        MumuLegFRRotPointYDefault = (float) (-8.0 - par1);
+        MumuLegFRRotPointYDefault = -8.0F;
         MumuLegFRRotPointZDefault = -18.5F;
         this.MumuLegFR.setRotationPoint(MumuLegFRRotPointXDefault, MumuLegFRRotPointYDefault, MumuLegFRRotPointZDefault);
         this.MumuLegFR.addBox(0.0F, 0.0F, -5.5F, 11, 32, 11, 0.0F);
         this.MumuLegFL = new ModelRenderer(this, 0, 0);
         MumuLegFLRotPointXDefault = -2.0F;
-        MumuLegFLRotPointYDefault = (float) (-8.0 - par1);
+        MumuLegFLRotPointYDefault = -8.0F;
         MumuLegFLRotPointZDefault = -18.5F;
         this.MumuLegFL.setRotationPoint(MumuLegFLRotPointXDefault, MumuLegFLRotPointYDefault, MumuLegFLRotPointZDefault);
         this.MumuLegFL.addBox(-17.0F, 0.0F, -5.5F, 11, 32, 11, 0.0F);
@@ -215,7 +225,7 @@ public class ModelMumakil extends ModelTolkienMobs {
         this.setRotateAngle(MumuTuskRR2, 0.9250245035569946F, 0.6108652381980153F, 0.0F);
         this.MumuBody = new ModelRenderer(this, 0, 43);
         MumuBodyRotPointXDefault = -1.5F;
-        MumuBodyRotPointYDefault = (float) (-15.0 - par1);
+        MumuBodyRotPointYDefault = -15.0F;
         MumuBodyRotPointZDefault = -23.2F;
         this.MumuBody.setRotationPoint(MumuBodyRotPointXDefault, MumuBodyRotPointYDefault, MumuBodyRotPointZDefault);
         this.MumuBody.addBox(-17.0F, -12.5F, 0.0F, 37, 25, 47, 0.0F);
@@ -242,6 +252,31 @@ public class ModelMumakil extends ModelTolkienMobs {
         this.MumuNeck.addChild(this.MumuTuskRR2);
         this.MumuTrunk1.addChild(this.MumuTrunk2);
         this.MumuTrunk2.addChild(this.MumuTrunk3);
+
+        /** Parts for the child version */
+        this.childSkull = new ModelRenderer(this, 100, 120);
+        this.childSkull.setRotationPoint(-3.0F, -3.0F, -13.5F);
+        this.childSkull.addBox(-5.5F, -5.5F, -10.5F, 17, 17, 15, 0.0F);
+        this.childNeck = new ModelRenderer(this, 176, 0);
+        this.childNeck.addBox(-5.5F, -5.5F, -10.5F, 11, 11, 11, 0.0F);
+        childNeckRotPointXDefault = 0F;
+        childNeckRotPointYDefault = -18F;
+        childNeckRotPointZDefault = -21.5F;
+        this.childNeck.setRotationPoint(childNeckRotPointXDefault, childNeckRotPointYDefault, childNeckRotPointZDefault);
+        this.childEarR = new ModelRenderer(this, 220, 12);
+        this.childEarR.addBox(-3.5F, -6.1F, -0.5F, 11, 11, 1, 0.0F);
+        this.childEarR.setRotationPoint(-8.5F, -1.8F, -15.0F);
+        this.childEarL.mirror = true;
+        this.childEarL = new ModelRenderer(this, 220, 0);
+        this.childEarL.addBox(-7.5F, -6.0F, -0.5F, 11, 11, 1, 0.0F);
+        this.childEarL.setRotationPoint(8.6F, -1.8F, -15.0F);
+        this.childTrunk1 = new ModelRenderer(this, 0, 43);
+        this.childTrunk1.addBox(-3.5F, 0.0F, -2.5F, 7, 13, 5, 0.0F);
+        this.childTrunk1.setRotationPoint(0.0F, 1.6F, -22.5F);
+        this.childNeck.addChild(this.childSkull);
+        this.childNeck.addChild(this.childEarR);
+        this.childNeck.addChild(this.childEarL);
+        this.childNeck.addChild(this.childTrunk1);
     }
 
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
@@ -259,38 +294,63 @@ public class ModelMumakil extends ModelTolkienMobs {
     public void renderMumakil(EntityMumakil parEntity, float parTime, float parSwingSuppress, float par4, float parHeadAngleY, float parHeadAngleX, float par7)
     {
         setRotationAngles(parTime, parSwingSuppress, par4, parHeadAngleY, parHeadAngleX, par7, parEntity);
+        float scaleFactor = 1.5F;
 
         // scale the whole thing for big or small entities
         GL11.glPushMatrix();
-        GL11.glTranslatef(0F, -1.5F, 0F);
+        GL11.glTranslatef(0F, 1.5F-1.5F*scaleFactor, 0F);
         GL11.glScalef(parEntity.getScaleFactor(), parEntity.getScaleFactor(), parEntity.getScaleFactor());
 
-            MumuNeck.render(par7);
+        if (this.isChild)
+        {
+            float f6 = 2.0F;
+            GL11.glPushMatrix();
+            GL11.glScalef(1.0F / f6, 1.0F / f6, 1.0F / f6);
+            GL11.glTranslatef(0.0F, 24.0F * par7, 0.0F);
+            childNeck.render(par7);
             MumuBody.render(par7);
-            // scale legs slightly to reduce render flicker on overlapping areas
+
             GL11.glPushMatrix();
             GL11.glScalef(0.99F, 1.00F, 0.99F);
-            MumuLegRL.render(par7);
             MumuLegRR.render(par7);
-            MumuLegFL.render(par7);
+            MumuLegRL.render(par7);
             MumuLegFR.render(par7);
+            MumuLegFL.render(par7);
             GL11.glPopMatrix();
+            GL11.glPopMatrix();
+        }
+        else
+        {
+            MumuNeck.render(par7);
+            MumuBody.render(par7);
 
-        // don't forget to pop the matrix for overall scaling
+            GL11.glPushMatrix();
+            GL11.glScalef(0.99F, 1.00F, 0.99F);
+            MumuLegRR.render(par7);
+            MumuLegRL.render(par7);
+            MumuLegFR.render(par7);
+            MumuLegFL.render(par7);
+            GL11.glPopMatrix();
+        }
         GL11.glPopMatrix();
     }
 
     public void setRotationAngles(float parTime, float parSwingSuppress, float par3, float parHeadAngleY, float parHeadAngleX, float par6, EntityMumakil parEntity)
     {
-        // return rotation point in case there was previous rearing animation
+        /** return rotation point in case there was previous rearing animation */
         MumuNeck.setRotationPoint(MumuNeckRotPointXDefault, MumuNeckRotPointYDefault, MumuNeckRotPointZDefault);
         MumuBody.setRotationPoint(MumuBodyRotPointXDefault, MumuBodyRotPointYDefault, MumuBodyRotPointZDefault);
         MumuLegFL.setRotationPoint(MumuLegFLRotPointXDefault, MumuLegFLRotPointYDefault, MumuLegFLRotPointZDefault);
         MumuLegFR.setRotationPoint(MumuLegFRRotPointXDefault, MumuLegFRRotPointYDefault, MumuLegFRRotPointZDefault);
+        childNeck.setRotationPoint(childNeckRotPointXDefault, childNeckRotPointYDefault, childNeckRotPointZDefault);
 
         MumuNeck.rotateAngleX = degToRad(parHeadAngleX);
         MumuNeck.rotateAngleY = degToRad(parHeadAngleY);
-        // swingSuppress goes to 0 when still so gates the movement
+
+        childNeck.rotateAngleX = degToRad(parHeadAngleX);
+        childNeck.rotateAngleY = degToRad(parHeadAngleY);
+
+        /** swingSuppress goes to 0 when still so gates the movement */
         MumuLegRL.rotateAngleX = MathHelper.cos(parTime * 0.6662F) * 1.4F * parSwingSuppress;
         MumuLegRR.rotateAngleX = MathHelper.cos(parTime * 0.6662F + (float)Math.PI) * 1.4F * parSwingSuppress;
         MumuLegFL.rotateAngleX = MathHelper.cos(parTime * 0.6662F + (float)Math.PI) * 1.4F * parSwingSuppress;
@@ -299,11 +359,16 @@ public class ModelMumakil extends ModelTolkienMobs {
         MumuTrunk2.rotateAngleX = MumuTrunk1.rotateAngleX * 3;
         MumuTrunk3.rotateAngleX = MumuTrunk2.rotateAngleX * 1;
 
-        // flick ears
+        childTrunk1.rotateAngleX = MathHelper.cos(degToRad(parEntity.ticksExisted*7)) * degToRad(10);
+
+        /** flick ears */
         MumuEarL.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(parEntity.ticksExisted*3)), 6) * degToRad(15);
         MumuEarR.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(parEntity.ticksExisted*3)), 6) * degToRad(-15);
 
-        // raise trunk if in water
+        childEarL.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(parEntity.ticksExisted*3)), 6) * degToRad(15);
+        childEarR.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(parEntity.ticksExisted*3)), 6) * degToRad(-15);
+
+        /** raise trunk if in water */
         if (parEntity.isInWater())
         {
             MumuTrunk1.rotateAngleX = degToRad(-150);
