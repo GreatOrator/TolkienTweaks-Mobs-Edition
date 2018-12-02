@@ -266,10 +266,10 @@ public class ModelMumakil extends ModelTolkienMobs {
         this.childEarR = new ModelRenderer(this, 220, 12);
         this.childEarR.addBox(-3.5F, -6.1F, -0.5F, 11, 11, 1, 0.0F);
         this.childEarR.setRotationPoint(-8.5F, -1.8F, -15.0F);
-        this.childEarL.mirror = true;
         this.childEarL = new ModelRenderer(this, 220, 0);
         this.childEarL.addBox(-7.5F, -6.0F, -0.5F, 11, 11, 1, 0.0F);
         this.childEarL.setRotationPoint(8.6F, -1.8F, -15.0F);
+        this.childEarL.mirror = true;
         this.childTrunk1 = new ModelRenderer(this, 0, 43);
         this.childTrunk1.addBox(-3.5F, 0.0F, -2.5F, 7, 13, 5, 0.0F);
         this.childTrunk1.setRotationPoint(0.0F, 1.6F, -22.5F);
