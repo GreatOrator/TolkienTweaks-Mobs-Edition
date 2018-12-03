@@ -17,8 +17,6 @@ public class RenderHuron extends RenderLiving<EntityHuron> {
     public static final Factory FACTORY = new Factory();
 
     public RenderHuron(RenderManager rendermanagerIn) {
-        // We use the vanilla zombie model here and we simply
-        // retexture it. Of course you can make your own model
         super(rendermanagerIn, new ModelHuron(), 0.5F);
     }
 

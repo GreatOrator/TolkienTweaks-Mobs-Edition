@@ -170,7 +170,7 @@ public class ModelGoblin extends ModelTolkienMobs {
         this.bipedLeftArm.rotationPointX = 3.5F;
 
         // flick ears
-        GoblinEarR1.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(entityIn.ticksExisted*3)), 6) * degToRad(15);	        this.bipedLeftArm.rotationPointX = 3.5F;
+        GoblinEarR1.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(entityIn.ticksExisted*3)), 6) * degToRad(15);
         GoblinEarL1.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(entityIn.ticksExisted*3)), 6) * degToRad(-15);
     }
 

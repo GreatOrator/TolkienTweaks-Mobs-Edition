@@ -34,6 +34,7 @@ public class EntityInit
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "crebain"), EntityCrebain.class, "crebain", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x8B0000);
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "cavetroll"), EntityTroll.class, "cave_troll", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x808000);
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "barrowwight"), EntityBarrowWight.class, "barrow_wight", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x80FFFF);
+        EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "balrog"), EntityBalrog.class, "balrog", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x830303);
 
         /** Passive */
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "dwarf"), EntityDwarf.class, "dwarf", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x8080FF);
@@ -77,6 +78,7 @@ public class EntityInit
         LootTableList.register(EntityCrebain.LOOT);
         LootTableList.register(EntityTroll.LOOT);
         LootTableList.register(EntityBarrowWight.LOOT);
+        LootTableList.register(EntityBalrog.LOOT);
 
         /** Passive */
         LootTableList.register(EntityDwarf.LOOT);
