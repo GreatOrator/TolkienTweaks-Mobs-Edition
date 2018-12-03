@@ -1,11 +1,13 @@
 package com.greatorator.tolkienmobs.proxy;
 
+import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderBoulder;
 import com.greatorator.tolkienmobs.client.render.entity.monster.*;
 import com.greatorator.tolkienmobs.client.render.entity.passive.RenderDwarf;
 import com.greatorator.tolkienmobs.client.render.entity.passive.RenderElves;
 import com.greatorator.tolkienmobs.client.render.entity.passive.RenderHobbit;
 import com.greatorator.tolkienmobs.client.render.entity.passive.RenderHuman;
+import com.greatorator.tolkienmobs.client.render.model.monster.ModelCrebain;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelMumakil;
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
 import com.greatorator.tolkienmobs.entity.monster.*;
@@ -47,10 +49,19 @@ public class ClientProxy extends CommonProxy {
                 RenderHerdAnimal.getRenderFactory(
                         new ModelMumakil(),
                         2.0F,
-                        new ResourceLocation("tolkienmobs:textures/entity/mumakil/mumakil0.png")
+                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/mumakil/mumakil0.png")
                 )
         );
-        RenderingRegistry.registerEntityRenderingHandler(EntityCrebain.class, RenderCrebain.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(
+                EntityCrebain.class,
+                RenderBirds.getRenderFactory(
+                        new ModelCrebain(),
+                        new ModelCrebain(),
+                        0.5F,
+                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/crebain.png"),
+                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/bird_legband.png")
+                )
+        );
         RenderingRegistry.registerEntityRenderingHandler(EntityTroll.class, RenderTroll.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityUrukHai.class, RenderUrukHai.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityBarrowWight.class, RenderBarrowWight.FACTORY);

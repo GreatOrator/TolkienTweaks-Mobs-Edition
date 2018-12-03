@@ -1,9 +1,6 @@
 package com.greatorator.tolkienmobs.world.gen;
 
-import com.greatorator.tolkienmobs.world.biomes.BiomeBarrowDowns;
-import com.greatorator.tolkienmobs.world.biomes.BiomeLorinand;
-import com.greatorator.tolkienmobs.world.biomes.BiomeMirkwood;
-import com.greatorator.tolkienmobs.world.biomes.BiomeShire;
+import com.greatorator.tolkienmobs.world.biomes.*;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenStructure;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -40,6 +37,7 @@ public class WorldGenCustomStructures implements IWorldGenerator {
                 generateStructure(new WorldGenStructure("greatbarrow"), world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeBarrowDowns.class);
                 generateStructure(new WorldGenStructure("stonespike"), world, random, chunkX, chunkZ, 5, Blocks.GRASS, BiomeBarrowDowns.class);
                 generateStructure(new WorldGenStructure("deadtree"), world, random, chunkX, chunkZ, 5, Blocks.GRASS, BiomeBarrowDowns.class);
+                generateStructure(new WorldGenStructure("fangorn_tree"), world, random, chunkX, chunkZ, 1, Blocks.GRASS, BiomeFangorn.class);
 
                 break;
 

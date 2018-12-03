@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.model.monster;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
+import com.greatorator.tolkienmobs.entity.EntityBirds;
 import com.greatorator.tolkienmobs.entity.monster.EntityCrebain;
 import com.greatorator.tolkienmobs.entity.entityai.AIStates;
 import net.minecraft.client.model.ModelRenderer;
@@ -201,10 +202,10 @@ public class ModelCrebain extends ModelTolkienMobs {
     public void render(Entity parEntity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         // best to cast to actual expected entity, to allow access to custom fields related to animation
-        renderCrebain((EntityCrebain) parEntity, f5);
+        renderBirds((EntityBirds) parEntity, f5);
     }
 
-    public void renderCrebain(EntityCrebain parBird, float parRenderFloat)
+    public void renderBirds(EntityBirds parBird, float parRenderFloat)
     {
         setRotationAngles(parBird);
 
@@ -240,19 +241,8 @@ public class ModelCrebain extends ModelTolkienMobs {
      *
      * @param parEntity the new rotation angles
      */
-    public void setRotationAngles(EntityCrebain parEntity)
+    public void setRotationAngles(EntityBirds parEntity)
     {
-//		// DEBUG
-//		if (parEntity.ticksExisted%20==0)
-//		{
-//			System.out.println("Set rotation angles sees entity state = "+parEntity.getState()+" for entity id = "+parEntity.getEntityId());
-//		}
-
-        // by using the getEntityID in the cycle index calculation
-        // it helps provide "randomness" so that
-        // all entities of same type aren't at same point in animation
-        // because ticksExisted gets reset when world is loaded
-        // so initial randomness due to when entity was spawned will be reset
         if (parEntity.getState() == AIStates.STATE_TAKING_OFF)
         {
             doAnimate(parEntity, takingOffCycle);
@@ -287,7 +277,7 @@ public class ModelCrebain extends ModelTolkienMobs {
 
     }
 
-    public void doAnimate(EntityCrebain parEntity, float[][] parCycleArray)
+    public void doAnimate(EntityBirds parEntity, float[][] parCycleArray)
     {
         cycleIndex = (int)Math.floor((parEntity.ticksExisted+parEntity.getRandFactor()*2)%parCycleArray.length)/2;
         // will need to set based on entity state

@@ -19,6 +19,7 @@ public class BiomeInit
     public static final Biome BARROW_DOWNS = new BiomeBarrowDowns();
     public static final Biome HARADWAITH = new BiomeHaradwaith();
     public static final Biome DAGORLAD = new BiomeDagorlad();
+    public static final Biome FANGORN = new BiomeFangorn();
 
     /** Passive Biomes */
     public static final Biome SHIRE = new BiomeShire();
@@ -35,6 +36,7 @@ public class BiomeInit
         initBiome(BARROW_DOWNS, "Tyrn Gorthad", BiomeType.COOL, Type.PLAINS, Type.DEAD, Type.SPOOKY);
         initBiome(HARADWAITH, "Haradwaith", BiomeType.DESERT,Type.HOT, Type.DRY, Type.DEAD, Type.SPARSE);
         initBiome(DAGORLAD, "The Brown Lands", BiomeType.WARM, Type.PLAINS, Type.DRY, Type.LUSH);
+        initBiome(FANGORN, "Fangorn Forest", BiomeType.COOL, Type.FOREST, Type.LUSH);
 
         /** Passive Biomes */
         initBiome(SHIRE, "The Shire", BiomeType.WARM, Type.PLAINS, Type.LUSH);

@@ -11,6 +11,7 @@ import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
@@ -45,10 +46,10 @@ public class EntityInit
 
         /** If we want our mobs to spawn naturally. */
         /** Monsters */
-        EntityRegistry.addSpawn(EntityHuron.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.FOREST, BiomeInit.MIRKWOOD);
-        EntityRegistry.addSpawn(EntityTreeEnt.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.FOREST, Biomes.FOREST_HILLS);
+        EntityRegistry.addSpawn(EntityHuron.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.FOREST, Biomes.FOREST_HILLS, BiomeInit.MIRKWOOD);
+        EntityRegistry.addSpawn(EntityTreeEnt.class, 100, 1, 2, EnumCreatureType.MONSTER, BiomeInit.FANGORN);
         EntityRegistry.addSpawn(EntityMirkwoodSpider.class, 100, 1, 2, EnumCreatureType.MONSTER, BiomeInit.MIRKWOOD);
-        EntityRegistry.addSpawn(EntityGoblin.class, 100, 2, 5, EnumCreatureType.MONSTER, BiomeInit.HITHAEGLIR);
+        EntityRegistry.addSpawn(EntityGoblin.class, 100, 2, 5, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS, BiomeInit.HITHAEGLIR);
         EntityRegistry.addSpawn(EntityMordorOrc.class, 100, 1, 3, EnumCreatureType.MONSTER, BiomeInit.DAGORLAD);
         EntityRegistry.addSpawn(EntityUrukHai.class, 100, 1, 3, EnumCreatureType.MONSTER, BiomeInit.DAGORLAD);
         EntityRegistry.addSpawn(EntityWarg.class, 100, 1, 3, EnumCreatureType.MONSTER, BiomeInit.DAGORLAD);
