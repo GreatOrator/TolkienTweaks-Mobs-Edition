@@ -48,7 +48,7 @@ public class EntityBalrog extends EntityMob {
 
     public EntityBalrog(World worldIn) {
         super(worldIn);
-        this.setSize(1.0F, 1.8F);
+        this.setSize(1.6F, 3.5F);
     }
 
     protected void initEntityAI() {
@@ -85,7 +85,6 @@ public class EntityBalrog extends EntityMob {
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
         super.setEquipmentBasedOnDifficulty(difficulty);
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(TTMFeatures.SWORD_MORGULIRON));
     }
 
     protected void setEnchantmentBasedOnDifficulty(DifficultyInstance difficulty)
@@ -180,6 +179,6 @@ public class EntityBalrog extends EntityMob {
 
     @Override
     public int getMaxSpawnedInChunk() {
-        return 3;
+        return 1;
     }
 }

@@ -61,12 +61,12 @@ public class RenderBalrog extends RenderLiving<EntityBalrog> {
                         GlStateManager.translate(0.0F, 0.2F, 0.0F);
                     }
                     // Forge: moved this call down, fixes incorrect offset while sneaking.
-    //                    GlStateManager.translate(0.0F, 0.625F, 0);
+//                    GlStateManager.translate(0.0F, 0.625F, 0);
                     this.translateToHand(handSide);
                     GlStateManager.rotate(-100.0F, 1.0F, 0.0F, 0.0F);
                     GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
                     boolean flag = handSide == EnumHandSide.LEFT;
-                    GlStateManager.translate((float)(flag ? -1 : 1) / 16.0F, 0.02F, -(0.7F));
+                    GlStateManager.translate((float)(flag ? -1 : 1) / 16.0F, 0.25F, -(1.25F));
                     Minecraft.getMinecraft().getItemRenderer().renderItemSide(entity, stack, transform, flag);
                     GlStateManager.popMatrix();
                 }
@@ -74,7 +74,7 @@ public class RenderBalrog extends RenderLiving<EntityBalrog> {
 
             @Override
             protected void translateToHand(EnumHandSide p_191361_1_) {
-                ((ModelBiped)this.livingEntityRenderer.getMainModel()).postRenderArm(0.05F, p_191361_1_);
+                ((ModelBiped)this.livingEntityRenderer.getMainModel()).postRenderArm(0.1825F, p_191361_1_);
             }
         });
     }
@@ -86,15 +86,13 @@ public class RenderBalrog extends RenderLiving<EntityBalrog> {
     }
 
     public void transformHeldFull3DItemLayer() {
-        GlStateManager.translate(-2.0F, 0.1875F, 0.0F);
+        GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
     }
 
     public static class Factory implements IRenderFactory<EntityBalrog> {
-
         @Override
         public Render<? super EntityBalrog> createRenderFor(RenderManager manager) {
             return new RenderBalrog(manager);
         }
-
     }
 }
