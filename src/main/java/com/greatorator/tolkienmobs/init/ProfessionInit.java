@@ -64,7 +64,9 @@ public class ProfessionInit {
                 .addTrade(2, new TradeHandler(new ItemStack(brons_coin,64), new ItemStack(silver_coin),1, 1));
 
         store_clerk = (new VillagerCareer(grocery_store, "store_clerk"))
-                .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.LEMBAS), new ItemStack(brons_coin),5, 36));
+                .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.LEMBAS), new ItemStack(brons_coin),5, 36))
+                .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.HONEY_CAKE), new ItemStack(brons_coin),3, 26))
+                .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.CRAM), new ItemStack(brons_coin),1, 16));
 
         // DEBUG
         LogHelperTTM.info("All positions are now filled, thank you for applying.");

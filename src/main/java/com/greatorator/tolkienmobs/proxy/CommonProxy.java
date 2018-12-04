@@ -1,10 +1,7 @@
 package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.handler.TerrainEventHandler;
-import com.greatorator.tolkienmobs.init.BiomeInit;
-import com.greatorator.tolkienmobs.init.CraftingInit;
-import com.greatorator.tolkienmobs.init.EntityInit;
-import com.greatorator.tolkienmobs.init.ProfessionInit;
+import com.greatorator.tolkienmobs.init.*;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomStructures;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomTrees;
@@ -30,6 +27,7 @@ public class CommonProxy {
         BiomeInit.registerBiomes();
         EntityInit.init();
         CraftingInit.init();
+        PotionInit.registerPotions();
 
         MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainEventHandler());
     }

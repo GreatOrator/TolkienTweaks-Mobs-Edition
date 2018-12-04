@@ -317,6 +317,14 @@ public class ModelBalrog extends ModelTolkienMobs {
         GL11.glTranslatef(0F, 1.5F-1.5F*scaleFactor, 0F);
         GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
 
+        float anim = (entity.ticksExisted + f5) / 20F;
+
+        BalrogWingL.rotateAngleX = (float) (Math.cos(anim) / 4D);
+        BalrogWingL.rotateAngleY = -0.2858F + (float) (Math.sin(anim) / 4D);
+
+        BalrogWingR.rotateAngleX = -(float) (Math.cos(anim) / 4D);
+        BalrogWingR.rotateAngleY = (-2.8561945f) - (float) (Math.sin(anim) / 4D);
+
         this.BalrogBody.render(f5);
 
         GL11.glPopMatrix();

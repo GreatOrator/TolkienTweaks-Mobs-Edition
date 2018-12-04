@@ -33,7 +33,15 @@ item.tolkienmobs:ammo_boulder.name=Boulder
 
 //Food Information
 item.tolkienmobs:food_lembas.name=Lembas
+item.tolkienmobs:food_honeycake.name=Honey Cake
+item.tolkienmobs:food_cram.name=Cram
 item.tolkienmobs:monster_flesh.name=Monster Flesh
+
+//Potion Information
+effect.ent_draught=Ent Draught
+potion.effect.ent_draught=Potion of Ent Draught
+splash_potion.effect.ent_draught=Splash Potion of Ent Draught
+tipped_arrow.effect.ent_draught=Arrow of Ent Draught
 
 //Monster Drops
 item.tolkienmobs:feather_crebain.name=Crebain Feather
