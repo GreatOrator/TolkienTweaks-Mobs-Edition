@@ -33,7 +33,7 @@ public class BlockLeaf extends BlockLeaves implements IBCoreBlock {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(VARIANT, EnumType.byMetadata(meta % 2));
+        return this.getDefaultState().withProperty(VARIANT, EnumType.byMetadata(meta % 4));
     }
 
     @Override

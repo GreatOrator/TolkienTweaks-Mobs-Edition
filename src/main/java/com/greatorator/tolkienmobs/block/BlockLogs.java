@@ -35,46 +35,44 @@ public class BlockLogs extends BlockLog implements IBCoreBlock {
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta) {
-        IBlockState state = this.getDefaultState().withProperty(VARIANT, EnumType.byMetadata((meta & 1) % 2));
+    public IBlockState getStateFromMeta(int meta)
+    {
+        IBlockState iblockstate = this.getDefaultState().withProperty(VARIANT, EnumType.byMetadata((meta & 3) % 4));
 
-        switch (meta & 6) {
+        switch (meta & 12)
+        {
             case 0:
-                state = state.withProperty(LOG_AXIS, EnumAxis.Y);
+                iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.Y);
                 break;
-
-            case 2:
-                state = state.withProperty(LOG_AXIS, EnumAxis.X);
-                break;
-
             case 4:
-                state = state.withProperty(LOG_AXIS, EnumAxis.Z);
+                iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.X);
                 break;
-
+            case 8:
+                iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.Z);
+                break;
             default:
-                state = state.withProperty(LOG_AXIS, EnumAxis.NONE);
+                iblockstate = iblockstate.withProperty(LOG_AXIS, BlockLog.EnumAxis.NONE);
         }
 
-        return state;
+        return iblockstate;
     }
 
     @SuppressWarnings("incomplete-switch")
-    @Override
-    public int getMetaFromState(IBlockState state) {
+    public int getMetaFromState(IBlockState state)
+    {
         int i = 0;
         i = i | state.getValue(VARIANT).getMeta();
 
-        switch (state.getValue(LOG_AXIS)) {
+        switch (state.getValue(LOG_AXIS))
+        {
             case X:
-                i |= 2;
-                break;
-
-            case Y:
                 i |= 4;
                 break;
-
             case Z:
-                i |= 6;
+                i |= 8;
+                break;
+            case NONE:
+                i |= 12;
         }
 
         return i;

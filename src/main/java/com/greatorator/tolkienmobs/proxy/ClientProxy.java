@@ -3,18 +3,12 @@ package com.greatorator.tolkienmobs.proxy;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderBoulder;
 import com.greatorator.tolkienmobs.client.render.entity.monster.*;
-import com.greatorator.tolkienmobs.client.render.entity.passive.RenderDwarf;
-import com.greatorator.tolkienmobs.client.render.entity.passive.RenderElves;
-import com.greatorator.tolkienmobs.client.render.entity.passive.RenderHobbit;
-import com.greatorator.tolkienmobs.client.render.entity.passive.RenderHuman;
+import com.greatorator.tolkienmobs.client.render.entity.passive.*;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelCrebain;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelMumakil;
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
 import com.greatorator.tolkienmobs.entity.monster.*;
-import com.greatorator.tolkienmobs.entity.passive.EntityDwarf;
-import com.greatorator.tolkienmobs.entity.passive.EntityElves;
-import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
-import com.greatorator.tolkienmobs.entity.passive.EntityHuman;
+import com.greatorator.tolkienmobs.entity.passive.*;
 import com.greatorator.tolkienmobs.handler.FogHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -68,6 +62,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityBarrowWight.class, RenderBarrowWight.FACTORY);
 
         /** Passive */
+        RenderingRegistry.registerEntityRenderingHandler(EntityAuroch.class, RenderAuroch.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityHobbit.class, RenderHobbit.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityDwarf.class, RenderDwarf.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityHuman.class, RenderHuman.FACTORY);

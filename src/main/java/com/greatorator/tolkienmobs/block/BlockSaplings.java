@@ -83,11 +83,13 @@ public class BlockSaplings extends BlockBush implements IGrowable, IBCoreBlock
         return state.getValue(VARIANT).getMeta();
     }
 
+
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(VARIANT, EnumType.byMetadata(meta & 1)).withProperty(STAGE, Integer.valueOf((meta & 8) >> 3));
+        return this.getDefaultState().withProperty(VARIANT,  EnumType.byMetadata(meta & 7)).withProperty(STAGE, (meta & 8) >> 3);
     }
+
 
     @Override
     public int getMetaFromState(IBlockState state)

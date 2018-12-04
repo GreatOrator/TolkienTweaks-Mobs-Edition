@@ -14,8 +14,7 @@ import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 
 /**
- * ModelBalrog - GreatOrator
- * Created using Tabula 7.0.0
+ * Balrog - GreatOrator
  */
 public class ModelBalrog extends ModelTolkienMobs {
     public ModelRenderer BalrogBody;
