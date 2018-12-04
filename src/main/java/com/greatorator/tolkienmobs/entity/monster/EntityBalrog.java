@@ -138,7 +138,7 @@ public class EntityBalrog extends EntityMob {
         {
             if (entityIn instanceof EntityLivingBase)
             {
-                ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 0));
+                ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 200));
             }
 
             return true;

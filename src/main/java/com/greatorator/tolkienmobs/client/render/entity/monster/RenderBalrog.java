@@ -66,7 +66,7 @@ public class RenderBalrog extends RenderLiving<EntityBalrog> {
                     GlStateManager.rotate(-100.0F, 1.0F, 0.0F, 0.0F);
                     GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
                     boolean flag = handSide == EnumHandSide.LEFT;
-                    GlStateManager.translate((float)(flag ? -1 : 1) / 16.0F, 0.25F, -(1.25F));
+                    GlStateManager.translate((float)(flag ? 1 : -1) / 16.0F, 0.05F, 0.5F);
                     Minecraft.getMinecraft().getItemRenderer().renderItemSide(entity, stack, transform, flag);
                     GlStateManager.popMatrix();
                 }
@@ -86,7 +86,7 @@ public class RenderBalrog extends RenderLiving<EntityBalrog> {
     }
 
     public void transformHeldFull3DItemLayer() {
-        GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
+        GlStateManager.translate(-2.0F, 0.1875F, 0.5F);
     }
 
     public static class Factory implements IRenderFactory<EntityBalrog> {

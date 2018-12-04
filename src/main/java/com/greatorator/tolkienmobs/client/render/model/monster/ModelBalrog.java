@@ -23,8 +23,6 @@ public class ModelBalrog extends ModelTolkienMobs {
     public ModelRenderer BalrogNeck;
     public ModelRenderer BalrogLegR;
     public ModelRenderer BalrogLegL;
-    public ModelRenderer bipedRightArm;
-    public ModelRenderer bipedLeftArm;
     public ModelRenderer BalrogWingR;
     public ModelRenderer BalrogWingL;
     public ModelRenderer BalrogSkull;
@@ -364,6 +362,9 @@ public class ModelBalrog extends ModelTolkienMobs {
 
         this.BalrogNeck.rotateAngleY = netHeadYaw * 0.017453292F;
         this.BalrogNeck.rotateAngleX = headPitch * 0.017453292F;
+
+        this.bipedRightArm.rotationPointX = -7.9F;
+        this.bipedLeftArm.rotationPointX = 8.4F;
     }
 
     public void postRenderArm(float scale, EnumHandSide side)
