@@ -249,7 +249,7 @@ public class EntityWarg extends EntityWolf {
 
     @Override
     public int getMaxSpawnedInChunk() {
-        return 2;
+        return 1;
     }
 
     @SideOnly(Side.CLIENT)

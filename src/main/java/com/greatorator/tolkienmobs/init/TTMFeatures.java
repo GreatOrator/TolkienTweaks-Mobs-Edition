@@ -138,13 +138,13 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "ore", variantMap = {"0:type=mithril", "1:type=morguliron", "2:type=nether_mithril", "3:type=nether_morguliron", "4:type=ender_mithril", "5:type=ender_morguliron"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block ORE = new BlockOres();
 
-    @ModFeature(name = "planks", variantMap = {"0:variant=mallorn", "1:variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
+    @ModFeature(name = "planks", variantMap = {"0:variant=mallorn", "1:variant=mirkwood", "2:variant=culumalda", "3:variant=lebethron"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block PLANKS = new BlockPlank();
 
-    @ModFeature(name = "log", variantMap = {"0:axis=y,variant=mallorn", "1:axis=y,variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
+    @ModFeature(name = "log", variantMap = {"0:axis=y,variant=mallorn", "1:axis=y,variant=mirkwood", "2:axis=y,variant=culumalda", "3:axis=y,variant=lebethron"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block LOGS = new BlockLogs();
 
-    @ModFeature(name = "slab", variantMap = {"0:half=bottom,variant=mallorn", "1:half=bottom,variant=mirkwood"}, itemBlock = ItemBlockSlabs.class, cTab = 1)
+    @ModFeature(name = "slab", variantMap = {"0:half=bottom,variant=mallorn", "1:half=bottom,variant=mirkwood", "2:half=bottom,variant=culumalda", "3:half=bottom,variant=lebethron"}, itemBlock = ItemBlockSlabs.class, cTab = 1)
     public static final BlockSlabs HALF_SLAB = new BlockSlabs();
 
     @ModFeature(name = "double_slab", itemBlock = NoItemBlock.class)
@@ -154,10 +154,10 @@ public class TTMFeatures implements IModFeatures {
     //public static final Block STAIRS = new BlockStair(PLANKS.getDefaultState());
 
     //                                             //TODO add a way to avoid this mess in 1.13...
-    @ModFeature(name = "leaves", variantMap = {"0:check_decay=false,decayable=false,variant=mallorn", "1:check_decay=false,decayable=false,variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
+    @ModFeature(name = "leaves", variantMap = {"0:check_decay=false,decayable=false,variant=mallorn", "1:check_decay=false,decayable=false,variant=mirkwood", "2:check_decay=false,decayable=false,variant=culumalda", "3:check_decay=false,decayable=false,variant=lebethron"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block LEAVES = new BlockLeaf();
 
-    @ModFeature(name = "sapling", variantMap = {"0:stage=0,variant=mallorn", "1:stage=0,variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
+    @ModFeature(name = "sapling", variantMap = {"0:stage=0,variant=mallorn", "1:stage=0,variant=mirkwood", "2:stage=0,variant=culumalda", "3:stage=0,variant=lebethron"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block SAPLINGS = new BlockSaplings();
 
     @ModFeature(name = "flower", variantMap = {"0:variant=simbelmyne", "1:variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
@@ -178,6 +178,12 @@ public class TTMFeatures implements IModFeatures {
     public static Item HONEY_CAKE = new ItemTTMFood(15, 15, new PotionEffect(MobEffects.ABSORPTION,6000,3), new PotionEffect(MobEffects.REGENERATION,50,5));
     @ModFeature(name = "food_cram", stateOverride = "simple_items#type=food_cram", cTab = 3)
     public static Item CRAM = new ItemTTMFood(10, 10, new PotionEffect(MobEffects.ABSORPTION,3000,1), new PotionEffect(MobEffects.REGENERATION,25,5));
+    @ModFeature(name = "potion_entdraught", stateOverride = "simple_items#type=potion_entdraught", cTab = 3)
+    public static Item ENT_DRAUGHT = new ItemTTMFood(5, 5, new PotionEffect(PotionInit.ENT_STANCE,6000,2));
+    @ModFeature(name = "potion_miruvor", stateOverride = "simple_items#type=potion_miruvor", cTab = 3)
+    public static Item MIRUVOR = new ItemTTMFood(5, 5, new PotionEffect(MobEffects.SPEED,3000,3), new PotionEffect(MobEffects.REGENERATION, 600, 3), new PotionEffect(MobEffects.NAUSEA, 40, 3));
+    @ModFeature(name = "potion_grog", stateOverride = "simple_items#type=potion_grog", cTab = 3)
+    public static Item GROG = new ItemTTMFood(5, 5, new PotionEffect(MobEffects.SPEED,1500,3), new PotionEffect(MobEffects.REGENERATION, 300, 3), new PotionEffect(MobEffects.NAUSEA, 100, 3));
     @ModFeature(name = "monster_flesh", stateOverride = "simple_items#type=monster_flesh", cTab = 3)
     public static Item MONSTER_FLESH = new ItemTTMFood(5, 2, new PotionEffect(MobEffects.HUNGER,100,2));
     //endregion

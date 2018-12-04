@@ -2,6 +2,8 @@ package com.greatorator.tolkienmobs.block;
 
 import com.brandon3055.brandonscore.lib.IBCoreBlock;
 import com.greatorator.tolkienmobs.block.BlockLogs.EnumType;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenCulumaldaTree;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenLebethronTree;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
 import net.minecraft.block.BlockBush;
@@ -131,6 +133,12 @@ public class BlockSaplings extends BlockBush implements IGrowable, IBCoreBlock
                 break;
             case MIRKWOOD:
                 gen = new WorldGenMirkwoodTree(false);
+                break;
+            case CULUMALDA:
+                gen = new WorldGenCulumaldaTree(false);
+                break;
+            case LEBETHRON:
+                gen = new WorldGenLebethronTree(false);
                 break;
         }
 

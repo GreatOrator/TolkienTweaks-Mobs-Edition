@@ -11,7 +11,9 @@
         },
         "variant": {
             "mallorn":  { "textures": {"cross":  "tolkienmobs:blocks/sapling_mallorn"} },
-            "mirkwood": { "textures": {"cross":  "tolkienmobs:blocks/sapling_mirkwood"} }
+            "mirkwood": { "textures": {"cross":  "tolkienmobs:blocks/sapling_mirkwood"} },
+            "culumalda": { "textures": {"cross":  "tolkienmobs:blocks/sapling_culumalda"} },
+            "lebethron": { "textures": {"cross":  "tolkienmobs:blocks/sapling_lebethron"} }
         },
         "inventory": [{}],
         "normal": [{}]

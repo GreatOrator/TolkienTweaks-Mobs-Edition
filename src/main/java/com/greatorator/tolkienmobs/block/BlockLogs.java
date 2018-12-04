@@ -111,7 +111,9 @@ public class BlockLogs extends BlockLog implements IBCoreBlock {
 
     public enum EnumType implements IStringSerializable {
         MALLORN(0, "mallorn"),
-        MIRKWOOD(1, "mirkwood");
+        MIRKWOOD(1, "mirkwood"),
+        CULUMALDA(2, "culumalda"),
+        LEBETHRON(3, "lebethron");
 
         private static final EnumType[] META_LOOKUP = new EnumType[values().length];
         public static final Map<Integer, String> LOG_NAME_LOOKUP = new LinkedHashMap<>();

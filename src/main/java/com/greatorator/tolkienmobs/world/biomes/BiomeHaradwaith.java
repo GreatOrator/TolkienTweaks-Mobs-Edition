@@ -24,6 +24,7 @@ public class BiomeHaradwaith extends Biome {
 
         this.decorator = this.createBiomeDecorator();
         this.decorator.treesPerChunk = -999;
+        this.decorator.grassPerChunk = 12;
         this.decorator.deadBushPerChunk = 5;
         this.decorator.reedsPerChunk = 50;
         this.decorator.cactiPerChunk = 10;

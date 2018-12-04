@@ -15,7 +15,9 @@
         },
         "variant": {
             "mallorn":  { "textures": {"all":  "tolkienmobs:blocks/leaves_mallorn"} },
-            "mirkwood": { "textures": {"all":  "tolkienmobs:blocks/leaves_mirkwood"} }
+            "mirkwood": { "textures": {"all":  "tolkienmobs:blocks/leaves_mirkwood"} },
+            "culumalda": { "textures": {"all":  "tolkienmobs:blocks/leaves_culumalda"} },
+            "lebethron": { "textures": {"all":  "tolkienmobs:blocks/leaves_lebethron"} }
         },
         "inventory": [{}],
         "normal": [{}]

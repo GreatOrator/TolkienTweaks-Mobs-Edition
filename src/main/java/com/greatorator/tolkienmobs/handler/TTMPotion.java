@@ -16,7 +16,7 @@ public class TTMPotion extends Potion {
 
     @Override
     public boolean hasStatusIcon(){
-        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(TolkienMobs.MODID + "textures/gui/potion_effects.png"));
+        Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation(TolkienMobs.MODID + ":textures/gui/potion_effects.png"));
         return true;
     }
 }

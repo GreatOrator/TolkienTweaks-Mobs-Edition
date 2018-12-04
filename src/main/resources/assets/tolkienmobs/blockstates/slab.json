@@ -22,6 +22,20 @@
           "top": "tolkienmobs:blocks/planks_mirkwood",
           "side": "tolkienmobs:blocks/planks_mirkwood"
         }
+      },
+      "culumalda": {
+        "textures": {
+          "bottom": "tolkienmobs:blocks/planks_culumalda",
+          "top": "tolkienmobs:blocks/planks_culumalda",
+          "side": "tolkienmobs:blocks/planks_culumalda"
+        }
+      },
+      "lebethron": {
+        "textures": {
+          "bottom": "tolkienmobs:blocks/planks_lebethron",
+          "top": "tolkienmobs:blocks/planks_lebethron",
+          "side": "tolkienmobs:blocks/planks_lebethron"
+        }
       }
     },
     "inventory": [{}],

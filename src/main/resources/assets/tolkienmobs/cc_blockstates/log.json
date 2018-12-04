@@ -28,6 +28,28 @@
           "east": "tolkienmobs:blocks/log_mirkwood",
           "west": "tolkienmobs:blocks/log_mirkwood"
         }
+      },
+      "culumalda": {
+        "textures": {
+          "particle": "tolkienmobs:blocks/log_culumalda",
+          "down": "tolkienmobs:blocks/log_culumalda_top",
+          "up": "tolkienmobs:blocks/log_culumalda_top",
+          "north": "tolkienmobs:blocks/log_culumalda",
+          "south": "tolkienmobs:blocks/log_culumalda",
+          "east": "tolkienmobs:blocks/log_culumalda",
+          "west": "tolkienmobs:blocks/log_culumalda"
+        }
+      },
+      "lebethron": {
+        "textures": {
+          "particle": "tolkienmobs:blocks/log_lebethron",
+          "down": "tolkienmobs:blocks/log_lebethron_top",
+          "up": "tolkienmobs:blocks/log_lebethron_top",
+          "north": "tolkienmobs:blocks/log_lebethron",
+          "south": "tolkienmobs:blocks/log_lebethron",
+          "east": "tolkienmobs:blocks/log_lebethron",
+          "west": "tolkienmobs:blocks/log_lebethron"
+        }
       }
     },
     "axis": {
@@ -50,6 +72,18 @@
               "textures": {
                 "up": "tolkienmobs:blocks/log_mirkwood",
                 "down": "tolkienmobs:blocks/log_mirkwood"
+              }
+            },
+            "culumalda": {
+              "textures": {
+                "up": "tolkienmobs:blocks/log_culumalda",
+                "down": "tolkienmobs:blocks/log_culumalda"
+              }
+            },
+            "lebethron": {
+              "textures": {
+                "up": "tolkienmobs:blocks/log_lebethron",
+                "down": "tolkienmobs:blocks/log_lebethron"
               }
             }
           }

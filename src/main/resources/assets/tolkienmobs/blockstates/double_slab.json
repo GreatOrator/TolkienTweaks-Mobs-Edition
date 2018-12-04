@@ -7,7 +7,9 @@
     "variants": {
         "variant": {
             "mirkwood":  { "textures": {"all":  "tolkienmobs:blocks/planks_mirkwood"} },
-            "mallorn": { "textures": {"all":  "tolkienmobs:blocks/planks_mallorn"} }
+            "mallorn": { "textures": {"all":  "tolkienmobs:blocks/planks_mallorn"} },
+            "culumalda": { "textures": {"all":  "tolkienmobs:blocks/planks_culumalda"} },
+            "lebethron": { "textures": {"all":  "tolkienmobs:blocks/planks_lebethron"} }
         },
         "inventory": [{}],
         "normal": [{}]
