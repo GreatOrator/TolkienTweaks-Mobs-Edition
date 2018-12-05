@@ -27,8 +27,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import javax.annotation.Nullable;
 
-import static com.greatorator.tolkienmobs.init.SoundInit.soundBoulderShoot;
-
 /**
  * Created by brandon3055 on 31/10/18.
  */
@@ -186,6 +184,11 @@ public class TTMFeatures implements IModFeatures {
     public static Item GROG = new ItemTTMFood(5, 5, new PotionEffect(MobEffects.SPEED,1500,3), new PotionEffect(MobEffects.REGENERATION, 300, 3), new PotionEffect(MobEffects.NAUSEA, 100, 3));
     @ModFeature(name = "monster_flesh", stateOverride = "simple_items#type=monster_flesh", cTab = 3)
     public static Item MONSTER_FLESH = new ItemTTMFood(5, 2, new PotionEffect(MobEffects.HUNGER,100,2));
+    //endregion
+
+    //region Custom Blocks
+    @ModFeature(name = "sign", variantMap = {"0:variant=empty", "1:variant=bank"}, itemBlock = ItemBlockBCore.class, cTab = 1)
+    public static final BlockSigns SIGNS = new BlockSigns();
     //endregion
 
     //region Ammo

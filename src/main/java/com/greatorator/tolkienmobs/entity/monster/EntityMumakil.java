@@ -42,6 +42,7 @@ public class EntityMumakil extends EntityHerds {
         return this.world.getBlockState(pos.down()).getBlock() == this.spawnableBlock ? 10.0F : this.world.getLightBrightness(pos) - 0.5F;
     }
 
+    @Override
     public boolean getCanSpawnHere()
     {
         int i = MathHelper.floor(this.posX);
