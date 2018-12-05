@@ -122,5 +122,64 @@
       "tolkienmobs:mob/goblin/goblin_say1",
       "tolkienmobs:mob/goblin/goblin_say2"
     ]
+  },
+  "mob.balrog.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/balrog/balrog_death"
+    ]
+  },
+  "mob.balrog.hurt":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/balrog/balrog_hurt"
+    ]
+  },
+  "mob.balrog.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/balrog/balrog_say0",
+      "tolkienmobs:mob/balrog/balrog_say1",
+      "tolkienmobs:mob/balrog/balrog_say2"
+    ]
+  },
+  "mob.balrog.step":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/balrog/balrog_step"
+    ]
+  },
+  "mob.warg.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/warg/warg_death"
+    ]
+  },
+  "mob.warg.hurt":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/warg/warg_hurt"
+    ]
+  },
+  "mob.warg.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/warg/warg_say0",
+      "tolkienmobs:mob/warg/warg_say1"
+    ]
   }
 }

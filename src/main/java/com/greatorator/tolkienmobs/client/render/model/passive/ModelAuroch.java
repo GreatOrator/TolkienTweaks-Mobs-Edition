@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.model.passive;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
+import com.greatorator.tolkienmobs.entity.monster.EntityMumakil;
 import com.greatorator.tolkienmobs.entity.passive.EntityAuroch;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -36,6 +37,11 @@ public class ModelAuroch extends ModelTolkienMobs {
     public ModelRenderer AurochLegBR_1;
     public ModelRenderer AurochLegFL_1;
     public ModelRenderer AurochLegBL_1;
+
+    /** need some variables to help revert positions after a rearing animation */
+    protected float AurochHeadRotPointXDefault;
+    protected float AurochHeadRotPointYDefault;
+    protected float AurochHeadRotPointZDefault;
 
     public ModelAuroch() {
         this.textureWidth = 128;
@@ -83,7 +89,10 @@ public class ModelAuroch extends ModelTolkienMobs {
         this.AurochLegFL_1.setRotationPoint(1.2F, 1.6F, 0.0F);
         this.AurochLegFL_1.addBox(-1.5F, 0.0F, -1.5F, 3, 8, 3, 0.0F);
         this.AurochHead = new ModelRenderer(this, 0, 0);
-        this.AurochHead.setRotationPoint(0.0F, 1.5F, -9.0F);
+        AurochHeadRotPointXDefault = 0F;
+        AurochHeadRotPointYDefault = 1.5F;
+        AurochHeadRotPointZDefault = -9.0F;
+        this.AurochHead.setRotationPoint(AurochHeadRotPointXDefault, AurochHeadRotPointYDefault, AurochHeadRotPointZDefault);
         this.AurochHead.addBox(-3.5F, -3.5F, -4.0F, 7, 7, 4, 0.0F);
         this.AurochLegFR = new ModelRenderer(this, 0, 35);
         this.AurochLegFR.mirror = true;
@@ -168,15 +177,37 @@ public class ModelAuroch extends ModelTolkienMobs {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        float scaleFactor = 1.8F;
-        GL11.glPushMatrix();
-        GL11.glTranslatef(0F, 1.5F-1.5F*scaleFactor, 0F);
-        GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
+    public void render(Entity parEntity, float parTime, float parSwingSuppress, float par4, float parHeadAngleY, float parHeadAngleX, float par7)
+    {
+        renderAuroch((EntityAuroch) parEntity, parTime, parSwingSuppress, par4, parHeadAngleY, parHeadAngleX, par7);
+    }
 
-        this.AurochBody.render(f5);
+    public void renderAuroch(EntityAuroch parEntity, float parTime, float parSwingSuppress, float par4, float parHeadAngleY, float parHeadAngleX, float par7)
+    {
+        setRotationAngles(parTime, parSwingSuppress, par4, parHeadAngleY, parHeadAngleX, par7, parEntity);
 
-        GL11.glPopMatrix();
+        if (this.isChild)
+        {
+            float scaleFactor = 0.75F;
+            GL11.glPushMatrix();
+            GL11.glTranslatef(0F, 1.5F-1.5F*scaleFactor, 0F);
+            GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
+
+            AurochBody.render(par7);
+
+            GL11.glPopMatrix();
+        }
+        else
+        {
+            float scaleFactor = 1.8F;
+            GL11.glPushMatrix();
+            GL11.glTranslatef(0F, 1.5F-1.5F*scaleFactor, 0F);
+            GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
+
+            AurochBody.render(par7);
+
+            GL11.glPopMatrix();
+        }
     }
 
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
@@ -188,6 +219,7 @@ public class ModelAuroch extends ModelTolkienMobs {
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
+
         this.AurochLegFR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.AurochLegBL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.AurochLegFL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;

@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.gen;
 
+import com.greatorator.tolkienmobs.world.biomes.BiomeFirien;
 import com.greatorator.tolkienmobs.world.biomes.BiomeLorinand;
 import com.greatorator.tolkienmobs.world.biomes.BiomeMirkwood;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenCulumaldaTree;
@@ -38,8 +39,8 @@ public class WorldGenCustomTrees implements IWorldGenerator
 
                 runGenerator(MALLORN, world, random, chunkX, chunkZ, 3, -1, 0, BiomeLorinand.class);
                 runGenerator(MIRKWOOD, world, random, chunkX, chunkZ, 3, -1, 0, BiomeMirkwood.class);
-                runGenerator(CULUMALDA, world, random, chunkX, chunkZ, 3, -1, 0);
-                runGenerator(LEBETHRON, world, random, chunkX, chunkZ, 3, -1, 0);
+                runGenerator(CULUMALDA, world, random, chunkX, chunkZ, 3, -1, 0, BiomeFirien.class);
+                runGenerator(LEBETHRON, world, random, chunkX, chunkZ, 3, -1, 0, BiomeFirien.class);
 
                 break;
 

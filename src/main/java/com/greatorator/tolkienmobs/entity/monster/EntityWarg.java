@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
+import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -96,17 +97,17 @@ public class EntityWarg extends EntityWolf {
 
     protected SoundEvent getAmbientSound()
     {
-        return SoundEvents.ENTITY_WOLF_GROWL;
+        return SoundInit.soundIdleWarg;
     }
 
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return SoundEvents.ENTITY_WOLF_HURT;
+        return SoundInit.soundHurtWarg;
     }
 
     protected SoundEvent getDeathSound()
     {
-        return SoundEvents.ENTITY_WOLF_DEATH;
+        return SoundInit.soundDeathWarg;
     }
 
     protected float getSoundVolume()

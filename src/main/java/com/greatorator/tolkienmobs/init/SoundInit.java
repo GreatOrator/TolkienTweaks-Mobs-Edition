@@ -52,6 +52,24 @@ public class SoundInit
 	@ObjectHolder("mob.goblin.idle")
 	public static final SoundEvent soundIdleGoblin = null;
 
+	/** Balrog */
+	@ObjectHolder("mob.balrog.death")
+	public static final SoundEvent soundDeathBalrog = null;
+    @ObjectHolder("mob.balrog.idle")
+    public static final SoundEvent soundIdleBalrog = null;
+    @ObjectHolder("mob.balrog.hurt")
+    public static final SoundEvent soundHurtBalrog = null;
+    @ObjectHolder("mob.balrog.step")
+    public static final SoundEvent soundStepBalrog = null;
+
+    /** Warg */
+    @ObjectHolder("mob.warg.death")
+    public static final SoundEvent soundDeathWarg = null;
+    @ObjectHolder("mob.warg.idle")
+    public static final SoundEvent soundIdleWarg = null;
+    @ObjectHolder("mob.warg.hurt")
+    public static final SoundEvent soundHurtWarg = null;
+
 	/** Miscellaneous */
 	@ObjectHolder("entity.boulder.shoot")
 	public static final SoundEvent soundBoulderShoot = null;
@@ -97,6 +115,17 @@ public class SoundInit
 
 					/** Goblin */
 					"mob.goblin.idle",
+
+                    /** Balrog */
+                    "mob.balrog.death",
+                    "mob.balrog.idle",
+                    "mob.balrog.hurt",
+                    "mob.balrog.step",
+
+                    /** Warg */
+                    "mob.warg.death",
+                    "mob.warg.idle",
+                    "mob.warg.hurt",
 
 					/** Miscellaneous */
 					"entity.boulder.shoot"
