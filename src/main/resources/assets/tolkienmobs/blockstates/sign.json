@@ -1,4 +1,9 @@
 {
+  "forge_marker": 1,
+  "defaults": {
+    "model": "minecraft:cube_all",
+    "transform": "forge:default-block"
+  },
   "variants": {
     "type": {
       "empty":  { "textures": {"all":  "tolkienmobs:models/signs/sign_empty"} },

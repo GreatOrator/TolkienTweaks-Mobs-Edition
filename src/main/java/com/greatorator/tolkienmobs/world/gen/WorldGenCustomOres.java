@@ -44,8 +44,8 @@ public class WorldGenCustomOres implements IWorldGenerator
 
             case 0:
 
-                runGenerator(ore_overworld_morguliron, world, random, chunkX, chunkZ, 50, 0, 100);
-                runGenerator(ore_overworld_mithril, world, random, chunkX, chunkZ, 50, 0, 100);
+                runGenerator(ore_overworld_morguliron, world, random, chunkX, chunkZ, 50, 0, 60);
+                runGenerator(ore_overworld_mithril, world, random, chunkX, chunkZ, 50, 70, 155);
 
                 break;
 
