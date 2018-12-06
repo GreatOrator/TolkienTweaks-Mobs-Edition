@@ -14,6 +14,7 @@ import com.greatorator.tolkienmobs.block.itemblock.ItemBlockSlabs;
 import com.greatorator.tolkienmobs.handler.ItemTTMAmmo;
 import com.greatorator.tolkienmobs.handler.ItemTTMFood;
 import com.greatorator.tolkienmobs.item.tools.ToolAxe;
+import com.greatorator.tolkienmobs.tile.TileSign;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -187,7 +188,7 @@ public class TTMFeatures implements IModFeatures {
     //endregion
 
     //region Custom Blocks
-    @ModFeature(name = "sign", variantMap = {"0:variant=empty", "1:variant=bank"}, itemBlock = ItemBlockBCore.class, cTab = 1)
+    @ModFeature(name = "sign", itemBlock = ItemBlockBCore.class, tileEntity = TileSign.class, cTab = 1)
     public static final BlockSigns SIGNS = new BlockSigns();
     //endregion
 

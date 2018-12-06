@@ -1,0 +1,98 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+    "elements": [
+        {
+            "name": "SignBase",
+            "from": [ 1.0000000149011612, 1.0, 8.0 ],
+            "to": [ 15.0, 7.0, 9.0 ],
+            "faces": {
+                "north": { "texture": "#tex", "uv": [ 1.0, 1.0, 15.999999985098839, 9.0 ] },
+                "south": { "texture": "#tex", "uv": [ 1.0, 1.0, 15.999999985098839, 9.0 ] }
+            }
+        },
+        {
+            "name": "SignFrameBottom",
+            "from": [ 0.0, 0.0, 7.499999992549419 ],
+            "to": [ 16.0, 1.0, 9.50000000745058 ],
+            "faces": {
+                "north": { "texture": "#tex", "uv": [ 0.0, 12.0, 16.0, 13.0 ] },
+                "east": { "texture": "#tex", "uv": [ 14.0, 9.0, 16.00000001490116, 10.0 ] },
+                "south": { "texture": "#tex", "uv": [ 0.0, 12.0, 16.0, 13.0 ] },
+                "west": { "texture": "#tex", "uv": [ 14.0, 9.0, 16.00000001490116, 10.0 ] },
+                "up": { "texture": "#tex", "uv": [ 0.0, 9.0, 16.0, 11.000000014901161 ] },
+                "down": { "texture": "#tex", "uv": [ 0.0, 9.0, 16.0, 11.000000014901161 ] }
+            }
+        },
+        {
+            "name": "SignFrameRight",
+            "from": [ 0.0, 1.0000000149011612, 7.499999992549419 ],
+            "to": [ 1.0, 7.000000014901161, 9.49999999254942 ],
+            "faces": {
+                "north": { "texture": "#tex", "uv": [ 6.0, 9.0, 13.0, 11.0 ], "rotation": 90 },
+                "east": { "texture": "#tex", "uv": [ 9.0, 9.0, 16.0, 11.0 ], "rotation": 90 },
+                "south": { "texture": "#tex", "uv": [ 8.0, 9.0, 16.0, 11.0 ], "rotation": 90 },
+                "west": { "texture": "#tex", "uv": [ 8.0, 9.0, 16.0, 11.0 ], "rotation": 90 }
+            }
+        },
+        {
+            "name": "SignFrameTop",
+            "from": [ 0.0, 6.999999985098839, 7.499999992549419 ],
+            "to": [ 16.0, 7.999999985098839, 9.49999999254942 ],
+            "faces": {
+                "north": { "texture": "#tex", "uv": [ 0.0, 12.0, 16.0, 13.0 ] },
+                "east": { "texture": "#tex", "uv": [ 14.0, 9.0, 16.0, 10.0 ] },
+                "south": { "texture": "#tex", "uv": [ 0.0, 12.0, 16.0, 13.0 ] },
+                "west": { "texture": "#tex", "uv": [ 14.0, 9.0, 15.7, 10.0 ] },
+                "up": { "texture": "#tex", "uv": [ 0.0, 9.0, 16.0, 11.0 ] },
+                "down": { "texture": "#tex", "uv": [ 0.0, 9.0, 16.0, 11.0 ] }
+            }
+        },
+        {
+            "name": "SignFrameLeft",
+            "from": [ 15.0, 1.0, 7.499999992549419 ],
+            "to": [ 16.0, 6.999999970197678, 9.49999999254942 ],
+            "faces": {
+                "north": { "texture": "#tex", "uv": [ 7.0, 11.0, 16.0, 8.999999970197678 ], "rotation": 90 },
+                "east": { "texture": "#tex", "uv": [ 7.0, 9.0, 16.0, 10.999999970197678 ], "rotation": 90 },
+                "south": { "texture": "#tex", "uv": [ 7.0, 9.0, 16.0, 10.999999970197678 ], "rotation": 90 },
+                "west": { "texture": "#tex", "uv": [ 7.0, 9.0, 16.0, 10.999999970197678 ], "rotation": 90 }
+            }
+        },
+        {
+            "name": "ChainRight1",
+            "from": [ 1.0, 8.0, 8.50000000745058 ],
+            "to": [ 2.0, 16.0, 8.50000000745058 ],
+            "faces": {
+                "north": { "texture": "#tex", "uv": [ 0.0, 15.0, 7.0, 16.0 ], "rotation": 90 },
+                "south": { "texture": "#tex", "uv": [ 0.0, 15.0, 7.0, 16.0 ], "rotation": 90 }
+            }
+        },
+        {
+            "name": "ChainLeft1",
+            "from": [ 14.0, 8.0, 8.50000000745058 ],
+            "to": [ 15.0, 16.0, 8.50000000745058 ],
+            "faces": {
+                "north": { "texture": "#tex", "uv": [ 0.0, 16.0, 7.0, 15.0 ], "rotation": 90 },
+                "south": { "texture": "#tex", "uv": [ 0.0, 16.0, 7.0, 15.0 ], "rotation": 90 }
+            }
+        },
+        {
+            "name": "ChainRight2",
+            "from": [ 1.5000000074505806, 8.0, 8.0 ],
+            "to": [ 1.5000000074505806, 16.0, 9.0 ],
+            "faces": {
+                "east": { "texture": "#tex", "uv": [ 0.0, 16.0, 7.0, 15.0 ], "rotation": 90 },
+                "west": { "texture": "#tex", "uv": [ 0.0, 16.0, 7.0, 15.0 ], "rotation": 90 }
+            }
+        },
+        {
+            "name": "ChainLeft2",
+            "from": [ 14.50000000745058, 8.0, 8.0 ],
+            "to": [ 14.50000000745058, 16.0, 9.0 ],
+            "faces": {
+                "east": { "texture": "#tex", "uv": [ 0.0, 16.0, 7.0, 15.0 ], "rotation": 90 },
+                "west": { "texture": "#tex", "uv": [ 0.0, 16.0, 7.0, 15.0 ], "rotation": 90 }
+            }
+        }
+    ]
+}

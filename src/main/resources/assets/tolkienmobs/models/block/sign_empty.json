@@ -1,6 +1,0 @@
-{
-  "parent": "block/block",
-  "textures": {
-    "all": "tolkienmobs:models/signs/sign_empty"
-  }
-}
