@@ -23,6 +23,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
@@ -207,6 +208,17 @@ public class BlockSigns extends BlockBCore implements IRenderOverride, ITileEnti
     @Nullable
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
         return NULL_AABB;
+    }
+
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+        TileEntity te = world.getTileEntity(pos);
+        if (te instanceof TileSign) {
+            return new ItemStack(this, 1, ((TileSign) te).TYPE.value.getMeta());
+        }
+        else {
+            return super.getPickBlock(state, target, world, pos, player);
+        }
     }
 
 }

@@ -3,7 +3,10 @@
   "variant_sets": ["facing,type,wall", "type"],
   "defaults": {
     "model": "tolkienmobs:wall_sign_model",
-    "transform": "ccl:default-block"
+    "transform": "ccl:default-block",
+    "textures": {
+      "particle": "tolkienmobs:blocks/signs/sign_empty"
+    }
   },
   "variants": {
     "wall": {
