@@ -65,7 +65,7 @@ public class BlockFlowers extends BlockBush implements IBCoreBlock {
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(VARIANT, EnumType.byMetadata(meta & 1));
+        return this.getDefaultState().withProperty(VARIANT, EnumType.byMetadata(meta));
     }
 
     @Override
@@ -100,7 +100,10 @@ public class BlockFlowers extends BlockBush implements IBCoreBlock {
 
     public enum EnumType implements IStringSerializable {
         SIMBELMYNE(0,"simbelmyne"),
-        MIRKWOOD(1, "mirkwood");
+        MIRKWOOD(1, "mirkwood"),
+        ALFIRIN(2, "alfirin"),
+        ATHELAS(3, "athelas"),
+        NIPHREDIL(4, "niphredil");
 
         private static final EnumType[] META_LOOKUP = new EnumType[values().length];
         public static final Map<Integer, String> FLOWER_NAME_LOOKUP = new LinkedHashMap<>();

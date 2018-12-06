@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "tolkienmobs:blocks/flower_niphredil"
+  }
+}

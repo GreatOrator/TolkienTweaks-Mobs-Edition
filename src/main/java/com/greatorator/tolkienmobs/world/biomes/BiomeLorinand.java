@@ -1,6 +1,8 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
+import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.monster.EntityHuron;
+import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
 import net.minecraft.entity.passive.EntityRabbit;
@@ -44,6 +46,11 @@ public class BiomeLorinand extends Biome {
         this.spawnableWaterCreatureList.clear();
 
         this.spawnableCreatureList.add(new SpawnListEntry(EntityRabbit.class, 4, 2, 3));
+    }
+
+    @Override
+    public void addDefaultFlowers() {
+        addFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.NIPHREDIL), 10);
     }
 
     @Override

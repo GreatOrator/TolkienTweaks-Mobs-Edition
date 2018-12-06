@@ -15,7 +15,22 @@
 		"textures": {
 		  "cross":  "tolkienmobs:blocks/flower_simbelmyne"
 		}
-	  }
+	  },
+      "alfirin": {
+        "textures": {
+          "cross":  "tolkienmobs:blocks/flower_alfirin"
+        }
+      },
+      "athelas": {
+        "textures": {
+          "cross":  "tolkienmobs:blocks/flower_athelas"
+        }
+      },
+      "niphredil": {
+        "textures": {
+          "cross":  "tolkienmobs:blocks/flower_niphredil"
+        }
+      }
     },
     "inventory": [{}],
     "normal": [{}]
