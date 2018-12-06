@@ -15,7 +15,24 @@
     },
     "type": {
       "empty": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_empty"}},
-      "bank": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_bank"}}
+      "arcane1": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_arcane1"}},
+      "arcane2": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_arcane2"}},
+      "arcane3": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_arcane3"}},
+      "armory": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_armory"}},
+      "bank": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_bank"}},
+      "barracks1": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_barracks1"}},
+      "barracks2": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_barracks2"}},
+      "blacksmith": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_blacksmith"}},
+      "books": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_books"}},
+      "butcher1": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_butcher1"}},
+      "farming": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_farming"}},
+      "garden": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_garden"}},
+      "grocer": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_grocer"}},
+      "inn": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_inn"}},
+      "magical_plants": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_magical_plants"}},
+      "potions": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_potions"}},
+      "pub": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_pub"}},
+      "stable": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_stable"}}
     },
     "facing": {
       "north": {},

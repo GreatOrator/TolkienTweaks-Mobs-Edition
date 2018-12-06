@@ -7,8 +7,10 @@ import com.greatorator.tolkienmobs.client.TTMobsTab;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -42,6 +44,7 @@ public class TolkienMobs {
     public static CreativeTabs tabWorldMats = new TTMobsTab("mats", () -> TTMFeatures.INGOT_MITHRIL);
     public static CreativeTabs tabMobsSpawn = new TTMobsTab.SpawnTab("spawn", () -> Items.SPAWN_EGG);
     public static CreativeTabs tabFoodItems = new TTMobsTab("food", () -> TTMFeatures.LEMBAS);
+    public static CreativeTabs tabSignItems = new TTMobsTab("signs", () -> Items.SIGN);
 
     public TolkienMobs() {
         Logger ttLog = LogManager.getLogger("tolkientweaks");

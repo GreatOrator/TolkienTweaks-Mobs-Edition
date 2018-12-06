@@ -87,8 +87,27 @@ tile.tolkienmobs:log_mirkwood.name=Mirkwood Log
 tile.tolkienmobs:sapling_mirkwood.name=Mirkwood Sapling
 tile.tolkienmobs:flower_mirkwood.name=Seregon
 tile.tolkienmobs:flower_simbelmyne.name=Simbelmyne
+
+//Signs
 tile.tolkienmobs:sign_empty.name=Blank Sign
-tile.tolkienmobs:sign_bank.name=Banking Services
+tile.tolkienmobs:sign_arcane1.name=Acane & Sundries
+tile.tolkienmobs:sign_arcane2.name=Acane & Sundries
+tile.tolkienmobs:sign_arcane3.name=Acane & Sundries
+tile.tolkienmobs:sign_armory.name=Ye Old Armory
+tile.tolkienmobs:sign_bank.name=Money Changer
+tile.tolkienmobs:sign_barracks1.name=Militia
+tile.tolkienmobs:sign_barracks2.name=Militia
+tile.tolkienmobs:sign_blacksmith.name=Ye Old Blacksmith
+tile.tolkienmobs:sign_books.name=Purveyor of Books
+tile.tolkienmobs:sign_butcher1.name=Butcher
+tile.tolkienmobs:sign_farming.name=Faming Supplies
+tile.tolkienmobs:sign_garden.name=Gardener
+tile.tolkienmobs:sign_grocer.name=Food & Supplies
+tile.tolkienmobs:sign_inn.name=Ye Old Inn
+tile.tolkienmobs:sign_magical_plants.name=Herbologist
+tile.tolkienmobs:sign_potions.name=Curator of Potions
+tile.tolkienmobs:sign_pub.name=The Mortician & Cook
+tile.tolkienmobs:sign_stable.name=Ye Old Livery
 
 //Entities
 entity.huron.name=Huron
@@ -116,6 +135,7 @@ itemGroup.tolkienmobs:tools=TolkienTweaks Tools
 itemGroup.tolkienmobs:mats=TolkienTweaks Materials
 itemGroup.tolkienmobs:spawn=TolkienTweaks Mobs
 itemGroup.tolkienmobs:food=TolkienTweaks Food
+itemGroup.tolkienmobs:signs=TolkienTweaks Signs
 
 //Miscellaneous
 generator.Arda=Middle-earth

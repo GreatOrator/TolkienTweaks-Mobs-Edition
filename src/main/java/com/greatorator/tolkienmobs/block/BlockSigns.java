@@ -145,7 +145,24 @@ public class BlockSigns extends BlockBCore implements IRenderOverride, ITileEnti
 
     public enum EnumType implements IStringSerializable {
         EMPTY(0, "empty"),
-        BANK(1, "bank");
+        ARCANE1(1, "arcane1"),
+        ARCANE2(2, "arcane2"),
+        ARCANE3(3, "arcane3"),
+        ARMORY(4, "armory"),
+        BANK(5, "bank"),
+        BARRACKS1(6, "barracks1"),
+        BARRACKS2(7, "barracks2"),
+        BLACKSMITH(8, "blacksmith"),
+        BOOKS(9, "books"),
+        BUTCHER1(10, "butcher1"),
+        FARMING(11, "farming"),
+        GARDEN(12, "garden"),
+        GROCER(13, "grocer"),
+        INN(14, "inn"),
+        MAGICAL(15, "magical_plants"),
+        POTIONS(16, "potions"),
+        PUB(17, "pub"),
+        STABLE(18, "stable");
 
         private static final EnumType[] META_LOOKUP = new EnumType[values().length];
         public static final Map<Integer, String> SIGN_TYPE_LOOKUP = new LinkedHashMap<>();

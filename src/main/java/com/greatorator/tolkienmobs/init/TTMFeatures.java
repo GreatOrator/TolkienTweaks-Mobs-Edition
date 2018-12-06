@@ -35,7 +35,7 @@ import javax.annotation.Nullable;
 @ModFeatures(modid = TolkienMobs.MODID) //This is what allows Brandon's Core to find this class and load all of its features
 public class TTMFeatures implements IModFeatures {
 
-    private CreativeTabs[] tabs = new CreativeTabs[]{TolkienMobs.tabToolsArmor, TolkienMobs.tabWorldMats, TolkienMobs.tabMobsSpawn, TolkienMobs.tabFoodItems};
+    private CreativeTabs[] tabs = new CreativeTabs[]{TolkienMobs.tabToolsArmor, TolkienMobs.tabWorldMats, TolkienMobs.tabMobsSpawn, TolkienMobs.tabFoodItems, TolkienMobs.tabSignItems};
 
     @Nullable
     @Override
@@ -188,7 +188,7 @@ public class TTMFeatures implements IModFeatures {
     //endregion
 
     //region Custom Blocks
-    @ModFeature(name = "sign", itemBlock = ItemBlockBCore.class, tileEntity = TileSign.class, cTab = 1)
+    @ModFeature(name = "sign", itemBlock = ItemBlockBCore.class, tileEntity = TileSign.class, cTab = 4)
     public static final BlockSigns SIGNS = new BlockSigns();
     //endregion
 
