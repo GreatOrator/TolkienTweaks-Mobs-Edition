@@ -133,6 +133,7 @@ entity.human.name=Human
 entity.elves.name=Elf
 entity.auroch.name=Kine of Araw
 entity.tree_ent.name=Tree Ent
+entity.gollum.name=Smeagol
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer
 

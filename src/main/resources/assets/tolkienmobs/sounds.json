@@ -181,5 +181,39 @@
       "tolkienmobs:mob/warg/warg_say0",
       "tolkienmobs:mob/warg/warg_say1"
     ]
+  },
+  "mob.gollum.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/gollum/gollum_death"
+    ]
+  },
+  "mob.gollum.hurt":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/gollum/gollum_hurt"
+    ]
+  },
+  "mob.gollum.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/gollum/gollum_say0",
+      "tolkienmobs:mob/gollum/gollum_say1",
+      "tolkienmobs:mob/gollum/gollum_say2"
+    ]
+  },
+  "mob.gollum.step":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/gollum/gollum_step"
+    ]
   }
 }

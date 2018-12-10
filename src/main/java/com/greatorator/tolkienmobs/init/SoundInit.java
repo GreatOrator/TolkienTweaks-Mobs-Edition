@@ -62,6 +62,16 @@ public class SoundInit
     @ObjectHolder("mob.balrog.step")
     public static final SoundEvent soundStepBalrog = null;
 
+	/** Gollum */
+	@ObjectHolder("mob.gollum.death")
+	public static final SoundEvent soundDeathGollum = null;
+	@ObjectHolder("mob.gollum.idle")
+	public static final SoundEvent soundIdleGollum = null;
+	@ObjectHolder("mob.gollum.hurt")
+	public static final SoundEvent soundHurtGollum = null;
+	@ObjectHolder("mob.gollum.step")
+	public static final SoundEvent soundStepGollum = null;
+
     /** Warg */
     @ObjectHolder("mob.warg.death")
     public static final SoundEvent soundDeathWarg = null;
@@ -121,6 +131,12 @@ public class SoundInit
                     "mob.balrog.idle",
                     "mob.balrog.hurt",
                     "mob.balrog.step",
+
+					/** Gollum */
+					"mob.gollum.death",
+					"mob.gollum.idle",
+					"mob.gollum.hurt",
+					"mob.gollum.step",
 
                     /** Warg */
                     "mob.warg.death",
