@@ -12,10 +12,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.registries.IForgeRegistry;
 
 @ObjectHolder(TolkienMobs.MODID)
-public class SoundInit 
+public class SoundInit
 {
     // instantiate SoundEvents
-	
+
 	/** Mumakil */
 	@ObjectHolder("mob.mumakil.say")
     public static final SoundEvent soundAmbientMumakil = null;
@@ -39,8 +39,6 @@ public class SoundInit
 	public static final SoundEvent soundIdleTroll = null;
 	@ObjectHolder("mob.troll.death")
 	public static final SoundEvent soundDeathTroll = null;
-	@ObjectHolder("mob.troll.angry")
-	public static final SoundEvent soundAngryTroll = null;
 	@ObjectHolder("mob.troll.step")
 	public static final SoundEvent soundStepTroll = null;
 
@@ -69,8 +67,6 @@ public class SoundInit
 	public static final SoundEvent soundIdleGollum = null;
 	@ObjectHolder("mob.gollum.hurt")
 	public static final SoundEvent soundHurtGollum = null;
-	@ObjectHolder("mob.gollum.step")
-	public static final SoundEvent soundStepGollum = null;
 
     /** Warg */
     @ObjectHolder("mob.warg.death")
@@ -87,12 +83,12 @@ public class SoundInit
 	/**
 	 * Initialize this mod's {@link Block}s with any post-registration data.
 	 */
-	private static void initialize() 
+	private static void initialize()
 	{
 	}
 
 	@Mod.EventBusSubscriber(modid = TolkienMobs.MODID)
-	public static class RegistrationHandler 
+	public static class RegistrationHandler
 	{
 		/**
 		 * Register this mod's {@link SoundEvent}s.
@@ -100,9 +96,9 @@ public class SoundInit
 		 * @param event The event
 		 */
 		@SubscribeEvent
-		public static void onEvent(final RegistryEvent.Register<SoundEvent> event) 
+		public static void onEvent(final RegistryEvent.Register<SoundEvent> event)
 		{
-			final String[] arraySoundEvents = {				    
+			final String[] arraySoundEvents = {
 				    /** Mumakil */
 					"mob.mumakil.say",
 					"mob.mumakil.hurt",
@@ -136,7 +132,6 @@ public class SoundInit
 					"mob.gollum.death",
 					"mob.gollum.idle",
 					"mob.gollum.hurt",
-					"mob.gollum.step",
 
                     /** Warg */
                     "mob.warg.death",
@@ -152,7 +147,7 @@ public class SoundInit
 
 			LogHelperTTM.info("Composing the sounds of the Aiur...");
 
-	        for (final String soundName : arraySoundEvents) 
+	        for (final String soundName : arraySoundEvents)
 	        {
 				registry.register(new SoundEvent(new ResourceLocation(TolkienMobs.MODID, soundName)).setRegistryName(soundName));
 			}

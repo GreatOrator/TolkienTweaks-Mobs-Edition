@@ -4,11 +4,13 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -85,7 +87,17 @@ public class EntityGollum extends EntityMob {
     @Override
     protected void playStepSound(BlockPos pos, Block blockIn)
     {
-        this.playSound(SoundInit.soundStepGollum, 0.25F, 1.0F);
+        SoundType soundtype = blockIn.getSoundType(world.getBlockState(pos), world, pos, this);
+
+        if (this.world.getBlockState(pos.up()).getBlock() == Blocks.SNOW_LAYER)
+        {
+            soundtype = Blocks.SNOW_LAYER.getSoundType();
+            this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
+        }
+        else if (!blockIn.getDefaultState().getMaterial().isLiquid())
+        {
+            this.playSound(soundtype.getStepSound(), soundtype.getVolume() * 0.15F, soundtype.getPitch());
+        }
     }
 
     @Override

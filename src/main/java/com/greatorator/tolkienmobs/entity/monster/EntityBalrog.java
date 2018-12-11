@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import com.greatorator.tolkienmobs.init.SoundInit;
@@ -10,9 +9,12 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -20,24 +22,26 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class EntityBalrog extends EntityMob implements IRangedAttackMob {
+public class EntityBalrog extends EntityMob implements IMob {
     public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/balrog");
 
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityBalrog.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityBalrog.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Byte> ON_FIRE = EntityDataManager.<Byte>createKey(EntityBalrog.class, DataSerializers.BYTE);
 
     private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
 
+    /** The explosion radius of spawned fireballs. */
+    private int explosionStrength = 1;
     private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false)
     {
         public void resetTask()
@@ -62,7 +66,7 @@ public class EntityBalrog extends EntityMob implements IRangedAttackMob {
 
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIAttackRanged(this, 1.25D, 20, 10.0F));
+        this.tasks.addTask(1, new EntityBalrog.AIFireballAttack(this));
         this.tasks.addTask(2, new EntityAITTMAttack(this, 1.0D, false));
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
@@ -78,7 +82,9 @@ public class EntityBalrog extends EntityMob implements IRangedAttackMob {
     @Override
     protected void entityInit() {
         super.entityInit();
+        this.dataManager.register(ATTACKING, Boolean.valueOf(false));
         this.dataManager.register(SWINGING_ARMS, Boolean.valueOf(true));
+        this.dataManager.register(ON_FIRE, Byte.valueOf((byte)0));
     }
 
     @Override
@@ -90,6 +96,22 @@ public class EntityBalrog extends EntityMob implements IRangedAttackMob {
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6000000238418579D);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40.0D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(4.0D);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public boolean isAttacking()
+    {
+        return ((Boolean)this.dataManager.get(ATTACKING)).booleanValue();
+    }
+
+    public void setAttacking(boolean attacking)
+    {
+        this.dataManager.set(ATTACKING, Boolean.valueOf(attacking));
+    }
+
+    public int getFireballStrength()
+    {
+        return this.explosionStrength;
     }
 
     public void addTrackingPlayer(EntityPlayerMP player)
@@ -107,6 +129,7 @@ public class EntityBalrog extends EntityMob implements IRangedAttackMob {
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
         super.setEquipmentBasedOnDifficulty(difficulty);
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(TTMFeatures.WHIP_FIRE));
     }
 
     protected void setEnchantmentBasedOnDifficulty(DifficultyInstance difficulty)
@@ -123,12 +146,6 @@ public class EntityBalrog extends EntityMob implements IRangedAttackMob {
         return ientitylivingdata;
     }
 
-    protected void updateAITasks()
-    {
-        super.updateAITasks();
-        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
-    }
-
     public void setCombatTask()
     {
         if (this.world != null && !this.world.isRemote)
@@ -137,7 +154,7 @@ public class EntityBalrog extends EntityMob implements IRangedAttackMob {
             //   this.tasks.removeTask(this.aiArrowAttack);
             ItemStack itemstack = this.getHeldItemMainhand();
 
-            if (itemstack.getItem() == TTMFeatures.SWORD_MORGULIRON)
+            if (itemstack.getItem() == TTMFeatures.WHIP_FIRE)
             {
                 this.tasks.addTask(4, this.aiAttackOnCollide);
             }
@@ -154,6 +171,12 @@ public class EntityBalrog extends EntityMob implements IRangedAttackMob {
                 //   this.tasks.addTask(4, this.aiArrowAttack);
             }
         }
+    }
+
+    protected void updateAITasks()
+    {
+        super.updateAITasks();
+        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
     }
 
     public boolean isNonBoss()
@@ -178,6 +201,27 @@ public class EntityBalrog extends EntityMob implements IRangedAttackMob {
         }
     }
 
+    public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack)
+    {
+        super.setItemStackToSlot(slotIn, stack);
+
+        if (!this.world.isRemote && slotIn == EntityEquipmentSlot.MAINHAND)
+        {
+            this.setCombatTask();
+        }
+    }
+
+    public void setSwingingArms(boolean swingingArms)
+    {
+        this.dataManager.set(SWINGING_ARMS, Boolean.valueOf(swingingArms));
+    }
+
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
+        super.writeEntityToNBT(compound);
+        compound.setInteger("ExplosionPower", this.explosionStrength);
+    }
+
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
@@ -185,6 +229,11 @@ public class EntityBalrog extends EntityMob implements IRangedAttackMob {
         if (this.hasCustomName())
         {
             this.bossInfo.setName(this.getDisplayName());
+        }
+
+        if (compound.hasKey("ExplosionPower", 99))
+        {
+            this.explosionStrength = compound.getInteger("ExplosionPower");
         }
     }
 
@@ -194,14 +243,9 @@ public class EntityBalrog extends EntityMob implements IRangedAttackMob {
         this.bossInfo.setName(this.getDisplayName());
     }
 
-    public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack)
+    public SoundCategory getSoundCategory()
     {
-        super.setItemStackToSlot(slotIn, stack);
-
-        if (!this.world.isRemote && slotIn == EntityEquipmentSlot.MAINHAND)
-        {
-            this.setCombatTask();
-        }
+        return SoundCategory.HOSTILE;
     }
 
     protected SoundEvent getAmbientSound()
@@ -224,6 +268,31 @@ public class EntityBalrog extends EntityMob implements IRangedAttackMob {
     {
         this.playSound(SoundInit.soundStepBalrog, 0.25F, 1.0F);
     }
+    public boolean isBurning()
+    {
+        return this.isCharged();
+    }
+
+    public boolean isCharged()
+    {
+        return (((Byte)this.dataManager.get(ON_FIRE)).byteValue() & 1) != 0;
+    }
+
+    public void setOnFire(boolean onFire)
+    {
+        byte b0 = ((Byte)this.dataManager.get(ON_FIRE)).byteValue();
+
+        if (onFire)
+        {
+            b0 = (byte)(b0 | 1);
+        }
+        else
+        {
+            b0 = (byte)(b0 & -2);
+        }
+
+        this.dataManager.set(ON_FIRE, Byte.valueOf(b0));
+    }
 
     @SideOnly(Side.CLIENT)
     public boolean isSwingingArms()
@@ -231,23 +300,97 @@ public class EntityBalrog extends EntityMob implements IRangedAttackMob {
         return ((Boolean)this.dataManager.get(SWINGING_ARMS)).booleanValue();
     }
 
-    @Override
-    public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor) {
-        EntityAmmo entityboulder = new EntityAmmo(this.world, this);
-        double d0 = target.posY + (double)target.getEyeHeight() - 1.100000023841858D;
-        double d1 = target.posX - this.posX;
-        double d2 = d0 - entityboulder.posY;
-        double d3 = target.posZ - this.posZ;
-        float f = MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.2F;
-        entityboulder.shoot(d1, d2 + (double)f, d3, 1.6F, 12.0F);
-        this.playSound(SoundInit.soundBoulderShoot, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
-        this.world.spawnEntity(entityboulder);
+    static class AIFireballAttack extends EntityAIBase
+    {
+        private final EntityBalrog parentEntity;
+        public int attackTimer;
 
+        public AIFireballAttack(EntityBalrog balrog)
+        {
+            this.parentEntity = balrog;
+        }
+
+        /**
+         * Returns whether the EntityAIBase should begin execution.
+         */
+        public boolean shouldExecute()
+        {
+            return this.parentEntity.getAttackTarget() != null;
+        }
+
+        /**
+         * Execute a one shot task or start executing a continuous task
+         */
+        public void startExecuting()
+        {
+            this.attackTimer = 0;
+        }
+
+        /**
+         * Reset the task's internal state. Called when this task is interrupted by another one
+         */
+        public void resetTask()
+        {
+            this.parentEntity.setAttacking(false);
+        }
+
+        /**
+         * Keep ticking a continuous task that has already been started
+         */
+        public void updateTask()
+        {
+            EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
+            double d0 = 64.0D;
+
+            if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D && this.parentEntity.canEntityBeSeen(entitylivingbase))
+            {
+                World world = this.parentEntity.world;
+                ++this.attackTimer;
+
+                if (this.attackTimer == 20)
+                {
+                    double d1 = 4.0D;
+                    Vec3d vec3d = this.parentEntity.getLook(1.0F);
+                    double d2 = entitylivingbase.posX - (this.parentEntity.posX + vec3d.x * 4.0D);
+                    double d3 = entitylivingbase.getEntityBoundingBox().minY + (double)(entitylivingbase.height / 2.0F) - (0.5D + this.parentEntity.posY + (double)(this.parentEntity.height / 2.0F));
+                    double d4 = entitylivingbase.posZ - (this.parentEntity.posZ + vec3d.z * 4.0D);
+                    world.playEvent((EntityPlayer)null, 1018, new BlockPos(this.parentEntity), 0);
+                    EntityLargeFireball entitylargefireball = new EntityLargeFireball(world, this.parentEntity, d2, d3, d4);
+                    entitylargefireball.explosionPower = this.parentEntity.getFireballStrength();
+                    entitylargefireball.posX = this.parentEntity.posX + vec3d.x * 4.0D;
+                    entitylargefireball.posY = this.parentEntity.posY + (double)(this.parentEntity.height / 2.0F) + 0.5D;
+                    entitylargefireball.posZ = this.parentEntity.posZ + vec3d.z * 4.0D;
+                    world.spawnEntity(entitylargefireball);
+                    this.parentEntity.setOnFire(true);
+                    this.attackTimer = -20;
+                }
+            }
+            else if (this.attackTimer > 0)
+            {
+                --this.attackTimer;
+                this.parentEntity.setOnFire(false);
+            }
+
+            this.parentEntity.setAttacking(this.attackTimer > 10);
+        }
     }
 
-    public void setSwingingArms(boolean swingingArms)
+    public void onLivingUpdate()
     {
-        this.dataManager.set(SWINGING_ARMS, Boolean.valueOf(swingingArms));
+        if (this.world.isRemote)
+        {
+            if (this.rand.nextInt(24) == 0 && !this.isSilent())
+            {
+                this.world.playSound(this.posX + 0.5D, this.posY + 0.5D, this.posZ + 0.5D, SoundEvents.ENTITY_BLAZE_BURN, this.getSoundCategory(), 1.0F + this.rand.nextFloat(), this.rand.nextFloat() * 0.7F + 0.3F, false);
+            }
+
+            for (int i = 0; i < 2; ++i)
+            {
+                this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX + (this.rand.nextDouble() - 0.5D) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height, this.posZ + (this.rand.nextDouble() - 0.5D) * (double)this.width, 0.0D, 0.0D, 0.0D);
+            }
+        }
+
+        super.onLivingUpdate();
     }
 
     @Override

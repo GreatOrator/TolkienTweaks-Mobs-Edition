@@ -41,6 +41,7 @@ public class RenderTroll extends RenderLiving<EntityTroll> {
                 if (!itemstack.isEmpty() || !itemstack1.isEmpty())
                 {
                     GlStateManager.pushMatrix();
+                    GlStateManager.scale(1.0F, 2.5F, 2.5F);
 
                     if (this.livingEntityRenderer.getMainModel().isChild)
                     {
@@ -71,7 +72,7 @@ public class RenderTroll extends RenderLiving<EntityTroll> {
                     GlStateManager.rotate(-100.0F, 1.0F, 0.0F, 0.0F);
                     GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
                     boolean flag = handSide == EnumHandSide.LEFT;
-                    GlStateManager.translate((float)(flag ? -1 : 1) / 16.0F, 0.25F, -(1.25F));
+                    GlStateManager.translate((float)(flag ? -1 : 1) / 16.0F, 0.0F, -(1.70F));
                     Minecraft.getMinecraft().getItemRenderer().renderItemSide(entity, stack, transform, flag);
                     GlStateManager.popMatrix();
                 }

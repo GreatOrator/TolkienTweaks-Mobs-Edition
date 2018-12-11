@@ -61,9 +61,10 @@ public class EntityMordorOrc extends EntityMob implements IEntityAdditionalSpawn
 
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAISwimming(this));
+        this.tasks.addTask(2, new EntityAITTMAttack(this, 1.0D, false));
+        this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
-        this.tasks.addTask(2, new EntityAITTMAttack(this, 1.0D, false));
         this.applyEntityAI();
     }
 

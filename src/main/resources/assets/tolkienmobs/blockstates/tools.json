@@ -18,7 +18,8 @@
       "hoe_morguliron":   {"textures": {"layer0": "tolkienmobs:items/hoe_morguliron"}},
       "pickaxe_morguliron":   {"textures": {"layer0": "tolkienmobs:items/pickaxe_morguliron"}},
       "shovel_morguliron":   {"textures": {"layer0": "tolkienmobs:items/shovel_morguliron"}},
-      "sword_morguliron":   {"textures": {"layer0": "tolkienmobs:items/sword_morguliron"}}
+      "sword_morguliron":   {"textures": {"layer0": "tolkienmobs:items/sword_morguliron"}},
+      "whip_fire":   {"textures": {"layer0": "tolkienmobs:items/whip_fire"}}
     }
   }
 }

@@ -207,13 +207,5 @@
       "tolkienmobs:mob/gollum/gollum_say1",
       "tolkienmobs:mob/gollum/gollum_say2"
     ]
-  },
-  "mob.gollum.step":
-  {
-    "category": "neutral",
-    "sounds":
-    [
-      "tolkienmobs:mob/gollum/gollum_step"
-    ]
   }
 }

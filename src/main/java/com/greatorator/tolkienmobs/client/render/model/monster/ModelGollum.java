@@ -151,10 +151,15 @@ public class ModelGollum extends ModelTolkienMobs {
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
-        this.GollumLegL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.GollumLegR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-        this.bipedRightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.bipedLeftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+        float speed = 0.6662F; // Limb Swing Speed
+        float angle = 1.4F; // How far the Limb swings
+        float baseLegRotation = -0.7853981633974483F; // needs to be the original value of arm.rotateAngleX
+        float baseArmRotation = -0.2617993877991494F; // needs to be the original value of leg.rotateAngleX
+
+        this.GollumLegL.rotateAngleX = baseLegRotation + (MathHelper.cos(limbSwing * speed)) * angle * limbSwingAmount;
+        this.GollumLegR.rotateAngleX = baseLegRotation + (MathHelper.cos(limbSwing * speed + (float) Math.PI)) * angle * limbSwingAmount;
+        this.bipedRightArm.rotateAngleX = baseArmRotation + (MathHelper.cos(limbSwing * speed)) * angle * limbSwingAmount;
+        this.bipedLeftArm.rotateAngleX = baseArmRotation + (MathHelper.cos(limbSwing * speed + (float) Math.PI)) * angle * limbSwingAmount;
 
         this.GollumHead.rotateAngleY = netHeadYaw * 0.017453292F;
         this.GollumHead.rotateAngleX = headPitch * 0.017453292F;

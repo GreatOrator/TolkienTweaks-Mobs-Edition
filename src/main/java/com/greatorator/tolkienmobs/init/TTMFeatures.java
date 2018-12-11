@@ -99,6 +99,9 @@ public class TTMFeatures implements IModFeatures {
 
     @ModFeature(name = "sword_morguliron", stateOverride = "tools#type=sword_morguliron")
     public static Item SWORD_MORGULIRON = new ItemSword(TOOL_MORGULIRON);
+
+    @ModFeature(name = "whip_fire", stateOverride = "tools#type=whip_fire")
+    public static Item WHIP_FIRE = new ItemSword(TOOL_MORGULIRON);
     //endregion
 
     //region Armor

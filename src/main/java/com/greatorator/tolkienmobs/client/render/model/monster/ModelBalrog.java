@@ -360,23 +360,26 @@ public class ModelBalrog extends ModelTolkienMobs {
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
         super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
+        float speed = 0.6662F; // Limb Swing Speed
+        float angle = 1.4F; // How far the Limb swings
+        float baseLegRotation = -0.17453292519943295F; // needs to be the original value of arm.rotateAngleX
+        float baseArmRotation = -0.3490658503988659F; // needs to be the original value of leg.rotateAngleX
 
-        this.bipedLeftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.bipedRightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-
-        this.BalrogLegL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.BalrogLegR.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        this.BalrogLegL.rotateAngleX = baseLegRotation + (MathHelper.cos(limbSwing * speed)) * angle * limbSwingAmount;
+        this.BalrogLegR.rotateAngleX = baseLegRotation + (MathHelper.cos(limbSwing * speed + (float) Math.PI)) * angle * limbSwingAmount;
+        this.bipedLeftArm.rotateAngleX = baseArmRotation + (MathHelper.cos(limbSwing * speed)) * angle * limbSwingAmount;
+        this.bipedRightArm.rotateAngleX = baseArmRotation + (MathHelper.cos(limbSwing * speed + (float) Math.PI)) * angle * limbSwingAmount;
 
         this.BalrogNeck.rotateAngleY = netHeadYaw * 0.017453292F;
         this.BalrogNeck.rotateAngleX = headPitch * 0.017453292F;
 
-        this.bipedRightArm.rotationPointX = -7.9F;
         this.bipedLeftArm.rotationPointX = 8.4F;
+        this.bipedRightArm.rotationPointX = -7.9F;
     }
 
     public void postRenderArm(float scale, EnumHandSide side)
     {
-        float f = side == EnumHandSide.RIGHT ? 1.0F : -1.0F;
+        float f = side == EnumHandSide.LEFT ? 1.0F : -1.0F;
         ModelRenderer modelrenderer = this.getArmForSide(side);
         modelrenderer.rotationPointX += f;
         modelrenderer.postRender(scale);

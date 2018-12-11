@@ -25,17 +25,18 @@ public class RenderBalrog extends RenderLiving<EntityBalrog> {
     public static final RenderBalrog.Factory FACTORY = new RenderBalrog.Factory();
 
     public RenderBalrog(RenderManager rendermanagerIn) {
-        super(rendermanagerIn, new ModelBalrog(), 0.5F);
+        super(rendermanagerIn, new ModelBalrog(), 2.5F);
         this.addLayer(new LayerHeldItem(this){
             @Override
             public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-                boolean flag = entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT;
+                boolean flag = entitylivingbaseIn.getPrimaryHand() == EnumHandSide.LEFT;
                 ItemStack itemstack = flag ? entitylivingbaseIn.getHeldItemOffhand() : entitylivingbaseIn.getHeldItemMainhand();
                 ItemStack itemstack1 = flag ? entitylivingbaseIn.getHeldItemMainhand() : entitylivingbaseIn.getHeldItemOffhand();
 
                 if (!itemstack.isEmpty() || !itemstack1.isEmpty())
                 {
                     GlStateManager.pushMatrix();
+                    GlStateManager.scale(1.5F, 1.5F, 1.5F);
 
                     if (this.livingEntityRenderer.getMainModel().isChild)
                     {
@@ -66,7 +67,7 @@ public class RenderBalrog extends RenderLiving<EntityBalrog> {
                     GlStateManager.rotate(-100.0F, 1.0F, 0.0F, 0.0F);
                     GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
                     boolean flag = handSide == EnumHandSide.LEFT;
-                    GlStateManager.translate((float)(flag ? 1 : -1) / 16.0F, 0.05F, 0.5F);
+                    GlStateManager.translate((float)(flag ? 1 : -1) / 8.0F, 1.2F, 0.75F);
                     Minecraft.getMinecraft().getItemRenderer().renderItemSide(entity, stack, transform, flag);
                     GlStateManager.popMatrix();
                 }
@@ -74,7 +75,7 @@ public class RenderBalrog extends RenderLiving<EntityBalrog> {
 
             @Override
             protected void translateToHand(EnumHandSide p_191361_1_) {
-                ((ModelBiped)this.livingEntityRenderer.getMainModel()).postRenderArm(0.1825F, p_191361_1_);
+                ((ModelBiped)this.livingEntityRenderer.getMainModel()).postRenderArm(-0.08F, p_191361_1_);
             }
         });
     }
