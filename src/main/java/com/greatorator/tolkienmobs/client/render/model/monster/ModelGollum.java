@@ -39,11 +39,11 @@ public class ModelGollum extends ModelTolkienMobs {
         this.bipedLeftArm.addBox(0.0F, -1.0F, -1.0F, 2, 6, 2, 0.0F);
         this.setRotateAngle(bipedLeftArm, -0.2617993877991494F, 0.0F, 0.0F);
         this.GollumBody_1 = new ModelRenderer(this, 38, 46);
-        this.GollumBody_1.setRotationPoint(0.0F, -1.5F, 0.2F);
-        this.GollumBody_1.addBox(-3.0F, 0.0F, -1.5F, 6, 3, 3, 0.0F);
+        this.GollumBody_1.setRotationPoint(1.5F, -1.5F, 0.2F);
+        this.GollumBody_1.addBox(-3.0F, 0.0F, -1.5F, 3, 3, 3, 0.0F);
         this.setRotateAngle(GollumBody_1, -0.12217304763960307F, 0.0F, 0.0F);
         this.GollumHead = new ModelRenderer(this, 10, 34);
-        this.GollumHead.setRotationPoint(0.0F, 7.0F, -6.5F);
+        this.GollumHead.setRotationPoint(0.0F, 6.5F, -6.5F);
         this.GollumHead.addBox(-3.5F, -7.0F, -3.5F, 7, 7, 7, 0.0F);
         this.bipedRightArmLower = new ModelRenderer(this, 56, 56);
         this.bipedRightArmLower.mirror = true;
