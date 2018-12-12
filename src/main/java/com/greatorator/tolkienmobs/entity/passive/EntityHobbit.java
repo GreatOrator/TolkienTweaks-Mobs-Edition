@@ -2,18 +2,24 @@ package com.greatorator.tolkienmobs.entity.passive;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.monster.*;
+import com.greatorator.tolkienmobs.init.ProfessionInit;
+import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
 import javax.annotation.Nullable;
+
+import static net.minecraftforge.fml.common.registry.VillagerRegistry.FARMER;
 
 public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpawnData {
     private int texture_index;
@@ -62,12 +68,26 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
     }
 
     /** Let's try to decide which entity will do what work */
-//    public void setProfession(VillagerRegistry.VillagerProfession profession) {
-//        if (!profession.getRegistryName().equals(ProfessionInit.getCoinBanker().getRegistryName()) ){
-//            profession = VillagerRegistry.instance().getRegistry().getValue(new ResourceLocation(TolkienMobs.MODID + ":coin_trader"));
-//        }
-//        super.setProfession(profession);
-//    }
+    public void setProfession(VillagerRegistry.VillagerProfession profession) {
+        switch (texture_index) {
+            case 0:
+                profession = FARMER;
+                break;
+
+            case 1:
+                profession = ProfessionInit.coin_trader;
+                break;
+
+            case 2:
+                profession = FARMER;
+                break;
+
+            case 3:
+                profession = ProfessionInit.grocery_store;
+
+        }
+        super.setProfession(profession);
+    }
 
     @Override
     @Nullable
@@ -95,5 +115,10 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
         EntityHobbit entityhobbit = new EntityHobbit(this.world);
         entityhobbit.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(entityhobbit)), (IEntityLivingData)null);
         return entityhobbit;
+    }
+
+    protected boolean canDespawn()
+    {
+        return false;
     }
 }

@@ -21,8 +21,8 @@ public class BiomeShire extends Biome {
     public BiomeShire()
     {
         super(new BiomeProperties("The Shire")
-                .setBaseHeight(0.45F)
-                .setHeightVariation(0.3F)
+                .setBaseHeight(0.125F)
+                .setHeightVariation(0.05F)
                 .setTemperature(0.8F)
                 .setRainfall(0.4F));
 

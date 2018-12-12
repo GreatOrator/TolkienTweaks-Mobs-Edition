@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.passive;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.monster.*;
+import com.greatorator.tolkienmobs.init.ProfessionInit;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
@@ -15,8 +16,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
 import javax.annotation.Nullable;
+
+import static net.minecraftforge.fml.common.registry.VillagerRegistry.FARMER;
 
 public class EntityHuman extends EntityVillager implements IEntityAdditionalSpawnData {
     private int texture_index;
@@ -26,7 +30,7 @@ public class EntityHuman extends EntityVillager implements IEntityAdditionalSpaw
         super(worldIn);
         this.setSize(0.9F, 2.0F);
         ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
-        this.texture_index = rand.nextInt(4);
+        this.texture_index = rand.nextInt(16);
     }
 
     public int getTextureIndex() {
@@ -65,12 +69,73 @@ public class EntityHuman extends EntityVillager implements IEntityAdditionalSpaw
     }
 
     /** Let's try to decide which entity will do what work */
-//    public void setProfession(VillagerRegistry.VillagerProfession profession) {
-//        if (!profession.getRegistryName().equals(ProfessionInit.getCoinBanker().getRegistryName()) ){
-//            profession = VillagerRegistry.instance().getRegistry().getValue(new ResourceLocation(TolkienMobs.MODID + ":coin_trader"));
-//        }
-//        super.setProfession(profession);
-//    }
+    public void setProfession(VillagerRegistry.VillagerProfession profession) {
+        switch (texture_index) {
+            case 0:
+                profession = FARMER;
+                break;
+
+            case 1:
+                profession = ProfessionInit.coin_trader;
+                break;
+
+            case 2:
+                profession = FARMER;
+                break;
+
+            case 3:
+                profession = ProfessionInit.grocery_store;
+
+            case 4:
+                profession = FARMER;
+                break;
+
+            case 5:
+                profession = FARMER;
+                break;
+
+            case 6:
+                profession = FARMER;
+                break;
+
+            case 7:
+                profession = FARMER;
+                break;
+
+            case 8:
+                profession = FARMER;
+                break;
+
+            case 9:
+                profession = FARMER;
+                break;
+
+            case 10:
+                profession = FARMER;
+                break;
+
+            case 11:
+                profession = FARMER;
+                break;
+
+            case 12:
+                profession = FARMER;
+                break;
+
+            case 13:
+                profession = FARMER;
+                break;
+
+            case 14:
+                profession = FARMER;
+                break;
+
+            case 15:
+                profession = FARMER;
+
+        }
+        super.setProfession(profession);
+    }
 
     @Override
     @Nullable

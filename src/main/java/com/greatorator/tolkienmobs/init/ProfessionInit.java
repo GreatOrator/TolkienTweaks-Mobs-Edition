@@ -39,12 +39,14 @@ public class ProfessionInit {
             // DEBUG
             LogHelperTTM.info("Putting out now hiring signs...");
 
-            coin_trader = new VillagerRegistry.VillagerProfession(TolkienMobs.MODID+":coin_trader",
+            coin_trader = new VillagerRegistry.VillagerProfession(
+                    TolkienMobs.MODID+":coin_trader",
                     TolkienMobs.MODID+":textures/entity/profession/coin_trader.png",
                     TolkienMobs.MODID+":textures/entity/profession/coin_trader.png");
             registry.register(coin_trader);
 
-            grocery_store = new VillagerRegistry.VillagerProfession(TolkienMobs.MODID+":grocery_store",
+            grocery_store = new VillagerRegistry.VillagerProfession(
+                    TolkienMobs.MODID+":grocery_store",
                     TolkienMobs.MODID+":textures/entity/profession/grocery_store.png",
                     TolkienMobs.MODID+":textures/entity/profession/grocery_store.png");
             registry.register(grocery_store);

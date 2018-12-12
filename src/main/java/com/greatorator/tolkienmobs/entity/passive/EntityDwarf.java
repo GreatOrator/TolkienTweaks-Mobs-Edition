@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.passive;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.monster.*;
+import com.greatorator.tolkienmobs.init.ProfessionInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import io.netty.buffer.ByteBuf;
@@ -20,8 +21,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
 import javax.annotation.Nullable;
+
+import static net.minecraftforge.fml.common.registry.VillagerRegistry.FARMER;
 
 public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpawnData {
     private int texture_index;
@@ -71,6 +75,28 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(9.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(26.0D);
+    }
+
+    /** Let's try to decide which entity will do what work */
+    public void setProfession(VillagerRegistry.VillagerProfession profession) {
+        switch (texture_index) {
+            case 0:
+                profession = FARMER;
+                break;
+
+            case 1:
+                profession = ProfessionInit.coin_trader;
+                break;
+
+            case 2:
+                profession = FARMER;
+                break;
+
+            case 3:
+                profession = ProfessionInit.grocery_store;
+
+        }
+        super.setProfession(profession);
     }
 
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)

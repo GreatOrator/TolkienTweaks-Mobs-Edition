@@ -28,7 +28,7 @@ public class BlockLeaf extends BlockLeaves implements IBCoreBlock {
     public BlockLeaf() {
         setSoundType(SoundType.PLANT);
         leavesFancy = true;
-        setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.MALLORN).withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
+        setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.MALLORN).withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, true));
     }
 
     @Override
