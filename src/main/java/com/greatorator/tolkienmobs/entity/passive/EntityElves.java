@@ -85,6 +85,7 @@ public class EntityElves extends EntityVillager implements IEntityAdditionalSpaw
 
             case 3:
                 profession = ProfessionInit.grocery_store;
+                break;
 
             case 4:
                 profession = FARMER;

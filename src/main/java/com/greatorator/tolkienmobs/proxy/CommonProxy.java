@@ -28,6 +28,7 @@ public class CommonProxy {
         EntityInit.init();
         CraftingInit.init();
         PotionInit.registerPotions();
+        new LootInit();
 
         MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainEventHandler());
     }

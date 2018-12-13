@@ -1,6 +1,7 @@
 {
     "pools": [
         {
+            "name": "tolkienmobs:barrow_grave",
             "rolls": {
                 "min": 2,
                 "max": 6

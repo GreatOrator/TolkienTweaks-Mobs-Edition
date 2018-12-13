@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
 
 import static net.minecraftforge.fml.common.registry.VillagerRegistry.FARMER;
 
-public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpawnData {
+public class EntityHobbit extends EntityVillager {
     private int texture_index;
     public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/hobbit");
 
@@ -101,13 +101,15 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
     }
 
     @Override
-    public void writeSpawnData(ByteBuf buffer) {
-        buffer.writeInt(this.texture_index);
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
+        compound.setInteger("texture_index", texture_index);
     }
 
     @Override
-    public void readSpawnData(ByteBuf buffer) {
-        this.texture_index = buffer.readInt();
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        texture_index = compound.getInteger("texture_index");
     }
 
     public EntityHobbit createChild(EntityAgeable ageable)

@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.world.gen.generators;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.LootInit;
-import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.ITTMStructure;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -20,10 +19,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import net.minecraft.world.storage.loot.LootTableList;
 
 import java.util.Map;
-import java.util.PrimitiveIterator;
 import java.util.Random;
 
 public class WorldGenStructure extends WorldGenerator implements ITTMStructure {
@@ -48,6 +45,7 @@ public class WorldGenStructure extends WorldGenerator implements ITTMStructure {
         Template template = manager.get(mcServer, location);
 
         if (template != null) {
+            pos = pos.add(-(template.getSize().getX()) / 2, 0, -(template.getSize().getZ() / 2));
             IBlockState state = world.getBlockState(pos);
             world.notifyBlockUpdate(pos, state, state, 3);
             flag = true;
@@ -59,7 +57,7 @@ public class WorldGenStructure extends WorldGenerator implements ITTMStructure {
                     for (int j = 0; j < template.getSize().getZ(); j++) {
                         BlockPos down = pos.add(i, -1, j);
                         Block b = world.getBlockState(down).getBlock();
-                        if (!b.equals(Blocks.SAND)) {
+                        if (!b.equals(Blocks.GRASS)) {
                             flag = false;
                         }
                     }
@@ -69,18 +67,16 @@ public class WorldGenStructure extends WorldGenerator implements ITTMStructure {
             if (flag) {
                 PlacementSettings placementsettings = (new PlacementSettings()).setMirror(Mirror.NONE)
                         .setRotation(Rotation.NONE).setIgnoreEntities(false).setChunk((ChunkPos) null)
-                        .setReplacedBlock((Block) null).setIgnoreStructureBlock(true);
+                        .setReplacedBlock((Block) null).setIgnoreStructureBlock(false);
 
                 template.addBlocksToWorldChunk(world, pos.down(), placementsettings);
-                template.getDataBlocks(pos, placementsettings);
+                Map<BlockPos, String> map = template.getDataBlocks(pos.down(), placementsettings);
 
-                Map<BlockPos, String> map = template.getDataBlocks(pos, placementsettings);
-
-                for (Map.Entry<BlockPos, String> entry : template.getDataBlocks(pos, placementsettings).entrySet()) {
+                for (Map.Entry<BlockPos, String> entry : map.entrySet()) {
                     if ("chest".equals(entry.getValue())) {
                         BlockPos blockpos2 = entry.getKey();
-                        world.setBlockState(blockpos2.up(), Blocks.AIR.getDefaultState(), 3);
-                        TileEntity tileentity = world.getTileEntity(blockpos2);
+                        TileEntity tileentity = world.getTileEntity(blockpos2.down());
+                        world.setBlockToAir(blockpos2);
 
                         if (tileentity instanceof TileEntityChest) {
                             ((TileEntityChest)tileentity).setLootTable(LootInit.BARROW_GRAVE, world.rand.nextLong());
@@ -88,8 +84,8 @@ public class WorldGenStructure extends WorldGenerator implements ITTMStructure {
                     }
                     if ("barrow_chest".equals(entry.getValue())) {
                         BlockPos blockpos2 = entry.getKey();
-                        world.setBlockState(blockpos2.up(), Blocks.AIR.getDefaultState(), 3);
-                        TileEntity tileentity = world.getTileEntity(blockpos2);
+                        TileEntity tileentity = world.getTileEntity(blockpos2.down());
+                        world.setBlockToAir(blockpos2);
 
                         if (tileentity instanceof TileEntityChest) {
                             ((TileEntityChest)tileentity).setLootTable(LootInit.BARROW_CHEST, world.rand.nextLong());

@@ -36,8 +36,7 @@ public class WorldGenCustomStructures implements IWorldGenerator {
                 generateStructure(new WorldGenStructure("stonespike"), world, random, chunkX, chunkZ, 5, Blocks.GRASS, BiomeBarrowDowns.class);
                 generateStructure(new WorldGenStructure("deadtree"), world, random, chunkX, chunkZ, 5, Blocks.GRASS, BiomeBarrowDowns.class, BiomeMordor.class);
                 generateStructure(new WorldGenStructure("fangorn_tree"), world, random, chunkX, chunkZ, 1, Blocks.GRASS, BiomeFangorn.class);
-                //generateStructure(new WorldGenStructure("hobbithouse1"), world, random, chunkX, chunkZ, 30, Blocks.GRASS, BiomeShire.class);
-                //generateStructure(new WorldGenStructure("hobbithouse2"), world, random, chunkX, chunkZ, 30, Blocks.GRASS, BiomeShire.class);
+                generateStructure(new WorldGenStructure("hobbithouse1"), world, random, chunkX, chunkZ, 30, Blocks.GRASS, BiomeShire.class);
 
                 break;
 
