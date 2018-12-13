@@ -12,9 +12,9 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nullable;
 
 public class RenderElves extends RenderLiving<EntityElves> {
-    private static final ResourceLocation[] mobTexture = new ResourceLocation[16];
+    private static final ResourceLocation[] mobTexture = new ResourceLocation[17];
     static {
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 17; i++) {
             mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/elves/elves" + i + ".png");
         }
     }

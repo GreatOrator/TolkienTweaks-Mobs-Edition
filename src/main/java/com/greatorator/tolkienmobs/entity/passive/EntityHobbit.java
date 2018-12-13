@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.entity.passive;
 
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.monster.*;
+import com.greatorator.tolkienmobs.handler.TTMRand;
+import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.ProfessionInit;
-import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -19,17 +19,20 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
 import javax.annotation.Nullable;
 
-import static net.minecraftforge.fml.common.registry.VillagerRegistry.FARMER;
-
-public class EntityHobbit extends EntityVillager {
+public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpawnData {
     private int texture_index;
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/hobbit");
+    private int textureNBTIndex;
 
     public EntityHobbit(World worldIn) {
         super(worldIn);
         this.setSize(0.9F, 1.5F);
         ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
-        this.texture_index = rand.nextInt(4);
+        if (textureNBTIndex != 0){
+            texture_index = textureNBTIndex;
+        }
+        else {
+            this.texture_index = TTMRand.getRandomInteger(5, 1);
+        }
     }
 
     public int getTextureIndex() {
@@ -67,32 +70,45 @@ public class EntityHobbit extends EntityVillager {
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
     }
 
+    @Override
+    public void writeSpawnData(ByteBuf buffer) {
+        buffer.writeInt(this.texture_index);
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf buffer) {
+        this.texture_index = buffer.readInt();
+    }
+
     /** Let's try to decide which entity will do what work */
     public void setProfession(VillagerRegistry.VillagerProfession profession) {
         switch (texture_index) {
             case 0:
-                profession = FARMER;
                 break;
-
             case 1:
-                profession = ProfessionInit.coin_trader;
+                profession = VillagerRegistry.getById(0);
                 break;
 
             case 2:
-                profession = FARMER;
+                profession = ProfessionInit.getCoinBanker();
                 break;
 
             case 3:
-                profession = ProfessionInit.grocery_store;
+                profession = ProfessionInit.getGroceryStore();
+                break;
+
+            case 4:
+                profession = VillagerRegistry.getById(4);
 
         }
-        super.setProfession(profession);
+        this.prof = profession;
+        this.setProfession(net.minecraftforge.fml.common.registry.VillagerRegistry.getId(prof));
     }
 
     @Override
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LOOT;
+        return LootInit.HOBBIT;
     }
 
     @Override
@@ -100,16 +116,39 @@ public class EntityHobbit extends EntityVillager {
         return 2;
     }
 
+    private net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession prof;
+    public net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession getProfessionForge()
+    {
+        if (this.prof == null)
+        {
+            this.prof = net.minecraftforge.fml.common.registry.VillagerRegistry.getById(this.getProfession());
+            if (this.prof == null)
+                return net.minecraftforge.fml.common.registry.VillagerRegistry.getById(0); //Farmer
+        }
+        return this.prof;
+    }
+
     @Override
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
         compound.setInteger("texture_index", texture_index);
+        compound.setInteger("Profession", this.getProfession());
+        compound.setString("ProfessionName", this.getProfessionForge().getRegistryName().toString());
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
-        texture_index = compound.getInteger("texture_index");
+        textureNBTIndex = compound.getInteger("texture_index");
+        this.setProfession(compound.getInteger("Profession"));
+        if (compound.hasKey("ProfessionName"))
+        {
+            net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession p =
+                    net.minecraftforge.fml.common.registry.ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new net.minecraft.util.ResourceLocation(compound.getString("ProfessionName")));
+            if (p == null)
+                p = net.minecraftforge.fml.common.registry.ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new net.minecraft.util.ResourceLocation("minecraft:farmer"));
+            this.setProfession(p);
+        }
     }
 
     public EntityHobbit createChild(EntityAgeable ageable)

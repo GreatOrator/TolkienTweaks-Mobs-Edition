@@ -1,14 +1,11 @@
 package com.greatorator.tolkienmobs.world.gen.generators;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.world.gen.ITTMStructure;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
@@ -20,7 +17,6 @@ import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 
-import java.util.Map;
 import java.util.Random;
 
 public class WorldGenStructure extends WorldGenerator implements ITTMStructure {
@@ -45,6 +41,7 @@ public class WorldGenStructure extends WorldGenerator implements ITTMStructure {
         Template template = manager.get(mcServer, location);
 
         if (template != null) {
+            BlockPos chestPos = new BlockPos(pos.getX() + 2, pos.getY() + 1, pos.getZ() + 3);
             pos = pos.add(-(template.getSize().getX()) / 2, 0, -(template.getSize().getZ() / 2));
             IBlockState state = world.getBlockState(pos);
             world.notifyBlockUpdate(pos, state, state, 3);
@@ -70,28 +67,6 @@ public class WorldGenStructure extends WorldGenerator implements ITTMStructure {
                         .setReplacedBlock((Block) null).setIgnoreStructureBlock(false);
 
                 template.addBlocksToWorldChunk(world, pos.down(), placementsettings);
-                Map<BlockPos, String> map = template.getDataBlocks(pos.down(), placementsettings);
-
-                for (Map.Entry<BlockPos, String> entry : map.entrySet()) {
-                    if ("chest".equals(entry.getValue())) {
-                        BlockPos blockpos2 = entry.getKey();
-                        TileEntity tileentity = world.getTileEntity(blockpos2.down());
-                        world.setBlockToAir(blockpos2);
-
-                        if (tileentity instanceof TileEntityChest) {
-                            ((TileEntityChest)tileentity).setLootTable(LootInit.BARROW_GRAVE, world.rand.nextLong());
-                        }
-                    }
-                    if ("barrow_chest".equals(entry.getValue())) {
-                        BlockPos blockpos2 = entry.getKey();
-                        TileEntity tileentity = world.getTileEntity(blockpos2.down());
-                        world.setBlockToAir(blockpos2);
-
-                        if (tileentity instanceof TileEntityChest) {
-                            ((TileEntityChest)tileentity).setLootTable(LootInit.BARROW_CHEST, world.rand.nextLong());
-                        }
-                    }
-                }
             }
         }
     }

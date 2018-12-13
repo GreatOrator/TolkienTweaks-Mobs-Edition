@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
+import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,7 +23,6 @@ import javax.annotation.Nullable;
 
 public class EntityTreeEnt extends EntityMob implements IRangedAttackMob, IEntityAdditionalSpawnData {
     private int texture_index;
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/treeent");
 
     public EntityTreeEnt(World worldIn) {
         super(worldIn);
@@ -81,7 +81,7 @@ public class EntityTreeEnt extends EntityMob implements IRangedAttackMob, IEntit
     @Override
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LOOT;
+        return LootInit.TREEENT;
     }
 
     @Override

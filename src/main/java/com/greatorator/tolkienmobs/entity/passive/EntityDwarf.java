@@ -1,7 +1,8 @@
 package com.greatorator.tolkienmobs.entity.passive;
 
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.monster.*;
+import com.greatorator.tolkienmobs.handler.TTMRand;
+import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.ProfessionInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
@@ -13,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ResourceLocation;
@@ -25,17 +27,20 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
 import javax.annotation.Nullable;
 
-import static net.minecraftforge.fml.common.registry.VillagerRegistry.FARMER;
-
 public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpawnData {
     private int texture_index;
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/dwarf");
+    private int textureNBTIndex;
 
     public EntityDwarf(World worldIn) {
         super(worldIn);
         this.setSize(1.0F, 1.7F);
         ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
-        this.texture_index = rand.nextInt(4);
+        if (textureNBTIndex != 0){
+            texture_index = textureNBTIndex;
+        }
+        else {
+            this.texture_index = TTMRand.getRandomInteger(5, 1);
+        }
     }
 
     public int getTextureIndex() {
@@ -81,19 +86,22 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
     public void setProfession(VillagerRegistry.VillagerProfession profession) {
         switch (texture_index) {
             case 0:
-                profession = FARMER;
                 break;
 
             case 1:
-                profession = ProfessionInit.coin_trader;
+                profession = VillagerRegistry.getById(4);
                 break;
 
             case 2:
-                profession = FARMER;
+                profession = ProfessionInit.getCoinBanker();
                 break;
 
             case 3:
-                profession = ProfessionInit.grocery_store;
+                profession = ProfessionInit.getGroceryStore();
+                break;
+
+            case 4:
+                profession = VillagerRegistry.getById(3);
 
         }
         super.setProfession(profession);
@@ -136,18 +144,10 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
         }
     }
 
-    /** Let's try to decide which entity will do what work */
-//    public void setProfession(VillagerRegistry.VillagerProfession profession) {
-//        if (!profession.getRegistryName().equals(ProfessionInit.getCoinBanker().getRegistryName()) ){
-//            profession = VillagerRegistry.instance().getRegistry().getValue(new ResourceLocation(TolkienMobs.MODID + ":coin_trader"));
-//        }
-//        super.setProfession(profession);
-//    }
-
     @Override
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LOOT;
+        return LootInit.DWARVES;
     }
 
     @Override
@@ -163,6 +163,41 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
     @Override
     public void readSpawnData(ByteBuf buffer) {
         this.texture_index = buffer.readInt();
+    }
+
+    private net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession prof;
+    public net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession getProfessionForge()
+    {
+        if (this.prof == null)
+        {
+            this.prof = net.minecraftforge.fml.common.registry.VillagerRegistry.getById(this.getProfession());
+            if (this.prof == null)
+                return net.minecraftforge.fml.common.registry.VillagerRegistry.getById(0); //Farmer
+        }
+        return this.prof;
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
+        compound.setInteger("texture_index", texture_index);
+        compound.setInteger("Profession", this.getProfession());
+        compound.setString("ProfessionName", this.getProfessionForge().getRegistryName().toString());
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        textureNBTIndex = compound.getInteger("texture_index");
+        this.setProfession(compound.getInteger("Profession"));
+        if (compound.hasKey("ProfessionName"))
+        {
+            net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession p =
+                    net.minecraftforge.fml.common.registry.ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new net.minecraft.util.ResourceLocation(compound.getString("ProfessionName")));
+            if (p == null)
+                p = net.minecraftforge.fml.common.registry.ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new net.minecraft.util.ResourceLocation("minecraft:farmer"));
+            this.setProfession(p);
+        }
     }
 
     public EntityDwarf createChild(EntityAgeable ageable)

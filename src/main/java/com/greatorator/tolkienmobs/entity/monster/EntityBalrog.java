@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
+import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.block.Block;
@@ -32,7 +33,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 public class EntityBalrog extends EntityMob implements IMob {
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/balrog");
 
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityBalrog.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityBalrog.class, DataSerializers.BOOLEAN);
@@ -396,7 +396,7 @@ public class EntityBalrog extends EntityMob implements IMob {
     @Override
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LOOT;
+        return LootInit.BALROG;
     }
 
     @Override

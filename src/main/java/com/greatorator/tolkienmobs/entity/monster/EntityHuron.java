@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
+import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -15,7 +16,6 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class EntityHuron extends EntityMob implements IRangedAttackMob {
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/huron");
 
     public EntityHuron(World worldIn) {
         super(worldIn);
@@ -68,7 +68,7 @@ public class EntityHuron extends EntityMob implements IRangedAttackMob {
     @Override
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LOOT;
+        return LootInit.HURON;
     }
 
     @Override

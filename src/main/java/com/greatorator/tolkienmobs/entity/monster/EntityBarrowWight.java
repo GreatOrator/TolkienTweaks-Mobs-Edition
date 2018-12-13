@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
+import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
@@ -31,7 +32,6 @@ import javax.annotation.Nullable;
 
 public class EntityBarrowWight extends EntityMob implements IEntityAdditionalSpawnData {
     private int texture_index;
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/barrowwight");
 
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityBarrowWight.class, DataSerializers.BOOLEAN);
     private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false)
@@ -178,7 +178,7 @@ public class EntityBarrowWight extends EntityMob implements IEntityAdditionalSpa
     @Override
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LOOT;
+        return LootInit.BWIGHT;
     }
 
     @Override

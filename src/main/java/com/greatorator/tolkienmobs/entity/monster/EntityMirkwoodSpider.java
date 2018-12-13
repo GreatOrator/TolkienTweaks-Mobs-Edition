@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.init.LootInit;
 import net.minecraft.block.Block;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -30,7 +31,6 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class EntityMirkwoodSpider extends EntityMob {
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/mirkwoodspider");
 
     private static final DataParameter<Byte> CLIMBING = EntityDataManager.<Byte>createKey(EntityMirkwoodSpider.class, DataSerializers.BYTE);
 
@@ -235,6 +235,12 @@ public class EntityMirkwoodSpider extends EntityMob {
             float f = this.taskOwner.getBrightness();
             return f >= 0.5F ? false : super.shouldExecute();
         }
+    }
+
+    @Override
+    @Nullable
+    protected ResourceLocation getLootTable() {
+        return LootInit.MSPIDER;
     }
 
     @Override

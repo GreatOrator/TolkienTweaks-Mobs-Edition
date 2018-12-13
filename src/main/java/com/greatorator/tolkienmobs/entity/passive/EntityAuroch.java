@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.passive;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.EntityHerds;
+import com.greatorator.tolkienmobs.init.LootInit;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.init.SoundEvents;
@@ -14,7 +15,6 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class EntityAuroch extends EntityHerds {
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/auroch");
     public EntityAuroch(World worldIn) {
         super(worldIn);
 
@@ -49,7 +49,7 @@ public class EntityAuroch extends EntityHerds {
     @Override
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LOOT;
+        return LootInit.AUROCH;
     }
 
     @Override

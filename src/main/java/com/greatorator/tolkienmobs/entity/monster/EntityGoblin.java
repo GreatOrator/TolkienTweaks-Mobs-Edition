@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
+import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import io.netty.buffer.ByteBuf;
@@ -33,7 +34,6 @@ import javax.annotation.Nullable;
 
 public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnData {
     private int texture_index;
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/goblin");
 
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityGoblin.class, DataSerializers.BOOLEAN);
     private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false)
@@ -188,7 +188,7 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
     @Override
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LOOT;
+        return LootInit.GOBLIN;
     }
 
     @Override

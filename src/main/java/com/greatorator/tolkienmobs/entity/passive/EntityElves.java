@@ -2,6 +2,8 @@ package com.greatorator.tolkienmobs.entity.passive;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.monster.*;
+import com.greatorator.tolkienmobs.handler.TTMRand;
+import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.ProfessionInit;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityAgeable;
@@ -11,6 +13,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -24,13 +27,18 @@ import static net.minecraftforge.fml.common.registry.VillagerRegistry.FARMER;
 
 public class EntityElves extends EntityVillager implements IEntityAdditionalSpawnData {
     private int texture_index;
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/elves");
+    private int textureNBTIndex;
 
     public EntityElves(World worldIn) {
         super(worldIn);
         this.setSize(0.9F, 2.0F);
         ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
-        this.texture_index = rand.nextInt(16);
+        if (textureNBTIndex != 0){
+            texture_index = textureNBTIndex;
+        }
+        else {
+            this.texture_index = TTMRand.getRandomInteger(17, 1);
+        }
     }
 
     public int getTextureIndex() {
@@ -72,67 +80,70 @@ public class EntityElves extends EntityVillager implements IEntityAdditionalSpaw
     public void setProfession(VillagerRegistry.VillagerProfession profession) {
         switch (texture_index) {
             case 0:
-                profession = FARMER;
                 break;
 
             case 1:
-                profession = ProfessionInit.coin_trader;
+                profession = ProfessionInit.getCoinBanker();
                 break;
 
             case 2:
-                profession = FARMER;
+                profession = VillagerRegistry.getById(1);
                 break;
 
             case 3:
-                profession = ProfessionInit.grocery_store;
+                profession = ProfessionInit.getGroceryStore();
                 break;
 
             case 4:
-                profession = FARMER;
+                profession = VillagerRegistry.getById(1);
                 break;
 
             case 5:
-                profession = FARMER;
+                profession = VillagerRegistry.getById(2);
                 break;
 
             case 6:
-                profession = FARMER;
+                profession = VillagerRegistry.getById(2);
                 break;
 
             case 7:
-                profession = FARMER;
+                profession = ProfessionInit.getGroceryStore();
                 break;
 
             case 8:
-                profession = FARMER;
+                profession = VillagerRegistry.getById(2);
                 break;
 
             case 9:
-                profession = FARMER;
+                profession = VillagerRegistry.getById(1);
                 break;
 
             case 10:
-                profession = FARMER;
+                profession = VillagerRegistry.getById(2);
                 break;
 
             case 11:
-                profession = FARMER;
+                profession = ProfessionInit.getCoinBanker();
                 break;
 
             case 12:
-                profession = FARMER;
+                profession = ProfessionInit.getCoinBanker();
                 break;
 
             case 13:
-                profession = FARMER;
+                profession = VillagerRegistry.getById(5);
                 break;
 
             case 14:
-                profession = FARMER;
+                profession = VillagerRegistry.getById(5);
                 break;
 
             case 15:
-                profession = FARMER;
+                profession = ProfessionInit.getGroceryStore();
+                break;
+
+            case 16:
+                profession = VillagerRegistry.getById(5);
 
         }
         super.setProfession(profession);
@@ -141,7 +152,7 @@ public class EntityElves extends EntityVillager implements IEntityAdditionalSpaw
     @Override
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LOOT;
+        return LootInit.ELVES;
     }
 
     @Override
@@ -157,6 +168,41 @@ public class EntityElves extends EntityVillager implements IEntityAdditionalSpaw
     @Override
     public void readSpawnData(ByteBuf buffer) {
         this.texture_index = buffer.readInt();
+    }
+
+    private net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession prof;
+    public net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession getProfessionForge()
+    {
+        if (this.prof == null)
+        {
+            this.prof = net.minecraftforge.fml.common.registry.VillagerRegistry.getById(this.getProfession());
+            if (this.prof == null)
+                return net.minecraftforge.fml.common.registry.VillagerRegistry.getById(0); //Farmer
+        }
+        return this.prof;
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
+        compound.setInteger("texture_index", texture_index);
+        compound.setInteger("Profession", this.getProfession());
+        compound.setString("ProfessionName", this.getProfessionForge().getRegistryName().toString());
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        textureNBTIndex = compound.getInteger("texture_index");
+        this.setProfession(compound.getInteger("Profession"));
+        if (compound.hasKey("ProfessionName"))
+        {
+            net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession p =
+                    net.minecraftforge.fml.common.registry.ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new net.minecraft.util.ResourceLocation(compound.getString("ProfessionName")));
+            if (p == null)
+                p = net.minecraftforge.fml.common.registry.ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new net.minecraft.util.ResourceLocation("minecraft:farmer"));
+            this.setProfession(p);
+        }
     }
 
     public EntityElves createChild(EntityAgeable ageable)

@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
+import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -21,7 +22,6 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class EntityGollum extends EntityMob {
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/gollum");
 
     public EntityGollum(World worldIn) {
         super(worldIn);
@@ -103,7 +103,7 @@ public class EntityGollum extends EntityMob {
     @Override
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LOOT;
+        return LootInit.GOLLUM;
     }
 
     @Override

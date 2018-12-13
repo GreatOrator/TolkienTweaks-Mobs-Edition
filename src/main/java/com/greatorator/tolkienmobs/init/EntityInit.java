@@ -65,29 +65,6 @@ public class EntityInit
 //        EntityRegistry.addSpawn(EntityHuman.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.GLADDEN);
 //        EntityRegistry.addSpawn(EntityElves.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.FIRIEN);
 
-        /** These are the loot table for our mobs */
-        /** Monsters */
-        LootTableList.register(EntityHuron.LOOT);
-        LootTableList.register(EntityTreeEnt.LOOT);
-        LootTableList.register(EntityMirkwoodSpider.LOOT);
-        LootTableList.register(EntityGoblin.LOOT);
-        LootTableList.register(EntityMordorOrc.LOOT);
-        LootTableList.register(EntityUrukHai.LOOT);
-        LootTableList.register(EntityWarg.LOOT);
-        LootTableList.register(EntityMumakil.LOOT);
-        LootTableList.register(EntityCrebain.LOOT);
-        LootTableList.register(EntityTroll.LOOT);
-        LootTableList.register(EntityBarrowWight.LOOT);
-        LootTableList.register(EntityBalrog.LOOT);
-        LootTableList.register(EntityGollum.LOOT);
-
-        /** Passive */
-        LootTableList.register(EntityAuroch.LOOT);
-        LootTableList.register(EntityDwarf.LOOT);
-        LootTableList.register(EntityHobbit.LOOT);
-        LootTableList.register(EntityHuman.LOOT);
-        LootTableList.register(EntityElves.LOOT);
-
         LogHelperTTM.info("I chose you mobi-chu!");
     }
 }

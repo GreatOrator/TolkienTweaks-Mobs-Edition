@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.EntityHerds;
+import com.greatorator.tolkienmobs.init.LootInit;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -16,7 +17,6 @@ import javax.annotation.Nullable;
 /** Borrowed from Jabelar https://github.com/jabelar */
 public class EntityMumakil extends EntityHerds {
     protected Block spawnableBlock = Blocks.SAND;
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/mumakil");
 
     public EntityMumakil(World par1World)
     {
@@ -55,7 +55,7 @@ public class EntityMumakil extends EntityHerds {
     @Override
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LOOT;
+        return LootInit.MUMAKIL;
     }
 
     @Override

@@ -20,10 +20,6 @@ public class WorldGenCustomStructures implements IWorldGenerator {
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         switch (world.provider.getDimension()) {
-            case 2:
-
-                break;
-
             case 1:
 
                 break;
@@ -32,11 +28,11 @@ public class WorldGenCustomStructures implements IWorldGenerator {
 
                 generateStructure(new WorldGenStructure("mallorntree"), world, random, chunkX, chunkZ, 40, Blocks.GRASS, BiomeLorinand.class);
                 generateStructure(new WorldGenStructure("mirkwoodtree"), world, random, chunkX, chunkZ, 10, Blocks.GRASS, BiomeMirkwood.class);
-                generateStructure(new WorldGenStructure("greatbarrow"), world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeBarrowDowns.class);
+//                generateStructure(new WorldGenStructure("greatbarrow"), world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeBarrowDowns.class);
                 generateStructure(new WorldGenStructure("stonespike"), world, random, chunkX, chunkZ, 5, Blocks.GRASS, BiomeBarrowDowns.class);
                 generateStructure(new WorldGenStructure("deadtree"), world, random, chunkX, chunkZ, 5, Blocks.GRASS, BiomeBarrowDowns.class, BiomeMordor.class);
                 generateStructure(new WorldGenStructure("fangorn_tree"), world, random, chunkX, chunkZ, 1, Blocks.GRASS, BiomeFangorn.class);
-                generateStructure(new WorldGenStructure("hobbithouse1"), world, random, chunkX, chunkZ, 30, Blocks.GRASS, BiomeShire.class);
+//                generateStructure(new WorldGenStructure("hobbithouse1"), world, random, chunkX, chunkZ, 30, Blocks.GRASS, BiomeShire.class);
 
                 break;
 

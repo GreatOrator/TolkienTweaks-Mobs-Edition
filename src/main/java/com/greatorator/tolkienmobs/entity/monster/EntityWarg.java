@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
+import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -27,7 +28,6 @@ import javax.annotation.Nullable;
 
 public class EntityWarg extends EntityWolf {
     private int texture_index;
-    public static final ResourceLocation LOOT = new ResourceLocation(TolkienMobs.MODID, "entities/warg");
 
     /** Float used to smooth the rotation of the wolf head */
     private float headRotationCourse;
@@ -246,6 +246,12 @@ public class EntityWarg extends EntityWolf {
         {
             super.handleStatusUpdate(id);
         }
+    }
+
+    @Override
+    @Nullable
+    protected ResourceLocation getLootTable() {
+        return LootInit.WARG;
     }
 
     @Override
