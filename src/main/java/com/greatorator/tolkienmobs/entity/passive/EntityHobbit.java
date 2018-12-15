@@ -13,6 +13,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
@@ -27,13 +28,9 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
         super(worldIn);
         this.setSize(0.9F, 1.5F);
         ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
-        if (textureNBTIndex != 0){
-            texture_index = textureNBTIndex;
-        }
-        else {
-            this.texture_index = TTMRand.getRandomInteger(5, 1);
-        }
     }
+
+
 
     public int getTextureIndex() {
         return this.texture_index;
@@ -68,6 +65,20 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
+    }
+
+    @Nullable
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
+    {
+        IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
+        this.setEquipmentBasedOnDifficulty(difficulty);
+        if (textureNBTIndex != 0){
+            texture_index = textureNBTIndex;
+        }
+        else {
+            this.texture_index = TTMRand.getRandomInteger(5, 1);
+        }
+        return ientitylivingdata;
     }
 
     @Override
