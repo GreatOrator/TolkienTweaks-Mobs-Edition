@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
+import com.greatorator.tolkienmobs.handler.TTMRand;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import io.netty.buffer.ByteBuf;
@@ -13,6 +13,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
@@ -75,6 +76,12 @@ public class EntityTreeEnt extends EntityMob implements IRangedAttackMob, IEntit
     {
         IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+        if (texture_index != 0){
+            texture_index = texture_index;
+        }
+        else {
+            this.texture_index = TTMRand.getRandomInteger(5, 1);
+        }
         return ientitylivingdata;
     }
 
@@ -105,6 +112,18 @@ public class EntityTreeEnt extends EntityMob implements IRangedAttackMob, IEntit
         entityboulder.shoot(d1, d2 + (double)f, d3, 1.6F, 12.0F);
         this.playSound(SoundInit.soundBoulderShoot, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
         this.world.spawnEntity(entityboulder);
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
+        compound.setInteger("texture_index", texture_index);
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        texture_index = compound.getInteger("texture_index");
     }
 
     @Override

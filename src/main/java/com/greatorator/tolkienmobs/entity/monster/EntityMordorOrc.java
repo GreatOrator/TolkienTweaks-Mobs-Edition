@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
+import com.greatorator.tolkienmobs.handler.TTMRand;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import io.netty.buffer.ByteBuf;
@@ -16,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -52,7 +53,6 @@ public class EntityMordorOrc extends EntityMob implements IEntityAdditionalSpawn
     public EntityMordorOrc(World worldIn) {
         super(worldIn);
         this.setSize(1.0F, 1.8F);
-        this.texture_index = rand.nextInt(4);
     }
     
     public int getTextureIndex() {
@@ -107,6 +107,12 @@ public class EntityMordorOrc extends EntityMob implements IEntityAdditionalSpawn
         IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
         this.setEquipmentBasedOnDifficulty(difficulty);
+        if (texture_index != 0){
+            texture_index = texture_index;
+        }
+        else {
+            this.texture_index = TTMRand.getRandomInteger(5, 1);
+        }
         this.setCombatTask();
         return ientitylivingdata;
     }
@@ -174,6 +180,18 @@ public class EntityMordorOrc extends EntityMob implements IEntityAdditionalSpawn
     public void setSwingingArms(boolean swingingArms)
     {
         this.dataManager.set(SWINGING_ARMS, Boolean.valueOf(swingingArms));
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
+        compound.setInteger("texture_index", texture_index);
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        texture_index = compound.getInteger("texture_index");
     }
 
     @Override

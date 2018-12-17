@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.handler.TTMRand;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.ProfessionInit;
+import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -22,7 +23,6 @@ import javax.annotation.Nullable;
 
 public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpawnData {
     private int texture_index;
-    private int textureNBTIndex;
 
     public EntityHobbit(World worldIn) {
         super(worldIn);
@@ -72,8 +72,8 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
     {
         IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
         this.setEquipmentBasedOnDifficulty(difficulty);
-        if (textureNBTIndex != 0){
-            texture_index = textureNBTIndex;
+        if (texture_index != 0){
+            texture_index = texture_index;
         }
         else {
             this.texture_index = TTMRand.getRandomInteger(5, 1);
@@ -150,7 +150,7 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
     @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
-        textureNBTIndex = compound.getInteger("texture_index");
+        texture_index = compound.getInteger("texture_index");
         this.setProfession(compound.getInteger("Profession"));
         if (compound.hasKey("ProfessionName"))
         {

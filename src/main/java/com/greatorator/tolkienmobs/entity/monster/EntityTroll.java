@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
+import com.greatorator.tolkienmobs.handler.TTMRand;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
@@ -18,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -106,6 +107,12 @@ public class EntityTroll extends EntityMob implements IEntityAdditionalSpawnData
         IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
         this.setEquipmentBasedOnDifficulty(difficulty);
+        if (texture_index != 0){
+            texture_index = texture_index;
+        }
+        else {
+            this.texture_index = TTMRand.getRandomInteger(5, 1);
+        }
         this.setCombatTask();
         return ientitylivingdata;
     }
@@ -203,6 +210,18 @@ public class EntityTroll extends EntityMob implements IEntityAdditionalSpawnData
     public void setSwingingArms(boolean swingingArms)
     {
         this.dataManager.set(SWINGING_ARMS, Boolean.valueOf(swingingArms));
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound compound) {
+        super.writeEntityToNBT(compound);
+        compound.setInteger("texture_index", texture_index);
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        texture_index = compound.getInteger("texture_index");
     }
 
     @Override

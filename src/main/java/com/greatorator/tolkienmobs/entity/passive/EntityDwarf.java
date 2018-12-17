@@ -29,18 +29,11 @@ import javax.annotation.Nullable;
 
 public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpawnData {
     private int texture_index;
-    private int textureNBTIndex;
 
     public EntityDwarf(World worldIn) {
         super(worldIn);
         this.setSize(1.0F, 1.7F);
         ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
-        if (textureNBTIndex != 0){
-            texture_index = textureNBTIndex;
-        }
-        else {
-            this.texture_index = TTMRand.getRandomInteger(5, 1);
-        }
     }
 
     public int getTextureIndex() {
@@ -104,7 +97,8 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
                 profession = VillagerRegistry.getById(3);
 
         }
-        super.setProfession(profession);
+        this.prof = profession;
+        this.setProfession(net.minecraftforge.fml.common.registry.VillagerRegistry.getId(prof));
     }
 
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
@@ -118,6 +112,12 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
     {
         IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
         this.setEquipmentBasedOnDifficulty(difficulty);
+        if (texture_index != 0){
+            texture_index = texture_index;
+        }
+        else {
+            this.texture_index = TTMRand.getRandomInteger(5, 1);
+        }
         return ientitylivingdata;
     }
 
@@ -188,7 +188,7 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
     @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
-        textureNBTIndex = compound.getInteger("texture_index");
+        texture_index = compound.getInteger("texture_index");
         this.setProfession(compound.getInteger("Profession"));
         if (compound.hasKey("ProfessionName"))
         {
