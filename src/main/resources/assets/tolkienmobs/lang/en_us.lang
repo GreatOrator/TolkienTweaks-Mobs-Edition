@@ -133,6 +133,7 @@ entity.dwarf.name=Dwarf
 entity.human.name=Human
 entity.elves.name=Elf
 entity.auroch.name=Kine of Araw
+entity.goat.name=Goat
 entity.tree_ent.name=Tree Ent
 entity.gollum.name=Smeagol
 

@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.entity.passive.EntityDwarf;
+import com.greatorator.tolkienmobs.entity.passive.EntityGoat;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.block.BlockSilverfish;
 import net.minecraft.entity.passive.EntityLlama;
@@ -48,8 +49,9 @@ public class BiomeIronHills extends Biome {
 
 
         this.spawnableCreatureList.add(new SpawnListEntry(EntityDwarf.class, 100, 1, 3));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityLlama.class, 100, 1, 3));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityLlama.class, 50, 1, 3));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityRabbit.class, 4, 2, 3));
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityGoat.class, 20, 2, 3));
     }
 
     public void decorate(World worldIn, Random rand, BlockPos pos)

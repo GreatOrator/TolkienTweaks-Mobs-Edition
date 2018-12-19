@@ -80,6 +80,16 @@ public class SoundInit
 	@ObjectHolder("entity.boulder.shoot")
 	public static final SoundEvent soundBoulderShoot = null;
 
+	/** Balrog */
+	@ObjectHolder("mob.goat.death")
+	public static final SoundEvent soundDeathGoat = null;
+	@ObjectHolder("mob.goat.idle")
+	public static final SoundEvent soundIdleGoat = null;
+	@ObjectHolder("mob.goat.hurt")
+	public static final SoundEvent soundHurtGoat = null;
+	@ObjectHolder("mob.goat.angry")
+	public static final SoundEvent soundAngryGoat = null;
+
 	/**
 	 * Initialize this mod's {@link Block}s with any post-registration data.
 	 */
@@ -127,6 +137,13 @@ public class SoundInit
                     "mob.balrog.idle",
                     "mob.balrog.hurt",
                     "mob.balrog.step",
+
+					/** Goat */
+					"mob.goat.death",
+					"mob.goat.idle",
+					"mob.goat.hurt",
+					"mob.goat.angry",
+					"mob.goat.step",
 
 					/** Gollum */
 					"mob.gollum.death",

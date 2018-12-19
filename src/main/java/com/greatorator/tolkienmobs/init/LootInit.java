@@ -28,6 +28,7 @@ public class LootInit {
     public static final ResourceLocation DWARVES = register("entities/dwarf");
     public static final ResourceLocation HOBBIT = register("entities/hobbit");
     public static final ResourceLocation AUROCH = register("entities/auroch");
+    public static final ResourceLocation GOAT = register("entities/goat");
 
     /** Structures */
     /** Chests */

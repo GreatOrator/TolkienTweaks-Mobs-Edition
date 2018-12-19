@@ -30,8 +30,6 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
         ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
     }
 
-
-
     public int getTextureIndex() {
         return this.texture_index;
     }

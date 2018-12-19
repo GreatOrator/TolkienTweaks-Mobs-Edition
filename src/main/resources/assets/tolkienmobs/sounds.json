@@ -207,5 +207,40 @@
       "tolkienmobs:mob/gollum/gollum_say1",
       "tolkienmobs:mob/gollum/gollum_say2"
     ]
+  },
+  "mob.goat.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/goat/goat_death"
+    ]
+  },
+  "mob.goat.hurt":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/goat/goat_hurt"
+    ]
+  },
+  "mob.goat.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/goat/goat_say0",
+      "tolkienmobs:mob/goat/goat_say1",
+      "tolkienmobs:mob/goat/goat_say2",
+      "tolkienmobs:mob/goat/goat_say3"
+    ]
+  },
+  "mob.goat.angry":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/goat/goat_angry"
+    ]
   }
 }
