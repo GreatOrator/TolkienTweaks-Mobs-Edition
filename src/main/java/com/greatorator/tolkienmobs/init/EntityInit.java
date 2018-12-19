@@ -60,6 +60,7 @@ public class EntityInit
 
         /** Passive */
 //        EntityRegistry.addSpawn(EntityAuroch.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.GLADDEN, BiomeInit.SHIRE);
+//        EntityRegistry.addSpawn(EntityGoat.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.IRON_HILLS, BiomeInit.SHIRE);
 //        EntityRegistry.addSpawn(EntityDwarf.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.IRON_HILLS);
 //        EntityRegistry.addSpawn(EntityHobbit.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.SHIRE);
 //        EntityRegistry.addSpawn(EntityHuman.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.GLADDEN);
