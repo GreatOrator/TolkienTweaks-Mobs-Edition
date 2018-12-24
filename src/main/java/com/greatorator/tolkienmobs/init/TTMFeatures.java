@@ -44,10 +44,10 @@ public class TTMFeatures implements IModFeatures {
     }
 
     //Material //I don't like the fact that this exists here but... for now this is fine.
-    public static Item.ToolMaterial TOOL_MITHRIL = EnumHelper.addToolMaterial("tool_mithril", 2, 180, 5.0F, 1.5F, 5);
-    public static ItemArmor.ArmorMaterial ARMOR_MITHRIL = EnumHelper.addArmorMaterial("armour_mithril", TolkienMobs.MODID + ":mithril", 20, new int[]{6, 7, 7, 6}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
-    public static Item.ToolMaterial TOOL_MORGULIRON = EnumHelper.addToolMaterial("tool_morguliron", 2, 180, 5.0F, 1.5F, 5);
-    public static ItemArmor.ArmorMaterial ARMOR_MORGULIRON = EnumHelper.addArmorMaterial("armour_morguliron", TolkienMobs.MODID + ":morguliron", 20, new int[]{6, 7, 7, 6}, 20, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
+    public static Item.ToolMaterial TOOL_MITHRIL = EnumHelper.addToolMaterial("tool_mithril", 5, 1800, 12.0F, 5.5F, 45);
+    public static ItemArmor.ArmorMaterial ARMOR_MITHRIL = EnumHelper.addArmorMaterial("armour_mithril", TolkienMobs.MODID + ":mithril", 50, new int[]{6, 12, 16, 6}, 35, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
+    public static Item.ToolMaterial TOOL_MORGULIRON = EnumHelper.addToolMaterial("tool_morguliron", 3, 1600, 9.0F, 3.5F, 5);
+    public static ItemArmor.ArmorMaterial ARMOR_MORGULIRON = EnumHelper.addArmorMaterial("armour_morguliron", TolkienMobs.MODID + ":morguliron", 35, new int[]{6, 10, 10, 6}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
 
     //region Simple Items
     @ModFeature(name = "ingot_mithril", stateOverride = "simple_items#type=ingot_mithril", cTab = 1)
@@ -106,16 +106,16 @@ public class TTMFeatures implements IModFeatures {
 
     //region Armor
     @ModFeature(name = "helmet_mithril", stateOverride = "armor#type=helmet_mithril")
-    public static Item HELMET_MITHRIL = new ItemArmor(ARMOR_MITHRIL, 1, EntityEquipmentSlot.HEAD);
+    public static Item HELMET_MITHRIL = new ArmorInit(ARMOR_MITHRIL, 1, EntityEquipmentSlot.HEAD);
 
     @ModFeature(name = "chestplate_mithril", stateOverride = "armor#type=chestplate_mithril")
-    public static Item CHESTPLATE_MITHRIL = new ItemArmor(ARMOR_MITHRIL, 1, EntityEquipmentSlot.CHEST);
+    public static Item CHESTPLATE_MITHRIL = new ArmorInit(ARMOR_MITHRIL, 1, EntityEquipmentSlot.CHEST);
 
     @ModFeature(name = "leggings_mithril", stateOverride = "armor#type=leggings_mithril")
-    public static Item LEGGINGS_MITHRIL = new ItemArmor(ARMOR_MITHRIL, 2, EntityEquipmentSlot.LEGS);
+    public static Item LEGGINGS_MITHRIL = new ArmorInit(ARMOR_MITHRIL, 2, EntityEquipmentSlot.LEGS);
 
     @ModFeature(name = "boots_mithril", stateOverride = "armor#type=boots_mithril")
-    public static Item BOOTS_MITHRIL = new ItemArmor(ARMOR_MITHRIL, 1, EntityEquipmentSlot.FEET);
+    public static Item BOOTS_MITHRIL = new ArmorInit(ARMOR_MITHRIL, 1, EntityEquipmentSlot.FEET);
 
     @ModFeature(name = "helmet_morguliron", stateOverride = "armor#type=helmet_morguliron")
     public static Item HELMET_MORGULIRON = new ItemArmor(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.HEAD);
