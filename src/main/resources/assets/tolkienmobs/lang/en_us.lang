@@ -115,6 +115,8 @@ tile.tolkienmobs:sign_magical_plants.name=Herbologist
 tile.tolkienmobs:sign_potions.name=Curator of Potions
 tile.tolkienmobs:sign_pub.name=The Mortician & Cook
 tile.tolkienmobs:sign_stable.name=Ye Old Livery
+tile.tolkienmobs:sign_lumberjack.name=Woodcutter
+tile.tolkienmobs:sign_postman.name=Parcel Post
 
 //Entities
 entity.huron.name=Huron

@@ -162,7 +162,9 @@ public class BlockSigns extends BlockBCore implements IRenderOverride, ITileEnti
         MAGICAL(15, "magical_plants"),
         POTIONS(16, "potions"),
         PUB(17, "pub"),
-        STABLE(18, "stable");
+        STABLE(18, "stable"),
+        LUMBER(19, "lumberjack"),
+        POSTMAN(20, "postman");
 
         private static final EnumType[] META_LOOKUP = new EnumType[values().length];
         public static final Map<Integer, String> SIGN_TYPE_LOOKUP = new LinkedHashMap<>();

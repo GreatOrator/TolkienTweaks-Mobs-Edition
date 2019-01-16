@@ -32,7 +32,9 @@
       "magical_plants": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_magical_plants"}},
       "potions": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_potions"}},
       "pub": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_pub"}},
-      "stable": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_stable"}}
+      "stable": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_stable"}},
+      "postman": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_postman"}},
+      "lumberjack": {"textures": {"tex": "tolkienmobs:blocks/signs/sign_lumberjack"}}
     },
     "facing": {
       "north": {},
