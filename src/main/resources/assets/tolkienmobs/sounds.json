@@ -208,6 +208,41 @@
       "tolkienmobs:mob/gollum/gollum_say2"
     ]
   },
+  "mob.tmfrog.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/tmfrog/tmfrog_death"
+    ]
+  },
+  "mob.tmfrog.hurt":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/tmfrog/tmfrog_hurt"
+    ]
+  },
+  "mob.tmfrog.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/tmfrog/tmfrog_say0",
+      "tolkienmobs:mob/tmfrog/tmfrog_say1",
+      "tolkienmobs:mob/tmfrog/tmfrog_say2",
+      "tolkienmobs:mob/tmfrog/tmfrog_say3"
+    ]
+  },
+  "mob.tmfrog.step":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/tmfrog/tmfrog_step"
+    ]
+  },
   "mob.goat.death":
   {
     "category": "neutral",

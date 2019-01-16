@@ -38,6 +38,7 @@ public class EntityInit
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "hobbit"), EntityHobbit.class, "hobbit", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0xfe519d);
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "human"), EntityHuman.class, "human", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0x1f7dff);
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "elves"), EntityElves.class, "elves", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0x89cc37);
+        EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmfrog"), EntityTMFrog.class, "tmfrog", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0xaaccff);
 
         /** Non-mob Entities */
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "boulder"), EntityAmmo.class, "ammo_boulder", id++, TolkienMobs.instance, 64, 3, true);
@@ -63,6 +64,7 @@ public class EntityInit
         EntityRegistry.addSpawn(EntityHobbit.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.SHIRE);
         EntityRegistry.addSpawn(EntityHuman.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.GLADDEN);
         EntityRegistry.addSpawn(EntityElves.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.FIRIEN);
+        EntityRegistry.addSpawn(EntityTMFrog.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.MIRKWOOD);
 
         LogHelperTTM.info("I chose you mobi-chu!");
     }
