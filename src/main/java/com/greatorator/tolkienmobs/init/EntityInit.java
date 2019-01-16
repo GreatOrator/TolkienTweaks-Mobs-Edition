@@ -6,9 +6,7 @@ import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.entity.passive.*;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class EntityInit
@@ -59,12 +57,12 @@ public class EntityInit
 //        EntityRegistry.addSpawn(EntityBarrowWight.class, 100, 1, 3, EnumCreatureType.MONSTER, BiomeInit.BARROW_DOWNS);
 
         /** Passive */
-//        EntityRegistry.addSpawn(EntityAuroch.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.GLADDEN, BiomeInit.SHIRE);
-//        EntityRegistry.addSpawn(EntityGoat.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.IRON_HILLS, BiomeInit.SHIRE);
-//        EntityRegistry.addSpawn(EntityDwarf.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.IRON_HILLS);
-//        EntityRegistry.addSpawn(EntityHobbit.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.SHIRE);
-//        EntityRegistry.addSpawn(EntityHuman.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.GLADDEN);
-//        EntityRegistry.addSpawn(EntityElves.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.FIRIEN);
+        EntityRegistry.addSpawn(EntityAuroch.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.GLADDEN, BiomeInit.SHIRE);
+        EntityRegistry.addSpawn(EntityGoat.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.IRON_HILLS, BiomeInit.SHIRE);
+        EntityRegistry.addSpawn(EntityDwarf.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.IRON_HILLS);
+        EntityRegistry.addSpawn(EntityHobbit.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.SHIRE);
+        EntityRegistry.addSpawn(EntityHuman.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.GLADDEN);
+        EntityRegistry.addSpawn(EntityElves.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.FIRIEN);
 
         LogHelperTTM.info("I chose you mobi-chu!");
     }
