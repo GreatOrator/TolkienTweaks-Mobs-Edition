@@ -79,6 +79,12 @@ public class SoundInit
 	/** Miscellaneous */
 	@ObjectHolder("entity.boulder.shoot")
 	public static final SoundEvent soundBoulderShoot = null;
+	@ObjectHolder("mob.demoniclaughter")
+	public static final SoundEvent sounddemoniclaughter = null;
+	@ObjectHolder("mob.evilwitchlaugh")
+	public static final SoundEvent soundevilwitchlaugh = null;
+	@ObjectHolder("mob.ghostlylament")
+	public static final SoundEvent soundghostlylament = null;
 
 	/** Balrog */
 	@ObjectHolder("mob.goat.death")
@@ -89,6 +95,54 @@ public class SoundInit
 	public static final SoundEvent soundHurtGoat = null;
 	@ObjectHolder("mob.goat.angry")
 	public static final SoundEvent soundAngryGoat = null;
+
+	/** Music */
+	@ObjectHolder("music.allthatglittersinerebor")
+	public static final SoundEvent soundallthatglittersinerebor = null;
+	@ObjectHolder("music.willowsong")
+	public static final SoundEvent soundwillowsong = null;
+	@ObjectHolder("music.minastirith")
+	public static final SoundEvent soundminastirith = null;
+	@ObjectHolder("music.ridersofrivendell")
+	public static final SoundEvent soundridersofrivendell = null;
+	@ObjectHolder("music.thelightoflothlorien")
+	public static final SoundEvent soundthelightoflothlorien = null;
+	@ObjectHolder("music.wakeofedoras")
+	public static final SoundEvent soundwakeofedoras = null;
+	@ObjectHolder("music.witchbattle")
+	public static final SoundEvent soundwitchbattle = null;
+	@ObjectHolder("music.murderfrog")
+	public static final SoundEvent soundmurderfrog = null;
+	@ObjectHolder("music.rederssong")
+	public static final SoundEvent soundrederssong = null;
+	@ObjectHolder("music.trollfumble")
+	public static final SoundEvent soundtrollfumble = null;
+	@ObjectHolder("music.mysteryoftombombadil")
+	public static final SoundEvent soundmysteryoftombombadil = null;
+	@ObjectHolder("music.concerninghobbits")
+	public static final SoundEvent soundconcerninghobbits = null;
+
+	/** Ambient */
+	@ObjectHolder("ambient.khazaddum")
+	public static final SoundEvent soundkhazaddum = null;
+	@ObjectHolder("ambient.waterworks")
+	public static final SoundEvent soundwaterworks = null;
+	@ObjectHolder("ambient.medievalcity")
+	public static final SoundEvent soundmedievalcity = null;
+	@ObjectHolder("ambient.medievalcitymarket")
+	public static final SoundEvent soundmedievalcitymarket = null;
+	@ObjectHolder("ambient.medievaltavern")
+	public static final SoundEvent soundmedievaltavern = null;
+	@ObjectHolder("ambient.medievalseaport")
+	public static final SoundEvent soundmedievalseaport = null;
+	@ObjectHolder("ambient.pathsofthedead")
+	public static final SoundEvent soundpathsofthedead = null;
+	@ObjectHolder("ambient.underworld")
+	public static final SoundEvent soundunderworld = null;
+
+	/** Blocks */
+	@ObjectHolder("block.cathedralbell")
+	public static final SoundEvent soundcathedralbell = null;
 
 	/**
 	 * Initialize this mod's {@link Block}s with any post-registration data.
@@ -156,7 +210,38 @@ public class SoundInit
                     "mob.warg.hurt",
 
 					/** Miscellaneous */
-					"entity.boulder.shoot"
+					"entity.boulder.shoot",
+					"mob.demonlaugh",
+					"mob.evilwitchlaugh",
+					"mob.ghostlylament",
+
+
+					/** Music */
+					"music.allthatglittersinerebor",
+					"music.willowsong",
+					"music.minastirith",
+					"music.ridersofrivendell",
+					"music.thelightoflothlorien",
+					"music.wakeofedoras",
+					"music.witchbattle",
+					"music.murderfrog",
+					"music.rederssong",
+					"music.trollfumble",
+					"music.mysteryoftombombadil",
+					"music.concerninghobbits",
+
+					/** Ambient */
+					"ambient.khazaddum",
+					"ambient.waterworks",
+					"ambient.medievalcity",
+					"ambient.medievalcitymarket",
+					"ambient.medievaltavern",
+					"ambient.medievalseaport",
+					"ambient.pathsofthedead",
+					"ambient.underworld",
+
+					/** Blocks */
+					"block.cathedralbell"
 
 			};
 

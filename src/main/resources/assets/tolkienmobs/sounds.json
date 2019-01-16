@@ -242,5 +242,227 @@
     [
       "tolkienmobs:mob/goat/goat_angry"
     ]
+  },
+  "music.allthatglittersinerebor": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "tolkienmobs:music/allthatglitterserebor",
+        "stream": true,
+        "preload": true
+      }
+    ]
+  },
+  "music.willowsong": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "tolkienmobs:music/touchofshade",
+        "stream": true,
+        "preload": true
+      }
+    ]
+  },
+  "music.minastirith": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "tolkienmobs:music/minastirith",
+        "stream": true,
+        "preload": true
+      }
+    ]
+  },
+  "music.ridersofrivendell": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "tolkienmobs:music/ridersofrivendell",
+        "stream": true,
+        "preload": true
+      }
+    ]
+  },
+  "music.thelightoflothlorien": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "tolkienmobs:music/thelightoflothlorien",
+        "stream": true,
+        "preload": true
+      }
+    ]
+  },
+  "music.wakeofedoras": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "tolkienmobs:music/wakeofedoras",
+        "stream": true,
+        "preload": true
+      }
+    ]
+  },
+  "music.witchbattle": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "tolkienmobs:music/witchbattle",
+        "stream": true,
+        "preload": true
+      }
+    ]
+  },
+  "music.murderfrog": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "tolkienmobs:music/murderfrog",
+        "stream": true,
+        "preload": true
+      }
+    ]
+  },
+  "music.rederssong": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "tolkienmobs:music/rederssong",
+        "stream": true,
+        "preload": true
+      }
+    ]
+  },
+  "music.trollfumble": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "tolkienmobs:music/trollfumble",
+        "stream": true,
+        "preload": true
+      }
+    ]
+  },
+  "music.mysteryoftombombadil": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "tolkienmobs:music/mysteryoftombombadil",
+        "stream": true,
+        "preload": true
+      }
+    ]
+  },
+  "music.concerninghobbits": {
+    "category": "music",
+    "sounds": [
+      {
+        "name": "tolkienmobs:music/concerninghobbits",
+        "stream": true,
+        "preload": true
+      }
+    ]
+  },
+  "ambient.khazaddum": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "tolkienmobs:ambient/khazaddum",
+        "stream": true
+      }
+    ]
+  },
+  "ambient.waterworks": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "tolkienmobs:ambient/waterworks",
+        "stream": true
+      }
+    ]
+  },
+  "ambient.medievalcity": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "tolkienmobs:ambient/medievalcity",
+        "stream": true
+      }
+    ]
+  },
+  "ambient.medievalcitymarket": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "tolkienmobs:ambient/medievalcitymarket",
+        "stream": true
+      }
+    ]
+  },
+  "ambient.medievaltavern": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "tolkienmobs:ambient/medievaltavern",
+        "stream": true
+      }
+    ]
+  },
+  "ambient.medievalseaport": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "tolkienmobs:ambient/medievalseaport",
+        "stream": true
+      }
+    ]
+  },
+  "ambient.pathsofthedead": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "tolkienmobs:ambient/pathsofthedead",
+        "stream": true
+      }
+    ]
+  },
+  "ambient.underworld": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "tolkienmobs:ambient/underworld",
+        "stream": true
+      }
+    ]
+  },
+  "block.cathedralbell": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "tolkienmobs:block/cathedralbell",
+        "stream": true
+      }
+    ]
+  },
+  "mob.demonlaugh": {
+    "category": "hostile",
+    "sounds":
+    [
+      "tolkienmobs:mob/demoniclaughter"
+    ]
+  },
+  "mob.evilwitchlaugh": {
+    "category": "hostile",
+    "sounds":
+    [
+      "tolkienmobs:mob/evilwitchlaugh"
+    ]
+  },
+  "mob.ghostlylament": {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/ghostlylament"
+    ]
   }
 }
