@@ -7,8 +7,12 @@ import net.minecraft.world.storage.loot.LootTableList;
 public class LootInit {
 
     /** Entities */
-    /** Hostile */
+    /** Boss */
     public static final ResourceLocation BALROG = register("entities/balrog");
+    public static final ResourceLocation FELLBEAST = register("entities/fellbeast");
+    public static final ResourceLocation WITCHKING = register("entities/witchking");
+
+    /** Hostile */
     public static final ResourceLocation BWIGHT = register("entities/barrowwight");
     public static final ResourceLocation CREBAIN = register("entities/crebain");
     public static final ResourceLocation GOBLIN = register("entities/goblin");

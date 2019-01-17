@@ -1,7 +1,7 @@
-package com.greatorator.tolkienmobs.client.render.model.monster;
+package com.greatorator.tolkienmobs.client.render.model.boss;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
-import com.greatorator.tolkienmobs.entity.monster.EntityBalrog;
+import com.greatorator.tolkienmobs.entity.boss.EntityBalrog;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

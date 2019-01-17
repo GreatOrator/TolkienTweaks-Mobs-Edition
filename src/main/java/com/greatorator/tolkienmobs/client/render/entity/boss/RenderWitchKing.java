@@ -1,8 +1,9 @@
-package com.greatorator.tolkienmobs.client.render.entity.monster;
+package com.greatorator.tolkienmobs.client.render.entity.boss;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.render.model.monster.ModelBalrog;
-import com.greatorator.tolkienmobs.entity.monster.EntityBalrog;
+import com.greatorator.tolkienmobs.client.render.entity.monster.RenderMirkwoodSpider;
+import com.greatorator.tolkienmobs.client.render.model.boss.ModelWitchKing;
+import com.greatorator.tolkienmobs.entity.boss.EntityWitchKing;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;
@@ -18,25 +19,26 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
-public class RenderBalrog extends RenderLiving<EntityBalrog> {
-    private ResourceLocation mobTexture = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/balrog.png");
+public class RenderWitchKing extends RenderLiving<EntityWitchKing> {
+    private ResourceLocation mobTexture = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/witchking.png");
 
-    public static final RenderBalrog.Factory FACTORY = new RenderBalrog.Factory();
+    public static final Factory FACTORY = new Factory();
 
-    public RenderBalrog(RenderManager rendermanagerIn) {
-        super(rendermanagerIn, new ModelBalrog(), 2.5F);
+
+    public RenderWitchKing(RenderManager rendermanagerIn) {
+        super(rendermanagerIn, new ModelWitchKing(), 0.5F);
         this.addLayer(new LayerHeldItem(this){
             @Override
             public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-                boolean flag = entitylivingbaseIn.getPrimaryHand() == EnumHandSide.LEFT;
+                boolean flag = entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT;
                 ItemStack itemstack = flag ? entitylivingbaseIn.getHeldItemOffhand() : entitylivingbaseIn.getHeldItemMainhand();
                 ItemStack itemstack1 = flag ? entitylivingbaseIn.getHeldItemMainhand() : entitylivingbaseIn.getHeldItemOffhand();
 
                 if (!itemstack.isEmpty() || !itemstack1.isEmpty())
                 {
                     GlStateManager.pushMatrix();
-                    GlStateManager.scale(1.5F, 1.5F, 1.5F);
 
                     if (this.livingEntityRenderer.getMainModel().isChild)
                     {
@@ -62,12 +64,12 @@ public class RenderBalrog extends RenderLiving<EntityBalrog> {
                         GlStateManager.translate(0.0F, 0.2F, 0.0F);
                     }
                     // Forge: moved this call down, fixes incorrect offset while sneaking.
-//                    GlStateManager.translate(0.0F, 0.625F, 0);
+                    //                    GlStateManager.translate(0.0F, 0.625F, 0);
                     this.translateToHand(handSide);
                     GlStateManager.rotate(-100.0F, 1.0F, 0.0F, 0.0F);
                     GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
                     boolean flag = handSide == EnumHandSide.LEFT;
-                    GlStateManager.translate((float)(flag ? 1 : -1) / 8.0F, 1.2F, 0.75F);
+                    GlStateManager.translate((float)(flag ? -1 : 1) / 16.0F, 0.12F, -(0.45F));
                     Minecraft.getMinecraft().getItemRenderer().renderItemSide(entity, stack, transform, flag);
                     GlStateManager.popMatrix();
                 }
@@ -75,25 +77,29 @@ public class RenderBalrog extends RenderLiving<EntityBalrog> {
 
             @Override
             protected void translateToHand(EnumHandSide p_191361_1_) {
-                ((ModelBiped)this.livingEntityRenderer.getMainModel()).postRenderArm(-0.08F, p_191361_1_);
+                ((ModelBiped)this.livingEntityRenderer.getMainModel()).postRenderArm(0.065F, p_191361_1_);
             }
         });
     }
 
+
+
     @Override
     @Nonnull
-    protected ResourceLocation getEntityTexture(@Nonnull EntityBalrog entity) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityWitchKing entity) {
         return mobTexture;
     }
 
     public void transformHeldFull3DItemLayer() {
-        GlStateManager.translate(-2.0F, 0.1875F, 0.5F);
+        GlStateManager.translate(-2.0F, 0.1875F, 0.0F);
     }
 
-    public static class Factory implements IRenderFactory<EntityBalrog> {
+    public static class Factory implements IRenderFactory<EntityWitchKing> {
+
         @Override
-        public Render<? super EntityBalrog> createRenderFor(RenderManager manager) {
-            return new RenderBalrog(manager);
+        public Render<? super EntityWitchKing> createRenderFor(RenderManager manager) {
+            return new RenderWitchKing(manager);
         }
+
     }
 }

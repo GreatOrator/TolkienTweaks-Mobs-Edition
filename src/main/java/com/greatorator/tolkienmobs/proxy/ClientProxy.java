@@ -2,11 +2,17 @@ package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderBoulder;
+import com.greatorator.tolkienmobs.client.render.entity.boss.RenderBalrog;
+import com.greatorator.tolkienmobs.client.render.entity.boss.RenderFellBeast;
+import com.greatorator.tolkienmobs.client.render.entity.boss.RenderWitchKing;
 import com.greatorator.tolkienmobs.client.render.entity.monster.*;
 import com.greatorator.tolkienmobs.client.render.entity.passive.*;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelCrebain;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelMumakil;
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
+import com.greatorator.tolkienmobs.entity.boss.EntityBalrog;
+import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityWitchKing;
 import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.entity.passive.*;
 import com.greatorator.tolkienmobs.handler.FogHandler;
@@ -33,13 +39,17 @@ public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
         OBJLoader.INSTANCE.addDomain(TolkienMobs.MODID);
+        /** Bosses */
+        RenderingRegistry.registerEntityRenderingHandler(EntityBalrog.class, RenderBalrog.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityFellBeast.class, RenderFellBeast::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityWitchKing.class, RenderWitchKing.FACTORY);
+
         /** Monsters */
         RenderingRegistry.registerEntityRenderingHandler(EntityHuron.class, RenderHuron.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTreeEnt.class, RenderTreeEnt.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityMirkwoodSpider.class, RenderMirkwoodSpider.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityGoblin.class, RenderGoblin.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityMordorOrc.class, RenderMordorOrc.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityBalrog.class, RenderBalrog.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityWarg.class, RenderWarg.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(
                 EntityMumakil.class,
