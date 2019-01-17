@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.entity.boss;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.render.entity.monster.RenderMirkwoodSpider;
 import com.greatorator.tolkienmobs.client.render.model.boss.ModelWitchKing;
 import com.greatorator.tolkienmobs.entity.boss.EntityWitchKing;
 import net.minecraft.client.Minecraft;
@@ -19,7 +18,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class RenderWitchKing extends RenderLiving<EntityWitchKing> {
     private ResourceLocation mobTexture = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/witchking.png");

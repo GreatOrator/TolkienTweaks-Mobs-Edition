@@ -207,7 +207,6 @@ public class SoundInit
 					"mob.goat.idle",
 					"mob.goat.hurt",
 					"mob.goat.angry",
-					"mob.goat.step",
 
 					/** TMFrog */
 					"mob.tmfrog.death",

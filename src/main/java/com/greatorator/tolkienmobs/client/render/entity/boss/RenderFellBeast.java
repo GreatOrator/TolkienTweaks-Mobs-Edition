@@ -2,20 +2,18 @@ package com.greatorator.tolkienmobs.client.render.entity.boss;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerFellBeastDeath;
-import com.greatorator.tolkienmobs.client.render.entity.layers.LayerFellBeastEyes;
 import com.greatorator.tolkienmobs.client.render.model.boss.ModelFellBeast;
 import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class RenderFellBeast extends RenderLiving<EntityFellBeast>
@@ -53,21 +51,18 @@ public class RenderFellBeast extends RenderLiving<EntityFellBeast>
         }
     }
 
-    /**
-     * Renders the model in RenderLiving
-     */
     protected void renderModel(EntityFellBeast entitylivingbaseIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
     {
         if (entitylivingbaseIn.deathTicks > 0)
         {
-            float f = (float)entitylivingbaseIn.deathTicks / 200.0F;
-            GlStateManager.depthFunc(515);
-            GlStateManager.enableAlpha();
-            GlStateManager.alphaFunc(516, f);
+            float f6 = (float)entitylivingbaseIn.deathTicks / 200.0F;
+            GL11.glDepthFunc(GL11.GL_LEQUAL);
+            GL11.glEnable(GL11.GL_ALPHA_TEST);
+            GL11.glAlphaFunc(GL11.GL_GREATER, f6);
             this.bindTexture(FELLBEAST_EXPLODING_TEXTURES);
             this.mainModel.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-            GlStateManager.alphaFunc(516, 0.1F);
-            GlStateManager.depthFunc(514);
+            GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
+            GL11.glDepthFunc(GL11.GL_EQUAL);
         }
 
         this.bindEntityTexture(entitylivingbaseIn);
@@ -75,21 +70,18 @@ public class RenderFellBeast extends RenderLiving<EntityFellBeast>
 
         if (entitylivingbaseIn.hurtTime > 0)
         {
-            GlStateManager.depthFunc(514);
-            GlStateManager.disableTexture2D();
-            GlStateManager.enableBlend();
-            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            GlStateManager.color(1.0F, 0.0F, 0.0F, 0.5F);
+            GL11.glDepthFunc(GL11.GL_EQUAL);
+            GL11.glDisable(GL11.GL_TEXTURE_2D);
+            GL11.glEnable(GL11.GL_BLEND);
+            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            GL11.glColor4f(1.0F, 0.0F, 0.0F, 0.5F);
             this.mainModel.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor);
-            GlStateManager.enableTexture2D();
-            GlStateManager.disableBlend();
-            GlStateManager.depthFunc(515);
+            GL11.glEnable(GL11.GL_TEXTURE_2D);
+            GL11.glDisable(GL11.GL_BLEND);
+            GL11.glDepthFunc(GL11.GL_LEQUAL);
         }
     }
 
-    /**
-     * Renders the desired {@code T} type Entity.
-     */
     public void doRender(EntityFellBeast entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
@@ -140,9 +132,39 @@ public class RenderFellBeast extends RenderLiving<EntityFellBeast>
         GlStateManager.popMatrix();
     }
 
-    /**
-     * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
-     */
+    public static class LayerFellBeastEyes implements LayerRenderer<EntityFellBeast> {
+        private static final ResourceLocation TEXTURE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/fellbeast/fellbeast_eyes.png");
+        private final RenderFellBeast fellbeastRenderer;
+
+        public LayerFellBeastEyes(RenderFellBeast fellbeastRendererIn) {
+            this.fellbeastRenderer = fellbeastRendererIn;
+        }
+
+        public void doRenderLayer(EntityFellBeast entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+            this.fellbeastRenderer.bindTexture(TEXTURE);
+            GlStateManager.enableBlend();
+            GlStateManager.disableAlpha();
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
+            GlStateManager.disableLighting();
+            GlStateManager.depthFunc(514);
+            int i = 61680;
+            int j = i % 65536;
+            int k = i / 65536;
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
+            GlStateManager.enableLighting();
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            this.fellbeastRenderer.getMainModel().render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+            this.fellbeastRenderer.setLightmap(entitylivingbaseIn);
+            GlStateManager.disableBlend();
+            GlStateManager.enableAlpha();
+            GlStateManager.depthFunc(515);
+        }
+
+        public boolean shouldCombineTextures() {
+            return false;
+        }
+    }
+
     protected ResourceLocation getEntityTexture(EntityFellBeast entity)
     {
         return FELLBEAST_TEXTURES;
