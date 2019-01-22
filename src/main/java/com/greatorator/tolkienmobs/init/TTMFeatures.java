@@ -35,7 +35,7 @@ import javax.annotation.Nullable;
 @ModFeatures(modid = TolkienMobs.MODID) //This is what allows Brandon's Core to find this class and load all of its features
 public class TTMFeatures implements IModFeatures {
 
-    private CreativeTabs[] tabs = new CreativeTabs[]{TolkienMobs.tabToolsArmor, TolkienMobs.tabWorldMats, TolkienMobs.tabMobsSpawn, TolkienMobs.tabFoodItems, TolkienMobs.tabSignItems};
+    private CreativeTabs[] tabs = new CreativeTabs[]{TolkienMobs.tabToolsArmor, TolkienMobs.tabWorldMats, TolkienMobs.tabMobsSpawn, TolkienMobs.tabFoodItems, TolkienMobs.tabQuestItems, TolkienMobs.tabSignItems};
 
     @Nullable
     @Override
@@ -43,13 +43,13 @@ public class TTMFeatures implements IModFeatures {
         return feature.creativeTab() == -1 ? null : tabs[feature.creativeTab()];
     }
 
-    //Material //I don't like the fact that this exists here but... for now this is fine.
+    /** Material */ //I don't like the fact that this exists here but... for now this is fine.
     public static Item.ToolMaterial TOOL_MITHRIL = EnumHelper.addToolMaterial("tool_mithril", 5, 1800, 12.0F, 5.5F, 45);
     public static ItemArmor.ArmorMaterial ARMOR_MITHRIL = EnumHelper.addArmorMaterial("armour_mithril", TolkienMobs.MODID + ":mithril", 50, new int[]{6, 12, 16, 6}, 35, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
     public static Item.ToolMaterial TOOL_MORGULIRON = EnumHelper.addToolMaterial("tool_morguliron", 3, 1600, 9.0F, 3.5F, 5);
     public static ItemArmor.ArmorMaterial ARMOR_MORGULIRON = EnumHelper.addArmorMaterial("armour_morguliron", TolkienMobs.MODID + ":morguliron", 35, new int[]{6, 10, 10, 6}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
 
-    //region Simple Items
+    /** Simple Items */
     @ModFeature(name = "ingot_mithril", stateOverride = "simple_items#type=ingot_mithril", cTab = 1)
     public static Item INGOT_MITHRIL = new ItemBCore();
 
@@ -67,9 +67,13 @@ public class TTMFeatures implements IModFeatures {
 
     @ModFeature(name = "dust_morguliron", stateOverride = "simple_items#type=dust_morguliron", cTab = 1)
     public static Item DUST_MORGULIRON = new ItemBCore();
-    //endregion
+    /** End Region */
 
-    //region Tools
+    @ModFeature(name = "item_beryl", stateOverride = "simple_items#type=item_beryl", cTab = 4)
+    public static Item ITEM_BERYL = new ItemBCore();
+    /** End Region */
+
+    /** Tools */
     @ModFeature(name = "axe_mithril", stateOverride = "tools#type=axe_mithril")
     public static Item AXE_MITHRIL = new ToolAxe(TOOL_MITHRIL, TOOL_MITHRIL.getAttackDamage(), -3.0F);
 
@@ -102,9 +106,9 @@ public class TTMFeatures implements IModFeatures {
 
     @ModFeature(name = "whip_fire", stateOverride = "tools#type=whip_fire")
     public static Item WHIP_FIRE = new ItemSword(TOOL_MORGULIRON);
-    //endregion
+    /** End Region */
 
-    //region Armor
+    /** Armor */
     @ModFeature(name = "helmet_mithril", stateOverride = "armor#type=helmet_mithril")
     public static Item HELMET_MITHRIL = new ArmorInit(ARMOR_MITHRIL, 1, EntityEquipmentSlot.HEAD);
 
@@ -128,9 +132,9 @@ public class TTMFeatures implements IModFeatures {
 
     @ModFeature(name = "boots_morguliron", stateOverride = "armor#type=boots_morguliron")
     public static Item BOOTS_MORGULIRON = new ItemArmor(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.FEET);
-    //endregion
+    /** End Region */
 
-    //region Simple Blocks
+    /** Simple Blocks */
     @ModFeature(name = "block_mithril", cTab = 1)
     public static final Block BLOCK_MITHRIL = new BlockBCore(Material.IRON).setHardness(1.5F).setResistance(10F);
 
@@ -155,7 +159,7 @@ public class TTMFeatures implements IModFeatures {
     //@ModFeature(name = "stairs", variantMap = {"0:variant=mallorn", "1:variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     //public static final Block STAIRS = new BlockStair(PLANKS.getDefaultState());
 
-    //                                             //TODO add a way to avoid this mess in 1.13...
+    /** Plants */                                             //TODO add a way to avoid this mess in 1.13...
     @ModFeature(name = "leaves", variantMap = {"0:check_decay=false,decayable=false,variant=mallorn", "1:check_decay=false,decayable=false,variant=mirkwood", "2:check_decay=false,decayable=false,variant=culumalda", "3:check_decay=false,decayable=false,variant=lebethron"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block LEAVES = new BlockLeaf();
 
@@ -164,16 +168,16 @@ public class TTMFeatures implements IModFeatures {
 
     @ModFeature(name = "flower", variantMap = {"0:variant=simbelmyne", "1:variant=mirkwood", "2:variant=alfirin", "3:variant=athelas", "4:variant=niphredil"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final BlockFlowers FLOWERS = new BlockFlowers();
-    //endregion
+    /** End Region */
 
-    //region Basic Items
+    /** Basic Items */
     @ModFeature(name = "feather_crebain", stateOverride = "simple_items#type=feather_crebain", cTab = 1)
     public static Item CREBAIN_FEATHER = new ItemBCore();
     @ModFeature(name = "leather_mumakil", stateOverride = "simple_items#type=leather_mumakil", cTab = 1)
     public static Item MUMAKIL_LEATHER = new ItemBCore();
-    //endregion
+    /** End Region */
 
-    //region Food
+    /** Food */
     @ModFeature(name = "food_lembas", stateOverride = "simple_items#type=food_lembas", cTab = 3)
     public static Item LEMBAS = new ItemTTMFood(20, 20, new PotionEffect(MobEffects.ABSORPTION,12000,5), new PotionEffect(MobEffects.REGENERATION,100,5));
     @ModFeature(name = "food_honeycake", stateOverride = "simple_items#type=food_honeycake", cTab = 3)
@@ -188,15 +192,15 @@ public class TTMFeatures implements IModFeatures {
     public static Item GROG = new ItemTTMFood(5, 5, new PotionEffect(MobEffects.SPEED,1500,3), new PotionEffect(MobEffects.REGENERATION, 300, 3), new PotionEffect(MobEffects.NAUSEA, 100, 3));
     @ModFeature(name = "monster_flesh", stateOverride = "simple_items#type=monster_flesh", cTab = 3)
     public static Item MONSTER_FLESH = new ItemTTMFood(5, 2, new PotionEffect(MobEffects.HUNGER,100,2));
-    //endregion
+    /** End Region */
 
-    //region Custom Blocks
-    @ModFeature(name = "sign", itemBlock = ItemBlockBCore.class, tileEntity = TileSign.class, cTab = 4)
+    /** Custom Blocks */
+    @ModFeature(name = "sign", itemBlock = ItemBlockBCore.class, tileEntity = TileSign.class, cTab = 5)
     public static final BlockSigns SIGNS = new BlockSigns();
-    //endregion
+    /** End Region */
 
-    //region Ammo
+    /** Ammo */
     @ModFeature(name = "ammo_boulder", stateOverride = "simple_items#type=ammo_boulder", cTab = 1)
     public static Item AMMO_BOULDER = new ItemTTMAmmo(16);
-    //endregion
+    /** End Region */
 }

@@ -7,6 +7,7 @@ item.tolkienmobs:nugget_mithril.name=Mithril Nugget
 item.tolkienmobs:ingot_morguliron.name=Morgul Iron Ingot
 item.tolkienmobs:dust_morguliron.name=Morgul Iron Dust
 item.tolkienmobs:nugget_morguliron.name=Morgul Iron Nugget
+item.tolkienmobs:item_beryl.name=§5Glorfindel's Beryl
 
 item.tolkienmobs:axe_mithril.name=Mithril Axe
 item.tolkienmobs:hoe_mithril.name=Mithril Hoe
@@ -150,6 +151,7 @@ itemGroup.tolkienmobs:tools=TolkienTweaks Tools
 itemGroup.tolkienmobs:mats=TolkienTweaks Materials
 itemGroup.tolkienmobs:spawn=TolkienTweaks Mobs
 itemGroup.tolkienmobs:food=TolkienTweaks Food
+itemGroup.tolkienmobs:quest=TolkienTweaks Quest
 itemGroup.tolkienmobs:signs=TolkienTweaks Signs
 
 //Miscellaneous
