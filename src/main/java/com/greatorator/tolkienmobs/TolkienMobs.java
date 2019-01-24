@@ -44,7 +44,7 @@ public class TolkienMobs {
     public static CreativeTabs tabWorldMats = new TTMobsTab("mats", () -> TTMFeatures.INGOT_MITHRIL);
     public static CreativeTabs tabMobsSpawn = new TTMobsTab.SpawnTab("spawn", () -> Items.SPAWN_EGG);
     public static CreativeTabs tabFoodItems = new TTMobsTab("food", () -> TTMFeatures.LEMBAS);
-    public static CreativeTabs tabQuestItems = new TTMobsTab("quest", () -> TTMFeatures.ITEM_BERYL);
+    public static CreativeTabs tabQuestItems = new TTMobsTab("quest", () -> TTMFeatures.ITEM_FORTRESSMAP);
     public static CreativeTabs tabSignItems = new TTMobsTab("signs", () -> Items.SIGN);
 
     public TolkienMobs() {

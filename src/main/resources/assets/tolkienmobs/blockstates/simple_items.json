@@ -25,7 +25,13 @@
       "leather_mumakil":   {"textures": {"layer0": "tolkienmobs:items/leather_mumakil"}},
       "monster_flesh":   {"textures": {"layer0": "tolkienmobs:items/monster_flesh"}},
       "ammo_boulder":   {"textures": {"layer0": "tolkienmobs:items/ammo_boulder"}},
-      "item_beryl":    {"textures": {"layer0": "tolkienmobs:items/item_beryl"}}
+      "item_beryl":    {"textures": {"layer0": "tolkienmobs:items/item_beryl"}},
+      "item_watcherheart":    {"textures": {"layer0": "tolkienmobs:items/item_watcherheart"}},
+      "item_watcherheart_cracked":    {"textures": {"layer0": "tolkienmobs:items/item_watcherheart_cracked"}},
+      "item_darksigil":    {"textures": {"layer0": "tolkienmobs:items/item_darksigil"}},
+      "item_fortressmap":    {"textures": {"layer0": "tolkienmobs:items/item_fortressmap"}},
+      "item_keystone":    {"textures": {"layer0": "tolkienmobs:items/item_keystone"}},
+      "item_darksaddle":    {"textures": {"layer0": "tolkienmobs:items/item_darksaddle"}}
     }
   }
 }

@@ -7,7 +7,24 @@ item.tolkienmobs:nugget_mithril.name=Mithril Nugget
 item.tolkienmobs:ingot_morguliron.name=Morgul Iron Ingot
 item.tolkienmobs:dust_morguliron.name=Morgul Iron Dust
 item.tolkienmobs:nugget_morguliron.name=Morgul Iron Nugget
-item.tolkienmobs:item_beryl.name=§5Glorfindel's Beryl
+
+//Quest Items
+item.tolkienmobs:item_beryl.name=§3Glorfindel's Beryl
+item.tolkienmobs:item_watcherheart.name=§5Stone Heart
+item.tolkienmobs:item_watcherheart_cracked.name=§5Watcher's Heart
+item.tolkienmobs:item_darksigil.name=§5Dark Sigil
+item.tolkienmobs:item_fortressmap.name=§3Fortress Plans
+item.tolkienmobs:item_keystone.name=§3Key-Stone
+item.tolkienmobs:item_darksaddle.name=§9Black Steed's Bridle
+
+//Item Lore
+lore.item.tolkienmobs:item_beryl=Magical gem loaned to you to help on your search
+lore.item.tolkienmobs:item_watcherheart=This heart has a disturbing and fearful energy
+lore.item.tolkienmobs:item_watcherheart_cracked=This heart looks like it has seen better days
+lore.item.tolkienmobs:item_darksigil=Dark symbol dropped by a minion
+lore.item.tolkienmobs:item_fortressmap=Seemingly fragile, surprising it survived so long
+lore.item.tolkienmobs:item_keystone=Almost forgotten, this is the "Key" to opening a secret entrance
+lore.item.tolkienmobs:item_darksaddle=Taken from the corpse of an evil Horse
 
 item.tolkienmobs:axe_mithril.name=Mithril Axe
 item.tolkienmobs:hoe_mithril.name=Mithril Hoe

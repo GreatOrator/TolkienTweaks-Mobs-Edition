@@ -13,6 +13,7 @@ import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.block.itemblock.ItemBlockSlabs;
 import com.greatorator.tolkienmobs.handler.ItemTTMAmmo;
 import com.greatorator.tolkienmobs.handler.ItemTTMFood;
+import com.greatorator.tolkienmobs.handler.TTMLore;
 import com.greatorator.tolkienmobs.item.tools.ToolAxe;
 import com.greatorator.tolkienmobs.tile.TileSign;
 import net.minecraft.block.Block;
@@ -69,8 +70,21 @@ public class TTMFeatures implements IModFeatures {
     public static Item DUST_MORGULIRON = new ItemBCore();
     /** End Region */
 
+    /** Quest Items */
     @ModFeature(name = "item_beryl", stateOverride = "simple_items#type=item_beryl", cTab = 4)
-    public static Item ITEM_BERYL = new ItemBCore();
+    public static Item ITEM_BERYL = new TTMLore(1);
+    @ModFeature(name = "item_watcherheart", stateOverride = "simple_items#type=item_watcherheart", cTab = 4)
+    public static Item ITEM_WATCHERHEART = new TTMLore(1);
+    @ModFeature(name = "item_watcherheart_cracked", stateOverride = "simple_items#type=item_watcherheart_cracked", cTab = 4)
+    public static Item ITEM_WATCHERHEART_CRACKED = new TTMLore(1);
+    @ModFeature(name = "item_darksigil", stateOverride = "simple_items#type=item_darksigil", cTab = 4)
+    public static Item ITEM_DARKSIGIL = new TTMLore(64);
+    @ModFeature(name = "item_fortressmap", stateOverride = "simple_items#type=item_fortressmap", cTab = 4)
+    public static Item ITEM_FORTRESSMAP = new TTMLore(1);
+    @ModFeature(name = "item_keystone", stateOverride = "simple_items#type=item_keystone", cTab = 4)
+    public static Item ITEM_KEYSTONE = new TTMLore(1);
+    @ModFeature(name = "item_darksaddle", stateOverride = "simple_items#type=item_darksaddle", cTab = 4)
+    public static Item ITEM_DARKSADDLE = new TTMLore(1);
     /** End Region */
 
     /** Tools */
