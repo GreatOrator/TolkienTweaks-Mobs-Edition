@@ -85,6 +85,62 @@ public class TTMFeatures implements IModFeatures {
     public static Item ITEM_KEYSTONE = new TTMLore(1);
     @ModFeature(name = "item_darksaddle", stateOverride = "simple_items#type=item_darksaddle", cTab = 4)
     public static Item ITEM_DARKSADDLE = new TTMLore(1);
+    @ModFeature(name = "item_cavecomplete", stateOverride = "simple_items#type=item_cavecomplete", cTab = 4)
+    public static Item ITEM_CAVECOMPLETE = new TTMLore(3);
+    @ModFeature(name = "item_artifact", stateOverride = "simple_items#type=item_artifact", cTab = 4)
+    public static Item ITEM_ARTIFACT = new TTMLore(1);
+    @ModFeature(name = "item_blankpaper", stateOverride = "simple_items#type=item_blankpaper", cTab = 4)
+    public static Item ITEM_BLANKPAPER = new TTMLore(1);
+    @ModFeature(name = "item_fancyarmor", stateOverride = "simple_items#type=item_fancyarmor", cTab = 4)
+    public static Item ITEM_FANCYARMOR = new TTMLore(1);
+    @ModFeature(name = "item_fancycloth", stateOverride = "simple_items#type=item_fancycloth", cTab = 4)
+    public static Item ITEM_FANCYCLOTH = new TTMLore(1);
+    @ModFeature(name = "item_fancyhammer", stateOverride = "simple_items#type=item_fancyhammer", cTab = 4)
+    public static Item ITEM_FANCYHAMMER = new TTMLore(1);
+    @ModFeature(name = "item_fancyhelm", stateOverride = "simple_items#type=item_fancyhelm", cTab = 4)
+    public static Item ITEM_FANCYHELM = new TTMLore(1);
+    @ModFeature(name = "item_fancykey", stateOverride = "simple_items#type=item_fancykey", cTab = 4)
+    public static Item ITEM_FANCYKEY = new TTMLore(1);
+    @ModFeature(name = "item_fancypick", stateOverride = "simple_items#type=item_fancypick", cTab = 4)
+    public static Item ITEM_FANCYPICK = new TTMLore(1);
+    @ModFeature(name = "item_fancyshield", stateOverride = "simple_items#type=item_fancyshield", cTab = 4)
+    public static Item ITEM_FANCYSHIELD = new TTMLore(1);
+    @ModFeature(name = "item_fancyshield2", stateOverride = "simple_items#type=item_fancyshield2", cTab = 4)
+    public static Item ITEM_FANCYSHIELD2 = new TTMLore(1);
+    @ModFeature(name = "item_fancysword", stateOverride = "simple_items#type=item_fancysword", cTab = 4)
+    public static Item ITEM_FANCYSWORD = new TTMLore(1);
+    @ModFeature(name = "item_fancysword2", stateOverride = "simple_items#type=item_fancysword2", cTab = 4)
+    public static Item ITEM_FANCYSWORD2 = new TTMLore(1);
+    @ModFeature(name = "item_letter", stateOverride = "simple_items#type=item_letter", cTab = 4)
+    public static Item ITEM_LETTER = new TTMLore(1);
+    @ModFeature(name = "item_scroll", stateOverride = "simple_items#type=item_scroll", cTab = 4)
+    public static Item ITEM_SCROLL = new TTMLore(1);
+    @ModFeature(name = "item_scroll2", stateOverride = "simple_items#type=item_scroll2", cTab = 4)
+    public static Item ITEM_SCROLL2 = new TTMLore(1);
+    @ModFeature(name = "item_specialflower", stateOverride = "simple_items#type=item_specialflower", cTab = 4)
+    public static Item ITEM_SPECIALFLOWER = new TTMLore(1);
+    @ModFeature(name = "item_storybook", stateOverride = "simple_items#type=item_storybook", cTab = 4)
+    public static Item ITEM_STORYBOOK = new TTMLore(1);
+    @ModFeature(name = "item_storybook2", stateOverride = "simple_items#type=item_storybook2", cTab = 4)
+    public static Item ITEM_STORYBOOK2 = new TTMLore(1);
+    @ModFeature(name = "item_wornarmor", stateOverride = "simple_items#type=item_wornarmor", cTab = 4)
+    public static Item ITEM_WORNARMOR = new TTMLore(1);
+    @ModFeature(name = "item_wornhelm", stateOverride = "simple_items#type=item_wornhelm", cTab = 4)
+    public static Item ITEM_WORNHELM = new TTMLore(1);
+    @ModFeature(name = "item_wornkey", stateOverride = "simple_items#type=item_wornkey", cTab = 4)
+    public static Item ITEM_WORNKEY = new TTMLore(1);
+    @ModFeature(name = "item_wornpick", stateOverride = "simple_items#type=item_wornpick", cTab = 4)
+    public static Item ITEM_WORNPICK = new TTMLore(1);
+    @ModFeature(name = "item_wornshield", stateOverride = "simple_items#type=item_wornshield", cTab = 4)
+    public static Item ITEM_WORNSHIELD = new TTMLore(1);
+    @ModFeature(name = "item_wornshield2", stateOverride = "simple_items#type=item_wornshield2", cTab = 4)
+    public static Item ITEM_WORNSHIELD2 = new TTMLore(1);
+    @ModFeature(name = "item_wornsword", stateOverride = "simple_items#type=item_wornsword", cTab = 4)
+    public static Item ITEM_WORNSWORD = new TTMLore(1);
+    @ModFeature(name = "item_wovenbasket", stateOverride = "simple_items#type=item_wovenbasket", cTab = 4)
+    public static Item ITEM_WOVENBASKET = new TTMLore(1);
+    @ModFeature(name = "item_writtenpaper", stateOverride = "simple_items#type=item_writtenpaper", cTab = 4)
+    public static Item ITEM_WRITTENPAPER = new TTMLore(1);
     /** End Region */
 
     /** Tools */

@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class TTMLore extends ItemBCore {
-    public TTMLore(int stackSize, String nameColor) {
+    public TTMLore(int stackSize) {
         this.setMaxStackSize(stackSize);
     }
 
