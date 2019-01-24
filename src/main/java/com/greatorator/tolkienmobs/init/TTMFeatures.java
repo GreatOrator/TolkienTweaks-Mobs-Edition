@@ -94,7 +94,7 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "item_fancyarmor", stateOverride = "simple_items#type=item_fancyarmor", cTab = 4)
     public static Item ITEM_FANCYARMOR = new TTMLore(1);
     @ModFeature(name = "item_fancycloth", stateOverride = "simple_items#type=item_fancycloth", cTab = 4)
-    public static Item ITEM_FANCYCLOTH = new TTMLore(1);
+    public static Item ITEM_FANCYCLOTH = new TTMLore(3);
     @ModFeature(name = "item_fancyhammer", stateOverride = "simple_items#type=item_fancyhammer", cTab = 4)
     public static Item ITEM_FANCYHAMMER = new TTMLore(1);
     @ModFeature(name = "item_fancyhelm", stateOverride = "simple_items#type=item_fancyhelm", cTab = 4)
@@ -120,7 +120,7 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "item_specialflower", stateOverride = "simple_items#type=item_specialflower", cTab = 4)
     public static Item ITEM_SPECIALFLOWER = new TTMLore(1);
     @ModFeature(name = "item_storybook", stateOverride = "simple_items#type=item_storybook", cTab = 4)
-    public static Item ITEM_STORYBOOK = new TTMLore(1);
+    public static Item ITEM_STORYBOOK = new TTMLore(10);
     @ModFeature(name = "item_storybook2", stateOverride = "simple_items#type=item_storybook2", cTab = 4)
     public static Item ITEM_STORYBOOK2 = new TTMLore(1);
     @ModFeature(name = "item_wornarmor", stateOverride = "simple_items#type=item_wornarmor", cTab = 4)
@@ -138,7 +138,7 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "item_wornsword", stateOverride = "simple_items#type=item_wornsword", cTab = 4)
     public static Item ITEM_WORNSWORD = new TTMLore(1);
     @ModFeature(name = "item_wovenbasket", stateOverride = "simple_items#type=item_wovenbasket", cTab = 4)
-    public static Item ITEM_WOVENBASKET = new TTMLore(1);
+    public static Item ITEM_WOVENBASKET = new TTMLore(3);
     @ModFeature(name = "item_writtenpaper", stateOverride = "simple_items#type=item_writtenpaper", cTab = 4)
     public static Item ITEM_WRITTENPAPER = new TTMLore(1);
     /** End Region */
