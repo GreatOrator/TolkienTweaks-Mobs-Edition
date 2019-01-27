@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.monster.EntityGoblin;
+import com.greatorator.tolkienmobs.entity.monster.EntityHuron;
 import com.greatorator.tolkienmobs.entity.monster.EntityMirkwoodSpider;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMFrog;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
@@ -50,8 +51,7 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
         this.spawnableWaterCreatureList.clear();
 
         this.spawnableMonsterList.add(new SpawnListEntry(EntityMirkwoodSpider.class, 100, 1, 1));
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityGoblin.class, 100, 3, 6));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityTMFrog.class, 100, 1, 3));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityHuron.class, 100, 3, 6));
     }
 
     @Override
