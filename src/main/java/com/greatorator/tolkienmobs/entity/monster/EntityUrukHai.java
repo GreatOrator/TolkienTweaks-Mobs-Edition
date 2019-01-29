@@ -106,11 +106,8 @@ public class EntityUrukHai extends EntityMob implements IEntityAdditionalSpawnDa
         IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
         this.setEquipmentBasedOnDifficulty(difficulty);
-        if (texture_index != 0){
-            texture_index = texture_index;
-        }
-        else {
-            this.texture_index = TTMRand.getRandomInteger(5, 1);
+        if (texture_index == 0){
+            texture_index = TTMRand.getRandomInteger(5, 1);
         }
         this.setCombatTask();
         return ientitylivingdata;

@@ -304,6 +304,49 @@
       "tolkienmobs:mob/goat/goat_angry"
     ]
   },
+  "mob.witchking.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/witchking/witchking_say0",
+      "tolkienmobs:mob/witchking/witchking_say1",
+      "tolkienmobs:mob/witchking/witchking_say2",
+      "tolkienmobs:mob/witchking/witchking_say3"
+    ]
+  },
+  "mob.witchking.hurt":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/witchking/witchking_hurt"
+    ]
+  },
+  "mob.witchking.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/witchking/witchking_death"
+    ]
+  },
+  "mob.witchking.angry":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/witchking/witchking_angry"
+    ]
+  },
+  "mob.witchking.step":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/witchking/witchking_step"
+    ]
+  },
   "music.allthatglittersinerebor": {
     "category": "music",
     "sounds": [

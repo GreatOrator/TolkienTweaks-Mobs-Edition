@@ -2,15 +2,14 @@ package com.greatorator.tolkienmobs.entity.boss;
 
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
+import com.greatorator.tolkienmobs.entity.passive.EntityHuman;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,13 +32,19 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.UUID;
 
 public class EntityWitchKing extends EntityMob implements IMob {
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityWitchKing.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityWitchKing.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Byte> ON_FIRE = EntityDataManager.<Byte>createKey(EntityWitchKing.class, DataSerializers.BYTE);
 
     private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
+
+    /** Above zero if the Witch-king is Angry. */
+    private int angerLevel;
+    /** A random delay until the Witch-king next makes a sound. */
+    private int randomSoundDelay;
+    private UUID angerTargetUUID;
 
     private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false)
     {
@@ -58,23 +63,25 @@ public class EntityWitchKing extends EntityMob implements IMob {
 
     public EntityWitchKing(World worldIn) {
         super(worldIn);
-        this.setSize(1.7F, 1.7F);
+        this.setSize(1.7F, 3.2F);
         this.isImmuneToFire = true;
         this.experienceValue = 200;
     }
 
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAITTMAttack(this, 1.0D, false));
+        this.tasks.addTask(2, new EntityAITTMAttack(this, 0.9D, false));
         this.tasks.addTask(6, new EntityAILookIdle(this));
-        this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(7, new EntityAIWander(this, 0.6D));
         this.applyEntityAI();
     }
 
     private void applyEntityAI() {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityWitchKing.class}));
+        this.targetTasks.addTask(1, new EntityWitchKing.AIHurtByAggressor(this));
+        this.targetTasks.addTask(2, new EntityWitchKing.AITargetAggressor(this));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHobbit.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHuman.class, true));
     }
 
     @Override
@@ -82,7 +89,6 @@ public class EntityWitchKing extends EntityMob implements IMob {
         super.entityInit();
         this.dataManager.register(ATTACKING, Boolean.valueOf(false));
         this.dataManager.register(SWINGING_ARMS, Boolean.valueOf(true));
-        this.dataManager.register(ON_FIRE, Byte.valueOf((byte)0));
     }
 
     @Override
@@ -90,21 +96,10 @@ public class EntityWitchKing extends EntityMob implements IMob {
         super.applyEntityAttributes();
         // Here we set various attributes for our mob. Like maximum health, armor, speed, ...
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(15.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(500.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6000000238418579D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(300.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(40.0D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(15.0D);
-    }
-
-    @SideOnly(Side.CLIENT)
-    public boolean isAttacking()
-    {
-        return ((Boolean)this.dataManager.get(ATTACKING)).booleanValue();
-    }
-
-    public void setAttacking(boolean attacking)
-    {
-        this.dataManager.set(ATTACKING, Boolean.valueOf(attacking));
     }
 
     public void addTrackingPlayer(EntityPlayerMP player)
@@ -140,7 +135,6 @@ public class EntityWitchKing extends EntityMob implements IMob {
         if (this.world != null && !this.world.isRemote)
         {
             this.tasks.removeTask(this.aiAttackOnCollide);
-            //   this.tasks.removeTask(this.aiArrowAttack);
             ItemStack itemstack = this.getHeldItemMainhand();
 
             if (itemstack.getItem() == TTMFeatures.SWORD_MORGULIRON)
@@ -155,17 +149,8 @@ public class EntityWitchKing extends EntityMob implements IMob {
                 {
                     i = 40;
                 }
-
-                //   this.aiArrowAttack.setAttackCooldown(i);
-                //   this.tasks.addTask(4, this.aiArrowAttack);
             }
         }
-    }
-
-    protected void updateAITasks()
-    {
-        super.updateAITasks();
-        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
     }
 
     public boolean isNonBoss()
@@ -188,6 +173,32 @@ public class EntityWitchKing extends EntityMob implements IMob {
 
             return true;
         }
+    }
+
+    protected void updateAITasks()
+    {
+        super.updateAITasks();
+        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
+
+        if (this.isAngry())
+        {
+            --this.angerLevel;
+        }
+
+        if (this.randomSoundDelay > 0 && --this.randomSoundDelay == 0)
+        {
+            this.playSound(SoundInit.soundAngryWitchKing, this.getSoundVolume() * 2.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) * 1.8F);
+        }
+
+        if (this.angerLevel > 0 && this.angerTargetUUID != null && this.getRevengeTarget() == null)
+        {
+            EntityPlayer entityplayer = this.world.getPlayerEntityByUUID(this.angerTargetUUID);
+            this.setRevengeTarget(entityplayer);
+            this.attackingPlayer = entityplayer;
+            this.recentlyHit = this.getRevengeTimer();
+        }
+
+        super.updateAITasks();
     }
 
     public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack)
@@ -214,15 +225,87 @@ public class EntityWitchKing extends EntityMob implements IMob {
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
+        compound.setShort("Anger", (short)this.angerLevel);
+
+        if (this.angerTargetUUID != null)
+        {
+            compound.setString("HurtBy", this.angerTargetUUID.toString());
+        }
+        else
+        {
+            compound.setString("HurtBy", "");
+        }
     }
 
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
+        this.angerLevel = compound.getShort("Anger");
+        String s = compound.getString("HurtBy");
+
+        if (!s.isEmpty())
+        {
+            this.angerTargetUUID = UUID.fromString(s);
+            EntityPlayer entityplayer = this.world.getPlayerEntityByUUID(this.angerTargetUUID);
+            this.setRevengeTarget(entityplayer);
+
+            if (entityplayer != null)
+            {
+                this.attackingPlayer = entityplayer;
+                this.recentlyHit = this.getRevengeTimer();
+            }
+        }
 
         if (this.hasCustomName())
         {
             this.bossInfo.setName(this.getDisplayName());
+        }
+    }
+
+    private void becomeAngryAt(Entity p_70835_1_)
+    {
+        this.angerLevel = 400 + this.rand.nextInt(400);
+        this.randomSoundDelay = this.rand.nextInt(40);
+
+        if (p_70835_1_ instanceof EntityLivingBase)
+        {
+            this.setRevengeTarget((EntityLivingBase)p_70835_1_);
+        }
+    }
+
+    public boolean isAngry()
+    {
+        return this.angerLevel > 0;
+    }
+
+    static class AIHurtByAggressor extends EntityAIHurtByTarget
+    {
+        public AIHurtByAggressor(EntityWitchKing p_i45828_1_)
+        {
+            super(p_i45828_1_, true);
+        }
+
+        protected void setEntityAttackTarget(EntityCreature creatureIn, EntityLivingBase entityLivingBaseIn)
+        {
+            super.setEntityAttackTarget(creatureIn, entityLivingBaseIn);
+
+            if (creatureIn instanceof EntityWitchKing)
+            {
+                ((EntityWitchKing)creatureIn).becomeAngryAt(entityLivingBaseIn);
+            }
+        }
+    }
+
+    static class AITargetAggressor extends EntityAINearestAttackableTarget<EntityPlayer>
+    {
+        public AITargetAggressor(EntityWitchKing p_i45829_1_)
+        {
+            super(p_i45829_1_, EntityPlayer.class, true);
+        }
+
+        public boolean shouldExecute()
+        {
+            return ((EntityWitchKing)this.taskOwner).isAngry() && super.shouldExecute();
         }
     }
 
@@ -232,30 +315,40 @@ public class EntityWitchKing extends EntityMob implements IMob {
         this.bossInfo.setName(this.getDisplayName());
     }
 
+    @Override
     public SoundCategory getSoundCategory()
     {
         return SoundCategory.HOSTILE;
     }
 
+    @Override
     protected SoundEvent getAmbientSound()
     {
-        return SoundInit.soundIdleBalrog;
+        return SoundInit.soundIdleWitchKing;
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return SoundInit.soundHurtBalrog;
+        return SoundInit.soundHurtWitchKing;
     }
 
+    @Override
     protected SoundEvent getDeathSound()
     {
-        return SoundInit.soundDeathBalrog;
+        return SoundInit.soundDeathWitchKing;
     }
 
     @Override
     protected void playStepSound(BlockPos pos, Block blockIn)
     {
-        this.playSound(SoundInit.soundStepBalrog, 0.25F, 1.0F);
+        this.playSound(SoundInit.soundStepWitchKing, 0.25F, 1.0F);
+    }
+
+    @Override
+    protected float getSoundVolume()
+    {
+        return 5.0F;
     }
 
     @Override

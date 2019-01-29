@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
 public class RenderBarrowWight extends RenderLiving<EntityBarrowWight> {
     private static final ResourceLocation[] mobTexture = new ResourceLocation[5];
     static {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/barrowwight/barrowwight" + i + ".png");
         }
     }

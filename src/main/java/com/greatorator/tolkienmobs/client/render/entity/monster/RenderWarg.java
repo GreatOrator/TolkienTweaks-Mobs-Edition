@@ -12,9 +12,9 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nullable;
 
 public class RenderWarg extends RenderLiving<EntityWarg> {
-    private static final ResourceLocation[] mobTexture = new ResourceLocation[4];
+    private static final ResourceLocation[] mobTexture = new ResourceLocation[5];
     static {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/warg/warg" + i + ".png");
         }
     }

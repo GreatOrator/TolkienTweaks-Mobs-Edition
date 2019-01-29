@@ -22,6 +22,18 @@ public class SoundInit
 	@ObjectHolder("mob.mumakil.hurt")
     public static final SoundEvent soundHurtMumakil = null;
 
+	/** Witch-king */
+	@ObjectHolder("mob.witchking.step")
+	public static final SoundEvent soundStepWitchKing = null;
+    @ObjectHolder("mob.witchking.angry")
+    public static final SoundEvent soundAngryWitchKing = null;
+    @ObjectHolder("mob.witchking.death")
+    public static final SoundEvent soundDeathWitchKing = null;
+    @ObjectHolder("mob.witchking.idle")
+    public static final SoundEvent soundIdleWitchKing = null;
+    @ObjectHolder("mob.witchking.hurt")
+    public static final SoundEvent soundHurtWitchKing = null;
+
 	/** Crebain */
 	@ObjectHolder("mob.crebain.hurt")
 	public static final SoundEvent soundDeathCrebain = null;
@@ -182,6 +194,13 @@ public class SoundInit
 				    /** Mumakil */
 					"mob.mumakil.say",
 					"mob.mumakil.hurt",
+
+					/** Witch-king */
+					"mob.witchking.step",
+                    "mob.witchking.angry",
+                    "mob.witchking.death",
+                    "mob.witchking.idle",
+                    "mob.witchking.hurt",
 
 					/** Crebain */
 					"mob.crebain.hurt",

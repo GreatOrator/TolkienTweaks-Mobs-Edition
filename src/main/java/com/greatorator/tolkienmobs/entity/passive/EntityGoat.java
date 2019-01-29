@@ -39,15 +39,13 @@ public class EntityGoat extends EntityDonkey implements IEntityAdditionalSpawnDa
     {
         IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
         this.setEquipmentBasedOnDifficulty(difficulty);
-        if (texture_index != 0){
-            texture_index = texture_index;
-        }
-        else {
-            this.texture_index = TTMRand.getRandomInteger(5, 1);
+        if (texture_index == 0){
+            texture_index = TTMRand.getRandomInteger(5, 1);
         }
         return ientitylivingdata;
     }
 
+    @Override
     protected void playGallopSound(SoundType p_190680_1_)
     {
         super.playGallopSound(p_190680_1_);
@@ -58,24 +56,28 @@ public class EntityGoat extends EntityDonkey implements IEntityAdditionalSpawnDa
         }
     }
 
+    @Override
     protected SoundEvent getAmbientSound()
     {
         super.getAmbientSound();
         return SoundInit.soundIdleGoat;
     }
 
+    @Override
     protected SoundEvent getDeathSound()
     {
         super.getDeathSound();
         return SoundInit.soundDeathGoat;
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         super.getHurtSound(damageSourceIn);
         return SoundInit.soundHurtGoat;
     }
 
+    @Override
     protected SoundEvent getAngrySound()
     {
         super.getAngrySound();

@@ -54,11 +54,8 @@ public class EntityWarg extends EntityWolf {
     {
         IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
         this.setEquipmentBasedOnDifficulty(difficulty);
-        if (texture_index != 0){
-            texture_index = texture_index;
-        }
-        else {
-            this.texture_index = TTMRand.getRandomInteger(5, 1);
+        if (texture_index == 0) {
+            texture_index = TTMRand.getRandomInteger(5, 1);
         }
         return ientitylivingdata;
     }

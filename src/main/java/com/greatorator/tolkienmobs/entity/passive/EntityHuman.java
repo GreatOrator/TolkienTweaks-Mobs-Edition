@@ -25,8 +25,7 @@ import javax.annotation.Nullable;
 
 public class EntityHuman extends EntityVillager implements IEntityAdditionalSpawnData {
     private int texture_index;
-    private int careerId;
-    private net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession prof;
+    private VillagerRegistry.VillagerProfession prof;
 
     public EntityHuman(World worldIn) {
         super(worldIn);
@@ -69,94 +68,91 @@ public class EntityHuman extends EntityVillager implements IEntityAdditionalSpaw
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
     }
 
+    @Override
+    public IEntityLivingData finalizeMobSpawn(DifficultyInstance p_190672_1_, @Nullable IEntityLivingData p_190672_2_, boolean initialSpawn)
+    {
+        if (initialSpawn)
+        {
+            this.texture_index = TTMRand.getRandomInteger(16, 1);
+            switch (texture_index) {
+                case 0:
+                    break;
+
+                case 1:
+                    prof = ProfessionInit.getCoinBanker();
+                    break;
+
+                case 2:
+                    prof = VillagerRegistry.getById(3);
+                    break;
+
+                case 3:
+                    prof = ProfessionInit.getGroceryStore();
+                    break;
+
+                case 4:
+                    prof = VillagerRegistry.getById(0);
+                    break;
+
+                case 5:
+                    prof = VillagerRegistry.getById(4);
+                    break;
+
+                case 6:
+                    prof = VillagerRegistry.getById(4);
+                    break;
+
+                case 7:
+                    prof = VillagerRegistry.getById(5);
+                    break;
+
+                case 8:
+                    prof = VillagerRegistry.getById(5);
+                    break;
+
+                case 9:
+                    prof = VillagerRegistry.getById(3);
+                    break;
+
+                case 10:
+                    prof = VillagerRegistry.getById(0);
+                    break;
+
+                case 11:
+                    prof = ProfessionInit.getGroceryStore();
+                    break;
+
+                case 12:
+                    prof = VillagerRegistry.getById(3);
+                    break;
+
+                case 13:
+                    prof = VillagerRegistry.getById(5);
+                    break;
+
+                case 14:
+                    prof = ProfessionInit.getCoinBanker();
+                    break;
+
+                case 15:
+                    prof = VillagerRegistry.getById(4);
+                    break;
+
+                case 16:
+                    prof = VillagerRegistry.getById(4);
+                    break;
+
+            }
+            this.setProfession(VillagerRegistry.getId(prof));
+        }
+        return super.finalizeMobSpawn(p_190672_1_, p_190672_2_, false);
+    }
+
     @Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
-        IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
         this.setEquipmentBasedOnDifficulty(difficulty);
-        if (texture_index != 0){
-            texture_index = texture_index;
-        }
-        else {
-            this.texture_index = TTMRand.getRandomInteger(16, 1);
-        }
-        return ientitylivingdata;
-    }
-
-    /** Let's try to decide which entity will do what work */
-    @Override
-    public void setProfession(VillagerRegistry.VillagerProfession profession) {
-        switch (texture_index) {
-            case 0:
-                break;
-
-            case 1:
-                profession = ProfessionInit.getCoinBanker();
-                break;
-
-            case 2:
-                profession = VillagerRegistry.getById(3);
-                break;
-
-            case 3:
-                profession = ProfessionInit.getGroceryStore();
-                break;
-
-            case 4:
-                profession = VillagerRegistry.getById(0);
-                break;
-
-            case 5:
-                profession = VillagerRegistry.getById(4);
-                break;
-
-            case 6:
-                profession = VillagerRegistry.getById(4);
-                break;
-
-            case 7:
-                profession = VillagerRegistry.getById(5);
-                break;
-
-            case 8:
-                profession = VillagerRegistry.getById(5);
-                break;
-
-            case 9:
-                profession = VillagerRegistry.getById(3);
-                break;
-
-            case 10:
-                profession = VillagerRegistry.getById(0);
-                break;
-
-            case 11:
-                profession = ProfessionInit.getGroceryStore();
-                break;
-
-            case 12:
-                profession = VillagerRegistry.getById(3);
-                break;
-
-            case 13:
-                profession = VillagerRegistry.getById(5);
-                break;
-
-            case 14:
-                profession = ProfessionInit.getCoinBanker();
-                break;
-
-            case 15:
-                profession = VillagerRegistry.getById(4);
-                break;
-
-            case 16:
-                profession = VillagerRegistry.getById(4);
-                break;
-
-        }
-        this.prof = profession;
-        this.setProfession(net.minecraftforge.fml.common.registry.VillagerRegistry.getId(prof));
+        return super.onInitialSpawn(difficulty, livingdata);
     }
 
     @Override
@@ -180,23 +176,11 @@ public class EntityHuman extends EntityVillager implements IEntityAdditionalSpaw
         this.texture_index = buffer.readInt();
     }
 
-    public net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession getProfessionForge()
-    {
-        if (this.prof == null)
-        {
-            this.prof = net.minecraftforge.fml.common.registry.VillagerRegistry.getById(this.getProfession());
-            if (this.prof == null)
-                return net.minecraftforge.fml.common.registry.VillagerRegistry.getById(0); //Farmer
-        }
-        return this.prof;
-    }
-
     @Override
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
         compound.setInteger("texture_index", texture_index);
         compound.setInteger("Profession", this.getProfession());
-        compound.setInteger("Career", this.careerId);
         compound.setString("ProfessionName", this.getProfessionForge().getRegistryName().toString());
     }
 
@@ -213,9 +197,9 @@ public class EntityHuman extends EntityVillager implements IEntityAdditionalSpaw
                 p = net.minecraftforge.fml.common.registry.ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new net.minecraft.util.ResourceLocation("minecraft:farmer"));
             this.setProfession(p);
         }
-        this.careerId = compound.getInteger("Career");
     }
 
+    @Override
     public EntityHuman createChild(EntityAgeable ageable)
     {
         EntityHuman entityhuman = new EntityHuman(this.world);
