@@ -29,6 +29,8 @@ import javax.annotation.Nullable;
 
 public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpawnData {
     private int texture_index;
+    private int careerId;
+    private net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession prof;
 
     public EntityDwarf(World worldIn) {
         super(worldIn);
@@ -76,6 +78,7 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
     }
 
     /** Let's try to decide which entity will do what work */
+    @Override
     public void setProfession(VillagerRegistry.VillagerProfession profession) {
         switch (texture_index) {
             case 0:
@@ -165,7 +168,6 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
         this.texture_index = buffer.readInt();
     }
 
-    private net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession prof;
     public net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession getProfessionForge()
     {
         if (this.prof == null)
@@ -182,6 +184,7 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
         super.writeEntityToNBT(compound);
         compound.setInteger("texture_index", texture_index);
         compound.setInteger("Profession", this.getProfession());
+        compound.setInteger("Career", this.careerId);
         compound.setString("ProfessionName", this.getProfessionForge().getRegistryName().toString());
     }
 
@@ -198,6 +201,7 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
                 p = net.minecraftforge.fml.common.registry.ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new net.minecraft.util.ResourceLocation("minecraft:farmer"));
             this.setProfession(p);
         }
+        this.careerId = compound.getInteger("Career");
     }
 
     public EntityDwarf createChild(EntityAgeable ageable)

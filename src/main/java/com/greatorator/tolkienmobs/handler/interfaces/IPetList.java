@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.handler;
+package com.greatorator.tolkienmobs.handler.interfaces;
 
 import java.util.ArrayList;
 import java.util.List;

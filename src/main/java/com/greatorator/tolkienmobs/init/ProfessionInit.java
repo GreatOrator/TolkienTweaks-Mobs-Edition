@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerCareer;
@@ -21,12 +22,8 @@ import static com.brandon3055.tolkientweaks.TTFeatures.silver_coin;
 @GameRegistry.ObjectHolder(TolkienMobs.MODID)
 public class ProfessionInit {
     /** Professions */
-    public static VillagerProfession coin_trader;
-    public static VillagerProfession grocery_store;
-
-    /** Careers */
-    public static VillagerCareer coin_banker;
-    public static VillagerCareer store_clerk;
+    public static VillagerProfession COIN_TRADER;
+    public static VillagerProfession GROCERY_STORE;
 
     /** Let's make it so people have a life choice to make. */
     @Mod.EventBusSubscriber(modid = TolkienMobs.MODID)
@@ -39,17 +36,17 @@ public class ProfessionInit {
             // DEBUG
             LogHelperTTM.info("Putting out now hiring signs...");
 
-            coin_trader = new VillagerRegistry.VillagerProfession(
+            COIN_TRADER = new VillagerRegistry.VillagerProfession(
                     TolkienMobs.MODID+":coin_trader",
                     TolkienMobs.MODID+":textures/entity/profession/coin_trader.png",
                     TolkienMobs.MODID+":textures/entity/profession/coin_trader.png");
-            registry.register(coin_trader);
+            registry.register(COIN_TRADER);
 
-            grocery_store = new VillagerRegistry.VillagerProfession(
+            GROCERY_STORE = new VillagerRegistry.VillagerProfession(
                     TolkienMobs.MODID+":grocery_store",
                     TolkienMobs.MODID+":textures/entity/profession/grocery_store.png",
                     TolkienMobs.MODID+":textures/entity/profession/grocery_store.png");
-            registry.register(grocery_store);
+            registry.register(GROCERY_STORE);
         }
     }
 
@@ -59,18 +56,18 @@ public class ProfessionInit {
         // DEBUG
         LogHelperTTM.info("Taking in applications for employment...");
 
-        coin_banker = (new VillagerCareer(coin_trader, "coin_banker"))
-                .addTrade(1, new TradeHandler(new ItemStack(silver_coin), new ItemStack(brons_coin),64, 64))
-                .addTrade(1, new TradeHandler(new ItemStack(gold_coin), new ItemStack(silver_coin),64, 64))
-                .addTrade(2, new TradeHandler(new ItemStack(silver_coin,64), new ItemStack(gold_coin),1, 1))
-                .addTrade(2, new TradeHandler(new ItemStack(brons_coin,64), new ItemStack(silver_coin),1, 1));
+        VillagerRegistry.VillagerCareer coin_banker = new VillagerCareer(COIN_TRADER, "coin_banker");
+         coin_banker.addTrade(1, new TradeHandler(new ItemStack(silver_coin), new ItemStack(brons_coin),64, 64))
+                    .addTrade(1, new TradeHandler(new ItemStack(gold_coin), new ItemStack(silver_coin),64, 64))
+                    .addTrade(2, new TradeHandler(new ItemStack(silver_coin,64), new ItemStack(gold_coin),1, 1))
+                    .addTrade(2, new TradeHandler(new ItemStack(brons_coin,64), new ItemStack(silver_coin),1, 1));
 
-        store_clerk = (new VillagerCareer(grocery_store, "store_clerk"))
-                .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.LEMBAS), new ItemStack(brons_coin),5, 36))
-                .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.HONEY_CAKE), new ItemStack(brons_coin),3, 26))
-                .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.CRAM), new ItemStack(brons_coin),1, 16))
-                .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.ENT_DRAUGHT), new ItemStack(silver_coin),1, 5))
-                .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.MIRUVOR), new ItemStack(silver_coin),2, 6));
+        VillagerRegistry.VillagerCareer store_clerk = new VillagerCareer(GROCERY_STORE, "store_clerk");
+         store_clerk.addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.LEMBAS), new ItemStack(brons_coin),5, 36))
+                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.HONEY_CAKE), new ItemStack(brons_coin),3, 26))
+                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.CRAM), new ItemStack(brons_coin),1, 16))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.ENT_DRAUGHT), new ItemStack(silver_coin),1, 5))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.MIRUVOR), new ItemStack(silver_coin),2, 6));
 
         // DEBUG
         LogHelperTTM.info("All positions are now filled, thank you for applying.");
@@ -78,10 +75,10 @@ public class ProfessionInit {
 
     /** Here's where we make specific Professions available for entities */
     public static VillagerRegistry.VillagerProfession getCoinBanker() {
-        return coin_trader;
+        return COIN_TRADER;
     }
 
     public static VillagerRegistry.VillagerProfession getGroceryStore() {
-        return grocery_store;
+        return GROCERY_STORE;
     }
 }

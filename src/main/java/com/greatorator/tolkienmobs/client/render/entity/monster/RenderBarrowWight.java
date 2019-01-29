@@ -10,7 +10,6 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.layers.LayerDeadmau5Head;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -21,7 +20,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nullable;
 
 public class RenderBarrowWight extends RenderLiving<EntityBarrowWight> {
-    private static final ResourceLocation[] mobTexture = new ResourceLocation[4];
+    private static final ResourceLocation[] mobTexture = new ResourceLocation[5];
     static {
         for (int i = 0; i < 4; i++) {
             mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/barrowwight/barrowwight" + i + ".png");

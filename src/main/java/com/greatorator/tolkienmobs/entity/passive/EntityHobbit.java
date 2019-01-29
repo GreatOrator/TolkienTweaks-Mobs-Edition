@@ -23,6 +23,8 @@ import javax.annotation.Nullable;
 
 public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpawnData {
     private int texture_index;
+    private int careerId;
+    private net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession prof;
 
     public EntityHobbit(World worldIn) {
         super(worldIn);
@@ -65,6 +67,7 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
     }
 
+    @Override
     @Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
@@ -76,7 +79,7 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
         else {
             this.texture_index = TTMRand.getRandomInteger(5, 1);
         }
-        return ientitylivingdata;
+        return this.finalizeMobSpawn(difficulty, ientitylivingdata, false);
     }
 
     @Override
@@ -90,6 +93,7 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
     }
 
     /** Let's try to decide which entity will do what work */
+    @Override
     public void setProfession(VillagerRegistry.VillagerProfession profession) {
         switch (texture_index) {
             case 0:
@@ -111,7 +115,7 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
 
         }
         this.prof = profession;
-        this.setProfession(net.minecraftforge.fml.common.registry.VillagerRegistry.getId(prof));
+        super.setProfession(net.minecraftforge.fml.common.registry.VillagerRegistry.getId(prof));
     }
 
     @Override
@@ -125,7 +129,6 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
         return 2;
     }
 
-    private net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession prof;
     public net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession getProfessionForge()
     {
         if (this.prof == null)
@@ -142,6 +145,7 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
         super.writeEntityToNBT(compound);
         compound.setInteger("texture_index", texture_index);
         compound.setInteger("Profession", this.getProfession());
+        compound.setInteger("Career", this.careerId);
         compound.setString("ProfessionName", this.getProfessionForge().getRegistryName().toString());
     }
 
@@ -158,6 +162,7 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
                 p = net.minecraftforge.fml.common.registry.ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new net.minecraft.util.ResourceLocation("minecraft:farmer"));
             this.setProfession(p);
         }
+        this.careerId = compound.getInteger("Career");
     }
 
     public EntityHobbit createChild(EntityAgeable ageable)

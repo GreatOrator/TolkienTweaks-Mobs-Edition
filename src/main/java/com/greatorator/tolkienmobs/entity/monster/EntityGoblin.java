@@ -7,11 +7,10 @@ import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -22,6 +21,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
@@ -32,9 +32,19 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.UUID;
 
 public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnData {
     private int texture_index;
+
+    private static final UUID ATTACK_SPEED_BOOST_MODIFIER_UUID = UUID.fromString("3D1772EA-23CC-11E9-AB14-D663BD873D93");
+    private static final AttributeModifier ATTACK_SPEED_BOOST_MODIFIER = (new AttributeModifier(ATTACK_SPEED_BOOST_MODIFIER_UUID, "Attacking speed boost", 0.05D, 0)).setSaved(false);
+
+    /** Above zero if this Goblin is Angry. */
+    private int angerLevel;
+    /** A random delay until this Goblin next makes a sound. */
+    private int randomSoundDelay;
+    private UUID angerTargetUUID;
 
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityGoblin.class, DataSerializers.BOOLEAN);
     private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false)
@@ -72,6 +82,8 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
 
     private void applyEntityAI() {
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityGoblin.class}));
+        this.targetTasks.addTask(1, new EntityGoblin.AIHurtByAggressor(this));
+        this.targetTasks.addTask(2, new EntityGoblin.AITargetAggressor(this));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHobbit.class, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTreeEnt.class, true));
@@ -104,6 +116,50 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
     {
     }
 
+    public void setRevengeTarget(@Nullable EntityLivingBase livingBase)
+    {
+        super.setRevengeTarget(livingBase);
+
+        if (livingBase != null)
+        {
+            this.angerTargetUUID = livingBase.getUniqueID();
+        }
+    }
+
+    protected void updateAITasks()
+    {
+        IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
+
+        if (this.isAngry())
+        {
+            if (!this.isChild() && !iattributeinstance.hasModifier(ATTACK_SPEED_BOOST_MODIFIER))
+            {
+                iattributeinstance.applyModifier(ATTACK_SPEED_BOOST_MODIFIER);
+            }
+
+            --this.angerLevel;
+        }
+        else if (iattributeinstance.hasModifier(ATTACK_SPEED_BOOST_MODIFIER))
+        {
+            iattributeinstance.removeModifier(ATTACK_SPEED_BOOST_MODIFIER);
+        }
+
+        if (this.randomSoundDelay > 0 && --this.randomSoundDelay == 0)
+        {
+            this.playSound(SoundInit.soundAngryGoblin, this.getSoundVolume() * 2.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) * 1.8F);
+        }
+
+        if (this.angerLevel > 0 && this.angerTargetUUID != null && this.getRevengeTarget() == null)
+        {
+            EntityPlayer entityplayer = this.world.getPlayerEntityByUUID(this.angerTargetUUID);
+            this.setRevengeTarget(entityplayer);
+            this.attackingPlayer = entityplayer;
+            this.recentlyHit = this.getRevengeTimer();
+        }
+
+        super.updateAITasks();
+    }
+
     @Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
@@ -111,7 +167,7 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
         this.setEquipmentBasedOnDifficulty(difficulty);
         if (texture_index != 0){
-            texture_index = texture_index;
+            this.texture_index = texture_index;
         }
         else {
             this.texture_index = TTMRand.getRandomInteger(5, 1);
@@ -126,12 +182,21 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
         return SoundInit.soundIdleGoblin;
     }
 
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
+    {
+        return SoundInit.soundHurtGoblin;
+    }
+
+    protected SoundEvent getDeathSound()
+    {
+        return SoundInit.soundDeathGoblin;
+    }
+
     public void setCombatTask()
     {
         if (this.world != null && !this.world.isRemote)
         {
             this.tasks.removeTask(this.aiAttackOnCollide);
-            //   this.tasks.removeTask(this.aiArrowAttack);
             ItemStack itemstack = this.getHeldItemMainhand();
 
             if (itemstack.getItem() == TTMFeatures.SWORD_MORGULIRON)
@@ -146,9 +211,6 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
                 {
                     i = 40;
                 }
-
-                //   this.aiArrowAttack.setAttackCooldown(i);
-                //   this.tasks.addTask(4, this.aiArrowAttack);
             }
         }
     }
@@ -163,7 +225,7 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
         {
             if (entityIn instanceof EntityLivingBase)
             {
-                ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 0));
+                ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 1));
             }
 
             return true;
@@ -195,12 +257,37 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
         compound.setInteger("texture_index", texture_index);
+        compound.setShort("Anger", (short)this.angerLevel);
+
+        if (this.angerTargetUUID != null)
+        {
+            compound.setString("HurtBy", this.angerTargetUUID.toString());
+        }
+        else
+        {
+            compound.setString("HurtBy", "");
+        }
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         texture_index = compound.getInteger("texture_index");
+        this.angerLevel = compound.getShort("Anger");
+        String s = compound.getString("HurtBy");
+
+        if (!s.isEmpty())
+        {
+            this.angerTargetUUID = UUID.fromString(s);
+            EntityPlayer entityplayer = this.world.getPlayerEntityByUUID(this.angerTargetUUID);
+            this.setRevengeTarget(entityplayer);
+
+            if (entityplayer != null)
+            {
+                this.attackingPlayer = entityplayer;
+                this.recentlyHit = this.getRevengeTimer();
+            }
+        }
     }
 
     @Override
@@ -227,5 +314,52 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
     @Override
     public void readSpawnData(ByteBuf buffer) {
         this.texture_index = buffer.readInt();
+    }
+
+    private void becomeAngryAt(Entity p_70835_1_)
+    {
+        this.angerLevel = 400 + this.rand.nextInt(400);
+        this.randomSoundDelay = this.rand.nextInt(40);
+
+        if (p_70835_1_ instanceof EntityLivingBase)
+        {
+            this.setRevengeTarget((EntityLivingBase)p_70835_1_);
+        }
+    }
+
+    public boolean isAngry()
+    {
+        return this.angerLevel > 0;
+    }
+
+    static class AIHurtByAggressor extends EntityAIHurtByTarget
+    {
+        public AIHurtByAggressor(EntityGoblin p_i45828_1_)
+        {
+            super(p_i45828_1_, true);
+        }
+
+        protected void setEntityAttackTarget(EntityCreature creatureIn, EntityLivingBase entityLivingBaseIn)
+        {
+            super.setEntityAttackTarget(creatureIn, entityLivingBaseIn);
+
+            if (creatureIn instanceof EntityGoblin)
+            {
+                ((EntityGoblin)creatureIn).becomeAngryAt(entityLivingBaseIn);
+            }
+        }
+    }
+
+    static class AITargetAggressor extends EntityAINearestAttackableTarget<EntityPlayer>
+    {
+        public AITargetAggressor(EntityGoblin p_i45829_1_)
+        {
+            super(p_i45829_1_, EntityPlayer.class, true);
+        }
+
+        public boolean shouldExecute()
+        {
+            return ((EntityGoblin)this.taskOwner).isAngry() && super.shouldExecute();
+        }
     }
 }

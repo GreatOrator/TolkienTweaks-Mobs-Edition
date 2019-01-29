@@ -1,15 +1,13 @@
 package com.greatorator.tolkienmobs.entity.boss;
 
+import com.greatorator.tolkienmobs.entity.entityai.FellBeastFightManager;
 import com.greatorator.tolkienmobs.entity.entityai.FellBeastPhaseManager;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.MoverType;
-import net.minecraft.entity.MultiPartEntityPart;
+import net.minecraft.entity.*;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.boss.dragon.phase.IPhase;
 import net.minecraft.entity.boss.dragon.phase.PhaseList;
@@ -19,12 +17,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathHeap;
 import net.minecraft.pathfinding.PathPoint;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -32,11 +32,17 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProviderEnd;
+import net.minecraft.world.gen.feature.WorldGenEndPodium;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 public class EntityFellBeast extends EntityDragon {
+    public static final DataParameter<Integer> PHASE = EntityDataManager.<Integer>createKey(EntityFellBeast.class, DataSerializers.VARINT);
+
 	public MultiPartEntityPart[] fellbeastPartArray;
     /** The head bounding box of a fell beast */
     public MultiPartEntityPart fellbeastPartHead = new MultiPartEntityPart(this, "head", 6.0F, 6.0F);
@@ -51,6 +57,7 @@ public class EntityFellBeast extends EntityDragon {
 
     private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
 
+    private final FellBeastFightManager fellbeastFightManager;
     private final FellBeastPhaseManager fellbeastphaseManager;
     private int growlTime = 200;
     private int sittingDamageReceived;
@@ -70,7 +77,20 @@ public class EntityFellBeast extends EntityDragon {
         this.growlTime = 100;
         this.ignoreFrustumCheck = true;
 
+        this.fellbeastFightManager = getFellBeastFightManager();
         this.fellbeastphaseManager = new FellBeastPhaseManager(this);
+    }
+
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D);
+    }
+
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.getDataManager().register(PHASE, Integer.valueOf(PhaseList.HOVER.getId()));
     }
 
     @Nullable
@@ -336,6 +356,24 @@ public class EntityFellBeast extends EntityDragon {
         }
     }
 
+    private float getHeadYOffset(float p_184662_1_)
+    {
+        double d0;
+
+        if (this.fellbeastphaseManager.getCurrentPhase().getIsStationary())
+        {
+            d0 = -1.0D;
+        }
+        else
+        {
+            double[] adouble = this.getMovementOffsets(5, 1.0F);
+            double[] adouble1 = this.getMovementOffsets(0, 1.0F);
+            d0 = adouble[1] - adouble1[1];
+        }
+
+        return (float)d0;
+    }
+
     private void updateFellBeastEnderCrystal()
     {
         if (this.healingEnderCrystal != null)
@@ -450,86 +488,11 @@ public class EntityFellBeast extends EntityDragon {
         }
     }
 
-    private float getHeadYOffset(float p_184662_1_)
-    {
-        double d0;
-
-        if (this.fellbeastphaseManager.getCurrentPhase().getIsStationary())
-        {
-            d0 = -1.0D;
-        }
-        else
-        {
-            double[] adouble = this.getMovementOffsets(5, 1.0F);
-            double[] adouble1 = this.getMovementOffsets(0, 1.0F);
-            d0 = adouble[1] - adouble1[1];
-        }
-
-        return (float)d0;
-    }
-
     private float simplifyAngle(double p_70973_1_)
     {
         return (float)MathHelper.wrapDegrees(p_70973_1_);
     }
 
-    private boolean destroyBlocksInAABB(AxisAlignedBB p_70972_1_)
-    {
-        int i = MathHelper.floor(p_70972_1_.minX);
-        int j = MathHelper.floor(p_70972_1_.minY);
-        int k = MathHelper.floor(p_70972_1_.minZ);
-        int l = MathHelper.floor(p_70972_1_.maxX);
-        int i1 = MathHelper.floor(p_70972_1_.maxY);
-        int j1 = MathHelper.floor(p_70972_1_.maxZ);
-        boolean flag = false;
-        boolean flag1 = false;
-
-        for (int k1 = i; k1 <= l; ++k1)
-        {
-            for (int l1 = j; l1 <= i1; ++l1)
-            {
-                for (int i2 = k; i2 <= j1; ++i2)
-                {
-                    BlockPos blockpos = new BlockPos(k1, l1, i2);
-                    IBlockState iblockstate = this.world.getBlockState(blockpos);
-                    Block block = iblockstate.getBlock();
-
-                    if (!block.isAir(iblockstate, this.world, blockpos) && iblockstate.getMaterial() != Material.FIRE)
-                    {
-                        if (!this.world.getGameRules().getBoolean("mobGriefing"))
-                        {
-                            flag = true;
-                        }
-                        else if (block.canEntityDestroy(iblockstate, this.world, blockpos, this) && net.minecraftforge.event.ForgeEventFactory.onEntityDestroyBlock(this, blockpos, iblockstate))
-                        {
-                            if (block != Blocks.COMMAND_BLOCK && block != Blocks.REPEATING_COMMAND_BLOCK && block != Blocks.CHAIN_COMMAND_BLOCK && block != Blocks.IRON_BARS && block != Blocks.END_GATEWAY)
-                            {
-                                flag1 = this.world.setBlockToAir(blockpos) || flag1;
-                            }
-                            else
-                            {
-                                flag = true;
-                            }
-                        }
-                        else
-                        {
-                            flag = true;
-                        }
-                    }
-                }
-            }
-        }
-
-        if (flag1)
-        {
-            double d0 = p_70972_1_.minX + (p_70972_1_.maxX - p_70972_1_.minX) * (double)this.rand.nextFloat();
-            double d1 = p_70972_1_.minY + (p_70972_1_.maxY - p_70972_1_.minY) * (double)this.rand.nextFloat();
-            double d2 = p_70972_1_.minZ + (p_70972_1_.maxZ - p_70972_1_.minZ) * (double)this.rand.nextFloat();
-            this.world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
-        }
-
-        return flag;
-    }
     public int initPathPoints()
     {
         if (this.pathPoints[0] == null)
@@ -751,10 +714,21 @@ public class EntityFellBeast extends EntityDragon {
     public void onKillCommand()
     {
         this.setDead();
+
+        if (this.fellbeastFightManager != null)
+        {
+            this.fellbeastFightManager.fellbeastUpdate(this);
+            this.fellbeastFightManager.processFellBeastDeath(this);
+        }
     }
 
     protected void onDeathUpdate()
     {
+        if (this.fellbeastFightManager != null)
+        {
+            this.fellbeastFightManager.fellbeastUpdate(this);
+        }
+
         ++this.deathTicks;
 
         if (this.deathTicks >= 180 && this.deathTicks <= 200)
@@ -796,6 +770,74 @@ public class EntityFellBeast extends EntityDragon {
         }
     }
 
+    @SideOnly(Side.CLIENT)
+    public float getHeadPartYOffset(int p_184667_1_, double[] p_184667_2_, double[] p_184667_3_)
+    {
+        IPhase iphase = this.fellbeastphaseManager.getCurrentPhase();
+        PhaseList <? extends IPhase > phaselist = iphase.getType();
+        double d0;
+
+        if (phaselist != PhaseList.LANDING && phaselist != PhaseList.TAKEOFF)
+        {
+            if (iphase.getIsStationary())
+            {
+                d0 = (double)p_184667_1_;
+            }
+            else if (p_184667_1_ == 6)
+            {
+                d0 = 0.0D;
+            }
+            else
+            {
+                d0 = p_184667_3_[1] - p_184667_2_[1];
+            }
+        }
+        else
+        {
+            BlockPos blockpos = this.world.getTopSolidOrLiquidBlock(WorldGenEndPodium.END_PODIUM_LOCATION);
+            float f = Math.max(MathHelper.sqrt(this.getDistanceSqToCenter(blockpos)) / 4.0F, 1.0F);
+            d0 = (double)((float)p_184667_1_ / f);
+        }
+
+        return (float)d0;
+    }
+
+    public Vec3d getHeadLookVec(float p_184665_1_)
+    {
+        IPhase iphase = this.fellbeastphaseManager.getCurrentPhase();
+        PhaseList <? extends IPhase > phaselist = iphase.getType();
+        Vec3d vec3d;
+
+        if (phaselist != PhaseList.LANDING && phaselist != PhaseList.TAKEOFF)
+        {
+            if (iphase.getIsStationary())
+            {
+                float f4 = this.rotationPitch;
+                float f5 = 1.5F;
+                this.rotationPitch = -45.0F;
+                vec3d = this.getLook(p_184665_1_);
+                this.rotationPitch = f4;
+            }
+            else
+            {
+                vec3d = this.getLook(p_184665_1_);
+            }
+        }
+        else
+        {
+            BlockPos blockpos = this.world.getTopSolidOrLiquidBlock(WorldGenEndPodium.END_PODIUM_LOCATION);
+            float f = Math.max(MathHelper.sqrt(this.getDistanceSqToCenter(blockpos)) / 4.0F, 1.0F);
+            float f1 = 6.0F / f;
+            float f2 = this.rotationPitch;
+            float f3 = 1.5F;
+            this.rotationPitch = -f1 * 1.5F * 5.0F;
+            vec3d = this.getLook(p_184665_1_);
+            this.rotationPitch = f2;
+        }
+
+        return vec3d;
+    }
+
     private void dropExperience(int p_184668_1_)
     {
         while (p_184668_1_ > 0)
@@ -804,6 +846,51 @@ public class EntityFellBeast extends EntityDragon {
             p_184668_1_ -= i;
             this.world.spawnEntity(new EntityXPOrb(this.world, this.posX, this.posY, this.posZ, i));
         }
+    }
+
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
+        super.writeEntityToNBT(compound);
+        compound.setInteger("FellBeastPhase", this.fellbeastphaseManager.getCurrentPhase().getType().getId());
+    }
+
+    /**
+     * (abstract) Protected helper method to read subclass entity data from NBT.
+     */
+    public void readEntityFromNBT(NBTTagCompound compound)
+    {
+        super.readEntityFromNBT(compound);
+
+        if (compound.hasKey("FellBeastPhase"))
+        {
+            this.fellbeastphaseManager.setPhase(PhaseList.getById(compound.getInteger("FellBeastPhase")));
+        }
+    }
+
+    protected SoundEvent getAmbientSound()
+    {
+        return SoundEvents.ENTITY_ENDERDRAGON_AMBIENT;
+    }
+
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
+    {
+        return SoundEvents.ENTITY_ENDERDRAGON_HURT;
+    }
+
+    protected float getSoundVolume()
+    {
+        return 5.0F;
+    }
+
+    public Entity[] getParts()
+    {
+        return this.fellbeastPartArray;
+    }
+
+    @Nullable
+    public FellBeastFightManager getFellBeastFightManager()
+    {
+        return this.fellbeastFightManager;
     }
 
     protected boolean canBeRidden(Entity entityIn)

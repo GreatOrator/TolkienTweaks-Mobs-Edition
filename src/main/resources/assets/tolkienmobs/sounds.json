@@ -119,8 +119,34 @@
     "category": "neutral",
     "sounds":
     [
+      "tolkienmobs:mob/goblin/goblin_say0",
       "tolkienmobs:mob/goblin/goblin_say1",
-      "tolkienmobs:mob/goblin/goblin_say2"
+      "tolkienmobs:mob/goblin/goblin_say2",
+      "tolkienmobs:mob/goblin/goblin_say3"
+    ]
+  },
+  "mob.goblin.angry":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/goblin/goblin_angry"
+    ]
+  },
+  "mob.goblin.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/goblin/goblin_death"
+    ]
+  },
+  "mob.goblin.hurt":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/goblin/goblin_hurt"
     ]
   },
   "mob.balrog.death":

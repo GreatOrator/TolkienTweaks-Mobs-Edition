@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.handler;
 
+import com.greatorator.tolkienmobs.handler.interfaces.IPetList;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
