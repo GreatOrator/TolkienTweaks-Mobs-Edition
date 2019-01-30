@@ -34,6 +34,12 @@ public class SoundInit
     @ObjectHolder("mob.witchking.hurt")
     public static final SoundEvent soundHurtWitchKing = null;
 
+	/** Fell-beast */
+	@ObjectHolder("mob.fellbeast.idle")
+	public static final SoundEvent soundIdleFellBeast = null;
+	@ObjectHolder("mob.fellbeast.flap")
+	public static final SoundEvent soundFlapFellBeast = null;
+
 	/** Crebain */
 	@ObjectHolder("mob.crebain.hurt")
 	public static final SoundEvent soundDeathCrebain = null;
@@ -201,6 +207,10 @@ public class SoundInit
                     "mob.witchking.death",
                     "mob.witchking.idle",
                     "mob.witchking.hurt",
+
+					/** Fell-beast */
+					"mob.fellbeast.idle",
+					"mob.fellbeast.flap",
 
 					/** Crebain */
 					"mob.crebain.hurt",

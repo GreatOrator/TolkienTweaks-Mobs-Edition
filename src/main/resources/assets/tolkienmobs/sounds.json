@@ -347,6 +347,23 @@
       "tolkienmobs:mob/witchking/witchking_step"
     ]
   },
+  "mob.fellbeast.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/fellbeast/fellbeast_say0",
+      "tolkienmobs:mob/fellbeast/fellbeast_say1"
+    ]
+  },
+  "mob.fellbeast.flap":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/fellbeast/fellbeast_flap"
+    ]
+  },
   "music.allthatglittersinerebor": {
     "category": "music",
     "sounds": [

@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.entity.boss;
 import com.greatorator.tolkienmobs.entity.entityai.FellBeastFightManager;
 import com.greatorator.tolkienmobs.entity.entityai.FellBeastPhaseManager;
 import com.greatorator.tolkienmobs.init.LootInit;
+import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -130,12 +131,12 @@ public class EntityFellBeast extends EntityDragon {
 
                 if (f1 <= -0.3F && f >= -0.3F)
                 {
-                    this.world.playSound(this.posX, this.posY, this.posZ, SoundEvents.ENTITY_ENDERDRAGON_FLAP, this.getSoundCategory(), 5.0F, 0.8F + this.rand.nextFloat() * 0.3F, false);
+                    this.world.playSound(this.posX, this.posY, this.posZ, SoundInit.soundFlapFellBeast, this.getSoundCategory(), 5.0F, 0.8F + this.rand.nextFloat() * 0.3F, false);
                 }
 
                 if (!this.fellbeastphaseManager.getCurrentPhase().getIsStationary() && --this.growlTime < 0)
                 {
-                    this.world.playSound(this.posX, this.posY, this.posZ, SoundEvents.ENTITY_ENDERDRAGON_GROWL, this.getSoundCategory(), 2.5F, 0.8F + this.rand.nextFloat() * 0.3F, false);
+                    this.world.playSound(this.posX, this.posY, this.posZ, SoundInit.soundIdleFellBeast, this.getSoundCategory(), 2.5F, 0.8F + this.rand.nextFloat() * 0.3F, false);
                     this.growlTime = 200 + this.rand.nextInt(200);
                 }
             }
@@ -869,7 +870,7 @@ public class EntityFellBeast extends EntityDragon {
 
     protected SoundEvent getAmbientSound()
     {
-        return SoundEvents.ENTITY_ENDERDRAGON_AMBIENT;
+        return SoundInit.soundIdleFellBeast;
     }
 
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
