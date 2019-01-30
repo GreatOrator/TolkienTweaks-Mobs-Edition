@@ -35,7 +35,7 @@ public class BiomeHaradwaith extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityMumakil.class, 100, 1, 1));
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityMumakil.class, 100, 1, 1));
     }
 
     @SideOnly(Side.CLIENT)

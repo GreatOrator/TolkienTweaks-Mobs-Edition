@@ -1,6 +1,9 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
+import com.greatorator.tolkienmobs.entity.passive.EntityAuroch;
+import com.greatorator.tolkienmobs.entity.passive.EntityGoat;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMFrog;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockFlower;
@@ -47,9 +50,12 @@ public class BiomeShire extends Biome {
         this.spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 5, 2, 6));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityDonkey.class, 1, 1, 3));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityRabbit.class, 4, 2, 3));
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityAuroch.class, 4, 2, 3));
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityGoat.class, 4, 2, 3));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityCow.class, 8, 4, 4));
         this.spawnableCreatureList.add(new SpawnListEntry(EntitySheep.class, 12, 4, 4));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityPig.class, 10, 4, 4));
+        this.spawnableWaterCreatureList.add(new SpawnListEntry(EntityTMFrog.class, 4, 1, 1));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));
     }
 

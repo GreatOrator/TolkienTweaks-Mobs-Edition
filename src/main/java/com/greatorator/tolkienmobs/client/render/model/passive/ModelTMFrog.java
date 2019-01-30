@@ -145,4 +145,3 @@ public class ModelTMFrog extends ModelBase {
         modelRenderer.rotateAngleZ = z;
     }
 }
-

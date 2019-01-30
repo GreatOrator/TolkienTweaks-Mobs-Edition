@@ -39,10 +39,10 @@ public class BiomeMordor extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityUrukHai.class, 50, 4, 4));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityMordorOrc.class, 100, 4, 4));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityTroll.class, 2, 4, 4));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWarg.class, 1, 4, 4));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityUrukHai.class, 50, 1, 2));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityMordorOrc.class, 100, 2, 4));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityTroll.class, 2, 1, 1));
+        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWarg.class, 1, 1, 2));
     }
 
     @SideOnly(Side.CLIENT)

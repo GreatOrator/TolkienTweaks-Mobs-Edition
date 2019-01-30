@@ -1,9 +1,7 @@
 package com.greatorator.tolkienmobs.entity.ammo;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;

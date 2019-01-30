@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.monster.EntityHuron;
+import com.greatorator.tolkienmobs.entity.passive.EntityElves;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
@@ -45,6 +46,7 @@ public class BiomeLorinand extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityElves.class, 100, 1, 3));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityRabbit.class, 4, 2, 3));
     }
 

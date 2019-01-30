@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
 import com.greatorator.tolkienmobs.entity.monster.EntityUrukHai;
 import com.greatorator.tolkienmobs.entity.monster.EntityWarg;
+import com.greatorator.tolkienmobs.entity.passive.EntityAuroch;
 import com.greatorator.tolkienmobs.entity.passive.EntityHuman;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
@@ -52,6 +53,7 @@ public class BiomeGladden extends Biome {
         this.spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 5, 2, 6));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityDonkey.class, 1, 1, 3));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityRabbit.class, 4, 2, 3));
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityAuroch.class, 4, 2, 3));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityCow.class, 8, 4, 4));
         this.spawnableCreatureList.add(new SpawnListEntry(EntitySheep.class, 12, 4, 4));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityPig.class, 10, 4, 4));

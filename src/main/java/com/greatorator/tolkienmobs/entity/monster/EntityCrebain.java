@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.EntityBirds;
 import com.greatorator.tolkienmobs.init.LootInit;
 import net.minecraft.util.*;

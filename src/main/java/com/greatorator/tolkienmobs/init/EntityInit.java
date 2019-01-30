@@ -111,27 +111,35 @@ public class EntityInit
 
         /** If we want our mobs to spawn naturally. */
         if (TTMConfig.enableNaturalSpawn = true) {
+            /**  Boss' */
+            EntityRegistry.addSpawn(EntityBalrog.class, 100, 1, 1, EnumCreatureType.MONSTER);
+            EntityRegistry.addSpawn(EntityWitchKing.class, 100, 1, 1, EnumCreatureType.MONSTER);
+            EntityRegistry.addSpawn(EntityFellBeast.class, 100, 1, 1, EnumCreatureType.MONSTER);
+
+            /**  Special */
+            EntityRegistry.addSpawn(EntityGollum.class, 100, 1, 1, EnumCreatureType.AMBIENT);
+
             /** Monsters */
-            EntityRegistry.addSpawn(EntityHuron.class, 100, 1, 2, EnumCreatureType.MONSTER, Biomes.FOREST, Biomes.FOREST_HILLS, BiomeInit.MIRKWOOD);
-            EntityRegistry.addSpawn(EntityTreeEnt.class, 100, 1, 2, EnumCreatureType.MONSTER, BiomeInit.FANGORN);
-            EntityRegistry.addSpawn(EntityMirkwoodSpider.class, 100, 1, 2, EnumCreatureType.MONSTER, BiomeInit.MIRKWOOD);
-            EntityRegistry.addSpawn(EntityGoblin.class, 100, 2, 5, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS, BiomeInit.HITHAEGLIR);
-            EntityRegistry.addSpawn(EntityMordorOrc.class, 100, 1, 3, EnumCreatureType.MONSTER, BiomeInit.DAGORLAD);
-            EntityRegistry.addSpawn(EntityUrukHai.class, 100, 1, 3, EnumCreatureType.MONSTER, BiomeInit.DAGORLAD);
-            EntityRegistry.addSpawn(EntityWarg.class, 100, 1, 3, EnumCreatureType.MONSTER, BiomeInit.DAGORLAD);
-            EntityRegistry.addSpawn(EntityCrebain.class, 100, 1, 3, EnumCreatureType.MONSTER, BiomeInit.HITHAEGLIR);
-            EntityRegistry.addSpawn(EntityTroll.class, 100, 1, 2, EnumCreatureType.MONSTER, BiomeInit.HITHAEGLIR);
-            EntityRegistry.addSpawn(EntityBarrowWight.class, 100, 1, 3, EnumCreatureType.MONSTER, BiomeInit.BARROW_DOWNS);
+            EntityRegistry.addSpawn(EntityHuron.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.FOREST, Biomes.FOREST_HILLS, BiomeInit.MIRKWOOD);
+            EntityRegistry.addSpawn(EntityTreeEnt.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.ROOFED_FOREST, BiomeInit.FANGORN);
+            EntityRegistry.addSpawn(EntityMirkwoodSpider.class, 100, 1, 1, EnumCreatureType.MONSTER,Biomes.ROOFED_FOREST, BiomeInit.MIRKWOOD);
+            EntityRegistry.addSpawn(EntityGoblin.class, 100, 2, 1, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS, BiomeInit.HITHAEGLIR);
+            EntityRegistry.addSpawn(EntityMordorOrc.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.PLAINS, BiomeInit.DAGORLAD);
+            EntityRegistry.addSpawn(EntityUrukHai.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.PLAINS, BiomeInit.DAGORLAD);
+            EntityRegistry.addSpawn(EntityWarg.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.PLAINS, BiomeInit.DAGORLAD);
+            EntityRegistry.addSpawn(EntityCrebain.class, 100, 1, 1, EnumCreatureType.AMBIENT, Biomes.EXTREME_HILLS, BiomeInit.HITHAEGLIR);
+            EntityRegistry.addSpawn(EntityTroll.class, 100, 1, 1, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS, BiomeInit.HITHAEGLIR);
+            EntityRegistry.addSpawn(EntityBarrowWight.class, 100, 1, 1, EnumCreatureType.MONSTER,Biomes.ROOFED_FOREST, BiomeInit.BARROW_DOWNS);
 
             /** Passive */
-            EntityRegistry.addSpawn(EntityAuroch.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.GLADDEN, BiomeInit.SHIRE);
-            EntityRegistry.addSpawn(EntityGoat.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.IRON_HILLS, BiomeInit.SHIRE);
+            EntityRegistry.addSpawn(EntityAuroch.class, 100, 2, 4, EnumCreatureType.CREATURE, Biomes.PLAINS, BiomeInit.GLADDEN, BiomeInit.SHIRE);
+            EntityRegistry.addSpawn(EntityGoat.class, 100, 2, 4, EnumCreatureType.CREATURE, Biomes.EXTREME_HILLS, BiomeInit.IRON_HILLS, BiomeInit.SHIRE);
             EntityRegistry.addSpawn(EntityDwarf.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.IRON_HILLS);
             EntityRegistry.addSpawn(EntityHobbit.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.SHIRE);
             EntityRegistry.addSpawn(EntityHuman.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.GLADDEN);
             EntityRegistry.addSpawn(EntityElves.class, 100, 2, 4, EnumCreatureType.CREATURE, BiomeInit.FIRIEN);
-            EntityRegistry.addSpawn(EntityTMFrog.class, 100, 1, 4, EnumCreatureType.CREATURE, BiomeInit.MIRKWOOD, BiomeInit.MIRKWOOD);
-            EntityRegistry.addSpawn(EntityMumakil.class, 100, 1, 1, EnumCreatureType.CREATURE, BiomeInit.HARADWAITH);
+            EntityRegistry.addSpawn(EntityTMFrog.class, 100, 1, 1, EnumCreatureType.WATER_CREATURE, Biomes.PLAINS, BiomeInit.SHIRE, BiomeInit.MIRKWOOD);
+            EntityRegistry.addSpawn(EntityMumakil.class, 100, 1, 1, EnumCreatureType.CREATURE, Biomes.DESERT, BiomeInit.HARADWAITH);
         }
 
         LogHelperTTM.info("I chose you mobi-chu!");
