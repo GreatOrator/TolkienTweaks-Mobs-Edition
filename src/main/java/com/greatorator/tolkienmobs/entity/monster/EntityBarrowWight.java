@@ -2,10 +2,13 @@ package com.greatorator.tolkienmobs.entity.monster;
 
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
+import com.greatorator.tolkienmobs.entity.passive.EntityHuman;
 import com.greatorator.tolkienmobs.handler.TTMRand;
 import com.greatorator.tolkienmobs.init.LootInit;
+import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -21,7 +24,11 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -71,6 +78,7 @@ public class EntityBarrowWight extends EntityMob implements IEntityAdditionalSpa
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityBarrowWight.class}));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHobbit.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHuman.class, true));
     }
 
     @Override
@@ -87,17 +95,13 @@ public class EntityBarrowWight extends EntityMob implements IEntityAdditionalSpa
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(5.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
     }
 
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
         super.setEquipmentBasedOnDifficulty(difficulty);
         this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(TTMFeatures.SWORD_MORGULIRON));
-    }
-
-    protected void setEnchantmentBasedOnDifficulty(DifficultyInstance difficulty)
-    {
     }
 
     @Nullable
@@ -118,7 +122,6 @@ public class EntityBarrowWight extends EntityMob implements IEntityAdditionalSpa
         if (this.world != null && !this.world.isRemote)
         {
             this.tasks.removeTask(this.aiAttackOnCollide);
-            //   this.tasks.removeTask(this.aiArrowAttack);
             ItemStack itemstack = this.getHeldItemMainhand();
 
             if (itemstack.getItem() == TTMFeatures.SWORD_MORGULIRON)
@@ -133,9 +136,6 @@ public class EntityBarrowWight extends EntityMob implements IEntityAdditionalSpa
                 {
                     i = 40;
                 }
-
-                //   this.aiArrowAttack.setAttackCooldown(i);
-                //   this.tasks.addTask(4, this.aiArrowAttack);
             }
         }
     }
@@ -188,6 +188,36 @@ public class EntityBarrowWight extends EntityMob implements IEntityAdditionalSpa
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         texture_index = compound.getInteger("texture_index");
+    }
+
+    @Override
+    public SoundCategory getSoundCategory()
+    {
+        return SoundCategory.HOSTILE;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return SoundInit.soundIdleBarrowWight;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
+    {
+        return SoundInit.soundHurtBarrowWight;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return SoundInit.soundHurtBarrowWight;
+    }
+
+    @Override
+    protected float getSoundVolume()
+    {
+        return 1.5F;
     }
 
     @Override

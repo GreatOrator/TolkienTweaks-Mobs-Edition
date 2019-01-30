@@ -13,7 +13,7 @@ import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 
 public class ModelBarrowWight extends ModelTolkienMobs {
-    private final ModelRenderer bipedDeadmau5Head;
+    public ModelRenderer bipedDeadmau5Head;
     public ModelRenderer BarrowLegR;
     public ModelRenderer bipedHead;
     public ModelRenderer BarrowBody;
@@ -53,9 +53,11 @@ public class ModelBarrowWight extends ModelTolkienMobs {
         this.BarrowLegL.render(f5);
         this.BarrowBody.render(f5);
         this.bipedLeftArm.render(f5);
+
         copyModelAngles(this.bipedHead, this.bipedDeadmau5Head);
         this.bipedDeadmau5Head.rotationPointX = 0.0F;
         this.bipedDeadmau5Head.rotationPointY = 0.0F;
+        this.bipedDeadmau5Head.render(f5);
     }
 
     /**

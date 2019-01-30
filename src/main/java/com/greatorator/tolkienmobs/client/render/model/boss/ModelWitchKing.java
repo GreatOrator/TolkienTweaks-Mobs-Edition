@@ -24,7 +24,7 @@ public class ModelWitchKing extends ModelTolkienMobs {
     public ModelRenderer bipedLeftLegwear;
     public ModelRenderer bipedRightArm;
     public ModelRenderer bipedRightLeg;
-    public ModelRenderer witchHead;
+    public ModelRenderer bipedHead;
     public ModelRenderer bipedBody;
     public ModelRenderer bipedLeftArm;
     public ModelRenderer bipedLeftLeg;
@@ -45,9 +45,9 @@ public class ModelWitchKing extends ModelTolkienMobs {
         this.bipedLeftLegwear = new ModelRenderer(this, 0, 48);
         this.bipedLeftLegwear.setRotationPoint(1.9F, 12.0F, 0.0F);
         this.bipedLeftLegwear.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.25F);
-        this.witchHead = new ModelRenderer(this, 0, 0);
-        this.witchHead.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.witchHead.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
+        this.bipedHead = new ModelRenderer(this, 0, 0);
+        this.bipedHead.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.bipedHead.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
         this.bipedLeftLeg = new ModelRenderer(this, 16, 48);
         this.bipedLeftLeg.setRotationPoint(1.9F, 12.0F, 0.0F);
         this.bipedLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
@@ -78,7 +78,7 @@ public class ModelWitchKing extends ModelTolkienMobs {
         GL11.glTranslatef(0F, 1.5F-1.5F*scaleFactor, 0F);
         GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
 
-        this.witchHead.render(f5);
+        this.bipedHead.render(f5);
         this.bipedBody.render(f5);
         this.bipedLeftArm.render(f5);
         this.bipedRightLeg.render(f5);
@@ -146,8 +146,8 @@ public class ModelWitchKing extends ModelTolkienMobs {
         this.bipedLeftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.bipedRightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 
-        this.witchHead.rotateAngleY = netHeadYaw * 0.017453292F;
-        this.witchHead.rotateAngleX = headPitch * 0.017453292F;
+        this.bipedHead.rotateAngleY = netHeadYaw * 0.017453292F;
+        this.bipedHead.rotateAngleX = headPitch * 0.017453292F;
 
         this.bipedRightArm.rotationPointX = -4.9F;
         this.bipedLeftArm.rotationPointX = 4.9F;

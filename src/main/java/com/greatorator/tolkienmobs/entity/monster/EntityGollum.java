@@ -68,19 +68,28 @@ public class EntityGollum extends EntityMob {
         return ientitylivingdata;
     }
 
+    @Override
     protected SoundEvent getAmbientSound()
     {
         return SoundInit.soundIdleGollum;
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundInit.soundHurtGollum;
     }
 
+    @Override
     protected SoundEvent getDeathSound()
     {
         return SoundInit.soundDeathGollum;
+    }
+
+    @Override
+    protected float getSoundVolume()
+    {
+        return 1.5F;
     }
 
     @Override

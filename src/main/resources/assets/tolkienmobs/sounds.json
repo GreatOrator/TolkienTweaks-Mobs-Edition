@@ -364,6 +364,22 @@
       "tolkienmobs:mob/fellbeast/fellbeast_flap"
     ]
   },
+  "mob.barrowwight.idle": {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/barrowwight/barrowwight_say0",
+      "tolkienmobs:mob/barrowwight/barrowwight_say1",
+      "tolkienmobs:mob/barrowwight/barrowwight_say2"
+    ]
+  },
+  "mob.barrowwight.hurt": {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/barrowwight/barrowwight_hurt"
+    ]
+  },
   "music.allthatglittersinerebor": {
     "category": "music",
     "sounds": [

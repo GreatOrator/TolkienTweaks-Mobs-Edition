@@ -62,8 +62,6 @@ public class RenderWitchKing extends RenderLiving<EntityWitchKing> {
                     {
                         GlStateManager.translate(0.0F, 0.2F, 0.0F);
                     }
-                    // Forge: moved this call down, fixes incorrect offset while sneaking.
-                    //                    GlStateManager.translate(0.0F, 0.625F, 0);
                     this.translateToHand(handSide);
                     GlStateManager.rotate(-100.0F, 1.0F, 0.0F, 0.0F);
                     GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
@@ -79,11 +77,6 @@ public class RenderWitchKing extends RenderLiving<EntityWitchKing> {
                 ((ModelBiped)this.livingEntityRenderer.getMainModel()).postRenderArm(0.12F, p_191361_1_);
             }
         });
-    }
-
-    public ModelWitchKing getMainModel()
-    {
-        return (ModelWitchKing)super.getMainModel();
     }
 
     @Override

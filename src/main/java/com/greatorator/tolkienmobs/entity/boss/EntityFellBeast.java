@@ -97,6 +97,7 @@ public class EntityFellBeast extends EntityLiving implements IEntityMultiPart, I
         this.isImmuneToFire = true;
         this.growlTime = 100;
         this.ignoreFrustumCheck = true;
+        this.experienceValue = 200;
 
         if (!worldIn.isRemote && worldIn.provider instanceof WorldProviderEnd)
         {
