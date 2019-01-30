@@ -2,12 +2,12 @@ package com.greatorator.tolkienmobs.client.render.entity.boss;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerFellBeastDeath;
+import com.greatorator.tolkienmobs.client.render.entity.layers.LayerFellBeastEyes;
 import com.greatorator.tolkienmobs.client.render.model.boss.ModelFellBeast;
 import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
@@ -130,39 +130,6 @@ public class RenderFellBeast extends RenderLiving<EntityFellBeast>
         GlStateManager.shadeModel(7424);
         RenderHelper.enableStandardItemLighting();
         GlStateManager.popMatrix();
-    }
-
-    public static class LayerFellBeastEyes implements LayerRenderer<EntityFellBeast> {
-        private static final ResourceLocation TEXTURE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/fellbeast/fellbeast_eyes.png");
-        private final RenderFellBeast fellbeastRenderer;
-
-        public LayerFellBeastEyes(RenderFellBeast fellbeastRendererIn) {
-            this.fellbeastRenderer = fellbeastRendererIn;
-        }
-
-        public void doRenderLayer(EntityFellBeast entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-            this.fellbeastRenderer.bindTexture(TEXTURE);
-            GlStateManager.enableBlend();
-            GlStateManager.disableAlpha();
-            GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
-            GlStateManager.disableLighting();
-            GlStateManager.depthFunc(514);
-            int i = 61680;
-            int j = i % 65536;
-            int k = i / 65536;
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
-            GlStateManager.enableLighting();
-            GlStateManager.color(0.0F, 0.0F, 0.0F, 0.0F);
-            this.fellbeastRenderer.getMainModel().render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-            this.fellbeastRenderer.setLightmap(entitylivingbaseIn);
-            GlStateManager.disableBlend();
-            GlStateManager.enableAlpha();
-            GlStateManager.depthFunc(515);
-        }
-
-        public boolean shouldCombineTextures() {
-            return false;
-        }
     }
 
     protected ResourceLocation getEntityTexture(EntityFellBeast entity)

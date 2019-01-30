@@ -1,22 +1,21 @@
-package com.greatorator.tolkienmobs.entity.entityai;
+package com.greatorator.tolkienmobs.entity.entityai.phase;
 
 import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-import net.minecraft.entity.boss.dragon.phase.IPhase;
-import net.minecraft.entity.boss.dragon.phase.PhaseList;
 
-public class FellBeastPhaseManager {
+public class TTMPhaseManager
+{
     private final EntityFellBeast fellbeast;
-    private final IPhase[] phases = new IPhase[PhaseList.getTotalPhases()];
-    private IPhase phase;
+    private final ITTMPhase[] phases = new ITTMPhase[TTMPhaseList.getTotalPhases()];
+    private ITTMPhase phase;
 
-    public FellBeastPhaseManager(EntityFellBeast fellbeastIn)
+    public TTMPhaseManager(EntityFellBeast fellbeastIn)
     {
         this.fellbeast = fellbeastIn;
-        this.setPhase(PhaseList.HOVER);
+        this.setPhase(TTMPhaseList.HOVER);
     }
 
-    public void setPhase(PhaseList<?> phaseIn)
+    public void setPhase(TTMPhaseList<?> phaseIn)
     {
         if (this.phase == null || phaseIn != this.phase.getType())
         {
@@ -32,17 +31,17 @@ public class FellBeastPhaseManager {
                 this.fellbeast.getDataManager().set(EntityFellBeast.PHASE, Integer.valueOf(phaseIn.getId()));
             }
 
-            LogHelperTTM.debug("Dragon is now in phase {} on the {}", phaseIn, this.fellbeast.world.isRemote ? "client" : "server");
+            LogHelperTTM.debug("FellBeast is now in phase {} on the {}", phaseIn, this.fellbeast.world.isRemote ? "client" : "server");
             this.phase.initPhase();
         }
     }
 
-    public IPhase getCurrentPhase()
+    public ITTMPhase getCurrentPhase()
     {
         return this.phase;
     }
 
-    public <T extends IPhase> T getPhase(PhaseList<T> phaseIn)
+    public <T extends ITTMPhase> T getPhase(TTMPhaseList<T> phaseIn)
     {
         int i = phaseIn.getId();
 

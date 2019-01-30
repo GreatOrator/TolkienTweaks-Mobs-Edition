@@ -4,13 +4,13 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.*;
 import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.entityai.phase.TTMPhaseList;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.pattern.BlockMatcher;
 import net.minecraft.block.state.pattern.BlockPattern;
 import net.minecraft.block.state.pattern.FactoryBlockPattern;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.boss.dragon.phase.PhaseList;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
@@ -435,7 +435,7 @@ public class FellBeastFightManager {
     {
         this.world.getChunkFromBlockCoords(new BlockPos(0, 128, 0));
         EntityFellBeast entityfellbeast = new EntityFellBeast(this.world);
-        entityfellbeast.getPhaseManager().setPhase(PhaseList.HOLDING_PATTERN);
+        entityfellbeast.getFellBeastPhaseManager().setPhase(TTMPhaseList.HOLDING_PATTERN);
         entityfellbeast.setLocationAndAngles(0.0D, 128.0D, 0.0D, this.world.rand.nextFloat() * 360.0F, 0.0F);
         this.world.spawnEntity(entityfellbeast);
         this.fellbeastUniqueId = entityfellbeast.getUniqueID();

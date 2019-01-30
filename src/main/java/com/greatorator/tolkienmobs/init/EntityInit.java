@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.init;
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
+import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.boss.EntityBalrog;
 import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
 import com.greatorator.tolkienmobs.entity.boss.EntityWitchKing;
@@ -106,6 +107,7 @@ public class EntityInit
 
         /** Non-mob Entities */
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "boulder"), EntityAmmo.class, "ammo_boulder", id++, TolkienMobs.instance, 64, 3, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "fellbeast"), EntityFellBeastFireball.class, "fellbeast_fireball", id++, TolkienMobs.instance, 64, 3, true);
 
         /** If we want our mobs to spawn naturally. */
         if (TTMConfig.enableNaturalSpawn = true) {
