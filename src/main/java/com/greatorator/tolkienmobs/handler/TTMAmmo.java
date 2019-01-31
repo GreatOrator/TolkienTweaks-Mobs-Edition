@@ -1,17 +1,18 @@
 package com.greatorator.tolkienmobs.handler;
 
-import com.greatorator.tolkienmobs.entity.ammo.EntityAmmo;
+import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.init.SoundInit;
+import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemSnowball;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
-public class ItemTTMAmmo extends ItemSnowball {
+public class TTMAmmo extends Item {
 
-    public ItemTTMAmmo(int maxStackSize) {
+    public TTMAmmo(int maxStackSize) {
         this.maxStackSize = maxStackSize;
     }
 
@@ -29,7 +30,7 @@ public class ItemTTMAmmo extends ItemSnowball {
 
         if (!worldIn.isRemote)
         {
-            EntityAmmo entityboulder = new EntityAmmo(worldIn, playerIn);
+            EntityBoulder entityboulder = new EntityBoulder(worldIn, playerIn);
             entityboulder.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
             worldIn.spawnEntity(entityboulder);
         }

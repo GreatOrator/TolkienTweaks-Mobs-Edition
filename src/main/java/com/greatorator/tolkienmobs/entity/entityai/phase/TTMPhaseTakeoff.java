@@ -28,7 +28,7 @@ public class TTMPhaseTakeoff extends TTMPhaseBase
     {
         if (!this.firstTick && this.currentPath != null)
         {
-            BlockPos blockpos = this.fellbeast.world.getTopSolidOrLiquidBlock(WorldGenEndPodium.END_PODIUM_LOCATION);
+            BlockPos blockpos = this.fellbeast.world.getTopSolidOrLiquidBlock(new BlockPos(-246, 40, 554));
             double d0 = this.fellbeast.getDistanceSqToCenter(blockpos);
 
             if (d0 > 100.0D)

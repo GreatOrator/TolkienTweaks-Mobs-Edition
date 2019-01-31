@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.entity.ammo;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
+import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -19,19 +19,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
-public class RenderBoulder extends Render<EntityBoulder> {
+public class RenderFellBeastFireball extends Render<EntityFellBeastFireball> {
     public static Factory FACTORY = new Factory();
     protected final Item item;
     private final RenderItem itemRenderer;
-    private EntityBoulder entityIn;
+    private EntityFellBeastFireball entityIn;
 
-    public RenderBoulder(RenderManager renderManager, Item itemIn, RenderItem itemRendererIn) {
+    public RenderFellBeastFireball(RenderManager renderManager, Item itemIn, RenderItem itemRendererIn) {
         super(renderManager);
         this.item = itemIn;
         this.itemRenderer = itemRendererIn;
     }
 
-    public void doRender(EntityBoulder entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(EntityFellBeastFireball entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)x, (float)y, (float)z);
@@ -39,7 +39,7 @@ public class RenderBoulder extends Render<EntityBoulder> {
         GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate((float)(this.renderManager.options.thirdPersonView == 2 ? -1 : 1) * this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
         GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
-        this.bindTexture(new ResourceLocation(TolkienMobs.MODID + ":textures/items/ammo_boulder.png"));
+        this.bindTexture(new ResourceLocation(TolkienMobs.MODID + ":textures/items/fellbeast_fireball.png"));
 
         if (this.renderOutlines)
         {
@@ -60,7 +60,7 @@ public class RenderBoulder extends Render<EntityBoulder> {
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    public ItemStack getStackToRender(EntityBoulder entityIn)
+    public ItemStack getStackToRender(EntityFellBeastFireball entityIn)
     {
         this.entityIn = entityIn;
         return new ItemStack(this.item);
@@ -68,14 +68,14 @@ public class RenderBoulder extends Render<EntityBoulder> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(EntityBoulder entity) {
-        return new ResourceLocation(TolkienMobs.MODID + ":textures/items/ammo_boulder.png");
+    protected ResourceLocation getEntityTexture(EntityFellBeastFireball entity) {
+        return new ResourceLocation(TolkienMobs.MODID + ":textures/items/fellbeast_fireball.png");
     }
 
-    public static class Factory implements IRenderFactory<EntityBoulder>{
+    public static class Factory implements IRenderFactory<EntityFellBeastFireball>{
         @Override
-        public Render<? super EntityBoulder> createRenderFor(RenderManager manager) {
-            return new RenderBoulder(manager, TTMFeatures.AMMO_BOULDER, Minecraft.getMinecraft().getRenderItem());
+        public Render<? super EntityFellBeastFireball> createRenderFor(RenderManager manager) {
+            return new RenderFellBeastFireball(manager, TTMFeatures.FELLBEAST_FIREBALL, Minecraft.getMinecraft().getRenderItem());
         }
     }
 }

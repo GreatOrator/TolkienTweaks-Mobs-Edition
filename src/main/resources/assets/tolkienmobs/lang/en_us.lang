@@ -105,6 +105,7 @@ item.tolkienmobs:boots_morguliron.name=Morgul Iron Boots
 
 //Ammo Information
 item.tolkienmobs:ammo_boulder.name=Boulder
+item.tolkienmobs:fellbeast_fireball.name=Fell-fireball
 
 //Food Information
 item.tolkienmobs:food_lembas.name=Lembas

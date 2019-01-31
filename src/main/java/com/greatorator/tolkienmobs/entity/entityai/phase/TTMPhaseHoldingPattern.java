@@ -65,7 +65,7 @@ public class TTMPhaseHoldingPattern extends TTMPhaseBase
     {
         if (this.currentPath != null && this.currentPath.isFinished())
         {
-            BlockPos blockpos = this.fellbeast.world.getTopSolidOrLiquidBlock(new BlockPos(WorldGenEndPodium.END_PODIUM_LOCATION));
+            BlockPos blockpos = this.fellbeast.world.getTopSolidOrLiquidBlock(new BlockPos(-246, 40, 554));
             int i = this.fellbeast.getFellBeastFightManager() == null ? 0 : this.fellbeast.getFellBeastFightManager().getNumAliveCrystals();
 
             if (this.fellbeast.getRNG().nextInt(i + 3) == 0)

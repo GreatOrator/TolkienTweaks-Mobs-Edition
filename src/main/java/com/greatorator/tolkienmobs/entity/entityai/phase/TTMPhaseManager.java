@@ -12,7 +12,7 @@ public class TTMPhaseManager
     public TTMPhaseManager(EntityFellBeast fellbeastIn)
     {
         this.fellbeast = fellbeastIn;
-        this.setPhase(TTMPhaseList.HOVER);
+        this.setPhase(TTMPhaseList.HOLDING_PATTERN);
     }
 
     public void setPhase(TTMPhaseList<?> phaseIn)

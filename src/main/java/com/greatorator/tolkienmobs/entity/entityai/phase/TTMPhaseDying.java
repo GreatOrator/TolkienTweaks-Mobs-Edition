@@ -43,7 +43,7 @@ public class TTMPhaseDying extends TTMPhaseBase
 
         if (this.targetLocation == null)
         {
-            BlockPos blockpos = this.fellbeast.world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION);
+            BlockPos blockpos = this.fellbeast.world.getHeight(new BlockPos(-246, 40, 554));
             this.targetLocation = new Vec3d((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ());
         }
 

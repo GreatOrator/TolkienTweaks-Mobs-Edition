@@ -6,15 +6,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class ItemTTMFood extends ItemFood {
+public class TTMFood extends ItemFood {
     private PotionEffect[] effects;
 
-    public ItemTTMFood(int amount, PotionEffect...potionEffects) {
+    public TTMFood(int amount, PotionEffect...potionEffects) {
         super(amount, false);
         this.effects = potionEffects;
     }
 
-    public ItemTTMFood(int amount, float saturation, PotionEffect...potionEffects) {
+    public TTMFood(int amount, float saturation, PotionEffect...potionEffects) {
         super(amount, saturation, false);
         this.effects = potionEffects;
     }

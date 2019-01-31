@@ -11,8 +11,8 @@ import com.brandon3055.brandonscore.registry.ModFeatures;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.block.itemblock.ItemBlockSlabs;
-import com.greatorator.tolkienmobs.handler.ItemTTMAmmo;
-import com.greatorator.tolkienmobs.handler.ItemTTMFood;
+import com.greatorator.tolkienmobs.handler.TTMAmmo;
+import com.greatorator.tolkienmobs.handler.TTMFood;
 import com.greatorator.tolkienmobs.handler.TTMLore;
 import com.greatorator.tolkienmobs.item.tools.ToolAxe;
 import com.greatorator.tolkienmobs.tile.TileSign;
@@ -46,7 +46,7 @@ public class TTMFeatures implements IModFeatures {
 
     /** Material */ //I don't like the fact that this exists here but... for now this is fine.
     public static Item.ToolMaterial TOOL_MITHRIL = EnumHelper.addToolMaterial("tool_mithril", 5, 1800, 12.0F, 5.5F, 45);
-    public static ItemArmor.ArmorMaterial ARMOR_MITHRIL = EnumHelper.addArmorMaterial("armour_mithril", TolkienMobs.MODID + ":mithril", 50, new int[]{6, 12, 16, 6}, 35, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
+    public static ItemArmor.ArmorMaterial ARMOR_MITHRIL = EnumHelper.addArmorMaterial("armour_mithril", TolkienMobs.MODID + ":mithril", 50, new int[]{6, 12, 16, 6}, 35, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F);
     public static Item.ToolMaterial TOOL_MORGULIRON = EnumHelper.addToolMaterial("tool_morguliron", 3, 1600, 9.0F, 3.5F, 5);
     public static ItemArmor.ArmorMaterial ARMOR_MORGULIRON = EnumHelper.addArmorMaterial("armour_morguliron", TolkienMobs.MODID + ":morguliron", 35, new int[]{6, 10, 10, 6}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
 
@@ -249,19 +249,19 @@ public class TTMFeatures implements IModFeatures {
 
     /** Food */
     @ModFeature(name = "food_lembas", stateOverride = "simple_items#type=food_lembas", cTab = 3)
-    public static Item LEMBAS = new ItemTTMFood(20, 20, new PotionEffect(MobEffects.ABSORPTION,12000,5), new PotionEffect(MobEffects.REGENERATION,100,5));
+    public static Item LEMBAS = new TTMFood(20, 20, new PotionEffect(MobEffects.ABSORPTION,12000,5), new PotionEffect(MobEffects.REGENERATION,100,5));
     @ModFeature(name = "food_honeycake", stateOverride = "simple_items#type=food_honeycake", cTab = 3)
-    public static Item HONEY_CAKE = new ItemTTMFood(15, 15, new PotionEffect(MobEffects.ABSORPTION,6000,3), new PotionEffect(MobEffects.REGENERATION,50,5));
+    public static Item HONEY_CAKE = new TTMFood(15, 15, new PotionEffect(MobEffects.ABSORPTION,6000,3), new PotionEffect(MobEffects.REGENERATION,50,5));
     @ModFeature(name = "food_cram", stateOverride = "simple_items#type=food_cram", cTab = 3)
-    public static Item CRAM = new ItemTTMFood(10, 10, new PotionEffect(MobEffects.ABSORPTION,3000,1), new PotionEffect(MobEffects.REGENERATION,25,5));
+    public static Item CRAM = new TTMFood(10, 10, new PotionEffect(MobEffects.ABSORPTION,3000,1), new PotionEffect(MobEffects.REGENERATION,25,5));
     @ModFeature(name = "potion_entdraught", stateOverride = "simple_items#type=potion_entdraught", cTab = 3)
-    public static Item ENT_DRAUGHT = new ItemTTMFood(5, 5, new PotionEffect(PotionInit.ENT_STANCE,6000,2));
+    public static Item ENT_DRAUGHT = new TTMFood(5, 5, new PotionEffect(PotionInit.ENT_STANCE,6000,2));
     @ModFeature(name = "potion_miruvor", stateOverride = "simple_items#type=potion_miruvor", cTab = 3)
-    public static Item MIRUVOR = new ItemTTMFood(5, 5, new PotionEffect(MobEffects.SPEED,3000,3), new PotionEffect(MobEffects.REGENERATION, 600, 3), new PotionEffect(MobEffects.NAUSEA, 40, 3));
+    public static Item MIRUVOR = new TTMFood(5, 5, new PotionEffect(MobEffects.SPEED,3000,3), new PotionEffect(MobEffects.REGENERATION, 600, 3), new PotionEffect(MobEffects.NAUSEA, 40, 3));
     @ModFeature(name = "potion_grog", stateOverride = "simple_items#type=potion_grog", cTab = 3)
-    public static Item GROG = new ItemTTMFood(5, 5, new PotionEffect(MobEffects.SPEED,1500,3), new PotionEffect(MobEffects.REGENERATION, 300, 3), new PotionEffect(MobEffects.NAUSEA, 100, 3));
+    public static Item GROG = new TTMFood(5, 5, new PotionEffect(MobEffects.SPEED,1500,3), new PotionEffect(MobEffects.REGENERATION, 300, 3), new PotionEffect(MobEffects.NAUSEA, 100, 3));
     @ModFeature(name = "monster_flesh", stateOverride = "simple_items#type=monster_flesh", cTab = 3)
-    public static Item MONSTER_FLESH = new ItemTTMFood(5, 2, new PotionEffect(MobEffects.HUNGER,100,2));
+    public static Item MONSTER_FLESH = new TTMFood(5, 2, new PotionEffect(MobEffects.HUNGER,100,2));
     /** End Region */
 
     /** Custom Blocks */
@@ -271,6 +271,8 @@ public class TTMFeatures implements IModFeatures {
 
     /** Ammo */
     @ModFeature(name = "ammo_boulder", stateOverride = "simple_items#type=ammo_boulder", cTab = 1)
-    public static Item AMMO_BOULDER = new ItemTTMAmmo(16);
+    public static Item AMMO_BOULDER = new TTMAmmo(16);
+    @ModFeature(name = "fellbeast_fireball", stateOverride = "simple_items#type=fellbeast_fireball", cTab = 1)
+    public static Item FELLBEAST_FIREBALL = new TTMAmmo(16);
     /** End Region */
 }

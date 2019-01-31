@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.entityai.phase;
 
 import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.gen.feature.WorldGenEndPodium;
@@ -47,7 +48,7 @@ public class TTMPhaseLanding extends TTMPhaseBase
     {
         if (this.targetLocation == null)
         {
-            this.targetLocation = new Vec3d(this.fellbeast.world.getTopSolidOrLiquidBlock(WorldGenEndPodium.END_PODIUM_LOCATION));
+            this.targetLocation = new Vec3d(this.fellbeast.world.getTopSolidOrLiquidBlock(new BlockPos(-246, 40, 554)));
         }
 
         if (this.targetLocation.squareDistanceTo(this.fellbeast.posX, this.fellbeast.posY, this.fellbeast.posZ) < 1.0D)

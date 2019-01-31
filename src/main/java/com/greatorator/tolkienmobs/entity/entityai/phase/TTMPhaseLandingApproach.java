@@ -62,7 +62,7 @@ public class TTMPhaseLandingApproach extends TTMPhaseBase
         if (this.currentPath == null || this.currentPath.isFinished())
         {
             int i = this.fellbeast.initPathPoints();
-            BlockPos blockpos = this.fellbeast.world.getTopSolidOrLiquidBlock(WorldGenEndPodium.END_PODIUM_LOCATION);
+            BlockPos blockpos = this.fellbeast.world.getTopSolidOrLiquidBlock(new BlockPos(-246, 40, 554));
             EntityPlayer entityplayer = this.fellbeast.world.getNearestAttackablePlayer(blockpos, 128.0D, 128.0D);
             int j;
 

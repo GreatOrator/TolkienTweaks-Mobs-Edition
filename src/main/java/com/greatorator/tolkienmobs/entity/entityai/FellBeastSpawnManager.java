@@ -15,7 +15,7 @@ public enum FellBeastSpawnManager
     START {
         public void process(WorldServer worldIn, FellBeastFightManager manager, List<EntityEnderCrystal> crystals, int ticks, BlockPos pos)
         {
-            BlockPos blockpos = new BlockPos(0, 128, 0);
+            BlockPos blockpos = new BlockPos(-246, 40, 554);
 
             for (EntityEnderCrystal entityendercrystal : crystals)
             {
@@ -32,7 +32,7 @@ public enum FellBeastSpawnManager
             {
                 if (ticks == 0 || ticks == 50 || ticks == 51 || ticks == 52 || ticks >= 95)
                 {
-                    worldIn.playEvent(3001, new BlockPos(0, 128, 0), 0);
+                    worldIn.playEvent(3001, new BlockPos(-246, 40, 554), 0);
                 }
             }
             else
@@ -77,7 +77,7 @@ public enum FellBeastSpawnManager
                         WorldGenSpikes worldgenspikes = new WorldGenSpikes();
                         worldgenspikes.setSpike(worldgenspikes$endspike);
                         worldgenspikes.setCrystalInvulnerable(true);
-                        worldgenspikes.setBeamTarget(new BlockPos(0, 128, 0));
+                        worldgenspikes.setBeamTarget(new BlockPos(-246, 40, 554));
                         worldgenspikes.generate(worldIn, new Random(), new BlockPos(worldgenspikes$endspike.getCenterX(), 45, worldgenspikes$endspike.getCenterZ()));
                     }
                 }
@@ -105,18 +105,18 @@ public enum FellBeastSpawnManager
             }
             else if (ticks >= 80)
             {
-                worldIn.playEvent(3001, new BlockPos(0, 128, 0), 0);
+                worldIn.playEvent(3001, new BlockPos(-246, 40, 554), 0);
             }
             else if (ticks == 0)
             {
                 for (EntityEnderCrystal entityendercrystal1 : crystals)
                 {
-                    entityendercrystal1.setBeamTarget(new BlockPos(0, 128, 0));
+                    entityendercrystal1.setBeamTarget(new BlockPos(-246, 40, 554));
                 }
             }
             else if (ticks < 5)
             {
-                worldIn.playEvent(3001, new BlockPos(0, 128, 0), 0);
+                worldIn.playEvent(3001, new BlockPos(-246, 40, 554), 0);
             }
         }
     },

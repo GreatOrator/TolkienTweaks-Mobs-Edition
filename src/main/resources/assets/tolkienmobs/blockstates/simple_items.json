@@ -25,6 +25,7 @@
       "leather_mumakil":   {"textures": {"layer0": "tolkienmobs:items/leather_mumakil"}},
       "monster_flesh":   {"textures": {"layer0": "tolkienmobs:items/monster_flesh"}},
       "ammo_boulder":   {"textures": {"layer0": "tolkienmobs:items/ammo_boulder"}},
+      "fellbeast_fireball":   {"textures": {"layer0": "tolkienmobs:items/fellbeast_fireball"}},
       "item_beryl":    {"textures": {"layer0": "tolkienmobs:items/item_beryl"}},
       "item_watcherheart":    {"textures": {"layer0": "tolkienmobs:items/item_watcherheart"}},
       "item_watcherheart_cracked":    {"textures": {"layer0": "tolkienmobs:items/item_watcherheart_cracked"}},

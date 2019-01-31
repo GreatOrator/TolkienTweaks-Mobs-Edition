@@ -5,6 +5,7 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.*;
 import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
 import com.greatorator.tolkienmobs.entity.entityai.phase.TTMPhaseList;
+import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.state.BlockWorldState;
 import net.minecraft.block.state.pattern.BlockMatcher;
@@ -34,14 +35,11 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.gen.feature.WorldGenEndGateway;
 import net.minecraft.world.gen.feature.WorldGenEndPodium;
 import net.minecraft.world.gen.feature.WorldGenSpikes;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.*;
 
 public class FellBeastFightManager {
-    private static final Logger LOGGER = LogManager.getLogger();
     private static final Predicate<EntityPlayerMP> VALID_PLAYER = Predicates.<EntityPlayerMP>and(EntitySelectors.IS_ALIVE, EntitySelectors.withinRange(0.0D, 128.0D, 0.0D, 192.0D));
     private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(new TextComponentTranslation("entity.fellbeast.name", new Object[0]), BossInfo.Color.PINK, BossInfo.Overlay.PROGRESS)).setPlayEndBossMusic(true).setCreateFog(true);
     private final WorldServer world;
@@ -152,19 +150,19 @@ public class FellBeastFightManager {
         {
             if (this.scanForLegacyFight)
             {
-                LOGGER.info("Scanning for legacy world fellbeast fight...");
+                LogHelperTTM.info("Scanning for legacy world fellbeast fight...");
                 this.loadChunks();
                 this.scanForLegacyFight = false;
                 boolean flag = this.hasFellBeastBeenKilled();
 
                 if (flag)
                 {
-                    LOGGER.info("Found that the fellbeast has been killed in this world already.");
+                    LogHelperTTM.info("Found that the fellbeast has been killed in this world already.");
                     this.previouslyKilled = true;
                 }
                 else
                 {
-                    LOGGER.info("Found that the fellbeast has not yet been killed in this world.");
+                    LogHelperTTM.info("Found that the fellbeast has not yet been killed in this world.");
                     this.previouslyKilled = false;
                     this.generatePortal(false);
                 }
@@ -179,12 +177,12 @@ public class FellBeastFightManager {
                 {
                     EntityFellBeast entityfellbeast = list.get(0);
                     this.fellbeastUniqueId = entityfellbeast.getUniqueID();
-                    LOGGER.info("Found that there's a fellbeast still alive ({})", (Object)entityfellbeast);
+                    LogHelperTTM.info("Found that there's a fellbeast still alive ({})", (Object)entityfellbeast);
                     this.fellbeastKilled = false;
 
                     if (!flag)
                     {
-                        LOGGER.info("But we didn't have a portal, let's remove it.");
+                        LogHelperTTM.info("But we didn't have a portal, let's remove it.");
                         entityfellbeast.setDead();
                         this.fellbeastUniqueId = null;
                     }
@@ -216,12 +214,12 @@ public class FellBeastFightManager {
 
                     if (list1.isEmpty())
                     {
-                        LOGGER.debug("Haven't seen the fellbeast, respawning it");
+                        LogHelperTTM.debug("Haven't seen the fellbeast, respawning it");
                         this.createNewFellBeast();
                     }
                     else
                     {
-                        LOGGER.debug("Haven't seen our fellbeast, but found another one to use.");
+                        LogHelperTTM.debug("Haven't seen our fellbeast, but found another one to use.");
                         this.fellbeastUniqueId = ((EntityFellBeast)list1.get(0)).getUniqueID();
                     }
 
@@ -317,11 +315,11 @@ public class FellBeastFightManager {
             }
         }
 
-        int k = this.world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION).getY();
+        int k = this.world.getHeight(new BlockPos(-246, 40, 554)).getY();
 
         for (int l = k; l >= 0; --l)
         {
-            BlockPattern.PatternHelper blockpattern$patternhelper1 = this.portalPattern.match(this.world, new BlockPos(WorldGenEndPodium.END_PODIUM_LOCATION.getX(), l, WorldGenEndPodium.END_PODIUM_LOCATION.getZ()));
+            BlockPattern.PatternHelper blockpattern$patternhelper1 = this.portalPattern.match(this.world, new BlockPos(-246, 40, 554));
 
             if (blockpattern$patternhelper1 != null)
             {
@@ -377,7 +375,7 @@ public class FellBeastFightManager {
             this.aliveCrystals += this.world.getEntitiesWithinAABB(EntityEnderCrystal.class, worldgenspikes$endspike.getTopBoundingBox()).size();
         }
 
-        LOGGER.debug("Found {} end crystals still alive", (int)this.aliveCrystals);
+        LogHelperTTM.debug("Found {} end crystals still alive", (int)this.aliveCrystals);
     }
 
     public void processFellBeastDeath(EntityFellBeast fellbeast)
@@ -391,7 +389,7 @@ public class FellBeastFightManager {
 
             if (!this.previouslyKilled)
             {
-                this.world.setBlockState(this.world.getHeight(WorldGenEndPodium.END_PODIUM_LOCATION), Blocks.DRAGON_EGG.getDefaultState());
+                this.world.setBlockState(this.world.getHeight(new BlockPos(-246, 40, 554)), Blocks.DRAGON_EGG.getDefaultState());
             }
 
             this.previouslyKilled = true;
@@ -422,7 +420,7 @@ public class FellBeastFightManager {
 
         if (this.exitPortalLocation == null)
         {
-            for (this.exitPortalLocation = this.world.getTopSolidOrLiquidBlock(WorldGenEndPodium.END_PODIUM_LOCATION).down(); this.world.getBlockState(this.exitPortalLocation).getBlock() == Blocks.BEDROCK && this.exitPortalLocation.getY() > this.world.getSeaLevel(); this.exitPortalLocation = this.exitPortalLocation.down())
+            for (this.exitPortalLocation = this.world.getTopSolidOrLiquidBlock(new BlockPos(-246, 40, 554)).down(); this.world.getBlockState(this.exitPortalLocation).getBlock() == Blocks.BEDROCK && this.exitPortalLocation.getY() > this.world.getSeaLevel(); this.exitPortalLocation = this.exitPortalLocation.down())
             {
                 ;
             }
@@ -433,10 +431,12 @@ public class FellBeastFightManager {
 
     private EntityFellBeast createNewFellBeast()
     {
-        this.world.getChunkFromBlockCoords(new BlockPos(0, 128, 0));
+//        this.world.getChunkFromBlockCoords(new BlockPos(19023, 180, 13818)); //Location of Minas Morgul
+        this.world.getChunkFromBlockCoords(new BlockPos(-246, 40, 554));
         EntityFellBeast entityfellbeast = new EntityFellBeast(this.world);
         entityfellbeast.getFellBeastPhaseManager().setPhase(TTMPhaseList.HOLDING_PATTERN);
-        entityfellbeast.setLocationAndAngles(0.0D, 128.0D, 0.0D, this.world.rand.nextFloat() * 360.0F, 0.0F);
+//        entityfellbeast.setLocationAndAngles(19023.0D, 180.0D, 13818.0D, this.world.rand.nextFloat() * 360.0F, 0.0F); //Location of Minas Morgul
+        entityfellbeast.setLocationAndAngles(-246.0D, 40.0D, 554.0D, this.world.rand.nextFloat() * 360.0F, 0.0F);
         this.world.spawnEntity(entityfellbeast);
         this.fellbeastUniqueId = entityfellbeast.getUniqueID();
         return entityfellbeast;
@@ -465,7 +465,7 @@ public class FellBeastFightManager {
     {
         if (this.respawnState != null && this.crystals.contains(crystal))
         {
-            LOGGER.debug("Aborting respawn sequence");
+            LogHelperTTM.debug("Aborting respawn sequence");
             this.respawnState = null;
             this.respawnStateTicks = 0;
             this.resetSpikeCrystals();
@@ -496,17 +496,17 @@ public class FellBeastFightManager {
 
             if (blockpos == null)
             {
-                LOGGER.debug("Tried to respawn, but need to find the portal first.");
+                LogHelperTTM.debug("Tried to respawn, but need to find the portal first.");
                 BlockPattern.PatternHelper blockpattern$patternhelper = this.findExitPortal();
 
                 if (blockpattern$patternhelper == null)
                 {
-                    LOGGER.debug("Couldn't find a portal, so we made one.");
+                    LogHelperTTM.debug("Couldn't find a portal, so we made one.");
                     this.generatePortal(true);
                 }
                 else
                 {
-                    LOGGER.debug("Found the exit portal & temporarily using it.");
+                    LogHelperTTM.debug("Found the exit portal & temporarily using it.");
                 }
 
                 blockpos = this.exitPortalLocation;
@@ -527,7 +527,7 @@ public class FellBeastFightManager {
                 list1.addAll(list);
             }
 
-            LOGGER.debug("Found all crystals, respawning fellbeast.");
+            LogHelperTTM.debug("Found all crystals, respawning fellbeast.");
             this.respawnFellBeast(list1);
         }
     }

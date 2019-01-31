@@ -9,14 +9,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EntityAmmo extends EntityThrowable {
+public class EntityBoulder extends EntityThrowable {
 
-    public EntityAmmo(World worldIn)
+    public EntityBoulder(World worldIn)
     {
         super(worldIn);
     }
 
-    public EntityAmmo(World worldIn, EntityLivingBase throwerIn)
+    public EntityBoulder(World worldIn, EntityLivingBase throwerIn)
     {
         super(worldIn, throwerIn);
     }
