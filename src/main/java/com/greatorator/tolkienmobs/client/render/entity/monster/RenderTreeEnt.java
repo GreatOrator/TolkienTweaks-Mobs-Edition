@@ -15,9 +15,9 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class RenderTreeEnt extends RenderLiving<EntityTreeEnt> {
-    private static final ResourceLocation[] mobTexture = new ResourceLocation[4];
+    private static final ResourceLocation[] mobTexture = new ResourceLocation[5];
     static {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/treeent/treeent" + i + ".png");
         }
     }
