@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.handler;
 
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.init.SoundInit;
-import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
