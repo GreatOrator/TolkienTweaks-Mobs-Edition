@@ -103,6 +103,22 @@ public class EntityWitchKing extends EntityMob implements IMob {
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(25.0D);
     }
 
+    public EnumCreatureAttribute getCreatureAttribute()
+    {
+        return EnumCreatureAttribute.UNDEAD;
+    }
+
+    public void updateRidden()
+    {
+        super.updateRidden();
+
+        if (this.getRidingEntity() instanceof EntityCreature)
+        {
+            EntityCreature entitycreature = (EntityCreature)this.getRidingEntity();
+            this.renderYawOffset = entitycreature.renderYawOffset;
+        }
+    }
+
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
         super.setEquipmentBasedOnDifficulty(difficulty);
