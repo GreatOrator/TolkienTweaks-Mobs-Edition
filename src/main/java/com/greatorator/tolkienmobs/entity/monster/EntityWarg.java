@@ -57,7 +57,21 @@ public class EntityWarg extends EntityWolf {
         if (texture_index == 0) {
             texture_index = TTMRand.getRandomInteger(5, 1);
         }
+
+        if (this.world.rand.nextInt(100) == 0)
+        {
+            EntityMordorOrc entitymordororc = new EntityMordorOrc(this.world);
+            entitymordororc.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+            entitymordororc.onInitialSpawn(difficulty, (IEntityLivingData)null);
+            this.world.spawnEntity(entitymordororc);
+            entitymordororc.startRiding(this);
+        }
         return ientitylivingdata;
+    }
+
+    public double getMountedYOffset()
+    {
+        return (double)(this.height * 0.25F);
     }
 
     protected void initEntityAI(){

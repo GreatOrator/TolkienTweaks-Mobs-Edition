@@ -139,7 +139,6 @@ public class EntityFellBeast extends EntityLiving implements IEntityMultiPart, I
         entitywitchking.onInitialSpawn(difficulty, (IEntityLivingData)null);
         this.world.spawnEntity(entitywitchking);
         entitywitchking.startRiding(this);
-        this.setFellBeastJockey(true);
 
         return livingdata;
     }
@@ -497,8 +496,15 @@ public class EntityFellBeast extends EntityLiving implements IEntityMultiPart, I
 
                 if (!this.ttmphaseManager.getCurrentPhase().getIsStationary() && ((EntityLivingBase)entity).getRevengeTimer() < entity.ticksExisted - 2)
                 {
-                    entity.attackEntityFrom(DamageSource.causeMobDamage(this), 5.0F);
-                    this.applyEnchantments(this, entity);
+                    if (entity instanceof EntityWitchKing)
+                    {
+                        this.applyEnchantments(this, entity);
+                    }
+                    else
+                    {
+                        entity.attackEntityFrom(DamageSource.causeMobDamage(this), 10.0F);
+                        this.applyEnchantments(this, entity);
+                    }
                 }
             }
         }
@@ -513,7 +519,11 @@ public class EntityFellBeast extends EntityLiving implements IEntityMultiPart, I
         {
             Entity entity = p_70971_1_.get(i);
 
-            if (entity instanceof EntityLivingBase)
+            if (entity instanceof EntityWitchKing)
+            {
+                this.applyEnchantments(this, entity);
+            }
+            else
             {
                 entity.attackEntityFrom(DamageSource.causeMobDamage(this), 10.0F);
                 this.applyEnchantments(this, entity);
@@ -986,7 +996,6 @@ public class EntityFellBeast extends EntityLiving implements IEntityMultiPart, I
     {
         super.writeEntityToNBT(compound);
         compound.setInteger("FellBeastPhase", this.ttmphaseManager.getCurrentPhase().getType().getId());
-        compound.setBoolean("IsFellBeastJockey", this.fellbeastJockey);
     }
 
     /**
@@ -999,11 +1008,6 @@ public class EntityFellBeast extends EntityLiving implements IEntityMultiPart, I
         if (compound.hasKey("FellBeastPhase"))
         {
             this.ttmphaseManager.setPhase(TTMPhaseList.getById(compound.getInteger("FellBeastPhase")));
-        }
-
-        if (compound.hasKey("IsFellBeastJockey"))
-        {
-            this.fellbeastJockey = compound.getBoolean("IsFellBeastJockey");
         }
     }
 
@@ -1174,23 +1178,7 @@ public class EntityFellBeast extends EntityLiving implements IEntityMultiPart, I
 
     public double getMountedYOffset()
     {
-        return (double)(this.height * 0.5F);
-    }
-
-    /**
-     * Determines if this fell beast is a jockey with the witch-king riding it.
-     */
-    public boolean isFellBeastJockey()
-    {
-        return this.fellbeastJockey;
-    }
-
-    /**
-     * Sets whether this fell beast is a jockey or not.
-     */
-    public void setFellBeastJockey(boolean rider)
-    {
-        this.fellbeastJockey = rider;
+        return (double)(this.height * 0.25F);
     }
 
     protected boolean canBeRidden(Entity entityIn)
@@ -1199,6 +1187,11 @@ public class EntityFellBeast extends EntityLiving implements IEntityMultiPart, I
     }
 
     public boolean isNonBoss()
+    {
+        return false;
+    }
+
+    protected boolean canDespawn()
     {
         return false;
     }

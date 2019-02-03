@@ -373,4 +373,9 @@ public class EntityWitchKing extends EntityMob implements IMob {
     protected ResourceLocation getLootTable() {
         return LootInit.WITCHKING;
     }
+
+    protected boolean canDespawn()
+    {
+        return false;
+    }
 }

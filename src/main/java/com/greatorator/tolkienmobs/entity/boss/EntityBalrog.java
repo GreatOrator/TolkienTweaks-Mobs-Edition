@@ -407,4 +407,9 @@ public class EntityBalrog extends EntityMob implements IMob {
     public int getMaxSpawnedInChunk() {
         return 1;
     }
+
+    protected boolean canDespawn()
+    {
+        return false;
+    }
 }

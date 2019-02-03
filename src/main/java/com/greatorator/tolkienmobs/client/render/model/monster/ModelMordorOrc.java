@@ -194,6 +194,17 @@ public class ModelMordorOrc extends ModelTolkienMobs {
         this.OrcHead.rotateAngleY = netHeadYaw * 0.017453292F;
         this.OrcHead.rotateAngleX = headPitch * 0.017453292F;
 
+        if (this.isRiding) {
+            this.bipedRightArm.rotateAngleX += -((float)Math.PI / 5F);
+            this.bipedLeftArm.rotateAngleX += -((float)Math.PI / 5F);
+            this.bipedRightLeg.rotateAngleX = -1.4137167F;
+            this.bipedRightLeg.rotateAngleY = ((float)Math.PI / 10F);
+            this.bipedRightLeg.rotateAngleZ = 0.07853982F;
+            this.bipedLeftLeg.rotateAngleX = -1.4137167F;
+            this.bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
+            this.bipedLeftLeg.rotateAngleZ = -0.07853982F;
+        }
+
         this.bipedRightArm.rotationPointX = -8.9F;
         this.bipedLeftArm.rotationPointX = 8.9F;
     }
