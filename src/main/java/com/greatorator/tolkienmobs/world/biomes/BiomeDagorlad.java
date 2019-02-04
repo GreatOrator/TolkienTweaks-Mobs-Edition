@@ -47,9 +47,9 @@ public class BiomeDagorlad extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityUrukHai.class, 100, 1, 1));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityMordorOrc.class, 100, 1, 1));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityWarg.class, 100, 1, 1));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityUrukHai.class, 5, 1, 1));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityMordorOrc.class, 6, 1, 1));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityWarg.class, 4, 1, 1));
     }
 
     public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, BlockPos pos)

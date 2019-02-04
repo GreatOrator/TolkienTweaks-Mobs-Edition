@@ -34,7 +34,7 @@ public class BiomeFangorn extends Biome implements IFogyBiome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityTreeEnt.class, 100, 1, 1));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityTreeEnt.class, 15, 1, 1));
     }
 
     @SideOnly(Side.CLIENT)

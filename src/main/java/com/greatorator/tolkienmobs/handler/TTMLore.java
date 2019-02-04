@@ -12,6 +12,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class TTMLore extends ItemBCore {
+    public boolean hasEffectOverride = false;
+
     public TTMLore(int stackSize) {
         this.setMaxStackSize(stackSize);
     }
@@ -21,5 +23,15 @@ public class TTMLore extends ItemBCore {
     public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, list, flagIn);
         list.add(TextFormatting.GOLD + Translator.translateToLocalFormatted("lore." + getUnlocalizedName()));
+    }
+
+    public TTMLore setEffectOverride(boolean hasEffectOverride) {
+        this.hasEffectOverride = hasEffectOverride;
+        return this;
+    }
+
+    @Override
+    public boolean hasEffect(ItemStack stack) {
+        return hasEffectOverride || super.hasEffect(stack);
     }
 }

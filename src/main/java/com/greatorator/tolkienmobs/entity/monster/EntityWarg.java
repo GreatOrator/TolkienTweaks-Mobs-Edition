@@ -58,7 +58,7 @@ public class EntityWarg extends EntityWolf {
             texture_index = TTMRand.getRandomInteger(5, 1);
         }
 
-        if (this.world.rand.nextInt(100) == 0)
+        if (TTMRand.getRandomInteger(15, 1) == 2)
         {
             EntityMordorOrc entitymordororc = new EntityMordorOrc(this.world);
             entitymordororc.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
@@ -71,7 +71,7 @@ public class EntityWarg extends EntityWolf {
 
     public double getMountedYOffset()
     {
-        return (double)(this.height * 0.25F);
+        return (double)(this.height * 0.58F);
     }
 
     protected void initEntityAI(){

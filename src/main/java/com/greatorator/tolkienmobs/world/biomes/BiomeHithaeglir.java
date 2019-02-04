@@ -41,9 +41,9 @@ public class BiomeHithaeglir extends Biome implements IFogyBiome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityGoblin.class, 100, 1, 3));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityTroll.class, 4, 1, 1));
-        this.spawnableCaveCreatureList.add(new SpawnListEntry(EntityCrebain.class, 100, 1, 1));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityGoblin.class, 12, 1, 3));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityTroll.class, 8, 1, 1));
+        this.spawnableCaveCreatureList.add(new SpawnListEntry(EntityCrebain.class, 1, 1, 1));
     }
 
     @Override

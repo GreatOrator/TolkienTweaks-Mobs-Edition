@@ -9,7 +9,7 @@ import com.greatorator.tolkienmobs.client.render.entity.boss.RenderWitchKing;
 import com.greatorator.tolkienmobs.client.render.entity.monster.*;
 import com.greatorator.tolkienmobs.client.render.entity.passive.*;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelCrebain;
-import com.greatorator.tolkienmobs.client.render.model.monster.ModelMumakil;
+import com.greatorator.tolkienmobs.client.render.model.passive.ModelMumakil;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.boss.EntityBalrog;

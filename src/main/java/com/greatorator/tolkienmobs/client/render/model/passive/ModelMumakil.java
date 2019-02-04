@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.client.render.model.monster;
+package com.greatorator.tolkienmobs.client.render.model.passive;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
 import com.greatorator.tolkienmobs.entity.monster.EntityMumakil;

@@ -49,7 +49,7 @@ public class BiomeFirien extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityElves.class, 100, 1, 3));
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityElves.class, 12, 1, 3));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
     }
 

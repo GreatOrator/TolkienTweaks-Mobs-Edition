@@ -46,7 +46,7 @@ public class BiomeShire extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityHobbit.class, 100, 1, 3));
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityHobbit.class, 12, 1, 3));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 5, 2, 6));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityDonkey.class, 1, 1, 3));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityRabbit.class, 4, 2, 3));

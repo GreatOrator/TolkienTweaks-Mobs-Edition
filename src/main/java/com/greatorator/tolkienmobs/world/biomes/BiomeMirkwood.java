@@ -50,9 +50,9 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityMirkwoodSpider.class, 100, 1, 1));
-        this.spawnableWaterCreatureList.add(new SpawnListEntry(EntityTMFrog.class, 4, 1, 1));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityHuron.class, 100, 1, 2));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityMirkwoodSpider.class, 10, 1, 1));
+        this.spawnableWaterCreatureList.add(new SpawnListEntry(EntityTMFrog.class, 1, 1, 1));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityHuron.class, 8, 1, 2));
     }
 
     @Override

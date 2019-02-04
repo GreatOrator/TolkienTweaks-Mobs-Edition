@@ -34,7 +34,7 @@ public class BiomeBarrowDowns extends Biome implements IFogyBiome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityBarrowWight.class, 100, 1, 3));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityBarrowWight.class, 15, 1, 3));
     }
 
     @SideOnly(Side.CLIENT)
