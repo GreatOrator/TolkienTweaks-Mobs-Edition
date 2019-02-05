@@ -99,15 +99,6 @@ public class ModelWitchKing extends ModelTolkienMobs {
         GL11.glPopMatrix();
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
-    }
-
     public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
     {
         this.rightArmPose = ModelBiped.ArmPose.EMPTY;
@@ -162,14 +153,5 @@ public class ModelWitchKing extends ModelTolkienMobs {
             this.bipedLeftLeg.rotateAngleY = -((float)Math.PI / 10F);
             this.bipedLeftLeg.rotateAngleZ = -0.07853982F;
         }
-    }
-
-    public void postRenderArm(float scale, EnumHandSide side)
-    {
-        float f = side == EnumHandSide.RIGHT ? 1.0F : -1.0F;
-        ModelRenderer modelrenderer = this.getArmForSide(side);
-        modelrenderer.rotationPointX += f;
-        modelrenderer.postRender(scale);
-        modelrenderer.rotationPointX -= f;
     }
 }

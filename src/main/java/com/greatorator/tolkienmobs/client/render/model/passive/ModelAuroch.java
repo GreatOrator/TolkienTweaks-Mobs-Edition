@@ -1,8 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.model.passive;
 
-import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
-import com.greatorator.tolkienmobs.entity.monster.EntityMumakil;
 import com.greatorator.tolkienmobs.entity.passive.EntityAuroch;
+import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
@@ -11,7 +10,7 @@ import org.lwjgl.opengl.GL11;
 /**
  * Auroch - GreatOrator
  */
-public class ModelAuroch extends ModelTolkienMobs {
+public class ModelAuroch extends ModelBase {
     public ModelRenderer AurochBody;
     public ModelRenderer AurochBody_1;
     public ModelRenderer AurochBody_2;
@@ -182,6 +181,12 @@ public class ModelAuroch extends ModelTolkienMobs {
         renderAuroch((EntityAuroch) parEntity, parTime, parSwingSuppress, par4, parHeadAngleY, parHeadAngleX, par7);
     }
 
+    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+        modelRenderer.rotateAngleX = x;
+        modelRenderer.rotateAngleY = y;
+        modelRenderer.rotateAngleZ = z;
+    }
+
     public void renderAuroch(EntityAuroch parEntity, float parTime, float parSwingSuppress, float par4, float parHeadAngleY, float parHeadAngleX, float par7)
     {
         setRotationAngles(parTime, parSwingSuppress, par4, parHeadAngleY, parHeadAngleX, par7, parEntity);
@@ -208,12 +213,6 @@ public class ModelAuroch extends ModelTolkienMobs {
 
             GL11.glPopMatrix();
         }
-    }
-
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
     }
 
     @Override

@@ -329,12 +329,6 @@ public class ModelBalrog extends ModelTolkienMobs {
         GL11.glPopMatrix();
     }
 
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
-    }
-
     public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
     {
         this.rightArmPose = ModelBiped.ArmPose.EMPTY;
@@ -375,14 +369,5 @@ public class ModelBalrog extends ModelTolkienMobs {
 
         this.bipedLeftArm.rotationPointX = 8.4F;
         this.bipedRightArm.rotationPointX = -7.9F;
-    }
-
-    public void postRenderArm(float scale, EnumHandSide side)
-    {
-        float f = side == EnumHandSide.LEFT ? 1.0F : -1.0F;
-        ModelRenderer modelrenderer = this.getArmForSide(side);
-        modelrenderer.rotationPointX += f;
-        modelrenderer.postRender(scale);
-        modelrenderer.rotationPointX -= f;
     }
 }

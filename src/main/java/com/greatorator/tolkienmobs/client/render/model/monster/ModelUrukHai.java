@@ -153,12 +153,6 @@ public class ModelUrukHai extends ModelTolkienMobs {
         GL11.glPopMatrix();
     }
 
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
-    }
-
     public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
     {
         this.rightArmPose = ArmPose.EMPTY;
@@ -196,14 +190,5 @@ public class ModelUrukHai extends ModelTolkienMobs {
 
         this.bipedRightArm.rotationPointX = -8.9F;
         this.bipedLeftArm.rotationPointX = 8.9F;
-    }
-
-    public void postRenderArm(float scale, EnumHandSide side)
-    {
-        float f = side == EnumHandSide.RIGHT ? 1.0F : -1.0F;
-        ModelRenderer modelrenderer = this.getArmForSide(side);
-        modelrenderer.rotationPointX += f;
-        modelrenderer.postRender(scale);
-        modelrenderer.rotationPointX -= f;
     }
 }

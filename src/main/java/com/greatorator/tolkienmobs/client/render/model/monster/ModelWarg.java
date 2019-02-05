@@ -187,12 +187,6 @@ public class ModelWarg extends ModelTolkienMobs {
         this.WargNeck.render(f5);
     }
 
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
-    }
-
     @Override
     public void setLivingAnimations(EntityLivingBase parEntityLivingBase, float parLimbSwingAngle, float parMaxLimbSwingDistance, float parHeadAngleChangeRate)
     {

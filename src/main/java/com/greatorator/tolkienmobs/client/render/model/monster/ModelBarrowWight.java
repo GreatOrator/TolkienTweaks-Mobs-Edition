@@ -91,16 +91,6 @@ public class ModelBarrowWight extends ModelTolkienMobs {
         this.bipedDeadmau5Head.render(f5);
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
-    }
-
-
     public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
         this.rightArmPose = ModelBiped.ArmPose.EMPTY;
         this.leftArmPose = ModelBiped.ArmPose.EMPTY;

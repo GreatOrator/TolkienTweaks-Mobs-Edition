@@ -295,10 +295,4 @@ public class ModelCrebain extends ModelTolkienMobs {
         setRotation(CrebainWingL2, 0, -21F, -parCycleArray[cycleIndex][7]);
         setRotation(CrebainWingR2, 0, 21F, parCycleArray[cycleIndex][7]);
     }
-
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
-    }
 }
