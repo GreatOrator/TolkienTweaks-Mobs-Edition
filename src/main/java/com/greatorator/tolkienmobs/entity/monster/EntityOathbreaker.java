@@ -8,7 +8,6 @@ import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -38,26 +37,26 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class EntityBarrowWight extends EntityMob implements IEntityAdditionalSpawnData {
+public class EntityOathbreaker extends EntityMob implements IEntityAdditionalSpawnData {
     private int texture_index;
 
-    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityBarrowWight.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityOathbreaker.class, DataSerializers.BOOLEAN);
     private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false)
     {
         public void resetTask()
         {
             super.resetTask();
-            EntityBarrowWight.this.setSwingingArms(false);
+            EntityOathbreaker.this.setSwingingArms(false);
         }
 
         public void startExecuting()
         {
             super.startExecuting();
-            EntityBarrowWight.this.setSwingingArms(true);
+            EntityOathbreaker.this.setSwingingArms(true);
         }
     };
 
-    public EntityBarrowWight(World worldIn) {
+    public EntityOathbreaker(World worldIn) {
         super(worldIn);
         this.setSize(1.0F, 2.0F);
     }
@@ -75,7 +74,7 @@ public class EntityBarrowWight extends EntityMob implements IEntityAdditionalSpa
     }
 
     private void applyEntityAI() {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityBarrowWight.class}));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityOathbreaker.class}));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHobbit.class, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHuman.class, true));
@@ -241,7 +240,7 @@ public class EntityBarrowWight extends EntityMob implements IEntityAdditionalSpa
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return SoundInit.soundIdleBarrowWight;
+        return SoundInit.soundIdleOathbreaker;
     }
 
     @Override
@@ -265,7 +264,7 @@ public class EntityBarrowWight extends EntityMob implements IEntityAdditionalSpa
     @Override
     @Nullable
     protected ResourceLocation getLootTable() {
-        return LootInit.BWIGHT;
+        return LootInit.OATHBREAKER;
     }
 
     @Override

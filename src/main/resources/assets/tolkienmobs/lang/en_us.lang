@@ -216,6 +216,8 @@ entity.gollum.name=Smeagol
 entity.tmfrog.name=Frog
 entity.witchking.name=Witch-king of Angmar
 entity.fellbeast.name=Fell Beast
+entity.nazgul.name=Nazgul
+entity.oathbreaker.name=Oath Breaker
 
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer

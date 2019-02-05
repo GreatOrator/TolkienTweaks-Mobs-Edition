@@ -46,14 +46,18 @@ public class SoundInit
 	@ObjectHolder("mob.barrowwight.hurt")
 	public static final SoundEvent soundHurtBarrowWight = null;
 
+	/** Oath Breaker */
+	@ObjectHolder("mob.oathbreaker.idle")
+	public static final SoundEvent soundIdleOathbreaker = null;
+
 	/** Crebain */
-	@ObjectHolder("mob.crebain.hurt")
+	@ObjectHolder("mob.crebain.death")
 	public static final SoundEvent soundDeathCrebain = null;
 	@ObjectHolder("mob.crebain.call")
 	public static final SoundEvent soundCallCrebain = null;
 	@ObjectHolder("mob.crebain.flapping")
 	public static final SoundEvent soundFlappingCrebain = null;
-	@ObjectHolder("mob.crebain.flapping")
+	@ObjectHolder("mob.crebain.hurt")
 	public static final SoundEvent soundHurtCrebain = null;
 
 	/** Troll */
@@ -218,9 +222,12 @@ public class SoundInit
 					"mob.fellbeast.idle",
 					"mob.fellbeast.flap",
 
-					/** Witch-king */
+					/** Barrowwight */
 					"mob.barrowwight.idle",
 					"mob.barrowwight.hurt",
+
+					/** Oath Breaker */
+					"mob.oathbreaker.idle",
 
 					/** Crebain */
 					"mob.crebain.hurt",

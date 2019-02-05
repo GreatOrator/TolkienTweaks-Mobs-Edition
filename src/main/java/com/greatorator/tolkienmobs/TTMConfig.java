@@ -107,6 +107,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableUrukhai = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableWargs", comment = "Setting this to false will disable Wargs", requiresMCRestart = true, requiresSync = true)
     public static boolean enableWargs = true;
+    @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableOathbreaker", comment = "Setting this to false will disable Oathbreakers", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableOathbreaker = true;
 
     /** Boss mobs - Individual*/
     @ModConfigProperty(category = "Boss Mobs", name = "enableBalrog", comment = "Setting this to false will disable the Balrog", requiresMCRestart = true, requiresSync = true)
@@ -117,8 +119,10 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableWitchKing = true;
 
     /** Special mobs - Individual*/
-    @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableGollum", comment = "Setting this to false will disable Gollum", requiresMCRestart = true, requiresSync = true)
+    @ModConfigProperty(category = "Special Mobs", name = "enableGollum", comment = "Setting this to false will disable Gollum", requiresMCRestart = true, requiresSync = true)
     public static boolean enableGollum = true;
+    @ModConfigProperty(category = "Special Mobs", name = "enableNazgul", comment = "Setting this to false will disable the Nazgul", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableNazgul = true;
 
     /** Passive mobs - Individual*/
     @ModConfigProperty(category = "Passive Mobs", name = "enableAuroch", comment = "Setting this to false will disable Aurochs", requiresMCRestart = true, requiresSync = true)

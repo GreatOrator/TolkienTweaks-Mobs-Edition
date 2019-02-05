@@ -4,7 +4,7 @@ package com.greatorator.tolkienmobs.handler;
 import codechicken.lib.colour.Colour;
 import codechicken.lib.math.MathHelper;
 import codechicken.lib.util.ClientUtils;
-import com.greatorator.tolkienmobs.world.biomes.IFogyBiome;
+import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;

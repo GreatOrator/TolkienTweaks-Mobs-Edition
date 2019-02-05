@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.world.biomes;
 import com.greatorator.tolkienmobs.entity.monster.EntityCrebain;
 import com.greatorator.tolkienmobs.entity.monster.EntityGoblin;
 import com.greatorator.tolkienmobs.entity.monster.EntityTroll;
+import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

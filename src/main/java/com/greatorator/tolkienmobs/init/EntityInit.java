@@ -6,9 +6,11 @@ import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.boss.EntityBalrog;
 import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.special.EntityNazgul;
 import com.greatorator.tolkienmobs.entity.boss.EntityWitchKing;
 import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.entity.passive.*;
+import com.greatorator.tolkienmobs.entity.special.EntityGollum;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;
@@ -55,6 +57,9 @@ public class EntityInit
             if (TTMConfig.enableWargs = true) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "warg"), EntityWarg.class, "warg", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0xe45bff);
             }
+            if (TTMConfig.enableOathbreaker = true) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "oathbreaker"), EntityOathbreaker.class, "oathbreaker", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0xeffbff);
+            }
         }
 
         if (TTMConfig.enableBoss = true) {
@@ -73,7 +78,10 @@ public class EntityInit
         if (TTMConfig.enableSpecial = true) {
             /** Special Mobs */
             if (TTMConfig.enableGollum = true) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "gollum"), EntityGollum.class, "gollum", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x568d8d);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "gollum"), EntityGollum.class, "gollum", id++, TolkienMobs.instance, 64, 3, true, 0xA266DF, 0x568d8d);
+            }
+            if (TTMConfig.enableNazgul = true) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "nazgul"), EntityNazgul.class, "nazgul", id++, TolkienMobs.instance, 64, 3, true, 0xA266DF, 0x00ff8d);
             }
         }
 
@@ -98,10 +106,10 @@ public class EntityInit
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "human"), EntityHuman.class, "human", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0x1f7dff);
             }
             if (TTMConfig.enableMumakil = true) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mumakil"), EntityMumakil.class, "mumakil", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0xff8707);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mumakil"), EntityMumakil.class, "mumakil", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0xff8707);
             }
             if (TTMConfig.enableFrogs = true) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmfrog"), EntityTMFrog.class, "tmfrog", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0xaaccff);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmfrog"), EntityToad.class, "tmfrog", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0xaaccff);
             }
         }
 
@@ -118,6 +126,7 @@ public class EntityInit
 
             /**  Special */
             EntityRegistry.addSpawn(EntityGollum.class, 12, 1, 1, EnumCreatureType.AMBIENT);
+            EntityRegistry.addSpawn(EntityNazgul.class, 12, 1, 1, EnumCreatureType.MONSTER);
 
             /** Monsters */
             EntityRegistry.addSpawn(EntityHuron.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.FOREST, Biomes.FOREST_HILLS);
@@ -130,11 +139,12 @@ public class EntityInit
             EntityRegistry.addSpawn(EntityCrebain.class, 12, 1, 1, EnumCreatureType.AMBIENT, Biomes.EXTREME_HILLS);
             EntityRegistry.addSpawn(EntityTroll.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
             EntityRegistry.addSpawn(EntityBarrowWight.class, 12, 1, 1, EnumCreatureType.MONSTER,Biomes.ROOFED_FOREST);
+            EntityRegistry.addSpawn(EntityOathbreaker.class, 12, 1, 1, EnumCreatureType.AMBIENT,Biomes.COLD_TAIGA);
 
             /** Passive */
             EntityRegistry.addSpawn(EntityAuroch.class, 12, 2, 4, EnumCreatureType.CREATURE, Biomes.PLAINS);
             EntityRegistry.addSpawn(EntityGoat.class, 12, 2, 4, EnumCreatureType.CREATURE, Biomes.EXTREME_HILLS);
-            EntityRegistry.addSpawn(EntityTMFrog.class, 12, 1, 1, EnumCreatureType.WATER_CREATURE, Biomes.PLAINS);
+            EntityRegistry.addSpawn(EntityToad.class, 12, 1, 1, EnumCreatureType.WATER_CREATURE, Biomes.PLAINS);
             EntityRegistry.addSpawn(EntityMumakil.class, 12, 1, 1, EnumCreatureType.CREATURE, Biomes.DESERT);
         }
 

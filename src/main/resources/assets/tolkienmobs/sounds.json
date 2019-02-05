@@ -364,6 +364,16 @@
       "tolkienmobs:mob/fellbeast/fellbeast_flap"
     ]
   },
+  "mob.oathbreaker.idle": {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/oathbreaker/oathbreaker_say0",
+      "tolkienmobs:mob/oathbreaker/oathbreaker_say1",
+      "tolkienmobs:mob/oathbreaker/oathbreaker_say2",
+      "tolkienmobs:mob/oathbreaker/oathbreaker_say3"
+    ]
+  },
   "mob.barrowwight.idle": {
     "category": "neutral",
     "sounds":

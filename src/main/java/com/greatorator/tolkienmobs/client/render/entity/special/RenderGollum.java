@@ -1,8 +1,8 @@
-package com.greatorator.tolkienmobs.client.render.entity.monster;
+package com.greatorator.tolkienmobs.client.render.entity.special;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.render.model.monster.ModelGollum;
-import com.greatorator.tolkienmobs.entity.monster.EntityGollum;
+import com.greatorator.tolkienmobs.client.render.model.special.ModelGollum;
+import com.greatorator.tolkienmobs.entity.special.EntityGollum;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;

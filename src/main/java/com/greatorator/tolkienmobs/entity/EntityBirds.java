@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.entity.entityai.AIStates;
-import com.greatorator.tolkienmobs.entity.entityai.IModEntity;
+import com.greatorator.tolkienmobs.handler.interfaces.IModEntity;
 import com.greatorator.tolkienmobs.entity.entityai.ProcessStateBirds;
 import com.greatorator.tolkienmobs.entity.entityai.UpdateStateBirds;
 import com.greatorator.tolkienmobs.entity.events.CrebainTameEvent;
@@ -196,7 +196,7 @@ public class EntityBirds extends EntityFlying implements IModEntity {
     @Override
     protected SoundEvent getHurtSound(DamageSource parSource)
     {
-        return SoundInit.soundCallCrebain;
+        return SoundInit.soundHurtCrebain;
     }
 
     @Override

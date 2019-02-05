@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.handler;
 
-import com.greatorator.tolkienmobs.entity.entityai.IModEntity;
+import com.greatorator.tolkienmobs.handler.interfaces.IModEntity;
 
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;

@@ -9,7 +9,6 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -22,19 +21,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class EntityTMFrog extends EntityAnimal {
+public class EntityToad extends EntityAnimal {
     private int jumpTicks;
     private int jumpDuration;
     private boolean wasOnGround;
     private int currentMoveTypeDuration;
     private int flyTicks;
 
-    public EntityTMFrog(World worldIn)
+    public EntityToad(World worldIn)
     {
         super(worldIn);
         this.setSize(0.3F, 0.3F);
-        this.jumpHelper = new EntityTMFrog.FrogJumpHelper(this);
-        this.moveHelper = new EntityTMFrog.FrogMoveHelper(this);
+        this.jumpHelper = new EntityToad.FrogJumpHelper(this);
+        this.moveHelper = new EntityToad.FrogMoveHelper(this);
         this.setMovementSpeed(0.0D);
     }
 
@@ -135,7 +134,7 @@ public class EntityTMFrog extends EntityAnimal {
                 this.checkLandingDelay();
             }
 
-            EntityTMFrog.FrogJumpHelper entityrabbit$rabbitjumphelper = (EntityTMFrog.FrogJumpHelper)this.jumpHelper;
+            EntityToad.FrogJumpHelper entityrabbit$rabbitjumphelper = (EntityToad.FrogJumpHelper)this.jumpHelper;
 
             if (!entityrabbit$rabbitjumphelper.getIsJumping())
             {
@@ -173,12 +172,12 @@ public class EntityTMFrog extends EntityAnimal {
 
     private void enableJumpControl()
     {
-        ((EntityTMFrog.FrogJumpHelper)this.jumpHelper).setCanJump(true);
+        ((EntityToad.FrogJumpHelper)this.jumpHelper).setCanJump(true);
     }
 
     private void disableJumpControl()
     {
-        ((EntityTMFrog.FrogJumpHelper)this.jumpHelper).setCanJump(false);
+        ((EntityToad.FrogJumpHelper)this.jumpHelper).setCanJump(false);
     }
 
     private void updateMoveTypeDuration()
@@ -218,10 +217,10 @@ public class EntityTMFrog extends EntityAnimal {
     protected void initEntityAI()
     {
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityTMFrog.AIPanic(this, 2.2D));
-        this.tasks.addTask(1, new EntityTMFrog.AIPanic(this, 2.2D));
-        this.tasks.addTask(4, new EntityTMFrog.AIAvoidEntity(this, EntityPlayer.class, 8.0F, 2.2D, 2.2D));
-        this.tasks.addTask(4, new EntityTMFrog.AIAvoidEntity(this, EntityMob.class, 4.0F, 2.2D, 2.2D));
+        this.tasks.addTask(1, new EntityToad.AIPanic(this, 2.2D));
+        this.tasks.addTask(1, new EntityToad.AIPanic(this, 2.2D));
+        this.tasks.addTask(4, new EntityToad.AIAvoidEntity(this, EntityPlayer.class, 8.0F, 2.2D, 2.2D));
+        this.tasks.addTask(4, new EntityToad.AIAvoidEntity(this, EntityMob.class, 4.0F, 2.2D, 2.2D));
         this.tasks.addTask(11, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
     }
 
@@ -274,9 +273,9 @@ public class EntityTMFrog extends EntityAnimal {
 
     static class AIAvoidEntity<T extends Entity> extends EntityAIAvoidEntity<T>
     {
-        private final EntityTMFrog tmfrog;
+        private final EntityToad tmfrog;
 
-        public AIAvoidEntity(EntityTMFrog tmfrog, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_, double p_i46403_6_)
+        public AIAvoidEntity(EntityToad tmfrog, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_, double p_i46403_6_)
         {
             super(tmfrog, p_i46403_2_, p_i46403_3_, p_i46403_4_, p_i46403_6_);
             this.tmfrog = tmfrog;
@@ -285,9 +284,9 @@ public class EntityTMFrog extends EntityAnimal {
 
     static class AIPanic extends EntityAIPanic
     {
-        private final EntityTMFrog tmfrog;
+        private final EntityToad tmfrog;
 
-        public AIPanic(EntityTMFrog tmfrog, double speedIn)
+        public AIPanic(EntityToad tmfrog, double speedIn)
         {
             super(tmfrog, speedIn);
             this.tmfrog = tmfrog;
@@ -305,10 +304,10 @@ public class EntityTMFrog extends EntityAnimal {
 
     public class FrogJumpHelper extends EntityJumpHelper
     {
-        private final EntityTMFrog tmfrog;
+        private final EntityToad tmfrog;
         private boolean canJump;
 
-        public FrogJumpHelper(EntityTMFrog tmfrog)
+        public FrogJumpHelper(EntityToad tmfrog)
         {
             super(tmfrog);
             this.tmfrog = tmfrog;
@@ -344,10 +343,10 @@ public class EntityTMFrog extends EntityAnimal {
 
     static class FrogMoveHelper extends EntityMoveHelper
     {
-        private final EntityTMFrog tmfrog;
+        private final EntityToad tmfrog;
         private double nextJumpSpeed;
 
-        public FrogMoveHelper(EntityTMFrog tmfrog)
+        public FrogMoveHelper(EntityToad tmfrog)
         {
             super(tmfrog);
             this.tmfrog = tmfrog;
@@ -355,7 +354,7 @@ public class EntityTMFrog extends EntityAnimal {
 
         public void onUpdateMoveHelper()
         {
-            if (this.tmfrog.onGround && !this.tmfrog.isJumping && !((EntityTMFrog.FrogJumpHelper)this.tmfrog.jumpHelper).getIsJumping())
+            if (this.tmfrog.onGround && !this.tmfrog.isJumping && !((EntityToad.FrogJumpHelper)this.tmfrog.jumpHelper).getIsJumping())
             {
                 this.tmfrog.setMovementSpeed(0.0D);
             }
@@ -389,7 +388,7 @@ public class EntityTMFrog extends EntityAnimal {
     @Nullable
     @Override
     public EntityAgeable createChild(EntityAgeable ageable) {
-        return new EntityTMFrog(world);
+        return new EntityToad(world);
     }
 
     protected float getSoundVolume()

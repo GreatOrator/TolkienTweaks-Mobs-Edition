@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.world.biomes;
+package com.greatorator.tolkienmobs.handler.interfaces;
 
 import net.minecraft.entity.player.EntityPlayer;
 

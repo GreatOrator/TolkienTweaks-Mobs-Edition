@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model.passive;
 
-import com.greatorator.tolkienmobs.entity.passive.EntityTMFrog;
+import com.greatorator.tolkienmobs.entity.passive.EntityToad;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -121,7 +121,7 @@ public class ModelTMFrog extends ModelBase {
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
         float f = ageInTicks - (float)entityIn.ticksExisted;
-        EntityTMFrog entitytmfrog = (EntityTMFrog)entityIn;
+        EntityToad entitytmfrog = (EntityToad)entityIn;
         this.frogHead.rotateAngleX = headPitch * 0.017453292F;
         this.frogHead.rotateAngleY = netHeadYaw * 0.017453292F;
         this.jumpRotation = MathHelper.sin(entitytmfrog.setJumpCompletion(f) * (float)Math.PI);
@@ -136,7 +136,7 @@ public class ModelTMFrog extends ModelBase {
     public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
     {
         super.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
-        this.jumpRotation = MathHelper.sin(((EntityTMFrog)entitylivingbaseIn).setJumpCompletion(partialTickTime) * (float)Math.PI);
+        this.jumpRotation = MathHelper.sin(((EntityToad)entitylivingbaseIn).setJumpCompletion(partialTickTime) * (float)Math.PI);
     }
 
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {

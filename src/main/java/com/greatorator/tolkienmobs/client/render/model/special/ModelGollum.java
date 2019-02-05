@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.client.render.model.monster;
+package com.greatorator.tolkienmobs.client.render.model.special;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
 import net.minecraft.client.model.ModelBase;

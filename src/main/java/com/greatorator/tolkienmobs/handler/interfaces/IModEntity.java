@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.entity.entityai;
+package com.greatorator.tolkienmobs.handler.interfaces;
 
 /** Borrowed from Jabelar https://github.com/jabelar */
 public interface IModEntity 

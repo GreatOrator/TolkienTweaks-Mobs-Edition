@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.world.gen.generators;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.world.gen.ITTMStructure;
+import com.greatorator.tolkienmobs.handler.interfaces.ITTMStructure;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;

@@ -16,23 +16,27 @@ public class LootInit {
     public static final ResourceLocation BWIGHT = register("entities/barrowwight");
     public static final ResourceLocation CREBAIN = register("entities/crebain");
     public static final ResourceLocation GOBLIN = register("entities/goblin");
-    public static final ResourceLocation GOLLUM = register("entities/gollum");
     public static final ResourceLocation HURON = register("entities/huron");
     public static final ResourceLocation MSPIDER = register("entities/mirkwoodspider");
     public static final ResourceLocation MORC = register("entities/mordororc");
-    public static final ResourceLocation MUMAKIL = register("entities/mumakil");
     public static final ResourceLocation TREEENT = register("entities/treeent");
     public static final ResourceLocation TROLL = register("entities/cavetroll");
     public static final ResourceLocation URUK = register("entities/urukhai");
     public static final ResourceLocation WARG = register("entities/warg");
+    public static final ResourceLocation OATHBREAKER = register("entities/oathbreaker");
+
+    /** Special */
+    public static final ResourceLocation GOLLUM = register("entities/gollum");
+    public static final ResourceLocation NAZGUL = register("entities/nazgul");
 
     /** Passive */
-    public static final ResourceLocation HUMAN = register("entities/human");
-    public static final ResourceLocation ELVES = register("entities/elves");
-    public static final ResourceLocation DWARVES = register("entities/dwarf");
-    public static final ResourceLocation HOBBIT = register("entities/hobbit");
     public static final ResourceLocation AUROCH = register("entities/auroch");
+    public static final ResourceLocation DWARVES = register("entities/dwarf");
+    public static final ResourceLocation ELVES = register("entities/elves");
     public static final ResourceLocation GOAT = register("entities/goat");
+    public static final ResourceLocation HOBBIT = register("entities/hobbit");
+    public static final ResourceLocation HUMAN = register("entities/human");
+    public static final ResourceLocation MUMAKIL = register("entities/mumakil");
     public static final ResourceLocation TMFROG = register("entities/tmfrog");
 
     /** Structures */
