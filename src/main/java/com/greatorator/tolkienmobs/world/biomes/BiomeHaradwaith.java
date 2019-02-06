@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.monster.EntityMumakil;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.init.Blocks;
@@ -35,7 +36,11 @@ public class BiomeHaradwaith extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityMumakil.class, 10, 1, 1));
+        if (TTMConfig.enableNaturalSpawn = true) {
+            if (TTMConfig.enableMumakil = true) {
+                this.spawnableCreatureList.add(new SpawnListEntry(EntityMumakil.class, 10, 1, 1));
+            }
+        }
     }
 
     @SideOnly(Side.CLIENT)

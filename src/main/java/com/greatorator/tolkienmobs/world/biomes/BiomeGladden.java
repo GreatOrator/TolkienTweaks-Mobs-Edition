@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
 import com.greatorator.tolkienmobs.entity.monster.EntityUrukHai;
@@ -49,12 +50,19 @@ public class BiomeGladden extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityHuman.class, 12, 1, 3));
+        if (TTMConfig.enableNaturalSpawn = true) {
+            if (TTMConfig.enablePassive = true) {
+                if (TTMConfig.enableHumans = true) {
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityHuman.class, 12, 1, 3));
+                }
+                if (TTMConfig.enableAuroch = true) {
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityAuroch.class, 4, 2, 3));
+                }
+            }
+        }
         this.spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 5, 2, 6));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityDonkey.class, 1, 1, 3));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityRabbit.class, 4, 2, 3));
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityAuroch.class, 4, 2, 3));
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityCow.class, 8, 4, 4));
         this.spawnableCreatureList.add(new SpawnListEntry(EntitySheep.class, 12, 4, 4));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityPig.class, 10, 4, 4));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));

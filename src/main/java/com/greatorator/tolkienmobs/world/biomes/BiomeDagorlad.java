@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
 import com.greatorator.tolkienmobs.entity.monster.EntityMumakil;
@@ -47,9 +48,20 @@ public class BiomeDagorlad extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityUrukHai.class, 5, 1, 1));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityMordorOrc.class, 6, 1, 1));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityWarg.class, 4, 1, 1));
+
+        if (TTMConfig.enableNaturalSpawn = true) {
+            if (TTMConfig.enableMonster = true) {
+                if (TTMConfig.enableUrukhai = true) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityUrukHai.class, 5, 1, 1));
+                }
+                if (TTMConfig.enableMordorOrcs = true) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityMordorOrc.class, 6, 1, 1));
+                }
+                if (TTMConfig.enableWargs = true) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityWarg.class, 4, 1, 1));
+                }
+            }
+        }
     }
 
     public BlockFlower.EnumFlowerType pickRandomFlower(Random rand, BlockPos pos)

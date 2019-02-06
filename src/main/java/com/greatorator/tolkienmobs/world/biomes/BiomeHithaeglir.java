@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.monster.EntityCrebain;
 import com.greatorator.tolkienmobs.entity.monster.EntityGoblin;
 import com.greatorator.tolkienmobs.entity.monster.EntityTroll;
@@ -42,9 +43,19 @@ public class BiomeHithaeglir extends Biome implements IFogyBiome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityGoblin.class, 12, 1, 3));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityTroll.class, 8, 1, 1));
-        this.spawnableCaveCreatureList.add(new SpawnListEntry(EntityCrebain.class, 1, 1, 1));
+        if (TTMConfig.enableNaturalSpawn = true) {
+            if (TTMConfig.enableMonster = true) {
+                if (TTMConfig.enableGoblins = true) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityGoblin.class, 12, 1, 3));
+                }
+                if (TTMConfig.enableCaveTrolls = true) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTroll.class, 8, 1, 1));
+                }
+                if (TTMConfig.enableCrebain = true) {
+                    this.spawnableCaveCreatureList.add(new SpawnListEntry(EntityCrebain.class, 1, 1, 1));
+                }
+            }
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.passive.EntityAuroch;
 import com.greatorator.tolkienmobs.entity.passive.EntityGoat;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
@@ -46,16 +47,27 @@ public class BiomeShire extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityHobbit.class, 12, 1, 3));
+        if (TTMConfig.enableNaturalSpawn = true) {
+            if (TTMConfig.enablePassive = true) {
+                if (TTMConfig.enableHobbits = true) {
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityHobbit.class, 12, 1, 3));
+                }
+                if (TTMConfig.enableFrogs = true) {
+                    this.spawnableWaterCreatureList.add(new SpawnListEntry(EntityToad.class, 4, 1, 1));
+                }
+                if (TTMConfig.enableAuroch = true) {
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityAuroch.class, 4, 2, 3));
+                }
+                if (TTMConfig.enableGoats = true) {
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityGoat.class, 4, 2, 3));
+                }
+            }
+        }
         this.spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 5, 2, 6));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityDonkey.class, 1, 1, 3));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityRabbit.class, 4, 2, 3));
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityAuroch.class, 4, 2, 3));
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityGoat.class, 4, 2, 3));
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityCow.class, 8, 4, 4));
         this.spawnableCreatureList.add(new SpawnListEntry(EntitySheep.class, 12, 4, 4));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityPig.class, 10, 4, 4));
-        this.spawnableWaterCreatureList.add(new SpawnListEntry(EntityToad.class, 4, 1, 1));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));
     }
 

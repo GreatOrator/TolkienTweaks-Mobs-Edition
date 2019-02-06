@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
 import com.greatorator.tolkienmobs.entity.monster.EntityTroll;
 import com.greatorator.tolkienmobs.entity.monster.EntityUrukHai;
@@ -39,10 +40,22 @@ public class BiomeMordor extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityUrukHai.class, 10, 1, 2));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityMordorOrc.class, 12, 2, 4));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityTroll.class, 8, 1, 1));
-        this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityWarg.class, 6, 1, 2));
+        if (TTMConfig.enableNaturalSpawn = true) {
+            if (TTMConfig.enableMonster = true) {
+                if (TTMConfig.enableUrukhai = true) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityUrukHai.class, 10, 1, 1));
+                }
+                if (TTMConfig.enableMordorOrcs = true) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityMordorOrc.class, 12, 1, 1));
+                }
+                if (TTMConfig.enableWargs = true) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityWarg.class, 6, 1, 1));
+                }
+                if (TTMConfig.enableCaveTrolls = true) {
+                    this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityTroll.class, 8, 1, 1));
+                }
+            }
+        }
     }
 
     @SideOnly(Side.CLIENT)

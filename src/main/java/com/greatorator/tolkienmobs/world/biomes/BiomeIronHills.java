@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.passive.EntityDwarf;
 import com.greatorator.tolkienmobs.entity.passive.EntityGoat;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
@@ -48,10 +49,18 @@ public class BiomeIronHills extends Biome {
         this.spawnableWaterCreatureList.clear();
 
 
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityDwarf.class, 12, 1, 3));
+        if (TTMConfig.enableNaturalSpawn = true) {
+            if (TTMConfig.enablePassive = true) {
+                if (TTMConfig.enableDwarves = true) {
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityDwarf.class, 12, 1, 3));
+                }
+                if (TTMConfig.enableGoats = true) {
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityGoat.class, 12, 2, 3));
+                }
+            }
+        }
         this.spawnableMonsterList.add(new SpawnListEntry(EntityLlama.class, 12, 1, 3));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityRabbit.class, 4, 2, 3));
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityGoat.class, 12, 2, 3));
     }
 
     public void decorate(World worldIn, Random rand, BlockPos pos)

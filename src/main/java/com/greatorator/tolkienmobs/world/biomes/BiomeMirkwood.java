@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.monster.EntityHuron;
 import com.greatorator.tolkienmobs.entity.monster.EntityMirkwoodSpider;
@@ -50,9 +51,21 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityMirkwoodSpider.class, 10, 1, 1));
-        this.spawnableWaterCreatureList.add(new SpawnListEntry(EntityToad.class, 1, 1, 1));
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityHuron.class, 8, 1, 2));
+        if (TTMConfig.enableNaturalSpawn = true) {
+            if (TTMConfig.enableMonster = true) {
+                if (TTMConfig.enableMirkwoodSpiders = true) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityMirkwoodSpider.class, 10, 1, 1));
+                }
+                if (TTMConfig.enableHurons = true) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityHuron.class, 8, 1, 2));
+                }
+            }
+            if (TTMConfig.enablePassive = true) {
+                if (TTMConfig.enableFrogs = true) {
+                    this.spawnableWaterCreatureList.add(new SpawnListEntry(EntityToad.class, 1, 1, 1));
+                }
+            }
+        }
     }
 
     @Override
