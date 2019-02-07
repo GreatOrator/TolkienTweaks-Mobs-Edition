@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.model.boss;
 
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 
 @SideOnly(Side.CLIENT)
-public class ModelFellBeast extends ModelBase {
+public class ModelFellBeast extends ModelTTM {
     /** The head Model renderer of the fell beast */
     private final ModelRenderer head;
     /** The spine Model renderer of the fell beast */

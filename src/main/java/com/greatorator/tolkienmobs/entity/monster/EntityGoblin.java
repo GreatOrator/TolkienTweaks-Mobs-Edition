@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
+import com.greatorator.tolkienmobs.entity.EntityTTM;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.handler.TTMRand;
@@ -11,30 +12,19 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnData {
+public class EntityGoblin extends EntityTTM implements IEntityAdditionalSpawnData {
     private int texture_index;
 
     private static final UUID ATTACK_SPEED_BOOST_MODIFIER_UUID = UUID.fromString("3D1772EA-23CC-11E9-AB14-D663BD873D93");
@@ -46,28 +36,13 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
     private int randomSoundDelay;
     private UUID angerTargetUUID;
 
-    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityGoblin.class, DataSerializers.BOOLEAN);
-    private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false)
-    {
-        public void resetTask()
-        {
-            super.resetTask();
-            EntityGoblin.this.setSwingingArms(false);
-        }
-
-        public void startExecuting()
-        {
-            super.startExecuting();
-            EntityGoblin.this.setSwingingArms(true);
-        }
-    };
-
     public EntityGoblin(World worldIn) {
         super(worldIn);
         this.setSize(0.9F, 0.8F);
+        this.setWeaponType(TTMFeatures.SWORD_MORGULIRON);
         this.setCombatTask();
     }
-    
+
     public int getTextureIndex() {
         return this.texture_index;
     }
@@ -90,30 +65,13 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
     }
 
     @Override
-    protected void entityInit() {
-        super.entityInit();
-        this.dataManager.register(SWINGING_ARMS, Boolean.valueOf(true));
-    }
-
-    @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        // Here we set various attributes for our mob. Like maximum health, armor, speed, ...
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(2.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(16.0D);
-    }
-
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
-    {
-        super.setEquipmentBasedOnDifficulty(difficulty);
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(TTMFeatures.SWORD_MORGULIRON));
-    }
-
-    protected void setEnchantmentBasedOnDifficulty(DifficultyInstance difficulty)
-    {
     }
 
     public void setRevengeTarget(@Nullable EntityLivingBase livingBase)
@@ -160,19 +118,6 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
         super.updateAITasks();
     }
 
-    @Nullable
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
-    {
-        IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
-        this.setEquipmentBasedOnDifficulty(difficulty);
-        if (texture_index == 0){
-            texture_index = TTMRand.getRandomInteger(5, 1);
-        }
-        this.setCombatTask();
-        return ientitylivingdata;
-    }
-
     @Override
     protected SoundEvent getAmbientSound()
     {
@@ -189,67 +134,6 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
         return SoundInit.soundDeathGoblin;
     }
 
-    public void setCombatTask()
-    {
-        if (this.world != null && !this.world.isRemote)
-        {
-            this.tasks.removeTask(this.aiAttackOnCollide);
-            ItemStack itemstack = this.getHeldItemMainhand();
-
-            if (itemstack.getItem() == TTMFeatures.SWORD_MORGULIRON)
-            {
-                this.tasks.addTask(4, this.aiAttackOnCollide);
-            }
-            else
-            {
-                int i = 20;
-
-                if (this.world.getDifficulty() != EnumDifficulty.HARD)
-                {
-                    i = 40;
-                }
-            }
-        }
-    }
-
-    public boolean attackEntityAsMob(Entity entityIn)
-    {
-        if (!super.attackEntityAsMob(entityIn))
-        {
-            return false;
-        }
-        else
-        {
-            if (entityIn instanceof EntityLivingBase)
-            {
-                ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.POISON, 1));
-            }
-
-            return true;
-        }
-    }
-
-    public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack)
-    {
-        super.setItemStackToSlot(slotIn, stack);
-
-        if (!this.world.isRemote && slotIn == EntityEquipmentSlot.MAINHAND)
-        {
-            this.setCombatTask();
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public boolean isSwingingArms()
-    {
-        return ((Boolean)this.dataManager.get(SWINGING_ARMS)).booleanValue();
-    }
-
-    public void setSwingingArms(boolean swingingArms)
-    {
-        this.dataManager.set(SWINGING_ARMS, Boolean.valueOf(swingingArms));
-    }
-
     @Override
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
@@ -264,6 +148,19 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
         {
             compound.setString("HurtBy", "");
         }
+    }
+
+    @Nullable
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+        this.setEquipmentBasedOnDifficulty(difficulty);
+            if (texture_index == 0) {
+                texture_index = TTMRand.getRandomInteger(5, 1);
+        }
+        this.setCombatTask();
+        return ientitylivingdata;
     }
 
     @Override
@@ -294,23 +191,8 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
     }
 
     @Override
-    protected boolean isValidLightLevel() {
-        return true;
-    }
-
-    @Override
     public int getMaxSpawnedInChunk() {
         return 3;
-    }
-
-    @Override
-    public void writeSpawnData(ByteBuf buffer) {
-        buffer.writeInt(this.texture_index);
-    }
-
-    @Override
-    public void readSpawnData(ByteBuf buffer) {
-        this.texture_index = buffer.readInt();
     }
 
     private void becomeAngryAt(Entity p_70835_1_)
@@ -358,5 +240,15 @@ public class EntityGoblin extends EntityMob implements IEntityAdditionalSpawnDat
         {
             return ((EntityGoblin)this.taskOwner).isAngry() && super.shouldExecute();
         }
+    }
+
+    @Override
+    public void writeSpawnData(ByteBuf buffer) {
+        buffer.writeInt(this.texture_index);
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf buffer) {
+        this.texture_index = buffer.readInt();
     }
 }

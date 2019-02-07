@@ -14,6 +14,7 @@ import com.greatorator.tolkienmobs.block.itemblock.ItemBlockSlabs;
 import com.greatorator.tolkienmobs.handler.TTMAmmo;
 import com.greatorator.tolkienmobs.handler.TTMFood;
 import com.greatorator.tolkienmobs.handler.TTMLore;
+import com.greatorator.tolkienmobs.handler.TTMSword;
 import com.greatorator.tolkienmobs.item.tools.ToolAxe;
 import com.greatorator.tolkienmobs.tile.TileSign;
 import net.minecraft.block.Block;
@@ -175,7 +176,10 @@ public class TTMFeatures implements IModFeatures {
     public static Item SWORD_MORGULIRON = new ItemSword(TOOL_MORGULIRON);
 
     @ModFeature(name = "whip_fire", stateOverride = "tools#type=whip_fire")
-    public static Item WHIP_FIRE = new ItemSword(TOOL_MORGULIRON);
+    public static Item WHIP_FIRE = new TTMSword(TOOL_MITHRIL).setEffectOverride(true);
+
+    @ModFeature(name = "sword_witchking", stateOverride = "tools#type=sword_witchking")
+    public static Item SWORD_WITCHKING = new TTMSword(TOOL_MITHRIL).setEffectOverride(true);
     /** End Region */
 
     /** Armor */

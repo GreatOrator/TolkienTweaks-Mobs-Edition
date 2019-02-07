@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model.passive;
 
-import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
@@ -8,7 +8,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * Human - GreatOrator
  */
-public class ModelHuman extends ModelTolkienMobs {
+public class ModelHuman extends ModelTTM {
     public ModelRenderer HumanBody;
     public ModelRenderer HumanHead;
     public ModelRenderer HumanLegRight;

@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model.monster;
 
-import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import com.greatorator.tolkienmobs.entity.monster.EntityGoblin;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
@@ -15,7 +15,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * Goblin - GreatOrator
  */
-public class ModelGoblin extends ModelTolkienMobs {
+public class ModelGoblin extends ModelTTM {
     public ModelRenderer GoblinLegL;
     public ModelRenderer GoblinLegR;
     public ModelRenderer GoblinBody;
@@ -166,13 +166,5 @@ public class ModelGoblin extends ModelTolkienMobs {
         // flick ears
         GoblinEarR1.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(entityIn.ticksExisted*3)), 6) * degToRad(15);
         GoblinEarL1.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(entityIn.ticksExisted*3)), 6) * degToRad(-15);
-    }
-
-    public void postRenderArm(float scale, EnumHandSide side) {
-        float f = side == EnumHandSide.RIGHT ? 1.0F : -1.0F;
-        ModelRenderer modelrenderer = this.getArmForSide(side);
-        modelrenderer.rotationPointX += f;
-        modelrenderer.postRender(scale);
-        modelrenderer.rotationPointX -= f;
     }
 }

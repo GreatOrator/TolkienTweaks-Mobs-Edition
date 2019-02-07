@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model.passive;
 
-import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import com.greatorator.tolkienmobs.entity.monster.EntityMumakil;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL11;
 /**
  * Mumakil - GreatOrator
  */
-public class ModelMumakil extends ModelTolkienMobs {
+public class ModelMumakil extends ModelTTM {
     public ModelRenderer MumuLegFL;
     public ModelRenderer MumuLegFR;
     public ModelRenderer MumuLegRR;

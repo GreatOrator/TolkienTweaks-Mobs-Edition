@@ -27,12 +27,9 @@ public class RenderMirkwoodSpider extends RenderLiving<EntityMirkwoodSpider> {
     }
 
     public static class Factory implements IRenderFactory<EntityMirkwoodSpider> {
-
         @Override
         public Render<? super EntityMirkwoodSpider> createRenderFor(RenderManager manager) {
             return new RenderMirkwoodSpider(manager);
         }
-
     }
-
 }

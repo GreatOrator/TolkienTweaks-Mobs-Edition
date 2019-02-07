@@ -6,7 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.EnumHandSide;
 
 /** Borrowed from Jabelar https://github.com/jabelar */
-public class ModelTolkienMobs extends ModelBiped
+public class ModelTTM extends ModelBiped
 {
     protected double distanceMovedTotal = 0.0D;
 

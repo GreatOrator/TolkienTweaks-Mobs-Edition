@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.entity.passive;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.render.model.passive.ModelTMFrog;
+import com.greatorator.tolkienmobs.client.render.model.passive.ModelToad;
 import com.greatorator.tolkienmobs.entity.passive.EntityToad;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -11,13 +11,13 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
 
-public class RenderTMFrog extends RenderLiving<EntityToad> {
+public class RenderToad extends RenderLiving<EntityToad> {
     private ResourceLocation mobTexture = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/tmfrog.png");
 
     public static final Factory FACTORY = new Factory();
 
-    public RenderTMFrog(RenderManager rendermanagerIn) {
-        super(rendermanagerIn, new ModelTMFrog(), 0.3F);
+    public RenderToad(RenderManager rendermanagerIn) {
+        super(rendermanagerIn, new ModelToad(), 0.3F);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class RenderTMFrog extends RenderLiving<EntityToad> {
 
         @Override
         public Render<? super EntityToad> createRenderFor(RenderManager manager) {
-            return new RenderTMFrog(manager);
+            return new RenderToad(manager);
         }
 
     }

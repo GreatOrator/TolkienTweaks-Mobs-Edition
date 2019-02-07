@@ -1,8 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.model.monster;
 
-import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import com.greatorator.tolkienmobs.entity.EntityBirds;
-import com.greatorator.tolkienmobs.entity.monster.EntityCrebain;
 import com.greatorator.tolkienmobs.entity.entityai.AIStates;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -17,7 +16,7 @@ import org.lwjgl.opengl.GL11;
  * Borrowed from Jabelar https://github.com/jabelar
  */
 @SideOnly(Side.CLIENT)
-public class ModelCrebain extends ModelTolkienMobs {
+public class ModelCrebain extends ModelTTM {
     public ModelRenderer CrebainBody;
     public ModelRenderer CrebainBodyWingless;
     public ModelRenderer CrebainTail1;

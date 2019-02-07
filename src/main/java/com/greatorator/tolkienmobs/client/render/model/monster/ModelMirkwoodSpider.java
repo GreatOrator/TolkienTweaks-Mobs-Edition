@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model.monster;
 
-import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
-import net.minecraft.client.model.ModelBase;
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.client.renderer.GlStateManager;
@@ -10,7 +9,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * Mirkwood Spider - GreatOrator
  */
-public class ModelMirkwoodSpider extends ModelTolkienMobs {
+public class ModelMirkwoodSpider extends ModelTTM {
     public ModelRenderer SpiderHead;
     public ModelRenderer SpiderMandibleA1;
     public ModelRenderer SpiderMandibleA2;

@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model.boss;
 
-import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import com.greatorator.tolkienmobs.entity.boss.EntityBalrog;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
@@ -16,7 +16,7 @@ import org.lwjgl.opengl.GL11;
 /**
  * Balrog - GreatOrator
  */
-public class ModelBalrog extends ModelTolkienMobs {
+public class ModelBalrog extends ModelTTM {
     public ModelRenderer BalrogBody;
     public ModelRenderer BalrogChest;
     public ModelRenderer BalrogNeck;
@@ -335,14 +335,11 @@ public class ModelBalrog extends ModelTolkienMobs {
         this.leftArmPose = ModelBiped.ArmPose.EMPTY;
         ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
 
-        if (itemstack.getItem() == Items.BOW && ((EntityBalrog)entitylivingbaseIn).isSwingingArms())
-        {
-            if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT)
-            {
+        if (itemstack.getItem() == Items.BOW && ((EntityBalrog)entitylivingbaseIn).isSwingingArms()) {
+            if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT) {
                 this.rightArmPose = ModelBiped.ArmPose.ITEM;
             }
-            else
-            {
+            else {
                 this.leftArmPose = ModelBiped.ArmPose.ITEM;
             }
         }

@@ -27,12 +27,10 @@ public class RenderHuron extends RenderLiving<EntityHuron> {
     }
 
     public static class Factory implements IRenderFactory<EntityHuron> {
-
         @Override
         public Render<? super EntityHuron> createRenderFor(RenderManager manager) {
             return new RenderHuron(manager);
         }
-
     }
 
 }

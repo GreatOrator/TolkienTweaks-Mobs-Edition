@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.model.monster;
 
 
-import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
@@ -17,7 +17,7 @@ import org.lwjgl.opengl.GL11;
 /**
  * Mordor Orc - GreatOrator
  */
-public class ModelMordorOrc extends ModelTolkienMobs {
+public class ModelMordorOrc extends ModelTTM {
     public ModelRenderer OrcLegL;
     public ModelRenderer OrcHead;
     public ModelRenderer OrcBody;
@@ -201,14 +201,5 @@ public class ModelMordorOrc extends ModelTolkienMobs {
 
         this.bipedRightArm.rotationPointX = -8.9F;
         this.bipedLeftArm.rotationPointX = 8.9F;
-    }
-
-    public void postRenderArm(float scale, EnumHandSide side)
-    {
-        float f = side == EnumHandSide.RIGHT ? 1.0F : -1.0F;
-        ModelRenderer modelrenderer = this.getArmForSide(side);
-        modelrenderer.rotationPointX += f;
-        modelrenderer.postRender(scale);
-        modelrenderer.rotationPointX -= f;
     }
 }

@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model.special;
 
-import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
-import net.minecraft.client.model.ModelBase;
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
@@ -11,7 +10,7 @@ import org.lwjgl.opengl.GL11;
  * ModelGollum - GreatOrator
  * Created using Tabula 7.0.0
  */
-public class ModelGollum extends ModelTolkienMobs {
+public class ModelGollum extends ModelTTM {
     public ModelRenderer GollumLegL;
     public ModelRenderer GollumHead;
     public ModelRenderer GollumBody;

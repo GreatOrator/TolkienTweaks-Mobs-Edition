@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model.passive;
 
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import com.greatorator.tolkienmobs.entity.passive.EntityToad;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
@@ -12,7 +13,7 @@ import org.lwjgl.opengl.GL11;
 /**
  * Frog - GreatOrator
  */
-public class ModelTMFrog extends ModelBase {
+public class ModelToad extends ModelTTM {
     public ModelRenderer frogHead;
     public ModelRenderer frogFootLeft;
     public ModelRenderer frogLeftThigh;
@@ -25,7 +26,7 @@ public class ModelTMFrog extends ModelBase {
     public ModelRenderer frogEyeLeft;
     private float jumpRotation;
 
-    public ModelTMFrog() {
+    public ModelToad() {
         this.textureWidth = 64;
         this.textureHeight = 32;
         this.frogBody = new ModelRenderer(this, 0, 0);
@@ -137,11 +138,5 @@ public class ModelTMFrog extends ModelBase {
     {
         super.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
         this.jumpRotation = MathHelper.sin(((EntityToad)entitylivingbaseIn).setJumpCompletion(partialTickTime) * (float)Math.PI);
-    }
-
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
     }
 }

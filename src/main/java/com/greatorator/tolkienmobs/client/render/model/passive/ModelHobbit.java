@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model.passive;
 
-import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
-import net.minecraft.client.model.ModelBiped;
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
@@ -10,7 +9,7 @@ import org.lwjgl.opengl.GL11;
 /**
  * Hobbit - GreatOrator
  */
-public class ModelHobbit extends ModelTolkienMobs {
+public class ModelHobbit extends ModelTTM {
     public ModelRenderer HobbitArmL;
     public ModelRenderer HobbitLegL;
     public ModelRenderer HobbitBody;

@@ -7,7 +7,7 @@
         {
           "type": "item",
           "weight": 1,
-          "name": "tolkienmobs:sword_morguliron",
+          "name": "tolkienmobs:sword_witchking",
           "conditions": [
             {
               "condition": "killed_by_player"

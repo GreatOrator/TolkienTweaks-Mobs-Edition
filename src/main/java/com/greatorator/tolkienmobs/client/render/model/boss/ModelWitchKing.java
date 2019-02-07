@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model.boss;
 
-import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import com.greatorator.tolkienmobs.entity.boss.EntityWitchKing;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
@@ -16,7 +16,7 @@ import org.lwjgl.opengl.GL11;
 /**
  * WitchKing - GreatOrator
  */
-public class ModelWitchKing extends ModelTolkienMobs {
+public class ModelWitchKing extends ModelTTM {
     public ModelRenderer bipedLeftArmwear;
     public ModelRenderer bipedRightLegwear;
     public ModelRenderer bipedRightArmwear;

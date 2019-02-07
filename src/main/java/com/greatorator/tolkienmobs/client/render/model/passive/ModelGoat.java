@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model.passive;
 
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -11,7 +12,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * Goat - GreatOrator
  */
-public class ModelGoat extends ModelBase {
+public class ModelGoat extends ModelTTM {
         public ModelRenderer GoatLegRight;
         public ModelRenderer GoatLegRearRight;
         public ModelRenderer GoatLegRearLeft;
@@ -373,14 +374,5 @@ public class ModelGoat extends ModelBase {
 
         this.GoatNeck.rotateAngleY = netHeadYaw * 0.017453292F;
         this.GoatNeck.rotateAngleX = baseHeadRotation + (headPitch * 0.017453292F);
-    }
-
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
     }
 }

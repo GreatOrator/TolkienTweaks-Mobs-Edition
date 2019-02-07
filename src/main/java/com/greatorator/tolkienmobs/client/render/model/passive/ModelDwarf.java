@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model.passive;
 
-import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -14,7 +14,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * Dwarf - GreatOrator
  */
-public class ModelDwarf extends ModelTolkienMobs {
+public class ModelDwarf extends ModelTTM {
     public ModelRenderer DwarfBody;
     public ModelRenderer DwarfHead;
     public ModelRenderer DwarfLegR;
@@ -219,14 +219,5 @@ public class ModelDwarf extends ModelTolkienMobs {
 
         this.bipedRightArm.rotationPointX = -4.9F;
         this.bipedLeftArm.rotationPointX = 4.9F;
-    }
-
-    public void postRenderArm(float scale, EnumHandSide side)
-    {
-        float f = side == EnumHandSide.RIGHT ? 1.0F : -1.0F;
-        ModelRenderer modelrenderer = this.getArmForSide(side);
-        modelrenderer.rotationPointX += f;
-        modelrenderer.postRender(scale);
-        modelrenderer.rotationPointX -= f;
     }
 }

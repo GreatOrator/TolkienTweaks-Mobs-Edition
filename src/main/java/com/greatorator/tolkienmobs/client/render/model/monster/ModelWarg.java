@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model.monster;
 
-import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,7 +9,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * Warg - GreatOrator
  */
-public class ModelWarg extends ModelTolkienMobs {
+public class ModelWarg extends ModelTTM {
     public ModelRenderer WargLegFL;
     public ModelRenderer WargLegRL;
     public ModelRenderer WargLegRR;

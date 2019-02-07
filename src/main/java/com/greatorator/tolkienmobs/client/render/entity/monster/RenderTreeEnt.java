@@ -25,8 +25,6 @@ public class RenderTreeEnt extends RenderLiving<EntityTreeEnt> {
     public static final Factory FACTORY = new Factory();
 
     public RenderTreeEnt(RenderManager rendermanagerIn) {
-        // We use the vanilla zombie model here and we simply
-        // retexture it. Of course you can make your own model
         super(rendermanagerIn, new ModelTreeEnt(), 0.5F);
     }
 
@@ -38,12 +36,9 @@ public class RenderTreeEnt extends RenderLiving<EntityTreeEnt> {
     }
 
     public static class Factory implements IRenderFactory<EntityTreeEnt> {
-
         @Override
         public Render<? super EntityTreeEnt> createRenderFor(RenderManager manager) {
             return new RenderTreeEnt(manager);
         }
-
     }
-
 }

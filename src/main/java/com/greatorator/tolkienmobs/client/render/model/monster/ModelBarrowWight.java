@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.model.monster;
 
-import com.greatorator.tolkienmobs.client.render.model.ModelTolkienMobs;
+import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import com.greatorator.tolkienmobs.entity.monster.EntityBarrowWight;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
@@ -15,7 +15,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * Barrow Wight - GreatOrator
  */
-public class ModelBarrowWight extends ModelTolkienMobs {
+public class ModelBarrowWight extends ModelTTM {
     public ModelRenderer bipedLeftArmwear;
     public ModelRenderer bipedRightLegwear;
     public ModelRenderer bipedRightArmwear;
@@ -29,45 +29,88 @@ public class ModelBarrowWight extends ModelTolkienMobs {
     public ModelRenderer bipedLeftLeg;
     public ModelRenderer bipedBodyWear;
 
-    public ModelBarrowWight() {
-        this.textureWidth = 64;
-        this.textureHeight = 64;
-        this.bipedRightArmwear = new ModelRenderer(this, 40, 32);
-        this.bipedRightArmwear.setRotationPoint(-5.0F, 2.0F, 0.0F);
-        this.bipedRightArmwear.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.25F);
-        this.bipedRightArm = new ModelRenderer(this, 40, 16);
-        this.bipedRightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
-        this.bipedRightArm.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
-        this.bipedBody = new ModelRenderer(this, 16, 16);
-        this.bipedBody.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.bipedBody.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.0F);
-        this.bipedRightLegwear = new ModelRenderer(this, 0, 32);
-        this.bipedRightLegwear.setRotationPoint(-1.9F, 12.0F, 0.0F);
-        this.bipedRightLegwear.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.25F);
-        this.bipedLeftLegwear = new ModelRenderer(this, 0, 48);
-        this.bipedLeftLegwear.setRotationPoint(1.9F, 12.0F, 0.0F);
-        this.bipedLeftLegwear.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.25F);
-        this.bipedLeftLeg = new ModelRenderer(this, 16, 48);
-        this.bipedLeftLeg.setRotationPoint(1.9F, 12.0F, 0.0F);
-        this.bipedLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
-        this.bipedLeftArmwear = new ModelRenderer(this, 48, 48);
-        this.bipedLeftArmwear.setRotationPoint(5.0F, 2.0F, 0.0F);
-        this.bipedLeftArmwear.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.25F);
-        this.bipedDeadmau5Head = new ModelRenderer(this, 32, 0);
-        this.bipedDeadmau5Head.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.bipedDeadmau5Head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.5F);
-        this.bipedBodyWear = new ModelRenderer(this, 16, 32);
-        this.bipedBodyWear.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.bipedBodyWear.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.25F);
-        this.bipedRightLeg = new ModelRenderer(this, 0, 16);
-        this.bipedRightLeg.setRotationPoint(-1.9F, 12.0F, 0.0F);
-        this.bipedRightLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
-        this.bipedHead = new ModelRenderer(this, 0, 0);
-        this.bipedHead.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.bipedHead.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
-        this.bipedLeftArm = new ModelRenderer(this, 32, 48);
-        this.bipedLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
-        this.bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+    public ModelBarrowWight(int ghostValue, boolean ghostModel) {
+        if (ghostValue > 0) {
+            this.textureWidth = 64;
+            this.textureHeight = 128;
+            this.bipedRightArmwear = new ModelRenderer(this, 40, 32+ghostValue);
+            this.bipedRightArmwear.setRotationPoint(-5.0F, 2.0F, 0.0F);
+            this.bipedRightArmwear.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.25F);
+            this.bipedRightArm = new ModelRenderer(this, 40, 16+ghostValue);
+            this.bipedRightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
+            this.bipedRightArm.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+            this.bipedBody = new ModelRenderer(this, 16, 16+ghostValue);
+            this.bipedBody.setRotationPoint(0.0F, 0.0F, 0.0F);
+            this.bipedBody.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.0F);
+            this.bipedRightLegwear = new ModelRenderer(this, 0, 32+ghostValue);
+            this.bipedRightLegwear.setRotationPoint(-1.9F, 12.0F, 0.0F);
+            this.bipedRightLegwear.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.25F);
+            this.bipedLeftLegwear = new ModelRenderer(this, 0, 48+ghostValue);
+            this.bipedLeftLegwear.setRotationPoint(1.9F, 12.0F, 0.0F);
+            this.bipedLeftLegwear.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.25F);
+            this.bipedLeftLeg = new ModelRenderer(this, 16, 48+ghostValue);
+            this.bipedLeftLeg.setRotationPoint(1.9F, 12.0F, 0.0F);
+            this.bipedLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
+            this.bipedLeftArmwear = new ModelRenderer(this, 48, 48+ghostValue);
+            this.bipedLeftArmwear.setRotationPoint(5.0F, 2.0F, 0.0F);
+            this.bipedLeftArmwear.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.25F);
+            this.bipedDeadmau5Head = new ModelRenderer(this, 32, ghostValue);
+            this.bipedDeadmau5Head.setRotationPoint(0.0F, 0.0F, 0.0F);
+            this.bipedDeadmau5Head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.5F);
+            this.bipedBodyWear = new ModelRenderer(this, 16, 32+ghostValue);
+            this.bipedBodyWear.setRotationPoint(0.0F, 0.0F, 0.0F);
+            this.bipedBodyWear.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.25F);
+            this.bipedRightLeg = new ModelRenderer(this, 0, 16+ghostValue);
+            this.bipedRightLeg.setRotationPoint(-1.9F, 12.0F, 0.0F);
+            this.bipedRightLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
+            this.bipedHead = new ModelRenderer(this, 0, ghostValue);
+            this.bipedHead.setRotationPoint(0.0F, 0.0F, 0.0F);
+            this.bipedHead.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
+            this.bipedLeftArm = new ModelRenderer(this, 32, 48+ghostValue);
+            this.bipedLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
+            this.bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+        }
+        else
+        {
+            this.textureWidth = 64;
+            this.textureHeight = 128;
+            this.bipedRightArmwear = new ModelRenderer(this, 40, 32);
+            this.bipedRightArmwear.setRotationPoint(-5.0F, 2.0F, 0.0F);
+            this.bipedRightArmwear.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.25F);
+            this.bipedRightArm = new ModelRenderer(this, 40, 16);
+            this.bipedRightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
+            this.bipedRightArm.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+            this.bipedBody = new ModelRenderer(this, 16, 16);
+            this.bipedBody.setRotationPoint(0.0F, 0.0F, 0.0F);
+            this.bipedBody.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.0F);
+            this.bipedRightLegwear = new ModelRenderer(this, 0, 32);
+            this.bipedRightLegwear.setRotationPoint(-1.9F, 12.0F, 0.0F);
+            this.bipedRightLegwear.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.25F);
+            this.bipedLeftLegwear = new ModelRenderer(this, 0, 48);
+            this.bipedLeftLegwear.setRotationPoint(1.9F, 12.0F, 0.0F);
+            this.bipedLeftLegwear.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.25F);
+            this.bipedLeftLeg = new ModelRenderer(this, 16, 48);
+            this.bipedLeftLeg.setRotationPoint(1.9F, 12.0F, 0.0F);
+            this.bipedLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
+            this.bipedLeftArmwear = new ModelRenderer(this, 48, 48);
+            this.bipedLeftArmwear.setRotationPoint(5.0F, 2.0F, 0.0F);
+            this.bipedLeftArmwear.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.25F);
+            this.bipedDeadmau5Head = new ModelRenderer(this, 32, 0);
+            this.bipedDeadmau5Head.setRotationPoint(0.0F, 0.0F, 0.0F);
+            this.bipedDeadmau5Head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.5F);
+            this.bipedBodyWear = new ModelRenderer(this, 16, 32);
+            this.bipedBodyWear.setRotationPoint(0.0F, 0.0F, 0.0F);
+            this.bipedBodyWear.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.25F);
+            this.bipedRightLeg = new ModelRenderer(this, 0, 16);
+            this.bipedRightLeg.setRotationPoint(-1.9F, 12.0F, 0.0F);
+            this.bipedRightLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
+            this.bipedHead = new ModelRenderer(this, 0, 0);
+            this.bipedHead.setRotationPoint(0.0F, 0.0F, 0.0F);
+            this.bipedHead.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
+            this.bipedLeftArm = new ModelRenderer(this, 32, 48);
+            this.bipedLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
+            this.bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+        }
     }
 
     @Override
@@ -89,23 +132,6 @@ public class ModelBarrowWight extends ModelTolkienMobs {
         this.bipedDeadmau5Head.rotationPointX = 0.0F;
         this.bipedDeadmau5Head.rotationPointY = 0.0F;
         this.bipedDeadmau5Head.render(f5);
-    }
-
-    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime) {
-        this.rightArmPose = ModelBiped.ArmPose.EMPTY;
-        this.leftArmPose = ModelBiped.ArmPose.EMPTY;
-        ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
-
-        if (itemstack.getItem() == Items.BOW && ((EntityBarrowWight) entitylivingbaseIn).isSwingingArms()) {
-            if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT) {
-                this.rightArmPose = ModelBiped.ArmPose.ITEM;
-            }
-            else {
-                this.leftArmPose = ModelBiped.ArmPose.ITEM;
-            }
-        }
-
-        super.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
     }
 
     @Override

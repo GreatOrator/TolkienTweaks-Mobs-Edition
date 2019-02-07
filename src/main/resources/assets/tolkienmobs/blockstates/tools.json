@@ -19,7 +19,8 @@
       "pickaxe_morguliron":   {"textures": {"layer0": "tolkienmobs:items/pickaxe_morguliron"}},
       "shovel_morguliron":   {"textures": {"layer0": "tolkienmobs:items/shovel_morguliron"}},
       "sword_morguliron":   {"textures": {"layer0": "tolkienmobs:items/sword_morguliron"}},
-      "whip_fire":   {"textures": {"layer0": "tolkienmobs:items/whip_fire"}}
+      "whip_fire":   {"textures": {"layer0": "tolkienmobs:items/whip_fire"}},
+      "sword_witchking":   {"textures": {"layer0": "tolkienmobs:items/sword_witchking"}}
     }
   }
 }

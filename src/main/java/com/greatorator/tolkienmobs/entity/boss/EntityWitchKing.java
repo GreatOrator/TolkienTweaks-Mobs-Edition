@@ -122,7 +122,7 @@ public class EntityWitchKing extends EntityMob implements IMob {
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
     {
         super.setEquipmentBasedOnDifficulty(difficulty);
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(TTMFeatures.SWORD_MORGULIRON));
+        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(TTMFeatures.SWORD_WITCHKING));
     }
 
     @Nullable
@@ -154,7 +154,7 @@ public class EntityWitchKing extends EntityMob implements IMob {
             this.tasks.removeTask(this.aiAttackOnCollide);
             ItemStack itemstack = this.getHeldItemMainhand();
 
-            if (itemstack.getItem() == TTMFeatures.SWORD_MORGULIRON)
+            if (itemstack.getItem() == TTMFeatures.SWORD_WITCHKING)
             {
                 this.tasks.addTask(4, this.aiAttackOnCollide);
             }
