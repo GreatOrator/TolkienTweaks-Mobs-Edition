@@ -4,17 +4,10 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
 import com.greatorator.tolkienmobs.client.render.model.passive.ModelDwarf;
 import com.greatorator.tolkienmobs.entity.passive.EntityDwarf;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
@@ -32,7 +25,7 @@ public class RenderDwarf extends RenderLiving<EntityDwarf> {
 
     public RenderDwarf(RenderManager rendermanagerIn) {
         super(rendermanagerIn, new ModelDwarf(), 0.5F);
-        this.addLayer(new LayerArmed(this,16.0F, -0.05F, -0.8F,0.0F,0.0F,0.0F,0.08F));
+        this.addLayer(new LayerArmed(this, 0.0625f, -0.05F, -0.8F,1F));
     }
 
     @Nullable

@@ -27,7 +27,7 @@ public class RenderOathbreaker extends RenderLiving<EntityOathbreaker> {
     public RenderOathbreaker(RenderManager rendermanagerIn) {
         super(rendermanagerIn, new ModelBarrowWight(64, true), 0.5F);
         this.addLayer(new LayerGhost(this, new ModelBarrowWight(0, true)));
-        this.addLayer(new LayerArmed(this,16.0F, 0.02F, -(0.6F),0.0F,0.0F,0.0F, 0.05F));
+        this.addLayer(new LayerArmed(this, 0.0625f, 0.02F, -0.6F,1F));
     }
 
     @Nullable

@@ -21,7 +21,7 @@ public class RenderWitchKing extends RenderLiving<EntityWitchKing> {
 
     public RenderWitchKing(RenderManager rendermanagerIn) {
         super(rendermanagerIn, new ModelWitchKing(), 1.0F);
-        this.addLayer(new LayerArmed(this,8.0F, 0.25F, 0.05F,1.0F, 1.5F, 1.5F,0.12F));
+        this.addLayer(new LayerArmed(this, 0.125f, 0.25F, 0.05F,1.0F));
     }
 
     @Override

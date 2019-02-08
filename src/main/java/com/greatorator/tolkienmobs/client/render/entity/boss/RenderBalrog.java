@@ -20,7 +20,7 @@ public class RenderBalrog extends RenderLiving<EntityBalrog> {
 
     public RenderBalrog(RenderManager rendermanagerIn) {
         super(rendermanagerIn, new ModelBalrog(), 2.5F);
-        this.addLayer(new LayerArmed(this,8.0F, 1.2F, 0.75F,1.5F, 1.5F, 1.5F,-0.08F));
+        this.addLayer(new LayerArmed(this, 0.125f, 1.2F, 0.75F,1.5F));
     }
 
     @Override

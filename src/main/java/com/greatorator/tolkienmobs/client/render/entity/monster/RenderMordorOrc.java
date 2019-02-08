@@ -25,7 +25,7 @@ public class RenderMordorOrc extends RenderLiving<EntityMordorOrc> {
 
     public RenderMordorOrc(RenderManager rendermanagerIn) {
         super(rendermanagerIn, new ModelMordorOrc(), 0.5F);
-        this.addLayer(new LayerArmed(this,16.0F, 0.02F, -(0.7F),0.0F,0.0F,0.0F, 0.05F));
+        this.addLayer(new LayerArmed(this, 0.0625f, 0.02F, -0.7F,1F));
     }
 
     @Nullable

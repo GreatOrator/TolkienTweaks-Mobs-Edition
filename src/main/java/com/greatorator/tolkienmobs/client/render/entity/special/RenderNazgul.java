@@ -4,17 +4,10 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
 import com.greatorator.tolkienmobs.client.render.model.boss.ModelWitchKing;
 import com.greatorator.tolkienmobs.entity.special.EntityNazgul;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
@@ -28,7 +21,7 @@ public class RenderNazgul extends RenderLiving<EntityNazgul> {
 
     public RenderNazgul(RenderManager rendermanagerIn) {
         super(rendermanagerIn, new ModelWitchKing(), 1.0F);
-        this.addLayer(new LayerArmed(this,8.0F, 0.25F, 0.05F,1.0F, 1.5F, 1.5F, 0.12F));
+        this.addLayer(new LayerArmed(this, 0.125f, 0.25F, 0.05F,1.0F));
     }
 
     @Override

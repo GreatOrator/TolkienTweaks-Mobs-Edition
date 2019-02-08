@@ -25,7 +25,7 @@ public class RenderGoblin extends RenderLiving<EntityGoblin> {
 
     public RenderGoblin(RenderManager rendermanagerIn) {
         super(rendermanagerIn, new ModelGoblin(), 0.5F);
-        this.addLayer(new LayerArmed(this,16.0F, 0.025F, -(0.325F),0.0F,0.0F,0.0F, 0.0625F));
+        this.addLayer(new LayerArmed(this,0.0825F, 0.025F, -0.325F,1F));
     }
 
     @Nullable

@@ -11,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
-import org.lwjgl.opengl.GL11;
 
 /**
  * Cave Troll - GreatOrator
@@ -130,14 +129,7 @@ public class ModelTroll extends ModelTTM {
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        float scaleFactor = 2.0F;
-        GL11.glPushMatrix();
-        GL11.glTranslatef(0F, 1.5F-1.5F*scaleFactor, 0F);
-        GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
-
         this.TrollBody.render(f5);
-
-        GL11.glPopMatrix();
     }
 
     public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)

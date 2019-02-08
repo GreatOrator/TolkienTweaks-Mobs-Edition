@@ -23,9 +23,12 @@ public class RenderTroll extends RenderLiving<EntityTroll> {
 
     public static final RenderTroll.Factory FACTORY = new RenderTroll.Factory();
 
-    public RenderTroll(RenderManager rendermanagerIn) {
-        super(rendermanagerIn, new ModelTroll(), 1.9F);
-        this.addLayer(new LayerArmed(this,16.0F, 0.0F, -(1.70F),1.0F,2.5F,2.5F,0.1825F));
+    public float scale;
+
+    public RenderTroll(RenderManager rendermanagerIn, float scale) {
+        super(rendermanagerIn, new ModelTroll(), 0.5F * scale);
+        this.scale = scale;
+        this.addLayer(new LayerArmed(this,0.25F, 0.0F, -1.2F,1.5F));
     }
 
     @Nullable
@@ -38,11 +41,17 @@ public class RenderTroll extends RenderLiving<EntityTroll> {
     public static class Factory implements IRenderFactory<EntityTroll> {
         @Override
         public Render<? super EntityTroll> createRenderFor(RenderManager manager) {
-            return new RenderTroll(manager);
+            return new RenderTroll(manager, 1.8F);
         }
     }
 
     public void transformHeldFull3DItemLayer() {
         GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
+    }
+
+    //If you need to apply a GL Scale to your model this is how you do it.
+    @Override
+    protected void preRenderCallback(EntityTroll entitylivingbaseIn, float partialTickTime) {
+        GlStateManager.scale(scale, scale, scale);
     }
 }

@@ -25,7 +25,7 @@ public class RenderBarrowWight extends RenderLiving<EntityBarrowWight> {
 
     public RenderBarrowWight(RenderManager rendermanagerIn) {
         super(rendermanagerIn, new ModelBarrowWight(0, true), 0.5F);
-        this.addLayer(new LayerArmed(this,16.0F, 0.02F, -(0.6F),0.0F,0.0F,0.0F, 0.05F));
+        this.addLayer(new LayerArmed(this, 0.0625f, 0.02F, -0.6F,1F));
     }
 
     @Nullable

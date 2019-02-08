@@ -25,7 +25,7 @@ public class RenderUrukHai extends RenderLiving<EntityUrukHai> {
 
     public RenderUrukHai(RenderManager rendermanagerIn) {
         super(rendermanagerIn, new ModelUrukHai(), 0.5F);
-        this.addLayer(new LayerArmed(this,16.0F, 0.12F, -(0.45F),0.0F,0.0F,0.0F, 0.065F));
+        this.addLayer(new LayerArmed(this, 0.0625f, 0.12F, -0.45F,1F));
     }
 
     @Nullable
