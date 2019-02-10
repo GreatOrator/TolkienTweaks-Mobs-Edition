@@ -25,7 +25,7 @@ public class RenderDwarf extends RenderLiving<EntityDwarf> {
 
     public RenderDwarf(RenderManager rendermanagerIn) {
         super(rendermanagerIn, new ModelDwarf(), 0.5F);
-        this.addLayer(new LayerArmed(this, 0.0625f, -0.05F, -0.8F,1F));
+        this.addLayer(new LayerArmed(this, 0.095F, 0.035F, -0.9F, 1.2F));
     }
 
     @Nullable
@@ -43,6 +43,6 @@ public class RenderDwarf extends RenderLiving<EntityDwarf> {
     }
 
     public void transformHeldFull3DItemLayer() {
-        GlStateManager.translate(-2.0F, 0.1875F, 0.0F);
+        GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
     }
 }

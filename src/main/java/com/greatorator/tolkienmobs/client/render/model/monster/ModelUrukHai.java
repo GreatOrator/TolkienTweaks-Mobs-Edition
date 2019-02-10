@@ -138,19 +138,12 @@ public class ModelUrukHai extends ModelTTM {
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        float scaleFactor = 1.2F;
-        GL11.glPushMatrix();
-        GL11.glTranslatef(0F, 1.5F-1.5F*scaleFactor, 0F);
-        GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
-
         this.UrukHaiHead.render(f5);
         this.UrukHaiBody.render(f5);
         this.bipedLeftArm.render(f5);
         this.UrukHaiLegR.render(f5);
         this.bipedRightArm.render(f5);
         this.UrukHaiLegL.render(f5);
-
-        GL11.glPopMatrix();
     }
 
     public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)

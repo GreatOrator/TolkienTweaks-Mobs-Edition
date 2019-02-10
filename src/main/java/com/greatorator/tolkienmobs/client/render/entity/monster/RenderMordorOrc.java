@@ -23,9 +23,12 @@ public class RenderMordorOrc extends RenderLiving<EntityMordorOrc> {
 
     public static final RenderMordorOrc.Factory FACTORY = new RenderMordorOrc.Factory();
 
-    public RenderMordorOrc(RenderManager rendermanagerIn) {
+    public float scale;
+
+    public RenderMordorOrc(RenderManager rendermanagerIn, float scale) {
         super(rendermanagerIn, new ModelMordorOrc(), 0.5F);
-        this.addLayer(new LayerArmed(this, 0.0625f, 0.02F, -0.7F,1F));
+        this.scale = scale;
+        this.addLayer(new LayerArmed(this, -0.03F, 0.105F, -0.545F, 0.85F));
     }
 
     @Nullable
@@ -38,11 +41,17 @@ public class RenderMordorOrc extends RenderLiving<EntityMordorOrc> {
     public static class Factory implements IRenderFactory<EntityMordorOrc> {
         @Override
         public Render<? super EntityMordorOrc> createRenderFor(RenderManager manager) {
-            return new RenderMordorOrc(manager);
+            return new RenderMordorOrc(manager, 0.85F);
         }
     }
 
     public void transformHeldFull3DItemLayer() {
-        GlStateManager.translate(-2.0F, 0.1875F, 0.0F);
+        GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
+    }
+
+    /** If you need to apply a GL Scale to your model this is how you do it. */
+    @Override
+    protected void preRenderCallback(EntityMordorOrc entitylivingbaseIn, float partialTickTime) {
+        GlStateManager.scale(scale, scale, scale);
     }
 }

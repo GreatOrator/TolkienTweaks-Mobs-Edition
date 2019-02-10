@@ -23,9 +23,12 @@ public class RenderUrukHai extends RenderLiving<EntityUrukHai> {
 
     public static final RenderUrukHai.Factory FACTORY = new RenderUrukHai.Factory();
 
-    public RenderUrukHai(RenderManager rendermanagerIn) {
+    public float scale;
+
+    public RenderUrukHai(RenderManager rendermanagerIn, float scale) {
         super(rendermanagerIn, new ModelUrukHai(), 0.5F);
-        this.addLayer(new LayerArmed(this, 0.0625f, 0.12F, -0.45F,1F));
+        this.scale = scale;
+        this.addLayer(new LayerArmed(this, -0.03F, 0.105F, -0.545F, 1.2F));
     }
 
     @Nullable
@@ -38,11 +41,17 @@ public class RenderUrukHai extends RenderLiving<EntityUrukHai> {
     public static class Factory implements IRenderFactory<EntityUrukHai> {
         @Override
         public Render<? super EntityUrukHai> createRenderFor(RenderManager manager) {
-            return new RenderUrukHai(manager);
+            return new RenderUrukHai(manager, 1.2F);
         }
     }
 
     public void transformHeldFull3DItemLayer() {
-        GlStateManager.translate(-2.0F, 0.1875F, 0.0F);
+        GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
+    }
+
+    /** If you need to apply a GL Scale to your model this is how you do it. */
+    @Override
+    protected void preRenderCallback(EntityUrukHai entitylivingbaseIn, float partialTickTime) {
+        GlStateManager.scale(scale, scale, scale);
     }
 }

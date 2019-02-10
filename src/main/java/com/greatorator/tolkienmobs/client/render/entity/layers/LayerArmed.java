@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.entity.layers;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
+import com.greatorator.tolkienmobs.entity.boss.EntityBalrog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -62,23 +63,15 @@ public class LayerArmed implements LayerRenderer<EntityLivingBase> {
             GlStateManager.rotate(-100.0F, 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
 
-            //This is a good way to figure out the item and scale offset runtime.
-            //Once you find values that work put them where they belong (in this case RenderTroll) and comment/delete this test code.
-//            if (entity instanceof EntityTroll) {
-//                itemXOffset = 0.25F;
-//                itemYOffset = 0.0F;
-//                itemZOffset = -1.2F;
-//                itemScale = 1.5F;
-//            }
-
-//            if (entity instanceof EntityGoblin) {
-//                itemXOffset = 0.0825f;
-//                itemYOffset = 0.025F;
-//                itemZOffset = -0.325F;
-//                itemScale = 1F;
-//            }
-
-//            16.0F, 0.025F, -0.325F, 1F
+            /** This is a good way to figure out the item and scale offset runtime. */
+            /** Once I find values that work put them where they belong and comment this test code. */
+            if (entity instanceof EntityBalrog) {
+                itemXOffset = 0.23F;
+                itemYOffset = 0.2F;
+                itemZOffset = -1.35F;
+                itemScale = 1.6F;
+            }
+            /** 0.095F, 0.035F, -0.9F, 1.2F */
 
             boolean flag = handSide == EnumHandSide.LEFT;
             GlStateManager.translate((float) (flag ? -1 : 1) * itemXOffset, itemYOffset, itemZOffset);

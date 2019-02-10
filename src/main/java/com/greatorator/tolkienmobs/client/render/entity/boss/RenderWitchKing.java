@@ -18,10 +18,13 @@ public class RenderWitchKing extends RenderLiving<EntityWitchKing> {
 
     public static final Factory FACTORY = new Factory();
 
+    public float scale;
 
-    public RenderWitchKing(RenderManager rendermanagerIn) {
+
+    public RenderWitchKing(RenderManager rendermanagerIn, float scale) {
         super(rendermanagerIn, new ModelWitchKing(), 1.0F);
-        this.addLayer(new LayerArmed(this, 0.125f, 0.25F, 0.05F,1.0F));
+        this.scale = scale;
+        this.addLayer(new LayerArmed(this, 0.125F, 0.25F, -0.625F, 1.6F));
     }
 
     @Override
@@ -33,11 +36,17 @@ public class RenderWitchKing extends RenderLiving<EntityWitchKing> {
     public static class Factory implements IRenderFactory<EntityWitchKing> {
         @Override
         public Render<? super EntityWitchKing> createRenderFor(RenderManager manager) {
-            return new RenderWitchKing(manager);
+            return new RenderWitchKing(manager, 1.6F);
         }
     }
 
     public void transformHeldFull3DItemLayer() {
-        GlStateManager.translate(-2.0F, 0.18F, 0.0F);
+        GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
+    }
+
+    /** If you need to apply a GL Scale to your model this is how you do it. */
+    @Override
+    protected void preRenderCallback(EntityWitchKing entitylivingbaseIn, float partialTickTime) {
+        GlStateManager.scale(scale, scale, scale);
     }
 }

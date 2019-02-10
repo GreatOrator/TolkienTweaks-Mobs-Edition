@@ -21,7 +21,6 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import javax.annotation.Nullable;
 
 public class EntityBarrowWight extends EntityTTM implements IEntityAdditionalSpawnData {
-
     public EntityBarrowWight(World worldIn) {
         super(worldIn);
         this.setSize(1.0F, 2.0F);

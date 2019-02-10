@@ -17,7 +17,7 @@ public class RenderToad extends RenderLiving<EntityToad> {
     public static final Factory FACTORY = new Factory();
 
     public RenderToad(RenderManager rendermanagerIn) {
-        super(rendermanagerIn, new ModelToad(), 0.3F);
+        super(rendermanagerIn, new ModelToad(), 0.2F);
     }
 
     @Override

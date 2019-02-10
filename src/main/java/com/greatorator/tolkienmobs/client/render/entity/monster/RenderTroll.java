@@ -49,7 +49,7 @@ public class RenderTroll extends RenderLiving<EntityTroll> {
         GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
     }
 
-    //If you need to apply a GL Scale to your model this is how you do it.
+    /** If you need to apply a GL Scale to your model this is how you do it. */
     @Override
     protected void preRenderCallback(EntityTroll entitylivingbaseIn, float partialTickTime) {
         GlStateManager.scale(scale, scale, scale);

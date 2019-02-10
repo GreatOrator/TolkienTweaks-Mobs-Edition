@@ -11,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
-import org.lwjgl.opengl.GL11;
 
 /**
  * WitchKing - GreatOrator
@@ -22,11 +21,9 @@ public class ModelWitchKing extends ModelTTM {
     public ModelRenderer bipedRightArmwear;
     public ModelRenderer bipedDeadmau5Head;
     public ModelRenderer bipedLeftLegwear;
-    public ModelRenderer bipedRightArm;
     public ModelRenderer bipedRightLeg;
     public ModelRenderer bipedHead;
     public ModelRenderer bipedBody;
-    public ModelRenderer bipedLeftArm;
     public ModelRenderer bipedLeftLeg;
     public ModelRenderer bipedBodyWear;
 
@@ -73,11 +70,6 @@ public class ModelWitchKing extends ModelTTM {
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        float scaleFactor = 1.6F;
-        GL11.glPushMatrix();
-        GL11.glTranslatef(0F, 1.5F-1.5F*scaleFactor, 0F);
-        GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
-
         this.bipedHead.render(f5);
         this.bipedBody.render(f5);
         this.bipedLeftArm.render(f5);
@@ -95,8 +87,6 @@ public class ModelWitchKing extends ModelTTM {
         this.bipedDeadmau5Head.rotationPointX = 0.0F;
         this.bipedDeadmau5Head.rotationPointY = 0.0F;
         this.bipedDeadmau5Head.render(f5);
-
-        GL11.glPopMatrix();
     }
 
     public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)

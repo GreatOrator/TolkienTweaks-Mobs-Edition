@@ -21,11 +21,9 @@ public class ModelBarrowWight extends ModelTTM {
     public ModelRenderer bipedRightArmwear;
     public ModelRenderer bipedDeadmau5Head;
     public ModelRenderer bipedLeftLegwear;
-    public ModelRenderer bipedRightArm;
     public ModelRenderer bipedRightLeg;
     public ModelRenderer bipedHead;
     public ModelRenderer bipedBody;
-    public ModelRenderer bipedLeftArm;
     public ModelRenderer bipedLeftLeg;
     public ModelRenderer bipedBodyWear;
 
@@ -132,6 +130,27 @@ public class ModelBarrowWight extends ModelTTM {
         this.bipedDeadmau5Head.rotationPointX = 0.0F;
         this.bipedDeadmau5Head.rotationPointY = 0.0F;
         this.bipedDeadmau5Head.render(f5);
+    }
+
+    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
+    {
+        this.rightArmPose = ModelBiped.ArmPose.EMPTY;
+        this.leftArmPose = ModelBiped.ArmPose.EMPTY;
+        ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
+
+        if (itemstack.getItem() == Items.BOW && ((EntityBarrowWight)entitylivingbaseIn).isSwingingArms())
+        {
+            if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT)
+            {
+                this.rightArmPose = ModelBiped.ArmPose.ITEM;
+            }
+            else
+            {
+                this.leftArmPose = ModelBiped.ArmPose.ITEM;
+            }
+        }
+
+        super.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
     }
 
     @Override

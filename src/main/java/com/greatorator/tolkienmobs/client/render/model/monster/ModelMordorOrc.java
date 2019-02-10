@@ -138,19 +138,12 @@ public class ModelMordorOrc extends ModelTTM {
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        float scaleFactor = 0.85F;
-        GL11.glPushMatrix();
-        GL11.glTranslatef(0F, 1.5F-1.5F*scaleFactor, 0F);
-        GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
-
         this.OrcHead.render(f5);
         this.OrcBody.render(f5);
         this.bipedLeftArm.render(f5);
         this.OrcLegR.render(f5);
         this.bipedRightArm.render(f5);
         this.OrcLegL.render(f5);
-
-        GL11.glPopMatrix();
     }
 
     public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)

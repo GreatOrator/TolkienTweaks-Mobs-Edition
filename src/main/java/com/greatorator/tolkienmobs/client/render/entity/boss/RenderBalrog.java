@@ -18,9 +18,12 @@ public class RenderBalrog extends RenderLiving<EntityBalrog> {
 
     public static final RenderBalrog.Factory FACTORY = new RenderBalrog.Factory();
 
-    public RenderBalrog(RenderManager rendermanagerIn) {
+    public float scale;
+
+    public RenderBalrog(RenderManager rendermanagerIn, float scale) {
         super(rendermanagerIn, new ModelBalrog(), 2.5F);
-        this.addLayer(new LayerArmed(this, 0.125f, 1.2F, 0.75F,1.5F));
+        this.scale = scale;
+        this.addLayer(new LayerArmed(this, 0.125f, 1.2F, 0.75F,2.0F));
     }
 
     @Override
@@ -32,11 +35,17 @@ public class RenderBalrog extends RenderLiving<EntityBalrog> {
     public static class Factory implements IRenderFactory<EntityBalrog> {
         @Override
         public Render<? super EntityBalrog> createRenderFor(RenderManager manager) {
-            return new RenderBalrog(manager);
+            return new RenderBalrog(manager, 2.0F);
         }
     }
 
     public void transformHeldFull3DItemLayer() {
-        GlStateManager.translate(-2.0F, 0.1875F, 0.5F);
+        GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
+    }
+
+    /** If you need to apply a GL Scale to your model this is how you do it. */
+    @Override
+    protected void preRenderCallback(EntityBalrog entitylivingbaseIn, float partialTickTime) {
+        GlStateManager.scale(scale, scale, scale);
     }
 }
