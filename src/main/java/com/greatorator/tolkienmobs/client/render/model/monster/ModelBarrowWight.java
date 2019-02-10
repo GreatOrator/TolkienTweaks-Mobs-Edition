@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import com.greatorator.tolkienmobs.entity.monster.EntityBarrowWight;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
@@ -26,52 +27,12 @@ public class ModelBarrowWight extends ModelTTM {
     public ModelRenderer bipedBody;
     public ModelRenderer bipedLeftLeg;
     public ModelRenderer bipedBodyWear;
+    private boolean ghostModel;
 
-    public ModelBarrowWight(int ghostValue, boolean ghostModel) {
-        if (ghostValue > 0) {
+    public ModelBarrowWight(boolean ghostModel) {
+        this.ghostModel = ghostModel;
             this.textureWidth = 64;
-            this.textureHeight = 128;
-            this.bipedRightArmwear = new ModelRenderer(this, 40, 32+ghostValue);
-            this.bipedRightArmwear.setRotationPoint(-5.0F, 2.0F, 0.0F);
-            this.bipedRightArmwear.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.25F);
-            this.bipedRightArm = new ModelRenderer(this, 40, 16+ghostValue);
-            this.bipedRightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
-            this.bipedRightArm.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
-            this.bipedBody = new ModelRenderer(this, 16, 16+ghostValue);
-            this.bipedBody.setRotationPoint(0.0F, 0.0F, 0.0F);
-            this.bipedBody.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.0F);
-            this.bipedRightLegwear = new ModelRenderer(this, 0, 32+ghostValue);
-            this.bipedRightLegwear.setRotationPoint(-1.9F, 12.0F, 0.0F);
-            this.bipedRightLegwear.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.25F);
-            this.bipedLeftLegwear = new ModelRenderer(this, 0, 48+ghostValue);
-            this.bipedLeftLegwear.setRotationPoint(1.9F, 12.0F, 0.0F);
-            this.bipedLeftLegwear.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.25F);
-            this.bipedLeftLeg = new ModelRenderer(this, 16, 48+ghostValue);
-            this.bipedLeftLeg.setRotationPoint(1.9F, 12.0F, 0.0F);
-            this.bipedLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
-            this.bipedLeftArmwear = new ModelRenderer(this, 48, 48+ghostValue);
-            this.bipedLeftArmwear.setRotationPoint(5.0F, 2.0F, 0.0F);
-            this.bipedLeftArmwear.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.25F);
-            this.bipedDeadmau5Head = new ModelRenderer(this, 32, ghostValue);
-            this.bipedDeadmau5Head.setRotationPoint(0.0F, 0.0F, 0.0F);
-            this.bipedDeadmau5Head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.5F);
-            this.bipedBodyWear = new ModelRenderer(this, 16, 32+ghostValue);
-            this.bipedBodyWear.setRotationPoint(0.0F, 0.0F, 0.0F);
-            this.bipedBodyWear.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.25F);
-            this.bipedRightLeg = new ModelRenderer(this, 0, 16+ghostValue);
-            this.bipedRightLeg.setRotationPoint(-1.9F, 12.0F, 0.0F);
-            this.bipedRightLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
-            this.bipedHead = new ModelRenderer(this, 0, ghostValue);
-            this.bipedHead.setRotationPoint(0.0F, 0.0F, 0.0F);
-            this.bipedHead.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
-            this.bipedLeftArm = new ModelRenderer(this, 32, 48+ghostValue);
-            this.bipedLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
-            this.bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
-        }
-        else
-        {
-            this.textureWidth = 64;
-            this.textureHeight = 128;
+            this.textureHeight = 64;
             this.bipedRightArmwear = new ModelRenderer(this, 40, 32);
             this.bipedRightArmwear.setRotationPoint(-5.0F, 2.0F, 0.0F);
             this.bipedRightArmwear.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.25F);
@@ -108,28 +69,37 @@ public class ModelBarrowWight extends ModelTTM {
             this.bipedLeftArm = new ModelRenderer(this, 32, 48);
             this.bipedLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
             this.bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
-        }
     }
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        this.bipedHead.render(f5);
-        this.bipedRightArm.render(f5);
-        this.bipedRightLeg.render(f5);
-        this.bipedLeftLeg.render(f5);
-        this.bipedBody.render(f5);
-        this.bipedLeftArm.render(f5);
+        if (ghostModel) {
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            GlStateManager.enableNormalize();
+            GlStateManager.enableBlend();
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        }
+            this.bipedHead.render(f5);
+            this.bipedRightArm.render(f5);
+            this.bipedRightLeg.render(f5);
+            this.bipedLeftLeg.render(f5);
+            this.bipedBody.render(f5);
+            this.bipedLeftArm.render(f5);
 
-        this.bipedLeftLegwear.render(f5);
-        this.bipedRightLegwear.render(f5);
-        this.bipedLeftArmwear.render(f5);
-        this.bipedRightArmwear.render(f5);
-        this.bipedBodyWear.render(f5);
+            this.bipedLeftLegwear.render(f5);
+            this.bipedRightLegwear.render(f5);
+            this.bipedLeftArmwear.render(f5);
+            this.bipedRightArmwear.render(f5);
+            this.bipedBodyWear.render(f5);
 
-        copyModelAngles(this.bipedHead, this.bipedDeadmau5Head);
-        this.bipedDeadmau5Head.rotationPointX = 0.0F;
-        this.bipedDeadmau5Head.rotationPointY = 0.0F;
-        this.bipedDeadmau5Head.render(f5);
+            copyModelAngles(this.bipedHead, this.bipedDeadmau5Head);
+            this.bipedDeadmau5Head.rotationPointX = 0.0F;
+            this.bipedDeadmau5Head.rotationPointY = 0.0F;
+            this.bipedDeadmau5Head.render(f5);
+        if (ghostModel) {
+            GlStateManager.disableBlend();
+            GlStateManager.disableNormalize();
+        }
     }
 
     public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)

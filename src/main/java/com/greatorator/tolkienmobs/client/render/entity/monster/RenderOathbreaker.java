@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.client.render.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
-import com.greatorator.tolkienmobs.client.render.entity.layers.LayerGhost;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelBarrowWight;
 import com.greatorator.tolkienmobs.entity.monster.EntityOathbreaker;
 import net.minecraft.client.renderer.GlStateManager;
@@ -25,8 +24,7 @@ public class RenderOathbreaker extends RenderLiving<EntityOathbreaker> {
     public static final RenderOathbreaker.Factory FACTORY = new RenderOathbreaker.Factory();
 
     public RenderOathbreaker(RenderManager rendermanagerIn) {
-        super(rendermanagerIn, new ModelBarrowWight(64, true), 0.5F);
-        this.addLayer(new LayerGhost(this, new ModelBarrowWight(0, true)));
+        super(rendermanagerIn, new ModelBarrowWight(true), 0.5F);
         this.addLayer(new LayerArmed(this, 0.0625f, 0.02F, -0.6F,1F));
     }
 

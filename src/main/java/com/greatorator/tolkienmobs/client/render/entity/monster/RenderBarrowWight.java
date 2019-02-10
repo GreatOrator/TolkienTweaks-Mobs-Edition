@@ -25,9 +25,8 @@ public class RenderBarrowWight extends RenderLiving<EntityBarrowWight> {
 
     public float scale;
 
-    public RenderBarrowWight(RenderManager rendermanagerIn, float scale) {
-        super(rendermanagerIn, new ModelBarrowWight(0, true), 0.5F);
-        this.scale = scale;
+    public RenderBarrowWight(RenderManager rendermanagerIn) {
+        super(rendermanagerIn, new ModelBarrowWight(false), 0.5F);
         this.addLayer(new LayerArmed(this, 0.0825F, 0.135F, -0.525F, 1F));
     }
 
@@ -41,17 +40,11 @@ public class RenderBarrowWight extends RenderLiving<EntityBarrowWight> {
     public static class Factory implements IRenderFactory<EntityBarrowWight> {
         @Override
         public Render<? super EntityBarrowWight> createRenderFor(RenderManager manager) {
-            return new RenderBarrowWight(manager, 1.0F);
+            return new RenderBarrowWight(manager);
         }
     }
 
     public void transformHeldFull3DItemLayer() {
         GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
-    }
-
-    /** If you need to apply a GL Scale to your model this is how you do it. */
-    @Override
-    protected void preRenderCallback(EntityBarrowWight entitylivingbaseIn, float partialTickTime) {
-        GlStateManager.scale(scale, scale, scale);
     }
 }
