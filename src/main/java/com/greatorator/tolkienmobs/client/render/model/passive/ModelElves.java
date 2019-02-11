@@ -12,8 +12,6 @@ public class ModelElves extends ModelTTM {
     public ModelRenderer ElfBody;
     public ModelRenderer ElfHead;
     public ModelRenderer ElfLegRight;
-    public ModelRenderer ElfArmRight;
-    public ModelRenderer ElfArmLeft;
     public ModelRenderer ElfLegLeft;
     public ModelRenderer ElfEarLeft1;
     public ModelRenderer ElfEarRight1;
@@ -34,9 +32,9 @@ public class ModelElves extends ModelTTM {
         this.ElfEarLeft2 = new ModelRenderer(this, 35, 10);
         this.ElfEarLeft2.setRotationPoint(0.0F, -1.0F, 1.0F);
         this.ElfEarLeft2.addBox(-0.5F, -0.5F, -0.5F, 1, 2, 2, 0.0F);
-        this.ElfArmRight = new ModelRenderer(this, 40, 16);
-        this.ElfArmRight.setRotationPoint(-5.0F, 2.0F, 0.0F);
-        this.ElfArmRight.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+        this.bipedRightArm = new ModelRenderer(this, 40, 16);
+        this.bipedRightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
+        this.bipedRightArm.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
         this.ElfBody = new ModelRenderer(this, 16, 16);
         this.ElfBody.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.ElfBody.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.0F);
@@ -53,9 +51,9 @@ public class ModelElves extends ModelTTM {
         this.ElfEarRight2 = new ModelRenderer(this, 35, 10);
         this.ElfEarRight2.setRotationPoint(0.0F, -1.0F, 1.0F);
         this.ElfEarRight2.addBox(-0.5F, -0.5F, -0.5F, 1, 2, 2, 0.0F);
-        this.ElfArmLeft = new ModelRenderer(this, 32, 48);
-        this.ElfArmLeft.setRotationPoint(5.0F, 2.0F, 0.0F);
-        this.ElfArmLeft.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+        this.bipedLeftArm = new ModelRenderer(this, 32, 48);
+        this.bipedLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
+        this.bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
         this.ElfLegLeft = new ModelRenderer(this, 16, 48);
         this.ElfLegLeft.setRotationPoint(1.9F, 12.0F, 0.0F);
         this.ElfLegLeft.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
@@ -65,12 +63,12 @@ public class ModelElves extends ModelTTM {
         this.ElfEarRight1.addChild(this.ElfEarRight3);
         this.ElfHead.addChild(this.ElfEarRight1);
         this.ElfEarLeft1.addChild(this.ElfEarLeft2);
-        this.ElfBody.addChild(this.ElfArmRight);
+        this.ElfBody.addChild(this.bipedRightArm);
         this.ElfHead.addChild(this.ElfEarLeft1);
         this.ElfBody.addChild(this.ElfHead);
         this.ElfBody.addChild(this.ElfLegRight);
         this.ElfEarRight1.addChild(this.ElfEarRight2);
-        this.ElfBody.addChild(this.ElfArmLeft);
+        this.ElfBody.addChild(this.bipedLeftArm);
         this.ElfBody.addChild(this.ElfLegLeft);
         this.ElfEarLeft1.addChild(this.ElfEarLeft3);
     }
@@ -85,8 +83,9 @@ public class ModelElves extends ModelTTM {
     {
         this.ElfLegLeft.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.ElfLegRight.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-        this.ElfArmRight.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.ElfArmLeft.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+
+        this.bipedLeftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.bipedRightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 
         this.ElfHead.rotateAngleY = netHeadYaw * 0.017453292F;
         this.ElfHead.rotateAngleX = headPitch * 0.017453292F;

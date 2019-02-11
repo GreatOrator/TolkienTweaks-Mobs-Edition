@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.entity.special;
 
+import com.greatorator.tolkienmobs.entity.EntityTTM;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import com.greatorator.tolkienmobs.entity.passive.EntityHuman;
@@ -9,36 +10,24 @@ import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
-import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class EntityNazgul extends EntityMob implements IMob {
+public class EntityNazgul extends EntityTTM implements IMob {
 
-    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityNazgul.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityNazgul.class, DataSerializers.BOOLEAN);
-
-    private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
+    private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.YELLOW, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
 
     /** Above zero if the Witch-king is Angry. */
     private int angerLevel;
@@ -46,26 +35,15 @@ public class EntityNazgul extends EntityMob implements IMob {
     private int randomSoundDelay;
     private UUID angerTargetUUID;
 
-    private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false)
-    {
-        public void resetTask()
-        {
-            super.resetTask();
-            EntityNazgul.this.setSwingingArms(false);
-        }
-
-        public void startExecuting()
-        {
-            super.startExecuting();
-            EntityNazgul.this.setSwingingArms(true);
-        }
-    };
-
     public EntityNazgul(World worldIn) {
         super(worldIn);
         this.setSize(1.7F, 3.2F);
+        this.setTtmAttack(true);
+        this.setWeaponType(TTMFeatures.SWORD_MORGULIRON);
+        this.setTtmEffect(MobEffects.BLINDNESS);
+        this.setTtmDuration(200);
         this.isImmuneToFire = true;
-        this.experienceValue = 200;
+        this.experienceValue = 100;
     }
 
     protected void initEntityAI() {
@@ -82,13 +60,6 @@ public class EntityNazgul extends EntityMob implements IMob {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHobbit.class, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHuman.class, true));
-    }
-
-    @Override
-    protected void entityInit() {
-        super.entityInit();
-        this.dataManager.register(ATTACKING, Boolean.valueOf(false));
-        this.dataManager.register(SWINGING_ARMS, Boolean.valueOf(true));
     }
 
     @Override
@@ -118,22 +89,6 @@ public class EntityNazgul extends EntityMob implements IMob {
         }
     }
 
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty)
-    {
-        super.setEquipmentBasedOnDifficulty(difficulty);
-        this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(TTMFeatures.SWORD_MORGULIRON));
-    }
-
-    @Nullable
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
-    {
-        IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
-        this.setEquipmentBasedOnDifficulty(difficulty);
-        this.setCombatTask();
-        return ientitylivingdata;
-    }
-
     public void addTrackingPlayer(EntityPlayerMP player)
     {
         super.addTrackingPlayer(player);
@@ -144,67 +99,6 @@ public class EntityNazgul extends EntityMob implements IMob {
     {
         super.removeTrackingPlayer(player);
         this.bossInfo.removePlayer(player);
-    }
-
-    public void setCombatTask()
-    {
-        if (this.world != null && !this.world.isRemote)
-        {
-            this.tasks.removeTask(this.aiAttackOnCollide);
-            ItemStack itemstack = this.getHeldItemMainhand();
-
-            if (itemstack.getItem() == TTMFeatures.SWORD_MORGULIRON)
-            {
-                this.tasks.addTask(4, this.aiAttackOnCollide);
-            }
-            else
-            {
-                int i = 20;
-
-                if (this.world.getDifficulty() != EnumDifficulty.HARD)
-                {
-                    i = 40;
-                }
-            }
-        }
-    }
-
-    public boolean attackEntityAsMob(Entity entityIn)
-    {
-        if (!super.attackEntityAsMob(entityIn))
-        {
-            return false;
-        }
-        else
-        {
-            if (entityIn instanceof EntityLivingBase)
-            {
-                ((EntityLivingBase)entityIn).addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 200));
-            }
-
-            return true;
-        }
-    }
-
-    public void setItemStackToSlot(EntityEquipmentSlot slotIn, ItemStack stack)
-    {
-        super.setItemStackToSlot(slotIn, stack);
-
-        if (!this.world.isRemote && slotIn == EntityEquipmentSlot.MAINHAND)
-        {
-            this.setCombatTask();
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
-    public boolean isSwingingArms()
-    {
-        return ((Boolean)this.dataManager.get(SWINGING_ARMS)).booleanValue();
-    }
-
-    public void setSwingingArms(boolean swingingArms)
-    {
-        this.dataManager.set(SWINGING_ARMS, Boolean.valueOf(swingingArms));
     }
 
     public void writeEntityToNBT(NBTTagCompound compound)

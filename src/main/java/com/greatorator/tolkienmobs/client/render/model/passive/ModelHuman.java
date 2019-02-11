@@ -12,8 +12,6 @@ public class ModelHuman extends ModelTTM {
     public ModelRenderer HumanBody;
     public ModelRenderer HumanHead;
     public ModelRenderer HumanLegRight;
-    public ModelRenderer HumanArmRight;
-    public ModelRenderer HumanArmLeft;
     public ModelRenderer HumanLegLeft;
 
     public ModelHuman() {
@@ -22,9 +20,9 @@ public class ModelHuman extends ModelTTM {
         this.HumanHead = new ModelRenderer(this, 0, 0);
         this.HumanHead.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.HumanHead.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
-        this.HumanArmLeft = new ModelRenderer(this, 32, 48);
-        this.HumanArmLeft.setRotationPoint(5.0F, 2.0F, 0.0F);
-        this.HumanArmLeft.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+        this.bipedLeftArm = new ModelRenderer(this, 32, 48);
+        this.bipedLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
+        this.bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
         this.HumanBody = new ModelRenderer(this, 16, 16);
         this.HumanBody.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.HumanBody.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.0F);
@@ -34,14 +32,14 @@ public class ModelHuman extends ModelTTM {
         this.HumanLegRight = new ModelRenderer(this, 0, 16);
         this.HumanLegRight.setRotationPoint(-1.9F, 12.0F, 0.0F);
         this.HumanLegRight.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
-        this.HumanArmRight = new ModelRenderer(this, 40, 16);
-        this.HumanArmRight.setRotationPoint(-5.0F, 2.0F, 0.0F);
-        this.HumanArmRight.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+        this.bipedRightArm = new ModelRenderer(this, 40, 16);
+        this.bipedRightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
+        this.bipedRightArm.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
         this.HumanBody.addChild(this.HumanHead);
-        this.HumanBody.addChild(this.HumanArmLeft);
+        this.HumanBody.addChild(this.bipedLeftArm);
         this.HumanBody.addChild(this.HumanLegLeft);
         this.HumanBody.addChild(this.HumanLegRight);
-        this.HumanBody.addChild(this.HumanArmRight);
+        this.HumanBody.addChild(this.bipedRightArm);
     }
 
     @Override
@@ -54,8 +52,8 @@ public class ModelHuman extends ModelTTM {
     {
         this.HumanLegLeft.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.HumanLegRight.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-        this.HumanArmRight.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.HumanArmLeft.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+        this.bipedRightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.bipedLeftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
 
         this.HumanHead.rotateAngleY = netHeadYaw * 0.017453292F;
         this.HumanHead.rotateAngleX = headPitch * 0.017453292F;

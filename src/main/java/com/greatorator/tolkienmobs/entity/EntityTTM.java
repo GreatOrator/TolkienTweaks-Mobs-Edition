@@ -18,9 +18,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.EnumDifficulty;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -30,6 +28,7 @@ public class EntityTTM extends EntityMob {
     private int texture_index;
 
     private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityTTM.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityTTM.class, DataSerializers.BOOLEAN);
     private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false)
     {
         public void resetTask()
@@ -50,6 +49,7 @@ public class EntityTTM extends EntityMob {
     private int rndMax;
     private int rndMin;
     private boolean burnState;
+    private boolean ttmAttack;
 
     public EntityTTM(World worldIn) {
         super(worldIn);
@@ -120,6 +120,9 @@ public class EntityTTM extends EntityMob {
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(SWINGING_ARMS, Boolean.valueOf(true));
+        if(ttmAttack) {
+            this.dataManager.register(ATTACKING, Boolean.valueOf(false));
+        }
     }
 
     @SideOnly(Side.CLIENT)
@@ -218,14 +221,6 @@ public class EntityTTM extends EntityMob {
         this.texture_index = buffer.readInt();
     }
 
-    public void setTtmEffect(Potion ttmEffect) {
-        this.ttmEffect = ttmEffect;
-    }
-
-    public void setTtmDuration(int ttmDuration) {
-        this.ttmDuration = ttmDuration;
-    }
-
     public void setRndMinMax(int rndMin, int rndMax) {
         this.rndMin = rndMin;
         this.rndMax = rndMax;
@@ -237,5 +232,17 @@ public class EntityTTM extends EntityMob {
 
     public void setWeaponType(Item weaponType) {
         this.weaponType = weaponType;
+    }
+
+    public void setTtmEffect(Potion ttmEffect) {
+        this.ttmEffect = ttmEffect;
+    }
+
+    public void setTtmDuration(int ttmDuration) {
+        this.ttmDuration = ttmDuration;
+    }
+
+    public void setTtmAttack(boolean ttmAttack) {
+        this.ttmAttack = ttmAttack;
     }
 }

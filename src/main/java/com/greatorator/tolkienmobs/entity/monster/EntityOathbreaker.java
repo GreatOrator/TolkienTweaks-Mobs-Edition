@@ -7,6 +7,7 @@ import com.greatorator.tolkienmobs.entity.passive.EntityHuman;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
@@ -54,6 +55,11 @@ public class EntityOathbreaker extends EntityTTM implements IEntityAdditionalSpa
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(5.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(15.0D);
+    }
+
+    public EnumCreatureAttribute getCreatureAttribute()
+    {
+        return EnumCreatureAttribute.UNDEAD;
     }
 
     @Override
