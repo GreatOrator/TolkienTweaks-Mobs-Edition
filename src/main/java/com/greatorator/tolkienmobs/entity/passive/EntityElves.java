@@ -83,7 +83,7 @@ public class EntityElves extends EntityVillager implements IEntityAdditionalSpaw
                     break;
 
                 case 2:
-                    prof = VillagerRegistry.getById(1);
+                    prof = ProfessionInit.getPetSupplies();
                     break;
 
                 case 3:
@@ -111,7 +111,7 @@ public class EntityElves extends EntityVillager implements IEntityAdditionalSpaw
                     break;
 
                 case 9:
-                    prof = VillagerRegistry.getById(1);
+                    prof = ProfessionInit.getPetSupplies();
                     break;
 
                 case 10:
@@ -139,7 +139,7 @@ public class EntityElves extends EntityVillager implements IEntityAdditionalSpaw
                     break;
 
                 case 16:
-                    prof = VillagerRegistry.getById(5);
+                    prof = ProfessionInit.getPetSupplies();
 
             }
             this.setProfession(VillagerRegistry.getId(prof));

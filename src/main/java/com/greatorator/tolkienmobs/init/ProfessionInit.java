@@ -24,6 +24,7 @@ public class ProfessionInit {
     /** Professions */
     public static VillagerProfession COIN_TRADER;
     public static VillagerProfession GROCERY_STORE;
+    public static VillagerProfession PET_MERCHANT;
 
     /** Let's make it so people have a life choice to make. */
     @Mod.EventBusSubscriber(modid = TolkienMobs.MODID)
@@ -47,6 +48,12 @@ public class ProfessionInit {
                     TolkienMobs.MODID+":textures/entity/profession/grocery_store.png",
                     TolkienMobs.MODID+":textures/entity/profession/grocery_store.png");
             registry.register(GROCERY_STORE);
+
+            PET_MERCHANT = new VillagerRegistry.VillagerProfession(
+                    TolkienMobs.MODID+":pet_merchant",
+                    TolkienMobs.MODID+":textures/entity/profession/pet_merchant.png",
+                    TolkienMobs.MODID+":textures/entity/profession/pet_merchant.png");
+            registry.register(PET_MERCHANT);
         }
     }
 
@@ -69,6 +76,10 @@ public class ProfessionInit {
                     .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.ENT_DRAUGHT), new ItemStack(silver_coin),1, 5))
                     .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.MIRUVOR), new ItemStack(silver_coin),2, 6));
 
+        VillagerRegistry.VillagerCareer pet_seller = new VillagerCareer(PET_MERCHANT, "pet_seller");
+          pet_seller.addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.INSECT, 4), new ItemStack(brons_coin),5, 36))
+                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.GOLDEN_INSECT, 2), new ItemStack(brons_coin),10, 52));
+
         // DEBUG
         LogHelperTTM.info("All positions are now filled, thank you for applying.");
     }
@@ -80,5 +91,9 @@ public class ProfessionInit {
 
     public static VillagerRegistry.VillagerProfession getGroceryStore() {
         return GROCERY_STORE;
+    }
+
+    public static VillagerRegistry.VillagerProfession getPetSupplies() {
+        return PET_MERCHANT;
     }
 }

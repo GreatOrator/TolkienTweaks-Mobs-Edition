@@ -89,7 +89,7 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
                     break;
 
                 case 4:
-                    prof = VillagerRegistry.getById(4);
+                    prof = ProfessionInit.getPetSupplies();
 
             }
             this.setProfession(net.minecraftforge.fml.common.registry.VillagerRegistry.getId(prof));

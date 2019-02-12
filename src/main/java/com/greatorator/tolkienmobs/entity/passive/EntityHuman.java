@@ -83,7 +83,7 @@ public class EntityHuman extends EntityVillager implements IEntityAdditionalSpaw
                     break;
 
                 case 2:
-                    prof = VillagerRegistry.getById(3);
+                    prof = ProfessionInit.getPetSupplies();
                     break;
 
                 case 3:
@@ -115,7 +115,7 @@ public class EntityHuman extends EntityVillager implements IEntityAdditionalSpaw
                     break;
 
                 case 10:
-                    prof = VillagerRegistry.getById(0);
+                    prof = ProfessionInit.getPetSupplies();
                     break;
 
                 case 11:
@@ -135,7 +135,7 @@ public class EntityHuman extends EntityVillager implements IEntityAdditionalSpaw
                     break;
 
                 case 15:
-                    prof = VillagerRegistry.getById(4);
+                    prof = ProfessionInit.getPetSupplies();
                     break;
 
                 case 16:

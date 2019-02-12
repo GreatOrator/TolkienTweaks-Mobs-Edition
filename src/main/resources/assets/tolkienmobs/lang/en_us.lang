@@ -227,6 +227,7 @@ entity.oathbreaker.name=Oath Breaker
 
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer
+entity.Villager.pet_seller=Pet Supplies
 
 //Creative Tabs
 itemGroup.tolkienmobs:tools=TolkienTweaks Tools

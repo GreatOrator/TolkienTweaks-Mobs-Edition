@@ -104,7 +104,7 @@ public class EntityDwarf extends EntityVillager implements IEntityAdditionalSpaw
                     break;
 
                 case 4:
-                    prof = VillagerRegistry.getById(3);
+                    prof = ProfessionInit.getPetSupplies();
 
             }
             this.setProfession(net.minecraftforge.fml.common.registry.VillagerRegistry.getId(prof));
