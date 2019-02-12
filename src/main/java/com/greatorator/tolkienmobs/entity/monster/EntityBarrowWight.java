@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-import com.greatorator.tolkienmobs.entity.EntityTTM;
+import com.greatorator.tolkienmobs.entity.EntityHostiles;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import com.greatorator.tolkienmobs.entity.passive.EntityHuman;
@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import javax.annotation.Nullable;
 
-public class EntityBarrowWight extends EntityTTM implements IEntityAdditionalSpawnData {
+public class EntityBarrowWight extends EntityHostiles implements IEntityAdditionalSpawnData {
     public EntityBarrowWight(World worldIn) {
         super(worldIn);
         this.setSize(1.0F, 2.0F);

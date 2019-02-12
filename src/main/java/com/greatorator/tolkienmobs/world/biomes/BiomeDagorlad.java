@@ -3,7 +3,6 @@ package com.greatorator.tolkienmobs.world.biomes;
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
-import com.greatorator.tolkienmobs.entity.monster.EntityMumakil;
 import com.greatorator.tolkienmobs.entity.monster.EntityUrukHai;
 import com.greatorator.tolkienmobs.entity.monster.EntityWarg;
 import com.greatorator.tolkienmobs.init.TTMFeatures;

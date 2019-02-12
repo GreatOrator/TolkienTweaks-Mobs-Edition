@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.client.render.entity.monster;
+package com.greatorator.tolkienmobs.client.render.entity;
 
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerLegBandBirds;
 import com.greatorator.tolkienmobs.entity.EntityBirds;

@@ -24,23 +24,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class EntityTTM extends EntityMob {
+public class EntityHostiles extends EntityMob {
     private int texture_index;
 
-    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityTTM.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityTTM.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityHostiles.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityHostiles.class, DataSerializers.BOOLEAN);
     private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false)
     {
         public void resetTask()
         {
             super.resetTask();
-            EntityTTM.this.setSwingingArms(false);
+            EntityHostiles.this.setSwingingArms(false);
         }
 
         public void startExecuting()
         {
             super.startExecuting();
-            EntityTTM.this.setSwingingArms(true);
+            EntityHostiles.this.setSwingingArms(true);
         }
     };
     private Item weaponType;
@@ -51,7 +51,7 @@ public class EntityTTM extends EntityMob {
     private boolean burnState;
     private boolean ttmAttack;
 
-    public EntityTTM(World worldIn) {
+    public EntityHostiles(World worldIn) {
         super(worldIn);
     }
 

@@ -1,6 +1,8 @@
 package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.client.render.entity.RenderBirds;
+import com.greatorator.tolkienmobs.client.render.entity.RenderHerds;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderBoulder;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderFellBeastFireball;
 import com.greatorator.tolkienmobs.client.render.entity.boss.RenderBalrog;
@@ -11,6 +13,7 @@ import com.greatorator.tolkienmobs.client.render.entity.monster.*;
 import com.greatorator.tolkienmobs.client.render.entity.passive.*;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderGollum;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelCrebain;
+import com.greatorator.tolkienmobs.client.render.model.passive.ModelAuroch;
 import com.greatorator.tolkienmobs.client.render.model.passive.ModelMumakil;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
@@ -59,14 +62,6 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityMordorOrc.class, RenderMordorOrc.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityWarg.class, RenderWarg.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(
-                EntityMumakil.class,
-                RenderHerdAnimal.getRenderFactory(
-                        new ModelMumakil(),
-                        2.0F,
-                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/mumakil/mumakil0.png")
-                )
-        );
-        RenderingRegistry.registerEntityRenderingHandler(
                 EntityCrebain.class,
                 RenderBirds.getRenderFactory(
                         new ModelCrebain(),
@@ -85,13 +80,28 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityNazgul.class, RenderNazgul.FACTORY);
 
         /** Passive */
-        RenderingRegistry.registerEntityRenderingHandler(EntityAuroch.class, RenderAuroch.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityHobbit.class, RenderHobbit.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityDwarf.class, RenderDwarf.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityHuman.class, RenderHuman.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityElves.class, RenderElves.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityGoat.class, RenderGoat.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityToad.class, RenderToad.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(
+                EntityMumakil.class,
+                RenderHerds.getRenderFactory(
+                        new ModelMumakil(),
+                        2.0F,
+                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/mumakil.png")
+                )
+        );
+        RenderingRegistry.registerEntityRenderingHandler(
+                EntityAuroch.class,
+                RenderHerds.getRenderFactory(
+                        new ModelAuroch(),
+                        0.5F,
+                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/auroch.png")
+                )
+        );
 
         /** Miscellaneous */
         RenderingRegistry.registerEntityRenderingHandler(EntityBoulder.class, RenderBoulder.FACTORY);

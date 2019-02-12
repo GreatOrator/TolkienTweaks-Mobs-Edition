@@ -6,7 +6,7 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
 
 @Cancelable
-public class CrebainTameEvent extends LivingEvent {
+public class BirdTameEvent extends LivingEvent {
     private final EntityBirds theBird;
     private final EntityPlayer tamer;
 
@@ -16,7 +16,7 @@ public class CrebainTameEvent extends LivingEvent {
      * @param parBird the par bird
      * @param parTamer the par tamer
      */
-    public CrebainTameEvent(EntityBirds parBird, EntityPlayer parTamer)
+    public BirdTameEvent(EntityBirds parBird, EntityPlayer parTamer)
     {
         super(parBird);
         theBird = parBird;

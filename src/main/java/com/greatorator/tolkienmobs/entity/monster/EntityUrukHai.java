@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-import com.greatorator.tolkienmobs.entity.EntityTTM;
+import com.greatorator.tolkienmobs.entity.EntityHostiles;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import com.greatorator.tolkienmobs.init.LootInit;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import javax.annotation.Nullable;
 
-public class EntityUrukHai extends EntityTTM implements IEntityAdditionalSpawnData {
+public class EntityUrukHai extends EntityHostiles implements IEntityAdditionalSpawnData {
 
     public EntityUrukHai(World worldIn) {
         super(worldIn);

@@ -1,11 +1,18 @@
 package com.greatorator.tolkienmobs.entity;
 
+import java.util.UUID;
+
+import com.google.common.base.Optional;
+
 import com.greatorator.tolkienmobs.entity.entityai.AIStates;
-import com.greatorator.tolkienmobs.handler.interfaces.IModEntity;
 import com.greatorator.tolkienmobs.entity.entityai.ProcessStateBirds;
 import com.greatorator.tolkienmobs.entity.entityai.UpdateStateBirds;
-import com.greatorator.tolkienmobs.entity.events.CrebainTameEvent;
+import com.greatorator.tolkienmobs.entity.events.BirdTameEvent;
+import com.greatorator.tolkienmobs.handler.interfaces.IModEntity;
 import com.greatorator.tolkienmobs.init.SoundInit;
+import com.greatorator.tolkienmobs.init.TTMFeatures;
+import com.greatorator.tolkienmobs.utils.LogHelperTTM;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityFlying;
@@ -17,9 +24,11 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityParrot;
 import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -37,10 +46,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.google.common.base.Optional;
-import java.util.UUID;
-
-public class EntityBirds extends EntityFlying implements IModEntity {
+/** Borrowed from Jabelar https:/**github.com/jabelar */
+public class EntityBirds extends EntityFlying implements IModEntity
+{
     protected static final DataParameter<Float> SCALE_FACTOR = EntityDataManager.<Float>createKey(EntityBirds.class, DataSerializers.FLOAT);
     protected static final DataParameter<Integer> STATE = EntityDataManager.<Integer>createKey(EntityBirds.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SOAR_CLOCKWISE = EntityDataManager.<Boolean>createKey(EntityBirds.class, DataSerializers.BOOLEAN);
@@ -52,20 +60,15 @@ public class EntityBirds extends EntityFlying implements IModEntity {
     protected final AttributeModifier TAMED_MODIFIER = new AttributeModifier("Tamed health and attack boost", 2.0D, 0);
 
     public ProcessStateBirds aiProcessState;
-    public UpdateStateBirds aiUpdateState;
+    public UpdateStateBirds aiUpdateState;;
 
     protected int randFactor;
 
     @SuppressWarnings("rawtypes")
-    private Class[] preyArray = new Class[] {EntityChicken.class, EntityBat.class, EntityPlayer.class, EntityRabbit.class, EntityParrot.class};
+    private Class[] preyArray = new Class[] {EntityChicken.class, EntityBat.class, EntityRabbit.class, EntityParrot.class};
 
     private final double TAMED_HEALTH = 30.0D;
 
-    /**
-     * Instantiates a new entity bird of prey.
-     *
-     * @param parWorld the par world
-     */
     public EntityBirds(World parWorld)
     {
         super(parWorld);
@@ -82,7 +85,7 @@ public class EntityBirds extends EntityFlying implements IModEntity {
         dataManager.register(SCALE_FACTOR, 1.0F);
         dataManager.register(STATE, AIStates.STATE_TAKING_OFF);
         dataManager.register(SOAR_CLOCKWISE, world.rand.nextBoolean());
-        dataManager.register(SOAR_HEIGHT, (float)(126-randFactor));
+        dataManager.register(SOAR_HEIGHT, (float)(70-randFactor));
         dataManager.register(ANCHOR_POS, new BlockPos(posX, posY, posZ));
         dataManager.register(OWNER_UUID, Optional.absent());
         dataManager.register(LEG_BAND_COLOR, Integer.valueOf(EnumDyeColor.RED.getDyeDamage()));
@@ -98,18 +101,16 @@ public class EntityBirds extends EntityFlying implements IModEntity {
     @Override
     public void initEntityAI()
     {
-        clearAITasks(); // clear any tasks assigned in super classes
-        aiProcessState = new ProcessStateBirds(this);
-        aiUpdateState = new UpdateStateBirds(this);
-    }
-
-    @Override
-    protected void applyEntityAttributes()
-    {
-        super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
-        // need to register any additional attributes
+        clearAITasks();
+     aiProcessState = new ProcessStateBirds(this);
+     aiUpdateState = new UpdateStateBirds(this);
+     }
+         @Override
+         protected void applyEntityAttributes()
+         {
+         super.applyEntityAttributes();
+         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
+         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
         getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
     }
@@ -128,7 +129,7 @@ public class EntityBirds extends EntityFlying implements IModEntity {
     @SideOnly(Side.CLIENT)
     public boolean isInRangeToRenderDist(double parDistance)
     {
-        return true; // need to see them even when far away or high above
+        return true; /* need to see them even when far away or high above */
     }
 
     @Override
@@ -140,13 +141,13 @@ public class EntityBirds extends EntityFlying implements IModEntity {
     @Override
     public void fall(float parDistance, float parDamageMultiplier)
     {
-        // do nothing since bird cannot fall
+        /** do nothing since bird cannot fall */
     }
 
     @Override
     protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos)
     {
-        // do nothing since birds cannot fall
+        /** do nothing since birds cannot fall */
     }
 
     @Override
@@ -166,6 +167,19 @@ public class EntityBirds extends EntityFlying implements IModEntity {
     public boolean canAttackClass(Class parClass)
     {
         return true;
+    }
+
+    @Override
+    public Item getDropItem()
+    {
+        return Items.FEATHER;
+    }
+
+    @Override
+    protected void dropFewItems(boolean parRecentlyHitByPlayer, int parLootLevel)
+    {
+        dropItem(TTMFeatures.CREBAIN_FEATHER, parLootLevel+1);
+        return;
     }
 
     @Override
@@ -244,8 +258,7 @@ public class EntityBirds extends EntityFlying implements IModEntity {
     }
 
     @Override
-    public boolean processInteract(EntityPlayer parPlayer, EnumHand parHand)
-    {
+    public boolean processInteract(EntityPlayer parPlayer, EnumHand parHand) {
         if (parHand == EnumHand.OFF_HAND)
         {
             return super.processInteract(parPlayer, parHand);
@@ -253,8 +266,8 @@ public class EntityBirds extends EntityFlying implements IModEntity {
 
         ItemStack itemStackInHand = parPlayer.getHeldItem(parHand);
 
-        if (!itemStackInHand.isEmpty()) // something in hand
-        {
+        if (!itemStackInHand.isEmpty())
+         {
             if (isTamed())
             {
                 if (itemStackInHand.getItem() instanceof ItemFood)
@@ -290,7 +303,7 @@ public class EntityBirds extends EntityFlying implements IModEntity {
                     }
                 }
             }
-            else // not tamed
+            else
             {
                 if (isTamingFood(itemStackInHand))
                 {
@@ -299,10 +312,9 @@ public class EntityBirds extends EntityFlying implements IModEntity {
                         decrementStackInHand(parPlayer, itemStackInHand);
                     }
 
-                    // Try taming
                     if (!world.isRemote)
                     {
-                        if (rand.nextInt(3) == 0) // && onAnimalTame(this, parPlayer))
+                        if (rand.nextInt(3) == 0)
                         {
                             setTamedBy(parPlayer);
                             navigator.clearPath();
@@ -311,24 +323,21 @@ public class EntityBirds extends EntityFlying implements IModEntity {
                             playTameEffect(true);
                             world.setEntityState(this, (byte)7);
                         }
-                        else
-                        {
+                        else {
                             playTameEffect(false);
-                            world.setEntityState(this, (byte)6);
+                            world.setEntityState(this, (byte) 6);
                         }
                     }
                 }
             }
         }
-        else // nothing in hand
-        {
-        }
+        else {
 
+        }
         return super.processInteract(parPlayer, parHand);
     }
 
-    protected void decrementStackInHand(EntityPlayer parPlayer, ItemStack itemStackInHand)
-    {
+    protected void decrementStackInHand(EntityPlayer parPlayer, ItemStack itemStackInHand) {
         itemStackInHand.shrink(1);
         if (!parPlayer.capabilities.isCreativeMode && itemStackInHand.getCount() <= 0)
         {
@@ -338,21 +347,21 @@ public class EntityBirds extends EntityFlying implements IModEntity {
 
     public static boolean onAnimalTame(EntityBirds animal, EntityPlayer tamer)
     {
-        boolean success = MinecraftForge.EVENT_BUS.post(new CrebainTameEvent(animal, tamer));
+        boolean success = MinecraftForge.EVENT_BUS.post(new BirdTameEvent(animal, tamer));
 
         return success;
     }
 
     public boolean isTamingFood(ItemStack parItemStack)
     {
-        // check for raw salmon
+        /** check for raw salmon */
         return (parItemStack.getItem() == Items.FISH && parItemStack.getMetadata() == 1);
     }
 
     @Override
     public int getMaxSpawnedInChunk()
     {
-        return 8;
+        return 1;
     }
 
     @Override
@@ -362,8 +371,7 @@ public class EntityBirds extends EntityFlying implements IModEntity {
     }
 
     @SideOnly(Side.CLIENT)
-    protected <T> boolean canRenderName(T entity)
-    {
+    protected <T> boolean canRenderName(T entity) {
         return false;
     }
 
@@ -382,10 +390,9 @@ public class EntityBirds extends EntityFlying implements IModEntity {
 
             if (entityLivingBase != null)
             {
-                return entityLivingBase.getTeam();
+            return entityLivingBase.getTeam();
             }
         }
-
         return super.getTeam();
     }
 
@@ -406,7 +413,6 @@ public class EntityBirds extends EntityFlying implements IModEntity {
                 return entityOwner.isOnSameTeam(parEntity);
             }
         }
-
         return super.isOnSameTeam(parEntity);
     }
 
@@ -497,7 +503,7 @@ public class EntityBirds extends EntityFlying implements IModEntity {
             UUID uuid = getOwnerId();
             return uuid == null ? null : world.getPlayerEntityByUUID(uuid);
         }
-        catch (IllegalArgumentException parIAE)
+            catch (IllegalArgumentException parIAE)
         {
             return null;
         }
@@ -507,6 +513,9 @@ public class EntityBirds extends EntityFlying implements IModEntity {
     {
         if (getOwner() != null)
         {
+            /** DEBUG */
+            LogHelperTTM.debug("There is already an owner");
+
             getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).removeModifier(TAMED_MODIFIER);
             getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).removeModifier(TAMED_MODIFIER);
             setHealth(Math.min(getHealth(), (float) getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getAttributeValue()));
@@ -514,6 +523,8 @@ public class EntityBirds extends EntityFlying implements IModEntity {
         }
         else if (parNewOwner == null)
         {
+            /** DEBUG */
+            LogHelperTTM.debug("Setting owner to null");
             setOwnerId(null);
             getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).removeModifier(TAMED_MODIFIER);
             getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).removeModifier(TAMED_MODIFIER);
@@ -615,10 +626,10 @@ public class EntityBirds extends EntityFlying implements IModEntity {
         setSoarClockwise(compound.getBoolean("soaringClockwise"));
         setSoarHeight(compound.getFloat("soarHeight"));
         setAnchor(new BlockPos(
-                compound.getDouble("anchorX"),
-                compound.getDouble("anchorY"),
-                compound.getDouble("anchorZ")
-        ));
+            compound.getDouble("anchorX"),
+            compound.getDouble("anchorY"),
+            compound.getDouble("anchorZ")
+            ));
         String s = compound.getString("OwnerUUID");
         if (!s.isEmpty())
         {

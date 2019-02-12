@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.client.render.entity.monster;
+package com.greatorator.tolkienmobs.client.render.entity;
 
 import com.greatorator.tolkienmobs.entity.EntityHerds;
 import net.minecraft.client.model.ModelBase;
@@ -12,10 +12,10 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 /** Borrowed from Jabelar https://github.com/jabelar */
 @SuppressWarnings("rawtypes")
-public class RenderHerdAnimal extends RenderLiving {
+public class RenderHerds extends RenderLiving {
     protected ResourceLocation herdAnimalTexture;
 
-    public RenderHerdAnimal(
+    public RenderHerds(
             RenderManager parRenderManager,
             ModelBase par1ModelBase,
             float parShadowSize,
@@ -79,7 +79,7 @@ public class RenderHerdAnimal extends RenderLiving {
         @Override
         public Render createRenderFor(RenderManager manager)
         {
-            return new RenderHerdAnimal(
+            return new RenderHerds(
                     manager,
                     model1,
                     shadowSize,

@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-import com.greatorator.tolkienmobs.entity.EntityTTM;
+import com.greatorator.tolkienmobs.entity.EntityHostiles;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.init.LootInit;
@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import javax.annotation.Nullable;
 
-public class EntityTroll extends EntityTTM implements IEntityAdditionalSpawnData {
+public class EntityTroll extends EntityHostiles implements IEntityAdditionalSpawnData {
     public EntityTroll(World worldIn) {
         super(worldIn);
         this.setSize(3.4F, 4.6F);

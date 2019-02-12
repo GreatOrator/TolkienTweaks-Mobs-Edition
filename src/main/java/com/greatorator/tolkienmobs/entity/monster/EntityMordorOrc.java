@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-import com.greatorator.tolkienmobs.entity.EntityTTM;
+import com.greatorator.tolkienmobs.entity.EntityHostiles;
 import com.greatorator.tolkienmobs.entity.passive.EntityDwarf;
 import com.greatorator.tolkienmobs.entity.passive.EntityElves;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import javax.annotation.Nullable;
 
-public class EntityMordorOrc extends EntityTTM implements IEntityAdditionalSpawnData {
+public class EntityMordorOrc extends EntityHostiles implements IEntityAdditionalSpawnData {
 
     public EntityMordorOrc(World worldIn) {
         super(worldIn);

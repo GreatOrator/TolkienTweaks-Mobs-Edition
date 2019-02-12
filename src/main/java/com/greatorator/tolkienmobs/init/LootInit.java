@@ -6,7 +6,7 @@ import net.minecraft.world.storage.loot.LootTableList;
 
 public class LootInit {
 
-    /** Entities */
+    /* Entities */
     /** Boss */
     public static final ResourceLocation BALROG = register("entities/balrog");
     public static final ResourceLocation FELLBEAST = register("entities/fellbeast");

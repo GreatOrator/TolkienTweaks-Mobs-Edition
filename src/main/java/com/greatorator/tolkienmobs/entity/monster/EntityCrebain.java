@@ -20,9 +20,4 @@ public class EntityCrebain extends EntityBirds {
     protected ResourceLocation getLootTable() {
         return LootInit.CREBAIN;
     }
-
-    @Override
-    public int getMaxSpawnedInChunk() {
-        return 2;
-    }
 }

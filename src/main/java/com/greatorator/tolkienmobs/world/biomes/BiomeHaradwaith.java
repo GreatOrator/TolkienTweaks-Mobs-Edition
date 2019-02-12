@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
-import com.greatorator.tolkienmobs.entity.monster.EntityMumakil;
+import com.greatorator.tolkienmobs.entity.passive.EntityMumakil;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.MathHelper;

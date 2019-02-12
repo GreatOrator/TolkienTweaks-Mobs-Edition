@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.handler;
+package com.greatorator.tolkienmobs.handler.interfaces.providers;
 
 import com.greatorator.tolkienmobs.handler.interfaces.IPetList;
 import net.minecraft.nbt.NBTTagCompound;
@@ -7,6 +7,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
+/** Borrowed from Jabelar https:/**github.com/jabelar */
 public class PetListProvider implements ICapabilitySerializable<NBTTagCompound> {
     @CapabilityInject(IPetList.class)
     public static final Capability<IPetList> PET_LIST = null;

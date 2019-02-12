@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.special;
 
-import com.greatorator.tolkienmobs.entity.EntityTTM;
+import com.greatorator.tolkienmobs.entity.EntityHostiles;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import com.greatorator.tolkienmobs.entity.passive.EntityHuman;
@@ -25,7 +25,7 @@ import net.minecraft.world.*;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class EntityNazgul extends EntityTTM implements IMob {
+public class EntityNazgul extends EntityHostiles implements IMob {
 
     private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.YELLOW, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
 

@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-import com.greatorator.tolkienmobs.entity.EntityTTM;
+import com.greatorator.tolkienmobs.entity.EntityHostiles;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.handler.TTMRand;
@@ -24,7 +24,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class EntityGoblin extends EntityTTM implements IEntityAdditionalSpawnData {
+public class EntityGoblin extends EntityHostiles implements IEntityAdditionalSpawnData {
     private int texture_index;
 
     private static final UUID ATTACK_SPEED_BOOST_MODIFIER_UUID = UUID.fromString("3D1772EA-23CC-11E9-AB14-D663BD873D93");

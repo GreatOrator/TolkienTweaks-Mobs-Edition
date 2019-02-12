@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.entity.layers;
 
-import com.greatorator.tolkienmobs.client.render.entity.monster.RenderBirds;
+import com.greatorator.tolkienmobs.client.render.entity.RenderBirds;
 import com.greatorator.tolkienmobs.entity.EntityBirds;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
