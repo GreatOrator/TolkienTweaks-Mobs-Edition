@@ -130,15 +130,17 @@ public class SoundInit
 	@ObjectHolder("mob.goat.angry")
 	public static final SoundEvent soundAngryGoat = null;
 
-	/** TMFrog */
-	@ObjectHolder("mob.tmfrog.death")
-	public static final SoundEvent soundDeathTMFrog = null;
-	@ObjectHolder("mob.tmfrog.idle")
-	public static final SoundEvent soundIdleTMFrog = null;
-	@ObjectHolder("mob.tmfrog.hurt")
-	public static final SoundEvent soundHurtTMFrog = null;
-	@ObjectHolder("mob.tmfrog.step")
-	public static final SoundEvent soundStepTMFrog = null;
+	/** Toad */
+	@ObjectHolder("mob.toad.death")
+	public static final SoundEvent soundDeathToad = null;
+	@ObjectHolder("mob.toad.idle")
+	public static final SoundEvent soundIdleToad = null;
+	@ObjectHolder("mob.toad.hurt")
+	public static final SoundEvent soundHurtToad = null;
+	@ObjectHolder("mob.toad.step")
+	public static final SoundEvent soundStepToad = null;
+	@ObjectHolder("mob.toad.angry")
+	public static final SoundEvent soundAngryToad = null;
 
 	/** Music */
 	@ObjectHolder("music.allthatglittersinerebor")
@@ -263,11 +265,12 @@ public class SoundInit
 					"mob.goat.hurt",
 					"mob.goat.angry",
 
-					/** TMFrog */
-					"mob.tmfrog.death",
-					"mob.tmfrog.idle",
-					"mob.tmfrog.hurt",
-					"mob.tmfrog.step",
+					/** Toad */
+					"mob.toad.death",
+					"mob.toad.idle",
+					"mob.toad.hurt",
+					"mob.toad.step",
+					"mob.toad.angry",
 
 					/** Gollum */
 					"mob.gollum.death",

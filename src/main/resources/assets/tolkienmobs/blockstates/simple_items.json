@@ -18,6 +18,8 @@
       "food_lembas":   {"textures": {"layer0": "tolkienmobs:items/food_lembas"}},
       "food_honeycake":   {"textures": {"layer0": "tolkienmobs:items/food_honeycake"}},
       "food_cram":   {"textures": {"layer0": "tolkienmobs:items/food_cram"}},
+      "food_insect":   {"textures": {"layer0": "tolkienmobs:items/food_insect"}},
+      "food_golden_insect":   {"textures": {"layer0": "tolkienmobs:items/food_golden_insect"}},
       "potion_entdraught":   {"textures": {"layer0": "tolkienmobs:items/potion_entdraught"}},
       "potion_miruvor":   {"textures": {"layer0": "tolkienmobs:items/potion_miruvor"}},
       "potion_grog":   {"textures": {"layer0": "tolkienmobs:items/potion_grog"}},

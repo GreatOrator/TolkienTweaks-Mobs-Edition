@@ -253,19 +253,23 @@ public class TTMFeatures implements IModFeatures {
 
     /** Food */
     @ModFeature(name = "food_lembas", stateOverride = "simple_items#type=food_lembas", cTab = 3)
-    public static Item LEMBAS = new TTMFood(20, 20, new PotionEffect(MobEffects.ABSORPTION,12000,5), new PotionEffect(MobEffects.REGENERATION,100,5));
+    public static Item LEMBAS = new TTMFood(20, 20, new PotionEffect(MobEffects.ABSORPTION,12000,5), new PotionEffect(MobEffects.REGENERATION,100,5)).setEffectOverride(true);
     @ModFeature(name = "food_honeycake", stateOverride = "simple_items#type=food_honeycake", cTab = 3)
     public static Item HONEY_CAKE = new TTMFood(15, 15, new PotionEffect(MobEffects.ABSORPTION,6000,3), new PotionEffect(MobEffects.REGENERATION,50,5));
     @ModFeature(name = "food_cram", stateOverride = "simple_items#type=food_cram", cTab = 3)
     public static Item CRAM = new TTMFood(10, 10, new PotionEffect(MobEffects.ABSORPTION,3000,1), new PotionEffect(MobEffects.REGENERATION,25,5));
     @ModFeature(name = "potion_entdraught", stateOverride = "simple_items#type=potion_entdraught", cTab = 3)
-    public static Item ENT_DRAUGHT = new TTMFood(5, 5, new PotionEffect(PotionInit.ENT_STANCE,6000,2));
+    public static Item ENT_DRAUGHT = new TTMFood(5, 5, new PotionEffect(PotionInit.ENT_STANCE,6000,2)).setEffectOverride(true);
     @ModFeature(name = "potion_miruvor", stateOverride = "simple_items#type=potion_miruvor", cTab = 3)
     public static Item MIRUVOR = new TTMFood(5, 5, new PotionEffect(MobEffects.SPEED,3000,3), new PotionEffect(MobEffects.REGENERATION, 600, 3), new PotionEffect(MobEffects.NAUSEA, 40, 3));
     @ModFeature(name = "potion_grog", stateOverride = "simple_items#type=potion_grog", cTab = 3)
     public static Item GROG = new TTMFood(5, 5, new PotionEffect(MobEffects.SPEED,1500,3), new PotionEffect(MobEffects.REGENERATION, 300, 3), new PotionEffect(MobEffects.NAUSEA, 100, 3));
     @ModFeature(name = "monster_flesh", stateOverride = "simple_items#type=monster_flesh", cTab = 3)
     public static Item MONSTER_FLESH = new TTMFood(5, 2, new PotionEffect(MobEffects.HUNGER,100,2));
+    @ModFeature(name = "food_insect", stateOverride = "simple_items#type=food_insect", cTab = 3)
+    public static Item INSECT = new TTMFood(1, 1, new PotionEffect(MobEffects.HUNGER,10,1));
+    @ModFeature(name = "food_golden_insect", stateOverride = "simple_items#type=food_golden_insect", cTab = 3)
+    public static Item GOLDEN_INSECT = new TTMFood(2, 3, new PotionEffect(MobEffects.HUNGER,40,2)).setEffectOverride(true);
     /** End Region */
 
     /** Custom Blocks */

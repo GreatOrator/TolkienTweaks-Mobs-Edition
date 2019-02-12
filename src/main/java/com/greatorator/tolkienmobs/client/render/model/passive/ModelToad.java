@@ -76,11 +76,6 @@ public class ModelToad extends ModelTTM {
     {
         this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
 
-        float scaleFactor = 0.5F;
-        GL11.glPushMatrix();
-        GL11.glTranslatef(0F, 1.5F-1.5F*scaleFactor, 0F);
-        GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
-
         if (this.isChild)
         {
             float f = 1.5F;
@@ -116,16 +111,15 @@ public class ModelToad extends ModelTTM {
             this.frogHead.render(scale);
             GlStateManager.popMatrix();
         }
-        GlStateManager.popMatrix();
     }
 
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
         float f = ageInTicks - (float)entityIn.ticksExisted;
-        EntityToad entitytmfrog = (EntityToad)entityIn;
+        EntityToad entitytoad = (EntityToad)entityIn;
         this.frogHead.rotateAngleX = headPitch * 0.017453292F;
         this.frogHead.rotateAngleY = netHeadYaw * 0.017453292F;
-        this.jumpRotation = MathHelper.sin(entitytmfrog.setJumpCompletion(f) * (float)Math.PI);
+        this.jumpRotation = MathHelper.sin(entitytoad.setJumpCompletion(f) * (float)Math.PI);
         this.frogLeftThigh.rotateAngleX = (this.jumpRotation * 50.0F - 21.0F) * 0.017453292F;
         this.frogRightThigh.rotateAngleX = (this.jumpRotation * 50.0F - 21.0F) * 0.017453292F;
         this.frogFootLeft.rotateAngleX = this.jumpRotation * 50.0F * 0.017453292F;

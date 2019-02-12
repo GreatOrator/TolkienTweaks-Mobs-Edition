@@ -109,7 +109,7 @@ public class EntityInit
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mumakil"), EntityMumakil.class, "mumakil", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0xff8707);
             }
             if (TTMConfig.enableFrogs = true) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmfrog"), EntityToad.class, "tmfrog", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0xaaccff);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "toad"), EntityToad.class, "toad", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0xaaccff);
             }
         }
 

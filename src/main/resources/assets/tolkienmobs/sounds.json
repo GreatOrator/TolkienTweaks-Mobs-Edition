@@ -234,39 +234,47 @@
       "tolkienmobs:mob/gollum/gollum_say2"
     ]
   },
-  "mob.tmfrog.death":
+  "mob.toad.death":
   {
     "category": "neutral",
     "sounds":
     [
-      "tolkienmobs:mob/tmfrog/tmfrog_death"
+      "tolkienmobs:mob/toad/toad_death"
     ]
   },
-  "mob.tmfrog.hurt":
+  "mob.toad.angry":
   {
     "category": "neutral",
     "sounds":
     [
-      "tolkienmobs:mob/tmfrog/tmfrog_hurt"
+      "tolkienmobs:mob/toad/toad_angry"
     ]
   },
-  "mob.tmfrog.idle":
+  "mob.toad.hurt":
   {
     "category": "neutral",
     "sounds":
     [
-      "tolkienmobs:mob/tmfrog/tmfrog_say0",
-      "tolkienmobs:mob/tmfrog/tmfrog_say1",
-      "tolkienmobs:mob/tmfrog/tmfrog_say2",
-      "tolkienmobs:mob/tmfrog/tmfrog_say3"
+      "tolkienmobs:mob/toad/toad_hurt"
     ]
   },
-  "mob.tmfrog.step":
+  "mob.toad.idle":
   {
     "category": "neutral",
     "sounds":
     [
-      "tolkienmobs:mob/tmfrog/tmfrog_step"
+      "tolkienmobs:mob/toad/toad_say0",
+      "tolkienmobs:mob/toad/toad_say1",
+      "tolkienmobs:mob/toad/toad_say2",
+      "tolkienmobs:mob/toad/toad_say3"
+    ]
+  },
+  "mob.toad.step":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/toad/toad_step"
     ]
   },
   "mob.goat.death":

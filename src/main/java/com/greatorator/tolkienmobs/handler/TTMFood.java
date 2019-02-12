@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 
 public class TTMFood extends ItemFood {
     private PotionEffect[] effects;
+    public boolean hasEffectOverride = false;
 
     public TTMFood(int amount, PotionEffect...potionEffects) {
         super(amount, false);
@@ -17,6 +18,16 @@ public class TTMFood extends ItemFood {
     public TTMFood(int amount, float saturation, PotionEffect...potionEffects) {
         super(amount, saturation, false);
         this.effects = potionEffects;
+    }
+
+    public TTMFood setEffectOverride(boolean hasEffectOverride) {
+        this.hasEffectOverride = hasEffectOverride;
+        return this;
+    }
+
+    @Override
+    public boolean hasEffect(ItemStack stack) {
+        return hasEffectOverride || super.hasEffect(stack);
     }
 
     @Override
