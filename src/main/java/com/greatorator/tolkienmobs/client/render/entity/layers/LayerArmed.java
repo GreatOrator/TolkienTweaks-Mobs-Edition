@@ -63,15 +63,15 @@ public class LayerArmed implements LayerRenderer<EntityLivingBase> {
             GlStateManager.rotate(-100.0F, 1.0F, 0.0F, 0.0F);
             GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
 
-            /** This is a good way to figure out the item and scale offset runtime. */
-            /** Once I find values that work put them where they belong and comment this test code. */
+            /* This is a good way to figure out the item and scale offset runtime. */
+            /* Once I find values that work put them where they belong and comment this test code. */
             if (entity instanceof EntityBalrog) {
                 itemXOffset = 0.23F;
                 itemYOffset = 0.2F;
                 itemZOffset = -1.35F;
                 itemScale = 1.6F;
             }
-            /** 0.095F, 0.035F, -0.9F, 1.2F */
+            /* 0.095F, 0.035F, -0.9F, 1.2F */
 
             boolean flag = handSide == EnumHandSide.LEFT;
             GlStateManager.translate((float) (flag ? -1 : 1) * itemXOffset, itemYOffset, itemZOffset);

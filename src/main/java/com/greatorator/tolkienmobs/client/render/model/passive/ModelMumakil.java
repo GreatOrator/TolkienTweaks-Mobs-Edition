@@ -253,7 +253,7 @@ public class ModelMumakil extends ModelTTM {
         this.MumuTrunk1.addChild(this.MumuTrunk2);
         this.MumuTrunk2.addChild(this.MumuTrunk3);
 
-        /** Parts for the child version */
+        /* Parts for the child version */
         this.childSkull = new ModelRenderer(this, 100, 120);
         this.childSkull.setRotationPoint(-3.0F, -3.0F, -13.5F);
         this.childSkull.addBox(-5.5F, -5.5F, -10.5F, 17, 17, 15, 0.0F);
@@ -337,7 +337,7 @@ public class ModelMumakil extends ModelTTM {
 
     public void setRotationAngles(float parTime, float parSwingSuppress, float par3, float parHeadAngleY, float parHeadAngleX, float par6, EntityMumakil parEntity)
     {
-        /** return rotation point in case there was previous rearing animation */
+        /* return rotation point in case there was previous rearing animation */
         MumuNeck.setRotationPoint(MumuNeckRotPointXDefault, MumuNeckRotPointYDefault, MumuNeckRotPointZDefault);
         MumuBody.setRotationPoint(MumuBodyRotPointXDefault, MumuBodyRotPointYDefault, MumuBodyRotPointZDefault);
         MumuLegFL.setRotationPoint(MumuLegFLRotPointXDefault, MumuLegFLRotPointYDefault, MumuLegFLRotPointZDefault);
@@ -350,7 +350,7 @@ public class ModelMumakil extends ModelTTM {
         childNeck.rotateAngleX = degToRad(parHeadAngleX);
         childNeck.rotateAngleY = degToRad(parHeadAngleY);
 
-        /** swingSuppress goes to 0 when still so gates the movement */
+        /* swingSuppress goes to 0 when still so gates the movement */
         MumuLegRL.rotateAngleX = MathHelper.cos(parTime * 0.6662F) * 1.4F * parSwingSuppress;
         MumuLegRR.rotateAngleX = MathHelper.cos(parTime * 0.6662F + (float)Math.PI) * 1.4F * parSwingSuppress;
         MumuLegFL.rotateAngleX = MathHelper.cos(parTime * 0.6662F + (float)Math.PI) * 1.4F * parSwingSuppress;
@@ -361,14 +361,14 @@ public class ModelMumakil extends ModelTTM {
 
         childTrunk1.rotateAngleX = MathHelper.cos(degToRad(parEntity.ticksExisted*7)) * degToRad(10);
 
-        /** flick ears */
+        /* flick ears */
         MumuEarL.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(parEntity.ticksExisted*3)), 6) * degToRad(15);
         MumuEarR.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(parEntity.ticksExisted*3)), 6) * degToRad(-15);
 
         childEarL.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(parEntity.ticksExisted*3)), 6) * degToRad(15);
         childEarR.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(parEntity.ticksExisted*3)), 6) * degToRad(-15);
 
-        /** raise trunk if in water */
+        /* raise trunk if in water */
         if (parEntity.isInWater())
         {
             MumuTrunk1.rotateAngleX = degToRad(-150);

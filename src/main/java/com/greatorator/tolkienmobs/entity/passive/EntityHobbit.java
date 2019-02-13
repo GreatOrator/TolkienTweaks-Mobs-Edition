@@ -4,7 +4,6 @@ import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.handler.TTMRand;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.ProfessionInit;
-import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -90,7 +89,6 @@ public class EntityHobbit extends EntityVillager implements IEntityAdditionalSpa
 
                 case 4:
                     prof = ProfessionInit.getPetSupplies();
-
             }
             this.setProfession(net.minecraftforge.fml.common.registry.VillagerRegistry.getId(prof));
         }

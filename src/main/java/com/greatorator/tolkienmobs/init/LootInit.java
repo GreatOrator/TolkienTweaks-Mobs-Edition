@@ -39,7 +39,7 @@ public class LootInit {
     public static final ResourceLocation MUMAKIL = register("entities/mumakil");
     public static final ResourceLocation TMFROG = register("entities/toad");
 
-    /** Structures */
+    /* Structures */
     /** Chests */
     public static final ResourceLocation BARROW_CHEST = register("chests/barrow_chest");
     public static final ResourceLocation BARROW_GRAVE = register("chests/barrow_grave");

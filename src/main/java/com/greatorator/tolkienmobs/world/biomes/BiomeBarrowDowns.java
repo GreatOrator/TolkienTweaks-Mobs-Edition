@@ -37,9 +37,9 @@ public class BiomeBarrowDowns extends Biome implements IFogyBiome {
         this.spawnableWaterCreatureList.clear();
 
 
-        if (TTMConfig.enableNaturalSpawn = true) {
-            if (TTMConfig.enableMonster = true) {
-                if (TTMConfig.enableBarrowWights = true) {
+        if (TTMConfig.enableNaturalSpawn) {
+            if (TTMConfig.enableMonster) {
+                if (TTMConfig.enableBarrowWights) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityBarrowWight.class, 15, 1, 3));
                 }
             }

@@ -1,9 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.render.model.monster.ModelHuron;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelTreeEnt;
-import com.greatorator.tolkienmobs.entity.monster.EntityHuron;
 import com.greatorator.tolkienmobs.entity.monster.EntityTreeEnt;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -11,7 +9,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class RenderTreeEnt extends RenderLiving<EntityTreeEnt> {

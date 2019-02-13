@@ -2,26 +2,16 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
-import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
-import com.greatorator.tolkienmobs.entity.monster.EntityUrukHai;
-import com.greatorator.tolkienmobs.entity.monster.EntityWarg;
 import com.greatorator.tolkienmobs.entity.passive.EntityElves;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenBigMushroom;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.Random;
 
 public class BiomeFirien extends Biome {
 
@@ -50,9 +40,9 @@ public class BiomeFirien extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        if (TTMConfig.enableNaturalSpawn = true) {
-            if (TTMConfig.enablePassive = true) {
-                if (TTMConfig.enableElves = true) {
+        if (TTMConfig.enableNaturalSpawn) {
+            if (TTMConfig.enablePassive) {
+                if (TTMConfig.enableElves) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityElves.class, 12, 1, 3));
                 }
             }

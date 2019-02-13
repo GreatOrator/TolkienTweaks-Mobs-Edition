@@ -37,9 +37,9 @@ public class BiomeFangorn extends Biome implements IFogyBiome {
         this.spawnableWaterCreatureList.clear();
 
 
-        if (TTMConfig.enableNaturalSpawn = true) {
-            if (TTMConfig.enableMonster = true) {
-                if (TTMConfig.enableTreeEnts = true) {
+        if (TTMConfig.enableNaturalSpawn) {
+            if (TTMConfig.enableMonster) {
+                if (TTMConfig.enableTreeEnts) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityTreeEnt.class, 15, 1, 1));
                 }
             }

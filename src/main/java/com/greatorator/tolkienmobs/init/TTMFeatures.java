@@ -69,7 +69,7 @@ public class TTMFeatures implements IModFeatures {
 
     @ModFeature(name = "dust_morguliron", stateOverride = "simple_items#type=dust_morguliron", cTab = 1)
     public static Item DUST_MORGULIRON = new ItemBCore();
-    /** End Region */
+    /* End Region */
 
     /** Quest Items */
     @ModFeature(name = "item_beryl", stateOverride = "simple_items#type=item_beryl", cTab = 4)
@@ -142,7 +142,7 @@ public class TTMFeatures implements IModFeatures {
     public static Item ITEM_WOVENBASKET = new TTMLore(3);
     @ModFeature(name = "item_writtenpaper", stateOverride = "simple_items#type=item_writtenpaper", cTab = 4)
     public static Item ITEM_WRITTENPAPER = new TTMLore(1).setEffectOverride(true);
-    /** End Region */
+    /* End Region */
 
     /** Tools */
     @ModFeature(name = "axe_mithril", stateOverride = "tools#type=axe_mithril")
@@ -180,7 +180,7 @@ public class TTMFeatures implements IModFeatures {
 
     @ModFeature(name = "sword_witchking", stateOverride = "tools#type=sword_witchking")
     public static Item SWORD_WITCHKING = new TTMSword(TOOL_MITHRIL).setEffectOverride(true);
-    /** End Region */
+    /* End Region */
 
     /** Armor */
     @ModFeature(name = "helmet_mithril", stateOverride = "armor#type=helmet_mithril")
@@ -206,7 +206,7 @@ public class TTMFeatures implements IModFeatures {
 
     @ModFeature(name = "boots_morguliron", stateOverride = "armor#type=boots_morguliron")
     public static Item BOOTS_MORGULIRON = new ItemArmor(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.FEET);
-    /** End Region */
+    /* End Region */
 
     /** Simple Blocks */
     @ModFeature(name = "block_mithril", cTab = 1)
@@ -242,14 +242,14 @@ public class TTMFeatures implements IModFeatures {
 
     @ModFeature(name = "flower", variantMap = {"0:variant=simbelmyne", "1:variant=mirkwood", "2:variant=alfirin", "3:variant=athelas", "4:variant=niphredil"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final BlockFlowers FLOWERS = new BlockFlowers();
-    /** End Region */
+    /* End Region */
 
     /** Basic Items */
     @ModFeature(name = "feather_crebain", stateOverride = "simple_items#type=feather_crebain", cTab = 1)
     public static Item CREBAIN_FEATHER = new ItemBCore();
     @ModFeature(name = "leather_mumakil", stateOverride = "simple_items#type=leather_mumakil", cTab = 1)
     public static Item MUMAKIL_LEATHER = new ItemBCore();
-    /** End Region */
+    /* End Region */
 
     /** Food */
     @ModFeature(name = "food_lembas", stateOverride = "simple_items#type=food_lembas", cTab = 3)
@@ -270,17 +270,17 @@ public class TTMFeatures implements IModFeatures {
     public static Item INSECT = new TTMFood(1, 1, new PotionEffect(MobEffects.HUNGER,10,1));
     @ModFeature(name = "food_golden_insect", stateOverride = "simple_items#type=food_golden_insect", cTab = 3)
     public static Item GOLDEN_INSECT = new TTMFood(2, 3, new PotionEffect(MobEffects.HUNGER,40,2)).setEffectOverride(true);
-    /** End Region */
+    /* End Region */
 
     /** Custom Blocks */
     @ModFeature(name = "sign", itemBlock = ItemBlockBCore.class, tileEntity = TileSign.class, cTab = 5)
     public static final BlockSigns SIGNS = new BlockSigns();
-    /** End Region */
+    /* End Region */
 
     /** Ammo */
     @ModFeature(name = "ammo_boulder", stateOverride = "simple_items#type=ammo_boulder", cTab = 1)
     public static Item AMMO_BOULDER = new TTMAmmo(16);
     @ModFeature(name = "fellbeast_fireball", stateOverride = "simple_items#type=fellbeast_fireball", cTab = 1)
     public static Item FELLBEAST_FIREBALL = new TTMAmmo(16);
-    /** End Region */
+    /* End Region */
 }

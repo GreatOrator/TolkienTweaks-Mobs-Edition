@@ -40,18 +40,18 @@ public class BiomeMordor extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        if (TTMConfig.enableNaturalSpawn = true) {
-            if (TTMConfig.enableMonster = true) {
-                if (TTMConfig.enableUrukhai = true) {
+        if (TTMConfig.enableNaturalSpawn) {
+            if (TTMConfig.enableMonster) {
+                if (TTMConfig.enableUrukhai) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityUrukHai.class, 10, 1, 1));
                 }
-                if (TTMConfig.enableMordorOrcs = true) {
+                if (TTMConfig.enableMordorOrcs) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityMordorOrc.class, 12, 1, 1));
                 }
-                if (TTMConfig.enableWargs = true) {
+                if (TTMConfig.enableWargs) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityWarg.class, 6, 1, 1));
                 }
-                if (TTMConfig.enableCaveTrolls = true) {
+                if (TTMConfig.enableCaveTrolls) {
                     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityTroll.class, 8, 1, 1));
                 }
             }

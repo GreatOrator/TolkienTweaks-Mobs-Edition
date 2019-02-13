@@ -48,12 +48,12 @@ public class ClientProxy extends CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
         OBJLoader.INSTANCE.addDomain(TolkienMobs.MODID);
-        /** Bosses */
+        /* Bosses */
         RenderingRegistry.registerEntityRenderingHandler(EntityBalrog.class, RenderBalrog.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityFellBeast.class, RenderFellBeast::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityWitchKing.class, RenderWitchKing.FACTORY);
 
-        /** Monsters */
+        /* Monsters */
         RenderingRegistry.registerEntityRenderingHandler(EntityHuron.class, RenderHuron.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityOathbreaker.class, RenderOathbreaker.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTreeEnt.class, RenderTreeEnt.FACTORY);
@@ -75,11 +75,11 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityUrukHai.class, RenderUrukHai.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityBarrowWight.class, RenderBarrowWight.FACTORY);
 
-        /** Special */
+        /* Special */
         RenderingRegistry.registerEntityRenderingHandler(EntityGollum.class, RenderGollum.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityNazgul.class, RenderNazgul.FACTORY);
 
-        /** Passive */
+        /* Passive */
         RenderingRegistry.registerEntityRenderingHandler(EntityHobbit.class, RenderHobbit.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityDwarf.class, RenderDwarf.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityHuman.class, RenderHuman.FACTORY);
@@ -103,7 +103,7 @@ public class ClientProxy extends CommonProxy {
                 )
         );
 
-        /** Miscellaneous */
+        /* Miscellaneous */
         RenderingRegistry.registerEntityRenderingHandler(EntityBoulder.class, RenderBoulder.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityFellBeastFireball.class, RenderFellBeastFireball.FACTORY);
     }

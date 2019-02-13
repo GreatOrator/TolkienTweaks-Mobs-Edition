@@ -47,18 +47,18 @@ public class BiomeShire extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        if (TTMConfig.enableNaturalSpawn = true) {
-            if (TTMConfig.enablePassive = true) {
-                if (TTMConfig.enableHobbits = true) {
+        if (TTMConfig.enableNaturalSpawn) {
+            if (TTMConfig.enablePassive) {
+                if (TTMConfig.enableHobbits) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityHobbit.class, 12, 1, 3));
                 }
-                if (TTMConfig.enableFrogs = true) {
-                    this.spawnableWaterCreatureList.add(new SpawnListEntry(EntityToad.class, 4, 1, 1));
+                if (TTMConfig.enableFrogs) {
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityToad.class, 4, 1, 1));
                 }
-                if (TTMConfig.enableAuroch = true) {
+                if (TTMConfig.enableAuroch) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityAuroch.class, 4, 2, 3));
                 }
-                if (TTMConfig.enableGoats = true) {
+                if (TTMConfig.enableGoats) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityGoat.class, 4, 2, 3));
                 }
             }

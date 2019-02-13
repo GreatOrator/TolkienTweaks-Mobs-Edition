@@ -6,7 +6,6 @@ import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.gen.feature.WorldGenEndPodium;
 
 import javax.annotation.Nullable;
 

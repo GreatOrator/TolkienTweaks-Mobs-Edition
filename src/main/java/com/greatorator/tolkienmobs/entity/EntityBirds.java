@@ -24,7 +24,6 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityParrot;
 import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
@@ -60,7 +59,7 @@ public class EntityBirds extends EntityFlying implements IModEntity
     protected final AttributeModifier TAMED_MODIFIER = new AttributeModifier("Tamed health and attack boost", 2.0D, 0);
 
     public ProcessStateBirds aiProcessState;
-    public UpdateStateBirds aiUpdateState;;
+    public UpdateStateBirds aiUpdateState;
 
     protected int randFactor;
 
@@ -141,13 +140,13 @@ public class EntityBirds extends EntityFlying implements IModEntity
     @Override
     public void fall(float parDistance, float parDamageMultiplier)
     {
-        /** do nothing since bird cannot fall */
+        /* do nothing since bird cannot fall */
     }
 
     @Override
     protected void updateFallState(double y, boolean onGroundIn, IBlockState state, BlockPos pos)
     {
-        /** do nothing since birds cannot fall */
+        /* do nothing since birds cannot fall */
     }
 
     @Override
@@ -354,7 +353,7 @@ public class EntityBirds extends EntityFlying implements IModEntity
 
     public boolean isTamingFood(ItemStack parItemStack)
     {
-        /** check for raw salmon */
+        /* check for raw salmon */
         return (parItemStack.getItem() == Items.FISH && parItemStack.getMetadata() == 1);
     }
 
@@ -513,7 +512,7 @@ public class EntityBirds extends EntityFlying implements IModEntity
     {
         if (getOwner() != null)
         {
-            /** DEBUG */
+            /* DEBUG */
             LogHelperTTM.debug("There is already an owner");
 
             getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).removeModifier(TAMED_MODIFIER);
@@ -523,7 +522,7 @@ public class EntityBirds extends EntityFlying implements IModEntity
         }
         else if (parNewOwner == null)
         {
-            /** DEBUG */
+            /* DEBUG */
             LogHelperTTM.debug("Setting owner to null");
             setOwnerId(null);
             getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).removeModifier(TAMED_MODIFIER);

@@ -48,15 +48,15 @@ public class BiomeDagorlad extends Biome {
         this.spawnableWaterCreatureList.clear();
 
 
-        if (TTMConfig.enableNaturalSpawn = true) {
-            if (TTMConfig.enableMonster = true) {
-                if (TTMConfig.enableUrukhai = true) {
+        if (TTMConfig.enableNaturalSpawn) {
+            if (TTMConfig.enableMonster) {
+                if (TTMConfig.enableUrukhai) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityUrukHai.class, 5, 1, 1));
                 }
-                if (TTMConfig.enableMordorOrcs = true) {
+                if (TTMConfig.enableMordorOrcs) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityMordorOrc.class, 6, 1, 1));
                 }
-                if (TTMConfig.enableWargs = true) {
+                if (TTMConfig.enableWargs) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityWarg.class, 4, 1, 1));
                 }
             }

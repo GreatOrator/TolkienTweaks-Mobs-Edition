@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.world.gen.providers;
 
 import com.greatorator.tolkienmobs.init.BiomeInit;
-import com.greatorator.tolkienmobs.world.gen.layer.GenLayerArda;
 import com.greatorator.tolkienmobs.world.gen.layer.GenLayerBiomesArda;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;

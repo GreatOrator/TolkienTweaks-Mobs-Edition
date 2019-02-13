@@ -209,87 +209,87 @@ public class SoundInit
 		public static void onEvent(final RegistryEvent.Register<SoundEvent> event)
 		{
 			final String[] arraySoundEvents = {
-				    /** Mumakil */
+                    /* Mumakil */
 					"mob.mumakil.say",
 					"mob.mumakil.hurt",
 
-					/** Witch-king */
+                    /* Witch-king */
 					"mob.witchking.step",
                     "mob.witchking.angry",
                     "mob.witchking.death",
                     "mob.witchking.idle",
                     "mob.witchking.hurt",
 
-					/** Fell-beast */
+                    /* Fell-beast */
 					"mob.fellbeast.idle",
 					"mob.fellbeast.flap",
 
-					/** Barrowwight */
+                    /* Barrowwight */
 					"mob.barrowwight.idle",
 					"mob.barrowwight.hurt",
 
-					/** Oath Breaker */
+                    /* Oath Breaker */
 					"mob.oathbreaker.idle",
 
-					/** Crebain */
+                    /* Crebain */
 					"mob.crebain.hurt",
 					"mob.crebain.call",
 					"mob.crebain.death",
 					"mob.crebain.flapping",
 
-					/** Troll */
+                    /* Troll */
 					"mob.troll.hurt",
 					"mob.troll.idle",
 					"mob.troll.death",
 					"mob.troll.angry",
 					"mob.troll.step",
 
-					/** Dwarf */
+                    /* Dwarf */
 					"mob.dwarf.idle",
 
-					/** Goblin */
+                    /* Goblin */
 					"mob.goblin.idle",
 					"mob.goblin.hurt",
 					"mob.goblin.death",
 					"mob.goblin.angry",
 
-                    /** Balrog */
+                    /* Balrog */
                     "mob.balrog.death",
                     "mob.balrog.idle",
                     "mob.balrog.hurt",
                     "mob.balrog.step",
 
-					/** Goat */
+                    /* Goat */
 					"mob.goat.death",
 					"mob.goat.idle",
 					"mob.goat.hurt",
 					"mob.goat.angry",
 
-					/** Toad */
+                    /* Toad */
 					"mob.toad.death",
 					"mob.toad.idle",
 					"mob.toad.hurt",
 					"mob.toad.step",
 					"mob.toad.angry",
 
-					/** Gollum */
+                    /* Gollum */
 					"mob.gollum.death",
 					"mob.gollum.idle",
 					"mob.gollum.hurt",
 
-                    /** Warg */
+                    /* Warg */
                     "mob.warg.death",
                     "mob.warg.idle",
                     "mob.warg.hurt",
 
-					/** Miscellaneous */
+                    /* Miscellaneous */
 					"entity.boulder.shoot",
 					"mob.demonlaugh",
 					"mob.evilwitchlaugh",
 					"mob.ghostlylament",
 
 
-					/** Music */
+                    /* Music */
 					"music.allthatglittersinerebor",
 					"music.willowsong",
 					"music.minastirith",
@@ -303,7 +303,7 @@ public class SoundInit
 					"music.mysteryoftombombadil",
 					"music.concerninghobbits",
 
-					/** Ambient */
+                    /* Ambient */
 					"ambient.khazaddum",
 					"ambient.waterworks",
 					"ambient.medievalcity",
@@ -313,7 +313,7 @@ public class SoundInit
 					"ambient.pathsofthedead",
 					"ambient.underworld",
 
-					/** Blocks */
+                    /* Blocks */
 					"block.cathedralbell"
 
 			};

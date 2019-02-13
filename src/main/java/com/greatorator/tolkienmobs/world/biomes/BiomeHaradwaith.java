@@ -36,8 +36,8 @@ public class BiomeHaradwaith extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        if (TTMConfig.enableNaturalSpawn = true) {
-            if (TTMConfig.enableMumakil = true) {
+        if (TTMConfig.enableNaturalSpawn) {
+            if (TTMConfig.enableMumakil) {
                 this.spawnableCreatureList.add(new SpawnListEntry(EntityMumakil.class, 10, 1, 1));
             }
         }

@@ -12,7 +12,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenSand;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -49,12 +48,12 @@ public class BiomeIronHills extends Biome {
         this.spawnableWaterCreatureList.clear();
 
 
-        if (TTMConfig.enableNaturalSpawn = true) {
-            if (TTMConfig.enablePassive = true) {
-                if (TTMConfig.enableDwarves = true) {
+        if (TTMConfig.enableNaturalSpawn) {
+            if (TTMConfig.enablePassive) {
+                if (TTMConfig.enableDwarves) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityDwarf.class, 12, 1, 3));
                 }
-                if (TTMConfig.enableGoats = true) {
+                if (TTMConfig.enableGoats) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityGoat.class, 12, 2, 3));
                 }
             }

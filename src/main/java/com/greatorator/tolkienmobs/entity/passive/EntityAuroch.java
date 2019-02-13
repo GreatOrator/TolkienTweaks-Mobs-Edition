@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.entity.passive;
 
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.EntityHerds;
 import com.greatorator.tolkienmobs.init.LootInit;
 import net.minecraft.block.Block;

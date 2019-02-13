@@ -2,20 +2,15 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
-import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
-import com.greatorator.tolkienmobs.entity.monster.EntityUrukHai;
-import com.greatorator.tolkienmobs.entity.monster.EntityWarg;
 import com.greatorator.tolkienmobs.entity.passive.EntityAuroch;
 import com.greatorator.tolkienmobs.entity.passive.EntityHuman;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.passive.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.fml.relauncher.Side;
@@ -50,12 +45,12 @@ public class BiomeGladden extends Biome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        if (TTMConfig.enableNaturalSpawn = true) {
-            if (TTMConfig.enablePassive = true) {
-                if (TTMConfig.enableHumans = true) {
+        if (TTMConfig.enableNaturalSpawn) {
+            if (TTMConfig.enablePassive) {
+                if (TTMConfig.enableHumans) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityHuman.class, 12, 1, 3));
                 }
-                if (TTMConfig.enableAuroch = true) {
+                if (TTMConfig.enableAuroch) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityAuroch.class, 4, 2, 3));
                 }
             }

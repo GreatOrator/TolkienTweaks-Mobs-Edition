@@ -73,7 +73,7 @@ public class TTMConfig implements IModConfigHelper {
 //    public static boolean exampleRestartProperty2 = true;
 
     /** Natural Spawning */
-    @ModConfigProperty(category = "Mob Spawning", name = "enableNaturalSpawn", comment = "Setting this to true will enable Natural Spawning on top of biome spawning ALL passive mobs", requiresMCRestart = true, requiresSync = true)
+    @ModConfigProperty(category = "Mob Spawning", name = "enableNaturalSpawn", comment = "Setting this to true will enable Natural Spawning", requiresMCRestart = true, requiresSync = true)
     public static boolean enableNaturalSpawn = false;
 
     /** Mobs by Category*/

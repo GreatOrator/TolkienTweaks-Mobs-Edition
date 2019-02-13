@@ -9,8 +9,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
-/**
- * Crebain - GreatOrator
+/*
+  Crebain - GreatOrator
  */
 /**
  * Borrowed from Jabelar https://github.com/jabelar

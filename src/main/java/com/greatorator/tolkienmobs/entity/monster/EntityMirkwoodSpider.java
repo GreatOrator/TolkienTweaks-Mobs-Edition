@@ -137,7 +137,7 @@ public class EntityMirkwoodSpider extends EntityMob {
 
     /**
      * Returns true if the WatchableObject (Byte) is 0x01 otherwise returns false. The WatchableObject is updated using
-     * setBesideClimableBlock.
+     * setBesideClimbableBlock.
      */
     public boolean isBesideClimbableBlock() {
         return (((Byte) this.dataManager.get(CLIMBING)).byteValue() & 1) != 0;

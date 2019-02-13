@@ -51,18 +51,18 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
 
-        if (TTMConfig.enableNaturalSpawn = true) {
-            if (TTMConfig.enableMonster = true) {
-                if (TTMConfig.enableMirkwoodSpiders = true) {
+        if (TTMConfig.enableNaturalSpawn) {
+            if (TTMConfig.enableMonster) {
+                if (TTMConfig.enableMirkwoodSpiders) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityMirkwoodSpider.class, 10, 1, 1));
                 }
-                if (TTMConfig.enableHurons = true) {
+                if (TTMConfig.enableHurons) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityHuron.class, 8, 1, 2));
                 }
             }
-            if (TTMConfig.enablePassive = true) {
-                if (TTMConfig.enableFrogs = true) {
-                    this.spawnableWaterCreatureList.add(new SpawnListEntry(EntityToad.class, 1, 1, 1));
+            if (TTMConfig.enablePassive) {
+                if (TTMConfig.enableFrogs) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityToad.class, 1, 1, 1));
                 }
             }
         }

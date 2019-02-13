@@ -422,7 +422,7 @@ public class FellBeastFightManager {
         {
             for (this.exitPortalLocation = this.world.getTopSolidOrLiquidBlock(new BlockPos(-246, 40, 554)).down(); this.world.getBlockState(this.exitPortalLocation).getBlock() == Blocks.BEDROCK && this.exitPortalLocation.getY() > this.world.getSeaLevel(); this.exitPortalLocation = this.exitPortalLocation.down())
             {
-                ;
+
             }
         }
 

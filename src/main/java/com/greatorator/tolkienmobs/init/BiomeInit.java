@@ -32,42 +32,42 @@ public class BiomeInit
     public static void registerBiomes()
     {
         LogHelperTTM.info("Making new discoveries possible!");
-        if (TTMConfig.enableBarrowDowns = true) {
+        if (TTMConfig.enableBarrowDowns) {
             initBiome(BARROW_DOWNS, "Tyrn Gorthad", BiomeType.COOL, Type.PLAINS, Type.DEAD, Type.SPOOKY);
         }
-        if (TTMConfig.enableLorinand = true) {
+        if (TTMConfig.enableLorinand) {
             initBiome(LORINAND, "Lorinand", BiomeType.WARM, Type.PLAINS, Type.FOREST, Type.MAGICAL);
         }
-        if (TTMConfig.enableMirkwood = true) {
+        if (TTMConfig.enableMirkwood) {
             initBiome(MIRKWOOD, "Mirkwood", BiomeType.COOL, Type.SWAMP, Type.FOREST, Type.SPOOKY);
         }
-        if (TTMConfig.enableHithaeglir = true) {
+        if (TTMConfig.enableHithaeglir) {
             initBiome(HITHAEGLIR, "Hithaeglir", BiomeType.ICY, Type.MOUNTAIN, Type.DEAD, Type.SPARSE);
         }
-        if (TTMConfig.enableHaradwaith = true) {
+        if (TTMConfig.enableHaradwaith) {
             initBiome(HARADWAITH, "Haradwaith", BiomeType.DESERT, Type.HOT, Type.DRY, Type.DEAD, Type.SPARSE);
         }
-        if (TTMConfig.enableDagorlad = true) {
+        if (TTMConfig.enableDagorlad) {
             initBiome(DAGORLAD, "The Brown Lands", BiomeType.WARM, Type.PLAINS, Type.DRY, Type.LUSH);
         }
-        if (TTMConfig.enableFangornForest = true) {
+        if (TTMConfig.enableFangornForest) {
             initBiome(FANGORN, "Fangorn Forest", BiomeType.COOL, Type.FOREST, Type.LUSH);
         }
-        if (TTMConfig.enableMordor = true) {
+        if (TTMConfig.enableMordor) {
             initBiome(MORDOR, "Mordor", BiomeType.DESERT, Type.HOT, Type.NETHER, Type.DEAD, Type.DRY);
         }
 
-        /** Passive Biomes */
-        if (TTMConfig.enableShire = true) {
+        /* Passive Biomes */
+        if (TTMConfig.enableShire) {
             initBiome(SHIRE, "The Shire", BiomeType.WARM, Type.PLAINS, Type.LUSH);
         }
-        if (TTMConfig.enableGladden = true) {
+        if (TTMConfig.enableGladden) {
             initBiome(GLADDEN, "Gladden Fields", BiomeType.WARM, Type.PLAINS, Type.LUSH);
         }
-        if (TTMConfig.enableIronHills = true) {
+        if (TTMConfig.enableIronHills) {
             initBiome(IRON_HILLS, "Iron Hills", BiomeType.COOL, Type.MOUNTAIN, Type.SPARSE);
         }
-        if (TTMConfig.enableFirien = true) {
+        if (TTMConfig.enableFirien) {
             initBiome(FIRIEN, "Firien Wood", BiomeType.COOL, Type.FOREST, Type.LUSH);
         }
         LogHelperTTM.info("New lands to explore get!");
