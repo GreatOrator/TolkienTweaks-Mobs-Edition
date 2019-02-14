@@ -109,7 +109,7 @@ public class EntityInit
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mumakil"), EntityMumakil.class, "mumakil", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0xff8707);
             }
             if (TTMConfig.enableFrogs) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "toad"), EntityToad.class, "toad", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0xaaccff);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "toaddle"), EntityToaddle.class, "toaddle", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0xaaccff);
             }
         }
 
@@ -165,7 +165,7 @@ public class EntityInit
                     EntityRegistry.addSpawn(EntityGoat.class, 12, 2, 4, EnumCreatureType.CREATURE, Biomes.EXTREME_HILLS);
                 }
                 if (TTMConfig.enableFrogs) {
-                    EntityRegistry.addSpawn(EntityToad.class, 12, 1, 1, EnumCreatureType.WATER_CREATURE, Biomes.PLAINS);
+                    EntityRegistry.addSpawn(EntityToaddle.class, 12, 1, 1, EnumCreatureType.WATER_CREATURE, Biomes.PLAINS);
                 }
                 if (TTMConfig.enableMumakil) {
                     EntityRegistry.addSpawn(EntityMumakil.class, 12, 1, 1, EnumCreatureType.CREATURE, Biomes.DESERT);

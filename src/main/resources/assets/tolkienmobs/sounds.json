@@ -239,7 +239,7 @@
     "category": "neutral",
     "sounds":
     [
-      "tolkienmobs:mob/toad/toad_death"
+      "tolkienmobs:mob/toaddle/toaddle_death"
     ]
   },
   "mob.toad.angry":
@@ -247,7 +247,7 @@
     "category": "neutral",
     "sounds":
     [
-      "tolkienmobs:mob/toad/toad_angry"
+      "tolkienmobs:mob/toaddle/toaddle_angry"
     ]
   },
   "mob.toad.hurt":
@@ -255,7 +255,7 @@
     "category": "neutral",
     "sounds":
     [
-      "tolkienmobs:mob/toad/toad_hurt"
+      "tolkienmobs:mob/toaddle/toaddle_hurt"
     ]
   },
   "mob.toad.idle":
@@ -263,10 +263,10 @@
     "category": "neutral",
     "sounds":
     [
-      "tolkienmobs:mob/toad/toad_say0",
-      "tolkienmobs:mob/toad/toad_say1",
-      "tolkienmobs:mob/toad/toad_say2",
-      "tolkienmobs:mob/toad/toad_say3"
+      "tolkienmobs:mob/toaddle/toaddle_say0",
+      "tolkienmobs:mob/toaddle/toaddle_say1",
+      "tolkienmobs:mob/toaddle/toaddle_say2",
+      "tolkienmobs:mob/toaddle/toaddle_say3"
     ]
   },
   "mob.toad.step":
@@ -274,7 +274,7 @@
     "category": "neutral",
     "sounds":
     [
-      "tolkienmobs:mob/toad/toad_step"
+      "tolkienmobs:mob/toaddle/toaddle_step"
     ]
   },
   "mob.goat.death":

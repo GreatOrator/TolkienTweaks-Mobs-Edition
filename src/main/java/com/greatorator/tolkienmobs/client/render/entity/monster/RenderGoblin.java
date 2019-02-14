@@ -11,15 +11,14 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class RenderGoblin extends RenderLiving<EntityGoblin> {
-    private static final ResourceLocation[] mobTexture = new ResourceLocation[5];
-    static {
-        for (int i = 0; i < 5; i++) {
-            mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goblin/goblin" + i + ".png");
-        }
-    }
+    private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goblin/goblin1.png");
+    private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/toad/goblin2.png");
+    private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/toad/goblin3.png");
+    private static final ResourceLocation WHITE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/toad/goblin4.png");
 
     public static final RenderGoblin.Factory FACTORY = new RenderGoblin.Factory();
 
@@ -30,9 +29,22 @@ public class RenderGoblin extends RenderLiving<EntityGoblin> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(EntityGoblin entity) {
-        int index = entity.getTextureIndex();
-        return mobTexture[index];
+    protected ResourceLocation getEntityTexture(@Nonnull EntityGoblin entity) {
+        switch (entity.getMobType()) {
+            case 0:
+            default:
+                return GREEN;
+            case 1:
+                return GREEN;
+            case 2:
+                return BLACK;
+            case 3:
+                return BLUE;
+            case 4:
+                return WHITE;
+            case 5:
+                return WHITE;
+        }
     }
 
     public static class Factory implements IRenderFactory<EntityGoblin> {

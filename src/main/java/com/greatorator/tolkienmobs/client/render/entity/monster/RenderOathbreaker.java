@@ -11,15 +11,14 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class RenderOathbreaker extends RenderLiving<EntityOathbreaker> {
-    private static final ResourceLocation[] mobTexture = new ResourceLocation[5];
-    static {
-        for (int i = 0; i < 5; i++) {
-            mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/oathbreaker/oathbreaker" + i + ".png");
-        }
-    }
+    private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/oathbreaker/oathbreaker1.png");
+    private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/oathbreaker/oathbreaker2.png");
+    private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/oathbreaker/oathbreaker3.png");
+    private static final ResourceLocation WHITE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/oathbreaker/oathbreaker4.png");
 
     public static final RenderOathbreaker.Factory FACTORY = new RenderOathbreaker.Factory();
 
@@ -30,9 +29,22 @@ public class RenderOathbreaker extends RenderLiving<EntityOathbreaker> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(EntityOathbreaker entity) {
-        int index = entity.getTextureIndex();
-        return mobTexture[index];
+    protected ResourceLocation getEntityTexture(@Nonnull EntityOathbreaker entity) {
+        switch (entity.getMobType()) {
+            case 0:
+            default:
+                return GREEN;
+            case 1:
+                return GREEN;
+            case 2:
+                return BLACK;
+            case 3:
+                return BLUE;
+            case 4:
+                return WHITE;
+            case 5:
+                return WHITE;
+        }
     }
 
     public static class Factory implements IRenderFactory<EntityOathbreaker> {

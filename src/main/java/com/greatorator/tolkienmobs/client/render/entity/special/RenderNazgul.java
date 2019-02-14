@@ -12,11 +12,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class RenderNazgul extends RenderLiving<EntityNazgul> {
-    private ResourceLocation mobTexture = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/nazgul.png");
+    private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/nazgul.png");
 
-    public static final Factory FACTORY = new Factory();
+    public static final RenderNazgul.Factory FACTORY = new RenderNazgul.Factory();
 
     public float scale;
 
@@ -27,10 +28,14 @@ public class RenderNazgul extends RenderLiving<EntityNazgul> {
         this.addLayer(new LayerArmed(this, 0.125F, 0.25F, -0.625F, 1.5F));
     }
 
+    @Nullable
     @Override
-    @Nonnull
     protected ResourceLocation getEntityTexture(@Nonnull EntityNazgul entity) {
-        return mobTexture;
+        switch (entity.getMobType()) {
+            case 0:
+            default:
+                return GREEN;
+        }
     }
 
     public static class Factory implements IRenderFactory<EntityNazgul> {

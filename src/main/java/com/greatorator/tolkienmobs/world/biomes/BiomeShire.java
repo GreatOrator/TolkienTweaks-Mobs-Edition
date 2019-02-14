@@ -4,7 +4,7 @@ import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.passive.EntityAuroch;
 import com.greatorator.tolkienmobs.entity.passive.EntityGoat;
 import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
-import com.greatorator.tolkienmobs.entity.passive.EntityToad;
+import com.greatorator.tolkienmobs.entity.passive.EntityToaddle;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.BlockFlower;
@@ -53,7 +53,7 @@ public class BiomeShire extends Biome {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityHobbit.class, 12, 1, 3));
                 }
                 if (TTMConfig.enableFrogs) {
-                    this.spawnableCreatureList.add(new SpawnListEntry(EntityToad.class, 4, 1, 1));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityToaddle.class, 4, 1, 1));
                 }
                 if (TTMConfig.enableAuroch) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityAuroch.class, 4, 2, 3));

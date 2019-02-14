@@ -35,34 +35,34 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class EntityToad extends EntityAnimal {
-    private static final DataParameter<Integer> TOAD_TYPE = EntityDataManager.<Integer>createKey(EntityToad.class, DataSerializers.VARINT);
+public class EntityToaddle extends EntityAnimal {
+    private static final DataParameter<Integer> TOAD_TYPE = EntityDataManager.<Integer>createKey(EntityToaddle.class, DataSerializers.VARINT);
     private int jumpTicks;
     private int jumpDuration;
     private boolean wasOnGround;
     private int currentMoveTypeDuration;
     private int insectTicks;
 
-    public EntityToad(World worldIn)
+    public EntityToaddle(World worldIn)
     {
         super(worldIn);
         this.setSize(0.3F, 0.3F);
-        this.jumpHelper = new EntityToad.ToadJumpHelper(this);
-        this.moveHelper = new EntityToad.ToadMoveHelper(this);
+        this.jumpHelper = new EntityToaddle.ToaddleJumpHelper(this);
+        this.moveHelper = new EntityToaddle.ToaddleMoveHelper(this);
         this.setMovementSpeed(0.0D);
     }
 
     protected void initEntityAI()
     {
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityToad.AIPanic(this, 2.2D));
+        this.tasks.addTask(1, new EntityToaddle.AIPanic(this, 2.2D));
         this.tasks.addTask(2, new EntityAIMate(this, 0.8D));
         this.tasks.addTask(3, new EntityAITempt(this, 1.0D, TTMFeatures.INSECT, false));
         this.tasks.addTask(3, new EntityAITempt(this, 1.0D, TTMFeatures.GOLDEN_INSECT, false));
-        this.tasks.addTask(4, new EntityToad.AIAvoidEntity(this, EntityPlayer.class, 8.0F, 2.2D, 2.2D));
-        this.tasks.addTask(4, new EntityToad.AIAvoidEntity(this, EntityWolf.class, 10.0F, 2.2D, 2.2D));
-        this.tasks.addTask(4, new EntityToad.AIAvoidEntity(this, EntityMob.class, 4.0F, 2.2D, 2.2D));
-        this.tasks.addTask(5, new EntityToad.AIRaidFarm(this));
+        this.tasks.addTask(4, new EntityToaddle.AIAvoidEntity(this, EntityPlayer.class, 8.0F, 2.2D, 2.2D));
+        this.tasks.addTask(4, new EntityToaddle.AIAvoidEntity(this, EntityWolf.class, 10.0F, 2.2D, 2.2D));
+        this.tasks.addTask(4, new EntityToaddle.AIAvoidEntity(this, EntityMob.class, 4.0F, 2.2D, 2.2D));
+        this.tasks.addTask(5, new EntityToaddle.AIRaidFarm(this));
         this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 0.6D));
         this.tasks.addTask(11, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
     }
@@ -175,7 +175,7 @@ public class EntityToad extends EntityAnimal {
                 this.checkLandingDelay();
             }
 
-            if (this.getToadType() == 99 && this.currentMoveTypeDuration == 0)
+            if (this.getToaddleType() == 99 && this.currentMoveTypeDuration == 0)
             {
                 EntityLivingBase entitylivingbase = this.getAttackTarget();
 
@@ -188,7 +188,7 @@ public class EntityToad extends EntityAnimal {
                 }
             }
 
-            EntityToad.ToadJumpHelper entitytoad$toadjumphelper = (EntityToad.ToadJumpHelper)this.jumpHelper;
+            EntityToaddle.ToaddleJumpHelper entitytoad$toadjumphelper = (EntityToaddle.ToaddleJumpHelper)this.jumpHelper;
 
             if (!entitytoad$toadjumphelper.getIsJumping())
             {
@@ -229,12 +229,12 @@ public class EntityToad extends EntityAnimal {
 
     private void enableJumpControl()
     {
-        ((EntityToad.ToadJumpHelper)this.jumpHelper).setCanJump(true);
+        ((EntityToaddle.ToaddleJumpHelper)this.jumpHelper).setCanJump(true);
     }
 
     private void disableJumpControl()
     {
-        ((EntityToad.ToadJumpHelper)this.jumpHelper).setCanJump(false);
+        ((EntityToaddle.ToaddleJumpHelper)this.jumpHelper).setCanJump(false);
     }
 
     private void updateMoveTypeDuration()
@@ -282,9 +282,9 @@ public class EntityToad extends EntityAnimal {
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
     }
 
-    public static void registerFixesToad(DataFixer fixer)
+    public static void registerFixesToaddle(DataFixer fixer)
     {
-        EntityLiving.registerFixesMob(fixer, EntityToad.class);
+        EntityLiving.registerFixesMob(fixer, EntityToaddle.class);
     }
 
     /**
@@ -293,7 +293,7 @@ public class EntityToad extends EntityAnimal {
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setInteger("ToadType", this.getToadType());
+        compound.setInteger("ToaddleType", this.getToaddleType());
         compound.setInteger("MoreInsectTicks", this.insectTicks);
     }
 
@@ -303,35 +303,35 @@ public class EntityToad extends EntityAnimal {
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        this.setToadType(compound.getInteger("ToadType"));
+        this.setToaddleType(compound.getInteger("ToaddleType"));
         this.insectTicks = compound.getInteger("MoreInsectTicks");
     }
 
     protected SoundEvent getJumpSound()
     {
-        return SoundInit.soundStepToad;
+        return SoundInit.soundStepToaddle;
     }
 
     protected SoundEvent getAmbientSound()
     {
-        return SoundInit.soundIdleToad;
+        return SoundInit.soundIdleToaddle;
     }
 
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return SoundInit.soundHurtToad;
+        return SoundInit.soundHurtToaddle;
     }
 
     protected SoundEvent getDeathSound()
     {
-        return SoundInit.soundDeathToad;
+        return SoundInit.soundDeathToaddle;
     }
 
     public boolean attackEntityAsMob(Entity entityIn)
     {
-        if (this.getToadType() == 99)
+        if (this.getToaddleType() == 99)
         {
-            this.playSound(SoundInit.soundAngryToad, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+            this.playSound(SoundInit.soundAngryToaddle, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 8.0F);
         }
         else
@@ -342,7 +342,7 @@ public class EntityToad extends EntityAnimal {
 
     public SoundCategory getSoundCategory()
     {
-        return this.getToadType() == 99 ? SoundCategory.HOSTILE : SoundCategory.NEUTRAL;
+        return this.getToaddleType() == 99 ? SoundCategory.HOSTILE : SoundCategory.NEUTRAL;
     }
 
     /**
@@ -359,29 +359,29 @@ public class EntityToad extends EntityAnimal {
         return LootInit.TMFROG;
     }
 
-    private boolean isToadBreedingItem(Item itemIn)
+    private boolean isToaddleBreedingItem(Item itemIn)
     {
         return itemIn == TTMFeatures.INSECT || itemIn == TTMFeatures.GOLDEN_INSECT;
     }
 
-    public EntityToad createChild(EntityAgeable ageable)
+    public EntityToaddle createChild(EntityAgeable ageable)
     {
-        EntityToad entitytoad = new EntityToad(this.world);
-        int i = this.getRandomToadType();
+        EntityToaddle entitytoad = new EntityToaddle(this.world);
+        int i = this.getRandomToaddleType();
 
         if (this.rand.nextInt(20) != 0)
         {
-            if (ageable instanceof EntityToad && this.rand.nextBoolean())
+            if (ageable instanceof EntityToaddle && this.rand.nextBoolean())
             {
-                i = ((EntityToad)ageable).getToadType();
+                i = ((EntityToaddle)ageable).getToaddleType();
             }
             else
             {
-                i = this.getToadType();
+                i = this.getToaddleType();
             }
         }
 
-        entitytoad.setToadType(i);
+        entitytoad.setToaddleType(i);
         return entitytoad;
     }
 
@@ -391,20 +391,20 @@ public class EntityToad extends EntityAnimal {
      */
     public boolean isBreedingItem(ItemStack stack)
     {
-        return this.isToadBreedingItem(stack.getItem());
+        return this.isToaddleBreedingItem(stack.getItem());
     }
 
-    public int getToadType()
+    public int getToaddleType()
     {
         return ((Integer)this.dataManager.get(TOAD_TYPE)).intValue();
     }
 
-    public void setToadType(int toadTypeId)
+    public void setToaddleType(int toadTypeId)
     {
         if (toadTypeId == 99)
         {
             this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(8.0D);
-            this.tasks.addTask(4, new EntityToad.AIEvilAttack(this));
+            this.tasks.addTask(4, new EntityToaddle.AIEvilAttack(this));
             this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
             this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
             this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWolf.class, true));
@@ -426,20 +426,20 @@ public class EntityToad extends EntityAnimal {
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
         livingdata = super.onInitialSpawn(difficulty, livingdata);
-        int i = this.getRandomToadType();
+        int i = this.getRandomToaddleType();
         boolean flag = false;
 
-        if (livingdata instanceof EntityToad.ToadTypeData)
+        if (livingdata instanceof EntityToaddle.ToaddleTypeData)
         {
-            i = ((EntityToad.ToadTypeData)livingdata).typeData;
+            i = ((EntityToaddle.ToaddleTypeData)livingdata).typeData;
             flag = true;
         }
         else
         {
-            livingdata = new EntityToad.ToadTypeData(i);
+            livingdata = new EntityToaddle.ToaddleTypeData(i);
         }
 
-        this.setToadType(i);
+        this.setToaddleType(i);
 
         if (flag)
         {
@@ -449,7 +449,7 @@ public class EntityToad extends EntityAnimal {
         return livingdata;
     }
 
-    private int getRandomToadType()
+    private int getRandomToaddleType()
     {
         Biome biome = this.world.getBiome(new BlockPos(this));
         int i = this.rand.nextInt(100);
@@ -501,9 +501,9 @@ public class EntityToad extends EntityAnimal {
 
     static class AIAvoidEntity<T extends Entity> extends EntityAIAvoidEntity<T>
     {
-        private final EntityToad toad;
+        private final EntityToaddle toad;
 
-        public AIAvoidEntity(EntityToad toad, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_, double p_i46403_6_)
+        public AIAvoidEntity(EntityToaddle toad, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_, double p_i46403_6_)
         {
             super(toad, p_i46403_2_, p_i46403_3_, p_i46403_4_, p_i46403_6_);
             this.toad = toad;
@@ -514,13 +514,13 @@ public class EntityToad extends EntityAnimal {
          */
         public boolean shouldExecute()
         {
-            return this.toad.getToadType() != 99 && super.shouldExecute();
+            return this.toad.getToaddleType() != 99 && super.shouldExecute();
         }
     }
 
     static class AIEvilAttack extends EntityAIAttackMelee
     {
-        public AIEvilAttack(EntityToad toad)
+        public AIEvilAttack(EntityToaddle toad)
         {
             super(toad, 1.4D, true);
         }
@@ -533,9 +533,9 @@ public class EntityToad extends EntityAnimal {
 
     static class AIPanic extends EntityAIPanic
     {
-        private final EntityToad toad;
+        private final EntityToaddle toad;
 
-        public AIPanic(EntityToad toad, double speedIn)
+        public AIPanic(EntityToaddle toad, double speedIn)
         {
             super(toad, speedIn);
             this.toad = toad;
@@ -553,11 +553,11 @@ public class EntityToad extends EntityAnimal {
 
     static class AIRaidFarm extends EntityAIMoveToBlock
     {
-        private final EntityToad toad;
+        private final EntityToaddle toad;
         private boolean wantsToRaid;
         private boolean canRaid;
 
-        public AIRaidFarm(EntityToad toadIn)
+        public AIRaidFarm(EntityToaddle toadIn)
         {
             super(toadIn, 0.699999988079071D, 16);
             this.toad = toadIn;
@@ -653,12 +653,12 @@ public class EntityToad extends EntityAnimal {
         }
     }
 
-    public class ToadJumpHelper extends EntityJumpHelper
+    public class ToaddleJumpHelper extends EntityJumpHelper
     {
-        private final EntityToad toad;
+        private final EntityToaddle toad;
         private boolean canJump;
 
-        public ToadJumpHelper(EntityToad toad)
+        public ToaddleJumpHelper(EntityToaddle toad)
         {
             super(toad);
             this.toad = toad;
@@ -692,12 +692,12 @@ public class EntityToad extends EntityAnimal {
         }
     }
 
-    static class ToadMoveHelper extends EntityMoveHelper
+    static class ToaddleMoveHelper extends EntityMoveHelper
     {
-        private final EntityToad toad;
+        private final EntityToaddle toad;
         private double nextJumpSpeed;
 
-        public ToadMoveHelper(EntityToad toad)
+        public ToaddleMoveHelper(EntityToaddle toad)
         {
             super(toad);
             this.toad = toad;
@@ -705,7 +705,7 @@ public class EntityToad extends EntityAnimal {
 
         public void onUpdateMoveHelper()
         {
-            if (this.toad.onGround && !this.toad.isJumping && !((EntityToad.ToadJumpHelper)this.toad.jumpHelper).getIsJumping())
+            if (this.toad.onGround && !this.toad.isJumping && !((EntityToaddle.ToaddleJumpHelper)this.toad.jumpHelper).getIsJumping())
             {
                 this.toad.setMovementSpeed(0.0D);
             }
@@ -736,11 +736,11 @@ public class EntityToad extends EntityAnimal {
         }
     }
 
-    public static class ToadTypeData implements IEntityLivingData
+    public static class ToaddleTypeData implements IEntityLivingData
     {
         public int typeData;
 
-        public ToadTypeData(int type)
+        public ToaddleTypeData(int type)
         {
             this.typeData = type;
         }

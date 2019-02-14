@@ -11,15 +11,14 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class RenderBarrowWight extends RenderLiving<EntityBarrowWight> {
-    private static final ResourceLocation[] mobTexture = new ResourceLocation[5];
-    static {
-        for (int i = 0; i < 5; i++) {
-            mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/barrowwight/barrowwight" + i + ".png");
-        }
-    }
+    private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/barrowwight/barrowwight1.png");
+    private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/barrowwight/barrowwight2.png");
+    private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/barrowwight/barrowwight3.png");
+    private static final ResourceLocation WHITE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/barrowwight/barrowwight4.png");
 
     public static final RenderBarrowWight.Factory FACTORY = new RenderBarrowWight.Factory();
 
@@ -32,9 +31,22 @@ public class RenderBarrowWight extends RenderLiving<EntityBarrowWight> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(EntityBarrowWight entity) {
-        int index = entity.getTextureIndex();
-        return mobTexture[index];
+    protected ResourceLocation getEntityTexture(@Nonnull EntityBarrowWight entity) {
+        switch (entity.getMobType()) {
+            case 0:
+            default:
+                return GREEN;
+            case 1:
+                return GREEN;
+            case 2:
+                return BLACK;
+            case 3:
+                return BLUE;
+            case 4:
+                return WHITE;
+            case 5:
+                return WHITE;
+        }
     }
 
     public static class Factory implements IRenderFactory<EntityBarrowWight> {

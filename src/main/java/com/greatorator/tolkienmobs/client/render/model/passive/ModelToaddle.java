@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.model.passive;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
-import com.greatorator.tolkienmobs.entity.passive.EntityToad;
+import com.greatorator.tolkienmobs.entity.passive.EntityToaddle;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
@@ -11,7 +11,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * Frog - GreatOrator
  */
-public class ModelToad extends ModelTTM {
+public class ModelToaddle extends ModelTTM {
     public ModelRenderer frogHead;
     public ModelRenderer frogFootLeft;
     public ModelRenderer frogLeftThigh;
@@ -24,7 +24,7 @@ public class ModelToad extends ModelTTM {
     public ModelRenderer frogEyeLeft;
     private float jumpRotation;
 
-    public ModelToad() {
+    public ModelToaddle() {
         this.textureWidth = 64;
         this.textureHeight = 32;
         this.frogBody = new ModelRenderer(this, 0, 0);
@@ -114,7 +114,7 @@ public class ModelToad extends ModelTTM {
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
         float f = ageInTicks - (float)entityIn.ticksExisted;
-        EntityToad entitytoad = (EntityToad)entityIn;
+        EntityToaddle entitytoad = (EntityToaddle)entityIn;
         this.frogHead.rotateAngleX = headPitch * 0.017453292F;
         this.frogHead.rotateAngleY = netHeadYaw * 0.017453292F;
         this.jumpRotation = MathHelper.sin(entitytoad.setJumpCompletion(f) * (float)Math.PI);
@@ -129,6 +129,6 @@ public class ModelToad extends ModelTTM {
     public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
     {
         super.setLivingAnimations(entitylivingbaseIn, limbSwing, limbSwingAmount, partialTickTime);
-        this.jumpRotation = MathHelper.sin(((EntityToad)entitylivingbaseIn).setJumpCompletion(partialTickTime) * (float)Math.PI);
+        this.jumpRotation = MathHelper.sin(((EntityToaddle)entitylivingbaseIn).setJumpCompletion(partialTickTime) * (float)Math.PI);
     }
 }

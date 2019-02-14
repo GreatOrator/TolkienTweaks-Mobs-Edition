@@ -12,9 +12,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class RenderWitchKing extends RenderLiving<EntityWitchKing> {
-    private ResourceLocation mobTexture = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/witchking.png");
+    private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/witchking.png");
 
     public static final Factory FACTORY = new Factory();
 
@@ -27,10 +28,14 @@ public class RenderWitchKing extends RenderLiving<EntityWitchKing> {
         this.addLayer(new LayerArmed(this, 0.125F, 0.25F, -0.625F, 1.6F));
     }
 
+    @Nullable
     @Override
-    @Nonnull
     protected ResourceLocation getEntityTexture(@Nonnull EntityWitchKing entity) {
-        return mobTexture;
+        switch (entity.getMobType()) {
+            case 0:
+            default:
+                return GREEN;
+        }
     }
 
     public static class Factory implements IRenderFactory<EntityWitchKing> {
