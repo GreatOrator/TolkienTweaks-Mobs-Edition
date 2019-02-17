@@ -96,6 +96,10 @@ item.tolkienmobs:shovel_morguliron.name=Morgul Iron Shovel
 item.tolkienmobs:sword_morguliron.name=Morgul Iron Sword
 item.tolkienmobs:whip_fire.name=§4Whip of Fire
 item.tolkienmobs:sword_witchking.name=§4Sword of the Witch-king
+item.tolkienmobs:trinket_ring.name=Magic Ring
+item.tolkienmobs:trinket_amulet.name=Magic Amulet
+item.tolkienmobs:trinket_belt.name=Magic Belt
+item.tolkienmobs:trinket_charm.name=Magic Charm
 
 item.tolkienmobs:helmet_mithril.name=Mithril Helmet
 item.tolkienmobs:chestplate_mithril.name=Mithril Chestplate

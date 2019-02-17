@@ -20,7 +20,11 @@
       "shovel_morguliron":   {"textures": {"layer0": "tolkienmobs:items/shovel_morguliron"}},
       "sword_morguliron":   {"textures": {"layer0": "tolkienmobs:items/sword_morguliron"}},
       "whip_fire":   {"textures": {"layer0": "tolkienmobs:items/whip_fire"}},
-      "sword_witchking":   {"textures": {"layer0": "tolkienmobs:items/sword_witchking"}}
+      "sword_witchking":   {"textures": {"layer0": "tolkienmobs:items/sword_witchking"}},
+      "trinket_ring":   {"textures": {"layer0": "tolkienmobs:items/trinket_ring"}},
+      "trinket_amulet":   {"textures": {"layer0": "tolkienmobs:items/trinket_amulet"}},
+      "trinket_belt":   {"textures": {"layer0": "tolkienmobs:items/trinket_belt"}},
+      "trinket_charm":   {"textures": {"layer0": "tolkienmobs:items/trinket_charm"}}
     }
   }
 }

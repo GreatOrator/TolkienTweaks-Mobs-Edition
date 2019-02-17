@@ -15,6 +15,7 @@ import com.greatorator.tolkienmobs.handler.TTMAmmo;
 import com.greatorator.tolkienmobs.handler.TTMFood;
 import com.greatorator.tolkienmobs.handler.TTMLore;
 import com.greatorator.tolkienmobs.handler.TTMSword;
+import com.greatorator.tolkienmobs.item.magical.MagicRing;
 import com.greatorator.tolkienmobs.item.tools.ToolAxe;
 import com.greatorator.tolkienmobs.tile.TileSign;
 import net.minecraft.block.Block;
@@ -180,6 +181,9 @@ public class TTMFeatures implements IModFeatures {
 
     @ModFeature(name = "sword_witchking", stateOverride = "tools#type=sword_witchking")
     public static Item SWORD_WITCHKING = new TTMSword(TOOL_MITHRIL).setEffectOverride(true);
+
+    @ModFeature(name = "trinket_ring", stateOverride = "tools#type=trinket_ring")
+    public static Item TRINKET_RING = new MagicRing();
     /* End Region */
 
     /** Armor */
