@@ -60,11 +60,11 @@ public class MagicRing extends ItemBCore {
         ItemNBTHelper.setBoolean(stack, "IsActive", !isEnabled(stack));
     }
 
-    @SideOnly(Side.CLIENT)
-    public int getColorFromItemStack(ItemStack par1ItemStack, int par2)
-    {
-        return potionColorType;
-    }
+//    @SideOnly(Side.CLIENT)
+//    public int getColorFromItemStack(ItemStack par1ItemStack, int par2)
+//    {
+//        return potionColorType;
+//    }
 
     public boolean hasColor(ItemStack stack)
     {
