@@ -31,8 +31,8 @@ public class MagicRing extends ItemBCore {
     };
 
     public MagicRing() {
-    this.setMaxStackSize(1);
-    this.setHasSubtypes(true);
+        this.setMaxStackSize(1);
+        this.setHasSubtypes(true);
     }
 
     @SideOnly(Side.CLIENT)
