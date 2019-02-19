@@ -2,21 +2,34 @@ package com.greatorator.tolkienmobs.item.magical;
 
 import com.brandon3055.brandonscore.items.ItemBCore;
 import com.brandon3055.brandonscore.utils.ItemNBTHelper;
+import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.init.PotionInit;
+import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Optional.Interface(iface = "baubles.api.IBauble", modid = "baubles")
+//@Optional.Interface(iface = "baubles.api.IBauble", modid = "baubles")
 public class MagicRing extends ItemBCore {
-    private int potionColorType;
+    private static final String TAG_POTION_EFFECT = "effect";
+
+    public static final Potion[] DEFAULT_EFFECTS = {
+            PotionInit.ENT_STANCE, MobEffects.ABSORPTION
+    };
 
     public MagicRing() {
     this.setMaxStackSize(1);
@@ -36,10 +49,17 @@ public class MagicRing extends ItemBCore {
     }
 
     private void updateRing(ItemStack stack, Entity entity) {
+        EntityPlayer player = (EntityPlayer) entity;
+
+        Potion pe = getPotion(stack);
         if(isEnabled(stack)){
-            World world = entity.getEntityWorld();
-            boolean flag = false;
-            LogHelperTTM.info("Ring has been enabled");
+            //World world = entity.getEntityWorld();
+            //boolean flag = false;
+
+            player.addPotionEffect(new PotionEffect(pe));
+            //LogHelperTTM.info("Ring has been enabled");
+        }else {
+            player.removePotionEffect(pe);
         }
     }
 
@@ -60,74 +80,42 @@ public class MagicRing extends ItemBCore {
         ItemNBTHelper.setBoolean(stack, "IsActive", !isEnabled(stack));
     }
 
-    @SideOnly(Side.CLIENT)
-    public int getColorFromItemStack(ItemStack par1ItemStack, int par2)
-    {
-        return potionColorType;
-    }
-
-    public boolean hasColor(ItemStack stack)
-    {
-        if (this.material != ItemArmor.ArmorMaterial.LEATHER)
-        {
-            return false;
-        }
-        else
-        {
-            NBTTagCompound nbttagcompound = stack.getTagCompound();
-            return nbttagcompound != null && nbttagcompound.hasKey("potionColorType", 10) ? nbttagcompound.getCompoundTag("potionColorType").hasKey("color", potionColorType) : false;
+    @Override
+    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
+        if(tab == getCreativeTab()) {
+            subItems.add(new ItemStack(this));
+            for(Potion p : MagicRing.DEFAULT_EFFECTS)
+                subItems.add(getRingForPotion(p));
         }
     }
 
-    public int getColor(ItemStack stack)
-    {
-        if (this.material != ItemArmor.ArmorMaterial.LEATHER)
-        {
-            return 16777215;
-        }
-        else
-        {
-            NBTTagCompound nbttagcompound = stack.getTagCompound();
+    @Override
+    public String getItemStackDisplayName(ItemStack stack) {
+        String name = super.getItemStackDisplayName(stack);
+        Potion p = getPotion(stack);
+        String potionName = "N/A";
+        if(p != null)
+            potionName = I18n.translateToLocal(p.getName());
 
-            if (nbttagcompound != null)
-            {
-                NBTTagCompound nbttagcompound1 = nbttagcompound.getCompoundTag("potionColorType");
-
-                if (nbttagcompound1 != null && nbttagcompound1.hasKey("color", 3))
-                {
-                    return nbttagcompound1.getInteger("color");
-                }
-            }
-
-            return 10511680;
-        }
+        return String.format(name, potionName);
     }
 
-    public void setColor(ItemStack stack, int color)
-    {
-        if (this.material != ItemArmor.ArmorMaterial.LEATHER)
-        {
-            throw new UnsupportedOperationException("Can't dye non-leather!");
-        }
-        else
-        {
-            NBTTagCompound nbttagcompound = stack.getTagCompound();
+    public static ItemStack getRingForPotion(Potion potion) {
+        String id = potion.getRegistryName().toString();
+        ItemStack stack = new ItemStack(TTMFeatures.TRINKET_RING, 1, 1);
+        ItemNBTHelper.setString(stack, TAG_POTION_EFFECT, id);
+        return stack;
+    }
 
-            if (nbttagcompound == null)
-            {
-                nbttagcompound = new NBTTagCompound();
-                stack.setTagCompound(nbttagcompound);
-            }
+    public static Potion getPotion(ItemStack stack) {
+        if(stack == null)
+            return null;
 
-            NBTTagCompound nbttagcompound1 = nbttagcompound.getCompoundTag("potionColorType");
+        String effect = ItemNBTHelper.getString(stack, TAG_POTION_EFFECT, "");
+        if(effect.isEmpty())
+            return null;
 
-            if (!nbttagcompound.hasKey("potionColorType", 10))
-            {
-                nbttagcompound.setTag("potionColorType", nbttagcompound1);
-            }
-
-            nbttagcompound1.setInteger("color", color);
-        }
+        return Potion.REGISTRY.getObject(new ResourceLocation(effect));
     }
 
 //    @Optional.Method(modid = "baubles")

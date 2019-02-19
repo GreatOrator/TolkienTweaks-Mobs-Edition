@@ -234,7 +234,7 @@
       "tolkienmobs:mob/gollum/gollum_say2"
     ]
   },
-  "mob.toad.death":
+  "mob.toaddle.death":
   {
     "category": "neutral",
     "sounds":
@@ -242,7 +242,7 @@
       "tolkienmobs:mob/toaddle/toaddle_death"
     ]
   },
-  "mob.toad.angry":
+  "mob.toaddle.angry":
   {
     "category": "neutral",
     "sounds":
@@ -250,7 +250,7 @@
       "tolkienmobs:mob/toaddle/toaddle_angry"
     ]
   },
-  "mob.toad.hurt":
+  "mob.toaddle.hurt":
   {
     "category": "neutral",
     "sounds":
@@ -258,7 +258,7 @@
       "tolkienmobs:mob/toaddle/toaddle_hurt"
     ]
   },
-  "mob.toad.idle":
+  "mob.toaddle.idle":
   {
     "category": "neutral",
     "sounds":
@@ -269,7 +269,7 @@
       "tolkienmobs:mob/toaddle/toaddle_say3"
     ]
   },
-  "mob.toad.step":
+  "mob.toaddle.step":
   {
     "category": "neutral",
     "sounds":
