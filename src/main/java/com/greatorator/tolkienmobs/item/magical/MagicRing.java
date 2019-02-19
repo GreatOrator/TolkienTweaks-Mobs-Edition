@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.item.magical;
 
 import com.brandon3055.brandonscore.items.ItemBCore;
 import com.brandon3055.brandonscore.utils.ItemNBTHelper;
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.PotionInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
