@@ -15,7 +15,10 @@ import com.greatorator.tolkienmobs.handler.TTMAmmo;
 import com.greatorator.tolkienmobs.handler.TTMFood;
 import com.greatorator.tolkienmobs.handler.TTMLore;
 import com.greatorator.tolkienmobs.handler.TTMSword;
-import com.greatorator.tolkienmobs.item.magical.MagicRing;
+import com.greatorator.tolkienmobs.item.magical.ItemTrinketAmulet;
+import com.greatorator.tolkienmobs.item.magical.ItemTrinketBelt;
+import com.greatorator.tolkienmobs.item.magical.ItemTrinketCharm;
+import com.greatorator.tolkienmobs.item.magical.ItemTrinketRing;
 import com.greatorator.tolkienmobs.item.tools.ToolAxe;
 import com.greatorator.tolkienmobs.tile.TileSign;
 import net.minecraft.block.Block;
@@ -183,7 +186,16 @@ public class TTMFeatures implements IModFeatures {
     public static Item SWORD_WITCHKING = new TTMSword(TOOL_MITHRIL).setEffectOverride(true);
 
     @ModFeature(name = "trinket_ring", stateOverride = "tools#type=trinket_ring")
-    public static Item TRINKET_RING = new MagicRing();
+    public static Item TRINKET_RING = new ItemTrinketRing();
+
+    @ModFeature(name = "trinket_amulet", stateOverride = "tools#type=trinket_amulet")
+    public static Item TRINKET_AMULET = new ItemTrinketAmulet();
+
+    @ModFeature(name = "trinket_belt", stateOverride = "tools#type=trinket_belt")
+    public static Item TRINKET_BELT = new ItemTrinketBelt();
+
+    @ModFeature(name = "trinket_charm", stateOverride = "tools#type=trinket_charm")
+    public static Item TRINKET_CHARM = new ItemTrinketCharm();
     /* End Region */
 
     /** Armor */

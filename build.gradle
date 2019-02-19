@@ -27,6 +27,10 @@ repositories {
         name "JEI Maven"
         url "http://dvs1.progwml6.com/files/maven"
     }
+    maven {
+        name "Miscellaneous"
+        url 'https://jitpack.io'
+    }
 }
 
 // Define properties file
@@ -65,6 +69,7 @@ dependencies {
     compile "com.brandon3055.brandonscore:BrandonsCore:${config.mc_version}-${config.bcore_version}:deobf"
     compile "com.brandon3055.tolkientweaks:TolkienTweaks:${config.mc_version}-${config.tt_version}:deobf"
     compile "codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:deobf"
+    compile "com.github.azanor:Baubles:${config.baubles_version}"
 }
 
 processResources {
