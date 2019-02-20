@@ -21,7 +21,7 @@ public class BlockOres extends BlockBCore {
 
     public BlockOres() {
         super(Material.ROCK);
-        this.setHarvestLevel("pickaxe", 1);
+        this.setHarvestLevel("pickaxe", 3);
         setDefaultState(this.blockState.getBaseState().withProperty(ORE_TYPE, EnumType.MITHRIL));
 
         //Thanks to BlockBase this is all you have to do to add sub types
