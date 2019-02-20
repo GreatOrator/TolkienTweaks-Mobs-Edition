@@ -87,5 +87,7 @@ public class CraftingInit {
         GameRegistry.addShapedRecipe(new ResourceLocation(TolkienMobs.MODID + ":magicAmulet"),null,new ItemStack(TTMFeatures.TRINKET_AMULET),"GMG","G G","MAM",'A',TTMFeatures.GEM_AMMOLITE,'M',TTMFeatures.INGOT_MITHRIL,'G',TTMFeatures.MUMAKIL_LEATHER);
         GameRegistry.addShapedRecipe(new ResourceLocation(TolkienMobs.MODID + ":magicCharm"),null,new ItemStack(TTMFeatures.TRINKET_CHARM),"MMG","CAC","MMM",'A',TTMFeatures.GEM_AMMOLITE,'M',TTMFeatures.INGOT_MITHRIL,'C',Blocks.HARDENED_CLAY,'G',TTMFeatures.MUMAKIL_LEATHER);
         GameRegistry.addShapedRecipe(new ResourceLocation(TolkienMobs.MODID + ":magicBelt"),null,new ItemStack(TTMFeatures.TRINKET_BELT),"GGG","M G","AMG",'A',TTMFeatures.GEM_AMMOLITE,'M',TTMFeatures.INGOT_MITHRIL,'G',TTMFeatures.MUMAKIL_LEATHER);
+
+
     }
 }

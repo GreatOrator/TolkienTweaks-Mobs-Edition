@@ -30,7 +30,7 @@ public class TTMConfig implements IModConfigHelper {
         comments.put("Special Mobs", "Special Mobs do not currently naturally spawn, \nuse these settings if you do not want them available in-game.");
         comments.put("Passive Mobs", "Use these settings to disable any individual \nnaturally spawning Passive mobs. Note: This will potentially impact \nthe ability to get certain items as \nthey are only available from shop-keepers.");
         comments.put("Biomes", "Disable any or all Biomes added by this mod, some mobs \nwill only be available in these biomes, so if disabled it will \nautomatically make certain mobs unavailable.");
-        comments.put("Potion Types", "List of potion types that will generate the rings, \nbelts, amulets and charms for. Must be added in the format \nshown in the list.");
+        comments.put("Potion Types", " This creates rings, charms, belts and amulets for \neach potion listed. They need to be added using the internal names like \nthe ones already listed.");
     }
     @Override
     public Configuration createConfiguration(FMLPreInitializationEvent event) {
@@ -177,12 +177,12 @@ public class TTMConfig implements IModConfigHelper {
     @ModConfigProperty(category = "Biomes", name = "enableShire", comment = "Setting this to false will disable the Shire Biome", requiresMCRestart = true, requiresSync = true)
     public static boolean enableShire = true;
 
-    @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array. This creates rings, charms, belts and amulets for each potion listed. They need to be added using the internal names like the ones already listed.")
-    public static String[] potionTypeArray = new String[]{"tolkienmobs:ent_draught", "minecraft:absorption"};
+    @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array.")
+    public static String[] potionTypeArray = new String[]{"tolkienmobs:ent_draught", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:glowing", "minecraft:fire_resistance"};
 
     public static Potion[] potionArray = new Potion[0];
 
-    private void loadPotionList() {
+    public static void loadPotionList() {
         List<Potion> potions = new ArrayList<>();
         for (String name : potionTypeArray) {
             Potion potion = ForgeRegistries.POTIONS.getValue(new ResourceLocation(name));
@@ -191,11 +191,6 @@ public class TTMConfig implements IModConfigHelper {
             }
         }
         potionArray = potions.toArray(new Potion[0]);
-    }
-
-    @Override
-    public void onConfigLoaded() {
-        loadPotionList();
     }
 
     @Override

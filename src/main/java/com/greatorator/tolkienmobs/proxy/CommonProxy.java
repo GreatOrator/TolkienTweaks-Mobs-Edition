@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.proxy;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.handler.TerrainEventHandler;
 import com.greatorator.tolkienmobs.init.*;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
@@ -36,6 +37,7 @@ public class CommonProxy {
     public void init(FMLInitializationEvent event)
     {
         ProfessionInit.associateCareersAndTrades();
+        TTMConfig.loadPotionList();
     }
 
     public void postInit(FMLPostInitializationEvent event) {

@@ -4,13 +4,12 @@ import baubles.api.BaubleType;
 import baubles.api.IBauble;
 import com.brandon3055.brandonscore.items.ItemBCore;
 import com.brandon3055.brandonscore.utils.ItemNBTHelper;
-import com.greatorator.tolkienmobs.init.PotionInit;
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -27,11 +26,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @Optional.Interface(iface = "baubles.api.IBauble", modid = "baubles")
 public class ItemTrinketBelt extends ItemBCore implements IBauble {
     private static final String TAG_POTION_EFFECT = "effect";
-
-
-    public static final Potion[] DEFAULT_EFFECTS = {
-            PotionInit.ENT_STANCE, MobEffects.ABSORPTION
-    };
 
     public ItemTrinketBelt() {
         this.setMaxStackSize(1);
@@ -85,7 +79,7 @@ public class ItemTrinketBelt extends ItemBCore implements IBauble {
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
         if(tab == getCreativeTab()) {
             subItems.add(new ItemStack(this));
-            for(Potion p : ItemTrinketBelt.DEFAULT_EFFECTS)
+            for(Potion p : TTMConfig.potionArray)
                 subItems.add(getTrinketForPotion(p));
         }
     }
