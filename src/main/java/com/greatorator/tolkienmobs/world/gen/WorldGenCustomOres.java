@@ -18,6 +18,7 @@ public class WorldGenCustomOres implements IWorldGenerator
 {
     private WorldGenerator ore_nether_mithril, ore_overworld_mithril, ore_end_mithril;
     private WorldGenerator ore_nether_morguliron, ore_overworld_morguliron, ore_end_morguliron;
+    private WorldGenerator ore_nether_ammolite, ore_overworld_ammolite, ore_end_ammolite;
 
     public WorldGenCustomOres()
     {
@@ -28,6 +29,10 @@ public class WorldGenCustomOres implements IWorldGenerator
         ore_nether_morguliron = new WorldGenMinable(TTMFeatures.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.NETHER_MORGULIRON), 9, BlockMatcher.forBlock(Blocks.NETHERRACK));
         ore_overworld_morguliron = new WorldGenMinable(TTMFeatures.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.MORGULIRON), 9, BlockMatcher.forBlock(Blocks.STONE));
         ore_end_morguliron = new WorldGenMinable(TTMFeatures.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.ENDER_MORGULIRON), 9, BlockMatcher.forBlock(Blocks.END_STONE));
+
+        ore_nether_ammolite = new WorldGenMinable(TTMFeatures.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.NETHER_AMMOLITE), 9, BlockMatcher.forBlock(Blocks.NETHERRACK));
+        ore_overworld_ammolite = new WorldGenMinable(TTMFeatures.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.AMMOLITE), 9, BlockMatcher.forBlock(Blocks.STONE));
+        ore_end_ammolite = new WorldGenMinable(TTMFeatures.ORE.getDefaultState().withProperty(BlockOres.ORE_TYPE, BlockOres.EnumType.ENDER_AMMOLITE), 9, BlockMatcher.forBlock(Blocks.END_STONE));
     }
 
     @Override
@@ -39,13 +44,15 @@ public class WorldGenCustomOres implements IWorldGenerator
 
                 runGenerator(ore_nether_morguliron, world, random, chunkX, chunkZ, 25, 0, 100);
                 runGenerator(ore_nether_mithril, world, random, chunkX, chunkZ, 25, 0, 100);
+                runGenerator(ore_nether_ammolite, world, random, chunkX, chunkZ, 25, 0, 100);
 
                 break;
 
             case 0:
 
-                runGenerator(ore_overworld_morguliron, world, random, chunkX, chunkZ, 25, 0, 60);
+                runGenerator(ore_overworld_morguliron, world, random, chunkX, chunkZ, 25, 0, 45);
                 runGenerator(ore_overworld_mithril, world, random, chunkX, chunkZ, 25, 70, 155);
+                runGenerator(ore_overworld_ammolite, world, random, chunkX, chunkZ, 25, 70, 155);
 
                 break;
 
@@ -53,6 +60,7 @@ public class WorldGenCustomOres implements IWorldGenerator
 
                 runGenerator(ore_end_morguliron, world, random, chunkX, chunkZ, 25, 0, 256);
                 runGenerator(ore_end_mithril, world, random, chunkX, chunkZ, 25, 0, 256);
+                runGenerator(ore_end_ammolite, world, random, chunkX, chunkZ, 25, 0, 256);
         }
     }
 
