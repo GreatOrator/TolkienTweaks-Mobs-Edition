@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.client.TTMClientEvents;
 import com.greatorator.tolkienmobs.client.render.entity.RenderBirds;
 import com.greatorator.tolkienmobs.client.render.entity.RenderHerds;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderBoulder;
@@ -47,6 +48,8 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {
         super.preInit(event);
+        MinecraftForge.EVENT_BUS.register(new TTMClientEvents());
+
         OBJLoader.INSTANCE.addDomain(TolkienMobs.MODID);
         /* Bosses */
         RenderingRegistry.registerEntityRenderingHandler(EntityBalrog.class, RenderBalrog.FACTORY);
