@@ -153,7 +153,7 @@ public class TTMFeatures implements IModFeatures {
 
     /** Tools */
     @ModFeature(name = "axe_mithril", stateOverride = "tools#type=axe_mithril")
-    public static Item AXE_MITHRIL = new ToolAxe(TOOL_MITHRIL, TOOL_MITHRIL.getAttackDamage(), -3.0F);
+    public static Item AXE_MITHRIL = new ToolAxe(TOOL_MITHRIL, TOOL_MITHRIL.getAttackDamage(), -1.5F);
 
     @ModFeature(name = "hoe_mithril", stateOverride = "tools#type=hoe_mithril")
     public static Item HOE_MITHRIL = new ItemHoe(TOOL_MITHRIL);
