@@ -73,6 +73,9 @@ public class TTMFeatures implements IModFeatures {
 
     @ModFeature(name = "dust_morguliron", stateOverride = "simple_items#type=dust_morguliron", cTab = 1)
     public static Item DUST_MORGULIRON = new ItemBCore();
+
+    @ModFeature(name = "gem_ammolite", stateOverride = "simple_items#type=gem_ammolite", cTab = 1)
+    public static Item GEM_AMMOLITE = new TTMLore(16).setEffectOverride(true);
     /* End Region */
 
     /** Quest Items */
@@ -231,7 +234,7 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "block_morguliron", cTab = 1)
     public static final Block BLOCK_MORGULIRON = new BlockBCore(Material.IRON).setHardness(1.5F).setResistance(10F);
 
-    @ModFeature(name = "ore", variantMap = {"0:type=mithril", "1:type=morguliron", "2:type=nether_mithril", "3:type=nether_morguliron", "4:type=ender_mithril", "5:type=ender_morguliron"}, itemBlock = ItemBlockBCore.class, cTab = 1)
+    @ModFeature(name = "ore", variantMap = {"0:type=mithril", "1:type=morguliron", "2:type=nether_mithril", "3:type=nether_morguliron", "4:type=ender_mithril", "5:type=ender_morguliron", "6:type=ammolite", "7:type=nether_ammolite", "8:type=ender_ammolite"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block ORE = new BlockOres();
 
     @ModFeature(name = "planks", variantMap = {"0:variant=mallorn", "1:variant=mirkwood", "2:variant=culumalda", "3:variant=lebethron"}, itemBlock = ItemBlockBCore.class, cTab = 1)

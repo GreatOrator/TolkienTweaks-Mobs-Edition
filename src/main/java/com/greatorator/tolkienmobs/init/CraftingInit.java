@@ -1,19 +1,24 @@
 package com.greatorator.tolkienmobs.init;
 
 
+import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-import net.minecraft.item.ItemStack;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class CraftingInit {
+
     public static void init()
     {
         LogHelperTTM.info("Making everyone aware of our existence...");
 
         addOreRegistration();
         addSmeltingRecipes();
+        addOreDictRecipe();
 
         LogHelperTTM.info("World now fully aware!");
     }
@@ -42,6 +47,7 @@ public class CraftingInit {
         OreDictionary.registerOre("nuggetSteel", TTMFeatures.NUGGET_MORGULIRON);
         OreDictionary.registerOre("ingotSteel", TTMFeatures.INGOT_MORGULIRON);
         OreDictionary.registerOre("blockSteel", TTMFeatures.BLOCK_MORGULIRON);
+        OreDictionary.registerOre("gemDiamond", TTMFeatures.GEM_AMMOLITE);
 
         /* Ores */
         OreDictionary.registerOre("oreMithril", new ItemStack(TTMFeatures.ORE,1,0));
@@ -50,6 +56,9 @@ public class CraftingInit {
         OreDictionary.registerOre("oreSteel", new ItemStack(TTMFeatures.ORE,1,1));
         OreDictionary.registerOre("oreSteel", new ItemStack(TTMFeatures.ORE,1,3));
         OreDictionary.registerOre("oreSteel", new ItemStack(TTMFeatures.ORE,1,5));
+        OreDictionary.registerOre("oreAmmolite", new ItemStack(TTMFeatures.ORE,1,6));
+        OreDictionary.registerOre("oreAmmolite", new ItemStack(TTMFeatures.ORE,1,7));
+        OreDictionary.registerOre("oreAmmolite", new ItemStack(TTMFeatures.ORE,1,8));
 
         /* Wood Blocks */
         OreDictionary.registerOre("logWood", new ItemStack(TTMFeatures.LOGS));
@@ -71,7 +80,12 @@ public class CraftingInit {
         /* Monster Drops */
         OreDictionary.registerOre("feather", new ItemStack(TTMFeatures.CREBAIN_FEATHER));
         OreDictionary.registerOre("leather", new ItemStack(TTMFeatures.MUMAKIL_LEATHER));
+    }
 
-
+    private static void addOreDictRecipe(){
+        GameRegistry.addShapedRecipe(new ResourceLocation(TolkienMobs.MODID + ":magicRing"),null,new ItemStack(TTMFeatures.TRINKET_RING),"AM ","M M"," M ",'A',TTMFeatures.GEM_AMMOLITE,'M',TTMFeatures.INGOT_MITHRIL);
+        GameRegistry.addShapedRecipe(new ResourceLocation(TolkienMobs.MODID + ":magicAmulet"),null,new ItemStack(TTMFeatures.TRINKET_AMULET),"GMG","G G","MAM",'A',TTMFeatures.GEM_AMMOLITE,'M',TTMFeatures.INGOT_MITHRIL,'G',TTMFeatures.MUMAKIL_LEATHER);
+        GameRegistry.addShapedRecipe(new ResourceLocation(TolkienMobs.MODID + ":magicCharm"),null,new ItemStack(TTMFeatures.TRINKET_CHARM),"MMG","CAC","MMM",'A',TTMFeatures.GEM_AMMOLITE,'M',TTMFeatures.INGOT_MITHRIL,'C',Blocks.HARDENED_CLAY,'G',TTMFeatures.MUMAKIL_LEATHER);
+        GameRegistry.addShapedRecipe(new ResourceLocation(TolkienMobs.MODID + ":magicBelt"),null,new ItemStack(TTMFeatures.TRINKET_BELT),"GGG","M G","AMG",'A',TTMFeatures.GEM_AMMOLITE,'M',TTMFeatures.INGOT_MITHRIL,'G',TTMFeatures.MUMAKIL_LEATHER);
     }
 }

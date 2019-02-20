@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "tolkienmobs:blocks/ore_end_ammolite"
+    }
+}

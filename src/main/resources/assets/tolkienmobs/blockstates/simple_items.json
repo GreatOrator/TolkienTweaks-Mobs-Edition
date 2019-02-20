@@ -62,7 +62,8 @@
       "item_wornsword":    {"textures": {"layer0": "tolkienmobs:items/item_wornsword"}},
       "item_wovenbasket":    {"textures": {"layer0": "tolkienmobs:items/item_wovenbasket"}},
       "item_writtenpaper":    {"textures": {"layer0": "tolkienmobs:items/item_writtenpaper"}},
-      "item_darksaddle":    {"textures": {"layer0": "tolkienmobs:items/item_darksaddle"}}
+      "item_darksaddle":    {"textures": {"layer0": "tolkienmobs:items/item_darksaddle"}},
+      "gem_ammolite":    {"textures": {"layer0": "tolkienmobs:items/gem_ammolite"}}
     }
   }
 }

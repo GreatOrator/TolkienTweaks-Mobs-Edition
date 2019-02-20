@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.block;
 
 import com.brandon3055.brandonscore.blocks.BlockBCore;
+import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -64,7 +65,14 @@ public class BlockOres extends BlockBCore {
 
     @Override
     public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
-        return new ItemStack(this, 1, world.getBlockState(pos).getValue(ORE_TYPE).getMeta());
+        int oreTypeDrop = world.getBlockState(pos).getValue(ORE_TYPE).getMeta();
+
+        if(oreTypeDrop == 6 || oreTypeDrop == 7 || oreTypeDrop == 8) {
+            return new ItemStack(TTMFeatures.GEM_AMMOLITE, 1);
+        }
+        else {
+            return new ItemStack(this, 1, oreTypeDrop);
+        }
     }
 
     @Override
@@ -82,7 +90,10 @@ public class BlockOres extends BlockBCore {
         NETHER_MITHRIL(2, "nether_mithril"),
         NETHER_MORGULIRON(3, "nether_morguliron"),
         ENDER_MITHRIL(4, "ender_mithril"),
-        ENDER_MORGULIRON(5, "ender_morguliron");
+        ENDER_MORGULIRON(5, "ender_morguliron"),
+        AMMOLITE(6, "ammolite"),
+        NETHER_AMMOLITE(7, "nether_ammolite"),
+        ENDER_AMMOLITE(8, "ender_ammolite");
 
         private static final EnumType[] META_LOOKUP = new EnumType[values().length];
         private final int meta;

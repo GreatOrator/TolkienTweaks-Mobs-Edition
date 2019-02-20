@@ -7,6 +7,7 @@ item.tolkienmobs:nugget_mithril.name=Mithril Nugget
 item.tolkienmobs:ingot_morguliron.name=Morgul Iron Ingot
 item.tolkienmobs:dust_morguliron.name=Morgul Iron Dust
 item.tolkienmobs:nugget_morguliron.name=Morgul Iron Nugget
+item.tolkienmobs:gem_ammolite.name=Star of Elendil
 
 //Quest Items
 item.tolkienmobs:item_beryl.name=§3Glorfindel's Beryl
@@ -145,6 +146,9 @@ tile.tolkienmobs:ore_ender_mithril.name=Ender Mithril Ore
 tile.tolkienmobs:ore_morguliron.name=Morgul Iron Ore
 tile.tolkienmobs:ore_nether_morguliron.name=Fiery Morgul Iron Ore
 tile.tolkienmobs:ore_ender_morguliron.name=Ender Morgul Iron Ore
+tile.tolkienmobs:ore_ammolite.name=Ammolite Ore
+tile.tolkienmobs:ore_nether_ammolite.name=Firey Ammolite Ore
+tile.tolkienmobs:ore_ender_ammolite.name=Ender Ammolite Ore
 
 //Trees
 tile.tolkienmobs:planks_mallorn.name=Mallorn Planks
