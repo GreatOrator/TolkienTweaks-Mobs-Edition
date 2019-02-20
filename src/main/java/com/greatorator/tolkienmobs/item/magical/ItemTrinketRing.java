@@ -1,5 +1,7 @@
 package com.greatorator.tolkienmobs.item.magical;
 
+import baubles.api.BaubleType;
+import baubles.api.IBauble;
 import com.brandon3055.brandonscore.items.ItemBCore;
 import com.brandon3055.brandonscore.utils.ItemNBTHelper;
 import com.greatorator.tolkienmobs.init.PotionInit;
@@ -21,9 +23,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import baubles.api.BaubleType;
-import baubles.api.IBauble;
 
 @Optional.Interface(iface = "baubles.api.IBauble", modid = "baubles")
 public class ItemTrinketRing extends ItemBCore implements IBauble {
@@ -132,5 +131,4 @@ public class ItemTrinketRing extends ItemBCore implements IBauble {
         if (!(player instanceof EntityPlayer)) return;
         updateTrinket(itemstack, player);
     }
-
 }

@@ -8,12 +8,25 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by brandon3055 on 31/10/18.
  */
 @ModConfigContainer(modid = TolkienMobs.MODID)
 public class TTMConfig implements IModConfigHelper {
+    public static Map<String, String> comments = new HashMap<String, String>();
+
+    static {
+        comments.put("Mob Spawning", "Disable groups of mobs or all mobs using these settings.");
+        comments.put("Aggressive (non-boss) Mobs", "Use these settings to disable any individual naturally spawning Hostile mobs.");
+        comments.put("Boss Mobs", "Boss Mobs do not currently naturally spawn, \nuse these settings if you do not want them available in-game.");
+        comments.put("Special Mobs", "Special Mobs do not currently naturally spawn, \nuse these settings if you do not want them available in-game.");
+        comments.put("Passive Mobs", "Use these settings to disable any individual \nnaturally spawning Passive mobs. Note: This will potentially impact \nthe ability to get certain items as \nthey are only available from shop-keepers.");
+        comments.put("Biomes", "Disable any or all Biomes added by this mod, some mobs \nwill only be available in these biomes, so if disabled it will \nautomatically make certain mobs unavailable.");
+        comments.put("Potion Types", "List of potion types that will generate the rings, \nbelts, amulets and charms for. Must be added in the format \nshown in the list.");
+    }
     @Override
     public Configuration createConfiguration(FMLPreInitializationEvent event) {
         return new Configuration(new File(FileHandler.rootConfigFolder, "tolkienmobs.cfg"), true);
@@ -69,12 +82,12 @@ public class TTMConfig implements IModConfigHelper {
 //    public static boolean exampleRestartProperty = true;
 
     //Use this for properties that require a world restart to apply
-//    @ModConfigProperty(category = "Category", name = "exampleRestartProperty2", comment = "Description", requiresWorldRestart = true)
-//    public static boolean exampleRestartProperty2 = true;
+    @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array. This creates rings, charms, belts and amulets for each potion listed. They need to be added using the internal names like the ones already listed.")
+    public static String[] potionTypeArray = new String[]{"PotionInit.ENT_STANCE", "MobEffects.ABSORPTION"};
 
     /** Natural Spawning */
     @ModConfigProperty(category = "Mob Spawning", name = "enableNaturalSpawn", comment = "Setting this to true will enable Natural Spawning", requiresMCRestart = true, requiresSync = true)
-    public static boolean enableNaturalSpawn = false;
+    public static boolean enableNaturalSpawn = true;
 
     /** Mobs by Category*/
     @ModConfigProperty(category = "Mob Spawning", name = "enablePassive", comment = "Setting this to false will disable ALL passive mobs", requiresMCRestart = true, requiresSync = true)

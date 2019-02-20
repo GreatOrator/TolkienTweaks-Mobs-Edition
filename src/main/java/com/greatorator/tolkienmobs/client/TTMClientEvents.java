@@ -28,6 +28,6 @@ public class TTMClientEvents {
                 }
             }
             return -1;
-        }, TTMFeatures.TRINKET_RING);
+        }, TTMFeatures.TRINKET_RING, TTMFeatures.TRINKET_CHARM, TTMFeatures.TRINKET_BELT, TTMFeatures.TRINKET_AMULET);
     }
 }

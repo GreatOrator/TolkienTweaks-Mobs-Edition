@@ -103,7 +103,7 @@ public class ItemTrinketCharm extends ItemBCore implements IBauble {
 
     public static ItemStack getTrinketForPotion(Potion potion) {
         String id = potion.getRegistryName().toString();
-        ItemStack stack = new ItemStack(TTMFeatures.TRINKET_CHARM, 1, 1);
+        ItemStack stack = new ItemStack(TTMFeatures.TRINKET_CHARM);
         ItemNBTHelper.setString(stack, TAG_POTION_EFFECT, id);
         return stack;
     }
