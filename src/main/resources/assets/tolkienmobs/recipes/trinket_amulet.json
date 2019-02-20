@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "item": "tolkienmobs:trinket_amulet",
+    "data": 0,
+    "count": 1
+  },
+  "pattern": [
+    "GMG",
+    "G G",
+    "MAM"
+  ],
+  "key": {
+    "A": {
+      "item": "tolkienmobs:gem_ammolite"
+    },
+    "M": {
+      "item": "tolkienmobs:ingot_mithril"
+    },
+    "G": {
+      "item": "tolkienmobs:leather_mumakil"
+    }
+  }
+}

@@ -1,12 +1,9 @@
 package com.greatorator.tolkienmobs.init;
 
 
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -83,11 +80,5 @@ public class CraftingInit {
     }
 
     private static void addOreDictRecipe(){
-        GameRegistry.addShapedRecipe(new ResourceLocation(TolkienMobs.MODID + ":magicRing"),null,new ItemStack(TTMFeatures.TRINKET_RING),"AM ","M M"," M ",'A',TTMFeatures.GEM_AMMOLITE,'M',TTMFeatures.INGOT_MITHRIL);
-        GameRegistry.addShapedRecipe(new ResourceLocation(TolkienMobs.MODID + ":magicAmulet"),null,new ItemStack(TTMFeatures.TRINKET_AMULET),"GMG","G G","MAM",'A',TTMFeatures.GEM_AMMOLITE,'M',TTMFeatures.INGOT_MITHRIL,'G',TTMFeatures.MUMAKIL_LEATHER);
-        GameRegistry.addShapedRecipe(new ResourceLocation(TolkienMobs.MODID + ":magicCharm"),null,new ItemStack(TTMFeatures.TRINKET_CHARM),"MMG","CAC","MMM",'A',TTMFeatures.GEM_AMMOLITE,'M',TTMFeatures.INGOT_MITHRIL,'C',Blocks.HARDENED_CLAY,'G',TTMFeatures.MUMAKIL_LEATHER);
-        GameRegistry.addShapedRecipe(new ResourceLocation(TolkienMobs.MODID + ":magicBelt"),null,new ItemStack(TTMFeatures.TRINKET_BELT),"GGG","M G","AMG",'A',TTMFeatures.GEM_AMMOLITE,'M',TTMFeatures.INGOT_MITHRIL,'G',TTMFeatures.MUMAKIL_LEATHER);
-
-
     }
 }

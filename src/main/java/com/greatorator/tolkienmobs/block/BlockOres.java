@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.block;
 
 import com.brandon3055.brandonscore.blocks.BlockBCore;
-import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -67,12 +66,7 @@ public class BlockOres extends BlockBCore {
     public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
         int oreTypeDrop = world.getBlockState(pos).getValue(ORE_TYPE).getMeta();
 
-        if(oreTypeDrop == 6 || oreTypeDrop == 7 || oreTypeDrop == 8) {
-            return new ItemStack(TTMFeatures.GEM_AMMOLITE, 1);
-        }
-        else {
-            return new ItemStack(this, 1, oreTypeDrop);
-        }
+        return new ItemStack(this, 1, oreTypeDrop);
     }
 
     @Override
