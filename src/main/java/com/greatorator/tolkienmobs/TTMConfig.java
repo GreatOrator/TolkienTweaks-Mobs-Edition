@@ -4,11 +4,16 @@ import com.brandon3055.brandonscore.handlers.FileHandler;
 import com.brandon3055.brandonscore.registry.IModConfigHelper;
 import com.brandon3055.brandonscore.registry.ModConfigContainer;
 import com.brandon3055.brandonscore.registry.ModConfigProperty;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,12 +39,7 @@ public class TTMConfig implements IModConfigHelper {
 
     @Override
     public String getCategoryComment(String category) {
-        return ""; //Use this to provide a custom description for a config category
-    }
-
-    @Override
-    public void onConfigChanged(String propertyName, String propertyCategory) {
-        //Use this to detect runtime config changes made by the user (if required)
+        return comments.getOrDefault(category, "");
     }
 
 //    @ModConfigProperty(category = "Category for this property", name = "exampleBooleanConfig", comment = "Description for this config property")
@@ -80,10 +80,6 @@ public class TTMConfig implements IModConfigHelper {
     //Use this for properties that require an MC restart to apply
 //    @ModConfigProperty(category = "Category", name = "exampleRestartProperty", comment = "Description", requiresMCRestart = true)
 //    public static boolean exampleRestartProperty = true;
-
-    //Use this for properties that require a world restart to apply
-    @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array. This creates rings, charms, belts and amulets for each potion listed. They need to be added using the internal names like the ones already listed.")
-    public static String[] potionTypeArray = new String[]{"PotionInit.ENT_STANCE", "MobEffects.ABSORPTION"};
 
     /** Natural Spawning */
     @ModConfigProperty(category = "Mob Spawning", name = "enableNaturalSpawn", comment = "Setting this to true will enable Natural Spawning", requiresMCRestart = true, requiresSync = true)
@@ -180,4 +176,30 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableMordor = true;
     @ModConfigProperty(category = "Biomes", name = "enableShire", comment = "Setting this to false will disable the Shire Biome", requiresMCRestart = true, requiresSync = true)
     public static boolean enableShire = true;
+
+    @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array. This creates rings, charms, belts and amulets for each potion listed. They need to be added using the internal names like the ones already listed.")
+    public static String[] potionTypeArray = new String[]{"tolkienmobs:ent_draught", "minecraft:absorption"};
+
+    public static Potion[] potionArray = new Potion[0];
+
+    private void loadPotionList() {
+        List<Potion> potions = new ArrayList<>();
+        for (String name : potionTypeArray) {
+            Potion potion = ForgeRegistries.POTIONS.getValue(new ResourceLocation(name));
+            if (potion != null) {
+                potions.add(potion);
+            }
+        }
+        potionArray = potions.toArray(new Potion[0]);
+    }
+
+    @Override
+    public void onConfigLoaded() {
+        loadPotionList();
+    }
+
+    @Override
+    public void onConfigChanged(String propertyName, String propertyCategory) {
+        loadPotionList();
+    }
 }

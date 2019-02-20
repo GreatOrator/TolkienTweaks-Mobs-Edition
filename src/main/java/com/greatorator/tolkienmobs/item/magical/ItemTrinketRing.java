@@ -29,9 +29,7 @@ public class ItemTrinketRing extends ItemBCore implements IBauble {
     private static final String TAG_POTION_EFFECT = "effect";
 
 
-    public static final Potion[] DEFAULT_EFFECTS = {
-            PotionInit.ENT_STANCE, MobEffects.ABSORPTION
-    };
+    public static final Potion[] potionArray;
 
     public ItemTrinketRing() {
         this.setMaxStackSize(1);
