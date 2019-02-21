@@ -31,6 +31,9 @@ public class CraftingInit {
         GameRegistry.addSmelting(new ItemStack(TTMFeatures.ORE,1,1), new ItemStack(TTMFeatures.INGOT_MORGULIRON, 1), 0.15F);
         GameRegistry.addSmelting(new ItemStack(TTMFeatures.ORE,1,3), new ItemStack(TTMFeatures.INGOT_MORGULIRON, 1), 0.15F);
         GameRegistry.addSmelting(new ItemStack(TTMFeatures.ORE,1,5), new ItemStack(TTMFeatures.INGOT_MORGULIRON, 1), 0.15F);
+        GameRegistry.addSmelting(new ItemStack(TTMFeatures.ORE,1,6), new ItemStack(TTMFeatures.GEM_AMMOLITE, 1), 0.15F);
+        GameRegistry.addSmelting(new ItemStack(TTMFeatures.ORE,1,7), new ItemStack(TTMFeatures.GEM_AMMOLITE, 1), 0.15F);
+        GameRegistry.addSmelting(new ItemStack(TTMFeatures.ORE,1,8), new ItemStack(TTMFeatures.GEM_AMMOLITE, 1), 0.15F);
     }
 
     private static void addOreRegistration(){
