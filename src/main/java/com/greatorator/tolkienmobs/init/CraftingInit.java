@@ -64,7 +64,6 @@ public class CraftingInit {
         OreDictionary.registerOre("logWood", new ItemStack(TTMFeatures.LOGS));
         OreDictionary.registerOre("plankWood", TTMFeatures.PLANKS);
         OreDictionary.registerOre("slabWood", TTMFeatures.HALF_SLAB);
-        //OreDictionary.registerOre("stairWood", new ItemStack(TTMFeatures.STAIR));
 
         /* Plant life */
         OreDictionary.registerOre("treeSapling", TTMFeatures.SAPLINGS);
