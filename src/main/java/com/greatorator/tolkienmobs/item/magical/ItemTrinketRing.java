@@ -96,8 +96,11 @@ public class ItemTrinketRing extends ItemBCore implements IBauble {
     }
 
     public static ItemStack getTrinketForPotion(Potion potion) {
+        return addPotionToTrinket(new ItemStack(TTMFeatures.TRINKET_RING), potion);
+    }
+
+    public static ItemStack addPotionToTrinket(ItemStack stack, Potion potion) {
         String id = potion.getRegistryName().toString();
-        ItemStack stack = new ItemStack(TTMFeatures.TRINKET_RING);
         ItemNBTHelper.setString(stack, TAG_POTION_EFFECT, id);
         return stack;
     }
