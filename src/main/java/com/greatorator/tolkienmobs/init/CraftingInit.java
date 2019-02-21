@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.init;
 
 
 import com.greatorator.tolkienmobs.crafting.recipe.TrinketPotionRecipe;
+import com.greatorator.tolkienmobs.handler.TTMFuel;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -41,20 +42,25 @@ public class CraftingInit {
         GameRegistry.addSmelting(new ItemStack(TTMFeatures.ORE,1,1), new ItemStack(TTMFeatures.INGOT_MORGULIRON, 1), 0.15F);
         GameRegistry.addSmelting(new ItemStack(TTMFeatures.ORE,1,3), new ItemStack(TTMFeatures.INGOT_MORGULIRON, 1), 0.15F);
         GameRegistry.addSmelting(new ItemStack(TTMFeatures.ORE,1,5), new ItemStack(TTMFeatures.INGOT_MORGULIRON, 1), 0.15F);
+
+        TTMFuel ttmFuel = new TTMFuel();
+        GameRegistry.registerFuelHandler(ttmFuel);
+
+        ttmFuel.addFuel(TTMFeatures.SAPLINGS, 100);
     }
 
     private static void addOreRegistration(){
 
         /* Dusts, Nuggets, Ingots, Metal Blocks */
-        OreDictionary.registerOre("dustMithril", TTMFeatures.DUST_MITHRIL);
-        OreDictionary.registerOre("nuggetMithril", TTMFeatures.NUGGET_MITHRIL);
-        OreDictionary.registerOre("ingotMithril", TTMFeatures.INGOT_MITHRIL);
-        OreDictionary.registerOre("blockMithril", TTMFeatures.BLOCK_MITHRIL);
-        OreDictionary.registerOre("dustSteel", TTMFeatures.DUST_MORGULIRON);
-        OreDictionary.registerOre("nuggetSteel", TTMFeatures.NUGGET_MORGULIRON);
-        OreDictionary.registerOre("ingotSteel", TTMFeatures.INGOT_MORGULIRON);
-        OreDictionary.registerOre("blockSteel", TTMFeatures.BLOCK_MORGULIRON);
-        OreDictionary.registerOre("gemDiamond", TTMFeatures.GEM_AMMOLITE);
+        OreDictionary.registerOre("dustMithril", new ItemStack(TTMFeatures.DUST_MITHRIL));
+        OreDictionary.registerOre("nuggetMithril", new ItemStack(TTMFeatures.NUGGET_MITHRIL));
+        OreDictionary.registerOre("ingotMithril", new ItemStack(TTMFeatures.INGOT_MITHRIL));
+        OreDictionary.registerOre("blockMithril", new ItemStack(TTMFeatures.BLOCK_MITHRIL));
+        OreDictionary.registerOre("dustSteel", new ItemStack(TTMFeatures.DUST_MORGULIRON));
+        OreDictionary.registerOre("nuggetSteel", new ItemStack(TTMFeatures.NUGGET_MORGULIRON));
+        OreDictionary.registerOre("ingotSteel", new ItemStack(TTMFeatures.INGOT_MORGULIRON));
+        OreDictionary.registerOre("blockSteel", new ItemStack(TTMFeatures.BLOCK_MORGULIRON));
+        OreDictionary.registerOre("gemDiamond", new ItemStack(TTMFeatures.GEM_AMMOLITE));
 
         /* Ores */
         OreDictionary.registerOre("oreMithril", new ItemStack(TTMFeatures.ORE,1,0));
@@ -69,13 +75,13 @@ public class CraftingInit {
 
         /* Wood Blocks */
         OreDictionary.registerOre("logWood", new ItemStack(TTMFeatures.LOGS));
-        OreDictionary.registerOre("plankWood", TTMFeatures.PLANKS);
-        OreDictionary.registerOre("slabWood", TTMFeatures.HALF_SLAB);
+        OreDictionary.registerOre("plankWood", new ItemStack(TTMFeatures.PLANKS));
+        OreDictionary.registerOre("slabWood", new ItemStack(TTMFeatures.HALF_SLAB));
 
         /* Plant life */
-        OreDictionary.registerOre("treeSapling", TTMFeatures.SAPLINGS);
-        OreDictionary.registerOre("treeLeaves", TTMFeatures.LEAVES);
-        OreDictionary.registerOre("flower",TTMFeatures.FLOWERS);
+        OreDictionary.registerOre("treeSapling", new ItemStack(TTMFeatures.SAPLINGS));
+        OreDictionary.registerOre("treeLeaves", new ItemStack(TTMFeatures.LEAVES));
+        OreDictionary.registerOre("flower", new ItemStack(TTMFeatures.FLOWERS));
 
         /* Foodstuffs */
         OreDictionary.registerOre("foodLembas", new ItemStack(TTMFeatures.LEMBAS));

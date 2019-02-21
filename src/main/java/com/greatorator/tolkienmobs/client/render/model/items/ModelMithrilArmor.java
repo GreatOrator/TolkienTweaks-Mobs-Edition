@@ -7,7 +7,7 @@ import net.minecraft.entity.Entity;
 /**
  *CustomArmor - GreatOrator
  */
-public class ModelCustomArmor extends ModelBiped {
+public class ModelMithrilArmor extends ModelBiped {
     public ModelRenderer HelmMithril;
     public ModelRenderer ChestMithril;
     public ModelRenderer MithrilLA;
@@ -31,7 +31,7 @@ public class ModelCustomArmor extends ModelBiped {
     public ModelRenderer MithrilRFPart;
     public ModelRenderer MithrilLFPart;
 
-    public ModelCustomArmor() {
+    public ModelMithrilArmor() {
         this.textureWidth = 128;
         this.textureHeight = 128;
         this.MithrilRAPart_1 = new ModelRenderer(this, 102, 94);

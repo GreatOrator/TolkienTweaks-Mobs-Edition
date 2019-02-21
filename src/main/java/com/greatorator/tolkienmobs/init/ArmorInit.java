@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.init;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.render.model.items.ModelCustomArmor;
+import com.greatorator.tolkienmobs.client.render.model.items.ModelMithrilArmor;
 import com.greatorator.tolkienmobs.handler.interfaces.TTMHasModel;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,13 +22,13 @@ public class ArmorInit extends ItemArmor implements TTMHasModel {
     }
 
     @SideOnly(Side.CLIENT)
-    public ModelCustomArmor model;
+    public ModelMithrilArmor model;
 
     @SideOnly(Side.CLIENT)
     @Override
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
         if (model == null) {
-            model = new ModelCustomArmor();
+            model = new ModelMithrilArmor();
             model.bipedHead.showModel = armorSlot == EntityEquipmentSlot.HEAD;
             model.bipedBody.showModel = armorSlot == EntityEquipmentSlot.CHEST;
             model.bipedRightLeg.showModel = armorSlot == EntityEquipmentSlot.FEET || armorSlot == EntityEquipmentSlot.LEGS;
