@@ -1,9 +1,0 @@
-{
-  "ingredients": {
-    "potion_type": "com.greatorator.tolkienmobs.crafting.ingredient.TTMIngredientFactory",
-    "never": "com.greatorator.tolkienmobs.crafting.ingredient.TTMIngredientNever$Factory"
-  },
-  "recipes": {
-    "trinket_upgrade_shapeless": "com.greatorator.tolkienmobs.crafting.recipe.TrinketUpgradeRecipe$Factory"
-  }
-}

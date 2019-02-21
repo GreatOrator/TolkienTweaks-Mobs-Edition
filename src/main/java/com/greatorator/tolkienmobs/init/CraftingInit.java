@@ -27,16 +27,6 @@ public class CraftingInit {
         addSmeltingRecipes();
         addOreDictRecipe();
 
-
-        //This does not need to stay here
-        Ingredient potionIngredient = Ingredient.fromStacks(new ItemStack(Items.POTIONITEM, 1, 32767), new ItemStack(Items.LINGERING_POTION, 1, 32767), new ItemStack(Items.SPLASH_POTION, 1, 32767));
-        registerTrinketRecipe(TTMFeatures.TRINKET_RING, potionIngredient);
-        registerTrinketRecipe(TTMFeatures.TRINKET_AMULET, potionIngredient);
-        registerTrinketRecipe(TTMFeatures.TRINKET_BELT, potionIngredient);
-        registerTrinketRecipe(TTMFeatures.TRINKET_CHARM, potionIngredient);
-
-
-
         LogHelperTTM.info("World now fully aware!");
     }
 
@@ -99,6 +89,11 @@ public class CraftingInit {
     }
 
     private static void addOreDictRecipe(){
+        Ingredient potionIngredient = Ingredient.fromStacks(new ItemStack(Items.POTIONITEM, 1, 32767), new ItemStack(Items.LINGERING_POTION, 1, 32767), new ItemStack(Items.SPLASH_POTION, 1, 32767));
+        registerTrinketRecipe(TTMFeatures.TRINKET_RING, potionIngredient);
+        registerTrinketRecipe(TTMFeatures.TRINKET_AMULET, potionIngredient);
+        registerTrinketRecipe(TTMFeatures.TRINKET_BELT, potionIngredient);
+        registerTrinketRecipe(TTMFeatures.TRINKET_CHARM, potionIngredient);
     }
 
 

@@ -49,13 +49,13 @@ public class TTMFeatures implements IModFeatures {
         return feature.creativeTab() == -1 ? null : tabs[feature.creativeTab()];
     }
 
-    /** Material */ //I don't like the fact that this exists here but... for now this is fine.
+    /* Material */ //I don't like the fact that this exists here but... for now this is fine.
     public static Item.ToolMaterial TOOL_MITHRIL = EnumHelper.addToolMaterial("tool_mithril", 5, 1800, 12.0F, 5.5F, 45);
     public static ItemArmor.ArmorMaterial ARMOR_MITHRIL = EnumHelper.addArmorMaterial("armour_mithril", TolkienMobs.MODID + ":mithril", 50, new int[]{6, 12, 16, 6}, 35, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 2.0F);
     public static Item.ToolMaterial TOOL_MORGULIRON = EnumHelper.addToolMaterial("tool_morguliron", 3, 1600, 9.0F, 3.5F, 5);
     public static ItemArmor.ArmorMaterial ARMOR_MORGULIRON = EnumHelper.addArmorMaterial("armour_morguliron", TolkienMobs.MODID + ":morguliron", 35, new int[]{6, 10, 10, 6}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
 
-    /** Simple Items */
+    /* Simple Items */
     @ModFeature(name = "ingot_mithril", stateOverride = "simple_items#type=ingot_mithril", cTab = 1)
     public static Item INGOT_MITHRIL = new ItemBCore();
 
@@ -78,7 +78,7 @@ public class TTMFeatures implements IModFeatures {
     public static Item GEM_AMMOLITE = new TTMLore(16).setEffectOverride(true);
     /* End Region */
 
-    /** Quest Items */
+    /* Quest Items */
     @ModFeature(name = "item_beryl", stateOverride = "simple_items#type=item_beryl", cTab = 4)
     public static Item ITEM_BERYL = new TTMLore(1).setEffectOverride(true);
     @ModFeature(name = "item_watcherheart", stateOverride = "simple_items#type=item_watcherheart", cTab = 4)
@@ -151,7 +151,7 @@ public class TTMFeatures implements IModFeatures {
     public static Item ITEM_WRITTENPAPER = new TTMLore(1).setEffectOverride(true);
     /* End Region */
 
-    /** Tools */
+    /* Tools */
     @ModFeature(name = "axe_mithril", stateOverride = "tools#type=axe_mithril")
     public static Item AXE_MITHRIL = new ToolAxe(TOOL_MITHRIL, TOOL_MITHRIL.getAttackDamage(), -1.5F);
 
@@ -201,7 +201,7 @@ public class TTMFeatures implements IModFeatures {
     public static Item TRINKET_CHARM = new ItemTrinketCharm();
     /* End Region */
 
-    /** Armor */
+    /* Armor */
     @ModFeature(name = "helmet_mithril", stateOverride = "armor#type=helmet_mithril")
     public static Item HELMET_MITHRIL = new ArmorInit(ARMOR_MITHRIL, 1, EntityEquipmentSlot.HEAD);
 
@@ -227,7 +227,7 @@ public class TTMFeatures implements IModFeatures {
     public static Item BOOTS_MORGULIRON = new ItemArmor(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.FEET);
     /* End Region */
 
-    /** Simple Blocks */
+    /* Simple Blocks */
     @ModFeature(name = "block_mithril", cTab = 1)
     public static final Block BLOCK_MITHRIL = new BlockBCore(Material.IRON).setHardness(1.5F).setResistance(10F);
 
@@ -249,10 +249,7 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "double_slab", itemBlock = NoItemBlock.class)
     public static final BlockSlabs DOUBLE_SLAB = new BlockDoubleSlabs();
 
-    //@ModFeature(name = "stairs", variantMap = {"0:variant=mallorn", "1:variant=mirkwood"}, itemBlock = ItemBlockBCore.class, cTab = 1)
-    //public static final Block STAIRS = new BlockStair(PLANKS.getDefaultState());
-
-    /** Plants */                                             //TODO add a way to avoid this mess in 1.13...
+    /* Plants */                                             //TODO add a way to avoid this mess in 1.13...
     @ModFeature(name = "leaves", variantMap = {"0:check_decay=false,decayable=false,variant=mallorn", "1:check_decay=false,decayable=false,variant=mirkwood", "2:check_decay=false,decayable=false,variant=culumalda", "3:check_decay=false,decayable=false,variant=lebethron"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block LEAVES = new BlockLeaf();
 
@@ -263,14 +260,14 @@ public class TTMFeatures implements IModFeatures {
     public static final BlockFlowers FLOWERS = new BlockFlowers();
     /* End Region */
 
-    /** Basic Items */
+    /* Basic Items */
     @ModFeature(name = "feather_crebain", stateOverride = "simple_items#type=feather_crebain", cTab = 1)
     public static Item CREBAIN_FEATHER = new ItemBCore();
     @ModFeature(name = "leather_mumakil", stateOverride = "simple_items#type=leather_mumakil", cTab = 1)
     public static Item MUMAKIL_LEATHER = new ItemBCore();
     /* End Region */
 
-    /** Food */
+    /* Food */
     @ModFeature(name = "food_lembas", stateOverride = "simple_items#type=food_lembas", cTab = 3)
     public static Item LEMBAS = new TTMFood(20, 20, new PotionEffect(MobEffects.ABSORPTION,12000,5), new PotionEffect(MobEffects.REGENERATION,100,5)).setEffectOverride(true);
     @ModFeature(name = "food_honeycake", stateOverride = "simple_items#type=food_honeycake", cTab = 3)
@@ -291,12 +288,12 @@ public class TTMFeatures implements IModFeatures {
     public static Item GOLDEN_INSECT = new TTMFood(2, 3, new PotionEffect(MobEffects.HUNGER,40,2)).setEffectOverride(true);
     /* End Region */
 
-    /** Custom Blocks */
+    /* Custom Blocks */
     @ModFeature(name = "sign", itemBlock = ItemBlockBCore.class, tileEntity = TileSign.class, cTab = 5)
     public static final BlockSigns SIGNS = new BlockSigns();
     /* End Region */
 
-    /** Ammo */
+    /* Ammo */
     @ModFeature(name = "ammo_boulder", stateOverride = "simple_items#type=ammo_boulder", cTab = 1)
     public static Item AMMO_BOULDER = new TTMAmmo(16);
     @ModFeature(name = "fellbeast_fireball", stateOverride = "simple_items#type=fellbeast_fireball", cTab = 1)
