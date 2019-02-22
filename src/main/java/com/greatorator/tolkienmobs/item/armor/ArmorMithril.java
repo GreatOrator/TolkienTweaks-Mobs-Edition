@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.init;
+package com.greatorator.tolkienmobs.item.armor;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.model.items.ModelMithrilArmor;
@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ArmorInit extends ItemArmor implements TTMHasModel {
-    public ArmorInit(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
+public class ArmorMithril extends ItemArmor implements TTMHasModel {
+    public ArmorMithril(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
         super(materialIn, renderIndexIn, equipmentSlotIn);
     }
 

@@ -53,7 +53,7 @@ public class ModelMithrilArmor extends ModelBiped {
         this.HelmMithrilPart_3 = new ModelRenderer(this, 40, 99);
         this.HelmMithrilPart_3.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.HelmMithrilPart_3.addBox(3.0F, -1.0F, -1.0F, 2, 3, 10, 0.0F);
-        this.HelmMithrilPart_2 = new ModelRenderer(this, 40, 112);
+        this.HelmMithrilPart_2 = new ModelRenderer(this, 40, 83);
         this.HelmMithrilPart_2.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.HelmMithrilPart_2.addBox(-1.0F, 1.7F, 6.0F, 10, 3, 3, 0.0F);
         this.MithrilLAPart_1 = new ModelRenderer(this, 102, 94);
@@ -75,7 +75,7 @@ public class ModelMithrilArmor extends ModelBiped {
         this.ChestMithrilPart = new ModelRenderer(this, 70, 100);
         this.ChestMithrilPart.setRotationPoint(0.0F, 0.0F, 0.0F);
         this.ChestMithrilPart.addBox(-0.5F, 0.6F, -0.5F, 9, 12, 5, 0.0F);
-        this.HelmMithril = new ModelRenderer(this, 0, 114);
+        this.HelmMithril = new ModelRenderer(this, 0, 86);
         this.HelmMithril.setRotationPoint(-4.0F, -8.0F, -4.0F);
         this.HelmMithril.addBox(-0.5F, -0.5F, -0.5F, 9, 5, 9, 0.0F);
         this.MithrilLLPart = new ModelRenderer(this, 0, 97);

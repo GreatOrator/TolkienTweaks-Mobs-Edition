@@ -15,6 +15,8 @@ import com.greatorator.tolkienmobs.handler.TTMAmmo;
 import com.greatorator.tolkienmobs.handler.TTMFood;
 import com.greatorator.tolkienmobs.handler.TTMLore;
 import com.greatorator.tolkienmobs.handler.TTMSword;
+import com.greatorator.tolkienmobs.item.armor.ArmorMithril;
+import com.greatorator.tolkienmobs.item.armor.ArmorMorgulIron;
 import com.greatorator.tolkienmobs.item.magical.ItemTrinketAmulet;
 import com.greatorator.tolkienmobs.item.magical.ItemTrinketBelt;
 import com.greatorator.tolkienmobs.item.magical.ItemTrinketCharm;
@@ -203,28 +205,28 @@ public class TTMFeatures implements IModFeatures {
 
     /* Armor */
     @ModFeature(name = "helmet_mithril", stateOverride = "armor#type=helmet_mithril")
-    public static Item HELMET_MITHRIL = new ArmorInit(ARMOR_MITHRIL, 1, EntityEquipmentSlot.HEAD);
+    public static Item HELMET_MITHRIL = new ArmorMithril(ARMOR_MITHRIL, 1, EntityEquipmentSlot.HEAD);
 
     @ModFeature(name = "chestplate_mithril", stateOverride = "armor#type=chestplate_mithril")
-    public static Item CHESTPLATE_MITHRIL = new ArmorInit(ARMOR_MITHRIL, 1, EntityEquipmentSlot.CHEST);
+    public static Item CHESTPLATE_MITHRIL = new ArmorMithril(ARMOR_MITHRIL, 1, EntityEquipmentSlot.CHEST);
 
     @ModFeature(name = "leggings_mithril", stateOverride = "armor#type=leggings_mithril")
-    public static Item LEGGINGS_MITHRIL = new ArmorInit(ARMOR_MITHRIL, 2, EntityEquipmentSlot.LEGS);
+    public static Item LEGGINGS_MITHRIL = new ArmorMithril(ARMOR_MITHRIL, 2, EntityEquipmentSlot.LEGS);
 
     @ModFeature(name = "boots_mithril", stateOverride = "armor#type=boots_mithril")
-    public static Item BOOTS_MITHRIL = new ArmorInit(ARMOR_MITHRIL, 1, EntityEquipmentSlot.FEET);
+    public static Item BOOTS_MITHRIL = new ArmorMithril(ARMOR_MITHRIL, 1, EntityEquipmentSlot.FEET);
 
     @ModFeature(name = "helmet_morguliron", stateOverride = "armor#type=helmet_morguliron")
-    public static Item HELMET_MORGULIRON = new ItemArmor(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.HEAD);
+    public static Item HELMET_MORGULIRON = new ArmorMorgulIron(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.HEAD);
 
     @ModFeature(name = "chestplate_morguliron", stateOverride = "armor#type=chestplate_morguliron")
-    public static Item CHESTPLATE_MORGULIRON = new ItemArmor(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.CHEST);
+    public static Item CHESTPLATE_MORGULIRON = new ArmorMorgulIron(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.CHEST);
 
     @ModFeature(name = "leggings_morguliron", stateOverride = "armor#type=leggings_morguliron")
-    public static Item LEGGINGS_MORGULIRON = new ItemArmor(ARMOR_MORGULIRON, 2, EntityEquipmentSlot.LEGS);
+    public static Item LEGGINGS_MORGULIRON = new ArmorMorgulIron(ARMOR_MORGULIRON, 2, EntityEquipmentSlot.LEGS);
 
     @ModFeature(name = "boots_morguliron", stateOverride = "armor#type=boots_morguliron")
-    public static Item BOOTS_MORGULIRON = new ItemArmor(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.FEET);
+    public static Item BOOTS_MORGULIRON = new ArmorMorgulIron(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.FEET);
     /* End Region */
 
     /* Simple Blocks */
