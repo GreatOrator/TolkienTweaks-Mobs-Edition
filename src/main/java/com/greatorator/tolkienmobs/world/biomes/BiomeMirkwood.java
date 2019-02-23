@@ -18,12 +18,10 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.List;
 import java.util.Random;
 
 public class BiomeMirkwood extends Biome implements IFogyBiome {
-
-    protected static final WorldGenAbstractTree TREE = new WorldGenMirkwoodTree(false);
-
     public BiomeMirkwood()
     {
 
@@ -45,7 +43,31 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
         this.decorator.mushroomsPerChunk = 24;
         this.decorator.bigMushroomsPerChunk = 1;
         this.decorator.generateFalls = false;
+        this.decorator.flowersPerChunk = 6;
 
+        addFlowers();
+        setSpawnables();
+    }
+
+    @Override
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
+    {
+        return new WorldGenMirkwoodTree(false);
+    }
+
+    public List<FlowerEntry> getFlowerList()
+    {
+        return flowers;
+    }
+
+    private void addFlowers()
+    {
+        flowers.clear();
+        addFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.MIRKWOOD), 10);
+    }
+
+    private void setSpawnables()
+    {
         this.spawnableCaveCreatureList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
@@ -66,17 +88,6 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
                 }
             }
         }
-    }
-
-    @Override
-    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
-    {
-        return TREE;
-    }
-
-    @Override
-    public void addDefaultFlowers() {
-        addFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.MIRKWOOD), 10);
     }
 
     @SideOnly(Side.CLIENT)

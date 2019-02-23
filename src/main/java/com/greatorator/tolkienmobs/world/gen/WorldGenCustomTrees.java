@@ -1,12 +1,10 @@
 package com.greatorator.tolkienmobs.world.gen;
 
+import com.greatorator.tolkienmobs.world.biomes.BiomeDagorlad;
 import com.greatorator.tolkienmobs.world.biomes.BiomeFirien;
 import com.greatorator.tolkienmobs.world.biomes.BiomeLorinand;
 import com.greatorator.tolkienmobs.world.biomes.BiomeMirkwood;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenCulumaldaTree;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenLebethronTree;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
+import com.greatorator.tolkienmobs.world.gen.generators.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
@@ -25,6 +23,7 @@ public class WorldGenCustomTrees implements IWorldGenerator
     private final WorldGenerator MIRKWOOD = new WorldGenMirkwoodTree(false);
     private final WorldGenerator CULUMALDA = new WorldGenCulumaldaTree(false);
     private final WorldGenerator LEBETHRON = new WorldGenLebethronTree(false);
+    private final WorldGenerator TESTTREE = new WorldGenTestTree(false);
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
@@ -41,6 +40,7 @@ public class WorldGenCustomTrees implements IWorldGenerator
                 runGenerator(MIRKWOOD, world, random, chunkX, chunkZ, 3, -1, 0, BiomeMirkwood.class);
                 runGenerator(CULUMALDA, world, random, chunkX, chunkZ, 3, -1, 0, BiomeFirien.class);
                 runGenerator(LEBETHRON, world, random, chunkX, chunkZ, 3, -1, 0, BiomeFirien.class);
+                runGenerator(TESTTREE, world, random, chunkX, chunkZ, 3, -1, 0, BiomeDagorlad.class);
 
                 break;
 

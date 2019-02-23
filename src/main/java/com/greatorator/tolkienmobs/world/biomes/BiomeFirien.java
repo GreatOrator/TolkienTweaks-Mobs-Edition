@@ -13,6 +13,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.List;
+
 public class BiomeFirien extends Biome {
 
     public BiomeFirien()
@@ -35,6 +37,30 @@ public class BiomeFirien extends Biome {
         this.decorator.flowersPerChunk = 10;
         this.decorator.generateFalls = true;
 
+        addFlowers();
+        setSpawnables();
+    }
+
+    public List<FlowerEntry> getFlowerList()
+    {
+        return flowers;
+    }
+
+    private void addFlowers()
+    {
+        flowers.clear();
+        BlockFlower red = net.minecraft.init.Blocks.RED_FLOWER;
+        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.ORANGE_TULIP), 3);
+        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.RED_TULIP), 3);
+        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.PINK_TULIP), 3);
+        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.WHITE_TULIP), 3);
+        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.HOUSTONIA), 3);
+        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.OXEYE_DAISY), 3);
+        addFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.NIPHREDIL), 20);
+    }
+
+    private void setSpawnables() {
+
         this.spawnableCaveCreatureList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
@@ -48,18 +74,6 @@ public class BiomeFirien extends Biome {
             }
         }
         this.spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
-    }
-
-    @Override
-    public void addDefaultFlowers() {
-        BlockFlower red = net.minecraft.init.Blocks.RED_FLOWER;
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.ORANGE_TULIP), 3);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.RED_TULIP), 3);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.PINK_TULIP), 3);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.WHITE_TULIP), 3);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.HOUSTONIA), 20);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.OXEYE_DAISY), 20);
-        addFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.NIPHREDIL), 10);
     }
 
     @SideOnly(Side.CLIENT)

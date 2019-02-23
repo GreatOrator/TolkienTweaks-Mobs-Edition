@@ -42,11 +42,16 @@ public class BiomeIronHills extends Biome {
         this.decorator.gravelGen  = new WorldGenSand(Blocks.COBBLESTONE, 6);
         this.decorator.generateFalls = false;
 
+        setSpawnables();
+    }
+
+    private void setSpawnables()
+    {
+
         this.spawnableCaveCreatureList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
         this.spawnableWaterCreatureList.clear();
-
 
         if (TTMConfig.enableNaturalSpawn) {
             if (TTMConfig.enablePassive) {

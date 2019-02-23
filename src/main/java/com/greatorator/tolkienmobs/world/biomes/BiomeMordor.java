@@ -35,6 +35,12 @@ public class BiomeMordor extends Biome {
         this.decorator.cactiPerChunk = 10;
         this.decorator.generateFalls = true;
 
+        setSpawnables();
+    }
+
+    private void setSpawnables()
+    {
+
         this.spawnableCaveCreatureList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();

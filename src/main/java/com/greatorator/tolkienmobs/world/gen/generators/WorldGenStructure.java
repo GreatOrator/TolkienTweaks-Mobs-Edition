@@ -28,7 +28,9 @@ public class WorldGenStructure extends WorldGenerator implements ITTMStructure {
 
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position) {
-        this.generateStructure(worldIn, position, true);
+        if (worldIn.isChunkGeneratedAt(position.getX() >> 4, position.getZ() >> 4)) {
+            this.generateStructure(worldIn, position, true);
+        }
         return true;
     }
 

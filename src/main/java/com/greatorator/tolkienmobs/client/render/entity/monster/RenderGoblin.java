@@ -16,9 +16,9 @@ import javax.annotation.Nullable;
 
 public class RenderGoblin extends RenderLiving<EntityGoblin> {
     private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goblin/goblin1.png");
-    private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/toad/goblin2.png");
-    private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/toad/goblin3.png");
-    private static final ResourceLocation WHITE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/toad/goblin4.png");
+    private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goblin/goblin2.png");
+    private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goblin/goblin3.png");
+    private static final ResourceLocation WHITE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goblin/goblin4.png");
 
     public static final RenderGoblin.Factory FACTORY = new RenderGoblin.Factory();
 

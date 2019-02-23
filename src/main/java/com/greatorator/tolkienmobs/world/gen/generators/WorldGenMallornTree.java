@@ -30,7 +30,7 @@ public class WorldGenMallornTree extends WorldGenAbstractTree {
     double scaleWidth = 1.0D;
     double leafDensity = 1.0D;
     int trunkSize = 2;
-    int heightLimitLimit = 12;
+    int heightLimitLimit = 16;
     /** Sets the distance limit for how far away the generator will populate leaves from the base leaf node. */
     int leafDistanceLimit = 8;
     List<WorldGenMallornTree.FoliageCoordinates> foliageCoords;
@@ -182,7 +182,7 @@ public class WorldGenMallornTree extends WorldGenAbstractTree {
         {
             BlockPos blockpos1 = p_175937_1_.add((double)(0.5F + (float)j * f), (double)(0.5F + (float)j * f1), (double)(0.5F + (float)j * f2));
             BlockLogs.EnumAxis blocklogs$enumaxis = this.getLogAxis(p_175937_1_, blockpos1);
-            this.setBlockAndNotifyAdequately(this.world, blockpos1, p_175937_3_.getDefaultState().withProperty(BlockLogs.LOG_AXIS, blocklogs$enumaxis));
+            this.setBlockAndNotifyAdequately(this.world, blockpos1, p_175937_3_.getDefaultState().withProperty(BlockLogs.LOG_AXIS, BlockLog.EnumAxis.NONE));
         }
     }
 

@@ -15,11 +15,10 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.List;
 import java.util.Random;
 
 public class BiomeLorinand extends Biome {
-
-    protected static final WorldGenAbstractTree TREE = new WorldGenMallornTree(false);
 
     public BiomeLorinand()
     {
@@ -41,6 +40,30 @@ public class BiomeLorinand extends Biome {
         this.decorator.grassPerChunk = 15;
         this.decorator.generateFalls = true;
 
+        addFlowers();
+        setSpawnables();
+    }
+
+    @Override
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
+    {
+        return new WorldGenMallornTree(false);
+    }
+
+    public List<FlowerEntry> getFlowerList()
+    {
+        return flowers;
+    }
+
+    private void addFlowers()
+    {
+        flowers.clear();
+        addFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.NIPHREDIL), 10);
+    }
+
+    private void setSpawnables()
+    {
+
         this.spawnableCaveCreatureList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
@@ -54,17 +77,6 @@ public class BiomeLorinand extends Biome {
             }
         }
         this.spawnableCreatureList.add(new SpawnListEntry(EntityRabbit.class, 4, 2, 3));
-    }
-
-    @Override
-    public void addDefaultFlowers() {
-        addFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.NIPHREDIL), 10);
-    }
-
-    @Override
-    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
-    {
-        return TREE;
     }
 
     @SideOnly(Side.CLIENT)

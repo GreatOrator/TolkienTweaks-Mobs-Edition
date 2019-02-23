@@ -38,6 +38,12 @@ public class BiomeHithaeglir extends Biome implements IFogyBiome {
         this.decorator = this.createBiomeDecorator();
         this.decorator.generateFalls = false;
 
+        setSpawnables();
+    }
+
+    private void setSpawnables()
+    {
+
         this.spawnableCaveCreatureList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();
