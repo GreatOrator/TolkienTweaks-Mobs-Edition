@@ -6,14 +6,23 @@ import com.greatorator.tolkienmobs.entity.monster.EntityTroll;
 import com.greatorator.tolkienmobs.entity.monster.EntityUrukHai;
 import com.greatorator.tolkienmobs.entity.monster.EntityWarg;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeRubble;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeDead;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Random;
+
 public class BiomeMordor extends Biome {
+    /* The rubble generator. */
+    protected static final WorldGenBiomeRubble SPIKE_FEATURE = new WorldGenBiomeRubble(false);
+    /* The dead tree generator. */
+    protected static final WorldGenTreeDead DEAD_TREE_FEATURE = new WorldGenTreeDead(false);
     public BiomeMordor()
     {
         super(new Biome.BiomeProperties("Mordor")
@@ -28,7 +37,8 @@ public class BiomeMordor extends Biome {
         this.fillerBlock = Blocks.STONE.getDefaultState();
 
         this.decorator = this.createBiomeDecorator();
-        this.decorator.treesPerChunk = -999;
+        this.decorator.treesPerChunk = 1;
+        this.decorator.extraTreeChance = 0.05F;
         this.decorator.sandPatchesPerChunk = 6;
         this.decorator.deadBushPerChunk = 9;
         this.decorator.reedsPerChunk = 50;
@@ -36,6 +46,11 @@ public class BiomeMordor extends Biome {
         this.decorator.generateFalls = true;
 
         setSpawnables();
+    }
+
+    @Override
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
+        return (WorldGenAbstractTree)(rand.nextInt(10) == 0 ? DEAD_TREE_FEATURE : SPIKE_FEATURE);
     }
 
     private void setSpawnables()

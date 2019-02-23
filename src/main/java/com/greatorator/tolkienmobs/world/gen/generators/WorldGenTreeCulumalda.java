@@ -11,11 +11,11 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import java.util.Random;
 
-public class WorldGenCulumaldaTree extends WorldGenAbstractTree {
+public class WorldGenTreeCulumalda extends WorldGenAbstractTree {
     public static final IBlockState LOG = TTMFeatures.LOGS.getDefaultState().withProperty(BlockLogs.VARIANT, BlockLogs.EnumType.CULUMALDA);
     public static final IBlockState LEAF = TTMFeatures.LEAVES.getDefaultState().withProperty(BlockLeaf.VARIANT, BlockLogs.EnumType.CULUMALDA).withProperty(BlockLeaf.CHECK_DECAY, false);
 
-    public WorldGenCulumaldaTree(boolean notify)
+    public WorldGenTreeCulumalda(boolean notify)
     {
         super(notify);
     }

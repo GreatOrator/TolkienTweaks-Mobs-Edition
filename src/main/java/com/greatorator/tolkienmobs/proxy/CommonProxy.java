@@ -5,7 +5,6 @@ import com.greatorator.tolkienmobs.handler.TerrainEventHandler;
 import com.greatorator.tolkienmobs.init.*;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomStructures;
-import com.greatorator.tolkienmobs.world.gen.WorldGenCustomTrees;
 import com.greatorator.tolkienmobs.world.types.WorldTypeArda;
 import net.minecraft.item.Item;
 import net.minecraft.world.WorldType;
@@ -23,7 +22,6 @@ public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event)
     {
         GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
-        GameRegistry.registerWorldGenerator(new WorldGenCustomTrees(), 0);
         GameRegistry.registerWorldGenerator(new WorldGenCustomStructures(), 0);
         BiomeInit.registerBiomes();
         EntityInit.init();

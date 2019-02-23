@@ -7,17 +7,25 @@ import com.greatorator.tolkienmobs.entity.monster.EntityUrukHai;
 import com.greatorator.tolkienmobs.entity.monster.EntityWarg;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeRuin;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeRubble;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+import java.util.Random;
 
 public class BiomeDagorlad extends Biome {
+    /* The ancient ruin generator. */
+    protected static final WorldGenBiomeRuin ANCIENT_RUIN_FEATURE = new WorldGenBiomeRuin(false);
+    /* The rubble generator. */
+    protected static final WorldGenBiomeRubble RUBBLE_FEATURE = new WorldGenBiomeRubble(false);
 
     public BiomeDagorlad()
     {
@@ -33,7 +41,7 @@ public class BiomeDagorlad extends Biome {
 
         this.decorator = this.createBiomeDecorator();
 
-        this.decorator.treesPerChunk = 0;
+        this.decorator.treesPerChunk = 1;
         this.decorator.extraTreeChance = 0.05F;
         this.decorator.flowersPerChunk = 4;
         this.decorator.grassPerChunk = 10;
@@ -41,6 +49,11 @@ public class BiomeDagorlad extends Biome {
 
         addFlowers();
         setSpawnables();
+    }
+
+    @Override
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
+        return (WorldGenAbstractTree)(rand.nextInt(10) == 0 ? ANCIENT_RUIN_FEATURE : RUBBLE_FEATURE);
     }
 
     public List<FlowerEntry> getFlowerList()
@@ -77,10 +90,10 @@ public class BiomeDagorlad extends Biome {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityUrukHai.class, 5, 1, 1));
                 }
                 if (TTMConfig.enableMordorOrcs) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityMordorOrc.class, 6, 1, 1));
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityMordorOrc.class, 5, 1, 1));
                 }
                 if (TTMConfig.enableWargs) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityWarg.class, 4, 1, 1));
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityWarg.class, 1, 1, 1));
                 }
             }
         }

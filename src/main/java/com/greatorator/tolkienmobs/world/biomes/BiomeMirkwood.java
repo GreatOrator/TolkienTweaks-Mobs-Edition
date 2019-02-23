@@ -8,7 +8,7 @@ import com.greatorator.tolkienmobs.entity.passive.EntityToaddle;
 import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeMirkwood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -52,7 +52,7 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
-        return new WorldGenMirkwoodTree(false);
+        return new WorldGenTreeMirkwood(false);
     }
 
     public List<FlowerEntry> getFlowerList()

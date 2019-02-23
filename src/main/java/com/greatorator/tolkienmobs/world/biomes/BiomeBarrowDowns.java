@@ -4,15 +4,25 @@ import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.monster.EntityBarrowWight;
 import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeDead;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeSpike;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Random;
+
 public class BiomeBarrowDowns extends Biome implements IFogyBiome {
+    /* The spike generator. */
+    protected static final WorldGenBiomeSpike SPIKE_FEATURE = new WorldGenBiomeSpike(false);
+    /* The dead tree generator. */
+    protected static final WorldGenTreeDead DEAD_TREE_FEATURE = new WorldGenTreeDead(false);
+
     public BiomeBarrowDowns()
     {
 
@@ -28,10 +38,16 @@ public class BiomeBarrowDowns extends Biome implements IFogyBiome {
         fillerBlock = Blocks.DIRT.getDefaultState();
 
         this.decorator = this.createBiomeDecorator();
+        this.decorator.treesPerChunk = 1;
         this.decorator.grassPerChunk = 10;
         this.decorator.generateFalls = false;
 
         setSpawnables();
+    }
+
+    @Override
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
+        return (WorldGenAbstractTree)(rand.nextInt(10) == 0 ? DEAD_TREE_FEATURE : SPIKE_FEATURE);
     }
 
     private void setSpawnables() {

@@ -15,13 +15,13 @@ import net.minecraftforge.common.IPlantable;
 
 import java.util.Random;
 
-public class WorldGenLebethronTree extends WorldGenAbstractTree {
+public class WorldGenTreeLebethron extends WorldGenAbstractTree {
     public static final IBlockState LOG = TTMFeatures.LOGS.getDefaultState().withProperty(BlockLogs.VARIANT, BlockLogs.EnumType.LEBETHRON);
     public static final IBlockState LEAF = TTMFeatures.LEAVES.getDefaultState().withProperty(BlockLeaf.VARIANT, BlockLogs.EnumType.LEBETHRON).withProperty(BlockLeaf.CHECK_DECAY, false);
 
     private final int minHeight;
 
-    public WorldGenLebethronTree(boolean notify)
+    public WorldGenTreeLebethron(boolean notify)
     {
         super(notify);
         this.minHeight = 12;

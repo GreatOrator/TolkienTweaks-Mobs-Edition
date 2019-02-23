@@ -5,7 +5,7 @@ import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.passive.EntityElves;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeMallorn;
 import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -47,7 +47,7 @@ public class BiomeLorinand extends Biome {
     @Override
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)
     {
-        return new WorldGenMallornTree(false);
+        return new WorldGenTreeMallorn(false);
     }
 
     public List<FlowerEntry> getFlowerList()

@@ -2,10 +2,10 @@ package com.greatorator.tolkienmobs.block;
 
 import com.brandon3055.brandonscore.lib.IBCoreBlock;
 import com.greatorator.tolkienmobs.block.BlockLogs.EnumType;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenCulumaldaTree;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenLebethronTree;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMallornTree;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenMirkwoodTree;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeCulumalda;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeLebethron;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeMallorn;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeMirkwood;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -131,16 +131,16 @@ public class BlockSaplings extends BlockBush implements IGrowable, IBCoreBlock
         switch(state.getValue(VARIANT))
         {
             case MALLORN:
-                gen = new WorldGenMallornTree(false);
+                gen = new WorldGenTreeMallorn(false);
                 break;
             case MIRKWOOD:
-                gen = new WorldGenMirkwoodTree(false);
+                gen = new WorldGenTreeMirkwood(false);
                 break;
             case CULUMALDA:
-                gen = new WorldGenCulumaldaTree(false);
+                gen = new WorldGenTreeCulumalda(false);
                 break;
             case LEBETHRON:
-                gen = new WorldGenLebethronTree(false);
+                gen = new WorldGenTreeLebethron(false);
                 break;
         }
 
