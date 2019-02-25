@@ -6,16 +6,19 @@ import com.greatorator.tolkienmobs.entity.monster.EntityTreeEnt;
 import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeFangorn;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+import java.util.Random;
 
 public class BiomeFangorn extends Biome implements IFogyBiome {
 
@@ -30,6 +33,8 @@ public class BiomeFangorn extends Biome implements IFogyBiome {
         this.fillerBlock = Blocks.DIRT.getDefaultState();
 
         this.decorator = this.createBiomeDecorator();
+        this.decorator.treesPerChunk = 5;
+        this.decorator.extraTreeChance = 0.05F;
         this.decorator.grassPerChunk = 6;
         this.decorator.mushroomsPerChunk = 12;
         this.decorator.waterlilyPerChunk = 4;
@@ -38,6 +43,12 @@ public class BiomeFangorn extends Biome implements IFogyBiome {
 
         addFlowers();
         setSpawnables();
+    }
+
+    @Override
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
+    {
+        return new WorldGenTreeFangorn(false);
     }
 
     public List<FlowerEntry> getFlowerList()
@@ -49,15 +60,8 @@ public class BiomeFangorn extends Biome implements IFogyBiome {
     {
         flowers.clear();
         BlockFlower red = Blocks.RED_FLOWER;
-        BlockFlower yel = Blocks.YELLOW_FLOWER;
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.ORANGE_TULIP), 3);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.RED_TULIP), 3);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.PINK_TULIP), 3);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.WHITE_TULIP), 3);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.POPPY), 3);
         addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.HOUSTONIA), 3);
         addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.OXEYE_DAISY), 3);
-        addFlower(yel.getDefaultState().withProperty(yel.getTypeProperty(), BlockFlower.EnumFlowerType.DANDELION), 3);
         addFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.ATHELAS), 20);
         addFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.ALFIRIN), 20);
     }

@@ -1,9 +1,6 @@
 package com.greatorator.tolkienmobs.world.gen;
 
-import com.greatorator.tolkienmobs.world.biomes.*;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenStructure;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
@@ -26,7 +23,6 @@ public class WorldGenCustomStructures implements IWorldGenerator {
 
             case 0:
 //                generateStructure(new WorldGenStructure("greatbarrow"), world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeBarrowDowns.class);
-                generateStructure(new WorldGenStructure("fangorn_tree"), world, random, chunkX, chunkZ, 1, Blocks.GRASS, BiomeFangorn.class);
 //                generateStructure(new WorldGenStructure("hobbithouse"), world, random, chunkX, chunkZ, 1, Blocks.GRASS, BiomeShire.class);
 //                generateStructure(new WorldGenStructure("hobbitgrocer"), world, random, chunkX, chunkZ, 1, Blocks.GRASS, BiomeShire.class);
 

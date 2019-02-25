@@ -5,17 +5,25 @@ import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.passive.EntityElves;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeCulumalda;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeLebethron;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+import java.util.Random;
 
 public class BiomeFirien extends Biome {
+    /* The Culumalda generator. */
+    protected static final WorldGenTreeCulumalda CULUMALDA_FEATURE = new WorldGenTreeCulumalda(false);
+    /* The Lebethron generator. */
+    protected static final WorldGenTreeLebethron LEBETHRON_FEATURE = new WorldGenTreeLebethron(false);
 
     public BiomeFirien()
     {
@@ -39,6 +47,11 @@ public class BiomeFirien extends Biome {
 
         addFlowers();
         setSpawnables();
+    }
+
+    @Override
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
+        return (WorldGenAbstractTree)(rand.nextInt(10) == 0 ? CULUMALDA_FEATURE : LEBETHRON_FEATURE);
     }
 
     public List<FlowerEntry> getFlowerList()

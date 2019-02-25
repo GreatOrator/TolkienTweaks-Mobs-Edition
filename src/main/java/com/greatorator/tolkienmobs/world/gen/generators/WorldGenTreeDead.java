@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.gen.generators;
 
+import com.greatorator.tolkienmobs.handler.TTMRand;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -26,7 +27,7 @@ public class WorldGenTreeDead extends WorldGenAbstractTree {
     public WorldGenTreeDead(boolean notify) {
         super(notify);
         this.basePos = BlockPos.ORIGIN;
-        this.heightLimit = 0;
+        this.heightLimit = TTMRand.getRandomInteger(18,12);
         this.heightAttenuation = 0.45D;
         this.branchSlope = 0.2D;
         this.scaleWidth = 1.0D;
