@@ -1,6 +1,11 @@
 package com.greatorator.tolkienmobs.world.gen;
 
+import com.greatorator.tolkienmobs.world.biomes.BiomeBarrowDowns;
+import com.greatorator.tolkienmobs.world.biomes.BiomeShire;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeBarrow;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeHobbitHouse;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
@@ -22,9 +27,8 @@ public class WorldGenCustomStructures implements IWorldGenerator {
                 break;
 
             case 0:
-//                generateStructure(new WorldGenStructure("greatbarrow"), world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeBarrowDowns.class);
-//                generateStructure(new WorldGenStructure("hobbithouse"), world, random, chunkX, chunkZ, 1, Blocks.GRASS, BiomeShire.class);
-//                generateStructure(new WorldGenStructure("hobbitgrocer"), world, random, chunkX, chunkZ, 1, Blocks.GRASS, BiomeShire.class);
+                generateStructure(new WorldGenBiomeBarrow(), world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeBarrowDowns.class);
+                generateStructure(new WorldGenBiomeHobbitHouse(), world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeShire.class);
 
                 break;
 
@@ -43,7 +47,8 @@ public class WorldGenCustomStructures implements IWorldGenerator {
 
         Class<?> biome = world.provider.getBiomeForCoords(pos).getClass();
 
-        if (world.getWorldType() != WorldType.FLAT) {
+        /* Make sure it is safe to spawn */
+        if (world.getWorldType() != WorldType.FLAT && world.isAreaLoaded(pos, 5)) {
             if (classesList.contains(biome)) {
                 if (random.nextInt(chance) == 0) {
                     generator.generate(world, random, pos);
