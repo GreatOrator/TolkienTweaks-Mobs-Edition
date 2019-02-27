@@ -12,7 +12,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 
-/** Balrog - GreatOrator & Varg95*/
+/** Balrog - GreatOrator & Varg95 */
 public class ModelBalrog extends ModelTTM {
     public ModelRenderer BalrogBody;
     public ModelRenderer BalrogNeck;
@@ -389,6 +389,12 @@ public class ModelBalrog extends ModelTTM {
 
         this.BalrogNeck.rotateAngleY = baseNeckRotation + (netHeadYaw * 0.017453292F);
         this.BalrogNeck.rotateAngleX = baseNeckRotation + (headPitch * 0.017453292F);
+
+        BalrogTail1.rotateAngleY = MathHelper.sin(degToRad(entityIn.ticksExisted*7)) * degToRad(5);
+        BalrogTail2.rotateAngleY = BalrogTail1.rotateAngleY * 3;
+        BalrogTail3.rotateAngleY = BalrogTail2.rotateAngleY * 1;
+        BalrogTail4.rotateAngleY = BalrogTail3.rotateAngleY * 1;
+        BalrogTail5.rotateAngleY = BalrogTail4.rotateAngleY * 1;
 
         this.bipedLeftArm.rotationPointX = 8.5F;
         this.bipedRightArm.rotationPointX = -8.0F;
