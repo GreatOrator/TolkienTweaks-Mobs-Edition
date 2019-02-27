@@ -4,11 +4,10 @@ import com.greatorator.tolkienmobs.handler.interfaces.ITTMStructure;
 import com.greatorator.tolkienmobs.init.LootInit;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockStoneBrick;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -1707,17 +1706,16 @@ public class WorldGenBiomeBarrow extends WorldGenerator implements ITTMStructure
 
     private void getLoot(World worldIn, Random r, BlockPos bp) {
 
-        BlockPos position = bp;
-        IBlockState iblockstate = Blocks.CHEST.getDefaultState();
+        BlockPos pos2 = bp.up();
         BlockPos[] posses = new BlockPos[] {new BlockPos(i + 17, j + 1, k + 7), new BlockPos(i + 17, j + 1, k + 8), new BlockPos(i + 12, j + 1, k + 7), new BlockPos(i + 12, j + 1, k + 8)};
 
         for (BlockPos pos : posses) {
-            worldIn.setBlockState(position, (Blocks.CHEST.correctFacing(worldIn, pos, iblockstate)), 2);
-            TileEntity tileentity1 = worldIn.getTileEntity(pos);
+            TileEntityChest tileEntityChest = (TileEntityChest) worldIn.getTileEntity(pos2.add(pos));
+            ResourceLocation lootType = r.nextInt(3) == 0 ? LootInit.BARROW_GRAVE : LootInit.BARROW_CHEST;
 
-            if (tileentity1 instanceof TileEntityChest)
+            if (tileEntityChest instanceof TileEntityChest)
             {
-                ((TileEntityChest)tileentity1).setLootTable(LootInit.BARROW_CHEST, r.nextLong());
+                tileEntityChest.setLootTable(lootType, r.nextLong());
             }
         }
     }
