@@ -20,6 +20,8 @@
       "food_cram":   {"textures": {"layer0": "tolkienmobs:items/food_cram"}},
       "food_insect":   {"textures": {"layer0": "tolkienmobs:items/food_insect"}},
       "food_golden_insect":   {"textures": {"layer0": "tolkienmobs:items/food_golden_insect"}},
+      "food_tree_acorn":   {"textures": {"layer0": "tolkienmobs:items/food_tree_acorn"}},
+      "food_golden_tree_acorn":   {"textures": {"layer0": "tolkienmobs:items/food_golden_tree_acorn"}},
       "potion_entdraught":   {"textures": {"layer0": "tolkienmobs:items/potion_entdraught"}},
       "potion_miruvor":   {"textures": {"layer0": "tolkienmobs:items/potion_miruvor"}},
       "potion_grog":   {"textures": {"layer0": "tolkienmobs:items/potion_grog"}},

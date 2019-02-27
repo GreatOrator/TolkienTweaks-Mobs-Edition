@@ -12,7 +12,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 
-/** Balrog - GreatOrator & Varg95 */
+/** Balrog - GreatOrator & Boyd151995 */
 public class ModelBalrog extends ModelTTM {
     public ModelRenderer BalrogBody;
     public ModelRenderer BalrogNeck;

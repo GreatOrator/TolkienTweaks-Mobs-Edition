@@ -71,8 +71,15 @@ public class BlockLeaf extends BlockLeaves implements IBCoreBlock {
     /**
      * Get the Item that this Block should drop when harvested.
      */
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        EnumType type = state.getValue(VARIANT);
+
+        if (type.name.contains("mallorn")) {
+            return TTMFeatures.GOLDEN_TREE_ACORN;
+        }
+        else if (type.name.contains("culumalda")) {
+            return TTMFeatures.TREE_ACORN;
+        }
         return Item.getItemFromBlock(TTMFeatures.SAPLINGS);
     }
 

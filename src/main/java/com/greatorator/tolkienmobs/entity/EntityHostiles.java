@@ -45,9 +45,6 @@ public abstract class EntityHostiles extends EntityMob {
     private int ttmDuration;
     private int rndMax;
     private int rndMin;
-    private double healthLevel;
-    private double armorStrength;
-    private double attackDamage;
     private boolean burnState;
     private boolean ttmAttack;
     private boolean groupAttack;

@@ -150,6 +150,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableMumakil = true;
     @ModConfigProperty(category = "Passive Mobs", name = "enableFrogs", comment = "Setting this to false will disable Frogs", requiresMCRestart = true, requiresSync = true)
     public static boolean enableFrogs = true;
+    @ModConfigProperty(category = "Passive Mobs", name = "enableSquirrels", comment = "Setting this to false will disable Society Squirrel", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableSquirrels = true;
 
     /** Biomes */
     @ModConfigProperty(category = "Biomes", name = "enableBarrowDowns", comment = "Setting this to false will disable the Barrow Downs Biome", requiresMCRestart = true, requiresSync = true)

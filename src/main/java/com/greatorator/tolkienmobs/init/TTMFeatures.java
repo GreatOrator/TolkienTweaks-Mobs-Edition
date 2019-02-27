@@ -288,6 +288,10 @@ public class TTMFeatures implements IModFeatures {
     public static Item INSECT = new TTMFood(1, 1, new PotionEffect(MobEffects.HUNGER,10,1));
     @ModFeature(name = "food_golden_insect", stateOverride = "simple_items#type=food_golden_insect", cTab = 3)
     public static Item GOLDEN_INSECT = new TTMFood(2, 3, new PotionEffect(MobEffects.HUNGER,40,2)).setEffectOverride(true);
+    @ModFeature(name = "food_tree_acorn", stateOverride = "simple_items#type=food_tree_acorn", cTab = 3)
+    public static Item TREE_ACORN = new TTMFood(1, 1, new PotionEffect(MobEffects.SPEED,10,1));
+    @ModFeature(name = "food_golden_tree_acorn", stateOverride = "simple_items#type=food_golden_tree_acorn", cTab = 3)
+    public static Item GOLDEN_TREE_ACORN = new TTMFood(2, 3, new PotionEffect(MobEffects.SPEED,40,2)).setEffectOverride(true);
     /* End Region */
 
     /* Custom Blocks */

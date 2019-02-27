@@ -142,6 +142,18 @@ public class SoundInit
 	@ObjectHolder("mob.toaddle.angry")
 	public static final SoundEvent soundAngryToaddle = null;
 
+	/** SOSquirrel */
+	@ObjectHolder("mob.sosquirrel.death")
+	public static final SoundEvent soundDeathSOSquirrel = null;
+	@ObjectHolder("mob.sosquirrel.idle")
+	public static final SoundEvent soundIdleSOSquirrel = null;
+	@ObjectHolder("mob.sosquirrel.hurt")
+	public static final SoundEvent soundHurtSOSquirrel = null;
+	@ObjectHolder("mob.sosquirrel.step")
+	public static final SoundEvent soundStepSOSquirrel = null;
+	@ObjectHolder("mob.sosquirrel.angry")
+	public static final SoundEvent soundAngrySOSquirrel = null;
+
 	/** Music */
 	@ObjectHolder("music.allthatglittersinerebor")
 	public static final SoundEvent soundallthatglittersinerebor = null;

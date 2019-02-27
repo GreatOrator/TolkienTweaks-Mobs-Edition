@@ -277,6 +277,49 @@
       "tolkienmobs:mob/toaddle/toaddle_step"
     ]
   },
+  "mob.sosquirrel.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/sosquirrel/sosquirrel_death"
+    ]
+  },
+  "mob.sosquirrel.angry":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/sosquirrel/sosquirrel_angry"
+    ]
+  },
+  "mob.sosquirrel.hurt":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/sosquirrel/sosquirrel_hurt"
+    ]
+  },
+  "mob.sosquirrel.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/sosquirrel/sosquirrel_say0",
+      "tolkienmobs:mob/sosquirrel/sosquirrel_say1",
+      "tolkienmobs:mob/sosquirrel/sosquirrel_say2",
+      "tolkienmobs:mob/sosquirrel/sosquirrel_say3"
+    ]
+  },
+  "mob.sosquirrel.step":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/sosquirrel/sosquirrel_step"
+    ]
+  },
   "mob.goat.death":
   {
     "category": "neutral",
