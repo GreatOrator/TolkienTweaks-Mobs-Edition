@@ -16,8 +16,22 @@ public class EntityTroll extends EntityHostiles {
         this.setSize(3.4F, 4.6F);
         this.setWeaponType(TTMFeatures.AXE_MORGULIRON);
         this.setLootTable(LootInit.TROLL);
-        this.setMobAttributes(30.0D, 9.0D, 11.0D);
         this.setRndMinMax(1,5);
+    }
+
+    @Override
+    public double getAttackDamage() {
+        return 11.0D;
+    }
+
+    @Override
+    public double getArmorStrength() {
+        return 9.0D;
+    }
+
+    @Override
+    public double getHealthLevel() {
+        return 30.0D;
     }
 
     @Override

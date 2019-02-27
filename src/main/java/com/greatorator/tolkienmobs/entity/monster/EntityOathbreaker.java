@@ -20,8 +20,22 @@ public class EntityOathbreaker extends EntityHostiles {
         this.setLootTable(LootInit.OATHBREAKER);
         this.setTtmEffect(MobEffects.POISON);
         this.setTtmDuration(1);
-        this.setMobAttributes(16.0D, 5.0D, 3.0D);
         this.setRndMinMax(1,5);
+    }
+
+    @Override
+    public double getAttackDamage() {
+        return 3.0D;
+    }
+
+    @Override
+    public double getArmorStrength() {
+        return 5.0D;
+    }
+
+    @Override
+    public double getHealthLevel() {
+        return 16.0D;
     }
 
     public EnumCreatureAttribute getCreatureAttribute()

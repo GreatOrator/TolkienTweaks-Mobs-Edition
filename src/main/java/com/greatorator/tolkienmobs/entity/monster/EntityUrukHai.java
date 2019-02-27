@@ -11,7 +11,21 @@ public class EntityUrukHai extends EntityHostiles {
         this.setSize(1.0F, 2.6F);
         this.setWeaponType(TTMFeatures.SWORD_MORGULIRON);
         this.setLootTable(LootInit.URUK);
-        this.setMobAttributes(34.0D, 8.0D, 3.0D);
         this.setRndMinMax(1,5);
+    }
+
+    @Override
+    public double getAttackDamage() {
+        return 5.0D;
+    }
+
+    @Override
+    public double getArmorStrength() {
+        return 8.0D;
+    }
+
+    @Override
+    public double getHealthLevel() {
+        return 34.0D;
     }
 }

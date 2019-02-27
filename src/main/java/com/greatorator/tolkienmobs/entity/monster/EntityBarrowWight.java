@@ -19,8 +19,22 @@ public class EntityBarrowWight extends EntityHostiles {
         this.setTtmEffect(MobEffects.POISON);
         this.setTtmDuration(1);
         this.setRndMinMax(1,5);
-        this.setMobAttributes(16.0D, 5.0D, 3.0D);
         this.setBurnState(true);
+    }
+
+    @Override
+    public double getAttackDamage() {
+        return 3.0D;
+    }
+
+    @Override
+    public double getArmorStrength() {
+        return 5.0D;
+    }
+
+    @Override
+    public double getHealthLevel() {
+        return 16.0D;
     }
 
     public EnumCreatureAttribute getCreatureAttribute()

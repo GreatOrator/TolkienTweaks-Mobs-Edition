@@ -3,7 +3,10 @@ package com.greatorator.tolkienmobs.entity;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
 import com.greatorator.tolkienmobs.entity.monster.EntityTreeEnt;
-import com.greatorator.tolkienmobs.entity.passive.*;
+import com.greatorator.tolkienmobs.entity.passive.EntityDwarf;
+import com.greatorator.tolkienmobs.entity.passive.EntityElves;
+import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
+import com.greatorator.tolkienmobs.entity.passive.EntityHuman;
 import com.greatorator.tolkienmobs.handler.TTMRand;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -24,15 +27,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.*;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.awt.*;
 import java.util.UUID;
 
-public class EntityHostiles extends EntityMob {
+public abstract class EntityHostiles extends EntityMob {
     private static final DataParameter<Integer> SKIN_TYPE = EntityDataManager.<Integer>createKey(EntityHostiles.class, DataSerializers.VARINT);
     private ResourceLocation lootTable;
     private Item weaponType;
@@ -106,9 +110,9 @@ public class EntityHostiles extends EntityMob {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(17.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.55D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(attackDamage);
-        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(armorStrength);
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(healthLevel);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(getAttackDamage());
+        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(getArmorStrength());
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(getHealthLevel());
     }
 
     public void updateRidden()
@@ -267,7 +271,6 @@ public class EntityHostiles extends EntityMob {
     @Nullable
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
         IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
         this.setEquipmentBasedOnDifficulty(difficulty);
         int i = this.getRandomMobType();
 
@@ -484,14 +487,19 @@ public class EntityHostiles extends EntityMob {
         this.madeBoss = madeBoss;
     }
 
-    public void setMobAttributes(double healthLevel,double armorStrength,double attackDamage) {
-        this.healthLevel = healthLevel;
-        this.armorStrength = armorStrength;
-        this.attackDamage = attackDamage;
-    }
-
     public void setRndMinMax(int rndMin, int rndMax) {
         this.rndMin = rndMin;
         this.rndMax = rndMax;
+    }
+
+    public abstract double getAttackDamage();{
+    }
+
+    public abstract double getArmorStrength();{
+
+    }
+
+    public abstract double getHealthLevel();{
+
     }
 }

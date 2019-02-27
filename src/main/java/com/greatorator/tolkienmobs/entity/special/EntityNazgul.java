@@ -23,12 +23,26 @@ public class EntityNazgul extends EntityHostiles {
         this.setTtmAttack(true);
         this.setWeaponType(TTMFeatures.SWORD_MORGULIRON);
         this.setLootTable(LootInit.NAZGUL);
-        this.setMobAttributes(150.0D, 25.0D, 20.0D);
         this.setTtmEffect(MobEffects.BLINDNESS);
         this.setTtmDuration(200);
         this.setMobMentality(true, SoundInit.soundAngryWitchKing);
         this.setMadeBoss(true);
         this.experienceValue = 100;
+    }
+
+    @Override
+    public double getAttackDamage() {
+        return 20.0D;
+    }
+
+    @Override
+    public double getArmorStrength() {
+        return 25.0D;
+    }
+
+    @Override
+    public double getHealthLevel() {
+        return 150.0D;
     }
 
     public void addTrackingPlayer(EntityPlayerMP player)

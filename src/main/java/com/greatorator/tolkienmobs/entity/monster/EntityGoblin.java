@@ -15,10 +15,24 @@ public class EntityGoblin extends EntityHostiles {
         this.setSize(0.9F, 0.8F);
         this.setWeaponType(TTMFeatures.SWORD_MORGULIRON);
         this.setLootTable(LootInit.GOBLIN);
-        this.setMobAttributes(20.0D, 2.0D, 3.0D);
         this.setMobMentality(true, SoundInit.soundAngryGoblin);
         this.setRndMinMax(1,5);
         this.setCombatTask();
+    }
+
+    @Override
+    public double getAttackDamage() {
+        return 3.0D;
+    }
+
+    @Override
+    public double getArmorStrength() {
+        return 2.0D;
+    }
+
+    @Override
+    public double getHealthLevel() {
+        return 20.0D;
     }
 
     @Override

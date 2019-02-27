@@ -23,13 +23,27 @@ public class EntityWitchKing extends EntityHostiles {
         this.setTtmAttack(true);
         this.setWeaponType(TTMFeatures.SWORD_WITCHKING);
         this.setLootTable(LootInit.WITCHKING);
-        this.setMobAttributes(300.0D, 25.0D, 20.0D);
         this.setTtmEffect(MobEffects.BLINDNESS);
         this.setTtmDuration(200);
         this.setMobMentality(true, SoundInit.soundAngryWitchKing);
         this.setMadeBoss(true);
         this.isImmuneToFire = true;
         this.experienceValue = 200;
+    }
+
+    @Override
+    public double getAttackDamage() {
+        return 20.0D;
+    }
+
+    @Override
+    public double getArmorStrength() {
+        return 25.0D;
+    }
+
+    @Override
+    public double getHealthLevel() {
+        return 300.0D;
     }
 
     public void addTrackingPlayer(EntityPlayerMP player)
