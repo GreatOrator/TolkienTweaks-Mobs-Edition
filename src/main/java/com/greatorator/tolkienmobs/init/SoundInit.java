@@ -284,6 +284,13 @@ public class SoundInit
 					"mob.toaddle.step",
 					"mob.toaddle.angry",
 
+					/* SOSquirrel */
+					"mob.sosquirrel.death",
+					"mob.sosquirrel.idle",
+					"mob.sosquirrel.hurt",
+					"mob.sosquirrel.step",
+					"mob.sosquirrel.angry",
+
                     /* Gollum */
 					"mob.gollum.death",
 					"mob.gollum.idle",

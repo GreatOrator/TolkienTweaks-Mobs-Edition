@@ -327,12 +327,6 @@ public class EntitySOSquirrel extends EntityAnimal {
         return SoundInit.soundDeathSOSquirrel;
     }
 
-    @Override
-    protected float getSoundVolume()
-    {
-        return 1.5F;
-    }
-
     public boolean attackEntityAsMob(Entity entityIn)
     {
         if (this.getSOSquirrelType() == 99)
