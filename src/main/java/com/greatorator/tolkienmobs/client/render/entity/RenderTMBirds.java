@@ -11,11 +11,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 @SuppressWarnings("rawtypes")
-public class RenderBirds extends RenderLiving {
+public class RenderTMBirds extends RenderLiving {
     protected ResourceLocation birdOfPreyTexture;
 
     @SuppressWarnings("unchecked")
-    public RenderBirds(
+    public RenderTMBirds(
             RenderManager parRenderManager,
             ModelBase parModelBase1,
             ModelBase parModelBase2,
@@ -82,7 +82,7 @@ public class RenderBirds extends RenderLiving {
         @Override
         public Render createRenderFor(RenderManager manager)
         {
-            return new RenderBirds(
+            return new RenderTMBirds(
                     manager,
                     model1,
                     model2,

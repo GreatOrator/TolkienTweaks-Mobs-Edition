@@ -2,9 +2,9 @@ package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.TTMClientEvents;
-import com.greatorator.tolkienmobs.client.render.RenderTMGeneric;
-import com.greatorator.tolkienmobs.client.render.entity.RenderBirds;
-import com.greatorator.tolkienmobs.client.render.entity.RenderHerds;
+import com.greatorator.tolkienmobs.client.render.entity.RenderTMGeneric;
+import com.greatorator.tolkienmobs.client.render.entity.RenderTMBirds;
+import com.greatorator.tolkienmobs.client.render.entity.RenderTMHerds;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderBoulder;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderFellBeastFireball;
 import com.greatorator.tolkienmobs.client.render.entity.boss.RenderBalrog;
@@ -69,7 +69,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityTMMidgeFly.class, m -> new RenderTMGeneric<>(m, new ModelTMMidgeFly(), 0.0F, "midgeflies.png"));
         RenderingRegistry.registerEntityRenderingHandler(
                 EntityTMCrebain.class,
-                RenderBirds.getRenderFactory(
+                RenderTMBirds.getRenderFactory(
                         new ModelCrebain(),
                         new ModelCrebain(),
                         0.5F,
@@ -95,7 +95,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityTMToad.class, RenderToaddle.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(
                 EntityTMMumakil.class,
-                RenderHerds.getRenderFactory(
+                RenderTMHerds.getRenderFactory(
                         new ModelMumakil(),
                         2.0F,
                         new ResourceLocation(TolkienMobs.MODID + ":textures/entity/mumakil.png")
@@ -103,7 +103,7 @@ public class ClientProxy extends CommonProxy {
         );
         RenderingRegistry.registerEntityRenderingHandler(
                 EntityTMAuroch.class,
-                RenderHerds.getRenderFactory(
+                RenderTMHerds.getRenderFactory(
                         new ModelAuroch(),
                         0.5F,
                         new ResourceLocation(TolkienMobs.MODID + ":textures/entity/auroch.png")

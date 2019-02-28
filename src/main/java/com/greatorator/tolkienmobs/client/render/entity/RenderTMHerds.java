@@ -12,10 +12,10 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 /** Borrowed from Jabelar https://github.com/jabelar */
 @SuppressWarnings("rawtypes")
-public class RenderHerds extends RenderLiving {
+public class RenderTMHerds extends RenderLiving {
     protected ResourceLocation herdAnimalTexture;
 
-    public RenderHerds(
+    public RenderTMHerds(
             RenderManager parRenderManager,
             ModelBase par1ModelBase,
             float parShadowSize,
@@ -79,7 +79,7 @@ public class RenderHerds extends RenderLiving {
         @Override
         public Render createRenderFor(RenderManager manager)
         {
-            return new RenderHerds(
+            return new RenderTMHerds(
                     manager,
                     model1,
                     shadowSize,

@@ -88,10 +88,15 @@ public class CraftingInit {
         OreDictionary.registerOre("foodHoneyCake", new ItemStack(TTMFeatures.HONEY_CAKE));
         OreDictionary.registerOre("foodCram", new ItemStack(TTMFeatures.CRAM));
         OreDictionary.registerOre("foodMonsterFlesh", new ItemStack(TTMFeatures.MONSTER_FLESH));
+        OreDictionary.registerOre("foodInsect", new ItemStack(TTMFeatures.INSECT));
+        OreDictionary.registerOre("foodInsect", new ItemStack(TTMFeatures.GOLDEN_INSECT));
+        OreDictionary.registerOre("foodNut", new ItemStack(TTMFeatures.TREE_ACORN));
+        OreDictionary.registerOre("foodNut", new ItemStack(TTMFeatures.GOLDEN_TREE_ACORN));
 
         /* Monster Drops */
         OreDictionary.registerOre("feather", new ItemStack(TTMFeatures.CREBAIN_FEATHER));
         OreDictionary.registerOre("leather", new ItemStack(TTMFeatures.MUMAKIL_LEATHER));
+        OreDictionary.registerOre("fur", new ItemStack(TTMFeatures.MONSTER_FUR));
     }
 
     private static void addOreDictRecipe(){

@@ -7,6 +7,7 @@ import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeFangorn;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeSmFangorn;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -21,6 +22,10 @@ import java.util.List;
 import java.util.Random;
 
 public class BiomeFangorn extends Biome implements IFogyBiome {
+    /* The Culumalda generator. */
+    protected static final WorldGenTreeSmFangorn SMALL_FANGORN_FEATURE = new WorldGenTreeSmFangorn(false);
+    /* The Lebethron generator. */
+    protected static final WorldGenTreeFangorn FANGORN_FEATURE = new WorldGenTreeFangorn(false);
 
     public BiomeFangorn()
     {
@@ -46,9 +51,8 @@ public class BiomeFangorn extends Biome implements IFogyBiome {
     }
 
     @Override
-    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
-    {
-        return new WorldGenTreeFangorn(false);
+    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
+        return (WorldGenAbstractTree)(rand.nextInt(10) == 0 ? SMALL_FANGORN_FEATURE : FANGORN_FEATURE);
     }
 
     public List<FlowerEntry> getFlowerList()

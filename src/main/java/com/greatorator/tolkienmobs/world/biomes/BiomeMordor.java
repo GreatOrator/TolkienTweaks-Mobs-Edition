@@ -1,10 +1,7 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMMordorOrc;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMTroll;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMUrukHai;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMWarg;
+import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeRubble;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeDead;
@@ -74,6 +71,9 @@ public class BiomeMordor extends Biome {
                 }
                 if (TTMConfig.enableCaveTrolls) {
                     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityTMTroll.class, 8, 1, 1));
+                }
+                if (TTMConfig.enableMidgeFlies) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMMidgeFly.class, 4, 1, 1));
                 }
             }
         }

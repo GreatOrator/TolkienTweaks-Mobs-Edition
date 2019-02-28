@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.client.render;
+package com.greatorator.tolkienmobs.client.render.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import net.minecraft.client.model.ModelBase;
