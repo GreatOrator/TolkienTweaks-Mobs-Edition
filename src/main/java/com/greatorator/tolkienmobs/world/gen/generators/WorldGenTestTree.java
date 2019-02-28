@@ -12,7 +12,6 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import java.util.Random;
 
 public class WorldGenTestTree extends WorldGenAbstractTree {
-
     public static final IBlockState LOG = TTMFeatures.LOGS.getDefaultState().withProperty(BlockLogs.VARIANT, BlockLogs.EnumType.MALLORN);
     public static final IBlockState LEAF = TTMFeatures.LEAVES.getDefaultState().withProperty(BlockLeaf.VARIANT, BlockLogs.EnumType.MALLORN).withProperty(BlockLeaf.CHECK_DECAY, false);
     private final int minTreeHeight = 16;
