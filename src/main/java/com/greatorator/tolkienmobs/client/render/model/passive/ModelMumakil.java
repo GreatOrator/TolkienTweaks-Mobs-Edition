@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.model.passive;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
-import com.greatorator.tolkienmobs.entity.passive.EntityMumakil;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMMumakil;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
@@ -288,10 +288,10 @@ public class ModelMumakil extends ModelTTM {
     @Override
     public void render(Entity parEntity, float parTime, float parSwingSuppress, float par4, float parHeadAngleY, float parHeadAngleX, float par7)
     {
-        renderMumakil((EntityMumakil) parEntity, parTime, parSwingSuppress, par4, parHeadAngleY, parHeadAngleX, par7);
+        renderMumakil((EntityTMMumakil) parEntity, parTime, parSwingSuppress, par4, parHeadAngleY, parHeadAngleX, par7);
     }
 
-    public void renderMumakil(EntityMumakil parEntity, float parTime, float parSwingSuppress, float par4, float parHeadAngleY, float parHeadAngleX, float par7)
+    public void renderMumakil(EntityTMMumakil parEntity, float parTime, float parSwingSuppress, float par4, float parHeadAngleY, float parHeadAngleX, float par7)
     {
         setRotationAngles(parTime, parSwingSuppress, par4, parHeadAngleY, parHeadAngleX, par7, parEntity);
         float scaleFactor = 1.5F;
@@ -335,7 +335,7 @@ public class ModelMumakil extends ModelTTM {
         GL11.glPopMatrix();
     }
 
-    public void setRotationAngles(float parTime, float parSwingSuppress, float par3, float parHeadAngleY, float parHeadAngleX, float par6, EntityMumakil parEntity)
+    public void setRotationAngles(float parTime, float parSwingSuppress, float par3, float parHeadAngleY, float parHeadAngleX, float par6, EntityTMMumakil parEntity)
     {
         /* return rotation point in case there was previous rearing animation */
         MumuNeck.setRotationPoint(MumuNeckRotPointXDefault, MumuNeckRotPointYDefault, MumuNeckRotPointZDefault);

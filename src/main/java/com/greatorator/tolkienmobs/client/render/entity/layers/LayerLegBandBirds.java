@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.entity.layers;
 
 import com.greatorator.tolkienmobs.client.render.entity.RenderBirds;
-import com.greatorator.tolkienmobs.entity.EntityBirds;
+import com.greatorator.tolkienmobs.entity.EntityTMBirds;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class LayerLegBandBirds implements LayerRenderer<EntityBirds> {
+public class LayerLegBandBirds implements LayerRenderer<EntityTMBirds> {
     protected ResourceLocation legBandTexture;
     protected final RenderBirds renderer;
 
@@ -20,7 +20,7 @@ public class LayerLegBandBirds implements LayerRenderer<EntityBirds> {
     }
 
     @Override
-    public void doRenderLayer(EntityBirds entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
+    public void doRenderLayer(EntityTMBirds entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
         if (entitylivingbaseIn.isTamed() && !entitylivingbaseIn.isInvisible())
         {

@@ -2,8 +2,8 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
-import com.greatorator.tolkienmobs.entity.passive.EntityAuroch;
-import com.greatorator.tolkienmobs.entity.passive.EntityHuman;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMAuroch;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMHuman;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.block.BlockFlower;
@@ -55,10 +55,10 @@ public class BiomeGladden extends Biome {
         if (TTMConfig.enableNaturalSpawn) {
             if (TTMConfig.enablePassive) {
                 if (TTMConfig.enableHumans) {
-                    this.spawnableCreatureList.add(new SpawnListEntry(EntityHuman.class, 12, 1, 3));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMHuman.class, 12, 1, 3));
                 }
                 if (TTMConfig.enableAuroch) {
-                    this.spawnableCreatureList.add(new SpawnListEntry(EntityAuroch.class, 4, 2, 3));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMAuroch.class, 4, 2, 3));
                 }
             }
         }

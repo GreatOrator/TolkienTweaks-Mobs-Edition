@@ -31,15 +31,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /** Borrowed from Jabelar https://github.com/jabelar */
-public class EntityHerds extends EntityAnimal implements IModEntity
+public class EntityTMHerds extends EntityAnimal implements IModEntity
 {
 
-    protected static final DataParameter<Float> SCALE_FACTOR = EntityDataManager.<Float>createKey(EntityHerds.class, DataSerializers.FLOAT);
-    protected static final DataParameter<Integer> REARING_COUNTER = EntityDataManager.<Integer>createKey(EntityHerds.class, DataSerializers.VARINT);
+    protected static final DataParameter<Float> SCALE_FACTOR = EntityDataManager.<Float>createKey(EntityTMHerds.class, DataSerializers.FLOAT);
+    protected static final DataParameter<Integer> REARING_COUNTER = EntityDataManager.<Integer>createKey(EntityTMHerds.class, DataSerializers.VARINT);
 
     protected boolean isHitWithoutResistance = false ;
 
-    public EntityHerds(World par1World)
+    public EntityTMHerds(World par1World)
     {
         super(par1World);
 
@@ -145,7 +145,7 @@ public class EntityHerds extends EntityAnimal implements IModEntity
     }
 
     @Override
-    public EntityHerds createChild(EntityAgeable par1EntityAgeable)
+    public EntityTMHerds createChild(EntityAgeable par1EntityAgeable)
     {
         return null;
     }

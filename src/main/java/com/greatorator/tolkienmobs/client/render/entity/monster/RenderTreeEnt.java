@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.client.render.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelTreeEnt;
-import com.greatorator.tolkienmobs.entity.monster.EntityTreeEnt;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMTreeEnt;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nullable;
 
-public class RenderTreeEnt extends RenderLiving<EntityTreeEnt> {
+public class RenderTreeEnt extends RenderLiving<EntityTMTreeEnt> {
     private static final ResourceLocation[] mobTexture = new ResourceLocation[5];
     static {
         for (int i = 0; i < 5; i++) {
@@ -27,14 +27,14 @@ public class RenderTreeEnt extends RenderLiving<EntityTreeEnt> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(EntityTreeEnt entity) {
+    protected ResourceLocation getEntityTexture(EntityTMTreeEnt entity) {
         int index = entity.getTextureIndex();
         return mobTexture[index];
     }
 
-    public static class Factory implements IRenderFactory<EntityTreeEnt> {
+    public static class Factory implements IRenderFactory<EntityTMTreeEnt> {
         @Override
-        public Render<? super EntityTreeEnt> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMTreeEnt> createRenderFor(RenderManager manager) {
             return new RenderTreeEnt(manager);
         }
     }

@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
-import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
 import com.greatorator.tolkienmobs.handler.TTMRand;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
@@ -22,10 +22,10 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import javax.annotation.Nullable;
 
-public class EntityTreeEnt extends EntityMob implements IRangedAttackMob, IEntityAdditionalSpawnData {
+public class EntityTMTreeEnt extends EntityMob implements IRangedAttackMob, IEntityAdditionalSpawnData {
     private int texture_index;
 
-    public EntityTreeEnt(World worldIn) {
+    public EntityTMTreeEnt(World worldIn) {
         super(worldIn);
         setSize(1.35F, 5.5F);
         this.texture_index = rand.nextInt(4);
@@ -41,10 +41,10 @@ public class EntityTreeEnt extends EntityMob implements IRangedAttackMob, IEntit
     }
 
     private void applyEntityAI() {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityTreeEnt.class}));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityMordorOrc.class, false));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityUrukHai.class, false));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityGoblin.class, true));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityTMTreeEnt.class}));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTMMordorOrc.class, false));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTMUrukHai.class, false));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTMGoblin.class, true));
     }
 
     @Override
@@ -54,8 +54,8 @@ public class EntityTreeEnt extends EntityMob implements IRangedAttackMob, IEntit
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
         this.tasks.addTask(7, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityHobbit.class, 8.0F));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityGoblin.class, true));
+        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityTMHobbit.class, 8.0F));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMGoblin.class, true));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.applyEntityAI();
     }

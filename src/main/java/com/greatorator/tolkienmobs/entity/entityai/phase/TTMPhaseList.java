@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 
 import java.lang.reflect.Constructor;
 import java.util.Arrays;
@@ -30,7 +30,7 @@ public class TTMPhaseList<T extends ITTMPhase>
         this.name = nameIn;
     }
 
-    public ITTMPhase createPhase(EntityFellBeast fellbeast)
+    public ITTMPhase createPhase(EntityTMFellBeast fellbeast)
     {
         try
         {
@@ -45,7 +45,7 @@ public class TTMPhaseList<T extends ITTMPhase>
 
     protected Constructor <? extends ITTMPhase> getConstructor() throws NoSuchMethodException
     {
-        return this.clazz.getConstructor(EntityFellBeast.class);
+        return this.clazz.getConstructor(EntityTMFellBeast.class);
     }
 
     public int getId()

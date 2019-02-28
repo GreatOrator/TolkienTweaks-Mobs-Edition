@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.Path;
@@ -18,7 +18,7 @@ public class TTMPhaseHoldingPattern extends TTMPhaseBase
     private Vec3d targetLocation;
     private boolean clockwise;
 
-    public TTMPhaseHoldingPattern(EntityFellBeast fellbeastIn)
+    public TTMPhaseHoldingPattern(EntityTMFellBeast fellbeastIn)
     {
         super(fellbeastIn);
     }

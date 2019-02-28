@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.entity.monster.EntityMirkwoodSpider;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMMirkwoodSpider;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelMirkwoodSpider;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
 
-public class RenderMirkwoodSpider extends RenderLiving<EntityMirkwoodSpider> {
+public class RenderMirkwoodSpider extends RenderLiving<EntityTMMirkwoodSpider> {
     private ResourceLocation mobTexture = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/mirkwoodspider.png");
 
     public static final Factory FACTORY = new Factory();
@@ -22,13 +22,13 @@ public class RenderMirkwoodSpider extends RenderLiving<EntityMirkwoodSpider> {
 
     @Override
     @Nonnull
-    protected ResourceLocation getEntityTexture(@Nonnull EntityMirkwoodSpider entity) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityTMMirkwoodSpider entity) {
         return mobTexture;
     }
 
-    public static class Factory implements IRenderFactory<EntityMirkwoodSpider> {
+    public static class Factory implements IRenderFactory<EntityTMMirkwoodSpider> {
         @Override
-        public Render<? super EntityMirkwoodSpider> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMMirkwoodSpider> createRenderFor(RenderManager manager) {
             return new RenderMirkwoodSpider(manager);
         }
     }

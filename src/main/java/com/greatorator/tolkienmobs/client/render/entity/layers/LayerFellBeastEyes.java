@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.client.render.entity.layers;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.boss.RenderFellBeast;
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class LayerFellBeastEyes implements LayerRenderer<EntityFellBeast>
+public class LayerFellBeastEyes implements LayerRenderer<EntityTMFellBeast>
 {
     private static final ResourceLocation TEXTURE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/fellbeast/fellbeast_eyes.png");
     private final RenderFellBeast dragonRenderer;
@@ -22,7 +22,7 @@ public class LayerFellBeastEyes implements LayerRenderer<EntityFellBeast>
         this.dragonRenderer = dragonRendererIn;
     }
 
-    public void doRenderLayer(EntityFellBeast entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
+    public void doRenderLayer(EntityTMFellBeast entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
         this.dragonRenderer.bindTexture(TEXTURE);
         GlStateManager.enableBlend();

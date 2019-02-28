@@ -2,10 +2,10 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
-import com.greatorator.tolkienmobs.entity.passive.EntityAuroch;
-import com.greatorator.tolkienmobs.entity.passive.EntityGoat;
-import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
-import com.greatorator.tolkienmobs.entity.passive.EntityToaddle;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMAuroch;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMGoat;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMToad;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.block.BlockFlower;
@@ -83,16 +83,16 @@ public class BiomeShire extends Biome {
         if (TTMConfig.enableNaturalSpawn) {
             if (TTMConfig.enablePassive) {
                 if (TTMConfig.enableHobbits) {
-                    this.spawnableCreatureList.add(new SpawnListEntry(EntityHobbit.class, 12, 1, 3));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMHobbit.class, 12, 1, 3));
                 }
                 if (TTMConfig.enableFrogs) {
-                    this.spawnableCreatureList.add(new SpawnListEntry(EntityToaddle.class, 4, 1, 1));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMToad.class, 4, 1, 1));
                 }
                 if (TTMConfig.enableAuroch) {
-                    this.spawnableCreatureList.add(new SpawnListEntry(EntityAuroch.class, 4, 2, 3));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMAuroch.class, 4, 2, 3));
                 }
                 if (TTMConfig.enableGoats) {
-                    this.spawnableCreatureList.add(new SpawnListEntry(EntityGoat.class, 4, 2, 3));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMGoat.class, 4, 2, 3));
                 }
             }
         }

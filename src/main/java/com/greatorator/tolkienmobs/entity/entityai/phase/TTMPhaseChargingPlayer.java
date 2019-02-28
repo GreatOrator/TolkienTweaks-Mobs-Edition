@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.util.math.Vec3d;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +13,7 @@ public class TTMPhaseChargingPlayer extends TTMPhaseBase
     private Vec3d targetLocation;
     private int timeSinceCharge;
 
-    public TTMPhaseChargingPlayer(EntityFellBeast fellbeastIn)
+    public TTMPhaseChargingPlayer(EntityTMFellBeast fellbeastIn)
     {
         super(fellbeastIn);
     }

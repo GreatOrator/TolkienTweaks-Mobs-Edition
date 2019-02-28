@@ -29,23 +29,23 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class EntityMirkwoodSpider extends EntityMob {
+public class EntityTMMirkwoodSpider extends EntityMob {
 
-    private static final DataParameter<Byte> CLIMBING = EntityDataManager.<Byte>createKey(EntityMirkwoodSpider.class, DataSerializers.BYTE);
+    private static final DataParameter<Byte> CLIMBING = EntityDataManager.<Byte>createKey(EntityTMMirkwoodSpider.class, DataSerializers.BYTE);
 
-    public EntityMirkwoodSpider(World worldIn) {
+    public EntityTMMirkwoodSpider(World worldIn) {
         super(worldIn);
         this.setSize(1.4F, 0.9F);
     }
 
     public static void registerFixesSpider(DataFixer fixer) {
-        EntityLiving.registerFixesMob(fixer, EntityMirkwoodSpider.class);
+        EntityLiving.registerFixesMob(fixer, EntityTMMirkwoodSpider.class);
     }
 
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAISwimming(this));
         this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
-        this.tasks.addTask(4, new EntityMirkwoodSpider.AISpiderAttack(this));
+        this.tasks.addTask(4, new EntityTMMirkwoodSpider.AISpiderAttack(this));
         this.tasks.addTask(5, new EntityAIWanderAvoidWater(this, 0.8D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
@@ -54,8 +54,8 @@ public class EntityMirkwoodSpider extends EntityMob {
 
     private void applyEntityAI() {
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-        this.targetTasks.addTask(2, new EntityMirkwoodSpider.AISpiderTarget(this, EntityPlayer.class));
-        this.targetTasks.addTask(3, new EntityMirkwoodSpider.AISpiderTarget(this, EntityIronGolem.class));
+        this.targetTasks.addTask(2, new EntityTMMirkwoodSpider.AISpiderTarget(this, EntityPlayer.class));
+        this.targetTasks.addTask(3, new EntityTMMirkwoodSpider.AISpiderTarget(this, EntityIronGolem.class));
     }
 
     protected void entityInit() {
@@ -176,15 +176,15 @@ public class EntityMirkwoodSpider extends EntityMob {
         }
 
         if (livingdata == null) {
-            livingdata = new EntityMirkwoodSpider.GroupData();
+            livingdata = new EntityTMMirkwoodSpider.GroupData();
 
             if (this.world.getDifficulty() == EnumDifficulty.HARD && this.world.rand.nextFloat() < 0.1F * difficulty.getClampedAdditionalDifficulty()) {
-                ((EntityMirkwoodSpider.GroupData) livingdata).setRandomEffect(this.world.rand);
+                ((EntityTMMirkwoodSpider.GroupData) livingdata).setRandomEffect(this.world.rand);
             }
         }
 
-        if (livingdata instanceof EntityMirkwoodSpider.GroupData) {
-            Potion potion = ((EntityMirkwoodSpider.GroupData) livingdata).effect;
+        if (livingdata instanceof EntityTMMirkwoodSpider.GroupData) {
+            Potion potion = ((EntityTMMirkwoodSpider.GroupData) livingdata).effect;
 
             if (potion != null) {
                 this.addPotionEffect(new PotionEffect(potion, Integer.MAX_VALUE));
@@ -199,7 +199,7 @@ public class EntityMirkwoodSpider extends EntityMob {
     }
 
     static class AISpiderAttack extends EntityAIAttackMelee {
-        public AISpiderAttack(EntityMirkwoodSpider spider) {
+        public AISpiderAttack(EntityTMMirkwoodSpider spider) {
             super(spider, 1.0D, true);
         }
 
@@ -223,7 +223,7 @@ public class EntityMirkwoodSpider extends EntityMob {
     }
 
     static class AISpiderTarget<T extends EntityLivingBase> extends EntityAINearestAttackableTarget<T> {
-        public AISpiderTarget(EntityMirkwoodSpider spider, Class<T> classTarget) {
+        public AISpiderTarget(EntityTMMirkwoodSpider spider, Class<T> classTarget) {
             super(spider, classTarget, true);
         }
 

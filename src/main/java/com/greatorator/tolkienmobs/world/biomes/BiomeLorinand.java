@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
-import com.greatorator.tolkienmobs.entity.passive.EntityElves;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMElves;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeMallorn;
@@ -72,7 +72,7 @@ public class BiomeLorinand extends Biome {
         if (TTMConfig.enableNaturalSpawn) {
             if (TTMConfig.enablePassive) {
                 if (TTMConfig.enableElves) {
-                    this.spawnableCreatureList.add(new SpawnListEntry(EntityElves.class, 12, 1, 3));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMElves.class, 12, 1, 3));
                 }
             }
         }

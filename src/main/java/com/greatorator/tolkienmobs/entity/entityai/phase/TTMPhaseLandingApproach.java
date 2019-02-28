@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathPoint;
@@ -14,7 +14,7 @@ public class TTMPhaseLandingApproach extends TTMPhaseBase
     private Path currentPath;
     private Vec3d targetLocation;
 
-    public TTMPhaseLandingApproach(EntityFellBeast fellbeastIn)
+    public TTMPhaseLandingApproach(EntityTMFellBeast fellbeastIn)
     {
         super(fellbeastIn);
     }

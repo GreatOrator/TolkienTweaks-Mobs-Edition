@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.client.render.entity.boss;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
 import com.greatorator.tolkienmobs.client.render.model.boss.ModelBalrog;
-import com.greatorator.tolkienmobs.entity.boss.EntityBalrog;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMBalrog;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -13,7 +13,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nonnull;
 
-public class RenderBalrog extends RenderLiving<EntityBalrog> {
+public class RenderBalrog extends RenderLiving<EntityTMBalrog> {
     private ResourceLocation mobTexture = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/balrog.png");
 
     public static final RenderBalrog.Factory FACTORY = new RenderBalrog.Factory();
@@ -28,13 +28,13 @@ public class RenderBalrog extends RenderLiving<EntityBalrog> {
 
     @Override
     @Nonnull
-    protected ResourceLocation getEntityTexture(@Nonnull EntityBalrog entity) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityTMBalrog entity) {
         return mobTexture;
     }
 
-    public static class Factory implements IRenderFactory<EntityBalrog> {
+    public static class Factory implements IRenderFactory<EntityTMBalrog> {
         @Override
-        public Render<? super EntityBalrog> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMBalrog> createRenderFor(RenderManager manager) {
             return new RenderBalrog(manager, 2.0F);
         }
     }
@@ -45,7 +45,7 @@ public class RenderBalrog extends RenderLiving<EntityBalrog> {
 
     /** If you need to apply a GL Scale to your model this is how you do it. */
     @Override
-    protected void preRenderCallback(EntityBalrog entitylivingbaseIn, float partialTickTime) {
+    protected void preRenderCallback(EntityTMBalrog entitylivingbaseIn, float partialTickTime) {
         GlStateManager.scale(scale, scale, scale);
     }
 }

@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.util.math.Vec3d;
 
 import javax.annotation.Nullable;
@@ -9,7 +9,7 @@ public class TTMPhaseHover extends TTMPhaseBase
 {
     private Vec3d targetLocation;
 
-    public TTMPhaseHover(EntityFellBeast fellbeastIn)
+    public TTMPhaseHover(EntityTMFellBeast fellbeastIn)
     {
         super(fellbeastIn);
     }

@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -12,7 +12,7 @@ public class TTMPhaseLanding extends TTMPhaseBase
 {
     private Vec3d targetLocation;
 
-    public TTMPhaseLanding(EntityFellBeast fellbeastIn)
+    public TTMPhaseLanding(EntityTMFellBeast fellbeastIn)
     {
         super(fellbeastIn);
     }

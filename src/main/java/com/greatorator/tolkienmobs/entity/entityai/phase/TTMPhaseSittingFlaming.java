@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
 import net.minecraft.entity.EntityAreaEffectCloud;
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
@@ -15,7 +15,7 @@ public class TTMPhaseSittingFlaming extends TTMPhaseSittingBase
     private int flameCount;
     private EntityAreaEffectCloud areaEffectCloud;
 
-    public TTMPhaseSittingFlaming(EntityFellBeast fellbeastIn)
+    public TTMPhaseSittingFlaming(EntityTMFellBeast fellbeastIn)
     {
         super(fellbeastIn);
     }

@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.entity;
 
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerLegBandBirds;
-import com.greatorator.tolkienmobs.entity.EntityBirds;
+import com.greatorator.tolkienmobs.entity.EntityTMBirds;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -32,10 +32,10 @@ public class RenderBirds extends RenderLiving {
     @Override
     protected ResourceLocation getEntityTexture(Entity par1Entity)
     {
-        return getEntityTexture((EntityBirds)par1Entity);
+        return getEntityTexture((EntityTMBirds)par1Entity);
     }
 
-    protected ResourceLocation getEntityTexture(EntityBirds parEntityBirdOfPrey)
+    protected ResourceLocation getEntityTexture(EntityTMBirds parEntityBirdOfPrey)
     {
         return birdOfPreyTexture;
     }

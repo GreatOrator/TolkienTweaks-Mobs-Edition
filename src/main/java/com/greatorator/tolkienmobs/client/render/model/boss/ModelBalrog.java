@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.model.boss;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
-import com.greatorator.tolkienmobs.entity.boss.EntityBalrog;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMBalrog;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -426,7 +426,7 @@ public class ModelBalrog extends ModelTTM {
         this.leftArmPose = ModelBiped.ArmPose.EMPTY;
         ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
 
-        if (itemstack.getItem() == Items.BOW && ((EntityBalrog)entitylivingbaseIn).isSwingingArms()) {
+        if (itemstack.getItem() == Items.BOW && ((EntityTMBalrog)entitylivingbaseIn).isSwingingArms()) {
             if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT) {
                 this.rightArmPose = ModelBiped.ArmPose.ITEM;
             }

@@ -14,9 +14,9 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class EntityHuron extends EntityMob implements IRangedAttackMob {
+public class EntityTMHuron extends EntityMob implements IRangedAttackMob {
 
-    public EntityHuron(World worldIn) {
+    public EntityTMHuron(World worldIn) {
         super(worldIn);
         setSize(1.35F, 3.7F);
     }
@@ -27,11 +27,11 @@ public class EntityHuron extends EntityMob implements IRangedAttackMob {
     }
 
     private void applyEntityAI() {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityHuron.class}));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityTMHuron.class}));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityMordorOrc.class, false));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityUrukHai.class, false));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityGoblin.class, true));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTMMordorOrc.class, false));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTMUrukHai.class, false));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTMGoblin.class, true));
     }
 
     @Override

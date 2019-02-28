@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.client.render.entity.passive;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
 import com.greatorator.tolkienmobs.client.render.model.passive.ModelDwarf;
-import com.greatorator.tolkienmobs.entity.passive.EntityDwarf;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMDwarf;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -13,7 +13,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nullable;
 
-public class RenderDwarf extends RenderLiving<EntityDwarf> {
+public class RenderDwarf extends RenderLiving<EntityTMDwarf> {
     private static final ResourceLocation[] mobTexture = new ResourceLocation[5];
     static {
         for (int i = 0; i < 5; i++) {
@@ -30,14 +30,14 @@ public class RenderDwarf extends RenderLiving<EntityDwarf> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(EntityDwarf entity) {
+    protected ResourceLocation getEntityTexture(EntityTMDwarf entity) {
         int index = entity.getTextureIndex();
         return mobTexture[index];
     }
 
-    public static class Factory implements IRenderFactory<EntityDwarf> {
+    public static class Factory implements IRenderFactory<EntityTMDwarf> {
         @Override
-        public Render<? super EntityDwarf> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMDwarf> createRenderFor(RenderManager manager) {
             return new RenderDwarf(manager);
         }
     }

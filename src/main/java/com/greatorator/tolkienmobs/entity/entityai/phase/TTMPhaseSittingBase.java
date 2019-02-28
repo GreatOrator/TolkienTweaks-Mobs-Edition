@@ -1,13 +1,13 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
 import net.minecraft.entity.MultiPartEntityPart;
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.util.DamageSource;
 
 public abstract class TTMPhaseSittingBase extends TTMPhaseBase
 {
-    public TTMPhaseSittingBase(EntityFellBeast p_i46794_1_)
+    public TTMPhaseSittingBase(EntityTMFellBeast p_i46794_1_)
     {
         super(p_i46794_1_);
     }

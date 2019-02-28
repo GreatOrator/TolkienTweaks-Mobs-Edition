@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.passive;
 
-import com.greatorator.tolkienmobs.entity.EntityHerds;
+import com.greatorator.tolkienmobs.entity.EntityTMHerds;
 import com.greatorator.tolkienmobs.init.LootInit;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
@@ -13,8 +13,8 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class EntityAuroch extends EntityHerds {
-    public EntityAuroch(World worldIn) {
+public class EntityTMAuroch extends EntityTMHerds {
+    public EntityTMAuroch(World worldIn) {
         super(worldIn);
 
         this.setSize(1.2F, 2.1F);
@@ -62,8 +62,8 @@ public class EntityAuroch extends EntityHerds {
     }
 
     @Override
-    public EntityAuroch createChild(EntityAgeable par1EntityAgeable)
+    public EntityTMAuroch createChild(EntityAgeable par1EntityAgeable)
     {
-        return new EntityAuroch(world);
+        return new EntityTMAuroch(world);
     }
 }

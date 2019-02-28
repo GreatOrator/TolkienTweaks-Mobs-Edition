@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.util.math.BlockPos;
@@ -14,7 +14,7 @@ public class TTMPhaseTakeoff extends TTMPhaseBase
     private Path currentPath;
     private Vec3d targetLocation;
 
-    public TTMPhaseTakeoff(EntityFellBeast fellbeastIn)
+    public TTMPhaseTakeoff(EntityTMFellBeast fellbeastIn)
     {
         super(fellbeastIn);
     }

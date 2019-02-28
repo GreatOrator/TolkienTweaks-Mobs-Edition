@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.entity.special;
 
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
-import com.greatorator.tolkienmobs.entity.monster.EntityGoblin;
-import com.greatorator.tolkienmobs.entity.monster.EntityHuron;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMGoblin;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMHuron;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.block.Block;
@@ -22,9 +22,9 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class EntityGollum extends EntityMob {
+public class EntityTMGollum extends EntityMob {
 
-    public EntityGollum(World worldIn) {
+    public EntityTMGollum(World worldIn) {
         super(worldIn);
         setSize(1.0F, 1.0F);
     }
@@ -35,9 +35,9 @@ public class EntityGollum extends EntityMob {
     }
 
     private void applyEntityAI() {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityHuron.class}));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityTMHuron.class}));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityGoblin.class, true));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTMGoblin.class, true));
     }
 
     @Override

@@ -1,6 +1,6 @@
-package com.greatorator.tolkienmobs.entity.boss;
+package com.greatorator.tolkienmobs.entity.special;
 
-import com.greatorator.tolkienmobs.entity.EntityHostiles;
+import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
@@ -14,21 +14,20 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 
-public class EntityWitchKing extends EntityHostiles {
-    private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
+public class EntityTMNazgul extends EntityTMHostiles {
+    private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.YELLOW, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
 
-    public EntityWitchKing(World worldIn) {
+    public EntityTMNazgul(World worldIn) {
         super(worldIn);
-        this.setSize(1.7F, 3.2F);
+        this.setSize(1.7F, 3.0F);
         this.setTtmAttack(true);
-        this.setWeaponType(TTMFeatures.SWORD_WITCHKING);
-        this.setLootTable(LootInit.WITCHKING);
+        this.setWeaponType(TTMFeatures.SWORD_MORGULIRON);
+        this.setLootTable(LootInit.NAZGUL);
         this.setTtmEffect(MobEffects.BLINDNESS);
         this.setTtmDuration(200);
         this.setMobMentality(true, SoundInit.soundAngryWitchKing);
         this.setMadeBoss(true);
-        this.isImmuneToFire = true;
-        this.experienceValue = 200;
+        this.experienceValue = 100;
     }
 
     @Override
@@ -43,7 +42,7 @@ public class EntityWitchKing extends EntityHostiles {
 
     @Override
     public double getHealthLevel() {
-        return 300.0D;
+        return 150.0D;
     }
 
     public void addTrackingPlayer(EntityPlayerMP player)
@@ -97,7 +96,7 @@ public class EntityWitchKing extends EntityHostiles {
     @Override
     protected SoundEvent getDeathSound()
     {
-        return SoundInit.soundDeathWitchKing;
+        return SoundInit.soundHurtWitchKing;
     }
 
     @Override

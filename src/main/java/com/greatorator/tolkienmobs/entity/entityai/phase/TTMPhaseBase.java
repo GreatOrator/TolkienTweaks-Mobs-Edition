@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
 import net.minecraft.entity.MultiPartEntityPart;
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
@@ -13,9 +13,9 @@ import javax.annotation.Nullable;
 
 public abstract class TTMPhaseBase implements ITTMPhase
 {
-    protected final EntityFellBeast fellbeast;
+    protected final EntityTMFellBeast fellbeast;
 
-    public TTMPhaseBase(EntityFellBeast fellbeastIn)
+    public TTMPhaseBase(EntityTMFellBeast fellbeastIn)
     {
         this.fellbeast = fellbeastIn;
     }

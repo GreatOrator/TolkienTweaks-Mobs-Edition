@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.client.render.entity.monster;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelGoblin;
-import com.greatorator.tolkienmobs.entity.monster.EntityGoblin;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMGoblin;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class RenderGoblin extends RenderLiving<EntityGoblin> {
+public class RenderGoblin extends RenderLiving<EntityTMGoblin> {
     private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goblin/goblin1.png");
     private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goblin/goblin2.png");
     private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goblin/goblin3.png");
@@ -29,7 +29,7 @@ public class RenderGoblin extends RenderLiving<EntityGoblin> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(@Nonnull EntityGoblin entity) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityTMGoblin entity) {
         switch (entity.getMobType()) {
             case 0:
             default:
@@ -47,9 +47,9 @@ public class RenderGoblin extends RenderLiving<EntityGoblin> {
         }
     }
 
-    public static class Factory implements IRenderFactory<EntityGoblin> {
+    public static class Factory implements IRenderFactory<EntityTMGoblin> {
         @Override
-        public Render<? super EntityGoblin> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMGoblin> createRenderFor(RenderManager manager) {
             return new RenderGoblin(manager);
         }
     }

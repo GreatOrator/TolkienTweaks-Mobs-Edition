@@ -1,12 +1,12 @@
 package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
-import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
-import com.greatorator.tolkienmobs.entity.monster.EntityTreeEnt;
-import com.greatorator.tolkienmobs.entity.passive.EntityDwarf;
-import com.greatorator.tolkienmobs.entity.passive.EntityElves;
-import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
-import com.greatorator.tolkienmobs.entity.passive.EntityHuman;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMMordorOrc;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMTreeEnt;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMDwarf;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMElves;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMHuman;
 import com.greatorator.tolkienmobs.handler.TTMRand;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -36,8 +36,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public abstract class EntityHostiles extends EntityMob {
-    private static final DataParameter<Integer> SKIN_TYPE = EntityDataManager.<Integer>createKey(EntityHostiles.class, DataSerializers.VARINT);
+public abstract class EntityTMHostiles extends EntityMob {
+    private static final DataParameter<Integer> SKIN_TYPE = EntityDataManager.<Integer>createKey(EntityTMHostiles.class, DataSerializers.VARINT);
     private ResourceLocation lootTable;
     private Item weaponType;
     private Potion ttmEffect;
@@ -56,8 +56,8 @@ public abstract class EntityHostiles extends EntityMob {
     private int randomSoundDelay;
     private UUID angerTargetUUID;
 
-    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityHostiles.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityHostiles.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityTMHostiles.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityTMHostiles.class, DataSerializers.BOOLEAN);
     private static final UUID ATTACK_SPEED_BOOST_MODIFIER_UUID = UUID.fromString("3D1772EA-23CC-11E9-AB14-D663BD873D93");
     private static final AttributeModifier ATTACK_SPEED_BOOST_MODIFIER = (new AttributeModifier(ATTACK_SPEED_BOOST_MODIFIER_UUID, "Attacking speed boost", 0.05D, 0)).setSaved(false);
     private final EntityAITTMAttack aiAttackOnCollide = new EntityAITTMAttack(this, 1.2D, false)
@@ -65,17 +65,17 @@ public abstract class EntityHostiles extends EntityMob {
         public void resetTask()
         {
             super.resetTask();
-            EntityHostiles.this.setSwingingArms(false);
+            EntityTMHostiles.this.setSwingingArms(false);
         }
 
         public void startExecuting()
         {
             super.startExecuting();
-            EntityHostiles.this.setSwingingArms(true);
+            EntityTMHostiles.this.setSwingingArms(true);
         }
     };
 
-    public EntityHostiles(World worldIn) {
+    public EntityTMHostiles(World worldIn) {
         super(worldIn);
     }
 
@@ -89,16 +89,16 @@ public abstract class EntityHostiles extends EntityMob {
     }
 
     private void applyEntityAI() {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityMordorOrc.class}));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityTMMordorOrc.class}));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHobbit.class, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHuman.class, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityDwarf.class, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityElves.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMHobbit.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMHuman.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMDwarf.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMElves.class, true));
         if(groupAttack) {
-            this.targetTasks.addTask(1, new EntityHostiles.AIHurtByAggressor(this));
-            this.targetTasks.addTask(2, new EntityHostiles.AITargetAggressor(this));
-            this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTreeEnt.class, true));
+            this.targetTasks.addTask(1, new EntityTMHostiles.AIHurtByAggressor(this));
+            this.targetTasks.addTask(2, new EntityTMHostiles.AITargetAggressor(this));
+            this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMTreeEnt.class, true));
         }
     }
 
@@ -271,13 +271,13 @@ public abstract class EntityHostiles extends EntityMob {
         this.setEquipmentBasedOnDifficulty(difficulty);
         int i = this.getRandomMobType();
 
-        if (ientitylivingdata instanceof EntityHostiles.MobTypeData)
+        if (ientitylivingdata instanceof EntityTMHostiles.MobTypeData)
         {
-            i = ((EntityHostiles.MobTypeData)livingdata).typeData;
+            i = ((EntityTMHostiles.MobTypeData)livingdata).typeData;
         }
         else
         {
-            ientitylivingdata = new EntityHostiles.MobTypeData(i);
+            ientitylivingdata = new EntityTMHostiles.MobTypeData(i);
         }
 
         this.setMobType(i);
@@ -351,7 +351,7 @@ public abstract class EntityHostiles extends EntityMob {
 
     static class AIHurtByAggressor extends EntityAIHurtByTarget
     {
-        public AIHurtByAggressor(EntityHostiles p_i45828_1_)
+        public AIHurtByAggressor(EntityTMHostiles p_i45828_1_)
         {
             super(p_i45828_1_, true);
         }
@@ -360,23 +360,23 @@ public abstract class EntityHostiles extends EntityMob {
         {
             super.setEntityAttackTarget(creatureIn, entityLivingBaseIn);
 
-            if (creatureIn instanceof EntityHostiles)
+            if (creatureIn instanceof EntityTMHostiles)
             {
-                ((EntityHostiles)creatureIn).becomeAngryAt(entityLivingBaseIn);
+                ((EntityTMHostiles)creatureIn).becomeAngryAt(entityLivingBaseIn);
             }
         }
     }
 
     static class AITargetAggressor extends EntityAINearestAttackableTarget<EntityPlayer>
     {
-        public AITargetAggressor(EntityHostiles p_i45829_1_)
+        public AITargetAggressor(EntityTMHostiles p_i45829_1_)
         {
             super(p_i45829_1_, EntityPlayer.class, true);
         }
 
         public boolean shouldExecute()
         {
-            return ((EntityHostiles)this.taskOwner).isAngry() && super.shouldExecute();
+            return ((EntityTMHostiles)this.taskOwner).isAngry() && super.shouldExecute();
         }
     }
 

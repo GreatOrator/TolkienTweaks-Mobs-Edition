@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.model.monster;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
-import com.greatorator.tolkienmobs.entity.monster.EntityTroll;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMTroll;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -138,7 +138,7 @@ public class ModelTroll extends ModelTTM {
         this.leftArmPose = ModelBiped.ArmPose.EMPTY;
         ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
 
-        if (itemstack.getItem() == Items.BOW && ((EntityTroll)entitylivingbaseIn).isSwingingArms())
+        if (itemstack.getItem() == Items.BOW && ((EntityTMTroll)entitylivingbaseIn).isSwingingArms())
         {
             if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT)
             {

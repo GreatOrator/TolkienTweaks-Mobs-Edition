@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.entity.monster.*;
-import com.greatorator.tolkienmobs.entity.passive.EntityDwarf;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMDwarf;
 import com.greatorator.tolkienmobs.handler.TTMRand;
 import com.greatorator.tolkienmobs.init.ProfessionInit;
 import io.netty.buffer.ByteBuf;
@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
 import javax.annotation.Nullable;
 
-public class EntityPassives extends EntityVillager implements IEntityAdditionalSpawnData {
+public class EntityTMVillagers extends EntityVillager implements IEntityAdditionalSpawnData {
     private VillagerRegistry.VillagerProfession prof;
     private int texture_index;
     private int rndMax;
@@ -28,7 +28,7 @@ public class EntityPassives extends EntityVillager implements IEntityAdditionalS
     private boolean isFighter;
     private ResourceLocation lootTable;
 
-    public EntityPassives(World worldIn) {
+    public EntityTMVillagers(World worldIn) {
         super(worldIn);
     }
 
@@ -41,25 +41,25 @@ public class EntityPassives extends EntityVillager implements IEntityAdditionalS
         this.tasks.addTask(9, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
         this.tasks.addTask(9, new EntityAIWanderAvoidWater(this, 0.65D));
         this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
-        if(this instanceof EntityDwarf) {
+        if(this instanceof EntityTMDwarf) {
             this.applyEntityAI();
         }
         else {
-            this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityTroll.class, 8.0F, 0.8D, 0.8D));
-            this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityMordorOrc.class, 8.0F, 0.8D, 0.8D));
-            this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityUrukHai.class, 8.0F, 0.8D, 0.8D));
-            this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityGoblin.class, 12.0F, 0.8D, 0.8D));
-            this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityWarg.class, 8.0F, 0.8D, 0.8D));
+            this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityTMTroll.class, 8.0F, 0.8D, 0.8D));
+            this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityTMMordorOrc.class, 8.0F, 0.8D, 0.8D));
+            this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityTMUrukHai.class, 8.0F, 0.8D, 0.8D));
+            this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityTMGoblin.class, 12.0F, 0.8D, 0.8D));
+            this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityTMWarg.class, 8.0F, 0.8D, 0.8D));
         }
     }
 
     private void applyEntityAI() {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityPassives.class}));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityMordorOrc.class, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityUrukHai.class, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityGoblin.class, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTroll.class, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWarg.class, true));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityTMVillagers.class}));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMMordorOrc.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMUrukHai.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMGoblin.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMTroll.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMWarg.class, true));
     }
 
     @Override
@@ -209,11 +209,11 @@ public class EntityPassives extends EntityVillager implements IEntityAdditionalS
     }
 
     @Override
-    public EntityPassives createChild(EntityAgeable ageable)
+    public EntityTMVillagers createChild(EntityAgeable ageable)
     {
-        EntityPassives entityPassives = new EntityPassives(this.world);
-        entityPassives.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(entityPassives)), (IEntityLivingData)null);
-        return entityPassives;
+        EntityTMVillagers entityTMVillagers = new EntityTMVillagers(this.world);
+        entityTMVillagers.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(entityTMVillagers)), (IEntityLivingData)null);
+        return entityTMVillagers;
     }
 
     protected boolean canDespawn()

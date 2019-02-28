@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -12,7 +12,7 @@ public class TTMPhaseDying extends TTMPhaseBase
     private Vec3d targetLocation;
     private int time;
 
-    public TTMPhaseDying(EntityFellBeast fellbeastIn)
+    public TTMPhaseDying(EntityTMFellBeast fellbeastIn)
     {
         super(fellbeastIn);
     }

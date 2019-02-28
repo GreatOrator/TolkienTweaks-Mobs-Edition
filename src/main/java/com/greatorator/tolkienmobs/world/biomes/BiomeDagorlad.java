@@ -2,9 +2,9 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
-import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
-import com.greatorator.tolkienmobs.entity.monster.EntityUrukHai;
-import com.greatorator.tolkienmobs.entity.monster.EntityWarg;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMMordorOrc;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMUrukHai;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMWarg;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeRuin;
@@ -87,13 +87,13 @@ public class BiomeDagorlad extends Biome {
         if (TTMConfig.enableNaturalSpawn) {
             if (TTMConfig.enableMonster) {
                 if (TTMConfig.enableUrukhai) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityUrukHai.class, 5, 1, 1));
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMUrukHai.class, 5, 1, 1));
                 }
                 if (TTMConfig.enableMordorOrcs) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityMordorOrc.class, 5, 1, 1));
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMMordorOrc.class, 5, 1, 1));
                 }
                 if (TTMConfig.enableWargs) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityWarg.class, 1, 1, 1));
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMWarg.class, 1, 1, 1));
                 }
             }
         }

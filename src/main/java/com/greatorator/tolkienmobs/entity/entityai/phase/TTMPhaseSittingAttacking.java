@@ -1,13 +1,13 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import com.greatorator.tolkienmobs.init.SoundInit;
 
 public class TTMPhaseSittingAttacking extends TTMPhaseSittingBase
 {
     private int attackingTicks;
 
-    public TTMPhaseSittingAttacking(EntityFellBeast fellbeastIn)
+    public TTMPhaseSittingAttacking(EntityTMFellBeast fellbeastIn)
     {
         super(fellbeastIn);
     }

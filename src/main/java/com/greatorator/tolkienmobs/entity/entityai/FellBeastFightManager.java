@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.entityai;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.*;
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import com.greatorator.tolkienmobs.entity.entityai.phase.TTMPhaseList;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -167,7 +167,7 @@ public class FellBeastFightManager {
                     this.generatePortal(false);
                 }
 
-                List<EntityFellBeast> list = this.world.getEntities(EntityFellBeast.class, EntitySelectors.IS_ALIVE);
+                List<EntityTMFellBeast> list = this.world.getEntities(EntityTMFellBeast.class, EntitySelectors.IS_ALIVE);
 
                 if (list.isEmpty())
                 {
@@ -175,7 +175,7 @@ public class FellBeastFightManager {
                 }
                 else
                 {
-                    EntityFellBeast entityfellbeast = list.get(0);
+                    EntityTMFellBeast entityfellbeast = list.get(0);
                     this.fellbeastUniqueId = entityfellbeast.getUniqueID();
                     LogHelperTTM.info("Found that there's a fellbeast still alive ({})", (Object)entityfellbeast);
                     this.fellbeastKilled = false;
@@ -210,7 +210,7 @@ public class FellBeastFightManager {
                 if (this.fellbeastUniqueId == null || ++this.ticksSinceFellBeastSeen >= 1200)
                 {
                     this.loadChunks();
-                    List<EntityFellBeast> list1 = this.world.getEntities(EntityFellBeast.class, EntitySelectors.IS_ALIVE);
+                    List<EntityTMFellBeast> list1 = this.world.getEntities(EntityTMFellBeast.class, EntitySelectors.IS_ALIVE);
 
                     if (list1.isEmpty())
                     {
@@ -220,7 +220,7 @@ public class FellBeastFightManager {
                     else
                     {
                         LogHelperTTM.debug("Haven't seen our fellbeast, but found another one to use.");
-                        this.fellbeastUniqueId = ((EntityFellBeast)list1.get(0)).getUniqueID();
+                        this.fellbeastUniqueId = ((EntityTMFellBeast)list1.get(0)).getUniqueID();
                     }
 
                     this.ticksSinceFellBeastSeen = 0;
@@ -249,7 +249,7 @@ public class FellBeastFightManager {
             {
                 this.respawnState = null;
                 this.fellbeastKilled = false;
-                EntityFellBeast entityfellbeast = this.createNewFellBeast();
+                EntityTMFellBeast entityfellbeast = this.createNewFellBeast();
 
                 for (EntityPlayerMP entityplayermp : this.bossInfo.getPlayers())
                 {
@@ -378,7 +378,7 @@ public class FellBeastFightManager {
         LogHelperTTM.debug("Found {} end crystals still alive", (int)this.aliveCrystals);
     }
 
-    public void processFellBeastDeath(EntityFellBeast fellbeast)
+    public void processFellBeastDeath(EntityTMFellBeast fellbeast)
     {
         if (fellbeast.getUniqueID().equals(this.fellbeastUniqueId))
         {
@@ -429,11 +429,11 @@ public class FellBeastFightManager {
         worldgenendpodium.generate(this.world, new Random(), this.exitPortalLocation);
     }
 
-    private EntityFellBeast createNewFellBeast()
+    private EntityTMFellBeast createNewFellBeast()
     {
 //        this.world.getChunkFromBlockCoords(new BlockPos(19023, 180, 13818)); //Location of Minas Morgul
         this.world.getChunkFromBlockCoords(new BlockPos(-246, 40, 554));
-        EntityFellBeast entityfellbeast = new EntityFellBeast(this.world);
+        EntityTMFellBeast entityfellbeast = new EntityTMFellBeast(this.world);
         entityfellbeast.getFellBeastPhaseManager().setPhase(TTMPhaseList.HOLDING_PATTERN);
 //        entityfellbeast.setLocationAndAngles(19023.0D, 180.0D, 13818.0D, this.world.rand.nextFloat() * 360.0F, 0.0F); //Location of Minas Morgul
         entityfellbeast.setLocationAndAngles(-246.0D, 40.0D, 554.0D, this.world.rand.nextFloat() * 360.0F, 0.0F);
@@ -442,7 +442,7 @@ public class FellBeastFightManager {
         return entityfellbeast;
     }
 
-    public void fellbeastUpdate(EntityFellBeast fellbeastIn)
+    public void fellbeastUpdate(EntityTMFellBeast fellbeastIn)
     {
         if (fellbeastIn.getUniqueID().equals(this.fellbeastUniqueId))
         {
@@ -476,9 +476,9 @@ public class FellBeastFightManager {
             this.findAliveCrystals();
             Entity entity = this.world.getEntityFromUuid(this.fellbeastUniqueId);
 
-            if (entity instanceof EntityFellBeast)
+            if (entity instanceof EntityTMFellBeast)
             {
-                ((EntityFellBeast)entity).onCrystalDestroyed(crystal, new BlockPos(crystal), dmgSrc);
+                ((EntityTMFellBeast)entity).onCrystalDestroyed(crystal, new BlockPos(crystal), dmgSrc);
             }
         }
     }

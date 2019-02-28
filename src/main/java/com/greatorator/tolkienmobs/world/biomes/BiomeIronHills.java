@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
-import com.greatorator.tolkienmobs.entity.passive.EntityDwarf;
-import com.greatorator.tolkienmobs.entity.passive.EntityGoat;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMDwarf;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMGoat;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.block.BlockSilverfish;
 import net.minecraft.entity.passive.EntityLlama;
@@ -56,10 +56,10 @@ public class BiomeIronHills extends Biome {
         if (TTMConfig.enableNaturalSpawn) {
             if (TTMConfig.enablePassive) {
                 if (TTMConfig.enableDwarves) {
-                    this.spawnableCreatureList.add(new SpawnListEntry(EntityDwarf.class, 12, 1, 3));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMDwarf.class, 12, 1, 3));
                 }
                 if (TTMConfig.enableGoats) {
-                    this.spawnableCreatureList.add(new SpawnListEntry(EntityGoat.class, 12, 2, 3));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMGoat.class, 12, 2, 3));
                 }
             }
         }

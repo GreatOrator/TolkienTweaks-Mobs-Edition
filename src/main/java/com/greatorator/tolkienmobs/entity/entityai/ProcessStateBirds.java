@@ -1,12 +1,12 @@
 package com.greatorator.tolkienmobs.entity.entityai;
 
-import com.greatorator.tolkienmobs.entity.EntityBirds;
+import com.greatorator.tolkienmobs.entity.EntityTMBirds;
 import com.greatorator.tolkienmobs.handler.TTMUtilities;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.math.Vec3d;
 
 public class ProcessStateBirds {
-    EntityBirds theBird;
+    EntityTMBirds theBird;
 
     public float yawChangeRate = 1.5F;
     public float pitchChangeRate = 1.5F;
@@ -17,7 +17,7 @@ public class ProcessStateBirds {
      *
      * @param parBirdOfPrey the par bird of prey
      */
-    public ProcessStateBirds(EntityBirds parBirdOfPrey)
+    public ProcessStateBirds(EntityTMBirds parBirdOfPrey)
     {
         theBird = parBirdOfPrey;
     }

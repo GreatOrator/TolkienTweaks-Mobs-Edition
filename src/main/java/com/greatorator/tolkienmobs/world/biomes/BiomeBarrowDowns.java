@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
-import com.greatorator.tolkienmobs.entity.monster.EntityBarrowWight;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMBarrowWight;
 import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeDead;
@@ -60,7 +60,7 @@ public class BiomeBarrowDowns extends Biome implements IFogyBiome {
         if (TTMConfig.enableNaturalSpawn) {
             if (TTMConfig.enableMonster) {
                 if (TTMConfig.enableBarrowWights) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityBarrowWight.class, 15, 1, 3));
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMBarrowWight.class, 15, 1, 3));
                 }
             }
         }

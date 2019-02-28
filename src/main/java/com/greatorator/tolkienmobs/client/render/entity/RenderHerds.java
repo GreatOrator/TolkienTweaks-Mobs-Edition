@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.entity;
 
-import com.greatorator.tolkienmobs.entity.EntityHerds;
+import com.greatorator.tolkienmobs.entity.EntityTMHerds;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -29,14 +29,14 @@ public class RenderHerds extends RenderLiving {
     @Override
     protected void preRenderCallback(EntityLivingBase entity, float f)
     {
-        preRenderCallbackHerdAnimal((EntityHerds) entity, f);
+        preRenderCallbackHerdAnimal((EntityTMHerds) entity, f);
     }
 
-    protected void preRenderCallbackHerdAnimal(EntityHerds entity, float f)
+    protected void preRenderCallbackHerdAnimal(EntityTMHerds entity, float f)
     {
     }
 
-    protected ResourceLocation getEntityTexture(EntityHerds par1EntityHerdAnimal)
+    protected ResourceLocation getEntityTexture(EntityTMHerds par1EntityHerdAnimal)
     {
         return herdAnimalTexture;
     }
@@ -44,7 +44,7 @@ public class RenderHerds extends RenderLiving {
     @Override
     protected ResourceLocation getEntityTexture(Entity par1Entity)
     {
-        return this.getEntityTexture((EntityHerds)par1Entity);
+        return this.getEntityTexture((EntityTMHerds)par1Entity);
     }
 
     public static IRenderFactory getRenderFactory(

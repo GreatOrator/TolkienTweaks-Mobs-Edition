@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.client.render.entity.passive;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.model.passive.ModelHuman;
-import com.greatorator.tolkienmobs.entity.passive.EntityHuman;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMHuman;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nullable;
 
-public class RenderHuman extends RenderLiving<EntityHuman> {
+public class RenderHuman extends RenderLiving<EntityTMHuman> {
     private static final ResourceLocation[] mobTexture = new ResourceLocation[17];
     static {
         for (int i = 0; i < 17; i++) {
@@ -27,14 +27,14 @@ public class RenderHuman extends RenderLiving<EntityHuman> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(EntityHuman entity) {
+    protected ResourceLocation getEntityTexture(EntityTMHuman entity) {
         int index = entity.getTextureIndex();
         return mobTexture[index];
     }
 
-    public static class Factory implements IRenderFactory<EntityHuman> {
+    public static class Factory implements IRenderFactory<EntityTMHuman> {
         @Override
-        public Render<? super EntityHuman> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMHuman> createRenderFor(RenderManager manager) {
             return new RenderHuman(manager);
         }
     }

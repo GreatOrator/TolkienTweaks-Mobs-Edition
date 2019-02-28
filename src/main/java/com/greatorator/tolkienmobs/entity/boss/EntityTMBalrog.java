@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.boss;
 
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
-import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
@@ -31,11 +31,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class EntityBalrog extends EntityMob implements IMob {
+public class EntityTMBalrog extends EntityMob implements IMob {
 
-    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityBalrog.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityBalrog.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Byte> ON_FIRE = EntityDataManager.<Byte>createKey(EntityBalrog.class, DataSerializers.BYTE);
+    private static final DataParameter<Boolean> SWINGING_ARMS = EntityDataManager.<Boolean>createKey(EntityTMBalrog.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> ATTACKING = EntityDataManager.<Boolean>createKey(EntityTMBalrog.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Byte> ON_FIRE = EntityDataManager.<Byte>createKey(EntityTMBalrog.class, DataSerializers.BYTE);
 
     private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
 
@@ -46,17 +46,17 @@ public class EntityBalrog extends EntityMob implements IMob {
         public void resetTask()
         {
             super.resetTask();
-            EntityBalrog.this.setSwingingArms(false);
+            EntityTMBalrog.this.setSwingingArms(false);
         }
 
         public void startExecuting()
         {
             super.startExecuting();
-            EntityBalrog.this.setSwingingArms(true);
+            EntityTMBalrog.this.setSwingingArms(true);
         }
     };
 
-    public EntityBalrog(World worldIn) {
+    public EntityTMBalrog(World worldIn) {
         super(worldIn);
         this.setSize(2.3F, 7.0F);
         this.isImmuneToFire = true;
@@ -65,7 +65,7 @@ public class EntityBalrog extends EntityMob implements IMob {
 
     protected void initEntityAI() {
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityBalrog.AIFireballAttack(this));
+        this.tasks.addTask(1, new EntityTMBalrog.AIFireballAttack(this));
         this.tasks.addTask(2, new EntityAITTMAttack(this, 0.6D, false));
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.tasks.addTask(7, new EntityAIWander(this, 0.5D));
@@ -73,9 +73,9 @@ public class EntityBalrog extends EntityMob implements IMob {
     }
 
     private void applyEntityAI() {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityBalrog.class}));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityTMBalrog.class}));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHobbit.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMHobbit.class, true));
     }
 
     @Override
@@ -296,10 +296,10 @@ public class EntityBalrog extends EntityMob implements IMob {
 
     static class AIFireballAttack extends EntityAIBase
     {
-        private final EntityBalrog parentEntity;
+        private final EntityTMBalrog parentEntity;
         public int attackTimer;
 
-        public AIFireballAttack(EntityBalrog balrog)
+        public AIFireballAttack(EntityTMBalrog balrog)
         {
             this.parentEntity = balrog;
         }

@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-import com.greatorator.tolkienmobs.entity.EntityBirds;
+import com.greatorator.tolkienmobs.entity.EntityTMBirds;
 import com.greatorator.tolkienmobs.init.LootInit;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
@@ -8,9 +8,9 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 /** Borrowed from Jabelar https://github.com/jabelar */
-public class EntityCrebain extends EntityBirds {
+public class EntityTMCrebain extends EntityTMBirds {
 
-    public EntityCrebain(World parWorld)
+    public EntityTMCrebain(World parWorld)
     {
         super(parWorld);
     }

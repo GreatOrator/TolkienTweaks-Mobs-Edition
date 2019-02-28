@@ -18,13 +18,13 @@ import com.greatorator.tolkienmobs.client.render.model.passive.ModelAuroch;
 import com.greatorator.tolkienmobs.client.render.model.passive.ModelMumakil;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
-import com.greatorator.tolkienmobs.entity.boss.EntityBalrog;
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
-import com.greatorator.tolkienmobs.entity.special.EntityNazgul;
-import com.greatorator.tolkienmobs.entity.boss.EntityWitchKing;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMBalrog;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
+import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMWitchKing;
 import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.entity.passive.*;
-import com.greatorator.tolkienmobs.entity.special.EntityGollum;
+import com.greatorator.tolkienmobs.entity.special.EntityTMGollum;
 import com.greatorator.tolkienmobs.handler.FogHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -52,20 +52,20 @@ public class ClientProxy extends CommonProxy {
 
         OBJLoader.INSTANCE.addDomain(TolkienMobs.MODID);
         /* Bosses */
-        RenderingRegistry.registerEntityRenderingHandler(EntityBalrog.class, RenderBalrog.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityFellBeast.class, RenderFellBeast::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityWitchKing.class, RenderWitchKing.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMBalrog.class, RenderBalrog.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMFellBeast.class, RenderFellBeast::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMWitchKing.class, RenderWitchKing.FACTORY);
 
         /* Monsters */
-        RenderingRegistry.registerEntityRenderingHandler(EntityHuron.class, RenderHuron.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityOathbreaker.class, RenderOathbreaker.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityTreeEnt.class, RenderTreeEnt.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityMirkwoodSpider.class, RenderMirkwoodSpider.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGoblin.class, RenderGoblin.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityMordorOrc.class, RenderMordorOrc.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityWarg.class, RenderWarg.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMHuron.class, RenderHuron.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMOathbreaker.class, RenderOathbreaker.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMTreeEnt.class, RenderTreeEnt.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMMirkwoodSpider.class, RenderMirkwoodSpider.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMGoblin.class, RenderGoblin.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMMordorOrc.class, RenderMordorOrc.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMWarg.class, RenderWarg.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(
-                EntityCrebain.class,
+                EntityTMCrebain.class,
                 RenderBirds.getRenderFactory(
                         new ModelCrebain(),
                         new ModelCrebain(),
@@ -74,24 +74,24 @@ public class ClientProxy extends CommonProxy {
                         new ResourceLocation(TolkienMobs.MODID + ":textures/entity/bird_legband.png")
                 )
         );
-        RenderingRegistry.registerEntityRenderingHandler(EntityTroll.class, RenderTroll.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityUrukHai.class, RenderUrukHai.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityBarrowWight.class, RenderBarrowWight.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMTroll.class, RenderTroll.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMUrukHai.class, RenderUrukHai.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMBarrowWight.class, RenderBarrowWight.FACTORY);
 
         /* Special */
-        RenderingRegistry.registerEntityRenderingHandler(EntityGollum.class, RenderGollum.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityNazgul.class, RenderNazgul.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMGollum.class, RenderGollum.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMNazgul.class, RenderNazgul.FACTORY);
 
         /* Passive */
-        RenderingRegistry.registerEntityRenderingHandler(EntityHobbit.class, RenderHobbit.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityDwarf.class, RenderDwarf.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityHuman.class, RenderHuman.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityElves.class, RenderElves.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGoat.class, RenderGoat.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntitySOSquirrel.class, RenderSOSquirrel.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityToaddle.class, RenderToaddle.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMHobbit.class, RenderHobbit.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMDwarf.class, RenderDwarf.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMHuman.class, RenderHuman.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMElves.class, RenderElves.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMGoat.class, RenderGoat.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMSquirrel.class, RenderSOSquirrel.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMToad.class, RenderToaddle.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(
-                EntityMumakil.class,
+                EntityTMMumakil.class,
                 RenderHerds.getRenderFactory(
                         new ModelMumakil(),
                         2.0F,
@@ -99,7 +99,7 @@ public class ClientProxy extends CommonProxy {
                 )
         );
         RenderingRegistry.registerEntityRenderingHandler(
-                EntityAuroch.class,
+                EntityTMAuroch.class,
                 RenderHerds.getRenderFactory(
                         new ModelAuroch(),
                         0.5F,

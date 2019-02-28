@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.client.render.entity.monster;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelBarrowWight;
-import com.greatorator.tolkienmobs.entity.monster.EntityOathbreaker;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMOathbreaker;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class RenderOathbreaker extends RenderLiving<EntityOathbreaker> {
+public class RenderOathbreaker extends RenderLiving<EntityTMOathbreaker> {
     private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/oathbreaker/oathbreaker1.png");
     private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/oathbreaker/oathbreaker2.png");
     private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/oathbreaker/oathbreaker3.png");
@@ -29,7 +29,7 @@ public class RenderOathbreaker extends RenderLiving<EntityOathbreaker> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(@Nonnull EntityOathbreaker entity) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityTMOathbreaker entity) {
         switch (entity.getMobType()) {
             case 0:
             default:
@@ -47,9 +47,9 @@ public class RenderOathbreaker extends RenderLiving<EntityOathbreaker> {
         }
     }
 
-    public static class Factory implements IRenderFactory<EntityOathbreaker> {
+    public static class Factory implements IRenderFactory<EntityTMOathbreaker> {
         @Override
-        public Render<? super EntityOathbreaker> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMOathbreaker> createRenderFor(RenderManager manager) {
             return new RenderOathbreaker(manager);
         }
     }

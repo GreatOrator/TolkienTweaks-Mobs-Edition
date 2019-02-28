@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.model.monster;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
-import com.greatorator.tolkienmobs.entity.EntityBirds;
+import com.greatorator.tolkienmobs.entity.EntityTMBirds;
 import com.greatorator.tolkienmobs.entity.entityai.AIStates;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -201,10 +201,10 @@ public class ModelCrebain extends ModelTTM {
     public void render(Entity parEntity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         // best to cast to actual expected entity, to allow access to custom fields related to animation
-        renderBirds((EntityBirds) parEntity, f5);
+        renderBirds((EntityTMBirds) parEntity, f5);
     }
 
-    public void renderBirds(EntityBirds parBird, float parRenderFloat)
+    public void renderBirds(EntityTMBirds parBird, float parRenderFloat)
     {
         setRotationAngles(parBird);
 
@@ -240,7 +240,7 @@ public class ModelCrebain extends ModelTTM {
      *
      * @param parEntity the new rotation angles
      */
-    public void setRotationAngles(EntityBirds parEntity)
+    public void setRotationAngles(EntityTMBirds parEntity)
     {
         if (parEntity.getState() == AIStates.STATE_TAKING_OFF)
         {
@@ -276,7 +276,7 @@ public class ModelCrebain extends ModelTTM {
 
     }
 
-    public void doAnimate(EntityBirds parEntity, float[][] parCycleArray)
+    public void doAnimate(EntityTMBirds parEntity, float[][] parCycleArray)
     {
         cycleIndex = (int)Math.floor((parEntity.ticksExisted+parEntity.getRandFactor()*2)%parCycleArray.length)/2;
         // will need to set based on entity state

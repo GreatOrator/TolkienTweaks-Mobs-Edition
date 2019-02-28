@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.client.render.entity.passive;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.model.passive.ModelElves;
-import com.greatorator.tolkienmobs.entity.passive.EntityElves;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMElves;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nullable;
 
-public class RenderElves extends RenderLiving<EntityElves> {
+public class RenderElves extends RenderLiving<EntityTMElves> {
     private static final ResourceLocation[] mobTexture = new ResourceLocation[17];
     static {
         for (int i = 0; i < 17; i++) {
@@ -27,14 +27,14 @@ public class RenderElves extends RenderLiving<EntityElves> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(EntityElves entity) {
+    protected ResourceLocation getEntityTexture(EntityTMElves entity) {
         int index = entity.getTextureIndex();
         return mobTexture[index];
     }
 
-    public static class Factory implements IRenderFactory<EntityElves> {
+    public static class Factory implements IRenderFactory<EntityTMElves> {
         @Override
-        public Render<? super EntityElves> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMElves> createRenderFor(RenderManager manager) {
             return new RenderElves(manager);
         }
     }

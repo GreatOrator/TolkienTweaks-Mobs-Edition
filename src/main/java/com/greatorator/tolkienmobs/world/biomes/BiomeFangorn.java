@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
-import com.greatorator.tolkienmobs.entity.monster.EntityTreeEnt;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMTreeEnt;
 import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
@@ -77,7 +77,7 @@ public class BiomeFangorn extends Biome implements IFogyBiome {
         if (TTMConfig.enableNaturalSpawn) {
             if (TTMConfig.enableMonster) {
                 if (TTMConfig.enableTreeEnts) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTreeEnt.class, 15, 1, 1));
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMTreeEnt.class, 15, 1, 1));
                 }
             }
         }

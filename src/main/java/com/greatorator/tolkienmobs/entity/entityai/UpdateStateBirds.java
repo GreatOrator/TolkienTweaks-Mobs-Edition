@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.entityai;
 
-import com.greatorator.tolkienmobs.entity.EntityBirds;
+import com.greatorator.tolkienmobs.entity.EntityTMBirds;
 import com.greatorator.tolkienmobs.handler.TTMUtilities;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,7 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class UpdateStateBirds {
-    public EntityBirds theBird;
+    public EntityTMBirds theBird;
     public World theWorld;
 
     // defines area on ground that bird looks for prey in
@@ -29,7 +29,7 @@ public class UpdateStateBirds {
     // the percent chance per tick that when perched it will decide to take off
     public final int TAKE_OFF_CHANCE_BASE = 2400;
 
-    public UpdateStateBirds(EntityBirds parBirdOfPrey)
+    public UpdateStateBirds(EntityTMBirds parBirdOfPrey)
     {
         theBird = parBirdOfPrey;
         theWorld = theBird.world;

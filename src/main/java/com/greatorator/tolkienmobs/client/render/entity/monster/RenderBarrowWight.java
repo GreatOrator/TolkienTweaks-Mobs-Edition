@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.client.render.entity.monster;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelBarrowWight;
-import com.greatorator.tolkienmobs.entity.monster.EntityBarrowWight;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMBarrowWight;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class RenderBarrowWight extends RenderLiving<EntityBarrowWight> {
+public class RenderBarrowWight extends RenderLiving<EntityTMBarrowWight> {
     private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/barrowwight/barrowwight1.png");
     private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/barrowwight/barrowwight2.png");
     private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/barrowwight/barrowwight3.png");
@@ -31,7 +31,7 @@ public class RenderBarrowWight extends RenderLiving<EntityBarrowWight> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(@Nonnull EntityBarrowWight entity) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityTMBarrowWight entity) {
         switch (entity.getMobType()) {
             case 0:
             default:
@@ -49,9 +49,9 @@ public class RenderBarrowWight extends RenderLiving<EntityBarrowWight> {
         }
     }
 
-    public static class Factory implements IRenderFactory<EntityBarrowWight> {
+    public static class Factory implements IRenderFactory<EntityTMBarrowWight> {
         @Override
-        public Render<? super EntityBarrowWight> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMBarrowWight> createRenderFor(RenderManager manager) {
             return new RenderBarrowWight(manager);
         }
     }

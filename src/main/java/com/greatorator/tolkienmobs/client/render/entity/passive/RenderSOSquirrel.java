@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.client.render.entity.passive;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.model.passive.ModelSOSquirrel;
-import com.greatorator.tolkienmobs.entity.passive.EntitySOSquirrel;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMSquirrel;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -13,7 +13,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class RenderSOSquirrel extends RenderLiving<EntitySOSquirrel> {
+public class RenderSOSquirrel extends RenderLiving<EntityTMSquirrel> {
     private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/sosquirrel/sosquirrel.png");
     private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/sosquirrel/sosquirrel.png");
     private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/sosquirrel/sosquirrel.png");
@@ -30,7 +30,7 @@ public class RenderSOSquirrel extends RenderLiving<EntitySOSquirrel> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(@Nonnull EntitySOSquirrel entity) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityTMSquirrel entity) {
         switch (entity.getSOSquirrelType()) {
             case 0:
             default:
@@ -48,16 +48,16 @@ public class RenderSOSquirrel extends RenderLiving<EntitySOSquirrel> {
         }
     }
 
-    public static class Factory implements IRenderFactory<EntitySOSquirrel> {
+    public static class Factory implements IRenderFactory<EntityTMSquirrel> {
         @Override
-        public Render<? super EntitySOSquirrel> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMSquirrel> createRenderFor(RenderManager manager) {
             return new RenderSOSquirrel(manager, 0.25F);
         }
     }
 
     /** If you need to apply a GL Scale to your model this is how you do it. */
     @Override
-    protected void preRenderCallback(EntitySOSquirrel entitylivingbaseIn, float partialTickTime) {
+    protected void preRenderCallback(EntityTMSquirrel entitylivingbaseIn, float partialTickTime) {
         GlStateManager.scale(scale, scale, scale);
     }
 }

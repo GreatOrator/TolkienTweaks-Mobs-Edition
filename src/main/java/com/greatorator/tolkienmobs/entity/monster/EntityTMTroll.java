@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-import com.greatorator.tolkienmobs.entity.EntityHostiles;
+import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
@@ -10,8 +10,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class EntityTroll extends EntityHostiles {
-    public EntityTroll(World worldIn) {
+public class EntityTMTroll extends EntityTMHostiles {
+    public EntityTMTroll(World worldIn) {
         super(worldIn);
         this.setSize(3.4F, 4.6F);
         this.setWeaponType(TTMFeatures.AXE_MORGULIRON);

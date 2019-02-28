@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.client.render.entity.passive;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.model.passive.ModelGoat;
-import com.greatorator.tolkienmobs.entity.passive.EntityGoat;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMGoat;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -11,7 +11,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import javax.annotation.Nullable;
 
-public class RenderGoat extends RenderLiving<EntityGoat> {
+public class RenderGoat extends RenderLiving<EntityTMGoat> {
 
     private static final ResourceLocation[] mobTexture = new ResourceLocation[5];
     static {
@@ -28,14 +28,14 @@ public class RenderGoat extends RenderLiving<EntityGoat> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(EntityGoat entity) {
+    protected ResourceLocation getEntityTexture(EntityTMGoat entity) {
         int index = entity.getTextureIndex();
         return mobTexture[index];
     }
 
-    public static class Factory implements IRenderFactory<EntityGoat> {
+    public static class Factory implements IRenderFactory<EntityTMGoat> {
         @Override
-        public Render<? super EntityGoat> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMGoat> createRenderFor(RenderManager manager) {
             return new RenderGoat(manager);
         }
 

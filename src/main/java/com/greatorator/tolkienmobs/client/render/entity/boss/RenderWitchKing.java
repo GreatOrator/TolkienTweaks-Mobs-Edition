@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.client.render.entity.boss;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
 import com.greatorator.tolkienmobs.client.render.model.boss.ModelWitchKing;
-import com.greatorator.tolkienmobs.entity.boss.EntityWitchKing;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMWitchKing;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class RenderWitchKing extends RenderLiving<EntityWitchKing> {
+public class RenderWitchKing extends RenderLiving<EntityTMWitchKing> {
     private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/witchking.png");
 
     public static final Factory FACTORY = new Factory();
@@ -30,7 +30,7 @@ public class RenderWitchKing extends RenderLiving<EntityWitchKing> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(@Nonnull EntityWitchKing entity) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityTMWitchKing entity) {
         switch (entity.getMobType()) {
             case 0:
             default:
@@ -38,9 +38,9 @@ public class RenderWitchKing extends RenderLiving<EntityWitchKing> {
         }
     }
 
-    public static class Factory implements IRenderFactory<EntityWitchKing> {
+    public static class Factory implements IRenderFactory<EntityTMWitchKing> {
         @Override
-        public Render<? super EntityWitchKing> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMWitchKing> createRenderFor(RenderManager manager) {
             return new RenderWitchKing(manager, 1.6F);
         }
     }
@@ -51,7 +51,7 @@ public class RenderWitchKing extends RenderLiving<EntityWitchKing> {
 
     /** If you need to apply a GL Scale to your model this is how you do it. */
     @Override
-    protected void preRenderCallback(EntityWitchKing entitylivingbaseIn, float partialTickTime) {
+    protected void preRenderCallback(EntityTMWitchKing entitylivingbaseIn, float partialTickTime) {
         GlStateManager.scale(scale, scale, scale);
     }
 }

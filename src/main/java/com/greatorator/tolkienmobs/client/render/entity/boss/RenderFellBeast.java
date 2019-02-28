@@ -4,7 +4,7 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerFellBeastDeath;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerFellBeastEyes;
 import com.greatorator.tolkienmobs.client.render.model.boss.ModelFellBeast;
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
-public class RenderFellBeast extends RenderLiving<EntityFellBeast>
+public class RenderFellBeast extends RenderLiving<EntityTMFellBeast>
 {
     public static final ResourceLocation FELLBEASTCRYSTAL_BEAM_TEXTURES = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/fellbeast/fellbeast_beam.png");
     private static final ResourceLocation FELLBEAST_EXPLODING_TEXTURES = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/fellbeast/fellbeast_exploding.png");
@@ -29,7 +29,7 @@ public class RenderFellBeast extends RenderLiving<EntityFellBeast>
         this.addLayer(new LayerFellBeastDeath());
     }
 
-    protected void applyRotations(EntityFellBeast entityLiving, float p_77043_2_, float rotationYaw, float partialTicks)
+    protected void applyRotations(EntityTMFellBeast entityLiving, float p_77043_2_, float rotationYaw, float partialTicks)
     {
         float f = (float)entityLiving.getMovementOffsets(7, partialTicks)[0];
         float f1 = (float)(entityLiving.getMovementOffsets(5, partialTicks)[1] - entityLiving.getMovementOffsets(10, partialTicks)[1]);
@@ -51,7 +51,7 @@ public class RenderFellBeast extends RenderLiving<EntityFellBeast>
         }
     }
 
-    protected void renderModel(EntityFellBeast entitylivingbaseIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
+    protected void renderModel(EntityTMFellBeast entitylivingbaseIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor)
     {
         if (entitylivingbaseIn.deathTicks > 0)
         {
@@ -82,7 +82,7 @@ public class RenderFellBeast extends RenderLiving<EntityFellBeast>
         }
     }
 
-    public void doRender(EntityFellBeast entity, double x, double y, double z, float entityYaw, float partialTicks)
+    public void doRender(EntityTMFellBeast entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
 
@@ -132,7 +132,7 @@ public class RenderFellBeast extends RenderLiving<EntityFellBeast>
         GlStateManager.popMatrix();
     }
 
-    protected ResourceLocation getEntityTexture(EntityFellBeast entity)
+    protected ResourceLocation getEntityTexture(EntityTMFellBeast entity)
     {
         return FELLBEAST_TEXTURES;
     }

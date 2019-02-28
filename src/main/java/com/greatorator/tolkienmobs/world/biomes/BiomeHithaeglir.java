@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
-import com.greatorator.tolkienmobs.entity.monster.EntityCrebain;
-import com.greatorator.tolkienmobs.entity.monster.EntityGoblin;
-import com.greatorator.tolkienmobs.entity.monster.EntityTroll;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMCrebain;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMGoblin;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMTroll;
 import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.entity.player.EntityPlayer;
@@ -52,13 +52,13 @@ public class BiomeHithaeglir extends Biome implements IFogyBiome {
         if (TTMConfig.enableNaturalSpawn) {
             if (TTMConfig.enableMonster) {
                 if (TTMConfig.enableGoblins) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityGoblin.class, 12, 1, 3));
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMGoblin.class, 12, 1, 3));
                 }
                 if (TTMConfig.enableCaveTrolls) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTroll.class, 8, 1, 1));
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMTroll.class, 8, 1, 1));
                 }
                 if (TTMConfig.enableCrebain) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityCrebain.class, 1, 1, 1));
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMCrebain.class, 1, 1, 1));
                 }
             }
         }

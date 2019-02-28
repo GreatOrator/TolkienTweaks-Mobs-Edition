@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.entityai.phase;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.entity.EntityLivingBase;
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathPoint;
@@ -21,7 +21,7 @@ public class TTMPhaseStrafePlayer extends TTMPhaseBase
     private EntityLivingBase attackTarget;
     private boolean holdingPatternClockwise;
 
-    public TTMPhaseStrafePlayer(EntityFellBeast fellbeastIn)
+    public TTMPhaseStrafePlayer(EntityTMFellBeast fellbeastIn)
     {
         super(fellbeastIn);
     }

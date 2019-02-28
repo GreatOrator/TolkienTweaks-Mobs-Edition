@@ -2,9 +2,9 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
-import com.greatorator.tolkienmobs.entity.monster.EntityHuron;
-import com.greatorator.tolkienmobs.entity.monster.EntityMirkwoodSpider;
-import com.greatorator.tolkienmobs.entity.passive.EntityToaddle;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMHuron;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMMirkwoodSpider;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMToad;
 import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
@@ -76,15 +76,15 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
         if (TTMConfig.enableNaturalSpawn) {
             if (TTMConfig.enableMonster) {
                 if (TTMConfig.enableMirkwoodSpiders) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityMirkwoodSpider.class, 10, 1, 1));
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMMirkwoodSpider.class, 10, 1, 1));
                 }
                 if (TTMConfig.enableHurons) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityHuron.class, 8, 1, 2));
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMHuron.class, 8, 1, 2));
                 }
             }
             if (TTMConfig.enablePassive) {
                 if (TTMConfig.enableFrogs) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityToaddle.class, 1, 1, 1));
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMToad.class, 1, 1, 1));
                 }
             }
         }

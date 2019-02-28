@@ -46,15 +46,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /** Borrowed from Jabelar https:/**github.com/jabelar */
-public class EntityBirds extends EntityFlying implements IModEntity
+public class EntityTMBirds extends EntityFlying implements IModEntity
 {
-    protected static final DataParameter<Float> SCALE_FACTOR = EntityDataManager.<Float>createKey(EntityBirds.class, DataSerializers.FLOAT);
-    protected static final DataParameter<Integer> STATE = EntityDataManager.<Integer>createKey(EntityBirds.class, DataSerializers.VARINT);
-    protected static final DataParameter<Boolean> SOAR_CLOCKWISE = EntityDataManager.<Boolean>createKey(EntityBirds.class, DataSerializers.BOOLEAN);
-    protected static final DataParameter<Float> SOAR_HEIGHT = EntityDataManager.<Float>createKey(EntityBirds.class, DataSerializers.FLOAT);
-    protected static final DataParameter<BlockPos> ANCHOR_POS = EntityDataManager.<BlockPos>createKey(EntityBirds.class, DataSerializers.BLOCK_POS);
-    protected static final DataParameter<Optional<UUID>> OWNER_UUID = EntityDataManager.<Optional<UUID>>createKey(EntityBirds.class, DataSerializers.OPTIONAL_UNIQUE_ID);
-    protected static final DataParameter<Integer> LEG_BAND_COLOR = EntityDataManager.<Integer>createKey(EntityBirds.class, DataSerializers.VARINT);
+    protected static final DataParameter<Float> SCALE_FACTOR = EntityDataManager.<Float>createKey(EntityTMBirds.class, DataSerializers.FLOAT);
+    protected static final DataParameter<Integer> STATE = EntityDataManager.<Integer>createKey(EntityTMBirds.class, DataSerializers.VARINT);
+    protected static final DataParameter<Boolean> SOAR_CLOCKWISE = EntityDataManager.<Boolean>createKey(EntityTMBirds.class, DataSerializers.BOOLEAN);
+    protected static final DataParameter<Float> SOAR_HEIGHT = EntityDataManager.<Float>createKey(EntityTMBirds.class, DataSerializers.FLOAT);
+    protected static final DataParameter<BlockPos> ANCHOR_POS = EntityDataManager.<BlockPos>createKey(EntityTMBirds.class, DataSerializers.BLOCK_POS);
+    protected static final DataParameter<Optional<UUID>> OWNER_UUID = EntityDataManager.<Optional<UUID>>createKey(EntityTMBirds.class, DataSerializers.OPTIONAL_UNIQUE_ID);
+    protected static final DataParameter<Integer> LEG_BAND_COLOR = EntityDataManager.<Integer>createKey(EntityTMBirds.class, DataSerializers.VARINT);
 
     protected final AttributeModifier TAMED_MODIFIER = new AttributeModifier("Tamed health and attack boost", 2.0D, 0);
 
@@ -68,7 +68,7 @@ public class EntityBirds extends EntityFlying implements IModEntity
 
     private final double TAMED_HEALTH = 30.0D;
 
-    public EntityBirds(World parWorld)
+    public EntityTMBirds(World parWorld)
     {
         super(parWorld);
 
@@ -344,7 +344,7 @@ public class EntityBirds extends EntityFlying implements IModEntity
         }
     }
 
-    public static boolean onAnimalTame(EntityBirds animal, EntityPlayer tamer)
+    public static boolean onAnimalTame(EntityTMBirds animal, EntityPlayer tamer)
     {
         boolean success = MinecraftForge.EVENT_BUS.post(new BirdTameEvent(animal, tamer));
 

@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
 import net.minecraft.entity.EntityLivingBase;
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
@@ -9,7 +9,7 @@ public class TTMPhaseSittingScanning extends TTMPhaseSittingBase
 {
     private int scanningTime;
 
-    public TTMPhaseSittingScanning(EntityFellBeast fellbeastIn)
+    public TTMPhaseSittingScanning(EntityTMFellBeast fellbeastIn)
     {
         super(fellbeastIn);
     }

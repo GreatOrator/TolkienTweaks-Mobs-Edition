@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.passive;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
-import com.greatorator.tolkienmobs.world.biomes.BiomeFirien;
+import com.greatorator.tolkienmobs.world.biomes.BiomeHaradwaith;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBeetroot;
 import net.minecraft.block.state.IBlockState;
@@ -35,34 +35,34 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class EntitySOSquirrel extends EntityAnimal {
-    private static final DataParameter<Integer> SOSQUIRREL_TYPE = EntityDataManager.<Integer>createKey(EntitySOSquirrel.class, DataSerializers.VARINT);
+public class EntityTMToad extends EntityAnimal {
+    private static final DataParameter<Integer> TOAD_TYPE = EntityDataManager.<Integer>createKey(EntityTMToad.class, DataSerializers.VARINT);
     private int jumpTicks;
     private int jumpDuration;
     private boolean wasOnGround;
     private int currentMoveTypeDuration;
-    private int acornTicks;
+    private int insectTicks;
 
-    public EntitySOSquirrel(World worldIn)
+    public EntityTMToad(World worldIn)
     {
         super(worldIn);
-        this.setSize(0.3F, 1.2F);
-        this.jumpHelper = new EntitySOSquirrel.SOSquirrelJumpHelper(this);
-        this.moveHelper = new EntitySOSquirrel.SOSquirrelMoveHelper(this);
+        this.setSize(0.3F, 0.3F);
+        this.jumpHelper = new EntityTMToad.ToaddleJumpHelper(this);
+        this.moveHelper = new EntityTMToad.ToaddleMoveHelper(this);
         this.setMovementSpeed(0.0D);
     }
 
     protected void initEntityAI()
     {
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntitySOSquirrel.AIPanic(this, 2.2D));
+        this.tasks.addTask(1, new EntityTMToad.AIPanic(this, 2.2D));
         this.tasks.addTask(2, new EntityAIMate(this, 0.8D));
-        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, TTMFeatures.TREE_ACORN, false));
-        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, TTMFeatures.GOLDEN_TREE_ACORN, false));
-        this.tasks.addTask(4, new EntitySOSquirrel.AIAvoidEntity(this, EntityPlayer.class, 8.0F, 2.2D, 2.2D));
-        this.tasks.addTask(4, new EntitySOSquirrel.AIAvoidEntity(this, EntityWolf.class, 10.0F, 2.2D, 2.2D));
-        this.tasks.addTask(4, new EntitySOSquirrel.AIAvoidEntity(this, EntityMob.class, 4.0F, 2.2D, 2.2D));
-        this.tasks.addTask(5, new EntitySOSquirrel.AIRaidFarm(this));
+        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, TTMFeatures.INSECT, false));
+        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, TTMFeatures.GOLDEN_INSECT, false));
+        this.tasks.addTask(4, new EntityTMToad.AIAvoidEntity(this, EntityPlayer.class, 8.0F, 2.2D, 2.2D));
+        this.tasks.addTask(4, new EntityTMToad.AIAvoidEntity(this, EntityWolf.class, 10.0F, 2.2D, 2.2D));
+        this.tasks.addTask(4, new EntityTMToad.AIAvoidEntity(this, EntityMob.class, 4.0F, 2.2D, 2.2D));
+        this.tasks.addTask(5, new EntityTMToad.AIRaidFarm(this));
         this.tasks.addTask(6, new EntityAIWanderAvoidWater(this, 0.6D));
         this.tasks.addTask(11, new EntityAIWatchClosest(this, EntityPlayer.class, 10.0F));
     }
@@ -147,7 +147,7 @@ public class EntitySOSquirrel extends EntityAnimal {
     protected void entityInit()
     {
         super.entityInit();
-        this.dataManager.register(SOSQUIRREL_TYPE, Integer.valueOf(0));
+        this.dataManager.register(TOAD_TYPE, Integer.valueOf(0));
     }
 
     public void updateAITasks()
@@ -157,13 +157,13 @@ public class EntitySOSquirrel extends EntityAnimal {
             --this.currentMoveTypeDuration;
         }
 
-        if (this.acornTicks > 0)
+        if (this.insectTicks > 0)
         {
-            this.acornTicks -= this.rand.nextInt(3);
+            this.insectTicks -= this.rand.nextInt(3);
 
-            if (this.acornTicks < 0)
+            if (this.insectTicks < 0)
             {
-                this.acornTicks = 0;
+                this.insectTicks = 0;
             }
         }
 
@@ -175,7 +175,7 @@ public class EntitySOSquirrel extends EntityAnimal {
                 this.checkLandingDelay();
             }
 
-            if (this.getSOSquirrelType() == 99 && this.currentMoveTypeDuration == 0)
+            if (this.getToaddleType() == 99 && this.currentMoveTypeDuration == 0)
             {
                 EntityLivingBase entitylivingbase = this.getAttackTarget();
 
@@ -188,9 +188,9 @@ public class EntitySOSquirrel extends EntityAnimal {
                 }
             }
 
-            EntitySOSquirrel.SOSquirrelJumpHelper entitysosquirrel$sosquirreljumphelper = (EntitySOSquirrel.SOSquirrelJumpHelper)this.jumpHelper;
+            EntityTMToad.ToaddleJumpHelper entitytoad$toadjumphelper = (EntityTMToad.ToaddleJumpHelper)this.jumpHelper;
 
-            if (!entitysosquirrel$sosquirreljumphelper.getIsJumping())
+            if (!entitytoad$toadjumphelper.getIsJumping())
             {
                 if (this.moveHelper.isUpdating() && this.currentMoveTypeDuration == 0)
                 {
@@ -206,7 +206,7 @@ public class EntitySOSquirrel extends EntityAnimal {
                     this.startJumping();
                 }
             }
-            else if (!entitysosquirrel$sosquirreljumphelper.canJump())
+            else if (!entitytoad$toadjumphelper.canJump())
             {
                 this.enableJumpControl();
             }
@@ -229,12 +229,12 @@ public class EntitySOSquirrel extends EntityAnimal {
 
     private void enableJumpControl()
     {
-        ((EntitySOSquirrel.SOSquirrelJumpHelper)this.jumpHelper).setCanJump(true);
+        ((EntityTMToad.ToaddleJumpHelper)this.jumpHelper).setCanJump(true);
     }
 
     private void disableJumpControl()
     {
-        ((EntitySOSquirrel.SOSquirrelJumpHelper)this.jumpHelper).setCanJump(false);
+        ((EntityTMToad.ToaddleJumpHelper)this.jumpHelper).setCanJump(false);
     }
 
     private void updateMoveTypeDuration()
@@ -282,9 +282,9 @@ public class EntitySOSquirrel extends EntityAnimal {
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.30000001192092896D);
     }
 
-    public static void registerFixesSOSquirrel(DataFixer fixer)
+    public static void registerFixesToaddle(DataFixer fixer)
     {
-        EntityLiving.registerFixesMob(fixer, EntitySOSquirrel.class);
+        EntityLiving.registerFixesMob(fixer, EntityTMToad.class);
     }
 
     /**
@@ -293,8 +293,8 @@ public class EntitySOSquirrel extends EntityAnimal {
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
-        compound.setInteger("SOSquirrelType", this.getSOSquirrelType());
-        compound.setInteger("MoreAcornTicks", this.acornTicks);
+        compound.setInteger("ToaddleType", this.getToaddleType());
+        compound.setInteger("MoreInsectTicks", this.insectTicks);
     }
 
     /**
@@ -303,35 +303,35 @@ public class EntitySOSquirrel extends EntityAnimal {
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
-        this.setSOSquirrelType(compound.getInteger("SOSquirrelType"));
-        this.acornTicks = compound.getInteger("MoreAcornTicks");
+        this.setToaddleType(compound.getInteger("ToaddleType"));
+        this.insectTicks = compound.getInteger("MoreInsectTicks");
     }
 
     protected SoundEvent getJumpSound()
     {
-        return SoundInit.soundStepSOSquirrel;
+        return SoundInit.soundStepToaddle;
     }
 
     protected SoundEvent getAmbientSound()
     {
-        return SoundInit.soundIdleSOSquirrel;
+        return SoundInit.soundIdleToaddle;
     }
 
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return SoundInit.soundHurtSOSquirrel;
+        return SoundInit.soundHurtToaddle;
     }
 
     protected SoundEvent getDeathSound()
     {
-        return SoundInit.soundDeathSOSquirrel;
+        return SoundInit.soundDeathToaddle;
     }
 
     public boolean attackEntityAsMob(Entity entityIn)
     {
-        if (this.getSOSquirrelType() == 99)
+        if (this.getToaddleType() == 99)
         {
-            this.playSound(SoundInit.soundAngrySOSquirrel, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+            this.playSound(SoundInit.soundAngryToaddle, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 8.0F);
         }
         else
@@ -342,7 +342,7 @@ public class EntitySOSquirrel extends EntityAnimal {
 
     public SoundCategory getSoundCategory()
     {
-        return this.getSOSquirrelType() == 99 ? SoundCategory.HOSTILE : SoundCategory.NEUTRAL;
+        return this.getToaddleType() == 99 ? SoundCategory.HOSTILE : SoundCategory.NEUTRAL;
     }
 
     /**
@@ -353,30 +353,36 @@ public class EntitySOSquirrel extends EntityAnimal {
         return this.isEntityInvulnerable(source) ? false : super.attackEntityFrom(source, amount);
     }
 
-    private boolean isSOSquirrelBreedingItem(Item itemIn)
-    {
-        return itemIn == TTMFeatures.TREE_ACORN || itemIn == TTMFeatures.GOLDEN_TREE_ACORN;
+    @Override
+    @Nullable
+    protected ResourceLocation getLootTable() {
+        return LootInit.TMFROG;
     }
 
-    public EntitySOSquirrel createChild(EntityAgeable ageable)
+    private boolean isToaddleBreedingItem(Item itemIn)
     {
-        EntitySOSquirrel entitysosquirrel = new EntitySOSquirrel(this.world);
-        int i = this.getRandomSOSquirrelType();
+        return itemIn == TTMFeatures.INSECT || itemIn == TTMFeatures.GOLDEN_INSECT;
+    }
+
+    public EntityTMToad createChild(EntityAgeable ageable)
+    {
+        EntityTMToad entitytoad = new EntityTMToad(this.world);
+        int i = this.getRandomToaddleType();
 
         if (this.rand.nextInt(20) != 0)
         {
-            if (ageable instanceof EntitySOSquirrel && this.rand.nextBoolean())
+            if (ageable instanceof EntityTMToad && this.rand.nextBoolean())
             {
-                i = ((EntitySOSquirrel)ageable).getSOSquirrelType();
+                i = ((EntityTMToad)ageable).getToaddleType();
             }
             else
             {
-                i = this.getSOSquirrelType();
+                i = this.getToaddleType();
             }
         }
 
-        entitysosquirrel.setSOSquirrelType(i);
-        return entitysosquirrel;
+        entitytoad.setToaddleType(i);
+        return entitytoad;
     }
 
     /**
@@ -385,31 +391,31 @@ public class EntitySOSquirrel extends EntityAnimal {
      */
     public boolean isBreedingItem(ItemStack stack)
     {
-        return this.isSOSquirrelBreedingItem(stack.getItem());
+        return this.isToaddleBreedingItem(stack.getItem());
     }
 
-    public int getSOSquirrelType()
+    public int getToaddleType()
     {
-        return ((Integer)this.dataManager.get(SOSQUIRREL_TYPE)).intValue();
+        return ((Integer)this.dataManager.get(TOAD_TYPE)).intValue();
     }
 
-    public void setSOSquirrelType(int sosquirrelTypeId)
+    public void setToaddleType(int toadTypeId)
     {
-        if (sosquirrelTypeId == 99)
+        if (toadTypeId == 99)
         {
             this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(8.0D);
-            this.tasks.addTask(4, new EntitySOSquirrel.AIEvilAttack(this));
+            this.tasks.addTask(4, new EntityTMToad.AIEvilAttack(this));
             this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
             this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
             this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityWolf.class, true));
 
             if (!this.hasCustomName())
             {
-                this.setCustomNameTag(I18n.translateToLocal("entity.sosquirrel.name"));
+                this.setCustomNameTag(I18n.translateToLocal("entity.MurderFrog.name"));
             }
         }
 
-        this.dataManager.set(SOSQUIRREL_TYPE, Integer.valueOf(sosquirrelTypeId));
+        this.dataManager.set(TOAD_TYPE, Integer.valueOf(toadTypeId));
     }
 
     /**
@@ -420,20 +426,20 @@ public class EntitySOSquirrel extends EntityAnimal {
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
     {
         livingdata = super.onInitialSpawn(difficulty, livingdata);
-        int i = this.getRandomSOSquirrelType();
+        int i = this.getRandomToaddleType();
         boolean flag = false;
 
-        if (livingdata instanceof EntitySOSquirrel.SOSquirrelTypeData)
+        if (livingdata instanceof EntityTMToad.ToaddleTypeData)
         {
-            i = ((EntitySOSquirrel.SOSquirrelTypeData)livingdata).typeData;
+            i = ((EntityTMToad.ToaddleTypeData)livingdata).typeData;
             flag = true;
         }
         else
         {
-            livingdata = new EntitySOSquirrel.SOSquirrelTypeData(i);
+            livingdata = new EntityTMToad.ToaddleTypeData(i);
         }
 
-        this.setSOSquirrelType(i);
+        this.setToaddleType(i);
 
         if (flag)
         {
@@ -443,7 +449,7 @@ public class EntitySOSquirrel extends EntityAnimal {
         return livingdata;
     }
 
-    private int getRandomSOSquirrelType()
+    private int getRandomToaddleType()
     {
         Biome biome = this.world.getBiome(new BlockPos(this));
         int i = this.rand.nextInt(100);
@@ -452,7 +458,7 @@ public class EntitySOSquirrel extends EntityAnimal {
         {
             return i < 80 ? 1 : 3;
         }
-        else if (biome instanceof BiomeFirien)
+        else if (biome instanceof BiomeHaradwaith)
         {
             return 4;
         }
@@ -462,17 +468,17 @@ public class EntitySOSquirrel extends EntityAnimal {
         }
     }
 
-    private boolean isAcornEaten()
+    private boolean isInsectEaten()
     {
-        return this.acornTicks == 0;
+        return this.insectTicks == 0;
     }
 
     protected void createEatingParticles()
     {
-        BlockBeetroot blockinsect = (BlockBeetroot) Blocks.BEETROOTS;
+        BlockBeetroot blockinsect = (BlockBeetroot)Blocks.BEETROOTS;
         IBlockState iblockstate = blockinsect.withAge(blockinsect.getMaxAge());
         this.world.spawnParticle(EnumParticleTypes.BLOCK_DUST, this.posX + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, this.posY + 0.5D + (double)(this.rand.nextFloat() * this.height), this.posZ + (double)(this.rand.nextFloat() * this.width * 2.0F) - (double)this.width, 0.0D, 0.0D, 0.0D, Block.getStateId(iblockstate));
-        this.acornTicks = 40;
+        this.insectTicks = 40;
     }
 
     /**
@@ -495,12 +501,12 @@ public class EntitySOSquirrel extends EntityAnimal {
 
     static class AIAvoidEntity<T extends Entity> extends EntityAIAvoidEntity<T>
     {
-        private final EntitySOSquirrel sosquirrel;
+        private final EntityTMToad toad;
 
-        public AIAvoidEntity(EntitySOSquirrel sosquirrel, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_, double p_i46403_6_)
+        public AIAvoidEntity(EntityTMToad toad, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_, double p_i46403_6_)
         {
-            super(sosquirrel, p_i46403_2_, p_i46403_3_, p_i46403_4_, p_i46403_6_);
-            this.sosquirrel = sosquirrel;
+            super(toad, p_i46403_2_, p_i46403_3_, p_i46403_4_, p_i46403_6_);
+            this.toad = toad;
         }
 
         /**
@@ -508,15 +514,15 @@ public class EntitySOSquirrel extends EntityAnimal {
          */
         public boolean shouldExecute()
         {
-            return this.sosquirrel.getSOSquirrelType() != 99 && super.shouldExecute();
+            return this.toad.getToaddleType() != 99 && super.shouldExecute();
         }
     }
 
     static class AIEvilAttack extends EntityAIAttackMelee
     {
-        public AIEvilAttack(EntitySOSquirrel sosquirrel)
+        public AIEvilAttack(EntityTMToad toad)
         {
-            super(sosquirrel, 1.4D, true);
+            super(toad, 1.4D, true);
         }
 
         protected double getAttackReachSqr(EntityLivingBase attackTarget)
@@ -527,12 +533,12 @@ public class EntitySOSquirrel extends EntityAnimal {
 
     static class AIPanic extends EntityAIPanic
     {
-        private final EntitySOSquirrel sosquirrel;
+        private final EntityTMToad toad;
 
-        public AIPanic(EntitySOSquirrel sosquirrel, double speedIn)
+        public AIPanic(EntityTMToad toad, double speedIn)
         {
-            super(sosquirrel, speedIn);
-            this.sosquirrel = sosquirrel;
+            super(toad, speedIn);
+            this.toad = toad;
         }
 
         /**
@@ -541,20 +547,20 @@ public class EntitySOSquirrel extends EntityAnimal {
         public void updateTask()
         {
             super.updateTask();
-            this.sosquirrel.setMovementSpeed(this.speed);
+            this.toad.setMovementSpeed(this.speed);
         }
     }
 
     static class AIRaidFarm extends EntityAIMoveToBlock
     {
-        private final EntitySOSquirrel sosquirrel;
+        private final EntityTMToad toad;
         private boolean wantsToRaid;
         private boolean canRaid;
 
-        public AIRaidFarm(EntitySOSquirrel sosquirrelIn)
+        public AIRaidFarm(EntityTMToad toadIn)
         {
-            super(sosquirrelIn, 0.699999988079071D, 16);
-            this.sosquirrel = sosquirrelIn;
+            super(toadIn, 0.699999988079071D, 16);
+            this.toad = toadIn;
         }
 
         /**
@@ -564,13 +570,13 @@ public class EntitySOSquirrel extends EntityAnimal {
         {
             if (this.runDelay <= 0)
             {
-                if (!this.sosquirrel.world.getGameRules().getBoolean("mobGriefing"))
+                if (!this.toad.world.getGameRules().getBoolean("mobGriefing"))
                 {
                     return false;
                 }
 
                 this.canRaid = false;
-                this.wantsToRaid = this.sosquirrel.isAcornEaten();
+                this.wantsToRaid = this.toad.isInsectEaten();
                 this.wantsToRaid = true;
             }
 
@@ -591,11 +597,11 @@ public class EntitySOSquirrel extends EntityAnimal {
         public void updateTask()
         {
             super.updateTask();
-            this.sosquirrel.getLookHelper().setLookPosition((double)this.destinationBlock.getX() + 0.5D, (double)(this.destinationBlock.getY() + 1), (double)this.destinationBlock.getZ() + 0.5D, 10.0F, (float)this.sosquirrel.getVerticalFaceSpeed());
+            this.toad.getLookHelper().setLookPosition((double)this.destinationBlock.getX() + 0.5D, (double)(this.destinationBlock.getY() + 1), (double)this.destinationBlock.getZ() + 0.5D, 10.0F, (float)this.toad.getVerticalFaceSpeed());
 
             if (this.getIsAboveDestination())
             {
-                World world = this.sosquirrel.world;
+                World world = this.toad.world;
                 BlockPos blockpos = this.destinationBlock.up();
                 IBlockState iblockstate = world.getBlockState(blockpos);
                 Block block = iblockstate.getBlock();
@@ -615,7 +621,7 @@ public class EntitySOSquirrel extends EntityAnimal {
                         world.playEvent(2001, blockpos, Block.getStateId(iblockstate));
                     }
 
-                    this.sosquirrel.createEatingParticles();
+                    this.toad.createEatingParticles();
                 }
 
                 this.canRaid = false;
@@ -647,15 +653,15 @@ public class EntitySOSquirrel extends EntityAnimal {
         }
     }
 
-    public class SOSquirrelJumpHelper extends EntityJumpHelper
+    public class ToaddleJumpHelper extends EntityJumpHelper
     {
-        private final EntitySOSquirrel sosquirrel;
+        private final EntityTMToad toad;
         private boolean canJump;
 
-        public SOSquirrelJumpHelper(EntitySOSquirrel sosquirrel)
+        public ToaddleJumpHelper(EntityTMToad toad)
         {
-            super(sosquirrel);
-            this.sosquirrel = sosquirrel;
+            super(toad);
+            this.toad = toad;
         }
 
         public boolean getIsJumping()
@@ -680,32 +686,32 @@ public class EntitySOSquirrel extends EntityAnimal {
         {
             if (this.isJumping)
             {
-                this.sosquirrel.startJumping();
+                this.toad.startJumping();
                 this.isJumping = false;
             }
         }
     }
 
-    static class SOSquirrelMoveHelper extends EntityMoveHelper
+    static class ToaddleMoveHelper extends EntityMoveHelper
     {
-        private final EntitySOSquirrel sosquirrel;
+        private final EntityTMToad toad;
         private double nextJumpSpeed;
 
-        public SOSquirrelMoveHelper(EntitySOSquirrel sosquirrel)
+        public ToaddleMoveHelper(EntityTMToad toad)
         {
-            super(sosquirrel);
-            this.sosquirrel = sosquirrel;
+            super(toad);
+            this.toad = toad;
         }
 
         public void onUpdateMoveHelper()
         {
-            if (this.sosquirrel.onGround && !this.sosquirrel.isJumping && !((EntitySOSquirrel.SOSquirrelJumpHelper)this.sosquirrel.jumpHelper).getIsJumping())
+            if (this.toad.onGround && !this.toad.isJumping && !((EntityTMToad.ToaddleJumpHelper)this.toad.jumpHelper).getIsJumping())
             {
-                this.sosquirrel.setMovementSpeed(0.0D);
+                this.toad.setMovementSpeed(0.0D);
             }
             else if (this.isUpdating())
             {
-                this.sosquirrel.setMovementSpeed(this.nextJumpSpeed);
+                this.toad.setMovementSpeed(this.nextJumpSpeed);
             }
 
             super.onUpdateMoveHelper();
@@ -716,7 +722,7 @@ public class EntitySOSquirrel extends EntityAnimal {
          */
         public void setMoveTo(double x, double y, double z, double speedIn)
         {
-            if (this.sosquirrel.isInWater())
+            if (this.toad.isInWater())
             {
                 speedIn = 1.5D;
             }
@@ -730,19 +736,13 @@ public class EntitySOSquirrel extends EntityAnimal {
         }
     }
 
-    public static class SOSquirrelTypeData implements IEntityLivingData
+    public static class ToaddleTypeData implements IEntityLivingData
     {
         public int typeData;
 
-        public SOSquirrelTypeData(int type)
+        public ToaddleTypeData(int type)
         {
             this.typeData = type;
         }
-    }
-
-    @Override
-    @Nullable
-    protected ResourceLocation getLootTable() {
-        return LootInit.SOSQUIRREL;
     }
 }

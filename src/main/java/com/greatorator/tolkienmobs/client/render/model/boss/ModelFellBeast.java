@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.model.boss;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
@@ -100,8 +100,8 @@ public class ModelFellBeast extends ModelTTM {
     public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
         GlStateManager.pushMatrix();
-        EntityFellBeast entityFellBeast = (EntityFellBeast)entityIn;
-        float f = entityFellBeast.prevAnimTime + (entityFellBeast.animTime - entityFellBeast.prevAnimTime) * this.partialTicks;
+        EntityTMFellBeast entityTMFellBeast = (EntityTMFellBeast)entityIn;
+        float f = entityTMFellBeast.prevAnimTime + (entityTMFellBeast.animTime - entityTMFellBeast.prevAnimTime) * this.partialTicks;
         this.jaw.rotateAngleX = (float)(Math.sin((double)(f * ((float)Math.PI * 2F))) + 1.0D) * 0.2F;
         float f1 = (float)(Math.sin((double)(f * ((float)Math.PI * 2F) - 1.0F)) + 1.0D);
         f1 = (f1 * f1 + f1 * 2.0F) * 0.05F;
@@ -110,19 +110,19 @@ public class ModelFellBeast extends ModelTTM {
         float f2 = -30.0F;
         float f4 = 0.0F;
         float f5 = 1.5F;
-        double[] adouble = entityFellBeast.getMovementOffsets(6, this.partialTicks);
-        float f6 = this.updateRotations(entityFellBeast.getMovementOffsets(5, this.partialTicks)[0] - entityFellBeast.getMovementOffsets(10, this.partialTicks)[0]);
-        float f7 = this.updateRotations(entityFellBeast.getMovementOffsets(5, this.partialTicks)[0] + (double)(f6 / 2.0F));
+        double[] adouble = entityTMFellBeast.getMovementOffsets(6, this.partialTicks);
+        float f6 = this.updateRotations(entityTMFellBeast.getMovementOffsets(5, this.partialTicks)[0] - entityTMFellBeast.getMovementOffsets(10, this.partialTicks)[0]);
+        float f7 = this.updateRotations(entityTMFellBeast.getMovementOffsets(5, this.partialTicks)[0] + (double)(f6 / 2.0F));
         float f8 = f * ((float)Math.PI * 2F);
         f2 = 20.0F;
         float f3 = -12.0F;
 
         for (int i = 0; i < 5; ++i)
         {
-            double[] adouble1 = entityFellBeast.getMovementOffsets(5 - i, this.partialTicks);
+            double[] adouble1 = entityTMFellBeast.getMovementOffsets(5 - i, this.partialTicks);
             float f9 = (float)Math.cos((double)((float)i * 0.45F + f8)) * 0.15F;
             this.spine.rotateAngleY = this.updateRotations(adouble1[0] - adouble[0]) * 0.017453292F * 1.5F;
-            this.spine.rotateAngleX = f9 + entityFellBeast.getHeadPartYOffset(i, adouble, adouble1) * 0.017453292F * 1.5F * 5.0F;
+            this.spine.rotateAngleX = f9 + entityTMFellBeast.getHeadPartYOffset(i, adouble, adouble1) * 0.017453292F * 1.5F * 5.0F;
             this.spine.rotateAngleZ = -this.updateRotations(adouble1[0] - (double)f7) * 0.017453292F * 1.5F;
             this.spine.rotationPointY = f2;
             this.spine.rotationPointZ = f3;
@@ -136,9 +136,9 @@ public class ModelFellBeast extends ModelTTM {
         this.head.rotationPointY = f2;
         this.head.rotationPointZ = f3;
         this.head.rotationPointX = f4;
-        double[] adouble2 = entityFellBeast.getMovementOffsets(0, this.partialTicks);
+        double[] adouble2 = entityTMFellBeast.getMovementOffsets(0, this.partialTicks);
         this.head.rotateAngleY = this.updateRotations(adouble2[0] - adouble[0]) * 0.017453292F;
-        this.head.rotateAngleX = this.updateRotations((double)entityFellBeast.getHeadPartYOffset(6, adouble, adouble2)) * 0.017453292F * 1.5F * 5.0F;
+        this.head.rotateAngleX = this.updateRotations((double) entityTMFellBeast.getHeadPartYOffset(6, adouble, adouble2)) * 0.017453292F * 1.5F * 5.0F;
         this.head.rotateAngleZ = -this.updateRotations(adouble2[0] - (double)f7) * 0.017453292F;
         this.head.render(scale);
         GlStateManager.pushMatrix();
@@ -177,11 +177,11 @@ public class ModelFellBeast extends ModelTTM {
         f2 = 10.0F;
         f3 = 60.0F;
         f4 = 0.0F;
-        adouble = entityFellBeast.getMovementOffsets(11, this.partialTicks);
+        adouble = entityTMFellBeast.getMovementOffsets(11, this.partialTicks);
 
         for (int k = 0; k < 12; ++k)
         {
-            adouble2 = entityFellBeast.getMovementOffsets(12 + k, this.partialTicks);
+            adouble2 = entityTMFellBeast.getMovementOffsets(12 + k, this.partialTicks);
             f10 = (float)((double)f10 + Math.sin((double)((float)k * 0.45F + f8)) * 0.05000000074505806D);
             this.spine.rotateAngleY = (this.updateRotations(adouble2[0] - adouble[0]) * 1.5F + 180.0F) * 0.017453292F;
             this.spine.rotateAngleX = f10 + (float)(adouble2[1] - adouble[1]) * 0.017453292F * 1.5F * 5.0F;

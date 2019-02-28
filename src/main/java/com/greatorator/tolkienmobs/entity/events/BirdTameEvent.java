@@ -1,13 +1,13 @@
 package com.greatorator.tolkienmobs.entity.events;
 
-import com.greatorator.tolkienmobs.entity.EntityBirds;
+import com.greatorator.tolkienmobs.entity.EntityTMBirds;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
 
 @Cancelable
 public class BirdTameEvent extends LivingEvent {
-    private final EntityBirds theBird;
+    private final EntityTMBirds theBird;
     private final EntityPlayer tamer;
 
     /**
@@ -16,7 +16,7 @@ public class BirdTameEvent extends LivingEvent {
      * @param parBird the par bird
      * @param parTamer the par tamer
      */
-    public BirdTameEvent(EntityBirds parBird, EntityPlayer parTamer)
+    public BirdTameEvent(EntityTMBirds parBird, EntityPlayer parTamer)
     {
         super(parBird);
         theBird = parBird;
@@ -28,7 +28,7 @@ public class BirdTameEvent extends LivingEvent {
      *
      * @return the animal
      */
-    public EntityBirds getAnimal()
+    public EntityTMBirds getAnimal()
     {
         return theBird;
     }

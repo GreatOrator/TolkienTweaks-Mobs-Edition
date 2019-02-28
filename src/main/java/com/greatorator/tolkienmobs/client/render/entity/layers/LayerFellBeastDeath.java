@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.entity.layers;
 
-import com.greatorator.tolkienmobs.entity.boss.EntityFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -13,9 +13,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.Random;
 
 @SideOnly(Side.CLIENT)
-public class LayerFellBeastDeath implements LayerRenderer<EntityFellBeast>
+public class LayerFellBeastDeath implements LayerRenderer<EntityTMFellBeast>
 {
-    public void doRenderLayer(EntityFellBeast entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
+    public void doRenderLayer(EntityTMFellBeast entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
     {
         if (entitylivingbaseIn.deathTicks > 0)
         {

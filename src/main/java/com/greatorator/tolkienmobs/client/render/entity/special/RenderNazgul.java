@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.client.render.entity.special;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
 import com.greatorator.tolkienmobs.client.render.model.boss.ModelWitchKing;
-import com.greatorator.tolkienmobs.entity.special.EntityNazgul;
+import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class RenderNazgul extends RenderLiving<EntityNazgul> {
+public class RenderNazgul extends RenderLiving<EntityTMNazgul> {
     private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/nazgul.png");
 
     public static final RenderNazgul.Factory FACTORY = new RenderNazgul.Factory();
@@ -30,7 +30,7 @@ public class RenderNazgul extends RenderLiving<EntityNazgul> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(@Nonnull EntityNazgul entity) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityTMNazgul entity) {
         switch (entity.getMobType()) {
             case 0:
             default:
@@ -38,10 +38,10 @@ public class RenderNazgul extends RenderLiving<EntityNazgul> {
         }
     }
 
-    public static class Factory implements IRenderFactory<EntityNazgul> {
+    public static class Factory implements IRenderFactory<EntityTMNazgul> {
 
         @Override
-        public Render<? super EntityNazgul> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMNazgul> createRenderFor(RenderManager manager) {
             return new RenderNazgul(manager, 1.5F);
         }
 
@@ -53,7 +53,7 @@ public class RenderNazgul extends RenderLiving<EntityNazgul> {
 
     /** If you need to apply a GL Scale to your model this is how you do it. */
     @Override
-    protected void preRenderCallback(EntityNazgul entitylivingbaseIn, float partialTickTime) {
+    protected void preRenderCallback(EntityTMNazgul entitylivingbaseIn, float partialTickTime) {
         GlStateManager.scale(scale, scale, scale);
     }
 }

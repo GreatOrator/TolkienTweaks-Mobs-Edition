@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.client.render.entity.monster;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelMordorOrc;
-import com.greatorator.tolkienmobs.entity.monster.EntityMordorOrc;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMMordorOrc;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class RenderMordorOrc extends RenderLiving<EntityMordorOrc> {
+public class RenderMordorOrc extends RenderLiving<EntityTMMordorOrc> {
     private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/orc/mordororc1.png");
     private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/orc/mordororc2.png");
     private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/orc/mordororc3.png");
@@ -32,7 +32,7 @@ public class RenderMordorOrc extends RenderLiving<EntityMordorOrc> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(@Nonnull EntityMordorOrc entity) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityTMMordorOrc entity) {
         switch (entity.getMobType()) {
             case 0:
             default:
@@ -50,9 +50,9 @@ public class RenderMordorOrc extends RenderLiving<EntityMordorOrc> {
         }
     }
 
-    public static class Factory implements IRenderFactory<EntityMordorOrc> {
+    public static class Factory implements IRenderFactory<EntityTMMordorOrc> {
         @Override
-        public Render<? super EntityMordorOrc> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMMordorOrc> createRenderFor(RenderManager manager) {
             return new RenderMordorOrc(manager, 0.85F);
         }
     }
@@ -63,7 +63,7 @@ public class RenderMordorOrc extends RenderLiving<EntityMordorOrc> {
 
     /** If you need to apply a GL Scale to your model this is how you do it. */
     @Override
-    protected void preRenderCallback(EntityMordorOrc entitylivingbaseIn, float partialTickTime) {
+    protected void preRenderCallback(EntityTMMordorOrc entitylivingbaseIn, float partialTickTime) {
         GlStateManager.scale(scale, scale, scale);
     }
 }

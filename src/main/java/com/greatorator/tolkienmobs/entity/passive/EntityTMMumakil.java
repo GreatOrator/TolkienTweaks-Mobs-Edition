@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.passive;
 
-import com.greatorator.tolkienmobs.entity.EntityHerds;
+import com.greatorator.tolkienmobs.entity.EntityTMHerds;
 import com.greatorator.tolkienmobs.init.LootInit;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
@@ -14,10 +14,10 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 /** Borrowed from Jabelar https://github.com/jabelar */
-public class EntityMumakil extends EntityHerds {
+public class EntityTMMumakil extends EntityTMHerds {
     protected Block spawnableBlock = Blocks.SAND;
 
-    public EntityMumakil(World par1World)
+    public EntityTMMumakil(World par1World)
     {
         super(par1World);
 
@@ -63,8 +63,8 @@ public class EntityMumakil extends EntityHerds {
     }
 
     @Override
-    public EntityMumakil createChild(EntityAgeable par1EntityAgeable)
+    public EntityTMMumakil createChild(EntityAgeable par1EntityAgeable)
     {
-        return new EntityMumakil(world);
+        return new EntityTMMumakil(world);
     }
  }

@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.model.passive;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
-import com.greatorator.tolkienmobs.entity.passive.EntityAuroch;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMAuroch;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
@@ -178,10 +178,10 @@ public class ModelAuroch extends ModelTTM {
     @Override
     public void render(Entity parEntity, float parTime, float parSwingSuppress, float par4, float parHeadAngleY, float parHeadAngleX, float par7)
     {
-        renderAuroch((EntityAuroch) parEntity, parTime, parSwingSuppress, par4, parHeadAngleY, parHeadAngleX, par7);
+        renderAuroch((EntityTMAuroch) parEntity, parTime, parSwingSuppress, par4, parHeadAngleY, parHeadAngleX, par7);
     }
 
-    public void renderAuroch(EntityAuroch parEntity, float parTime, float parSwingSuppress, float par4, float parHeadAngleY, float parHeadAngleX, float par7)
+    public void renderAuroch(EntityTMAuroch parEntity, float parTime, float parSwingSuppress, float par4, float parHeadAngleY, float parHeadAngleX, float par7)
     {
         setRotationAngles(parTime, parSwingSuppress, par4, parHeadAngleY, parHeadAngleX, par7, parEntity);
 

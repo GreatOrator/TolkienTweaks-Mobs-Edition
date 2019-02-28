@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.model.monster;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
-import com.greatorator.tolkienmobs.entity.monster.EntityBarrowWight;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMBarrowWight;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -108,7 +108,7 @@ public class ModelBarrowWight extends ModelTTM {
         this.leftArmPose = ModelBiped.ArmPose.EMPTY;
         ItemStack itemstack = entitylivingbaseIn.getHeldItem(EnumHand.MAIN_HAND);
 
-        if (itemstack.getItem() == Items.BOW && ((EntityBarrowWight)entitylivingbaseIn).isSwingingArms())
+        if (itemstack.getItem() == Items.BOW && ((EntityTMBarrowWight)entitylivingbaseIn).isSwingingArms())
         {
             if (entitylivingbaseIn.getPrimaryHand() == EnumHandSide.RIGHT)
             {

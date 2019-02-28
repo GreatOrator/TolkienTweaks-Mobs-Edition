@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.client.render.entity.monster;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelUrukHai;
-import com.greatorator.tolkienmobs.entity.monster.EntityUrukHai;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMUrukHai;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class RenderUrukHai extends RenderLiving<EntityUrukHai> {
+public class RenderUrukHai extends RenderLiving<EntityTMUrukHai> {
     private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/urukhai/urukhai1.png");
     private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/urukhai/urukhai2.png");
     private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/urukhai/urukhai3.png");
@@ -32,7 +32,7 @@ public class RenderUrukHai extends RenderLiving<EntityUrukHai> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(@Nonnull EntityUrukHai entity) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityTMUrukHai entity) {
         switch (entity.getMobType()) {
             case 0:
             default:
@@ -50,9 +50,9 @@ public class RenderUrukHai extends RenderLiving<EntityUrukHai> {
         }
     }
 
-    public static class Factory implements IRenderFactory<EntityUrukHai> {
+    public static class Factory implements IRenderFactory<EntityTMUrukHai> {
         @Override
-        public Render<? super EntityUrukHai> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMUrukHai> createRenderFor(RenderManager manager) {
             return new RenderUrukHai(manager, 1.2F);
         }
     }
@@ -63,7 +63,7 @@ public class RenderUrukHai extends RenderLiving<EntityUrukHai> {
 
     /** If you need to apply a GL Scale to your model this is how you do it. */
     @Override
-    protected void preRenderCallback(EntityUrukHai entitylivingbaseIn, float partialTickTime) {
+    protected void preRenderCallback(EntityTMUrukHai entitylivingbaseIn, float partialTickTime) {
         GlStateManager.scale(scale, scale, scale);
     }
 }

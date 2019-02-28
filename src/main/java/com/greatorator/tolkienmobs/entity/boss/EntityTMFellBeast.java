@@ -40,9 +40,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class EntityFellBeast extends EntityLiving implements IEntityMultiPart, IMob
+public class EntityTMFellBeast extends EntityLiving implements IEntityMultiPart, IMob
 {
-    public static final DataParameter<Integer> PHASE = EntityDataManager.<Integer>createKey(EntityFellBeast.class, DataSerializers.VARINT);
+    public static final DataParameter<Integer> PHASE = EntityDataManager.<Integer>createKey(EntityTMFellBeast.class, DataSerializers.VARINT);
     /** Ring buffer array for the last 64 Y-positions and yaw rotations. Used to calculate offsets for the animations. */
     public double[][] ringBuffer = new double[64][3];
     /** Index into the ring buffer. Incremented once per tick and restarts at 0 once it reaches the end of the buffer. */
@@ -89,7 +89,7 @@ public class EntityFellBeast extends EntityLiving implements IEntityMultiPart, I
     private final int[] neighbors = new int[24];
     private final PathHeap pathFindQueue = new PathHeap();
 
-    public EntityFellBeast(World worldIn)
+    public EntityTMFellBeast(World worldIn)
     {
         super(worldIn);
         this.fellbeastPartArray = new MultiPartEntityPart[] {this.fellbeastPartHead, this.fellbeastPartNeck, this.fellbeastPartBody, this.fellbeastPartTail1, this.fellbeastPartTail2, this.fellbeastPartTail3, this.fellbeastPartWing1, this.fellbeastPartWing2};
@@ -134,7 +134,7 @@ public class EntityFellBeast extends EntityLiving implements IEntityMultiPart, I
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
         livingdata = super.onInitialSpawn(difficulty, livingdata);
 
-        EntityWitchKing entitywitchking = new EntityWitchKing(this.world);
+        EntityTMWitchKing entitywitchking = new EntityTMWitchKing(this.world);
         entitywitchking.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
         entitywitchking.onInitialSpawn(difficulty, (IEntityLivingData)null);
         this.world.spawnEntity(entitywitchking);
@@ -496,7 +496,7 @@ public class EntityFellBeast extends EntityLiving implements IEntityMultiPart, I
 
                 if (!this.ttmphaseManager.getCurrentPhase().getIsStationary() && ((EntityLivingBase)entity).getRevengeTimer() < entity.ticksExisted - 2)
                 {
-                    if (entity instanceof EntityWitchKing)
+                    if (entity instanceof EntityTMWitchKing)
                     {
                         this.applyEnchantments(this, entity);
                     }
@@ -519,7 +519,7 @@ public class EntityFellBeast extends EntityLiving implements IEntityMultiPart, I
         {
             Entity entity = p_70971_1_.get(i);
 
-            if (entity instanceof EntityWitchKing)
+            if (entity instanceof EntityTMWitchKing)
             {
                 this.applyEnchantments(this, entity);
             }

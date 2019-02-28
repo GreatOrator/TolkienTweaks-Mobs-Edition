@@ -18,10 +18,10 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import javax.annotation.Nullable;
 
-public class EntityGoat extends EntityDonkey implements IEntityAdditionalSpawnData {
+public class EntityTMGoat extends EntityDonkey implements IEntityAdditionalSpawnData {
     private int texture_index;
 
-    public EntityGoat(World worldIn) {
+    public EntityTMGoat(World worldIn) {
         super(worldIn);
         this.setSize(1.3964844F, 1.6F);
     }

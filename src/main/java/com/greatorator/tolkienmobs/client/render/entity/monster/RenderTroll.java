@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.client.render.entity.monster;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelTroll;
-import com.greatorator.tolkienmobs.entity.monster.EntityTroll;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMTroll;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class RenderTroll extends RenderLiving<EntityTroll> {
+public class RenderTroll extends RenderLiving<EntityTMTroll> {
     private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/troll/cave_troll1.png");
     private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/troll/cave_troll2.png");
     private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/troll/cave_troll3.png");
@@ -32,7 +32,7 @@ public class RenderTroll extends RenderLiving<EntityTroll> {
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(@Nonnull EntityTroll entity) {
+    protected ResourceLocation getEntityTexture(@Nonnull EntityTMTroll entity) {
         switch (entity.getMobType()) {
             case 0:
             default:
@@ -50,9 +50,9 @@ public class RenderTroll extends RenderLiving<EntityTroll> {
         }
     }
 
-    public static class Factory implements IRenderFactory<EntityTroll> {
+    public static class Factory implements IRenderFactory<EntityTMTroll> {
         @Override
-        public Render<? super EntityTroll> createRenderFor(RenderManager manager) {
+        public Render<? super EntityTMTroll> createRenderFor(RenderManager manager) {
             return new RenderTroll(manager, 1.8F);
         }
     }
@@ -63,7 +63,7 @@ public class RenderTroll extends RenderLiving<EntityTroll> {
 
     /** If you need to apply a GL Scale to your model this is how you do it. */
     @Override
-    protected void preRenderCallback(EntityTroll entitylivingbaseIn, float partialTickTime) {
+    protected void preRenderCallback(EntityTMTroll entitylivingbaseIn, float partialTickTime) {
         GlStateManager.scale(scale, scale, scale);
     }
 }

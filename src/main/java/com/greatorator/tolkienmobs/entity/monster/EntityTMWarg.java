@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-import com.greatorator.tolkienmobs.entity.passive.EntityHobbit;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
 import com.greatorator.tolkienmobs.handler.TTMRand;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
@@ -29,7 +29,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class EntityWarg extends EntityWolf {
+public class EntityTMWarg extends EntityWolf {
     private int texture_index;
 
     /** Float used to smooth the rotation of the wolf head */
@@ -43,7 +43,7 @@ public class EntityWarg extends EntityWolf {
     private float timeWolfIsShaking;
     private float prevTimeWolfIsShaking;
 
-    public EntityWarg(World worldIn) {
+    public EntityTMWarg(World worldIn) {
         super(worldIn);
         this.setSize(2.1F, 2.2F);
         this.setTamed(false);
@@ -60,7 +60,7 @@ public class EntityWarg extends EntityWolf {
 
         if (TTMRand.getRandomInteger(15, 1) == 2)
         {
-            EntityMordorOrc entitymordororc = new EntityMordorOrc(this.world);
+            EntityTMMordorOrc entitymordororc = new EntityTMMordorOrc(this.world);
             entitymordororc.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
             entitymordororc.onInitialSpawn(difficulty, (IEntityLivingData)null);
             this.world.spawnEntity(entitymordororc);
@@ -79,17 +79,17 @@ public class EntityWarg extends EntityWolf {
         this.tasks.addTask(4, new EntityAILeapAtTarget(this, 0.4F));
         this.tasks.addTask(5, new EntityAIAttackMelee(this, 1.0D, true));
         this.tasks.addTask(8, new EntityAIWanderAvoidWater(this, 1.0D));
-        this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityMordorOrc.class, 8.0F));
+        this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityTMMordorOrc.class, 8.0F));
         this.tasks.addTask(10, new EntityAILookIdle(this));
         this.applyEntityAI();
     }
 
     private void applyEntityAI() {
-        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true, new Class[]{EntityWarg.class}));
+        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true, new Class[]{EntityTMWarg.class}));
         this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
         this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntitySheep.class, false));
         this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityRabbit.class, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityHobbit.class, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMHobbit.class, true));
     }
 
     @Override
@@ -211,9 +211,9 @@ public class EntityWarg extends EntityWolf {
     {
         if (!(target instanceof EntitySheep) && !(target instanceof EntityRabbit))
         {
-            if (target instanceof EntityWarg)
+            if (target instanceof EntityTMWarg)
             {
-                EntityWarg entitywarg = (EntityWarg)target;
+                EntityTMWarg entitywarg = (EntityTMWarg)target;
 
                 if (entitywarg.isTamed() && entitywarg.getOwner() == owner)
                 {
