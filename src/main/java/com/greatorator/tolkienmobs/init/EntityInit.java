@@ -60,6 +60,9 @@ public class EntityInit
             if (TTMConfig.enableOathbreaker) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "oathbreaker"), EntityTMOathbreaker.class, "oathbreaker", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0xeffbff);
             }
+            if (TTMConfig.enableMidgeFlies) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "midgefly"), EntityTMMidgeFly.class, "midgefly", id++, TolkienMobs.instance, 64, 3, true, 0xF4A460, 0x000000);
+            }
         }
 
         if (TTMConfig.enableBoss) {
@@ -156,6 +159,9 @@ public class EntityInit
                 }
                 if (TTMConfig.enableOathbreaker) {
                     EntityRegistry.addSpawn(EntityTMOathbreaker.class, 12, 1, 1, EnumCreatureType.AMBIENT, Biomes.COLD_TAIGA);
+                }
+                if (TTMConfig.enableMidgeFlies) {
+                    EntityRegistry.addSpawn(EntityTMMidgeFly.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.SWAMPLAND);
                 }
             }
 

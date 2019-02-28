@@ -137,10 +137,12 @@ tipped_arrow.effect.ent_draught=Arrow of Ent Draught
 //Monster Drops
 item.tolkienmobs:feather_crebain.name=Crebain Feather
 item.tolkienmobs:leather_mumakil.name=Mumakil Hide
+item.tolkienmobs:monster_fur.name=Monster Fur
 
 //Blocks and Ores
 tile.tolkienmobs:block_mithril.name=Mithril Block
 tile.tolkienmobs:block_morguliron.name=Morgul Iron Block
+tile.tolkienmobs:block_hallowed.name=Hallowed Earth
 
 tile.tolkienmobs:ore_mithril.name=Mithril Ore
 tile.tolkienmobs:ore_nether_mithril.name=Fiery Mithril Ore
@@ -231,6 +233,7 @@ entity.witchking.name=Witch-king of Angmar
 entity.fellbeast.name=Fell Beast
 entity.nazgul.name=Nazgul
 entity.oathbreaker.name=Oath Breaker
+entity.midgefly.name=Midge Flies
 
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer

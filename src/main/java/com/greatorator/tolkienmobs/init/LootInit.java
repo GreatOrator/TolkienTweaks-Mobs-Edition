@@ -24,6 +24,7 @@ public class LootInit {
     public static final ResourceLocation URUK = register("entities/urukhai");
     public static final ResourceLocation WARG = register("entities/warg");
     public static final ResourceLocation OATHBREAKER = register("entities/oathbreaker");
+    public static final ResourceLocation MIDGEFLY = register("entities/midgefly");
 
     /** Special */
     public static final ResourceLocation GOLLUM = register("entities/gollum");

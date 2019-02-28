@@ -31,6 +31,7 @@ public class TTMConfig implements IModConfigHelper {
         comments.put("Passive Mobs", "Use these settings to disable any individual \nnaturally spawning Passive mobs. Note: This will potentially impact \nthe ability to get certain items as \nthey are only available from shop-keepers.");
         comments.put("Biomes", "Disable any or all Biomes added by this mod, some mobs \nwill only be available in these biomes, so if disabled it will \nautomatically make certain mobs unavailable.");
         comments.put("Potion Types", " This creates rings, charms, belts and amulets for \neach potion listed. They need to be added using the internal names like \nthe ones already listed.");
+        comments.put("Miscellaneous Configs", " Enable or Disable various options for \nblocks in this mod,  For example, disabling the ability of \nhallowed earth to damage as a player.");
     }
     @Override
     public Configuration createConfiguration(FMLPreInitializationEvent event) {
@@ -82,7 +83,7 @@ public class TTMConfig implements IModConfigHelper {
 //    public static boolean exampleRestartProperty = true;
 
     /** Natural Spawning */
-    @ModConfigProperty(category = "Mob Spawning", name = "enableNaturalSpawn", comment = "Setting this to true will enable Natural Spawning", requiresMCRestart = true, requiresSync = true)
+    @ModConfigProperty(category = "Mob Spawning", name = "enableNaturalSpawn", comment = "Setting this to false will disable ALL Spawning of this mod's mobs", requiresMCRestart = true, requiresSync = true)
     public static boolean enableNaturalSpawn = true;
 
     /** Mobs by Category*/
@@ -118,6 +119,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableWargs = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableOathbreaker", comment = "Setting this to false will disable Oathbreakers", requiresMCRestart = true, requiresSync = true)
     public static boolean enableOathbreaker = true;
+    @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableMidgeFlies", comment = "Setting this to false will disable Midge Flies", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableMidgeFlies = true;
 
     /** Boss mobs - Individual*/
     @ModConfigProperty(category = "Boss Mobs", name = "enableBalrog", comment = "Setting this to false will disable the Balrog", requiresMCRestart = true, requiresSync = true)
@@ -179,6 +182,11 @@ public class TTMConfig implements IModConfigHelper {
     @ModConfigProperty(category = "Biomes", name = "enableShire", comment = "Setting this to false will disable the Shire Biome", requiresMCRestart = true, requiresSync = true)
     public static boolean enableShire = true;
 
+    /** Miscellaneous Configs */
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "enablePlayerDMG", comment = "Setting to true will enable the fake player for hallowed earth", requiresMCRestart = true, requiresSync = true)
+    public static boolean enablePlayerDMG = false;
+
+    /** Potion Types */
     @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array.")
     public static String[] potionTypeArray = new String[]{"tolkienmobs:ent_draught", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:glowing", "minecraft:fire_resistance"};
 

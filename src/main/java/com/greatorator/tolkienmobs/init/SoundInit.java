@@ -74,6 +74,10 @@ public class SoundInit
 	@ObjectHolder("mob.dwarf.idle")
 	public static final SoundEvent soundIdleDwarf = null;
 
+	/** Midge Fly */
+	@ObjectHolder("mob.midgefly.idle")
+	public static final SoundEvent soundIdleMidgeFly = null;
+
 	/** Goblin */
 	@ObjectHolder("mob.goblin.idle")
 	public static final SoundEvent soundIdleGoblin = null;
@@ -258,6 +262,9 @@ public class SoundInit
 
                     /* Dwarf */
 					"mob.dwarf.idle",
+
+					/* Midge Fly */
+					"mob.midgefly.idle",
 
                     /* Goblin */
 					"mob.goblin.idle",

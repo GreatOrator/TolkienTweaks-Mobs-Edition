@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.world.biomes;
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.monster.EntityTMHuron;
+import com.greatorator.tolkienmobs.entity.monster.EntityTMMidgeFly;
 import com.greatorator.tolkienmobs.entity.monster.EntityTMMirkwoodSpider;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMToad;
 import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
@@ -80,6 +81,9 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
                 }
                 if (TTMConfig.enableHurons) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityTMHuron.class, 8, 1, 2));
+                }
+                if (TTMConfig.enableMidgeFlies) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMMidgeFly.class, 4, 1, 1));
                 }
             }
             if (TTMConfig.enablePassive) {

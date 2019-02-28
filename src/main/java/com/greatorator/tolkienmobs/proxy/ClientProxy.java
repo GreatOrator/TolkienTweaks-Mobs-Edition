@@ -2,29 +2,31 @@ package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.TTMClientEvents;
+import com.greatorator.tolkienmobs.client.render.RenderTMGeneric;
 import com.greatorator.tolkienmobs.client.render.entity.RenderBirds;
 import com.greatorator.tolkienmobs.client.render.entity.RenderHerds;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderBoulder;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderFellBeastFireball;
 import com.greatorator.tolkienmobs.client.render.entity.boss.RenderBalrog;
 import com.greatorator.tolkienmobs.client.render.entity.boss.RenderFellBeast;
-import com.greatorator.tolkienmobs.client.render.entity.special.RenderNazgul;
 import com.greatorator.tolkienmobs.client.render.entity.boss.RenderWitchKing;
 import com.greatorator.tolkienmobs.client.render.entity.monster.*;
 import com.greatorator.tolkienmobs.client.render.entity.passive.*;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderGollum;
+import com.greatorator.tolkienmobs.client.render.entity.special.RenderNazgul;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelCrebain;
+import com.greatorator.tolkienmobs.client.render.model.monster.ModelTMMidgeFly;
 import com.greatorator.tolkienmobs.client.render.model.passive.ModelAuroch;
 import com.greatorator.tolkienmobs.client.render.model.passive.ModelMumakil;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMBalrog;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
-import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMWitchKing;
 import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.entity.passive.*;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGollum;
+import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
 import com.greatorator.tolkienmobs.handler.FogHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -64,6 +66,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityTMGoblin.class, RenderGoblin.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMMordorOrc.class, RenderMordorOrc.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMWarg.class, RenderWarg.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMMidgeFly.class, m -> new RenderTMGeneric<>(m, new ModelTMMidgeFly(), 0.0F, "midgeflies.png"));
         RenderingRegistry.registerEntityRenderingHandler(
                 EntityTMCrebain.class,
                 RenderBirds.getRenderFactory(

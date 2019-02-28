@@ -662,5 +662,13 @@
     [
       "tolkienmobs:mob/ghostlylament"
     ]
+  },
+  "mob.midgefly.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/midgefly_say1"
+    ]
   }
 }

@@ -2,10 +2,7 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
-import com.greatorator.tolkienmobs.entity.passive.EntityTMAuroch;
-import com.greatorator.tolkienmobs.entity.passive.EntityTMGoat;
-import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
-import com.greatorator.tolkienmobs.entity.passive.EntityTMToad;
+import com.greatorator.tolkienmobs.entity.passive.*;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.block.BlockFlower;
@@ -93,6 +90,9 @@ public class BiomeShire extends Biome {
                 }
                 if (TTMConfig.enableGoats) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityTMGoat.class, 4, 2, 3));
+                }
+                if (TTMConfig.enableSquirrels) {
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMSquirrel.class, 4, 1, 1));
                 }
             }
         }

@@ -69,15 +69,17 @@ public class ProfessionInit {
                     .addTrade(2, new TradeHandler(new ItemStack(brons_coin,64), new ItemStack(silver_coin),1, 1));
 
         VillagerRegistry.VillagerCareer store_clerk = new VillagerCareer(GROCERY_STORE, "store_clerk");
-         store_clerk.addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.LEMBAS), new ItemStack(brons_coin),5, 36))
+         store_clerk.addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.LEMBAS), new ItemStack(brons_coin),5, 36))
                     .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.HONEY_CAKE), new ItemStack(brons_coin),3, 26))
                     .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.CRAM), new ItemStack(brons_coin),1, 16))
                     .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.ENT_DRAUGHT), new ItemStack(silver_coin),1, 5))
-                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.MIRUVOR), new ItemStack(silver_coin),2, 6));
+                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.MIRUVOR), new ItemStack(silver_coin),2, 6));
 
         VillagerRegistry.VillagerCareer pet_seller = new VillagerCareer(PET_MERCHANT, "pet_seller");
           pet_seller.addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.INSECT, 4), new ItemStack(brons_coin),5, 36))
-                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.GOLDEN_INSECT, 2), new ItemStack(brons_coin),10, 52));
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.GOLDEN_INSECT, 2), new ItemStack(brons_coin),10, 52))
+                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.TREE_ACORN, 3), new ItemStack(brons_coin),9, 48))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.GOLDEN_TREE_ACORN, 1), new ItemStack(brons_coin),18, 61));
 
         // DEBUG
         LogHelperTTM.info("All positions are now filled, thank you for applying.");
