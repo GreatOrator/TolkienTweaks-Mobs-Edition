@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.handler.TerrainEventHandler;
+import com.greatorator.tolkienmobs.handler.TMSpawnEvent;
 import com.greatorator.tolkienmobs.init.*;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomStructures;
@@ -36,6 +37,9 @@ public class CommonProxy {
     {
         ProfessionInit.associateCareersAndTrades();
         TTMConfig.loadPotionList();
+        if (disableVanilla){
+            MinecraftForge.EVENT_BUS.register(new TMSpawnEvent());
+        }
     }
 
     public void postInit(FMLPostInitializationEvent event) {
