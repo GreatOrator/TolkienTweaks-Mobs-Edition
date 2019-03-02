@@ -185,6 +185,8 @@ public class TTMConfig implements IModConfigHelper {
     /** Miscellaneous Configs */
     @ModConfigProperty(category = "Miscellaneous Configs", name = "enablePlayerDMG", comment = "Setting to true will enable the fake player for hallowed earth", requiresMCRestart = true, requiresSync = true)
     public static boolean enablePlayerDMG = false;
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "disableVanilla", comment = "Setting to false will enable Vanilla hostile mob spawning", requiresMCRestart = true, requiresSync = true)
+    public static boolean disableVanilla = true;
 
     /** Potion Types */
     @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array.")
