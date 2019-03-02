@@ -31,7 +31,7 @@ public class TTMConfig implements IModConfigHelper {
         comments.put("Passive Mobs", "Use these settings to disable any individual \nnaturally spawning Passive mobs. Note: This will potentially impact \nthe ability to get certain items as \nthey are only available from shop-keepers.");
         comments.put("Biomes", "Disable any or all Biomes added by this mod, some mobs \nwill only be available in these biomes, so if disabled it will \nautomatically make certain mobs unavailable.");
         comments.put("Potion Types", " This creates rings, charms, belts and amulets for \neach potion listed. They need to be added using the internal names like \nthe ones already listed.");
-        comments.put("Miscellaneous Configs", " Enable or Disable various options for \nblocks in this mod,  For example, disabling the ability of \nhallowed earth to damage as a player.");
+        comments.put("Miscellaneous Configs", " Enable or Disable various options for \nthis mod,  For example, disabling the ability of \nhallowed earth to damage as a player.");
     }
     @Override
     public Configuration createConfiguration(FMLPreInitializationEvent event) {
