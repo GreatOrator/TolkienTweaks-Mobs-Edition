@@ -61,6 +61,9 @@ public class BiomeIronHills extends Biome {
                 if (TTMConfig.enableGoats) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityTMGoat.class, 12, 2, 3));
                 }
+                if (TTMConfig.enableThrush) {
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMThrush.class, 12, 1, 1));
+                }
             }
         }
         this.spawnableMonsterList.add(new SpawnListEntry(EntityLlama.class, 12, 1, 3));
