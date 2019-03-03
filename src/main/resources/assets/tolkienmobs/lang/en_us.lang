@@ -234,6 +234,7 @@ entity.fellbeast.name=Fell Beast
 entity.nazgul.name=Nazgul
 entity.oathbreaker.name=Oath Breaker
 entity.midgefly.name=Midge Flies
+entity.thrush.name=Thrush
 
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer
