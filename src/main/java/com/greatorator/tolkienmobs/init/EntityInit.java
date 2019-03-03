@@ -117,6 +117,9 @@ public class EntityInit
             if (TTMConfig.enableSquirrels) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "sosquirrel"), EntityTMSquirrel.class, "sosquirrel", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0x4b3e2f);
             }
+            if (TTMConfig.enableThrush) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "thrush"), EntityTMThrush.class, "thrush", id++, TolkienMobs.instance, 64, 3, true, 0x2F9A9F, 0xD2691E);
+            }
         }
 
         /* Non-mob Entities */
@@ -181,6 +184,9 @@ public class EntityInit
                 }
                 if (TTMConfig.enableMumakil) {
                     EntityRegistry.addSpawn(EntityTMMumakil.class, 12, 1, 1, EnumCreatureType.CREATURE, Biomes.DESERT);
+                }
+                if (TTMConfig.enableThrush) {
+                    EntityRegistry.addSpawn(EntityTMThrush.class, 12, 1, 1, EnumCreatureType.CREATURE, Biomes.COLD_TAIGA);
                 }
             }
         }
