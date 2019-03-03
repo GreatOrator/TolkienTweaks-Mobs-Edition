@@ -272,7 +272,11 @@ public class ModelSOSquirrel extends ModelTTM {
         this.Neck.rotateAngleY = baseNeckRotation + (netHeadYaw * 0.017453292F);
         this.Neck.rotateAngleX = baseNeckRotation + (headPitch * 0.017453292F);
 
-        // flick tail
-        tail.rotateAngleX = baseTailRotation + ((float) Math.pow(MathHelper.cos(degToRad(entityIn.ticksExisted*3)), 6) * degToRad(15));
+        if (limbSwingAmount > 0.2) {
+            float flick = Math.min(limbSwingAmount, 0.6F);
+            this.tail.rotateAngleX = baseTailRotation + ((MathHelper.cos(ageInTicks * 0.6662F) * 1.0F - (float) Math.PI / 3) * flick);
+        } else {
+            this.tail.rotateAngleX = baseTailRotation + (0.2F + MathHelper.cos(ageInTicks * 0.3335F) * 0.15F);
+        }
     }
 }
