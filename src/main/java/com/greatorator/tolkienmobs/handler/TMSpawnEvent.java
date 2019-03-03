@@ -1,17 +1,13 @@
 package com.greatorator.tolkienmobs.handler;
 
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityEnderman;
-import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraft.entity.monster.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class TMSpawnEvent {
-@ForgeSubscribe
+@SubscribeEvent
   public void onEntitySpawn(EntityJoinWorldEvent event) {
-    if(event.entity instanceof EntitySkeleton || event.entity instanceof EntityZombie || event.entity instanceof EntitySpider || event.entity instance of EntityCreeper || event.entity instance of EntityEnderman) {
+    if(event.getEntity() instanceof EntitySkeleton || event.getEntity() instanceof EntitySlime || event.getEntity() instanceof EntityZombie || event.getEntity() instanceof EntitySpider || event.getEntity() instanceof EntityCreeper || event.getEntity() instanceof EntityEnderman) {
       event.setCanceled(true);
     }
   }

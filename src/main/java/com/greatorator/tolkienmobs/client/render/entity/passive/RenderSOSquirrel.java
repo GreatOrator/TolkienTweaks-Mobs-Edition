@@ -15,9 +15,9 @@ import javax.annotation.Nullable;
 
 public class RenderSOSquirrel extends RenderLiving<EntityTMSquirrel> {
     private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/sosquirrel/sosquirrel.png");
-    private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/sosquirrel/sosquirrel.png");
-    private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/sosquirrel/sosquirrel.png");
-    private static final ResourceLocation WHITE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/sosquirrel/sosquirrel.png");
+    private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/sosquirrel/sosquirrel2.png");
+    private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/sosquirrel/sosquirrel3.png");
+    private static final ResourceLocation WHITE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/sosquirrel/sosquirrel4.png");
 
     public static final RenderSOSquirrel.Factory FACTORY = new RenderSOSquirrel.Factory();
 
@@ -43,7 +43,7 @@ public class RenderSOSquirrel extends RenderLiving<EntityTMSquirrel> {
                 return BLUE;
             case 4:
                 return WHITE;
-            case 5:
+            case 99:
                 return WHITE;
         }
     }

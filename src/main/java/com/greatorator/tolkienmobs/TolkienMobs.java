@@ -4,6 +4,7 @@ import com.brandon3055.brandonscore.BrandonsCore;
 import com.brandon3055.brandonscore.registry.ModFeatureParser;
 import com.brandon3055.tolkientweaks.TolkienTweaks;
 import com.greatorator.tolkienmobs.client.TTMobsTab;
+import com.greatorator.tolkienmobs.init.PotionInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
@@ -46,6 +47,7 @@ public class TolkienMobs {
     public static CreativeTabs tabSignItems = new TTMobsTab("signs", () -> Items.SIGN);
 
     public TolkienMobs() {
+        new PotionInit();
         Logger ttLog = LogManager.getLogger("tolkientweaks");
         Logger bcLog = LogManager.getLogger("brandonscore");
         LogHelperTTM.info("Meeting of the Fellowship started! Waiting for the rest of the party to arrive...");

@@ -15,6 +15,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+import static com.greatorator.tolkienmobs.TTMConfig.disableVanilla;
+
 public class CommonProxy {
 
 
