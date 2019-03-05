@@ -6,6 +6,8 @@ import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMBalrog;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMGwaihir;
+import com.greatorator.tolkienmobs.entity.special.EntityTMGreatEagle;
 import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMWitchKing;
 import com.greatorator.tolkienmobs.entity.monster.*;
@@ -76,6 +78,9 @@ public class EntityInit
             if (TTMConfig.enableWitchKing) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "witchking"), EntityTMWitchKing.class, "witchking", id++, TolkienMobs.instance, 64, 3, true, 0xFB3366, 0x674F66);
             }
+            if (TTMConfig.enableGwaihir) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "gwaihir"), EntityTMGwaihir.class, "gwaihir", id++, TolkienMobs.instance, 64, 3, true, 0xFB3366, 0x285D2C);
+            }
         }
 
         if (TTMConfig.enableSpecial) {
@@ -85,6 +90,9 @@ public class EntityInit
             }
             if (TTMConfig.enableNazgul) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "nazgul"), EntityTMNazgul.class, "nazgul", id++, TolkienMobs.instance, 64, 3, true, 0xE5F50F, 0xF0C55B);
+            }
+            if (TTMConfig.enableGreatEagle) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "greateagle"), EntityTMGreatEagle.class, "greateagle", id++, TolkienMobs.instance, 64, 3, true, 0xE5F50F, 0x674F66);
             }
         }
 

@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.handler;
+package com.greatorator.tolkienmobs.utils;
 
 public class TTMRand {
 

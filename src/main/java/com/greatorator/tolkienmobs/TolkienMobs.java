@@ -4,12 +4,14 @@ import com.brandon3055.brandonscore.BrandonsCore;
 import com.brandon3055.brandonscore.registry.ModFeatureParser;
 import com.brandon3055.tolkientweaks.TolkienTweaks;
 import com.greatorator.tolkienmobs.client.TTMobsTab;
+import com.greatorator.tolkienmobs.utils.TTMDataFixes;
 import com.greatorator.tolkienmobs.init.PotionInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
+import net.minecraft.util.datafix.DataFixer;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -46,6 +48,8 @@ public class TolkienMobs {
     public static CreativeTabs tabQuestItems = new TTMobsTab("quest", () -> TTMFeatures.ITEM_FORTRESSMAP);
     public static CreativeTabs tabSignItems = new TTMobsTab("signs", () -> Items.SIGN);
 
+    private final DataFixer dataFixer;
+
     public TolkienMobs() {
         new PotionInit();
         Logger ttLog = LogManager.getLogger("tolkientweaks");
@@ -60,6 +64,12 @@ public class TolkienMobs {
             ttLog.log(Level.INFO, "...");
             LogHelperTTM.info("No party, no play!");
         }
+        this.dataFixer = TTMDataFixes.createFixer();
+    }
+
+    public DataFixer getDataFixer()
+    {
+        return this.dataFixer;
     }
     //I like to run the init events through the proxy because for one thing it makes your main class a lot cleaner
     //And it also makes it dead simple to manage client/server side code

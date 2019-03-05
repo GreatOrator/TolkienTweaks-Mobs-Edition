@@ -82,7 +82,7 @@ public class EntityTMBirds extends EntityFlying implements IModEntity
     {
         super.entityInit();
         dataManager.register(SCALE_FACTOR, 1.0F);
-        dataManager.register(STATE, AIStates.STATE_TAKING_OFF);
+        dataManager.register(STATE, AIStates.STATE_PERCHED);
         dataManager.register(SOAR_CLOCKWISE, world.rand.nextBoolean());
         dataManager.register(SOAR_HEIGHT, (float)(70-randFactor));
         dataManager.register(ANCHOR_POS, new BlockPos(posX, posY, posZ));
@@ -103,15 +103,16 @@ public class EntityTMBirds extends EntityFlying implements IModEntity
         clearAITasks();
      aiProcessState = new ProcessStateBirds(this);
      aiUpdateState = new UpdateStateBirds(this);
-     }
-         @Override
-         protected void applyEntityAttributes()
-         {
-         super.applyEntityAttributes();
-         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
-         getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
-         getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+    }
+
+    @Override
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+        getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
+        getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
+        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
     }
 
     @Override
@@ -171,13 +172,13 @@ public class EntityTMBirds extends EntityFlying implements IModEntity
     @Override
     public Item getDropItem()
     {
-        return Items.FEATHER;
+        return TTMFeatures.BIRD_FEATHER;
     }
 
     @Override
     protected void dropFewItems(boolean parRecentlyHitByPlayer, int parLootLevel)
     {
-        dropItem(TTMFeatures.CREBAIN_FEATHER, parLootLevel+1);
+        dropItem(TTMFeatures.BIRD_FEATHER, parLootLevel+1);
         return;
     }
 

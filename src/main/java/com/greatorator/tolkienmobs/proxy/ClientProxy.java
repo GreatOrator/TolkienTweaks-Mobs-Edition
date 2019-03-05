@@ -14,6 +14,7 @@ import com.greatorator.tolkienmobs.client.render.entity.monster.*;
 import com.greatorator.tolkienmobs.client.render.entity.passive.*;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderGollum;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderNazgul;
+import com.greatorator.tolkienmobs.client.render.model.boss.ModelTMGwaihir;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelCrebain;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelTMMidgeFly;
 import com.greatorator.tolkienmobs.client.render.model.passive.ModelAuroch;
@@ -23,10 +24,12 @@ import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMBalrog;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMGwaihir;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMWitchKing;
 import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.entity.passive.*;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGollum;
+import com.greatorator.tolkienmobs.entity.special.EntityTMGreatEagle;
 import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
 import com.greatorator.tolkienmobs.handler.FogHandler;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -85,6 +88,16 @@ public class ClientProxy extends CommonProxy {
         /* Special */
         RenderingRegistry.registerEntityRenderingHandler(EntityTMGollum.class, RenderGollum.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMNazgul.class, RenderNazgul.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(
+                EntityTMGreatEagle.class,
+                RenderTMBirds.getRenderFactory(
+                        new ModelTMGwaihir(),
+                        new ModelTMGwaihir(),
+                        0.5F,
+                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/greateagle.png"),
+                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/greateagle.png")
+                )
+        );
 
         /* Passive */
         RenderingRegistry.registerEntityRenderingHandler(EntityTMHobbit.class, RenderHobbit.FACTORY);
@@ -118,6 +131,16 @@ public class ClientProxy extends CommonProxy {
                         0.5F,
                         new ResourceLocation(TolkienMobs.MODID + ":textures/entity/thrush.png"),
                         new ResourceLocation(TolkienMobs.MODID + ":textures/entity/bird_legband.png")
+                )
+        );
+        RenderingRegistry.registerEntityRenderingHandler(
+                EntityTMGwaihir.class,
+                RenderTMBirds.getRenderFactory(
+                        new ModelTMGwaihir(),
+                        new ModelTMGwaihir(),
+                        0.5F,
+                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/greateagle.png"),
+                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/greateagle.png")
                 )
         );
 

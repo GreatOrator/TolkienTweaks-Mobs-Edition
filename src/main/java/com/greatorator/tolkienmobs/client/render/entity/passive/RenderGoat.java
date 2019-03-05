@@ -12,13 +12,10 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import javax.annotation.Nullable;
 
 public class RenderGoat extends RenderLiving<EntityTMGoat> {
-
-    private static final ResourceLocation[] mobTexture = new ResourceLocation[5];
-    static {
-        for (int i = 0; i < 5; i++) {
-            mobTexture[ i ] = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goat/goat" + i + ".png");
-        }
-    }
+    private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goat/goat1.png");
+    private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goat/goat2.png");
+    private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goat/goat3.png");
+    private static final ResourceLocation WHITE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/goat/goat4.png");
 
     public static final RenderGoat.Factory FACTORY = new RenderGoat.Factory();
 
@@ -29,8 +26,21 @@ public class RenderGoat extends RenderLiving<EntityTMGoat> {
     @Nullable
     @Override
     protected ResourceLocation getEntityTexture(EntityTMGoat entity) {
-        int index = entity.getTextureIndex();
-        return mobTexture[index];
+        switch (entity.getMobType()) {
+            case 0:
+            default:
+                return GREEN;
+            case 1:
+                return GREEN;
+            case 2:
+                return BLACK;
+            case 3:
+                return BLUE;
+            case 4:
+                return WHITE;
+            case 5:
+                return WHITE;
+        }
     }
 
     public static class Factory implements IRenderFactory<EntityTMGoat> {

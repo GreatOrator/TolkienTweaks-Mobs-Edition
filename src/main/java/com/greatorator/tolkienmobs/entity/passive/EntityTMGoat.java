@@ -1,25 +1,29 @@
 package com.greatorator.tolkienmobs.entity.passive;
 
-import com.greatorator.tolkienmobs.handler.TTMRand;
+import com.greatorator.tolkienmobs.utils.TTMRand;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
-import io.netty.buffer.ByteBuf;
 import net.minecraft.block.SoundType;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
-import net.minecraft.entity.passive.EntityDonkey;
+import net.minecraft.entity.passive.AbstractChestHorse;
+import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.datafix.DataFixer;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 
 import javax.annotation.Nullable;
 
-public class EntityTMGoat extends EntityDonkey implements IEntityAdditionalSpawnData {
-    private int texture_index;
+public class EntityTMGoat extends AbstractChestHorse {
+    private static final DataParameter<Integer> SKIN_TYPE = EntityDataManager.<Integer>createKey(EntityTMGoat.class, DataSerializers.VARINT);
 
     public EntityTMGoat(World worldIn) {
         super(worldIn);
@@ -28,21 +32,41 @@ public class EntityTMGoat extends EntityDonkey implements IEntityAdditionalSpawn
 
     protected void entityInit() {
         super.entityInit();
-    }
-
-    public int getTextureIndex() {
-        return this.texture_index;
+        this.dataManager.register(SKIN_TYPE, Integer.valueOf(0));
     }
 
     @Nullable
-    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata)
-    {
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
         IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
         this.setEquipmentBasedOnDifficulty(difficulty);
-        if (texture_index == 0){
-            texture_index = TTMRand.getRandomInteger(5, 1);
+        int i = this.getRandomMobType();
+
+        if (ientitylivingdata instanceof EntityTMGoat.MobTypeData)
+        {
+            i = ((EntityTMGoat.MobTypeData)livingdata).typeData;
         }
+        else
+        {
+            ientitylivingdata = new EntityTMGoat.MobTypeData(i);
+        }
+
+        this.setMobType(i);
         return ientitylivingdata;
+    }
+
+    public static class MobTypeData implements IEntityLivingData
+    {
+        public int typeData;
+
+        public MobTypeData(int type)
+        {
+            this.typeData = type;
+        }
+    }
+
+    public static void registerFixesGoat(DataFixer fixer)
+    {
+        AbstractChestHorse.registerFixesAbstractChestHorse(fixer, EntityTMGoat.class);
     }
 
     @Override
@@ -85,16 +109,6 @@ public class EntityTMGoat extends EntityDonkey implements IEntityAdditionalSpawn
     }
 
     @Override
-    public void writeSpawnData(ByteBuf buffer) {
-        buffer.writeInt(this.texture_index);
-    }
-
-    @Override
-    public void readSpawnData(ByteBuf buffer) {
-        this.texture_index = buffer.readInt();
-    }
-
-    @Override
     @Nullable
     protected ResourceLocation getLootTable() {
         return LootInit.GOAT;
@@ -108,12 +122,50 @@ public class EntityTMGoat extends EntityDonkey implements IEntityAdditionalSpawn
     @Override
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
-        compound.setInteger("texture_index", texture_index);
+        compound.setInteger("SkinType", this.getMobType());
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
-        texture_index = compound.getInteger("texture_index");
+        this.setMobType(compound.getInteger("SkinType"));
+    }
+
+    public boolean canMateWith(EntityAnimal otherAnimal)
+    {
+        if (otherAnimal == this)
+        {
+            return false;
+        }
+        else if (!(otherAnimal instanceof EntityTMGoat))
+        {
+            return false;
+        }
+        else
+        {
+            return this.canMate();
+        }
+    }
+
+    public EntityAgeable createChild(EntityAgeable ageable)
+    {
+        EntityTMGoat abstractgoat = (EntityTMGoat)(ageable instanceof EntityTMGoat ? new EntityTMGoat(this.world) : new EntityTMGoat(this.world));
+        this.setOffspringAttributes(ageable, abstractgoat);
+        return abstractgoat;
+    }
+
+    public int getMobType()
+    {
+        return ((Integer)this.dataManager.get(SKIN_TYPE)).intValue();
+    }
+
+    public void setMobType(int mobTypeId){
+        this.dataManager.set(SKIN_TYPE, Integer.valueOf(mobTypeId));
+    }
+
+    private int getRandomMobType()
+    {
+        int i = TTMRand.getRandomInteger(5, 1);
+        return i;
     }
 }

@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
 import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
-import com.greatorator.tolkienmobs.handler.TTMRand;
+import com.greatorator.tolkienmobs.utils.TTMRand;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.block.Block;

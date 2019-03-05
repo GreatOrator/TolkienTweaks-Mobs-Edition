@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMDwarf;
-import com.greatorator.tolkienmobs.handler.TTMRand;
+import com.greatorator.tolkienmobs.utils.TTMRand;
 import com.greatorator.tolkienmobs.init.ProfessionInit;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.*;

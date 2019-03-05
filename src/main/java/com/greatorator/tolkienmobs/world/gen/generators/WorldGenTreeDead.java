@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.world.gen.generators;
 
-import com.greatorator.tolkienmobs.handler.TTMRand;
+import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;

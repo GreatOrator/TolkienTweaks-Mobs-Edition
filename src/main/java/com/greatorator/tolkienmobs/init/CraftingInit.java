@@ -95,6 +95,7 @@ public class CraftingInit {
 
         /* Monster Drops */
         OreDictionary.registerOre("feather", new ItemStack(TTMFeatures.CREBAIN_FEATHER));
+        OreDictionary.registerOre("feather", new ItemStack(TTMFeatures.BIRD_FEATHER));
         OreDictionary.registerOre("leather", new ItemStack(TTMFeatures.MUMAKIL_LEATHER));
         OreDictionary.registerOre("fur", new ItemStack(TTMFeatures.MONSTER_FUR));
     }

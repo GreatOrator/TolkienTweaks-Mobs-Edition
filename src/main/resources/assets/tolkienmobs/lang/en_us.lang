@@ -143,6 +143,7 @@ tipped_arrow.effect.elf_vitality=Arrow of Elvish Life-span
 
 //Monster Drops
 item.tolkienmobs:feather_crebain.name=Crebain Feather
+item.tolkienmobs:feather_bird.name=Bird Feather
 item.tolkienmobs:leather_mumakil.name=Mumakil Hide
 item.tolkienmobs:monster_fur.name=Monster Fur
 
@@ -242,6 +243,8 @@ entity.nazgul.name=Nazgul
 entity.oathbreaker.name=Oath Breaker
 entity.midgefly.name=Midge Flies
 entity.thrush.name=Thrush
+entity.gwaihir.name=Gwaihir
+entity.greateagle.name=Great Eagle
 
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer

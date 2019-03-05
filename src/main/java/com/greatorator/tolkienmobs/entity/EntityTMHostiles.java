@@ -7,7 +7,7 @@ import com.greatorator.tolkienmobs.entity.passive.EntityTMDwarf;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMElves;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMHuman;
-import com.greatorator.tolkienmobs.handler.TTMRand;
+import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;

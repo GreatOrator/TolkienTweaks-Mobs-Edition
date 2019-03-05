@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.entityai;
 
 import com.greatorator.tolkienmobs.entity.EntityTMBirds;
-import com.greatorator.tolkienmobs.handler.TTMUtilities;
+import com.greatorator.tolkienmobs.utils.TTMUtilities;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.math.Vec3d;
 

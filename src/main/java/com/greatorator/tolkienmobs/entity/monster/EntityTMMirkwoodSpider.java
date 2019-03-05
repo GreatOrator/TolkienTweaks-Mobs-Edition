@@ -38,7 +38,7 @@ public class EntityTMMirkwoodSpider extends EntityMob {
         this.setSize(1.4F, 0.9F);
     }
 
-    public static void registerFixesSpider(DataFixer fixer) {
+    public static void registerFixesMirkwoodSpider(DataFixer fixer) {
         EntityLiving.registerFixesMob(fixer, EntityTMMirkwoodSpider.class);
     }
 

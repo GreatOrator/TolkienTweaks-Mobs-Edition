@@ -129,12 +129,16 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableFellBeast = true;
     @ModConfigProperty(category = "Boss Mobs", name = "enableWitchKing", comment = "Setting this to false will disable the Witch King", requiresMCRestart = true, requiresSync = true)
     public static boolean enableWitchKing = true;
+    @ModConfigProperty(category = "Boss Mobs", name = "enableGwaihir", comment = "Setting this to false will disable Gwaihir", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableGwaihir = true;
 
     /** Special mobs - Individual*/
     @ModConfigProperty(category = "Special Mobs", name = "enableGollum", comment = "Setting this to false will disable Gollum", requiresMCRestart = true, requiresSync = true)
     public static boolean enableGollum = true;
     @ModConfigProperty(category = "Special Mobs", name = "enableNazgul", comment = "Setting this to false will disable the Nazgul", requiresMCRestart = true, requiresSync = true)
     public static boolean enableNazgul = true;
+    @ModConfigProperty(category = "Special Mobs", name = "enableGreatEagle", comment = "Setting this to false will disable the Great Eagles", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableGreatEagle = true;
 
     /** Passive mobs - Individual*/
     @ModConfigProperty(category = "Passive Mobs", name = "enableAuroch", comment = "Setting this to false will disable Aurochs", requiresMCRestart = true, requiresSync = true)
