@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.world.biomes;
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMDwarf;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMGoat;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMThrush;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.block.BlockSilverfish;
 import net.minecraft.entity.passive.EntityLlama;

@@ -13,6 +13,7 @@ public class EntityTMCrebain extends EntityTMBirds {
     public EntityTMCrebain(World parWorld)
     {
         super(parWorld);
+        this.setSize(0.3F, 0.3F);
     }
 
     @Override

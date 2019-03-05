@@ -153,8 +153,10 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableMumakil = true;
     @ModConfigProperty(category = "Passive Mobs", name = "enableFrogs", comment = "Setting this to false will disable Frogs", requiresMCRestart = true, requiresSync = true)
     public static boolean enableFrogs = true;
-    @ModConfigProperty(category = "Passive Mobs", name = "enableSquirrels", comment = "Setting this to false will disable Society Squirrel", requiresMCRestart = true, requiresSync = true)
+    @ModConfigProperty(category = "Passive Mobs", name = "enableSquirrels", comment = "Setting this to false will disable Society Squirrels", requiresMCRestart = true, requiresSync = true)
     public static boolean enableSquirrels = true;
+    @ModConfigProperty(category = "Passive Mobs", name = "enableThrush", comment = "Setting this to false will disable the Thrush", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableThrush = true;
 
     /** Biomes */
     @ModConfigProperty(category = "Biomes", name = "enableBarrowDowns", comment = "Setting this to false will disable the Barrow Downs Biome", requiresMCRestart = true, requiresSync = true)
@@ -190,7 +192,7 @@ public class TTMConfig implements IModConfigHelper {
 
     /** Potion Types */
     @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array.")
-    public static String[] potionTypeArray = new String[]{"tolkienmobs:ent_draught", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:glowing", "minecraft:fire_resistance"};
+    public static String[] potionTypeArray = new String[]{"tolkienmobs:elf_vitality", "tolkienmobs:ent_draught", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:glowing", "minecraft:fire_resistance"};
 
     public static Potion[] potionArray = new Potion[0];
 

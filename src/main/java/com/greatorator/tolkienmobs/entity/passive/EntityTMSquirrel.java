@@ -38,7 +38,7 @@ public class EntityTMSquirrel extends EntityCreature implements IAnimals {
     public EntityTMSquirrel(World worldIn)
     {
         super(worldIn);
-        this.setSize(0.3F, 1.2F);
+        this.setSize(0.3F, 0.8F);
     }
 
     protected void initEntityAI()

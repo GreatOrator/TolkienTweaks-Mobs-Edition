@@ -9,12 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
-/*
-  Crebain - GreatOrator
- */
-/**
- * Borrowed from Jabelar https://github.com/jabelar
- */
+/* Crebain - GreatOrator */
 @SideOnly(Side.CLIENT)
 public class ModelCrebain extends ModelTTM {
     public ModelRenderer CrebainBody;

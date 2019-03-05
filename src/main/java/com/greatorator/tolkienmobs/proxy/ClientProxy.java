@@ -2,8 +2,8 @@ package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.TTMClientEvents;
-import com.greatorator.tolkienmobs.client.render.entity.RenderTMGeneric;
 import com.greatorator.tolkienmobs.client.render.entity.RenderTMBirds;
+import com.greatorator.tolkienmobs.client.render.entity.RenderTMGeneric;
 import com.greatorator.tolkienmobs.client.render.entity.RenderTMHerds;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderBoulder;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderFellBeastFireball;
@@ -18,6 +18,7 @@ import com.greatorator.tolkienmobs.client.render.model.monster.ModelCrebain;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelTMMidgeFly;
 import com.greatorator.tolkienmobs.client.render.model.passive.ModelAuroch;
 import com.greatorator.tolkienmobs.client.render.model.passive.ModelMumakil;
+import com.greatorator.tolkienmobs.client.render.model.passive.ModelThrush;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMBalrog;
@@ -107,6 +108,16 @@ public class ClientProxy extends CommonProxy {
                         new ModelAuroch(),
                         0.5F,
                         new ResourceLocation(TolkienMobs.MODID + ":textures/entity/auroch.png")
+                )
+        );
+        RenderingRegistry.registerEntityRenderingHandler(
+                EntityTMThrush.class,
+                RenderTMBirds.getRenderFactory(
+                        new ModelThrush(),
+                        new ModelThrush(),
+                        0.5F,
+                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/thrush.png"),
+                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/bird_legband.png")
                 )
         );
 

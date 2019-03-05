@@ -51,7 +51,7 @@ public class ItemTrinketRing extends ItemBCore implements IBauble {
         if(isEnabled(stack)){
             //World world = entity.getEntityWorld();
             //boolean flag = false;
-            player.addPotionEffect(new PotionEffect(pe,500,3,false,false));
+            player.addPotionEffect(new PotionEffect(pe,2400,3,false,false));
             //LogHelperTTM.info("Ring has been enabled");
         }else {
             player.removePotionEffect(pe);

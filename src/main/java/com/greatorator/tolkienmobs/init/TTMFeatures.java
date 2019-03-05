@@ -288,6 +288,8 @@ public class TTMFeatures implements IModFeatures {
     public static Item MIRUVOR = new TTMFood(5, 5, new PotionEffect(MobEffects.SPEED,3000,3), new PotionEffect(MobEffects.REGENERATION, 600, 3), new PotionEffect(MobEffects.NAUSEA, 40, 3));
     @ModFeature(name = "potion_grog", stateOverride = "simple_items#type=potion_grog", cTab = 3)
     public static Item GROG = new TTMFood(5, 5, new PotionEffect(MobEffects.SPEED,1500,3), new PotionEffect(MobEffects.REGENERATION, 300, 3), new PotionEffect(MobEffects.NAUSEA, 100, 3));
+    @ModFeature(name = "potion_elvishhealth", stateOverride = "simple_items#type=potion_elvishhealth", cTab = 3)
+    public static Item ELVISH_HEALTH = new TTMFood(5, 5, new PotionEffect(PotionInit.ELF_VITALITY,15000,3));
     @ModFeature(name = "monster_flesh", stateOverride = "simple_items#type=monster_flesh", cTab = 3)
     public static Item MONSTER_FLESH = new TTMFood(5, 2, new PotionEffect(MobEffects.HUNGER,100,2));
     @ModFeature(name = "food_insect", stateOverride = "simple_items#type=food_insect", cTab = 3)

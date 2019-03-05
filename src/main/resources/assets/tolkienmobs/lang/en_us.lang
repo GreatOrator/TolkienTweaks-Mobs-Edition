@@ -127,12 +127,19 @@ item.tolkienmobs:monster_flesh.name=Monster Flesh
 item.tolkienmobs:potion_entdraught.name=Ent Draught
 item.tolkienmobs:potion_miruvor.name=Miruvor
 item.tolkienmobs:potion_grog.name=Grog
+item.tolkienmobs:potion_elvishhealth.name=Vitality
 
 //Potion Information
 effect.ent_draught=Ent Draught
 potion.effect.ent_draught=Potion of Ent Draught
 splash_potion.effect.ent_draught=Splash Potion of Ent Draught
+lingering_potion.effect.ent_draught=Lingering Potion of Ent Draught
 tipped_arrow.effect.ent_draught=Arrow of Ent Draught
+effect.elf_vitality=Elvish Life-span
+potion.effect.elf_vitality=Potion of Elvish Life-span
+splash_potion.effect.elf_vitality=Splash Potion of Elvish Life-span
+lingering_potion.effect.elf_vitality=Lingering Potion of Elvish Life-span
+tipped_arrow.effect.elf_vitality=Arrow of Elvish Life-span
 
 //Monster Drops
 item.tolkienmobs:feather_crebain.name=Crebain Feather

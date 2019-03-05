@@ -1,18 +1,16 @@
 package com.greatorator.tolkienmobs.entity;
 
-import java.util.UUID;
-
 import com.google.common.base.Optional;
-
 import com.greatorator.tolkienmobs.entity.entityai.AIStates;
 import com.greatorator.tolkienmobs.entity.entityai.ProcessStateBirds;
 import com.greatorator.tolkienmobs.entity.entityai.UpdateStateBirds;
 import com.greatorator.tolkienmobs.entity.events.BirdTameEvent;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMSquirrel;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMToad;
 import com.greatorator.tolkienmobs.handler.interfaces.IModEntity;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityFlying;
@@ -45,6 +43,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.UUID;
+
 /** Borrowed from Jabelar https:/**github.com/jabelar */
 public class EntityTMBirds extends EntityFlying implements IModEntity
 {
@@ -64,7 +64,7 @@ public class EntityTMBirds extends EntityFlying implements IModEntity
     protected int randFactor;
 
     @SuppressWarnings("rawtypes")
-    private Class[] preyArray = new Class[] {EntityChicken.class, EntityBat.class, EntityRabbit.class, EntityParrot.class};
+    private Class[] preyArray = new Class[] {EntityChicken.class, EntityBat.class, EntityRabbit.class, EntityParrot.class, EntityTMToad.class, EntityTMSquirrel.class};
 
     private final double TAMED_HEALTH = 30.0D;
 
@@ -110,8 +110,8 @@ public class EntityTMBirds extends EntityFlying implements IModEntity
          super.applyEntityAttributes();
          getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
          getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
-        getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
-        getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
+         getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
+         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
     }
 
     @Override

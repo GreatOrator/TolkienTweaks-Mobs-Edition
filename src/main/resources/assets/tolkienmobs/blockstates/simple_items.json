@@ -25,6 +25,7 @@
       "potion_entdraught":   {"textures": {"layer0": "tolkienmobs:items/potion_entdraught"}},
       "potion_miruvor":   {"textures": {"layer0": "tolkienmobs:items/potion_miruvor"}},
       "potion_grog":   {"textures": {"layer0": "tolkienmobs:items/potion_grog"}},
+      "potion_elvishhealth":   {"textures": {"layer0": "tolkienmobs:items/potion_elvishhealth"}},
       "feather_crebain":   {"textures": {"layer0": "tolkienmobs:items/feather_crebain"}},
       "leather_mumakil":   {"textures": {"layer0": "tolkienmobs:items/leather_mumakil"}},
       "monster_flesh":   {"textures": {"layer0": "tolkienmobs:items/monster_flesh"}},
