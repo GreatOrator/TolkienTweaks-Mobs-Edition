@@ -35,11 +35,17 @@ public class BiomeProviderTTM extends BiomeProvider {
         GenLayer biomes = new GenLayerBiomesArda(1);
 
         biomes = new GenLayerBiomesArda(1000, biomes);
-        biomes = new GenLayerZoom(1000, biomes);
-        biomes = new GenLayerZoom(1001, biomes);
-        biomes = new GenLayerZoom(1002, biomes);
-        biomes = new GenLayerZoom(1003, biomes);
-        biomes = new GenLayerZoom(1004, biomes);
+        biomes = new GenLayerZoom(1001L, biomes);
+        biomes = new GenLayerZoom(1002L, biomes);
+        biomes = new GenLayerZoom(1003L, biomes);
+        biomes = new GenLayerZoom(1004L, biomes);
+        biomes = new GenLayerZoom(1005L, biomes);
+        biomes = new GenLayerZoom(1006L, biomes);
+        biomes = new GenLayerZoom(1007L, biomes);
+        biomes = new GenLayerZoom(1008L, biomes);
+        biomes = new GenLayerZoom(1009L, biomes);
+        biomes = new GenLayerZoom(1010L, biomes);
+        biomes = new GenLayerZoom(1011L, biomes);
 
         GenLayer biomeIndexLayer = new GenLayerVoronoiZoom(10L, biomes);
         biomeIndexLayer.initWorldGenSeed(seed);
