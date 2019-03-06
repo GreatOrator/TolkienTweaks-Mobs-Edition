@@ -190,6 +190,8 @@ tile.tolkienmobs:flower_simbelmyne.name=Simbelmyne
 tile.tolkienmobs:flower_niphredil.name=Niphredil
 tile.tolkienmobs:flower_athelas.name=Kingsfoil
 tile.tolkienmobs:flower_alfirin.name=Alfirin
+tile.tolkienmobs:flower_valley_lilly.name=Lilly of the Valley
+tile.tolkienmobs:flower_swamp_milkweed.name=Swamp Milkweed
 
 //Signs
 tile.tolkienmobs:sign_empty.name=Blank Sign

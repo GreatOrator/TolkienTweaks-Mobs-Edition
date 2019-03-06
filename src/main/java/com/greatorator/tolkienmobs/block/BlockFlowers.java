@@ -103,7 +103,9 @@ public class BlockFlowers extends BlockBush implements IBCoreBlock {
         MIRKWOOD(1, "mirkwood"),
         ALFIRIN(2, "alfirin"),
         ATHELAS(3, "athelas"),
-        NIPHREDIL(4, "niphredil");
+        NIPHREDIL(4, "niphredil"),
+        SWAMPMILKWEED(5, "swamp_milkweed"),
+        LILLYOFTHEVALLEY(6, "valley_lilly");
 
         private static final EnumType[] META_LOOKUP = new EnumType[values().length];
         public static final Map<Integer, String> FLOWER_NAME_LOOKUP = new LinkedHashMap<>();

@@ -30,6 +30,16 @@
         "textures": {
           "cross":  "tolkienmobs:blocks/flower_niphredil"
         }
+      },
+      "swamp_milkweed": {
+        "textures": {
+          "cross":  "tolkienmobs:blocks/flower_swamp_milkweed"
+        }
+      },
+      "valley_lilly": {
+        "textures": {
+          "cross":  "tolkienmobs:blocks/flower_valley_lilly"
+        }
       }
     },
     "inventory": [{}],
