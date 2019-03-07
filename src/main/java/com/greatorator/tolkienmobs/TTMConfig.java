@@ -185,6 +185,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableMirkwood = true;
     @ModConfigProperty(category = "Biomes", name = "enableMordor", comment = "Setting this to false will disable the Mordor Biome", requiresMCRestart = true, requiresSync = true)
     public static boolean enableMordor = true;
+    @ModConfigProperty(category = "Biomes", name = "enableNindalf", comment = "Setting this to false will disable the Nindalf Marshes Biome", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableNindalf = true;
     @ModConfigProperty(category = "Biomes", name = "enableShire", comment = "Setting this to false will disable the Shire Biome", requiresMCRestart = true, requiresSync = true)
     public static boolean enableShire = true;
 

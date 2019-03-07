@@ -22,6 +22,7 @@ public class BiomeInit
     public static final Biome DAGORLAD = new BiomeDagorlad();
     public static final Biome FANGORN = new BiomeFangorn();
     public static final Biome MORDOR = new BiomeMordor();
+    public static final Biome NINDALF = new BiomeMarshes();
 
     /** Passive Biomes */
     public static final Biome SHIRE = new BiomeShire();
@@ -42,7 +43,7 @@ public class BiomeInit
             initBiome(MIRKWOOD, "Mirkwood", BiomeType.COOL, Type.SWAMP, Type.FOREST, Type.SPOOKY);
         }
         if (TTMConfig.enableHithaeglir) {
-            initBiome(HITHAEGLIR, "Hithaeglir", BiomeType.ICY, Type.MOUNTAIN, Type.DEAD, Type.SPARSE);
+            initBiome(HITHAEGLIR, "Hithaeglir", BiomeType.ICY, Type.MOUNTAIN, Type.SPARSE);
         }
         if (TTMConfig.enableHaradwaith) {
             initBiome(HARADWAITH, "Haradwaith", BiomeType.DESERT, Type.HOT, Type.DRY, Type.DEAD, Type.SPARSE);
@@ -54,7 +55,10 @@ public class BiomeInit
             initBiome(FANGORN, "Fangorn Forest", BiomeType.COOL, Type.FOREST, Type.LUSH);
         }
         if (TTMConfig.enableMordor) {
-            initBiome(MORDOR, "Mordor", BiomeType.DESERT, Type.HOT, Type.NETHER, Type.DEAD, Type.DRY);
+            initBiome(MORDOR, "Mordor", BiomeType.DESERT, Type.HOT, Type.NETHER, Type.DEAD, Type.WASTELAND);
+        }
+        if (TTMConfig.enableNindalf) {
+            initBiome(NINDALF, "Nindalf Marshes", BiomeType.WARM, Type.SWAMP, Type.DEAD, Type.LUSH);
         }
 
         /* Passive Biomes */
@@ -68,7 +72,7 @@ public class BiomeInit
             initBiome(IRON_HILLS, "Iron Hills", BiomeType.COOL, Type.MOUNTAIN, Type.SPARSE);
         }
         if (TTMConfig.enableFirien) {
-            initBiome(FIRIEN, "Firien Wood", BiomeType.COOL, Type.FOREST, Type.LUSH);
+            initBiome(FIRIEN, "Firien Wood", BiomeType.COOL, Type.FOREST, Type.LUSH, Type.MAGICAL);
         }
         LogHelperTTM.info("New lands to explore get!");
     }

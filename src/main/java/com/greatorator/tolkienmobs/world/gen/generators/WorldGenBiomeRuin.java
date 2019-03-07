@@ -1,5 +1,7 @@
 package com.greatorator.tolkienmobs.world.gen.generators;
 
+import com.greatorator.tolkienmobs.handler.interfaces.ITTMStructure;
+import com.greatorator.tolkienmobs.handler.interfaces.ITTMStructureSummon;
 import com.greatorator.tolkienmobs.init.LootInit;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockStoneBrick;
@@ -14,7 +16,8 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import java.util.Random;
 
-public class WorldGenBiomeRuin extends WorldGenAbstractTree {
+public class WorldGenBiomeRuin extends WorldGenAbstractTree implements ITTMStructure, ITTMStructureSummon {
+    public static final WorldGenBiomeRuin INSTANCE = new WorldGenBiomeRuin(true);
 
     public WorldGenBiomeRuin(boolean notify) {
         super(notify);
@@ -376,7 +379,7 @@ public class WorldGenBiomeRuin extends WorldGenAbstractTree {
             world.setBlockState(var9.add(-4, 0, -3), this.getRandomState(random));
             world.setBlockState(var9.add(-4, 0, -2), Blocks.CHEST.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST));
             TileEntityChest var11 = (TileEntityChest) world.getTileEntity(var9.add(-4, 0, -2));
-            ResourceLocation var12 = random.nextInt(3) == 0 ? LootInit.BARROW_GRAVE : LootInit.BARROW_CHEST;
+            ResourceLocation var12 = random.nextInt(3) == 0 ? LootInit.REMOTE_RUINS : LootInit.HOBBIT_HOUSE;
 
             for (int treasureSize = 0; treasureSize < 2 + random.nextInt(2); ++treasureSize) {
                 var11.setLootTable(var12, random.nextLong());

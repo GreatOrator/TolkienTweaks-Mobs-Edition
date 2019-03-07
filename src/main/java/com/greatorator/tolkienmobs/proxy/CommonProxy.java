@@ -1,9 +1,10 @@
 package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.TTMConfig;
+import com.greatorator.tolkienmobs.commands.TTMCommandSpawn;
 import com.greatorator.tolkienmobs.handler.TerrainEventHandler;
-import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import com.greatorator.tolkienmobs.init.*;
+import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomStructures;
 import com.greatorator.tolkienmobs.world.types.WorldTypeArda;
@@ -13,6 +14,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import static com.greatorator.tolkienmobs.TTMConfig.disableVanilla;
@@ -46,5 +48,10 @@ public class CommonProxy {
 
     public void postInit(FMLPostInitializationEvent event) {
         WorldType ARDA = new WorldTypeArda("Arda");
+    }
+
+    public static void serverRegistries(FMLServerStartingEvent event)
+    {
+        event.registerServerCommand(new TTMCommandSpawn());
     }
 }

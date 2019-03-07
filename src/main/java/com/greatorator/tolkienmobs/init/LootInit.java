@@ -47,6 +47,9 @@ public class LootInit {
     /** Chests */
     public static final ResourceLocation BARROW_CHEST = register("chests/barrow_chest");
     public static final ResourceLocation BARROW_GRAVE = register("chests/barrow_grave");
+    public static final ResourceLocation HOBBIT_GROCER = register("chests/hobbit_grocer");
+    public static final ResourceLocation HOBBIT_HOUSE = register("chests/hobbit_house");
+    public static final ResourceLocation REMOTE_RUINS = register("chests/desolate_ruins");
 
     private static ResourceLocation register(String id)
     {

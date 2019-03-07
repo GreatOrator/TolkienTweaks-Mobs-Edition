@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.world.gen;
 import com.greatorator.tolkienmobs.world.biomes.BiomeBarrowDowns;
 import com.greatorator.tolkienmobs.world.biomes.BiomeShire;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeBarrow;
+import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeHobbitGrocer;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeHobbitHouse;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -19,6 +20,9 @@ import java.util.List;
 import java.util.Random;
 
 public class WorldGenCustomStructures implements IWorldGenerator {
+    WorldGenBiomeBarrow BARROW = new WorldGenBiomeBarrow();
+    WorldGenBiomeHobbitHouse HOBBITHOUSE = new WorldGenBiomeHobbitHouse();
+    WorldGenBiomeHobbitGrocer HOBBITGROCER = new WorldGenBiomeHobbitGrocer();
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         switch (world.provider.getDimension()) {
@@ -27,8 +31,9 @@ public class WorldGenCustomStructures implements IWorldGenerator {
                 break;
 
             case 0:
-                generateStructure(new WorldGenBiomeBarrow(), world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeBarrowDowns.class);
-                generateStructure(new WorldGenBiomeHobbitHouse(), world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeShire.class);
+                generateStructure(BARROW, world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeBarrowDowns.class);
+                generateStructure(HOBBITHOUSE, world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeShire.class);
+                generateStructure(HOBBITGROCER, world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeShire.class);
 
                 break;
 

@@ -1,3 +1,10 @@
+//Commands
+commands.generate.unknown_structure=Unknown Structure!
+commands.coordinate_error=You can't place that there!
+commands.not_enough_parameters=Not enough information to spawn structure!
+commands.tmspawn.usage=/tmstructurespawn <structure name> <x> <y> <z>
+
+
 //Item Information
 item.tolkienmobs:spawn_egg.name=Spawn
 
@@ -195,9 +202,9 @@ tile.tolkienmobs:flower_swamp_milkweed.name=Swamp Milkweed
 
 //Signs
 tile.tolkienmobs:sign_empty.name=Blank Sign
-tile.tolkienmobs:sign_arcane1.name=Acane & Sundries
-tile.tolkienmobs:sign_arcane2.name=Acane & Sundries
-tile.tolkienmobs:sign_arcane3.name=Acane & Sundries
+tile.tolkienmobs:sign_arcane1.name=Arcane & Sundries
+tile.tolkienmobs:sign_arcane2.name=Arcane & Sundries
+tile.tolkienmobs:sign_arcane3.name=Arcane & Sundries
 tile.tolkienmobs:sign_armory.name=Ye Old Armory
 tile.tolkienmobs:sign_bank.name=Money Changer
 tile.tolkienmobs:sign_barracks1.name=Militia

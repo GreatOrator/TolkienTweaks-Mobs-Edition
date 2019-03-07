@@ -14,17 +14,19 @@ public class BiomeProviderTTM extends BiomeProvider {
     public BiomeProviderTTM(World world) {
         super(world.getWorldInfo());
         allowedBiomes.clear();
-        allowedBiomes.add(BiomeInit.MIRKWOOD);
-        allowedBiomes.add(BiomeInit.LORINAND);
-        allowedBiomes.add(BiomeInit.HITHAEGLIR);
         allowedBiomes.add(BiomeInit.BARROW_DOWNS);
         allowedBiomes.add(BiomeInit.DAGORLAD);
+        allowedBiomes.add(BiomeInit.FANGORN);
+        allowedBiomes.add(BiomeInit.FIRIEN);
         allowedBiomes.add(BiomeInit.GLADDEN);
         allowedBiomes.add(BiomeInit.HARADWAITH);
-        allowedBiomes.add(BiomeInit.SHIRE);
+        allowedBiomes.add(BiomeInit.HITHAEGLIR);
         allowedBiomes.add(BiomeInit.IRON_HILLS);
-        allowedBiomes.add(BiomeInit.FIRIEN);
-        allowedBiomes.add(BiomeInit.FANGORN);
+        allowedBiomes.add(BiomeInit.LORINAND);
+        allowedBiomes.add(BiomeInit.NINDALF);
+        allowedBiomes.add(BiomeInit.MIRKWOOD);
+        allowedBiomes.add(BiomeInit.MORDOR);
+        allowedBiomes.add(BiomeInit.SHIRE);
 
         getBiomesToSpawnIn().clear();
         getBiomesToSpawnIn().add(BiomeInit.GLADDEN);
@@ -43,9 +45,6 @@ public class BiomeProviderTTM extends BiomeProvider {
         biomes = new GenLayerZoom(1006L, biomes);
         biomes = new GenLayerZoom(1007L, biomes);
         biomes = new GenLayerZoom(1008L, biomes);
-        biomes = new GenLayerZoom(1009L, biomes);
-        biomes = new GenLayerZoom(1010L, biomes);
-        biomes = new GenLayerZoom(1011L, biomes);
 
         GenLayer biomeIndexLayer = new GenLayerVoronoiZoom(10L, biomes);
         biomeIndexLayer.initWorldGenSeed(seed);

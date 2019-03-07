@@ -1,9 +1,11 @@
 package com.greatorator.tolkienmobs.world.gen.generators;
 
 import com.greatorator.tolkienmobs.handler.interfaces.ITTMStructure;
+import com.greatorator.tolkienmobs.handler.interfaces.ITTMStructureSummon;
 import com.greatorator.tolkienmobs.init.LootInit;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockStoneBrick;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.EnumFacing;
@@ -14,15 +16,13 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-public class WorldGenBiomeBarrow extends WorldGenerator implements ITTMStructure {
+public class WorldGenBiomeBarrow extends WorldGenerator implements ITTMStructure, ITTMStructureSummon {
+    public static final WorldGenBiomeBarrow INSTANCE = new WorldGenBiomeBarrow();
 
     /* Change k, i, or j to offset the structure */
     private int i = 0;
     private int j = 0;
     private int k = 0;
-
-    public WorldGenBiomeBarrow() {
-    }
 
     @Override
     public boolean generate(World worldIn, Random r, BlockPos bp) {
@@ -931,7 +931,7 @@ public class WorldGenBiomeBarrow extends WorldGenerator implements ITTMStructure
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 11, j + 1, k + 5), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 11, j + 1, k + 6), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 11, j + 1, k + 7), Blocks.STONE_BRICK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH));
-        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 11, j + 1, k + 8), Blocks.CHEST.getDefaultState());
+        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 11, j + 1, k + 8), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 11, j + 1, k + 9), Blocks.STONE_BRICK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 11, j + 1, k + 10), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 11, j + 1, k + 11), Blocks.AIR.getDefaultState());
@@ -1067,7 +1067,7 @@ public class WorldGenBiomeBarrow extends WorldGenerator implements ITTMStructure
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 12, j + 1, k + 5), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 12, j + 1, k + 6), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 12, j + 1, k + 7), Blocks.STONE_BRICK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH));
-        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 12, j + 1, k + 8), Blocks.CHEST.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST));
+        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 12, j + 1, k + 8), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 12, j + 1, k + 9), Blocks.STONE_BRICK_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 12, j + 1, k + 10), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 12, j + 1, k + 11), Blocks.AIR.getDefaultState());
@@ -1324,7 +1324,7 @@ public class WorldGenBiomeBarrow extends WorldGenerator implements ITTMStructure
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 14, j + 1, k + 5), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 14, j + 1, k + 6), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 14, j + 1, k + 7), Blocks.AIR.getDefaultState());
-        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 14, j + 1, k + 8), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.EAST));
+        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 14, j + 1, k + 8), Blocks.STONE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST));
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 14, j + 1, k + 9), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 14, j + 1, k + 10), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 14, j + 1, k + 11), Blocks.AIR.getDefaultState());
@@ -1626,8 +1626,8 @@ public class WorldGenBiomeBarrow extends WorldGenerator implements ITTMStructure
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 17, j + 1, k + 4), Blocks.STONE.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 17, j + 1, k + 5), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 17, j + 1, k + 6), Blocks.AIR.getDefaultState());
-        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 17, j + 1, k + 7), Blocks.CHEST.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST));
-        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 17, j + 1, k + 8), Blocks.CHEST.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.WEST));
+        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 17, j + 1, k + 7), Blocks.AIR.getDefaultState());
+        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 17, j + 1, k + 8), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 17, j + 1, k + 9), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 17, j + 1, k + 10), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 17, j + 1, k + 11), Blocks.STONE.getDefaultState());
@@ -1706,19 +1706,20 @@ public class WorldGenBiomeBarrow extends WorldGenerator implements ITTMStructure
 
     private void getLoot(World worldIn, Random r, BlockPos bp) {
 
-        BlockPos pos2 = bp.up();
-        BlockPos[] posses = new BlockPos[] {new BlockPos(i + 17, j + 1, k + 7), new BlockPos(i + 17, j + 1, k + 8), new BlockPos(i + 12, j + 1, k + 7), new BlockPos(i + 12, j + 1, k + 8)};
+        BlockPos[] posses = new BlockPos[] {new BlockPos(11, 1, 8), new BlockPos(12, 1, 8), new BlockPos(17, 1, 7), new BlockPos(17, 1, 8)};
 
         for (BlockPos pos : posses) {
-            TileEntityChest tileEntityChest = (TileEntityChest) worldIn.getTileEntity(pos2.add(pos));
+
+            IBlockState chest = Blocks.CHEST.getDefaultState();
+            BlockPos actualPos = bp.add(pos);
+            worldIn.setBlockState(actualPos, chest, 2);
+            TileEntityChest tileEntityChest = (TileEntityChest) worldIn.getTileEntity(actualPos);
             ResourceLocation lootType = r.nextInt(3) == 0 ? LootInit.BARROW_GRAVE : LootInit.BARROW_CHEST;
 
-            if (tileEntityChest instanceof TileEntityChest)
+            if (tileEntityChest != null)
             {
                 tileEntityChest.setLootTable(lootType, r.nextLong());
             }
         }
     }
-
-
 }

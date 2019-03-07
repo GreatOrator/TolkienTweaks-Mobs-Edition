@@ -218,7 +218,7 @@ public class EntityTMVillagers extends EntityVillager implements IEntityAddition
 
     protected boolean canDespawn()
     {
-        return false;
+        return true;
     }
 
     @Override

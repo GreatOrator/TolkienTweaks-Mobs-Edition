@@ -7,18 +7,19 @@ import net.minecraft.world.gen.layer.IntCache;
 
 public class GenLayerBiomesArda extends GenLayer {
     protected Biome[] allowedBiomes = {
-            BiomeInit.MIRKWOOD,
-            BiomeInit.LORINAND,
-            BiomeInit.HITHAEGLIR,
             BiomeInit.BARROW_DOWNS,
-            BiomeInit.HARADWAITH,
             BiomeInit.DAGORLAD,
-            BiomeInit.SHIRE,
+            BiomeInit.FANGORN,
             BiomeInit.FIRIEN,
             BiomeInit.GLADDEN,
+            BiomeInit.HARADWAITH,
+            BiomeInit.HITHAEGLIR,
             BiomeInit.IRON_HILLS,
-            BiomeInit.FANGORN,
-            BiomeInit.MORDOR
+            BiomeInit.LORINAND,
+            BiomeInit.NINDALF,
+            BiomeInit.MIRKWOOD,
+            BiomeInit.MORDOR,
+            BiomeInit.SHIRE
     };
 
     public GenLayerBiomesArda(long seed, GenLayer genlayer) {
