@@ -52,6 +52,8 @@ item.tolkienmobs:item_wornshield2.name=§5Cromhes’ Shield
 item.tolkienmobs:item_wornsword.name=§5Cromhes’ Sword
 item.tolkienmobs:item_wovenbasket.name=§2Woven Basket
 item.tolkienmobs:item_writtenpaper.name=§5Statue Rubbing
+item.tolkienmobs:item_coin1.name=§3Faction Coin
+item.tolkienmobs:item_coin2.name=§9Faction Token
 
 //Item Lore
 lore.item.tolkienmobs:item_beryl=Magical gem loaned to you to help on your search
@@ -89,6 +91,8 @@ lore.item.tolkienmobs:item_fancyhelm=TBD
 lore.item.tolkienmobs:item_fancykey=TBD
 lore.item.tolkienmobs:item_fancypick=TBD
 lore.item.tolkienmobs:item_fancyshield=TBD
+lore.item.tolkienmobs:item_coin1=Use this to raise faction standing
+lore.item.tolkienmobs:item_coin2=This can be traded for unique items
 lore.item.tolkienmobs:whip_fire=Primary weapon of the fearsome Balrog
 lore.item.tolkienmobs:sword_witchking=Forged in fear, the powerful weapon of the Witch-king
 
@@ -254,10 +258,13 @@ entity.midgefly.name=Midge Flies
 entity.thrush.name=Thrush
 entity.gwaihir.name=Gwaihir
 entity.greateagle.name=Great Eagle
+entity.mimicchest.name=Chest
+entity.minotaur.name=Minotaur
 
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer
 entity.Villager.pet_seller=Pet Supplies
+entity.Villager.junk_dealer=Junk Dealer
 
 //Creative Tabs
 itemGroup.tolkienmobs:tools=TolkienTweaks Tools

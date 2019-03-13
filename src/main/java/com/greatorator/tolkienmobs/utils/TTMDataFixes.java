@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.utils;
 
-import com.greatorator.tolkienmobs.entity.monster.EntityTMMirkwoodSpider;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMMirkwoodSpider;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMGoat;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMToad;
 import net.minecraft.util.datafix.DataFixer;

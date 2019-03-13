@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMHuron;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMHuron;
 import com.greatorator.tolkienmobs.client.render.model.monster.ModelHuron;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.Render;

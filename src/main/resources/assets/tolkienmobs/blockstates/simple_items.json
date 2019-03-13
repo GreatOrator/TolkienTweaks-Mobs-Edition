@@ -68,7 +68,9 @@
       "item_wovenbasket":    {"textures": {"layer0": "tolkienmobs:items/item_wovenbasket"}},
       "item_writtenpaper":    {"textures": {"layer0": "tolkienmobs:items/item_writtenpaper"}},
       "item_darksaddle":    {"textures": {"layer0": "tolkienmobs:items/item_darksaddle"}},
-      "gem_ammolite":    {"textures": {"layer0": "tolkienmobs:items/gem_ammolite"}}
+      "gem_ammolite":    {"textures": {"layer0": "tolkienmobs:items/gem_ammolite"}},
+      "item_coin1":    {"textures": {"layer0": "tolkienmobs:items/item_coin1"}},
+      "item_coin2":    {"textures": {"layer0": "tolkienmobs:items/item_coin2"}}
     }
   }
 }

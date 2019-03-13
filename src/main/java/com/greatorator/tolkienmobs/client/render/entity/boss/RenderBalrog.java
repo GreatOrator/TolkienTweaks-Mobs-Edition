@@ -23,7 +23,7 @@ public class RenderBalrog extends RenderLiving<EntityTMBalrog> {
     public RenderBalrog(RenderManager rendermanagerIn, float scale) {
         super(rendermanagerIn, new ModelBalrog(), 2.5F);
         this.scale = scale;
-        this.addLayer(new LayerArmed(this, 0.125f, 1.2F, 0.75F,2.0F));
+        this.addLayer(new LayerArmed(this, 0.23F, 0.2F, -1.35F, 1.4F));
     }
 
     @Override

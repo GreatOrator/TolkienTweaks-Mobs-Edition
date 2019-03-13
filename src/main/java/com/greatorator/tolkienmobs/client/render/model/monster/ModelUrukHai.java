@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.client.render.model.monster;
 
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMUrukHai;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMUrukHai;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

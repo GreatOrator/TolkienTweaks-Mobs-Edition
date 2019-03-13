@@ -183,6 +183,42 @@
       "tolkienmobs:mob/balrog/balrog_step"
     ]
   },
+  "mob.minotaur.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/minotaur/minotaur_death0",
+      "tolkienmobs:mob/minotaur/minotaur_death1"
+    ]
+  },
+  "mob.minotaur.hurt":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/minotaur/minotaur_hurt"
+    ]
+  },
+  "mob.minotaur.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/minotaur/minotaur_say0",
+      "tolkienmobs:mob/minotaur/minotaur_say1",
+      "tolkienmobs:mob/minotaur/minotaur_say2",
+      "tolkienmobs:mob/minotaur/minotaur_say3"
+    ]
+  },
+  "mob.minotaur.step":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/minotaur/minotaur_step"
+    ]
+  },
   "mob.warg.death":
   {
     "category": "neutral",
@@ -206,6 +242,23 @@
     [
       "tolkienmobs:mob/warg/warg_say0",
       "tolkienmobs:mob/warg/warg_say1"
+    ]
+  },
+  "mob.mimic.step":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/mimicchest/mimic_step0",
+      "tolkienmobs:mob/mimicchest/mimic_step1"
+    ]
+  },
+  "mob.mimic.angry":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/mimicchest/mimic_angry"
     ]
   },
   "mob.gollum.death":

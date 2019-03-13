@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.entity.special;
 
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMGoblin;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMHuron;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMGoblin;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMHuron;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.block.Block;

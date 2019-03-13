@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMCrebain;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMGoblin;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMTroll;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMCrebain;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMGoblin;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMTroll;
 import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.entity.player.EntityPlayer;

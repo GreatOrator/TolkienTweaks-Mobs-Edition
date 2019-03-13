@@ -24,6 +24,7 @@ public class ProfessionInit {
     public static VillagerProfession COIN_TRADER;
     public static VillagerProfession GROCERY_STORE;
     public static VillagerProfession PET_MERCHANT;
+    public static VillagerProfession JUNK_TRADER;
 
     /** Let's make it so people have a life choice to make. */
     @Mod.EventBusSubscriber(modid = TolkienMobs.MODID)
@@ -39,20 +40,26 @@ public class ProfessionInit {
             COIN_TRADER = new VillagerRegistry.VillagerProfession(
                     TolkienMobs.MODID+":coin_trader",
                     TolkienMobs.MODID+":textures/entity/profession/coin_trader.png",
-                    TolkienMobs.MODID+":textures/entity/profession/coin_trader.png");
+                    TolkienMobs.MODID+":textures/entity/profession/zombie_coin_trader.png");
             registry.register(COIN_TRADER);
 
             GROCERY_STORE = new VillagerRegistry.VillagerProfession(
                     TolkienMobs.MODID+":grocery_store",
                     TolkienMobs.MODID+":textures/entity/profession/grocery_store.png",
-                    TolkienMobs.MODID+":textures/entity/profession/grocery_store.png");
+                    TolkienMobs.MODID+":textures/entity/profession/zombie_grocery_store.png");
             registry.register(GROCERY_STORE);
 
             PET_MERCHANT = new VillagerRegistry.VillagerProfession(
                     TolkienMobs.MODID+":pet_merchant",
                     TolkienMobs.MODID+":textures/entity/profession/pet_merchant.png",
-                    TolkienMobs.MODID+":textures/entity/profession/pet_merchant.png");
+                    TolkienMobs.MODID+":textures/entity/profession/zombie_pet_merchant.png");
             registry.register(PET_MERCHANT);
+
+            JUNK_TRADER = new VillagerRegistry.VillagerProfession(
+                    TolkienMobs.MODID+":junk_dealer",
+                    TolkienMobs.MODID+":textures/entity/profession/junk_trader.png",
+                    TolkienMobs.MODID+":textures/entity/profession/zombie_junk_trader.png");
+            registry.register(JUNK_TRADER);
         }
     }
 
@@ -69,17 +76,23 @@ public class ProfessionInit {
                     .addTrade(2, new TradeHandler(new ItemStack(brons_coin,64), new ItemStack(silver_coin),1, 1));
 
         VillagerRegistry.VillagerCareer store_clerk = new VillagerCareer(GROCERY_STORE, "store_clerk");
-         store_clerk.addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.LEMBAS), new ItemStack(brons_coin),5, 36))
-                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.HONEY_CAKE), new ItemStack(brons_coin),3, 26))
+         store_clerk.addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.HONEY_CAKE), new ItemStack(brons_coin),3, 26))
                     .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.CRAM), new ItemStack(brons_coin),1, 16))
+                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.MIRUVOR), new ItemStack(silver_coin),2, 6))
                     .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.ENT_DRAUGHT), new ItemStack(silver_coin),1, 5))
-                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.MIRUVOR), new ItemStack(silver_coin),2, 6));
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.LEMBAS), new ItemStack(brons_coin),5, 36));
 
         VillagerRegistry.VillagerCareer pet_seller = new VillagerCareer(PET_MERCHANT, "pet_seller");
           pet_seller.addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.INSECT, 4), new ItemStack(brons_coin),5, 36))
-                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.GOLDEN_INSECT, 2), new ItemStack(brons_coin),10, 52))
                     .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.TREE_ACORN, 3), new ItemStack(brons_coin),9, 48))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.GOLDEN_INSECT, 2), new ItemStack(brons_coin),10, 52))
                     .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.GOLDEN_TREE_ACORN, 1), new ItemStack(brons_coin),18, 61));
+
+        VillagerRegistry.VillagerCareer junk_dealer = new VillagerCareer(JUNK_TRADER, "junk_dealer");
+         junk_dealer.addTrade(1, new TradeHandler(new ItemStack(brons_coin, 2), new ItemStack(TTMFeatures.MONSTER_FUR),3, 12))
+                    .addTrade(1, new TradeHandler(new ItemStack(brons_coin, 3), new ItemStack(TTMFeatures.MONSTER_FLESH),2, 11))
+                    .addTrade(2, new TradeHandler(new ItemStack(silver_coin, 1), new ItemStack(TTMFeatures.CREBAIN_FEATHER),1, 21))
+                    .addTrade(2, new TradeHandler(new ItemStack(silver_coin, 2), new ItemStack(TTMFeatures.BIRD_FEATHER),1, 13));
 
         // DEBUG
         LogHelperTTM.info("All positions are now filled, thank you for applying.");
@@ -96,5 +109,9 @@ public class ProfessionInit {
 
     public static VillagerRegistry.VillagerProfession getPetSupplies() {
         return PET_MERCHANT;
+    }
+
+    public static VillagerRegistry.VillagerProfession getJunkSeller() {
+        return JUNK_TRADER;
     }
 }

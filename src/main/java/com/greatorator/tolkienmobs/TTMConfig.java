@@ -121,6 +121,10 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableOathbreaker = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableMidgeFlies", comment = "Setting this to false will disable Midge Flies", requiresMCRestart = true, requiresSync = true)
     public static boolean enableMidgeFlies = true;
+    @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableMimic", comment = "Setting this to false will disable Mimics", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableMimic = true;
+    @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableMinotaur", comment = "Setting this to false will disable Minotaurs", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableMinotaur = true;
 
     /** Boss mobs - Individual*/
     @ModConfigProperty(category = "Boss Mobs", name = "enableBalrog", comment = "Setting this to false will disable the Balrog", requiresMCRestart = true, requiresSync = true)

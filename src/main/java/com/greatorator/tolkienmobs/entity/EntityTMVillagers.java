@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity;
 
-import com.greatorator.tolkienmobs.entity.monster.*;
+import com.greatorator.tolkienmobs.entity.hostile.*;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMDwarf;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import com.greatorator.tolkienmobs.init.ProfessionInit;
@@ -121,7 +121,7 @@ public class EntityTMVillagers extends EntityVillager implements IEntityAddition
                     break;
 
                 case 8:
-                    prof = ProfessionInit.getPetSupplies();
+                    prof = ProfessionInit.getJunkSeller();
                     break;
 
                 case 9:
@@ -152,7 +152,7 @@ public class EntityTMVillagers extends EntityVillager implements IEntityAddition
                     break;
 
                 case 16:
-                    prof = ProfessionInit.getPetSupplies();
+                    prof = ProfessionInit.getJunkSeller();
 
             }
             this.setProfession(VillagerRegistry.getId(prof));

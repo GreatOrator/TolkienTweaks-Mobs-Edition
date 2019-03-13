@@ -26,7 +26,7 @@ import com.greatorator.tolkienmobs.entity.boss.EntityTMBalrog;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMGwaihir;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMWitchKing;
-import com.greatorator.tolkienmobs.entity.monster.*;
+import com.greatorator.tolkienmobs.entity.hostile.*;
 import com.greatorator.tolkienmobs.entity.passive.*;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGollum;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGreatEagle;
@@ -84,6 +84,8 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityTMTroll.class, RenderTroll.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMUrukHai.class, RenderUrukHai.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMBarrowWight.class, RenderBarrowWight.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMMimicChest.class, RenderMimicChest.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMMinotaur.class, RenderMinotaur.FACTORY);
 
         /* Special */
         RenderingRegistry.registerEntityRenderingHandler(EntityTMGollum.class, RenderGollum.FACTORY);

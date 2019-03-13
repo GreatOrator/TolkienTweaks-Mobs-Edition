@@ -98,6 +98,16 @@ public class SoundInit
     @ObjectHolder("mob.balrog.step")
     public static final SoundEvent soundStepBalrog = null;
 
+	/** Minotaur */
+	@ObjectHolder("mob.minotaur.death")
+	public static final SoundEvent soundDeathMinotaur = null;
+	@ObjectHolder("mob.minotaur.idle")
+	public static final SoundEvent soundIdleMinotaur = null;
+	@ObjectHolder("mob.minotaur.hurt")
+	public static final SoundEvent soundHurtMinotaur = null;
+	@ObjectHolder("mob.minotaur.step")
+	public static final SoundEvent soundStepMinotaur = null;
+
 	/** Gollum */
 	@ObjectHolder("mob.gollum.death")
 	public static final SoundEvent soundDeathGollum = null;
@@ -123,6 +133,12 @@ public class SoundInit
 	public static final SoundEvent soundevilwitchlaugh = null;
 	@ObjectHolder("mob.ghostlylament")
 	public static final SoundEvent soundghostlylament = null;
+
+	/** Mimic */
+	@ObjectHolder("mob.mimic.step")
+	public static final SoundEvent soundStepMimic = null;
+	@ObjectHolder("mob.mimic.angry")
+	public static final SoundEvent soundAngryMimic = null;
 
 	/** Goat */
 	@ObjectHolder("mob.goat.death")
@@ -277,6 +293,16 @@ public class SoundInit
                     "mob.balrog.idle",
                     "mob.balrog.hurt",
                     "mob.balrog.step",
+
+					/* Mimic */
+					"mob.mimic.step",
+					"mob.mimic.angry",
+
+					/* Minotaur */
+					"mob.minotaur.death",
+					"mob.minotaur.idle",
+					"mob.minotaur.hurt",
+					"mob.minotaur.step",
 
                     /* Goat */
 					"mob.goat.death",

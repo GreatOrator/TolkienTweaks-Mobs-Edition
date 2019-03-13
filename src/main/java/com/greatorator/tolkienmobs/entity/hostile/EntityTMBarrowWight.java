@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.entity.monster;
+package com.greatorator.tolkienmobs.entity.hostile;
 
 import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
 import com.greatorator.tolkienmobs.init.LootInit;
@@ -7,20 +7,19 @@ import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.init.MobEffects;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class EntityTMOathbreaker extends EntityTMHostiles {
-
-    public EntityTMOathbreaker(World worldIn) {
+public class EntityTMBarrowWight extends EntityTMHostiles {
+    public EntityTMBarrowWight(World worldIn) {
         super(worldIn);
         this.setSize(1.0F, 2.0F);
         this.setWeaponType(TTMFeatures.SWORD_MORGULIRON);
-        this.setLootTable(LootInit.OATHBREAKER);
+        this.setLootTable(LootInit.BWIGHT);
         this.setTtmEffect(MobEffects.POISON);
         this.setTtmDuration(1);
         this.setRndMinMax(1,5);
+        this.setBurnState(true);
     }
 
     @Override
@@ -44,15 +43,9 @@ public class EntityTMOathbreaker extends EntityTMHostiles {
     }
 
     @Override
-    public SoundCategory getSoundCategory()
-    {
-        return SoundCategory.HOSTILE;
-    }
-
-    @Override
     protected SoundEvent getAmbientSound()
     {
-        return SoundInit.soundIdleOathbreaker;
+        return SoundInit.soundIdleBarrowWight;
     }
 
     @Override

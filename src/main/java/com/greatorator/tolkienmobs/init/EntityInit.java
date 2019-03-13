@@ -10,7 +10,7 @@ import com.greatorator.tolkienmobs.entity.boss.EntityTMGwaihir;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGreatEagle;
 import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMWitchKing;
-import com.greatorator.tolkienmobs.entity.monster.*;
+import com.greatorator.tolkienmobs.entity.hostile.*;
 import com.greatorator.tolkienmobs.entity.passive.*;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGollum;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
@@ -21,6 +21,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class EntityInit
 {
+    //TODO Look at adding Mimic and Minotaur
     public static void init() {
 
         LogHelperTTM.info("Adding all the various fauna to see!");
@@ -64,6 +65,12 @@ public class EntityInit
             }
             if (TTMConfig.enableMidgeFlies) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "midgefly"), EntityTMMidgeFly.class, "midgefly", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x3A725E);
+            }
+            if (TTMConfig.enableMimic) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mimicchest"), EntityTMMimicChest.class, "mimicchest", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x3A7FFE);
+            }
+            if (TTMConfig.enableMinotaur) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "minotaur"), EntityTMMinotaur.class, "minotaur", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x300FFE);
             }
         }
 

@@ -2,9 +2,9 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMMordorOrc;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMUrukHai;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMWarg;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMMordorOrc;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMUrukHai;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMWarg;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeRuin;

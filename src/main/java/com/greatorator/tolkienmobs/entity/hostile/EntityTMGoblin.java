@@ -1,25 +1,23 @@
-package com.greatorator.tolkienmobs.entity.monster;
+package com.greatorator.tolkienmobs.entity.hostile;
 
 import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
-import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.init.MobEffects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class EntityTMBarrowWight extends EntityTMHostiles {
-    public EntityTMBarrowWight(World worldIn) {
+public class EntityTMGoblin extends EntityTMHostiles {
+
+    public EntityTMGoblin(World worldIn) {
         super(worldIn);
-        this.setSize(1.0F, 2.0F);
+        this.setSize(0.9F, 0.8F);
         this.setWeaponType(TTMFeatures.SWORD_MORGULIRON);
-        this.setLootTable(LootInit.BWIGHT);
-        this.setTtmEffect(MobEffects.POISON);
-        this.setTtmDuration(1);
+        this.setLootTable(LootInit.GOBLIN);
+        this.setMobMentality(true, SoundInit.soundAngryGoblin);
         this.setRndMinMax(1,5);
-        this.setBurnState(true);
+        this.setCombatTask();
     }
 
     @Override
@@ -29,34 +27,27 @@ public class EntityTMBarrowWight extends EntityTMHostiles {
 
     @Override
     public double getArmorStrength() {
-        return 5.0D;
+        return 2.0D;
     }
 
     @Override
     public double getHealthLevel() {
-        return 16.0D;
-    }
-
-    public EnumCreatureAttribute getCreatureAttribute()
-    {
-        return EnumCreatureAttribute.UNDEAD;
+        return 20.0D;
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return SoundInit.soundIdleBarrowWight;
+        return SoundInit.soundIdleGoblin;
     }
 
-    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return SoundInit.soundHurtBarrowWight;
+        return SoundInit.soundHurtGoblin;
     }
 
-    @Override
     protected SoundEvent getDeathSound()
     {
-        return SoundInit.soundHurtBarrowWight;
+        return SoundInit.soundDeathGoblin;
     }
 }

@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMMordorOrc;
-import com.greatorator.tolkienmobs.entity.monster.EntityTMTreeEnt;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMMordorOrc;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMTreeEnt;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMDwarf;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMElves;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;

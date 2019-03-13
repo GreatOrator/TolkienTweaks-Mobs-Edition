@@ -152,6 +152,10 @@ public class TTMFeatures implements IModFeatures {
     public static Item ITEM_WOVENBASKET = new TTMLore(3);
     @ModFeature(name = "item_writtenpaper", stateOverride = "simple_items#type=item_writtenpaper", cTab = 4)
     public static Item ITEM_WRITTENPAPER = new TTMLore(1).setEffectOverride(true);
+    @ModFeature(name = "item_coin1", stateOverride = "simple_items#type=item_coin1", cTab = 4)
+    public static Item ITEM_FACTIONCOIN = new TTMLore(64);
+    @ModFeature(name = "item_coin2", stateOverride = "simple_items#type=item_coin2", cTab = 4)
+    public static Item ITEM_FACTIONTOKEN = new TTMLore(64);
     /* End Region */
 
     /* Tools */

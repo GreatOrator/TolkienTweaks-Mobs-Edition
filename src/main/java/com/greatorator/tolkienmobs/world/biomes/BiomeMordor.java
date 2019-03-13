@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
-import com.greatorator.tolkienmobs.entity.monster.*;
+import com.greatorator.tolkienmobs.entity.hostile.*;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeRubble;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeDead;

@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.entity.monster;
+package com.greatorator.tolkienmobs.entity.hostile;
 
 import com.greatorator.tolkienmobs.entity.EntityTMBirds;
 import com.greatorator.tolkienmobs.init.LootInit;
