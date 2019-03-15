@@ -18,6 +18,12 @@ public class EntityTMMinotaur extends EntityTMHostiles {
         this.setLootTable(LootInit.MINOTAUR);
     }
 
+    @Override
+    public boolean getCanSpawnHere()
+    {
+        return super.getCanSpawnHere() && !this.world.canSeeSky(new BlockPos(this));
+    }
+
     protected SoundEvent getAmbientSound()
     {
         return SoundInit.soundIdleMinotaur;

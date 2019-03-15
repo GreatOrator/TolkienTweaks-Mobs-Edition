@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.client.render.model.passive;
+package com.greatorator.tolkienmobs.client.render.model.ambient;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import net.minecraft.client.model.ModelRenderer;
@@ -246,15 +246,6 @@ public class ModelSOSquirrel extends ModelTTM {
         this.BackLegR.render(f5);
         this.BackLegL.render(f5);
         this.FrontLegR.render(f5);
-    }
-
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
     }
 
     @Override

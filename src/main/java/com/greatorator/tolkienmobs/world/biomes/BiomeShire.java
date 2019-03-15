@@ -2,6 +2,8 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTMSquirrel;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTMToad;
 import com.greatorator.tolkienmobs.entity.passive.*;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
@@ -76,17 +78,19 @@ public class BiomeShire extends Biome {
                 if (TTMConfig.enableHobbits) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityTMHobbit.class, 12, 1, 3));
                 }
-                if (TTMConfig.enableFrogs) {
-                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMToad.class, 4, 1, 1));
-                }
                 if (TTMConfig.enableAuroch) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityTMAuroch.class, 4, 2, 3));
                 }
                 if (TTMConfig.enableGoats) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityTMGoat.class, 4, 2, 3));
                 }
+            }
+            if (TTMConfig.enableAmbient) {
                 if (TTMConfig.enableSquirrels) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityTMSquirrel.class, 4, 1, 1));
+                }
+                if (TTMConfig.enableFrogs) {
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMToad.class, 4, 1, 1));
                 }
             }
         }

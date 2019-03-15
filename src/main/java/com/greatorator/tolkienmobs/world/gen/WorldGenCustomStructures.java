@@ -23,6 +23,7 @@ public class WorldGenCustomStructures implements IWorldGenerator {
     WorldGenBiomeBarrow BARROW = new WorldGenBiomeBarrow();
     WorldGenBiomeHobbitHouse HOBBITHOUSE = new WorldGenBiomeHobbitHouse();
     WorldGenBiomeHobbitGrocer HOBBITGROCER = new WorldGenBiomeHobbitGrocer();
+
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
         switch (world.provider.getDimension()) {

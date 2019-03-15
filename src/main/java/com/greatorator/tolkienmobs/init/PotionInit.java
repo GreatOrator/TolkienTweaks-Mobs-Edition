@@ -12,8 +12,8 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class PotionInit {
     /** Initialize Potion Types */
-    public static final Potion ENT_STANCE = new TTMPotion("ent_draught", false, 3135135, 0,0).registerPotionAttributeModifier(SharedMonsterAttributes.KNOCKBACK_RESISTANCE, MathHelper.getRandomUUID().toString(),1.0D,2);
-    public static final Potion ELF_VITALITY = new TTMPotion("elf_vitality", false, 14687673, 1,0).registerPotionAttributeModifier(SharedMonsterAttributes.MAX_HEALTH, MathHelper.getRandomUUID().toString(),1.0D,2);
+    public static final Potion ENT_STANCE = new TTMPotion("ent_draught", false, 3135135, 0).registerPotionAttributeModifier(SharedMonsterAttributes.KNOCKBACK_RESISTANCE, MathHelper.getRandomUUID().toString(),1.0D,2);
+    public static final Potion ELF_VITALITY = new TTMPotion("elf_vitality", false, 14687673, 1).registerPotionAttributeModifier(SharedMonsterAttributes.MAX_HEALTH, MathHelper.getRandomUUID().toString(),1.0D,2);
 
     /** Initialize Potion Versions */
     public static final PotionType ENT_DRAUGHT = new PotionType("ent_draught", new PotionEffect[] {new PotionEffect(ENT_STANCE, 2400)}).setRegistryName("ent_draught");
@@ -36,8 +36,8 @@ public class PotionInit {
     }
 
     private static void registerPotionMixes(){
-        PotionHelper.addMix(PotionTypes.AWKWARD, TTMFeatures.LEMBAS, ENT_DRAUGHT);
-        PotionHelper.addMix(PotionTypes.AWKWARD, TTMFeatures.CRAM, ELVISH_LIFE);
+        PotionHelper.addMix(PotionTypes.AWKWARD, TTMFeatures.CRAM, ENT_DRAUGHT);
+        PotionHelper.addMix(PotionTypes.AWKWARD, TTMFeatures.LEMBAS, ELVISH_LIFE);
         PotionHelper.addMix(ENT_DRAUGHT, TTMFeatures.GEM_AMMOLITE,LONG_ENT_DRAUGHT);
         PotionHelper.addMix(ELVISH_LIFE, TTMFeatures.GEM_AMMOLITE,LONG_ELVISH_LIFE);
     }

@@ -6,6 +6,7 @@ import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class EntityTMGoblin extends EntityTMHostiles {
@@ -18,6 +19,12 @@ public class EntityTMGoblin extends EntityTMHostiles {
         this.setMobMentality(true, SoundInit.soundAngryGoblin);
         this.setRndMinMax(1,5);
         this.setCombatTask();
+    }
+
+    @Override
+    public boolean getCanSpawnHere()
+    {
+        return super.getCanSpawnHere() && !this.world.canSeeSky(new BlockPos(this));
     }
 
     @Override

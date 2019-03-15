@@ -5,6 +5,9 @@ import com.greatorator.tolkienmobs.client.TTMClientEvents;
 import com.greatorator.tolkienmobs.client.render.entity.RenderTMBirds;
 import com.greatorator.tolkienmobs.client.render.entity.RenderTMGeneric;
 import com.greatorator.tolkienmobs.client.render.entity.RenderTMHerds;
+import com.greatorator.tolkienmobs.client.render.entity.ambient.RenderRat;
+import com.greatorator.tolkienmobs.client.render.entity.ambient.RenderSOSquirrel;
+import com.greatorator.tolkienmobs.client.render.entity.ambient.RenderToaddle;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderBoulder;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderFellBeastFireball;
 import com.greatorator.tolkienmobs.client.render.entity.boss.RenderBalrog;
@@ -14,12 +17,13 @@ import com.greatorator.tolkienmobs.client.render.entity.monster.*;
 import com.greatorator.tolkienmobs.client.render.entity.passive.*;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderGollum;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderNazgul;
+import com.greatorator.tolkienmobs.client.render.model.ambient.ModelCrebain;
+import com.greatorator.tolkienmobs.client.render.model.ambient.ModelTMMidgeFly;
+import com.greatorator.tolkienmobs.client.render.model.ambient.ModelThrush;
 import com.greatorator.tolkienmobs.client.render.model.boss.ModelTMGwaihir;
-import com.greatorator.tolkienmobs.client.render.model.monster.ModelCrebain;
-import com.greatorator.tolkienmobs.client.render.model.monster.ModelTMMidgeFly;
 import com.greatorator.tolkienmobs.client.render.model.passive.ModelAuroch;
 import com.greatorator.tolkienmobs.client.render.model.passive.ModelMumakil;
-import com.greatorator.tolkienmobs.client.render.model.passive.ModelThrush;
+import com.greatorator.tolkienmobs.entity.ambient.*;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMBalrog;
@@ -70,17 +74,6 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityTMGoblin.class, RenderGoblin.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMMordorOrc.class, RenderMordorOrc.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMWarg.class, RenderWarg.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityTMMidgeFly.class, m -> new RenderTMGeneric<>(m, new ModelTMMidgeFly(), 0.0F, "midgeflies.png"));
-        RenderingRegistry.registerEntityRenderingHandler(
-                EntityTMCrebain.class,
-                RenderTMBirds.getRenderFactory(
-                        new ModelCrebain(),
-                        new ModelCrebain(),
-                        0.5F,
-                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/crebain.png"),
-                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/bird_legband.png")
-                )
-        );
         RenderingRegistry.registerEntityRenderingHandler(EntityTMTroll.class, RenderTroll.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMUrukHai.class, RenderUrukHai.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMBarrowWight.class, RenderBarrowWight.FACTORY);
@@ -107,8 +100,6 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityTMHuman.class, RenderHuman.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMElves.class, RenderElves.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMGoat.class, RenderGoat.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityTMSquirrel.class, RenderSOSquirrel.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityTMToad.class, RenderToaddle.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(
                 EntityTMMumakil.class,
                 RenderTMHerds.getRenderFactory(
@@ -126,16 +117,6 @@ public class ClientProxy extends CommonProxy {
                 )
         );
         RenderingRegistry.registerEntityRenderingHandler(
-                EntityTMThrush.class,
-                RenderTMBirds.getRenderFactory(
-                        new ModelThrush(),
-                        new ModelThrush(),
-                        0.5F,
-                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/thrush.png"),
-                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/bird_legband.png")
-                )
-        );
-        RenderingRegistry.registerEntityRenderingHandler(
                 EntityTMGwaihir.class,
                 RenderTMBirds.getRenderFactory(
                         new ModelTMGwaihir(),
@@ -143,6 +124,32 @@ public class ClientProxy extends CommonProxy {
                         0.5F,
                         new ResourceLocation(TolkienMobs.MODID + ":textures/entity/greateagle.png"),
                         new ResourceLocation(TolkienMobs.MODID + ":textures/entity/greateagle.png")
+                )
+        );
+
+        /* Ambient */
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMSquirrel.class, RenderSOSquirrel.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMToad.class, RenderToaddle.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMRat.class, RenderRat.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMMidgeFly.class, m -> new RenderTMGeneric<>(m, new ModelTMMidgeFly(), 0.0F, "midgeflies.png"));
+        RenderingRegistry.registerEntityRenderingHandler(
+                EntityTMCrebain.class,
+                RenderTMBirds.getRenderFactory(
+                        new ModelCrebain(),
+                        new ModelCrebain(),
+                        0.5F,
+                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/crebain.png"),
+                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/bird_legband.png")
+                )
+        );
+        RenderingRegistry.registerEntityRenderingHandler(
+                EntityTMThrush.class,
+                RenderTMBirds.getRenderFactory(
+                        new ModelThrush(),
+                        new ModelThrush(),
+                        0.5F,
+                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/thrush.png"),
+                        new ResourceLocation(TolkienMobs.MODID + ":textures/entity/bird_legband.png")
                 )
         );
 

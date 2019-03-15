@@ -2,9 +2,9 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
-import com.greatorator.tolkienmobs.entity.hostile.EntityTMMidgeFly;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTMMidgeFly;
 import com.greatorator.tolkienmobs.entity.hostile.EntityTMOathbreaker;
-import com.greatorator.tolkienmobs.entity.passive.EntityTMToad;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTMToad;
 import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
@@ -72,6 +72,8 @@ public class BiomeMarshes extends Biome implements IFogyBiome
                 if (TTMConfig.enableOathbreaker) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityTMOathbreaker.class, 2, 1, 3));
                 }
+            }
+            if (TTMConfig.enableAmbient) {
                 if (TTMConfig.enableMidgeFlies) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityTMMidgeFly.class, 4, 1, 1));
                 }

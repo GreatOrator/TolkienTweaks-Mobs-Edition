@@ -1,8 +1,8 @@
-package com.greatorator.tolkienmobs.client.render.entity.passive;
+package com.greatorator.tolkienmobs.client.render.entity.ambient;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.render.model.passive.ModelSOSquirrel;
-import com.greatorator.tolkienmobs.entity.passive.EntityTMSquirrel;
+import com.greatorator.tolkienmobs.client.render.model.ambient.ModelSOSquirrel;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTMSquirrel;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;

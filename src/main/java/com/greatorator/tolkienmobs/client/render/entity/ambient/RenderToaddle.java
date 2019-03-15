@@ -1,8 +1,8 @@
-package com.greatorator.tolkienmobs.client.render.entity.passive;
+package com.greatorator.tolkienmobs.client.render.entity.ambient;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.render.model.passive.ModelToaddle;
-import com.greatorator.tolkienmobs.entity.passive.EntityTMToad;
+import com.greatorator.tolkienmobs.client.render.model.ambient.ModelToaddle;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTMToad;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;

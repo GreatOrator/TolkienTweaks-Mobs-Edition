@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.client.render.model.passive;
+package com.greatorator.tolkienmobs.client.render.model.ambient;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import com.greatorator.tolkienmobs.entity.EntityTMBirds;

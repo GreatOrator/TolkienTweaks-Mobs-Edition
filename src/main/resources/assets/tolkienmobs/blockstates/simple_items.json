@@ -70,7 +70,8 @@
       "item_darksaddle":    {"textures": {"layer0": "tolkienmobs:items/item_darksaddle"}},
       "gem_ammolite":    {"textures": {"layer0": "tolkienmobs:items/gem_ammolite"}},
       "item_coin1":    {"textures": {"layer0": "tolkienmobs:items/item_coin1"}},
-      "item_coin2":    {"textures": {"layer0": "tolkienmobs:items/item_coin2"}}
+      "item_coin2":    {"textures": {"layer0": "tolkienmobs:items/item_coin2"}},
+      "bottle_fancy":    {"textures": {"layer0": "tolkienmobs:items/bottle_fancy"}}
     }
   }
 }

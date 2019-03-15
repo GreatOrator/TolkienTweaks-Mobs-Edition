@@ -45,6 +45,12 @@ public class EntityTMMimicChest extends EntityTMHostiles {
         this.setLootTable(LootInit.MIMICCHEST);
     }
 
+    @Override
+    public boolean getCanSpawnHere()
+    {
+        return super.getCanSpawnHere() && !this.world.canSeeSky(new BlockPos(this));
+    }
+
     public void setRevengeTarget(@Nullable EntityLivingBase livingBase)
     {
         super.setRevengeTarget(livingBase);

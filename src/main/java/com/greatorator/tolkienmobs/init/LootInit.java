@@ -15,7 +15,6 @@ public class LootInit {
 
     /** Hostile */
     public static final ResourceLocation BWIGHT = register("entities/barrowwight");
-    public static final ResourceLocation CREBAIN = register("entities/crebain");
     public static final ResourceLocation GOBLIN = register("entities/goblin");
     public static final ResourceLocation HURON = register("entities/huron");
     public static final ResourceLocation MSPIDER = register("entities/mirkwoodspider");
@@ -25,7 +24,6 @@ public class LootInit {
     public static final ResourceLocation URUK = register("entities/urukhai");
     public static final ResourceLocation WARG = register("entities/warg");
     public static final ResourceLocation OATHBREAKER = register("entities/oathbreaker");
-    public static final ResourceLocation MIDGEFLY = register("entities/midgefly");
     public static final ResourceLocation MIMICCHEST = register("entities/mimicchest");
     public static final ResourceLocation MINOTAUR = register("entities/minotaur");
 
@@ -41,9 +39,14 @@ public class LootInit {
     public static final ResourceLocation HOBBIT = register("entities/hobbit");
     public static final ResourceLocation HUMAN = register("entities/human");
     public static final ResourceLocation MUMAKIL = register("entities/mumakil");
+
+    /** Ambient */
     public static final ResourceLocation TMFROG = register("entities/toaddle");
     public static final ResourceLocation SOSQUIRREL = register("entities/sosquirrel");
     public static final ResourceLocation THRUSH = register("entities/thrush");
+    public static final ResourceLocation MIDGEFLY = register("entities/midgefly");
+    public static final ResourceLocation CREBAIN = register("entities/crebain");
+    public static final ResourceLocation TMRAT = register("entities/tmrat");
 
     /* Structures */
     /** Chests */

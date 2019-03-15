@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
-import com.greatorator.tolkienmobs.entity.hostile.EntityTMCrebain;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTMCrebain;
 import com.greatorator.tolkienmobs.entity.hostile.EntityTMGoblin;
 import com.greatorator.tolkienmobs.entity.hostile.EntityTMTroll;
 import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
@@ -57,9 +57,11 @@ public class BiomeHithaeglir extends Biome implements IFogyBiome {
                 if (TTMConfig.enableCaveTrolls) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityTMTroll.class, 8, 1, 1));
                 }
+            if (TTMConfig.enableAmbient) {
                 if (TTMConfig.enableCrebain) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityTMCrebain.class, 1, 1, 1));
                 }
+            }
             }
         }
     }

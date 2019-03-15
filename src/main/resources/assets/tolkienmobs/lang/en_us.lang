@@ -4,18 +4,6 @@ commands.coordinate_error=You can't place that there!
 commands.not_enough_parameters=Not enough information to spawn structure!
 commands.tmspawn.usage=/tmstructurespawn <structure name> <x> <y> <z>
 
-
-//Item Information
-item.tolkienmobs:spawn_egg.name=Spawn
-
-item.tolkienmobs:ingot_mithril.name=Mithril Ingot
-item.tolkienmobs:dust_mithril.name=Mithril Dust
-item.tolkienmobs:nugget_mithril.name=Mithril Nugget
-item.tolkienmobs:ingot_morguliron.name=Morgul Iron Ingot
-item.tolkienmobs:dust_morguliron.name=Morgul Iron Dust
-item.tolkienmobs:nugget_morguliron.name=Morgul Iron Nugget
-item.tolkienmobs:gem_ammolite.name=Star of Elendil
-
 //Quest Items
 item.tolkienmobs:item_beryl.name=§3Glorfindel's Beryl
 item.tolkienmobs:item_watcherheart.name=§5Stone Heart
@@ -30,17 +18,12 @@ item.tolkienmobs:item_cavecomplete.name=§3Cave completion Token
 item.tolkienmobs:item_fancyarmor.name=§5Cromhes’ Armour (Repaired)
 item.tolkienmobs:item_fancycloth.name=§2Fine Cloth
 item.tolkienmobs:item_fancyhammer.name=§9Thrór's Hammer
-item.tolkienmobs:item_fancyhelm.name=TBD
-item.tolkienmobs:item_fancykey.name=TBD
-item.tolkienmobs:item_fancypick.name=TBD
-item.tolkienmobs:item_fancyshield.name=TBD
 item.tolkienmobs:item_fancyshield2.name=§5Cromhes’ Shield (Repaired)
 item.tolkienmobs:item_fancysword.name=§5Cromhes’ Sword (Repaired)
 item.tolkienmobs:item_fancysword2.name=§4Apostle
-item.tolkienmobs:item_letter.name=TBD
 item.tolkienmobs:item_scroll.name=§5Ashen Scroll
 item.tolkienmobs:item_scroll2.name=§5Translated Scroll
-item.tolkienmobs:item_specialflower.name=TBD
+item.tolkienmobs:item_specialflower.name=§2Milkweed Flower
 item.tolkienmobs:item_storybook.name=§3Hobbit Story
 item.tolkienmobs:item_storybook2.name=§6Bilbo's Story
 item.tolkienmobs:item_wornarmor.name=§5Cromhes’ Armour
@@ -54,6 +37,11 @@ item.tolkienmobs:item_wovenbasket.name=§2Woven Basket
 item.tolkienmobs:item_writtenpaper.name=§5Statue Rubbing
 item.tolkienmobs:item_coin1.name=§3Faction Coin
 item.tolkienmobs:item_coin2.name=§9Faction Token
+item.tolkienmobs:item_fancyhelm.name=TBD
+item.tolkienmobs:item_fancykey.name=TBD
+item.tolkienmobs:item_fancypick.name=TBD
+item.tolkienmobs:item_fancyshield.name=TBD
+item.tolkienmobs:item_letter.name=TBD
 
 //Item Lore
 lore.item.tolkienmobs:item_beryl=Magical gem loaned to you to help on your search
@@ -85,16 +73,27 @@ lore.item.tolkienmobs:item_blankpaper=Paper used to take imprints on hard surfac
 lore.item.tolkienmobs:item_fancycloth=Finely woven cloth for decoration
 lore.item.tolkienmobs:item_wovenbasket=Baskets woven to pay tribute
 lore.item.tolkienmobs:item_artifact=This objects emits a dark aura
-lore.item.tolkienmobs:item_specialflower=TBD
+lore.item.tolkienmobs:item_specialflower=Especially potent flower brewers love to use
+lore.item.tolkienmobs:item_coin1=Use this to raise faction standing
+lore.item.tolkienmobs:item_coin2=This can be traded for unique items
+lore.item.tolkienmobs:whip_fire=Primary weapon of the fearsome Balrog
+lore.item.tolkienmobs:sword_witchking=Forged in fear, the powerful weapon of the Witch-king
 lore.item.tolkienmobs:item_letter=TBD
 lore.item.tolkienmobs:item_fancyhelm=TBD
 lore.item.tolkienmobs:item_fancykey=TBD
 lore.item.tolkienmobs:item_fancypick=TBD
 lore.item.tolkienmobs:item_fancyshield=TBD
-lore.item.tolkienmobs:item_coin1=Use this to raise faction standing
-lore.item.tolkienmobs:item_coin2=This can be traded for unique items
-lore.item.tolkienmobs:whip_fire=Primary weapon of the fearsome Balrog
-lore.item.tolkienmobs:sword_witchking=Forged in fear, the powerful weapon of the Witch-king
+
+//Item Information
+item.tolkienmobs:spawn_egg.name=Spawn
+
+item.tolkienmobs:ingot_mithril.name=Mithril Ingot
+item.tolkienmobs:dust_mithril.name=Mithril Dust
+item.tolkienmobs:nugget_mithril.name=Mithril Nugget
+item.tolkienmobs:ingot_morguliron.name=Morgul Iron Ingot
+item.tolkienmobs:dust_morguliron.name=Morgul Iron Dust
+item.tolkienmobs:nugget_morguliron.name=Morgul Iron Nugget
+item.tolkienmobs:gem_ammolite.name=Star of Elendil
 
 item.tolkienmobs:axe_mithril.name=Mithril Axe
 item.tolkienmobs:hoe_mithril.name=Mithril Hoe
@@ -140,13 +139,15 @@ item.tolkienmobs:potion_miruvor.name=Miruvor
 item.tolkienmobs:potion_grog.name=Grog
 item.tolkienmobs:potion_elvishhealth.name=Vitality
 
+
 //Potion Information
-effect.ent_draught=Ent Draught
+tolkienmobs.effect.ent_draught=Ent Draught
 potion.effect.ent_draught=Potion of Ent Draught
 splash_potion.effect.ent_draught=Splash Potion of Ent Draught
 lingering_potion.effect.ent_draught=Lingering Potion of Ent Draught
 tipped_arrow.effect.ent_draught=Arrow of Ent Draught
-effect.elf_vitality=Elvish Life-span
+
+tolkienmobs.effect.elf_vitality=Elvish Life-span
 potion.effect.elf_vitality=Potion of Elvish Life-span
 splash_potion.effect.elf_vitality=Splash Potion of Elvish Life-span
 lingering_potion.effect.elf_vitality=Lingering Potion of Elvish Life-span
@@ -157,6 +158,7 @@ item.tolkienmobs:feather_crebain.name=Crebain Feather
 item.tolkienmobs:feather_bird.name=Bird Feather
 item.tolkienmobs:leather_mumakil.name=Mumakil Hide
 item.tolkienmobs:monster_fur.name=Monster Fur
+item.tolkienmobs:bottle_fancy.name=Fancy Bottle
 
 //Blocks and Ores
 tile.tolkienmobs:block_mithril.name=Mithril Block
@@ -260,6 +262,7 @@ entity.gwaihir.name=Gwaihir
 entity.greateagle.name=Great Eagle
 entity.mimicchest.name=Chest
 entity.minotaur.name=Minotaur
+entity.tmrat.name=Rat
 
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer

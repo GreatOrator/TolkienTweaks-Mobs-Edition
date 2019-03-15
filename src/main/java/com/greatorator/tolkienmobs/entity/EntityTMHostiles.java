@@ -493,10 +493,8 @@ public abstract class EntityTMHostiles extends EntityMob {
     }
 
     public abstract double getArmorStrength();{
-
     }
 
     public abstract double getHealthLevel();{
-
     }
 }

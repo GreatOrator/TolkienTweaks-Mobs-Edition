@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.entity.hostile;
+package com.greatorator.tolkienmobs.entity.ambient;
 
 import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
 import com.greatorator.tolkienmobs.init.LootInit;

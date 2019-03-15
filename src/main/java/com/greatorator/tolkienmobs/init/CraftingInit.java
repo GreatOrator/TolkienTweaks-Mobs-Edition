@@ -98,6 +98,9 @@ public class CraftingInit {
         OreDictionary.registerOre("feather", new ItemStack(TTMFeatures.BIRD_FEATHER));
         OreDictionary.registerOre("leather", new ItemStack(TTMFeatures.MUMAKIL_LEATHER));
         OreDictionary.registerOre("fur", new ItemStack(TTMFeatures.MONSTER_FUR));
+
+        /* Miscellaneous */
+        OreDictionary.registerOre("glassBottle", new ItemStack(TTMFeatures.BOTTLE_FANCY));
     }
 
     private static void addOreDictRecipe(){

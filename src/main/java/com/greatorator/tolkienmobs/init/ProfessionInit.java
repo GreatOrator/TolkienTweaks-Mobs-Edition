@@ -91,6 +91,8 @@ public class ProfessionInit {
         VillagerRegistry.VillagerCareer junk_dealer = new VillagerCareer(JUNK_TRADER, "junk_dealer");
          junk_dealer.addTrade(1, new TradeHandler(new ItemStack(brons_coin, 2), new ItemStack(TTMFeatures.MONSTER_FUR),3, 12))
                     .addTrade(1, new TradeHandler(new ItemStack(brons_coin, 3), new ItemStack(TTMFeatures.MONSTER_FLESH),2, 11))
+                    .addTrade(1, new TradeHandler(new ItemStack(brons_coin, 1), new ItemStack(TTMFeatures.BOTTLE_FANCY),1, 5))
+                    .addTrade(2, new TradeHandler(new ItemStack(silver_coin, 1), new ItemStack(TTMFeatures.MUMAKIL_LEATHER),1, 7))
                     .addTrade(2, new TradeHandler(new ItemStack(silver_coin, 1), new ItemStack(TTMFeatures.CREBAIN_FEATHER),1, 21))
                     .addTrade(2, new TradeHandler(new ItemStack(silver_coin, 2), new ItemStack(TTMFeatures.BIRD_FEATHER),1, 13));
 

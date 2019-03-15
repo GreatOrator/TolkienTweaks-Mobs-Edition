@@ -29,6 +29,7 @@ public class TTMConfig implements IModConfigHelper {
         comments.put("Boss Mobs", "Boss Mobs do not currently naturally spawn, \nuse these settings if you do not want them available in-game.");
         comments.put("Special Mobs", "Special Mobs do not currently naturally spawn, \nuse these settings if you do not want them available in-game.");
         comments.put("Passive Mobs", "Use these settings to disable any individual \nnaturally spawning Passive mobs. Note: This will potentially impact \nthe ability to get certain items as \nthey are only available from shop-keepers.");
+        comments.put("Ambient Mobs", "Use these settings to disable any individual naturally spawning Ambient mobs.");
         comments.put("Biomes", "Disable any or all Biomes added by this mod, some mobs \nwill only be available in these biomes, so if disabled it will \nautomatically make certain mobs unavailable.");
         comments.put("Potion Types", " This creates rings, charms, belts and amulets for \neach potion listed. They need to be added using the internal names like \nthe ones already listed.");
         comments.put("Miscellaneous Configs", " Enable or Disable various options for \nthis mod,  For example, disabling the ability of \nhallowed earth to damage as a player.");
@@ -95,14 +96,14 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableBoss = true;
     @ModConfigProperty(category = "Mob Spawning", name = "enableSpecial", comment = "Setting this to false will disable ALL special mobs", requiresMCRestart = true, requiresSync = true)
     public static boolean enableSpecial = true;
+    @ModConfigProperty(category = "Mob Spawning", name = "enableAmbient", comment = "Setting this to false will disable ALL ambient mobs", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableAmbient = true;
 
     /** Aggressive mobs - Individual*/
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableBarrowWights", comment = "Setting this to false will disable Barrow Wights", requiresMCRestart = true, requiresSync = true)
     public static boolean enableBarrowWights = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableCaveTrolls", comment = "Setting this to false will disable Cave Trolls", requiresMCRestart = true, requiresSync = true)
     public static boolean enableCaveTrolls = true;
-    @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableCrebain", comment = "Setting this to false will disable Crebain", requiresMCRestart = true, requiresSync = true)
-    public static boolean enableCrebain = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableGoblins", comment = "Setting this to false will disable Goblins", requiresMCRestart = true, requiresSync = true)
     public static boolean enableGoblins = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableHurons", comment = "Setting this to false will disable Hurons", requiresMCRestart = true, requiresSync = true)
@@ -119,8 +120,6 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableWargs = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableOathbreaker", comment = "Setting this to false will disable Oathbreakers", requiresMCRestart = true, requiresSync = true)
     public static boolean enableOathbreaker = true;
-    @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableMidgeFlies", comment = "Setting this to false will disable Midge Flies", requiresMCRestart = true, requiresSync = true)
-    public static boolean enableMidgeFlies = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableMimic", comment = "Setting this to false will disable Mimics", requiresMCRestart = true, requiresSync = true)
     public static boolean enableMimic = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableMinotaur", comment = "Setting this to false will disable Minotaurs", requiresMCRestart = true, requiresSync = true)
@@ -159,12 +158,20 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableHumans = true;
     @ModConfigProperty(category = "Passive Mobs", name = "enableMumakil", comment = "Setting this to false will disable Mumakil", requiresMCRestart = true, requiresSync = true)
     public static boolean enableMumakil = true;
-    @ModConfigProperty(category = "Passive Mobs", name = "enableFrogs", comment = "Setting this to false will disable Frogs", requiresMCRestart = true, requiresSync = true)
-    public static boolean enableFrogs = true;
-    @ModConfigProperty(category = "Passive Mobs", name = "enableSquirrels", comment = "Setting this to false will disable Society Squirrels", requiresMCRestart = true, requiresSync = true)
-    public static boolean enableSquirrels = true;
-    @ModConfigProperty(category = "Passive Mobs", name = "enableThrush", comment = "Setting this to false will disable the Thrush", requiresMCRestart = true, requiresSync = true)
+
+    /** Ambient mobs - Individual*/
+    @ModConfigProperty(category = "Ambient Mobs", name = "enableThrush", comment = "Setting this to false will disable the Thrush", requiresMCRestart = true, requiresSync = true)
     public static boolean enableThrush = true;
+    @ModConfigProperty(category = "Ambient Mobs", name = "enableFrogs", comment = "Setting this to false will disable Frogs", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableFrogs = true;
+    @ModConfigProperty(category = "Ambient Mobs", name = "enableSquirrels", comment = "Setting this to false will disable Society Squirrels", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableSquirrels = true;
+    @ModConfigProperty(category = "Ambient Mobs", name = "enableMidgeFlies", comment = "Setting this to false will disable Midge Flies", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableMidgeFlies = true;
+    @ModConfigProperty(category = "Ambient Mobs", name = "enableCrebain", comment = "Setting this to false will disable Crebain", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableCrebain = true;
+    @ModConfigProperty(category = "Ambient Mobs", name = "enableRats", comment = "Setting this to false will disable Rats", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableRats = true;
 
     /** Biomes */
     @ModConfigProperty(category = "Biomes", name = "enableBarrowDowns", comment = "Setting this to false will disable the Barrow Downs Biome", requiresMCRestart = true, requiresSync = true)
@@ -199,6 +206,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enablePlayerDMG = false;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "disableVanilla", comment = "Setting to false will enable Vanilla hostile mob spawning", requiresMCRestart = true, requiresSync = true)
     public static boolean disableVanilla = true;
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "disableOreGen", comment = "Setting to true will disable ore generation from this mod", requiresMCRestart = true, requiresSync = true)
+    public static boolean disableOreGen = false;
 
     /** Potion Types */
     @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array.")

@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTMMidgeFly;
 import com.greatorator.tolkienmobs.entity.hostile.*;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeRubble;
@@ -72,6 +73,8 @@ public class BiomeMordor extends Biome {
                 if (TTMConfig.enableCaveTrolls) {
                     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityTMTroll.class, 8, 1, 1));
                 }
+            }
+            if (TTMConfig.enableAmbient) {
                 if (TTMConfig.enableMidgeFlies) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityTMMidgeFly.class, 4, 1, 1));
                 }

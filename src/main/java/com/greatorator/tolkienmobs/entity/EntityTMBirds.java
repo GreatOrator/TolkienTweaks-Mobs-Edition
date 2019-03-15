@@ -1,12 +1,13 @@
 package com.greatorator.tolkienmobs.entity;
 
 import com.google.common.base.Optional;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTMRat;
 import com.greatorator.tolkienmobs.entity.entityai.AIStates;
 import com.greatorator.tolkienmobs.entity.entityai.ProcessStateBirds;
 import com.greatorator.tolkienmobs.entity.entityai.UpdateStateBirds;
 import com.greatorator.tolkienmobs.entity.events.BirdTameEvent;
-import com.greatorator.tolkienmobs.entity.passive.EntityTMSquirrel;
-import com.greatorator.tolkienmobs.entity.passive.EntityTMToad;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTMSquirrel;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTMToad;
 import com.greatorator.tolkienmobs.handler.interfaces.IModEntity;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
@@ -64,7 +65,7 @@ public class EntityTMBirds extends EntityFlying implements IModEntity
     protected int randFactor;
 
     @SuppressWarnings("rawtypes")
-    private Class[] preyArray = new Class[] {EntityChicken.class, EntityBat.class, EntityRabbit.class, EntityParrot.class, EntityTMToad.class, EntityTMSquirrel.class};
+    private Class[] preyArray = new Class[] {EntityChicken.class, EntityBat.class, EntityRabbit.class, EntityParrot.class, EntityTMToad.class, EntityTMSquirrel.class, EntityTMRat.class};
 
     private final double TAMED_HEALTH = 30.0D;
 

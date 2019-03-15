@@ -88,6 +88,14 @@ public class SoundInit
 	@ObjectHolder("mob.goblin.angry")
 	public static final SoundEvent soundAngryGoblin = null;
 
+	/** Rat */
+	@ObjectHolder("mob.tmrat.idle")
+	public static final SoundEvent soundIdleTMRat = null;
+	@ObjectHolder("mob.tmrat.hurt")
+	public static final SoundEvent soundHurtTMRat = null;
+	@ObjectHolder("mob.tmrat.death")
+	public static final SoundEvent soundDeathTMRat = null;
+
 	/** Balrog */
 	@ObjectHolder("mob.balrog.death")
 	public static final SoundEvent soundDeathBalrog = null;
@@ -287,6 +295,11 @@ public class SoundInit
 					"mob.goblin.hurt",
 					"mob.goblin.death",
 					"mob.goblin.angry",
+
+					/* Rat */
+					"mob.tmrat.idle",
+					"mob.tmrat.hurt",
+					"mob.tmrat.death",
 
                     /* Balrog */
                     "mob.balrog.death",
