@@ -67,6 +67,9 @@ public class EntityInit
             if (TTMConfig.enableMinotaur) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "minotaur"), EntityTMMinotaur.class, "minotaur", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x300FFE);
             }
+            if (TTMConfig.enableBrigand) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmbrigand"), EntityTMBrigand.class, "tmbrigand", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x078455);
+            }
         }
 
         if (TTMConfig.enableBoss) {
@@ -188,6 +191,9 @@ public class EntityInit
                 }
                 if (TTMConfig.enableMimic) {
                     EntityRegistry.addSpawn(EntityTMMimicChest.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.DESERT_HILLS);
+                }
+                if (TTMConfig.enableBrigand) {
+                    EntityRegistry.addSpawn(EntityTMBrigand.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.PLAINS,Biomes.FOREST);
                 }
             }
 

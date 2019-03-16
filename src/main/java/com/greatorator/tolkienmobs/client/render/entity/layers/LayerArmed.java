@@ -64,11 +64,11 @@ public class LayerArmed implements LayerRenderer<EntityLivingBase> {
 
             /* This is a good way to figure out the item and scale offset runtime. */
             /* Once I find values that work put them where they belong and comment this test code. */
-//            if (entity instanceof EntityTMMinotaur) {
-//                itemXOffset = 0.23F;
-//                itemYOffset = 0.2F;
-//                itemZOffset = -1.35F;
-//                itemScale = 1.6F;
+//            if (entity instanceof EntityTMBrigand) {
+//                itemXOffset = 0.0825F;
+//                itemYOffset = 0.0825F;
+//                itemZOffset = -0.625F;
+//                itemScale = 1.0F;
 //            }
             /* 0.095F, 0.035F, -0.9F, 1.2F */
 

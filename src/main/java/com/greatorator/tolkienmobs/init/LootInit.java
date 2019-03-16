@@ -26,6 +26,7 @@ public class LootInit {
     public static final ResourceLocation OATHBREAKER = register("entities/oathbreaker");
     public static final ResourceLocation MIMICCHEST = register("entities/mimicchest");
     public static final ResourceLocation MINOTAUR = register("entities/minotaur");
+    public static final ResourceLocation BRIGAND = register("entities/tmbrigand");
 
     /** Special */
     public static final ResourceLocation GOLLUM = register("entities/gollum");
