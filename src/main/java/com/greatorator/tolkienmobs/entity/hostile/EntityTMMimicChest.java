@@ -140,17 +140,24 @@ public class EntityTMMimicChest extends EntityTMHostiles {
         if (damageSource.getImmediateSource() instanceof EntityPlayer)
         {
             Entity entity = damageSource.getTrueSource();
+            EntityPlayer player = (EntityPlayer)damageSource.getTrueSource();
+            ItemStack weapon = player != null ? player.inventory.getStackInSlot(player.inventory.currentItem) : null;
 
             if (entity instanceof EntityPlayer)
             {
                 this.becomeAngryAt(entity);
             }
 
-            EntityPlayer player = (EntityPlayer) damageSource.getImmediateSource();
+            if (weapon != null)
+            {
+                player.inventory.getCurrentItem().damageItem(4, (EntityLivingBase) damageSource.getTrueSource());
+            }
 
+            assert player != null;
             if (player.getActiveItemStack().getItem() instanceof ItemAxe)
             {
                 damage *= 1.25F;
+                player.inventory.getCurrentItem().damageItem(4, (EntityLivingBase) damageSource.getTrueSource());
             }
         }
 

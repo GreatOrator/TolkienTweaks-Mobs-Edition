@@ -15,7 +15,11 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
@@ -30,6 +34,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 public class EntityTMWarg extends EntityWolf {
+    private static final DataParameter<Float> DATA_HEALTH_ID = EntityDataManager.<Float>createKey(EntityWolf.class, DataSerializers.FLOAT);
+    private static final DataParameter<Boolean> BEGGING = EntityDataManager.<Boolean>createKey(EntityWolf.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> COLLAR_COLOR = EntityDataManager.<Integer>createKey(EntityWolf.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> SKIN_TYPE = EntityDataManager.<Integer>createKey(EntityTMWarg.class, DataSerializers.VARINT);
     private int texture_index;
 
     /** Float used to smooth the rotation of the wolf head */
@@ -45,7 +53,7 @@ public class EntityTMWarg extends EntityWolf {
 
     public EntityTMWarg(World worldIn) {
         super(worldIn);
-        this.setSize(2.1F, 2.2F);
+        this.setSize(1.5F, 1.4F);
         this.setTamed(false);
     }
 
@@ -54,8 +62,15 @@ public class EntityTMWarg extends EntityWolf {
     {
         IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
         this.setEquipmentBasedOnDifficulty(difficulty);
-        if (texture_index == 0) {
-            texture_index = TTMRand.getRandomInteger(5, 1);
+        int i = this.getRandomMobType();
+
+        if (ientitylivingdata instanceof EntityTMWarg.MobTypeData)
+        {
+            i = ((EntityTMWarg.MobTypeData)livingdata).typeData;
+        }
+        else
+        {
+            ientitylivingdata = new EntityTMWarg.MobTypeData(i);
         }
 
         if (TTMRand.getRandomInteger(15, 1) == 2)
@@ -66,12 +81,24 @@ public class EntityTMWarg extends EntityWolf {
             this.world.spawnEntity(entitymordororc);
             entitymordororc.startRiding(this);
         }
+
+        this.setMobType(i);
         return ientitylivingdata;
+    }
+
+    public static class MobTypeData implements IEntityLivingData
+    {
+        public int typeData;
+
+        public MobTypeData(int type)
+        {
+            this.typeData = type;
+        }
     }
 
     public double getMountedYOffset()
     {
-        return (double)(this.height * 0.58F);
+        return (double)(this.height * 1.1F);
     }
 
     protected void initEntityAI(){
@@ -101,6 +128,16 @@ public class EntityTMWarg extends EntityWolf {
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(4.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25.0D);
+    }
+
+    @Override
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.dataManager.register(SKIN_TYPE, Integer.valueOf(0));
+        this.dataManager.register(DATA_HEALTH_ID, Float.valueOf(this.getHealth()));
+        this.dataManager.register(BEGGING, Boolean.valueOf(false));
+        this.dataManager.register(COLLAR_COLOR, Integer.valueOf(EnumDyeColor.RED.getDyeDamage()));
     }
 
     public void setAttackTarget(@Nullable EntityLivingBase entitylivingbaseIn)
@@ -278,13 +315,13 @@ public class EntityTMWarg extends EntityWolf {
     @Override
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
-        compound.setInteger("texture_index", texture_index);
+        compound.setInteger("SkinType", this.getMobType());
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
-        texture_index = compound.getInteger("texture_index");
+        this.setMobType(compound.getInteger("SkinType"));
     }
 
     @Override
@@ -304,7 +341,18 @@ public class EntityTMWarg extends EntityWolf {
         return 0.7696902F;
     }
 
-    public int getTextureIndex() {
-        return this.texture_index;
+    public int getMobType()
+    {
+        return ((Integer)this.dataManager.get(SKIN_TYPE)).intValue();
+    }
+
+    public void setMobType(int mobTypeId){
+        this.dataManager.set(SKIN_TYPE, Integer.valueOf(mobTypeId));
+    }
+
+    private int getRandomMobType()
+    {
+        int i = TTMRand.getRandomInteger(5, 1);
+        return i;
     }
 }
