@@ -22,7 +22,8 @@ public class EntityTMMumakil extends EntityTMHerds {
         super(par1World);
 
         setScaleFactor(2.0F);
-        setSize(width*getScaleFactor(), height*getScaleFactor());
+        setSize(4.0F*getScaleFactor(), 6.0F*getScaleFactor());
+        this.setRndMinMax(1,5);
     }
 
     @Override

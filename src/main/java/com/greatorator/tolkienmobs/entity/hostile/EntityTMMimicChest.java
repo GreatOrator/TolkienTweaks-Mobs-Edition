@@ -43,6 +43,7 @@ public class EntityTMMimicChest extends EntityTMHostiles {
 
         this.setSize(1.0F, 1.7F);
         this.setLootTable(LootInit.MIMICCHEST);
+        this.setRndMinMax(1,5);
     }
 
     @Override
@@ -251,6 +252,7 @@ public class EntityTMMimicChest extends EntityTMHostiles {
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
+        compound.setInteger("SkinType", this.getMobType());
         compound.setShort("Anger", (short)this.angerLevel);
 
         if (this.angerTargetUUID != null)
@@ -266,6 +268,7 @@ public class EntityTMMimicChest extends EntityTMHostiles {
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
+        this.setMobType(compound.getInteger("SkinType"));
         this.angerLevel = compound.getShort("Anger");
         String s = compound.getString("HurtBy");
 

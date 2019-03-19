@@ -50,6 +50,15 @@ public class EntityTMGoat extends AbstractChestHorse {
             ientitylivingdata = new EntityTMGoat.MobTypeData(i);
         }
 
+        if (TTMRand.getRandomInteger(15, 1) == 2)
+        {
+            EntityTMDwarf entitydwarf = new EntityTMDwarf(this.world);
+            entitydwarf.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+            entitydwarf.onInitialSpawn(difficulty, (IEntityLivingData)null);
+            this.world.spawnEntity(entitydwarf);
+            entitydwarf.startRiding(this);
+        }
+
         this.setMobType(i);
         return ientitylivingdata;
     }
@@ -62,6 +71,12 @@ public class EntityTMGoat extends AbstractChestHorse {
         {
             this.typeData = type;
         }
+    }
+
+    @Override
+    public double getMountedYOffset()
+    {
+        return (double)(this.height * 0.58F);
     }
 
     public static void registerFixesGoat(DataFixer fixer)

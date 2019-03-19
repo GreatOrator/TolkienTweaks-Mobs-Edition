@@ -2,8 +2,10 @@ package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.handler.interfaces.IModEntity;
 import com.greatorator.tolkienmobs.init.SoundInit;
+import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -26,30 +28,35 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 /** Borrowed from Jabelar https://github.com/jabelar */
 public class EntityTMHerds extends EntityAnimal implements IModEntity
 {
-
+    private static final DataParameter<Integer> SKIN_TYPE = EntityDataManager.<Integer>createKey(EntityTMHerds.class, DataSerializers.VARINT);
     protected static final DataParameter<Float> SCALE_FACTOR = EntityDataManager.<Float>createKey(EntityTMHerds.class, DataSerializers.FLOAT);
     protected static final DataParameter<Integer> REARING_COUNTER = EntityDataManager.<Integer>createKey(EntityTMHerds.class, DataSerializers.VARINT);
+
+    private int rndMax;
+    private int rndMin;
 
     protected boolean isHitWithoutResistance = false ;
 
     public EntityTMHerds(World par1World)
     {
         super(par1World);
-
-        setSize(2.2F, 2.7F);
     }
 
     @Override
     public void entityInit()
     {
         super.entityInit();
+        dataManager.register(SKIN_TYPE, Integer.valueOf(0));
         dataManager.register(SCALE_FACTOR, 1.0F);
         dataManager.register(REARING_COUNTER, 0);
     }
@@ -85,6 +92,35 @@ public class EntityTMHerds extends EntityAnimal implements IModEntity
         getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.8D);
         getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
         getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+    }
+
+    @Nullable
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
+        this.setEquipmentBasedOnDifficulty(difficulty);
+        int i = this.getRandomMobType();
+
+        if (ientitylivingdata instanceof EntityTMHerds.MobTypeData)
+        {
+            i = ((EntityTMHerds.MobTypeData)livingdata).typeData;
+        }
+        else
+        {
+            ientitylivingdata = new EntityTMHerds.MobTypeData(i);
+        }
+
+        this.setMobType(i);
+        return ientitylivingdata;
+    }
+
+    public static class MobTypeData implements IEntityLivingData
+    {
+        public int typeData;
+
+        public MobTypeData(int type)
+        {
+            this.typeData = type;
+        }
     }
 
     @Override
@@ -191,6 +227,7 @@ public class EntityTMHerds extends EntityAnimal implements IModEntity
     public void writeEntityToNBT(NBTTagCompound compound)
     {
         super.writeEntityToNBT(compound);
+        compound.setInteger("SkinType", this.getMobType());
         compound.setFloat("scaleFactor", getScaleFactor());
     }
 
@@ -198,6 +235,27 @@ public class EntityTMHerds extends EntityAnimal implements IModEntity
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         super.readEntityFromNBT(compound);
+        this.setMobType(compound.getInteger("SkinType"));
         setScaleFactor(compound.getFloat("scaleFactor"));
+    }
+
+    public int getMobType()
+    {
+        return ((Integer)this.dataManager.get(SKIN_TYPE)).intValue();
+    }
+
+    public void setMobType(int mobTypeId){
+        this.dataManager.set(SKIN_TYPE, Integer.valueOf(mobTypeId));
+    }
+
+    private int getRandomMobType()
+    {
+        int i = TTMRand.getRandomInteger(rndMax, rndMin);
+        return i;
+    }
+
+    public void setRndMinMax(int rndMin, int rndMax) {
+        this.rndMin = rndMin;
+        this.rndMax = rndMax;
     }
 }

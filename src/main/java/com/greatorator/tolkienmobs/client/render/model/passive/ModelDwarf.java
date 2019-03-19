@@ -219,5 +219,16 @@ public class ModelDwarf extends ModelTTM {
 
         this.bipedRightArm.rotationPointX = -4.9F;
         this.bipedLeftArm.rotationPointX = 4.9F;
+
+        if (this.isRiding) {
+            this.bipedRightArm.rotateAngleX += -((float)Math.PI / 5F);
+            this.bipedLeftArm.rotateAngleX += -((float)Math.PI / 5F);
+            this.DwarfLegR.rotateAngleX = -1.4137167F;
+            this.DwarfLegR.rotateAngleY = ((float)Math.PI / 10F);
+            this.DwarfLegR.rotateAngleZ = -0.07853982F;
+            this.DwarfLegL.rotateAngleX = -1.4137167F;
+            this.DwarfLegL.rotateAngleY = -((float)Math.PI / 10F);
+            this.DwarfLegL.rotateAngleZ = 0.07853982F;
+        }
     }
 }

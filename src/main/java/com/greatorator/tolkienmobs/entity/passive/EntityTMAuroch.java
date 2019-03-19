@@ -18,6 +18,7 @@ public class EntityTMAuroch extends EntityTMHerds {
         super(worldIn);
 
         this.setSize(1.2F, 2.1F);
+        this.setRndMinMax(1,5);
     }
 
     @Override
