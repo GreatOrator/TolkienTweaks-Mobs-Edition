@@ -23,6 +23,7 @@ public class BiomeInit
     public static final Biome FANGORN = new BiomeFangorn();
     public static final Biome MORDOR = new BiomeMordor();
     public static final Biome NINDALF = new BiomeMarshes();
+    public static final Biome OLDFOREST = new BiomeOldForest();
 
     /** Passive Biomes */
     public static final Biome SHIRE = new BiomeShire();
@@ -59,6 +60,9 @@ public class BiomeInit
         }
         if (TTMConfig.enableNindalf) {
             initBiome(NINDALF, "Nindalf Marshes", BiomeType.WARM, Type.SWAMP, Type.DEAD, Type.LUSH);
+        }
+        if (TTMConfig.enableOldForest) {
+            initBiome(OLDFOREST, "Old Forest", BiomeType.COOL, Type.FOREST, Type.MAGICAL, Type.LUSH);
         }
 
         /* Passive Biomes */

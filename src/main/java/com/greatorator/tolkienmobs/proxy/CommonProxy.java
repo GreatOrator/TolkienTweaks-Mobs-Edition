@@ -8,6 +8,7 @@ import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomStructures;
 import com.greatorator.tolkienmobs.world.types.WorldTypeArda;
+import com.greatorator.tolkienmobs.world.types.WorldTypeSingleArda;
 import net.minecraft.item.Item;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.common.MinecraftForge;
@@ -48,6 +49,7 @@ public class CommonProxy {
 
     public void postInit(FMLPostInitializationEvent event) {
         WorldType ARDA = new WorldTypeArda("Arda");
+        WorldType SINGLEARDA = new WorldTypeSingleArda("SingleArdaBiome");
     }
 
     public static void serverRegistries(FMLServerStartingEvent event)

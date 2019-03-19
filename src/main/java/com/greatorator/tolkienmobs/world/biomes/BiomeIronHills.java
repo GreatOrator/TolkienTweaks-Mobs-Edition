@@ -38,12 +38,12 @@ public class BiomeIronHills extends Biome {
         topBlock = Blocks.STONE.getDefaultState();
         fillerBlock = Blocks.STONE.getDefaultState();
 
+        setSpawnables();
+
         this.decorator = this.createBiomeDecorator();
         this.decorator.gravelPatchesPerChunk = 1;
         this.decorator.gravelGen  = new WorldGenSand(Blocks.COBBLESTONE, 6);
         this.decorator.generateFalls = false;
-
-        setSpawnables();
     }
 
     private void setSpawnables()

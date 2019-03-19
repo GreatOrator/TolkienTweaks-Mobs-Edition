@@ -35,10 +35,10 @@ public class BiomeHithaeglir extends Biome implements IFogyBiome {
         topBlock = Blocks.SNOW.getDefaultState();
         fillerBlock = Blocks.DIRT.getDefaultState();
 
+        setSpawnables();
+
         this.decorator = this.createBiomeDecorator();
         this.decorator.generateFalls = false;
-
-        setSpawnables();
     }
 
     private void setSpawnables()

@@ -23,6 +23,8 @@ public class BiomeHaradwaith extends Biome {
         this.topBlock = Blocks.SAND.getDefaultState();
         this.fillerBlock = Blocks.SAND.getDefaultState();
 
+        setSpawnables();
+
         this.decorator = this.createBiomeDecorator();
         this.decorator.treesPerChunk = -999;
         this.decorator.grassPerChunk = 12;
@@ -30,8 +32,6 @@ public class BiomeHaradwaith extends Biome {
         this.decorator.reedsPerChunk = 50;
         this.decorator.cactiPerChunk = 10;
         this.decorator.generateFalls = true;
-
-        setSpawnables();
     }
 
     private void setSpawnables()

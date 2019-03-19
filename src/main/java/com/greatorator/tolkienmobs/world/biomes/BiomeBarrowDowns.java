@@ -37,12 +37,12 @@ public class BiomeBarrowDowns extends Biome implements IFogyBiome {
         topBlock = Blocks.GRASS.getDefaultState();
         fillerBlock = Blocks.DIRT.getDefaultState();
 
+        setSpawnables();
+
         this.decorator = this.createBiomeDecorator();
         this.decorator.treesPerChunk = 1;
         this.decorator.grassPerChunk = 10;
         this.decorator.generateFalls = false;
-
-        setSpawnables();
     }
 
     @Override

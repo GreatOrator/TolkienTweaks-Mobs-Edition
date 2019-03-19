@@ -5,6 +5,8 @@ import com.greatorator.tolkienmobs.block.BlockLogs;
 import com.greatorator.tolkienmobs.handler.TTMGenerator;
 import com.greatorator.tolkienmobs.handler.TTMTreeGenerator;
 import net.minecraft.block.*;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -14,7 +16,7 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Random;
 
-public class WorldGenTreeSmFangorn extends TTMTreeGenerator {
+public class WorldGenTreeOldForest extends TTMTreeGenerator {
 
     protected int minHeight = 15;
     protected int chanceAddFirstFive = 3;
@@ -22,11 +24,11 @@ public class WorldGenTreeSmFangorn extends TTMTreeGenerator {
 
     private List<BlockPos> leaves = Lists.newArrayList();
 
-    public WorldGenTreeSmFangorn() {
+    public WorldGenTreeOldForest() {
         this(false);
     }
 
-    public WorldGenTreeSmFangorn(boolean notify) {
+    public WorldGenTreeOldForest(boolean notify) {
         super(notify);
         treeState = Blocks.LOG2.getDefaultState().withProperty(BlockNewLog.VARIANT, BlockPlanks.EnumType.DARK_OAK);
         branchState = treeState.withProperty(BlockLogs.LOG_AXIS, BlockLog.EnumAxis.NONE);
@@ -36,6 +38,9 @@ public class WorldGenTreeSmFangorn extends TTMTreeGenerator {
 
     @Override
     public boolean generate(World world, Random random, BlockPos pos) {
+        int i;
+        i = random.nextInt(4) + 5;
+
         // determine a height
         int treeHeight = minHeight;
         if (random.nextInt(chanceAddFirstFive) == 0) {
@@ -80,6 +85,49 @@ public class WorldGenTreeSmFangorn extends TTMTreeGenerator {
         // add the actual leaves
         for (BlockPos leafPos : leaves) {
             makeLeafBlob(world, leafPos);
+
+            for (int i2 = pos.getY() - 3 + i; i2 <= pos.getY() + i; ++i2)
+            {
+                int k2 = i2 - (pos.getY() + i);
+                int i3 = 2 - k2 / 2;
+                BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
+
+                for (int l3 = pos.getX() - i3; l3 <= pos.getX() + i3; ++l3)
+                {
+                    for (int j4 = pos.getZ() - i3; j4 <= pos.getZ() + i3; ++j4)
+                    {
+                        blockpos$mutableblockpos1.setPos(l3, i2, j4);
+
+                        if (world.getBlockState(blockpos$mutableblockpos1).getMaterial() == Material.LEAVES)
+                        {
+                            BlockPos blockpos3 = blockpos$mutableblockpos1.west();
+                            BlockPos blockpos4 = blockpos$mutableblockpos1.east();
+                            BlockPos blockpos1 = blockpos$mutableblockpos1.north();
+                            BlockPos blockpos2 = blockpos$mutableblockpos1.south();
+
+                            if (random.nextInt(4) == 0 && world.isAirBlock(blockpos3))
+                            {
+                                this.addVine(world, blockpos3, BlockVine.EAST);
+                            }
+
+                            if (random.nextInt(4) == 0 && world.isAirBlock(blockpos4))
+                            {
+                                this.addVine(world, blockpos4, BlockVine.WEST);
+                            }
+
+                            if (random.nextInt(4) == 0 && world.isAirBlock(blockpos1))
+                            {
+                                this.addVine(world, blockpos1, BlockVine.SOUTH);
+                            }
+
+                            if (random.nextInt(4) == 0 && world.isAirBlock(blockpos2))
+                            {
+                                this.addVine(world, blockpos2, BlockVine.NORTH);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         // root bulb
@@ -95,9 +143,20 @@ public class WorldGenTreeSmFangorn extends TTMTreeGenerator {
         for (int b = 0; b < numRoots; b++) {
             buildRoot(world, pos, bangle, b);
         }
-
-
         return true;
+    }
+
+    private void addVine(World worldIn, BlockPos pos, PropertyBool prop)
+    {
+        IBlockState iblockstate = Blocks.VINE.getDefaultState().withProperty(prop, Boolean.valueOf(true));
+        this.setBlockAndNotifyAdequately(worldIn, pos, iblockstate);
+        int i = 4;
+
+        for (BlockPos blockpos = pos.down(); worldIn.isAirBlock(blockpos) && i > 0; --i)
+        {
+            this.setBlockAndNotifyAdequately(worldIn, blockpos, iblockstate);
+            blockpos = blockpos.down();
+        }
     }
 
     private void makeLeafBlob(World world, BlockPos leafPos)

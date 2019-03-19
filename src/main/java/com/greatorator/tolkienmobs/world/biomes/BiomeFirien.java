@@ -36,6 +36,9 @@ public class BiomeFirien extends Biome {
         this.topBlock = Blocks.GRASS.getDefaultState();
         this.fillerBlock = Blocks.DIRT.getDefaultState();
 
+        addFlowers();
+        setSpawnables();
+
         this.decorator = this.createBiomeDecorator();
         this.decorator.treesPerChunk = 10;
         this.decorator.extraTreeChance = 0.05F;
@@ -45,9 +48,6 @@ public class BiomeFirien extends Biome {
         this.decorator.waterlilyPerChunk = 4;
         this.decorator.flowersPerChunk = 10;
         this.decorator.generateFalls = true;
-
-        addFlowers();
-        setSpawnables();
     }
 
     @Override

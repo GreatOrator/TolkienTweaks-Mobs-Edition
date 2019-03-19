@@ -34,6 +34,8 @@ public class BiomeMordor extends Biome {
         this.topBlock = Blocks.GRASS.getDefaultState();
         this.fillerBlock = Blocks.STONE.getDefaultState();
 
+        setSpawnables();
+
         this.decorator = this.createBiomeDecorator();
         this.decorator.treesPerChunk = 1;
         this.decorator.extraTreeChance = 0.05F;
@@ -42,8 +44,6 @@ public class BiomeMordor extends Biome {
         this.decorator.reedsPerChunk = 50;
         this.decorator.cactiPerChunk = 10;
         this.decorator.generateFalls = true;
-
-        setSpawnables();
     }
 
     @Override

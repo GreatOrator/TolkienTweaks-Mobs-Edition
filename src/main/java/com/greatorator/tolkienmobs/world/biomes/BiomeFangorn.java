@@ -37,6 +37,9 @@ public class BiomeFangorn extends Biome implements IFogyBiome {
         this.topBlock = Blocks.GRASS.getDefaultState();
         this.fillerBlock = Blocks.DIRT.getDefaultState();
 
+        addFlowers();
+        setSpawnables();
+
         this.decorator = this.createBiomeDecorator();
         this.decorator.treesPerChunk = 5;
         this.decorator.extraTreeChance = 0.05F;
@@ -45,9 +48,6 @@ public class BiomeFangorn extends Biome implements IFogyBiome {
         this.decorator.waterlilyPerChunk = 4;
         this.decorator.flowersPerChunk = 10;
         this.decorator.generateFalls = true;
-
-        addFlowers();
-        setSpawnables();
     }
 
     @Override

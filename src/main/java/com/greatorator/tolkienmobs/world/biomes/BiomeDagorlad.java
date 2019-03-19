@@ -39,16 +39,15 @@ public class BiomeDagorlad extends Biome {
         this.topBlock = Blocks.GRASS.getDefaultState();
         this.fillerBlock = Blocks.DIRT.getDefaultState();
 
-        this.decorator = this.createBiomeDecorator();
+        addFlowers();
+        setSpawnables();
 
+        this.decorator = this.createBiomeDecorator();
         this.decorator.treesPerChunk = 1;
         this.decorator.extraTreeChance = 0.05F;
         this.decorator.flowersPerChunk = 4;
         this.decorator.grassPerChunk = 10;
         this.decorator.generateFalls = true;
-
-        addFlowers();
-        setSpawnables();
     }
 
     @Override

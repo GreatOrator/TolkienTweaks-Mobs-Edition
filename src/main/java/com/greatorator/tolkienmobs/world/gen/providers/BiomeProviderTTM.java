@@ -27,6 +27,7 @@ public class BiomeProviderTTM extends BiomeProvider {
         allowedBiomes.add(BiomeInit.MIRKWOOD);
         allowedBiomes.add(BiomeInit.MORDOR);
         allowedBiomes.add(BiomeInit.SHIRE);
+        allowedBiomes.add(BiomeInit.OLDFOREST);
 
         getBiomesToSpawnIn().clear();
         getBiomesToSpawnIn().add(BiomeInit.GLADDEN);

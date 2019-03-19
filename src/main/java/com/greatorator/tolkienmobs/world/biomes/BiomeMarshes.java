@@ -40,6 +40,8 @@ public class BiomeMarshes extends Biome implements IFogyBiome
 
         LogHelperTTM.info("Where the Entwash meets the Anduin...");
 
+        setSpawnables();
+
         this.decorator = this.createBiomeDecorator();
         this.decorator.treesPerChunk = 2;
         this.decorator.flowersPerChunk = 1;
@@ -51,8 +53,6 @@ public class BiomeMarshes extends Biome implements IFogyBiome
         this.decorator.sandPatchesPerChunk = 0;
         this.decorator.gravelPatchesPerChunk = 0;
         this.decorator.grassPerChunk = 5;
-
-        setSpawnables();
     }
 
     public WorldGenAbstractTree getRandomTreeFeature(Random rand)

@@ -202,6 +202,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableNindalf = true;
     @ModConfigProperty(category = "Biomes", name = "enableShire", comment = "Setting this to false will disable the Shire Biome", requiresMCRestart = true, requiresSync = true)
     public static boolean enableShire = true;
+    @ModConfigProperty(category = "Biomes", name = "enableOldForest", comment = "Setting this to false will disable the Old Forest Biome", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableOldForest = true;
 
     /** Miscellaneous Configs */
     @ModConfigProperty(category = "Miscellaneous Configs", name = "enablePlayerDMG", comment = "Setting to true will enable the fake player for hallowed earth", requiresMCRestart = true, requiresSync = true)

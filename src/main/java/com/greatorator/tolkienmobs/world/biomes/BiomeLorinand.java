@@ -33,15 +33,15 @@ public class BiomeLorinand extends Biome {
         topBlock = Blocks.GRASS.getDefaultState();
         fillerBlock = Blocks.DIRT.getDefaultState();
 
+        addFlowers();
+        setSpawnables();
+
         this.decorator = this.createBiomeDecorator();
         this.decorator.treesPerChunk = 6;
         this.decorator.waterlilyPerChunk = 3;
         this.decorator.flowersPerChunk = 20;
         this.decorator.grassPerChunk = 15;
         this.decorator.generateFalls = true;
-
-        addFlowers();
-        setSpawnables();
     }
 
     @Override

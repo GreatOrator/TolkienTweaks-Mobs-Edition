@@ -19,7 +19,8 @@ public class GenLayerBiomesArda extends GenLayer {
             BiomeInit.NINDALF,
             BiomeInit.MIRKWOOD,
             BiomeInit.MORDOR,
-            BiomeInit.SHIRE
+            BiomeInit.SHIRE,
+            BiomeInit.OLDFOREST
     };
 
     public GenLayerBiomesArda(long seed, GenLayer genlayer) {
