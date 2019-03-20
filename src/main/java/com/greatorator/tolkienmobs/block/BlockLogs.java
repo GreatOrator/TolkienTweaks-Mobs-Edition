@@ -24,7 +24,7 @@ public class BlockLogs extends BlockLog implements IBCoreBlock {
 
     public BlockLogs() {
         setSoundType(SoundType.WOOD);
-        setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.MALLORN).withProperty(LOG_AXIS, EnumAxis.Y));
+        setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.MALLORN).withProperty(LOG_AXIS, EnumAxis.NONE));
     }
 
     @Override
