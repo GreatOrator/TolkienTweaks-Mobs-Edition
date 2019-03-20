@@ -6,7 +6,11 @@ import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.block.Block;
-import net.minecraft.entity.*;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
@@ -406,5 +410,23 @@ public class EntityTMBalrog extends EntityMob implements IMob {
     protected boolean canDespawn()
     {
         return false;
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        boolean nearLava = false;
+        int i = (int) Math.floor(posX);
+        int j = (int) Math.floor(posY);
+        int k = (int) Math.floor(posZ);
+        for (int i1 = i - 16; i1 <= i + 16; i1++) {
+            for (int j1 = j - 6; j1 <= j + 6; j1++) {
+                for (int k1 = k - 16; k1 <= k + 16; k1++) {
+                    BlockPos pos = new BlockPos(i1, j1, k1);
+                    if (world.getBlockState(pos).getMaterial() == Material.LAVA && !this.world.canSeeSky(new BlockPos(this)) && this.posY < 35.0D)
+                        nearLava = true;
+                }
+            }
+        }
+        return nearLava;
     }
 }

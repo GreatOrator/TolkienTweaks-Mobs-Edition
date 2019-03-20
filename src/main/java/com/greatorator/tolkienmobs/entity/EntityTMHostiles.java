@@ -12,10 +12,8 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,7 +23,6 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
@@ -419,11 +416,6 @@ public abstract class EntityTMHostiles extends EntityMob {
         }
     }
 
-    @Override
-    protected boolean isValidLightLevel() {
-        return true;
-    }
-
     public boolean isNonBoss()
     {
         return !madeBoss;
@@ -499,5 +491,13 @@ public abstract class EntityTMHostiles extends EntityMob {
     }
 
     public abstract double getHealthLevel();{
+    }
+
+    public boolean getCanSpawnHere() {
+        boolean mobSpawnable = false;
+        if (this.world.canSeeSky(new BlockPos(this)) && this.posY > 38.0D && this.world.getLight(new BlockPos(this)) < 8) {
+            mobSpawnable = true;
+        }
+        return mobSpawnable;
     }
 }

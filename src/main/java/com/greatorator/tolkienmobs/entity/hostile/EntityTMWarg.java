@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.entity.hostile;
 
 import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
-import com.greatorator.tolkienmobs.utils.TTMRand;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
+import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -38,7 +38,6 @@ public class EntityTMWarg extends EntityWolf {
     private static final DataParameter<Boolean> BEGGING = EntityDataManager.<Boolean>createKey(EntityWolf.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> COLLAR_COLOR = EntityDataManager.<Integer>createKey(EntityWolf.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> SKIN_TYPE = EntityDataManager.<Integer>createKey(EntityTMWarg.class, DataSerializers.VARINT);
-    private int texture_index;
 
     /** Float used to smooth the rotation of the wolf head */
     private float headRotationCourse;
@@ -354,5 +353,13 @@ public class EntityTMWarg extends EntityWolf {
     {
         int i = TTMRand.getRandomInteger(5, 1);
         return i;
+    }
+
+    public boolean getCanSpawnHere() {
+        boolean mobSpawnable = false;
+        if (this.world.canSeeSky(new BlockPos(this)) && this.posY > 38.0D && this.world.getLight(new BlockPos(this)) < 8) {
+            mobSpawnable = true;
+        }
+        return mobSpawnable;
     }
 }

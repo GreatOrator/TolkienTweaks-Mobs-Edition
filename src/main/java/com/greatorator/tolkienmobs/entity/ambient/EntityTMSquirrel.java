@@ -279,4 +279,22 @@ public class EntityTMSquirrel extends EntityCreature implements IAnimals {
     protected ResourceLocation getLootTable() {
         return LootInit.SOSQUIRREL;
     }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        boolean nearWater = false;
+        int i = (int) Math.floor(posX);
+        int j = (int) Math.floor(posY);
+        int k = (int) Math.floor(posZ);
+        for (int i1 = i - 16; i1 <= i + 16; i1++) {
+            for (int j1 = j - 6; j1 <= j + 6; j1++) {
+                for (int k1 = k - 16; k1 <= k + 16; k1++) {
+                    BlockPos pos = new BlockPos(i1, j1, k1);
+                    if (world.getBlockState(pos).getMaterial() == Material.LEAVES && this.world.canSeeSky(new BlockPos(this)) && this.posY > 36.0D && this.world.getLight(new BlockPos(this)) > 7)
+                        nearWater = true;
+                }
+            }
+        }
+        return nearWater;
+    }
 }

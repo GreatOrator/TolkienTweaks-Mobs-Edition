@@ -6,6 +6,7 @@ import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.world.biomes.BiomeHaradwaith;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBeetroot;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -744,5 +745,23 @@ public class EntityTMToad extends EntityAnimal {
         {
             this.typeData = type;
         }
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        boolean nearWater = false;
+        int i = (int) Math.floor(posX);
+        int j = (int) Math.floor(posY);
+        int k = (int) Math.floor(posZ);
+        for (int i1 = i - 16; i1 <= i + 16; i1++) {
+            for (int j1 = j - 6; j1 <= j + 6; j1++) {
+                for (int k1 = k - 16; k1 <= k + 16; k1++) {
+                    BlockPos pos = new BlockPos(i1, j1, k1);
+                    if (world.getBlockState(pos).getMaterial() == Material.WATER && this.world.canSeeSky(new BlockPos(this)) && this.posY > 36.0D)
+                        nearWater = true;
+                }
+            }
+        }
+        return nearWater;
     }
 }

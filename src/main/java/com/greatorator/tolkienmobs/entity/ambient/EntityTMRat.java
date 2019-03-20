@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.ambient;
 
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.utils.TTMRand;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.IEntityLivingData;
@@ -31,12 +32,6 @@ public class EntityTMRat extends EntityCreature {
     {
         super(worldIn);
         this.setSize(0.3F, 0.5F);
-    }
-
-    @Override
-    public boolean getCanSpawnHere()
-    {
-        return super.getCanSpawnHere() && !this.world.canSeeSky(new BlockPos(this));
     }
 
     protected void initEntityAI()
@@ -162,5 +157,23 @@ public class EntityTMRat extends EntityCreature {
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setMobType(compound.getInteger("SkinType"));
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        boolean nearWater = false;
+        int i = (int) Math.floor(posX);
+        int j = (int) Math.floor(posY);
+        int k = (int) Math.floor(posZ);
+        for (int i1 = i - 16; i1 <= i + 16; i1++) {
+            for (int j1 = j - 6; j1 <= j + 6; j1++) {
+                for (int k1 = k - 16; k1 <= k + 16; k1++) {
+                    BlockPos pos = new BlockPos(i1, j1, k1);
+                    if (world.getBlockState(pos).getMaterial() == Material.PLANTS && !this.world.canSeeSky(new BlockPos(this)) && this.posY < 36.0D && this.world.getLight(new BlockPos(this)) < 8)
+                        nearWater = true;
+                }
+            }
+        }
+        return nearWater;
     }
 }

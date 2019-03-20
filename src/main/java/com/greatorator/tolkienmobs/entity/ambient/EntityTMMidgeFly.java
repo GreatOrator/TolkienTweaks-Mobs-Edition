@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.entity.ambient;
 
 import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
+import com.greatorator.tolkienmobs.init.BiomeInit;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.entity.ai.*;
@@ -53,7 +54,7 @@ public class EntityTMMidgeFly extends EntityTMHostiles {
 
     @Override
     public boolean getCanSpawnHere() {
-        if (world.getBiome(new BlockPos(this)) == Biomes.SWAMPLAND) {
+        if (world.getBiome(new BlockPos(this)) == Biomes.SWAMPLAND || world.getBiome(new BlockPos(this)) == BiomeInit.NINDALF) {
             return world.checkNoEntityCollision(getEntityBoundingBox()) && world.getCollisionBoxes(this, getEntityBoundingBox()).size() == 0;
         } else {
             return super.getCanSpawnHere();
