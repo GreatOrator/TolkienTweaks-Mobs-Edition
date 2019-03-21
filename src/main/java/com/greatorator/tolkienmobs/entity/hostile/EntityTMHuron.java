@@ -3,12 +3,14 @@ package com.greatorator.tolkienmobs.entity.hostile;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
-import net.minecraft.entity.*;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
@@ -97,13 +99,5 @@ public class EntityTMHuron extends EntityMob implements IRangedAttackMob {
     @Override
     public void setSwingingArms(boolean swingingArms) {
 
-    }
-
-    public boolean getCanSpawnHere() {
-        boolean mobSpawnable = false;
-        if (this.world.canSeeSky(new BlockPos(this)) && this.posY > 38.0D && this.world.getLight(new BlockPos(this)) < 8) {
-            mobSpawnable = true;
-        }
-        return mobSpawnable;
     }
 }

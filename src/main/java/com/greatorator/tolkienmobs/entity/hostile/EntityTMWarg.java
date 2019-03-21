@@ -354,12 +354,4 @@ public class EntityTMWarg extends EntityWolf {
         int i = TTMRand.getRandomInteger(5, 1);
         return i;
     }
-
-    public boolean getCanSpawnHere() {
-        boolean mobSpawnable = false;
-        if (this.world.canSeeSky(new BlockPos(this)) && this.posY > 38.0D && this.world.getLight(new BlockPos(this)) < 8) {
-            mobSpawnable = true;
-        }
-        return mobSpawnable;
-    }
 }

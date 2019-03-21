@@ -7,15 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackMelee;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILeapAtTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMate;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -28,7 +20,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -258,13 +249,5 @@ public class EntityTMHerds extends EntityAnimal implements IModEntity
     public void setRndMinMax(int rndMin, int rndMax) {
         this.rndMin = rndMin;
         this.rndMax = rndMax;
-    }
-
-    public boolean getCanSpawnHere() {
-        boolean mobSpawnable = false;
-        if (this.world.canSeeSky(new BlockPos(this)) && this.posY > 38.0D && this.world.getLight(new BlockPos(this)) > 8) {
-            mobSpawnable = true;
-        }
-        return mobSpawnable;
     }
 }
