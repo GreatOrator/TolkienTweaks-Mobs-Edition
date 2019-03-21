@@ -44,7 +44,12 @@ public class TTMObjItemRender implements IItemRenderer {
 
         //If your model is created properly with a scale that matches minecraft this should just work.
         //But that can be tricky to pull off unless the person making the model really knows what they are doing so you will probably have to fiddle with these values.
-        model.render(ccrs, new Rotation(MathHelper.torad * 45, 1, 0, 0).with(new Rotation(MathHelper.torad * -90, 0, 1, 0)).with(new Scale(-1)).with(new Translation(6.5, 0.3, 0.5)));
+        if (transformType == ItemCameraTransforms.TransformType.GUI) {
+            model.render(ccrs, new Rotation(MathHelper.torad * 135, 1, 0, 0).with(new Rotation(MathHelper.torad * -90, 0, 1, 0)).with(new Scale(-0.3)).with(new Translation(0, 0.45, 0.5)));
+        }
+        else {
+            model.render(ccrs, new Rotation(MathHelper.torad * 80, 1, 0, 0).with(new Rotation(MathHelper.torad * -90, 0, 1, 0)).with(new Scale(-0.5)).with(new Translation(0.6, 0.45, 0.5)));
+        }
 
         ccrs.draw();
     }
