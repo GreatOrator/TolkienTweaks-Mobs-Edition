@@ -4,6 +4,9 @@ commands.coordinate_error=You can't place that there!
 commands.not_enough_parameters=Not enough information to spawn structure!
 commands.tmspawn.usage=/tmstructurespawn <structure name> <x> <y> <z>
 
+//Furnace Specific
+container.tmfireplace=Cozy Fireplace
+
 //Quest Items
 item.tolkienmobs:item_beryl.name=§3Glorfindel's Beryl
 item.tolkienmobs:item_watcherheart.name=§5Stone Heart
@@ -164,6 +167,7 @@ item.tolkienmobs:bottle_fancy.name=Fancy Bottle
 tile.tolkienmobs:block_mithril.name=Mithril Block
 tile.tolkienmobs:block_morguliron.name=Morgul Iron Block
 tile.tolkienmobs:block_hallowed.name=Hallowed Earth
+tile.tolkienmobs:block_tmfireplace.name=Simple Fireplace
 
 tile.tolkienmobs:ore_mithril.name=Mithril Ore
 tile.tolkienmobs:ore_nether_mithril.name=Fiery Mithril Ore

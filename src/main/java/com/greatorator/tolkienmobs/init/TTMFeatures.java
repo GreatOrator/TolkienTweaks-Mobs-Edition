@@ -10,6 +10,7 @@ import com.brandon3055.brandonscore.registry.ModFeature;
 import com.brandon3055.brandonscore.registry.ModFeatures;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.*;
+import com.greatorator.tolkienmobs.block.itemblock.BlockTMFireplace;
 import com.greatorator.tolkienmobs.block.itemblock.BlockTMHallowed;
 import com.greatorator.tolkienmobs.block.itemblock.ItemBlockSlabs;
 import com.greatorator.tolkienmobs.handler.TTMAmmo;
@@ -259,6 +260,9 @@ public class TTMFeatures implements IModFeatures {
 
     @ModFeature(name = "block_hallowed", cTab = 1)
     public static final Block BLOCK_HALLOWED = new BlockTMHallowed();
+
+    @ModFeature(name = "block_tmfireplace", cTab = 1)
+    public static final Block BLOCK_TMFIREPLACE = new BlockTMFireplace().setHardness(1.5F).setResistance(10F);
 
     /* Plants */                                             //TODO add a way to avoid this mess in 1.13...
     @ModFeature(name = "leaves", variantMap = {"0:check_decay=false,decayable=false,variant=mallorn", "1:check_decay=false,decayable=false,variant=mirkwood", "2:check_decay=false,decayable=false,variant=culumalda", "3:check_decay=false,decayable=false,variant=lebethron"}, itemBlock = ItemBlockBCore.class, cTab = 1)

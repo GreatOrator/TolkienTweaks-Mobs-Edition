@@ -1,6 +1,5 @@
 {
-  "variants":
-  {
+  "variants": {
     "normal": { "model": "tolkienmobs:block_hallowed" }
   }
 }
