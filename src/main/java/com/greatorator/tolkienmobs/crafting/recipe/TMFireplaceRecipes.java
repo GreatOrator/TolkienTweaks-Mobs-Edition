@@ -20,6 +20,7 @@ public class TMFireplaceRecipes {
 
     private TMFireplaceRecipes()
     {
+        /* This is where we place all of the recipes specific for the fireplace */
     }
 
 
