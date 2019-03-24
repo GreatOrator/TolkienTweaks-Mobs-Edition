@@ -21,6 +21,7 @@ public class TMFireplaceRecipes {
     private TMFireplaceRecipes()
     {
         /* This is where we place all of the recipes specific for the fireplace */
+        //addFireplaceRecipe(new ItemStack(cram), new ItemStack(cram), honeycake, 3.0F);
     }
 
 
