@@ -1,12 +1,6 @@
 {
   "credit":"Made with Blockbench, a free, modern block model editor by JannisX11",
   "parent": "minecraft:block/cube",
-  "textures":{
-    "0":"tolkienmobs:blocks/fireplace/fire_layer_0",
-    "1":"tolkienmobs:blocks/fireplace/block_fireplace",
-    "2":"tolkienmobs:blocks/fireplace/block_fireplace_concrete",
-    "particle":"tolkienmobs:blocks/fireplace/block_fireplace"
-  },
   "elements":[
     {
       "name":"brick",
