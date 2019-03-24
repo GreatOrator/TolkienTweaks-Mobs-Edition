@@ -5,7 +5,7 @@
       "textures":{
         "0":"tolkienmobs:blocks/fireplace/fire_layer_0",
         "1":"tolkienmobs:blocks/fireplace/block_fireplace",
-        "down":"tolkienmobs:blocks/fireplace/block_fireplace_concrete",
+        "2":"tolkienmobs:blocks/fireplace/block_fireplace_concrete",
         "particle":"tolkienmobs:blocks/fireplace/block_fireplace"
       },
       "transform": "forge:default-block",
@@ -18,15 +18,14 @@
         "west": {"y": 270},
         "east": {"y": 90}
       },
-      "normal": [
-        {
-        "textures":{
-          "0":"tolkienmobs:blocks/fireplace/fire_layer_0",
-          "1":"tolkienmobs:blocks/fireplace/block_fireplace",
-          "down":"tolkienmobs:blocks/fireplace/block_fireplace_concrete",
-          "particle":"tolkienmobs:blocks/fireplace/block_fireplace"
+      "burning": {
+        "true": {},
+        "false": {
+          "textures":{
+            "0":"tolkienmobs:blocks/fireplace/fire_out"
+          }
         }
-      }
-    ]
+      },
+      "normal": [{}]
   }
 }
