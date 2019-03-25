@@ -8,8 +8,7 @@
         "2":"tolkienmobs:blocks/fireplace/block_fireplace_concrete",
         "particle":"tolkienmobs:blocks/fireplace/block_fireplace"
       },
-      "transform": "forge:default-block",
-      "uvlock": true
+      "transform": "forge:default-block"
     },
     "variants": {
       "facing": {
