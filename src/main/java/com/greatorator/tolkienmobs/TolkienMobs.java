@@ -4,6 +4,7 @@ import com.brandon3055.brandonscore.BrandonsCore;
 import com.brandon3055.brandonscore.registry.ModFeatureParser;
 import com.brandon3055.tolkientweaks.TolkienTweaks;
 import com.greatorator.tolkienmobs.client.TTMobsTab;
+import com.greatorator.tolkienmobs.handler.TTMGUIHandler;
 import com.greatorator.tolkienmobs.init.PotionInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
@@ -49,10 +50,6 @@ public class TolkienMobs {
     public static CreativeTabs tabQuestItems = new TTMobsTab("quest", () -> TTMFeatures.ITEM_FORTRESSMAP);
     public static CreativeTabs tabSignItems = new TTMobsTab("signs", () -> Items.SIGN);
 
-
-
-    public static final int GUI_TMFIREPLACE = 1;
-
     private final DataFixer dataFixer;
 
     public TolkienMobs() {
@@ -82,6 +79,7 @@ public class TolkienMobs {
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         ModFeatureParser.registerModFeatures(MODID);//This is a call to let BC know when its time to register our stuff.
+        TTMGUIHandler.initialize();
         proxy.preInit(event);
     }
 

@@ -1,28 +1,42 @@
 package com.greatorator.tolkienmobs.handler;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.block.guis.GuiTMFireplace;
+import com.greatorator.tolkienmobs.client.gui.GuiTMFireplace;
 import com.greatorator.tolkienmobs.tile.TileTMFireplace;
 import com.greatorator.tolkienmobs.tile.container.ContainerTMFireplace;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
-public class TTMGUIHandler {
-    public class GuiHandler implements IGuiHandler {
-        @Override
-        public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-            if (ID == TolkienMobs.GUI_TMFIREPLACE)
-                return new ContainerTMFireplace(player.inventory, (TileTMFireplace) world.getTileEntity(new BlockPos(x, y, z)));
-            return null;
-        }
+public class TTMGUIHandler implements IGuiHandler {
 
-        @Override
-        public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-            if (ID == TolkienMobs.GUI_TMFIREPLACE)
-                return new GuiTMFireplace(player.inventory, (TileTMFireplace) world.getTileEntity(new BlockPos(x, y, z)));
-            return null;
+    public static final TTMGUIHandler instance = new TTMGUIHandler();
+    public static final int GUI_TMFIREPLACE = 1; //This belongs here
+
+    public static void initialize() {
+        NetworkRegistry.INSTANCE.registerGuiHandler(TolkienMobs.instance, instance);
+    }
+
+    @Override
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+        TileEntity tile = world.getTileEntity(new BlockPos(x, y, z));
+
+        if (ID == TTMGUIHandler.GUI_TMFIREPLACE && tile instanceof TileTMFireplace) {
+            return new ContainerTMFireplace(player, (TileTMFireplace) tile);
         }
+        return null;
+    }
+
+    @Override
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+        TileEntity tile = world.getTileEntity(new BlockPos(x, y, z));
+
+        if (ID == TTMGUIHandler.GUI_TMFIREPLACE && tile instanceof TileTMFireplace) {
+            return new GuiTMFireplace(player, (TileTMFireplace) tile);
+        }
+        return null;
     }
 }
