@@ -49,6 +49,10 @@ public class TolkienMobs {
     public static CreativeTabs tabQuestItems = new TTMobsTab("quest", () -> TTMFeatures.ITEM_FORTRESSMAP);
     public static CreativeTabs tabSignItems = new TTMobsTab("signs", () -> Items.SIGN);
 
+
+
+    public static final int GUI_TMFIREPLACE = 1;
+
     private final DataFixer dataFixer;
 
     public TolkienMobs() {
