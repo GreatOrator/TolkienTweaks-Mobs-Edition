@@ -5,6 +5,8 @@ import com.brandon3055.brandonscore.registry.Feature;
 import com.brandon3055.brandonscore.registry.IRenderOverride;
 import com.greatorator.tolkienmobs.client.render.tools.TTMObjItemRender;
 import com.greatorator.tolkienmobs.handler.TTMSword;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ToolSword extends TTMSword implements IRenderOverride {
     private String toolRender;
@@ -18,6 +20,7 @@ public class ToolSword extends TTMSword implements IRenderOverride {
         setMaxDamage(-1);
     }
 
+    @SideOnly(Side.CLIENT)
     public void registerRenderer(Feature feature) {
         ModelRegistryHelper.registerItemRenderer(this, new TTMObjItemRender(toolRender, toolTexture));
     }

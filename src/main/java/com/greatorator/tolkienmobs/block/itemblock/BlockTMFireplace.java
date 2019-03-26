@@ -133,6 +133,7 @@ public class BlockTMFireplace extends BlockBCore implements IRenderOverride {
         return false;
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void registerRenderer(Feature feature) {
         ClientRegistry.bindTileEntitySpecialRenderer(TileTMFireplace.class, new RenderTileFireplace());
