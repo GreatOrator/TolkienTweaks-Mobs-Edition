@@ -6,13 +6,17 @@ import com.google.common.collect.Table;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.item.ItemStack;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 public class TMFireplaceRecipes {
     private static final TMFireplaceRecipes INSTANCE = new TMFireplaceRecipes();
     private final Table<ItemStack, ItemStack, ItemStack> smeltingList = HashBasedTable.<ItemStack, ItemStack, ItemStack>create();
     private final Map<ItemStack, Float> experienceList = Maps.<ItemStack, Float>newHashMap();
+    private final Set<ItemStack> slot1Inputs = new HashSet<>();
+    private final Set<ItemStack> slot2Inputs = new HashSet<>();
 
     public static TMFireplaceRecipes getInstance()
     {
@@ -31,6 +35,8 @@ public class TMFireplaceRecipes {
         if(getFireplaceResult(input1, input2) != ItemStack.EMPTY) return;
         this.smeltingList.put(input1, input2, result);
         this.experienceList.put(result, Float.valueOf(experience));
+        slot1Inputs.add(input1);
+        slot2Inputs.add(input2);
     }
 
     public ItemStack getFireplaceResult(ItemStack input1, ItemStack input2)
@@ -71,5 +77,24 @@ public class TMFireplaceRecipes {
             }
         }
         return 0.0F;
+    }
+
+    public boolean isInput(int slot, ItemStack stack) {
+        if (slot == 1) {
+            for (ItemStack s : slot1Inputs) {
+                if (compareItemStacks(s, stack)) {
+                    return true;
+                }
+            }
+        }
+        else {
+            for (ItemStack s : slot2Inputs) {
+                if (compareItemStacks(s, stack)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

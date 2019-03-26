@@ -119,7 +119,7 @@ public class TileTMFireplace extends TileInventoryBase implements ITickable, ISi
     }
 
     private void doSmelt() {
-        ItemStack result = TMFireplaceRecipes.getInstance().getFireplaceResult(itemHandler.getStackInSlot(0), itemHandler.getStackInSlot(1));
+        ItemStack result = TMFireplaceRecipes.getInstance().getFireplaceResult(itemHandler.getStackInSlot(0), itemHandler.getStackInSlot(1)).copy();
         if (result.isEmpty()) {
             //Do vanilla smelt?
             ItemStack output1 = FurnaceRecipes.instance().getSmeltingResult(getStackInSlot(0)).copy(); //Remember to copy these before you start manipulating them
@@ -158,6 +158,8 @@ public class TileTMFireplace extends TileInventoryBase implements ITickable, ISi
             else {
                 outputSlot.setCount(Math.min(outputSlot.getMaxStackSize(), outputSlot.getCount() + result.getCount()));
             }
+            decrStackSize(0, 1);
+            decrStackSize(1, 1);
         }
     }
 
@@ -242,9 +244,8 @@ public class TileTMFireplace extends TileInventoryBase implements ITickable, ISi
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
         if (index == 0 || index == 1) {
-            //TODO this will need to be tweaked to work with the custom recipes.
             ItemStack output = FurnaceRecipes.instance().getSmeltingResult(stack);
-            return !output.isEmpty() && output.getItem() instanceof ItemFood;
+            return (!output.isEmpty() && output.getItem() instanceof ItemFood) || TMFireplaceRecipes.getInstance().isInput(index, stack);
         }
         else if (index == 2) {
             return getItemBurnTime(stack) > 0;
