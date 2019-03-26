@@ -14,7 +14,7 @@ public class EntityTMTroll extends EntityTMHostiles {
     public EntityTMTroll(World worldIn) {
         super(worldIn);
         this.setSize(3.4F, 4.6F);
-        this.setWeaponType(TTMFeatures.AXE_MORGULIRON);
+        this.setWeaponType(TTMFeatures.CLUB_WOODEN);
         this.setLootTable(LootInit.TROLL);
         this.setRndMinMax(1,5);
     }

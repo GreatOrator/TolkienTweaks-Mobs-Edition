@@ -67,18 +67,6 @@ public class BlockTMFireplace extends BlockBCore implements IRenderOverride {
         }
     }
 
-//    public static void setState(boolean active, World worldIn, BlockPos pos)
-//    {
-//        IBlockState state = worldIn.getBlockState(pos);
-//        TileEntity tileentity = worldIn.getTileEntity(pos);
-
-//        if(tileentity != null)
-//        {
-//            tileentity.validate();
-//            worldIn.setTileEntity(pos, tileentity);
-//        }
-//    }
-
     @Override
     public boolean hasTileEntity(IBlockState state) {
         return true;

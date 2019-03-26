@@ -31,7 +31,7 @@ public class TileTMFireplace extends TileInventoryBase implements ITickable, ISi
     public ManagedInt burnTime = register("burnTime", new ManagedInt(0)).saveToTile().syncViaTile().syncViaContainer().finish();
     public ManagedInt currentBurnTime = register("currentBurnTime", new ManagedInt(0)).saveToTile().syncViaContainer().finish();
     public ManagedInt cookTime = register("cookTime", new ManagedInt(0)).saveToTile().syncViaContainer().finish();
-    public ManagedInt totalCookTime = register("totalCookTime ", new ManagedInt(200)).saveToTile().saveToItem().syncViaContainer().finish();
+    public ManagedInt totalCookTime = register("totalCookTime ", new ManagedInt(100)).saveToTile().saveToItem().syncViaContainer().finish();
 
     public TileTMFireplace() {
         setInventorySize(4);
@@ -287,75 +287,3 @@ public class TileTMFireplace extends TileInventoryBase implements ITickable, ISi
         return ret;
     }
 }
-
-
-//    This is all handled by TileInventoryBase
-
-//    @Override
-//    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-//        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) return true;
-//        else return false;
-//    }
-//
-//    @Override
-//    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-//        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) return (T) this.handler;
-//        return super.getCapability(capability, facing);
-//    }
-//    @Override
-//    public void readFromNBT(NBTTagCompound compound) {
-//        super.readFromNBT(compound);
-//        this.handler.deserializeNBT(compound.getCompoundTag("Inventory"));
-//        this.burnTime = compound.getInteger("BurnTime");
-//        this.cookTime = compound.getInteger("CookTime");
-//        this.totalCookTime = compound.getInteger("CookTimeTotal");
-//        this.currentBurnTime = getItemBurnTime((ItemStack) this.handler.getStackInSlot(2));
-//
-//        if (compound.hasKey("CustomName", 8)) this.setCustomName(compound.getString("CustomName"));
-//    }
-//
-//    @Override
-//    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-//        super.writeToNBT(compound);
-//        compound.setInteger("BurnTime", (short) this.burnTime);
-//        compound.setInteger("CookTime", (short) this.cookTime);
-//        compound.setInteger("CookTimeTotal", (short) this.totalCookTime);
-//        compound.setTag("Inventory", this.handler.serializeNBT());
-//
-//        if (this.hasCustomName()) compound.setString("CustomName", this.customName);
-//        return compound;
-//    }
-//    public int getField(int id) {
-//        switch (id) {
-//            case 0:
-//                return this.burnTime;
-//            case 1:
-//                return this.currentBurnTime;
-//            case 2:
-//                return this.cookTime;
-//            case 3:
-//                return this.totalCookTime;
-//            default:
-//                return 0;
-//        }
-//    }
-//
-//    public void setField(int id, int value) {
-//        switch (id) {
-//            case 0:
-//                this.burnTime = value;
-//                break;
-//            case 1:
-//                this.currentBurnTime = value;
-//                break;
-//            case 2:
-//                this.cookTime = value;
-//                break;
-//            case 3:
-//                this.totalCookTime = value;
-//        }
-//    }
-
-//    public boolean isUsableByPlayer(EntityPlayer player) {
-//        return this.world.getTileEntity(this.pos) != this ? false : player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
-//    }

@@ -9,7 +9,6 @@ import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiTexture
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.tile.TileTMFireplace;
 import com.greatorator.tolkienmobs.tile.container.ContainerTMFireplace;
-import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -120,17 +119,6 @@ public class GuiTMFireplace extends ModularGuiContainer<ContainerTMFireplace> {
         furnaceElements.setYPos(title.maxYPos() + (ySpace / 2) - (furnaceElements.ySize() / 2));
         //On second thought lets just push that up a few pixels.
         furnaceElements.translate(0, -3);
-
-
-        //This is debug code used to print out the positions of the furnace slots for the container
-
-        background.translate(-guiLeft(), -guiTop()); //Because we need these positions relative to the gui not the screen.
-        LogHelperTTM.dev("Input 1: " + input1.getRect());
-        LogHelperTTM.dev("Input 2: " + input2.getRect());
-        LogHelperTTM.dev("Fuel:    " + fuelSlot.getRect());
-        LogHelperTTM.dev("Output:  " + outputSlot.getRect());
-        LogHelperTTM.dev("Player Slots: " + playerSlots.getRect());
-        background.translate(guiLeft(), guiTop()); //Better put that back where we found it xD
     }
 
 
@@ -192,67 +180,3 @@ public class GuiTMFireplace extends ModularGuiContainer<ContainerTMFireplace> {
         return playerSlots;
     }
 }
-
-
-//package com.greatorator.tolkienmobs.client.gui;
-//
-//import com.greatorator.tolkienmobs.TolkienMobs;
-//import com.greatorator.tolkienmobs.tile.TileTMFireplace;
-//import com.greatorator.tolkienmobs.tile.container.ContainerTMFireplace;
-//import net.minecraft.client.gui.inventory.GuiContainer;
-//import net.minecraft.client.renderer.GlStateManager;
-//import net.minecraft.entity.player.InventoryPlayer;
-//import net.minecraft.util.ResourceLocation;
-//
-//public class GuiTMFireplace extends GuiContainer
-//{
-//    private static final ResourceLocation TEXTURES = new ResourceLocation(TolkienMobs.MODID + ":textures/gui/tmfireplace.png");
-//    private final InventoryPlayer player;
-//    private final TileTMFireplace tileentity;
-//
-//    public GuiTMFireplace(InventoryPlayer player, TileTMFireplace tileentity)
-//    {
-//        super(new ContainerTMFireplace(player, tileentity));
-//        this.player = player;
-//        this.tileentity = tileentity;
-//    }
-//
-//    @Override
-//    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
-//    {
-//        String tileName = this.tileentity.getDisplayName().getUnformattedText();
-//        this.fontRenderer.drawString(tileName, (this.xSize / 2 - this.fontRenderer.getStringWidth(tileName) / 2) + 3, 8, 4210752);
-//        this.fontRenderer.drawString(this.player.getDisplayName().getUnformattedText(), 122, this.ySize - 96 + 2, 4210752);
-//    }
-//
-//    @Override
-//    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
-//    {
-//        GlStateManager.color(1.0f, 1.0f, 1.0f, 1.0f);
-//        this.mc.getTextureManager().bindTexture(TEXTURES);
-//        this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
-//
-//        if(TileTMFireplace.isBurning(tileentity))
-//        {
-//            int k = this.getBurnLeftScaled(13);
-//            this.drawTexturedModalRect(this.guiLeft + 8, this.guiTop + 54 + 12 - k, 176, 12 - k, 14, k + 1);
-//        }
-//
-//        int l = this.getCookProgressScaled(24);
-//        this.drawTexturedModalRect(this.guiLeft + 44, this.guiTop + 36, 176, 14, l + 1, 16);
-//    }
-//
-//    private int getBurnLeftScaled(int pixels)
-//    {
-//        int i = this.tileentity.getField(1);
-//        if(i == 0) i = 200;
-//        return this.tileentity.getField(0) * pixels / i;
-//    }
-//
-//    private int getCookProgressScaled(int pixels)
-//    {
-//        int i = this.tileentity.getField(2);
-//        int j = this.tileentity.getField(3);
-//        return j != 0 && i != 0 ? i * pixels / j : 0;
-//    }
-//}

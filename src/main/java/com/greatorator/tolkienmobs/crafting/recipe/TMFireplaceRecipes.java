@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.crafting.recipe;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Table;
+import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.item.ItemStack;
 
 import java.util.Map;
@@ -21,7 +22,7 @@ public class TMFireplaceRecipes {
     private TMFireplaceRecipes()
     {
         /* This is where we place all of the recipes specific for the fireplace */
-        //addFireplaceRecipe(new ItemStack(cram), new ItemStack(cram), honeycake, 3.0F);
+        addFireplaceRecipe(new ItemStack(TTMFeatures.FOOD_HONEY), new ItemStack(TTMFeatures.CRAM), new ItemStack(TTMFeatures.HONEY_CAKE), 3.0F);
     }
 
 

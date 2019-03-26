@@ -78,6 +78,7 @@ public class ProfessionInit {
         VillagerRegistry.VillagerCareer store_clerk = new VillagerCareer(GROCERY_STORE, "store_clerk");
          store_clerk.addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.HONEY_CAKE), new ItemStack(brons_coin),3, 26))
                     .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.CRAM), new ItemStack(brons_coin),1, 16))
+                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.FOOD_HONEY), new ItemStack(brons_coin),1, 12))
                     .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.MIRUVOR), new ItemStack(silver_coin),2, 6))
                     .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.ENT_DRAUGHT), new ItemStack(silver_coin),1, 5))
                     .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.LEMBAS), new ItemStack(brons_coin),5, 36));

@@ -92,6 +92,7 @@ public class CraftingInit {
         OreDictionary.registerOre("foodInsect", new ItemStack(TTMFeatures.GOLDEN_INSECT));
         OreDictionary.registerOre("foodNut", new ItemStack(TTMFeatures.TREE_ACORN));
         OreDictionary.registerOre("foodNut", new ItemStack(TTMFeatures.GOLDEN_TREE_ACORN));
+        OreDictionary.registerOre("foodHoney", new ItemStack(TTMFeatures.FOOD_HONEY));
 
         /* Monster Drops */
         OreDictionary.registerOre("feather", new ItemStack(TTMFeatures.CREBAIN_FEATHER));

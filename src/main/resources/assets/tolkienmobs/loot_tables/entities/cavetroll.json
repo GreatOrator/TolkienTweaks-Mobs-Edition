@@ -7,7 +7,7 @@
         {
           "type": "item",
           "weight": 1,
-          "name": "tolkienmobs:axe_morguliron",
+          "name": "tolkienmobs:club_wooden",
           "conditions": [
             {
               "condition": "killed_by_player"
