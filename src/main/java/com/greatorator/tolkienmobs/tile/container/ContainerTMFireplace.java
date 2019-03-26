@@ -49,10 +49,13 @@ public class ContainerTMFireplace extends ContainerBCBase<TileTMFireplace> {
 					return ItemStack.EMPTY;
 				}
 			}
-			else if (tile.isItemValidForSlot(0, stack) && mergeItemStack(stack, 36, 36 + 2, false)) {
+			else if ((tile.isItemValidForSlot(0, stack) || tile.isItemValidForSlot(1, stack)) && !mergeItemStack(stack, 36, 36 + 2, false)) {
 				return ItemStack.EMPTY;
 			}
-			else if (tile.isItemValidForSlot(2, stack) && mergeItemStack(stack, 36 + 2, 36 + 3, false)) {
+			else if (tile.isItemValidForSlot(2, stack) && !mergeItemStack(stack, 36 + 2, 36 + 3, false)) {
+				return ItemStack.EMPTY;
+			}
+			else {
 				return ItemStack.EMPTY;
 			}
 

@@ -31,7 +31,7 @@ public class TileTMFireplace extends TileInventoryBase implements ITickable, ISi
     public ManagedInt burnTime = register("burnTime", new ManagedInt(0)).saveToTile().syncViaTile().syncViaContainer().finish();
     public ManagedInt currentBurnTime = register("currentBurnTime", new ManagedInt(0)).saveToTile().syncViaContainer().finish();
     public ManagedInt cookTime = register("cookTime", new ManagedInt(0)).saveToTile().syncViaContainer().finish();
-    public ManagedInt totalCookTime = register("totalCookTime ", new ManagedInt(100)).saveToTile().saveToItem().syncViaContainer().finish();
+    public ManagedInt totalCookTime = register("totalCookTime ", new ManagedInt(300)).saveToTile().saveToItem().syncViaContainer().finish();
 
     public TileTMFireplace() {
         setInventorySize(4);
