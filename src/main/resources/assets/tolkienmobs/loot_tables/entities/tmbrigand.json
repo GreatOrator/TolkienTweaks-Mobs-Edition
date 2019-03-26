@@ -50,6 +50,25 @@
                 {
                     "type": "item",
                     "weight": 1,
+                    "name": "tolkienmobs:item_coin2",
+                    "conditions": [
+                        {
+                            "condition": "killed_by_player"
+                        }
+                    ],
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 1
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "weight": 1,
                     "name": "tolkienmobs:food_cram",
                     "conditions": [
                         {

@@ -7,7 +7,7 @@
         {
           "type": "item",
           "weight": 1,
-          "name": "tolkienmobs:food_lembas",
+          "name": "tolkienmobs:food_honey",
           "conditions": [
             {
               "condition": "killed_by_player"

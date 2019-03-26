@@ -102,6 +102,8 @@ public class TTMConfig implements IModConfigHelper {
     /** Aggressive mobs - Individual*/
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableBarrowWights", comment = "Setting this to false will disable Barrow Wights", requiresMCRestart = true, requiresSync = true)
     public static boolean enableBarrowWights = true;
+    @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableFellSpirit", comment = "Setting this to false will disable Fell Spirits", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableFellSpirit = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableCaveTrolls", comment = "Setting this to false will disable Cave Trolls", requiresMCRestart = true, requiresSync = true)
     public static boolean enableCaveTrolls = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableGoblins", comment = "Setting this to false will disable Goblins", requiresMCRestart = true, requiresSync = true)

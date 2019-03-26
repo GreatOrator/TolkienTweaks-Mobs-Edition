@@ -271,6 +271,7 @@ entity.mimicchest.name=Chest
 entity.minotaur.name=Minotaur
 entity.tmrat.name=Rat
 entity.tmbrigand.name=Brigand
+entity.fellspirit.name=Fell Spirit
 
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer

@@ -70,6 +70,9 @@ public class EntityInit
             if (TTMConfig.enableBrigand) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmbrigand"), EntityTMBrigand.class, "tmbrigand", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x078455);
             }
+            if (TTMConfig.enableFellSpirit) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "fellspirit"), EntityTMFellSpirit.class, "fellspirit", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x37B9D9);
+            }
         }
 
         if (TTMConfig.enableBoss) {
@@ -182,6 +185,9 @@ public class EntityInit
                 }
                 if (TTMConfig.enableBarrowWights) {
                     EntityRegistry.addSpawn(EntityTMBarrowWight.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.ROOFED_FOREST);
+                }
+                if (TTMConfig.enableFellSpirit) {
+                    EntityRegistry.addSpawn(EntityTMFellSpirit.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.SWAMPLAND);
                 }
                 if (TTMConfig.enableOathbreaker) {
                     EntityRegistry.addSpawn(EntityTMOathbreaker.class, 12, 1, 1, EnumCreatureType.AMBIENT, Biomes.COLD_TAIGA);
