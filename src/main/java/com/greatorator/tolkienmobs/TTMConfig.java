@@ -146,6 +146,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableNazgul = true;
     @ModConfigProperty(category = "Special Mobs", name = "enableGreatEagle", comment = "Setting this to false will disable the Great Eagles", requiresMCRestart = true, requiresSync = true)
     public static boolean enableGreatEagle = true;
+    @ModConfigProperty(category = "Special Mobs", name = "enableElementalGolem", comment = "Setting this to false will disable the Elemental Golem", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableElementalGolem = true;
 
     /** Passive mobs - Individual*/
     @ModConfigProperty(category = "Passive Mobs", name = "enableAuroch", comment = "Setting this to false will disable Aurochs", requiresMCRestart = true, requiresSync = true)

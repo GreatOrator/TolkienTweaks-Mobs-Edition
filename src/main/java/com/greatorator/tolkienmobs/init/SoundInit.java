@@ -50,6 +50,10 @@ public class SoundInit
 	@ObjectHolder("mob.oathbreaker.idle")
 	public static final SoundEvent soundIdleOathbreaker = null;
 
+	/** Elemental Golem */
+	@ObjectHolder("mob.elementalgolem.death")
+	public static final SoundEvent soundDeathGolem = null;
+
 	/** Crebain */
 	@ObjectHolder("mob.crebain.death")
 	public static final SoundEvent soundDeathCrebain = null;
@@ -270,6 +274,9 @@ public class SoundInit
 
                     /* Oath Breaker */
 					"mob.oathbreaker.idle",
+
+					/* Elemental Golem */
+					"mob.elementalgolem.death",
 
                     /* Crebain */
 					"mob.crebain.hurt",

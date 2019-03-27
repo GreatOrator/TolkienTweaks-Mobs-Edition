@@ -15,6 +15,14 @@
       "tolkienmobs:mob/mumakil/mumakil_hurt"
     ]
   },
+  "mob.elementalgolem.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/elementalgolem/elementalgolem_death"
+    ]
+  },
   "mob.crebain.call":
   {
     "category": "neutral",

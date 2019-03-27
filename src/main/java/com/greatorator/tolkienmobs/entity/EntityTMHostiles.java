@@ -428,7 +428,13 @@ public abstract class EntityTMHostiles extends EntityMob {
 
     @Override
     public int getMaxSpawnedInChunk() {
-        return 2;
+        return 1;
+    }
+
+    @Override
+    public boolean getCanSpawnHere()
+    {
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere();
     }
 
     public int getMobType()

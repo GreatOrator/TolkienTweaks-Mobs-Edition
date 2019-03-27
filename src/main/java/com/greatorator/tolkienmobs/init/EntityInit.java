@@ -8,6 +8,7 @@ import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMBalrog;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMGwaihir;
+import com.greatorator.tolkienmobs.entity.special.EntityTMElementalGolem;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGreatEagle;
 import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMWitchKing;
@@ -101,6 +102,9 @@ public class EntityInit
             }
             if (TTMConfig.enableGreatEagle) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "greateagle"), EntityTMGreatEagle.class, "greateagle", id++, TolkienMobs.instance, 64, 3, true, 0xE5F50F, 0x285D2C);
+            }
+            if (TTMConfig.enableElementalGolem) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "elementalgolem"), EntityTMElementalGolem.class, "elementalgolem", id++, TolkienMobs.instance, 64, 3, true, 0xE5F50F, 0xC11A02);
             }
         }
 

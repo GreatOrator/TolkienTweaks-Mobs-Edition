@@ -14,6 +14,7 @@ import com.greatorator.tolkienmobs.client.render.entity.boss.RenderFellBeast;
 import com.greatorator.tolkienmobs.client.render.entity.boss.RenderWitchKing;
 import com.greatorator.tolkienmobs.client.render.entity.monster.*;
 import com.greatorator.tolkienmobs.client.render.entity.passive.*;
+import com.greatorator.tolkienmobs.client.render.entity.special.RenderElementalGolem;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderGollum;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderNazgul;
 import com.greatorator.tolkienmobs.client.render.model.ambient.ModelCrebain;
@@ -29,6 +30,7 @@ import com.greatorator.tolkienmobs.entity.boss.EntityTMGwaihir;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMWitchKing;
 import com.greatorator.tolkienmobs.entity.hostile.*;
 import com.greatorator.tolkienmobs.entity.passive.*;
+import com.greatorator.tolkienmobs.entity.special.EntityTMElementalGolem;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGollum;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGreatEagle;
 import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
@@ -84,6 +86,7 @@ public class ClientProxy extends CommonProxy {
         /* Special */
         RenderingRegistry.registerEntityRenderingHandler(EntityTMGollum.class, RenderGollum.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMNazgul.class, RenderNazgul.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMElementalGolem.class, RenderElementalGolem.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(
                 EntityTMGreatEagle.class,
                 RenderTMBirds.getRenderFactory(

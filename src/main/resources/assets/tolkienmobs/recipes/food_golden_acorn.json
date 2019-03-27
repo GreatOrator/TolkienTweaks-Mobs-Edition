@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "result": {
-    "item": "tolkienmobs:food_golden_acorn",
+    "item": "tolkienmobs:food_golden_tree_acorn",
     "count": 1
   },
   "pattern": [

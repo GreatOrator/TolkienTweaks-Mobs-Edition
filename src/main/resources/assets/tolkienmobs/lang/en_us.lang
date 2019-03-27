@@ -272,6 +272,12 @@ entity.minotaur.name=Minotaur
 entity.tmrat.name=Rat
 entity.tmbrigand.name=Brigand
 entity.fellspirit.name=Fell Spirit
+entity.elementalgolem.name=Great Golem
+entity.elementalgolem1.name=Great Golem of §eAir
+entity.elementalgolem2.name=Great Golem of §2Earth
+entity.elementalgolem3.name=Great Golem of §4Fire
+entity.elementalgolem4.name=Great Golem of §9Water
+entity.elementalgolem5.name=Stone Golem
 
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer
