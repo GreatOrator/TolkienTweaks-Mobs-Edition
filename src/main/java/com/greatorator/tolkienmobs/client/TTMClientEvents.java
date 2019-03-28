@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.network;
+package com.greatorator.tolkienmobs.client;
 
 import com.greatorator.tolkienmobs.init.PotionInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;

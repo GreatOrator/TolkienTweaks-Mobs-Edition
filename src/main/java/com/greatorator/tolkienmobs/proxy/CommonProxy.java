@@ -4,7 +4,7 @@ import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.commands.TTMCommandSpawn;
 import com.greatorator.tolkienmobs.handler.TerrainEventHandler;
 import com.greatorator.tolkienmobs.init.*;
-import com.greatorator.tolkienmobs.network.TTMServerEvents;
+import com.greatorator.tolkienmobs.utils.TTMServerEvents;
 import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomStructures;

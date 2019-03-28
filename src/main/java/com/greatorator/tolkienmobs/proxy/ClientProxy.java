@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.network.TTMClientEvents;
+import com.greatorator.tolkienmobs.client.TTMClientEvents;
 import com.greatorator.tolkienmobs.client.render.entity.RenderTMBirds;
 import com.greatorator.tolkienmobs.client.render.entity.RenderTMGeneric;
 import com.greatorator.tolkienmobs.client.render.entity.ambient.RenderRat;

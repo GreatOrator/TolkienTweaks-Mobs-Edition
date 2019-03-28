@@ -1,7 +1,9 @@
-package com.greatorator.tolkienmobs.network;
+package com.greatorator.tolkienmobs.utils;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.item.potiontypes.PotionElementalDrowning;
+import com.greatorator.tolkienmobs.network.TTMPacketClient;
+import com.greatorator.tolkienmobs.network.TTMStoCMessage;
 import io.netty.buffer.Unpooled;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
@@ -12,6 +14,11 @@ public class TTMServerEvents {
 
     @SubscribeEvent
     public void onLivingUpdate (LivingEvent.LivingUpdateEvent event) {
+        if (event.getEntityLiving() == null) {
+            LogHelperTTM.bigDev("Found It!");
+            return;
+        }
+
         if (PotionElementalDrowning.instance != null && event.getEntityLiving().isPotionActive(PotionElementalDrowning.instance)) {
             if(event.getEntityLiving().isServerWorld() && event.getEntityLiving() instanceof EntityPlayerMP) {
                 if(event.getEntityLiving().ticksExisted % 20 == 0) {
