@@ -11,13 +11,13 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 /** Borrowed from Tmtravlr - PotionCore*/
-public class TTMPacketClient implements IMessageHandler<SToCMessage, IMessage> {
+public class TTMPacketClient implements IMessageHandler<TTMMessage, IMessage> {
     public static final int SET_DROWN = 1;
     public static final int LIFT_UP = 2;
     public static final int TBD_1 = 3;
     public static final int TBD_2 = 4;
 
-    public IMessage onMessage(SToCMessage packet, MessageContext context)
+    public IMessage onMessage(TTMMessage packet, MessageContext context)
     {
         PacketBuffer buff = new PacketBuffer(Unpooled.wrappedBuffer(packet.getData()));
 
