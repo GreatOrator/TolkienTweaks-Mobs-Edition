@@ -8,7 +8,7 @@ import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMBalrog;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMGwaihir;
-import com.greatorator.tolkienmobs.entity.special.EntityTMElementalGolem;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMElementalGolem;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGreatEagle;
 import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMWitchKing;
@@ -204,6 +204,9 @@ public class EntityInit
                 }
                 if (TTMConfig.enableBrigand) {
                     EntityRegistry.addSpawn(EntityTMBrigand.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.PLAINS,Biomes.FOREST);
+                }
+                if (TTMConfig.enableElementalGolem) {
+                    EntityRegistry.addSpawn(EntityTMElementalGolem.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.TAIGA,Biomes.DESERT,Biomes.EXTREME_HILLS,Biomes.BEACH,Biomes.PLAINS);
                 }
             }
 

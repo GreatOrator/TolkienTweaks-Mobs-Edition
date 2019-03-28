@@ -159,6 +159,36 @@ splash_potion.effect.elf_vitality=Splash Potion of Elvish Life-span
 lingering_potion.effect.elf_vitality=Lingering Potion of Elvish Life-span
 tipped_arrow.effect.elf_vitality=Arrow of Elvish Life-span
 
+tolkienmobs.effect.elemental_drowning=Elemental Drowning
+potion.effect.elemental_drowning=Potion of Elemental Drowning
+splash_potion.effect.elemental_drowning=Splash Potion of Elemental Drowning
+lingering_potion.effect.elemental_drowning=Lingering Potion of Elemental Drowning
+tipped_arrow.effect.elemental_drowning=Arrow of Elemental Drowning
+
+tolkienmobs.effect.elemental_lightning=Elemental Lightning
+potion.effect.elemental_lightning=Potion of Elemental Lightning
+splash_potion.effect.elemental_lightning=Splash Potion of Elemental Lightning
+lingering_potion.effect.elemental_lightning=Lingering Potion of Elemental Lightning
+tipped_arrow.effect.elemental_lightning=Arrow of Elemental Lightning
+
+tolkienmobs.effect.elemental_flight=Elemental Flying
+potion.effect.elemental_flight=Potion of Elemental Flying
+splash_potion.effect.elemental_flight=Splash Potion of Elemental Flying
+lingering_potion.effect.elemental_flight=Lingering Potion of Elemental Flying
+tipped_arrow.effect.elemental_flight=Arrow of Elemental Flying
+
+tolkienmobs.effect.elemental_tornado=Elemental Tornado
+potion.effect.elemental_tornado=Potion of Elemental Tornado
+splash_potion.effect.elemental_tornado=Splash Potion of Elemental Tornado
+lingering_potion.effect.elemental_tornado=Lingering Potion of Elemental Tornado
+tipped_arrow.effect.elemental_tornado=Arrow of Elemental Tornado
+
+tolkienmobs.effect.elemental_burning=Elemental Burning
+potion.effect.elemental_burning=Potion of Elemental Burning
+splash_potion.effect.elemental_burning=Splash Potion of Elemental Burning
+lingering_potion.effect.elemental_burning=Lingering Potion of Elemental Burning
+tipped_arrow.effect.elemental_burning=Arrow of Elemental Burning
+
 //Monster Drops
 item.tolkienmobs:feather_crebain.name=Crebain Feather
 item.tolkienmobs:feather_bird.name=Bird Feather

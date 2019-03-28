@@ -20,6 +20,7 @@ import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -33,6 +34,8 @@ public class EntityTMMimicChest extends EntityTMHostiles {
     private static final AttributeModifier ATTACK_SPEED_BOOST_MODIFIER = (new AttributeModifier(ATTACK_SPEED_BOOST_MODIFIER_UUID, "Attacking speed boost", 0.05D, 0)).setSaved(false);
     /** Above zero if this Mimic is Angry. */
     private int angerLevel;
+    private long nextAbilityUse = 0L;
+    private final static long coolDown = 15000L;
     /** A random delay until this Mimic next makes a sound. */
     private int randomSoundDelay;
     private UUID angerTargetUUID;
@@ -149,16 +152,16 @@ public class EntityTMMimicChest extends EntityTMHostiles {
                 this.becomeAngryAt(entity);
             }
 
-            if (weapon != null)
-            {
-                player.inventory.getCurrentItem().damageItem(4, (EntityLivingBase) damageSource.getTrueSource());
-            }
-
             assert player != null;
             if (player.getActiveItemStack().getItem() instanceof ItemAxe)
             {
                 damage *= 1.25F;
-                player.inventory.getCurrentItem().damageItem(4, (EntityLivingBase) damageSource.getTrueSource());
+            }
+
+            long time = System.currentTimeMillis();
+            if (time > nextAbilityUse && damageSource.getTrueSource() != null && !(damageSource instanceof EntityDamageSourceIndirect)) {
+                nextAbilityUse = time + coolDown;
+                player.inventory.getCurrentItem().damageItem(8, (EntityLivingBase) damageSource.getTrueSource());
             }
         }
 

@@ -22,6 +22,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -51,6 +52,7 @@ public class TolkienMobs {
     public static CreativeTabs tabSignItems = new TTMobsTab("signs", () -> Items.SIGN);
 
     private final DataFixer dataFixer;
+    public static SimpleNetworkWrapper networkWrapper;
 
     public TolkienMobs() {
         new PotionInit();

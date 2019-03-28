@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.client.render.model.special;
+package com.greatorator.tolkienmobs.client.render.model.monster;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
 import net.minecraft.client.model.ModelRenderer;
@@ -47,6 +47,7 @@ public class ModelElementalGolem extends ModelTTM {
     public ModelRenderer GolemFootPartR_5;
     public ModelRenderer GolemFootPartR_6;
     public ModelRenderer GolemFootPartR_7;
+    public static boolean renderGolem;
 
     public ModelElementalGolem() {
         this.textureWidth = 128;
@@ -276,6 +277,25 @@ public class ModelElementalGolem extends ModelTTM {
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        if(getRenderGolem()){
+            this.renderElementalGolem(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+        }
+        else {
+            this.renderNormalGolem(entity, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0625F);
+        }
+    }
+
+    public void renderElementalGolem(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        this.GolemBody.render(f5);
+        this.GolemUpperLegR.render(f5);
+        this.GolemHead.render(f5);
+        this.bipedLeftArm.render(f5);
+        this.bipedRightArm.render(f5);
+        this.GolemUpperLegL.render(f5);
+        //this.GolemExtraParts.render(f5);
+    }
+
+    public void renderNormalGolem(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.GolemBody.render(f5);
         this.GolemUpperLegR.render(f5);
         this.GolemHead.render(f5);
@@ -289,8 +309,6 @@ public class ModelElementalGolem extends ModelTTM {
     {
         float speed = 0.6662F; // Limb Swing Speed
         float angle = 1.4F; // How far the Limb swings
-        float baseLegRotation = -0.7853981633974483F; // needs to be the original value of arm.rotateAngleX
-        float baseArmRotation = -0.2617993877991494F; // needs to be the original value of leg.rotateAngleX
 
         this.GolemUpperLegL.rotateAngleX = (MathHelper.cos(limbSwing * speed)) * angle * limbSwingAmount;
         this.GolemUpperLegR.rotateAngleX = (MathHelper.cos(limbSwing * speed + (float) Math.PI)) * angle * limbSwingAmount;
@@ -299,5 +317,13 @@ public class ModelElementalGolem extends ModelTTM {
 
         this.GolemHead.rotateAngleY = netHeadYaw * 0.017453292F;
         this.GolemHead.rotateAngleX = headPitch * 0.017453292F;
+    }
+
+    public static void setRenderGolem(boolean renderGolem) {
+        ModelElementalGolem.renderGolem = renderGolem;
+    }
+
+    private boolean getRenderGolem() {
+        return renderGolem;
     }
 }

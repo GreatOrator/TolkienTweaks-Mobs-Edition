@@ -1,15 +1,17 @@
-package com.greatorator.tolkienmobs.entity.special;
+package com.greatorator.tolkienmobs.entity.hostile;
 
 import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
 import com.greatorator.tolkienmobs.init.LootInit;
+import com.greatorator.tolkienmobs.init.PotionInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirt;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
@@ -60,11 +62,10 @@ public class EntityTMElementalGolem extends EntityTMHostiles {
 
                     if (rand.nextInt(10) == 0){
                         assert player != null;
-                        mob.world.addWeatherEffect(new EntityLightningBolt(mob.world, player.posX, player.posY-1, player.posZ, false));
-                    }
+                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_TORNADO, 120, 3));}
                     else {
                         assert player != null;
-                        player.addPotionEffect(new PotionEffect(MobEffects.LEVITATION, 45, 0));
+                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_LIGHTNING, 45, 1));
                     }
                 }
             }
@@ -75,11 +76,11 @@ public class EntityTMElementalGolem extends EntityTMHostiles {
 
                     if (rand.nextInt(10) == 0){
                         assert player != null;
-                        player.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 45, 0));
+                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_FLYING, 200, 3));
                     }
                     else {
                         assert player != null;
-                        player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 45, 0));
+                        player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 200, 3));
                     }
                 }
             }
@@ -89,11 +90,11 @@ public class EntityTMElementalGolem extends EntityTMHostiles {
                     nextAbilityUse = time + coolDown;
 
                     if (rand.nextInt(10) == 0){
-                        damageSource.getTrueSource().setFire(3);
+                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_BURNING, 200, 1));
                     }
                     else {
                         assert player != null;
-                        player.addPotionEffect(new PotionEffect(MobEffects.WITHER, 45, 0));
+                        player.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 200, 3));
                     }
                 }
             }
@@ -104,11 +105,11 @@ public class EntityTMElementalGolem extends EntityTMHostiles {
 
                     if (rand.nextInt(10) == 0){
                         assert player != null;
-                        player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 45, 0));
+                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_DROWNING, 600, 1));
                     }
                     else {
                         assert player != null;
-                        player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 45, 0));
+                        player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 200, 3));
                     }
                 }
             }
@@ -256,5 +257,60 @@ public class EntityTMElementalGolem extends EntityTMHostiles {
 
     public void setMob(EntityLivingBase mob) {
         this.mob = mob;
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        boolean nearMaterial = false;
+        int i = (int) Math.floor(posX);
+        int j = (int) Math.floor(posY);
+        int k = (int) Math.floor(posZ);
+        BlockPos blockpos = new BlockPos(i, j, k);
+        Block block = this.world.getBlockState(blockpos.down()).getBlock();
+
+        if (getElementType() == 1)
+        {
+            return super.getCanSpawnHere() && this.posY > 145.0D && this.world.canSeeSky(new BlockPos(this));
+        }
+        else if (getElementType() == 2)
+        {
+            for (int i1 = i - 16; i1 <= i + 16; i1++) {
+                for (int j1 = j - 6; j1 <= j + 6; j1++) {
+                    for (int k1 = k - 16; k1 <= k + 16; k1++) {
+                        BlockPos pos = new BlockPos(i1, j1, k1);
+                        if (block instanceof BlockDirt && this.world.canSeeSky(new BlockPos(this)) && this.posY > 36.0D)
+                            nearMaterial = true;
+                    }
+                }
+            }
+            return nearMaterial;
+        }
+        else if (getElementType() == 3)
+        {
+            for (int i1 = i - 16; i1 <= i + 16; i1++) {
+                for (int j1 = j - 6; j1 <= j + 6; j1++) {
+                    for (int k1 = k - 16; k1 <= k + 16; k1++) {
+                        BlockPos pos = new BlockPos(i1, j1, k1);
+                        if (world.getBlockState(pos).getMaterial() == Material.LAVA && this.world.canSeeSky(new BlockPos(this)) && this.posY > 36.0D)
+                            nearMaterial = true;
+                    }
+                }
+            }
+            return nearMaterial;
+        }
+        else if (getElementType() == 4)
+        {
+            for (int i1 = i - 16; i1 <= i + 16; i1++) {
+                for (int j1 = j - 6; j1 <= j + 6; j1++) {
+                    for (int k1 = k - 16; k1 <= k + 16; k1++) {
+                        BlockPos pos = new BlockPos(i1, j1, k1);
+                        if (world.getBlockState(pos).getMaterial() == Material.WATER && this.world.canSeeSky(new BlockPos(this)) && this.posY > 36.0D)
+                            nearMaterial = true;
+                    }
+                }
+            }
+            return nearMaterial;
+        }
+        return getCanSpawnHere();
     }
 }

@@ -1,8 +1,8 @@
-package com.greatorator.tolkienmobs.client.render.entity.special;
+package com.greatorator.tolkienmobs.client.render.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.render.model.special.ModelElementalGolem;
-import com.greatorator.tolkienmobs.entity.special.EntityTMElementalGolem;
+import com.greatorator.tolkienmobs.client.render.model.monster.ModelElementalGolem;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMElementalGolem;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -21,9 +21,23 @@ public class RenderElementalGolem extends RenderLiving<EntityTMElementalGolem> {
     private static final ResourceLocation STONEGOLEM = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/elementalgolem/elemental_golem_none.png");
 
     public static final RenderElementalGolem.Factory FACTORY = new RenderElementalGolem.Factory();
+    private ModelElementalGolem modelbase;
 
     public RenderElementalGolem(RenderManager rendermanagerIn) {
         super(rendermanagerIn, new ModelElementalGolem(), 0.5F);
+
+        this.modelbase = (ModelElementalGolem) this.mainModel;
+    }
+
+    @Override
+    public void doRender(EntityTMElementalGolem golem, double x, double y, double z, float pitch, float yaw) {
+        if(golem.getElementType() >= 1 && golem.getElementType() <= 4 ) {
+            ModelElementalGolem.renderGolem = true;
+        }
+        else{
+            ModelElementalGolem.renderGolem = false;
+        }
+        super.doRender(golem, x, y, z, pitch, yaw);
     }
 
     @Nullable

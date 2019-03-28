@@ -9,6 +9,7 @@ import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomStructures;
 import com.greatorator.tolkienmobs.world.types.WorldTypeArda;
 import com.greatorator.tolkienmobs.world.types.WorldTypeSingleArda;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.common.MinecraftForge;
@@ -33,6 +34,7 @@ public class CommonProxy {
         EntityInit.init();
         CraftingInit.init();
         PotionInit.registerPotions();
+        MinecraftForge.EVENT_BUS.register(new EventInit());
         new LootInit();
 
         MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainEventHandler());
@@ -55,5 +57,9 @@ public class CommonProxy {
     public static void serverRegistries(FMLServerStartingEvent event)
     {
         event.registerServerCommand(new TTMCommandSpawn());
+    }
+
+    public EntityPlayer getPlayer() {
+        return null;
     }
 }

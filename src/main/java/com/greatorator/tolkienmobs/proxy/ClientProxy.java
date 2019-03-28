@@ -14,7 +14,6 @@ import com.greatorator.tolkienmobs.client.render.entity.boss.RenderFellBeast;
 import com.greatorator.tolkienmobs.client.render.entity.boss.RenderWitchKing;
 import com.greatorator.tolkienmobs.client.render.entity.monster.*;
 import com.greatorator.tolkienmobs.client.render.entity.passive.*;
-import com.greatorator.tolkienmobs.client.render.entity.special.RenderElementalGolem;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderGollum;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderNazgul;
 import com.greatorator.tolkienmobs.client.render.model.ambient.ModelCrebain;
@@ -30,13 +29,14 @@ import com.greatorator.tolkienmobs.entity.boss.EntityTMGwaihir;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMWitchKing;
 import com.greatorator.tolkienmobs.entity.hostile.*;
 import com.greatorator.tolkienmobs.entity.passive.*;
-import com.greatorator.tolkienmobs.entity.special.EntityTMElementalGolem;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGollum;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGreatEagle;
 import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
 import com.greatorator.tolkienmobs.handler.FogHandler;
 import com.greatorator.tolkienmobs.handler.TTMExtraHearts;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
@@ -163,5 +163,9 @@ public class ClientProxy extends CommonProxy {
         if (!Loader.isModLoaded("mantle")) {
             MinecraftForge.EVENT_BUS.register(new TTMExtraHearts());
         }
+    }
+
+    public EntityPlayer getPlayer() {
+        return Minecraft.getMinecraft().player;
     }
 }
