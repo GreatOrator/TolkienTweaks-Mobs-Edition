@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.item.potiontypes;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.handler.TTMPotion;
-import com.greatorator.tolkienmobs.network.TTMMessage;
+import com.greatorator.tolkienmobs.network.TTMStoCMessage;
 import com.greatorator.tolkienmobs.network.TTMPacketClient;
 import io.netty.buffer.Unpooled;
 import net.minecraft.entity.EntityLivingBase;
@@ -36,7 +36,7 @@ public class PotionElementalFlying extends TTMPotion {
             out.writeInt(TTMPacketClient.LIFT_UP);
             out.writeInt(amplifier+1);
 
-            TTMMessage packet = new TTMMessage(out);
+            TTMStoCMessage packet = new TTMStoCMessage(out);
             TolkienMobs.networkWrapper.sendTo(packet, (EntityPlayerMP) entity);
         }
     }

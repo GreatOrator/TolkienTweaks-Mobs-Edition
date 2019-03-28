@@ -1,16 +1,14 @@
-package com.greatorator.tolkienmobs.init;
+package com.greatorator.tolkienmobs.network;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.item.potiontypes.PotionElementalDrowning;
-import com.greatorator.tolkienmobs.network.TTMMessage;
-import com.greatorator.tolkienmobs.network.TTMPacketClient;
 import io.netty.buffer.Unpooled;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class EventInit {
+public class TTMServerEvents {
 
     @SubscribeEvent
     public void onLivingUpdate (LivingEvent.LivingUpdateEvent event) {
@@ -22,7 +20,7 @@ public class EventInit {
                     out.writeInt(TTMPacketClient.SET_DROWN);
                     out.writeInt(event.getEntity().getEntityData(). getInteger(PotionElementalDrowning.TAG_NAME));
 
-                    TTMMessage packet = new TTMMessage(out);
+                    TTMStoCMessage packet = new TTMStoCMessage(out);
                     TolkienMobs.networkWrapper.sendTo(packet, (EntityPlayerMP) event.getEntityLiving());
                 }
             }

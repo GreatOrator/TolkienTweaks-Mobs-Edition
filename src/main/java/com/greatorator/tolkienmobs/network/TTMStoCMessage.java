@@ -3,20 +3,20 @@ package com.greatorator.tolkienmobs.network;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
-public class TTMMessage implements IMessage{
+public class TTMStoCMessage implements IMessage{
 	private byte[] data;
 	
-	public TTMMessage()
+	public TTMStoCMessage()
 	{
 		this(new byte[]{0});
 	}
 	
-	public TTMMessage(ByteBuf dataToSet)
+	public TTMStoCMessage(ByteBuf dataToSet)
     {
         this(dataToSet.array());
     }
 
-    public TTMMessage(byte[] dataToSet)
+    public TTMStoCMessage(byte[] dataToSet)
     {
 		if (dataToSet.length > 0x1ffff0)
         {
