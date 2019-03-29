@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.entity.hostile;
 import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.init.LootInit;
+import com.greatorator.tolkienmobs.init.PotionInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -19,6 +20,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.EnumHand;
@@ -161,7 +163,7 @@ public class EntityTMMimicChest extends EntityTMHostiles {
             long time = System.currentTimeMillis();
             if (time > nextAbilityUse && damageSource.getTrueSource() != null && !(damageSource instanceof EntityDamageSourceIndirect)) {
                 nextAbilityUse = time + coolDown;
-//                player.addPotionEffect(new PotionEffect(PotionInit.INVENTORY_CORROSION, 30, 3));
+                player.addPotionEffect(new PotionEffect(PotionInit.INVENTORY_CORROSION, 30, 3));
             }
         }
 

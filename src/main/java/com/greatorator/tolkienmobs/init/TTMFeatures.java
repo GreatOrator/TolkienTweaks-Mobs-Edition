@@ -265,6 +265,8 @@ public class TTMFeatures implements IModFeatures {
     public static Item GROG = new TTMFood(5, 1, 5, new PotionEffect(MobEffects.SPEED,1500,3), new PotionEffect(MobEffects.REGENERATION, 300, 3), new PotionEffect(MobEffects.NAUSEA, 100, 3)).setItemUseAction(true);
     @ModFeature(name = "potion_elvishhealth", stateOverride = "simple_items#type=potion_elvishhealth", cTab = 3)
     public static Item ELVISH_HEALTH = new TTMFood(5, 1, 5, new PotionEffect(PotionInit.ELF_VITALITY,15000,3)).setItemUseAction(true);
+    @ModFeature(name = "potion_portableblacksmith", stateOverride = "simple_items#type=potion_portableblacksmith", cTab = 3)
+    public static Item WANDERING_BLACKSMITH = new TTMFood(1, 1, 1, new PotionEffect(PotionInit.PERSONAL_BLACKSMITH,15000,2)).setItemUseAction(true);
     @ModFeature(name = "monster_flesh", stateOverride = "simple_items#type=monster_flesh", cTab = 3)
     public static Item MONSTER_FLESH = new TTMFood(5, 64, 2, new PotionEffect(MobEffects.HUNGER,100,2));
     @ModFeature(name = "food_insect", stateOverride = "simple_items#type=food_insect", cTab = 3)

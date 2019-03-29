@@ -219,7 +219,7 @@ public class TTMConfig implements IModConfigHelper {
 
     /** Potion Types */
     @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array.")
-    public static String[] potionTypeArray = new String[]{"tolkienmobs:elf_vitality", "tolkienmobs:ent_draught", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:glowing", "minecraft:fire_resistance"};
+    public static String[] potionTypeArray = new String[]{"tolkienmobs:elf_vitality", "tolkienmobs:ent_draught", "tolkienmobs:personal_blacksmith", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:glowing", "minecraft:fire_resistance"};
 
     public static Potion[] potionArray = new Potion[0];
 

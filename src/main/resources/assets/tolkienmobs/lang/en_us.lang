@@ -144,6 +144,7 @@ item.tolkienmobs:potion_entdraught.name=Ent Draught
 item.tolkienmobs:potion_miruvor.name=Miruvor
 item.tolkienmobs:potion_grog.name=Grog
 item.tolkienmobs:potion_elvishhealth.name=Vitality
+item.tolkienmobs:potion_portableblacksmith.name=Portable Blacksmith
 
 
 //Potion Information
@@ -194,6 +195,12 @@ potion.effect.inventory_corrosion=Potion of Corrosion
 splash_potion.effect.inventory_corrosion=Splash Potion of Corrosion
 lingering_potion.effect.inventory_corrosion=Lingering Potion of Corrosion
 tipped_arrow.effect.inventory_corrosion=Arrow of Corrosion
+
+tolkienmobs.effect.personal_blacksmith=Inventory Repair
+potion.effect.personal_blacksmith=Potion of Personal Blacksmith
+splash_potion.effect.personal_blacksmith=Splash Potion of Personal Blacksmith
+lingering_potion.effect.personal_blacksmith=Lingering Potion of Personal Blacksmith
+tipped_arrow.effect.personal_blacksmith=Arrow of Personal Blacksmith
 
 //Monster Drops
 item.tolkienmobs:feather_crebain.name=Crebain Feather
