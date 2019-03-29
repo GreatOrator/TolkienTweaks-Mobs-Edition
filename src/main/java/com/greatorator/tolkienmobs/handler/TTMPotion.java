@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -42,6 +43,20 @@ public class TTMPotion extends Potion {
     @SideOnly(Side.CLIENT)
     public void renderHUDEffect(int x, int y, PotionEffect effect, Minecraft mc, float alpha) {
         render(x + 3, y + 3, alpha);
+    }
+
+    @Override
+    public boolean isReady(int duration, int amplifier)
+    {
+        return true;
+    }
+
+    public boolean canAmplify() {
+        return true;
+    }
+
+    public void affectEntity(Entity thrownPotion, Entity thrower, EntityLivingBase entity, int amplifier, double potency) {
+        this.performEffect(entity, amplifier);
     }
 
     @SideOnly(Side.CLIENT)

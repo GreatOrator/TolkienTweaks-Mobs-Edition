@@ -161,7 +161,7 @@ public class EntityTMMimicChest extends EntityTMHostiles {
             long time = System.currentTimeMillis();
             if (time > nextAbilityUse && damageSource.getTrueSource() != null && !(damageSource instanceof EntityDamageSourceIndirect)) {
                 nextAbilityUse = time + coolDown;
-                player.inventory.getCurrentItem().damageItem(8, (EntityLivingBase) damageSource.getTrueSource());
+//                player.addPotionEffect(new PotionEffect(PotionInit.INVENTORY_CORROSION, 30, 3));
             }
         }
 

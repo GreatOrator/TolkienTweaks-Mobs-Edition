@@ -20,6 +20,7 @@ public class PotionInit {
     public static final Potion ELEMENTAL_FLYING = new PotionElementalFlying();
     public static final Potion ELEMENTAL_BURNING = new PotionElementalBurning();
     public static final Potion ELEMENTAL_TORNADO = new PotionElementalTornado();
+//    public static final Potion INVENTORY_CORROSION = new PotionTMCorrosion();
 
     /** Initialize Potion Versions */
     public static final PotionType ENT_DRAUGHT = new PotionType("ent_draught", new PotionEffect[] {new PotionEffect(ENT_STANCE, 2400)}).setRegistryName("ent_draught");
@@ -36,6 +37,8 @@ public class PotionInit {
     public static final PotionType LONG_GOLEM_BURN = new PotionType("elemental_burning", new PotionEffect[] {new PotionEffect(ELEMENTAL_BURNING, 1200)}).setRegistryName("long_elemental_burning");
     public static final PotionType GOLEM_TORNADO = new PotionType("elemental_tornado", new PotionEffect[] {new PotionEffect(ELEMENTAL_TORNADO, 600)}).setRegistryName("elemental_tornado");
     public static final PotionType LONG_GOLEM_TORNADO = new PotionType("elemental_tornado", new PotionEffect[] {new PotionEffect(ELEMENTAL_TORNADO, 1200)}).setRegistryName("long_elemental_tornado");
+//    public static final PotionType DECAYING_INVENTORY = new PotionType("inventory_corrosion", new PotionEffect[] {new PotionEffect(INVENTORY_CORROSION, 600)}).setRegistryName("inventory_corrosion");
+//    public static final PotionType LONG_DECAYING_INVENTORY = new PotionType("inventory_corrosion", new PotionEffect[] {new PotionEffect(INVENTORY_CORROSION, 1200)}).setRegistryName("inventory_corrosion");
 
     public static void registerPotions(){
         registerPotion(ENT_DRAUGHT, LONG_ENT_DRAUGHT, ENT_STANCE);
@@ -45,6 +48,7 @@ public class PotionInit {
         registerPotion(GOLEM_FLYING, LONG_GOLEM_FLYING, ELEMENTAL_FLYING);
         registerPotion(GOLEM_BURN, LONG_GOLEM_BURN, ELEMENTAL_BURNING);
         registerPotion(GOLEM_TORNADO, LONG_GOLEM_TORNADO, ELEMENTAL_TORNADO);
+//        registerPotion(DECAYING_INVENTORY, LONG_DECAYING_INVENTORY, INVENTORY_CORROSION);
 
     }
 

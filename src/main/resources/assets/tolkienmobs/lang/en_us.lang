@@ -189,6 +189,12 @@ splash_potion.effect.elemental_burning=Splash Potion of Elemental Burning
 lingering_potion.effect.elemental_burning=Lingering Potion of Elemental Burning
 tipped_arrow.effect.elemental_burning=Arrow of Elemental Burning
 
+tolkienmobs.effect.inventory_corrosion=Corrosion
+potion.effect.inventory_corrosion=Potion of Corrosion
+splash_potion.effect.inventory_corrosion=Splash Potion of Corrosion
+lingering_potion.effect.inventory_corrosion=Lingering Potion of Corrosion
+tipped_arrow.effect.inventory_corrosion=Arrow of Corrosion
+
 //Monster Drops
 item.tolkienmobs:feather_crebain.name=Crebain Feather
 item.tolkienmobs:feather_bird.name=Bird Feather

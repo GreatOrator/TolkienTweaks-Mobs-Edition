@@ -14,11 +14,6 @@ public class TTMServerEvents {
 
     @SubscribeEvent
     public void onLivingUpdate (LivingEvent.LivingUpdateEvent event) {
-        if (event.getEntityLiving() == null) {
-            LogHelperTTM.bigDev("Found It!");
-            return;
-        }
-
         if (PotionElementalDrowning.instance != null && event.getEntityLiving().isPotionActive(PotionElementalDrowning.instance)) {
             if(event.getEntityLiving().isServerWorld() && event.getEntityLiving() instanceof EntityPlayerMP) {
                 if(event.getEntityLiving().ticksExisted % 20 == 0) {

@@ -7,6 +7,8 @@ import com.greatorator.tolkienmobs.client.TTMobsTab;
 import com.greatorator.tolkienmobs.handler.TTMGUIHandler;
 import com.greatorator.tolkienmobs.init.PotionInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
+import com.greatorator.tolkienmobs.network.TTMPacketClient;
+import com.greatorator.tolkienmobs.network.TTMStoCMessage;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.utils.TTMDataFixes;
@@ -22,7 +24,9 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -82,6 +86,8 @@ public class TolkienMobs {
     public void preInit(FMLPreInitializationEvent event) {
         ModFeatureParser.registerModFeatures(MODID);//This is a call to let BC know when its time to register our stuff.
         TTMGUIHandler.initialize();
+        networkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel(TolkienMobs.MODID);
+        networkWrapper.registerMessage(TTMPacketClient.class, TTMStoCMessage.class, 1, Side.CLIENT);
         proxy.preInit(event);
     }
 

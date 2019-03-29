@@ -18,6 +18,10 @@ public class PotionElementalDrowning extends TTMPotion {
         instance = this;
     }
 
+    public boolean canAmplify() {
+        return false;
+    }
+
     @Override
     public void performEffect(EntityLivingBase entity, int amplifier) {
 

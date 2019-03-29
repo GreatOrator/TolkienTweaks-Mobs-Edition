@@ -19,7 +19,7 @@ public class PotionElementalTornado extends TTMPotion {
 
     @Override
     public void performEffect(EntityLivingBase entity, int amplifier) {
-        float maxRotation = 8;
+        float maxRotation = 16;
         float maxRand = rotationSpeed * (amplifier+1);
 
         float pitch = entity.getEntityData().getFloat(TAG_PITCH);

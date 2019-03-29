@@ -76,7 +76,7 @@ public class EntityTMElementalGolem extends EntityTMHostiles {
 
                     if (rand.nextInt(10) == 0){
                         assert player != null;
-                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_FLYING, 200, 3));
+                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_FLYING,40, 3));
                     }
                     else {
                         assert player != null;
@@ -90,7 +90,8 @@ public class EntityTMElementalGolem extends EntityTMHostiles {
                     nextAbilityUse = time + coolDown;
 
                     if (rand.nextInt(10) == 0){
-                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_BURNING, 200, 1));
+                        assert player != null;
+                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_BURNING, 200, 3));
                     }
                     else {
                         assert player != null;
@@ -105,7 +106,7 @@ public class EntityTMElementalGolem extends EntityTMHostiles {
 
                     if (rand.nextInt(10) == 0){
                         assert player != null;
-                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_DROWNING, 600, 1));
+                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_DROWNING, 600));
                     }
                     else {
                         assert player != null;
