@@ -73,7 +73,12 @@
       "gem_ammolite":    {"textures": {"layer0": "tolkienmobs:items/gem_ammolite"}},
       "item_coin1":    {"textures": {"layer0": "tolkienmobs:items/item_coin1"}},
       "item_coin2":    {"textures": {"layer0": "tolkienmobs:items/item_coin2"}},
-      "bottle_fancy":    {"textures": {"layer0": "tolkienmobs:items/bottle_fancy"}}
+      "bottle_fancy":    {"textures": {"layer0": "tolkienmobs:items/bottle_fancy"}},
+      "item_golem_stone":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone"}},
+      "item_golem_stone_earth":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_earth"}},
+      "item_golem_stone_air":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_air"}},
+      "item_golem_stone_fire":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_fire"}},
+      "item_golem_stone_water":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_water"}}
     }
   }
 }

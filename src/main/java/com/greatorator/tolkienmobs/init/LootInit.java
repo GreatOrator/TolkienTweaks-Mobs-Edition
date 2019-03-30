@@ -31,6 +31,11 @@ public class LootInit {
     /** Special */
     public static final ResourceLocation GOLLUM = register("entities/gollum");
     public static final ResourceLocation NAZGUL = register("entities/nazgul");
+    public static final ResourceLocation GOLEM_STONE = register("entities/golem_stone");
+    public static final ResourceLocation GOLEM_STONE_EARTH = register("entities/golem_stone_earth");
+    public static final ResourceLocation GOLEM_STONE_AIR = register("entities/golem_stone_air");
+    public static final ResourceLocation GOLEM_STONE_FIRE = register("entities/golem_stone_fire");
+    public static final ResourceLocation GOLEM_STONE_WATER = register("entities/golem_stone_water");
 
     /** Passive */
     public static final ResourceLocation AUROCH = register("entities/auroch");

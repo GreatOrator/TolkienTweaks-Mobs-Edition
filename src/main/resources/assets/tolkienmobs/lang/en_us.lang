@@ -82,6 +82,11 @@ lore.item.tolkienmobs:item_coin2=This can be traded for unique items
 lore.item.tolkienmobs:whip_fire=Primary weapon of the fearsome 
 lore.item.tolkienmobs:club_wooden=Deadly weapon favoured by Trolls
 lore.item.tolkienmobs:sword_witchking=Forged in fear, the powerful weapon of the Witch-king
+lore.item.tolkienmobs:item_golem_stone=Remnant of an ancient Golem
+lore.item.tolkienmobs:item_golem_stone_earth=Remnant of an ancient Golem
+lore.item.tolkienmobs:item_golem_stone_air=Remnant of an ancient Golem
+lore.item.tolkienmobs:item_golem_stone_fire=Remnant of an ancient Golem
+lore.item.tolkienmobs:item_golem_stone_water=Remnant of an ancient Golem
 lore.item.tolkienmobs:item_letter=TBD
 lore.item.tolkienmobs:item_fancyhelm=TBD
 lore.item.tolkienmobs:item_fancykey=TBD
@@ -208,6 +213,11 @@ item.tolkienmobs:feather_bird.name=Bird Feather
 item.tolkienmobs:leather_mumakil.name=Mumakil Hide
 item.tolkienmobs:monster_fur.name=Monster Fur
 item.tolkienmobs:bottle_fancy.name=Fancy Bottle
+item.tolkienmobs:item_golem_stone.name=Golem Stone
+item.tolkienmobs:item_golem_stone_earth.name=Earth Golem Stone
+item.tolkienmobs:item_golem_stone_air.name=Air Golem Stone
+item.tolkienmobs:item_golem_stone_fire.name=Fire Golem Stone
+item.tolkienmobs:item_golem_stone_water.name=Water Golem Stone
 
 //Blocks and Ores
 tile.tolkienmobs:block_mithril.name=Mithril Block

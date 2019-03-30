@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.entity.hostile;
+package com.greatorator.tolkienmobs.entity.special;
 
 import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
 import com.greatorator.tolkienmobs.init.LootInit;
@@ -21,6 +21,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
@@ -39,7 +40,6 @@ public class EntityTMElementalGolem extends EntityTMHostiles {
     public EntityTMElementalGolem(World worldIn) {
         super(worldIn);
         this.setSize(1.8F, 3.1F);
-        this.setLootTable(LootInit.MORC);
         this.setMob(this);
     }
 
@@ -313,5 +313,25 @@ public class EntityTMElementalGolem extends EntityTMHostiles {
             return nearMaterial;
         }
         return getCanSpawnHere();
+    }
+
+    @Override
+    @Nullable
+    protected ResourceLocation getLootTable() {
+        if (getElementType() == 1){
+            return LootInit.GOLEM_STONE_AIR;
+        }
+        else if (getElementType() == 2){
+            return LootInit.GOLEM_STONE_EARTH;
+        }
+        else if (getElementType() == 3){
+            return LootInit.GOLEM_STONE_FIRE;
+        }
+        else if (getElementType() == 4){
+            return LootInit.GOLEM_STONE_WATER;
+        }
+        else {
+            return LootInit.GOLEM_STONE;
+        }
     }
 }

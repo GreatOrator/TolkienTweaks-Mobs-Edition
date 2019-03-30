@@ -1,8 +1,8 @@
-package com.greatorator.tolkienmobs.client.render.entity.monster;
+package com.greatorator.tolkienmobs.client.render.entity.special;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.render.model.monster.ModelElementalGolem;
-import com.greatorator.tolkienmobs.entity.hostile.EntityTMElementalGolem;
+import com.greatorator.tolkienmobs.client.render.model.special.ModelElementalGolem;
+import com.greatorator.tolkienmobs.entity.special.EntityTMElementalGolem;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;

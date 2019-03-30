@@ -248,6 +248,16 @@ public class TTMFeatures implements IModFeatures {
     public static Item MONSTER_FUR = new ItemBCore();
     @ModFeature(name = "bottle_fancy", stateOverride = "simple_items#type=bottle_fancy", cTab = 1)
     public static Item BOTTLE_FANCY = new ItemBCore();
+    @ModFeature(name = "item_golem_stone", stateOverride = "simple_items#type=item_golem_stone", cTab = 1)
+    public static Item GOLEM_STONE = new TTMLore(16);
+    @ModFeature(name = "item_golem_stone_earth", stateOverride = "simple_items#type=item_golem_stone_earth", cTab = 1)
+    public static Item GOLEM_STONE_EARTH = new TTMLore(16);
+    @ModFeature(name = "item_golem_stone_air", stateOverride = "simple_items#type=item_golem_stone_air", cTab = 1)
+    public static Item GOLEM_STONE_AIR = new TTMLore(16);
+    @ModFeature(name = "item_golem_stone_fire", stateOverride = "simple_items#type=item_golem_stone_fire", cTab = 1)
+    public static Item GOLEM_STONE_FIRE = new TTMLore(16);
+    @ModFeature(name = "item_golem_stone_water", stateOverride = "simple_items#type=item_golem_stone_water", cTab = 1)
+    public static Item GOLEM_STONE_WATER = new TTMLore(16);
     /* End Region */
 
     /* Food */

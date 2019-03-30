@@ -8,7 +8,7 @@ import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMBalrog;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMGwaihir;
-import com.greatorator.tolkienmobs.entity.hostile.EntityTMElementalGolem;
+import com.greatorator.tolkienmobs.entity.special.EntityTMElementalGolem;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGreatEagle;
 import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMWitchKing;
