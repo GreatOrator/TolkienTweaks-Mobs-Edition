@@ -258,6 +258,8 @@ public class TTMFeatures implements IModFeatures {
     public static Item GOLEM_STONE_FIRE = new TTMLore(16);
     @ModFeature(name = "item_golem_stone_water", stateOverride = "simple_items#type=item_golem_stone_water", cTab = 1)
     public static Item GOLEM_STONE_WATER = new TTMLore(16);
+    @ModFeature(name = "item_golem_stone_summon", stateOverride = "simple_items#type=item_golem_stone_summon", cTab = 1)
+    public static Item GOLEM_STONE_SUMMON = new TTMLore(16);
     /* End Region */
 
     /* Food */
@@ -268,13 +270,13 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "food_cram", stateOverride = "simple_items#type=food_cram", cTab = 3)
     public static Item CRAM = new TTMFood(10, 64, 10, new PotionEffect(MobEffects.ABSORPTION,3000,1), new PotionEffect(MobEffects.REGENERATION,25,5));
     @ModFeature(name = "potion_entdraught", stateOverride = "simple_items#type=potion_entdraught", cTab = 3)
-    public static Item ENT_DRAUGHT = new TTMFood(5, 1, 5, new PotionEffect(PotionInit.ENT_STANCE,6000,2)).setEffectOverride(true).setItemUseAction(true);
+    public static Item ENT_DRAUGHT = new TTMFood(1, 1, 1, new PotionEffect(PotionInit.ENT_STANCE,6000,2)).setEffectOverride(true).setItemUseAction(true);
     @ModFeature(name = "potion_miruvor", stateOverride = "simple_items#type=potion_miruvor", cTab = 3)
-    public static Item MIRUVOR = new TTMFood(5, 1, 5, new PotionEffect(MobEffects.SPEED,3000,3), new PotionEffect(MobEffects.REGENERATION, 600, 3), new PotionEffect(MobEffects.NAUSEA, 40, 3)).setItemUseAction(true);
+    public static Item MIRUVOR = new TTMFood(1, 1, 1, new PotionEffect(MobEffects.SPEED,3000,3), new PotionEffect(MobEffects.REGENERATION, 600, 3), new PotionEffect(MobEffects.NAUSEA, 40, 3)).setItemUseAction(true);
     @ModFeature(name = "potion_grog", stateOverride = "simple_items#type=potion_grog", cTab = 3)
-    public static Item GROG = new TTMFood(5, 1, 5, new PotionEffect(MobEffects.SPEED,1500,3), new PotionEffect(MobEffects.REGENERATION, 300, 3), new PotionEffect(MobEffects.NAUSEA, 100, 3)).setItemUseAction(true);
+    public static Item GROG = new TTMFood(1, 1, 1, new PotionEffect(MobEffects.SPEED,1500,3), new PotionEffect(MobEffects.REGENERATION, 300, 3), new PotionEffect(MobEffects.NAUSEA, 100, 3)).setItemUseAction(true);
     @ModFeature(name = "potion_elvishhealth", stateOverride = "simple_items#type=potion_elvishhealth", cTab = 3)
-    public static Item ELVISH_HEALTH = new TTMFood(5, 1, 5, new PotionEffect(PotionInit.ELF_VITALITY,15000,3)).setItemUseAction(true);
+    public static Item ELVISH_HEALTH = new TTMFood(1, 1, 1, new PotionEffect(PotionInit.ELF_VITALITY,15000,3)).setItemUseAction(true);
     @ModFeature(name = "potion_portableblacksmith", stateOverride = "simple_items#type=potion_portableblacksmith", cTab = 3)
     public static Item WANDERING_BLACKSMITH = new TTMFood(1, 1, 1, new PotionEffect(PotionInit.PERSONAL_BLACKSMITH,15000,2)).setItemUseAction(true);
     @ModFeature(name = "monster_flesh", stateOverride = "simple_items#type=monster_flesh", cTab = 3)

@@ -86,7 +86,8 @@ lore.item.tolkienmobs:item_golem_stone=Remnant of an ancient Golem
 lore.item.tolkienmobs:item_golem_stone_earth=Remnant of an ancient Golem
 lore.item.tolkienmobs:item_golem_stone_air=Remnant of an ancient Golem
 lore.item.tolkienmobs:item_golem_stone_fire=Remnant of an ancient Golem
-lore.item.tolkienmobs:item_golem_stone_water=Remnant of an ancient Golem
+lore.item.tolkienmobs:item_golem_stone_water=Remnant of an ancient 
+lore.item.tolkienmobs:item_golem_stone_summon=Ancient artifact to summon a Legendary Golem
 lore.item.tolkienmobs:item_letter=TBD
 lore.item.tolkienmobs:item_fancyhelm=TBD
 lore.item.tolkienmobs:item_fancykey=TBD
@@ -201,11 +202,11 @@ splash_potion.effect.inventory_corrosion=Splash Potion of Corrosion
 lingering_potion.effect.inventory_corrosion=Lingering Potion of Corrosion
 tipped_arrow.effect.inventory_corrosion=Arrow of Corrosion
 
-tolkienmobs.effect.personal_blacksmith=Inventory Repair
-potion.effect.personal_blacksmith=Potion of Personal Blacksmith
-splash_potion.effect.personal_blacksmith=Splash Potion of Personal Blacksmith
-lingering_potion.effect.personal_blacksmith=Lingering Potion of Personal Blacksmith
-tipped_arrow.effect.personal_blacksmith=Arrow of Personal Blacksmith
+tolkienmobs.effect.personal_blacksmith=Portable Blacksmith
+potion.effect.personal_blacksmith=Potion of Portable Blacksmith
+splash_potion.effect.personal_blacksmith=Splash Potion of Portable Blacksmith
+lingering_potion.effect.personal_blacksmith=Lingering Potion of Portable Blacksmith
+tipped_arrow.effect.personal_blacksmith=Arrow of Portable Blacksmith
 
 //Monster Drops
 item.tolkienmobs:feather_crebain.name=Crebain Feather
@@ -214,10 +215,11 @@ item.tolkienmobs:leather_mumakil.name=Mumakil Hide
 item.tolkienmobs:monster_fur.name=Monster Fur
 item.tolkienmobs:bottle_fancy.name=Fancy Bottle
 item.tolkienmobs:item_golem_stone.name=Golem Stone
-item.tolkienmobs:item_golem_stone_earth.name=Earth Golem Stone
-item.tolkienmobs:item_golem_stone_air.name=Air Golem Stone
-item.tolkienmobs:item_golem_stone_fire.name=Fire Golem Stone
-item.tolkienmobs:item_golem_stone_water.name=Water Golem Stone
+item.tolkienmobs:item_golem_stone_earth.name=§2Earth§r Golem Stone
+item.tolkienmobs:item_golem_stone_air.name=§eAir§r Golem Stone
+item.tolkienmobs:item_golem_stone_fire.name=§4Fire§r Golem Stone
+item.tolkienmobs:item_golem_stone_water.name=§9Water§r Golem Stone
+item.tolkienmobs:item_golem_stone_summon.name=Summon Legendary §bMithril§r Golem
 
 //Blocks and Ores
 tile.tolkienmobs:block_mithril.name=Mithril Block
@@ -330,6 +332,8 @@ entity.elementalgolem1.name=Great Golem of §eAir
 entity.elementalgolem2.name=Great Golem of §2Earth
 entity.elementalgolem3.name=Great Golem of §4Fire
 entity.elementalgolem4.name=Great Golem of §9Water
+entity.elementalgolem6.name=Legendary §bMithril§r Golem
+entity.elementalgolem7.name=Legendary §8Morgul§r Golem
 entity.elementalgolem5.name=Stone Golem
 
 entity.Villager.coin_banker=Coin Banker
