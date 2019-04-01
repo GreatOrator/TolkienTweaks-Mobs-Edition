@@ -128,6 +128,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableMinotaur = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableBrigand", comment = "Setting this to false will disable Brigands", requiresMCRestart = true, requiresSync = true)
     public static boolean enableBrigand = true;
+    @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableElementalGolem", comment = "Setting this to false will disable the Elemental Golem", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableElementalGolem = true;
 
     /** Boss mobs - Individual*/
     @ModConfigProperty(category = "Boss Mobs", name = "enableBalrog", comment = "Setting this to false will disable the Balrog", requiresMCRestart = true, requiresSync = true)
@@ -138,6 +140,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableWitchKing = true;
     @ModConfigProperty(category = "Boss Mobs", name = "enableGwaihir", comment = "Setting this to false will disable Gwaihir", requiresMCRestart = true, requiresSync = true)
     public static boolean enableGwaihir = true;
+    @ModConfigProperty(category = "Boss Mobs", name = "enableMorgulGolem", comment = "Setting this to false will disable the Morgul Golem", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableMorgulGolem = true;
 
     /** Special mobs - Individual*/
     @ModConfigProperty(category = "Special Mobs", name = "enableGollum", comment = "Setting this to false will disable Gollum", requiresMCRestart = true, requiresSync = true)
@@ -146,8 +150,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableNazgul = true;
     @ModConfigProperty(category = "Special Mobs", name = "enableGreatEagle", comment = "Setting this to false will disable the Great Eagles", requiresMCRestart = true, requiresSync = true)
     public static boolean enableGreatEagle = true;
-    @ModConfigProperty(category = "Special Mobs", name = "enableElementalGolem", comment = "Setting this to false will disable the Elemental Golem", requiresMCRestart = true, requiresSync = true)
-    public static boolean enableElementalGolem = true;
+    @ModConfigProperty(category = "Special Mobs", name = "enableMithrilGolem", comment = "Setting this to false will disable the Mithril Golem", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableMithrilGolem = true;
 
     /** Passive mobs - Individual*/
     @ModConfigProperty(category = "Passive Mobs", name = "enableAuroch", comment = "Setting this to false will disable Aurochs", requiresMCRestart = true, requiresSync = true)

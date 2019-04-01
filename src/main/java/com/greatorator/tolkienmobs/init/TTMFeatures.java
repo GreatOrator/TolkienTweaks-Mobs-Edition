@@ -259,7 +259,7 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "item_golem_stone_water", stateOverride = "simple_items#type=item_golem_stone_water", cTab = 1)
     public static Item GOLEM_STONE_WATER = new TTMLore(16);
     @ModFeature(name = "item_golem_stone_summon", stateOverride = "simple_items#type=item_golem_stone_summon", cTab = 1)
-    public static Item GOLEM_STONE_SUMMON = new TTMLore(16);
+    public static Item GOLEM_STONE_SUMMON = new TTMLore(16).setEffectOverride(true).setSpawnInfo(true);
     /* End Region */
 
     /* Food */

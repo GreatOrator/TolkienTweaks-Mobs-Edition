@@ -36,6 +36,8 @@ public class LootInit {
     public static final ResourceLocation GOLEM_STONE_AIR = register("entities/golem_stone_air");
     public static final ResourceLocation GOLEM_STONE_FIRE = register("entities/golem_stone_fire");
     public static final ResourceLocation GOLEM_STONE_WATER = register("entities/golem_stone_water");
+    public static final ResourceLocation GOLEM_STONE_MITHRIL = register("entities/golem_stone_mithril");
+    public static final ResourceLocation GOLEM_STONE_MORGUL = register("entities/golem_stone_morgul");
 
     /** Passive */
     public static final ResourceLocation AUROCH = register("entities/auroch");

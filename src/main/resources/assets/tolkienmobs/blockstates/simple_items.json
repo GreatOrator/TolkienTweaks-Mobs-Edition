@@ -78,7 +78,8 @@
       "item_golem_stone_earth":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_earth"}},
       "item_golem_stone_air":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_air"}},
       "item_golem_stone_fire":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_fire"}},
-      "item_golem_stone_water":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_water"}}
+      "item_golem_stone_water":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_water"}},
+      "item_golem_stone_summon":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_summon"}}
     }
   }
 }

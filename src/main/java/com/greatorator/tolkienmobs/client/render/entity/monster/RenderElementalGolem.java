@@ -1,8 +1,8 @@
-package com.greatorator.tolkienmobs.client.render.entity.special;
+package com.greatorator.tolkienmobs.client.render.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.render.model.special.ModelElementalGolem;
-import com.greatorator.tolkienmobs.entity.special.EntityTMElementalGolem;
+import com.greatorator.tolkienmobs.client.render.model.monster.ModelElementalGolem;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMElementalGolem;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -19,6 +19,8 @@ public class RenderElementalGolem extends RenderLiving<EntityTMElementalGolem> {
     private static final ResourceLocation FIREGOLEM = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/elementalgolem/elemental_golem_fire.png");
     private static final ResourceLocation WATERGOLEM = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/elementalgolem/elemental_golem_water.png");
     private static final ResourceLocation STONEGOLEM = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/elementalgolem/elemental_golem_none.png");
+    private static final ResourceLocation MITHRILGOLEM = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/elementalgolem/elemental_golem_mithril.png");
+    private static final ResourceLocation MORGULGOLEM = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/elementalgolem/elemental_golem_morgul.png");
 
     public static final RenderElementalGolem.Factory FACTORY = new RenderElementalGolem.Factory();
     private ModelElementalGolem modelbase;
@@ -58,7 +60,9 @@ public class RenderElementalGolem extends RenderLiving<EntityTMElementalGolem> {
             case 5:
                 return STONEGOLEM;
             case 6:
-                return STONEGOLEM;
+                return MITHRILGOLEM;
+            case 7:
+                return MORGULGOLEM;
         }
     }
 

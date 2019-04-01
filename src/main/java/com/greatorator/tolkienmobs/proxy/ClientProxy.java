@@ -11,11 +11,12 @@ import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderBoulder;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderFellBeastFireball;
 import com.greatorator.tolkienmobs.client.render.entity.boss.RenderBalrog;
 import com.greatorator.tolkienmobs.client.render.entity.boss.RenderFellBeast;
+import com.greatorator.tolkienmobs.client.render.entity.boss.RenderMorgulGolem;
 import com.greatorator.tolkienmobs.client.render.entity.boss.RenderWitchKing;
 import com.greatorator.tolkienmobs.client.render.entity.monster.*;
 import com.greatorator.tolkienmobs.client.render.entity.passive.*;
-import com.greatorator.tolkienmobs.client.render.entity.special.RenderElementalGolem;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderGollum;
+import com.greatorator.tolkienmobs.client.render.entity.special.RenderMithrilGolem;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderNazgul;
 import com.greatorator.tolkienmobs.client.render.model.ambient.ModelCrebain;
 import com.greatorator.tolkienmobs.client.render.model.ambient.ModelTMMidgeFly;
@@ -24,15 +25,12 @@ import com.greatorator.tolkienmobs.client.render.model.boss.ModelTMGwaihir;
 import com.greatorator.tolkienmobs.entity.ambient.*;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
-import com.greatorator.tolkienmobs.entity.boss.EntityTMBalrog;
-import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
-import com.greatorator.tolkienmobs.entity.boss.EntityTMGwaihir;
-import com.greatorator.tolkienmobs.entity.boss.EntityTMWitchKing;
+import com.greatorator.tolkienmobs.entity.boss.*;
 import com.greatorator.tolkienmobs.entity.hostile.*;
 import com.greatorator.tolkienmobs.entity.passive.*;
-import com.greatorator.tolkienmobs.entity.special.EntityTMElementalGolem;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGollum;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGreatEagle;
+import com.greatorator.tolkienmobs.entity.special.EntityTMMithrilGolem;
 import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
 import com.greatorator.tolkienmobs.handler.FogHandler;
 import com.greatorator.tolkienmobs.handler.TTMExtraHearts;
@@ -68,6 +66,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityTMBalrog.class, RenderBalrog.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMFellBeast.class, RenderFellBeast::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMWitchKing.class, RenderWitchKing.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMMorgulGolem.class, RenderMorgulGolem.FACTORY);
 
         /* Monsters */
         RenderingRegistry.registerEntityRenderingHandler(EntityTMHuron.class, RenderHuron.FACTORY);
@@ -84,11 +83,12 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityTMMinotaur.class, RenderMinotaur.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMBrigand.class, RenderBrigand.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMFellSpirit.class, RenderFellSpirit.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMElementalGolem.class, RenderElementalGolem.FACTORY);
 
         /* Special */
         RenderingRegistry.registerEntityRenderingHandler(EntityTMGollum.class, RenderGollum.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMNazgul.class, RenderNazgul.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityTMElementalGolem.class, RenderElementalGolem.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMMithrilGolem.class, RenderMithrilGolem.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(
                 EntityTMGreatEagle.class,
                 RenderTMBirds.getRenderFactory(
