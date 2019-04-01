@@ -1,8 +1,9 @@
 package com.greatorator.tolkienmobs.entity.passive;
 
-import com.greatorator.tolkienmobs.utils.TTMRand;
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
+import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -132,6 +133,31 @@ public class EntityTMGoat extends AbstractChestHorse {
     @Override
     public int getMaxSpawnedInChunk() {
         return 4;
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        boolean monsterSpawn = false;
+
+        int willSpawn = this.spawnChance();
+
+        if (this.isValidLightLevel() && super.getCanSpawnHere() && this.posY > 36.0D) {
+            if (willSpawn <= 10) {
+                monsterSpawn = true;
+            }
+        }
+        return super.getCanSpawnHere() && monsterSpawn;
+    }
+
+    private int spawnChance()
+    {
+        int i = TTMRand.getRandomInteger(TTMConfig.mobSpawnChance, 1);
+        return i;
+    }
+
+    protected boolean isValidLightLevel()
+    {
+        return true;
     }
 
     @Override

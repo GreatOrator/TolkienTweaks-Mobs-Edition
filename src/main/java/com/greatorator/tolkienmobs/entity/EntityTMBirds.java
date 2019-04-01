@@ -1,17 +1,19 @@
 package com.greatorator.tolkienmobs.entity;
 
 import com.google.common.base.Optional;
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.ambient.EntityTMRat;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTMSquirrel;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTMToad;
 import com.greatorator.tolkienmobs.entity.entityai.AIStates;
 import com.greatorator.tolkienmobs.entity.entityai.ProcessStateBirds;
 import com.greatorator.tolkienmobs.entity.entityai.UpdateStateBirds;
 import com.greatorator.tolkienmobs.entity.events.BirdTameEvent;
-import com.greatorator.tolkienmobs.entity.ambient.EntityTMSquirrel;
-import com.greatorator.tolkienmobs.entity.ambient.EntityTMToad;
 import com.greatorator.tolkienmobs.handler.interfaces.IModEntity;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
+import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityFlying;
@@ -39,6 +41,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
@@ -648,5 +651,30 @@ public class EntityTMBirds extends EntityFlying implements IModEntity
             setOwnerId(null);
         }
         setLegBandColor(EnumDyeColor.byDyeDamage(compound.getInteger("legBandColor")));
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        boolean monsterSpawn = false;
+
+        int willSpawn = this.spawnChance();
+
+        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere() && this.posY > 36.0D) {
+            if (willSpawn <= 10) {
+                monsterSpawn = true;
+            }
+        }
+        return super.getCanSpawnHere() && monsterSpawn;
+    }
+
+    protected int spawnChance()
+    {
+        int i = TTMRand.getRandomInteger(TTMConfig.mobSpawnChance, 1);
+        return i;
+    }
+
+    protected boolean isValidLightLevel()
+    {
+        return true;
     }
 }

@@ -1,8 +1,10 @@
 package com.greatorator.tolkienmobs.entity.hostile;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
+import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
@@ -13,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -99,5 +102,25 @@ public class EntityTMHuron extends EntityMob implements IRangedAttackMob {
     @Override
     public void setSwingingArms(boolean swingingArms) {
 
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        boolean monsterSpawn = false;
+
+        int willSpawn = this.spawnChance();
+
+        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere() && this.posY > 36.0D) {
+            if (willSpawn <= 10) {
+                monsterSpawn = true;
+            }
+        }
+        return super.getCanSpawnHere() && monsterSpawn;
+    }
+
+    private int spawnChance()
+    {
+        int i = TTMRand.getRandomInteger(TTMConfig.mobSpawnChance, 1);
+        return i;
     }
 }

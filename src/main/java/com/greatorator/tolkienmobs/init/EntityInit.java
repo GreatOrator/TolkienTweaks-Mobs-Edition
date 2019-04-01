@@ -242,7 +242,7 @@ public class EntityInit
                     EntityRegistry.addSpawn(EntityTMCrebain.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
                 }
                 if (TTMConfig.enableFrogs) {
-                    EntityRegistry.addSpawn(EntityTMToad.class, 12, 1, 1, EnumCreatureType.WATER_CREATURE, Biomes.PLAINS);
+                    EntityRegistry.addSpawn(EntityTMToad.class, 12, 1, 1, EnumCreatureType.WATER_CREATURE, Biomes.PLAINS, Biomes.SWAMPLAND);
                 }
                 if (TTMConfig.enableRats) {
                     EntityRegistry.addSpawn(EntityTMRat.class, 12, 1, 1, EnumCreatureType.AMBIENT, Biomes.ROOFED_FOREST);

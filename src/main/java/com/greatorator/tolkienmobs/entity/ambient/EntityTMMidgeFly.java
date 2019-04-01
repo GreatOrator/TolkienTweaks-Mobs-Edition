@@ -54,11 +54,14 @@ public class EntityTMMidgeFly extends EntityTMHostiles {
 
     @Override
     public boolean getCanSpawnHere() {
+        int willSpawn = this.spawnChance();
+
         if (world.getBiome(new BlockPos(this)) == Biomes.SWAMPLAND || world.getBiome(new BlockPos(this)) == BiomeInit.NINDALF) {
-            return world.checkNoEntityCollision(getEntityBoundingBox()) && world.getCollisionBoxes(this, getEntityBoundingBox()).size() == 0;
-        } else {
-            return super.getCanSpawnHere();
+            if (willSpawn <= 10) {
+                return world.checkNoEntityCollision(getEntityBoundingBox()) && world.getCollisionBoxes(this, getEntityBoundingBox()).size() == 0;
+            }
         }
+        return super.getCanSpawnHere();
     }
 
     @Override

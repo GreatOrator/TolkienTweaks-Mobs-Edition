@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.entity;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.handler.interfaces.IModEntity;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.utils.TTMRand;
@@ -249,5 +250,30 @@ public class EntityTMHerds extends EntityAnimal implements IModEntity
     public void setRndMinMax(int rndMin, int rndMax) {
         this.rndMin = rndMin;
         this.rndMax = rndMax;
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        boolean monsterSpawn = false;
+
+        int willSpawn = this.spawnChance();
+
+        if (this.isValidLightLevel() && super.getCanSpawnHere() && this.posY > 36.0D) {
+            if (willSpawn <= 10) {
+                monsterSpawn = true;
+            }
+        }
+        return super.getCanSpawnHere() && monsterSpawn;
+    }
+
+    protected int spawnChance()
+    {
+        int i = TTMRand.getRandomInteger(TTMConfig.mobSpawnChance, 1);
+        return i;
+    }
+
+    protected boolean isValidLightLevel()
+    {
+        return true;
     }
 }

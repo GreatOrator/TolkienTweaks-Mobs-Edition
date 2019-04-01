@@ -47,9 +47,6 @@ public class TTMConfig implements IModConfigHelper {
 //    @ModConfigProperty(category = "Category for this property", name = "exampleBooleanConfig", comment = "Description for this config property")
 //    public static boolean exampleBooleanConfig = true;
 
-//    @ModConfigProperty(category = "Category for this property", name = "exampleIntConfig", comment = "Description for this config property")
-//    public static int exampleIntConfig = 10000;
-
 //    @ModConfigProperty(category = "Category for this property", name = "exampleIntWithMinMax", comment = "Description for this config property")
 //    @ModConfigProperty.MinMax(min = "500", max = "1000000")
 //    public static int exampleIntWithMinMax = 10000;
@@ -220,6 +217,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean disableVanilla = true;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "disableOreGen", comment = "Setting to true will disable ore generation from this mod", requiresMCRestart = true, requiresSync = true)
     public static boolean disableOreGen = false;
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "mobSpawnChance", comment = "Set this for additional control of mob Spawns.\n  10 times out of this number chance to spawn")
+    public static int mobSpawnChance = 100;
 
     /** Potion Types */
     @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array.")

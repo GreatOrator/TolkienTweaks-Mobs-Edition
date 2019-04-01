@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 public class EntityTMMinotaur extends EntityTMHostiles {
@@ -19,9 +20,17 @@ public class EntityTMMinotaur extends EntityTMHostiles {
     }
 
     @Override
-    public boolean getCanSpawnHere()
-    {
-        return super.getCanSpawnHere() && !this.world.canSeeSky(new BlockPos(this));
+    public boolean getCanSpawnHere() {
+        boolean monsterSpawn = false;
+
+        int willSpawn = this.spawnChance();
+
+        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere() && !this.world.canSeeSky(new BlockPos(this)) && this.posY < 64.0D) {
+            if (willSpawn <= 10) {
+                monsterSpawn = true;
+            }
+        }
+        return super.getCanSpawnHere() && monsterSpawn;
     }
 
     protected SoundEvent getAmbientSound()

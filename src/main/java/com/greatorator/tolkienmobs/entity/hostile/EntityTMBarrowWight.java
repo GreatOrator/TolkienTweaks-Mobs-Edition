@@ -8,6 +8,8 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.init.MobEffects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 public class EntityTMBarrowWight extends EntityTMHostiles {
@@ -20,6 +22,30 @@ public class EntityTMBarrowWight extends EntityTMHostiles {
         this.setTtmDuration(1);
         this.setRndMinMax(1,5);
         this.setBurnState(true);
+    }
+
+    protected boolean isValidLightLevel()
+    {
+        BlockPos blockpos = new BlockPos(this.posX, this.getEntityBoundingBox().minY, this.posZ);
+
+        if (this.world.getLightFor(EnumSkyBlock.SKY, blockpos) > this.rand.nextInt(32))
+        {
+            return false;
+        }
+        else
+        {
+            int i = this.world.getLightFromNeighbors(blockpos);
+
+            if (this.world.isThundering())
+            {
+                int j = this.world.getSkylightSubtracted();
+                this.world.setSkylightSubtracted(10);
+                i = this.world.getLightFromNeighbors(blockpos);
+                this.world.setSkylightSubtracted(j);
+            }
+
+            return i <= this.rand.nextInt(8);
+        }
     }
 
     @Override

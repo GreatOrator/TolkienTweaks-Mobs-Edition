@@ -266,12 +266,18 @@ public class EntityTMElementalGolem extends EntityTMHostiles {
         int i = (int) Math.floor(posX);
         int j = (int) Math.floor(posY);
         int k = (int) Math.floor(posZ);
+        int willSpawn = this.spawnChance();
         BlockPos blockpos = new BlockPos(i, j, k);
         Block block = this.world.getBlockState(blockpos.down()).getBlock();
 
         if (getElementType() == 1)
         {
-            return super.getCanSpawnHere() && this.posY > 145.0D && this.world.canSeeSky(new BlockPos(this));
+            if(this.posY > 145.0D && this.world.canSeeSky(new BlockPos(this))) {
+                if (willSpawn <= 10) {
+                    nearMaterial = true;
+                }
+            }
+            return super.getCanSpawnHere() && nearMaterial;
         }
         else if (getElementType() == 2)
         {
@@ -279,12 +285,15 @@ public class EntityTMElementalGolem extends EntityTMHostiles {
                 for (int j1 = j - 6; j1 <= j + 6; j1++) {
                     for (int k1 = k - 16; k1 <= k + 16; k1++) {
                         BlockPos pos = new BlockPos(i1, j1, k1);
-                        if (block instanceof BlockDirt && this.world.canSeeSky(new BlockPos(this)) && this.posY > 36.0D)
-                            nearMaterial = true;
+                        if (block instanceof BlockDirt && this.world.canSeeSky(new BlockPos(this)) && this.posY > 36.0D) {
+                            if (willSpawn <= 10) {
+                                nearMaterial = true;
+                            }
+                        }
                     }
                 }
             }
-            return nearMaterial;
+            return super.getCanSpawnHere() && nearMaterial;
         }
         else if (getElementType() == 3)
         {
@@ -292,12 +301,15 @@ public class EntityTMElementalGolem extends EntityTMHostiles {
                 for (int j1 = j - 6; j1 <= j + 6; j1++) {
                     for (int k1 = k - 16; k1 <= k + 16; k1++) {
                         BlockPos pos = new BlockPos(i1, j1, k1);
-                        if (world.getBlockState(pos).getMaterial() == Material.LAVA && this.world.canSeeSky(new BlockPos(this)) && this.posY > 36.0D)
-                            nearMaterial = true;
+                        if (world.getBlockState(pos).getMaterial() == Material.LAVA && this.world.canSeeSky(new BlockPos(this)) && this.posY > 36.0D) {
+                            if (willSpawn <= 10) {
+                                nearMaterial = true;
+                            }
+                        }
                     }
                 }
             }
-            return nearMaterial;
+            return super.getCanSpawnHere() && nearMaterial;
         }
         else if (getElementType() == 4)
         {
@@ -305,14 +317,25 @@ public class EntityTMElementalGolem extends EntityTMHostiles {
                 for (int j1 = j - 6; j1 <= j + 6; j1++) {
                     for (int k1 = k - 16; k1 <= k + 16; k1++) {
                         BlockPos pos = new BlockPos(i1, j1, k1);
-                        if (world.getBlockState(pos).getMaterial() == Material.WATER && this.world.canSeeSky(new BlockPos(this)) && this.posY > 36.0D)
-                            nearMaterial = true;
+                        if (world.getBlockState(pos).getMaterial() == Material.WATER && this.world.canSeeSky(new BlockPos(this)) && this.posY > 36.0D) {
+                            if (willSpawn <= 10) {
+                                nearMaterial = true;
+                            }
+                        }
                     }
                 }
             }
-            return nearMaterial;
+            return super.getCanSpawnHere() && nearMaterial;
         }
-        return getCanSpawnHere();
+        else
+        {
+            if(this.posY > 36.0D && this.world.canSeeSky(new BlockPos(this))) {
+                if (willSpawn <= 10) {
+                    nearMaterial = true;
+                }
+            }
+            return super.getCanSpawnHere() && nearMaterial;
+        }
     }
 
     @Override

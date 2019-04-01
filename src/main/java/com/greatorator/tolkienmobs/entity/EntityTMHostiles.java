@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.entity;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
 import com.greatorator.tolkienmobs.entity.hostile.EntityTMMordorOrc;
 import com.greatorator.tolkienmobs.entity.hostile.EntityTMTreeEnt;
@@ -432,9 +433,23 @@ public abstract class EntityTMHostiles extends EntityMob {
     }
 
     @Override
-    public boolean getCanSpawnHere()
+    public boolean getCanSpawnHere() {
+        boolean monsterSpawn = false;
+
+        int willSpawn = this.spawnChance();
+
+        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere() && this.posY > 36.0D) {
+            if (willSpawn <= 10) {
+                monsterSpawn = true;
+            }
+        }
+        return super.getCanSpawnHere() && monsterSpawn;
+    }
+
+    protected int spawnChance()
     {
-        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere();
+        int i = TTMRand.getRandomInteger(TTMConfig.mobSpawnChance, 1);
+        return i;
     }
 
     public int getMobType()
