@@ -9,6 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -44,18 +46,31 @@ public class TTMLore extends ItemBCore {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
+        RayTraceResult raytraceresult = this.rayTrace(worldIn, playerIn, true);
+        BlockPos blockpos = raytraceresult.getBlockPos();
+        EntityTMMithrilGolem entity = new EntityTMMithrilGolem(worldIn);
 
-        if (!playerIn.capabilities.isCreativeMode)
+        if (worldIn.isRemote)
         {
-            itemstack.shrink(1);
+            return new ActionResult<ItemStack>(EnumActionResult.PASS, itemstack);
         }
-
-        if (!worldIn.isRemote)
+        else
         {
-            if(canSpawnEntity){
-                EntityTMMithrilGolem entityType = new EntityTMMithrilGolem(worldIn);
-                entityType.setPosition(playerIn.posX+2, playerIn.posY, playerIn.posZ+2);
-                worldIn.spawnEntity(entityType);
+            if (entity == null)
+            {
+                return new ActionResult<ItemStack>(EnumActionResult.PASS, itemstack);
+            }
+            else {
+                if (canSpawnEntity) {
+
+                    if (!playerIn.capabilities.isCreativeMode)
+                    {
+                        itemstack.shrink(1);
+                    }
+
+                    entity.setPosition((double) blockpos.getX() + 0.5D, (double) blockpos.getY() + 1.0D, (double) blockpos.getZ() + 0.5D);
+                    worldIn.spawnEntity(entity);
+                }
             }
         }
         return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
@@ -63,6 +78,7 @@ public class TTMLore extends ItemBCore {
 
     public TTMLore setSpawnInfo(boolean isSpawnItem) {
         this.canSpawnEntity = isSpawnItem;
+
         return this;
     }
 }
