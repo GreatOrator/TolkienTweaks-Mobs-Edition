@@ -85,10 +85,10 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
             }
             if (TTMConfig.enableAmbient) {
                 if (TTMConfig.enableMidgeFlies) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMMidgeFly.class, 4, 1, 1));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMMidgeFly.class, 4, 1, 1));
                 }
                 if (TTMConfig.enableFrogs) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMToad.class, 1, 1, 1));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMToad.class, 1, 1, 1));
                 }
             }
         }

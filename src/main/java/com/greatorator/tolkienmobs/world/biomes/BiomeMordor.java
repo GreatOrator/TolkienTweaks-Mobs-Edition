@@ -76,7 +76,7 @@ public class BiomeMordor extends Biome {
             }
             if (TTMConfig.enableAmbient) {
                 if (TTMConfig.enableMidgeFlies) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMMidgeFly.class, 4, 1, 1));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMMidgeFly.class, 4, 1, 1));
                 }
             }
         }

@@ -77,7 +77,7 @@ public class BiomeOldForest extends Biome implements IFogyBiome {
         if (TTMConfig.enableNaturalSpawn) {
             if (TTMConfig.enableAmbient) {
                 if (TTMConfig.enableSquirrels) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMSquirrel.class, 1, 1, 1));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMSquirrel.class, 1, 1, 1));
                 }
                 if (TTMConfig.enableHurons) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityTMHuron.class, 1, 1, 2));
