@@ -1,7 +1,5 @@
 package com.greatorator.tolkienmobs.commands;
 
-import com.google.common.collect.Lists;
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.handler.interfaces.ITTMStructureSummon;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeBarrow;
@@ -24,22 +22,15 @@ import java.util.Collections;
 import java.util.List;
 
 public class TTMCommandSpawn extends CommandBase {
-    private final List<String> aliases = Lists.newArrayList(TolkienMobs.MODID, "TMSpawn", "tmspawn", "tms", "TMS");
 
     @Override
     public String getName() {
-        return "tmstructurespawn";
+        return "tmspawn";
     }
 
     @Override
     public String getUsage(ICommandSender sender) {
         return "commands.tmspawn.usage";
-    }
-
-    @Override
-    public List<String> getAliases()
-    {
-        return aliases;
     }
 
     @Override

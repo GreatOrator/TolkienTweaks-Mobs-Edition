@@ -399,6 +399,7 @@ public class SoundInit
 				registry.register(new SoundEvent(new ResourceLocation(TolkienMobs.MODID, soundName)).setRegistryName(soundName));
 			}
 
+			LogHelperTTM.info("Melody completed, Eru is pleased...");
 			initialize();
 		}
 	}

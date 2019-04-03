@@ -208,6 +208,10 @@ splash_potion.effect.personal_blacksmith=Splash Potion of Portable Blacksmith
 lingering_potion.effect.personal_blacksmith=Lingering Potion of Portable Blacksmith
 tipped_arrow.effect.personal_blacksmith=Arrow of Portable Blacksmith
 
+//Enchantments
+enchantment.tolkienmobs.balrogs_mark=Balrog's Mark
+enchantment.tolkienmobs.balrogs_mark.desc=When applied to boots, this makes any grass or dirt around you turn to magma blocks.
+
 //Monster Drops
 item.tolkienmobs:feather_crebain.name=Crebain Feather
 item.tolkienmobs:feather_bird.name=Bird Feather

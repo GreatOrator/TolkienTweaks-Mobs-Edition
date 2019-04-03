@@ -21,7 +21,6 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class EntityInit
 {
-    //TODO Look at adding Mimic and Minotaur
     public static void init() {
 
         LogHelperTTM.info("Adding all the various fauna to see!");
