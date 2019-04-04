@@ -13,10 +13,7 @@ import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.block.itemblock.BlockTMFireplace;
 import com.greatorator.tolkienmobs.block.itemblock.BlockTMHallowed;
 import com.greatorator.tolkienmobs.block.itemblock.ItemBlockSlabs;
-import com.greatorator.tolkienmobs.handler.TTMAmmo;
-import com.greatorator.tolkienmobs.handler.TTMFood;
-import com.greatorator.tolkienmobs.handler.TTMLore;
-import com.greatorator.tolkienmobs.handler.TTMSword;
+import com.greatorator.tolkienmobs.handler.*;
 import com.greatorator.tolkienmobs.item.armor.ArmorMithril;
 import com.greatorator.tolkienmobs.item.armor.ArmorMorgulIron;
 import com.greatorator.tolkienmobs.item.magical.ItemTrinketAmulet;
@@ -300,6 +297,34 @@ public class TTMFeatures implements IModFeatures {
     public static final Block BLOCK_HALLOWED = new BlockTMHallowed();
     @ModFeature(name = "block_tmfireplace", cTab = 1, tileEntity = TileTMFireplace.class)
     public static final Block BLOCK_TMFIREPLACE = new BlockTMFireplace().setHardness(1.5F).setResistance(10F);
+    /* End Region */
+
+    /* Records */
+    @ModFeature(name = "record_rivendell", stateOverride = "simple_items#type=record_rivendell", cTab = 1)
+    public static Item RECORD_RIVENDELL = new TTMRecord("music.ridersofrivendell", SoundInit.ridersofrivendell);
+    @ModFeature(name = "record_lothlorien", stateOverride = "simple_items#type=record_lothlorien", cTab = 1)
+    public static Item RECORD_LOTHLORIEN = new TTMRecord("music.thelightoflothlorien", SoundInit.thelightoflothlorien);
+    @ModFeature(name = "record_erebor", stateOverride = "simple_items#type=record_erebor", cTab = 1)
+    public static Item RECORD_EREBOR = new TTMRecord("music.allthatglittersinerebor", SoundInit.allthatglittersinerebor);
+    @ModFeature(name = "record_willow", stateOverride = "simple_items#type=record_willow", cTab = 1)
+    public static Item RECORD_WILLOW = new TTMRecord("music.willowsong", SoundInit.willowsong);
+    @ModFeature(name = "record_minastirith", stateOverride = "simple_items#type=record_minastirith", cTab = 1)
+    public static Item RECORD_MINASTIRITH = new TTMRecord("music.minastirith", SoundInit.minastirith);
+    @ModFeature(name = "record_edoras", stateOverride = "simple_items#type=record_edoras", cTab = 1)
+    public static Item RECORD_EDORAS = new TTMRecord("music.wakeofedoras", SoundInit.wakeofedoras);
+    @ModFeature(name = "record_wbattle", stateOverride = "simple_items#type=record_wbattle", cTab = 1)
+    public static Item RECORD_WBATTLE = new TTMRecord("music.witchbattle", SoundInit.witchbattle);
+    @ModFeature(name = "record_murderfrog", stateOverride = "simple_items#type=record_murderfrog", cTab = 1)
+    public static Item RECORD_MURDERFROG = new TTMRecord("music.murderfrog", SoundInit.murderfrog);
+    @ModFeature(name = "record_reder", stateOverride = "simple_items#type=record_reder", cTab = 1)
+    public static Item RECORD_REDER = new TTMRecord("music.rederssong", SoundInit.rederssong);
+    @ModFeature(name = "record_fumble", stateOverride = "simple_items#type=record_fumble", cTab = 1)
+    public static Item RECORD_FUMBLE = new TTMRecord("music.trollfumble", SoundInit.trollfumble);
+    @ModFeature(name = "record_bombadil", stateOverride = "simple_items#type=record_bombadil", cTab = 1)
+    public static Item RECORD_BOMBADIL = new TTMRecord("music.mysteryoftombombadil", SoundInit.mysteryoftombombadil);
+    @ModFeature(name = "record_hobbits", stateOverride = "simple_items#type=record_hobbits", cTab = 1)
+    public static Item RECORD_HOBBITS = new TTMRecord("music.concerninghobbits", SoundInit.concerninghobbits);
+
     /* End Region */
 
     /* Ammo */

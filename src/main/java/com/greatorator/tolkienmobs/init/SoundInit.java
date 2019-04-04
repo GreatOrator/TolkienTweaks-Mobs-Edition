@@ -1,406 +1,172 @@
 package com.greatorator.tolkienmobs.init;
 
+import com.google.common.collect.Lists;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.utils.LogHelperTTM;
+import com.greatorator.tolkienmobs.handler.TTMSoundHandler;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
-import net.minecraftforge.registries.IForgeRegistry;
 
-@ObjectHolder(TolkienMobs.MODID)
-public class SoundInit
-{
-    // instantiate SoundEvents
+import java.util.List;
 
+public class SoundInit {
 	/** Mumakil */
-	@ObjectHolder("mob.mumakil.say")
-    public static final SoundEvent soundAmbientMumakil = null;
-	@ObjectHolder("mob.mumakil.hurt")
-    public static final SoundEvent soundHurtMumakil = null;
+	public static final SoundEvent soundAmbientMumakil = create("mob.mumakil.say");
+	public static final SoundEvent soundHurtMumakil = create("mob.mumakil.hurt");
 
 	/** Witch-king */
-	@ObjectHolder("mob.witchking.step")
-	public static final SoundEvent soundStepWitchKing = null;
-    @ObjectHolder("mob.witchking.angry")
-    public static final SoundEvent soundAngryWitchKing = null;
-    @ObjectHolder("mob.witchking.death")
-    public static final SoundEvent soundDeathWitchKing = null;
-    @ObjectHolder("mob.witchking.idle")
-    public static final SoundEvent soundIdleWitchKing = null;
-    @ObjectHolder("mob.witchking.hurt")
-    public static final SoundEvent soundHurtWitchKing = null;
+	public static final SoundEvent soundStepWitchKing = create("mob.witchking.step");
+	public static final SoundEvent soundAngryWitchKing = create("mob.witchking.angry");
+	public static final SoundEvent soundDeathWitchKing = create("mob.witchking.death");
+	public static final SoundEvent soundIdleWitchKing = create("mob.witchking.idle");
+	public static final SoundEvent soundHurtWitchKing = create("mob.witchking.hurt");
 
 	/** Fell-beast */
-	@ObjectHolder("mob.fellbeast.idle")
-	public static final SoundEvent soundIdleFellBeast = null;
-	@ObjectHolder("mob.fellbeast.flap")
-	public static final SoundEvent soundFlapFellBeast = null;
+	public static final SoundEvent soundIdleFellBeast = create("mob.fellbeast.idle");
+	public static final SoundEvent soundFlapFellBeast = create("mob.fellbeast.flap");
 
 	/** Barrow Wight */
-	@ObjectHolder("mob.barrowwight.idle")
-	public static final SoundEvent soundIdleBarrowWight = null;
-	@ObjectHolder("mob.barrowwight.hurt")
-	public static final SoundEvent soundHurtBarrowWight = null;
+	public static final SoundEvent soundIdleBarrowWight = create("mob.barrowwight.idle");
+	public static final SoundEvent soundHurtBarrowWight = create("mob.barrowwight.hurt");
 
 	/** Oath Breaker */
-	@ObjectHolder("mob.oathbreaker.idle")
-	public static final SoundEvent soundIdleOathbreaker = null;
+	public static final SoundEvent soundIdleOathbreaker = create("mob.oathbreaker.idle");
 
 	/** Elemental Golem */
-	@ObjectHolder("mob.elementalgolem.death")
-	public static final SoundEvent soundDeathGolem = null;
+	public static final SoundEvent soundDeathGolem = create("mob.elementalgolem.death");
 
 	/** Crebain */
-	@ObjectHolder("mob.crebain.death")
-	public static final SoundEvent soundDeathCrebain = null;
-	@ObjectHolder("mob.crebain.call")
-	public static final SoundEvent soundCallCrebain = null;
-	@ObjectHolder("mob.crebain.flapping")
-	public static final SoundEvent soundFlappingCrebain = null;
-	@ObjectHolder("mob.crebain.hurt")
-	public static final SoundEvent soundHurtCrebain = null;
+	public static final SoundEvent soundDeathCrebain = create("mob.crebain.death");
+	public static final SoundEvent soundCallCrebain = create("mob.crebain.call");
+	public static final SoundEvent soundFlappingCrebain = create("mob.crebain.flapping");
+	public static final SoundEvent soundHurtCrebain = create("mob.crebain.hurt");
 
 	/** Troll */
-	@ObjectHolder("mob.troll.hurt")
-	public static final SoundEvent soundHurtTroll = null;
-	@ObjectHolder("mob.troll.idle")
-	public static final SoundEvent soundIdleTroll = null;
-	@ObjectHolder("mob.troll.death")
-	public static final SoundEvent soundDeathTroll = null;
-	@ObjectHolder("mob.troll.step")
-	public static final SoundEvent soundStepTroll = null;
+	public static final SoundEvent soundHurtTroll = create("mob.troll.hurt");
+	public static final SoundEvent soundIdleTroll = create("mob.troll.idle");
+	public static final SoundEvent soundDeathTroll = create("mob.troll.death");
+	public static final SoundEvent soundStepTroll = create("mob.troll.step");
 
 	/** Dwarf */
-	@ObjectHolder("mob.dwarf.idle")
-	public static final SoundEvent soundIdleDwarf = null;
+	public static final SoundEvent soundIdleDwarf = create("mob.dwarf.idle");
 
 	/** Midge Fly */
-	@ObjectHolder("mob.midgefly.idle")
-	public static final SoundEvent soundIdleMidgeFly = null;
+	public static final SoundEvent soundIdleMidgeFly = create("mob.midgefly.idle");
 
 	/** Goblin */
-	@ObjectHolder("mob.goblin.idle")
-	public static final SoundEvent soundIdleGoblin = null;
-	@ObjectHolder("mob.goblin.hurt")
-	public static final SoundEvent soundHurtGoblin = null;
-	@ObjectHolder("mob.goblin.death")
-	public static final SoundEvent soundDeathGoblin = null;
-	@ObjectHolder("mob.goblin.angry")
-	public static final SoundEvent soundAngryGoblin = null;
+	public static final SoundEvent soundIdleGoblin = create("mob.goblin.idle");
+	public static final SoundEvent soundHurtGoblin = create("mob.goblin.hurt");
+	public static final SoundEvent soundDeathGoblin = create("mob.goblin.death");
+	public static final SoundEvent soundAngryGoblin = create("mob.goblin.angry");
 
 	/** Rat */
-	@ObjectHolder("mob.tmrat.idle")
-	public static final SoundEvent soundIdleTMRat = null;
-	@ObjectHolder("mob.tmrat.hurt")
-	public static final SoundEvent soundHurtTMRat = null;
-	@ObjectHolder("mob.tmrat.death")
-	public static final SoundEvent soundDeathTMRat = null;
+	public static final SoundEvent soundIdleTMRat = create("mob.tmrat.idle");
+	public static final SoundEvent soundHurtTMRat = create("mob.tmrat.hurt");
+	public static final SoundEvent soundDeathTMRat = create("mob.tmrat.death");
 
 	/** Balrog */
-	@ObjectHolder("mob.balrog.death")
-	public static final SoundEvent soundDeathBalrog = null;
-    @ObjectHolder("mob.balrog.idle")
-    public static final SoundEvent soundIdleBalrog = null;
-    @ObjectHolder("mob.balrog.hurt")
-    public static final SoundEvent soundHurtBalrog = null;
-    @ObjectHolder("mob.balrog.step")
-    public static final SoundEvent soundStepBalrog = null;
+	public static final SoundEvent soundDeathBalrog = create("mob.balrog.death");
+	public static final SoundEvent soundIdleBalrog = create("mob.balrog.idle");
+	public static final SoundEvent soundHurtBalrog = create("mob.balrog.hurt");
+	public static final SoundEvent soundStepBalrog = create("mob.balrog.step");
 
 	/** Minotaur */
-	@ObjectHolder("mob.minotaur.death")
-	public static final SoundEvent soundDeathMinotaur = null;
-	@ObjectHolder("mob.minotaur.idle")
-	public static final SoundEvent soundIdleMinotaur = null;
-	@ObjectHolder("mob.minotaur.hurt")
-	public static final SoundEvent soundHurtMinotaur = null;
-	@ObjectHolder("mob.minotaur.step")
-	public static final SoundEvent soundStepMinotaur = null;
+	public static final SoundEvent soundDeathMinotaur = create("mob.minotaur.death");
+	public static final SoundEvent soundIdleMinotaur = create("mob.minotaur.idle");
+	public static final SoundEvent soundHurtMinotaur = create("mob.minotaur.hurt");
+	public static final SoundEvent soundStepMinotaur = create("mob.minotaur.step");
 
 	/** Gollum */
-	@ObjectHolder("mob.gollum.death")
-	public static final SoundEvent soundDeathGollum = null;
-	@ObjectHolder("mob.gollum.idle")
-	public static final SoundEvent soundIdleGollum = null;
-	@ObjectHolder("mob.gollum.hurt")
-	public static final SoundEvent soundHurtGollum = null;
+	public static final SoundEvent soundDeathGollum = create("mob.gollum.death");
+	public static final SoundEvent soundIdleGollum = create("mob.gollum.idle");
+	public static final SoundEvent soundHurtGollum = create("mob.gollum.hurt");
 
-    /** Warg */
-    @ObjectHolder("mob.warg.death")
-    public static final SoundEvent soundDeathWarg = null;
-    @ObjectHolder("mob.warg.idle")
-    public static final SoundEvent soundIdleWarg = null;
-    @ObjectHolder("mob.warg.hurt")
-    public static final SoundEvent soundHurtWarg = null;
-
-	/** Miscellaneous */
-	@ObjectHolder("entity.boulder.shoot")
-	public static final SoundEvent soundBoulderShoot = null;
-	@ObjectHolder("mob.demoniclaughter")
-	public static final SoundEvent sounddemoniclaughter = null;
-	@ObjectHolder("mob.evilwitchlaugh")
-	public static final SoundEvent soundevilwitchlaugh = null;
-	@ObjectHolder("mob.ghostlylament")
-	public static final SoundEvent soundghostlylament = null;
+	/** Warg */
+	public static final SoundEvent soundDeathWarg = create("mob.warg.death");
+	public static final SoundEvent soundIdleWarg = create("mob.warg.idle");
+	public static final SoundEvent soundHurtWarg = create("mob.warg.hurt");
 
 	/** Mimic */
-	@ObjectHolder("mob.mimic.step")
-	public static final SoundEvent soundStepMimic = null;
-	@ObjectHolder("mob.mimic.angry")
-	public static final SoundEvent soundAngryMimic = null;
+	public static final SoundEvent soundStepMimic = create("mob.mimic.step");
+	public static final SoundEvent soundAngryMimic = create("mob.mimic.angry");
 
 	/** Goat */
-	@ObjectHolder("mob.goat.death")
-	public static final SoundEvent soundDeathGoat = null;
-	@ObjectHolder("mob.goat.idle")
-	public static final SoundEvent soundIdleGoat = null;
-	@ObjectHolder("mob.goat.hurt")
-	public static final SoundEvent soundHurtGoat = null;
-	@ObjectHolder("mob.goat.angry")
-	public static final SoundEvent soundAngryGoat = null;
+	public static final SoundEvent soundDeathGoat = create("mob.goat.death");
+	public static final SoundEvent soundIdleGoat = create("mob.goat.idle");
+	public static final SoundEvent soundHurtGoat = create("mob.goat.hurt");
+	public static final SoundEvent soundAngryGoat = create("mob.goat.angry");
 
 	/** Toaddle */
-	@ObjectHolder("mob.toaddle.death")
-	public static final SoundEvent soundDeathToaddle = null;
-	@ObjectHolder("mob.toaddle.idle")
-	public static final SoundEvent soundIdleToaddle = null;
-	@ObjectHolder("mob.toaddle.hurt")
-	public static final SoundEvent soundHurtToaddle = null;
-	@ObjectHolder("mob.toaddle.step")
-	public static final SoundEvent soundStepToaddle = null;
-	@ObjectHolder("mob.toaddle.angry")
-	public static final SoundEvent soundAngryToaddle = null;
+	public static final SoundEvent soundDeathToaddle = create("mob.toaddle.death");
+	public static final SoundEvent soundIdleToaddle = create("mob.toaddle.idle");
+	public static final SoundEvent soundHurtToaddle = create("mob.toaddle.hurt");
+	public static final SoundEvent soundStepToaddle = create("mob.toaddle.step");
+	public static final SoundEvent soundAngryToaddle = create("mob.toaddle.angry");
 
 	/** SOSquirrel */
-	@ObjectHolder("mob.sosquirrel.death")
-	public static final SoundEvent soundDeathSOSquirrel = null;
-	@ObjectHolder("mob.sosquirrel.idle")
-	public static final SoundEvent soundIdleSOSquirrel = null;
-	@ObjectHolder("mob.sosquirrel.hurt")
-	public static final SoundEvent soundHurtSOSquirrel = null;
-	@ObjectHolder("mob.sosquirrel.step")
-	public static final SoundEvent soundStepSOSquirrel = null;
-	@ObjectHolder("mob.sosquirrel.angry")
-	public static final SoundEvent soundAngrySOSquirrel = null;
+	public static final SoundEvent soundDeathSOSquirrel = create("mob.sosquirrel.death");
+	public static final SoundEvent soundIdleSOSquirrel = create("mob.sosquirrel.idle");
+	public static final SoundEvent soundHurtSOSquirrel = create("mob.sosquirrel.hurt");
+	public static final SoundEvent soundStepSOSquirrel = create("mob.sosquirrel.step");
+	public static final SoundEvent soundAngrySOSquirrel = create("mob.sosquirrel.angry");
+
+	/** Miscellaneous */
+	public static final SoundEvent soundBoulderShoot = create("entity.boulder.shoot");
+	public static final SoundEvent sounddemoniclaughter = create("mob.demoniclaughter");
+	public static final SoundEvent soundevilwitchlaugh = create("mob.evilwitchlaugh");
+	public static final SoundEvent soundghostlylament = create("mob.ghostlylament");
 
 	/** Music */
-	@ObjectHolder("music.allthatglittersinerebor")
-	public static final SoundEvent soundallthatglittersinerebor = null;
-	@ObjectHolder("music.willowsong")
-	public static final SoundEvent soundwillowsong = null;
-	@ObjectHolder("music.minastirith")
-	public static final SoundEvent soundminastirith = null;
-	@ObjectHolder("music.ridersofrivendell")
-	public static final SoundEvent soundridersofrivendell = null;
-	@ObjectHolder("music.thelightoflothlorien")
-	public static final SoundEvent soundthelightoflothlorien = null;
-	@ObjectHolder("music.wakeofedoras")
-	public static final SoundEvent soundwakeofedoras = null;
-	@ObjectHolder("music.witchbattle")
-	public static final SoundEvent soundwitchbattle = null;
-	@ObjectHolder("music.murderfrog")
-	public static final SoundEvent soundmurderfrog = null;
-	@ObjectHolder("music.rederssong")
-	public static final SoundEvent soundrederssong = null;
-	@ObjectHolder("music.trollfumble")
-	public static final SoundEvent soundtrollfumble = null;
-	@ObjectHolder("music.mysteryoftombombadil")
-	public static final SoundEvent soundmysteryoftombombadil = null;
-	@ObjectHolder("music.concerninghobbits")
-	public static final SoundEvent soundconcerninghobbits = null;
+	static final SoundEvent ridersofrivendell = create("music.ridersofrivendell");
+	static final SoundEvent thelightoflothlorien = create("music.thelightoflothlorien");
+	static final SoundEvent allthatglittersinerebor = create("music.allthatglittersinerebor");
+	static final SoundEvent willowsong = create("music.willowsong");
+	static final SoundEvent minastirith = create("music.minastirith");
+	static final SoundEvent wakeofedoras = create("music.wakeofedoras");
+	static final SoundEvent witchbattle = create("music.witchbattle");
+	static final SoundEvent murderfrog = create("music.murderfrog");
+	static final SoundEvent rederssong = create("music.rederssong");
+	static final SoundEvent trollfumble = create("music.trollfumble");
+	static final SoundEvent mysteryoftombombadil = create("music.mysteryoftombombadil");
+	static final SoundEvent concerninghobbits = create("music.concerninghobbits");
 
 	/** Ambient */
-	@ObjectHolder("ambient.khazaddum")
-	public static final SoundEvent soundkhazaddum = null;
-	@ObjectHolder("ambient.waterworks")
-	public static final SoundEvent soundwaterworks = null;
-	@ObjectHolder("ambient.medievalcity")
-	public static final SoundEvent soundmedievalcity = null;
-	@ObjectHolder("ambient.medievalcitymarket")
-	public static final SoundEvent soundmedievalcitymarket = null;
-	@ObjectHolder("ambient.medievaltavern")
-	public static final SoundEvent soundmedievaltavern = null;
-	@ObjectHolder("ambient.medievalseaport")
-	public static final SoundEvent soundmedievalseaport = null;
-	@ObjectHolder("ambient.pathsofthedead")
-	public static final SoundEvent soundpathsofthedead = null;
-	@ObjectHolder("ambient.underworld")
-	public static final SoundEvent soundunderworld = null;
+	public static final SoundEvent khazaddum = create("ambient.khazaddum");
+	public static final SoundEvent waterworks = create("ambient.waterworks");
+	public static final SoundEvent medievalcity = create("ambient.medievalcity");
+	public static final SoundEvent medievalcitymarket = create("ambient.medievalcitymarket");
+	public static final SoundEvent medievaltavern = create("ambient.medievaltavern");
+	public static final SoundEvent medievalseaport = create("ambient.medievalseaport");
+	public static final SoundEvent pathsofthedead = create("ambient.pathsofthedead");
+	public static final SoundEvent underworld = create("ambient.underworld");
 
 	/** Blocks */
-	@ObjectHolder("block.cathedralbell")
-	public static final SoundEvent soundcathedralbell = null;
+	public static final SoundEvent cathedralbell = create("block.cathedralbell");
+
+	private static List<SoundEvent> sounds = Lists.newArrayList();
 
 	/**
 	 * Initialize this mod's {@link Block}s with any post-registration data.
 	 */
-	private static void initialize()
-	{
+	public static SoundEvent create(String soundName) {
+		SoundEvent sound = new SoundEvent(new ResourceLocation(TolkienMobs.MODID, soundName));
+		TTMSoundHandler.registerSound(sound, soundName);
+		return sound;
 	}
 
-	@Mod.EventBusSubscriber(modid = TolkienMobs.MODID)
-	public static class RegistrationHandler
-	{
-		/**
-		 * Register this mod's {@link SoundEvent}s.
-		 *
-		 * @param event The event
-		 */
-		@SubscribeEvent
-		public static void onEvent(final RegistryEvent.Register<SoundEvent> event)
-		{
-			final String[] arraySoundEvents = {
-                    /* Mumakil */
-					"mob.mumakil.say",
-					"mob.mumakil.hurt",
-
-                    /* Witch-king */
-					"mob.witchking.step",
-                    "mob.witchking.angry",
-                    "mob.witchking.death",
-                    "mob.witchking.idle",
-                    "mob.witchking.hurt",
-
-                    /* Fell-beast */
-					"mob.fellbeast.idle",
-					"mob.fellbeast.flap",
-
-                    /* Barrowwight */
-					"mob.barrowwight.idle",
-					"mob.barrowwight.hurt",
-
-                    /* Oath Breaker */
-					"mob.oathbreaker.idle",
-
-					/* Elemental Golem */
-					"mob.elementalgolem.death",
-
-                    /* Crebain */
-					"mob.crebain.hurt",
-					"mob.crebain.call",
-					"mob.crebain.death",
-					"mob.crebain.flapping",
-
-                    /* Troll */
-					"mob.troll.hurt",
-					"mob.troll.idle",
-					"mob.troll.death",
-					"mob.troll.angry",
-					"mob.troll.step",
-
-                    /* Dwarf */
-					"mob.dwarf.idle",
-
-					/* Midge Fly */
-					"mob.midgefly.idle",
-
-                    /* Goblin */
-					"mob.goblin.idle",
-					"mob.goblin.hurt",
-					"mob.goblin.death",
-					"mob.goblin.angry",
-
-					/* Rat */
-					"mob.tmrat.idle",
-					"mob.tmrat.hurt",
-					"mob.tmrat.death",
-
-                    /* Balrog */
-                    "mob.balrog.death",
-                    "mob.balrog.idle",
-                    "mob.balrog.hurt",
-                    "mob.balrog.step",
-
-					/* Mimic */
-					"mob.mimic.step",
-					"mob.mimic.angry",
-
-					/* Minotaur */
-					"mob.minotaur.death",
-					"mob.minotaur.idle",
-					"mob.minotaur.hurt",
-					"mob.minotaur.step",
-
-                    /* Goat */
-					"mob.goat.death",
-					"mob.goat.idle",
-					"mob.goat.hurt",
-					"mob.goat.angry",
-
-                    /* Toaddle */
-					"mob.toaddle.death",
-					"mob.toaddle.idle",
-					"mob.toaddle.hurt",
-					"mob.toaddle.step",
-					"mob.toaddle.angry",
-
-					/* SOSquirrel */
-					"mob.sosquirrel.death",
-					"mob.sosquirrel.idle",
-					"mob.sosquirrel.hurt",
-					"mob.sosquirrel.step",
-					"mob.sosquirrel.angry",
-
-                    /* Gollum */
-					"mob.gollum.death",
-					"mob.gollum.idle",
-					"mob.gollum.hurt",
-
-                    /* Warg */
-                    "mob.warg.death",
-                    "mob.warg.idle",
-                    "mob.warg.hurt",
-
-                    /* Miscellaneous */
-					"entity.boulder.shoot",
-					"mob.demonlaugh",
-					"mob.evilwitchlaugh",
-					"mob.ghostlylament",
-
-
-                    /* Music */
-					"music.allthatglittersinerebor",
-					"music.willowsong",
-					"music.minastirith",
-					"music.ridersofrivendell",
-					"music.thelightoflothlorien",
-					"music.wakeofedoras",
-					"music.witchbattle",
-					"music.murderfrog",
-					"music.rederssong",
-					"music.trollfumble",
-					"music.mysteryoftombombadil",
-					"music.concerninghobbits",
-
-                    /* Ambient */
-					"ambient.khazaddum",
-					"ambient.waterworks",
-					"ambient.medievalcity",
-					"ambient.medievalcitymarket",
-					"ambient.medievaltavern",
-					"ambient.medievalseaport",
-					"ambient.pathsofthedead",
-					"ambient.underworld",
-
-                    /* Blocks */
-					"block.cathedralbell"
-
-			};
-
-			final IForgeRegistry<SoundEvent> registry = event.getRegistry();
-
-			LogHelperTTM.info("Composing the sounds of the Aiur...");
-
-	        for (final String soundName : arraySoundEvents)
-	        {
-				registry.register(new SoundEvent(new ResourceLocation(TolkienMobs.MODID, soundName)).setRegistryName(soundName));
-			}
-
-			LogHelperTTM.info("Melody completed, Eru is pleased...");
-			initialize();
+	public static SoundEvent[] createArray(String... soundNames) {
+		SoundEvent[] sounds = new SoundEvent[soundNames.length];
+		for(int i = 0; i < soundNames.length; i++) {
+			SoundEvent sound = new SoundEvent(new ResourceLocation(TolkienMobs.MODID, soundNames[i]));
+			TTMSoundHandler.registerSound(sound, soundNames[i]);
+			sounds[i] = sound;
 		}
+
+		return sounds;
+	}
+
+	public static List<SoundEvent> getSounds()
+	{
+		return sounds;
 	}
 }

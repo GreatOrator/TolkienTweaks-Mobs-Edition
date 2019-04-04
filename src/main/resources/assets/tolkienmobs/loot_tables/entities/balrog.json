@@ -103,6 +103,17 @@
               }
             }
           ]
+        },{
+          "type": "item",
+          "name": "minecraft:book",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "enchant_with_levels",
+              "levels": 10,
+              "treasure": true
+            }
+          ]
         }
       ]
     }

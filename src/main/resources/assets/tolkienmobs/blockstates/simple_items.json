@@ -79,7 +79,19 @@
       "item_golem_stone_air":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_air"}},
       "item_golem_stone_fire":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_fire"}},
       "item_golem_stone_water":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_water"}},
-      "item_golem_stone_summon":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_summon"}}
+      "item_golem_stone_summon":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_summon"}},
+      "record_rivendell":    {"textures": {"layer0": "tolkienmobs:items/record_rivendell"}},
+      "record_lothlorien":    {"textures": {"layer0": "tolkienmobs:items/record_lothlorien"}},
+      "record_erebor":    {"textures": {"layer0": "tolkienmobs:items/record_erebor"}},
+      "record_willow":    {"textures": {"layer0": "tolkienmobs:items/record_willow"}},
+      "record_minastirith":    {"textures": {"layer0": "tolkienmobs:items/record_minastirith"}},
+      "record_edoras":    {"textures": {"layer0": "tolkienmobs:items/record_edoras"}},
+      "record_wbattle":    {"textures": {"layer0": "tolkienmobs:items/record_wbattle"}},
+      "record_murderfrog":    {"textures": {"layer0": "tolkienmobs:items/record_murderfrog"}},
+      "record_reder":    {"textures": {"layer0": "tolkienmobs:items/record_reder"}},
+      "record_fumble":    {"textures": {"layer0": "tolkienmobs:items/record_fumble"}},
+      "record_bombadil":    {"textures": {"layer0": "tolkienmobs:items/record_bombadil"}},
+      "record_hobbits":    {"textures": {"layer0": "tolkienmobs:items/record_hobbits"}}
     }
   }
 }

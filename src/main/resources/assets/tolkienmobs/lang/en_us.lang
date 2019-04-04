@@ -212,6 +212,32 @@ tipped_arrow.effect.personal_blacksmith=Arrow of Portable Blacksmith
 enchantment.tolkienmobs.balrogs_mark=Balrog's Mark
 enchantment.tolkienmobs.balrogs_mark.desc=When applied to boots, this makes any grass or dirt around you turn to magma blocks.
 
+//Records
+item.tolkienmobs:record_rivendell.name=Travelling Music
+item.tolkienmobs:record_lothlorien.name=Travelling Music
+item.tolkienmobs:record_erebor.name=Travelling Music
+item.tolkienmobs:record_willow.name=Travelling Music
+item.tolkienmobs:record_minastirith.name=Travelling Music
+item.tolkienmobs:record_edoras.name=Travelling Music
+item.tolkienmobs:record_wbattle.name=Travelling Music
+item.tolkienmobs:record_murderfrog.name=Travelling Music
+item.tolkienmobs:record_reder.name=Travelling Music
+item.tolkienmobs:record_fumble.name=Travelling Music
+item.tolkienmobs:record_bombadil.name=Travelling Music
+item.tolkienmobs:record_hobbits.name=Travelling Music
+item.record.tolkienmobs:music.ridersofrivendell.desc=Riders of Rivendell
+item.record.tolkienmobs:music.thelightoflothlorien.desc=The Light of Lothlorien
+item.record.tolkienmobs:music.allthatglittersinerebor.desc=All That Glitters in Erebor
+item.record.tolkienmobs:music.willowsong.desc=Willow Song
+item.record.tolkienmobs:music.minastirith.desc=White Tree of Gondor
+item.record.tolkienmobs:music.wakeofedoras.desc=Wake of Edoras
+item.record.tolkienmobs:music.witchbattle.desc=Fly My Pretties!
+item.record.tolkienmobs:music.murderfrog.desc=Ballad of Murder-Frog
+item.record.tolkienmobs:music.rederssong.desc=Evil Incarnate
+item.record.tolkienmobs:music.trollfumble.desc=Bumbling Oaf
+item.record.tolkienmobs:music.mysteryoftombombadil.desc=Mystery of Tom Bombadil
+item.record.tolkienmobs:music.concerninghobbits.desc=Concerning Hobbits - Remix
+
 //Monster Drops
 item.tolkienmobs:feather_crebain.name=Crebain Feather
 item.tolkienmobs:feather_bird.name=Bird Feather
