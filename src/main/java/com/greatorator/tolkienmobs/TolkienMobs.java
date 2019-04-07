@@ -6,6 +6,7 @@ import com.brandon3055.tolkientweaks.TolkienTweaks;
 import com.greatorator.tolkienmobs.client.TTMobsTab;
 import com.greatorator.tolkienmobs.handler.TTMGUIHandler;
 import com.greatorator.tolkienmobs.init.PotionInit;
+import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.network.TTMPacketClient;
 import com.greatorator.tolkienmobs.network.TTMStoCMessage;
@@ -60,6 +61,7 @@ public class TolkienMobs {
 
     public TolkienMobs() {
         new PotionInit();
+        new SoundInit();
         Logger ttLog = LogManager.getLogger("tolkientweaks");
         Logger bcLog = LogManager.getLogger("brandonscore");
         LogHelperTTM.info("Meeting of the Fellowship started! Waiting for the rest of the party to arrive...");

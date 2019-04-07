@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.init;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.enchantments.EnchantmentBalrogMark;
+import com.greatorator.tolkienmobs.enchantments.*;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
@@ -12,11 +12,19 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 @Mod.EventBusSubscriber(modid= TolkienMobs.MODID)
 public class EnchantmentsInit
 {
-    public static final Enchantment BALROG_MARK = new EnchantmentBalrogMark(Enchantment.Rarity.RARE, EnumEnchantmentType.ARMOR_FEET, EntityEquipmentSlot.FEET);
+    public static final Enchantment BALROG_MARK = new EnchantmentBalrogMark(Enchantment.Rarity.VERY_RARE, EnumEnchantmentType.ARMOR_FEET, EntityEquipmentSlot.FEET);
+    public static final Enchantment GONDOR_RESOLVE = new EnchantmentGondorianResolve(Enchantment.Rarity.RARE, EnumEnchantmentType.ARMOR_FEET, EntityEquipmentSlot.FEET);
+    public static final Enchantment HOBBIT_HARVEST = new EnchantmentHobbitHarvest(Enchantment.Rarity.COMMON, EnumEnchantmentType.DIGGER);
+    public static final Enchantment DWARF_MINE = new EnchantmentDwarvenMining(Enchantment.Rarity.UNCOMMON, EnumEnchantmentType.DIGGER);
+    public static final Enchantment ELVEN_LONGEVITY = new EnchantmentElvenLongevity(Enchantment.Rarity.RARE, EnumEnchantmentType.ARMOR, EntityEquipmentSlot.CHEST);
 
     public static void registerEnchants() {
         LogHelperTTM.info("Beseeching Eru Iluvatar for help...");
         initEnchantments(BALROG_MARK,"tolkienmobs.balrogs_mark",TolkienMobs.MODID + ":balrogs_mark");
+        initEnchantments(GONDOR_RESOLVE,"tolkienmobs.gondor_resolve",TolkienMobs.MODID + ":gondor_resolve");
+        initEnchantments(HOBBIT_HARVEST,"tolkienmobs.hobbit_harvest",TolkienMobs.MODID + ":hobbit_harvest");
+        initEnchantments(DWARF_MINE,"tolkienmobs.dwarven_mining",TolkienMobs.MODID + ":dwarven_mining");
+        initEnchantments(ELVEN_LONGEVITY,"tolkienmobs.elven_longevity",TolkienMobs.MODID + ":elven_longevity");
         LogHelperTTM.info("Call to Eru Iluvatar answered!");
     }
 
