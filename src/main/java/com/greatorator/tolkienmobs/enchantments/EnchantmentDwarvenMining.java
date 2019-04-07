@@ -3,10 +3,24 @@ package com.greatorator.tolkienmobs.enchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemBook;
+import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.ItemSpade;
+import net.minecraft.item.ItemStack;
 
 public class EnchantmentDwarvenMining extends Enchantment {
     public EnchantmentDwarvenMining(Rarity rarity, EnumEnchantmentType location, EntityEquipmentSlot...slot) {
         super(rarity, location, slot);
+    }
+
+    @Override
+    public boolean canApply(ItemStack stack)
+    {
+        if(stack.getItem() instanceof ItemSpade || stack.getItem() instanceof ItemPickaxe || stack.getItem() instanceof ItemBook) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override

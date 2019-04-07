@@ -183,4 +183,6 @@ public class TTMEnchantHandler {
         if(entity.getMaxHealth() < entity.getHealth()) entity.setHealth(entity.getMaxHealth());
         elvenLongevity.removeModifier(modLongevity);
     }
+
+    /* Dwarven Mining Enchant */
 }
