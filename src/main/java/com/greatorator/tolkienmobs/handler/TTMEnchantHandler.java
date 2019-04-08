@@ -184,5 +184,16 @@ public class TTMEnchantHandler {
         elvenLongevity.removeModifier(modLongevity);
     }
 
-    /* Dwarven Mining Enchant */
+    /* Dwarven Endurance Enchant */
+    @SubscribeEvent
+    public void dwarvenEndurance(LivingEvent.LivingUpdateEvent event)
+    {
+        EntityLivingBase living = event.getEntityLiving();
+        int level = EnchantmentHelper.getMaxEnchantmentLevel(EnchantmentsInit.DWARF_ENDURANCE, living);
+
+        if (living instanceof EntityPlayer && level !=0)
+        {
+            ((EntityPlayer)living).getFoodStats().addStats(level + 1, 1.0F);
+        }
+    }
 }

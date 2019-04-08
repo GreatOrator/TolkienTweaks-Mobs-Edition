@@ -217,8 +217,8 @@ enchantment.tolkienmobs.hobbit_harvest=Hobbit Harvest
 enchantment.tolkienmobs.hobbit_harvest.desc=When applied to a hoe, this increases the crops harvested.
 enchantment.tolkienmobs.elven_longevity=Elven Longevity
 enchantment.tolkienmobs.elven_longevity.desc=When applied to Chest armour, this increases your Max Health.
-enchantment.tolkienmobs.dwarven_mining=Dwarven Mining
-enchantment.tolkienmobs.dwarven_mining.desc=When applied to picks, this increases the area you mine.
+enchantment.tolkienmobs.dwarven_endurance=Dwarven Endurance
+enchantment.tolkienmobs.dwarven_endurance.desc=When applied to Helmets, this keeps your hunger and saturation at max.
 
 //Records
 item.tolkienmobs:record_rivendell.name=Travelling Music
