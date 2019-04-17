@@ -373,6 +373,7 @@ entity.elementalgolem4.name=Great Golem of §9Water
 entity.elementalgolem6.name=Legendary §bMithril§r Golem
 entity.elementalgolem7.name=Legendary §8Morgul§r Golem
 entity.elementalgolem5.name=Stone Golem
+entity.tmwatcher.name=Watcher in the Water 
 
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer

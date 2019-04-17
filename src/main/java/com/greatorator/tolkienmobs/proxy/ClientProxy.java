@@ -9,10 +9,7 @@ import com.greatorator.tolkienmobs.client.render.entity.ambient.RenderSOSquirrel
 import com.greatorator.tolkienmobs.client.render.entity.ambient.RenderToaddle;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderBoulder;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderFellBeastFireball;
-import com.greatorator.tolkienmobs.client.render.entity.boss.RenderBalrog;
-import com.greatorator.tolkienmobs.client.render.entity.boss.RenderFellBeast;
-import com.greatorator.tolkienmobs.client.render.entity.boss.RenderMorgulGolem;
-import com.greatorator.tolkienmobs.client.render.entity.boss.RenderWitchKing;
+import com.greatorator.tolkienmobs.client.render.entity.boss.*;
 import com.greatorator.tolkienmobs.client.render.entity.monster.*;
 import com.greatorator.tolkienmobs.client.render.entity.passive.*;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderGollum;
@@ -67,6 +64,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityTMFellBeast.class, RenderFellBeast::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMWitchKing.class, RenderWitchKing.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMMorgulGolem.class, RenderMorgulGolem.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMWatcher.class, RenderWatcher.FACTORY);
 
         /* Monsters */
         RenderingRegistry.registerEntityRenderingHandler(EntityTMHuron.class, RenderHuron.FACTORY);

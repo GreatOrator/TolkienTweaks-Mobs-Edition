@@ -93,6 +93,9 @@ public class EntityInit
             if (TTMConfig.enableMorgulGolem) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "elementalgolem7"), EntityTMMorgulGolem.class, "elementalgolem7", id++, TolkienMobs.instance, 64, 3, true, 0xFB3366, 0xC07044);
             }
+            if (TTMConfig.enableWatcher) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmwatcher"), EntityTMWatcher.class, "tmwatcher", id++, TolkienMobs.instance, 64, 3, true, 0xFB3366, 0x140F4E);
+            }
         }
 
         if (TTMConfig.enableSpecial) {
