@@ -29,6 +29,7 @@ public class EntityTMAquatics extends EntityTMHostiles {
     private float randomMotionVecX;
     private float randomMotionVecY;
     private float randomMotionVecZ;
+    private boolean hostileWater;
 
     public EntityTMAquatics(World worldIn) {
         super(worldIn);
@@ -41,7 +42,9 @@ public class EntityTMAquatics extends EntityTMHostiles {
     {
         this.tasks.addTask(0, new EntityTMAquatics.AIMoveRandom(this));
         this.tasks.addTask(1, new EntityAITTMAttack(this, 0.75D, false));
-        this.applyEntityAI();
+        if (hostileWater) {
+            this.applyEntityAI();
+        }
     }
 
     private void applyEntityAI() {
@@ -266,5 +269,9 @@ public class EntityTMAquatics extends EntityTMHostiles {
     @Override
     public double getHealthLevel() {
         return 0;
+    }
+
+    public void setHostileWater(boolean hostileWater) {
+        this.hostileWater = hostileWater;
     }
 }

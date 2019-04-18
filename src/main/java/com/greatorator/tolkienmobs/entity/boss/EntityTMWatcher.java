@@ -20,6 +20,7 @@ public class EntityTMWatcher extends EntityTMAquatics {
         this.setTtmEffect(PotionInit.ELEMENTAL_DROWNING);
         this.setTtmDuration(200);
         this.setMadeBoss(true);
+        this.setHostileWater(true);
         this.isImmuneToFire = true;
         this.experienceValue = 200;
     }
