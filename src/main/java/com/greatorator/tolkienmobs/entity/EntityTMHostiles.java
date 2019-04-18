@@ -2,8 +2,6 @@ package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
-import com.greatorator.tolkienmobs.entity.hostile.EntityTMMordorOrc;
-import com.greatorator.tolkienmobs.entity.hostile.EntityTMTreeEnt;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMDwarf;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMElves;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
@@ -90,7 +88,7 @@ public abstract class EntityTMHostiles extends EntityMob {
     }
 
     private void applyEntityAI() {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityTMMordorOrc.class}));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true, new Class[]{EntityTMHostiles.class}));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMHobbit.class, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMHuman.class, true));
@@ -99,7 +97,7 @@ public abstract class EntityTMHostiles extends EntityMob {
         if(groupAttack) {
             this.targetTasks.addTask(1, new EntityTMHostiles.AIHurtByAggressor(this));
             this.targetTasks.addTask(2, new EntityTMHostiles.AITargetAggressor(this));
-            this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMTreeEnt.class, true));
+            this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityTMHostiles.class, true));
         }
     }
 
@@ -161,6 +159,14 @@ public abstract class EntityTMHostiles extends EntityMob {
                 }
             }
         }
+    }
+
+    /**
+     * Get number of ticks, at least during which the living entity will be silent.
+     */
+    public int getTalkInterval()
+    {
+        return 120;
     }
 
     public boolean attackEntityAsMob(Entity entityIn)

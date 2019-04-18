@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.boss;
 
-import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
+import com.greatorator.tolkienmobs.entity.EntityTMAquatics;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.PotionInit;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -9,7 +9,7 @@ import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 
-public class EntityTMWatcher extends EntityTMHostiles {
+public class EntityTMWatcher extends EntityTMAquatics {
     private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
 
     public EntityTMWatcher(World worldIn) {
