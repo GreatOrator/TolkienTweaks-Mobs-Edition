@@ -2,7 +2,9 @@ package com.greatorator.tolkienmobs.entity.hostile;
 
 import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
 import com.greatorator.tolkienmobs.init.LootInit;
+import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public class EntityTMUrukHai extends EntityTMHostiles {
@@ -27,5 +29,11 @@ public class EntityTMUrukHai extends EntityTMHostiles {
     @Override
     public double getHealthLevel() {
         return 34.0D;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return SoundInit.soundIdleOrc;
     }
 }

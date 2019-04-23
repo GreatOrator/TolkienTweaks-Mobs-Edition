@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.utils;
 
+import com.greatorator.tolkienmobs.entity.EntityTMAquatics;
 import com.greatorator.tolkienmobs.entity.hostile.EntityTMMirkwoodSpider;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMGoat;
 import com.greatorator.tolkienmobs.entity.ambient.EntityTMToad;
@@ -36,6 +37,7 @@ public class TTMDataFixes extends DataFixesManager {
         EntityTMGoat.registerFixesGoat(datafixer);
         EntityTMMirkwoodSpider.registerFixesMirkwoodSpider(datafixer);
         EntityTMToad.registerFixesToaddle(datafixer);
+        EntityTMAquatics.registerFixesTMAquatics(datafixer);
         registerFixes(datafixer);
         return datafixer;
     }

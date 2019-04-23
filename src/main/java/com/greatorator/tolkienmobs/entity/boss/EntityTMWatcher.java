@@ -3,8 +3,10 @@ package com.greatorator.tolkienmobs.entity.boss;
 import com.greatorator.tolkienmobs.entity.EntityTMAquatics;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.PotionInit;
+import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
@@ -15,24 +17,12 @@ public class EntityTMWatcher extends EntityTMAquatics {
     public EntityTMWatcher(World worldIn) {
         super(worldIn);
         this.setSize(6.7F, 4.5F);
-        this.setTtmAttack(true);
         this.setLootTable(LootInit.WATCHER);
-        this.setTtmEffect(PotionInit.ELEMENTAL_DROWNING);
-        this.setTtmDuration(200);
-        this.setMadeBoss(true);
         this.setHostileWater(true);
+        this.setTtmEffect(PotionInit.ELEMENTAL_DROWNING);
+        this.setTtmDuration(600);
         this.isImmuneToFire = true;
         this.experienceValue = 200;
-    }
-
-    @Override
-    public double getAttackDamage() {
-        return 20.0D;
-    }
-
-    @Override
-    public double getArmorStrength() {
-        return 25.0D;
     }
 
     @Override
@@ -69,5 +59,17 @@ public class EntityTMWatcher extends EntityTMAquatics {
         {
             this.bossInfo.setName(this.getDisplayName());
         }
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return SoundInit.soundIdleWatcher;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return SoundInit.soundDeathWatcher;
     }
 }

@@ -601,35 +601,6 @@ public class EntityTMToad extends EntityAnimal {
         {
             super.updateTask();
             this.toad.getLookHelper().setLookPosition((double)this.destinationBlock.getX() + 0.5D, (double)(this.destinationBlock.getY() + 1), (double)this.destinationBlock.getZ() + 0.5D, 10.0F, (float)this.toad.getVerticalFaceSpeed());
-
-            if (this.getIsAboveDestination())
-            {
-                World world = this.toad.world;
-                BlockPos blockpos = this.destinationBlock.up();
-                IBlockState iblockstate = world.getBlockState(blockpos);
-                Block block = iblockstate.getBlock();
-
-                if (this.canRaid && block instanceof BlockBeetroot)
-                {
-                    Integer integer = (Integer)iblockstate.getValue(BlockBeetroot.AGE);
-
-                    if (integer.intValue() == 0)
-                    {
-                        world.setBlockState(blockpos, Blocks.AIR.getDefaultState(), 2);
-                        world.destroyBlock(blockpos, true);
-                    }
-                    else
-                    {
-                        world.setBlockState(blockpos, iblockstate.withProperty(BlockBeetroot.AGE, Integer.valueOf(integer.intValue() - 1)), 2);
-                        world.playEvent(2001, blockpos, Block.getStateId(iblockstate));
-                    }
-
-                    this.toad.createEatingParticles();
-                }
-
-                this.canRaid = false;
-                this.runDelay = 10;
-            }
         }
 
         /**

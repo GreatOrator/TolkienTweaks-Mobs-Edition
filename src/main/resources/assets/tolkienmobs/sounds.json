@@ -758,5 +758,35 @@
     [
       "tolkienmobs:mob/midgefly_say1"
     ]
+  },
+  "mob.orc.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/orc/orc_say0",
+      "tolkienmobs:mob/orc/orc_say1",
+      "tolkienmobs:mob/orc/orc_say2",
+	  "tolkienmobs:mob/orc/orc_say3"
+    ]
+  },
+  "mob.watcher.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/watcher/watcher_death"
+    ]
+  },
+  "mob.watcher.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/watcher/watcher_say0",
+	  "tolkienmobs:mob/watcher/watcher_say1",
+	  "tolkienmobs:mob/watcher/watcher_say2",
+	  "tolkienmobs:mob/watcher/watcher_say3"
+    ]
   }
 }

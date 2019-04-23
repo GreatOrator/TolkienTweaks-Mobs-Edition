@@ -32,6 +32,13 @@ public class SoundInit {
     /** Oath Breaker */
     public static final SoundEvent soundIdleOathbreaker = create("mob.oathbreaker.idle");
 
+    /** Mordor Orc & Uruk-hai */
+    public static final SoundEvent soundIdleOrc = create("mob.orc.idle");
+
+    /** Barrow Wight */
+    public static final SoundEvent soundIdleWatcher = create("mob.watcher.idle");
+    public static final SoundEvent soundDeathWatcher = create("mob.watcher.death");
+
     /** Elemental Golem */
     public static final SoundEvent soundDeathGolem = create("mob.elementalgolem.death");
 
