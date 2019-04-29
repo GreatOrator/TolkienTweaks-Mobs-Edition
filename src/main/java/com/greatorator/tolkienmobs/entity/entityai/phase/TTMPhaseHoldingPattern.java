@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.entity.item.EntityEnderCrystal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -64,7 +65,7 @@ public class TTMPhaseHoldingPattern extends TTMPhaseBase
     {
         if (this.currentPath != null && this.currentPath.isFinished())
         {
-            BlockPos blockpos = this.fellbeast.world.getTopSolidOrLiquidBlock(new BlockPos(-246, 40, 554));
+            BlockPos blockpos = this.fellbeast.world.getTopSolidOrLiquidBlock(new BlockPos(TTMConfig.FellBeastX, TTMConfig.FellBeastY, TTMConfig.FellBeastZ));
             int i = this.fellbeast.getFellBeastFightManager() == null ? 0 : this.fellbeast.getFellBeastFightManager().getNumAliveCrystals();
 
             if (this.fellbeast.getRNG().nextInt(i + 3) == 0)

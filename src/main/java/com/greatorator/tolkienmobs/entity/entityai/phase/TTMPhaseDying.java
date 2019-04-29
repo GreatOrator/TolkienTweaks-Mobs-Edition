@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -42,7 +43,7 @@ public class TTMPhaseDying extends TTMPhaseBase
 
         if (this.targetLocation == null)
         {
-            BlockPos blockpos = this.fellbeast.world.getHeight(new BlockPos(-246, 40, 554));
+            BlockPos blockpos = this.fellbeast.world.getHeight(new BlockPos(TTMConfig.FellBeastX, TTMConfig.FellBeastY, TTMConfig.FellBeastZ));
             this.targetLocation = new Vec3d((double)blockpos.getX(), (double)blockpos.getY(), (double)blockpos.getZ());
         }
 

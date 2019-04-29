@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
@@ -47,7 +48,7 @@ public class TTMPhaseLanding extends TTMPhaseBase
     {
         if (this.targetLocation == null)
         {
-            this.targetLocation = new Vec3d(this.fellbeast.world.getTopSolidOrLiquidBlock(new BlockPos(-246, 40, 554)));
+            this.targetLocation = new Vec3d(this.fellbeast.world.getTopSolidOrLiquidBlock(new BlockPos(TTMConfig.FellBeastX, TTMConfig.FellBeastY, TTMConfig.FellBeastZ)));
         }
 
         if (this.targetLocation.squareDistanceTo(this.fellbeast.posX, this.fellbeast.posY, this.fellbeast.posZ) < 1.0D)

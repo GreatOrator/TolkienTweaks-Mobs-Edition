@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.entity.entityai;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.*;
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import com.greatorator.tolkienmobs.entity.entityai.phase.TTMPhaseList;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
@@ -315,11 +316,11 @@ public class FellBeastFightManager {
             }
         }
 
-        int k = this.world.getHeight(new BlockPos(-246, 40, 554)).getY();
+        int k = this.world.getHeight(new BlockPos(TTMConfig.FellBeastX, TTMConfig.FellBeastY, TTMConfig.FellBeastZ)).getY();
 
         for (int l = k; l >= 0; --l)
         {
-            BlockPattern.PatternHelper blockpattern$patternhelper1 = this.portalPattern.match(this.world, new BlockPos(-246, 40, 554));
+            BlockPattern.PatternHelper blockpattern$patternhelper1 = this.portalPattern.match(this.world, new BlockPos(TTMConfig.FellBeastX, TTMConfig.FellBeastY, TTMConfig.FellBeastZ));
 
             if (blockpattern$patternhelper1 != null)
             {
@@ -389,7 +390,7 @@ public class FellBeastFightManager {
 
             if (!this.previouslyKilled)
             {
-                this.world.setBlockState(this.world.getHeight(new BlockPos(-246, 40, 554)), Blocks.DRAGON_EGG.getDefaultState());
+                this.world.setBlockState(this.world.getHeight(new BlockPos(TTMConfig.FellBeastX, TTMConfig.FellBeastY, TTMConfig.FellBeastZ)), Blocks.DRAGON_EGG.getDefaultState());
             }
 
             this.previouslyKilled = true;
@@ -420,7 +421,7 @@ public class FellBeastFightManager {
 
         if (this.exitPortalLocation == null)
         {
-            for (this.exitPortalLocation = this.world.getTopSolidOrLiquidBlock(new BlockPos(-246, 40, 554)).down(); this.world.getBlockState(this.exitPortalLocation).getBlock() == Blocks.BEDROCK && this.exitPortalLocation.getY() > this.world.getSeaLevel(); this.exitPortalLocation = this.exitPortalLocation.down())
+            for (this.exitPortalLocation = this.world.getTopSolidOrLiquidBlock(new BlockPos(TTMConfig.FellBeastX, TTMConfig.FellBeastY, TTMConfig.FellBeastZ)).down(); this.world.getBlockState(this.exitPortalLocation).getBlock() == Blocks.BEDROCK && this.exitPortalLocation.getY() > this.world.getSeaLevel(); this.exitPortalLocation = this.exitPortalLocation.down())
             {
 
             }
@@ -432,7 +433,7 @@ public class FellBeastFightManager {
     private EntityTMFellBeast createNewFellBeast()
     {
 //        this.world.getChunkFromBlockCoords(new BlockPos(19023, 180, 13818)); //Location of Minas Morgul
-        this.world.getChunkFromBlockCoords(new BlockPos(-246, 40, 554));
+        this.world.getChunkFromBlockCoords(new BlockPos(TTMConfig.FellBeastX, TTMConfig.FellBeastY, TTMConfig.FellBeastZ));
         EntityTMFellBeast entityfellbeast = new EntityTMFellBeast(this.world);
         entityfellbeast.getFellBeastPhaseManager().setPhase(TTMPhaseList.HOLDING_PATTERN);
 //        entityfellbeast.setLocationAndAngles(19023.0D, 180.0D, 13818.0D, this.world.rand.nextFloat() * 360.0F, 0.0F); //Location of Minas Morgul

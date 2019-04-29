@@ -223,6 +223,8 @@ public class TTMFeatures implements IModFeatures {
     public static final BlockSlabs HALF_SLAB = new BlockSlabs();
     @ModFeature(name = "double_slab", itemBlock = NoItemBlock.class)
     public static final BlockSlabs DOUBLE_SLAB = new BlockDoubleSlabs();
+    @ModFeature(name = "tm_stairs", variantMap = {"0:variant=mallorn", "1:variant=mirkwood", "2:variant=culumalda", "3:variant=lebethron"}, itemBlock = ItemBlockBCore.class, cTab = 1)
+    public static final BlockTMStairs BLOCK_TM_STAIRS = new BlockTMStairs();
     /* End Region */
 
     /* Plants */                                             //TODO add a way to avoid this mess in 1.13...

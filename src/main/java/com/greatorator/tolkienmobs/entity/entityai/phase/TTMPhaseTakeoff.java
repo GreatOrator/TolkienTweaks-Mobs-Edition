@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.entity.entityai.phase;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.boss.EntityTMFellBeast;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathPoint;
@@ -27,7 +28,7 @@ public class TTMPhaseTakeoff extends TTMPhaseBase
     {
         if (!this.firstTick && this.currentPath != null)
         {
-            BlockPos blockpos = this.fellbeast.world.getTopSolidOrLiquidBlock(new BlockPos(-246, 40, 554));
+            BlockPos blockpos = this.fellbeast.world.getTopSolidOrLiquidBlock(new BlockPos(TTMConfig.FellBeastX, TTMConfig.FellBeastY, TTMConfig.FellBeastZ));
             double d0 = this.fellbeast.getDistanceSqToCenter(blockpos);
 
             if (d0 > 100.0D)

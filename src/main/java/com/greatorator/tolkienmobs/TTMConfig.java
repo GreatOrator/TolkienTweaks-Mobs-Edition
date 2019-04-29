@@ -221,6 +221,12 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean disableOreGen = false;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "mobSpawnChance", comment = "Set this for additional control of mob Spawns.\n  10 times out of this number chance to spawn")
     public static int mobSpawnChance = 100;
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "FellBeastSpawnX", comment = "Set this for starting spawn location of the Fell Beast")
+    public static int FellBeastX = 19023;
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "FellBeastSpawnY", comment = "Set this for starting spawn location of the Fell Beast")
+    public static int FellBeastY = 86;
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "FellBeastSpawnZ", comment = "Set this for starting spawn location of the Fell Beast")
+    public static int FellBeastZ = 13733;
 
     /** Potion Types */
     @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array.")
