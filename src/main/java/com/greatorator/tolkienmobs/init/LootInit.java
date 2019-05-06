@@ -28,6 +28,7 @@ public class LootInit {
     public static final ResourceLocation MIMICCHEST = register("entities/mimicchest");
     public static final ResourceLocation MINOTAUR = register("entities/minotaur");
     public static final ResourceLocation BRIGAND = register("entities/tmbrigand");
+    public static final ResourceLocation SWAMPHAG = register("entities/swamp_hag");
 
     /** Special */
     public static final ResourceLocation GOLLUM = register("entities/gollum");

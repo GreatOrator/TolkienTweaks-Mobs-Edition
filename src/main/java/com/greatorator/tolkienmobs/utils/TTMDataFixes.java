@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.utils;
 
 import com.greatorator.tolkienmobs.entity.EntityTMAquatics;
 import com.greatorator.tolkienmobs.entity.hostile.EntityTMMirkwoodSpider;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMSwampHag;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMGoat;
 import com.greatorator.tolkienmobs.entity.ambient.EntityTMToad;
 import net.minecraft.util.datafix.DataFixer;
@@ -38,6 +39,7 @@ public class TTMDataFixes extends DataFixesManager {
         EntityTMMirkwoodSpider.registerFixesMirkwoodSpider(datafixer);
         EntityTMToad.registerFixesToaddle(datafixer);
         EntityTMAquatics.registerFixesTMAquatics(datafixer);
+        EntityTMSwampHag.registerFixesTMSwampHag(datafixer);
         registerFixes(datafixer);
         return datafixer;
     }

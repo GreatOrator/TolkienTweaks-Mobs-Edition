@@ -80,6 +80,8 @@
       "item_golem_stone_fire":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_fire"}},
       "item_golem_stone_water":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_water"}},
       "item_golem_stone_summon":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_summon"}},
+      "item_pungentherb":    {"textures": {"layer0": "tolkienmobs:items/item_pungentherb"}},
+      "item_lockpick":    {"textures": {"layer0": "tolkienmobs:items/item_lockpick"}},
       "record_rivendell":    {"textures": {"layer0": "tolkienmobs:items/record_rivendell"}},
       "record_lothlorien":    {"textures": {"layer0": "tolkienmobs:items/record_lothlorien"}},
       "record_erebor":    {"textures": {"layer0": "tolkienmobs:items/record_erebor"}},

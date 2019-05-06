@@ -74,6 +74,9 @@ public class EntityInit
             if (TTMConfig.enableElementalGolem) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "elementalgolem"), EntityTMElementalGolem.class, "elementalgolem", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x40B8B4);
             }
+            if (TTMConfig.enableSwampHag) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "swamp_hag"), EntityTMSwampHag.class, "swamp_hag", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x5AAD54);
+            }
         }
 
         if (TTMConfig.enableBoss) {
@@ -213,6 +216,9 @@ public class EntityInit
                 }
                 if (TTMConfig.enableElementalGolem) {
                     EntityRegistry.addSpawn(EntityTMElementalGolem.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.TAIGA,Biomes.DESERT,Biomes.EXTREME_HILLS,Biomes.BEACH,Biomes.PLAINS);
+                }
+                if (TTMConfig.enableSwampHag) {
+                    EntityRegistry.addSpawn(EntityTMSwampHag.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.SWAMPLAND);
                 }
             }
 

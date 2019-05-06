@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.ambient.EntityTMMidgeFly;
 import com.greatorator.tolkienmobs.entity.ambient.EntityTMToad;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMSwampHag;
 import com.greatorator.tolkienmobs.entity.hostile.EntityTMFellSpirit;
 import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
@@ -71,6 +72,9 @@ public class BiomeMarshes extends Biome implements IFogyBiome
             if (TTMConfig.enableMonster) {
                 if (TTMConfig.enableFellSpirit) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityTMFellSpirit.class, 2, 1, 3));
+                }
+                if (TTMConfig.enableSwampHag) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMSwampHag.class, 2, 1, 3));
                 }
             }
             if (TTMConfig.enableAmbient) {

@@ -123,7 +123,7 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "item_scroll2", stateOverride = "simple_items#type=item_scroll2", cTab = 4)
     public static Item ITEM_SCROLL2 = new TTMLore(1).setEffectOverride(true);
     @ModFeature(name = "item_specialflower", stateOverride = "simple_items#type=item_specialflower", cTab = 4)
-    public static Item ITEM_SPECIALFLOWER = new TTMLore(1).setEffectOverride(true);
+    public static Item ITEM_SPECIALFLOWER = new TTMLore(12).setEffectOverride(true);
     @ModFeature(name = "item_storybook", stateOverride = "simple_items#type=item_storybook", cTab = 4)
     public static Item ITEM_STORYBOOK = new TTMLore(10);
     @ModFeature(name = "item_storybook2", stateOverride = "simple_items#type=item_storybook2", cTab = 4)
@@ -150,6 +150,10 @@ public class TTMFeatures implements IModFeatures {
     public static Item ITEM_FACTIONCOIN = new TTMLore(64);
     @ModFeature(name = "item_coin2", stateOverride = "simple_items#type=item_coin2", cTab = 4)
     public static Item ITEM_FACTIONTOKEN = new TTMLore(64);
+    @ModFeature(name = "item_pungentherb", stateOverride = "simple_items#type=item_pungentherb", cTab = 4)
+    public static Item ITEM_PUNGENTHERB = new TTMLore(3).setEffectOverride(true);
+    @ModFeature(name = "item_lockpick", stateOverride = "simple_items#type=item_lockpick", cTab = 4)
+    public static Item ITEM_LOCKPICK = new TTMLore(1);
     /* End Region */
 
     /* Tools */
