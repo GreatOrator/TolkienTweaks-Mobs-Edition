@@ -2,7 +2,7 @@
     "parent": "block/stairs",
     "textures": {
         "bottom": "tolkienmobs:blocks/planks_mirkwood",
-        "top": "tolkienmobs:blocks/planks_mirkwood",
-        "side": "tolkienmobs:blocks/planks_mirkwood"
+        "side": "tolkienmobs:blocks/planks_mirkwood",
+        "top": "tolkienmobs:blocks/planks_mirkwood"
     }
 }

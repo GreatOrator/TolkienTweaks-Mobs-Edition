@@ -25,6 +25,7 @@ import com.greatorator.tolkienmobs.item.tools.ToolSword;
 import com.greatorator.tolkienmobs.tile.TileSign;
 import com.greatorator.tolkienmobs.tile.TileTMFireplace;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.MobEffects;
@@ -227,8 +228,10 @@ public class TTMFeatures implements IModFeatures {
     public static final BlockSlabs HALF_SLAB = new BlockSlabs();
     @ModFeature(name = "double_slab", itemBlock = NoItemBlock.class)
     public static final BlockSlabs DOUBLE_SLAB = new BlockDoubleSlabs();
-    //@ModFeature(name = "tmstairs", cTab = 1)
-    //public static final BlockTMStairs BLOCK_TM_STAIRS = new BlockTMStairs(new BlockLogs().getDefaultState());
+    @ModFeature(name = "stairs_mallorn", cTab = 1, stateOverride = "stairs_mallorn#facing=east,half=bottom,shape=straight")
+    public static final BlockStairs STAIRS_MALLORN = new BlockTMStairs(PLANKS.getDefaultState().withProperty(BlockPlank.VARIANT, BlockLogs.EnumType.MALLORN));
+    @ModFeature(name = "stairs_mirkwood", cTab = 1, stateOverride = "stairs_mirkwood#facing=east,half=bottom,shape=straight")
+    public static final BlockStairs STAIRS_MIRKWOOD = new BlockTMStairs(PLANKS.getDefaultState().withProperty(BlockPlank.VARIANT, BlockLogs.EnumType.MIRKWOOD));
     /* End Region */
 
     /* Plants */                                             //TODO add a way to avoid this mess in 1.13...
