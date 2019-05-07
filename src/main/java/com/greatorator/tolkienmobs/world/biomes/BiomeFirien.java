@@ -2,22 +2,24 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
-import com.greatorator.tolkienmobs.entity.passive.EntityTMElves;
 import com.greatorator.tolkienmobs.entity.ambient.EntityTMSquirrel;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMElves;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
+import com.greatorator.tolkienmobs.world.gen.WorldGenCustomFlowers;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeCulumalda;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeLebethron;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
 import java.util.Random;
 
 public class BiomeFirien extends Biome {
@@ -25,6 +27,7 @@ public class BiomeFirien extends Biome {
     protected static final WorldGenTreeCulumalda CULUMALDA_FEATURE = new WorldGenTreeCulumalda(false);
     /* The Lebethron generator. */
     protected static final WorldGenTreeLebethron LEBETHRON_FEATURE = new WorldGenTreeLebethron(false);
+    private WorldGenCustomFlowers flowers = new WorldGenCustomFlowers();
 
     public BiomeFirien()
     {
@@ -36,7 +39,6 @@ public class BiomeFirien extends Biome {
         this.topBlock = Blocks.GRASS.getDefaultState();
         this.fillerBlock = Blocks.DIRT.getDefaultState();
 
-        addFlowers();
         setSpawnables();
 
         this.decorator = this.createBiomeDecorator();
@@ -46,7 +48,7 @@ public class BiomeFirien extends Biome {
         this.decorator.mushroomsPerChunk = 12;
         this.decorator.bigMushroomsPerChunk = 1;
         this.decorator.waterlilyPerChunk = 4;
-        this.decorator.flowersPerChunk = 10;
+        this.decorator.flowersPerChunk = 0;
         this.decorator.generateFalls = true;
     }
 
@@ -55,18 +57,11 @@ public class BiomeFirien extends Biome {
         return (WorldGenAbstractTree)(rand.nextInt(10) == 0 ? CULUMALDA_FEATURE : LEBETHRON_FEATURE);
     }
 
-    public List<FlowerEntry> getFlowerList()
+    public void decorate(World worldIn, Random rand, BlockPos pos)
     {
-        return flowers;
-    }
+        super.decorate(worldIn, rand, pos);
 
-    private void addFlowers()
-    {
-        flowers.clear();
-        BlockFlower red = net.minecraft.init.Blocks.RED_FLOWER;
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.ORANGE_TULIP), 3);
-        addFlower(red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.RED_TULIP), 3);
-        addFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.NIPHREDIL), 20);
+        generateFlowers(worldIn, rand, 10);
     }
 
     private void setSpawnables() {
@@ -97,5 +92,23 @@ public class BiomeFirien extends Biome {
         currentTemperature = currentTemperature / 3.0F;
         currentTemperature = MathHelper.clamp(currentTemperature, -1.0F, 1.0F);
         return MathHelper.hsvToRGB(0.62222224F - currentTemperature * 0.05F, 0.5F + currentTemperature * 0.1F, 1.0F);
+    }
+
+    private void generateFlowers(World worldIn, Random random, int cnt) {
+        for (int i = 0; i < cnt; ++i) {
+            int x = random.nextInt(16) + 8;
+            int z = random.nextInt(16) + 8;
+            int y = worldIn.getHeight(decorator.chunkPos.add(x, 0, z)).getY() + 32;
+
+            BlockFlower red = net.minecraft.init.Blocks.RED_FLOWER;
+
+            if (y > 0) {
+                int y2 = random.nextInt(y);
+                BlockPos blockpos1 = decorator.chunkPos.add(x, y2, z);
+                flowers.setGenFlowerList(true);
+                flowers.setBiomeFlower(random.nextInt(10) == 0 ? TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.NIPHREDIL) : random.nextInt(10) == 0 ? red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.RED_TULIP) : red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.ORANGE_TULIP));
+                flowers.generate(worldIn, random, blockpos1);
+            }
+        }
     }
 }

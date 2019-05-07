@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:planks",
+      "data": 2
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:stairs_culumalda",
+    "count": 4
+  }
+}

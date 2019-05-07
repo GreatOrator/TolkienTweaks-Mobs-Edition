@@ -5,20 +5,23 @@ import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMElves;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
+import com.greatorator.tolkienmobs.world.gen.WorldGenCustomFlowers;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeMallorn;
+import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
 import java.util.Random;
 
 public class BiomeLorinand extends Biome {
+    private WorldGenCustomFlowers flowers = new WorldGenCustomFlowers();
 
     public BiomeLorinand()
     {
@@ -33,13 +36,12 @@ public class BiomeLorinand extends Biome {
         topBlock = Blocks.GRASS.getDefaultState();
         fillerBlock = Blocks.DIRT.getDefaultState();
 
-        addFlowers();
         setSpawnables();
 
         this.decorator = this.createBiomeDecorator();
         this.decorator.treesPerChunk = 6;
         this.decorator.waterlilyPerChunk = 3;
-        this.decorator.flowersPerChunk = 20;
+        this.decorator.flowersPerChunk = 0;
         this.decorator.grassPerChunk = 15;
         this.decorator.generateFalls = true;
     }
@@ -50,15 +52,11 @@ public class BiomeLorinand extends Biome {
         return new WorldGenTreeMallorn(false);
     }
 
-    public List<FlowerEntry> getFlowerList()
+    public void decorate(World worldIn, Random rand, BlockPos pos)
     {
-        return flowers;
-    }
+        super.decorate(worldIn, rand, pos);
 
-    private void addFlowers()
-    {
-        flowers.clear();
-        addFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.NIPHREDIL), 10);
+        generateFlowers(worldIn, rand, 20);
     }
 
     private void setSpawnables()
@@ -92,5 +90,24 @@ public class BiomeLorinand extends Biome {
         currentTemperature = currentTemperature / 3.0F;
         currentTemperature = MathHelper.clamp(currentTemperature, -1.0F, 1.0F);
         return MathHelper.hsvToRGB(0.62222224F - currentTemperature * 0.05F, 0.5F + currentTemperature * 0.1F, 1.0F);
+    }
+
+    private void generateFlowers(World worldIn, Random random, int cnt) {
+        for (int i = 0; i < cnt; ++i) {
+            int x = random.nextInt(16) + 8;
+            int z = random.nextInt(16) + 8;
+            int y = worldIn.getHeight(decorator.chunkPos.add(x, 0, z)).getY() + 32;
+
+            BlockFlower red = net.minecraft.init.Blocks.RED_FLOWER;
+            BlockFlower yel = net.minecraft.init.Blocks.YELLOW_FLOWER;
+
+            if (y > 0) {
+                int y2 = random.nextInt(y);
+                BlockPos blockpos1 = decorator.chunkPos.add(x, y2, z);
+                flowers.setGenFlowerList(true);
+                flowers.setBiomeFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.NIPHREDIL));
+                flowers.generate(worldIn, random, blockpos1);
+            }
+        }
     }
 }

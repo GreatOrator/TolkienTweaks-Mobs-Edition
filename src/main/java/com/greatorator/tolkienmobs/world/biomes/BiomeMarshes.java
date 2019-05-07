@@ -4,12 +4,12 @@ import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.ambient.EntityTMMidgeFly;
 import com.greatorator.tolkienmobs.entity.ambient.EntityTMToad;
-import com.greatorator.tolkienmobs.entity.hostile.EntityTMSwampHag;
 import com.greatorator.tolkienmobs.entity.hostile.EntityTMFellSpirit;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMSwampHag;
 import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-import net.minecraft.block.BlockFlower;
+import com.greatorator.tolkienmobs.world.gen.WorldGenCustomFlowers;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,6 +29,7 @@ import java.util.Random;
 public class BiomeMarshes extends Biome implements IFogyBiome
 {
     protected static final IBlockState WATER_LILY = Blocks.WATERLILY.getDefaultState();
+    private WorldGenCustomFlowers flowers = new WorldGenCustomFlowers();
 
     public BiomeMarshes()
     {
@@ -45,7 +46,7 @@ public class BiomeMarshes extends Biome implements IFogyBiome
 
         this.decorator = this.createBiomeDecorator();
         this.decorator.treesPerChunk = 2;
-        this.decorator.flowersPerChunk = 1;
+        this.decorator.flowersPerChunk = 0;
         this.decorator.deadBushPerChunk = 1;
         this.decorator.mushroomsPerChunk = 8;
         this.decorator.reedsPerChunk = 10;
@@ -130,6 +131,9 @@ public class BiomeMarshes extends Biome implements IFogyBiome
         {
             (new WorldGenFossils()).generate(worldIn, rand, pos);
         }
+
+
+        generateFlowers(worldIn, rand, 3);
     }
 
     @SideOnly(Side.CLIENT)
@@ -143,14 +147,6 @@ public class BiomeMarshes extends Biome implements IFogyBiome
     public int getFoliageColorAtPos(BlockPos pos)
     {
         return 6316071;
-    }
-
-    @Override
-    public void addDefaultFlowers()
-    {
-        addFlower(Blocks.RED_FLOWER.getDefaultState().withProperty(Blocks.RED_FLOWER.getTypeProperty(), BlockFlower.EnumFlowerType.BLUE_ORCHID), 10);
-        addFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.SWAMPMILKWEED), 10);
-        addFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.ATHELAS), 10);
     }
 
     @Override
@@ -169,5 +165,21 @@ public class BiomeMarshes extends Biome implements IFogyBiome
         currentTemperature = currentTemperature / 3.0F;
         currentTemperature = MathHelper.clamp(currentTemperature, -1.0F, 1.0F);
         return MathHelper.hsvToRGB(0.62222224F - currentTemperature * 0.05F, 0.5F + currentTemperature * 0.1F, 1.0F);
+    }
+
+    private void generateFlowers(World worldIn, Random random, int cnt) {
+        for (int i = 0; i < cnt; ++i) {
+            int x = random.nextInt(16) + 8;
+            int z = random.nextInt(16) + 8;
+            int y = worldIn.getHeight(decorator.chunkPos.add(x, 0, z)).getY() + 32;
+
+            if (y > 0) {
+                int y2 = random.nextInt(y);
+                BlockPos blockpos1 = decorator.chunkPos.add(x, y2, z);
+                flowers.setGenFlowerList(true);
+                flowers.setBiomeFlower(TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.SWAMPMILKWEED));
+                flowers.generate(worldIn, random, blockpos1);
+            }
+        }
     }
 }
