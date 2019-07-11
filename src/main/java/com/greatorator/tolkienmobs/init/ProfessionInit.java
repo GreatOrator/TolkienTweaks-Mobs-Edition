@@ -14,10 +14,6 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerCareer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import static com.brandon3055.tolkientweaks.TTFeatures.brons_coin;
-import static com.brandon3055.tolkientweaks.TTFeatures.gold_coin;
-import static com.brandon3055.tolkientweaks.TTFeatures.silver_coin;
-
 @GameRegistry.ObjectHolder(TolkienMobs.MODID)
 public class ProfessionInit {
     /** Professions */
@@ -70,37 +66,39 @@ public class ProfessionInit {
         LogHelperTTM.info("Taking in applications for employment...");
 
         VillagerRegistry.VillagerCareer coin_banker = new VillagerCareer(COIN_TRADER, "coin_banker");
-         coin_banker.addTrade(1, new TradeHandler(new ItemStack(silver_coin), new ItemStack(brons_coin),64, 64))
-                    .addTrade(1, new TradeHandler(new ItemStack(gold_coin), new ItemStack(silver_coin),64, 64))
-                    .addTrade(2, new TradeHandler(new ItemStack(silver_coin,64), new ItemStack(gold_coin),1, 1))
-                    .addTrade(2, new TradeHandler(new ItemStack(brons_coin,64), new ItemStack(silver_coin),1, 1));
+         coin_banker.addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_SILVER), new ItemStack(TTMFeatures.ITEM_COIN_BRONZE),64, 64))
+                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_GOLD), new ItemStack(TTMFeatures.ITEM_COIN_SILVER),64, 64))
+                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_MITHRIL), new ItemStack(TTMFeatures.ITEM_COIN_GOLD),64, 64))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_BRONZE,64), new ItemStack(TTMFeatures.ITEM_COIN_SILVER),1, 1))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_SILVER,64), new ItemStack(TTMFeatures.ITEM_COIN_GOLD),1, 1))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_GOLD,64), new ItemStack(TTMFeatures.ITEM_COIN_MITHRIL),1, 1));
 
         VillagerRegistry.VillagerCareer store_clerk = new VillagerCareer(GROCERY_STORE, "store_clerk");
-         store_clerk.addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.HONEY_CAKE), new ItemStack(brons_coin),3, 26))
-                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.CRAM), new ItemStack(brons_coin),1, 16))
-                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.FOOD_HONEY), new ItemStack(brons_coin),1, 12))
-                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.MIRUVOR), new ItemStack(silver_coin),2, 6))
-                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.ENT_DRAUGHT), new ItemStack(silver_coin),1, 5))
-                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.LEMBAS), new ItemStack(brons_coin),5, 36));
+         store_clerk.addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.HONEY_CAKE), new ItemStack(TTMFeatures.ITEM_COIN_BRONZE),3, 26))
+                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.CRAM), new ItemStack(TTMFeatures.ITEM_COIN_BRONZE),1, 16))
+                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.FOOD_HONEY), new ItemStack(TTMFeatures.ITEM_COIN_BRONZE),1, 12))
+                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.MIRUVOR), new ItemStack(TTMFeatures.ITEM_COIN_SILVER),2, 6))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.ENT_DRAUGHT), new ItemStack(TTMFeatures.ITEM_COIN_SILVER),1, 5))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.LEMBAS), new ItemStack(TTMFeatures.ITEM_COIN_BRONZE),5, 36));
 
         VillagerRegistry.VillagerCareer pet_seller = new VillagerCareer(PET_MERCHANT, "pet_seller");
-          pet_seller.addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.TREE_ACORN, 3), new ItemStack(brons_coin),9, 48))
-                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.INSECT, 4), new ItemStack(brons_coin),5, 36))
-                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.GOLDEN_TREE_ACORN, 1), new ItemStack(brons_coin),18, 61))
-                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.GOLDEN_INSECT, 2), new ItemStack(brons_coin),10, 52));
+          pet_seller.addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.TREE_ACORN, 3), new ItemStack(TTMFeatures.ITEM_COIN_BRONZE),9, 48))
+                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.INSECT, 4), new ItemStack(TTMFeatures.ITEM_COIN_BRONZE),5, 36))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.GOLDEN_TREE_ACORN, 1), new ItemStack(TTMFeatures.ITEM_COIN_BRONZE),18, 61))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.GOLDEN_INSECT, 2), new ItemStack(TTMFeatures.ITEM_COIN_BRONZE),10, 52));
 
         VillagerRegistry.VillagerCareer junk_dealer = new VillagerCareer(JUNK_TRADER, "junk_dealer");
-         junk_dealer.addTrade(1, new TradeHandler(new ItemStack(brons_coin, 1), new ItemStack(TTMFeatures.BOTTLE_FANCY),1, 5))
-                    .addTrade(1, new TradeHandler(new ItemStack(brons_coin, 2), new ItemStack(TTMFeatures.MONSTER_FUR),3, 12))
-                    .addTrade(1, new TradeHandler(new ItemStack(brons_coin, 3), new ItemStack(TTMFeatures.MONSTER_FLESH),2, 11))
-                    .addTrade(2, new TradeHandler(new ItemStack(silver_coin, 1), new ItemStack(TTMFeatures.MUMAKIL_LEATHER),1, 7))
-                    .addTrade(2, new TradeHandler(new ItemStack(silver_coin, 1), new ItemStack(TTMFeatures.CREBAIN_FEATHER),1, 21))
-                    .addTrade(2, new TradeHandler(new ItemStack(silver_coin, 2), new ItemStack(TTMFeatures.BIRD_FEATHER),1, 13))
-                    .addTrade(2, new TradeHandler(new ItemStack(silver_coin, 8), new ItemStack(TTMFeatures.GOLEM_STONE),1, 16))
-                    .addTrade(3, new TradeHandler(new ItemStack(gold_coin, 1), new ItemStack(TTMFeatures.GOLEM_STONE_AIR),1, 16))
-                    .addTrade(3, new TradeHandler(new ItemStack(gold_coin, 1), new ItemStack(TTMFeatures.GOLEM_STONE_EARTH),1, 16))
-                    .addTrade(3, new TradeHandler(new ItemStack(gold_coin, 1), new ItemStack(TTMFeatures.GOLEM_STONE_FIRE),1, 16))
-                    .addTrade(3, new TradeHandler(new ItemStack(gold_coin, 1), new ItemStack(TTMFeatures.GOLEM_STONE_WATER),1, 16));
+         junk_dealer.addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_BRONZE, 1), new ItemStack(TTMFeatures.BOTTLE_FANCY),1, 5))
+                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_BRONZE, 2), new ItemStack(TTMFeatures.MONSTER_FUR),3, 12))
+                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_BRONZE, 3), new ItemStack(TTMFeatures.MONSTER_FLESH),2, 11))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_SILVER, 1), new ItemStack(TTMFeatures.MUMAKIL_LEATHER),1, 7))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_SILVER, 1), new ItemStack(TTMFeatures.CREBAIN_FEATHER),1, 21))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_SILVER, 2), new ItemStack(TTMFeatures.BIRD_FEATHER),1, 13))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_SILVER, 8), new ItemStack(TTMFeatures.GOLEM_STONE),1, 16))
+                    .addTrade(3, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_GOLD, 1), new ItemStack(TTMFeatures.GOLEM_STONE_AIR),1, 16))
+                    .addTrade(3, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_GOLD, 1), new ItemStack(TTMFeatures.GOLEM_STONE_EARTH),1, 16))
+                    .addTrade(3, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_GOLD, 1), new ItemStack(TTMFeatures.GOLEM_STONE_FIRE),1, 16))
+                    .addTrade(3, new TradeHandler(new ItemStack(TTMFeatures.ITEM_COIN_GOLD, 1), new ItemStack(TTMFeatures.GOLEM_STONE_WATER),1, 16));
 
         // DEBUG
         LogHelperTTM.info("All positions are now filled, thank you for applying.");

@@ -102,6 +102,14 @@ public class CraftingInit {
 
         /* Miscellaneous */
         OreDictionary.registerOre("glassBottle", new ItemStack(TTMFeatures.BOTTLE_FANCY));
+        OreDictionary.registerOre("itemCoin", new ItemStack(TTMFeatures.ITEM_COIN_BRONZE));
+        OreDictionary.registerOre("itemCoin", new ItemStack(TTMFeatures.ITEM_COIN_SILVER));
+        OreDictionary.registerOre("itemCoin", new ItemStack(TTMFeatures.ITEM_COIN_GOLD));
+        OreDictionary.registerOre("itemCoin", new ItemStack(TTMFeatures.ITEM_COIN_MITHRIL));
+        OreDictionary.registerOre("itemCoin", new ItemStack(TTMFeatures.ITEM_FACTIONCOIN));
+        OreDictionary.registerOre("itemCoin", new ItemStack(TTMFeatures.ITEM_FACTIONTOKEN));
+        OreDictionary.registerOre("itemCoin", new ItemStack(TTMFeatures.ITEM_DARKSIGIL));
+        OreDictionary.registerOre("itemCoin", new ItemStack(TTMFeatures.ITEM_CAVECOMPLETE));
     }
 
     private static void addOreDictRecipe(){

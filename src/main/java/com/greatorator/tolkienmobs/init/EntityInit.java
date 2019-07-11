@@ -30,137 +30,137 @@ public class EntityInit
         if (TTMConfig.enableMonster) {
             /* Monsters */
             if (TTMConfig.enableBarrowWights) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "barrowwight"), EntityTMBarrowWight.class, "barrow_wight", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x5C1731);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "barrowwight"), EntityTMBarrowWight.class, "barrow_wight", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0x9A6324);
             }
             if (TTMConfig.enableCaveTrolls) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "cavetroll"), EntityTMTroll.class, "cave_troll", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0xF0C55B);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "cavetroll"), EntityTMTroll.class, "cave_troll", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0x808000);
             }
             if (TTMConfig.enableGoblins) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "goblin"), EntityTMGoblin.class, "goblin", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x285D2C);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "goblin"), EntityTMGoblin.class, "goblin", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0x469990);
             }
             if (TTMConfig.enableHurons) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "huron"), EntityTMHuron.class, "huron", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0xC11A02);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "huron"), EntityTMHuron.class, "huron", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0x000075);
             }
             if (TTMConfig.enableMirkwoodSpiders) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mirkwoodspider"), EntityTMMirkwoodSpider.class, "mirkwood_spider", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0xC07044);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mirkwoodspider"), EntityTMMirkwoodSpider.class, "mirkwood_spider", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0x000000);
             }
             if (TTMConfig.enableMordorOrcs) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mordororc"), EntityTMMordorOrc.class, "mordor_orc", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x140F4E);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mordororc"), EntityTMMordorOrc.class, "mordor_orc", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0xF58231);
             }
             if (TTMConfig.enableTreeEnts) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "treeent"), EntityTMTreeEnt.class, "tree_ent", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x2AEB7D);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "treeent"), EntityTMTreeEnt.class, "tree_ent", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0xFFE119);
             }
             if (TTMConfig.enableUrukhai) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "urukhai"), EntityTMUrukHai.class, "uruk_hai", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0xFEF9F2);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "urukhai"), EntityTMUrukHai.class, "uruk_hai", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0xBFEF45);
             }
             if (TTMConfig.enableWargs) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "warg"), EntityTMWarg.class, "warg", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x492CCE);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "warg"), EntityTMWarg.class, "warg", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0x3CB44B);
             }
             if (TTMConfig.enableOathbreaker) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "oathbreaker"), EntityTMOathbreaker.class, "oathbreaker", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x97ABFF);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "oathbreaker"), EntityTMOathbreaker.class, "oathbreaker", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0x42D4F4);
             }
             if (TTMConfig.enableMimic) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mimicchest"), EntityTMMimicChest.class, "mimicchest", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x3A7FFE);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mimicchest"), EntityTMMimicChest.class, "mimicchest", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0x4363D8);
             }
             if (TTMConfig.enableMinotaur) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "minotaur"), EntityTMMinotaur.class, "minotaur", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x300FFE);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "minotaur"), EntityTMMinotaur.class, "minotaur", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0x911EB4);
             }
             if (TTMConfig.enableBrigand) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmbrigand"), EntityTMBrigand.class, "tmbrigand", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x078455);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmbrigand"), EntityTMBrigand.class, "tmbrigand", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0xF032E6);
             }
             if (TTMConfig.enableFellSpirit) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "fellspirit"), EntityTMFellSpirit.class, "fellspirit", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x37B9D9);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "fellspirit"), EntityTMFellSpirit.class, "fellspirit", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0xFFD8B1);
             }
             if (TTMConfig.enableElementalGolem) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "elementalgolem"), EntityTMElementalGolem.class, "elementalgolem", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x40B8B4);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "elementalgolem"), EntityTMElementalGolem.class, "elementalgolem", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0xAAFFC3);
             }
             if (TTMConfig.enableSwampHag) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "swamp_hag"), EntityTMSwampHag.class, "swamp_hag", id++, TolkienMobs.instance, 64, 3, true, 0xFF947C, 0x5AAD54);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "swamp_hag"), EntityTMSwampHag.class, "swamp_hag", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0xE6BEFF);
             }
         }
 
         if (TTMConfig.enableBoss) {
             /* Bosses */
             if (TTMConfig.enableBalrog) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "balrog"), EntityTMBalrog.class, "balrog", id++, TolkienMobs.instance, 64, 3, true, 0xFB3366, 0x5C1731);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "balrog"), EntityTMBalrog.class, "balrog", id++, TolkienMobs.instance, 64, 3, true, 0xB71B13, 0x9A6324);
             }
             if (TTMConfig.enableFellBeast) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "fellbeast"), EntityTMFellBeast.class, "fellbeast", id++, TolkienMobs.instance, 64, 3, true, 0xFB3366, 0xF0C55B);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "fellbeast"), EntityTMFellBeast.class, "fellbeast", id++, TolkienMobs.instance, 64, 3, true, 0xB71B13, 0x808000);
             }
             if (TTMConfig.enableWitchKing) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "witchking"), EntityTMWitchKing.class, "witchking", id++, TolkienMobs.instance, 64, 3, true, 0xFB3366, 0x285D2C);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "witchking"), EntityTMWitchKing.class, "witchking", id++, TolkienMobs.instance, 64, 3, true, 0xB71B13, 0x469990);
             }
             if (TTMConfig.enableGwaihir) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "gwaihir"), EntityTMGwaihir.class, "gwaihir", id++, TolkienMobs.instance, 64, 3, true, 0xFB3366, 0xC11A02);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "gwaihir"), EntityTMGwaihir.class, "gwaihir", id++, TolkienMobs.instance, 64, 3, true, 0xB71B13, 0x000075);
             }
             if (TTMConfig.enableMorgulGolem) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "elementalgolem7"), EntityTMMorgulGolem.class, "elementalgolem7", id++, TolkienMobs.instance, 64, 3, true, 0xFB3366, 0xC07044);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "elementalgolem7"), EntityTMMorgulGolem.class, "elementalgolem7", id++, TolkienMobs.instance, 64, 3, true, 0xB71B13, 0x000000);
             }
             if (TTMConfig.enableWatcher) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmwatcher"), EntityTMWatcher.class, "tmwatcher", id++, TolkienMobs.instance, 64, 3, true, 0xFB3366, 0x140F4E);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmwatcher"), EntityTMWatcher.class, "tmwatcher", id++, TolkienMobs.instance, 64, 3, true, 0xB71B13, 0xF58231);
             }
         }
 
         if (TTMConfig.enableSpecial) {
             /* Special Mobs */
             if (TTMConfig.enableGollum) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "gollum"), EntityTMGollum.class, "gollum", id++, TolkienMobs.instance, 64, 3, true, 0xE5F50F, 0x5C1731);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "gollum"), EntityTMGollum.class, "gollum", id++, TolkienMobs.instance, 64, 3, true, 0xE5F50F, 0x9A6324);
             }
             if (TTMConfig.enableNazgul) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "nazgul"), EntityTMNazgul.class, "nazgul", id++, TolkienMobs.instance, 64, 3, true, 0xE5F50F, 0xF0C55B);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "nazgul"), EntityTMNazgul.class, "nazgul", id++, TolkienMobs.instance, 64, 3, true, 0xE5F50F, 0x808000);
             }
             if (TTMConfig.enableGreatEagle) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "greateagle"), EntityTMGreatEagle.class, "greateagle", id++, TolkienMobs.instance, 64, 3, true, 0xE5F50F, 0x285D2C);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "greateagle"), EntityTMGreatEagle.class, "greateagle", id++, TolkienMobs.instance, 64, 3, true, 0xE5F50F, 0x469990);
             }
             if (TTMConfig.enableMithrilGolem) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "elementalgolem6"), EntityTMMithrilGolem.class, "elementalgolem6", id++, TolkienMobs.instance, 64, 3, true, 0xE5F50F, 0xC11A02);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "elementalgolem6"), EntityTMMithrilGolem.class, "elementalgolem6", id++, TolkienMobs.instance, 64, 3, true, 0xE5F50F, 0x000075);
             }
         }
 
         if (TTMConfig.enablePassive) {
             /* Passive */
             if (TTMConfig.enableAuroch) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "auroch"), EntityTMAuroch.class, "auroch", id++, TolkienMobs.instance, 64, 3, true, 0x58DA84, 0x5C1731);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "auroch"), EntityTMAuroch.class, "auroch", id++, TolkienMobs.instance, 64, 3, true, 0x58DA84, 0x9A6324);
             }
             if (TTMConfig.enableDwarves) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "dwarf"), EntityTMDwarf.class, "dwarf", id++, TolkienMobs.instance, 64, 3, true, 0x58DA84, 0xF0C55B);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "dwarf"), EntityTMDwarf.class, "dwarf", id++, TolkienMobs.instance, 64, 3, true, 0x58DA84, 0x808000);
             }
             if (TTMConfig.enableElves) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "elves"), EntityTMElves.class, "elves", id++, TolkienMobs.instance, 64, 3, true, 0x58DA84, 0x285D2C);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "elves"), EntityTMElves.class, "elves", id++, TolkienMobs.instance, 64, 3, true, 0x58DA84, 0x469990);
             }
             if (TTMConfig.enableGoats) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "goat"), EntityTMGoat.class, "goat", id++, TolkienMobs.instance, 64, 3, true, 0x58DA84, 0xC11A02);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "goat"), EntityTMGoat.class, "goat", id++, TolkienMobs.instance, 64, 3, true, 0x58DA84, 0x000075);
             }
             if (TTMConfig.enableHobbits) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "hobbit"), EntityTMHobbit.class, "hobbit", id++, TolkienMobs.instance, 64, 3, true, 0x58DA84, 0xC07044);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "hobbit"), EntityTMHobbit.class, "hobbit", id++, TolkienMobs.instance, 64, 3, true, 0x58DA84, 0x000000);
             }
             if (TTMConfig.enableHumans) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "human"), EntityTMHuman.class, "human", id++, TolkienMobs.instance, 64, 3, true, 0x58DA84, 0x140F4E);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "human"), EntityTMHuman.class, "human", id++, TolkienMobs.instance, 64, 3, true, 0x58DA84, 0xF58231);
             }
             if (TTMConfig.enableMumakil) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mumakil"), EntityTMMumakil.class, "mumakil", id++, TolkienMobs.instance, 64, 3, true, 0x58DA84, 0x2AEB7D);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "mumakil"), EntityTMMumakil.class, "mumakil", id++, TolkienMobs.instance, 64, 3, true, 0x58DA84, 0xFFE119);
             }
         }
 
         if (TTMConfig.enableAmbient) {
             /* Ambient Mobs */
             if (TTMConfig.enableFrogs) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "toaddle"), EntityTMToad.class, "toaddle", id++, TolkienMobs.instance, 64, 3, true, 0xB7D8F8, 0x5C1731);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "toaddle"), EntityTMToad.class, "toaddle", id++, TolkienMobs.instance, 64, 3, true, 0xB7D8F8, 0x9A6324);
             }
             if (TTMConfig.enableSquirrels) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "sosquirrel"), EntityTMSquirrel.class, "sosquirrel", id++, TolkienMobs.instance, 64, 3, true, 0xB7D8F8, 0xF0C55B);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "sosquirrel"), EntityTMSquirrel.class, "sosquirrel", id++, TolkienMobs.instance, 64, 3, true, 0xB7D8F8, 0x808000);
             }
             if (TTMConfig.enableThrush) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "thrush"), EntityTMThrush.class, "thrush", id++, TolkienMobs.instance, 64, 3, true, 0xB7D8F8, 0x285D2C);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "thrush"), EntityTMThrush.class, "thrush", id++, TolkienMobs.instance, 64, 3, true, 0xB7D8F8, 0x469990);
             }
             if (TTMConfig.enableMidgeFlies) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "midgefly"), EntityTMMidgeFly.class, "midgefly", id++, TolkienMobs.instance, 64, 3, true, 0xB7D8F8, 0xC11A02);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "midgefly"), EntityTMMidgeFly.class, "midgefly", id++, TolkienMobs.instance, 64, 3, true, 0xB7D8F8, 0x000075);
             }
             if (TTMConfig.enableCrebain) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "crebain"), EntityTMCrebain.class, "crebain", id++, TolkienMobs.instance, 64, 3, true, 0xB7D8F8, 0xC07044);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "crebain"), EntityTMCrebain.class, "crebain", id++, TolkienMobs.instance, 64, 3, true, 0xB7D8F8, 0x000000);
             }
             if (TTMConfig.enableRats) {
-                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmrat"), EntityTMRat.class, "tmrat", id++, TolkienMobs.instance, 64, 3, true, 0xB7D8F8, 0x140F4E);
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmrat"), EntityTMRat.class, "tmrat", id++, TolkienMobs.instance, 64, 3, true, 0xB7D8F8, 0xF58231);
             }
         }
 

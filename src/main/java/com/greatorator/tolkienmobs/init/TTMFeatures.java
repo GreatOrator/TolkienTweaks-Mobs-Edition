@@ -151,10 +151,22 @@ public class TTMFeatures implements IModFeatures {
     public static Item ITEM_FACTIONCOIN = new TTMLore(64);
     @ModFeature(name = "item_coin2", stateOverride = "simple_items#type=item_coin2", cTab = 4)
     public static Item ITEM_FACTIONTOKEN = new TTMLore(64);
+    @ModFeature(name = "item_coin_bronze", stateOverride = "simple_items#type=item_coin_bronze", cTab = 4)
+    public static Item ITEM_COIN_BRONZE = new TTMLore(64);
+    @ModFeature(name = "item_coin_silver", stateOverride = "simple_items#type=item_coin_silver", cTab = 4)
+    public static Item ITEM_COIN_SILVER = new TTMLore(64);
+    @ModFeature(name = "item_coin_gold", stateOverride = "simple_items#type=item_coin_gold", cTab = 4)
+    public static Item ITEM_COIN_GOLD = new TTMLore(64);
+    @ModFeature(name = "item_coin_mithril", stateOverride = "simple_items#type=item_coin_mithril", cTab = 4)
+    public static Item ITEM_COIN_MITHRIL = new TTMLore(64);
     @ModFeature(name = "item_pungentherb", stateOverride = "simple_items#type=item_pungentherb", cTab = 4)
     public static Item ITEM_PUNGENTHERB = new TTMLore(3).setEffectOverride(true);
     @ModFeature(name = "item_lockpick", stateOverride = "simple_items#type=item_lockpick", cTab = 4)
-    public static Item ITEM_LOCKPICK = new TTMLore(1);
+    public static Item ITEM_LOCKPICK = new TTMLore(16);
+    @ModFeature(name = "item_brokensword", stateOverride = "simple_items#type=item_brokensword", cTab = 4)
+    public static Item ITEM_BROKENSWORD = new TTMLore(1);
+    @ModFeature(name = "item_reforgedsword", stateOverride = "simple_items#type=item_reforgedsword", cTab = 4)
+    public static Item ITEM_REFORGEDSWORD = new TTMLore(1).setEffectOverride(true);
     /* End Region */
 
     /* Tools */

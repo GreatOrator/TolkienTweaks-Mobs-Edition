@@ -73,6 +73,10 @@
       "gem_ammolite":    {"textures": {"layer0": "tolkienmobs:items/gem_ammolite"}},
       "item_coin1":    {"textures": {"layer0": "tolkienmobs:items/item_coin1"}},
       "item_coin2":    {"textures": {"layer0": "tolkienmobs:items/item_coin2"}},
+      "item_coin_bronze":    {"textures": {"layer0": "tolkienmobs:items/item_coin_bronze"}},
+      "item_coin_silver":    {"textures": {"layer0": "tolkienmobs:items/item_coin_silver"}},
+      "item_coin_gold":    {"textures": {"layer0": "tolkienmobs:items/item_coin_gold"}},
+      "item_coin_mithril":    {"textures": {"layer0": "tolkienmobs:items/item_coin_mithril"}},
       "bottle_fancy":    {"textures": {"layer0": "tolkienmobs:items/bottle_fancy"}},
       "item_golem_stone":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone"}},
       "item_golem_stone_earth":    {"textures": {"layer0": "tolkienmobs:items/item_golem_stone_earth"}},
@@ -93,7 +97,9 @@
       "record_reder":    {"textures": {"layer0": "tolkienmobs:items/record_reder"}},
       "record_fumble":    {"textures": {"layer0": "tolkienmobs:items/record_fumble"}},
       "record_bombadil":    {"textures": {"layer0": "tolkienmobs:items/record_bombadil"}},
-      "record_hobbits":    {"textures": {"layer0": "tolkienmobs:items/record_hobbits"}}
+      "record_hobbits":    {"textures": {"layer0": "tolkienmobs:items/record_hobbits"}},
+      "item_brokensword":    {"textures": {"layer0": "tolkienmobs:items/item_brokensword"}},
+      "item_reforgedsword":    {"textures": {"layer0": "tolkienmobs:items/item_reforgedsword"}}
     }
   }
 }

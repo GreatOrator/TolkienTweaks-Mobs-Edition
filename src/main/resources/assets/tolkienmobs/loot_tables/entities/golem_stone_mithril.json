@@ -7,7 +7,7 @@
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "tolkientweaks:brons_coin",
+                    "name": "tolkienmobs:item_coin_mithril",
                     "conditions": [
                         {
                             "condition": "killed_by_player"
@@ -18,7 +18,7 @@
                             "function": "set_count",
                             "count": {
                                 "min": 1,
-                                "max": 12
+                                "max": 2
                             }
                         }
                     ]
