@@ -99,7 +99,9 @@
       "record_bombadil":    {"textures": {"layer0": "tolkienmobs:items/record_bombadil"}},
       "record_hobbits":    {"textures": {"layer0": "tolkienmobs:items/record_hobbits"}},
       "item_brokensword":    {"textures": {"layer0": "tolkienmobs:items/item_brokensword"}},
-      "item_reforgedsword":    {"textures": {"layer0": "tolkienmobs:items/item_reforgedsword"}}
+      "item_reforgedsword":    {"textures": {"layer0": "tolkienmobs:items/item_reforgedsword"}},
+      "item_keyfragment":    {"textures": {"layer0": "tolkienmobs:items/item_keyfragment"}},
+      "item_oilykey":    {"textures": {"layer0": "tolkienmobs:items/item_oilykey"}}
     }
   }
 }
