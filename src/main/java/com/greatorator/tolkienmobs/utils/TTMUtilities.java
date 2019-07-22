@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.utils;
 
 import com.greatorator.tolkienmobs.handler.interfaces.IModEntity;
-
 import com.greatorator.tolkienmobs.handler.interfaces.providers.PetListProvider;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -78,6 +78,13 @@ public class TTMUtilities
                 }
             }
         }
+    }
+
+    public static Block setBlockName(Block parBlock, String parBlockName)
+    {
+        parBlock.setRegistryName(parBlockName);
+        parBlock.setUnlocalizedName(parBlockName);
+        return parBlock;
     }
 
     public static boolean isTeleportFriendlyBlock(Entity parEntity, int x, int p_192381_2_, int y, int p_192381_4_, int p_192381_5_)

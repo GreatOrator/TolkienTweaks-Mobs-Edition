@@ -1,12 +1,38 @@
 {
   "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "particle": "blocks/water",
+      "all": "tolkienmobs:fluids/enchanted_water"
+    },
+    "model": "forge:fluid",
+    "custom": { "fluid": "enchanted_water" },
+    "uvlock": false
+  },
   "variants": {
     "normal": [{
-      "model": "forge:fluid",
-      "transform": "forge:default-item",
-      "custom": {
-        "fluid": "enchanted_water"
-      }
-    }]
+
+    }],
+    "inventory": [{
+
+    }],
+    "level": {
+      "0": { },
+      "1": { },
+      "2": { },
+      "3": { },
+      "4": { },
+      "5": { },
+      "6": { },
+      "7": { },
+      "8": { },
+      "9": { },
+      "10": { },
+      "11": { },
+      "12": { },
+      "13": { },
+      "14": { },
+      "15": { }
+    }
   }
 }
