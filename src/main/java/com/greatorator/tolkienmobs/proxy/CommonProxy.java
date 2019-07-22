@@ -12,17 +12,14 @@ import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomStructures;
 import com.greatorator.tolkienmobs.world.types.WorldTypeArda;
 import com.greatorator.tolkienmobs.world.types.WorldTypeSingleArda;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -39,9 +36,9 @@ public class CommonProxy {
         GameRegistry.registerWorldGenerator(new WorldGenCustomStructures(), 0);
         registerEventListeners(event.getSide());
         BiomeInit.registerBiomes();
+        FluidInit.registerFluids();
         EntityInit.init();
         CraftingInit.init();
-        FluidInit.registerFluids();
         PotionInit.registerPotions();
         EnchantmentsInit.registerEnchants();
         new LootInit();
@@ -53,7 +50,6 @@ public class CommonProxy {
     {
         ProfessionInit.associateCareersAndTrades();
         TTMConfig.loadPotionList();
-        new SpecialInit();
     }
 
     public void postInit(FMLPostInitializationEvent event) {
@@ -77,17 +73,5 @@ public class CommonProxy {
 
     public EntityPlayer getPlayer() {
         return null;
-    }
-
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event)
-    {
-        event.getRegistry().registerAll(SpecialInit.ITEMS.toArray(new Item[0]));
-    }
-
-    @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event)
-    {
-        event.getRegistry().registerAll(SpecialInit.BLOCKS.toArray(new Block[0]));
     }
 }

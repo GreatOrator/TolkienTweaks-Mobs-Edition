@@ -1,9 +1,12 @@
 {
   "forge_marker": 1,
   "variants": {
-    "fluid": {
+    "normal": [{
       "model": "forge:fluid",
-      "custom": { "fluid": "enchanted_water" }
-    }
+      "transform": "forge:default-item",
+      "custom": {
+        "fluid": "enchanted_water"
+      }
+    }]
   }
 }

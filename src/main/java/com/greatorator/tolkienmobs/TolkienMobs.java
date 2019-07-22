@@ -16,6 +16,7 @@ import com.greatorator.tolkienmobs.utils.TTMDataFixes;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.util.datafix.DataFixer;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -58,6 +59,10 @@ public class TolkienMobs {
 
     private final DataFixer dataFixer;
     public static SimpleNetworkWrapper networkWrapper;
+
+    static {
+        FluidRegistry.enableUniversalBucket();
+    }
 
     public TolkienMobs() {
         new PotionInit();

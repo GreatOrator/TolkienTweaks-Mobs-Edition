@@ -31,6 +31,7 @@ import com.greatorator.tolkienmobs.entity.special.EntityTMMithrilGolem;
 import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
 import com.greatorator.tolkienmobs.handler.FogHandler;
 import com.greatorator.tolkienmobs.handler.TTMExtraHearts;
+import com.greatorator.tolkienmobs.init.FluidInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
@@ -59,6 +60,10 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(new TTMClientEvents());
 
         OBJLoader.INSTANCE.addDomain(TolkienMobs.MODID);
+
+        /* Fluids */
+        FluidInit.renderFluids();
+
         /* Bosses */
         RenderingRegistry.registerEntityRenderingHandler(EntityTMBalrog.class, RenderBalrog.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMFellBeast.class, RenderFellBeast::new);

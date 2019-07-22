@@ -174,7 +174,7 @@ item.tolkienmobs:potion_elvishhealth.name=Vitality
 item.tolkienmobs:potion_portableblacksmith.name=Portable Blacksmith
 
 //Fluid Information
-fluid.tolkienmobs:enchanted_water=Gulhir
+fluid.enchanted_water=Gulhir
 
 //Potion Information
 tolkienmobs.effect.ent_draught=Ent Draught
