@@ -29,13 +29,13 @@ public class SpecialInit {
 
             registry.register(TTMUtilities.setBlockName(new FluidBlock(FluidInit.ENCHANTED_WATER, Material.WATER), "enchanted_water"));
         }
-    }
 
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public static void onModelEvent(final ModelRegistryEvent event)
-    {
-        registerBlockModel(enchanted_water);
+        @SubscribeEvent
+        @SideOnly(Side.CLIENT)
+        public static void onModelEvent(final ModelRegistryEvent event)
+        {
+            registerBlockModel(enchanted_water);
+        }
     }
 
     @SideOnly(Side.CLIENT)
