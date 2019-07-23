@@ -36,8 +36,6 @@ public class CommonProxy {
         GameRegistry.registerWorldGenerator(new WorldGenCustomStructures(), 0);
         registerEventListeners(event.getSide());
         BiomeInit.registerBiomes();
-        FluidInit.registerFluids();
-        new SpecialInit();
         EntityInit.init();
         CraftingInit.init();
         PotionInit.registerPotions();

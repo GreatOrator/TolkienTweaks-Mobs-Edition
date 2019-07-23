@@ -1,8 +1,0 @@
-{
-  "forge-marker": 1,
-  "parent": "block/block",
-  "textures": {
-    "all": "tolkienmobs:fluids/enchanted_water_still",
-    "flowing": "tolkienmobs:fluids/enchanted_water_flow"
-  }
-}

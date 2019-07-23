@@ -34,7 +34,7 @@ public class BiomeMirkwood extends Biome implements IFogyBiome {
                 .setHeightVariation(0.2F)
                 .setTemperature(0.25F)
                 .setRainfall(0.8F)
-                .setWaterColor(3091811));
+                .setWaterColor(0));
 
         LogHelperTTM.info("Preparing for the necromancer's return...");
         topBlock = Blocks.GRASS.getDefaultState();
