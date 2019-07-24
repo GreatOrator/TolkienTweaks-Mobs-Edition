@@ -231,6 +231,12 @@ splash_potion.effect.personal_blacksmith=Splash Potion of Portable Blacksmith
 lingering_potion.effect.personal_blacksmith=Lingering Potion of Portable Blacksmith
 tipped_arrow.effect.personal_blacksmith=Arrow of Portable Blacksmith
 
+tolkienmobs.effect.sleepnesia=Sleepnesia
+potion.effect.sleepnesia=Potion of Sleepnesia
+splash_potion.effect.sleepnesia=Splash Potion of Sleepnesia
+lingering_potion.effect.sleepnesia=Lingering Potion of Sleepnesia
+tipped_arrow.effect.sleepnesia=Arrow of Sleepnesia
+
 //Enchantments
 enchantment.tolkienmobs.balrogs_mark=Balrog's Mark
 enchantment.tolkienmobs.balrogs_mark.desc=When applied to boots, this makes any grass or dirt around you turn to magma blocks.

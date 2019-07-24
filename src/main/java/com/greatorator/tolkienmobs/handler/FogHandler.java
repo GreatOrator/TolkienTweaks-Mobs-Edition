@@ -5,10 +5,12 @@ import codechicken.lib.colour.Colour;
 import codechicken.lib.math.MathHelper;
 import codechicken.lib.util.ClientUtils;
 import com.greatorator.tolkienmobs.handler.interfaces.IFogyBiome;
+import com.greatorator.tolkienmobs.init.PotionInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -89,6 +91,16 @@ public class FogHandler {
     //  @SideOnly(Side.CLIENT) //Not needed as this is only registered client side so there is no chance it will ba called server side.
     @SubscribeEvent
     public void onRenderFog(EntityViewRenderEvent.RenderFogEvent event) {
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        PotionEffect effect = player.getActivePotionEffect(PotionInit.SLEEPNESIA);//Replace with your custom potion
+
+        if (effect != null) {
+            density = effect.getDuration() > 20 ? 1F : effect.getDuration() / 20F;
+            colour[0] = 0;
+            colour[1] = 0;
+            colour[2] = 0;
+        }
+
         if (density <= 0) return;
 
         GlStateManager.setFog(GlStateManager.FogMode.EXP);

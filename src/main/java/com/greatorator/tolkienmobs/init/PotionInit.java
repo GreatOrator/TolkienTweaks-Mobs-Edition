@@ -21,8 +21,9 @@ public class PotionInit {
     public static final Potion ELEMENTAL_FLYING = new PotionElementalFlying();
     public static final Potion ELEMENTAL_BURNING = new PotionElementalBurning();
     public static final Potion ELEMENTAL_TORNADO = new PotionElementalTornado();
-    public static final Potion INVENTORY_CORROSION = new PotionTMCorrosion();
-    public static final Potion PERSONAL_BLACKSMITH = new PotionTMBlacksmith();
+    public static final Potion INVENTORY_CORROSION = new PotionTMCorrosion("inventory_corrosion", true, 7811840, 7);
+    public static final Potion PERSONAL_BLACKSMITH = new PotionTMBlacksmith("personal_blacksmith", false, 14370245, 8);
+    public static final Potion SLEEPNESIA = new TTMPotion("sleepnesia", true, 2890775, 9).registerPotionAttributeModifier(SharedMonsterAttributes.MOVEMENT_SPEED, MathHelper.getRandomUUID().toString(), -1D, 1);
 
     /** Initialize Potion Versions */
     public static final PotionType ENT_DRAUGHT = new PotionType("ent_draught", new PotionEffect[] {new PotionEffect(ENT_STANCE, 2400)}).setRegistryName("ent_draught");
@@ -43,6 +44,8 @@ public class PotionInit {
     public static final PotionType LONG_DECAYING_INVENTORY = new PotionType("inventory_corrosion", new PotionEffect[] {new PotionEffect(INVENTORY_CORROSION, 1200)}).setRegistryName("long_inventory_corrosion");
     public static final PotionType PORTABLE_REPAIR = new PotionType("personal_blacksmith", new PotionEffect[] {new PotionEffect(PERSONAL_BLACKSMITH, 600)}).setRegistryName("personal_blacksmith");
     public static final PotionType LONG_PORTABLE_REPAIR = new PotionType("personal_blacksmith", new PotionEffect[] {new PotionEffect(PERSONAL_BLACKSMITH, 1200)}).setRegistryName("long_personal_blacksmith");
+    public static final PotionType DEEP_SLEEP = new PotionType("sleepnesia", new PotionEffect[] {new PotionEffect(SLEEPNESIA, 600)}).setRegistryName("sleepnesia");
+    public static final PotionType LONG_DEEP_SLEEP = new PotionType("sleepnesia", new PotionEffect[] {new PotionEffect(SLEEPNESIA, 1200)}).setRegistryName("long_sleepnesia");
 
     public static void registerPotions(){
         registerPotion(ENT_DRAUGHT, LONG_ENT_DRAUGHT, ENT_STANCE);
@@ -54,6 +57,7 @@ public class PotionInit {
         registerPotion(GOLEM_TORNADO, LONG_GOLEM_TORNADO, ELEMENTAL_TORNADO);
         registerPotion(DECAYING_INVENTORY, LONG_DECAYING_INVENTORY, INVENTORY_CORROSION);
         registerPotion(PORTABLE_REPAIR, LONG_PORTABLE_REPAIR, PERSONAL_BLACKSMITH);
+        registerPotion(DEEP_SLEEP, LONG_DEEP_SLEEP, SLEEPNESIA);
 
     }
 

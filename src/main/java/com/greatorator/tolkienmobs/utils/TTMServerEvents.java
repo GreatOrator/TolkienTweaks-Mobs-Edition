@@ -15,7 +15,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class TTMServerEvents {
 
@@ -46,17 +45,17 @@ public class TTMServerEvents {
     }
 
     @SubscribeEvent
-    public void onEntityLiving(TickEvent.PlayerTickEvent event){
-        EntityLivingBase player = event.player;
-        Biome biome = player.world.getBiome(player.getPosition());
+    public void onEntityLiving(LivingUpdateEvent event){
+        EntityLivingBase player = event.getEntityLiving();
 
-        if(player.world.isRemote || !player.isEntityAlive() || player instanceof EntityPlayerMP) return;
+        if(player.world.isRemote || !player.isEntityAlive()) return;
 
-        if(player.isInsideOfMaterial(Material.WATER)) {
+        if(player.isInsideOfMaterial(Material.WATER) && player.ticksExisted % 20 == 0 && player instanceof EntityPlayerMP) {
+            Biome biome = player.world.getBiome(player.getPosition());
 
             if(biome == BiomeInit.MIRKWOOD) {
 
-                player.addPotionEffect(new PotionEffect(PotionInit.ENT_STANCE, 1200, 1));
+                player.addPotionEffect(new PotionEffect(PotionInit.SLEEPNESIA, 1200, 8));
             }
         }
     }

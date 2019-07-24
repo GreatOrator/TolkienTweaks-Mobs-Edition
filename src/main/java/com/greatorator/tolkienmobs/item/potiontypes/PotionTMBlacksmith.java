@@ -12,8 +12,8 @@ public class PotionTMBlacksmith extends TTMPotion {
     public static PotionTMBlacksmith instance = null;
 
     public static int damageTime = 20;
-    public PotionTMBlacksmith() {
-        super(NAME, false, 14370245, 8);
+    public PotionTMBlacksmith(String name, Boolean isBadEffectIn, int liquidColorIn, int iconIndex) {
+        super(name, isBadEffectIn, liquidColorIn, iconIndex);
         instance = this;
     }
 

@@ -13,8 +13,8 @@ public class PotionTMCorrosion extends TTMPotion {
     public static PotionTMCorrosion instance = null;
 
     public static int damageTime = 20;
-    public PotionTMCorrosion() {
-        super(NAME, true, 7811840, 7);
+    public PotionTMCorrosion(String name, Boolean isBadEffectIn, int liquidColorIn, int iconIndex) {
+        super(name, isBadEffectIn, liquidColorIn, iconIndex);
         instance = this;
     }
 

@@ -68,7 +68,7 @@ public class BlockOres extends BlockBCore {
 
     @Override
     public ItemStack getItem(World world, BlockPos pos, IBlockState state) {
-        int oreTypeDrop = world.getBlockState(pos).getValue(ORE_TYPE).getMeta();
+        int oreTypeDrop = state.getValue(ORE_TYPE).getMeta();
 
         return new ItemStack(this, 1, oreTypeDrop);
     }
