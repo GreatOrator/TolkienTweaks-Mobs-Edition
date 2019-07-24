@@ -3,17 +3,16 @@ package com.greatorator.tolkienmobs.item.potiontypes;
 import com.google.common.collect.Lists;
 import com.greatorator.tolkienmobs.handler.TTMPotion;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class PotionTMCorrosion extends TTMPotion {
-    public static final String NAME = "inventory_corrosion";
-    public static PotionTMCorrosion instance = null;
+public class PotionTTMBlacksmith extends TTMPotion {
+    public static final String NAME = "personal_blacksmith";
+    public static PotionTTMBlacksmith instance = null;
 
     public static int damageTime = 20;
-    public PotionTMCorrosion(String name, Boolean isBadEffectIn, int liquidColorIn, int iconIndex) {
+    public PotionTTMBlacksmith(String name, Boolean isBadEffectIn, int liquidColorIn, int iconIndex) {
         super(name, isBadEffectIn, liquidColorIn, iconIndex);
         instance = this;
     }
@@ -25,9 +24,12 @@ public class PotionTMCorrosion extends TTMPotion {
 
         if(entity.ticksExisted % damageTime == 0) {
             for(ItemStack stack : equipment) {
-                if(stack.getItem().isDamageable() && !stack.getItem().getIsRepairable(stack, new ItemStack(Items.GOLD_INGOT))) {
-                    if(!entity.world.isRemote) {
-                        stack.damageItem(amplifier+1, entity);
+                if(stack.getItem().isDamageable() && stack.getItem().isDamaged(stack)) {
+                    if(stack.getItemDamage()-(amplifier+1) < 0) {
+                        stack.setItemDamage(0);
+                    }
+                    else {
+                        stack.setItemDamage(stack.getItemDamage()-(amplifier+1));
                     }
                 }
             }

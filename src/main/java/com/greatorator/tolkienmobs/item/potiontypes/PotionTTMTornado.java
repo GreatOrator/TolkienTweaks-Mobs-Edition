@@ -4,15 +4,15 @@ import com.greatorator.tolkienmobs.handler.TTMPotion;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
-public class PotionElementalTornado extends TTMPotion {
+public class PotionTTMTornado extends TTMPotion {
     public static final String NAME = "elemental_tornado";
     public static final String TAG_PITCH = "elemental_tornado_pitch";
     public static final String TAG_YAW = "elemental_tornado_yaw";
-    public static PotionElementalTornado instance = null;
+    public static PotionTTMTornado instance = null;
 
     public static float rotationSpeed = 2.0f;
 
-    public PotionElementalTornado() {
+    public PotionTTMTornado() {
         super(NAME, true, 11914084, 6);
         instance = this;
     }

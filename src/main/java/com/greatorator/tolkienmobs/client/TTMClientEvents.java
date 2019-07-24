@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.client;
 import com.greatorator.tolkienmobs.init.PotionInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.item.magical.ItemTrinketRing;
-import com.greatorator.tolkienmobs.item.potiontypes.PotionElementalDrowning;
+import com.greatorator.tolkienmobs.item.potiontypes.PotionTTMDrowning;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -46,13 +46,13 @@ public class TTMClientEvents {
         if(event.getType() == RenderGameOverlayEvent.ElementType.AIR) {
 
             EntityLivingBase player = (EntityLivingBase)mc.getRenderViewEntity();
-            String drown = PotionElementalDrowning.NAME;
+            String drown = PotionTTMDrowning.NAME;
 
             if (player != null && drown != null && PotionInit.ELEMENTAL_DROWNING != null && player.isPotionActive(PotionInit.ELEMENTAL_DROWNING)) {
                 event.setCanceled(true);
 
                 if(!player.isInsideOfMaterial(Material.WATER)) {
-                    int air = player.getEntityData().getInteger(PotionElementalDrowning.TAG_NAME);
+                    int air = player.getEntityData().getInteger(PotionTTMDrowning.TAG_NAME);
 
                     mc.mcProfiler.startSection("air");
                     GlStateManager.enableBlend();

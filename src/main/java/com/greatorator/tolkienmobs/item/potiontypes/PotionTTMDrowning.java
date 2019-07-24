@@ -7,13 +7,13 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 
 /** Borrowed from Tmtravlr - PotionCore*/
-public class PotionElementalDrowning extends TTMPotion {
+public class PotionTTMDrowning extends TTMPotion {
     public static final String NAME = "elemental_drowning";
     public static final String TAG_NAME = "elemental-drown";
     public static final String TAG_BOOLEAN = "elemental-being drowned";
-    public static PotionElementalDrowning instance = null;
+    public static PotionTTMDrowning instance = null;
 
-    public PotionElementalDrowning() {
+    public PotionTTMDrowning() {
         super(NAME, true, 7791097, 2);
         instance = this;
     }

@@ -4,11 +4,11 @@ import com.greatorator.tolkienmobs.handler.TTMPotion;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 
-public class PotionElementalLightning extends TTMPotion {
+public class PotionTTMLightning extends TTMPotion {
     public static final String NAME = "elemental_lightning";
-    public static PotionElementalLightning instance = null;
+    public static PotionTTMLightning instance = null;
 
-    public PotionElementalLightning() {
+    public PotionTTMLightning() {
         super(NAME, true, 16640281, 3);
         instance = this;
     }

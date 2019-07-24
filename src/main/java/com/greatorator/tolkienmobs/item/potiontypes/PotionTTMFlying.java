@@ -9,13 +9,13 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
 
-public class PotionElementalFlying extends TTMPotion {
+public class PotionTTMFlying extends TTMPotion {
     public static final String NAME = "elemental_flight";
-    public static PotionElementalFlying instance = null;
+    public static PotionTTMFlying instance = null;
 
     public static double launchSpeed = 1.0;
 
-    public PotionElementalFlying() {
+    public PotionTTMFlying() {
         super(NAME, true, 6498056, 4);
         instance = this;
     }

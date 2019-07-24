@@ -16,13 +16,13 @@ public class PotionInit {
     /** Initialize Potion Types */
     public static final Potion ENT_STANCE = new TTMPotion("ent_draught", false, 3135135, 0).registerPotionAttributeModifier(SharedMonsterAttributes.KNOCKBACK_RESISTANCE, MathHelper.getRandomUUID().toString(),1.0D,2);
     public static final Potion ELF_VITALITY = new TTMPotion("elf_vitality", false, 14687673, 1).registerPotionAttributeModifier(SharedMonsterAttributes.MAX_HEALTH, MathHelper.getRandomUUID().toString(),1.0D,2);
-    public static final Potion ELEMENTAL_DROWNING = new PotionElementalDrowning();
-    public static final Potion ELEMENTAL_LIGHTNING = new PotionElementalLightning();
-    public static final Potion ELEMENTAL_FLYING = new PotionElementalFlying();
-    public static final Potion ELEMENTAL_BURNING = new PotionElementalBurning();
-    public static final Potion ELEMENTAL_TORNADO = new PotionElementalTornado();
-    public static final Potion INVENTORY_CORROSION = new PotionTMCorrosion("inventory_corrosion", true, 7811840, 7);
-    public static final Potion PERSONAL_BLACKSMITH = new PotionTMBlacksmith("personal_blacksmith", false, 14370245, 8);
+    public static final Potion ELEMENTAL_DROWNING = new PotionTTMDrowning();
+    public static final Potion ELEMENTAL_LIGHTNING = new PotionTTMLightning();
+    public static final Potion ELEMENTAL_FLYING = new PotionTTMFlying();
+    public static final Potion ELEMENTAL_BURNING = new PotionTTMBurning();
+    public static final Potion ELEMENTAL_TORNADO = new PotionTTMTornado();
+    public static final Potion INVENTORY_CORROSION = new PotionTTMCorrosion("inventory_corrosion", true, 7811840, 7);
+    public static final Potion PERSONAL_BLACKSMITH = new PotionTTMBlacksmith("personal_blacksmith", false, 14370245, 8);
     public static final Potion SLEEPNESIA = new TTMPotion("sleepnesia", true, 2890775, 9).registerPotionAttributeModifier(SharedMonsterAttributes.MOVEMENT_SPEED, MathHelper.getRandomUUID().toString(), -1D, 1);
 
     /** Initialize Potion Versions */

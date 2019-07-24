@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.network;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.item.potiontypes.PotionElementalDrowning;
+import com.greatorator.tolkienmobs.item.potiontypes.PotionTTMDrowning;
 import io.netty.buffer.Unpooled;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
@@ -34,7 +34,7 @@ public class TTMPacketClient implements IMessageHandler<TTMStoCMessage, IMessage
                 int air = buff.readInt();
 
                 if(player != null) {
-                    player.getEntityData().setInteger(PotionElementalDrowning.TAG_NAME, air);
+                    player.getEntityData().setInteger(PotionTTMDrowning.TAG_NAME, air);
                 }
                 break;
             }

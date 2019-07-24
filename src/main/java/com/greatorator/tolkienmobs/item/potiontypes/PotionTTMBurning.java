@@ -5,13 +5,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
-public class PotionElementalBurning extends TTMPotion {
+public class PotionTTMBurning extends TTMPotion {
     public static final String NAME = "elemental_burning";
-    public static PotionElementalBurning instance = null;
+    public static PotionTTMBurning instance = null;
 
     public static float fireDuration = 10;
 
-    public PotionElementalBurning() {
+    public PotionTTMBurning() {
         super(NAME, true, 15545365, 5);
         instance = this;
     }
