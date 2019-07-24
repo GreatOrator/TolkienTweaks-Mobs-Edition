@@ -6,6 +6,7 @@ import com.greatorator.tolkienmobs.handler.TTMEnchantHandler;
 import com.greatorator.tolkienmobs.handler.TTMSoundHandler;
 import com.greatorator.tolkienmobs.handler.TerrainEventHandler;
 import com.greatorator.tolkienmobs.init.*;
+import com.greatorator.tolkienmobs.utils.TTMEffectEvents;
 import com.greatorator.tolkienmobs.utils.TTMServerEvents;
 import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
@@ -60,6 +61,7 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.register(new TTMServerEvents());
         MinecraftForge.EVENT_BUS.register(new TTMEnchantHandler());
         MinecraftForge.EVENT_BUS.register(TTMSoundHandler.class);
+        MinecraftForge.EVENT_BUS.register(new TTMEffectEvents());
         if (disableVanilla){
             MinecraftForge.EVENT_BUS.register(new TTMSpawnEvent());
         }

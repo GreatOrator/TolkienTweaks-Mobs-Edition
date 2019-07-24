@@ -23,7 +23,7 @@ public class PotionInit {
     public static final Potion ELEMENTAL_TORNADO = new PotionTTMTornado();
     public static final Potion INVENTORY_CORROSION = new PotionTTMCorrosion("inventory_corrosion", true, 7811840, 7);
     public static final Potion PERSONAL_BLACKSMITH = new PotionTTMBlacksmith("personal_blacksmith", false, 14370245, 8);
-    public static final Potion SLEEPNESIA = new TTMPotion("sleepnesia", true, 2890775, 9).registerPotionAttributeModifier(SharedMonsterAttributes.MOVEMENT_SPEED, MathHelper.getRandomUUID().toString(), -1D, 1);
+    public static final Potion SLEEPNESIA = new PotionTTMSleep("sleepnesia", true, 2890775, 9).registerPotionAttributeModifier(SharedMonsterAttributes.MOVEMENT_SPEED, MathHelper.getRandomUUID().toString(), -1D, 1);
 
     /** Initialize Potion Versions */
     public static final PotionType ENT_DRAUGHT = new PotionType("ent_draught", new PotionEffect[] {new PotionEffect(ENT_STANCE, 2400)}).setRegistryName("ent_draught");

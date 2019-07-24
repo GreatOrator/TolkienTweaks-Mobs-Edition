@@ -8,16 +8,16 @@ import com.greatorator.tolkienmobs.item.potiontypes.PotionTTMDrowning;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.MobEffects;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.GuiIngameForge;
-import net.minecraftforge.client.event.ColorHandlerEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -95,8 +95,58 @@ public class TTMClientEvents {
 
             if(biome == BiomeInit.MIRKWOOD) {
 
-                player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 1200, 8));
+                player.addPotionEffect(new PotionEffect(PotionInit.SLEEPNESIA, 600, 8));
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void event(RenderPlayerEvent.Pre event) {
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        PotionEffect effect = player.getActivePotionEffect(PotionInit.SLEEPNESIA);
+
+        if (effect != null) {
+            GlStateManager.pushMatrix();
+            GlStateManager.rotate(90, 0.0F, 1.0F, 0.0F);
+            GlStateManager.rotate(90, 0.0F, 0.0F, 1.0F);
+            GlStateManager.rotate(270.0F, 0.0F, 1.0F, 0.0F);
+        }
+    }
+
+    @SubscribeEvent
+    public void event(RenderPlayerEvent.Post event) {
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        PotionEffect effect = player.getActivePotionEffect(PotionInit.SLEEPNESIA);
+
+        if (effect != null) {
+            GlStateManager.popMatrix();
+        }
+    }
+
+    @SubscribeEvent
+    public void event(EntityViewRenderEvent.CameraSetup event) {
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        PotionEffect effect = player.getActivePotionEffect(PotionInit.SLEEPNESIA);
+
+        if (effect != null) {
+            Entity entity = Minecraft.getMinecraft().getRenderViewEntity();
+            if (entity != null) {
+                float partialTicks = Minecraft.getMinecraft().getRenderPartialTicks();
+
+                GlStateManager.translate(0.0F, 1.2F, 0.0F);
+                GlStateManager.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks + 180.0F, 0.0F, -1.0F, 0.0F);
+                GlStateManager.rotate(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, -1.0F, 0.0F, 0.0F);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void event(RenderHandEvent event) {
+        EntityPlayer player = Minecraft.getMinecraft().player;
+        PotionEffect effect = player.getActivePotionEffect(PotionInit.SLEEPNESIA);
+
+        if (effect != null) {
+            event.setCanceled(true);
         }
     }
 }
