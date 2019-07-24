@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.client;
 
+import com.greatorator.tolkienmobs.init.BiomeInit;
 import com.greatorator.tolkienmobs.init.PotionInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.item.magical.ItemTrinketRing;
@@ -8,11 +9,16 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.MobEffects;
 import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -74,6 +80,22 @@ public class TTMClientEvents {
                     GlStateManager.disableBlend();
                     mc.mcProfiler.endSection();
                 }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onEntityLiving(LivingEvent.LivingUpdateEvent event){
+        EntityLivingBase player = event.getEntityLiving();
+
+        if(player.world.isRemote || !player.isEntityAlive()) return;
+
+        if(player.isInsideOfMaterial(Material.WATER) && player.ticksExisted % 20 == 0 && player instanceof EntityPlayerMP) {
+            Biome biome = player.world.getBiome(player.getPosition());
+
+            if(biome == BiomeInit.MIRKWOOD) {
+
+                player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 1200, 8));
             }
         }
     }
