@@ -93,7 +93,7 @@ lore.item.tolkienmobs:item_coin_bronze=64 Can be traded for 1 Silver coin
 lore.item.tolkienmobs:item_coin_silver=64 Can be traded for 1 Gold coin
 lore.item.tolkienmobs:item_coin_gold=64 Can be traded for 1 Mithril coin
 lore.item.tolkienmobs:item_coin_mithril=Very rare and valuable coin
-lore.item.tolkienmobs:whip_fire=Primary weapon of the fearsome 
+lore.item.tolkienmobs:whip_fire=Primary weapon of the fearsome Balrog
 lore.item.tolkienmobs:club_wooden=Deadly weapon favoured by Trolls
 lore.item.tolkienmobs:sword_witchking=Forged in fear, the powerful weapon of the Witch-king
 lore.item.tolkienmobs:item_golem_stone=Remnant of an ancient Golem
@@ -428,7 +428,7 @@ itemGroup.tolkienmobs:signs=TolkienTweaks Signs
 generator.Arda=Middle-earth
 generator.Arda.info=Adventure in the lands of Middle-earth
 generator.SingleArdaBiome=Arda - Single Biome
-generator.SingleArdaBiome.info=Adventure on a smaller scale
+generator.SingleArdaBiome.info=Used to test a single biome in Dev
 
 
 

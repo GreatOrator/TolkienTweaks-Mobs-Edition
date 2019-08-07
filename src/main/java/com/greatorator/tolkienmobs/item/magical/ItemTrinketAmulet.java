@@ -113,8 +113,8 @@ public class ItemTrinketAmulet extends ItemBCore implements IBauble {
         return Potion.REGISTRY.getObject(new ResourceLocation(effect));
     }
 
-    @Optional.Method(modid = "baubles")
     @Override
+    @Optional.Method(modid = "baubles")
     public BaubleType getBaubleType(ItemStack itemstack) {
         return BaubleType.AMULET;
     }

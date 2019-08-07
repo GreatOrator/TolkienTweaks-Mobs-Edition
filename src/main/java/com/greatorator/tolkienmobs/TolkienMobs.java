@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs;
 
 import com.brandon3055.brandonscore.BrandonsCore;
 import com.brandon3055.brandonscore.registry.ModFeatureParser;
-import com.brandon3055.tolkientweaks.TolkienTweaks;
 import com.greatorator.tolkienmobs.client.TTMobsTab;
 import com.greatorator.tolkienmobs.handler.TTMGUIHandler;
 import com.greatorator.tolkienmobs.init.PotionInit;
@@ -41,7 +40,7 @@ public class TolkienMobs {
     public static final String VERSION = "${mod_version}"; //This will now be set automatically by the build.gradle when the jar is built.
     public static final String CLIENT_PROXY = "com.greatorator.tolkienmobs.proxy.ClientProxy";
     public static final String COMMON_PROXY = "com.greatorator.tolkienmobs.proxy.CommonProxy";
-    public static final String DEPENDENCIES = "required-after:brandonscore@[" + BrandonsCore.VERSION + ",);required-after:tolkientweaks@[" + TolkienTweaks.VERSION + ",);"; //Will depend on the version of BC that the project is built against
+    public static final String DEPENDENCIES = "required-after:brandonscore@[" + BrandonsCore.VERSION + ",);"; //Will depend on the version of BC that the project is built against
     public static final String GUI_FACTORY = "com.greatorator.tolkienmobs.client.TTMGuiFactory"; //Using BC's config system this is all you need to add an in game mod config gui.
 
     @Instance
