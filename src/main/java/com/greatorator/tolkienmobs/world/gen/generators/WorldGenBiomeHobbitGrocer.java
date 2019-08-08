@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.gen.generators;
 
+import com.brandon3055.tolkientweaks.TTFeatures;
 import com.greatorator.tolkienmobs.block.BlockSigns;
 import com.greatorator.tolkienmobs.block.itemblock.BlockTMFireplace;
 import com.greatorator.tolkienmobs.handler.interfaces.ITTMStructure;
@@ -16,6 +17,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.fml.common.Loader;
 
 import java.util.Random;
 
@@ -439,7 +441,9 @@ public class WorldGenBiomeHobbitGrocer extends WorldGenerator implements ITTMStr
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 7, j + 6, k + 7), Blocks.LEAVES.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false)));
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 7, j + 6, k + 8), Blocks.TALLGRASS.getDefaultState().withProperty(BlockTallGrass.TYPE, BlockTallGrass.EnumType.GRASS));
 
-        //this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 7, j + 6, k + 9), TTFeatures.smoker.getDefaultState());
+        if(Loader.isModLoaded("tolkientweaks")) {
+            this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 7, j + 6, k + 9), TTFeatures.smoker.getDefaultState());
+        }
 
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 7, j + 8, k + 9), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 8, j + 1, k + 3), Blocks.GRASS.getDefaultState());
