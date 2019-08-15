@@ -56,6 +56,9 @@ public class SoundInit {
 
     /** Dwarf */
     public static final SoundEvent soundIdleDwarf = create("mob.dwarf.idle");
+    public static final SoundEvent soundAngryDwarf = create("mob.dwarf.angry");
+    public static final SoundEvent soundHurtDwarf = create("mob.dwarf.hurt");
+    public static final SoundEvent soundDeathDwarf = create("mob.dwarf.death");
 
     /** Midge Fly */
     public static final SoundEvent soundIdleMidgeFly = create("mob.midgefly.idle");

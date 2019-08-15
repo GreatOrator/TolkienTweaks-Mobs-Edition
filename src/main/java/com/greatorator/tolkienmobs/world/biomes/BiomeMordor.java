@@ -73,6 +73,9 @@ public class BiomeMordor extends Biome {
                 if (TTMConfig.enableCaveTrolls) {
                     this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityTMTroll.class, 8, 1, 1));
                 }
+                if (TTMConfig.enableTMDuergar) {
+                    this.spawnableMonsterList.add(new Biome.SpawnListEntry(EntityTMDuergar.class, 8, 1, 1));
+                }
             }
             if (TTMConfig.enableAmbient) {
                 if (TTMConfig.enableMidgeFlies) {

@@ -77,6 +77,9 @@ public class EntityInit
             if (TTMConfig.enableSwampHag) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "swamp_hag"), EntityTMSwampHag.class, "swamp_hag", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0xE6BEFF);
             }
+            if (TTMConfig.enableTMDuergar) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmduergar"), EntityTMDuergar.class, "tmduergar", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0x988F33);
+            }
         }
 
         if (TTMConfig.enableBoss) {
@@ -219,6 +222,9 @@ public class EntityInit
                 }
                 if (TTMConfig.enableSwampHag) {
                     EntityRegistry.addSpawn(EntityTMSwampHag.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.SWAMPLAND);
+                }
+                if (TTMConfig.enableTMDuergar) {
+                    EntityRegistry.addSpawn(EntityTMDuergar.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
                 }
             }
 

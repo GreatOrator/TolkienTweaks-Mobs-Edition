@@ -129,6 +129,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableElementalGolem = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableSwampHag", comment = "Setting this to false will disable the Swamp Hag", requiresMCRestart = true, requiresSync = true)
     public static boolean enableSwampHag = true;
+    @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableTMDuergar", comment = "Setting this to false will disable the Dark Dwarves", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableTMDuergar = true;
 
     /** Boss mobs - Individual*/
     @ModConfigProperty(category = "Boss Mobs", name = "enableBalrog", comment = "Setting this to false will disable the Balrog", requiresMCRestart = true, requiresSync = true)

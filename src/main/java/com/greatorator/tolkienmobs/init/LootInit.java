@@ -17,6 +17,7 @@ public class LootInit {
     /** Hostile */
     public static final ResourceLocation BWIGHT = register("entities/barrowwight");
     public static final ResourceLocation GOBLIN = register("entities/goblin");
+    public static final ResourceLocation TMDUERGAR = register("entities/tmduergar");
     public static final ResourceLocation HURON = register("entities/huron");
     public static final ResourceLocation MSPIDER = register("entities/mirkwoodspider");
     public static final ResourceLocation MORC = register("entities/mordororc");

@@ -149,6 +149,24 @@
       "tolkienmobs:mob/dwarf/dwarf_say4"
     ]
   },
+  "mob.dwarf.angry": {
+    "category": "neutral",
+    "sounds": [
+      "tolkienmobs:mob/dwarf/dwarf_angry"
+    ]
+  },
+  "mob.dwarf.hurt": {
+    "category": "neutral",
+    "sounds": [
+      "tolkienmobs:mob/dwarf/dwarf_hurt"
+    ]
+  },
+  "mob.dwarf.death": {
+    "category": "neutral",
+    "sounds": [
+      "tolkienmobs:mob/dwarf/dwarf_death"
+    ]
+  },
   "mob.goblin.idle":
   {
     "category": "neutral",
