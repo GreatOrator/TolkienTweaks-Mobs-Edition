@@ -110,6 +110,7 @@ public class CraftingInit {
         OreDictionary.registerOre("itemToken", new ItemStack(TTMFeatures.ITEM_FACTIONTOKEN));
         OreDictionary.registerOre("itemToken", new ItemStack(TTMFeatures.ITEM_DARKSIGIL));
         OreDictionary.registerOre("itemToken", new ItemStack(TTMFeatures.ITEM_CAVECOMPLETE));
+        OreDictionary.registerOre("itemToken", new ItemStack(TTMFeatures.ITEM_WATCHERCOMPLETE));
     }
 
     private static void addOreDictRecipe(){

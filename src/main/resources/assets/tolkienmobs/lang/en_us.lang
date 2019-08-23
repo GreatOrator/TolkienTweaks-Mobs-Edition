@@ -18,6 +18,7 @@ item.tolkienmobs:item_darksaddle.name=§9Black Steed's Bridle
 item.tolkienmobs:item_artifact.name=§6Lost Artifact
 item.tolkienmobs:item_blankpaper.name=§5Rubbing Paper
 item.tolkienmobs:item_cavecomplete.name=§3Cave completion Token
+item.tolkienmobs:item_watchercomplete.name=§3Watcher Token
 item.tolkienmobs:item_fancyarmor.name=§5Cromhes’ Armour (Repaired)
 item.tolkienmobs:item_fancycloth.name=§2Fine Cloth
 item.tolkienmobs:item_fancyhammer.name=§9Thrór's Hammer
@@ -72,6 +73,7 @@ lore.item.tolkienmobs:item_wornpick=Item Thonrum wanted repaired
 lore.item.tolkienmobs:item_wornhelm=Item Thonrum wanted repaired
 lore.item.tolkienmobs:item_wornshield=Item Thonrum wanted repaired
 lore.item.tolkienmobs:item_cavecomplete=Proof of killing the troll
+lore.item.tolkienmobs:item_watchercomplete=Proof of defeating the Watcher
 lore.item.tolkienmobs:item_wornsword=Item stolen from Cromhes while he was held captive
 lore.item.tolkienmobs:item_wornshield2=Item stolen from Cromhes while he was held captive
 lore.item.tolkienmobs:item_wornarmor=Item stolen from Cromhes while he was held captive
@@ -304,6 +306,10 @@ tile.tolkienmobs:ore_ammolite.name=Ammolite Ore
 tile.tolkienmobs:ore_nether_ammolite.name=Firey Ammolite Ore
 tile.tolkienmobs:ore_ender_ammolite.name=Ender Ammolite Ore
 
+tile.tolkienmobs:slab_mallorn.name=Mallorn Slab
+tile.tolkienmobs:slab_mirkwood.name=Mirkwood Slab
+tile.tolkienmobs:slab_culumalda.name=Culumalda Slab
+tile.tolkienmobs:slab_lebethron.name=Lebethron Slab
 //Trees
 tile.tolkienmobs:planks_mallorn.name=Mallorn Planks
 tile.tolkienmobs:slab_mallorn=Mallorn Slab

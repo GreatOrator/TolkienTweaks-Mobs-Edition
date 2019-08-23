@@ -44,6 +44,7 @@
       "item_artifact":    {"textures": {"layer0": "tolkienmobs:items/item_artifact"}},
       "item_blankpaper":    {"textures": {"layer0": "tolkienmobs:items/item_blankpaper"}},
       "item_cavecomplete":    {"textures": {"layer0": "tolkienmobs:items/item_cavecomplete"}},
+      "item_watchercomplete":    {"textures": {"layer0": "tolkienmobs:items/item_watchercomplete"}},
       "item_fancyarmor":    {"textures": {"layer0": "tolkienmobs:items/item_fancyarmor"}},
       "item_fancycloth":    {"textures": {"layer0": "tolkienmobs:items/item_fancycloth"}},
       "item_fancyhammer":    {"textures": {"layer0": "tolkienmobs:items/item_fancyhammer"}},

@@ -93,6 +93,8 @@ public class TTMFeatures implements IModFeatures {
     public static Item ITEM_DARKSADDLE = new TTMLore(1);
     @ModFeature(name = "item_cavecomplete", stateOverride = "simple_items#type=item_cavecomplete", cTab = 4)
     public static Item ITEM_CAVECOMPLETE = new TTMLore(3);
+    @ModFeature(name = "item_watchercomplete", stateOverride = "simple_items#type=item_watchercomplete", cTab = 4)
+    public static Item ITEM_WATCHERCOMPLETE = new TTMLore(3);
     @ModFeature(name = "item_artifact", stateOverride = "simple_items#type=item_artifact", cTab = 4)
     public static Item ITEM_ARTIFACT = new TTMLore(1).setEffectOverride(true);
     @ModFeature(name = "item_blankpaper", stateOverride = "simple_items#type=item_blankpaper", cTab = 4)

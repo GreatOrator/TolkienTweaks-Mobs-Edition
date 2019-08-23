@@ -97,7 +97,10 @@ public class BiomeHithaeglir extends Biome implements IFogyBiome {
 
     @Override
     public float getFogDensity(EntityPlayer player) {
-        return 0.1F;
+        if(player.world.canSeeSky(new BlockPos(player))) {
+            return 0.1F;
+        }
+        return 0F;
     }
 
     @SideOnly(Side.CLIENT)
