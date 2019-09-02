@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.handler.interfaces.IModEntity;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.utils.TTMRand;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -11,6 +12,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -21,6 +23,8 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,6 +41,7 @@ public class EntityTMHerds extends EntityAnimal implements IModEntity
 
     private int rndMax;
     private int rndMin;
+    protected Block spawnableBlock = Blocks.GRASS;
 
     protected boolean isHitWithoutResistance = false ;
 
@@ -253,17 +258,14 @@ public class EntityTMHerds extends EntityAnimal implements IModEntity
     }
 
     @Override
-    public boolean getCanSpawnHere() {
-        boolean monsterSpawn = false;
-
+    public boolean getCanSpawnHere()
+    {
+        int i = MathHelper.floor(this.posX);
+        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+        int k = MathHelper.floor(this.posZ);
         int willSpawn = this.spawnChance();
-
-        if (this.isValidLightLevel() && super.getCanSpawnHere() && this.posY > 36.0D) {
-            if (willSpawn <= 10) {
-                monsterSpawn = true;
-            }
-        }
-        return super.getCanSpawnHere() && monsterSpawn;
+        BlockPos blockpos = new BlockPos(i, j, k);
+        return this.world.getBlockState(blockpos.down()).getBlock() == this.spawnableBlock && this.world.getLight(blockpos) > 8 && willSpawn <= 10 && super.getCanSpawnHere();
     }
 
     protected int spawnChance()

@@ -1,9 +1,12 @@
 package com.greatorator.tolkienmobs.entity.ambient;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
+import com.greatorator.tolkienmobs.utils.TTMRand;
 import com.greatorator.tolkienmobs.world.biomes.BiomeFirien;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
@@ -11,6 +14,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.passive.IAnimals;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,6 +27,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
@@ -33,6 +38,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 public class EntityTMSquirrel extends EntityCreature implements IAnimals {
+    protected Block spawnableBlock = Blocks.LEAVES;
     private static final DataParameter<Integer> SOSQUIRREL_TYPE = EntityDataManager.<Integer>createKey(EntityTMSquirrel.class, DataSerializers.VARINT);
 
     public EntityTMSquirrel(World worldIn)
@@ -281,20 +287,19 @@ public class EntityTMSquirrel extends EntityCreature implements IAnimals {
     }
 
     @Override
-    public boolean getCanSpawnHere() {
-        boolean nearWater = false;
-        int i = (int) Math.floor(posX);
-        int j = (int) Math.floor(posY);
-        int k = (int) Math.floor(posZ);
-        for (int i1 = i - 16; i1 <= i + 16; i1++) {
-            for (int j1 = j - 6; j1 <= j + 6; j1++) {
-                for (int k1 = k - 16; k1 <= k + 16; k1++) {
-                    BlockPos pos = new BlockPos(i1, j1, k1);
-                    if (world.getBlockState(pos).getMaterial() == Material.LEAVES && this.world.canSeeSky(new BlockPos(this)) && this.posY > 36.0D && this.world.getLight(new BlockPos(this)) > 7)
-                        nearWater = true;
-                }
-            }
-        }
-        return nearWater;
+    public boolean getCanSpawnHere()
+    {
+        int i = MathHelper.floor(this.posX);
+        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+        int k = MathHelper.floor(this.posZ);
+        int willSpawn = this.spawnChance();
+        BlockPos blockpos = new BlockPos(i, j, k);
+        return this.world.getBlockState(blockpos.down()).getBlock() == this.spawnableBlock && this.world.getLight(blockpos) > 8 && willSpawn <= 10 && super.getCanSpawnHere();
+    }
+
+    protected int spawnChance()
+    {
+        int i = TTMRand.getRandomInteger(TTMConfig.mobSpawnChance, 1);
+        return i;
     }
 }

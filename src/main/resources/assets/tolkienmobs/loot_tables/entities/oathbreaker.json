@@ -69,7 +69,7 @@
                 {
                     "type": "item",
                     "weight": 1,
-                    "name": "tolkienmobs:darksigil",
+                    "name": "tolkienmobs:item_darksigil",
                     "conditions": [
                         {
                             "condition": "killed_by_player"

@@ -3,7 +3,6 @@ package com.greatorator.tolkienmobs.entity.ambient;
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.utils.TTMRand;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.IEntityLivingData;
@@ -19,7 +18,9 @@ import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -162,25 +163,20 @@ public class EntityTMRat extends EntityCreature {
 
     @Override
     public boolean getCanSpawnHere() {
-        boolean nearWater = false;
-        int willSpawn = this.spawnChance();
-        int i = (int) Math.floor(posX);
-        int j = (int) Math.floor(posY);
-        int k = (int) Math.floor(posZ);
+        int i = MathHelper.floor(this.posX);
+        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+        int k = MathHelper.floor(this.posZ);
+        boolean monsterSpawn = false;
 
-        for (int i1 = i - 16; i1 <= i + 16; i1++) {
-            for (int j1 = j - 6; j1 <= j + 6; j1++) {
-                for (int k1 = k - 16; k1 <= k + 16; k1++) {
-                    BlockPos pos = new BlockPos(i1, j1, k1);
-                    if (world.getBlockState(pos).getMaterial() == Material.PLANTS && !this.world.canSeeSky(new BlockPos(this)) && this.posY < 36.0D && this.world.getLight(new BlockPos(this)) < 8) {
-                        if (willSpawn <= 10) {
-                            nearWater = true;
-                        }
-                    }
-                }
+        int willSpawn = this.spawnChance();
+        BlockPos blockpos = new BlockPos(i, j, k);
+
+        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getLight(blockpos) < 8 && super.getCanSpawnHere() && !this.world.canSeeSky(new BlockPos(this)) && this.posY < 64.0D) {
+            if (willSpawn <= 10) {
+                monsterSpawn = true;
             }
         }
-        return super.getCanSpawnHere() && nearWater;
+        return super.getCanSpawnHere() && monsterSpawn;
     }
 
     private int spawnChance()

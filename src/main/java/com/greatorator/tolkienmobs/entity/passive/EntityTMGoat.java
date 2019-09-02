@@ -18,6 +18,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.datafix.DataFixer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
@@ -136,17 +138,14 @@ public class EntityTMGoat extends AbstractChestHorse {
     }
 
     @Override
-    public boolean getCanSpawnHere() {
-        boolean monsterSpawn = false;
-
+    public boolean getCanSpawnHere()
+    {
+        int i = MathHelper.floor(this.posX);
+        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+        int k = MathHelper.floor(this.posZ);
         int willSpawn = this.spawnChance();
-
-        if (this.isValidLightLevel() && super.getCanSpawnHere() && this.posY > 36.0D) {
-            if (willSpawn <= 10) {
-                monsterSpawn = true;
-            }
-        }
-        return super.getCanSpawnHere() && monsterSpawn;
+        BlockPos blockpos = new BlockPos(i, j, k);
+        return this.world.getBlockState(blockpos.down()).getBlock() == this.spawnableBlock && this.world.getLight(blockpos) > 8 && willSpawn <= 10 && super.getCanSpawnHere();
     }
 
     private int spawnChance()

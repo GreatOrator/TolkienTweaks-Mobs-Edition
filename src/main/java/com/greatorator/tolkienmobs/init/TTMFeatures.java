@@ -173,6 +173,8 @@ public class TTMFeatures implements IModFeatures {
     public static Item ITEM_KEYFRAGMENT = new TTMLore(2);
     @ModFeature(name = "item_oilykey", stateOverride = "simple_items#type=item_oilykey", cTab = 4)
     public static Item ITEM_OILYKEY = new TTMLore(1);
+    @ModFeature(name = "item_mithrilnugget", stateOverride = "simple_items#type=item_mithrilnugget", cTab = 4)
+    public static Item ITEM_MITHRILNUGGET = new TTMLore(1);
     /* End Region */
 
     /* Tools */

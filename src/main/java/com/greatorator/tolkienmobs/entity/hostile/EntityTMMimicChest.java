@@ -26,6 +26,8 @@ import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -52,10 +54,21 @@ public class EntityTMMimicChest extends EntityTMHostiles {
     }
 
     @Override
-    public boolean getCanSpawnHere()
-    {
+    public boolean getCanSpawnHere() {
+        int i = MathHelper.floor(this.posX);
+        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+        int k = MathHelper.floor(this.posZ);
+        boolean monsterSpawn = false;
+
         int willSpawn = this.spawnChance();
-        return super.getCanSpawnHere() && willSpawn <= 10 && !this.world.canSeeSky(new BlockPos(this)) && this.posY < 64.0D;
+        BlockPos blockpos = new BlockPos(i, j, k);
+
+        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getLight(blockpos) < 8 && super.getCanSpawnHere() && !this.world.canSeeSky(new BlockPos(this)) && this.posY < 64.0D) {
+            if (willSpawn <= 10) {
+                monsterSpawn = true;
+            }
+        }
+        return super.getCanSpawnHere() && monsterSpawn;
     }
 
     public void setRevengeTarget(@Nullable EntityLivingBase livingBase)

@@ -14,6 +14,7 @@ import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.utils.TTMRand;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityFlying;
@@ -26,6 +27,7 @@ import net.minecraft.entity.passive.EntityParrot;
 import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
@@ -41,7 +43,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.EnumDifficulty;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
@@ -52,6 +54,7 @@ import java.util.UUID;
 /** Borrowed from Jabelar https:/**github.com/jabelar */
 public class EntityTMBirds extends EntityFlying implements IModEntity
 {
+    protected Block spawnableBlock = Blocks.LEAVES;
     protected static final DataParameter<Float> SCALE_FACTOR = EntityDataManager.<Float>createKey(EntityTMBirds.class, DataSerializers.FLOAT);
     protected static final DataParameter<Integer> STATE = EntityDataManager.<Integer>createKey(EntityTMBirds.class, DataSerializers.VARINT);
     protected static final DataParameter<Boolean> SOAR_CLOCKWISE = EntityDataManager.<Boolean>createKey(EntityTMBirds.class, DataSerializers.BOOLEAN);
@@ -653,18 +656,14 @@ public class EntityTMBirds extends EntityFlying implements IModEntity
         setLegBandColor(EnumDyeColor.byDyeDamage(compound.getInteger("legBandColor")));
     }
 
-    @Override
-    public boolean getCanSpawnHere() {
-        boolean monsterSpawn = false;
-
+    public boolean getCanSpawnHere()
+    {
+        int i = MathHelper.floor(this.posX);
+        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+        int k = MathHelper.floor(this.posZ);
         int willSpawn = this.spawnChance();
-
-        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere() && this.posY > 36.0D) {
-            if (willSpawn <= 10) {
-                monsterSpawn = true;
-            }
-        }
-        return super.getCanSpawnHere() && monsterSpawn;
+        BlockPos blockpos = new BlockPos(i, j, k);
+        return this.world.getBlockState(blockpos.down()).getBlock() == this.spawnableBlock && this.world.getLight(blockpos) > 8 && willSpawn <= 10 && super.getCanSpawnHere();
     }
 
     protected int spawnChance()

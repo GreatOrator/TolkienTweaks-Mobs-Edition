@@ -2,9 +2,7 @@ package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
-import com.greatorator.tolkienmobs.entity.hostile.EntityTMMordorOrc;
-import com.greatorator.tolkienmobs.entity.hostile.EntityTMUrukHai;
-import com.greatorator.tolkienmobs.entity.hostile.EntityTMWarg;
+import com.greatorator.tolkienmobs.entity.hostile.*;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomFlowers;
@@ -65,6 +63,9 @@ public class BiomeDagorlad extends Biome {
 
         if (TTMConfig.enableNaturalSpawn) {
             if (TTMConfig.enableMonster) {
+                if (TTMConfig.enableBrigand) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMBrigand.class, 8, 1, 3));
+                }
                 if (TTMConfig.enableUrukhai) {
                     this.spawnableMonsterList.add(new SpawnListEntry(EntityTMUrukHai.class, 5, 1, 1));
                 }

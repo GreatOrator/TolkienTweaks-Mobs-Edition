@@ -80,6 +80,9 @@ public class EntityInit
             if (TTMConfig.enableTMDuergar) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmduergar"), EntityTMDuergar.class, "tmduergar", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0x988F33);
             }
+            if (TTMConfig.enableHaradrim) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmharadrim"), EntityTMHaradrim.class, "tmharadrim", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0x9A8FAB);
+            }
         }
 
         if (TTMConfig.enableBoss) {
@@ -206,7 +209,7 @@ public class EntityInit
                     EntityRegistry.addSpawn(EntityTMFellSpirit.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.SWAMPLAND);
                 }
                 if (TTMConfig.enableOathbreaker) {
-                    EntityRegistry.addSpawn(EntityTMOathbreaker.class, 12, 1, 1, EnumCreatureType.AMBIENT, Biomes.COLD_TAIGA);
+                    EntityRegistry.addSpawn(EntityTMOathbreaker.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.COLD_TAIGA);
                 }
                 if (TTMConfig.enableMinotaur) {
                     EntityRegistry.addSpawn(EntityTMMinotaur.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
@@ -226,28 +229,31 @@ public class EntityInit
                 if (TTMConfig.enableTMDuergar) {
                     EntityRegistry.addSpawn(EntityTMDuergar.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
                 }
+                if (TTMConfig.enableHaradrim) {
+                    EntityRegistry.addSpawn(EntityTMHaradrim.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.DESERT_HILLS,Biomes.DESERT);
+                }
             }
 
             if (TTMConfig.enablePassive) {
                 /* Passive */
                 if (TTMConfig.enableAuroch) {
-                    EntityRegistry.addSpawn(EntityTMAuroch.class, 12, 2, 4, EnumCreatureType.CREATURE, Biomes.PLAINS);
+                    EntityRegistry.addSpawn(EntityTMAuroch.class, 12, 2, 4, EnumCreatureType.MONSTER, Biomes.PLAINS);
                 }
                 if (TTMConfig.enableGoats) {
-                    EntityRegistry.addSpawn(EntityTMGoat.class, 12, 2, 4, EnumCreatureType.CREATURE, Biomes.EXTREME_HILLS);
+                    EntityRegistry.addSpawn(EntityTMGoat.class, 12, 2, 4, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
                 }
                 if (TTMConfig.enableMumakil) {
-                    EntityRegistry.addSpawn(EntityTMMumakil.class, 12, 1, 1, EnumCreatureType.CREATURE, Biomes.DESERT);
+                    EntityRegistry.addSpawn(EntityTMMumakil.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.DESERT);
                 }
             }
 
             if (TTMConfig.enableAmbient) {
                 /* Ambient */
                 if (TTMConfig.enableThrush) {
-                    EntityRegistry.addSpawn(EntityTMThrush.class, 12, 1, 1, EnumCreatureType.CREATURE, Biomes.COLD_TAIGA);
+                    EntityRegistry.addSpawn(EntityTMThrush.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.COLD_TAIGA);
                 }
                 if (TTMConfig.enableSquirrels) {
-                    EntityRegistry.addSpawn(EntityTMSquirrel.class, 12, 1, 1, EnumCreatureType.CREATURE, Biomes.FOREST);
+                    EntityRegistry.addSpawn(EntityTMSquirrel.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.FOREST);
                 }
                 if (TTMConfig.enableMidgeFlies) {
                     EntityRegistry.addSpawn(EntityTMMidgeFly.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.SWAMPLAND);
@@ -256,10 +262,10 @@ public class EntityInit
                     EntityRegistry.addSpawn(EntityTMCrebain.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
                 }
                 if (TTMConfig.enableFrogs) {
-                    EntityRegistry.addSpawn(EntityTMToad.class, 12, 1, 1, EnumCreatureType.WATER_CREATURE, Biomes.PLAINS, Biomes.SWAMPLAND);
+                    EntityRegistry.addSpawn(EntityTMToad.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.PLAINS, Biomes.SWAMPLAND);
                 }
                 if (TTMConfig.enableRats) {
-                    EntityRegistry.addSpawn(EntityTMRat.class, 12, 1, 1, EnumCreatureType.AMBIENT, Biomes.ROOFED_FOREST);
+                    EntityRegistry.addSpawn(EntityTMRat.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.ROOFED_FOREST);
                 }
             }
         }

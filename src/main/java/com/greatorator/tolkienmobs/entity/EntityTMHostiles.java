@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMAttack;
+import com.greatorator.tolkienmobs.entity.entityai.EntityAITTMSwitch;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMDwarf;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMElves;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
@@ -13,6 +14,10 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityTippedArrow;
+import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,6 +31,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -44,6 +50,7 @@ public abstract class EntityTMHostiles extends EntityMob {
     private int ttmDuration;
     private int rndMax;
     private int rndMin;
+    private boolean isDualWield;
     private boolean burnState;
     private boolean ttmAttack;
     private boolean groupAttack;
@@ -84,6 +91,13 @@ public abstract class EntityTMHostiles extends EntityMob {
         this.tasks.addTask(5, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(6, new EntityAILookIdle(this));
         this.tasks.addTask(7, new EntityAIWander(this, 0.55D));
+
+        if(isDualWield) {
+            this.tasks.addTask(4, new EntityAITTMSwitch(this, 1.35D, 20, 15.0F));
+            this.tasks.addTask(5, new EntityTMHostiles.EntityAITM2Handed(this, 5D, 6D, new ItemStack(Items.IRON_SWORD), new ItemStack(Items.BOW)));
+        }
+
+
         this.applyEntityAI();
     }
 
@@ -140,7 +154,7 @@ public abstract class EntityTMHostiles extends EntityMob {
 
     public void setCombatTask()
     {
-        if (this.world != null && !this.world.isRemote)
+        if (this.world != null && !this.world.isRemote && !isDualWield)
         {
             this.tasks.removeTask(this.aiAttackOnCollide);
             ItemStack itemstack = this.getHeldItemMainhand();
@@ -287,6 +301,34 @@ public abstract class EntityTMHostiles extends EntityMob {
             ientitylivingdata = new EntityTMHostiles.MobTypeData(i);
         }
 
+        if (isDualWield){
+            this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).applyModifier(new AttributeModifier("Random spawn bonus", this.rand.nextGaussian() * 0.05D, 1));
+
+            if (this.rand.nextFloat() < 0.05F)
+            {
+                this.setLeftHanded(true);
+            }
+            else
+            {
+                this.setLeftHanded(false);
+            }
+
+            this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * difficulty.getClampedAdditionalDifficulty());
+
+            if (this.getItemStackFromSlot(EntityEquipmentSlot.HEAD).isEmpty())
+            {
+                this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(Items.LEATHER_HELMET));
+            }
+
+            if (this.getItemStackFromSlot(EntityEquipmentSlot.MAINHAND).isEmpty())
+            {
+                this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(Items.BOW));
+            }
+
+            return livingdata;
+
+        }
+
         this.setMobType(i);
         this.setCombatTask();
         return ientitylivingdata;
@@ -387,6 +429,82 @@ public abstract class EntityTMHostiles extends EntityMob {
         }
     }
 
+    public class EntityAITM2Handed extends EntityAIBase
+    {
+        EntityTMHostiles mob;
+        EntityLivingBase target;
+        double minDistance;
+        double maxDistance;
+        ItemStack weaponOne;
+        ItemStack weaponTwo;
+
+        public EntityAITM2Handed(EntityTMHostiles entitymob, double minDistance, double maxDistance, ItemStack weaponOne, ItemStack weaponTwo) {
+            mob = entitymob;
+            this.minDistance = minDistance;
+            this.maxDistance = maxDistance;
+            this.weaponOne = weaponOne;
+            this.weaponTwo = weaponTwo;
+        }
+
+        /**
+         * Returns whether the EntityAIBase should begin execution.
+         */
+        public boolean shouldExecute()
+        {
+            this.target = this.mob.getAttackTarget();
+
+            if (target == null)
+            {
+                return false;
+            }
+            else if (!target.isEntityAlive())
+            {
+                return false;
+            }
+            else
+            {
+                if(((this.mob.getDistance(this.target) < minDistance && this.mob.getHeldItemMainhand() != weaponOne) ||
+                        (this.mob.getDistance(this.target) > maxDistance && this.mob.getHeldItemMainhand() != weaponTwo)) && this.mob.canEntityBeSeen(this.target))
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        /**
+         * Returns whether an in-progress EntityAIBase should continue executing
+         */
+        public boolean continueExecuting()
+        {
+            return shouldExecute();
+        }
+
+        /**
+         * Resets the task
+         */
+        public void resetTask()
+        {
+            target = null;
+        }
+
+        /**
+         * Updates the task
+         */
+        public void updateTask()
+        {
+            if(this.mob.getDistance(this.target) < minDistance)
+            {
+                this.mob.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, weaponOne);
+            }
+            else if(this.mob.getDistance(this.target) > maxDistance)
+            {
+                this.mob.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, weaponTwo);
+            }
+        }
+    }
+
     @Override
     public void writeEntityToNBT(NBTTagCompound compound) {
         super.writeEntityToNBT(compound);
@@ -441,10 +559,13 @@ public abstract class EntityTMHostiles extends EntityMob {
     @Override
     public boolean getCanSpawnHere() {
         boolean monsterSpawn = false;
-
+        int i = MathHelper.floor(this.posX);
+        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+        int k = MathHelper.floor(this.posZ);
         int willSpawn = this.spawnChance();
+        BlockPos blockpos = new BlockPos(i, j, k);
 
-        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere() && this.posY > 36.0D) {
+        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getLight(blockpos) < 8 && super.getCanSpawnHere() && this.posY > 36.0D) {
             if (willSpawn <= 10) {
                 monsterSpawn = true;
             }
@@ -511,6 +632,10 @@ public abstract class EntityTMHostiles extends EntityMob {
         this.rndMax = rndMax;
     }
 
+    public void setDualWield(boolean dualWield) {
+        this.isDualWield = dualWield;
+    }
+
     public abstract double getAttackDamage();{
     }
 
@@ -518,5 +643,37 @@ public abstract class EntityTMHostiles extends EntityMob {
     }
 
     public abstract double getHealthLevel();{
+    }
+    public void attackEntityWithRangedAttack(EntityLivingBase target, float distanceFactor)
+    {
+        EntityArrow entityarrow = this.getArrow(distanceFactor);
+        if (this.getHeldItemMainhand().getItem() instanceof net.minecraft.item.ItemBow)
+            entityarrow = ((net.minecraft.item.ItemBow) this.getHeldItemMainhand().getItem()).customizeArrow(entityarrow);
+        double d0 = target.posX - this.posX;
+        double d1 = target.getEntityBoundingBox().minY + (double)(target.height / 3.0F) - entityarrow.posY;
+        double d2 = target.posZ - this.posZ;
+        double d3 = (double)MathHelper.sqrt(d0 * d0 + d2 * d2);
+        entityarrow.shoot(d0, d1 + d3 * 0.20000000298023224D, d2, 1.6F, (float)(14 - this.world.getDifficulty().getDifficultyId() * 4));
+        this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
+        this.world.spawnEntity(entityarrow);
+    }
+
+    protected EntityArrow getArrow(float p_190726_1_)
+    {
+        EntityTippedArrow entitytippedarrow = new EntityTippedArrow(this.world, this);
+        entitytippedarrow.setEnchantmentEffectsFromEntity(this, p_190726_1_);
+        return entitytippedarrow;
+    }
+
+    public ItemStack getBackItem()
+    {
+        if(this.getHeldItemMainhand().getItem() == Items.IRON_SWORD)
+        {
+            return new ItemStack(Items.BOW);
+        }
+        else
+        {
+            return new ItemStack(Items.IRON_SWORD);
+        }
     }
 }

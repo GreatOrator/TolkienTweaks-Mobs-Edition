@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.world.biomes;
 
 import com.greatorator.tolkienmobs.TTMConfig;
-import com.greatorator.tolkienmobs.entity.hostile.EntityTMBrigand;
+import com.greatorator.tolkienmobs.entity.hostile.EntityTMHaradrim;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMMumakil;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.init.Blocks;
@@ -51,8 +51,8 @@ public class BiomeHaradwaith extends Biome {
                 }
             }
             if (TTMConfig.enableMonster) {
-                if (TTMConfig.enableBrigand) {
-                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMBrigand.class, 8, 1, 3));
+                if (TTMConfig.enableHaradrim) {
+                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMHaradrim.class, 8, 1, 3));
                 }
             }
         }

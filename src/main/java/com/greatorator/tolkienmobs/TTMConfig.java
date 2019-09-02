@@ -131,6 +131,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableSwampHag = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableTMDuergar", comment = "Setting this to false will disable the Dark Dwarves", requiresMCRestart = true, requiresSync = true)
     public static boolean enableTMDuergar = true;
+    @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableHaradrim", comment = "Setting this to false will disable the Men of Harad", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableHaradrim = true;
 
     /** Boss mobs - Individual*/
     @ModConfigProperty(category = "Boss Mobs", name = "enableBalrog", comment = "Setting this to false will disable the Balrog", requiresMCRestart = true, requiresSync = true)
