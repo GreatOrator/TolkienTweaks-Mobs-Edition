@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.client.render.entity.monster;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
-import com.greatorator.tolkienmobs.client.render.model.monster.ModelBrigand;
+import com.greatorator.tolkienmobs.client.render.model.monster.ModelTMHaradrim;
 import com.greatorator.tolkienmobs.entity.hostile.EntityTMHaradrim;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
@@ -31,7 +31,7 @@ public class RenderTMHaradrim extends RenderLiving<EntityTMHaradrim> {
     public float scale;
 
     public RenderTMHaradrim(RenderManager rendermanagerIn) {
-        super(rendermanagerIn, new ModelBrigand(), 0.5F);
+        super(rendermanagerIn, new ModelTMHaradrim(), 0.5F);
         this.addLayer(new LayerArmed(this, 0.0825F, 0.0825F, -0.625F, 1F));
     }
 

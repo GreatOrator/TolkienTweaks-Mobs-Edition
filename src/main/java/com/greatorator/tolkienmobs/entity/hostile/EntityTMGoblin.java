@@ -3,7 +3,6 @@ package com.greatorator.tolkienmobs.entity.hostile;
 import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
-import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -16,7 +15,7 @@ public class EntityTMGoblin extends EntityTMHostiles {
     public EntityTMGoblin(World worldIn) {
         super(worldIn);
         this.setSize(0.9F, 0.8F);
-        this.setWeaponType(TTMFeatures.SWORD_MORGULIRON);
+        this.setRandomWeapon(true);
         this.setLootTable(LootInit.GOBLIN);
         this.setMobMentality(true, SoundInit.soundAngryGoblin);
         this.setRndMinMax(1,5);

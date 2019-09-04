@@ -4,11 +4,11 @@ import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -27,7 +27,7 @@ public class EntityTMHaradrim extends EntityTMHostiles {
     public EntityTMHaradrim(World worldIn) {
         super(worldIn);
         this.setSize(1.0F, 2.0F);
-        this.setWeaponType(Items.IRON_SWORD);
+        this.setRandomWeapon(true);
         this.setLootTable(LootInit.BRIGAND);
         this.setMob(this);
         this.setMobMentality(true, SoundInit.soundAngryGoblin);
@@ -36,23 +36,25 @@ public class EntityTMHaradrim extends EntityTMHostiles {
 
     @Override
     public boolean attackEntityFrom(DamageSource damageSource, float damage) {
-        EntityPlayer player = (EntityPlayer)damageSource.getTrueSource();
-        ItemStack weapon = player != null ? player.inventory.getStackInSlot(player.inventory.currentItem) : null;
+        Entity damageSourceP = damageSource.getTrueSource();
 
-        if (weapon != null)
+        if (damageSourceP != null && (damageSourceP instanceof EntityPlayer))
         {
-            long time = System.currentTimeMillis();
-            if (time > nextAbilityUse
-                    && damageSource.getTrueSource() != null
-                    && !(damageSource instanceof EntityDamageSourceIndirect))
-            {
-                nextAbilityUse = time+coolDown;
-                EntityItem drop = player.dropItem(player.inventory.decrStackSize(player.inventory.currentItem, 1), false);
+            EntityPlayer p = (EntityPlayer)damageSourceP;
+            ItemStack w = p.inventory.getStackInSlot(p.inventory.currentItem);
 
-                if (drop != null)
-                {
-                    drop.setPickupDelay(50);
-                    mob.world.playSound(null, new BlockPos(mob), SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.HOSTILE, 1.0F + mob.getRNG().nextFloat(), mob.getRNG().nextFloat() * 0.7F + 0.3F);
+            long time = System.currentTimeMillis();
+            if(w != null) {
+                if (time > nextAbilityUse
+                        && damageSourceP != null
+                        && !(damageSource instanceof EntityDamageSourceIndirect)) {
+                    nextAbilityUse = time + coolDown;
+                    EntityItem drop = p.dropItem(p.inventory.decrStackSize(p.inventory.currentItem, 1), false);
+
+                    if (drop != null) {
+                        drop.setPickupDelay(50);
+                        mob.world.playSound(null, new BlockPos(mob), SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.HOSTILE, 1.0F + mob.getRNG().nextFloat(), mob.getRNG().nextFloat() * 0.7F + 0.3F);
+                    }
                 }
             }
         }

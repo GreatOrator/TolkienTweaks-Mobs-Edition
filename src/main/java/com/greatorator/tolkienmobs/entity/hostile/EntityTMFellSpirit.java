@@ -3,7 +3,6 @@ package com.greatorator.tolkienmobs.entity.hostile;
 import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
-import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.init.MobEffects;
 import net.minecraft.util.DamageSource;
@@ -15,7 +14,7 @@ public class EntityTMFellSpirit extends EntityTMHostiles {
     public EntityTMFellSpirit(World worldIn) {
         super(worldIn);
         this.setSize(1.0F, 2.0F);
-        this.setWeaponType(TTMFeatures.SWORD_MORGULIRON);
+        this.setRandomWeapon(true);
         this.setLootTable(LootInit.OATHBREAKER);
         this.setTtmEffect(MobEffects.POISON);
         this.setTtmDuration(1);
