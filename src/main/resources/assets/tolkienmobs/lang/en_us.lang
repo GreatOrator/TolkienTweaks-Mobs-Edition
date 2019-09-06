@@ -420,6 +420,7 @@ entity.tmwatcher.name=Watcher in the Water
 entity.swamp_hag.name=Swamp Hag
 entity.tmharadrim.name=Haradrim
 entity.tmduergar.name=Duergar
+entity.tmgoblinking.name=Goblin King
 
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer

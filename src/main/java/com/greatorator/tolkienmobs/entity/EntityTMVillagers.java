@@ -276,4 +276,9 @@ public class EntityTMVillagers extends EntityVillager implements IEntityAddition
     public void setFighter(boolean fighter) {
         this.isFighter = fighter;
     }
+
+    public int getTalkInterval()
+    {
+        return 160;
+    }
 }

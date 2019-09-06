@@ -14,7 +14,7 @@ public class EntityTMGoblin extends EntityTMHostiles {
 
     public EntityTMGoblin(World worldIn) {
         super(worldIn);
-        this.setSize(0.9F, 0.8F);
+        this.setSize(0.9F, 1.0F);
         this.setRandomWeapon(true);
         this.setLootTable(LootInit.GOBLIN);
         this.setMobMentality(true, SoundInit.soundAngryGoblin);

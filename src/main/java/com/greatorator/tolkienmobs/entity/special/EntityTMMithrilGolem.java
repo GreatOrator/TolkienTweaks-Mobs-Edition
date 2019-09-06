@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.entity.special;
 
 import com.google.common.base.Predicate;
+import com.greatorator.tolkienmobs.entity.EntityTMVillagers;
 import com.greatorator.tolkienmobs.entity.entityai.EntityAIMithrilDefendVillage;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.PotionInit;
@@ -25,12 +26,15 @@ import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.village.Village;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class EntityTMMithrilGolem extends EntityIronGolem {
     /** deincrements, and a distance-to-home check is done at 0 */
@@ -217,5 +221,23 @@ public class EntityTMMithrilGolem extends EntityIronGolem {
     @Nullable
     protected ResourceLocation getLootTable() {
         return LootInit.GOLEM_STONE_MITHRIL;
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        int i = MathHelper.floor(this.posX);
+        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+        int k = MathHelper.floor(this.posZ);
+        boolean monsterSpawn = false;
+
+        List entities = getEntityWorld().getEntitiesWithinAABB(EntityTMVillagers.class,getEntityBoundingBox().expand(32,32,32));
+        List entitiesKing = getEntityWorld().getEntitiesWithinAABB(EntityTMMithrilGolem.class,getEntityBoundingBox().expand(32,32,32));
+
+        BlockPos blockpos = new BlockPos(i, j, k);
+
+        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && entities.size() > 16 && entitiesKing.size() <= (entities.size() / 16) && this.world.getLight(blockpos) > 8 && super.getCanSpawnHere() && this.world.canSeeSky(new BlockPos(this)) && this.posY > 39.0D) {
+            monsterSpawn = true;
+        }
+        return super.getCanSpawnHere() && monsterSpawn;
     }
 }

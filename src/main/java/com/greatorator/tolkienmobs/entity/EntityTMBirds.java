@@ -672,6 +672,11 @@ public class EntityTMBirds extends EntityFlying implements IModEntity
         return i;
     }
 
+    public int getTalkInterval()
+    {
+        return 120;
+    }
+
     protected boolean isValidLightLevel()
     {
         return true;

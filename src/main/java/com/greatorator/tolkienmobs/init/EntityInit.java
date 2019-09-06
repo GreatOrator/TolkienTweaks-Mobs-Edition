@@ -105,6 +105,9 @@ public class EntityInit
             if (TTMConfig.enableWatcher) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmwatcher"), EntityTMWatcher.class, "tmwatcher", id++, TolkienMobs.instance, 64, 3, true, 0xB71B13, 0xF58231);
             }
+            if (TTMConfig.enableGoblinKing) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmgoblinking"), EntityTMGoblinKing.class, "tmgoblinking", id++, TolkienMobs.instance, 64, 3, true, 0xB71B13, 0xBFEF45);
+            }
         }
 
         if (TTMConfig.enableSpecial) {
@@ -188,7 +191,10 @@ public class EntityInit
                     EntityRegistry.addSpawn(EntityTMMirkwoodSpider.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.ROOFED_FOREST);
                 }
                 if (TTMConfig.enableGoblins) {
-                    EntityRegistry.addSpawn(EntityTMGoblin.class, 12, 2, 1, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
+                    EntityRegistry.addSpawn(EntityTMGoblin.class, 12, 1, 2, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
+                }
+                if (TTMConfig.enableGoblinKing) {
+                    EntityRegistry.addSpawn(EntityTMGoblinKing.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
                 }
                 if (TTMConfig.enableMordorOrcs) {
                     EntityRegistry.addSpawn(EntityTMMordorOrc.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.PLAINS);

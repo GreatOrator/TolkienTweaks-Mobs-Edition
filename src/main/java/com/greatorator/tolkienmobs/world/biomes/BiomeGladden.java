@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMAuroch;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMHuman;
+import com.greatorator.tolkienmobs.entity.special.EntityTMMithrilGolem;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomFlowers;
@@ -59,6 +60,11 @@ public class BiomeGladden extends Biome {
                 }
                 if (TTMConfig.enableAuroch) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityTMAuroch.class, 4, 2, 3));
+                }
+            }
+            if (TTMConfig.enableSpecial) {
+                if (TTMConfig.enableMithrilGolem) {
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMMithrilGolem.class, 12, 1, 1));
                 }
             }
         }

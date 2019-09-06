@@ -7,6 +7,7 @@ import com.greatorator.tolkienmobs.entity.ambient.EntityTMToad;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMAuroch;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMGoat;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
+import com.greatorator.tolkienmobs.entity.special.EntityTMMithrilGolem;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomFlowers;
@@ -85,6 +86,11 @@ public class BiomeShire extends Biome {
                 }
                 if (TTMConfig.enableFrogs) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityTMToad.class, 4, 1, 1));
+                }
+            }
+            if (TTMConfig.enableSpecial) {
+                if (TTMConfig.enableMithrilGolem) {
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMMithrilGolem.class, 12, 1, 1));
                 }
             }
         }

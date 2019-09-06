@@ -147,6 +147,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableMorgulGolem = true;
     @ModConfigProperty(category = "Boss Mobs", name = "enableWatcher", comment = "Setting this to false will disable the Watcher in the Water", requiresMCRestart = true, requiresSync = true)
     public static boolean enableWatcher = true;
+    @ModConfigProperty(category = "Boss Mobs", name = "enableGoblinKing", comment = "Setting this to false will disable the Goblin King", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableGoblinKing = true;
 
     /** Special mobs - Individual*/
     @ModConfigProperty(category = "Special Mobs", name = "enableGollum", comment = "Setting this to false will disable Gollum", requiresMCRestart = true, requiresSync = true)

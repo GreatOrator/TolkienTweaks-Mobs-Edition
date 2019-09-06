@@ -207,7 +207,7 @@ public abstract class EntityTMHostiles extends EntityMob implements IRangedAttac
      */
     public int getTalkInterval()
     {
-        return 120;
+        return 160;
     }
 
     public boolean attackEntityAsMob(Entity entityIn)

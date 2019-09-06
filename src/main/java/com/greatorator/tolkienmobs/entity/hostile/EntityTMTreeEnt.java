@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.hostile;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
+import com.greatorator.tolkienmobs.entity.boss.EntityTMGoblinKing;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
@@ -47,6 +48,7 @@ public class EntityTMTreeEnt extends EntityMob implements IRangedAttackMob, IEnt
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTMMordorOrc.class, false));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTMUrukHai.class, false));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTMGoblin.class, true));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityTMGoblinKing.class, true));
     }
 
     @Override

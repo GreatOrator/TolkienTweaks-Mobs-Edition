@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.block.BlockFlowers;
 import com.greatorator.tolkienmobs.entity.ambient.EntityTMSquirrel;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMElves;
+import com.greatorator.tolkienmobs.entity.special.EntityTMMithrilGolem;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomFlowers;
@@ -76,11 +77,16 @@ public class BiomeFirien extends Biome {
                 if (TTMConfig.enableElves) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityTMElves.class, 12, 1, 3));
                 }
+            }
             if (TTMConfig.enableAmbient) {
                 if (TTMConfig.enableSquirrels) {
                     this.spawnableCreatureList.add(new SpawnListEntry(EntityTMSquirrel.class, 4, 1, 1));
                 }
             }
+            if (TTMConfig.enableSpecial) {
+                if (TTMConfig.enableMithrilGolem) {
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMMithrilGolem.class, 12, 1, 1));
+                }
             }
         }
         this.spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));

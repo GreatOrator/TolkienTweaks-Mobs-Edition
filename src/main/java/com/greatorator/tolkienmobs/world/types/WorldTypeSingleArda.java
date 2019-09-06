@@ -16,6 +16,6 @@ public class WorldTypeSingleArda extends WorldType {
 
     @Override
     public BiomeProvider getBiomeProvider(World world) {
-        return new BiomeProviderSingle(BiomeInit.DAGORLAD);
+        return new BiomeProviderSingle(BiomeInit.GLADDEN);
     }
 }
