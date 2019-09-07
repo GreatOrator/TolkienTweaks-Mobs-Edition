@@ -15,10 +15,10 @@ public class TTMSpawnEvent {
 @SubscribeEvent
   public void onMithrilSpawn(EntityJoinWorldEvent event) {
 	if (event.getEntity() instanceof EntityTMMithrilGolem){
-		List entities = getEntityWorld().getEntitiesWithinAABB(EntityTMVillagers.class,getEntityBoundingBox().expand(32,32,32));
+		List entitiesTMVillage = getEntityWorld().getEntitiesWithinAABB(EntityTMVillagers.class,getEntityBoundingBox().expand(32,32,32));
         List entitiesMithril = getEntityWorld().getEntitiesWithinAABB(EntityTMMithrilGolem.class,getEntityBoundingBox().expand(32,32,32));
 		
-		if (entities.size() < 10 || entitiesMithril.size() >= (1 + (entities.size() / 10))){
+		if (entitiesTMVillage.size() < 10 || entitiesMithril.size() >= (1 + (entitiesTMVillage.size() / 10))){
 			event.setCanceled(true);
 		}
 	}
@@ -27,10 +27,10 @@ public class TTMSpawnEvent {
 @SubscribeEvent
   public void onKingSpawn(EntityJoinWorldEvent event) {
 	if (event.getEntity() instanceof EntityTMGoblinKing){
-		List entities = getEntityWorld().getEntitiesWithinAABB(EntityTMGoblin.class,getEntityBoundingBox().expand(32,32,32));
+		List entitiesGoblin = getEntityWorld().getEntitiesWithinAABB(EntityTMGoblin.class,getEntityBoundingBox().expand(32,32,32));
         List entitiesKing = getEntityWorld().getEntitiesWithinAABB(EntityTMGoblinKing.class,getEntityBoundingBox().expand(32,32,32));
 		
-		if (entities.size() < 16 || entitiesKing.size() >= 1)){
+		if (entitiesGoblin.size() < 16 || entitiesKing.size() >= 1)){
 			event.setCanceled(true);
 		}
 	}
