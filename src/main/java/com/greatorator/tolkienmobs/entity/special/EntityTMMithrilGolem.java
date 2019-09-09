@@ -6,6 +6,7 @@ import com.greatorator.tolkienmobs.entity.entityai.EntityAIMithrilDefendVillage;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.PotionInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
+import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -235,9 +236,11 @@ public class EntityTMMithrilGolem extends EntityIronGolem {
 
         BlockPos blockpos = new BlockPos(i, j, k);
 
-        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && entities.size() > 16 && entitiesKing.size() <= (entities.size() / 16) && this.world.getLight(blockpos) > 8 && super.getCanSpawnHere() && this.world.canSeeSky(new BlockPos(this)) && this.posY > 39.0D) {
+        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && entities.size() > 10 && entitiesKing.size() <= (entities.size() / 16) && this.world.getLight(blockpos) > 8 && super.getCanSpawnHere() && this.world.canSeeSky(new BlockPos(this)) && this.posY > 39.0D) {
             monsterSpawn = true;
         }
+
+        LogHelperTTM.info("There are " + entities.size() + "present and " + entitiesKing.size() + "already spawned." );
         return super.getCanSpawnHere() && monsterSpawn;
     }
 }

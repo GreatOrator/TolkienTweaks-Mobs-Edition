@@ -11,28 +11,4 @@ public class TTMSpawnEvent {
       event.setCanceled(true);
     }
   }
-  
-@SubscribeEvent
-  public void onMithrilSpawn(EntityJoinWorldEvent event) {
-	if (event.getEntity() instanceof EntityTMMithrilGolem){
-		List entitiesTMVillage = getEntityWorld().getEntitiesWithinAABB(EntityTMVillagers.class,getEntityBoundingBox().expand(32,32,32));
-        List entitiesMithril = getEntityWorld().getEntitiesWithinAABB(EntityTMMithrilGolem.class,getEntityBoundingBox().expand(32,32,32));
-		
-		if (entitiesTMVillage.size() < 10 || entitiesMithril.size() >= (1 + (entitiesTMVillage.size() / 10))){
-			event.setCanceled(true);
-		}
-	}
-  }
-  
-@SubscribeEvent
-  public void onKingSpawn(EntityJoinWorldEvent event) {
-	if (event.getEntity() instanceof EntityTMGoblinKing){
-		List entitiesGoblin = getEntityWorld().getEntitiesWithinAABB(EntityTMGoblin.class,getEntityBoundingBox().expand(32,32,32));
-        List entitiesKing = getEntityWorld().getEntitiesWithinAABB(EntityTMGoblinKing.class,getEntityBoundingBox().expand(32,32,32));
-		
-		if (entitiesGoblin.size() < 16 || entitiesKing.size() >= 1)){
-			event.setCanceled(true);
-		}
-	}
-  }
 }
