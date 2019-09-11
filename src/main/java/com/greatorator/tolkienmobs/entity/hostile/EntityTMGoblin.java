@@ -22,22 +22,16 @@ public class EntityTMGoblin extends EntityTMHostiles {
         this.setCombatTask();
     }
 
-    @Override
-    public boolean getCanSpawnHere() {
-        int i = MathHelper.floor(this.posX);
-        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
-        int k = MathHelper.floor(this.posZ);
-        boolean monsterSpawn = false;
+        @Override
+        public boolean getCanSpawnHere() {
+            int i = MathHelper.floor(this.posX);
+            int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+            int k = MathHelper.floor(this.posZ);
 
-        int willSpawn = this.spawnChance();
-        BlockPos blockpos = new BlockPos(i, j, k);
+            int willSpawn = this.spawnChance();
+            BlockPos blockpos = new BlockPos(i, j, k);
 
-        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getLight(blockpos) < 8 && super.getCanSpawnHere() && !this.world.canSeeSky(new BlockPos(this)) && this.posY < 128.0D) {
-            if (willSpawn <= 10) {
-                monsterSpawn = true;
-            }
-        }
-        return super.getCanSpawnHere() && monsterSpawn;
+            return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getLight(blockpos) < 8 && willSpawn <= 10 && super.getCanSpawnHere() && !this.world.canSeeSky(new BlockPos(this)) && this.posY < 128.0D;
     }
 
     @Override

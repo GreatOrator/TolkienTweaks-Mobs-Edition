@@ -241,6 +241,18 @@ splash_potion.effect.sleepnesia=Splash Potion of Sleepnesia
 lingering_potion.effect.sleepnesia=Lingering Potion of Sleepnesia
 tipped_arrow.effect.sleepnesia=Arrow of Sleepnesia
 
+tolkienmobs.effect.crippling_terror=Paralysing Fear
+potion.effect.crippling_terror=Potion of Paralysing Fear
+splash_potion.effect.crippling_terror=Splash Potion of Paralysing Fear
+lingering_potion.effect.crippling_terror=Lingering Potion of Paralysing Fear
+tipped_arrow.effect.crippling_terror=Arrow of Paralysing Fear
+
+tolkienmobs.effect.dread_aura=Great Dread
+potion.effect.dread_aura=Potion of Great Dread
+splash_potion.effect.dread_aura=Splash Potion of Great Dread
+lingering_potion.effect.dread_aura=Lingering Potion of Great Dread
+tipped_arrow.effect.dread_aura=Arrow of Great Dread
+
 //Enchantments
 enchantment.tolkienmobs.balrogs_mark=Balrog's Mark
 enchantment.tolkienmobs.balrogs_mark.desc=When applied to boots, this makes any grass or dirt around you turn to magma blocks.

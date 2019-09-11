@@ -15,9 +15,4 @@ public class EntityTMHobbit extends EntityTMVillagers {
         this.setNetID(0);
         ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
     }
-
-    @Override
-    protected boolean isValidLightLevel() {
-        return true;
-    }
 }

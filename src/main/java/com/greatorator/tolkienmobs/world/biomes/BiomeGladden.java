@@ -56,10 +56,10 @@ public class BiomeGladden extends Biome {
         if (TTMConfig.enableNaturalSpawn) {
             if (TTMConfig.enablePassive) {
                 if (TTMConfig.enableHumans) {
-                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMHuman.class, 12, 1, 3));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMHuman.class, 14, 1, 3));
                 }
                 if (TTMConfig.enableAuroch) {
-                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMAuroch.class, 4, 2, 3));
+                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMAuroch.class, 12, 2, 3));
                 }
             }
             if (TTMConfig.enableSpecial) {
@@ -71,8 +71,8 @@ public class BiomeGladden extends Biome {
         this.spawnableCreatureList.add(new SpawnListEntry(EntityHorse.class, 5, 2, 6));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityDonkey.class, 1, 1, 3));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityRabbit.class, 4, 2, 3));
-        this.spawnableCreatureList.add(new SpawnListEntry(EntitySheep.class, 12, 4, 4));
-        this.spawnableCreatureList.add(new SpawnListEntry(EntityPig.class, 10, 4, 4));
+        this.spawnableCreatureList.add(new SpawnListEntry(EntitySheep.class, 8, 4, 4));
+        this.spawnableCreatureList.add(new SpawnListEntry(EntityPig.class, 8, 4, 4));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityChicken.class, 10, 4, 4));
 
     }

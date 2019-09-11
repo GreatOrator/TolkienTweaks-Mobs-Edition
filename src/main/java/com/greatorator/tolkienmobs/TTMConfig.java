@@ -227,6 +227,12 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean disableVanilla = true;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "disableOreGen", comment = "Setting to true will disable ore generation from this mod", requiresMCRestart = true, requiresSync = true)
     public static boolean disableOreGen = false;
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "disablePlayerTerror", comment = "Setting to true will disable the effect of Terror from this mod", requiresMCRestart = true, requiresSync = true)
+    public static boolean disablePlayerTerror = false;
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "chanceTerror", comment = "When faced with sheer terror, likelihood it affects Player (Minimum: 1)", requiresMCRestart = true, requiresSync = true)
+    public static int chanceTerror = 300;
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "chanceNotAfraid", comment = "If in the grip of terror, chance to find your courage (Minimum: 1)", requiresMCRestart = true, requiresSync = true)
+    public static int chanceNotAfraid = 400;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "mobSpawnChance", comment = "Set this for additional control of mob Spawns.\n  10 times out of this number chance to spawn")
     public static int mobSpawnChance = 100;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "FellBeastSpawnX", comment = "Set this for starting spawn location of the Fell Beast")

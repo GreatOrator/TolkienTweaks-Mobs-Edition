@@ -7,11 +7,13 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -19,12 +21,15 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.UUID;
 
 /** Borrowed from Jabelar https:/**github.com/jabelar */
 public class TTMUtilities
 {
+    private static final Map<Class<? extends EntityLivingBase>, String> ENTITY_RESOURCE_LOCATION_CACHE = new HashMap<>();
     public static void teleportAllPetsToOwnerIfSuitable(EntityPlayer parPlayer)
     {
         Iterator<UUID> iterator = parPlayer.getCapability(PetListProvider.PET_LIST, null).getPetList().iterator();
@@ -312,5 +317,15 @@ public class TTMUtilities
             }
         }
         return true;
+    }
+
+    public static String getEntityLocation(EntityLivingBase entity)
+    {
+        Class<? extends EntityLivingBase> cls = entity.getClass();
+        return ENTITY_RESOURCE_LOCATION_CACHE.computeIfAbsent(cls, k ->
+        {
+            ResourceLocation location = EntityList.getKey(k);
+            return location != null ? location.toString() : null;
+        });
     }
 }

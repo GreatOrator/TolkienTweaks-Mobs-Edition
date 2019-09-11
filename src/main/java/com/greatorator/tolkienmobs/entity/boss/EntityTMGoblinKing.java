@@ -101,16 +101,21 @@ public class EntityTMGoblinKing extends EntityTMHostiles {
         int i = MathHelper.floor(this.posX);
         int j = MathHelper.floor(this.getEntityBoundingBox().minY);
         int k = MathHelper.floor(this.posZ);
-        boolean monsterSpawn = false;
+
+        BlockPos blockpos = new BlockPos(i, j, k);
+
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getLight(blockpos) < 8 && super.getCanSpawnHere();
+    }
+
+    public boolean checkEntityCount() {
+        boolean monsterSpawn = true;
 
         List entities = getEntityWorld().getEntitiesWithinAABB(EntityTMGoblin.class,getEntityBoundingBox().expand(32,32,32));
         List entitiesKing = getEntityWorld().getEntitiesWithinAABB(EntityTMGoblinKing.class,getEntityBoundingBox().expand(32,32,32));
 
-        BlockPos blockpos = new BlockPos(i, j, k);
-
-        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && entities.size() > 16 && entitiesKing.size() <= 1 && this.world.getLight(blockpos) < 8 && super.getCanSpawnHere() && !this.world.canSeeSky(new BlockPos(this)) && this.posY < 128.0D) {
-                monsterSpawn = true;
-            }
-        return super.getCanSpawnHere() && monsterSpawn;
+        if (entities.size() > 16 && entitiesKing.size() <= (entities.size() / 16)) {
+            monsterSpawn = false;
+        }
+        return monsterSpawn;
     }
 }

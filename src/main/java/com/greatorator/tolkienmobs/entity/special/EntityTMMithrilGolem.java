@@ -6,7 +6,6 @@ import com.greatorator.tolkienmobs.entity.entityai.EntityAIMithrilDefendVillage;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.PotionInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
-import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -229,18 +228,22 @@ public class EntityTMMithrilGolem extends EntityIronGolem {
         int i = MathHelper.floor(this.posX);
         int j = MathHelper.floor(this.getEntityBoundingBox().minY);
         int k = MathHelper.floor(this.posZ);
-        boolean monsterSpawn = false;
+
+        BlockPos blockpos = new BlockPos(i, j, k);
+
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getLight(blockpos) < 8 && super.getCanSpawnHere();
+    }
+
+    public boolean checkEntityCount() {
+        boolean monsterSpawn = true;
 
         List entities = getEntityWorld().getEntitiesWithinAABB(EntityTMVillagers.class,getEntityBoundingBox().expand(32,32,32));
         List entitiesKing = getEntityWorld().getEntitiesWithinAABB(EntityTMMithrilGolem.class,getEntityBoundingBox().expand(32,32,32));
 
-        BlockPos blockpos = new BlockPos(i, j, k);
-
-        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && entities.size() > 10 && entitiesKing.size() <= (entities.size() / 16) && this.world.getLight(blockpos) > 8 && super.getCanSpawnHere() && this.world.canSeeSky(new BlockPos(this)) && this.posY > 39.0D) {
-            monsterSpawn = true;
+        if (entities.size() > 10 && entitiesKing.size() <= (entities.size() / 10)) {
+            monsterSpawn = false;
         }
-
-        LogHelperTTM.info("There are " + entities.size() + "present and " + entitiesKing.size() + "already spawned." );
-        return super.getCanSpawnHere() && monsterSpawn;
+        return monsterSpawn;
     }
+
 }

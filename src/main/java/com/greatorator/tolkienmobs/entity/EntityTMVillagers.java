@@ -6,17 +6,16 @@ import com.greatorator.tolkienmobs.entity.passive.EntityTMDwarf;
 import com.greatorator.tolkienmobs.init.ProfessionInit;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.block.Block;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.common.registry.VillagerRegistry;
@@ -24,7 +23,6 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import javax.annotation.Nullable;
 
 public class EntityTMVillagers extends EntityVillager implements IEntityAdditionalSpawnData {
-    protected Block spawnableBlock = Blocks.GRASS;
     private VillagerRegistry.VillagerProfession prof;
     private int texture_index;
     private int rndMax;
@@ -181,11 +179,6 @@ public class EntityTMVillagers extends EntityVillager implements IEntityAddition
         return 2;
     }
 
-    protected boolean isValidLightLevel()
-    {
-        return true;
-    }
-
     @Override
     public boolean getCanSpawnHere()
     {
@@ -194,7 +187,8 @@ public class EntityTMVillagers extends EntityVillager implements IEntityAddition
         int k = MathHelper.floor(this.posZ);
         int willSpawn = this.spawnChance();
         BlockPos blockpos = new BlockPos(i, j, k);
-        return this.world.getBlockState(blockpos.down()).getBlock() == this.spawnableBlock && this.world.getLight(blockpos) > 8 && willSpawn <= 10 && super.getCanSpawnHere();
+
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getLight(blockpos) > 8 && willSpawn <= 10 && super.getCanSpawnHere();
     }
 
     private int spawnChance()

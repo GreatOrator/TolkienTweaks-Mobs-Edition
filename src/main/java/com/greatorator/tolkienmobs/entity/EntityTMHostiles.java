@@ -55,6 +55,8 @@ public abstract class EntityTMHostiles extends EntityMob implements IRangedAttac
     private boolean ttmAttack;
     private boolean groupAttack;
     private boolean madeBoss;
+    private long nextAbilityUse = 0L;
+    private final static long coolDown = 15000L;
 
     /** Above zero if this Entity is Angry. */
     private int angerLevel;
@@ -220,8 +222,14 @@ public abstract class EntityTMHostiles extends EntityMob implements IRangedAttac
         {
             if (entityIn instanceof EntityLivingBase)
             {
+                long time = System.currentTimeMillis();
+
                 if(ttmDuration > 0) {
-                    ((EntityLivingBase) entityIn).addPotionEffect(new PotionEffect(ttmEffect, ttmDuration));
+                    if (time > nextAbilityUse) {
+                        nextAbilityUse = time + coolDown;
+                        this.playSound(angrySound, this.getSoundVolume() * 2.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) * 1.8F);
+                        ((EntityLivingBase) entityIn).addPotionEffect(new PotionEffect(ttmEffect, ttmDuration));
+                    }
                 }
             }
             return true;
@@ -481,16 +489,13 @@ public abstract class EntityTMHostiles extends EntityMob implements IRangedAttac
 
     @Override
     public boolean getCanSpawnHere() {
-        boolean monsterSpawn = false;
-
+        int i = MathHelper.floor(this.posX);
+        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+        int k = MathHelper.floor(this.posZ);
         int willSpawn = this.spawnChance();
+        BlockPos blockpos = new BlockPos(i, j, k);
 
-        if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere() && this.posY > 36.0D) {
-            if (willSpawn <= 10) {
-                monsterSpawn = true;
-            }
-        }
-        return super.getCanSpawnHere() && monsterSpawn;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getLight(blockpos) < 8 && willSpawn <= 10 && super.getCanSpawnHere();
     }
 
     protected int spawnChance()

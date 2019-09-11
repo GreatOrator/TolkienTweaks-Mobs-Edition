@@ -15,9 +15,4 @@ public class EntityTMHuman extends EntityTMVillagers {
         this.setNetID(4);
         ((PathNavigateGround)this.getNavigator()).setBreakDoors(true);
     }
-
-    @Override
-    protected boolean isValidLightLevel() {
-        return true;
-    }
 }

@@ -24,6 +24,8 @@ public class PotionInit {
     public static final Potion INVENTORY_CORROSION = new PotionTTMCorrosion("inventory_corrosion", true, 7811840, 7);
     public static final Potion PERSONAL_BLACKSMITH = new PotionTTMBlacksmith("personal_blacksmith", false, 14370245, 8);
     public static final Potion SLEEPNESIA = new PotionTTMSleep("sleepnesia", true, 2890775, 9).registerPotionAttributeModifier(SharedMonsterAttributes.MOVEMENT_SPEED, MathHelper.getRandomUUID().toString(), -1D, 1);
+    public static final Potion WATCHER_FEAR = new PotionTTMFear("dread_aura", true, 4852999, 10);
+    public static final Potion PARALYSING_FEAR = new PotionTTMTerror("crippling_terror", true, 5655556, 11).registerPotionAttributeModifier(SharedMonsterAttributes.MOVEMENT_SPEED, MathHelper.getRandomUUID().toString(), -1D, 1);
 
     /** Initialize Potion Versions */
     public static final PotionType ENT_DRAUGHT = new PotionType("ent_draught", new PotionEffect[] {new PotionEffect(ENT_STANCE, 2400)}).setRegistryName("ent_draught");
@@ -46,6 +48,10 @@ public class PotionInit {
     public static final PotionType LONG_PORTABLE_REPAIR = new PotionType("personal_blacksmith", new PotionEffect[] {new PotionEffect(PERSONAL_BLACKSMITH, 1200)}).setRegistryName("long_personal_blacksmith");
     public static final PotionType DEEP_SLEEP = new PotionType("sleepnesia", new PotionEffect[] {new PotionEffect(SLEEPNESIA, 600)}).setRegistryName("sleepnesia");
     public static final PotionType LONG_DEEP_SLEEP = new PotionType("sleepnesia", new PotionEffect[] {new PotionEffect(SLEEPNESIA, 1200)}).setRegistryName("long_sleepnesia");
+    public static final PotionType DREAD_AURA = new PotionType("dread_aura", new PotionEffect[] {new PotionEffect(WATCHER_FEAR, 300)}).setRegistryName("dread_aura");
+    public static final PotionType LONG_DREAD_AURA = new PotionType("dread_aura", new PotionEffect[] {new PotionEffect(WATCHER_FEAR, 600)}).setRegistryName("long_dread_aura");
+    public static final PotionType CRIPPLING_TERROR = new PotionType("crippling_terror", new PotionEffect[] {new PotionEffect(PARALYSING_FEAR, 200)}).setRegistryName("crippling_terror");
+    public static final PotionType LONG_CRIPPLING_TERROR = new PotionType("crippling_terror", new PotionEffect[] {new PotionEffect(PARALYSING_FEAR, 600)}).setRegistryName("long_crippling_terror");
 
     public static void registerPotions(){
         registerPotion(ENT_DRAUGHT, LONG_ENT_DRAUGHT, ENT_STANCE);
@@ -58,6 +64,8 @@ public class PotionInit {
         registerPotion(DECAYING_INVENTORY, LONG_DECAYING_INVENTORY, INVENTORY_CORROSION);
         registerPotion(PORTABLE_REPAIR, LONG_PORTABLE_REPAIR, PERSONAL_BLACKSMITH);
         registerPotion(DEEP_SLEEP, LONG_DEEP_SLEEP, SLEEPNESIA);
+        registerPotion(DREAD_AURA, LONG_DREAD_AURA, WATCHER_FEAR);
+        registerPotion(CRIPPLING_TERROR, LONG_CRIPPLING_TERROR, PARALYSING_FEAR);
 
     }
 

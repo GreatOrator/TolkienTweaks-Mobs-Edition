@@ -24,9 +24,4 @@ public class EntityTMDwarf extends EntityTMVillagers {
     {
         return SoundInit.soundIdleDwarf;
     }
-
-    @Override
-    protected boolean isValidLightLevel() {
-        return true;
-    }
 }
