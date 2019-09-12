@@ -6,7 +6,6 @@ import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
@@ -22,16 +21,11 @@ public class EntityTMGoblin extends EntityTMHostiles {
         this.setCombatTask();
     }
 
-        @Override
-        public boolean getCanSpawnHere() {
-            int i = MathHelper.floor(this.posX);
-            int j = MathHelper.floor(this.getEntityBoundingBox().minY);
-            int k = MathHelper.floor(this.posZ);
+    @Override
+    public boolean getCanSpawnHere() {
+        int willSpawn = this.spawnChance();
 
-            int willSpawn = this.spawnChance();
-            BlockPos blockpos = new BlockPos(i, j, k);
-
-            return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getLight(blockpos) < 8 && willSpawn <= 10 && super.getCanSpawnHere() && !this.world.canSeeSky(new BlockPos(this)) && this.posY < 128.0D;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere() && !this.world.canSeeSky(new BlockPos(this)) && willSpawn <= 10;
     }
 
     @Override

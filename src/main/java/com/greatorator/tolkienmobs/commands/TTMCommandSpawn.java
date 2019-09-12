@@ -2,10 +2,7 @@ package com.greatorator.tolkienmobs.commands;
 
 import com.greatorator.tolkienmobs.handler.interfaces.ITTMStructureSummon;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeBarrow;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeHobbitGrocer;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeHobbitHouse;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeRuin;
+import com.greatorator.tolkienmobs.world.gen.generators.*;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -77,6 +74,12 @@ public class TTMCommandSpawn extends CommandBase {
             else if ("ruins".equals(argString[0])) {
                 generateStructure(sender, sender.getEntityWorld(), x, y, z, WorldGenBiomeRuin.INSTANCE);
             }
+            else if ("humanhouse".equals(argString[0])) {
+                generateStructure(sender, sender.getEntityWorld(), x, y, z, WorldGenBiomeHumanHouse.INSTANCE);
+            }
+            else if ("elvenhouse".equals(argString[0])) {
+                generateStructure(sender, sender.getEntityWorld(), x, y, z, WorldGenBiomeElvenHouse.INSTANCE);
+            }
             else {
                 LogHelperTTM.info("Structure name or coordinates invalid, you sent " + structureName + "at position" + x + "," + y + "," + z + ".");
                 sender.sendMessage(new TextComponentTranslation("commands.generate.unknown_structure").setStyle(new Style().setColor(TextFormatting.RED)));
@@ -88,7 +91,7 @@ public class TTMCommandSpawn extends CommandBase {
     public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args, @Nullable BlockPos targetPos)
     {
         if (args.length == 1) {
-            return getListOfStringsMatchingLastWord(args, new String[] {"barrows", "hobbithouse", "hobbitgrocer", "ruins"});
+            return getListOfStringsMatchingLastWord(args, new String[] {"barrows", "hobbithouse", "hobbitgrocer", "ruins", "humanhouse", "elvenhouse"});
         }
         else if (args.length > 1 && args.length <= 4) {
                 return getTabCompletionCoordinate(args, 1, targetPos);

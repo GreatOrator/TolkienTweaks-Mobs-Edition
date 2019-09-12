@@ -1,10 +1,10 @@
 package com.greatorator.tolkienmobs.world.gen;
 
 import com.greatorator.tolkienmobs.world.biomes.BiomeBarrowDowns;
+import com.greatorator.tolkienmobs.world.biomes.BiomeGladden;
+import com.greatorator.tolkienmobs.world.biomes.BiomeLorinand;
 import com.greatorator.tolkienmobs.world.biomes.BiomeShire;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeBarrow;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeHobbitGrocer;
-import com.greatorator.tolkienmobs.world.gen.generators.WorldGenBiomeHobbitHouse;
+import com.greatorator.tolkienmobs.world.gen.generators.*;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -20,9 +20,11 @@ import java.util.List;
 import java.util.Random;
 
 public class WorldGenCustomStructures implements IWorldGenerator {
-    WorldGenBiomeBarrow BARROW = new WorldGenBiomeBarrow();
-    WorldGenBiomeHobbitHouse HOBBITHOUSE = new WorldGenBiomeHobbitHouse();
-    WorldGenBiomeHobbitGrocer HOBBITGROCER = new WorldGenBiomeHobbitGrocer();
+    private WorldGenBiomeBarrow BARROW = new WorldGenBiomeBarrow();
+    private WorldGenBiomeHobbitHouse HOBBITHOUSE = new WorldGenBiomeHobbitHouse();
+    private WorldGenBiomeHobbitGrocer HOBBITGROCER = new WorldGenBiomeHobbitGrocer();
+    private WorldGenBiomeElvenHouse ELVENHOUSE = new WorldGenBiomeElvenHouse();
+    private WorldGenBiomeHumanHouse HUMANHOUSE = new WorldGenBiomeHumanHouse();
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
@@ -35,6 +37,8 @@ public class WorldGenCustomStructures implements IWorldGenerator {
                 generateStructure(BARROW, world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeBarrowDowns.class);
                 generateStructure(HOBBITHOUSE, world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeShire.class);
                 generateStructure(HOBBITGROCER, world, random, chunkX, chunkZ, 20, Blocks.GRASS, BiomeShire.class);
+                generateStructure(ELVENHOUSE, world, random, chunkX, chunkZ, 60, Blocks.GRASS, BiomeLorinand.class);
+                generateStructure(HUMANHOUSE, world, random, chunkX, chunkZ, 60, Blocks.GRASS, BiomeGladden.class);
 
                 break;
 

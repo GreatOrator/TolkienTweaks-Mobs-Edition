@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.world.gen.generators;
 import com.brandon3055.tolkientweaks.TTFeatures;
 import com.greatorator.tolkienmobs.block.BlockSigns;
 import com.greatorator.tolkienmobs.block.itemblock.BlockTMFireplace;
+import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
 import com.greatorator.tolkienmobs.handler.interfaces.ITTMStructure;
 import com.greatorator.tolkienmobs.handler.interfaces.ITTMStructureSummon;
 import com.greatorator.tolkienmobs.init.LootInit;
@@ -169,9 +170,6 @@ public class WorldGenBiomeHobbitGrocer extends WorldGenerator implements ITTMStr
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 3, j + 2, k + 3), Blocks.DIRT.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 3, j + 2, k + 4), Blocks.DIRT.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 3, j + 2, k + 5), Blocks.SPRUCE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
-        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 3, j + 2, k + 6), Blocks.CARPET.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.YELLOW));
-        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 3, j + 2, k + 7), Blocks.CARPET.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.YELLOW));
-        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 3, j + 2, k + 8), Blocks.CARPET.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.YELLOW));
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 3, j + 2, k + 9), Blocks.SPRUCE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH));
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 3, j + 2, k + 10), Blocks.DIRT.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 3, j + 2, k + 11), Blocks.DIRT.getDefaultState());
@@ -302,7 +300,6 @@ public class WorldGenBiomeHobbitGrocer extends WorldGenerator implements ITTMStr
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 5, j + 2, k + 3), Blocks.DIRT.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 5, j + 2, k + 4), Blocks.DIRT.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 5, j + 2, k + 5), Blocks.SPRUCE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.NORTH));
-        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 5, j + 2, k + 6), Blocks.CARPET.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.YELLOW));
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 5, j + 2, k + 7), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 5, j + 2, k + 8), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 5, j + 2, k + 9), Blocks.SPRUCE_STAIRS.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH));
@@ -502,6 +499,8 @@ public class WorldGenBiomeHobbitGrocer extends WorldGenerator implements ITTMStr
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 10, j + 2, k + 6), Blocks.LEAVES.getDefaultState().withProperty(BlockLeaves.CHECK_DECAY, Boolean.valueOf(false)));
 
         getLoot(worldIn, r, bp);
+        spawnHobbit(worldIn, bp);
+        spawnHobbit(worldIn, bp);
 
         return true;
     }
@@ -523,5 +522,15 @@ public class WorldGenBiomeHobbitGrocer extends WorldGenerator implements ITTMStr
                 tileEntityChest.setLootTable(lootType, r.nextLong());
             }
         }
+    }
+
+    private void spawnHobbit (World worldIn, BlockPos bp){
+        BlockPos pos = bp.add(5, 2, 6);
+
+        EntityTMHobbit hobbit = new EntityTMHobbit(worldIn);
+        hobbit.setLocationAndAngles(pos.getX(),pos.getY(),pos.getZ(), 0F, 0F);
+        hobbit.onInitialSpawn(worldIn.getDifficultyForLocation(pos), null);
+        hobbit.enablePersistence();
+        worldIn.spawnEntity(hobbit);
     }
 }

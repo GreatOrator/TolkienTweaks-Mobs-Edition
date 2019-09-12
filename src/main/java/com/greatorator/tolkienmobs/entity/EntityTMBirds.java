@@ -43,7 +43,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
@@ -656,14 +656,15 @@ public class EntityTMBirds extends EntityFlying implements IModEntity
         setLegBandColor(EnumDyeColor.byDyeDamage(compound.getInteger("legBandColor")));
     }
 
-    public boolean getCanSpawnHere()
-    {
-        int i = MathHelper.floor(this.posX);
-        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
-        int k = MathHelper.floor(this.posZ);
+    protected boolean isValidLightLevel() {
+        return true;
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
         int willSpawn = this.spawnChance();
-        BlockPos blockpos = new BlockPos(i, j, k);
-        return this.world.getBlockState(blockpos.down()).getBlock() == this.spawnableBlock && this.world.getLight(blockpos) > 8 && willSpawn <= 10 && super.getCanSpawnHere();
+
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere() && willSpawn <= 10;
     }
 
     protected int spawnChance()
@@ -674,11 +675,6 @@ public class EntityTMBirds extends EntityFlying implements IModEntity
 
     public int getTalkInterval()
     {
-        return 120;
-    }
-
-    protected boolean isValidLightLevel()
-    {
-        return true;
+        return 160;
     }
 }

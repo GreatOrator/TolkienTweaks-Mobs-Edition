@@ -572,17 +572,11 @@ public class EntityTMAquatics extends EntityMob implements IMob {
     }
 
     @Override
-    public boolean getCanSpawnHere() {
-        boolean monsterSpawn = false;
-
+    public boolean getCanSpawnHere()
+    {
         int willSpawn = this.spawnChance();
 
-        if (this.posY > 45.0D && this.posY < (double)this.world.getSeaLevel() && super.getCanSpawnHere()) {
-            if (willSpawn <= 10) {
-                monsterSpawn = true;
-            }
-        }
-        return super.getCanSpawnHere() && monsterSpawn;
+        return this.posY > 45.0D && this.posY < (double)this.world.getSeaLevel() && super.getCanSpawnHere() && willSpawn <= 10;
     }
 
     protected int spawnChance()

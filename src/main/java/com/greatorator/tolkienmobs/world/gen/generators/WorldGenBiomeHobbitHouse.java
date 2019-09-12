@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.gen.generators;
 
+import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
 import com.greatorator.tolkienmobs.handler.interfaces.ITTMStructure;
 import com.greatorator.tolkienmobs.handler.interfaces.ITTMStructureSummon;
 import net.minecraft.block.*;
@@ -195,7 +196,6 @@ public class WorldGenBiomeHobbitHouse extends WorldGenerator implements ITTMStru
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 5, j + 1, k + 1), Blocks.GRASS.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 5, j + 1, k + 2), Blocks.GRASS.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 5, j + 1, k + 3), (IBlockState)Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.OAK));
-        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 5, j + 1, k + 5), (IBlockState)Blocks.CARPET.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.BLUE));
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 5, j + 1, k + 6), (IBlockState)Blocks.CARPET.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.BLUE));
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 5, j + 1, k + 7), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 5, j + 1, k + 8), (IBlockState)Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.OAK));
@@ -249,7 +249,6 @@ public class WorldGenBiomeHobbitHouse extends WorldGenerator implements ITTMStru
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 6, j + 1, k + 2), Blocks.GRASS.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 6, j + 1, k + 3), (IBlockState)Blocks.PLANKS.getDefaultState().withProperty(BlockPlanks.VARIANT, BlockPlanks.EnumType.OAK));
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 6, j + 1, k + 4), Blocks.AIR.getDefaultState());
-        this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 6, j + 1, k + 5), (IBlockState)Blocks.CARPET.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.BLUE));
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 6, j + 1, k + 6), (IBlockState)Blocks.CARPET.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.BLUE));
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 6, j + 1, k + 7), Blocks.AIR.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 6, j + 1, k + 8), Blocks.SPRUCE_DOOR.getDefaultState().withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER).withProperty(BlockDoor.FACING, EnumFacing.SOUTH));
@@ -479,6 +478,18 @@ public class WorldGenBiomeHobbitHouse extends WorldGenerator implements ITTMStru
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 12, j + 1, k + 6), Blocks.GRASS.getDefaultState());
         this.setBlockAndNotifyAdequately(worldIn, bp.add(i + 12, j + 1, k + 7), (IBlockState)Blocks.TALLGRASS.getDefaultState().withProperty(BlockTallGrass.TYPE, BlockTallGrass.EnumType.GRASS));
 
+        spawnHobbit(worldIn, bp);
+        spawnHobbit(worldIn, bp);
         return true;
+    }
+
+    private void spawnHobbit (World worldIn, BlockPos bp){
+        BlockPos pos = bp.add(5, 2, 6);
+
+        EntityTMHobbit hobbit = new EntityTMHobbit(worldIn);
+        hobbit.setLocationAndAngles(pos.getX(),pos.getY(),pos.getZ(), 0F, 0F);
+        hobbit.onInitialSpawn(worldIn.getDifficultyForLocation(pos), null);
+        hobbit.enablePersistence();
+        worldIn.spawnEntity(hobbit);
     }
 }

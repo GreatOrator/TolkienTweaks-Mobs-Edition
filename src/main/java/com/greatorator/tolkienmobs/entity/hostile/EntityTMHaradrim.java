@@ -15,8 +15,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 public class EntityTMHaradrim extends EntityTMHostiles {
@@ -60,17 +58,6 @@ public class EntityTMHaradrim extends EntityTMHostiles {
             }
         }
         return super.attackEntityFrom(damageSource, damage);
-    }
-
-    @Override
-    public boolean getCanSpawnHere()
-    {
-        int i = MathHelper.floor(this.posX);
-        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
-        int k = MathHelper.floor(this.posZ);
-        int willSpawn = this.spawnChance();
-        BlockPos blockpos = new BlockPos(i, j, k);
-        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getLight(blockpos) < 8 && willSpawn <= 10 && super.getCanSpawnHere();
     }
 
     @Override
