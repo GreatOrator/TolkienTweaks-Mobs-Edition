@@ -103,7 +103,8 @@
       "item_reforgedsword":    {"textures": {"layer0": "tolkienmobs:items/item_reforgedsword"}},
       "item_keyfragment":    {"textures": {"layer0": "tolkienmobs:items/item_keyfragment"}},
       "item_oilykey":    {"textures": {"layer0": "tolkienmobs:items/item_oilykey"}},
-      "item_mithrilnugget":    {"textures": {"layer0": "tolkienmobs:items/nugget_mithril"}}
+      "item_mithrilnugget":    {"textures": {"layer0": "tolkienmobs:items/nugget_mithril"}},
+      "item_magic_cloth":    {"textures": {"layer0": "tolkienmobs:items/item_magic_cloth"}}
     }
   }
 }

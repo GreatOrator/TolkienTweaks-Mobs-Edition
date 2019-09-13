@@ -169,6 +169,8 @@ public class TTMFeatures implements IModFeatures {
     public static Item ITEM_BROKENSWORD = new TTMLore(1);
     @ModFeature(name = "item_reforgedsword", stateOverride = "simple_items#type=item_reforgedsword", cTab = 4)
     public static Item ITEM_REFORGEDSWORD = new TTMLore(1).setEffectOverride(true);
+    @ModFeature(name = "item_magic_cloth", stateOverride = "simple_items#type=item_magic_cloth", cTab = 4)
+    public static Item ITEM_MAGIC_CLOTH = new TTMLore(1).setEffectOverride(true);
     @ModFeature(name = "item_keyfragment", stateOverride = "simple_items#type=item_keyfragment", cTab = 4)
     public static Item ITEM_KEYFRAGMENT = new TTMLore(2);
     @ModFeature(name = "item_oilykey", stateOverride = "simple_items#type=item_oilykey", cTab = 4)

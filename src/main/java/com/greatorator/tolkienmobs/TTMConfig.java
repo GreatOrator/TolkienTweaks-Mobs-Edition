@@ -234,7 +234,7 @@ public class TTMConfig implements IModConfigHelper {
     @ModConfigProperty(category = "Miscellaneous Configs", name = "chanceNotAfraid", comment = "If in the grip of terror, chance to find your courage (Minimum: 1)", requiresMCRestart = true, requiresSync = true)
     public static int chanceNotAfraid = 400;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "mobSpawnChance", comment = "Set this for additional control of mob Spawns.\n  10 times out of this number chance to spawn")
-    public static int mobSpawnChance = 100;
+    public static int mobSpawnChance = 150;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "FellBeastSpawnX", comment = "Set this for starting spawn location of the Fell Beast")
     public static int FellBeastX = 19023;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "FellBeastSpawnY", comment = "Set this for starting spawn location of the Fell Beast")

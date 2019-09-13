@@ -53,10 +53,11 @@ item.tolkienmobs:item_keyfragment.name=Key Fragment
 item.tolkienmobs:item_oilykey.name=Oil-covered Key
 item.tolkienmobs:item_mithrilnugget.name=§5Bilbo's Nugget
 item.tolkienmobs:item_fancykey.name=§3Dungeon Key
+item.tolkienmobs:item_letter.name=§6Thurdan's Letter
+item.tolkienmobs:item_magic_cloth.name=§5Special Magic Cloth
 item.tolkienmobs:item_fancyhelm.name=TBD
 item.tolkienmobs:item_fancypick.name=TBD
 item.tolkienmobs:item_fancyshield.name=TBD
-item.tolkienmobs:item_letter.name=TBD
 
 //Item Lore
 lore.item.tolkienmobs:item_beryl=Magical gem loaned to you to help on your search
@@ -107,17 +108,18 @@ lore.item.tolkienmobs:item_golem_stone_water=Remnant of an ancient Golem
 lore.item.tolkienmobs:item_golem_stone_summon=Ancient artifact to summon a Legendary Golem
 lore.item.tolkienmobs:item_pungentherb=Herb used in powerful potions
 lore.item.tolkienmobs:item_lockpick=Item used to open doors
-lore.item.tolkienmobs:gem_ammolite=Ancient magic concentrated within this gem
+lore.item.tolkienmobs:gem_ammolite=Ancient magic is concentrated within this gem
 lore.item.tolkienmobs:item_brokensword=All that was left of the Dwarven sword
 lore.item.tolkienmobs:item_reforgedsword=Remarkably good Dwarven work
-lore.item.tolkienmobs:item_mithrilnugget=§6Token Bilbo took from his adventures in the Lonely Mountain
+lore.item.tolkienmobs:item_mithrilnugget=Token Bilbo took from his adventures in the Lonely Mountain
 lore.item.tolkienmobs:item_fancykey=Key made by Elssuli from the items you collected
 lore.item.tolkienmobs:item_keyfragment= 
 lore.item.tolkienmobs:item_oilykey= 
-lore.item.tolkienmobs:item_letter=TBD
-lore.item.tolkienmobs:item_fancyhelm=TBD
-lore.item.tolkienmobs:item_fancypick=TBD
-lore.item.tolkienmobs:item_fancyshield=TBD
+lore.item.tolkienmobs:item_letter=Thurdan's letter about Dreulhara
+lore.item.tolkienmobs:item_magic_cloth=Fine Elven cloth made into a bag
+lore.item.tolkienmobs:item_fancyhelm=
+lore.item.tolkienmobs:item_fancypick=
+lore.item.tolkienmobs:item_fancyshield=
 
 //Item Information
 item.tolkienmobs:spawn_egg.name=Spawn
