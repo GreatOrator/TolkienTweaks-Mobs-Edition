@@ -12,6 +12,8 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.UUID;
 
@@ -36,6 +38,7 @@ public class TTMEffectEvents {
     }
 
     @SubscribeEvent
+    @SideOnly(Side.CLIENT)
     public void event(PlayerInteractEvent event) {
         EntityPlayer player = Minecraft.getMinecraft().player;
         PotionEffect effect = player.getActivePotionEffect(PotionInit.SLEEPNESIA);

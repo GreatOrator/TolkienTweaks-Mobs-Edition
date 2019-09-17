@@ -46,6 +46,7 @@ public class TTMClientEvents {
     }
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
+    @SideOnly(Side.CLIENT)
     public void renderAir(RenderGameOverlayEvent event)
     {
         Minecraft mc = Minecraft.getMinecraft();
@@ -101,6 +102,7 @@ public class TTMClientEvents {
     }
 
     @SubscribeEvent
+    @SideOnly(Side.CLIENT)
     public void event(RenderPlayerEvent.Pre event) {
         EntityPlayer player = Minecraft.getMinecraft().player;
         PotionEffect effect = player.getActivePotionEffect(PotionInit.SLEEPNESIA);
@@ -114,6 +116,7 @@ public class TTMClientEvents {
     }
 
     @SubscribeEvent
+    @SideOnly(Side.CLIENT)
     public void event(RenderPlayerEvent.Post event) {
         EntityPlayer player = Minecraft.getMinecraft().player;
         PotionEffect effect = player.getActivePotionEffect(PotionInit.SLEEPNESIA);
@@ -124,6 +127,7 @@ public class TTMClientEvents {
     }
 
     @SubscribeEvent
+    @SideOnly(Side.CLIENT)
     public void event(EntityViewRenderEvent.CameraSetup event) {
         EntityPlayer player = Minecraft.getMinecraft().player;
         PotionEffect effect = player.getActivePotionEffect(PotionInit.SLEEPNESIA);
@@ -141,6 +145,7 @@ public class TTMClientEvents {
     }
 
     @SubscribeEvent
+    @SideOnly(Side.CLIENT)
     public void event(RenderHandEvent event) {
         EntityPlayer player = Minecraft.getMinecraft().player;
         PotionEffect effect = player.getActivePotionEffect(PotionInit.SLEEPNESIA);
