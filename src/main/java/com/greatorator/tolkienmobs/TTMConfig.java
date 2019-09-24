@@ -133,6 +133,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableTMDuergar = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableHaradrim", comment = "Setting this to false will disable the Men of Harad", requiresMCRestart = true, requiresSync = true)
     public static boolean enableHaradrim = true;
+    @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableDeepClaw", comment = "Setting this to false will disable the Deep Claw", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableDeepClaw = true;
 
     /** Boss mobs - Individual*/
     @ModConfigProperty(category = "Boss Mobs", name = "enableBalrog", comment = "Setting this to false will disable the Balrog", requiresMCRestart = true, requiresSync = true)
@@ -233,17 +235,17 @@ public class TTMConfig implements IModConfigHelper {
     public static int chanceTerror = 300;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "chanceNotAfraid", comment = "If in the grip of terror, chance to find your courage (Minimum: 1)", requiresMCRestart = true, requiresSync = true)
     public static int chanceNotAfraid = 400;
-    @ModConfigProperty(category = "Miscellaneous Configs", name = "mobSpawnChance", comment = "Set this for additional control of mob Spawns.\n  10 times out of this number chance to spawn")
-    public static int mobSpawnChance = 150;
-    @ModConfigProperty(category = "Miscellaneous Configs", name = "FellBeastSpawnX", comment = "Set this for starting spawn location of the Fell Beast")
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "mobSpawnChance", comment = "Set this for additional control of mob Spawns.\n  10 times out of this number chance to spawn", requiresMCRestart = true, requiresSync = true)
+    public static int mobSpawnChance = 300;
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "FellBeastSpawnX", comment = "Set this for starting spawn location of the Fell Beast", requiresMCRestart = true, requiresSync = true)
     public static int FellBeastX = 19023;
-    @ModConfigProperty(category = "Miscellaneous Configs", name = "FellBeastSpawnY", comment = "Set this for starting spawn location of the Fell Beast")
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "FellBeastSpawnY", comment = "Set this for starting spawn location of the Fell Beast", requiresMCRestart = true, requiresSync = true)
     public static int FellBeastY = 86;
-    @ModConfigProperty(category = "Miscellaneous Configs", name = "FellBeastSpawnZ", comment = "Set this for starting spawn location of the Fell Beast")
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "FellBeastSpawnZ", comment = "Set this for starting spawn location of the Fell Beast", requiresMCRestart = true, requiresSync = true)
     public static int FellBeastZ = 13733;
 
     /** Potion Types */
-    @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array.")
+    @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array.", requiresMCRestart = true, requiresSync = true)
     public static String[] potionTypeArray = new String[]{"tolkienmobs:elf_vitality", "tolkienmobs:ent_draught", "tolkienmobs:personal_blacksmith", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:glowing", "minecraft:fire_resistance"};
 
     public static Potion[] potionArray = new Potion[0];

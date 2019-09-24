@@ -73,110 +73,110 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "dust_morguliron", stateOverride = "simple_items#type=dust_morguliron", cTab = 1)
     public static Item DUST_MORGULIRON = new ItemBCore();
     @ModFeature(name = "gem_ammolite", stateOverride = "simple_items#type=gem_ammolite", cTab = 1)
-    public static Item GEM_AMMOLITE = new TTMLore(16).setEffectOverride(true);
+    public static Item GEM_AMMOLITE = new TTMLore(16).setEffectOverride(true).setItemHasUse(false);
     /* End Region */
 
     /* Quest Items */
     @ModFeature(name = "item_beryl", stateOverride = "simple_items#type=item_beryl", cTab = 4)
-    public static Item ITEM_BERYL = new TTMLore(1).setEffectOverride(true);
+    public static Item ITEM_BERYL = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_watcherheart", stateOverride = "simple_items#type=item_watcherheart", cTab = 4)
-    public static Item ITEM_WATCHERHEART = new TTMLore(1).setEffectOverride(true);
+    public static Item ITEM_WATCHERHEART = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_watcherheart_cracked", stateOverride = "simple_items#type=item_watcherheart_cracked", cTab = 4)
-    public static Item ITEM_WATCHERHEART_CRACKED = new TTMLore(1);
+    public static Item ITEM_WATCHERHEART_CRACKED = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_darksigil", stateOverride = "simple_items#type=item_darksigil", cTab = 4)
-    public static Item ITEM_DARKSIGIL = new TTMLore(64);
+    public static Item ITEM_DARKSIGIL = new TTMLore(64).setItemHasUse(false);
     @ModFeature(name = "item_fortressmap", stateOverride = "simple_items#type=item_fortressmap", cTab = 4)
-    public static Item ITEM_FORTRESSMAP = new TTMLore(1);
+    public static Item ITEM_FORTRESSMAP = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_keystone", stateOverride = "simple_items#type=item_keystone", cTab = 4)
-    public static Item ITEM_KEYSTONE = new TTMLore(1);
+    public static Item ITEM_KEYSTONE = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_darksaddle", stateOverride = "simple_items#type=item_darksaddle", cTab = 4)
-    public static Item ITEM_DARKSADDLE = new TTMLore(1);
+    public static Item ITEM_DARKSADDLE = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_cavecomplete", stateOverride = "simple_items#type=item_cavecomplete", cTab = 4)
-    public static Item ITEM_CAVECOMPLETE = new TTMLore(3);
+    public static Item ITEM_CAVECOMPLETE = new TTMLore(3).setItemHasUse(false);
     @ModFeature(name = "item_watchercomplete", stateOverride = "simple_items#type=item_watchercomplete", cTab = 4)
-    public static Item ITEM_WATCHERCOMPLETE = new TTMLore(3);
+    public static Item ITEM_WATCHERCOMPLETE = new TTMLore(3).setItemHasUse(false);
     @ModFeature(name = "item_artifact", stateOverride = "simple_items#type=item_artifact", cTab = 4)
-    public static Item ITEM_ARTIFACT = new TTMLore(1).setEffectOverride(true);
+    public static Item ITEM_ARTIFACT = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_blankpaper", stateOverride = "simple_items#type=item_blankpaper", cTab = 4)
-    public static Item ITEM_BLANKPAPER = new TTMLore(1);
+    public static Item ITEM_BLANKPAPER = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_fancyarmor", stateOverride = "simple_items#type=item_fancyarmor", cTab = 4)
-    public static Item ITEM_FANCYARMOR = new TTMLore(1).setEffectOverride(true);
+    public static Item ITEM_FANCYARMOR = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_fancycloth", stateOverride = "simple_items#type=item_fancycloth", cTab = 4)
-    public static Item ITEM_FANCYCLOTH = new TTMLore(3);
+    public static Item ITEM_FANCYCLOTH = new TTMLore(3).setItemHasUse(false);
     @ModFeature(name = "item_fancyhammer", stateOverride = "simple_items#type=item_fancyhammer", cTab = 4)
-    public static Item ITEM_FANCYHAMMER = new TTMLore(1).setEffectOverride(true);
+    public static Item ITEM_FANCYHAMMER = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_fancyhelm", stateOverride = "simple_items#type=item_fancyhelm", cTab = 4)
-    public static Item ITEM_FANCYHELM = new TTMLore(1);
+    public static Item ITEM_FANCYHELM = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_fancykey", stateOverride = "simple_items#type=item_fancykey", cTab = 4)
-    public static Item ITEM_FANCYKEY = new TTMLore(1);
+    public static Item ITEM_FANCYKEY = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_fancypick", stateOverride = "simple_items#type=item_fancypick", cTab = 4)
-    public static Item ITEM_FANCYPICK = new TTMLore(1);
+    public static Item ITEM_FANCYPICK = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_fancyshield", stateOverride = "simple_items#type=item_fancyshield", cTab = 4)
-    public static Item ITEM_FANCYSHIELD = new TTMLore(1);
+    public static Item ITEM_FANCYSHIELD = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_fancyshield2", stateOverride = "simple_items#type=item_fancyshield2", cTab = 4)
-    public static Item ITEM_FANCYSHIELD2 = new TTMLore(1).setEffectOverride(true);
+    public static Item ITEM_FANCYSHIELD2 = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_fancysword", stateOverride = "simple_items#type=item_fancysword", cTab = 4)
-    public static Item ITEM_FANCYSWORD = new TTMLore(1);
+    public static Item ITEM_FANCYSWORD = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_fancysword2", stateOverride = "simple_items#type=item_fancysword2", cTab = 4)
-    public static Item ITEM_FANCYSWORD2 = new TTMLore(1).setEffectOverride(true);
+    public static Item ITEM_FANCYSWORD2 = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_letter", stateOverride = "simple_items#type=item_letter", cTab = 4)
-    public static Item ITEM_LETTER = new TTMLore(1);
+    public static Item ITEM_LETTER = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_scroll", stateOverride = "simple_items#type=item_scroll", cTab = 4)
-    public static Item ITEM_SCROLL = new TTMLore(1);
+    public static Item ITEM_SCROLL = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_scroll2", stateOverride = "simple_items#type=item_scroll2", cTab = 4)
-    public static Item ITEM_SCROLL2 = new TTMLore(1).setEffectOverride(true);
+    public static Item ITEM_SCROLL2 = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_specialflower", stateOverride = "simple_items#type=item_specialflower", cTab = 4)
-    public static Item ITEM_SPECIALFLOWER = new TTMLore(12).setEffectOverride(true);
+    public static Item ITEM_SPECIALFLOWER = new TTMLore(12).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_storybook", stateOverride = "simple_items#type=item_storybook", cTab = 4)
-    public static Item ITEM_STORYBOOK = new TTMLore(12);
+    public static Item ITEM_STORYBOOK = new TTMLore(12).setItemHasUse(false);
     @ModFeature(name = "item_storybook2", stateOverride = "simple_items#type=item_storybook2", cTab = 4)
-    public static Item ITEM_STORYBOOK2 = new TTMLore(1).setEffectOverride(true);
+    public static Item ITEM_STORYBOOK2 = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_wornarmor", stateOverride = "simple_items#type=item_wornarmor", cTab = 4)
-    public static Item ITEM_WORNARMOR = new TTMLore(1);
+    public static Item ITEM_WORNARMOR = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_wornhelm", stateOverride = "simple_items#type=item_wornhelm", cTab = 4)
-    public static Item ITEM_WORNHELM = new TTMLore(1);
+    public static Item ITEM_WORNHELM = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_wornkey", stateOverride = "simple_items#type=item_wornkey", cTab = 4)
-    public static Item ITEM_WORNKEY = new TTMLore(1);
+    public static Item ITEM_WORNKEY = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_wornpick", stateOverride = "simple_items#type=item_wornpick", cTab = 4)
-    public static Item ITEM_WORNPICK = new TTMLore(1);
+    public static Item ITEM_WORNPICK = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_wornshield", stateOverride = "simple_items#type=item_wornshield", cTab = 4)
-    public static Item ITEM_WORNSHIELD = new TTMLore(1);
+    public static Item ITEM_WORNSHIELD = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_wornshield2", stateOverride = "simple_items#type=item_wornshield2", cTab = 4)
-    public static Item ITEM_WORNSHIELD2 = new TTMLore(1);
+    public static Item ITEM_WORNSHIELD2 = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_wornsword", stateOverride = "simple_items#type=item_wornsword", cTab = 4)
-    public static Item ITEM_WORNSWORD = new TTMLore(1);
+    public static Item ITEM_WORNSWORD = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_wovenbasket", stateOverride = "simple_items#type=item_wovenbasket", cTab = 4)
-    public static Item ITEM_WOVENBASKET = new TTMLore(3);
+    public static Item ITEM_WOVENBASKET = new TTMLore(3).setItemHasUse(false);
     @ModFeature(name = "item_writtenpaper", stateOverride = "simple_items#type=item_writtenpaper", cTab = 4)
-    public static Item ITEM_WRITTENPAPER = new TTMLore(1).setEffectOverride(true);
+    public static Item ITEM_WRITTENPAPER = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_coin1", stateOverride = "simple_items#type=item_coin1", cTab = 4)
-    public static Item ITEM_FACTIONCOIN = new TTMLore(64);
+    public static Item ITEM_FACTIONCOIN = new TTMLore(64).setItemHasUse(false);
     @ModFeature(name = "item_coin2", stateOverride = "simple_items#type=item_coin2", cTab = 4)
-    public static Item ITEM_FACTIONTOKEN = new TTMLore(64);
+    public static Item ITEM_FACTIONTOKEN = new TTMLore(64).setItemHasUse(false);
     @ModFeature(name = "item_coin_bronze", stateOverride = "simple_items#type=item_coin_bronze", cTab = 4)
-    public static Item ITEM_COIN_BRONZE = new TTMLore(64);
+    public static Item ITEM_COIN_BRONZE = new TTMLore(64).setItemHasUse(false);
     @ModFeature(name = "item_coin_silver", stateOverride = "simple_items#type=item_coin_silver", cTab = 4)
-    public static Item ITEM_COIN_SILVER = new TTMLore(64);
+    public static Item ITEM_COIN_SILVER = new TTMLore(64).setItemHasUse(false);
     @ModFeature(name = "item_coin_gold", stateOverride = "simple_items#type=item_coin_gold", cTab = 4)
-    public static Item ITEM_COIN_GOLD = new TTMLore(64);
+    public static Item ITEM_COIN_GOLD = new TTMLore(64).setItemHasUse(false);
     @ModFeature(name = "item_coin_mithril", stateOverride = "simple_items#type=item_coin_mithril", cTab = 4)
-    public static Item ITEM_COIN_MITHRIL = new TTMLore(64);
+    public static Item ITEM_COIN_MITHRIL = new TTMLore(64).setItemHasUse(false);
     @ModFeature(name = "item_pungentherb", stateOverride = "simple_items#type=item_pungentherb", cTab = 4)
-    public static Item ITEM_PUNGENTHERB = new TTMLore(3).setEffectOverride(true);
+    public static Item ITEM_PUNGENTHERB = new TTMLore(3).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_lockpick", stateOverride = "simple_items#type=item_lockpick", cTab = 4)
-    public static Item ITEM_LOCKPICK = new TTMLore(16);
+    public static Item ITEM_LOCKPICK = new TTMLore(16).setItemHasUse(false);
     @ModFeature(name = "item_brokensword", stateOverride = "simple_items#type=item_brokensword", cTab = 4)
-    public static Item ITEM_BROKENSWORD = new TTMLore(1);
+    public static Item ITEM_BROKENSWORD = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_reforgedsword", stateOverride = "simple_items#type=item_reforgedsword", cTab = 4)
-    public static Item ITEM_REFORGEDSWORD = new TTMLore(1).setEffectOverride(true);
+    public static Item ITEM_REFORGEDSWORD = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_magic_cloth", stateOverride = "simple_items#type=item_magic_cloth", cTab = 4)
-    public static Item ITEM_MAGIC_CLOTH = new TTMLore(1).setEffectOverride(true);
+    public static Item ITEM_MAGIC_CLOTH = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_keyfragment", stateOverride = "simple_items#type=item_keyfragment", cTab = 4)
-    public static Item ITEM_KEYFRAGMENT = new TTMLore(2);
+    public static Item ITEM_KEYFRAGMENT = new TTMLore(2).setItemHasUse(false);
     @ModFeature(name = "item_oilykey", stateOverride = "simple_items#type=item_oilykey", cTab = 4)
-    public static Item ITEM_OILYKEY = new TTMLore(1);
+    public static Item ITEM_OILYKEY = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_mithrilnugget", stateOverride = "simple_items#type=item_mithrilnugget", cTab = 4)
-    public static Item ITEM_MITHRILNUGGET = new TTMLore(1);
+    public static Item ITEM_MITHRILNUGGET = new TTMLore(1).setItemHasUse(false);
     /* End Region */
 
     /* Tools */
@@ -281,15 +281,15 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "bottle_fancy", stateOverride = "simple_items#type=bottle_fancy", cTab = 4)
     public static Item BOTTLE_FANCY = new ItemBCore();
     @ModFeature(name = "item_golem_stone", stateOverride = "simple_items#type=item_golem_stone", cTab = 4)
-    public static Item GOLEM_STONE = new TTMLore(16);
+    public static Item GOLEM_STONE = new TTMLore(16).setItemHasUse(false);
     @ModFeature(name = "item_golem_stone_earth", stateOverride = "simple_items#type=item_golem_stone_earth", cTab = 4)
-    public static Item GOLEM_STONE_EARTH = new TTMLore(16);
+    public static Item GOLEM_STONE_EARTH = new TTMLore(16).setItemHasUse(false);
     @ModFeature(name = "item_golem_stone_air", stateOverride = "simple_items#type=item_golem_stone_air", cTab = 4)
-    public static Item GOLEM_STONE_AIR = new TTMLore(16);
+    public static Item GOLEM_STONE_AIR = new TTMLore(16).setItemHasUse(false);
     @ModFeature(name = "item_golem_stone_fire", stateOverride = "simple_items#type=item_golem_stone_fire", cTab = 4)
-    public static Item GOLEM_STONE_FIRE = new TTMLore(16);
+    public static Item GOLEM_STONE_FIRE = new TTMLore(16).setItemHasUse(false);
     @ModFeature(name = "item_golem_stone_water", stateOverride = "simple_items#type=item_golem_stone_water", cTab = 4)
-    public static Item GOLEM_STONE_WATER = new TTMLore(16);
+    public static Item GOLEM_STONE_WATER = new TTMLore(16).setItemHasUse(false);
     @ModFeature(name = "item_golem_stone_summon", stateOverride = "simple_items#type=item_golem_stone_summon", cTab = 4)
     public static Item GOLEM_STONE_SUMMON = new TTMLore(16).setEffectOverride(true).setSpawnInfo(true);
     /* End Region */

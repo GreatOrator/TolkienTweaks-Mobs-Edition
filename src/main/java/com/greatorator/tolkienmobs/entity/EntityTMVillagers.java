@@ -95,7 +95,7 @@ public class EntityTMVillagers extends EntityVillager implements IEntityAddition
                     break;
 
                 case 1:
-                    prof = VillagerRegistry.getById(netID);
+                    prof = VillagerRegistry.getById(2);
                     break;
 
                 case 2:
@@ -111,7 +111,7 @@ public class EntityTMVillagers extends EntityVillager implements IEntityAddition
                     break;
 
                 case 5:
-                    prof = VillagerRegistry.getById(netID);
+                    prof = VillagerRegistry.getById(3);
                     break;
 
                 case 6:
@@ -127,7 +127,7 @@ public class EntityTMVillagers extends EntityVillager implements IEntityAddition
                     break;
 
                 case 9:
-                    prof = VillagerRegistry.getById(netID);
+                    prof = VillagerRegistry.getById(4);
                     break;
 
                 case 10:
@@ -142,7 +142,7 @@ public class EntityTMVillagers extends EntityVillager implements IEntityAddition
                     prof = ProfessionInit.getPetSupplies();
 
                 case 13:
-                    prof = VillagerRegistry.getById(netID);
+                    prof = VillagerRegistry.getById(5);
                     break;
 
                 case 14:
@@ -186,7 +186,7 @@ public class EntityTMVillagers extends EntityVillager implements IEntityAddition
     public boolean getCanSpawnHere() {
         int willSpawn = this.spawnChance();
 
-        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere() && willSpawn <= 10;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.world.canSeeSky(new BlockPos(this)) && super.getCanSpawnHere() && willSpawn <= 10;
     }
 
     private int spawnChance()
@@ -230,9 +230,10 @@ public class EntityTMVillagers extends EntityVillager implements IEntityAddition
     @Override
     public EntityTMVillagers createChild(EntityAgeable ageable)
     {
-        EntityTMVillagers entityTMVillagers = new EntityTMVillagers(this.world);
-        entityTMVillagers.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(entityTMVillagers)), (IEntityLivingData)null);
-        return entityTMVillagers;
+      //  EntityTMVillagers entityTMVillagers = new EntityTMVillagers(this.world);
+      //  entityTMVillagers.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(entityTMVillagers)), (IEntityLivingData)null);
+      //  return entityTMVillagers;
+        return new EntityTMVillagers(this.world);
     }
 
     protected boolean canDespawn()

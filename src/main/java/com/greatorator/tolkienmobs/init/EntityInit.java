@@ -83,6 +83,9 @@ public class EntityInit
             if (TTMConfig.enableHaradrim) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmharadrim"), EntityTMHaradrim.class, "tmharadrim", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0x9A8FAB);
             }
+            if (TTMConfig.enableDeepClaw) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmdeepclaw"), EntityTMDeepClaw.class, "tmdeepclaw", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0x75F543);
+            }
         }
 
         if (TTMConfig.enableBoss) {
@@ -237,6 +240,9 @@ public class EntityInit
                 }
                 if (TTMConfig.enableHaradrim) {
                     EntityRegistry.addSpawn(EntityTMHaradrim.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.DESERT_HILLS,Biomes.DESERT);
+                }
+                if (TTMConfig.enableDeepClaw) {
+                    EntityRegistry.addSpawn(EntityTMDuergar.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
                 }
             }
 

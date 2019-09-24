@@ -30,6 +30,7 @@ public class LootInit {
     public static final ResourceLocation MINOTAUR = register("entities/minotaur");
     public static final ResourceLocation BRIGAND = register("entities/tmbrigand");
     public static final ResourceLocation SWAMPHAG = register("entities/swamp_hag");
+    public static final ResourceLocation DEEPCLAW = register("entities/tmdeepclaw");
 
     /** Special */
     public static final ResourceLocation GOLLUM = register("entities/gollum");

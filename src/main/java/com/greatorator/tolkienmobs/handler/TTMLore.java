@@ -21,6 +21,7 @@ import java.util.List;
 public class TTMLore extends ItemBCore {
     public boolean hasEffectOverride = false;
     private boolean canSpawnEntity = false;
+    private boolean itemHasUse = true;
 
     public TTMLore(int stackSize) {
         this.setMaxStackSize(stackSize);
@@ -46,30 +47,32 @@ public class TTMLore extends ItemBCore {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
-        RayTraceResult raytraceresult = this.rayTrace(worldIn, playerIn, true);
-        BlockPos blockpos = raytraceresult.getBlockPos();
-        EntityTMMithrilGolem entity = new EntityTMMithrilGolem(worldIn);
 
-        if (worldIn.isRemote)
-        {
-            return new ActionResult<ItemStack>(EnumActionResult.PASS, itemstack);
-        }
-        else
-        {
-            if (entity == null)
+        if (itemHasUse) {
+            RayTraceResult raytraceresult = this.rayTrace(worldIn, playerIn, true);
+            EntityTMMithrilGolem entity = new EntityTMMithrilGolem(worldIn);
+            BlockPos blockpos = raytraceresult.getBlockPos();
+            if (worldIn.isRemote)
             {
                 return new ActionResult<ItemStack>(EnumActionResult.PASS, itemstack);
             }
-            else {
-                if (canSpawnEntity) {
+            else
+            {
+                if (entity == null)
+                {
+                    return new ActionResult<ItemStack>(EnumActionResult.PASS, itemstack);
+                }
+                else {
+                    if (canSpawnEntity) {
 
-                    if (!playerIn.capabilities.isCreativeMode)
-                    {
-                        itemstack.shrink(1);
+                        if (!playerIn.capabilities.isCreativeMode)
+                        {
+                            itemstack.shrink(1);
+                        }
+
+                        entity.setPosition((double) blockpos.getX() + 0.5D, (double) blockpos.getY() + 1.0D, (double) blockpos.getZ() + 0.5D);
+                        worldIn.spawnEntity(entity);
                     }
-
-                    entity.setPosition((double) blockpos.getX() + 0.5D, (double) blockpos.getY() + 1.0D, (double) blockpos.getZ() + 0.5D);
-                    worldIn.spawnEntity(entity);
                 }
             }
         }
@@ -78,7 +81,11 @@ public class TTMLore extends ItemBCore {
 
     public TTMLore setSpawnInfo(boolean isSpawnItem) {
         this.canSpawnEntity = isSpawnItem;
+        return this;
+    }
 
+    public TTMLore setItemHasUse(boolean itemHasUse) {
+        this.itemHasUse = itemHasUse;
         return this;
     }
 }
