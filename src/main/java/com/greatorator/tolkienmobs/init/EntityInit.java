@@ -242,7 +242,7 @@ public class EntityInit
                     EntityRegistry.addSpawn(EntityTMHaradrim.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.DESERT_HILLS,Biomes.DESERT);
                 }
                 if (TTMConfig.enableDeepClaw) {
-                    EntityRegistry.addSpawn(EntityTMDuergar.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
+                    EntityRegistry.addSpawn(EntityTMDeepClaw.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
                 }
             }
 

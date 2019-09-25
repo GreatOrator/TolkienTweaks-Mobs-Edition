@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.handler;
 
-import mezz.jei.util.Translator;
+import com.greatorator.tolkienmobs.utils.TTMTranslator;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -21,7 +21,7 @@ public class TTMSword extends ItemSword {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, list, flagIn);
-        list.add(TextFormatting.GOLD + Translator.translateToLocalFormatted("lore." + getUnlocalizedName()));
+        list.add(TextFormatting.GOLD + TTMTranslator.translateToLocalFormatted("lore." + getUnlocalizedName()));
     }
 
     public TTMSword setEffectOverride(boolean hasEffectOverride) {

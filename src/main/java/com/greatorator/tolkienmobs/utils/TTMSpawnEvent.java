@@ -15,6 +15,7 @@ public class TTMSpawnEvent {
       event.getEntity() instanceof EntityZombie ||
       event.getEntity() instanceof EntitySpider ||
       event.getEntity() instanceof EntityCreeper ||
+      event.getEntity() instanceof EntityStray ||
       event.getEntity() instanceof EntityEnderman) {
         event.setCanceled(true);
     }

@@ -102,15 +102,15 @@ public class CraftingInit {
 
         /* Miscellaneous */
         OreDictionary.registerOre("glassBottle", new ItemStack(TTMFeatures.BOTTLE_FANCY));
-        OreDictionary.registerOre("itemCoin", new ItemStack(TTMFeatures.ITEM_COIN_BRONZE));
-        OreDictionary.registerOre("itemCoin", new ItemStack(TTMFeatures.ITEM_COIN_SILVER));
-        OreDictionary.registerOre("itemCoin", new ItemStack(TTMFeatures.ITEM_COIN_GOLD));
-        OreDictionary.registerOre("itemCoin", new ItemStack(TTMFeatures.ITEM_COIN_MITHRIL));
-        OreDictionary.registerOre("itemToken", new ItemStack(TTMFeatures.ITEM_FACTIONCOIN));
-        OreDictionary.registerOre("itemToken", new ItemStack(TTMFeatures.ITEM_FACTIONTOKEN));
-        OreDictionary.registerOre("itemToken", new ItemStack(TTMFeatures.ITEM_DARKSIGIL));
-        OreDictionary.registerOre("itemToken", new ItemStack(TTMFeatures.ITEM_CAVECOMPLETE));
-        OreDictionary.registerOre("itemToken", new ItemStack(TTMFeatures.ITEM_WATCHERCOMPLETE));
+        OreDictionary.registerOre("itemCoinBronze", new ItemStack(TTMFeatures.ITEM_COIN_BRONZE));
+        OreDictionary.registerOre("itemCoinSilver", new ItemStack(TTMFeatures.ITEM_COIN_SILVER));
+        OreDictionary.registerOre("itemCoinGold", new ItemStack(TTMFeatures.ITEM_COIN_GOLD));
+        OreDictionary.registerOre("itemCoinMithril", new ItemStack(TTMFeatures.ITEM_COIN_MITHRIL));
+        OreDictionary.registerOre("itemCoinFaction", new ItemStack(TTMFeatures.ITEM_FACTIONCOIN));
+        OreDictionary.registerOre("itemTokenFaction", new ItemStack(TTMFeatures.ITEM_FACTIONTOKEN));
+        OreDictionary.registerOre("itemTokenSigil", new ItemStack(TTMFeatures.ITEM_DARKSIGIL));
+        OreDictionary.registerOre("itemTokenCave", new ItemStack(TTMFeatures.ITEM_CAVECOMPLETE));
+        OreDictionary.registerOre("itemTokenWatcher", new ItemStack(TTMFeatures.ITEM_WATCHERCOMPLETE));
     }
 
     private static void addOreDictRecipe(){

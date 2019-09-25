@@ -75,7 +75,7 @@ public class BiomeIronHills extends Biome {
                 }
             }
         }
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityLlama.class, 12, 1, 3));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityLlama.class, 3, 1, 1));
         this.spawnableCreatureList.add(new SpawnListEntry(EntityRabbit.class, 4, 2, 3));
     }
 

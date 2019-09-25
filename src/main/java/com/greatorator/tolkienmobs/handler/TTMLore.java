@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.handler;
 
 import com.brandon3055.brandonscore.items.ItemBCore;
 import com.greatorator.tolkienmobs.entity.special.EntityTMMithrilGolem;
-import mezz.jei.util.Translator;
+import com.greatorator.tolkienmobs.utils.TTMTranslator;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -31,7 +31,7 @@ public class TTMLore extends ItemBCore {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn) {
         super.addInformation(stack, worldIn, list, flagIn);
-        list.add(TextFormatting.GOLD + Translator.translateToLocalFormatted("lore." + getUnlocalizedName()));
+        list.add(TextFormatting.GOLD + TTMTranslator.translateToLocalFormatted("lore." + getUnlocalizedName()));
     }
 
     public TTMLore setEffectOverride(boolean hasEffectOverride) {
