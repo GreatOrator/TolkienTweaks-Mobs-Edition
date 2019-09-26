@@ -10,6 +10,7 @@ import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomFlowers;
 import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeOldForest;
 import net.minecraft.block.BlockFlower;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -79,6 +80,7 @@ public class BiomeOldForest extends Biome implements IFogyBiome {
                 }
             }
         }
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityWolf.class, 1, 1, 2));
     }
 
     @SideOnly(Side.CLIENT)

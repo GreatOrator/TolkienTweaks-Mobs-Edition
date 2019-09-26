@@ -445,7 +445,7 @@ public class UpdateStateBirds {
     public void considerAttacking()
     {
         // DEBUG
-        if (theBird.getAttackTarget() != null) System.out.println("Attack target = "+theBird.getAttackTarget());
+        //if (theBird.getAttackTarget() != null) System.out.println("Attack target = "+theBird.getAttackTarget());
 
         // handle case where previous target becomes unsuitable
         if (TTMUtilities.isSuitableTarget(theBird, theBird.getAttackTarget(), false))
