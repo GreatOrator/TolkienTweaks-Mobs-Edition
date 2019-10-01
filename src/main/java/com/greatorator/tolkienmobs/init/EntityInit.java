@@ -6,24 +6,35 @@ import com.greatorator.tolkienmobs.entity.ambient.*;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.boss.*;
-import com.greatorator.tolkienmobs.entity.hostile.EntityTMElementalGolem;
-import com.greatorator.tolkienmobs.entity.special.EntityTMGreatEagle;
-import com.greatorator.tolkienmobs.entity.special.EntityTMMithrilGolem;
-import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
 import com.greatorator.tolkienmobs.entity.hostile.*;
 import com.greatorator.tolkienmobs.entity.passive.*;
 import com.greatorator.tolkienmobs.entity.special.EntityTMGollum;
+import com.greatorator.tolkienmobs.entity.special.EntityTMGreatEagle;
+import com.greatorator.tolkienmobs.entity.special.EntityTMMithrilGolem;
+import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeEnd;
+import net.minecraft.world.biome.BiomeHell;
+import net.minecraft.world.biome.BiomeVoid;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.relauncher.Side;
+
+import java.util.Collection;
+import java.util.LinkedList;
 
 public class EntityInit
 {
     public static void init() {
 
         LogHelperTTM.info("Adding all the various fauna to see!");
+        Biome[] spawnBiomes = getAllSpawnBiomes();
+
         /* Every entity in our mod has an ID (local to this mod) */
         int id = 1;
 
@@ -85,6 +96,9 @@ public class EntityInit
             }
             if (TTMConfig.enableDeepClaw) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmdeepclaw"), EntityTMDeepClaw.class, "tmdeepclaw", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0x75F543);
+            }
+            if (TTMConfig.enableRomieWalker) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "romiewalker"), EntityRomieWalker.class, "romiewalker", id++, TolkienMobs.instance, 64, 3, true, 0xFA6272, 0xF5FF43);
             }
         }
 
@@ -244,6 +258,9 @@ public class EntityInit
                 if (TTMConfig.enableDeepClaw) {
                     EntityRegistry.addSpawn(EntityTMDeepClaw.class, 12, 1, 1, EnumCreatureType.MONSTER, Biomes.EXTREME_HILLS);
                 }
+                if (TTMConfig.enableRomieWalker) {
+                    EntityRegistry.addSpawn(EntityRomieWalker.class, 12, 1, 1, EnumCreatureType.MONSTER, spawnBiomes);
+                }
             }
 
             if (TTMConfig.enablePassive) {
@@ -283,5 +300,28 @@ public class EntityInit
         }
 
         LogHelperTTM.info("I chose you mobi-chu!");
+    }
+
+    private static Biome[] getAllSpawnBiomes() {
+        LinkedList<Biome> list = new LinkedList<>();
+        Collection<Biome> biomes = ForgeRegistries.BIOMES.getValuesCollection();
+        for (Biome bgb : biomes) {
+            if (bgb instanceof BiomeVoid) {
+                continue;
+            }
+            if (bgb instanceof BiomeEnd && !TTMConfig.getSpawnInEnd) {
+                continue;
+            }
+            if (bgb instanceof BiomeHell && !TTMConfig.getSpawnInNether) {
+                continue;
+            }
+            if (!list.contains(bgb)) {
+                list.add(bgb);
+                if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+                    LogHelperTTM.info("  >>> getAllSpawnBiomes: " + bgb.getBiomeName());
+                }
+            }
+        }
+        return list.toArray(new Biome[0]);
     }
 }

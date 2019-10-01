@@ -5,6 +5,7 @@ import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.utils.TTMRand;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
@@ -12,7 +13,9 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.EnumDifficulty;
@@ -21,6 +24,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class EntityTMHuron extends EntityMob implements IRangedAttackMob {
+    protected Block spawnableBlock = Blocks.GRASS;
 
     public EntityTMHuron(World worldIn) {
         super(worldIn);
@@ -106,9 +110,13 @@ public class EntityTMHuron extends EntityMob implements IRangedAttackMob {
 
     @Override
     public boolean getCanSpawnHere() {
+        int i = MathHelper.floor(this.posX);
+        int j = MathHelper.floor(this.getEntityBoundingBox().minY);
+        int k = MathHelper.floor(this.posZ);
         int willSpawn = this.spawnChance();
+        BlockPos blockpos = new BlockPos(i, j, k);
 
-        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere() && willSpawn <= 10;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getBlockState(blockpos.down()).getBlock() == this.spawnableBlock && this.isValidLightLevel() && super.getCanSpawnHere() && willSpawn <= 10;
     }
 
     private int spawnChance()

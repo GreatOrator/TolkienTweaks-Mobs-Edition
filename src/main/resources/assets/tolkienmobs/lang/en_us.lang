@@ -30,6 +30,7 @@ item.tolkienmobs:item_scroll2.name=§5Translated Scroll
 item.tolkienmobs:item_specialflower.name=§2Hag Hops
 item.tolkienmobs:item_storybook.name=§3Hobbit Story
 item.tolkienmobs:item_storybook2.name=§6Bilbo's Story
+item.tolkienmobs:item_storybook3.name=§3Petunia's Manuscript
 item.tolkienmobs:item_wornarmor.name=§5Cromhes’ Armour
 item.tolkienmobs:item_wornhelm.name=§5Broken Helm
 item.tolkienmobs:item_wornkey.name=§5Bandit's Key
@@ -84,6 +85,7 @@ lore.item.tolkienmobs:item_scroll2=A scroll translated by Elrond with instructio
 lore.item.tolkienmobs:item_wornkey=Ruined key found on the body of a bandit captain
 lore.item.tolkienmobs:item_fancyhammer=A hammer especially designed for shaping mitril
 lore.item.tolkienmobs:item_storybook2=Gift Created by Gaffer Gamgee for Bilbo's Birthday
+lore.item.tolkienmobs:item_storybook3=Journal of the adventures a young Hobbit has
 lore.item.tolkienmobs:item_storybook=Story told by a hobbit after Bilbo disappeared on his birthday
 lore.item.tolkienmobs:item_writtenpaper=Charcoal rubbing of the runes on the Watchers near Khazad-dûm
 lore.item.tolkienmobs:item_blankpaper=Lost page from a manuscript
@@ -149,6 +151,11 @@ item.tolkienmobs:trinket_ring.name=Magic Ring of %s
 item.tolkienmobs:trinket_amulet.name=Magic Amulet of %s
 item.tolkienmobs:trinket_belt.name=Magic Belt of %s
 item.tolkienmobs:trinket_charm.name=Magic Charm of %s
+
+lore.item.tolkienmobs:trinket_ring=Shift right-click to activate/deactivate effect
+lore.item.tolkienmobs:trinket_amulet=Shift right-click to activate/deactivate effect
+lore.item.tolkienmobs:trinket_belt=Shift right-click to activate/deactivate effect
+lore.item.tolkienmobs:trinket_charm=Shift right-click to activate/deactivate effect
 
 item.tolkienmobs:helmet_mithril.name=Mithril Helmet
 item.tolkienmobs:chestplate_mithril.name=Mithril Chestplate
@@ -436,6 +443,7 @@ entity.tmharadrim.name=Haradrim
 entity.tmduergar.name=Duergar
 entity.tmgoblinking.name=Goblin King
 entity.tmdeepclaw.name=Deep Claw
+entity.romiewalker.name=Infected Walker
 
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer

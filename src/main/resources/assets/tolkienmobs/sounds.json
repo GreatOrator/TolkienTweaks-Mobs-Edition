@@ -806,5 +806,41 @@
 	  "tolkienmobs:mob/watcher/watcher_say2",
 	  "tolkienmobs:mob/watcher/watcher_say3"
     ]
+  },
+  "mob.romiewalker.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/romiewalker/romiewalker_idle1",
+      "tolkienmobs:mob/romiewalker/romiewalker_idle2"
+    ]
+  },
+  "mob.romiewalker.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/romiewalker/romiewalker_death1",
+      "tolkienmobs:mob/romiewalker/romiewalker_death2"
+    ]
+  },
+  "mob.romiewalker.hurt":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/romiewalker/romiewalker_hurt1",
+      "tolkienmobs:mob/romiewalker/romiewalker_hurt2"
+    ]
+  },
+  "mob.romiewalker.angry":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/romiewalker/romiewalker_angry1",
+      "tolkienmobs:mob/romiewalker/romiewalker_angry2"
+    ]
   }
 }

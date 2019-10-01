@@ -6,6 +6,8 @@ import com.brandon3055.brandonscore.items.ItemBCore;
 import com.brandon3055.brandonscore.utils.ItemNBTHelper;
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
+import com.greatorator.tolkienmobs.utils.TTMTranslator;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,11 +19,14 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 @Optional.Interface(iface = "baubles.api.IBauble", modid = "baubles")
 public class ItemTrinketBelt extends ItemBCore implements IBauble {
@@ -36,6 +41,13 @@ public class ItemTrinketBelt extends ItemBCore implements IBauble {
     @Override
     public boolean hasEffect(ItemStack stack) {
         return isEnabled(stack);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, World worldIn, List<String> list, ITooltipFlag flagIn) {
+        super.addInformation(stack, worldIn, list, flagIn);
+        list.add(TextFormatting.DARK_PURPLE + TTMTranslator.translateToLocalFormatted("lore." + getUnlocalizedName()));
     }
 
     @SuppressWarnings("unchecked")

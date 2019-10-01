@@ -77,6 +77,10 @@ public class CraftingInit {
         OreDictionary.registerOre("logWood", new ItemStack(TTMFeatures.LOGS));
         OreDictionary.registerOre("plankWood", new ItemStack(TTMFeatures.PLANKS));
         OreDictionary.registerOre("slabWood", new ItemStack(TTMFeatures.HALF_SLAB));
+        OreDictionary.registerOre("stairWood", new ItemStack(TTMFeatures.STAIRS_LEBETHRON));
+        OreDictionary.registerOre("stairWood", new ItemStack(TTMFeatures.STAIRS_CULUMALDA));
+        OreDictionary.registerOre("stairWood", new ItemStack(TTMFeatures.STAIRS_MALLORN));
+        OreDictionary.registerOre("stairWood", new ItemStack(TTMFeatures.STAIRS_MIRKWOOD));
 
         /* Plant life */
         OreDictionary.registerOre("treeSapling", new ItemStack(TTMFeatures.SAPLINGS));
@@ -87,7 +91,7 @@ public class CraftingInit {
         OreDictionary.registerOre("foodLembas", new ItemStack(TTMFeatures.LEMBAS));
         OreDictionary.registerOre("foodHoneyCake", new ItemStack(TTMFeatures.HONEY_CAKE));
         OreDictionary.registerOre("foodCram", new ItemStack(TTMFeatures.CRAM));
-        OreDictionary.registerOre("foodMonsterFlesh", new ItemStack(TTMFeatures.MONSTER_FLESH));
+        OreDictionary.registerOre("flesh", new ItemStack(TTMFeatures.MONSTER_FLESH));
         OreDictionary.registerOre("foodInsect", new ItemStack(TTMFeatures.INSECT));
         OreDictionary.registerOre("foodInsect", new ItemStack(TTMFeatures.GOLDEN_INSECT));
         OreDictionary.registerOre("foodNut", new ItemStack(TTMFeatures.TREE_ACORN));

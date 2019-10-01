@@ -135,6 +135,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableHaradrim = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableDeepClaw", comment = "Setting this to false will disable the Deep Claw", requiresMCRestart = true, requiresSync = true)
     public static boolean enableDeepClaw = true;
+    @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableRomieWalker", comment = "Setting this to false will disable the Romie Walker", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableRomieWalker = true;
 
     /** Boss mobs - Individual*/
     @ModConfigProperty(category = "Boss Mobs", name = "enableBalrog", comment = "Setting this to false will disable the Balrog", requiresMCRestart = true, requiresSync = true)
@@ -225,12 +227,16 @@ public class TTMConfig implements IModConfigHelper {
     /** Miscellaneous Configs */
     @ModConfigProperty(category = "Miscellaneous Configs", name = "enablePlayerDMG", comment = "Setting to true will enable the fake player for hallowed earth", requiresMCRestart = true, requiresSync = true)
     public static boolean enablePlayerDMG = false;
-    @ModConfigProperty(category = "Miscellaneous Configs", name = "disableVanilla", comment = "Setting to false will enable Vanilla hostile mob spawning", requiresMCRestart = true, requiresSync = true)
-    public static boolean disableVanilla = true;
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "disableVanilla", comment = "Setting to true will disable Vanilla hostile mob spawning", requiresMCRestart = true, requiresSync = true)
+    public static boolean disableVanilla = false;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "disableOreGen", comment = "Setting to true will disable ore generation from this mod", requiresMCRestart = true, requiresSync = true)
     public static boolean disableOreGen = false;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "disablePlayerTerror", comment = "Setting to true will disable the effect of Terror from this mod", requiresMCRestart = true, requiresSync = true)
     public static boolean disablePlayerTerror = false;
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "getSpawnInNether", comment = "Setting to true will allow spawning of certain mobs in the Nether", requiresMCRestart = true, requiresSync = true)
+    public static boolean getSpawnInNether = false;
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "getSpawnInEnd", comment = "Setting to true will allow spawning of certain mobs in the End", requiresMCRestart = true, requiresSync = true)
+    public static boolean getSpawnInEnd = false;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "chanceTerror", comment = "When faced with sheer terror, likelihood it affects Player (Minimum: 1)", requiresMCRestart = true, requiresSync = true)
     public static int chanceTerror = 300;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "chanceNotAfraid", comment = "If in the grip of terror, chance to find your courage (Minimum: 1)", requiresMCRestart = true, requiresSync = true)
@@ -243,6 +249,21 @@ public class TTMConfig implements IModConfigHelper {
     public static int FellBeastY = 86;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "FellBeastSpawnZ", comment = "Set this for starting spawn location of the Fell Beast", requiresMCRestart = true, requiresSync = true)
     public static int FellBeastZ = 13733;
+
+    /** Mob Specific Configs */
+    @ModConfigProperty(category = "Mob Specific Configs", name = "romieArmor", comment = "Armor value of Romie Walker when hit", requiresMCRestart = true, requiresSync = true)
+    public static double romieArmor = 0;
+    @ModConfigProperty(category = "Mob Specific Configs", name = "romieAttack", comment = "Attack of the Romie Walker", requiresMCRestart = true, requiresSync = true)
+    public static double romieAttack = 3;
+    @ModConfigProperty(category = "Mob Specific Configs", name = "romieHealth", comment = "Health of the Romie Walker (Minimum 1)", requiresMCRestart = true, requiresSync = true)
+    public static int romieHealth = 20;
+    @ModConfigProperty(category = "Mob Specific Configs", name = "romieKnockback", comment = "Knockback resistance of the Romie Walker (Any number between .01 and 1)", requiresMCRestart = true, requiresSync = true)
+    public static double romieKnockback = 1.0;
+    @ModConfigProperty(category = "Mob Specific Configs", name = "romieSpeed", comment = "Speed of the Romie Walker (Any number between .01 and 1)", requiresMCRestart = true, requiresSync = true)
+    public static double romieSpeed = 0.25;
+    @ModConfigProperty(category = "Mob Specific Configs", name = "romieXP", comment = "Experience value when Romie Walker killed", requiresMCRestart = true, requiresSync = true)
+    public static int romieXP = 10;
+
 
     /** Potion Types */
     @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array.", requiresMCRestart = true, requiresSync = true)

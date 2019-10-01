@@ -61,6 +61,7 @@
       "item_specialflower":    {"textures": {"layer0": "tolkienmobs:items/item_specialflower"}},
       "item_storybook":    {"textures": {"layer0": "tolkienmobs:items/item_storybook"}},
       "item_storybook2":    {"textures": {"layer0": "tolkienmobs:items/item_storybook2"}},
+      "item_storybook3":    {"textures": {"layer0": "tolkienmobs:items/item_storybook3"}},
       "item_wornarmor":    {"textures": {"layer0": "tolkienmobs:items/item_wornarmor"}},
       "item_wornhelm":    {"textures": {"layer0": "tolkienmobs:items/item_wornhelm"}},
       "item_wornkey":    {"textures": {"layer0": "tolkienmobs:items/item_wornkey"}},

@@ -91,6 +91,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityTMDuergar.class, RenderTMDuergar.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMHaradrim.class, RenderTMHaradrim.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMDeepClaw.class, RenderDeepClaw.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityRomieWalker.class, RenderRomieWalker.FACTORY);
 
         /* Special */
         RenderingRegistry.registerEntityRenderingHandler(EntityTMGollum.class, RenderGollum.FACTORY);

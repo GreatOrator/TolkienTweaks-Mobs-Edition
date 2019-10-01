@@ -98,7 +98,7 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "item_artifact", stateOverride = "simple_items#type=item_artifact", cTab = 4)
     public static Item ITEM_ARTIFACT = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_blankpaper", stateOverride = "simple_items#type=item_blankpaper", cTab = 4)
-    public static Item ITEM_BLANKPAPER = new TTMLore(1).setItemHasUse(false);
+    public static Item ITEM_BLANKPAPER = new TTMLore(12).setItemHasUse(false);
     @ModFeature(name = "item_fancyarmor", stateOverride = "simple_items#type=item_fancyarmor", cTab = 4)
     public static Item ITEM_FANCYARMOR = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_fancycloth", stateOverride = "simple_items#type=item_fancycloth", cTab = 4)
@@ -131,6 +131,8 @@ public class TTMFeatures implements IModFeatures {
     public static Item ITEM_STORYBOOK = new TTMLore(12).setItemHasUse(false);
     @ModFeature(name = "item_storybook2", stateOverride = "simple_items#type=item_storybook2", cTab = 4)
     public static Item ITEM_STORYBOOK2 = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
+    @ModFeature(name = "item_storybook3", stateOverride = "simple_items#type=item_storybook3", cTab = 4)
+    public static Item ITEM_STORYBOOK3 = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_wornarmor", stateOverride = "simple_items#type=item_wornarmor", cTab = 4)
     public static Item ITEM_WORNARMOR = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_wornhelm", stateOverride = "simple_items#type=item_wornhelm", cTab = 4)
@@ -176,7 +178,7 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "item_oilykey", stateOverride = "simple_items#type=item_oilykey", cTab = 4)
     public static Item ITEM_OILYKEY = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_mithrilnugget", stateOverride = "simple_items#type=item_mithrilnugget", cTab = 4)
-    public static Item ITEM_MITHRILNUGGET = new TTMLore(1).setItemHasUse(false);
+    public static Item ITEM_MITHRILNUGGET = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     /* End Region */
 
     /* Tools */
