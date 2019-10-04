@@ -133,6 +133,8 @@ public class TTMFeatures implements IModFeatures {
     public static Item ITEM_STORYBOOK2 = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_storybook3", stateOverride = "simple_items#type=item_storybook3", cTab = 4)
     public static Item ITEM_STORYBOOK3 = new TTMLore(1).setItemHasUse(false);
+    @ModFeature(name = "item_storybook4", stateOverride = "simple_items#type=item_storybook4", cTab = 4)
+    public static Item ITEM_STORYBOOK4 = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_wornarmor", stateOverride = "simple_items#type=item_wornarmor", cTab = 4)
     public static Item ITEM_WORNARMOR = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_wornhelm", stateOverride = "simple_items#type=item_wornhelm", cTab = 4)

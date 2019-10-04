@@ -125,6 +125,9 @@ public class EntityInit
             if (TTMConfig.enableGoblinKing) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmgoblinking"), EntityTMGoblinKing.class, "tmgoblinking", id++, TolkienMobs.instance, 64, 3, true, 0xB71B13, 0xBFEF45);
             }
+            if (TTMConfig.enableTMShelob) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmshelob"), EntityTMShelob.class, "tmshelob", id++, TolkienMobs.instance, 64, 3, true, 0xB71B13, 0xFFE119);
+            }
         }
 
         if (TTMConfig.enableSpecial) {

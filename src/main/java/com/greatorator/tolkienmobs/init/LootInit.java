@@ -13,6 +13,7 @@ public class LootInit {
     public static final ResourceLocation WITCHKING = register("entities/witchking");
     public static final ResourceLocation GWAIHIR = register("entities/gwaihir");
     public static final ResourceLocation WATCHER = register("entities/tmwatcher");
+    public static final ResourceLocation TMSHELOB = register("entities/tmshelob");
 
     /** Hostile */
     public static final ResourceLocation BWIGHT = register("entities/barrowwight");
