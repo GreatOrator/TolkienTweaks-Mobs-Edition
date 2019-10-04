@@ -50,6 +50,44 @@
         {
           "type": "item",
           "weight": 1,
+          "name": "minecraft:gunpowder",
+          "conditions": [
+            {
+              "condition": "killed_by_player"
+            }
+          ],
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 1,
+          "name": "minecraft:bone",
+          "conditions": [
+            {
+              "condition": "killed_by_player"
+            }
+          ],
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "item",
+          "weight": 1,
           "name": "tolkienmobs:item_coin1",
           "conditions": [
             {

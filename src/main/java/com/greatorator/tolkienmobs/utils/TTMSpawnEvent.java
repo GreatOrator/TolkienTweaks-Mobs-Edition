@@ -10,14 +10,13 @@ public class TTMSpawnEvent {
   public void onEntitySpawn(EntityJoinWorldEvent event) {
     if(event.getEntity() instanceof EntitySkeleton ||
       event.getEntity() instanceof EntityWitch ||
-      event.getEntity() instanceof EntityBlaze ||
       event.getEntity() instanceof EntitySlime ||
       event.getEntity() instanceof EntityZombie ||
-      event.getEntity() instanceof EntitySpider ||
       event.getEntity() instanceof EntityCreeper ||
       event.getEntity() instanceof EntityStray ||
+      event.getEntity() instanceof EntityHusk ||
       event.getEntity() instanceof EntityEnderman) {
-        event.setCanceled(true);
+      event.setCanceled(true);
     }
   }
   @SubscribeEvent
