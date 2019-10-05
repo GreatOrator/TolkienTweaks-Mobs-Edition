@@ -6,6 +6,7 @@ import com.greatorator.tolkienmobs.handler.TTMEnchantHandler;
 import com.greatorator.tolkienmobs.handler.TTMSoundHandler;
 import com.greatorator.tolkienmobs.handler.TerrainEventHandler;
 import com.greatorator.tolkienmobs.init.*;
+import com.greatorator.tolkienmobs.integration.TinkersTTM;
 import com.greatorator.tolkienmobs.utils.TTMEffectEvents;
 import com.greatorator.tolkienmobs.utils.TTMServerEvents;
 import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
@@ -44,6 +45,9 @@ public class CommonProxy {
         new LootInit();
 
         MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainEventHandler());
+
+
+        TinkersTTM.init();
     }
 
     public void init(FMLInitializationEvent event)
