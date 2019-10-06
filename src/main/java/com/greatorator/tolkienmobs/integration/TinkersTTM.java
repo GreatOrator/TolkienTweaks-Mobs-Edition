@@ -1,51 +1,69 @@
 package com.greatorator.tolkienmobs.integration;
 
+import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.Optional;
+import net.minecraft.item.Item;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import slimeknights.tconstruct.library.TinkerRegistry;
-import slimeknights.tconstruct.library.materials.HandleMaterialStats;
-import slimeknights.tconstruct.library.materials.HeadMaterialStats;
-import slimeknights.tconstruct.library.materials.Material;
+import slimeknights.tconstruct.library.fluid.FluidMolten;
+import slimeknights.tconstruct.library.materials.*;
+import slimeknights.tconstruct.library.traits.ITrait;
+import slimeknights.tconstruct.smeltery.TinkerSmeltery;
+import slimeknights.tconstruct.tools.TinkerTraits;
 
 /**
  * Created by brandon3055 on 5/10/19.
  */
 public class TinkersTTM {
+    public Material mithril;
+    public Material morguliron;
+    public Fluid FLUID_MITHRIL = new FluidMolten(TolkienMobs.MODID + ".molten_mithril", 0xe9f1ff);
+    public Fluid FLUID_MORGULIRON = new FluidMolten(TolkienMobs.MODID + ".molten_morguliron", 0x303933);
 
-    public static void init() {
-        if (Loader.isModLoaded("tconstruct")) {
-            registerTTM();
-        }
+    public TinkersTTM() {
+        mithril = addMaterial("mithril", 0xe9f1ff, TTMFeatures.TOOL_MITHRIL, TinkerTraits.stonebound);
+        morguliron = addMaterial("morguliron", 0x303933, TTMFeatures.TOOL_MORGULIRON, TinkerTraits.heavy);
     }
 
-    @Optional.Method(modid = "tconstruct")
-    private static void registerTTM() {
-        // Create the tool material
-        Material mithrilMat = new Material("ttm.mithril", 0xFFFFFF); // <- material colour
-
-        //Add the ore dictionary ingot if you have one
-//        mithrilMat.addItemIngot("oreName");
-
-        //Register an item and specify its material value. An ingot is 144, a shard is 72 and a nugget is 16
-        mithrilMat.addItem(TTMFeatures.INGOT_MITHRIL, 1, 144);
-        mithrilMat.addItem(TTMFeatures.NUGGET_MITHRIL, 1, 16);
-//        mithrilMat.addItem(TTMFeatures.SHARD_MITHRIL, 1, 72); //You may need to add a shard
-//        mithrilMat.setShard(TTMFeatures.SHARD_MITHRIL);
-        mithrilMat.setCraftable(true); //Enables bart builder recipes
-//        mithrilMat.setCastable(true); //Enables casting recipes but i think you need to create and somehow register a fluid for this material
-
-        TinkerRegistry.addMaterial(mithrilMat);
-
-        //Add Head stats
-        TinkerRegistry.addMaterialStats(mithrilMat, new HeadMaterialStats(1000, 5, 10, 3));
-
-        //Add Handle Stats
-        TinkerRegistry.addMaterialStats(mithrilMat, new HandleMaterialStats(3, 400));
-
-        //Other Stats: ArrowShaftMaterialStats, BowMaterialStats, ExtraMaterialStats, FletchingMaterialStats, ProjectileMaterialStats, BowStringMaterialStats
-
-
+    public void register() {
+        TinkerRegistry.integrate(mithril);
+        TinkerRegistry.integrate(morguliron);
+        FluidRegistry.registerFluid(FLUID_MITHRIL);
+        FluidRegistry.addBucketForFluid(FLUID_MITHRIL);
+        FluidRegistry.registerFluid(FLUID_MORGULIRON);
+        FluidRegistry.addBucketForFluid(FLUID_MORGULIRON);
+        mithril.setFluid(FLUID_MITHRIL);
+        morguliron.setFluid(FLUID_MORGULIRON);
+        TinkerSmeltery.registerToolpartMeltingCasting(mithril);
+        TinkerSmeltery.registerToolpartMeltingCasting(morguliron);
+        TinkerRegistry.registerMelting(TTMFeatures.INGOT_MITHRIL, FLUID_MITHRIL, Material.VALUE_Ingot);
+        TinkerRegistry.registerMelting(TTMFeatures.BLOCK_MITHRIL, FLUID_MITHRIL, Material.VALUE_Block);
     }
 
+    public Material addMaterial(String name, int color, Item.ToolMaterial material, ITrait trait) {
+        Material mat = new Material(name, color);
+        mat.setCraftable(true);
+        mat.setCastable(false);
+        mat.addCommonItems(name);
+        mat.addItem("ingot" + name.substring(0,1).toUpperCase() + name.substring(1), 1, Material.VALUE_Ingot);
+        mat.addItem("block" + name.substring(0,1).toUpperCase() + name.substring(1), 1, Material.VALUE_Block);
+        mat.addTrait(trait);
+        mat.addStats(new HeadMaterialStats(
+                material.getMaxUses()/3*2,
+                material.getEfficiency(),
+                material.getAttackDamage() + 2,
+                material.getHarvestLevel()
+        ));
+        mat.addStats(new HandleMaterialStats(
+                material.getEnchantability()/15f,
+                material.getMaxUses()/3
+        ));
+        mat.addStats(new ExtraMaterialStats(material.getMaxUses()/3));
+        mat.addStats(new ArrowShaftMaterialStats(
+                material.getEnchantability()/15f,
+                material.getMaxUses()/100
+        ));
+        return mat;
+    }
 }

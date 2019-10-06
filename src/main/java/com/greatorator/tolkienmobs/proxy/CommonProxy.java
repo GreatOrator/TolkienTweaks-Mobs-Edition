@@ -7,6 +7,7 @@ import com.greatorator.tolkienmobs.handler.TTMSoundHandler;
 import com.greatorator.tolkienmobs.handler.TerrainEventHandler;
 import com.greatorator.tolkienmobs.init.*;
 import com.greatorator.tolkienmobs.integration.TinkersTTM;
+import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import com.greatorator.tolkienmobs.utils.TTMEffectEvents;
 import com.greatorator.tolkienmobs.utils.TTMServerEvents;
 import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
@@ -18,6 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.WorldType;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -47,7 +49,19 @@ public class CommonProxy {
         MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainEventHandler());
 
 
-        TinkersTTM.init();
+        if (Loader.isModLoaded("tconstruct")) {
+            LogHelperTTM.info("Tinkers Construct is installed, loading Tinkers Construct integration");
+            try {
+                TinkersTTM tinkersCompat = new TinkersTTM();
+                tinkersCompat.register();
+                LogHelperTTM.info("Finished loading of Tinkers Construct integration successfully");
+            } catch (Exception e) {
+                LogHelperTTM.warn("Loading of Tinkers Construct integration failed:");
+                e.printStackTrace();
+            }
+        } else {
+            LogHelperTTM.info("Tinkers Construct is not installed, not loading Tinkers Construct integration");
+        }
     }
 
     public void init(FMLInitializationEvent event)
