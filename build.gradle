@@ -75,8 +75,10 @@ dependencies {
     compile "com.brandon3055.tolkientweaks:TolkienTweaks:${config.mc_version}-${config.tt_version}:deobf"
     compile "codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:deobf"
     compile "com.github.azanor:Baubles:${config.baubles_version}"
-    deobfCompile "slimeknights.mantle:Mantle:${config.mc_version}-${config.mantle_version}"
-    deobfCompile "slimeknights.TConstruct:${config.mc_version}-${config.tinkers_version}"
+    deobfCompile "slimeknights.mantle:Mantle:1.12-${config.mantle_version}"
+    deobfCompile "slimeknights:TConstruct:${config.mc_version}-${config.tinkers_version}"
+//    deobfCompile "slimeknights.mantle:Mantle:${config.mc_version}-${config.mantle_version}"
+//    deobfCompile "slimeknights.TConstruct:${config.mc_version}-${config.tinkers_version}"
 }
 
 processResources {
