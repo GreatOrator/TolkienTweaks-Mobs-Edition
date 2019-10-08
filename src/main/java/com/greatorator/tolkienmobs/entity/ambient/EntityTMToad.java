@@ -741,7 +741,7 @@ public class EntityTMToad extends EntityAnimal {
                 }
             }
         }
-        return super.getCanSpawnHere() && nearWater;
+        return nearWater;
     }
 
     private int spawnChance()

@@ -36,7 +36,7 @@ public class EntityRomieWalker extends EntityTMHostiles {
     public boolean getCanSpawnHere() {
         int willSpawn = this.spawnChance();
 
-        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && super.getCanSpawnHere() && willSpawn <= 10;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && willSpawn <= 10;
     }
 
     @Override

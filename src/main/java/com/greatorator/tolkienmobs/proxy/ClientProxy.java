@@ -9,6 +9,7 @@ import com.greatorator.tolkienmobs.client.render.entity.ambient.RenderSOSquirrel
 import com.greatorator.tolkienmobs.client.render.entity.ambient.RenderToaddle;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderBoulder;
 import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderFellBeastFireball;
+import com.greatorator.tolkienmobs.client.render.entity.ammo.RenderGaladhrimArrow;
 import com.greatorator.tolkienmobs.client.render.entity.boss.*;
 import com.greatorator.tolkienmobs.client.render.entity.monster.*;
 import com.greatorator.tolkienmobs.client.render.entity.passive.*;
@@ -22,6 +23,7 @@ import com.greatorator.tolkienmobs.client.render.model.boss.ModelTMGwaihir;
 import com.greatorator.tolkienmobs.entity.ambient.*;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
+import com.greatorator.tolkienmobs.entity.ammo.EntityGaladhrimArrow;
 import com.greatorator.tolkienmobs.entity.boss.*;
 import com.greatorator.tolkienmobs.entity.hostile.*;
 import com.greatorator.tolkienmobs.entity.passive.*;
@@ -157,6 +159,7 @@ public class ClientProxy extends CommonProxy {
         /* Miscellaneous */
         RenderingRegistry.registerEntityRenderingHandler(EntityBoulder.class, RenderBoulder.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityFellBeastFireball.class, RenderFellBeastFireball.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGaladhrimArrow.class, RenderGaladhrimArrow.FACTORY);
     }
 
     @Override

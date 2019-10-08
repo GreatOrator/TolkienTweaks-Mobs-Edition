@@ -56,7 +56,7 @@ public class EntityTMMimicChest extends EntityTMHostiles {
     public boolean getCanSpawnHere() {
         int willSpawn = this.spawnChance();
 
-        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere() && this.posY < 64.0D && !this.world.canSeeSky(new BlockPos(this)) && willSpawn <= 10;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.posY < 64.0D && !this.world.canSeeSky(new BlockPos(this)) && willSpawn <= 10;
     }
 
     public void setRevengeTarget(@Nullable EntityLivingBase livingBase)

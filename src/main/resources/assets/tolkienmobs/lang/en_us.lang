@@ -170,7 +170,44 @@ item.tolkienmobs:boots_morguliron.name=Morgul Iron Boots
 
 //Ammo Information
 item.tolkienmobs:ammo_boulder.name=Boulder
+item.tolkienmobs:ammo_galadhrim_arrow.name=Galadhrim Arrow
+item.tolkienmobs:ammo_tipped_galadhrim_arrow.name=Tipped Galadhrim Arrow
 item.tolkienmobs:fellbeast_fireball.name=Fell-fireball
+
+tipped_galadhrim_arrow.effect.empty=Uncraftable Tipped Arrow
+tipped_galadhrim_arrow.effect.water=Tipped Arrow
+tipped_galadhrim_arrow.effect.mundane=Tipped Arrow
+tipped_galadhrim_arrow.effect.thick=Tipped Arrow
+tipped_galadhrim_arrow.effect.awkward=Tipped Arrow
+tipped_galadhrim_arrow.effect.night_vision=Galadhrim Arrow of Night Vision
+tipped_galadhrim_arrow.effect.invisibility=Galadhrim Arrow of Invisibility
+tipped_galadhrim_arrow.effect.leaping=Galadhrim Arrow of Leaping
+tipped_galadhrim_arrow.effect.fire_resistance=Galadhrim Arrow of Fire Resistance
+tipped_galadhrim_arrow.effect.swiftness=Galadhrim Arrow of Swiftness
+tipped_galadhrim_arrow.effect.slowness=Galadhrim Arrow of Slowness
+tipped_galadhrim_arrow.effect.water=Galadhrim Arrow of Splashing
+tipped_galadhrim_arrow.effect.water_breathing=Galadhrim Arrow of Water Breathing
+tipped_galadhrim_arrow.effect.healing=Galadhrim Arrow of Healing
+tipped_galadhrim_arrow.effect.harming=Galadhrim Arrow of Harming
+tipped_galadhrim_arrow.effect.poison=Galadhrim Arrow of Poison
+tipped_galadhrim_arrow.effect.regeneration=Galadhrim Arrow of Regeneration
+tipped_galadhrim_arrow.effect.strength=Galadhrim Arrow of Strength
+tipped_galadhrim_arrow.effect.weakness=Galadhrim Arrow of Weakness
+tipped_galadhrim_arrow.effect.levitation=Galadhrim Arrow of Levitation
+tipped_galadhrim_arrow.effect.luck=Galadhrim Arrow of Luck
+tipped_galadhrim_arrow.effect.sleepnesia=Galadhrim Arrow of Sleepnesia
+tipped_galadhrim_arrow.effect.ent_draught=Galadhrim Arrow of Ent Draught
+tipped_galadhrim_arrow.effect.elf_vitality=Galadhrim Arrow of Elvish Life-span
+tipped_galadhrim_arrow.effect.elemental_drowning=Galadhrim Arrow of Elemental Drowning
+tipped_galadhrim_arrow.effect.elemental_lightning=Galadhrim Arrow of Elemental Lightning
+tipped_galadhrim_arrow.effect.elemental_flight=Galadhrim Arrow of Elemental Flying
+tipped_galadhrim_arrow.effect.elemental_tornado=Galadhrim Arrow of Elemental Tornado
+tipped_galadhrim_arrow.effect.elemental_burning=Galadhrim Arrow of Elemental Burning
+tipped_galadhrim_arrow.effect.inventory_corrosion=Galadhrim Arrow of Corrosion
+tipped_galadhrim_arrow.effect.personal_blacksmith=Galadhrim Arrow of Portable Blacksmith
+tipped_galadhrim_arrow.effect.sleepnesia=Galadhrim Arrow of Sleepnesia
+tipped_galadhrim_arrow.effect.crippling_terror=Galadhrim Arrow of Paralysing Fear
+tipped_galadhrim_arrow.effect.dread_aura=Galadhrim Arrow of Great Dread
 
 //Food Information
 item.tolkienmobs:food_lembas.name=Lembas

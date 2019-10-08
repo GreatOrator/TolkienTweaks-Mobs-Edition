@@ -185,7 +185,7 @@ public class TTMConfig implements IModConfigHelper {
 
     /** Ambient mobs - Individual*/
     @ModConfigProperty(category = "Ambient Mobs", name = "enableThrush", comment = "Setting this to false will disable the Thrush", requiresMCRestart = true, requiresSync = true)
-    public static boolean enableThrush = true;
+    public static boolean enableThrush = false;
     @ModConfigProperty(category = "Ambient Mobs", name = "enableFrogs", comment = "Setting this to false will disable Frogs", requiresMCRestart = true, requiresSync = true)
     public static boolean enableFrogs = true;
     @ModConfigProperty(category = "Ambient Mobs", name = "enableSquirrels", comment = "Setting this to false will disable Society Squirrels", requiresMCRestart = true, requiresSync = true)
@@ -193,7 +193,7 @@ public class TTMConfig implements IModConfigHelper {
     @ModConfigProperty(category = "Ambient Mobs", name = "enableMidgeFlies", comment = "Setting this to false will disable Midge Flies", requiresMCRestart = true, requiresSync = true)
     public static boolean enableMidgeFlies = true;
     @ModConfigProperty(category = "Ambient Mobs", name = "enableCrebain", comment = "Setting this to false will disable Crebain", requiresMCRestart = true, requiresSync = true)
-    public static boolean enableCrebain = true;
+    public static boolean enableCrebain = false;
     @ModConfigProperty(category = "Ambient Mobs", name = "enableRats", comment = "Setting this to false will disable Rats", requiresMCRestart = true, requiresSync = true)
     public static boolean enableRats = true;
 
@@ -245,7 +245,7 @@ public class TTMConfig implements IModConfigHelper {
     @ModConfigProperty(category = "Miscellaneous Configs", name = "chanceNotAfraid", comment = "If in the grip of terror, chance to find your courage (Minimum: 1)", requiresMCRestart = true, requiresSync = true)
     public static int chanceNotAfraid = 400;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "mobSpawnChance", comment = "Set this for additional control of mob Spawns.\n  10 times out of this number chance to spawn", requiresMCRestart = true, requiresSync = true)
-    public static int mobSpawnChance = 1000;
+    public static int mobSpawnChance = 500;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "FellBeastSpawnX", comment = "Set this for starting spawn location of the Fell Beast", requiresMCRestart = true, requiresSync = true)
     public static int FellBeastX = 19023;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "FellBeastSpawnY", comment = "Set this for starting spawn location of the Fell Beast", requiresMCRestart = true, requiresSync = true)

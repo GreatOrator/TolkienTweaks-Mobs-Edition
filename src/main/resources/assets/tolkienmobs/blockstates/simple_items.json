@@ -34,6 +34,8 @@
       "monster_flesh":   {"textures": {"layer0": "tolkienmobs:items/monster_flesh"}},
       "monster_fur":   {"textures": {"layer0": "tolkienmobs:items/monster_fur"}},
       "ammo_boulder":   {"textures": {"layer0": "tolkienmobs:items/ammo_boulder"}},
+      "ammo_galadhrim_arrow":   {"textures": {"layer0": "tolkienmobs:items/ammo_galadhrim_arrow"}},
+      "ammo_tipped_galadhrim_arrow":   {"textures": {"layer0": "tolkienmobs:items/ammo_tipped_galadhrim_arrow"}},
       "fellbeast_fireball":   {"textures": {"layer0": "tolkienmobs:items/fellbeast_fireball"}},
       "item_beryl":    {"textures": {"layer0": "tolkienmobs:items/item_beryl"}},
       "item_watcherheart":    {"textures": {"layer0": "tolkienmobs:items/item_watcherheart"}},

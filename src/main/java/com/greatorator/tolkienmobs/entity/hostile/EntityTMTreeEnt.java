@@ -106,7 +106,7 @@ public class EntityTMTreeEnt extends EntityMob implements IRangedAttackMob, IEnt
     public boolean getCanSpawnHere() {
         int willSpawn = this.spawnChance();
 
-        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere() && willSpawn <= 10;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && willSpawn <= 10;
     }
 
     private int spawnChance()

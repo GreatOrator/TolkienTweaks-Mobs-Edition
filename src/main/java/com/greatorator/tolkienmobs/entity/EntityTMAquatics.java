@@ -576,7 +576,7 @@ public class EntityTMAquatics extends EntityMob implements IMob {
     {
         int willSpawn = this.spawnChance();
 
-        return this.posY > 45.0D && this.posY < (double)this.world.getSeaLevel() && super.getCanSpawnHere() && willSpawn <= 10;
+        return this.posY > 45.0D && this.posY < (double)this.world.getSeaLevel() && willSpawn <= 10;
     }
 
     protected int spawnChance()

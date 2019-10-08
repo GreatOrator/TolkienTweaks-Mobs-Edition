@@ -186,7 +186,7 @@ public class EntityTMVillagers extends EntityVillager implements IEntityAddition
     public boolean getCanSpawnHere() {
         int willSpawn = this.spawnChance();
 
-        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.world.canSeeSky(new BlockPos(this)) && super.getCanSpawnHere() && willSpawn <= 10;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.world.canSeeSky(new BlockPos(this)) && willSpawn <= 10;
     }
 
     private int spawnChance()

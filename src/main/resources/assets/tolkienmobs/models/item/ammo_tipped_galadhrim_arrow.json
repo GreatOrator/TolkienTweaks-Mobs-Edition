@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "tolkienmobs:items/ammo_tipped_galadhrim_arrow_head",
+        "layer1": "tolkienmobs:items/ammo_tipped_galadhrim_arrow_base"
+    }
+}

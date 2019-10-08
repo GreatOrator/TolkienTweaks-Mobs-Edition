@@ -116,7 +116,7 @@ public class EntityTMHuron extends EntityMob implements IRangedAttackMob {
         int willSpawn = this.spawnChance();
         BlockPos blockpos = new BlockPos(i, j, k);
 
-        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getBlockState(blockpos.down()).getBlock() == this.spawnableBlock && this.isValidLightLevel() && super.getCanSpawnHere() && willSpawn <= 10;
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getBlockState(blockpos.down()).getBlock() == this.spawnableBlock && this.isValidLightLevel() && willSpawn <= 10;
     }
 
     private int spawnChance()

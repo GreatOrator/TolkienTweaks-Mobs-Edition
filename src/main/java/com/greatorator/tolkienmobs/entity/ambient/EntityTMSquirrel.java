@@ -299,7 +299,7 @@ public class EntityTMSquirrel extends EntityCreature implements IAnimals {
         int willSpawn = this.spawnChance();
         BlockPos blockpos = new BlockPos(i, j, k);
 
-        return this.world.getBlockState(blockpos.down()).getBlock() == this.spawnableBlock && this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && super.getCanSpawnHere() && willSpawn <= 10;
+        return this.world.getBlockState(blockpos.down()).getBlock() == this.spawnableBlock && this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && willSpawn <= 10;
     }
 
     protected int spawnChance()

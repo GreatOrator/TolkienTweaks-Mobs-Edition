@@ -146,7 +146,7 @@ public class EntityTMGoat extends AbstractChestHorse {
         int k = MathHelper.floor(this.posZ);
         int willSpawn = this.spawnChance();
         BlockPos blockpos = new BlockPos(i, j, k);
-        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getLight(blockpos) > 8 && willSpawn <= 10 && super.getCanSpawnHere();
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getLight(blockpos) > 8 && willSpawn <= 10;
     }
 
     private int spawnChance()
