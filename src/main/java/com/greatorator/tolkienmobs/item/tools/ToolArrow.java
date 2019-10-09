@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.item.tools;
 
 import com.greatorator.tolkienmobs.entity.ammo.EntityGaladhrimArrow;
-import com.greatorator.tolkienmobs.entity.ammo.EntityTippedGaladhrimArrow;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemStack;
@@ -12,8 +11,7 @@ public class ToolArrow extends ItemArrow
     @Override
     public EntityGaladhrimArrow createArrow(World worldIn, ItemStack stack, EntityLivingBase shooter)
     {
-        EntityTippedGaladhrimArrow entitytippedarrow = new EntityTippedGaladhrimArrow(worldIn, shooter);
-        entitytippedarrow.setPotionEffect(stack);
+        EntityGaladhrimArrow entitytippedarrow = new EntityGaladhrimArrow(worldIn, shooter);
         return entitytippedarrow;
     }
 

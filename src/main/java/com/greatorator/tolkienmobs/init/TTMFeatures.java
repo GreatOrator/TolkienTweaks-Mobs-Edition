@@ -23,7 +23,6 @@ import com.greatorator.tolkienmobs.item.magical.ItemTrinketRing;
 import com.greatorator.tolkienmobs.item.tools.ToolArrow;
 import com.greatorator.tolkienmobs.item.tools.ToolAxe;
 import com.greatorator.tolkienmobs.item.tools.ToolSword;
-import com.greatorator.tolkienmobs.item.tools.ToolTippedArrow;
 import com.greatorator.tolkienmobs.tile.TileSign;
 import com.greatorator.tolkienmobs.tile.TileTMFireplace;
 import net.minecraft.block.Block;
@@ -375,7 +374,5 @@ public class TTMFeatures implements IModFeatures {
     public static Item FELLBEAST_FIREBALL = new TTMAmmo(16);
     @ModFeature(name = "ammo_galadhrim_arrow", stateOverride = "simple_items#type=ammo_galadhrim_arrow")
     public static Item GALADHRIM_ARROW = new ToolArrow();
-    @ModFeature(name = "ammo_tipped_galadhrim_arrow", stateOverride = "simple_items#type=ammo_tipped_galadhrim_arrow")
-    public static Item TIPPED_GALADHRIM_ARROW = new ToolTippedArrow();
     /* End Region */
 }

@@ -20,6 +20,7 @@ import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 public class RenderBoulder extends Render<EntityBoulder> {
+    public static final ResourceLocation BOULDER_TEXTURE = new ResourceLocation(TolkienMobs.MODID + ":textures/items/ammo_boulder.png");
     public static Factory FACTORY = new Factory();
     protected final Item item;
     private final RenderItem itemRenderer;
@@ -39,7 +40,6 @@ public class RenderBoulder extends Render<EntityBoulder> {
         GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
         GlStateManager.rotate((float)(this.renderManager.options.thirdPersonView == 2 ? -1 : 1) * this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
         GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
-        this.bindTexture(new ResourceLocation(TolkienMobs.MODID + ":textures/items/ammo_boulder.png"));
 
         if (this.renderOutlines)
         {
@@ -69,7 +69,7 @@ public class RenderBoulder extends Render<EntityBoulder> {
     @Nullable
     @Override
     protected ResourceLocation getEntityTexture(EntityBoulder entity) {
-        return new ResourceLocation(TolkienMobs.MODID + ":textures/items/ammo_boulder.png");
+        return BOULDER_TEXTURE;
     }
 
     public static class Factory implements IRenderFactory<EntityBoulder>{

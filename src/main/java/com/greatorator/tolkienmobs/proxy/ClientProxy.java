@@ -158,8 +158,8 @@ public class ClientProxy extends CommonProxy {
 
         /* Miscellaneous */
         RenderingRegistry.registerEntityRenderingHandler(EntityBoulder.class, RenderBoulder.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityFellBeastFireball.class, RenderFellBeastFireball.FACTORY);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGaladhrimArrow.class, RenderGaladhrimArrow.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityFellBeastFireball.class, RenderFellBeastFireball::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGaladhrimArrow.class, RenderGaladhrimArrow::new);
     }
 
     @Override

@@ -198,7 +198,6 @@ public class EntityInit
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "boulder"), EntityBoulder.class, "ammo_boulder", id++, TolkienMobs.instance, 64, 3, true);
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "fellbeast"), EntityFellBeastFireball.class, "fellbeast_fireball", id++, TolkienMobs.instance, 64, 3, true);
         EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "ammo_galadhrim_arrow"), EntityGaladhrimArrow.class, "galadhrim_arrow", id++, TolkienMobs.instance, 64, 3, true);
-        EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "ammo_tipped_galadhrim_arrow"), EntityGaladhrimArrow.class, "tipped_galadhrim_arrow", id++, TolkienMobs.instance, 64, 3, true);
 
         /* If we want our mobs to spawn naturally. */
         if (TTMConfig.enableNaturalSpawn) {
