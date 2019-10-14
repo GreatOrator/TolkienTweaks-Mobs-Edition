@@ -32,10 +32,10 @@ import static com.greatorator.tolkienmobs.TTMConfig.disableVanilla;
 public class CommonProxy {
 
 
-    public void registerModel(Item item, int metadata) {}
+    public void registerModel(Item item, int metadata) {
+    }
 
-    public void preInit(FMLPreInitializationEvent event)
-    {
+    public void preInit(FMLPreInitializationEvent event) {
         GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
         GameRegistry.registerWorldGenerator(new WorldGenCustomStructures(), 0);
         registerEventListeners(event.getSide());
@@ -48,26 +48,19 @@ public class CommonProxy {
 
         MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainEventHandler());
 
-
         if (Loader.isModLoaded("tconstruct")) {
             LogHelperTTM.info("Tinkers Construct is installed, loading Tinkers Construct integration");
-            try {
-                TinkersTTM tinkersCompat = new TinkersTTM();
-                tinkersCompat.register();
-                LogHelperTTM.info("Finished loading of Tinkers Construct integration successfully");
-            } catch (Exception e) {
-                LogHelperTTM.warn("Loading of Tinkers Construct integration failed:");
-                e.printStackTrace();
-            }
-        } else {
-            LogHelperTTM.info("Tinkers Construct is not installed, not loading Tinkers Construct integration");
+            TinkersTTM.preInit();
         }
     }
 
-    public void init(FMLInitializationEvent event)
-    {
+    public void init(FMLInitializationEvent event) {
         ProfessionInit.associateCareersAndTrades();
         TTMConfig.loadPotionList();
+
+        if (Loader.isModLoaded("tconstruct")) {
+            TinkersTTM.init();
+        }
     }
 
     public void postInit(FMLPostInitializationEvent event) {
@@ -80,13 +73,12 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.register(new TTMEnchantHandler());
         MinecraftForge.EVENT_BUS.register(TTMSoundHandler.class);
         MinecraftForge.EVENT_BUS.register(new TTMEffectEvents());
-        if (disableVanilla){
+        if (disableVanilla) {
             MinecraftForge.EVENT_BUS.register(new TTMSpawnEvent());
         }
     }
 
-    public static void serverRegistries(FMLServerStartingEvent event)
-    {
+    public static void serverRegistries(FMLServerStartingEvent event) {
         event.registerServerCommand(new TTMCommandSpawn());
     }
 
