@@ -22,8 +22,8 @@ public class TinkersTTM {
     public Fluid FLUID_MORGULIRON = new FluidMolten(TolkienMobs.MODID + ".molten_morguliron", 0x303933);
 
     public TinkersTTM() {
-        mithril = addMaterial("mithril", 0xe9f1ff, TTMFeatures.TOOL_MITHRIL, TinkerTraits.stonebound);
-        morguliron = addMaterial("morguliron", 0x303933, TTMFeatures.TOOL_MORGULIRON, TinkerTraits.heavy);
+        mithril = addMaterial("DwarvenSilver", 0xe9f1ff, TTMFeatures.TOOL_MITHRIL, TinkerTraits.stonebound);
+        morguliron = addMaterial("MorgulIron", 0x303933, TTMFeatures.TOOL_MORGULIRON, TinkerTraits.heavy);
     }
 
     public void register() {
@@ -39,11 +39,13 @@ public class TinkersTTM {
         TinkerSmeltery.registerToolpartMeltingCasting(morguliron);
         TinkerRegistry.registerMelting(TTMFeatures.INGOT_MITHRIL, FLUID_MITHRIL, Material.VALUE_Ingot);
         TinkerRegistry.registerMelting(TTMFeatures.BLOCK_MITHRIL, FLUID_MITHRIL, Material.VALUE_Block);
+        TinkerRegistry.registerMelting(TTMFeatures.INGOT_MORGULIRON, FLUID_MORGULIRON, Material.VALUE_Ingot);
+        TinkerRegistry.registerMelting(TTMFeatures.BLOCK_MORGULIRON, FLUID_MORGULIRON, Material.VALUE_Block);
     }
 
     public Material addMaterial(String name, int color, Item.ToolMaterial material, ITrait trait) {
         Material mat = new Material(name, color);
-        mat.setCraftable(true);
+        mat.setCraftable(false);
         mat.setCastable(false);
         mat.addCommonItems(name);
         mat.addItem("ingot" + name.substring(0,1).toUpperCase() + name.substring(1), 1, Material.VALUE_Ingot);

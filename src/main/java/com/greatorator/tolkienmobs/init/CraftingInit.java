@@ -52,23 +52,23 @@ public class CraftingInit {
     private static void addOreRegistration(){
 
         /* Dusts, Nuggets, Ingots, Metal Blocks */
-        OreDictionary.registerOre("dustMithril", new ItemStack(TTMFeatures.DUST_MITHRIL));
-        OreDictionary.registerOre("nuggetMithril", new ItemStack(TTMFeatures.NUGGET_MITHRIL));
-        OreDictionary.registerOre("ingotMithril", new ItemStack(TTMFeatures.INGOT_MITHRIL));
-        OreDictionary.registerOre("blockMithril", new ItemStack(TTMFeatures.BLOCK_MITHRIL));
-        OreDictionary.registerOre("dustSteel", new ItemStack(TTMFeatures.DUST_MORGULIRON));
-        OreDictionary.registerOre("nuggetSteel", new ItemStack(TTMFeatures.NUGGET_MORGULIRON));
-        OreDictionary.registerOre("ingotSteel", new ItemStack(TTMFeatures.INGOT_MORGULIRON));
-        OreDictionary.registerOre("blockSteel", new ItemStack(TTMFeatures.BLOCK_MORGULIRON));
-        OreDictionary.registerOre("gemDiamond", new ItemStack(TTMFeatures.GEM_AMMOLITE));
+        OreDictionary.registerOre("dustDwarvenSilver", new ItemStack(TTMFeatures.DUST_MITHRIL));
+        OreDictionary.registerOre("nuggetDwarvenSilver", new ItemStack(TTMFeatures.NUGGET_MITHRIL));
+        OreDictionary.registerOre("ingotDwarvenSilver", new ItemStack(TTMFeatures.INGOT_MITHRIL));
+        OreDictionary.registerOre("blockDwarvenSilver", new ItemStack(TTMFeatures.BLOCK_MITHRIL));
+        OreDictionary.registerOre("dustMorgulIron", new ItemStack(TTMFeatures.DUST_MORGULIRON));
+        OreDictionary.registerOre("nuggetMorgulIron", new ItemStack(TTMFeatures.NUGGET_MORGULIRON));
+        OreDictionary.registerOre("ingotMorgulIron", new ItemStack(TTMFeatures.INGOT_MORGULIRON));
+        OreDictionary.registerOre("blockMorgulIron", new ItemStack(TTMFeatures.BLOCK_MORGULIRON));
+        OreDictionary.registerOre("gemAmmolite", new ItemStack(TTMFeatures.GEM_AMMOLITE));
 
         /* Ores */
-        OreDictionary.registerOre("oreMithril", new ItemStack(TTMFeatures.ORE,1,0));
-        OreDictionary.registerOre("oreMithril", new ItemStack(TTMFeatures.ORE,1,2));
-        OreDictionary.registerOre("oreMithril", new ItemStack(TTMFeatures.ORE,1,4));
-        OreDictionary.registerOre("oreSteel", new ItemStack(TTMFeatures.ORE,1,1));
-        OreDictionary.registerOre("oreSteel", new ItemStack(TTMFeatures.ORE,1,3));
-        OreDictionary.registerOre("oreSteel", new ItemStack(TTMFeatures.ORE,1,5));
+        OreDictionary.registerOre("oreDwarvenSilver", new ItemStack(TTMFeatures.ORE,1,0));
+        OreDictionary.registerOre("oreDwarvenSilver", new ItemStack(TTMFeatures.ORE,1,2));
+        OreDictionary.registerOre("oreDwarvenSilver", new ItemStack(TTMFeatures.ORE,1,4));
+        OreDictionary.registerOre("oreMorgulIron", new ItemStack(TTMFeatures.ORE,1,1));
+        OreDictionary.registerOre("oreMorgulIron", new ItemStack(TTMFeatures.ORE,1,3));
+        OreDictionary.registerOre("oreMorgulIron", new ItemStack(TTMFeatures.ORE,1,5));
         OreDictionary.registerOre("oreAmmolite", new ItemStack(TTMFeatures.ORE,1,6));
         OreDictionary.registerOre("oreAmmolite", new ItemStack(TTMFeatures.ORE,1,7));
         OreDictionary.registerOre("oreAmmolite", new ItemStack(TTMFeatures.ORE,1,8));
