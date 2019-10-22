@@ -49,7 +49,7 @@ public class CommonProxy {
         MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainEventHandler());
 
         if (Loader.isModLoaded("tconstruct")) {
-            LogHelperTTM.info("Tinkers Construct is installed, loading Tinkers Construct integration");
+            LogHelperTTM.info("Tinkers Construct is installed, Sending dwarves to begin mining deep in the earth.");
             TinkersTTM.preInit();
         }
     }
@@ -59,6 +59,7 @@ public class CommonProxy {
         TTMConfig.loadPotionList();
 
         if (Loader.isModLoaded("tconstruct")) {
+            LogHelperTTM.info("Dwarves firing up the foundries...");
             TinkersTTM.init();
         }
     }

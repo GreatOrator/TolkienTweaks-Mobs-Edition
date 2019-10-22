@@ -1,23 +1,19 @@
 package com.greatorator.tolkienmobs.entity.ambient;
 
-import com.greatorator.tolkienmobs.entity.EntityTMBirds;
 import com.greatorator.tolkienmobs.init.LootInit;
+import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
-import net.minecraft.entity.passive.EntityBat;
-import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityParrot;
-import net.minecraft.entity.passive.EntityRabbit;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.util.*;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
 /** Borrowed from Jabelar https://github.com/jabelar */
-public class EntityTMCrebain extends EntityTMBirds {
-    @SuppressWarnings("rawtypes")
-    private Class[] preyArray = new Class[] {EntityPlayer.class, EntityChicken.class, EntityBat.class, EntityRabbit.class, EntityParrot.class, EntityTMToad.class, EntityTMSquirrel.class, EntityTMRat.class};
+public class EntityTMCrebain extends EntityParrot {
 
     public EntityTMCrebain(World parWorld)
     {
@@ -26,23 +22,41 @@ public class EntityTMCrebain extends EntityTMBirds {
     }
 
     @Override
-    @SuppressWarnings("rawtypes")
-    public Class[] getPreyArray()
-    {
-        return preyArray;
-    }
-
-    @Override
-    @SuppressWarnings("rawtypes")
-    public void setPreyArray(Class[] parPreyArray)
-    {
-        preyArray = parPreyArray;
-    }
-
-    @Override
     public Item getDropItem()
     {
         return TTMFeatures.CREBAIN_FEATHER;
+    }
+
+    @Override
+    protected void dropFewItems(boolean parRecentlyHitByPlayer, int parLootLevel)
+    {
+        dropItem(TTMFeatures.CREBAIN_FEATHER, parLootLevel+1);
+        return;
+    }
+
+    @Override
+    @Nullable
+    public SoundEvent getAmbientSound()
+    {
+        return SoundInit.soundCallCrebain;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource parSource)
+    {
+        return SoundInit.soundHurtCrebain;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return SoundInit.soundDeathCrebain;
+    }
+
+    @Override
+    protected float getSoundVolume()
+    {
+        return 0.3F;
     }
 
     @Override

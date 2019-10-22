@@ -1,13 +1,13 @@
 package com.greatorator.tolkienmobs.client.render.model.ambient;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
-import com.greatorator.tolkienmobs.entity.EntityTMBirds;
-import com.greatorator.tolkienmobs.entity.entityai.AIStates;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTMThrush;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.GL11;
 
 /* Thrush - GreatOrator */
 @SideOnly(Side.CLIENT)
@@ -28,85 +28,7 @@ public class ModelThrush extends ModelTTM {
     public ModelRenderer ThrushBeakBottom;
     public ModelRenderer ThrushWingL2;
     public ModelRenderer ThrushWingR2;
-
-    protected float[][] perchedCycle = new float[][] {
-            // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleY, wing1AngleZ, wing2AngleZ
-            { -70F, 70F, 70F, 0F, 0F, 0F, 90F, 0F }
-    };
-
-    protected float[][] takingOffCycle = new float[][] {
-            // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleY, wing1AngleZ, wing2AngleZ
-            { -5F, 5F, 70F, -10F, 0F, 0F, 20F, -20F },
-            { -4F, 4F, 70F, -10F, 0F, 0F, 15F, -15F },
-            { -2F, 2F, 70F, -10F, 0F, 0F, 10F, -10F },
-            { -1F, 1F, 70F, -10F, 0F, 0F, 5F, -5F },
-            { 0F, 0F, 70F, -10F, 0F, 0F, 0F, 0F },
-            { 1F, -1F, 70F, -10F, 0F, 0F, -5F, 5F },
-            { 2F, -2F, 70F, -10F, 0F, 0F, -10F, 10F },
-            { 4F, -4F, 70F, -10F, 0F, 0F, -15F, 15F },
-            { 5F, -5F, 70F, -10F, 0F, 0F, -20F, 20F },
-            { 6F, -6F, 70F, -10F, 0F, 0F, -25F, 20F },
-            { 7F, -7F, 70F, -10F, 0F, 0F, -30F, 20F },
-            { 4F, -4F, 70F, -10F, 0F, 0F, -15F, 15F },
-            { 0F, 0F, 70F, -10F, 0F, 0F, -0F, 0F },
-            { -3F, 3F, 70F, -10F, 0F, 0F, 10F, -10F },
-            { -5F, 5F, 70F, -10F, 0F, 0F, 20F, -20F },
-            { -7F, 7F, 70F, -10F, 0F, 0F, 30F, -20F },
-            { -10F, 10F, 70F, -10F, 0F, 0F, 40F, -20F },
-            { -12F, 12F, 70F, -10F, 0F, 0F, 50F, -20F },
-            { -10F, 10F, 70F, -10F, 0F, 0F, 45F, -20F },
-            { -10F, 10F, 70F, -10F, 0F, 0F, 40F, -20F },
-            { -8F, 8F, 70F, -10F, 0F, 0F, 35F, -20F },
-            { -7F, 7F, 70F, -10F, 0F, 0F, 30F, -20F },
-            { -6F, 6F, 70F, -10F, 0F, 0F, 25F, -20F }
-    };
-
-    protected float[][] soaringCycle = new float[][] {
-            // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleY, wing1AngleZ, wing2AngleZ
-            { 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F }
-    };
-
-    protected float[][] divingCycle = new float[][] {
-            // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleY, wing1AngleZ, wing2AngleZ
-            { 90F, 0F, 0F, 0F, 0F, -50F, 0F, 0F }
-    };
-
-    protected float[][] attackingCycle = new float[][] {
-            // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleY, wing1AngleZ, wing2AngleZ
-            { 90F, 0F, 0F, 0F, 0F, -50F, 0F, 0F }
-    };
-
-    protected float[][] landingCycle = new float[][] {
-            // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleY, wing1AngleZ, wing2AngleZ
-            { -5F, 5F, 70F, -10F, 0F, 0F, 20F, -20F },
-    };
-
-    protected float[][] travellingCycle = new float[][] {
-            // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleY, wing1AngleZ, wing2AngleZ
-            { -5F, 5F, 70F, -10F, 0F, 0F, 20F, -20F },
-            { -4F, 4F, 70F, -10F, 0F, 0F, 15F, -15F },
-            { -2F, 2F, 70F, -10F, 0F, 0F, 10F, -10F },
-            { -1F, 1F, 70F, -10F, 0F, 0F, 5F, -5F },
-            { 0F, 0F, 70F, -10F, 0F, 0F, 0F, 0F },
-            { 1F, -1F, 70F, -10F, 0F, 0F, -5F, 5F },
-            { 2F, -2F, 70F, -10F, 0F, 0F, -10F, 10F },
-            { 4F, -4F, 70F, -10F, 0F, 0F, -15F, 15F },
-            { 5F, -5F, 70F, -10F, 0F, 0F, -20F, 20F },
-            { 6F, -6F, 70F, -10F, 0F, 0F, -25F, 20F },
-            { 7F, -7F, 70F, -10F, 0F, 0F, -30F, 20F },
-            { 4F, -4F, 70F, -10F, 0F, 0F, -15F, 15F },
-            { 0F, 0F, 70F, -10F, 0F, 0F, -0F, 0F },
-            { -3F, 3F, 70F, -10F, 0F, 0F, 10F, -10F },
-            { -5F, 5F, 70F, -10F, 0F, 0F, 20F, -20F },
-            { -7F, 7F, 70F, -10F, 0F, 0F, 30F, -20F },
-            { -10F, 10F, 70F, -10F, 0F, 0F, 40F, -20F },
-            { -12F, 12F, 70F, -10F, 0F, 0F, 50F, -20F },
-            { -10F, 10F, 70F, -10F, 0F, 0F, 45F, -20F },
-            { -10F, 10F, 70F, -10F, 0F, 0F, 40F, -20F },
-            { -8F, 8F, 70F, -10F, 0F, 0F, 35F, -20F },
-            { -7F, 7F, 70F, -10F, 0F, 0F, 30F, -20F },
-            { -6F, 6F, 70F, -10F, 0F, 0F, 25F, -20F }
-    };
+    private ModelThrush.State state = ModelThrush.State.STANDING;
 
     public ModelThrush() {
         this.textureWidth = 32;
@@ -197,92 +119,145 @@ public class ModelThrush extends ModelTTM {
     @Override
     public void render(Entity parEntity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-        // best to cast to actual expected entity, to allow access to custom fields related to animation
-        renderBirds((EntityTMBirds) parEntity, f5);
+        if (this.state != State.STANDING) {
+            this.ThrushBody.render(f5);
+        }else {
+            this.ThrushBodyWingless.render(f5);
+        }
     }
 
-    public void renderBirds(EntityTMBirds parBird, float parRenderFloat)
+    /**
+     * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the movement of arms
+     * and legs, where par1 represents the time(so that arms and legs swing back and forth) and par2 represents how
+     * "far" arms and legs can swing at most.
+     */
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
-        setRotationAngles(parBird);
+        float f = ageInTicks * 0.3F;
+        this.ThrushHead.rotateAngleX = headPitch * 0.017453292F;
+        this.ThrushHead.rotateAngleY = netHeadYaw * 0.017453292F;
+        this.ThrushHead.rotateAngleZ = 0.0F;
+        this.ThrushHead.rotationPointX = 0.5F;
+        this.ThrushBody.rotationPointX = 0.0F;
+        this.ThrushTail1.rotationPointX = 0.0F;
+        this.ThrushWingR1.rotationPointX = 1.0F;
+        this.ThrushWingL1.rotationPointX = 1.0F;
 
-        // scale the whole thing for big or small entities
-        GL11.glPushMatrix();
-        GL11.glTranslatef(0F, 1.5F-1.5F*parBird.getScaleFactor(), 0F);
-        // translate a bit extra if perched, as legs don't quite reach ground otherwise
-        if (parBird.getState() == AIStates.STATE_PERCHED
-                || parBird.getState() == AIStates.STATE_PERCHED_TAMED)
+        if (this.state != State.FLYING)
         {
-            GL11.glTranslatef(0F, 0.2F*parBird.getScaleFactor(), 0F);
+            if (this.state == State.SITTING)
+            {
+                return;
+            }
+
+            if (this.state == State.PARTY)
+            {
+                float f1 = MathHelper.cos((float)entityIn.ticksExisted);
+                float f2 = MathHelper.sin((float)entityIn.ticksExisted);
+                this.ThrushHead.rotationPointX = f1;
+                this.ThrushHead.rotationPointY = 15.69F + f2;
+                this.ThrushHead.rotateAngleX = 0.0F;
+                this.ThrushHead.rotateAngleY = 0.0F;
+                this.ThrushHead.rotateAngleZ = MathHelper.sin((float)entityIn.ticksExisted) * 0.4F;
+                this.ThrushBody.rotationPointX = f1;
+                this.ThrushBody.rotationPointY = -0.1F + f2;
+                this.ThrushWingL1.rotateAngleZ = -0.0873F - ageInTicks;
+                this.ThrushWingL1.rotationPointX = 1.0F + f1;
+                this.ThrushWingL1.rotationPointY = 1.65F + f2;
+                this.ThrushWingL1.rotationPointZ = -0.3F + f1;
+                this.ThrushWingR1.rotateAngleZ = 0.0873F + ageInTicks;
+                this.ThrushWingR1.rotationPointX = -1.0F + f1;
+                this.ThrushWingR1.rotationPointY = -0.05F + f2;
+                this.ThrushTail1.rotationPointX = f1;
+                this.ThrushTail1.rotationPointY = -0.8F + f2;
+                return;
+            }
+
+            this.ThrushLegL1.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+            this.ThrushLegR1.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
         }
 
-        GL11.glScalef(parBird.getScaleFactor(), parBird.getScaleFactor(), parBird.getScaleFactor());
-
-        // should only need to render body because all rest are children
-        if (parBird.getState() == AIStates.STATE_PERCHED
-                || parBird.getState() == AIStates.STATE_PERCHED_TAMED)
-        { ThrushBodyWingless.render(parRenderFloat);
-        }
-        else
-        {
-            ThrushBody.render(parRenderFloat);
-        }
-
-        // don't forget to pop the matrix for overall scaling
-        GL11.glPopMatrix();
+        this.ThrushHead.rotationPointY = f;
+        this.ThrushTail1.rotateAngleX = 1.015F + MathHelper.cos(limbSwing * 0.6662F) * 0.3F * limbSwingAmount;
+        this.ThrushTail1.rotationPointY = -0.8F + f;
+        this.ThrushBody.rotationPointY = -0.1F + f;
+        this.ThrushWingL1.rotateAngleZ = -0.0873F - ageInTicks;
+        this.ThrushWingL1.rotationPointY = 1.65F + f;
+        this.ThrushWingL1.rotationPointZ = -0.3F + f;
+        this.ThrushWingR1.rotateAngleZ = 0.0873F + ageInTicks;
+        this.ThrushWingR1.rotationPointY = -0.05F + f;
+        this.ThrushLegL1.rotationPointY = 1.5F + f;
+        this.ThrushLegR1.rotationPointY = 1.5F + f;
     }
 
-    public void setRotationAngles(EntityTMBirds parEntity)
+    /**
+     * Used for easily adding entity-dependent animations. The second and third float params here are the same second
+     * and third as in the setRotationAngles method.
+     */
+    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
     {
-        if (parEntity.getState() == AIStates.STATE_TAKING_OFF)
-        {
-            doAnimate(parEntity, takingOffCycle);
-        }
-        else if (parEntity.getState() == AIStates.STATE_DIVING)
-        {
-            doAnimate(parEntity, divingCycle);
-        }
-        else if (parEntity.getState() == AIStates.STATE_LANDING)
-        {
-            doAnimate(parEntity, landingCycle);
-        }
-        else if (parEntity.getState() == AIStates.STATE_PERCHED
-                || parEntity.getState() == AIStates.STATE_PERCHED_TAMED)
-        {
-            doAnimate(parEntity, perchedCycle);
-        }
-        else if (parEntity.getState() == AIStates.STATE_SOARING
-                || parEntity.getState() == AIStates.STATE_SOARING_TAMED)
-        {
-            doAnimate(parEntity, soaringCycle);
-        }
-        else if (parEntity.getState() == AIStates.STATE_TRAVELLING
-                || parEntity.getState() == AIStates.STATE_SEEKING)
-        {
-            doAnimate(parEntity, travellingCycle);
-        }
-        else if (parEntity.getState() == AIStates.STATE_ATTACKING)
-        {
-            doAnimate(parEntity, attackingCycle);
-        }
+        //this.feather.rotateAngleX = -0.2214F;
+        this.ThrushBody.rotateAngleX = 0.4937F;
+        this.ThrushWingL1.rotateAngleX = -((float)Math.PI * 2F / 9F);
+        this.ThrushWingL1.rotateAngleY = -(float)Math.PI;
+        this.ThrushWingR1.rotateAngleX = -((float)Math.PI * 2F / 9F);
+        this.ThrushWingR1.rotateAngleY = -(float)Math.PI;
+        this.ThrushLegL1.rotateAngleX = -0.0299F;
+        this.ThrushLegR1.rotateAngleX = -0.0299F;
+        this.ThrushLegL1.rotationPointY = 1.5F;
+        this.ThrushLegR1.rotationPointY = 1.5F;
 
+        if (entitylivingbaseIn instanceof EntityTMThrush)
+        {
+            EntityTMThrush entitythrush = (EntityTMThrush)entitylivingbaseIn;
+
+            if (entitythrush.isPartying())
+            {
+                this.ThrushLegL1.rotateAngleZ = -0.34906584F;
+                this.ThrushLegR1.rotateAngleZ = 0.34906584F;
+                this.state = ModelThrush.State.PARTY;
+                return;
+            }
+
+            if (entitythrush.isSitting())
+            {
+                float f = 1.9F;
+                this.ThrushHead.rotationPointY = -0.1F;
+                this.ThrushTail1.rotateAngleX = 1.5388988F;
+                this.ThrushTail1.rotationPointY = 1.1F;
+                this.ThrushBody.rotationPointY = 20.3F;
+                this.ThrushWingL1.rotateAngleZ = -0.0873F;
+                this.ThrushWingL1.rotationPointY = 0.0F;
+                this.ThrushWingR1.rotateAngleZ = 0.0873F;
+                this.ThrushWingR1.rotationPointY = 0.0F;
+                ++this.ThrushLegL1.rotationPointY;
+                ++this.ThrushLegR1.rotationPointY;
+                ++this.ThrushLegL1.rotateAngleX;
+                ++this.ThrushLegR1.rotateAngleX;
+                this.state = ModelThrush.State.SITTING;
+            }
+            else if (entitythrush.isFlying())
+            {
+                this.ThrushLegL1.rotateAngleX += ((float)Math.PI * 2F / 9F);
+                this.ThrushLegR1.rotateAngleX += ((float)Math.PI * 2F / 9F);
+                this.state = ModelThrush.State.FLYING;
+            }
+            else
+            {
+                this.state = ModelThrush.State.STANDING;
+            }
+
+            this.ThrushLegL1.rotateAngleZ = 0.0F;
+            this.ThrushLegR1.rotateAngleZ = 0.0F;
+        }
     }
 
-    public void doAnimate(EntityTMBirds parEntity, float[][] parCycleArray)
+    @SideOnly(Side.CLIENT)
+    static enum State
     {
-        cycleIndex = (int)Math.floor((parEntity.ticksExisted+parEntity.getRandFactor()*2)%parCycleArray.length)/2;
-        // will need to set based on entity state
-        // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleZ, wing2AngleZ
-        setRotation(ThrushBody, parCycleArray[cycleIndex][0], 0, 0);
-        setRotation(ThrushBodyWingless, parCycleArray[cycleIndex][0], 0, 0);
-        setRotation(ThrushHead, parCycleArray[cycleIndex][1], 0, 0);
-        // both legs have same angle
-        setRotation(ThrushLegL1, parCycleArray[cycleIndex][2], 0, 0);
-        setRotation(ThrushLegR1, parCycleArray[cycleIndex][2], 0, 0);
-        setRotation(ThrushTail1, parCycleArray[cycleIndex][3], 0, 0);
-        // both legs have same (well negative) angle
-        setRotation(ThrushWingL1, parCycleArray[cycleIndex][4], parCycleArray[cycleIndex][5], parCycleArray[cycleIndex][6]);
-        setRotation(ThrushWingR1, parCycleArray[cycleIndex][4], -parCycleArray[cycleIndex][5], -parCycleArray[cycleIndex][6]);
-        setRotation(ThrushWingL2, 0, -21F, -parCycleArray[cycleIndex][7]);
-        setRotation(ThrushWingR2, 0, 21F, parCycleArray[cycleIndex][7]);
+        FLYING,
+        STANDING,
+        SITTING,
+        PARTY
     }
 }

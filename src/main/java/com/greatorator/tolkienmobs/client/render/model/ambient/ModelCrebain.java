@@ -1,13 +1,13 @@
 package com.greatorator.tolkienmobs.client.render.model.ambient;
 
 import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
-import com.greatorator.tolkienmobs.entity.EntityTMBirds;
-import com.greatorator.tolkienmobs.entity.entityai.AIStates;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTMCrebain;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.GL11;
 
 /* Crebain - GreatOrator */
 @SideOnly(Side.CLIENT)
@@ -28,6 +28,7 @@ public class ModelCrebain extends ModelTTM {
     public ModelRenderer CrebainBeakBottom;
     public ModelRenderer CrebainWingL2;
     public ModelRenderer CrebainWingR2;
+    private ModelCrebain.State state = ModelCrebain.State.STANDING;
 
     protected float[][] perchedCycle = new float[][] {
                     // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleY, wing1AngleZ, wing2AngleZ
@@ -195,98 +196,145 @@ public class ModelCrebain extends ModelTTM {
     @Override
     public void render(Entity parEntity, float f, float f1, float f2, float f3, float f4, float f5)
     {
-        // best to cast to actual expected entity, to allow access to custom fields related to animation
-        renderBirds((EntityTMBirds) parEntity, f5);
+        if (this.state != State.STANDING) {
+            this.CrebainBody.render(f5);
+        }else {
+            this.CrebainBodyWingless.render(f5);
+        }
     }
-
-    public void renderBirds(EntityTMBirds parBird, float parRenderFloat)
-    {
-        setRotationAngles(parBird);
-
-        // scale the whole thing for big or small entities
-        GL11.glPushMatrix();
-        GL11.glTranslatef(0F, 1.5F-1.5F*parBird.getScaleFactor(), 0F);
-        // translate a bit extra if perched, as legs don't quite reach ground otherwise
-        if (parBird.getState() == AIStates.STATE_PERCHED
-                || parBird.getState() == AIStates.STATE_PERCHED_TAMED)
-        {
-            GL11.glTranslatef(0F, 0.2F*parBird.getScaleFactor(), 0F);
-        }
-
-        GL11.glScalef(parBird.getScaleFactor(), parBird.getScaleFactor(), parBird.getScaleFactor());
-
-        // should only need to render body because all rest are children
-        if (parBird.getState() == AIStates.STATE_PERCHED
-                || parBird.getState() == AIStates.STATE_PERCHED_TAMED)
-        { CrebainBodyWingless.render(parRenderFloat);
-        }
-        else
-        {
-            CrebainBody.render(parRenderFloat);
-        }
-
-        // don't forget to pop the matrix for overall scaling
-        GL11.glPopMatrix();
-    }
-
 
     /**
-     * Sets the rotation angles.
-     *
-     * @param parEntity the new rotation angles
+     * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the movement of arms
+     * and legs, where par1 represents the time(so that arms and legs swing back and forth) and par2 represents how
+     * "far" arms and legs can swing at most.
      */
-    public void setRotationAngles(EntityTMBirds parEntity)
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
-        if (parEntity.getState() == AIStates.STATE_TAKING_OFF)
+        float f = ageInTicks * 0.3F;
+        this.CrebainHead.rotateAngleX = headPitch * 0.017453292F;
+        this.CrebainHead.rotateAngleY = netHeadYaw * 0.017453292F;
+        this.CrebainHead.rotateAngleZ = 0.0F;
+        this.CrebainHead.rotationPointX = 0.5F;
+        this.CrebainBody.rotationPointX = 0.0F;
+        this.CrebainTail1.rotationPointX = 0.0F;
+        this.CrebainWingR1.rotationPointX = 1.0F;
+        this.CrebainWingL1.rotationPointX = 1.0F;
+
+        if (this.state != State.FLYING)
         {
-            doAnimate(parEntity, takingOffCycle);
-        }
-        else if (parEntity.getState() == AIStates.STATE_DIVING)
-        {
-            doAnimate(parEntity, divingCycle);
-        }
-        else if (parEntity.getState() == AIStates.STATE_LANDING)
-        {
-            doAnimate(parEntity, landingCycle);
-        }
-        else if (parEntity.getState() == AIStates.STATE_PERCHED
-                || parEntity.getState() == AIStates.STATE_PERCHED_TAMED)
-        {
-            doAnimate(parEntity, perchedCycle);
-        }
-        else if (parEntity.getState() == AIStates.STATE_SOARING
-                || parEntity.getState() == AIStates.STATE_SOARING_TAMED)
-        {
-            doAnimate(parEntity, soaringCycle);
-        }
-        else if (parEntity.getState() == AIStates.STATE_TRAVELLING
-                || parEntity.getState() == AIStates.STATE_SEEKING)
-        {
-            doAnimate(parEntity, travellingCycle);
-        }
-        else if (parEntity.getState() == AIStates.STATE_ATTACKING)
-        {
-            doAnimate(parEntity, attackingCycle);
+            if (this.state == State.SITTING)
+            {
+                return;
+            }
+
+            if (this.state == State.PARTY)
+            {
+                float f1 = MathHelper.cos((float)entityIn.ticksExisted);
+                float f2 = MathHelper.sin((float)entityIn.ticksExisted);
+                this.CrebainHead.rotationPointX = f1;
+                this.CrebainHead.rotationPointY = 15.69F + f2;
+                this.CrebainHead.rotateAngleX = 0.0F;
+                this.CrebainHead.rotateAngleY = 0.0F;
+                this.CrebainHead.rotateAngleZ = MathHelper.sin((float)entityIn.ticksExisted) * 0.4F;
+                this.CrebainBody.rotationPointX = f1;
+                this.CrebainBody.rotationPointY = -0.1F + f2;
+                this.CrebainWingL1.rotateAngleZ = -0.0873F - ageInTicks;
+                this.CrebainWingL1.rotationPointX = 1.0F + f1;
+                this.CrebainWingL1.rotationPointY = 1.65F + f2;
+                this.CrebainWingL1.rotationPointZ = -0.3F + f1;
+                this.CrebainWingR1.rotateAngleZ = 0.0873F + ageInTicks;
+                this.CrebainWingR1.rotationPointX = -1.0F + f1;
+                this.CrebainWingR1.rotationPointY = -0.05F + f2;
+                this.CrebainTail1.rotationPointX = f1;
+                this.CrebainTail1.rotationPointY = -0.8F + f2;
+                return;
+            }
+
+            this.CrebainLegL1.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+            this.CrebainLegR1.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
         }
 
+        this.CrebainHead.rotationPointY = f;
+        this.CrebainTail1.rotateAngleX = 1.015F + MathHelper.cos(limbSwing * 0.6662F) * 0.3F * limbSwingAmount;
+        this.CrebainTail1.rotationPointY = -0.8F + f;
+        this.CrebainBody.rotationPointY = -0.1F + f;
+        this.CrebainWingL1.rotateAngleZ = -0.0873F - ageInTicks;
+        this.CrebainWingL1.rotationPointY = 1.65F + f;
+        this.CrebainWingL1.rotationPointZ = -0.3F + f;
+        this.CrebainWingR1.rotateAngleZ = 0.0873F + ageInTicks;
+        this.CrebainWingR1.rotationPointY = -0.05F + f;
+        this.CrebainLegL1.rotationPointY = 1.5F + f;
+        this.CrebainLegR1.rotationPointY = 1.5F + f;
     }
 
-    public void doAnimate(EntityTMBirds parEntity, float[][] parCycleArray)
+    /**
+     * Used for easily adding entity-dependent animations. The second and third float params here are the same second
+     * and third as in the setRotationAngles method.
+     */
+    public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
     {
-        cycleIndex = (int)Math.floor((parEntity.ticksExisted+parEntity.getRandFactor()*2)%parCycleArray.length)/2;
-        // will need to set based on entity state
-        // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleZ, wing2AngleZ
-        setRotation(CrebainBody, parCycleArray[cycleIndex][0], 0, 0);
-        setRotation(CrebainBodyWingless, parCycleArray[cycleIndex][0], 0, 0);
-        setRotation(CrebainHead, parCycleArray[cycleIndex][1], 0, 0);
-        // both legs have same angle
-        setRotation(CrebainLegL1, parCycleArray[cycleIndex][2], 0, 0);
-        setRotation(CrebainLegR1, parCycleArray[cycleIndex][2], 0, 0);
-        setRotation(CrebainTail1, parCycleArray[cycleIndex][3], 0, 0);
-        // both legs have same (well negative) angle
-        setRotation(CrebainWingL1, parCycleArray[cycleIndex][4], parCycleArray[cycleIndex][5], parCycleArray[cycleIndex][6]);
-        setRotation(CrebainWingR1, parCycleArray[cycleIndex][4], -parCycleArray[cycleIndex][5], -parCycleArray[cycleIndex][6]);
-        setRotation(CrebainWingL2, 0, -21F, -parCycleArray[cycleIndex][7]);
-        setRotation(CrebainWingR2, 0, 21F, parCycleArray[cycleIndex][7]);
+        //this.feather.rotateAngleX = -0.2214F;
+        this.CrebainBody.rotateAngleX = 0.4937F;
+        this.CrebainWingL1.rotateAngleX = -((float)Math.PI * 2F / 9F);
+        this.CrebainWingL1.rotateAngleY = -(float)Math.PI;
+        this.CrebainWingR1.rotateAngleX = -((float)Math.PI * 2F / 9F);
+        this.CrebainWingR1.rotateAngleY = -(float)Math.PI;
+        this.CrebainLegL1.rotateAngleX = -0.0299F;
+        this.CrebainLegR1.rotateAngleX = -0.0299F;
+        this.CrebainLegL1.rotationPointY = 1.5F;
+        this.CrebainLegR1.rotationPointY = 1.5F;
+
+        if (entitylivingbaseIn instanceof EntityTMCrebain)
+        {
+            EntityTMCrebain entitycrebain = (EntityTMCrebain)entitylivingbaseIn;
+
+            if (entitycrebain.isPartying())
+            {
+                this.CrebainLegL1.rotateAngleZ = -0.34906584F;
+                this.CrebainLegR1.rotateAngleZ = 0.34906584F;
+                this.state = ModelCrebain.State.PARTY;
+                return;
+            }
+
+            if (entitycrebain.isSitting())
+            {
+                float f = 1.9F;
+                this.CrebainHead.rotationPointY = -0.1F;
+                this.CrebainTail1.rotateAngleX = 1.5388988F;
+                this.CrebainTail1.rotationPointY = 1.1F;
+                this.CrebainBody.rotationPointY = 20.3F;
+                this.CrebainWingL1.rotateAngleZ = -0.0873F;
+                this.CrebainWingL1.rotationPointY = 0.0F;
+                this.CrebainWingR1.rotateAngleZ = 0.0873F;
+                this.CrebainWingR1.rotationPointY = 0.0F;
+                ++this.CrebainLegL1.rotationPointY;
+                ++this.CrebainLegR1.rotationPointY;
+                ++this.CrebainLegL1.rotateAngleX;
+                ++this.CrebainLegR1.rotateAngleX;
+                this.state = ModelCrebain.State.SITTING;
+            }
+            else if (entitycrebain.isFlying())
+            {
+                this.CrebainLegL1.rotateAngleX += ((float)Math.PI * 2F / 9F);
+                this.CrebainLegR1.rotateAngleX += ((float)Math.PI * 2F / 9F);
+                this.state = ModelCrebain.State.FLYING;
+            }
+            else
+            {
+                this.state = ModelCrebain.State.STANDING;
+            }
+
+            this.CrebainLegL1.rotateAngleZ = 0.0F;
+            this.CrebainLegR1.rotateAngleZ = 0.0F;
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    static enum State
+    {
+        FLYING,
+        STANDING,
+        SITTING,
+        PARTY
     }
 }
