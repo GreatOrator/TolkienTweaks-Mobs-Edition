@@ -80,6 +80,11 @@ public class SoundInit {
     public static final SoundEvent soundHurtTMRat = create("mob.tmrat.hurt");
     public static final SoundEvent soundDeathTMRat = create("mob.tmrat.death");
 
+    /** Rat */
+    public static final SoundEvent soundIdleTMThrush = create("mob.tmthrush.idle");
+    public static final SoundEvent soundHurtTMThrush = create("mob.tmthrush.hurt");
+    public static final SoundEvent soundDeathTMThrush = create("mob.tmthrush.death");
+
     /** Balrog */
     public static final SoundEvent soundDeathBalrog = create("mob.balrog.death");
     public static final SoundEvent soundIdleBalrog = create("mob.balrog.idle");

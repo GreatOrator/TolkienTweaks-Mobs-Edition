@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.entity;
 
 import com.google.common.base.Optional;
-import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.ambient.EntityTMRat;
 import com.greatorator.tolkienmobs.entity.ambient.EntityTMSquirrel;
 import com.greatorator.tolkienmobs.entity.ambient.EntityTMToad;
@@ -13,7 +12,7 @@ import com.greatorator.tolkienmobs.handler.interfaces.IModEntity;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-import com.greatorator.tolkienmobs.utils.TTMRand;
+import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -374,7 +373,7 @@ public class EntityTMBirds extends EntityFlying implements IModEntity
     @Override
     protected boolean canDespawn()
     {
-        return false;
+        return true;
     }
 
     @SideOnly(Side.CLIENT)
@@ -662,15 +661,9 @@ public class EntityTMBirds extends EntityFlying implements IModEntity
 
     @Override
     public boolean getCanSpawnHere() {
-        int willSpawn = this.spawnChance();
+        int willSpawn = TTMSpawnEvent.spawnChance();
 
         return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.world.canSeeSky(new BlockPos(this)) && willSpawn <= 10;
-    }
-
-    protected int spawnChance()
-    {
-        int i = TTMRand.getRandomInteger(TTMConfig.mobSpawnChance, 1);
-        return i;
     }
 
     public int getTalkInterval()

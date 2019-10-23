@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.entity.hostile;
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
 import com.greatorator.tolkienmobs.init.SoundInit;
+import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -34,7 +35,7 @@ public class EntityRomieWalker extends EntityTMHostiles {
 
     @Override
     public boolean getCanSpawnHere() {
-        int willSpawn = this.spawnChance();
+        int willSpawn = TTMSpawnEvent.spawnChance();
 
         return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && willSpawn <= 10;
     }

@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.passive;
 
 import com.greatorator.tolkienmobs.entity.EntityTMHerds;
 import com.greatorator.tolkienmobs.init.LootInit;
+import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -49,7 +50,7 @@ public class EntityTMMumakil extends EntityTMHerds {
         int i = MathHelper.floor(this.posX);
         int j = MathHelper.floor(this.getEntityBoundingBox().minY);
         int k = MathHelper.floor(this.posZ);
-        int willSpawn = this.spawnChance();
+        int willSpawn = TTMSpawnEvent.spawnChance();
         BlockPos blockpos = new BlockPos(i, j, k);
         return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getBlockState(blockpos.down()).getBlock() == this.spawnableBlock && this.world.getLight(blockpos) > 8 && willSpawn <= 10;
     }

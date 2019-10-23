@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.entity.passive;
 
-import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.utils.TTMRand;
+import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
@@ -144,15 +144,9 @@ public class EntityTMGoat extends AbstractChestHorse {
         int i = MathHelper.floor(this.posX);
         int j = MathHelper.floor(this.getEntityBoundingBox().minY);
         int k = MathHelper.floor(this.posZ);
-        int willSpawn = this.spawnChance();
+        int willSpawn = TTMSpawnEvent.spawnChance();
         BlockPos blockpos = new BlockPos(i, j, k);
         return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.getLight(blockpos) > 8 && willSpawn <= 10;
-    }
-
-    private int spawnChance()
-    {
-        int i = TTMRand.getRandomInteger(TTMConfig.mobSpawnChance, 1);
-        return i;
     }
 
     protected boolean isValidLightLevel()

@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
+import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import net.minecraft.block.Block;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -21,7 +22,7 @@ public class EntityTMMinotaur extends EntityTMHostiles {
 
     @Override
     public boolean getCanSpawnHere() {
-        int willSpawn = this.spawnChance();
+        int willSpawn = TTMSpawnEvent.spawnChance();
 
         return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.posY < 64.0D && !this.world.canSeeSky(new BlockPos(this)) && willSpawn <= 10;
     }

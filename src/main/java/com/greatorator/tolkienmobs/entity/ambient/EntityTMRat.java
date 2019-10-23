@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.entity.ambient;
 
-import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.utils.TTMRand;
+import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.IEntityLivingData;
@@ -166,14 +166,8 @@ public class EntityTMRat extends EntityCreature {
 
     @Override
     public boolean getCanSpawnHere() {
-        int willSpawn = this.spawnChance();
+        int willSpawn = TTMSpawnEvent.spawnChance();
 
         return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && !this.world.canSeeSky(new BlockPos(this)) && willSpawn <= 10;
-    }
-
-    private int spawnChance()
-    {
-        int i = TTMRand.getRandomInteger(TTMConfig.mobSpawnChance, 1);
-        return i;
     }
 }

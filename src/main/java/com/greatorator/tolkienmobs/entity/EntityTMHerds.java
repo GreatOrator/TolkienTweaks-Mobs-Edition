@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.entity;
 
-import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.handler.interfaces.IModEntity;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.utils.TTMRand;
+import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -263,15 +263,9 @@ public class EntityTMHerds extends EntityAnimal implements IModEntity
 
     @Override
     public boolean getCanSpawnHere() {
-        int willSpawn = this.spawnChance();
+        int willSpawn = TTMSpawnEvent.spawnChance();
 
         return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.world.canSeeSky(new BlockPos(this)) && willSpawn <= 10;
-    }
-
-    protected int spawnChance()
-    {
-        int i = TTMRand.getRandomInteger(TTMConfig.mobSpawnChance, 1);
-        return i;
     }
 
     public int getTalkInterval()

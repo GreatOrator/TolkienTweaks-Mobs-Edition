@@ -4,7 +4,10 @@
     "category": "neutral",
     "sounds":
     [
-      "tolkienmobs:mob/mumakil/mumakil_say"
+      "tolkienmobs:mob/mumakil/mumakil_say0",
+      "tolkienmobs:mob/mumakil/mumakil_say1",
+      "tolkienmobs:mob/mumakil/mumakil_say2",
+      "tolkienmobs:mob/mumakil/mumakil_say3"
     ]
   },
   "mob.mumakil.hurt":
@@ -841,6 +844,34 @@
     [
       "tolkienmobs:mob/romiewalker/romiewalker_angry1",
       "tolkienmobs:mob/romiewalker/romiewalker_angry2"
+    ]
+  },
+  "mob.tmthrush.idle":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/tmthrush/tmthrush_say0",
+      "tolkienmobs:mob/tmthrush/tmthrush_say1",
+      "tolkienmobs:mob/tmthrush/tmthrush_say2",
+      "tolkienmobs:mob/tmthrush/tmthrush_say3"
+    ]
+  },
+  "mob.tmthrush.hurt":
+  {
+    "category": "neutral",
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/tmthrush/tmthrush_hurt"
+    ]
+  },
+  "mob.tmthrush.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/tmthrush/tmthrush_death"
     ]
   }
 }

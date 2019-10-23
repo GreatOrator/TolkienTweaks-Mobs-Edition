@@ -1,10 +1,9 @@
 package com.greatorator.tolkienmobs.entity.ambient;
 
-import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
-import com.greatorator.tolkienmobs.utils.TTMRand;
+import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import com.greatorator.tolkienmobs.world.biomes.BiomeHaradwaith;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBeetroot;
@@ -727,7 +726,7 @@ public class EntityTMToad extends EntityAnimal {
         int j = (int) Math.floor(posY);
         int k = (int) Math.floor(posZ);
 
-        int willSpawn = this.spawnChance();
+        int willSpawn = TTMSpawnEvent.spawnChance();
 
         for (int i1 = i - 16; i1 <= i + 16; i1++) {
             for (int j1 = j - 6; j1 <= j + 6; j1++) {
@@ -742,11 +741,5 @@ public class EntityTMToad extends EntityAnimal {
             }
         }
         return nearWater;
-    }
-
-    private int spawnChance()
-    {
-        int i = TTMRand.getRandomInteger(TTMConfig.mobSpawnChance, 1);
-        return i;
     }
 }

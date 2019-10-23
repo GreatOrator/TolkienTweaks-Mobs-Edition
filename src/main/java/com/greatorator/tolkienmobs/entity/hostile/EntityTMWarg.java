@@ -1,10 +1,10 @@
 package com.greatorator.tolkienmobs.entity.hostile;
 
-import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.passive.EntityTMHobbit;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.utils.TTMRand;
+import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -360,15 +360,9 @@ public class EntityTMWarg extends EntityWolf {
 
     @Override
     public boolean getCanSpawnHere() {
-        int willSpawn = this.spawnChance();
+        int willSpawn = TTMSpawnEvent.spawnChance();
 
         return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && willSpawn <= 10;
-    }
-
-    private int spawnChance()
-    {
-        int i = TTMRand.getRandomInteger(TTMConfig.mobSpawnChance, 1);
-        return i;
     }
 
     protected boolean isValidLightLevel()

@@ -3,11 +3,14 @@ package com.greatorator.tolkienmobs.entity.ambient;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
+import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import net.minecraft.entity.passive.EntityParrot;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -57,6 +60,29 @@ public class EntityTMCrebain extends EntityParrot {
     protected float getSoundVolume()
     {
         return 0.3F;
+    }
+
+    @Override
+    public int getMaxSpawnedInChunk()
+    {
+        return 1;
+    }
+
+    @Override
+    protected boolean canDespawn()
+    {
+        return true;
+    }
+
+    protected boolean isValidLightLevel() {
+        return true;
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        int willSpawn = TTMSpawnEvent.spawnChance();
+
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.world.canSeeSky(new BlockPos(this)) && willSpawn <= 10;
     }
 
     @Override

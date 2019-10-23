@@ -5,6 +5,7 @@ import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.PotionInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.utils.TTMRand;
+import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.material.Material;
@@ -267,7 +268,7 @@ public class EntityTMElementalGolem extends EntityTMHostiles {
         int i = (int) Math.floor(posX);
         int j = (int) Math.floor(posY);
         int k = (int) Math.floor(posZ);
-        int willSpawn = this.spawnChance();
+        int willSpawn = TTMSpawnEvent.spawnChance();
         BlockPos blockpos = new BlockPos(i, j, k);
         Block block = this.world.getBlockState(blockpos.down()).getBlock();
 

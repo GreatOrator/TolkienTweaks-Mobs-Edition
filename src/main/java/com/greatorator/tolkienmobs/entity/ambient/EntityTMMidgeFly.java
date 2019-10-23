@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.entity.EntityTMHostiles;
 import com.greatorator.tolkienmobs.init.BiomeInit;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
+import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Biomes;
@@ -54,7 +55,7 @@ public class EntityTMMidgeFly extends EntityTMHostiles {
 
     @Override
     public boolean getCanSpawnHere() {
-        int willSpawn = this.spawnChance();
+        int willSpawn = TTMSpawnEvent.spawnChance();
 
         if (world.getBiome(new BlockPos(this)) == Biomes.SWAMPLAND || world.getBiome(new BlockPos(this)) == BiomeInit.NINDALF) {
             if (willSpawn <= 10) {

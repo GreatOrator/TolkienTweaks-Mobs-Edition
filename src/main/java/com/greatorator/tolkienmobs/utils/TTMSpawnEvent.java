@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.utils;
 
+import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.entity.special.EntityTMMithrilGolem;
 import net.minecraft.entity.monster.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -30,4 +31,9 @@ public class TTMSpawnEvent {
     }
   }
 
+  public static int spawnChance()
+  {
+    int i = TTMRand.getRandomInteger(TTMConfig.mobSpawnChance, 1);
+    return i;
+  }
 }

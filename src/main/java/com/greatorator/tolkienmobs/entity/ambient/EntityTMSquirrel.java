@@ -1,10 +1,9 @@
 package com.greatorator.tolkienmobs.entity.ambient;
 
-import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
-import com.greatorator.tolkienmobs.utils.TTMRand;
+import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import com.greatorator.tolkienmobs.world.biomes.BiomeFirien;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -296,15 +295,9 @@ public class EntityTMSquirrel extends EntityCreature implements IAnimals {
         int i = MathHelper.floor(this.posX);
         int j = MathHelper.floor(this.getEntityBoundingBox().minY);
         int k = MathHelper.floor(this.posZ);
-        int willSpawn = this.spawnChance();
+        int willSpawn = TTMSpawnEvent.spawnChance();
         BlockPos blockpos = new BlockPos(i, j, k);
 
         return this.world.getBlockState(blockpos.down()).getBlock() == this.spawnableBlock && this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && willSpawn <= 10;
-    }
-
-    protected int spawnChance()
-    {
-        int i = TTMRand.getRandomInteger(TTMConfig.mobSpawnChance, 1);
-        return i;
     }
 }
