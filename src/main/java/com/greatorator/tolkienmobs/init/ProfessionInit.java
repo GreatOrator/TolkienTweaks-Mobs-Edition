@@ -77,9 +77,11 @@ public class ProfessionInit {
          store_clerk.addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.HONEY_CAKE), new ItemStack(TTMFeatures.ITEM_COIN_BRONZE),3, 26))
                     .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.CRAM), new ItemStack(TTMFeatures.ITEM_COIN_BRONZE),1, 16))
                     .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.FOOD_HONEY), new ItemStack(TTMFeatures.ITEM_COIN_BRONZE),1, 12))
-                    .addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.MIRUVOR), new ItemStack(TTMFeatures.ITEM_COIN_SILVER),2, 6))
-                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.ENT_DRAUGHT), new ItemStack(TTMFeatures.ITEM_COIN_SILVER),1, 5))
-                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.LEMBAS), new ItemStack(TTMFeatures.ITEM_COIN_BRONZE),5, 36));
+                    .addTrade(3, new TradeHandler(new ItemStack(TTMFeatures.BLESSINGS_OF_ERU), new ItemStack(TTMFeatures.ITEM_COIN_BRONZE),2, 14))
+                    .addTrade(2, new TradeHandler(new ItemStack(TTMFeatures.LEMBAS), new ItemStack(TTMFeatures.ITEM_COIN_SILVER),4, 16))
+                    .addTrade(3, new TradeHandler(new ItemStack(TTMFeatures.MIRUVOR), new ItemStack(TTMFeatures.ITEM_COIN_SILVER),2, 6))
+                    .addTrade(3, new TradeHandler(new ItemStack(TTMFeatures.ENT_DRAUGHT), new ItemStack(TTMFeatures.ITEM_COIN_SILVER),1, 5))
+                    .addTrade(3, new TradeHandler(new ItemStack(TTMFeatures.BLESSINGS_OF_THE_ELF), new ItemStack(TTMFeatures.ITEM_COIN_SILVER),3, 9));
 
         VillagerRegistry.VillagerCareer pet_seller = new VillagerCareer(PET_MERCHANT, "pet_seller");
           pet_seller.addTrade(1, new TradeHandler(new ItemStack(TTMFeatures.TREE_ACORN, 3), new ItemStack(TTMFeatures.ITEM_COIN_BRONZE),9, 48))

@@ -80,7 +80,7 @@ public class BiomeOldForest extends Biome implements IFogyBiome {
                 }
             }
         }
-        this.spawnableMonsterList.add(new SpawnListEntry(EntityWolf.class, 1, 1, 2));
+        this.spawnableMonsterList.add(new SpawnListEntry(EntityWolf.class, 1, 1, 1));
     }
 
     @SideOnly(Side.CLIENT)

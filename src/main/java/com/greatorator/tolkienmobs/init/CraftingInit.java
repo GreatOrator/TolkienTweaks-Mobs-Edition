@@ -86,6 +86,7 @@ public class CraftingInit {
         OreDictionary.registerOre("treeSapling", new ItemStack(TTMFeatures.SAPLINGS));
         OreDictionary.registerOre("treeLeaves", new ItemStack(TTMFeatures.LEAVES));
         OreDictionary.registerOre("flower", new ItemStack(TTMFeatures.FLOWERS));
+        OreDictionary.registerOre("mushroom", new ItemStack(TTMFeatures.TM_MUSHROOM));
 
         /* Foodstuffs */
         OreDictionary.registerOre("foodLembas", new ItemStack(TTMFeatures.LEMBAS));

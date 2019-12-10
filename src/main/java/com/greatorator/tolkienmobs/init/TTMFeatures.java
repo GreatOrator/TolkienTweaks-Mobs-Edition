@@ -10,6 +10,7 @@ import com.brandon3055.brandonscore.registry.ModFeature;
 import com.brandon3055.brandonscore.registry.ModFeatures;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.*;
+import com.greatorator.tolkienmobs.block.itemblock.BlockStonePath;
 import com.greatorator.tolkienmobs.block.itemblock.BlockTMFireplace;
 import com.greatorator.tolkienmobs.block.itemblock.BlockTMHallowed;
 import com.greatorator.tolkienmobs.block.itemblock.ItemBlockSlabs;
@@ -182,6 +183,10 @@ public class TTMFeatures implements IModFeatures {
     public static Item ITEM_OILYKEY = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_mithrilnugget", stateOverride = "simple_items#type=item_mithrilnugget", cTab = 4)
     public static Item ITEM_MITHRILNUGGET = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
+    @ModFeature(name = "item_remains", stateOverride = "simple_items#type=item_remains", cTab = 4)
+    public static Item ITEM_REMAINS = new TTMLore(16).setItemHasUse(false);
+    @ModFeature(name = "item_rune_stone", stateOverride = "simple_items#type=item_rune_stone", cTab = 4)
+    public static Item ITEM_RUNE_STONE = new TTMLore(8).setEffectOverride(true).setItemHasUse(false);
     /* End Region */
 
     /* Tools */
@@ -272,6 +277,8 @@ public class TTMFeatures implements IModFeatures {
     public static final Block SAPLINGS = new BlockSaplings();
     @ModFeature(name = "flower", variantMap = {"0:variant=simbelmyne", "1:variant=mirkwood", "2:variant=alfirin", "3:variant=athelas", "4:variant=niphredil", "5:variant=swamp_milkweed","6:variant=valley_lilly"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final BlockFlowers FLOWERS = new BlockFlowers();
+    @ModFeature(name = "mushrooms", variantMap = {"0:variant=decay_bloom", "1:variant=bloom_decay"}, itemBlock = ItemBlockBCore.class, cTab = 1)
+    public static final BlockTMMushroom TM_MUSHROOM = new BlockTMMushroom();
     /* End Region */
 
     /* Basic Items */
@@ -307,15 +314,19 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "food_cram", stateOverride = "simple_items#type=food_cram", cTab = 3)
     public static Item CRAM = new TTMFood(10, 64, 10, new PotionEffect(MobEffects.ABSORPTION,3000,1), new PotionEffect(MobEffects.REGENERATION,25,5));
     @ModFeature(name = "potion_entdraught", stateOverride = "simple_items#type=potion_entdraught", cTab = 3)
-    public static Item ENT_DRAUGHT = new TTMFood(1, 1, 1, new PotionEffect(PotionInit.ENT_STANCE,6000,2)).setEffectOverride(true).setItemUseAction(true);
+    public static Item ENT_DRAUGHT = new TTMFood(1, 16, 1, new PotionEffect(PotionInit.ENT_STANCE,6000,2)).setEffectOverride(true).setItemUseAction(true);
     @ModFeature(name = "potion_miruvor", stateOverride = "simple_items#type=potion_miruvor", cTab = 3)
-    public static Item MIRUVOR = new TTMFood(1, 1, 1, new PotionEffect(MobEffects.SPEED,3000,3), new PotionEffect(MobEffects.REGENERATION, 600, 3), new PotionEffect(MobEffects.NAUSEA, 40, 3)).setItemUseAction(true);
+    public static Item MIRUVOR = new TTMFood(1, 16, 1, new PotionEffect(MobEffects.SPEED,3000,3), new PotionEffect(MobEffects.REGENERATION, 600, 3), new PotionEffect(MobEffects.NAUSEA, 40, 3)).setItemUseAction(true);
     @ModFeature(name = "potion_grog", stateOverride = "simple_items#type=potion_grog", cTab = 3)
-    public static Item GROG = new TTMFood(1, 1, 1, new PotionEffect(MobEffects.SPEED,1500,3), new PotionEffect(MobEffects.REGENERATION, 300, 3), new PotionEffect(MobEffects.NAUSEA, 100, 3)).setItemUseAction(true);
+    public static Item GROG = new TTMFood(1, 16, 1, new PotionEffect(MobEffects.SPEED,1500,3), new PotionEffect(MobEffects.REGENERATION, 300, 3), new PotionEffect(MobEffects.NAUSEA, 100, 3)).setItemUseAction(true);
     @ModFeature(name = "potion_elvishhealth", stateOverride = "simple_items#type=potion_elvishhealth", cTab = 3)
-    public static Item ELVISH_HEALTH = new TTMFood(1, 1, 1, new PotionEffect(PotionInit.ELF_VITALITY,15000,3)).setItemUseAction(true);
+    public static Item ELVISH_HEALTH = new TTMFood(1, 16, 1, new PotionEffect(PotionInit.ELF_VITALITY,15000,3)).setItemUseAction(true);
     @ModFeature(name = "potion_portableblacksmith", stateOverride = "simple_items#type=potion_portableblacksmith", cTab = 3)
-    public static Item WANDERING_BLACKSMITH = new TTMFood(1, 1, 1, new PotionEffect(PotionInit.PERSONAL_BLACKSMITH,15000,2)).setItemUseAction(true);
+    public static Item WANDERING_BLACKSMITH = new TTMFood(1, 16, 1, new PotionEffect(PotionInit.PERSONAL_BLACKSMITH,15000,2)).setItemUseAction(true);
+    @ModFeature(name = "potion_elf_blessing", stateOverride = "simple_items#type=potion_elf_blessing", cTab = 3)
+    public static Item BLESSINGS_OF_THE_ELF = new TTMFood(1, 16, 1, new PotionEffect(PotionInit.ELF_NIMBLENESS,15000,2)).setItemUseAction(true);
+    @ModFeature(name = "potion_eru_blessing", stateOverride = "simple_items#type=potion_eru_blessing", cTab = 3)
+    public static Item BLESSINGS_OF_ERU = new TTMFood(1, 16, 1, new PotionEffect(PotionInit.ERU_BLESSING,15000,2)).setItemUseAction(true);
     @ModFeature(name = "monster_flesh", stateOverride = "simple_items#type=monster_flesh", cTab = 3)
     public static Item MONSTER_FLESH = new TTMFood(5, 64, 2, new PotionEffect(MobEffects.HUNGER,100,2));
     @ModFeature(name = "food_insect", stateOverride = "simple_items#type=food_insect", cTab = 3)
@@ -335,6 +346,8 @@ public class TTMFeatures implements IModFeatures {
     public static final BlockSigns SIGNS = new BlockSigns();
     @ModFeature(name = "block_hallowed", cTab = 1)
     public static final Block BLOCK_HALLOWED = new BlockTMHallowed();
+    @ModFeature(name = "block_stone_path", cTab = 1)
+    public static final Block STONE_PATH = new BlockStonePath();
     @ModFeature(name = "block_tmfireplace", cTab = 1, tileEntity = TileTMFireplace.class)
     public static final Block BLOCK_TMFIREPLACE = new BlockTMFireplace().setHardness(1.5F).setResistance(10F);
     /* End Region */

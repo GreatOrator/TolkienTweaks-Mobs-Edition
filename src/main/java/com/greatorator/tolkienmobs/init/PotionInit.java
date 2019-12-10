@@ -26,6 +26,8 @@ public class PotionInit {
     public static final Potion SLEEPNESIA = new PotionTTMSleep("sleepnesia", true, 2890775, 9).registerPotionAttributeModifier(SharedMonsterAttributes.MOVEMENT_SPEED, MathHelper.getRandomUUID().toString(), -1D, 1);
     public static final Potion WATCHER_FEAR = new PotionTTMFear("dread_aura", true, 4852999, 10);
     public static final Potion PARALYSING_FEAR = new PotionTTMTerror("crippling_terror", true, 5655556, 11).registerPotionAttributeModifier(SharedMonsterAttributes.MOVEMENT_SPEED, MathHelper.getRandomUUID().toString(), -1D, 1);
+    public static final Potion ELF_NIMBLENESS = new PotionTTMUphill("elven_nimbleness", false, 16777062, 12);
+    public static final Potion ERU_BLESSING = new PotionTMAntidote("blessing_of_eru", false, 1873869, 13);
 
     /** Initialize Potion Versions */
     public static final PotionType ENT_DRAUGHT = new PotionType("ent_draught", new PotionEffect[] {new PotionEffect(ENT_STANCE, 2400)}).setRegistryName("ent_draught");
@@ -52,6 +54,10 @@ public class PotionInit {
     public static final PotionType LONG_DREAD_AURA = new PotionType("dread_aura", new PotionEffect[] {new PotionEffect(WATCHER_FEAR, 600)}).setRegistryName("long_dread_aura");
     public static final PotionType CRIPPLING_TERROR = new PotionType("crippling_terror", new PotionEffect[] {new PotionEffect(PARALYSING_FEAR, 200)}).setRegistryName("crippling_terror");
     public static final PotionType LONG_CRIPPLING_TERROR = new PotionType("crippling_terror", new PotionEffect[] {new PotionEffect(PARALYSING_FEAR, 600)}).setRegistryName("long_crippling_terror");
+    public static final PotionType ELF_FLEETFOOT = new PotionType("elven_nimbleness", new PotionEffect[] {new PotionEffect(ELF_NIMBLENESS, 300)}).setRegistryName("elven_nimbleness");
+    public static final PotionType LONG_ELF_FLEETFOOT = new PotionType("elven_nimbleness", new PotionEffect[] {new PotionEffect(ELF_NIMBLENESS, 600)}).setRegistryName("long_elven_nimbleness");
+    public static final PotionType BLESSING_OF_ERU = new PotionType("blessing_of_eru", new PotionEffect[] {new PotionEffect(ERU_BLESSING, 300)}).setRegistryName("blessing_of_eru");
+    public static final PotionType LONG_BLESSING_OF_ERU = new PotionType("blessing_of_eru", new PotionEffect[] {new PotionEffect(ERU_BLESSING, 600)}).setRegistryName("long_blessing_of_eru");
 
     public static void registerPotions(){
         registerPotion(ENT_DRAUGHT, LONG_ENT_DRAUGHT, ENT_STANCE);
@@ -66,6 +72,8 @@ public class PotionInit {
         registerPotion(DEEP_SLEEP, LONG_DEEP_SLEEP, SLEEPNESIA);
         registerPotion(DREAD_AURA, LONG_DREAD_AURA, WATCHER_FEAR);
         registerPotion(CRIPPLING_TERROR, LONG_CRIPPLING_TERROR, PARALYSING_FEAR);
+        registerPotion(ELF_FLEETFOOT, LONG_ELF_FLEETFOOT, ELF_NIMBLENESS);
+        registerPotion(BLESSING_OF_ERU, LONG_BLESSING_OF_ERU, ERU_BLESSING);
 
     }
 
@@ -80,9 +88,13 @@ public class PotionInit {
     private static void registerPotionMixes(){
         PotionHelper.addMix(PotionTypes.AWKWARD, TTMFeatures.CRAM, ENT_DRAUGHT);
         PotionHelper.addMix(PotionTypes.AWKWARD, TTMFeatures.LEMBAS, ELVISH_LIFE);
+        PotionHelper.addMix(PotionTypes.AWKWARD, TTMFeatures.GOLDEN_TREE_ACORN, BLESSING_OF_ERU);
+        PotionHelper.addMix(PotionTypes.AWKWARD, TTMFeatures.GOLDEN_INSECT, ELF_FLEETFOOT);
         PotionHelper.addMix(PotionTypes.AWKWARD, Item.getItemFromBlock(TTMFeatures.BLOCK_MITHRIL), PORTABLE_REPAIR);
         PotionHelper.addMix(ENT_DRAUGHT, TTMFeatures.GEM_AMMOLITE,LONG_ENT_DRAUGHT);
         PotionHelper.addMix(ELVISH_LIFE, TTMFeatures.GEM_AMMOLITE,LONG_ELVISH_LIFE);
+        PotionHelper.addMix(BLESSING_OF_ERU, TTMFeatures.GEM_AMMOLITE,LONG_BLESSING_OF_ERU);
+        PotionHelper.addMix(ELF_FLEETFOOT, TTMFeatures.GEM_AMMOLITE,LONG_ELF_FLEETFOOT);
         PotionHelper.addMix(PORTABLE_REPAIR, TTMFeatures.GEM_AMMOLITE,LONG_PORTABLE_REPAIR);
     }
 }

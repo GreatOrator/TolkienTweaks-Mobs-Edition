@@ -24,6 +24,8 @@
       "food_golden_tree_acorn":   {"textures": {"layer0": "tolkienmobs:items/food_golden_tree_acorn"}},
       "food_honey":   {"textures": {"layer0": "tolkienmobs:items/food_honey"}},
       "potion_entdraught":   {"textures": {"layer0": "tolkienmobs:items/potion_entdraught"}},
+      "potion_elf_blessing":   {"textures": {"layer0": "tolkienmobs:items/potion_elf_blessing"}},
+      "potion_eru_blessing":   {"textures": {"layer0": "tolkienmobs:items/potion_eru_blessing"}},
       "potion_miruvor":   {"textures": {"layer0": "tolkienmobs:items/potion_miruvor"}},
       "potion_grog":   {"textures": {"layer0": "tolkienmobs:items/potion_grog"}},
       "potion_elvishhealth":   {"textures": {"layer0": "tolkienmobs:items/potion_elvishhealth"}},
@@ -107,7 +109,9 @@
       "item_keyfragment":    {"textures": {"layer0": "tolkienmobs:items/item_keyfragment"}},
       "item_oilykey":    {"textures": {"layer0": "tolkienmobs:items/item_oilykey"}},
       "item_mithrilnugget":    {"textures": {"layer0": "tolkienmobs:items/nugget_mithril"}},
-      "item_magic_cloth":    {"textures": {"layer0": "tolkienmobs:items/item_magic_cloth"}}
+      "item_magic_cloth":    {"textures": {"layer0": "tolkienmobs:items/item_magic_cloth"}},
+      "item_remains":    {"textures": {"layer0": "tolkienmobs:items/item_remains"}},
+      "item_rune_stone":    {"textures": {"layer0": "tolkienmobs:items/item_rune_stone"}}
     }
   }
 }

@@ -44,7 +44,7 @@ public class BlockTMHallowed extends BlockBCore
      */
     public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
-        return MapColor.SILVER;
+        return MapColor.SILVER_STAINED_HARDENED_CLAY;
     }
 
     /**

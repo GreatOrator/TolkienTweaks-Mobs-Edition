@@ -7,7 +7,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AbstractAttributeMap;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.potion.PotionEffect;
 
 import java.util.Random;
 
@@ -43,11 +42,12 @@ public class PotionTTMTerror extends TTMPotion {
 
             if (!frozen) {
                 if (random.nextInt(TTMConfig.chanceTerror) == 0) {
-                    if (entity instanceof EntityPlayer) {
-                        entity.addPotionEffect(new PotionEffect(this, 100, amplifier));
-                    } else {
-                        entity.addPotionEffect(new PotionEffect(this, 300, amplifier));
-                    }
+                    entity.setVelocity(0D, 0D, 0D);
+                    entity.velocityChanged = true;
+                    entity.moveVertical =0;
+                    entity.moveStrafing =0;
+                    entity.motionX =0;
+                    entity.motionZ=0;
                 }
             }
             else

@@ -9,6 +9,7 @@ import com.greatorator.tolkienmobs.handler.TTMGUIHandler;
 import com.greatorator.tolkienmobs.tile.TileTMFireplace;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
@@ -35,6 +36,14 @@ public class BlockTMFireplace extends BlockBCore implements IRenderOverride {
         super(Material.ROCK);
         setSoundType(SoundType.STONE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(BURNING, false));
+    }
+
+    /**
+     * Get the MapColor for this Block and the given BlockState
+     */
+    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    {
+        return MapColor.RED_STAINED_HARDENED_CLAY;
     }
 
     @Override

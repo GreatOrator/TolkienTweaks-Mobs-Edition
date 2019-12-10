@@ -31,6 +31,10 @@ repositories {
         name "Miscellaneous"
         url 'https://jitpack.io'
     }
+    maven {
+        name 'Mod Mirror'
+        url "https://modmaven.k-4u.nl"
+    }
     //Tinkers
     maven {
         name 'DVS1 Maven FS'

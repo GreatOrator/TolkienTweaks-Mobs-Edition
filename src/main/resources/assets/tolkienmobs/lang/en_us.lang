@@ -57,6 +57,8 @@ item.tolkienmobs:item_mithrilnugget.name=§5Bilbo's Nugget
 item.tolkienmobs:item_fancykey.name=§3Dungeon Key
 item.tolkienmobs:item_letter.name=§6Thurdan's Letter
 item.tolkienmobs:item_magic_cloth.name=§5Special Magic Cloth
+item.tolkienmobs:item_remains.name=§2Pile of Bones
+item.tolkienmobs:item_rune_stone.name=§2Ancient Rune Stone
 item.tolkienmobs:item_fancyhelm.name=TBD
 item.tolkienmobs:item_fancypick.name=TBD
 item.tolkienmobs:item_fancyshield.name=TBD
@@ -121,6 +123,8 @@ lore.item.tolkienmobs:item_keyfragment=
 lore.item.tolkienmobs:item_oilykey= 
 lore.item.tolkienmobs:item_letter=Thurdan's letter about Dreulhara
 lore.item.tolkienmobs:item_magic_cloth=Fine Elven cloth made into a bag
+lore.item.tolkienmobs:item_remains=Remains of some poor unfortunate soul
+lore.item.tolkienmobs:item_rune_stone=This stone houses very powerful dark magic
 lore.item.tolkienmobs:item_fancyhelm=
 lore.item.tolkienmobs:item_fancypick=
 lore.item.tolkienmobs:item_fancyshield=
@@ -220,6 +224,8 @@ item.tolkienmobs:food_golden_tree_acorn.name=Golden Acorn
 item.tolkienmobs:food_honey.name=Honey
 item.tolkienmobs:monster_flesh.name=Monster Flesh
 item.tolkienmobs:potion_entdraught.name=Ent Draught
+item.tolkienmobs:potion_elf_blessing.name=Blessing of the Elves
+item.tolkienmobs:potion_eru_blessing.name=Blessing of Eru Iluvatar
 item.tolkienmobs:potion_miruvor.name=Miruvor
 item.tolkienmobs:potion_grog.name=Grog
 item.tolkienmobs:potion_elvishhealth.name=Vitality
@@ -301,6 +307,18 @@ splash_potion.effect.dread_aura=Splash Potion of Great Dread
 lingering_potion.effect.dread_aura=Lingering Potion of Great Dread
 tipped_arrow.effect.dread_aura=Arrow of Great Dread
 
+tolkienmobs.effect.elven_nimbleness=Elvish Nimbleness
+potion.effect.elven_nimbleness=Potion of Elvish Nimbleness
+splash_potion.effect.elven_nimbleness=Splash Potion of Elvish Nimbleness
+lingering_potion.effect.elven_nimbleness=Lingering Potion of Elvish Nimbleness
+tipped_arrow.effect.elven_nimbleness=Arrow of Elvish Nimbleness
+
+tolkienmobs.effect.blessing_of_eru=Eru's Blessing
+potion.effect.blessing_of_eru=Potion of Eru's Blessing
+splash_potion.effect.blessing_of_eru=Splash Potion of Eru's Blessing
+lingering_potion.effect.blessing_of_eru=Lingering Potion of Eru's Blessing
+tipped_arrow.effect.blessing_of_eru=Arrow of Eru's Blessing
+
 //Enchantments
 enchantment.tolkienmobs.balrogs_mark=Balrog's Mark
 enchantment.tolkienmobs.balrogs_mark.desc=When applied to boots, this makes any grass or dirt around you turn to magma blocks.
@@ -356,6 +374,7 @@ item.tolkienmobs:item_golem_stone_summon.name=Summon Legendary §bMithril§r Gol
 tile.tolkienmobs:block_mithril.name=Mithril Block
 tile.tolkienmobs:block_morguliron.name=Morgul Iron Block
 tile.tolkienmobs:block_hallowed.name=Hallowed Earth
+tile.tolkienmobs:block_stone_path.name=Stone Path
 tile.tolkienmobs:block_tmfireplace.name=Simple Fireplace
 
 tile.tolkienmobs:ore_mithril.name=Mithril Ore
@@ -372,6 +391,7 @@ tile.tolkienmobs:slab_mallorn.name=Mallorn Slab
 tile.tolkienmobs:slab_mirkwood.name=Mirkwood Slab
 tile.tolkienmobs:slab_culumalda.name=Culumalda Slab
 tile.tolkienmobs:slab_lebethron.name=Lebethron Slab
+
 //Trees
 tile.tolkienmobs:planks_mallorn.name=Mallorn Planks
 tile.tolkienmobs:slab_mallorn.name=Mallorn Slab
@@ -408,6 +428,8 @@ tile.tolkienmobs:flower_athelas.name=Kingsfoil
 tile.tolkienmobs:flower_alfirin.name=Alfirin
 tile.tolkienmobs:flower_valley_lilly.name=Lilly of the Valley
 tile.tolkienmobs:flower_swamp_milkweed.name=Swamp Milkweed
+tile.tolkienmobs:mushroom_decay_bloom.name=Bloom of Decay
+tile.tolkienmobs:mushroom_bloom_decay.name=Bloom of Decay
 
 //Signs
 tile.tolkienmobs:sign_empty.name=Blank Sign
@@ -492,7 +514,7 @@ entity.Villager.junk_dealer=Junk Dealer
 
 //Creative Tabs
 itemGroup.tolkienmobs:tools=TolkienTweaks Tools
-itemGroup.tolkienmobs:mats=TolkienTweaks Materials
+itemGroup.tolkienmobs:mats=TolkienTweaks Materials & World Gen
 itemGroup.tolkienmobs:spawn=TolkienTweaks Mobs
 itemGroup.tolkienmobs:food=TolkienTweaks Food
 itemGroup.tolkienmobs:quest=TolkienTweaks Quest

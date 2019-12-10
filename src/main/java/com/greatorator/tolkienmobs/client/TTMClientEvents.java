@@ -85,6 +85,18 @@ public class TTMClientEvents {
         }
     }
 
+//    @SubscribeEvent
+//    @SideOnly(Side.CLIENT)
+//    public void stepAssistEvent(LivingEvent.LivingUpdateEvent event) {
+//        EntityLivingBase player = event.getEntityLiving();
+//
+//        if(player.world.isRemote || !player.isEntityAlive()) return;
+//
+//        if (!player.isPotionActive(PotionInit.ELF_NIMBLENESS)) {
+//            player.stepHeight = 0.6F;
+//        }
+//    }
+
     @SubscribeEvent
     public void onEntityLiving(LivingEvent.LivingUpdateEvent event){
         EntityLivingBase player = event.getEntityLiving();
