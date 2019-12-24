@@ -136,8 +136,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableHaradrim = true;
     @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableDeepClaw", comment = "Setting this to false will disable the Deep Claw", requiresMCRestart = true, requiresSync = true)
     public static boolean enableDeepClaw = true;
-    @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableRomieWalker", comment = "Setting this to false will disable the Romie Walker", requiresMCRestart = true, requiresSync = true)
-    public static boolean enableRomieWalker = true;
+    @ModConfigProperty(category = "Aggressive (non-boss) Mobs", name = "enableRomieWalker", comment = "Setting this to true will enable the Romie Walker", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableRomieWalker = false;
 
     /** Boss mobs - Individual*/
     @ModConfigProperty(category = "Boss Mobs", name = "enableBalrog", comment = "Setting this to false will disable the Balrog", requiresMCRestart = true, requiresSync = true)
@@ -228,8 +228,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableOldForest = true;
 
     /** Miscellaneous Configs */
-    @ModConfigProperty(category = "Miscellaneous Configs", name = "enablePlayerDMG", comment = "Setting to true will enable the fake player for hallowed earth", requiresMCRestart = true, requiresSync = true)
-    public static boolean enablePlayerDMG = false;
+    @ModConfigProperty(category = "Miscellaneous Configs", name = "enablePlayerDMG", comment = "Setting to false will disable the fake player for hallowed earth", requiresMCRestart = true, requiresSync = true)
+    public static boolean enablePlayerDMG = true;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "disableVanilla", comment = "Setting to true will disable Vanilla hostile mob spawning", requiresMCRestart = true, requiresSync = true)
     public static boolean disableVanilla = false;
     @ModConfigProperty(category = "Miscellaneous Configs", name = "disableOreGen", comment = "Setting to true will disable ore generation from this mod", requiresMCRestart = true, requiresSync = true)
@@ -270,7 +270,7 @@ public class TTMConfig implements IModConfigHelper {
 
     /** Potion Types */
     @ModConfigProperty(category = "Potion Types", name = "potionTypeArray", comment = "Add or remove potion types from this array.", requiresMCRestart = true, requiresSync = true)
-    public static String[] potionTypeArray = new String[]{"tolkienmobs:elf_vitality", "tolkienmobs:ent_draught", "tolkienmobs:personal_blacksmith", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:glowing", "minecraft:fire_resistance"};
+    public static String[] potionTypeArray = new String[]{"tolkienmobs:blessing_of_eru", "tolkienmobs:elven_nimbleness", "tolkienmobs:ent_draught", "tolkienmobs:personal_blacksmith", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:glowing", "minecraft:fire_resistance"};
 
     public static Potion[] potionArray = new Potion[0];
 
