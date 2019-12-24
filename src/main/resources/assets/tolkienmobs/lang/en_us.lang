@@ -209,9 +209,11 @@ item.tolkienmobs:tipped_galadhrim_arrow.effect.elemental_tornado=Galadhrim Arrow
 item.tolkienmobs:tipped_galadhrim_arrow.effect.elemental_burning=Galadhrim Arrow of Elemental Burning
 item.tolkienmobs:tipped_galadhrim_arrow.effect.inventory_corrosion=Galadhrim Arrow of Corrosion
 item.tolkienmobs:tipped_galadhrim_arrow.effect.personal_blacksmith=Galadhrim Arrow of Portable Blacksmith
-item.tolkienmobs:tipped_galadhrim_arrow.effect.sleepnesia=Galadhrim Arrow of Sleepnesia
+item.tolkienmobs:tipped_galadhrim_arrow.effect.sleepnesia=Galadhrim Arrow of 
 item.tolkienmobs:tipped_galadhrim_arrow.effect.crippling_terror=Galadhrim Arrow of Paralysing Fear
 item.tolkienmobs:tipped_galadhrim_arrow.effect.dread_aura=Galadhrim Arrow of Great Dread
+item.tolkienmobs:tipped_galadhrim_arrow.effect.elf_blessing=Galadhrim Arrow of Blessing of the Elves
+item.tolkienmobs:tipped_galadhrim_arrow.effect.eru_blessing=Galadhrim Arrow of Blessing of Eru Iluvatar
 
 //Food Information
 item.tolkienmobs:food_lembas.name=Lembas

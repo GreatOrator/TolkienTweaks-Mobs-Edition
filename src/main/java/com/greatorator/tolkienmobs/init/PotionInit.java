@@ -87,14 +87,16 @@ public class PotionInit {
 
     private static void registerPotionMixes(){
         PotionHelper.addMix(PotionTypes.AWKWARD, TTMFeatures.CRAM, ENT_DRAUGHT);
-        PotionHelper.addMix(PotionTypes.AWKWARD, TTMFeatures.LEMBAS, ELVISH_LIFE);
-        PotionHelper.addMix(PotionTypes.AWKWARD, TTMFeatures.GOLDEN_TREE_ACORN, BLESSING_OF_ERU);
-        PotionHelper.addMix(PotionTypes.AWKWARD, TTMFeatures.GOLDEN_INSECT, ELF_FLEETFOOT);
-        PotionHelper.addMix(PotionTypes.AWKWARD, Item.getItemFromBlock(TTMFeatures.BLOCK_MITHRIL), PORTABLE_REPAIR);
         PotionHelper.addMix(ENT_DRAUGHT, TTMFeatures.GEM_AMMOLITE,LONG_ENT_DRAUGHT);
+        PotionHelper.addMix(PotionTypes.AWKWARD, TTMFeatures.LEMBAS, ELVISH_LIFE);
         PotionHelper.addMix(ELVISH_LIFE, TTMFeatures.GEM_AMMOLITE,LONG_ELVISH_LIFE);
+        PotionHelper.addMix(PotionTypes.AWKWARD, TTMFeatures.NUGGET_MITHRIL, PotionTypes.MUNDANE);
+        PotionHelper.addMix(PotionTypes.MUNDANE, TTMFeatures.GEM_AMMOLITE, PotionTypes.THICK);
+        PotionHelper.addMix(PotionTypes.THICK, Item.getItemFromBlock(TTMFeatures.TM_MUSHROOM),BLESSING_OF_ERU);
         PotionHelper.addMix(BLESSING_OF_ERU, TTMFeatures.GEM_AMMOLITE,LONG_BLESSING_OF_ERU);
+        PotionHelper.addMix(PotionTypes.AWKWARD, TTMFeatures.GOLDEN_INSECT, ELF_FLEETFOOT);
         PotionHelper.addMix(ELF_FLEETFOOT, TTMFeatures.GEM_AMMOLITE,LONG_ELF_FLEETFOOT);
+        PotionHelper.addMix(PotionTypes.AWKWARD, Item.getItemFromBlock(TTMFeatures.BLOCK_MITHRIL), PORTABLE_REPAIR);
         PotionHelper.addMix(PORTABLE_REPAIR, TTMFeatures.GEM_AMMOLITE,LONG_PORTABLE_REPAIR);
     }
 }

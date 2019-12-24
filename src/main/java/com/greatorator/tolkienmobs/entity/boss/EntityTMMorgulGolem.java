@@ -6,6 +6,7 @@ import com.greatorator.tolkienmobs.init.LootInit;
 import com.greatorator.tolkienmobs.init.PotionInit;
 import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -83,20 +84,21 @@ public class EntityTMMorgulGolem extends EntityTMHostiles {
 
     @Override
     public boolean attackEntityFrom(DamageSource damageSource, float damage) {
-        EntityPlayer player = (EntityPlayer)damageSource.getTrueSource();
+        Entity player = damageSource.getTrueSource();
 
-        if (damageSource.getImmediateSource() instanceof EntityPlayer)
-        {
+        if (player != null && (player instanceof EntityPlayer)) {
+            EntityPlayer p = (EntityPlayer)player;
+
             long time = System.currentTimeMillis();
             if (time > nextAbilityUse && damageSource.getTrueSource() != null && !(damageSource instanceof EntityDamageSourceIndirect)) {
                 nextAbilityUse = time + coolDown;
 
                 if (rand.nextInt(10) == 0){
                     assert player != null;
-                    player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_BURNING, 200, 3));}
+                    p.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_BURNING, 200, 3));}
                 else {
                     assert player != null;
-                    player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_LIGHTNING, 45, 1));
+                    p.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_LIGHTNING, 45, 1));
                 }
             }
         }

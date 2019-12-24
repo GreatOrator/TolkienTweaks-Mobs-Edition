@@ -22,7 +22,8 @@ public class TTMSpawnEvent {
                     event.getEntity() instanceof EntityRabbit ||
                     event.getEntity() instanceof EntitySheep ||
                     event.getEntity() instanceof EntityPig ||
-                    event.getEntity() instanceof EntityParrot) {
+                    event.getEntity() instanceof EntityParrot ||
+                    event.getEntity() instanceof EntityOcelot) {
                 event.setCanceled(true);
             }
         }
