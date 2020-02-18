@@ -9,10 +9,7 @@ import com.greatorator.tolkienmobs.entity.ammo.EntityGaladhrimArrow;
 import com.greatorator.tolkienmobs.entity.boss.*;
 import com.greatorator.tolkienmobs.entity.hostile.*;
 import com.greatorator.tolkienmobs.entity.passive.*;
-import com.greatorator.tolkienmobs.entity.special.EntityTMGollum;
-import com.greatorator.tolkienmobs.entity.special.EntityTMGreatEagle;
-import com.greatorator.tolkienmobs.entity.special.EntityTMMithrilGolem;
-import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
+import com.greatorator.tolkienmobs.entity.special.*;
 import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;
@@ -144,6 +141,9 @@ public class EntityInit
             }
             if (TTMConfig.enableMithrilGolem) {
                 EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "elementalgolem6"), EntityTMMithrilGolem.class, "elementalgolem6", id++, TolkienMobs.instance, 64, 3, true, 0xE5F50F, 0x000075);
+            }
+            if (TTMConfig.enableTMShadowfax) {
+                EntityRegistry.registerModEntity(new ResourceLocation(TolkienMobs.MODID, "tmshadowfax"), EntityTMShadowfax.class, "tmshadowfax", id++, TolkienMobs.instance, 64, 3, true, 0xE5F50F, 0x000000);
             }
         }
 

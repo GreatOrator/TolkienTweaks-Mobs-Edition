@@ -166,6 +166,8 @@ public class TTMConfig implements IModConfigHelper {
     public static boolean enableGreatEagle = true;
     @ModConfigProperty(category = "Special Mobs", name = "enableMithrilGolem", comment = "Setting this to false will disable the Mithril Golem", requiresMCRestart = true, requiresSync = true)
     public static boolean enableMithrilGolem = true;
+    @ModConfigProperty(category = "Special Mobs", name = "enableTMShadowfax", comment = "Setting this to false will disable Shadowfax", requiresMCRestart = true, requiresSync = true)
+    public static boolean enableTMShadowfax = true;
 
     /** Passive mobs - Individual*/
     @ModConfigProperty(category = "Passive Mobs", name = "enableAuroch", comment = "Setting this to false will disable Aurochs", requiresMCRestart = true, requiresSync = true)

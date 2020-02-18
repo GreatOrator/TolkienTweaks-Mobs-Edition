@@ -508,6 +508,7 @@ entity.tmgoblinking.name=Goblin King
 entity.tmdeepclaw.name=Deep Claw
 entity.romiewalker.name=Infected Walker
 entity.tmshelob.name=Shelob
+entity.tmshadowfax.name=Shadowfax
 
 entity.Villager.coin_banker=Coin Banker
 entity.Villager.store_clerk=Grocer

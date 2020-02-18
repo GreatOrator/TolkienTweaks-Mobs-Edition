@@ -14,6 +14,7 @@ import com.greatorator.tolkienmobs.client.render.entity.passive.*;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderGollum;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderMithrilGolem;
 import com.greatorator.tolkienmobs.client.render.entity.special.RenderNazgul;
+import com.greatorator.tolkienmobs.client.render.entity.special.RenderTMShadowfax;
 import com.greatorator.tolkienmobs.client.render.model.ambient.ModelTMMidgeFly;
 import com.greatorator.tolkienmobs.client.render.model.boss.ModelTMGwaihir;
 import com.greatorator.tolkienmobs.entity.ambient.*;
@@ -23,10 +24,7 @@ import com.greatorator.tolkienmobs.entity.ammo.EntityGaladhrimArrow;
 import com.greatorator.tolkienmobs.entity.boss.*;
 import com.greatorator.tolkienmobs.entity.hostile.*;
 import com.greatorator.tolkienmobs.entity.passive.*;
-import com.greatorator.tolkienmobs.entity.special.EntityTMGollum;
-import com.greatorator.tolkienmobs.entity.special.EntityTMGreatEagle;
-import com.greatorator.tolkienmobs.entity.special.EntityTMMithrilGolem;
-import com.greatorator.tolkienmobs.entity.special.EntityTMNazgul;
+import com.greatorator.tolkienmobs.entity.special.*;
 import com.greatorator.tolkienmobs.handler.FogHandler;
 import com.greatorator.tolkienmobs.handler.TTMExtraHearts;
 import net.minecraft.client.Minecraft;
@@ -95,6 +93,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityTMGollum.class, RenderGollum.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMNazgul.class, RenderNazgul.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(EntityTMMithrilGolem.class, RenderMithrilGolem.FACTORY);
+        RenderingRegistry.registerEntityRenderingHandler(EntityTMShadowfax.class, RenderTMShadowfax.FACTORY);
         RenderingRegistry.registerEntityRenderingHandler(
                 EntityTMGreatEagle.class,
                 RenderTMBirds.getRenderFactory(
