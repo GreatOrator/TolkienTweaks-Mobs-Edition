@@ -4,12 +4,20 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.init.Enchantments;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemBook;
+import net.minecraft.item.ItemStack;
 
 public class EnchantmentBalrogMark extends Enchantment
 {
     public EnchantmentBalrogMark(Rarity rarity, EnumEnchantmentType location, EntityEquipmentSlot...slot)
     {
         super(rarity, location, slot);
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack)
+    {
+        return stack.getItem() instanceof ItemBook;
     }
 
     @Override

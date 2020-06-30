@@ -24,6 +24,12 @@ public class EnchantmentHobbitHarvest extends Enchantment {
     }
 
     @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack)
+    {
+        return stack.getItem() instanceof ItemHoe;
+    }
+
+    @Override
     public int getMinEnchantability(int enchantmentLevel) {
         return 20 * enchantmentLevel;
     }

@@ -4,17 +4,29 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemBook;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 
-public class EnchantmentDwarvenEndurance extends Enchantment {
-    public EnchantmentDwarvenEndurance(Rarity rarity, EnumEnchantmentType location, EntityEquipmentSlot...slot) {
+public class EnchantmentHobbitPlow extends Enchantment {
+
+    public EnchantmentHobbitPlow(Rarity rarity, EnumEnchantmentType location, EntityEquipmentSlot...slot) {
         super(rarity, location, slot);
+    }
+
+    @Override
+    public boolean canApply(ItemStack stack)
+    {
+        if(stack.getItem() instanceof ItemHoe || stack.getItem() instanceof ItemBook) {
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack)
     {
-        return stack.getItem() instanceof ItemBook;
+        return stack.getItem() instanceof ItemHoe;
     }
 
     @Override
@@ -29,7 +41,7 @@ public class EnchantmentDwarvenEndurance extends Enchantment {
 
     @Override
     public int getMaxLevel() {
-        return 1;
+        return 4;
     }
 
     @Override

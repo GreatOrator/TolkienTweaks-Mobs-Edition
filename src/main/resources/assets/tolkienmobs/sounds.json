@@ -37,6 +37,41 @@
       "tolkienmobs:mob/crebain/crebain_cry3"
     ]
   },
+  "mob.tmgreateagle.call":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/tmgreateagle/tmgreateagle_cry0",
+      "tolkienmobs:mob/tmgreateagle/tmgreateagle_cry1",
+      "tolkienmobs:mob/tmgreateagle/tmgreateagle_cry2",
+      "tolkienmobs:mob/tmgreateagle/tmgreateagle_cry3"
+    ]
+  },
+  "mob.tmgreateagle.death":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/tmgreateagle/tmgreateagle_death"
+    ]
+  },
+  "mob.tmgreateagle.flapping":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/tmgreateagle/tmgreateagle_flapping"
+    ]
+  },
+  "mob.tmgreateagle.hurt":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/tmgreateagle/tmgreateagle_hurt"
+    ]
+  },
   "mob.tmrat.idle":
   {
     "category": "neutral",

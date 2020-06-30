@@ -54,6 +54,12 @@ public class SoundInit {
     public static final SoundEvent soundFlappingCrebain = create("mob.crebain.flapping");
     public static final SoundEvent soundHurtCrebain = create("mob.crebain.hurt");
 
+    /** Great Eagle */
+    public static final SoundEvent soundDeathTMGreatEagle = create("mob.tmgreateagle.death");
+    public static final SoundEvent soundCallTMGreatEagle = create("mob.tmgreateagle.call");
+    public static final SoundEvent soundFlappingTMGreatEagle = create("mob.tmgreateagle.flapping");
+    public static final SoundEvent soundHurtTMGreatEagle = create("mob.tmgreateagle.hurt");
+
     /** Troll */
     public static final SoundEvent soundHurtTroll = create("mob.troll.hurt");
     public static final SoundEvent soundIdleTroll = create("mob.troll.idle");
