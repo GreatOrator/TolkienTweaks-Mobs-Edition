@@ -382,7 +382,7 @@ public class ModelTMGwaihir extends ModelTTM {
         }
         else if (parEntity.getState() == AIStates.STATE_DIVING)
         {
-            doAnimate(parEntity, divingCycle);
+            doAnimate(parEntity, soaringCycle);
         }
         else if (parEntity.getState() == AIStates.STATE_LANDING)
         {

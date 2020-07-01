@@ -1,12 +1,16 @@
 package com.greatorator.tolkienmobs.entity.boss;
 
 import com.greatorator.tolkienmobs.entity.EntityTMBirds;
+import com.greatorator.tolkienmobs.entity.entityai.AIStates;
 import com.greatorator.tolkienmobs.init.LootInit;
+import com.greatorator.tolkienmobs.init.SoundInit;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
@@ -127,5 +131,28 @@ public class EntityTMGwaihir extends EntityTMBirds {
     @Nullable
     protected ResourceLocation getLootTable() {
         return LootInit.GWAIHIR;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        if (getState() == AIStates.STATE_TAKING_OFF || getState() == AIStates.STATE_TRAVELLING)
+        {
+            return SoundInit.soundFlappingTMGreatEagle;
+        }
+        else
+        {
+            return SoundInit.soundCallTMGreatEagle;
+        }
+    }
+
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
+    {
+        return SoundInit.soundHurtTMGreatEagle;
+    }
+
+    protected SoundEvent getDeathSound()
+    {
+        return SoundInit.soundDeathTMGreatEagle;
     }
 }
