@@ -111,7 +111,8 @@
       "item_mithrilnugget":    {"textures": {"layer0": "tolkienmobs:items/nugget_mithril"}},
       "item_magic_cloth":    {"textures": {"layer0": "tolkienmobs:items/item_magic_cloth"}},
       "item_remains":    {"textures": {"layer0": "tolkienmobs:items/item_remains"}},
-      "item_rune_stone":    {"textures": {"layer0": "tolkienmobs:items/item_rune_stone"}}
+      "item_rune_stone":    {"textures": {"layer0": "tolkienmobs:items/item_rune_stone"}},
+      "door_mallorn":    {"textures": {"layer0": "tolkienmobs:items/door_mallorn"}}
     }
   }
 }

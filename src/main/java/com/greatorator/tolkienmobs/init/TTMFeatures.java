@@ -268,6 +268,8 @@ public class TTMFeatures implements IModFeatures {
     public static final BlockStairs STAIRS_CULUMALDA = new BlockTMStairs(PLANKS.getDefaultState().withProperty(BlockPlank.VARIANT, BlockLogs.EnumType.CULUMALDA));
     @ModFeature(name = "stairs_lebethron", cTab = 1, stateOverride = "stairs_lebethron#facing=east,half=bottom,shape=straight")
     public static final BlockStairs STAIRS_LEBETHRON = new BlockTMStairs(PLANKS.getDefaultState().withProperty(BlockPlank.VARIANT, BlockLogs.EnumType.LEBETHRON));
+    @ModFeature(name = "door_mallorn", cTab = 1)
+    public static final BlockDoors DOOR_MALLORN = new BlockDoors(Material.WOOD);
     /* End Region */
 
     /* Plants */                                             //TODO add a way to avoid this mess in 1.13...
