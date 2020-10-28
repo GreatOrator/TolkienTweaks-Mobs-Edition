@@ -269,7 +269,6 @@ public class TTMFeatures implements IModFeatures {
     public static final BlockStairs STAIRS_CULUMALDA = new BlockTMStairs(PLANKS.getDefaultState().withProperty(BlockPlank.VARIANT, BlockLogs.EnumType.CULUMALDA));
     @ModFeature(name = "stairs_lebethron", cTab = 1, stateOverride = "stairs_lebethron#facing=east,half=bottom,shape=straight")
     public static final BlockStairs STAIRS_LEBETHRON = new BlockTMStairs(PLANKS.getDefaultState().withProperty(BlockPlank.VARIANT, BlockLogs.EnumType.LEBETHRON));
-
     @ModFeature(name = "door_mallorn", itemBlock = NoItemBlock.class)
     public static final BlockDoors DOOR_MALLORN = new BlockDoors(Material.WOOD);
     @ModFeature(name = "item_door_mallorn", cTab = 1)
@@ -286,6 +285,10 @@ public class TTMFeatures implements IModFeatures {
     public static final BlockDoors DOOR_CULUMALDA = new BlockDoors(Material.WOOD);
     @ModFeature(name = "item_door_culumalda", cTab = 1)
     public static final ItemBlockDoors ITEM_DOOR_CULUMALDA = new ItemBlockDoors(DOOR_CULUMALDA);
+    @ModFeature(name = "mithril_bars", cTab = 1)
+    public static final Block MITHRIL_BARS = new BlockPanes(Material.IRON,true).setHardness(5.0F).setResistance(10.0F);
+    @ModFeature(name = "morguliron_bars", cTab = 1)
+    public static final Block MORGULIRON_BARS = new BlockPanes(Material.IRON,true).setHardness(5.0F).setResistance(10.0F);
     /* End Region */
 
     /* Plants */                                             //TODO add a way to avoid this mess in 1.13...
