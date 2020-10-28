@@ -82,6 +82,9 @@ public class CraftingInit {
         OreDictionary.registerOre("stairWood", new ItemStack(TTMFeatures.STAIRS_MALLORN));
         OreDictionary.registerOre("stairWood", new ItemStack(TTMFeatures.STAIRS_MIRKWOOD));
         OreDictionary.registerOre("doorWood", new ItemStack(TTMFeatures.DOOR_MALLORN));
+        OreDictionary.registerOre("doorWood", new ItemStack(TTMFeatures.DOOR_MIRKWOOD));
+        OreDictionary.registerOre("doorWood", new ItemStack(TTMFeatures.DOOR_LEBETHRON));
+        OreDictionary.registerOre("doorWood", new ItemStack(TTMFeatures.DOOR_CULUMALDA));
 
         /* Plant life */
         OreDictionary.registerOre("treeSapling", new ItemStack(TTMFeatures.SAPLINGS));

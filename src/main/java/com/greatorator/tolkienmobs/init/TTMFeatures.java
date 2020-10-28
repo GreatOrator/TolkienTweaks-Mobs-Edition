@@ -15,6 +15,7 @@ import com.greatorator.tolkienmobs.block.itemblock.BlockTMFireplace;
 import com.greatorator.tolkienmobs.block.itemblock.BlockTMHallowed;
 import com.greatorator.tolkienmobs.block.itemblock.ItemBlockSlabs;
 import com.greatorator.tolkienmobs.handler.*;
+import com.greatorator.tolkienmobs.item.ItemBlockDoors;
 import com.greatorator.tolkienmobs.item.armor.ArmorMithril;
 import com.greatorator.tolkienmobs.item.armor.ArmorMorgulIron;
 import com.greatorator.tolkienmobs.item.magical.ItemTrinketAmulet;
@@ -269,10 +270,22 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "stairs_lebethron", cTab = 1, stateOverride = "stairs_lebethron#facing=east,half=bottom,shape=straight")
     public static final BlockStairs STAIRS_LEBETHRON = new BlockTMStairs(PLANKS.getDefaultState().withProperty(BlockPlank.VARIANT, BlockLogs.EnumType.LEBETHRON));
 
-    @ModFeature(name = "door_mallorn", cTab = 1, itemBlock = NoItemBlock.class)
+    @ModFeature(name = "door_mallorn", itemBlock = NoItemBlock.class)
     public static final BlockDoors DOOR_MALLORN = new BlockDoors(Material.WOOD);
     @ModFeature(name = "item_door_mallorn", cTab = 1)
-    public static final ItemDoor ITEM_DOOR_MALLORN = new ItemDoor(DOOR_MALLORN);
+    public static final ItemBlockDoors ITEM_DOOR_MALLORN = new ItemBlockDoors(DOOR_MALLORN);
+    @ModFeature(name = "door_mirkwood", itemBlock = NoItemBlock.class)
+    public static final BlockDoors DOOR_MIRKWOOD = new BlockDoors(Material.WOOD);
+    @ModFeature(name = "item_door_mirkwood", cTab = 1)
+    public static final ItemBlockDoors ITEM_DOOR_MIRKWOOD = new ItemBlockDoors(DOOR_MIRKWOOD);
+    @ModFeature(name = "door_lebethron", itemBlock = NoItemBlock.class)
+    public static final BlockDoors DOOR_LEBETHRON = new BlockDoors(Material.WOOD);
+    @ModFeature(name = "item_door_lebethron", cTab = 1)
+    public static final ItemBlockDoors ITEM_DOOR_LEBETHRON = new ItemBlockDoors(DOOR_LEBETHRON);
+    @ModFeature(name = "door_culumalda", itemBlock = NoItemBlock.class)
+    public static final BlockDoors DOOR_CULUMALDA = new BlockDoors(Material.WOOD);
+    @ModFeature(name = "item_door_culumalda", cTab = 1)
+    public static final ItemBlockDoors ITEM_DOOR_CULUMALDA = new ItemBlockDoors(DOOR_CULUMALDA);
     /* End Region */
 
     /* Plants */                                             //TODO add a way to avoid this mess in 1.13...
