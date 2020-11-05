@@ -88,7 +88,7 @@ public class TTMEnchantHandler {
         EntityLivingBase living = event.getEntityLiving();
         int level = EnchantmentHelper.getMaxEnchantmentLevel(EnchantmentsInit.GONDOR_RESOLVE, living);
 
-        if(living instanceof EntityPlayer && level > 0){
+        if(living instanceof EntityPlayer && level > 0 && event.getEntityLiving() != null){
             AddResolve(living, level);
         }
         else{

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "item": "tolkienmobs:fence_lebethron",
+    "count": 3
+  },
+
+  "pattern":   [
+    "SBS",
+    "SBS"
+  ],
+  "key":
+  {
+    "S": {
+      "item": "tolkienmobs:planks",
+      "data": 3
+    },
+    "B": {
+      "item": "minecraft:stick"
+    }
+  }
+}

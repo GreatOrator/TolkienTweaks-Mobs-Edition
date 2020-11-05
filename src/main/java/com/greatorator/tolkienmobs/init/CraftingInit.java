@@ -85,6 +85,16 @@ public class CraftingInit {
         OreDictionary.registerOre("doorWood", new ItemStack(TTMFeatures.DOOR_MIRKWOOD));
         OreDictionary.registerOre("doorWood", new ItemStack(TTMFeatures.DOOR_LEBETHRON));
         OreDictionary.registerOre("doorWood", new ItemStack(TTMFeatures.DOOR_CULUMALDA));
+        OreDictionary.registerOre("fenceWood", new ItemStack(TTMFeatures.FENCE_MALLORN));
+        OreDictionary.registerOre("fenceWood", new ItemStack(TTMFeatures.FENCE_MIRKWOOD));
+        OreDictionary.registerOre("fenceWood", new ItemStack(TTMFeatures.FENCE_CULUMALDA));
+        OreDictionary.registerOre("fenceWood", new ItemStack(TTMFeatures.FENCE_LEBETHRON));
+        OreDictionary.registerOre("fenceGateWood", new ItemStack(TTMFeatures.FENCE_GATE_MALLORN));
+        OreDictionary.registerOre("fenceGateWood", new ItemStack(TTMFeatures.FENCE_GATE_MIRKWOOD));
+        OreDictionary.registerOre("fenceGateWood", new ItemStack(TTMFeatures.FENCE_GATE_CULUMALDA));
+        OreDictionary.registerOre("fenceGateWood", new ItemStack(TTMFeatures.FENCE_GATE_LEBETHRON));
+        OreDictionary.registerOre("ironBars", new ItemStack(TTMFeatures.MITHRIL_BARS));
+        OreDictionary.registerOre("ironBars", new ItemStack(TTMFeatures.MORGULIRON_BARS));
 
         /* Plant life */
         OreDictionary.registerOre("treeSapling", new ItemStack(TTMFeatures.SAPLINGS));

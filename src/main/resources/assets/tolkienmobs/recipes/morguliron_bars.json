@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "item": "tolkienmobs:morguliron_bars",
+    "count": 3
+  },
+
+  "pattern":   [
+    "SSS",
+    "SSS"
+  ],
+  "key":
+  {
+    "S": {
+      "item": "tolkienmobs:ingot_morguliron"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "result": {
+    "item": "tolkienmobs:fence_gate_mirkwood",
+    "count": 1
+  },
+
+  "pattern":   [
+    "SBS",
+    "SBS"
+  ],
+  "key":
+  {
+    "B": {
+      "item": "tolkienmobs:planks",
+      "data": 1
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  }
+}

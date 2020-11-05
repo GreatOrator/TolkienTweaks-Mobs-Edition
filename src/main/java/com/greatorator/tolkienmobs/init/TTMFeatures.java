@@ -15,7 +15,7 @@ import com.greatorator.tolkienmobs.block.itemblock.BlockTMFireplace;
 import com.greatorator.tolkienmobs.block.itemblock.BlockTMHallowed;
 import com.greatorator.tolkienmobs.block.itemblock.ItemBlockSlabs;
 import com.greatorator.tolkienmobs.handler.*;
-import com.greatorator.tolkienmobs.item.ItemBlockDoors;
+import com.greatorator.tolkienmobs.block.itemblock.ItemBlockDoors;
 import com.greatorator.tolkienmobs.item.armor.ArmorMithril;
 import com.greatorator.tolkienmobs.item.armor.ArmorMorgulIron;
 import com.greatorator.tolkienmobs.item.magical.ItemTrinketAmulet;
@@ -28,6 +28,7 @@ import com.greatorator.tolkienmobs.item.tools.ToolSword;
 import com.greatorator.tolkienmobs.tile.TileSign;
 import com.greatorator.tolkienmobs.tile.TileTMFireplace;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -286,9 +287,26 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "item_door_culumalda", cTab = 1)
     public static final ItemBlockDoors ITEM_DOOR_CULUMALDA = new ItemBlockDoors(DOOR_CULUMALDA);
     @ModFeature(name = "mithril_bars", cTab = 1)
-    public static final Block MITHRIL_BARS = new BlockPanes(Material.IRON,true).setHardness(5.0F).setResistance(10.0F);
+    public static final Block MITHRIL_BARS = new BlockPanes(Material.IRON,true).setHardness(10.0F).setResistance(10.0F);
     @ModFeature(name = "morguliron_bars", cTab = 1)
     public static final Block MORGULIRON_BARS = new BlockPanes(Material.IRON,true).setHardness(5.0F).setResistance(10.0F);
+    @ModFeature(name = "fence_mirkwood", cTab = 1)
+    public static final Block FENCE_MIRKWOOD = new BlockFences(Material.WOOD, BlockPlanks.EnumType.OAK.getMapColor()).setHardness(2.0F).setResistance(5.0F);
+    @ModFeature(name = "fence_mallorn", cTab = 1)
+    public static final Block FENCE_MALLORN = new BlockFences(Material.WOOD, BlockPlanks.EnumType.OAK.getMapColor()).setHardness(2.0F).setResistance(5.0F);
+    @ModFeature(name = "fence_culumalda", cTab = 1)
+    public static final Block FENCE_CULUMALDA = new BlockFences(Material.WOOD, BlockPlanks.EnumType.OAK.getMapColor()).setHardness(2.0F).setResistance(5.0F);
+    @ModFeature(name = "fence_lebethron", cTab = 1)
+    public static final Block FENCE_LEBETHRON = new BlockFences(Material.WOOD, BlockPlanks.EnumType.OAK.getMapColor()).setHardness(2.0F).setResistance(5.0F);
+    @ModFeature(name = "fence_gate_mallorn", cTab = 1)
+    public static final Block FENCE_GATE_MALLORN = new BlockFenceGates(2.0F, 5.0F);
+    @ModFeature(name = "fence_gate_mirkwood", cTab = 1)
+    public static final Block FENCE_GATE_MIRKWOOD = new BlockFenceGates(2.0F, 5.0F);
+    @ModFeature(name = "fence_gate_culumalda", cTab = 1)
+    public static final Block FENCE_GATE_CULUMALDA = new BlockFenceGates(2.0F, 5.0F);
+    @ModFeature(name = "fence_gate_lebethron", cTab = 1)
+    public static final Block FENCE_GATE_LEBETHRON = new BlockFenceGates(2.0F, 5.0F);
+
     /* End Region */
 
     /* Plants */                                             //TODO add a way to avoid this mess in 1.13...
