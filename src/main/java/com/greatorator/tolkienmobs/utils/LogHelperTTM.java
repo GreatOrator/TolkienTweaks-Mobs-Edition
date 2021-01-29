@@ -1,12 +1,8 @@
 package com.greatorator.tolkienmobs.utils;
 
-import codechicken.lib.reflect.ObfMapping;
-import com.brandon3055.brandonscore.utils.Utils;
+
 import com.greatorator.tolkienmobs.TolkienMobs;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,6 +15,7 @@ import java.util.Set;
  * Covers and Brandon gave me permission to use this. Thank you both for all of your help!!!
  */
 
+@Deprecated //use TolkienMobs.LOGGER or create a new static logger where needed
 public class LogHelperTTM {
     private static Logger logger = LogManager.getLogger(TolkienMobs.MODID);
 
@@ -36,9 +33,9 @@ public class LogHelperTTM {
     //region Standard log entries.
 
     public static void dev(Object object) {
-        if (!ObfMapping.obfuscated) {
+//        if (!ObfMapping.obfuscated) {
             log(Level.INFO, "[DEV]: " + object);
-        }
+//        }
     }
 
     public static void all(Object object) {
@@ -78,9 +75,9 @@ public class LogHelperTTM {
     //region Log with format.
 
     public static void dev(String object, Object... format) {
-        if (!ObfMapping.obfuscated) {
+//        if (!ObfMapping.obfuscated) {
             log(Level.INFO, "[DEV]: " + String.format(object, format));
-        }
+//        }
     }
 
     public static void all(String object, Object... format) {
@@ -192,7 +189,7 @@ public class LogHelperTTM {
     //region Log with trace element.
 
     public static void bigDev(String format, Object... data) {
-        if (!ObfMapping.obfuscated) {
+//        if (!ObfMapping.obfuscated) {
             StackTraceElement[] trace = Thread.currentThread().getStackTrace();
             dev("****************************************");
             dev("* " + format, data);
@@ -200,7 +197,7 @@ public class LogHelperTTM {
                 dev("*  at %s%s", trace[i].toString(), i == 7 ? "..." : "");
             }
             dev("****************************************");
-        }
+//        }
     }
 
     public static void bigAll(String format, Object... data) {
@@ -287,61 +284,61 @@ public class LogHelperTTM {
 
     //region formatted NBT log output
 
-    public static void logNBTDev(NBTTagCompound compound) {
-        logNBT(compound, true);
-    }
-
-    public static void logNBT(NBTTagCompound compound) {
-        logNBT(compound, false);
-    }
-
-    public static void logNBTDev(ItemStack stack) {
-        logNBTDev(stack.getTagCompound());
-    }
-
-    public static void logNBT(ItemStack stack) {
-        logNBTDev(stack.getTagCompound());
-    }
-
-    public static void logNBT(NBTTagCompound compound, boolean debug) {
-        if (debug && ObfMapping.obfuscated) {
-            return;
-        }
-
-        if (compound == null || compound.hasNoTags()) {
-            info("[NBT]: " + compound);
-            return;
-        }
-
-        StringBuilder builder = new StringBuilder();
-        buildNBT(builder, compound, "", "Tag", false);
-        info(builder.toString());
-    }
-
-    public static void buildNBT(StringBuilder builder, NBTBase nbt, String indent, String name, boolean comma) {
-        if (nbt instanceof NBTTagCompound) {
-            builder.append("\n[NBT]: ").append(indent).append(name).append(":{");
-            Set<String> keys = ((NBTTagCompound) nbt).getKeySet();
-            int index = 0;
-            for (String key : keys) {
-                index++;
-                buildNBT(builder, ((NBTTagCompound) nbt).getTag(key), indent + "|  ", key, index < keys.size());
-            }
-            builder.append("\n[NBT]: ").append(indent).append("}").append(comma ? "," : "");
-        }
-        else if (nbt instanceof NBTTagList) {
-            builder.append("\n[NBT]: ").append(indent).append(name).append(":[");
-            int tacCount = ((NBTTagList)nbt).tagCount();
-            for (int i = 0; i < tacCount; i++) {
-                NBTBase base = ((NBTTagList) nbt).get(i);
-                buildNBT(builder, base , indent + "|  ", i+"", (i + 1) < tacCount);
-            }
-            builder.append("\n[NBT]: ").append(indent).append("]").append(comma ? "," : "");
-        }
-        else {
-            builder.append("\n[NBT]: ").append(indent).append(name).append(":").append(nbt.toString()).append(comma ? "," : "");
-        }
-    }
+//    public static void logNBTDev(NBTTagCompound compound) {
+//        logNBT(compound, true);
+//    }
+//
+//    public static void logNBT(NBTTagCompound compound) {
+//        logNBT(compound, false);
+//    }
+//
+//    public static void logNBTDev(ItemStack stack) {
+//        logNBTDev(stack.getTagCompound());
+//    }
+//
+//    public static void logNBT(ItemStack stack) {
+//        logNBTDev(stack.getTagCompound());
+//    }
+//
+//    public static void logNBT(NBTTagCompound compound, boolean debug) {
+//        if (debug && ObfMapping.obfuscated) {
+//            return;
+//        }
+//
+//        if (compound == null || compound.hasNoTags()) {
+//            info("[NBT]: " + compound);
+//            return;
+//        }
+//
+//        StringBuilder builder = new StringBuilder();
+//        buildNBT(builder, compound, "", "Tag", false);
+//        info(builder.toString());
+//    }
+//
+//    public static void buildNBT(StringBuilder builder, NBTBase nbt, String indent, String name, boolean comma) {
+//        if (nbt instanceof NBTTagCompound) {
+//            builder.append("\n[NBT]: ").append(indent).append(name).append(":{");
+//            Set<String> keys = ((NBTTagCompound) nbt).getKeySet();
+//            int index = 0;
+//            for (String key : keys) {
+//                index++;
+//                buildNBT(builder, ((NBTTagCompound) nbt).getTag(key), indent + "|  ", key, index < keys.size());
+//            }
+//            builder.append("\n[NBT]: ").append(indent).append("}").append(comma ? "," : "");
+//        }
+//        else if (nbt instanceof NBTTagList) {
+//            builder.append("\n[NBT]: ").append(indent).append(name).append(":[");
+//            int tacCount = ((NBTTagList)nbt).tagCount();
+//            for (int i = 0; i < tacCount; i++) {
+//                NBTBase base = ((NBTTagList) nbt).get(i);
+//                buildNBT(builder, base , indent + "|  ", i+"", (i + 1) < tacCount);
+//            }
+//            builder.append("\n[NBT]: ").append(indent).append("]").append(comma ? "," : "");
+//        }
+//        else {
+//            builder.append("\n[NBT]: ").append(indent).append(name).append(":").append(nbt.toString()).append(comma ? "," : "");
+//        }
+//    }
 
 
     //endregion
@@ -357,44 +354,44 @@ public class LogHelperTTM {
         error("*************************************************************************************");
     }
 
-    private static long startTime = 0;
-    private static String timerName = "";
-    private static boolean timerRunning = false;
-
-    public static void startTimer(String name) {
-        if (timerRunning) {
-            error("The timer is already running!");
-            return;
-        }
-
-        timerName = name;
-        timerRunning = true;
-        startTime = System.nanoTime();
-    }
-
-    public static void stopTimer() {
-        if (!timerRunning) {
-            error("The timer was not running!!!");
-            return;
-        }
-
-        long ns = System.nanoTime() - startTime;
-
-        String value;
-        long ms = 1000000;
-        long s = ms * 1000;
-
-        if (ns > s) {
-            value = Utils.round(ns / (double) s, 1000) + "s";
-        }
-        else if (ns > 1000) {
-            value = Utils.round(ns / (double) ms, 10000) + "ms";
-        }
-        else {
-            value = ns + "ns";
-        }
-
-        dev("[Timer]: " + timerName + " Took " + value);
-        timerRunning = false;
-    }
+//    private static long startTime = 0;
+//    private static String timerName = "";
+//    private static boolean timerRunning = false;
+//
+//    public static void startTimer(String name) {
+//        if (timerRunning) {
+//            error("The timer is already running!");
+//            return;
+//        }
+//
+//        timerName = name;
+//        timerRunning = true;
+//        startTime = System.nanoTime();
+//    }
+//
+//    public static void stopTimer() {
+//        if (!timerRunning) {
+//            error("The timer was not running!!!");
+//            return;
+//        }
+//
+//        long ns = System.nanoTime() - startTime;
+//
+//        String value;
+//        long ms = 1000000;
+//        long s = ms * 1000;
+//
+//        if (ns > s) {
+////            value = Utils.round(ns / (double) s, 1000) + "s";
+//        }
+//        else if (ns > 1000) {
+////            value = Utils.round(ns / (double) ms, 10000) + "ms";
+//        }
+//        else {
+//            value = ns + "ns";
+//        }
+//
+//        dev("[Timer]: " + timerName + " Took " + value);
+//        timerRunning = false;
+//    }
 }

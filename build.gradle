@@ -7,169 +7,215 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-    }
-}
-apply plugin: 'net.minecraftforge.gradle.forge'
-apply plugin: 'maven'
-apply plugin: 'maven-publish'
-
-repositories {
-    maven {
-        name = "Covers Maven"
-        url = "http://maven.covers1624.net"
-    }
-    maven {
-        name 'CB Maven'
-        url "http://chickenbones.net/maven/"
-    }
-    maven {
-        name "JEI Maven"
-        url "http://dvs1.progwml6.com/files/maven"
-    }
-    maven {
-        name "Miscellaneous"
-        url 'https://jitpack.io'
-    }
-    maven {
-        name 'Mod Mirror'
-        url "https://modmaven.k-4u.nl"
-    }
-    //Tinkers
-    maven {
-        name 'DVS1 Maven FS'
-        url 'http://dvs1.progwml6.com/files/maven'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
     }
 }
 
-// Define properties file
-ext.configFile = file "build.properties"
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id "net.covers1624.signing" version '1.1.3'
+}
 
-configFile.withReader {
-    // Load config.  It shall from now be referenced as simply config or project.config
+apply plugin: 'net.minecraftforge.gradle'
+
+group = "com.greatorator.tolkienmobs"
+archivesBaseName = "TolkienMobs"
+
+targetCompatibility = "1.8"
+sourceCompatibility = "1.8"
+
+//Add generated resources to main resources.
+sourceSets.main.resources.srcDirs += "src/generated/resources"
+
+file('build.properties').withReader {
     def prop = new Properties()
     prop.load(it)
     project.ext.config = new ConfigSlurper().parse prop
 }
 
-version = "${config.mc_version}-${config.mod_version}"
-group = "com.greatorator.tolkienmobs"
-archivesBaseName = "TolkienMobs"
+def signProps = [:]
+if (System.getenv("KEY_STORE")) {
+    println "Using Env variables for jar signing."
+    signProps['keyStore'] = System.getenv("KEY_STORE")
+    file(System.getenv("KEY_STORE_PROPS")).withReader {
+        def props = new Properties()
+        props.load(it)
+        signProps.putAll(props)
+    }
+} else if (project.hasProperty('keyStore')) {
+    println "Using Project properties for jar signing."
+    signProps['keyStore'] = project.getProperty('keyStore')
+    signProps['storePass'] = project.getProperty('keyStorePass')
+    signProps['alias'] = project.getProperty('keyStoreAlias')
+    signProps['keyPass'] = project.getProperty('keyStoreKeyPass')
+} else {
+    println 'No signing secrets found, build will not be signed.'
+}
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+config.mod_version = "${config.mod_version}." + (System.getenv("BUILD_NUMBER") ?: "1")
+version = "${config.mc_version}-${config.mod_version}"
+println "Starting build of ${archivesBaseName}, Version: ${config.mod_version}"
+println "Using Forge: ${config.forge_version}, for Minecraft: ${config.mc_version}, with Mappings: ${config.mappings}"
 
 minecraft {
-    version = config.mc_version + "-" + config.forge_version
-    runDir = "run"
-    mappings = "${config.mappings}"
-    replace '${mod_version}', project.config.mod_version
-    replaceIn "TolkienMobs.java"
-    makeObfSourceJar = false
+    mappings channel: 'snapshot', version: config.mappings
+    accessTransformer = file("src/main/resources/META-INF/accesstransformer.cfg")
+    runs {
+        client {
+            workingDirectory file('run')
+            mods { tolkienmobs { source sourceSets.main } }
+        }
+        server {
+            workingDirectory file('run')
+            mods { tolkienmobs { source sourceSets.main } }
+        }
+        data {
+            workingDirectory file('run')
+            args '--mod', 'tolkienmobs', '--all', '--output', file("src/generated/resources")
+            mods { tolkienmobs { source sourceSets.main } }
+        }
+    }
 }
 
-String buildNo = "0" //This will be used when this project is put on jenkins
-if (System.getenv("BUILD_NUMBER") != null) {
-    buildNo = System.getenv("BUILD_NUMBER")
+repositories {
+    mavenLocal()
+    maven { url = "http://chickenbones.net/maven" }
 }
-version = version + ".${buildNo}"
 
 dependencies {
-    compile "com.brandon3055.brandonscore:BrandonsCore:${config.mc_version}-${config.bcore_version}:deobf"
-    compile "com.brandon3055.tolkientweaks:TolkienTweaks:${config.mc_version}-${config.tt_version}:deobf"
-    compile "codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:deobf"
-    compile "com.github.azanor:Baubles:${config.baubles_version}"
-    deobfCompile "slimeknights.mantle:Mantle:1.12-${config.mantle_version}"
-    deobfCompile "slimeknights:TConstruct:${config.mc_version}-${config.tinkers_version}"
+    minecraft "net.minecraftforge:forge:${config.mc_version}-${config.forge_version}"
+    compile fg.deobf("codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:universal")
 }
 
-processResources {
-    // this will ensure that this task is redone when the versions change.
-    inputs.property "version", project.version
-    inputs.property "mc_version", project.minecraft.version
+signing {
+    if (!signProps.isEmpty()) {
+        jars {
+            sign jar
+            after reobfJar
 
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod.info'
-        // replace version and mc_version
-        expand 'version': project.version, 'mc_version': project.minecraft.version
+            keyStore = signProps.keyStore
+            alias = signProps.alias
+            storePass = signProps.storePass
+            keyPass = signProps.keyPass
+        }
     }
-
-    // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
-    rename '(.+_at.cfg)', 'META-INF/$1'
 }
 
-def commonManifest = {
-    attributes 'FMLAT': 'TolkienMobs_at.cfg'
+processResources { task ->
+    inputs.property 'mod_version', config.mod_version
+    inputs.property 'mc_version', config.mc_version
+
+    from(sourceSets.main.resources.srcDirs) { spec ->
+        spec.include 'META-INF/mods.toml'
+        task.doFirst {
+            spec.expand 'version': config.mod_version,
+                    'mc_version': config.mc_version,
+                    'ccl_version': resolve("CodeChickenLib")
+        }
+    }
 }
 
 jar {
+    finalizedBy 'reobfJar'
     classifier = 'universal'
-    manifest commonManifest
+    manifest {
+        attributes 'Specification-Title': archivesBaseName
+        attributes 'Specification-Vendor': 'GreatOrator'
+        attributes 'Specification-Version': "1"
+        attributes 'Implementation-Title': archivesBaseName
+        attributes 'Implementation-Vendor': 'GreatOrator'
+        attributes 'Implementation-Version': version
+        attributes 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+    }
 }
 
 task srcJar(type: Jar) {
+    build.dependsOn it
     from sourceSets.main.allSource
     classifier = 'sources'
 }
 
-task deobfJar(type: Jar) {
-    from sourceSets.main.output
-    classifier = 'deobf'
-    manifest commonManifest
-}
-
-// Tell the artifact system about our extra jars
-artifacts {
-    archives srcJar, deobfJar
-}
-
-//This will upload the jars to maven when this project is setup on jenkins.
-uploadArchives {
+publishing {
     repositories {
-        mavenDeployer {
-            if (project.hasProperty("local_maven")) {
-                repository(url: "file://${local_maven}")
-                pom {
-                    groupId = project.group
-                    version = project.version
-                    artifactId = project.archivesBaseName
-                    project {
-                        name project.archivesBaseName
-                        packaging 'jar'
-                        description 'TolkienMobs'
-                        url 'https://github.com/GreatOrator/TolkienTweaks-Mobs'
-                        scm {
-                            url 'https://github.com/GreatOrator/TolkienTweaks-Mobs'
-                            connection 'scm:git:git@github.com:GreatOrator/TolkienTweaks-Mobs.git'
-                            developerConnection 'scm:git:git@github.com:GreatOrator/TolkienTweaks-Mobs.git'
-                        }
-                        issueManagement {
-                            system 'github'
-                            url 'https://github.com/GreatOrator/TolkienTweaks-Mobs/issues'
-                        }
-                        licenses {
-                            license {
-                                name 'License'
-                                url 'https://raw.githubusercontent.com/GreatOrator/TolkienTweaks-Mobs/master/LICENSE.txt'
-                                distribution 'repo'
-                            }
-                        }
-                        developers {
-                            developer {
-                                id 'GreatOrator'
-                                name 'GreatOrator'
-                                roles { role 'developer' }
-                            }
-                        }
-                    }
+        if (System.getenv('MAVEN_PASS')) {
+            maven {
+                url "https://maven-upload.covers1624.net/"
+                credentials {
+                    username 'covers1624'
+                    password System.getenv('MAVEN_PASS')
                 }
-            } else {
-                println 'Maven upload triggered but no local_maven property found!'
             }
         }
     }
+    publications {
+        TolkienMobs(MavenPublication) {
+            groupId project.group
+            artifactId project.archivesBaseName
+            version project.version
+            artifact jar
+            artifact srcJar
+
+            pom {
+                name = archivesBaseName
+                description = archivesBaseName
+                //The publish plugin doesnt like GString's here apparently..
+                url = "https://github.com/GreatOrator/TolkienTweaks-Mobs".toString()
+                scm {
+                    url = "https://github.com/GreatOrator/TolkienTweaks-Mobs".toString()
+                    connection = "scm:git:git://github.com/GreatOrator/TolkienTweaks-Mobs.git".toString()
+                    connection = "scm:git:git@github.com:GreatOrator/TolkienTweaks-Mobs.git".toString()
+                }
+
+                issueManagement {
+                    system = 'github'
+                    url = "https://github.com/GreatOrator/TolkienTweaks-Mobs/issues".toString()
+                }
+                licenses {
+                    license {
+                        name = "MIT License"
+                        url = "https://github.com/GreatOrator/TolkienTweaks-Mobs/blob/master/LICENSE"
+                        distribution = 'Repo'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'GreatOrator'
+                        name = 'GreatOrator'
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+/**
+ * Polls the 'compile' configuration for a dependency with the given module name
+ * and resolves, and returns its version. E.g: '1.2.+' will resolve to '1.2.3.4'
+ *
+ * @param module The module to search for.
+ * @param chop If the string should be chopped on the last '-' in its string.
+ * @param configuration The name of the configuration to search.
+ * @param errorMissing If an error should be thrown if it can't be found.
+ * @return The version string, '0' if 'errorMissing' is false and nothing was found.
+ */
+def resolve(module, chop = true, configuration = 'compile', errorMissing = true) {
+    //Copy and lenient resolve the configuration, Forge cant be resolved at this time so lenient is required.
+    def filtered = configurations.getByName(configuration).copy().incoming.artifactView({ it.lenient = true }).artifacts
+            .findAll { it.id.componentIdentifier.module == module }
+            .collect { it.id.componentIdentifier.version }
+    if (filtered.size() > 1) {
+        println "WARNING: Found ${filtered.size()} Dependencies with ModuleName '${module}' in configuration '${configuration.name}'"
+    }
+    if (errorMissing && filtered.isEmpty()) {
+        throw new RuntimeException("Failed resolve dependency version for '${module}'")
+    }
+    if (filtered.isEmpty()) return "0"
+    def version = filtered.first() as String
+    if (chop) {
+        def idx = version.lastIndexOf('-')
+        return version.substring(idx + 1)
+    }
+    return version
 }

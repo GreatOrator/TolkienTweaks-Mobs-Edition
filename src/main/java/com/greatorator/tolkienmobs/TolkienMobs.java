@@ -1,115 +1,117 @@
 package com.greatorator.tolkienmobs;
 
-import com.brandon3055.brandonscore.BrandonsCore;
-import com.brandon3055.brandonscore.registry.ModFeatureParser;
-import com.greatorator.tolkienmobs.client.TTMobsTab;
-import com.greatorator.tolkienmobs.handler.TTMGUIHandler;
-import com.greatorator.tolkienmobs.init.PotionInit;
-import com.greatorator.tolkienmobs.init.SoundInit;
-import com.greatorator.tolkienmobs.init.TTMFeatures;
-import com.greatorator.tolkienmobs.network.TTMPacketClient;
-import com.greatorator.tolkienmobs.network.TTMStoCMessage;
-import com.greatorator.tolkienmobs.proxy.CommonProxy;
-import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-import com.greatorator.tolkienmobs.utils.TTMDataFixes;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
-import net.minecraft.util.datafix.DataFixer;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.Loader;
+
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = TolkienMobs.MODID, name = TolkienMobs.NAME, version = TolkienMobs.VERSION, dependencies = TolkienMobs.DEPENDENCIES, guiFactory = TolkienMobs.GUI_FACTORY)
+@Mod(TolkienMobs.MODID)
 public class TolkienMobs {
-    //Static mod fields
+    public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
+
     public static final String MODID = "tolkienmobs";
     public static final String NAME = "Tolkien Tweaks (Mobs Edition)";
     public static final String VERSION = "${mod_version}"; //This will now be set automatically by the build.gradle when the jar is built.
-    public static final String CLIENT_PROXY = "com.greatorator.tolkienmobs.proxy.ClientProxy";
-    public static final String COMMON_PROXY = "com.greatorator.tolkienmobs.proxy.CommonProxy";
-    public static final String DEPENDENCIES = "required-after:brandonscore@[" + BrandonsCore.VERSION + ",);"; //Will depend on the version of BC that the project is built against
-    public static final String GUI_FACTORY = "com.greatorator.tolkienmobs.client.TTMGuiFactory"; //Using BC's config system this is all you need to add an in game mod config gui.
 
-    @Instance
-    public static TolkienMobs instance;
-
-    @SidedProxy(clientSide = TolkienMobs.CLIENT_PROXY, serverSide = TolkienMobs.COMMON_PROXY)
-    public static CommonProxy proxy;
-
-    public static CreativeTabs tabToolsArmor = new TTMobsTab("tools", () -> TTMFeatures.AXE_MITHRIL);
-    public static CreativeTabs tabWorldMats = new TTMobsTab("mats", () -> TTMFeatures.INGOT_MITHRIL);
-    public static CreativeTabs tabMobsSpawn = new TTMobsTab.SpawnTab("spawn", () -> Items.SPAWN_EGG);
-    public static CreativeTabs tabFoodItems = new TTMobsTab("food", () -> TTMFeatures.LEMBAS);
-    public static CreativeTabs tabQuestItems = new TTMobsTab("quest", () -> TTMFeatures.ITEM_FORTRESSMAP);
-    public static CreativeTabs tabSignItems = new TTMobsTab("signs", () -> Items.SIGN);
-
-    private final DataFixer dataFixer;
-    public static SimpleNetworkWrapper networkWrapper;
-
-    static {
-        FluidRegistry.enableUniversalBucket();
-    }
+//    public static CommonProxy proxy;
 
     public TolkienMobs() {
-        new PotionInit();
-        new SoundInit();
-        Logger ttLog = LogManager.getLogger("tolkientweaks");
-        Logger bcLog = LogManager.getLogger("brandonscore");
-        LogHelperTTM.info("Meeting of the Fellowship started! Waiting for the rest of the party to arrive...");
-        if (Loader.isModLoaded("tolkientweaks")) {
-            ttLog.log(Level.INFO, "You shall have my axe!");
-            bcLog.log(Level.INFO, "...and you shall have my bow!");
-            LogHelperTTM.info("Together we shall be the Fellowship of the Mods!");
+
+        synchronized (MinecraftForge.EVENT_BUS) {
+            Logger ttLog = LogManager.getLogger("tolkientweaks");
+            Logger bcLog = LogManager.getLogger("brandonscore");
+//            LogHelperTTM.info("Meeting of the Fellowship started! Waiting for the rest of the party to arrive...");
+            if (ModList.get().isLoaded("tolkientweaks")) {
+                ttLog.log(Level.INFO, "You shall have my axe!");
+                bcLog.log(Level.INFO, "...and you shall have my bow!");
+//                LogHelperTTM.info("Together we shall be the Fellowship of the Mods!");
+            } else {
+                ttLog.log(Level.INFO, "...");
+//                LogHelperTTM.info("No party, no play!");
+            }
         }
-        else {
-            ttLog.log(Level.INFO, "...");
-            LogHelperTTM.info("No party, no play!");
-        }
-        this.dataFixer = TTMDataFixes.createFixer();
+
+//        proxy = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
+//        proxy.construct();
+
+        FMLJavaModLoadingContext.get().getModEventBus().register(this);
+
     }
 
-    public DataFixer getDataFixer()
-    {
-        return this.dataFixer;
-    }
-    //I like to run the init events through the proxy because for one thing it makes your main class a lot cleaner
-    //And it also makes it dead simple to manage client/server side code
-
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        ModFeatureParser.registerModFeatures(MODID);//This is a call to let BC know when its time to register our stuff.
-        TTMGUIHandler.initialize();
-        networkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel(TolkienMobs.MODID);
-        networkWrapper.registerMessage(TTMPacketClient.class, TTMStoCMessage.class, 1, Side.CLIENT);
-        proxy.preInit(event);
+    @SubscribeEvent
+    public void onCommonSetup(FMLCommonSetupEvent event) {
+//        proxy.commonSetup(event);
     }
 
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
-        proxy.init(event);
+    @SubscribeEvent
+    public void onClientSetup(FMLClientSetupEvent event) {
+//        proxy.clientSetup(event);
     }
 
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-        proxy.postInit(event);
-    }
-
-    @EventHandler
-    public static void serverInit(FMLServerStartingEvent event)
-    {
-        proxy.serverRegistries(event);
-    }
 }
+
+//@Mod(modid = TolkienMobs.MODID, name = TolkienMobs.NAME, version = TolkienMobs.VERSION, dependencies = TolkienMobs.DEPENDENCIES, guiFactory = TolkienMobs.GUI_FACTORY)
+//public class TolkienMobs {
+
+//    public static CreativeTabs tabToolsArmor = new TTMobsTab("tools", () -> TTMFeatures.AXE_MITHRIL);
+//    public static CreativeTabs tabWorldMats = new TTMobsTab("mats", () -> TTMFeatures.INGOT_MITHRIL);
+//    public static CreativeTabs tabMobsSpawn = new TTMobsTab.SpawnTab("spawn", () -> Items.SPAWN_EGG);
+//    public static CreativeTabs tabFoodItems = new TTMobsTab("food", () -> TTMFeatures.LEMBAS);
+//    public static CreativeTabs tabQuestItems = new TTMobsTab("quest", () -> TTMFeatures.ITEM_FORTRESSMAP);
+//    public static CreativeTabs tabSignItems = new TTMobsTab("signs", () -> Items.SIGN);
+//
+//    private final DataFixer dataFixer;
+//    public static SimpleNetworkWrapper networkWrapper;
+//
+//    static {
+//        FluidRegistry.enableUniversalBucket();
+//    }
+//
+//    public TolkienMobs() {
+//        new PotionInit();
+//        new SoundInit();
+
+
+//        this.dataFixer = TTMDataFixes.createFixer();
+//    }
+//
+//    public DataFixer getDataFixer()
+//    {
+//        return this.dataFixer;
+//    }
+//    //I like to run the init events through the proxy because for one thing it makes your main class a lot cleaner
+//    //And it also makes it dead simple to manage client/server side code
+//
+//    @EventHandler
+//    public void preInit(FMLPreInitializationEvent event) {
+//        ModFeatureParser.registerModFeatures(MODID);//This is a call to let BC know when its time to register our stuff.
+//        TTMGUIHandler.initialize();
+//        networkWrapper = NetworkRegistry.INSTANCE.newSimpleChannel(TolkienMobs.MODID);
+//        networkWrapper.registerMessage(TTMPacketClient.class, TTMStoCMessage.class, 1, Side.CLIENT);
+//        proxy.preInit(event);
+//    }
+//
+//    @EventHandler
+//    public void init(FMLInitializationEvent event) {
+//        proxy.init(event);
+//    }
+//
+//    @EventHandler
+//    public void postInit(FMLPostInitializationEvent event) {
+//        proxy.postInit(event);
+//    }
+//
+//    @EventHandler
+//    public static void serverInit(FMLServerStartingEvent event)
+//    {
+//        proxy.serverRegistries(event);
+//    }
+//}

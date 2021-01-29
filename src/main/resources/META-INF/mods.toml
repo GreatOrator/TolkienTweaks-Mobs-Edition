@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="[32,)"
+license="MIT License"
+
+[[mods]]
+	modId="tolkienmobs"
+	displayName="Tolkien Tweaks (Mobs Edition)"
+    version="${version}"
+	authors="GreatOrator"
+	description=''''''
+    updateJSONURL=""
+
+[[dependencies.tolkienmobs]]
+    modId="forge"
+    mandatory=true
+    versionRange="[35.1,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.tolkienmobs]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.tolkienmobs]]
+    modId="codechickenlib"
+    mandatory=true
+    versionRange="[${ccl_version},)"
+    ordering="AFTER"
+    side="BOTH"

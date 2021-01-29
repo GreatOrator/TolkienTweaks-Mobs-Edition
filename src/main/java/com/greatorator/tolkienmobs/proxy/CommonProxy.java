@@ -15,61 +15,36 @@ import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
 import com.greatorator.tolkienmobs.world.gen.WorldGenCustomStructures;
 import com.greatorator.tolkienmobs.world.types.WorldTypeArda;
 import com.greatorator.tolkienmobs.world.types.WorldTypeSingleArda;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.world.WorldType;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 
 import static com.greatorator.tolkienmobs.TTMConfig.disableVanilla;
 
 public class CommonProxy {
 
-
-    public void registerModel(Item item, int metadata) {
+    public void construct() {
+        registerEventListeners();
     }
 
-    public void preInit(FMLPreInitializationEvent event) {
-        GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
-        GameRegistry.registerWorldGenerator(new WorldGenCustomStructures(), 0);
-        registerEventListeners(event.getSide());
-        BiomeInit.registerBiomes();
-        EntityInit.init();
-        CraftingInit.init();
-        PotionInit.registerPotions();
-        EnchantmentsInit.registerEnchants();
-        new LootInit();
+    public void commonSetup(FMLCommonSetupEvent event) {
 
-        MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainEventHandler());
-
-        if (Loader.isModLoaded("tconstruct")) {
-            LogHelperTTM.info("Tinkers Construct is installed, Sending dwarves to begin mining deep in the earth.");
-            TinkersTTM.preInit();
-        }
     }
 
-    public void init(FMLInitializationEvent event) {
-        ProfessionInit.associateCareersAndTrades();
-        TTMConfig.loadPotionList();
+    public void clientSetup(FMLClientSetupEvent event) {
 
-        if (Loader.isModLoaded("tconstruct")) {
-            LogHelperTTM.info("Dwarves firing up the foundries...");
-            TinkersTTM.init();
-        }
     }
 
-    public void postInit(FMLPostInitializationEvent event) {
-        WorldType ARDA = new WorldTypeArda("Arda");
-        WorldType SINGLEARDA = new WorldTypeSingleArda("SingleArdaBiome");
+    public void serverSetup(FMLDedicatedServerSetupEvent event) {
+
     }
 
-    public void registerEventListeners(Side s) {
+
+    public void registerEventListeners() {
         MinecraftForge.EVENT_BUS.register(new TTMServerEvents());
         MinecraftForge.EVENT_BUS.register(new TTMEnchantHandler());
         MinecraftForge.EVENT_BUS.register(TTMSoundHandler.class);
@@ -79,11 +54,48 @@ public class CommonProxy {
         }
     }
 
-    public static void serverRegistries(FMLServerStartingEvent event) {
-        event.registerServerCommand(new TTMCommandSpawn());
-    }
 
-    public EntityPlayer getPlayer() {
+//    public void preInit(FMLPreInitializationEvent event) {
+//        GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
+//        GameRegistry.registerWorldGenerator(new WorldGenCustomStructures(), 0);
+//        registerEventListeners(event.getSide());
+//        BiomeInit.registerBiomes();
+//        EntityInit.init();
+//        CraftingInit.init();
+//        PotionInit.registerPotions();
+//        EnchantmentsInit.registerEnchants();
+//        new LootInit();
+//
+//        MinecraftForge.TERRAIN_GEN_BUS.register(new TerrainEventHandler());
+//
+//        if (Loader.isModLoaded("tconstruct")) {
+//            LogHelperTTM.info("Tinkers Construct is installed, Sending dwarves to begin mining deep in the earth.");
+//            TinkersTTM.preInit();
+//        }
+//    }
+//
+//    public void init(FMLInitializationEvent event) {
+//        ProfessionInit.associateCareersAndTrades();
+//        TTMConfig.loadPotionList();
+//
+//        if (Loader.isModLoaded("tconstruct")) {
+//            LogHelperTTM.info("Dwarves firing up the foundries...");
+//            TinkersTTM.init();
+//        }
+//    }
+//
+//    public void postInit(FMLPostInitializationEvent event) {
+//        WorldType ARDA = new WorldTypeArda("Arda");
+//        WorldType SINGLEARDA = new WorldTypeSingleArda("SingleArdaBiome");
+//    }
+//
+
+//
+//    public static void serverRegistries(FMLServerStartingEvent event) {
+//        event.registerServerCommand(new TTMCommandSpawn());
+//    }
+
+    public PlayerEntity getPlayer() {
         return null;
     }
 }
