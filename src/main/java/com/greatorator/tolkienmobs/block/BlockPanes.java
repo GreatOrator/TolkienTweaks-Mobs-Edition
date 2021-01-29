@@ -1,10 +1,9 @@
 package com.greatorator.tolkienmobs.block;
 
-import net.minecraft.block.BlockPane;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.PaneBlock;
 
-public class BlockPanes extends BlockPane {
-    public BlockPanes(Material materialIn, boolean canDrop) {
-        super(materialIn, canDrop);
+public class BlockPanes extends PaneBlock {
+    public BlockPanes(Properties builder) {
+        super(builder);
     }
 }

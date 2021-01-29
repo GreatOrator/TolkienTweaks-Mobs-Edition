@@ -1,6 +1,8 @@
 package com.greatorator.tolkienmobs;
 
 
+import com.greatorator.tolkienmobs.proxy.ClientProxy;
+import com.greatorator.tolkienmobs.proxy.CommonProxy;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -21,7 +23,7 @@ public class TolkienMobs {
     public static final String NAME = "Tolkien Tweaks (Mobs Edition)";
     public static final String VERSION = "${mod_version}"; //This will now be set automatically by the build.gradle when the jar is built.
 
-//    public static CommonProxy proxy;
+    public static CommonProxy proxy;
 
     public TolkienMobs() {
 
@@ -39,8 +41,8 @@ public class TolkienMobs {
             }
         }
 
-//        proxy = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
-//        proxy.construct();
+        proxy = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
+        proxy.construct();
 
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
 
@@ -48,12 +50,12 @@ public class TolkienMobs {
 
     @SubscribeEvent
     public void onCommonSetup(FMLCommonSetupEvent event) {
-//        proxy.commonSetup(event);
+        proxy.commonSetup(event);
     }
 
     @SubscribeEvent
     public void onClientSetup(FMLClientSetupEvent event) {
-//        proxy.clientSetup(event);
+        proxy.clientSetup(event);
     }
 
 }

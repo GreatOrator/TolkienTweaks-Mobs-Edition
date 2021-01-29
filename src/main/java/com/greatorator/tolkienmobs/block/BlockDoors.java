@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.handler.interfaces.TTMHasModel;
 import com.greatorator.tolkienmobs.init.TTMFeatures;
 import net.minecraft.block.BlockDoor;
+import net.minecraft.block.DoorBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -13,9 +14,10 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockDoors extends BlockDoor implements TTMHasModel {
-    public BlockDoors(Material materialIn) {
-        super(materialIn);
+public class BlockDoors extends DoorBlock implements TTMHasModel {
+
+    public BlockDoors(Properties builder) {
+        super(builder);
     }
 
     public void registerModels() {

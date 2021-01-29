@@ -278,13 +278,13 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "double_slab", itemBlock = NoItemBlock.class)
     public static final BlockSlabs DOUBLE_SLAB = new BlockDoubleSlabs();
     @ModFeature(name = "stairs_mallorn", cTab = 1, stateOverride = "stairs_mallorn#facing=east,half=bottom,shape=straight")
-    public static final BlockStairs STAIRS_MALLORN = new BlockTMStairs(PLANKS.getDefaultState().withProperty(BlockPlank.VARIANT, BlockLogs.EnumType.MALLORN));
+    public static final BlockStairs STAIRS_MALLORN = new BlockStairs(PLANKS.getDefaultState().withProperty(BlockPlank.VARIANT, BlockLogs.EnumType.MALLORN));
     @ModFeature(name = "stairs_mirkwood", cTab = 1, stateOverride = "stairs_mirkwood#facing=east,half=bottom,shape=straight")
-    public static final BlockStairs STAIRS_MIRKWOOD = new BlockTMStairs(PLANKS.getDefaultState().withProperty(BlockPlank.VARIANT, BlockLogs.EnumType.MIRKWOOD));
+    public static final BlockStairs STAIRS_MIRKWOOD = new BlockStairs(PLANKS.getDefaultState().withProperty(BlockPlank.VARIANT, BlockLogs.EnumType.MIRKWOOD));
     @ModFeature(name = "stairs_culumalda", cTab = 1, stateOverride = "stairs_culumalda#facing=east,half=bottom,shape=straight")
-    public static final BlockStairs STAIRS_CULUMALDA = new BlockTMStairs(PLANKS.getDefaultState().withProperty(BlockPlank.VARIANT, BlockLogs.EnumType.CULUMALDA));
+    public static final BlockStairs STAIRS_CULUMALDA = new BlockStairs(PLANKS.getDefaultState().withProperty(BlockPlank.VARIANT, BlockLogs.EnumType.CULUMALDA));
     @ModFeature(name = "stairs_lebethron", cTab = 1, stateOverride = "stairs_lebethron#facing=east,half=bottom,shape=straight")
-    public static final BlockStairs STAIRS_LEBETHRON = new BlockTMStairs(PLANKS.getDefaultState().withProperty(BlockPlank.VARIANT, BlockLogs.EnumType.LEBETHRON));
+    public static final BlockStairs STAIRS_LEBETHRON = new BlockStairs(PLANKS.getDefaultState().withProperty(BlockPlank.VARIANT, BlockLogs.EnumType.LEBETHRON));
     @ModFeature(name = "door_mallorn", itemBlock = NoItemBlock.class)
     public static final BlockDoors DOOR_MALLORN = new BlockDoors(Material.WOOD);
     @ModFeature(name = "item_door_mallorn", cTab = 1)
@@ -327,7 +327,7 @@ public class TTMFeatures implements IModFeatures {
     @ModFeature(name = "flower", variantMap = {"0:variant=simbelmyne", "1:variant=mirkwood", "2:variant=alfirin", "3:variant=athelas", "4:variant=niphredil", "5:variant=swamp_milkweed","6:variant=valley_lilly"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final BlockFlowers FLOWERS = new BlockFlowers();
     @ModFeature(name = "mushrooms", variantMap = {"0:variant=decay_bloom", "1:variant=bloom_decay"}, itemBlock = ItemBlockBCore.class, cTab = 1)
-    public static final BlockTMMushroom TM_MUSHROOM = new BlockTMMushroom();
+    public static final BlockMushrooms TM_MUSHROOM = new BlockMushrooms();
     /* End Region */
 
     /* Mob Drops */

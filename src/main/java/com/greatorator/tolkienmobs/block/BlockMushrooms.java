@@ -19,15 +19,15 @@ import net.minecraft.world.IBlockAccess;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class BlockTMMushroom extends BlockBush implements IBCoreBlock
+public class BlockMushrooms extends BlockBush implements IBCoreBlock
 {
     public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.<EnumType>create("variant", EnumType.class);
 
-    public BlockTMMushroom()
+    public BlockMushrooms()
     {
         setSoundType(SoundType.PLANT);
         this.setTickRandomly(true);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockTMMushroom.EnumType.DECAY_BLOOM));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, BlockMushrooms.EnumType.DECAY_BLOOM));
     }
 
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
@@ -57,7 +57,7 @@ public class BlockTMMushroom extends BlockBush implements IBCoreBlock
     @Override
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
     {
-        for(BlockTMMushroom.EnumType type : BlockTMMushroom.EnumType.values())
+        for(BlockMushrooms.EnumType type : BlockMushrooms.EnumType.values())
         {
             items.add(new ItemStack(this, 1, type.getMeta()));
         }
@@ -66,7 +66,7 @@ public class BlockTMMushroom extends BlockBush implements IBCoreBlock
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(VARIANT, BlockTMMushroom.EnumType.byMetadata(meta));
+        return this.getDefaultState().withProperty(VARIANT, BlockMushrooms.EnumType.byMetadata(meta));
     }
 
     @Override
@@ -96,14 +96,14 @@ public class BlockTMMushroom extends BlockBush implements IBCoreBlock
 
     @Override
     public Map<Integer, String> getNameOverrides() {
-        return BlockTMMushroom.EnumType.MUSHROOM_NAME_LOOKUP;
+        return BlockMushrooms.EnumType.MUSHROOM_NAME_LOOKUP;
     }
 
     public enum EnumType implements IStringSerializable {
         DECAY_BLOOM(0,"decay_bloom"),
         BLOOM_DECAY(1,"bloom_decay");
 
-        private static final BlockTMMushroom.EnumType[] META_LOOKUP = new BlockTMMushroom.EnumType[values().length];
+        private static final BlockMushrooms.EnumType[] META_LOOKUP = new BlockMushrooms.EnumType[values().length];
         public static final Map<Integer, String> MUSHROOM_NAME_LOOKUP = new LinkedHashMap<>();
 
         EnumType(int meta, String name) {
@@ -118,7 +118,7 @@ public class BlockTMMushroom extends BlockBush implements IBCoreBlock
             return meta;
         }
 
-        public static BlockTMMushroom.EnumType byMetadata(int meta) {
+        public static BlockMushrooms.EnumType byMetadata(int meta) {
             if (meta < 0 || meta >= META_LOOKUP.length) {
                 meta = 0;
             }
@@ -132,7 +132,7 @@ public class BlockTMMushroom extends BlockBush implements IBCoreBlock
         }
 
         static {
-            for (BlockTMMushroom.EnumType type : values()) {
+            for (BlockMushrooms.EnumType type : values()) {
                 META_LOOKUP[type.getMeta()] = type;
                 MUSHROOM_NAME_LOOKUP.put(type.meta, "mushroom_" + type.name);
             }
