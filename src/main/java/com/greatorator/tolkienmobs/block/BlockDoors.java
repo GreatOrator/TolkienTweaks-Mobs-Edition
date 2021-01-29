@@ -35,6 +35,14 @@ public class BlockDoors extends BlockDoor implements TTMHasModel {
         {
             return new ItemStack(TTMFeatures.ITEM_DOOR_CULUMALDA);
         }
+        else if (this == TTMFeatures.DOOR_MORGULIRON)
+        {
+            return new ItemStack(TTMFeatures.ITEM_DOOR_MORGULIRON);
+        }
+        else if (this == TTMFeatures.DOOR_MITHRIL)
+        {
+            return new ItemStack(TTMFeatures.ITEM_DOOR_MITHRIL);
+        }
         else {
             return new ItemStack(TTMFeatures.ITEM_DOOR_LEBETHRON);
         }

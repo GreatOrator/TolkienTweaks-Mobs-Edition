@@ -127,16 +127,6 @@ lore.item.tolkienmobs:item_fancyshield=
 
 item.tolkienmobs:spawn_egg.name=Spawn
 
-item.tolkienmobs:ingot_mithril.name=Mithril Ingot
-item.tolkienmobs:dust_mithril.name=Mithril Dust
-item.tolkienmobs:nugget_mithril.name=Mithril Nugget
-tile.tolkienmobs:mithril_bars.name=Mithril Bars
-item.tolkienmobs:ingot_morguliron.name=Morgul Iron Ingot
-item.tolkienmobs:dust_morguliron.name=Morgul Iron Dust
-item.tolkienmobs:nugget_morguliron.name=Morgul Iron Nugget
-tile.tolkienmobs:morguliron_bars.name=Morguliron Bars
-item.tolkienmobs:gem_ammolite.name=Star of Elendil
-
 item.tolkienmobs:axe_mithril.name=Mithril Axe
 item.tolkienmobs:hoe_mithril.name=Mithril Hoe
 item.tolkienmobs:pickaxe_mithril.name=Mithril Pickaxe
@@ -362,62 +352,79 @@ item.tolkienmobs:item_golem_stone_fire.name=§4Fire§r Golem Stone
 item.tolkienmobs:item_golem_stone_water.name=§9Water§r Golem Stone
 item.tolkienmobs:item_golem_stone_summon.name=Summon Legendary §bMithril§r Golem
 
-tile.tolkienmobs:block_mithril.name=Mithril Block
-tile.tolkienmobs:block_morguliron.name=Morgul Iron Block
 tile.tolkienmobs:block_hallowed.name=Hallowed Earth
 tile.tolkienmobs:block_stone_path.name=Stone Path
 tile.tolkienmobs:block_tmfireplace.name=Simple Fireplace
 
-tile.tolkienmobs:ore_mithril.name=Mithril Ore
-tile.tolkienmobs:ore_nether_mithril.name=Fiery Mithril Ore
-tile.tolkienmobs:ore_ender_mithril.name=Ender Mithril Ore
-tile.tolkienmobs:ore_morguliron.name=Morgul Iron Ore
-tile.tolkienmobs:ore_nether_morguliron.name=Fiery Morgul Iron Ore
-tile.tolkienmobs:ore_ender_morguliron.name=Ender Morgul Iron Ore
+
 tile.tolkienmobs:ore_ammolite.name=Ammolite Ore
 tile.tolkienmobs:ore_nether_ammolite.name=Firey Ammolite Ore
 tile.tolkienmobs:ore_ender_ammolite.name=Ender Ammolite Ore
+item.tolkienmobs:gem_ammolite.name=Star of Elendil
 
+tile.tolkienmobs:stairs_mallorn.name=Mallorn Stairs
 tile.tolkienmobs:planks_mallorn.name=Mallorn Planks
 tile.tolkienmobs:slab_mallorn.name=Mallorn Slab
+item.tolkienmobs:item_door_mallorn.name=Mallorn Door
+tile.tolkienmobs:fence_mallorn.name=Mallorn Fence
+tile.tolkienmobs:fence_gate_mallorn.name=Mallorn Fence Gate
 tile.tolkienmobs:leaves_mallorn.name=Mallorn Leaves
 tile.tolkienmobs:log_mallorn.name=Mallorn Log
 tile.tolkienmobs:sapling_mallorn.name=Mallorn Sapling
+
+tile.tolkienmobs:stairs_culumalda.name=Culumalda Stairs
 tile.tolkienmobs:planks_culumalda.name=Culumalda Planks
 tile.tolkienmobs:slab_culumalda.name=Culumalda Slab
+item.tolkienmobs:item_door_culumalda.name=Culumalda Door
+tile.tolkienmobs:fence_culumalda.name=Culumalda Fence
+tile.tolkienmobs:fence_gate_culumalda.name=Culumalda Fence Gate
 tile.tolkienmobs:leaves_culumalda.name=Culumalda Leaves
 tile.tolkienmobs:log_culumalda.name=Culumalda Log
 tile.tolkienmobs:sapling_culumalda.name=Culumalda Sapling
+
+tile.tolkienmobs:stairs_lebethron.name=Lebethron Stairs
 tile.tolkienmobs:planks_lebethron.name=Lebethron Planks
 tile.tolkienmobs:slab_lebethron.name=Lebethron Slab
+item.tolkienmobs:item_door_lebethron.name=Lebethron Door
+tile.tolkienmobs:fence_lebethron.name=Lebethron Fence
+tile.tolkienmobs:fence_gate_lebethron.name=Lebethron Fence Gate
 tile.tolkienmobs:leaves_lebethron.name=Lebethron Leaves
 tile.tolkienmobs:log_lebethron.name=Lebethron Log
 tile.tolkienmobs:sapling_lebethron.name=Lebethron Sapling
+
+tile.tolkienmobs:stairs_mirkwood.name=Mirkwood Stairs
 tile.tolkienmobs:planks_mirkwood.name=Mirkwood Planks
 tile.tolkienmobs:slab_mirkwood.name=Mirkwood Slab
+item.tolkienmobs:item_door_mirkwood.name=Mirkwood Door
+tile.tolkienmobs:fence_mirkwood.name=Mirkwood Fence
+tile.tolkienmobs:fence_gate_mirkwood.name=Mirkwood Fence Gate
 tile.tolkienmobs:leaves_mirkwood.name=Mirkwood Leaves
 tile.tolkienmobs:log_mirkwood.name=Mirkwood Log
 tile.tolkienmobs:sapling_mirkwood.name=Mirkwood Sapling
 
-tile.tolkienmobs:stairs_mirkwood.name=Mirkwood Stairs
-tile.tolkienmobs:stairs_mallorn.name=Mallorn Stairs
-tile.tolkienmobs:stairs_culumalda.name=Culumalda Stairs
-tile.tolkienmobs:stairs_lebethron.name=Lebethron Stairs
+tile.tolkienmobs:ore_mithril.name=Mithril Ore
+tile.tolkienmobs:ore_nether_mithril.name=Fiery Mithril Ore
+tile.tolkienmobs:ore_ender_mithril.name=Ender Mithril Ore
+material.tolkienmobs:dwarven_silver.name=Mithril
+item.tolkienmobs:ingot_mithril.name=Mithril Ingot
+item.tolkienmobs:dust_mithril.name=Mithril Dust
+item.tolkienmobs:nugget_mithril.name=Mithril Nugget
+tile.tolkienmobs:block_mithril.name=Mithril Block
+tile.tolkienmobs:mithril_bars.name=Mithril Bars
+fluid.tolkienmobs.molten_mithril.name=Molten Mithril
+item.tolkienmobs:item_door_mithril.name=Mithril Door
 
-item.tolkienmobs:item_door_mallorn.name=Mallorn Door
-item.tolkienmobs:item_door_mirkwood.name=Mirkwood Door
-item.tolkienmobs:item_door_lebethron.name=Lebethron Door
-item.tolkienmobs:item_door_culumalda.name=Culumalda Door
-
-tile.tolkienmobs:fence_mallorn.name=Mallorn Fence
-tile.tolkienmobs:fence_mirkwood.name=Mirkwood Fence
-tile.tolkienmobs:fence_lebethron.name=Lebethron Fence
-tile.tolkienmobs:fence_culumalda.name=Culumalda Fence
-
-tile.tolkienmobs:fence_gate_mallorn.name=Mallorn Fence Gate
-tile.tolkienmobs:fence_gate_mirkwood.name=Mirkwood Fence Gate
-tile.tolkienmobs:fence_gate_lebethron.name=Lebethron Fence Gate
-tile.tolkienmobs:fence_gate_culumalda.name=Culumalda Fence Gate
+tile.tolkienmobs:ore_morguliron.name=Morgul Iron Ore
+tile.tolkienmobs:ore_nether_morguliron.name=Fiery Morgul Iron Ore
+tile.tolkienmobs:ore_ender_morguliron.name=Ender Morgul Iron Ore
+material.tolkienmobs:morgul_iron.name=Morgul Iron
+item.tolkienmobs:ingot_morguliron.name=Morgul Iron Ingot
+item.tolkienmobs:dust_morguliron.name=Morgul Iron Dust
+item.tolkienmobs:nugget_morguliron.name=Morgul Iron Nugget
+tile.tolkienmobs:morguliron_bars.name=Morguliron Bars
+tile.tolkienmobs:block_morguliron.name=Morgul Iron Block
+fluid.tolkienmobs.molten_morguliron.name=Molten Morgul Iron
+item.tolkienmobs:item_door_morguliron.name=Morguliron Door
 
 tile.tolkienmobs:flower_mirkwood.name=Seregon
 tile.tolkienmobs:flower_simbelmyne.name=Simbelmyne
@@ -520,10 +527,3 @@ generator.Arda=Middle-earth
 generator.Arda.info=Adventure in the lands of Middle-earth
 generator.SingleArdaBiome=Arda - Single Biome
 generator.SingleArdaBiome.info=Used to test a single biome in Dev
-
-material.tolkienmobs:dwarven_silver.name=Mithril
-material.tolkienmobs:morgul_iron.name=Morgul Iron
-fluid.tolkienmobs.molten_mithril.name=Molten Mithril
-fluid.tolkienmobs.molten_morguliron.name=Molten Morgul Iron
-
-

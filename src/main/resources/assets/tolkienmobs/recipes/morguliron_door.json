@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "doors",
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:ingot_morguliron"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:item_door_morguliron",
+    "count": 3
+  }
+}

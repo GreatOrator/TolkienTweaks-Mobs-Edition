@@ -63,21 +63,116 @@ public class TTMFeatures implements IModFeatures {
     public static Item.ToolMaterial TOOL_MORGULIRON = EnumHelper.addToolMaterial("tool_morguliron", 3, 1600, 9.0F, 3.5F, 5);
     public static ItemArmor.ArmorMaterial ARMOR_MORGULIRON = EnumHelper.addArmorMaterial("armour_morguliron", TolkienMobs.MODID + ":morguliron", 35, new int[]{6, 10, 10, 6}, 5, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 2.0F);
 
-    /* Simple Items */
-    @ModFeature(name = "ingot_mithril", stateOverride = "simple_items#type=ingot_mithril", cTab = 1)
-    public static Item INGOT_MITHRIL = new ItemBCore();
-    @ModFeature(name = "ingot_morguliron", stateOverride = "simple_items#type=ingot_morguliron", cTab = 1)
-    public static Item INGOT_MORGULIRON = new ItemBCore();
-    @ModFeature(name = "nugget_mithril", stateOverride = "simple_items#type=nugget_mithril", cTab = 1)
-    public static Item NUGGET_MITHRIL = new ItemBCore();
-    @ModFeature(name = "nugget_morguliron", stateOverride = "simple_items#type=nugget_morguliron", cTab = 1)
-    public static Item NUGGET_MORGULIRON = new ItemBCore();
+    /* Metals & Gems */
+    @ModFeature(name = "ore", variantMap = {"0:type=mithril", "1:type=morguliron", "2:type=nether_mithril", "3:type=nether_morguliron", "4:type=ender_mithril", "5:type=ender_morguliron", "6:type=ammolite", "7:type=nether_ammolite", "8:type=ender_ammolite"}, itemBlock = ItemBlockBCore.class, cTab = 1)
+    public static final Block ORE = new BlockOres();
     @ModFeature(name = "dust_mithril", stateOverride = "simple_items#type=dust_mithril", cTab = 1)
     public static Item DUST_MITHRIL = new ItemBCore();
+    @ModFeature(name = "nugget_mithril", stateOverride = "simple_items#type=nugget_mithril", cTab = 1)
+    public static Item NUGGET_MITHRIL = new ItemBCore();
+    @ModFeature(name = "ingot_mithril", stateOverride = "simple_items#type=ingot_mithril", cTab = 1)
+    public static Item INGOT_MITHRIL = new ItemBCore();
+    @ModFeature(name = "block_mithril", cTab = 1)
+    public static final Block BLOCK_MITHRIL = new BlockBCore(Material.IRON).setHardness(1.5F).setResistance(10F);
+    @ModFeature(name = "mithril_bars", cTab = 1)
+    public static final Block MITHRIL_BARS = new BlockPanes(Material.IRON,true).setHardness(10.0F).setResistance(10.0F);
+    @ModFeature(name = "door_mithril", itemBlock = NoItemBlock.class)
+    public static final BlockDoors DOOR_MITHRIL = new BlockDoors(Material.IRON);
+    @ModFeature(name = "item_door_mithril", cTab = 1)
+    public static final ItemBlockDoors ITEM_DOOR_MITHRIL = new ItemBlockDoors(DOOR_MITHRIL);
     @ModFeature(name = "dust_morguliron", stateOverride = "simple_items#type=dust_morguliron", cTab = 1)
     public static Item DUST_MORGULIRON = new ItemBCore();
+    @ModFeature(name = "nugget_morguliron", stateOverride = "simple_items#type=nugget_morguliron", cTab = 1)
+    public static Item NUGGET_MORGULIRON = new ItemBCore();
+    @ModFeature(name = "ingot_morguliron", stateOverride = "simple_items#type=ingot_morguliron", cTab = 1)
+    public static Item INGOT_MORGULIRON = new ItemBCore();
+    @ModFeature(name = "block_morguliron", cTab = 1)
+    public static final Block BLOCK_MORGULIRON = new BlockBCore(Material.IRON).setHardness(1.5F).setResistance(10F);
+    @ModFeature(name = "morguliron_bars", cTab = 1)
+    public static final Block MORGULIRON_BARS = new BlockPanes(Material.IRON,true).setHardness(5.0F).setResistance(10.0F);
+    @ModFeature(name = "door_morguliron", itemBlock = NoItemBlock.class)
+    public static final BlockDoors DOOR_MORGULIRON = new BlockDoors(Material.IRON);
+    @ModFeature(name = "item_door_morguliron", cTab = 1)
+    public static final ItemBlockDoors ITEM_DOOR_MORGULIRON = new ItemBlockDoors(DOOR_MORGULIRON);
     @ModFeature(name = "gem_ammolite", stateOverride = "simple_items#type=gem_ammolite", cTab = 1)
     public static Item GEM_AMMOLITE = new TTMLore(16).setEffectOverride(true).setItemHasUse(false);
+    /* End Region */
+
+    /* Armor */
+    @ModFeature(name = "helmet_mithril", stateOverride = "armor#type=helmet_mithril")
+    public static Item HELMET_MITHRIL = new ArmorMithril(ARMOR_MITHRIL, 1, EntityEquipmentSlot.HEAD);
+    @ModFeature(name = "chestplate_mithril", stateOverride = "armor#type=chestplate_mithril")
+    public static Item CHESTPLATE_MITHRIL = new ArmorMithril(ARMOR_MITHRIL, 1, EntityEquipmentSlot.CHEST);
+    @ModFeature(name = "leggings_mithril", stateOverride = "armor#type=leggings_mithril")
+    public static Item LEGGINGS_MITHRIL = new ArmorMithril(ARMOR_MITHRIL, 2, EntityEquipmentSlot.LEGS);
+    @ModFeature(name = "boots_mithril", stateOverride = "armor#type=boots_mithril")
+    public static Item BOOTS_MITHRIL = new ArmorMithril(ARMOR_MITHRIL, 1, EntityEquipmentSlot.FEET);
+    @ModFeature(name = "helmet_morguliron", stateOverride = "armor#type=helmet_morguliron")
+    public static Item HELMET_MORGULIRON = new ArmorMorgulIron(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.HEAD);
+    @ModFeature(name = "chestplate_morguliron", stateOverride = "armor#type=chestplate_morguliron")
+    public static Item CHESTPLATE_MORGULIRON = new ArmorMorgulIron(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.CHEST);
+    @ModFeature(name = "leggings_morguliron", stateOverride = "armor#type=leggings_morguliron")
+    public static Item LEGGINGS_MORGULIRON = new ArmorMorgulIron(ARMOR_MORGULIRON, 2, EntityEquipmentSlot.LEGS);
+    @ModFeature(name = "boots_morguliron", stateOverride = "armor#type=boots_morguliron")
+    public static Item BOOTS_MORGULIRON = new ArmorMorgulIron(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.FEET);
+    /* End Region */
+
+    /* Tools & Weapons */
+    @ModFeature(name = "axe_mithril", stateOverride = "tools#type=axe_mithril")
+    public static Item AXE_MITHRIL = new ToolAxe(TOOL_MITHRIL, TOOL_MITHRIL.getAttackDamage(), -1.5F);
+    @ModFeature(name = "hoe_mithril", stateOverride = "tools#type=hoe_mithril")
+    public static Item HOE_MITHRIL = new ItemHoe(TOOL_MITHRIL);
+    @ModFeature(name = "pickaxe_mithril", stateOverride = "tools#type=pickaxe_mithril")
+    public static Item PICKAXE_MITHRIL = new ItemPickaxe(TOOL_MITHRIL);
+    @ModFeature(name = "shovel_mithril", stateOverride = "tools#type=shovel_mithril")
+    public static Item SHOVEL_MITHRIL = new ItemSpade(TOOL_MITHRIL);
+    @ModFeature(name = "sword_mithril", stateOverride = "tools#type=sword_mithril")
+    public static Item SWORD_MITHRIL = new ItemSword(TOOL_MITHRIL);
+    @ModFeature(name = "axe_morguliron", stateOverride = "tools#type=axe_morguliron")
+    public static Item AXE_MORGULIRON = new ToolAxe(TOOL_MORGULIRON, TOOL_MORGULIRON.getAttackDamage(), -3.0F);
+    @ModFeature(name = "hoe_morguliron", stateOverride = "tools#type=hoe_morguliron")
+    public static Item HOE_MORGULIRON = new ItemHoe(TOOL_MORGULIRON);
+    @ModFeature(name = "pickaxe_morguliron", stateOverride = "tools#type=pickaxe_morguliron")
+    public static Item PICKAXE_MORGULIRON = new ItemPickaxe(TOOL_MORGULIRON);
+    @ModFeature(name = "shovel_morguliron", stateOverride = "tools#type=shovel_morguliron")
+    public static Item SHOVEL_MORGULIRON = new ItemSpade(TOOL_MORGULIRON);
+    @ModFeature(name = "sword_morguliron", stateOverride = "tools#type=sword_morguliron")
+    public static Item SWORD_MORGULIRON = new ItemSword(TOOL_MORGULIRON);
+    @ModFeature(name = "whip_fire", stateOverride = "tools#type=whip_fire")
+    public static Item WHIP_FIRE = new ToolSword(TOOL_MITHRIL,"whip_fire.obj","whip_fire.png").setEffectOverride(true);
+    @ModFeature(name = "club_wooden", stateOverride = "tools#type=club_wooden")
+    public static Item CLUB_WOODEN = new ToolSword(TOOL_MITHRIL,"club_wooden.obj","club_wooden.png").setEffectOverride(true);
+    @ModFeature(name = "sword_witchking", stateOverride = "tools#type=sword_witchking")
+    public static Item SWORD_WITCHKING = new TTMSword(TOOL_MITHRIL).setEffectOverride(true);
+    @ModFeature(name = "trinket_ring", stateOverride = "tools#type=trinket_ring")
+    public static Item TRINKET_RING = new ItemTrinketRing();
+    @ModFeature(name = "trinket_amulet", stateOverride = "tools#type=trinket_amulet")
+    public static Item TRINKET_AMULET = new ItemTrinketAmulet();
+    @ModFeature(name = "trinket_belt", stateOverride = "tools#type=trinket_belt")
+    public static Item TRINKET_BELT = new ItemTrinketBelt();
+    @ModFeature(name = "trinket_charm", stateOverride = "tools#type=trinket_charm")
+    public static Item TRINKET_CHARM = new ItemTrinketCharm();
+    /* End Region */
+
+    /* Coins & Tokens */
+    @ModFeature(name = "item_coin_bronze", stateOverride = "simple_items#type=item_coin_bronze", cTab = 4)
+    public static Item ITEM_COIN_BRONZE = new TTMLore(64).setItemHasUse(false);
+    @ModFeature(name = "item_coin_silver", stateOverride = "simple_items#type=item_coin_silver", cTab = 4)
+    public static Item ITEM_COIN_SILVER = new TTMLore(64).setItemHasUse(false);
+    @ModFeature(name = "item_coin_gold", stateOverride = "simple_items#type=item_coin_gold", cTab = 4)
+    public static Item ITEM_COIN_GOLD = new TTMLore(64).setItemHasUse(false);
+    @ModFeature(name = "item_coin_mithril", stateOverride = "simple_items#type=item_coin_mithril", cTab = 4)
+    public static Item ITEM_COIN_MITHRIL = new TTMLore(64).setItemHasUse(false);
+    @ModFeature(name = "item_darksigil", stateOverride = "simple_items#type=item_darksigil", cTab = 4)
+    public static Item ITEM_DARKSIGIL = new TTMLore(64).setItemHasUse(false);
+    @ModFeature(name = "item_coin1", stateOverride = "simple_items#type=item_coin1", cTab = 4)
+    public static Item ITEM_FACTIONCOIN = new TTMLore(64).setItemHasUse(false);
+    @ModFeature(name = "item_coin2", stateOverride = "simple_items#type=item_coin2", cTab = 4)
+    public static Item ITEM_FACTIONTOKEN = new TTMLore(64).setItemHasUse(false);
+    @ModFeature(name = "item_cavecomplete", stateOverride = "simple_items#type=item_cavecomplete", cTab = 4)
+    public static Item ITEM_CAVECOMPLETE = new TTMLore(3).setItemHasUse(false);
+    @ModFeature(name = "item_watchercomplete", stateOverride = "simple_items#type=item_watchercomplete", cTab = 4)
+    public static Item ITEM_WATCHERCOMPLETE = new TTMLore(3).setItemHasUse(false);
     /* End Region */
 
     /* Quest Items */
@@ -87,18 +182,12 @@ public class TTMFeatures implements IModFeatures {
     public static Item ITEM_WATCHERHEART = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_watcherheart_cracked", stateOverride = "simple_items#type=item_watcherheart_cracked", cTab = 4)
     public static Item ITEM_WATCHERHEART_CRACKED = new TTMLore(1).setItemHasUse(false);
-    @ModFeature(name = "item_darksigil", stateOverride = "simple_items#type=item_darksigil", cTab = 4)
-    public static Item ITEM_DARKSIGIL = new TTMLore(64).setItemHasUse(false);
     @ModFeature(name = "item_fortressmap", stateOverride = "simple_items#type=item_fortressmap", cTab = 4)
     public static Item ITEM_FORTRESSMAP = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_keystone", stateOverride = "simple_items#type=item_keystone", cTab = 4)
     public static Item ITEM_KEYSTONE = new TTMLore(1).setItemHasUse(false);
     @ModFeature(name = "item_darksaddle", stateOverride = "simple_items#type=item_darksaddle", cTab = 4)
     public static Item ITEM_DARKSADDLE = new TTMLore(1).setItemHasUse(false);
-    @ModFeature(name = "item_cavecomplete", stateOverride = "simple_items#type=item_cavecomplete", cTab = 4)
-    public static Item ITEM_CAVECOMPLETE = new TTMLore(3).setItemHasUse(false);
-    @ModFeature(name = "item_watchercomplete", stateOverride = "simple_items#type=item_watchercomplete", cTab = 4)
-    public static Item ITEM_WATCHERCOMPLETE = new TTMLore(3).setItemHasUse(false);
     @ModFeature(name = "item_artifact", stateOverride = "simple_items#type=item_artifact", cTab = 4)
     public static Item ITEM_ARTIFACT = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_blankpaper", stateOverride = "simple_items#type=item_blankpaper", cTab = 4)
@@ -157,18 +246,6 @@ public class TTMFeatures implements IModFeatures {
     public static Item ITEM_WOVENBASKET = new TTMLore(3).setItemHasUse(false);
     @ModFeature(name = "item_writtenpaper", stateOverride = "simple_items#type=item_writtenpaper", cTab = 4)
     public static Item ITEM_WRITTENPAPER = new TTMLore(1).setEffectOverride(true).setItemHasUse(false);
-    @ModFeature(name = "item_coin1", stateOverride = "simple_items#type=item_coin1", cTab = 4)
-    public static Item ITEM_FACTIONCOIN = new TTMLore(64).setItemHasUse(false);
-    @ModFeature(name = "item_coin2", stateOverride = "simple_items#type=item_coin2", cTab = 4)
-    public static Item ITEM_FACTIONTOKEN = new TTMLore(64).setItemHasUse(false);
-    @ModFeature(name = "item_coin_bronze", stateOverride = "simple_items#type=item_coin_bronze", cTab = 4)
-    public static Item ITEM_COIN_BRONZE = new TTMLore(64).setItemHasUse(false);
-    @ModFeature(name = "item_coin_silver", stateOverride = "simple_items#type=item_coin_silver", cTab = 4)
-    public static Item ITEM_COIN_SILVER = new TTMLore(64).setItemHasUse(false);
-    @ModFeature(name = "item_coin_gold", stateOverride = "simple_items#type=item_coin_gold", cTab = 4)
-    public static Item ITEM_COIN_GOLD = new TTMLore(64).setItemHasUse(false);
-    @ModFeature(name = "item_coin_mithril", stateOverride = "simple_items#type=item_coin_mithril", cTab = 4)
-    public static Item ITEM_COIN_MITHRIL = new TTMLore(64).setItemHasUse(false);
     @ModFeature(name = "item_pungentherb", stateOverride = "simple_items#type=item_pungentherb", cTab = 4)
     public static Item ITEM_PUNGENTHERB = new TTMLore(3).setEffectOverride(true).setItemHasUse(false);
     @ModFeature(name = "item_lockpick", stateOverride = "simple_items#type=item_lockpick", cTab = 4)
@@ -191,69 +268,7 @@ public class TTMFeatures implements IModFeatures {
     public static Item ITEM_RUNE_STONE = new TTMLore(8).setEffectOverride(true).setItemHasUse(false);
     /* End Region */
 
-    /* Tools */
-    @ModFeature(name = "axe_mithril", stateOverride = "tools#type=axe_mithril")
-    public static Item AXE_MITHRIL = new ToolAxe(TOOL_MITHRIL, TOOL_MITHRIL.getAttackDamage(), -1.5F);
-    @ModFeature(name = "hoe_mithril", stateOverride = "tools#type=hoe_mithril")
-    public static Item HOE_MITHRIL = new ItemHoe(TOOL_MITHRIL);
-    @ModFeature(name = "pickaxe_mithril", stateOverride = "tools#type=pickaxe_mithril")
-    public static Item PICKAXE_MITHRIL = new ItemPickaxe(TOOL_MITHRIL);
-    @ModFeature(name = "shovel_mithril", stateOverride = "tools#type=shovel_mithril")
-    public static Item SHOVEL_MITHRIL = new ItemSpade(TOOL_MITHRIL);
-    @ModFeature(name = "sword_mithril", stateOverride = "tools#type=sword_mithril")
-    public static Item SWORD_MITHRIL = new ItemSword(TOOL_MITHRIL);
-    @ModFeature(name = "axe_morguliron", stateOverride = "tools#type=axe_morguliron")
-    public static Item AXE_MORGULIRON = new ToolAxe(TOOL_MORGULIRON, TOOL_MORGULIRON.getAttackDamage(), -3.0F);
-    @ModFeature(name = "hoe_morguliron", stateOverride = "tools#type=hoe_morguliron")
-    public static Item HOE_MORGULIRON = new ItemHoe(TOOL_MORGULIRON);
-    @ModFeature(name = "pickaxe_morguliron", stateOverride = "tools#type=pickaxe_morguliron")
-    public static Item PICKAXE_MORGULIRON = new ItemPickaxe(TOOL_MORGULIRON);
-    @ModFeature(name = "shovel_morguliron", stateOverride = "tools#type=shovel_morguliron")
-    public static Item SHOVEL_MORGULIRON = new ItemSpade(TOOL_MORGULIRON);
-    @ModFeature(name = "sword_morguliron", stateOverride = "tools#type=sword_morguliron")
-    public static Item SWORD_MORGULIRON = new ItemSword(TOOL_MORGULIRON);
-    @ModFeature(name = "whip_fire", stateOverride = "tools#type=whip_fire")
-    public static Item WHIP_FIRE = new ToolSword(TOOL_MITHRIL,"whip_fire.obj","whip_fire.png").setEffectOverride(true);
-    @ModFeature(name = "club_wooden", stateOverride = "tools#type=club_wooden")
-    public static Item CLUB_WOODEN = new ToolSword(TOOL_MITHRIL,"club_wooden.obj","club_wooden.png").setEffectOverride(true);
-    @ModFeature(name = "sword_witchking", stateOverride = "tools#type=sword_witchking")
-    public static Item SWORD_WITCHKING = new TTMSword(TOOL_MITHRIL).setEffectOverride(true);
-    @ModFeature(name = "trinket_ring", stateOverride = "tools#type=trinket_ring")
-    public static Item TRINKET_RING = new ItemTrinketRing();
-    @ModFeature(name = "trinket_amulet", stateOverride = "tools#type=trinket_amulet")
-    public static Item TRINKET_AMULET = new ItemTrinketAmulet();
-    @ModFeature(name = "trinket_belt", stateOverride = "tools#type=trinket_belt")
-    public static Item TRINKET_BELT = new ItemTrinketBelt();
-    @ModFeature(name = "trinket_charm", stateOverride = "tools#type=trinket_charm")
-    public static Item TRINKET_CHARM = new ItemTrinketCharm();
-    /* End Region */
-
-    /* Armor */
-    @ModFeature(name = "helmet_mithril", stateOverride = "armor#type=helmet_mithril")
-    public static Item HELMET_MITHRIL = new ArmorMithril(ARMOR_MITHRIL, 1, EntityEquipmentSlot.HEAD);
-    @ModFeature(name = "chestplate_mithril", stateOverride = "armor#type=chestplate_mithril")
-    public static Item CHESTPLATE_MITHRIL = new ArmorMithril(ARMOR_MITHRIL, 1, EntityEquipmentSlot.CHEST);
-    @ModFeature(name = "leggings_mithril", stateOverride = "armor#type=leggings_mithril")
-    public static Item LEGGINGS_MITHRIL = new ArmorMithril(ARMOR_MITHRIL, 2, EntityEquipmentSlot.LEGS);
-    @ModFeature(name = "boots_mithril", stateOverride = "armor#type=boots_mithril")
-    public static Item BOOTS_MITHRIL = new ArmorMithril(ARMOR_MITHRIL, 1, EntityEquipmentSlot.FEET);
-    @ModFeature(name = "helmet_morguliron", stateOverride = "armor#type=helmet_morguliron")
-    public static Item HELMET_MORGULIRON = new ArmorMorgulIron(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.HEAD);
-    @ModFeature(name = "chestplate_morguliron", stateOverride = "armor#type=chestplate_morguliron")
-    public static Item CHESTPLATE_MORGULIRON = new ArmorMorgulIron(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.CHEST);
-    @ModFeature(name = "leggings_morguliron", stateOverride = "armor#type=leggings_morguliron")
-    public static Item LEGGINGS_MORGULIRON = new ArmorMorgulIron(ARMOR_MORGULIRON, 2, EntityEquipmentSlot.LEGS);
-    @ModFeature(name = "boots_morguliron", stateOverride = "armor#type=boots_morguliron")
-    public static Item BOOTS_MORGULIRON = new ArmorMorgulIron(ARMOR_MORGULIRON, 1, EntityEquipmentSlot.FEET);
-    /* End Region */
-
-    /* Simple Blocks */
-    @ModFeature(name = "block_mithril", cTab = 1)
-    public static final Block BLOCK_MITHRIL = new BlockBCore(Material.IRON).setHardness(1.5F).setResistance(10F);
-    @ModFeature(name = "block_morguliron", cTab = 1)
-    public static final Block BLOCK_MORGULIRON = new BlockBCore(Material.IRON).setHardness(1.5F).setResistance(10F);
-    @ModFeature(name = "ore", variantMap = {"0:type=mithril", "1:type=morguliron", "2:type=nether_mithril", "3:type=nether_morguliron", "4:type=ender_mithril", "5:type=ender_morguliron", "6:type=ammolite", "7:type=nether_ammolite", "8:type=ender_ammolite"}, itemBlock = ItemBlockBCore.class, cTab = 1)
-    public static final Block ORE = new BlockOres();
+    /* Wood Products */
     @ModFeature(name = "planks", variantMap = {"0:variant=mallorn", "1:variant=mirkwood", "2:variant=culumalda", "3:variant=lebethron"}, itemBlock = ItemBlockBCore.class, cTab = 1)
     public static final Block PLANKS = new BlockPlank();
     @ModFeature(name = "log", variantMap = {"0:axis=y,variant=mallorn", "1:axis=y,variant=mirkwood", "2:axis=y,variant=culumalda", "3:axis=y,variant=lebethron"}, itemBlock = ItemBlockBCore.class, cTab = 1)
@@ -278,22 +293,18 @@ public class TTMFeatures implements IModFeatures {
     public static final BlockDoors DOOR_MIRKWOOD = new BlockDoors(Material.WOOD);
     @ModFeature(name = "item_door_mirkwood", cTab = 1)
     public static final ItemBlockDoors ITEM_DOOR_MIRKWOOD = new ItemBlockDoors(DOOR_MIRKWOOD);
-    @ModFeature(name = "door_lebethron", itemBlock = NoItemBlock.class)
-    public static final BlockDoors DOOR_LEBETHRON = new BlockDoors(Material.WOOD);
-    @ModFeature(name = "item_door_lebethron", cTab = 1)
-    public static final ItemBlockDoors ITEM_DOOR_LEBETHRON = new ItemBlockDoors(DOOR_LEBETHRON);
     @ModFeature(name = "door_culumalda", itemBlock = NoItemBlock.class)
     public static final BlockDoors DOOR_CULUMALDA = new BlockDoors(Material.WOOD);
     @ModFeature(name = "item_door_culumalda", cTab = 1)
     public static final ItemBlockDoors ITEM_DOOR_CULUMALDA = new ItemBlockDoors(DOOR_CULUMALDA);
-    @ModFeature(name = "mithril_bars", cTab = 1)
-    public static final Block MITHRIL_BARS = new BlockPanes(Material.IRON,true).setHardness(10.0F).setResistance(10.0F);
-    @ModFeature(name = "morguliron_bars", cTab = 1)
-    public static final Block MORGULIRON_BARS = new BlockPanes(Material.IRON,true).setHardness(5.0F).setResistance(10.0F);
-    @ModFeature(name = "fence_mirkwood", cTab = 1)
-    public static final Block FENCE_MIRKWOOD = new BlockFences(Material.WOOD, BlockPlanks.EnumType.OAK.getMapColor()).setHardness(2.0F).setResistance(5.0F);
+    @ModFeature(name = "door_lebethron", itemBlock = NoItemBlock.class)
+    public static final BlockDoors DOOR_LEBETHRON = new BlockDoors(Material.WOOD);
+    @ModFeature(name = "item_door_lebethron", cTab = 1)
+    public static final ItemBlockDoors ITEM_DOOR_LEBETHRON = new ItemBlockDoors(DOOR_LEBETHRON);
     @ModFeature(name = "fence_mallorn", cTab = 1)
     public static final Block FENCE_MALLORN = new BlockFences(Material.WOOD, BlockPlanks.EnumType.OAK.getMapColor()).setHardness(2.0F).setResistance(5.0F);
+    @ModFeature(name = "fence_mirkwood", cTab = 1)
+    public static final Block FENCE_MIRKWOOD = new BlockFences(Material.WOOD, BlockPlanks.EnumType.OAK.getMapColor()).setHardness(2.0F).setResistance(5.0F);
     @ModFeature(name = "fence_culumalda", cTab = 1)
     public static final Block FENCE_CULUMALDA = new BlockFences(Material.WOOD, BlockPlanks.EnumType.OAK.getMapColor()).setHardness(2.0F).setResistance(5.0F);
     @ModFeature(name = "fence_lebethron", cTab = 1)
@@ -306,7 +317,6 @@ public class TTMFeatures implements IModFeatures {
     public static final Block FENCE_GATE_CULUMALDA = new BlockFenceGates(2.0F, 5.0F);
     @ModFeature(name = "fence_gate_lebethron", cTab = 1)
     public static final Block FENCE_GATE_LEBETHRON = new BlockFenceGates(2.0F, 5.0F);
-
     /* End Region */
 
     /* Plants */                                             //TODO add a way to avoid this mess in 1.13...
@@ -320,32 +330,32 @@ public class TTMFeatures implements IModFeatures {
     public static final BlockTMMushroom TM_MUSHROOM = new BlockTMMushroom();
     /* End Region */
 
-    /* Basic Items */
-    @ModFeature(name = "feather_crebain", stateOverride = "simple_items#type=feather_crebain", cTab = 4)
+    /* Mob Drops */
+    @ModFeature(name = "feather_crebain", stateOverride = "simple_items#type=feather_crebain", cTab = 2)
     public static Item CREBAIN_FEATHER = new ItemBCore();
-    @ModFeature(name = "feather_bird", stateOverride = "simple_items#type=feather_bird", cTab = 4)
+    @ModFeature(name = "feather_bird", stateOverride = "simple_items#type=feather_bird", cTab = 2)
     public static Item BIRD_FEATHER = new ItemBCore();
-    @ModFeature(name = "leather_mumakil", stateOverride = "simple_items#type=leather_mumakil", cTab = 4)
+    @ModFeature(name = "leather_mumakil", stateOverride = "simple_items#type=leather_mumakil", cTab = 2)
     public static Item MUMAKIL_LEATHER = new ItemBCore();
-    @ModFeature(name = "monster_fur", stateOverride = "simple_items#type=monster_fur", cTab = 4)
+    @ModFeature(name = "monster_fur", stateOverride = "simple_items#type=monster_fur", cTab = 2)
     public static Item MONSTER_FUR = new ItemBCore();
-    @ModFeature(name = "bottle_fancy", stateOverride = "simple_items#type=bottle_fancy", cTab = 4)
+    @ModFeature(name = "bottle_fancy", stateOverride = "simple_items#type=bottle_fancy", cTab = 2)
     public static Item BOTTLE_FANCY = new ItemBCore();
-    @ModFeature(name = "item_golem_stone", stateOverride = "simple_items#type=item_golem_stone", cTab = 4)
+    @ModFeature(name = "item_golem_stone", stateOverride = "simple_items#type=item_golem_stone", cTab = 2)
     public static Item GOLEM_STONE = new TTMLore(16).setItemHasUse(false);
-    @ModFeature(name = "item_golem_stone_earth", stateOverride = "simple_items#type=item_golem_stone_earth", cTab = 4)
+    @ModFeature(name = "item_golem_stone_earth", stateOverride = "simple_items#type=item_golem_stone_earth", cTab = 2)
     public static Item GOLEM_STONE_EARTH = new TTMLore(16).setItemHasUse(false);
-    @ModFeature(name = "item_golem_stone_air", stateOverride = "simple_items#type=item_golem_stone_air", cTab = 4)
+    @ModFeature(name = "item_golem_stone_air", stateOverride = "simple_items#type=item_golem_stone_air", cTab = 2)
     public static Item GOLEM_STONE_AIR = new TTMLore(16).setItemHasUse(false);
-    @ModFeature(name = "item_golem_stone_fire", stateOverride = "simple_items#type=item_golem_stone_fire", cTab = 4)
+    @ModFeature(name = "item_golem_stone_fire", stateOverride = "simple_items#type=item_golem_stone_fire", cTab = 2)
     public static Item GOLEM_STONE_FIRE = new TTMLore(16).setItemHasUse(false);
-    @ModFeature(name = "item_golem_stone_water", stateOverride = "simple_items#type=item_golem_stone_water", cTab = 4)
+    @ModFeature(name = "item_golem_stone_water", stateOverride = "simple_items#type=item_golem_stone_water", cTab = 2)
     public static Item GOLEM_STONE_WATER = new TTMLore(16).setItemHasUse(false);
-    @ModFeature(name = "item_golem_stone_summon", stateOverride = "simple_items#type=item_golem_stone_summon", cTab = 4)
+    @ModFeature(name = "item_golem_stone_summon", stateOverride = "simple_items#type=item_golem_stone_summon", cTab = 2)
     public static Item GOLEM_STONE_SUMMON = new TTMLore(16).setEffectOverride(true).setSpawnInfo(true);
     /* End Region */
 
-    /* Food */
+    /* Food & Drinks */
     @ModFeature(name = "food_lembas", stateOverride = "simple_items#type=food_lembas", cTab = 3)
     public static Item LEMBAS = new TTMFood(20, 64, 20, new PotionEffect(MobEffects.ABSORPTION,12000,5), new PotionEffect(MobEffects.REGENERATION,100,5)).setEffectOverride(true);
     @ModFeature(name = "food_honeycake", stateOverride = "simple_items#type=food_honeycake", cTab = 3)
@@ -383,12 +393,12 @@ public class TTMFeatures implements IModFeatures {
     /* Custom Blocks */
     @ModFeature(name = "sign", itemBlock = ItemBlockBCore.class, tileEntity = TileSign.class, cTab = 5)
     public static final BlockSigns SIGNS = new BlockSigns();
+    @ModFeature(name = "block_tmfireplace", cTab = 1, tileEntity = TileTMFireplace.class)
+    public static final Block BLOCK_TMFIREPLACE = new BlockTMFireplace().setHardness(1.5F).setResistance(10F);
     @ModFeature(name = "block_hallowed", cTab = 1)
     public static final Block BLOCK_HALLOWED = new BlockTMHallowed();
     @ModFeature(name = "block_stone_path", cTab = 1)
     public static final Block STONE_PATH = new BlockStonePath();
-    @ModFeature(name = "block_tmfireplace", cTab = 1, tileEntity = TileTMFireplace.class)
-    public static final Block BLOCK_TMFIREPLACE = new BlockTMFireplace().setHardness(1.5F).setResistance(10F);
     /* End Region */
 
     /* Records */
@@ -416,7 +426,6 @@ public class TTMFeatures implements IModFeatures {
     public static Item RECORD_BOMBADIL = new TTMRecord("music.mysteryoftombombadil", SoundInit.mysteryoftombombadil);
     @ModFeature(name = "record_hobbits", stateOverride = "simple_items#type=record_hobbits", cTab = 4)
     public static Item RECORD_HOBBITS = new TTMRecord("music.concerninghobbits", SoundInit.concerninghobbits);
-
     /* End Region */
 
     /* Ammo */

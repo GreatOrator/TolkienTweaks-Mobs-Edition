@@ -56,10 +56,14 @@ public class CraftingInit {
         OreDictionary.registerOre("nuggetDwarvenSilver", new ItemStack(TTMFeatures.NUGGET_MITHRIL));
         OreDictionary.registerOre("ingotDwarvenSilver", new ItemStack(TTMFeatures.INGOT_MITHRIL));
         OreDictionary.registerOre("blockDwarvenSilver", new ItemStack(TTMFeatures.BLOCK_MITHRIL));
+        OreDictionary.registerOre("doorIron", new ItemStack(TTMFeatures.ITEM_DOOR_MITHRIL));
+        OreDictionary.registerOre("barsIron", new ItemStack(TTMFeatures.MITHRIL_BARS));
         OreDictionary.registerOre("dustMorgulIron", new ItemStack(TTMFeatures.DUST_MORGULIRON));
         OreDictionary.registerOre("nuggetMorgulIron", new ItemStack(TTMFeatures.NUGGET_MORGULIRON));
         OreDictionary.registerOre("ingotMorgulIron", new ItemStack(TTMFeatures.INGOT_MORGULIRON));
         OreDictionary.registerOre("blockMorgulIron", new ItemStack(TTMFeatures.BLOCK_MORGULIRON));
+        OreDictionary.registerOre("barsIron ", new ItemStack(TTMFeatures.MORGULIRON_BARS));
+        OreDictionary.registerOre("doorIron", new ItemStack(TTMFeatures.ITEM_DOOR_MORGULIRON));
         OreDictionary.registerOre("gemAmmolite", new ItemStack(TTMFeatures.GEM_AMMOLITE));
 
         /* Ores */
@@ -81,10 +85,10 @@ public class CraftingInit {
         OreDictionary.registerOre("stairWood", new ItemStack(TTMFeatures.STAIRS_CULUMALDA));
         OreDictionary.registerOre("stairWood", new ItemStack(TTMFeatures.STAIRS_MALLORN));
         OreDictionary.registerOre("stairWood", new ItemStack(TTMFeatures.STAIRS_MIRKWOOD));
-        OreDictionary.registerOre("doorWood", new ItemStack(TTMFeatures.DOOR_MALLORN));
-        OreDictionary.registerOre("doorWood", new ItemStack(TTMFeatures.DOOR_MIRKWOOD));
-        OreDictionary.registerOre("doorWood", new ItemStack(TTMFeatures.DOOR_LEBETHRON));
-        OreDictionary.registerOre("doorWood", new ItemStack(TTMFeatures.DOOR_CULUMALDA));
+        OreDictionary.registerOre("doorWood", new ItemStack(TTMFeatures.ITEM_DOOR_MALLORN));
+        OreDictionary.registerOre("doorWood", new ItemStack(TTMFeatures.ITEM_DOOR_MIRKWOOD));
+        OreDictionary.registerOre("doorWood", new ItemStack(TTMFeatures.ITEM_DOOR_LEBETHRON));
+        OreDictionary.registerOre("doorWood", new ItemStack(TTMFeatures.ITEM_DOOR_CULUMALDA));
         OreDictionary.registerOre("fenceWood", new ItemStack(TTMFeatures.FENCE_MALLORN));
         OreDictionary.registerOre("fenceWood", new ItemStack(TTMFeatures.FENCE_MIRKWOOD));
         OreDictionary.registerOre("fenceWood", new ItemStack(TTMFeatures.FENCE_CULUMALDA));
@@ -93,8 +97,6 @@ public class CraftingInit {
         OreDictionary.registerOre("fenceGateWood", new ItemStack(TTMFeatures.FENCE_GATE_MIRKWOOD));
         OreDictionary.registerOre("fenceGateWood", new ItemStack(TTMFeatures.FENCE_GATE_CULUMALDA));
         OreDictionary.registerOre("fenceGateWood", new ItemStack(TTMFeatures.FENCE_GATE_LEBETHRON));
-        OreDictionary.registerOre("ironBars", new ItemStack(TTMFeatures.MITHRIL_BARS));
-        OreDictionary.registerOre("ironBars", new ItemStack(TTMFeatures.MORGULIRON_BARS));
 
         /* Plant life */
         OreDictionary.registerOre("treeSapling", new ItemStack(TTMFeatures.SAPLINGS));
@@ -111,7 +113,8 @@ public class CraftingInit {
         OreDictionary.registerOre("foodInsect", new ItemStack(TTMFeatures.GOLDEN_INSECT));
         OreDictionary.registerOre("foodNut", new ItemStack(TTMFeatures.TREE_ACORN));
         OreDictionary.registerOre("foodNut", new ItemStack(TTMFeatures.GOLDEN_TREE_ACORN));
-        OreDictionary.registerOre("foodHoney", new ItemStack(TTMFeatures.FOOD_HONEY));
+        OreDictionary.registerOre("dropHoney", new ItemStack(TTMFeatures.FOOD_HONEY));
+        OreDictionary.registerOre("foodHoneydrop", new ItemStack(TTMFeatures.FOOD_HONEY));
 
         /* Monster Drops */
         OreDictionary.registerOre("feather", new ItemStack(TTMFeatures.CREBAIN_FEATHER));
