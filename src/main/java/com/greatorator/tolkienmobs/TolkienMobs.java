@@ -30,14 +30,14 @@ public class TolkienMobs {
         synchronized (MinecraftForge.EVENT_BUS) {
             Logger ttLog = LogManager.getLogger("tolkientweaks");
             Logger bcLog = LogManager.getLogger("brandonscore");
-//            LogHelperTTM.info("Meeting of the Fellowship started! Waiting for the rest of the party to arrive...");
+            LOGGER.info("Meeting of the Fellowship started! Waiting for the rest of the party to arrive...");
             if (ModList.get().isLoaded("tolkientweaks")) {
                 ttLog.log(Level.INFO, "You shall have my axe!");
                 bcLog.log(Level.INFO, "...and you shall have my bow!");
-//                LogHelperTTM.info("Together we shall be the Fellowship of the Mods!");
+                LOGGER.info("Together we shall be the Fellowship of the Mods!");
             } else {
                 ttLog.log(Level.INFO, "...");
-//                LogHelperTTM.info("No party, no play!");
+                LOGGER.info("No party, no play!");
             }
         }
 

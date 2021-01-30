@@ -6,7 +6,7 @@ import net.minecraft.potion.Potion;
  * Created by brandon3055 on 31/10/18.
  */
 //@ModConfigContainer(modid = TolkienMobs.MODID)
-public class TTMConfig  {
+public class TTMConfig_Old {
 //    public static Map<String, String> comments = new HashMap<String, String>();
 //
 //    static {

@@ -1,29 +1,12 @@
 package com.greatorator.tolkienmobs.proxy;
 
-import com.greatorator.tolkienmobs.TTMConfig;
-import com.greatorator.tolkienmobs.commands.TTMCommandSpawn;
-import com.greatorator.tolkienmobs.handler.TTMEnchantHandler;
-import com.greatorator.tolkienmobs.handler.TTMSoundHandler;
-import com.greatorator.tolkienmobs.handler.TerrainEventHandler;
-import com.greatorator.tolkienmobs.init.*;
-import com.greatorator.tolkienmobs.integration.TinkersTTM;
-import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-import com.greatorator.tolkienmobs.utils.TTMEffectEvents;
 import com.greatorator.tolkienmobs.utils.TTMServerEvents;
 import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
-import com.greatorator.tolkienmobs.world.gen.WorldGenCustomOres;
-import com.greatorator.tolkienmobs.world.gen.WorldGenCustomStructures;
-import com.greatorator.tolkienmobs.world.types.WorldTypeArda;
-import com.greatorator.tolkienmobs.world.types.WorldTypeSingleArda;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
-
-import static com.greatorator.tolkienmobs.TTMConfig.disableVanilla;
 
 public class CommonProxy {
 
@@ -45,13 +28,19 @@ public class CommonProxy {
 
 
     public void registerEventListeners() {
-        MinecraftForge.EVENT_BUS.register(new TTMServerEvents());
-        MinecraftForge.EVENT_BUS.register(new TTMEnchantHandler());
-        MinecraftForge.EVENT_BUS.register(TTMSoundHandler.class);
-        MinecraftForge.EVENT_BUS.register(new TTMEffectEvents());
-        if (disableVanilla) {
-            MinecraftForge.EVENT_BUS.register(new TTMSpawnEvent());
-        }
+        MinecraftForge.EVENT_BUS.addListener(TTMSpawnEvent::onEntitySpawn);
+        MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::onLivingUpdate);
+
+
+
+        //This still works but you can now register specific event handler methods which if you just have a single handler in a class it makes more sense
+//        MinecraftForge.EVENT_BUS.register(new TTMServerEvents());
+//        MinecraftForge.EVENT_BUS.register(new TTMEnchantHandler());
+//        MinecraftForge.EVENT_BUS.register(TTMSoundHandler.class);
+//        MinecraftForge.EVENT_BUS.register(new TTMEffectEvents());
+//        if (disableVanilla) {
+//            MinecraftForge.EVENT_BUS.register(new TTMSpawnEvent());
+//        }
     }
 
 

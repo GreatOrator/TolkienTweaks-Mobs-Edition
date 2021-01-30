@@ -1,24 +1,28 @@
 package com.greatorator.tolkienmobs.utils;
 
-import mezz.jei.util.Log;
+
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.Language;
 import net.minecraft.client.resources.LanguageManager;
-import net.minecraft.util.text.translation.I18n;
+
 
 import java.util.IllegalFormatException;
 import java.util.Locale;
 
+@Deprecated //You probably dont need this
 public class TTMTranslator {
     private TTMTranslator() {
     }
 
     public static String translateToLocal(String key) {
-        if (I18n.canTranslate(key)) {
-            return I18n.translateToLocal(key);
-        } else {
-            return I18n.translateToFallback(key);
-        }
+        return I18n.format(key);
+
+//        if (I18n.hasKey(key)) {
+//            return I18n.format(key);
+//        } else {
+//            return I18n.translateToFallback(key);
+//        }
     }
 
     public static String translateToLocalFormatted(String key, Object... format) {
@@ -26,7 +30,7 @@ public class TTMTranslator {
         try {
             return String.format(s, format);
         } catch (IllegalFormatException e) {
-            Log.get().error("Format error: {}", s, e);
+//            Log.get().error("Format error: {}", s, e);
             return "Format error: " + s;
         }
     }
@@ -38,7 +42,7 @@ public class TTMTranslator {
 
     @SuppressWarnings("ConstantConditions")
     private static Locale getLocale() {
-        Minecraft minecraft = Minecraft.getMinecraft();
+        Minecraft minecraft = Minecraft.getInstance();
         if (minecraft != null) {
             LanguageManager languageManager = minecraft.getLanguageManager();
             if (languageManager != null) {

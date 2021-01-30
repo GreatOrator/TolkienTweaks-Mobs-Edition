@@ -1,60 +1,59 @@
 package com.greatorator.tolkienmobs.utils;
 
-import com.greatorator.tolkienmobs.TTMConfig;
-import com.greatorator.tolkienmobs.entity.special.EntityTMMithrilGolem;
+import com.greatorator.tolkienmobs.TTMConfig_Old;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
+import net.minecraft.entity.passive.horse.HorseEntity;
+import net.minecraft.entity.passive.horse.LlamaEntity;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
 
 public class TTMSpawnEvent {
-    @SubscribeEvent
-    public void onEntitySpawn(EntityJoinWorldEvent event) {
+
+    public static void onEntitySpawn(EntityJoinWorldEvent event) {
         int willSpawn = TTMSpawnEvent.spawnChance();
 
-        if (willSpawn > 10 && TTMConfig.disableVanilla) {
-            if (event.getEntity() instanceof EntitySpider ||
-                    event.getEntity() instanceof EntityCaveSpider ||
-                    event.getEntity() instanceof EntityWolf ||
-                    event.getEntity() instanceof EntityLlama ||
-                    event.getEntity() instanceof EntityHorse ||
-                    event.getEntity() instanceof EntityCow ||
-                    event.getEntity() instanceof EntityRabbit ||
-                    event.getEntity() instanceof EntitySheep ||
-                    event.getEntity() instanceof EntityPig ||
-                    event.getEntity() instanceof EntityParrot ||
-                    event.getEntity() instanceof EntityOcelot) {
+        if (willSpawn > 10 && TTMConfig_Old.disableVanilla) {
+            if (event.getEntity() instanceof SpiderEntity ||
+                    event.getEntity() instanceof CaveSpiderEntity ||
+                    event.getEntity() instanceof WolfEntity ||
+                    event.getEntity() instanceof LlamaEntity ||
+                    event.getEntity() instanceof HorseEntity ||
+                    event.getEntity() instanceof CowEntity ||
+                    event.getEntity() instanceof RabbitEntity ||
+                    event.getEntity() instanceof SheepEntity ||
+                    event.getEntity() instanceof PigEntity ||
+                    event.getEntity() instanceof ParrotEntity ||
+                    event.getEntity() instanceof OcelotEntity) {
                 event.setCanceled(true);
             }
         }
-        if (TTMConfig.disableVanilla) {
-            if (event.getEntity() instanceof EntitySkeleton ||
-                    event.getEntity() instanceof EntityWitch ||
-                    event.getEntity() instanceof EntitySlime ||
-                    event.getEntity() instanceof EntityZombie ||
-                    event.getEntity() instanceof EntityCreeper ||
-                    event.getEntity() instanceof EntityStray ||
-                    event.getEntity() instanceof EntityHusk ||
-                    event.getEntity() instanceof EntityEnderman) {
+        if (TTMConfig_Old.disableVanilla) {
+            if (event.getEntity() instanceof SkeletonEntity ||
+                    event.getEntity() instanceof WitchEntity ||
+                    event.getEntity() instanceof SlimeEntity ||
+                    event.getEntity() instanceof ZombieEntity ||
+                    event.getEntity() instanceof CreeperEntity ||
+                    event.getEntity() instanceof StrayEntity ||
+                    event.getEntity() instanceof HuskEntity ||
+                    event.getEntity() instanceof EndermanEntity) {
                 event.setCanceled(true);
             }
         }
-    }
 
-    @SubscribeEvent
-    public void onMithrilSpawn(EntityJoinWorldEvent event) {
-        if (event.getEntity() instanceof EntityTMMithrilGolem){
-            EntityTMMithrilGolem MithrilGolem = (EntityTMMithrilGolem) event.getEntity();
 
-            if (MithrilGolem.checkEntityCount()) {
-                event.setCanceled(true);
-            }
-        }
+//        if (event.getEntity() instanceof EntityTMMithrilGolem){
+//            EntityTMMithrilGolem MithrilGolem = (EntityTMMithrilGolem) event.getEntity();
+//
+//            if (MithrilGolem.checkEntityCount()) {
+//                event.setCanceled(true);
+//            }
+//        }
     }
 
     public static int spawnChance()
     {
-        int i = TTMRand.getRandomInteger(TTMConfig.mobSpawnChance, 1);
+        int i = TTMRand.getRandomInteger(TTMConfig_Old.mobSpawnChance, 1);
         return i;
     }
 }

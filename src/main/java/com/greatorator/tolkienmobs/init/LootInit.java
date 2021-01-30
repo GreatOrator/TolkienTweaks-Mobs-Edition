@@ -1,8 +1,6 @@
 package com.greatorator.tolkienmobs.init;
 
-import com.greatorator.tolkienmobs.TolkienMobs;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.storage.loot.LootTableList;
 
 public class LootInit {
 
@@ -71,6 +69,7 @@ public class LootInit {
 
     private static ResourceLocation register(String id)
     {
-        return LootTableList.register(new ResourceLocation(TolkienMobs.MODID, id));
+//        return LootTableList.register(new ResourceLocation(TolkienMobs.MODID, id));
+        return null;
     }
 }

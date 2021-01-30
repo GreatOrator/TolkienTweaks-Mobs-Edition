@@ -1,9 +1,7 @@
 package com.greatorator.tolkienmobs.proxy;
 
-import com.greatorator.tolkienmobs.client.TTMClientEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
@@ -14,7 +12,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void construct() {
         super.construct();
-        MinecraftForge.EVENT_BUS.register(new TTMClientEvents());
+//        MinecraftForge.EVENT_BUS.register(new TTMClientEvents());
     }
 
     @Override
