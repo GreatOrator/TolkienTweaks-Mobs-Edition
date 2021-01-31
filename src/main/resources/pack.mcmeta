@@ -1,7 +1,7 @@
 {
     "pack": {
         "description": "tolkienmobs resources",
-        "pack_format": 3,
+        "pack_format": 4,
         "_comment": "This is what happens when you need mobs and don't want a mod with a bazillion you don't."
     }
 }

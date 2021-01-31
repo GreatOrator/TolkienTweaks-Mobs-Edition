@@ -1,5 +1,7 @@
 package com.greatorator.tolkienmobs.proxy;
 
+import com.greatorator.tolkienmobs.TTMConfig;
+import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.utils.TTMServerEvents;
 import com.greatorator.tolkienmobs.utils.TTMSpawnEvent;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,6 +14,8 @@ public class CommonProxy {
 
     public void construct() {
         registerEventListeners();
+        TTMConfig.load();
+        TTMContent.init();
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {

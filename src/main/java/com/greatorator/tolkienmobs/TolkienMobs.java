@@ -25,6 +25,25 @@ public class TolkienMobs {
 
     public static CommonProxy proxy;
 
+    /*TODO List
+    * Registration Stuff
+    *  - Blocks
+    *  - Items
+    *  - Entities
+    *  - etc
+    *
+    * Data Generators
+    *  - Block States and models
+    *  - Item Models
+    *  - Translations
+    *  - Tags
+    *  - Loot
+    *  - Recipes
+    *
+    * Config (Done)
+    * Network
+    */
+
     public TolkienMobs() {
 
         synchronized (MinecraftForge.EVENT_BUS) {
@@ -45,7 +64,6 @@ public class TolkienMobs {
         proxy.construct();
 
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
-
     }
 
     @SubscribeEvent

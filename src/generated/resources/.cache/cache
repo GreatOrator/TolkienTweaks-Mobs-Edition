@@ -1,0 +1,6 @@
+f871784c8eed7b58d31d3260d9e26563dec5acbc assets/tolkienmobs/blockstates/example_block.json
+a1c8a9b750a779b577df1930dfe915707e12764f assets/tolkienmobs/lang/en_us.json
+92423cdad92d1d032513d6ba7ccb67bf4a0cefb2 assets/tolkienmobs/models/block/example_block.json
+916946ba523cf66452237f5c3d7a8c8f7d702ac0 assets/tolkienmobs/models/item/example_block.json
+e0d45815464aca71dad194745e04e58716578648 assets/tolkienmobs/models/item/example_item.json
+475fa023d3b9be3ecdec76e6c7d56383a1c43d1d data/tolkienmobs/loot_tables/blocks/example_block.json
