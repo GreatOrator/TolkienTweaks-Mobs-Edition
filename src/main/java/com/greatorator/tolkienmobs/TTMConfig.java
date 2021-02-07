@@ -29,7 +29,7 @@ public class TTMConfig {
     private static ConfigTag serverTag;
 
     public static void load() {
-        config = new StandardConfigFile(Paths.get("./config/brandon3055/DraconicEvolution.cfg")).load();
+        config = new StandardConfigFile(Paths.get("./config/greatorator/TolkienMobs.cfg")).load();
         loadServer();
         loadClient();
 //        EquipCfg.loadConfig(config); This is an example of how in DE i load additional configs in different locations because itr does not always make sense to have all your configs in one massive class.
