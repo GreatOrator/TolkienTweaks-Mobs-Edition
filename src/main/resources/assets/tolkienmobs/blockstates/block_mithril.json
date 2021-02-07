@@ -1,6 +1,50 @@
 {
-  "variants":
-  {
-    "normal": { "model": "tolkienmobs:block_mithril" }
+  "variants": {
+    "facing=down,powered=false": {
+      "model": "tolkienmobs:block_mithril",
+      "x": 90
+    },
+    "facing=up,powered=false": {
+      "model": "tolkienmobs:block_mithril",
+      "x": -90
+    },
+    "facing=north,powered=false": {
+      "model": "tolkienmobs:block_mithril"
+    },
+    "facing=south,powered=false": {
+      "model": "tolkienmobs:block_mithril",
+      "y": 180
+    },
+    "facing=west,powered=false": {
+      "model": "tolkienmobs:block_mithril",
+      "y": 270
+    },
+    "facing=east,powered=false": {
+      "model": "tolkienmobs:block_mithril",
+      "y": 90
+    },
+    "facing=down,powered=true": {
+      "model": "tolkienmobs:block_mithril_powered",
+      "x": 90
+    },
+    "facing=up,powered=true": {
+      "model": "tolkienmobs:block_mithril_powered",
+      "x": -90
+    },
+    "facing=north,powered=true": {
+      "model": "tolkienmobs:block_mithril_powered"
+    },
+    "facing=south,powered=true": {
+      "model": "tolkienmobs:block_mithril_powered",
+      "y": 180
+    },
+    "facing=west,powered=true": {
+      "model": "tolkienmobs:block_mithril_powered",
+      "y": 270
+    },
+    "facing=east,powered=true": {
+      "model": "tolkienmobs:block_mithril_powered",
+      "y": 90
+    }
   }
 }

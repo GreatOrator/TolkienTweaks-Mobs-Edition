@@ -8,10 +8,7 @@ import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.loot.*;
-import net.minecraft.loot.functions.ApplyBonus;
-import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
@@ -46,7 +43,7 @@ public class LootTableGenerator extends LootTableProvider {
     public static class BlockLootTables extends net.minecraft.data.loot.BlockLootTables {
 
         protected void addTables() {
-            registerDropSelfLootTable(TTMContent.EXAMPLE_BLOCK.get());
+            registerDropSelfLootTable(TTMContent.BLOCK_MITHRIL.get());
 
 
             //Special Stuff

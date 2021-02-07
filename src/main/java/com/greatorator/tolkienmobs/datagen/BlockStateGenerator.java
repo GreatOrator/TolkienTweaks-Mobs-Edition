@@ -29,7 +29,7 @@ public class BlockStateGenerator extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         //Simple Blocks
-        simpleBlock(TTMContent.EXAMPLE_BLOCK.get());
+        simpleBlock(TTMContent.BLOCK_MITHRIL.get());
 
 
 

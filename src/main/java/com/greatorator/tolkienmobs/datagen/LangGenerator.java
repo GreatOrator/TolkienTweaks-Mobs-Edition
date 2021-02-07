@@ -28,12 +28,12 @@ public class LangGenerator extends LanguageProvider {
     }
 
     private void blocks(PrefixHelper helper) {
-        helper.add(TTMContent.EXAMPLE_BLOCK.get(),                               "Draconium Block");
+        helper.add(TTMContent.BLOCK_MITHRIL.get(),                               "Mithril Block");
     }
 
     private void items(PrefixHelper helper) {
         //Components
-        helper.add(TTMContent.EXAMPLE_ITEM.get(),                                 "Draconium Dust");
+        helper.add(TTMContent.INGOT_MITHRIL.get(),                                 "Mithril Ingot");
     }
 
     //Then i just left in most of my translations so you can see how i handle them

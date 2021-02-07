@@ -1,9 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "result": {
-    "item": "tolkienmobs:block_mithril",
-    "count": 1
-  },
   "pattern": [
     "BBB",
     "BBB",
@@ -13,5 +9,8 @@
     "B": {
       "item": "tolkienmobs:ingot_mithril"
     }
+  },
+  "result": {
+    "item": "tolkienmobs:block_mithril"
   }
 }

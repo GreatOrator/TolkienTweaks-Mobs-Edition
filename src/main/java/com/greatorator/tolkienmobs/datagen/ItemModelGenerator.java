@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.datagen;
 
-import codechicken.lib.util.SneakyUtils;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import net.minecraft.block.Block;
@@ -10,10 +9,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
-import java.util.Objects;
 
 
 /**
@@ -28,11 +23,11 @@ public class ItemModelGenerator extends ItemModelProvider {
     @Override
     protected void registerModels() {
         //region Block Items
-        blockItem(TTMContent.EXAMPLE_BLOCK.get());
+        blockItem(TTMContent.BLOCK_MITHRIL.get());
 
 
 
-        simpleItem(TTMContent.EXAMPLE_ITEM.get());
+        simpleItem(TTMContent.INGOT_MITHRIL.get());
 
 
 //        blockItem(DEContent.generator, modLoc("block/generator/generator"));

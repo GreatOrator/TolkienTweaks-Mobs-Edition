@@ -1,21 +1,17 @@
 package com.greatorator.tolkienmobs;
 
+import codechicken.lib.gui.SimpleItemGroup;
 import com.brandon3055.brandonscore.blocks.ItemBlockBCore;
-import com.brandon3055.brandonscore.blocks.TileBCore;
-import com.brandon3055.brandonscore.inventory.ContainerBCTile;
-import com.brandon3055.brandonscore.inventory.ContainerBCore;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.brain.task.CreateBabyVillagerTask;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -35,6 +31,13 @@ public class TTMContent {
     private static final DeferredRegister<ContainerType<?>> CONTAINER = DeferredRegister.create(ForgeRegistries.CONTAINERS, MODID);
     private static final DeferredRegister<EntityType<?>> ENTITY = DeferredRegister.create(ForgeRegistries.ENTITIES, MODID);
 
+    public static ItemGroup toolsGroup = new SimpleItemGroup("tolkienmobs.tools", () -> new ItemStack(TTMContent.BLOCK_MITHRIL.get()));
+    public static ItemGroup matsGroup = new SimpleItemGroup("tolkienmobs.mats", () -> new ItemStack(TTMContent.INGOT_MITHRIL.get()));
+    public static ItemGroup spawnGroup = new SimpleItemGroup("tolkienmobs.spawn", () -> new ItemStack(TTMContent.BLOCK_MITHRIL.get()));
+    public static ItemGroup foodGroup = new SimpleItemGroup("tolkienmobs.food", () -> new ItemStack(TTMContent.BLOCK_MITHRIL.get()));
+    public static ItemGroup questGroup = new SimpleItemGroup("tolkienmobs.quest", () -> new ItemStack(TTMContent.BLOCK_MITHRIL.get()));
+    public static ItemGroup signsGroup = new SimpleItemGroup("tolkienmobs.signs", () -> new ItemStack(TTMContent.BLOCK_MITHRIL.get()));
+
     public static void init() {
         BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -44,26 +47,26 @@ public class TTMContent {
     }
 
     //#################################################################
-    // Blocks
+    // Basic Blocks
     //#################################################################
 
-    public static RegistryObject<Block> EXAMPLE_BLOCK = BLOCKS.register("example_block", () -> new Block(AbstractBlock.Properties.create(Material.ROCK)));
+    public static RegistryObject<Block> BLOCK_MITHRIL = BLOCKS.register("block_mithril", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
 
     //#################################################################
-    // Items
+    // Quest Items
     //#################################################################
 
     //Blocks now require you to register their item separately. The item for a block should have the same registry name.
-    public static RegistryObject<Item> EXAMPLE_BLOCK_ITEM = ITEMS.register("example_block", () -> new ItemBlockBCore(EXAMPLE_BLOCK.get(), new Item.Properties().group(ItemGroup.BUILDING_BLOCKS)));
+    public static RegistryObject<Item> BLOCK_MITHRIL_ITEM = ITEMS.register("block_mithril", () -> new ItemBlockBCore(BLOCK_MITHRIL.get(), new Item.Properties().group(matsGroup)));
 
     //Actual items
-    public static RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Item(new Item.Properties().group(ItemGroup.MISC)));
+    public static RegistryObject<Item> INGOT_MITHRIL = ITEMS.register("ingot_mithril", () -> new Item(new Item.Properties().group(matsGroup)));
 
     //#################################################################
     // Tile Entity Types
     //#################################################################
 
-    public static RegistryObject<TileEntityType<ExampleTile>> EXAMPLE_TILE = TILE.register("example_tile", () -> TileEntityType.Builder.create(ExampleTile::new, EXAMPLE_BLOCK.get()).build(null));
+    //public static RegistryObject<TileEntityType<ExampleTile>> EXAMPLE_TILE = TILE.register("example_tile", () -> TileEntityType.Builder.create(ExampleTile::new, EXAMPLE_BLOCK.get()).build(null));
 
     //#################################################################
     // Containers
@@ -81,10 +84,10 @@ public class TTMContent {
 
 
     //For demonstration purposes only
-    public static class ExampleTile extends TileBCore {
-        public ExampleTile() {
-            super(EXAMPLE_TILE.get());
-        }
-    }
+    //public static class ExampleTile extends TileBCore {
+    //    public ExampleTile() {
+    //        super(EXAMPLE_TILE.get());
+    //    }
+    //}
 
 }
