@@ -1,0 +1,46 @@
+{
+  "ccl_marker": 1,
+  "variant_sets": ["facing,type,wall", "type"],
+  "defaults": {
+    "model": "tolkienmobs:wall_sign_model",
+    "transform": "ccl:default-block",
+    "textures": {
+      "particle": "tolkienmobs:block/signs/sign_empty"
+    }
+  },
+  "variants": {
+    "wall": {
+      "true": {},
+      "false": {"model": "tolkienmobs:sign_model"}
+    },
+    "type": {
+      "empty": {"textures": {"tex": "tolkienmobs:block/signs/sign_empty"}},
+      "arcane1": {"textures": {"tex": "tolkienmobs:block/signs/sign_arcane1"}},
+      "arcane2": {"textures": {"tex": "tolkienmobs:block/signs/sign_arcane2"}},
+      "arcane3": {"textures": {"tex": "tolkienmobs:block/signs/sign_arcane3"}},
+      "armory": {"textures": {"tex": "tolkienmobs:block/signs/sign_armory"}},
+      "bank": {"textures": {"tex": "tolkienmobs:block/signs/sign_bank"}},
+      "barracks1": {"textures": {"tex": "tolkienmobs:block/signs/sign_barracks1"}},
+      "barracks2": {"textures": {"tex": "tolkienmobs:block/signs/sign_barracks2"}},
+      "blacksmith": {"textures": {"tex": "tolkienmobs:block/signs/sign_blacksmith"}},
+      "books": {"textures": {"tex": "tolkienmobs:block/signs/sign_books"}},
+      "butcher1": {"textures": {"tex": "tolkienmobs:block/signs/sign_butcher1"}},
+      "farming": {"textures": {"tex": "tolkienmobs:block/signs/sign_farming"}},
+      "garden": {"textures": {"tex": "tolkienmobs:block/signs/sign_garden"}},
+      "grocer": {"textures": {"tex": "tolkienmobs:block/signs/sign_grocer"}},
+      "inn": {"textures": {"tex": "tolkienmobs:block/signs/sign_inn"}},
+      "magical_plants": {"textures": {"tex": "tolkienmobs:block/signs/sign_magical_plants"}},
+      "potions": {"textures": {"tex": "tolkienmobs:block/signs/sign_potions"}},
+      "pub": {"textures": {"tex": "tolkienmobs:block/signs/sign_pub"}},
+      "stable": {"textures": {"tex": "tolkienmobs:block/signs/sign_stable"}},
+      "postman": {"textures": {"tex": "tolkienmobs:block/signs/sign_postman"}},
+      "lumberjack": {"textures": {"tex": "tolkienmobs:block/signs/sign_lumberjack"}}
+    },
+    "facing": {
+      "north": {},
+      "south": {"y": 180},
+      "west": {"y": 270},
+      "east": {"y": 90}
+    }
+  }
+}

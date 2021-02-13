@@ -1,8 +1,0 @@
-{
-    "parent": "block/door_bottom",
-    "textures":
-    {
-        "bottom": "tolkienmobs:blocks/door_culumalda_bottom",
-        "top": "tolkienmobs:blocks/door_culumalda_top"
-    }
-}

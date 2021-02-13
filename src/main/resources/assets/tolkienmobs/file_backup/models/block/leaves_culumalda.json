@@ -1,0 +1,11 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "down": "tolkienmobs:block/leaves_culumalda",
+        "up": "tolkienmobs:block/leaves_culumalda",
+        "north": "tolkienmobs:block/leaves_culumalda",
+        "south": "tolkienmobs:block/leaves_culumalda",
+        "east": "tolkienmobs:block/leaves_culumalda",
+        "west": "tolkienmobs:block/leaves_culumalda"
+    }
+}

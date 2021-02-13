@@ -1,0 +1,11 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "down": "tolkienmobs:block/planks_mirkwood",
+        "up": "tolkienmobs:block/planks_mirkwood",
+        "north": "tolkienmobs:block/planks_mirkwood",
+        "south": "tolkienmobs:block/planks_mirkwood",
+        "east": "tolkienmobs:block/planks_mirkwood",
+        "west": "tolkienmobs:block/planks_mirkwood"
+    }
+}

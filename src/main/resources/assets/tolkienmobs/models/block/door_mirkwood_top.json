@@ -1,8 +1,0 @@
-{
-    "parent": "block/door_top",
-    "textures":
-    {
-        "bottom": "tolkienmobs:blocks/door_mirkwood_bottom",
-        "top": "tolkienmobs:blocks/door_mirkwood_top"
-    }
-}

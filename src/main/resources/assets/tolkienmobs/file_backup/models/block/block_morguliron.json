@@ -1,0 +1,11 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "tolkienmobs:block/block_morguliron",
+    "up": "tolkienmobs:block/block_morguliron",
+    "north": "tolkienmobs:block/block_morguliron",
+    "south": "tolkienmobs:block/block_morguliron",
+    "east": "tolkienmobs:block/block_morguliron",
+    "west": "tolkienmobs:block/block_morguliron"
+  }
+}

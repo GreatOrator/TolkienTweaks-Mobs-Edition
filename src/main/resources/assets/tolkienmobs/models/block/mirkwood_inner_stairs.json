@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "tolkienmobs:blocks/planks_mirkwood",
-        "side": "tolkienmobs:blocks/planks_mirkwood",
-        "top": "tolkienmobs:blocks/planks_mirkwood"
-    }
-}

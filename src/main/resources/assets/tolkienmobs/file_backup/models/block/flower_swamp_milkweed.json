@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "tolkienmobs:block/flower_swamp_milkweed"
+  }
+}

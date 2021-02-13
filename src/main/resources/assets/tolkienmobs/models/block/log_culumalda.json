@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "tolkienmobs:blocks/log_culumalda_top",
-        "side": "tolkienmobs:blocks/log_culumalda"
-    }
-}

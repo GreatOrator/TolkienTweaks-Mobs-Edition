@@ -8,7 +8,10 @@ import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.loot.*;
+import net.minecraft.loot.functions.ApplyBonus;
+import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 
@@ -43,17 +46,38 @@ public class LootTableGenerator extends LootTableProvider {
     public static class BlockLootTables extends net.minecraft.data.loot.BlockLootTables {
 
         protected void addTables() {
+            // Blocks - Metals & Gems
             registerDropSelfLootTable(TTMContent.BLOCK_MITHRIL.get());
+            registerDropSelfLootTable(TTMContent.BLOCK_MORGULIRON.get());
 
+            // Blocks - Wood & Foliage
+            registerDropSelfLootTable(TTMContent.LOG_CULUMALDA.get());
+            registerDropSelfLootTable(TTMContent.LOG_LEBETHRON.get());
+            registerDropSelfLootTable(TTMContent.LOG_MALLORN.get());
+            registerDropSelfLootTable(TTMContent.LOG_MIRKWOOD.get());
+            registerDropSelfLootTable(TTMContent.PLANKS_CULUMALDA.get());
+            registerDropSelfLootTable(TTMContent.PLANKS_LEBETHRON.get());
+            registerDropSelfLootTable(TTMContent.PLANKS_MALLORN.get());
+            registerDropSelfLootTable(TTMContent.PLANKS_MIRKWOOD.get());
+            registerDropSelfLootTable(TTMContent.LEAVES_CULUMALDA.get());
+            registerDropSelfLootTable(TTMContent.LEAVES_LEBETHRON.get());
+            registerDropSelfLootTable(TTMContent.LEAVES_MALLORN.get());
+            registerDropSelfLootTable(TTMContent.LEAVES_MIRKWOOD.get());
 
-            //Special Stuff
-//            registerLootTable(DEContent.chaos_crystal, block -> dropping(DEContent.chaos_shard).acceptFunction(SetCount.builder(ConstantRange.of(5))));
-//            registerLootTable(DEContent.chaos_crystal_part, blockNoDrop());
-//
-//            //Fortune
-//            registerLootTable(DEContent.ore_draconium_overworld, (block) -> droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(DEContent.dust_draconium).acceptFunction(SetCount.builder(RandomValueRange.of(2.0F, 4.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
-//            registerLootTable(DEContent.ore_draconium_nether, (block) -> droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(DEContent.dust_draconium).acceptFunction(SetCount.builder(RandomValueRange.of(2.0F, 4.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
-//            registerLootTable(DEContent.ore_draconium_end, (block) -> droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(DEContent.dust_draconium).acceptFunction(SetCount.builder(RandomValueRange.of(2.0F, 4.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
+            // Blocks - Custom
+            registerDropSelfLootTable(TTMContent.BLOCK_HALLOWED.get());
+            registerDropSelfLootTable(TTMContent.STONE_PATH.get());
+
+            //Fortune
+            registerLootTable(TTMContent.ORE_MITHRIL.get(), (block) -> droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(TTMContent.DUST_MITHRIL.get()).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
+            registerLootTable(TTMContent.ORE_END_MITHRIL.get(), (block) -> droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(TTMContent.DUST_MITHRIL.get()).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
+            registerLootTable(TTMContent.ORE_NETHER_MITHRIL.get(), (block) -> droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(TTMContent.DUST_MITHRIL.get()).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
+            registerLootTable(TTMContent.ORE_MORGULIRON.get(), (block) -> droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(TTMContent.DUST_MORGULIRON.get()).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
+            registerLootTable(TTMContent.ORE_END_MORGULIRON.get(), (block) -> droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(TTMContent.DUST_MORGULIRON.get()).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
+            registerLootTable(TTMContent.ORE_NETHER_MORGULIRON.get(), (block) -> droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(TTMContent.DUST_MORGULIRON.get()).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
+            registerLootTable(TTMContent.ORE_AMMOLITE.get(), (block) -> droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(TTMContent.GEM_AMMOLITE.get()).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
+            registerLootTable(TTMContent.ORE_END_AMMOLITE.get(), (block) -> droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(TTMContent.GEM_AMMOLITE.get()).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
+            registerLootTable(TTMContent.ORE_NETHER_AMMOLITE.get(), (block) -> droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(TTMContent.GEM_AMMOLITE.get()).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
 
 
         }

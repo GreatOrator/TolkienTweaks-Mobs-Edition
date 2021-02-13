@@ -1,0 +1,11 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "down": "tolkienmobs:block/planks_culumalda",
+        "up": "tolkienmobs:block/planks_culumalda",
+        "north": "tolkienmobs:block/planks_culumalda",
+        "south": "tolkienmobs:block/planks_culumalda",
+        "east": "tolkienmobs:block/planks_culumalda",
+        "west": "tolkienmobs:block/planks_culumalda"
+    }
+}

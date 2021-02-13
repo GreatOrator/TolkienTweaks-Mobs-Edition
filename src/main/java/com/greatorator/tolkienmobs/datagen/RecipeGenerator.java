@@ -1,9 +1,13 @@
 package com.greatorator.tolkienmobs.datagen;
 
+import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
+import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
@@ -31,139 +35,79 @@ public class RecipeGenerator extends RecipeProvider {
 
     private static void components(Consumer<IFinishedRecipe> consumer) {
 
-//        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(DUSTS_DRACONIUM), ingot_draconium, 0, 200).addCriterion("has_draconium_dust", hasItem(DUSTS_DRACONIUM)).build(consumer, folder("components", ingot_draconium));
-//        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromTag(ORES_DRACONIUM), ingot_draconium, 1, 200).addCriterion("has_draconium_ore", hasItem(ORES_DRACONIUM)).build(consumer);
+        // Cooking & Smelting Recipes
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(TTMContent.DUST_MITHRIL.get()),
+                TTMContent.INGOT_MITHRIL.get(), 0.35F, 200)
+                .addCriterion("has_dust_mithril", InventoryChangeTrigger.Instance.forItems(TTMContent.DUST_MITHRIL.get()))
+                .build(consumer);
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(TTMContent.DUST_MORGULIRON.get()),
+                TTMContent.INGOT_MORGULIRON.get(), 0.35F, 200)
+                .addCriterion("has_dust_morguliron", InventoryChangeTrigger.Instance.forItems(TTMContent.DUST_MORGULIRON.get()))
+                .build(consumer);
+
+        // Shaped Recipes
+        ShapedRecipeBuilder.shapedRecipe(TTMContent.GOLEM_STONE_SUMMON.get())
+                .patternLine("MEM")
+                .patternLine("ASF")
+                .patternLine("OWO")
+                .key('W', TTMContent.GOLEM_STONE_WATER.get())
+                .key('A', TTMContent.GOLEM_STONE_AIR.get())
+                .key('M', TTMContent.BLOCK_MITHRIL.get())
+                .key('S', TTMContent.GOLEM_STONE.get())
+                .key('F', TTMContent.GOLEM_STONE_FIRE.get())
+                .key('E', TTMContent.GOLEM_STONE_EARTH.get())
+                .key('O', Items.OBSIDIAN)
+                .addCriterion("has_golem_stones", hasItem(TTMContent.GOLEM_STONE.get()))
+                .build(consumer);
+
+        ShapedRecipeBuilder.shapedRecipe(TTMContent.BLOCK_MITHRIL.get())
+                .patternLine("BBB")
+                .patternLine("BBB")
+                .patternLine("BBB")
+                .key('B', TTMContent.INGOT_MITHRIL.get())
+                .addCriterion("has_mithril_ingot", hasItem(TTMContent.INGOT_MITHRIL.get()))
+                .build(consumer, "mithril_from_storage");
+
+        ShapedRecipeBuilder.shapedRecipe(TTMContent.BLOCK_MORGULIRON.get())
+                .patternLine("BBB")
+                .patternLine("BBB")
+                .patternLine("BBB")
+                .key('B', TTMContent.INGOT_MORGULIRON.get())
+                .addCriterion("has_morguliron_ingot", hasItem(TTMContent.INGOT_MORGULIRON.get()))
+                .build(consumer, "morguliron_from_storage");
+
+        ShapedRecipeBuilder.shapedRecipe(TTMContent.INGOT_MITHRIL.get())
+                .patternLine("BBB")
+                .patternLine("BBB")
+                .patternLine("BBB")
+                .key('B', TTMContent.NUGGET_MITHRIL.get())
+                .addCriterion("has_mithril_ingot", hasItem(TTMContent.NUGGET_MITHRIL.get()))
+                .build(consumer, "mithril_to_storage");
+
+        ShapedRecipeBuilder.shapedRecipe(TTMContent.INGOT_MORGULIRON.get())
+                .patternLine("BBB")
+                .patternLine("BBB")
+                .patternLine("BBB")
+                .key('B', TTMContent.NUGGET_MORGULIRON.get())
+                .addCriterion("has_morguliron_ingot", hasItem(TTMContent.NUGGET_MORGULIRON.get()))
+                .build(consumer, "morguliron_to_storage");
+
+        // Shapeless Recipes
+//        ShapelessRecipeBuilder.shapelessRecipe(TTMContent.INGOT_MITHRIL.get(), 9)
+//                .addIngredient(TTMContent.BLOCK_MITHRIL.get())
+//                .addCriterion("has_mithril_block", hasItem(TTMContent.BLOCK_MITHRIL.get()))
+//                .build(consumer);
 //
-//        ShapedRecipeBuilder.shapedRecipe(core_draconium)
-//                .patternLine("ABA")
-//                .patternLine("BCB")
-//                .patternLine("ABA")
-//                .key('A', INGOTS_DRACONIUM)
-//                .key('B', INGOTS_GOLD)
-//                .key('C', GEMS_DIAMOND)
-//                .addCriterion("has_draconium", hasItem(ingot_draconium))
-//                .build(consumer, folder("components", core_draconium));
+//        ShapelessRecipeBuilder.shapelessRecipe(TTMContent.INGOT_MORGULIRON.get(), 9)
+//                .addIngredient(TTMContent.BLOCK_MORGULIRON.get())
+//                .addCriterion("has_morguliron_block", hasItem(TTMContent.BLOCK_MORGULIRON.get()))
+//                .build(consumer);
 //
-//        ShapedRecipeBuilder.shapedRecipe(core_wyvern)
-//                .patternLine("ABA")
-//                .patternLine("BCB")
-//                .patternLine("ABA")
-//                .key('A', INGOTS_DRACONIUM)
-//                .key('B', core_draconium)
-//                .key('C', NETHER_STARS)
-//                .addCriterion("has_core_draconium", hasItem(core_draconium))
-//                .build(consumer, folder("components", core_wyvern));
-//
-//        ShapedRecipeBuilder.shapedRecipe(energy_core_wyvern)
-//                .patternLine("ABA")
-//                .patternLine("BCB")
-//                .patternLine("ABA")
-//                .key('A', INGOTS_DRACONIUM)
-//                .key('B', Tags.Items.STORAGE_BLOCKS_REDSTONE)
-//                .key('C', core_draconium)
-//                .addCriterion("has_core_draconium", hasItem(core_draconium))
-//                .build(consumer, folder("components", energy_core_wyvern));
-//
-//        ShapedRecipeBuilder.shapedRecipe(energy_core_draconic)
-//                .patternLine("ABA")
-//                .patternLine("BCB")
-//                .patternLine("ABA")
-//                .key('A', INGOTS_DRACONIUM_AWAKENED)
-//                .key('B', energy_core_wyvern)
-//                .key('C', core_wyvern)
-//                .addCriterion("has_core_wyvern", hasItem(core_wyvern))
-//                .build(consumer, folder("components", energy_core_draconic));
-//
-//        ShapedRecipeBuilder.shapedRecipe(energy_core_chaotic)
-//                .patternLine("ABA")
-//                .patternLine("BCB")
-//                .patternLine("ABA")
-//                .key('A', chaos_frag_medium)
-//                .key('B', energy_core_draconic)
-//                .key('C', core_awakened)
-//                .addCriterion("has_core_awakened", hasItem(core_awakened))
-//                .build(consumer, folder("components", energy_core_chaotic));
     }
 
 
 
     private static void machines(Consumer<IFinishedRecipe> consumer) {
-//        ShapedRecipeBuilder.shapedRecipe(crafting_core)
-//                .patternLine("ABA")
-//                .patternLine("BCB")
-//                .patternLine("ABA")
-//                .key('A', STORAGE_BLOCKS_LAPIS)
-//                .key('B', GEMS_DIAMOND)
-//                .key('C', core_draconium)
-//                .addCriterion("has_core_draconium", hasItem(core_draconium))
-//                .build(consumer);
-//
-//        ShapedRecipeBuilder.shapedRecipe(crafting_injector_basic)
-//                .patternLine("ABA")
-//                .patternLine("CDC")
-//                .patternLine("CCC")
-//                .key('A', GEMS_DIAMOND)
-//                .key('B', core_draconium)
-//                .key('C', Tags.Items.STONE)
-//                .key('D', STORAGE_BLOCKS_IRON)
-//                .addCriterion("has_core_draconium", hasItem(core_draconium))
-//                .build(consumer);
-//
-//
-//        ShapedRecipeBuilder.shapedRecipe(DEContent.generator)
-//                .patternLine("ABA")
-//                .patternLine("BCB")
-//                .patternLine("ADA")
-//                .key('A', INGOTS_NETHER_BRICK)
-//                .key('B', INGOTS_IRON)
-//                .key('C', FURNACE)
-//                .key('D', core_draconium)
-//                .addCriterion("has_core_draconium", hasItem(core_draconium))
-//                .build(consumer);
-//
-//        ShapedRecipeBuilder.shapedRecipe(grinder)
-//                .patternLine("ABA")
-//                .patternLine("CDC")
-//                .patternLine("AEA")
-//                .key('A', INGOTS_IRON)
-//                .key('B', INGOTS_DRACONIUM)
-//                .key('C', DIAMOND_SWORD)
-//                .key('D', core_draconium)
-//                .key('E', FURNACE)
-//                .addCriterion("has_core_draconium", hasItem(core_draconium))
-//                .build(consumer);
-//
-//        ShapedRecipeBuilder.shapedRecipe(energy_transfuser)
-//                .patternLine("ABA")
-//                .patternLine("CDC")
-//                .patternLine("ACA")
-//                .key('A', INGOTS_DRACONIUM)
-//                .key('B', energy_core_stabilizer)
-//                .key('C', core_draconium)
-//                .key('D', ENCHANTING_TABLE)
-//                .addCriterion("has_core_draconium", hasItem(core_draconium))
-//                .build(consumer);
-//
-//        ShapedRecipeBuilder.shapedRecipe(particle_generator)
-//                .patternLine("ABA")
-//                .patternLine("BCB")
-//                .patternLine("ABA")
-//                .key('A', STORAGE_BLOCKS_REDSTONE)
-//                .key('B', BLAZE_ROD)
-//                .key('C', core_draconium)
-//                .addCriterion("has_core_draconium", hasItem(core_draconium))
-//                .build(consumer);
-//
-//        ShapedRecipeBuilder.shapedRecipe(potentiometer)
-//                .patternLine(" A ")
-//                .patternLine("BCB")
-//                .patternLine("DDD")
-//                .key('A', PLANKS)
-//                .key('B', DUSTS_REDSTONE)
-//                .key('C', DUSTS_DRACONIUM)
-//                .key('D', STONE_SLAB)
-//                .addCriterion("has_STONE_SLAB", hasItem(STONE_SLAB))
-//                .build(consumer);
     }
 
 

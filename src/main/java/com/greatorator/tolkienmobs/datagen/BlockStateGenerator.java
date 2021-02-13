@@ -28,8 +28,36 @@ public class BlockStateGenerator extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        //Simple Blocks
+        // Basic - Metals & Gems
+        simpleBlock(TTMContent.ORE_MITHRIL.get());
+        simpleBlock(TTMContent.ORE_END_MITHRIL.get());
+        simpleBlock(TTMContent.ORE_NETHER_MITHRIL.get());
         simpleBlock(TTMContent.BLOCK_MITHRIL.get());
+        simpleBlock(TTMContent.ORE_MORGULIRON.get());
+        simpleBlock(TTMContent.ORE_END_MORGULIRON.get());
+        simpleBlock(TTMContent.ORE_NETHER_MORGULIRON.get());
+        simpleBlock(TTMContent.BLOCK_MORGULIRON.get());
+        simpleBlock(TTMContent.ORE_AMMOLITE.get());
+        simpleBlock(TTMContent.ORE_END_AMMOLITE.get());
+        simpleBlock(TTMContent.ORE_NETHER_AMMOLITE.get());
+
+        // Basic Wood & Foliage
+        logBlock(TTMContent.LOG_CULUMALDA.get());
+        logBlock(TTMContent.LOG_LEBETHRON.get());
+        logBlock(TTMContent.LOG_MALLORN.get());
+        logBlock(TTMContent.LOG_MIRKWOOD.get());
+        simpleBlock(TTMContent.PLANKS_CULUMALDA.get());
+        simpleBlock(TTMContent.PLANKS_LEBETHRON.get());
+        simpleBlock(TTMContent.PLANKS_MALLORN.get());
+        simpleBlock(TTMContent.PLANKS_MIRKWOOD.get());
+        simpleBlock(TTMContent.LEAVES_CULUMALDA.get());
+        simpleBlock(TTMContent.LEAVES_LEBETHRON.get());
+        simpleBlock(TTMContent.LEAVES_MALLORN.get());
+        simpleBlock(TTMContent.LEAVES_MIRKWOOD.get());
+
+        // Custom
+        simpleBlock(TTMContent.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
+        simpleBlock(TTMContent.STONE_PATH.get(), models().getExistingFile(modLoc("block/block_stone_path")));
 
 
 

@@ -1,0 +1,11 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "down": "tolkienmobs:block/log_mallorn_top",
+        "up": "tolkienmobs:block/log_mallorn_top",
+        "north": "tolkienmobs:block/log_mallorn",
+        "south": "tolkienmobs:block/log_mallorn",
+        "east": "tolkienmobs:block/log_mallorn",
+        "west": "tolkienmobs:block/log_mallorn"
+    }
+}

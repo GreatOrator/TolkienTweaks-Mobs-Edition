@@ -22,12 +22,117 @@ public class ItemModelGenerator extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        //region Block Items
+        // Block Items - Metals & Gems
+        blockItem(TTMContent.ORE_MITHRIL.get());
+        blockItem(TTMContent.ORE_END_MITHRIL.get());
+        blockItem(TTMContent.ORE_NETHER_MITHRIL.get());
         blockItem(TTMContent.BLOCK_MITHRIL.get());
+        blockItem(TTMContent.ORE_MORGULIRON.get());
+        blockItem(TTMContent.ORE_END_MORGULIRON.get());
+        blockItem(TTMContent.ORE_NETHER_MORGULIRON.get());
+        blockItem(TTMContent.BLOCK_MORGULIRON.get());
+        blockItem(TTMContent.ORE_AMMOLITE.get());
+        blockItem(TTMContent.ORE_END_AMMOLITE.get());
+        blockItem(TTMContent.ORE_NETHER_AMMOLITE.get());
 
+        // Block Items - Wood & Foliage
+        blockItem(TTMContent.LOG_CULUMALDA.get());
+        blockItem(TTMContent.LOG_LEBETHRON.get());
+        blockItem(TTMContent.LOG_MALLORN.get());
+        blockItem(TTMContent.LOG_MIRKWOOD.get());
+        blockItem(TTMContent.PLANKS_CULUMALDA.get());
+        blockItem(TTMContent.PLANKS_LEBETHRON.get());
+        blockItem(TTMContent.PLANKS_MALLORN.get());
+        blockItem(TTMContent.PLANKS_MIRKWOOD.get());
+        blockItem(TTMContent.LEAVES_CULUMALDA.get());
+        blockItem(TTMContent.LEAVES_LEBETHRON.get());
+        blockItem(TTMContent.LEAVES_MALLORN.get());
+        blockItem(TTMContent.LEAVES_MIRKWOOD.get());
 
+        // Block Items - Custom Blocks
+        blockItem(TTMContent.BLOCK_HALLOWED.get());
+        blockItem(TTMContent.STONE_PATH.get());
 
+        // Metals & Gems Items
+        simpleItem(TTMContent.DUST_MITHRIL.get());
+        simpleItem(TTMContent.NUGGET_MITHRIL.get());
         simpleItem(TTMContent.INGOT_MITHRIL.get());
+        simpleItem(TTMContent.DUST_MORGULIRON.get());
+        simpleItem(TTMContent.NUGGET_MORGULIRON.get());
+        simpleItem(TTMContent.INGOT_MORGULIRON.get());
+        simpleItem(TTMContent.GEM_AMMOLITE.get());
+
+        // Mob Drop Items
+        simpleItem(TTMContent.CREBAIN_FEATHER.get());
+        simpleItem(TTMContent.BIRD_FEATHER.get());
+        simpleItem(TTMContent.MUMAKIL_LEATHER.get());
+        simpleItem(TTMContent.MONSTER_FUR.get());
+        simpleItem(TTMContent.BOTTLE_FANCY.get());
+        simpleItem(TTMContent.GOLEM_STONE.get());
+        simpleItem(TTMContent.GOLEM_STONE_EARTH.get());
+        simpleItem(TTMContent.GOLEM_STONE_AIR.get());
+        simpleItem(TTMContent.GOLEM_STONE_FIRE.get());
+        simpleItem(TTMContent.GOLEM_STONE_WATER.get());
+        simpleItem(TTMContent.GOLEM_STONE_SUMMON.get());
+
+        // region Quest Items
+        simpleItem(TTMContent.ITEM_BERYL.get());
+        simpleItem(TTMContent.ITEM_FORTRESSMAP.get());
+        simpleItem(TTMContent.ITEM_WATCHERHEART.get());
+        simpleItem(TTMContent.ITEM_WATCHERHEART_CRACKED.get());
+        simpleItem(TTMContent.ITEM_KEYSTONE.get());
+        simpleItem(TTMContent.ITEM_DARKSADDLE.get());
+        simpleItem(TTMContent.ITEM_ARTIFACT.get());
+        simpleItem(TTMContent.ITEM_BLANKPAPER.get());
+        simpleItem(TTMContent.ITEM_FANCYARMOR.get());
+        simpleItem(TTMContent.ITEM_FANCYCLOTH.get());
+        simpleItem(TTMContent.ITEM_FANCYHAMMER.get());
+        simpleItem(TTMContent.ITEM_FANCYHELM.get());
+        simpleItem(TTMContent.ITEM_FANCYKEY.get());
+        simpleItem(TTMContent.ITEM_FANCYPICK.get());
+        simpleItem(TTMContent.ITEM_FANCYSHIELD.get());
+        simpleItem(TTMContent.ITEM_FANCYSHIELD2.get());
+        simpleItem(TTMContent.ITEM_FANCYSWORD.get());
+        simpleItem(TTMContent.ITEM_FANCYSWORD2.get());
+        simpleItem(TTMContent.ITEM_LETTER.get());
+        simpleItem(TTMContent.ITEM_SCROLL.get());
+        simpleItem(TTMContent.ITEM_SCROLL2.get());
+        simpleItem(TTMContent.ITEM_SPECIALFLOWER.get());
+        simpleItem(TTMContent.ITEM_STORYBOOK.get());
+        simpleItem(TTMContent.ITEM_STORYBOOK2.get());
+        simpleItem(TTMContent.ITEM_STORYBOOK3.get());
+        simpleItem(TTMContent.ITEM_STORYBOOK4.get());
+        simpleItem(TTMContent.ITEM_WORNARMOR.get());
+        simpleItem(TTMContent.ITEM_WORNHELM.get());
+        simpleItem(TTMContent.ITEM_WORNKEY.get());
+        simpleItem(TTMContent.ITEM_WORNPICK.get());
+        simpleItem(TTMContent.ITEM_WORNSHIELD.get());
+        simpleItem(TTMContent.ITEM_WORNSHIELD2.get());
+        simpleItem(TTMContent.ITEM_WORNSWORD.get());
+        simpleItem(TTMContent.ITEM_WOVENBASKET.get());
+        simpleItem(TTMContent.ITEM_WRITTENPAPER.get());
+        simpleItem(TTMContent.ITEM_PUNGENTHERB.get());
+        simpleItem(TTMContent.ITEM_LOCKPICK.get());
+        simpleItem(TTMContent.ITEM_BROKENSWORD.get());
+        simpleItem(TTMContent.ITEM_REFORGEDSWORD.get());
+        simpleItem(TTMContent.ITEM_MAGIC_CLOTH.get());
+        simpleItem(TTMContent.ITEM_KEYFRAGMENT.get());
+        simpleItem(TTMContent.ITEM_OILYKEY.get());
+        simpleItem(TTMContent.ITEM_MITHRILNUGGET.get());
+        simpleItem(TTMContent.ITEM_REMAINS.get());
+        simpleItem(TTMContent.ITEM_RUNE_STONE.get());
+
+        //region Coin & Token Items
+        simpleItem(TTMContent.ITEM_COIN_BRONZE.get());
+        simpleItem(TTMContent.ITEM_COIN_SILVER.get());
+        simpleItem(TTMContent.ITEM_COIN_GOLD.get());
+        simpleItem(TTMContent.ITEM_COIN_MITHRIL.get());
+        simpleItem(TTMContent.ITEM_DARKSIGIL.get());
+        simpleItem(TTMContent.ITEM_FACTIONCOIN.get());
+        simpleItem(TTMContent.ITEM_FACTIONTOKEN.get());
+        simpleItem(TTMContent.ITEM_CAVECOMPLETE.get());
+        simpleItem(TTMContent.ITEM_WATCHERCOMPLETE.get());
+
 
 
 //        blockItem(DEContent.generator, modLoc("block/generator/generator"));

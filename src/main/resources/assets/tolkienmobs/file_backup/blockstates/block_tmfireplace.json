@@ -1,0 +1,30 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+      "model": "tolkienmobs:block_tmfireplace",
+      "textures":{
+        "0":"tolkienmobs:block/fireplace/fire_layer_0",
+        "1":"tolkienmobs:block/fireplace/block_fireplace",
+        "2":"tolkienmobs:block/fireplace/block_fireplace_concrete",
+        "particle":"tolkienmobs:block/fireplace/block_fireplace"
+      },
+      "transform": "forge:default-block"
+    },
+    "variants": {
+      "facing": {
+        "north": {},
+        "south": {"y": 180},
+        "west": {"y": 270},
+        "east": {"y": 90}
+      },
+      "burning": {
+        "true": {},
+        "false": {
+          "textures":{
+            "0":"tolkienmobs:block/fireplace/fire_out"
+          }
+        }
+      },
+      "normal": [{}]
+  }
+}

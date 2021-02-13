@@ -1,0 +1,11 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "tolkienmobs:block/block_mithril",
+    "up": "tolkienmobs:block/block_mithril",
+    "north": "tolkienmobs:block/block_mithril",
+    "south": "tolkienmobs:block/block_mithril",
+    "east": "tolkienmobs:block/block_mithril",
+    "west": "tolkienmobs:block/block_mithril"
+  }
+}

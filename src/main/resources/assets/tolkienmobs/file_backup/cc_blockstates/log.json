@@ -1,0 +1,94 @@
+{
+  "ccl_marker": 1,
+  "variant_sets": ["axis,variant"],
+  "defaults": {
+    "model": "minecraft:cube",
+    "transform": "ccl:default-block"
+  },
+  "variants": {
+    "variant": {
+      "mallorn": {
+        "textures": {
+          "particle": "tolkienmobs:block/log_mallorn",
+          "down": "tolkienmobs:block/log_mallorn_top",
+          "up": "tolkienmobs:block/log_mallorn_top",
+          "north": "tolkienmobs:block/log_mallorn",
+          "south": "tolkienmobs:block/log_mallorn",
+          "east": "tolkienmobs:block/log_mallorn",
+          "west": "tolkienmobs:block/log_mallorn"
+        }
+      },
+      "mirkwood": {
+        "textures": {
+          "particle": "tolkienmobs:block/log_mirkwood",
+          "down": "tolkienmobs:block/log_mirkwood_top",
+          "up": "tolkienmobs:block/log_mirkwood_top",
+          "north": "tolkienmobs:block/log_mirkwood",
+          "south": "tolkienmobs:block/log_mirkwood",
+          "east": "tolkienmobs:block/log_mirkwood",
+          "west": "tolkienmobs:block/log_mirkwood"
+        }
+      },
+      "culumalda": {
+        "textures": {
+          "particle": "tolkienmobs:block/log_culumalda",
+          "down": "tolkienmobs:block/log_culumalda_top",
+          "up": "tolkienmobs:block/log_culumalda_top",
+          "north": "tolkienmobs:block/log_culumalda",
+          "south": "tolkienmobs:block/log_culumalda",
+          "east": "tolkienmobs:block/log_culumalda",
+          "west": "tolkienmobs:block/log_culumalda"
+        }
+      },
+      "lebethron": {
+        "textures": {
+          "particle": "tolkienmobs:block/log_lebethron",
+          "down": "tolkienmobs:block/log_lebethron_top",
+          "up": "tolkienmobs:block/log_lebethron_top",
+          "north": "tolkienmobs:block/log_lebethron",
+          "south": "tolkienmobs:block/log_lebethron",
+          "east": "tolkienmobs:block/log_lebethron",
+          "west": "tolkienmobs:block/log_lebethron"
+        }
+      }
+    },
+    "axis": {
+      "y": {},
+      "z": {"x": 90},
+      "x": {
+        "x": 90,
+        "y": 90
+      },
+      "none": {
+        "variants": {
+          "variant": {
+            "mallorn": {
+              "textures": {
+                "up": "tolkienmobs:block/log_mallorn",
+                "down": "tolkienmobs:block/log_mallorn"
+              }
+            },
+            "mirkwood": {
+              "textures": {
+                "up": "tolkienmobs:block/log_mirkwood",
+                "down": "tolkienmobs:block/log_mirkwood"
+              }
+            },
+            "culumalda": {
+              "textures": {
+                "up": "tolkienmobs:block/log_culumalda",
+                "down": "tolkienmobs:block/log_culumalda"
+              }
+            },
+            "lebethron": {
+              "textures": {
+                "up": "tolkienmobs:block/log_lebethron",
+                "down": "tolkienmobs:block/log_lebethron"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

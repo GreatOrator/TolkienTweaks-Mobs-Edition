@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "tolkienmobs:blocks/planks_lebethron",
-        "side": "tolkienmobs:blocks/planks_lebethron",
-        "top": "tolkienmobs:blocks/planks_lebethron"
-    }
-}

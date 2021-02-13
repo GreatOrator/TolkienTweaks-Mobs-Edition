@@ -1,10 +1,10 @@
 {
   "parent": "minecraft:block/block",
   "textures": {
-    "particle": "minecraft:blocks/stone",
-    "bottom": "tolkienmobs:blocks/block_stone_path",
-    "top": "tolkienmobs:blocks/block_stone_path_top",
-    "side": "tolkienmobs:blocks/block_stone_path_side"
+    "particle": "minecraft:block/stone",
+    "bottom": "tolkienmobs:block/block_stone_path",
+    "top": "tolkienmobs:block/block_stone_path_top",
+    "side": "tolkienmobs:block/block_stone_path_side"
   },
   "elements": [
     {   "from": [ 0, 0, 0 ],

@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "tolkienmobs:blocks/planks_culumalda",
-        "side": "tolkienmobs:blocks/planks_culumalda",
-        "top": "tolkienmobs:blocks/planks_culumalda"
-    }
-}

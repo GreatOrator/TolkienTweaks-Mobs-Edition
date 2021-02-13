@@ -5,6 +5,7 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.data.LanguageProvider;
 
 /**
@@ -21,10 +22,8 @@ public class LangGenerator extends LanguageProvider {
         PrefixHelper helper = new PrefixHelper(this);
         blocks(helper);
         items(helper);
-        itemProps(helper);
-        guis(helper);
-        misc(helper);
-        hudAndMessages(helper);
+        quest(helper);
+        coinToken(helper);
     }
 
     private void blocks(PrefixHelper helper) {
@@ -405,6 +404,27 @@ public class LangGenerator extends LanguageProvider {
         add("key.draconicevolution.dislocator_gui",                             "Advanced Dislocator GUI");
         add("key.draconicevolution.dislocator_up",                              "Advanced Dislocator Select Up");
         add("key.draconicevolution.dislocator_down",                            "Advanced Dislocator Select Down");
+    }
+
+    private void coinToken(PrefixHelper helper) {
+        add(TTMContent.ITEM_COIN_BRONZE.get(),                          "Bronze Coin");
+            addLore(TTMContent.ITEM_COIN_BRONZE.get(),                       "64 Can be traded for 1 Silver coin");
+        add(TTMContent.ITEM_COIN_SILVER.get(),                          "Silver Coin");
+            addLore(TTMContent.ITEM_COIN_SILVER.get(),                       "64 Can be traded for 1 Gold coin");
+        add(TTMContent.ITEM_COIN_GOLD.get(),                            "Gold Coin");
+            addLore(TTMContent.ITEM_COIN_GOLD.get(),                         "64 Can be traded for 1 Mithril coin");
+        add(TTMContent.ITEM_COIN_MITHRIL.get(),                         "Mithril Coin");
+            addLore(TTMContent.ITEM_COIN_MITHRIL.get(),                      "Very rare and valuable coin");
+        add(TTMContent.ITEM_DARKSIGIL.get(),                            TextFormatting.DARK_PURPLE + "Dark Sigil");
+            addLore(TTMContent.ITEM_DARKSIGIL.get(),                         "Dark symbol dropped by a minion");
+        add(TTMContent.ITEM_FACTIONCOIN.get(),                          TextFormatting.BLUE + "Faction Token");
+            addLore(TTMContent.ITEM_FACTIONCOIN.get(),                       "Use this to raise faction standing");
+        add(TTMContent.ITEM_FACTIONTOKEN.get(),                         TextFormatting.DARK_AQUA + "Faction Coin");
+            addLore(TTMContent.ITEM_FACTIONTOKEN.get(),                      "This can be traded for unique items");
+        add(TTMContent.ITEM_CAVECOMPLETE.get(),                         TextFormatting.DARK_AQUA + "Cave completion Token");
+            addLore(TTMContent.ITEM_CAVECOMPLETE.get(),                      "Proof of killing the troll");
+        add(TTMContent.ITEM_WATCHERCOMPLETE.get(),                      TextFormatting.DARK_AQUA + "Watcher Token");
+            addLore(TTMContent.ITEM_WATCHERCOMPLETE.get(),                   "Proof of defeating the Watcher");
     }
 
 

@@ -1,0 +1,21 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "minecraft:cross",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "stage":  {
+            "0": {},
+            "1": {}
+        },
+        "variant": {
+            "mallorn":  { "textures": {"cross":  "tolkienmobs:block/sapling_mallorn"} },
+            "mirkwood": { "textures": {"cross":  "tolkienmobs:block/sapling_mirkwood"} },
+            "culumalda": { "textures": {"cross":  "tolkienmobs:block/sapling_culumalda"} },
+            "lebethron": { "textures": {"cross":  "tolkienmobs:block/sapling_lebethron"} }
+        },
+        "inventory": [{}],
+        "normal": [{}]
+    }
+}

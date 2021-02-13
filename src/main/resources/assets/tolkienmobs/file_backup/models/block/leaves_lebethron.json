@@ -1,0 +1,11 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "down": "tolkienmobs:block/leaves_lebethron",
+        "up": "tolkienmobs:block/leaves_lebethron",
+        "north": "tolkienmobs:block/leaves_lebethron",
+        "south": "tolkienmobs:block/leaves_lebethron",
+        "east": "tolkienmobs:block/leaves_lebethron",
+        "west": "tolkienmobs:block/leaves_lebethron"
+    }
+}

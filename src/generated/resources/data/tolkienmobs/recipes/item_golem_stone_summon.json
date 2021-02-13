@@ -1,0 +1,34 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MEM",
+    "ASF",
+    "OWO"
+  ],
+  "key": {
+    "W": {
+      "item": "tolkienmobs:item_golem_stone_water"
+    },
+    "A": {
+      "item": "tolkienmobs:item_golem_stone_air"
+    },
+    "M": {
+      "item": "tolkienmobs:block_mithril"
+    },
+    "S": {
+      "item": "tolkienmobs:item_golem_stone"
+    },
+    "F": {
+      "item": "tolkienmobs:item_golem_stone_fire"
+    },
+    "E": {
+      "item": "tolkienmobs:item_golem_stone_earth"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:item_golem_stone_summon"
+  }
+}

@@ -1,8 +1,0 @@
-{
-    "parent": "block/inner_stairs",
-    "textures": {
-        "bottom": "tolkienmobs:blocks/planks_mallorn",
-        "side": "tolkienmobs:blocks/planks_mallorn",
-        "top": "tolkienmobs:blocks/planks_mallorn"
-    }
-}
