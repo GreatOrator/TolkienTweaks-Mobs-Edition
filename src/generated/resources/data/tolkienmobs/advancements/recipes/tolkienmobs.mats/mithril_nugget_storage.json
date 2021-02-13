@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:mithril_to_storage"
+      "tolkienmobs:mithril_nugget_storage"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "tolkienmobs:nugget_mithril"
+            "item": "tolkienmobs:ingot_mithril"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:mithril_to_storage"
+        "recipe": "tolkienmobs:mithril_nugget_storage"
       }
     }
   },

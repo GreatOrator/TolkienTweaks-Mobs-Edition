@@ -66,7 +66,7 @@ public class RecipeGenerator extends RecipeProvider {
                 .patternLine("BBB")
                 .key('B', TTMContent.INGOT_MITHRIL.get())
                 .addCriterion("has_mithril_ingot", hasItem(TTMContent.INGOT_MITHRIL.get()))
-                .build(consumer, "mithril_from_storage");
+                .build(consumer, "tolkienmobs:mithril_nugget_storage");
 
         ShapedRecipeBuilder.shapedRecipe(TTMContent.BLOCK_MORGULIRON.get())
                 .patternLine("BBB")
@@ -74,7 +74,7 @@ public class RecipeGenerator extends RecipeProvider {
                 .patternLine("BBB")
                 .key('B', TTMContent.INGOT_MORGULIRON.get())
                 .addCriterion("has_morguliron_ingot", hasItem(TTMContent.INGOT_MORGULIRON.get()))
-                .build(consumer, "morguliron_from_storage");
+                .build(consumer, "tolkienmobs:morguliron_nugget_storage");
 
         ShapedRecipeBuilder.shapedRecipe(TTMContent.INGOT_MITHRIL.get())
                 .patternLine("BBB")
@@ -82,7 +82,7 @@ public class RecipeGenerator extends RecipeProvider {
                 .patternLine("BBB")
                 .key('B', TTMContent.NUGGET_MITHRIL.get())
                 .addCriterion("has_mithril_ingot", hasItem(TTMContent.NUGGET_MITHRIL.get()))
-                .build(consumer, "mithril_to_storage");
+                .build(consumer, "tolkienmobs:mithril_to_storage");
 
         ShapedRecipeBuilder.shapedRecipe(TTMContent.INGOT_MORGULIRON.get())
                 .patternLine("BBB")
@@ -90,19 +90,19 @@ public class RecipeGenerator extends RecipeProvider {
                 .patternLine("BBB")
                 .key('B', TTMContent.NUGGET_MORGULIRON.get())
                 .addCriterion("has_morguliron_ingot", hasItem(TTMContent.NUGGET_MORGULIRON.get()))
-                .build(consumer, "morguliron_to_storage");
+                .build(consumer, "tolkienmobs:morguliron_to_storage");
 
         // Shapeless Recipes
-//        ShapelessRecipeBuilder.shapelessRecipe(TTMContent.INGOT_MITHRIL.get(), 9)
-//                .addIngredient(TTMContent.BLOCK_MITHRIL.get())
-//                .addCriterion("has_mithril_block", hasItem(TTMContent.BLOCK_MITHRIL.get()))
-//                .build(consumer);
-//
-//        ShapelessRecipeBuilder.shapelessRecipe(TTMContent.INGOT_MORGULIRON.get(), 9)
-//                .addIngredient(TTMContent.BLOCK_MORGULIRON.get())
-//                .addCriterion("has_morguliron_block", hasItem(TTMContent.BLOCK_MORGULIRON.get()))
-//                .build(consumer);
-//
+        ShapelessRecipeBuilder.shapelessRecipe(TTMContent.INGOT_MITHRIL.get(), 9)
+                .addIngredient(TTMContent.BLOCK_MITHRIL.get())
+                .addCriterion("has_mithril_block", hasItem(TTMContent.BLOCK_MITHRIL.get()))
+                .build(consumer, "tolkienmobs:mithril_from_storage");
+
+        ShapelessRecipeBuilder.shapelessRecipe(TTMContent.INGOT_MORGULIRON.get(), 9)
+                .addIngredient(TTMContent.BLOCK_MORGULIRON.get())
+                .addCriterion("has_morguliron_block", hasItem(TTMContent.BLOCK_MORGULIRON.get()))
+                .build(consumer, "tolkienmobs:morguliron_from_storage");
+
     }
 
 
