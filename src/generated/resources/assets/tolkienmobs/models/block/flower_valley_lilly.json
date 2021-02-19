@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "tolkienmobs:block/flower_valley_lilly"
+  }
+}

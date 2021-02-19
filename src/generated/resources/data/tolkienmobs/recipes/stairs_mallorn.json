@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:planks_mallorn"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:stairs_mallorn",
+    "count": 4
+  }
+}

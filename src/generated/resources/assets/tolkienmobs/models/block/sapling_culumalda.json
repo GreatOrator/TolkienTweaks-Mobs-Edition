@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "tolkienmobs:block/sapling_culumalda"
+  }
+}

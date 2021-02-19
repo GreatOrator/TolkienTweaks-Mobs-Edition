@@ -2,9 +2,21 @@ package com.greatorator.tolkienmobs;
 
 import codechicken.lib.gui.SimpleItemGroup;
 import com.brandon3055.brandonscore.blocks.ItemBlockBCore;
+import com.greatorator.tolkienmobs.block.BlockMushrooms;
 import com.greatorator.tolkienmobs.block.BlockStonePath;
 import com.greatorator.tolkienmobs.block.BlockTMHallowed;
+import com.greatorator.tolkienmobs.block.trees.TTMCulumaldaTree;
+import com.greatorator.tolkienmobs.block.trees.TTMLebethronTree;
+import com.greatorator.tolkienmobs.block.trees.TTMMallornTree;
+import com.greatorator.tolkienmobs.block.trees.TTMMirkwoodTree;
+import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
+import com.greatorator.tolkienmobs.datagen.EntityGenerator;
+import com.greatorator.tolkienmobs.datagen.PotionGenerator;
+import com.greatorator.tolkienmobs.datagen.SoundGenerator;
+import com.greatorator.tolkienmobs.handler.TTMFoods;
+import com.greatorator.tolkienmobs.handler.TTMItem;
 import com.greatorator.tolkienmobs.handler.TTMLore;
+import com.greatorator.tolkienmobs.handler.TTMRecord;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -13,6 +25,7 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Effects;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -23,6 +36,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+import static com.greatorator.tolkienmobs.datagen.SoundGenerator.*;
 
 /**
  * Created by brandon3055 on 31/1/21
@@ -33,21 +47,24 @@ public class TTMContent {
     private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     private static final DeferredRegister<TileEntityType<?>> TILE = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MODID);
     private static final DeferredRegister<ContainerType<?>> CONTAINER = DeferredRegister.create(ForgeRegistries.CONTAINERS, MODID);
-    private static final DeferredRegister<EntityType<?>> ENTITY = DeferredRegister.create(ForgeRegistries.ENTITIES, MODID);
 
     public static ItemGroup toolsGroup = new SimpleItemGroup("tolkienmobs.tools", () -> new ItemStack(TTMContent.BLOCK_MITHRIL.get()));
     public static ItemGroup matsGroup = new SimpleItemGroup("tolkienmobs.mats", () -> new ItemStack(TTMContent.INGOT_MITHRIL.get()));
     public static ItemGroup spawnGroup = new SimpleItemGroup("tolkienmobs.spawn", () -> new ItemStack(TTMContent.BLOCK_MITHRIL.get()));
-    public static ItemGroup foodGroup = new SimpleItemGroup("tolkienmobs.food", () -> new ItemStack(TTMContent.BLOCK_MITHRIL.get()));
+    public static ItemGroup foodGroup = new SimpleItemGroup("tolkienmobs.food", () -> new ItemStack(TTMContent.LEMBAS.get()));
     public static ItemGroup questGroup = new SimpleItemGroup("tolkienmobs.quest", () -> new ItemStack(TTMContent.ITEM_FORTRESSMAP.get()));
     public static ItemGroup signsGroup = new SimpleItemGroup("tolkienmobs.signs", () -> new ItemStack(TTMContent.BLOCK_MITHRIL.get()));
 
     public static void init() {
+        PotionGenerator.EFFECTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        PotionGenerator.POTIONS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        SoundGenerator.SOUND_EVENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        EnchantmentGenerator.ENCHANTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        EntityGenerator.ENTITY.register(FMLJavaModLoadingContext.get().getModEventBus());
         BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         TILE.register(FMLJavaModLoadingContext.get().getModEventBus());
         CONTAINER.register(FMLJavaModLoadingContext.get().getModEventBus());
-        ENTITY.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     //#################################################################
@@ -67,18 +84,57 @@ public class TTMContent {
     public static RegistryObject<Block> ORE_NETHER_AMMOLITE = BLOCKS.register("ore_nether_ammolite", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
 
     // Basic - Wood & Foliage
-    public static RegistryObject<RotatedPillarBlock> LOG_CULUMALDA = BLOCKS.register("log_culumalda", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN));
-    public static RegistryObject<RotatedPillarBlock> LOG_LEBETHRON = BLOCKS.register("log_lebethron", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN));
-    public static RegistryObject<RotatedPillarBlock> LOG_MALLORN = BLOCKS.register("log_mallorn", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN));
-    public static RegistryObject<RotatedPillarBlock> LOG_MIRKWOOD = BLOCKS.register("log_mirkwood", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.OBSIDIAN));
-    public static RegistryObject<Block> PLANKS_CULUMALDA = BLOCKS.register("planks_culumalda", () -> new Block(AbstractBlock.Properties.create(Material.WOOD)));
-    public static RegistryObject<Block> PLANKS_LEBETHRON = BLOCKS.register("planks_lebethron", () -> new Block(AbstractBlock.Properties.create(Material.WOOD)));
-    public static RegistryObject<Block> PLANKS_MALLORN = BLOCKS.register("planks_mallorn", () -> new Block(AbstractBlock.Properties.create(Material.WOOD)));
-    public static RegistryObject<Block> PLANKS_MIRKWOOD = BLOCKS.register("planks_mirkwood", () -> new Block(AbstractBlock.Properties.create(Material.WOOD)));
-    public static RegistryObject<Block> LEAVES_CULUMALDA = BLOCKS.register("leaves_culumalda", () -> new Block(AbstractBlock.Properties.create(Material.LEAVES).sound(SoundType.PLANT)));
-    public static RegistryObject<Block> LEAVES_LEBETHRON = BLOCKS.register("leaves_lebethron", () -> new Block(AbstractBlock.Properties.create(Material.LEAVES).sound(SoundType.PLANT)));
-    public static RegistryObject<Block> LEAVES_MALLORN = BLOCKS.register("leaves_mallorn", () -> new Block(AbstractBlock.Properties.create(Material.LEAVES).sound(SoundType.PLANT)));
-    public static RegistryObject<Block> LEAVES_MIRKWOOD = BLOCKS.register("leaves_mirkwood", () -> new Block(AbstractBlock.Properties.create(Material.LEAVES).sound(SoundType.PLANT)));
+    public static RegistryObject<RotatedPillarBlock> LOG_CULUMALDA = BLOCKS.register("log_culumalda", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.GRAY_TERRACOTTA));
+    public static RegistryObject<RotatedPillarBlock> LOG_LEBETHRON = BLOCKS.register("log_lebethron", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.LIGHT_GRAY_TERRACOTTA));
+    public static RegistryObject<RotatedPillarBlock> LOG_MALLORN = BLOCKS.register("log_mallorn", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.WHITE_TERRACOTTA));
+    public static RegistryObject<RotatedPillarBlock> LOG_MIRKWOOD = BLOCKS.register("log_mirkwood", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.BLACK_TERRACOTTA));
+    public static RegistryObject<Block> PLANKS_CULUMALDA = BLOCKS.register("planks_culumalda", () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.GRAY_TERRACOTTA).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<Block> PLANKS_LEBETHRON = BLOCKS.register("planks_lebethron", () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.LIGHT_GRAY_TERRACOTTA).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<Block> PLANKS_MALLORN = BLOCKS.register("planks_mallorn", () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<Block> PLANKS_MIRKWOOD = BLOCKS.register("planks_mirkwood", () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<StairsBlock> STAIRS_CULUMALDA = BLOCKS.register("stairs_culumalda", () -> new StairsBlock(PLANKS_CULUMALDA.get().getDefaultState(), AbstractBlock.Properties.from(PLANKS_CULUMALDA.get())));
+    public static RegistryObject<StairsBlock> STAIRS_LEBETHRON = BLOCKS.register("stairs_lebethron", () -> new StairsBlock(PLANKS_LEBETHRON.get().getDefaultState(), AbstractBlock.Properties.from(PLANKS_LEBETHRON.get())));
+    public static RegistryObject<StairsBlock> STAIRS_MIRKWOOD = BLOCKS.register("stairs_mirkwood", () -> new StairsBlock(PLANKS_MIRKWOOD.get().getDefaultState(), AbstractBlock.Properties.from(PLANKS_MIRKWOOD.get())));
+    public static RegistryObject<StairsBlock> STAIRS_MALLORN = BLOCKS.register("stairs_mallorn", () -> new StairsBlock(PLANKS_MALLORN.get().getDefaultState(), AbstractBlock.Properties.from(PLANKS_MALLORN.get())));
+    public static RegistryObject<SlabBlock> SLAB_MALLORN = BLOCKS.register("slab_mallorn", () -> new SlabBlock(AbstractBlock.Properties.create(Material.WOOD)));
+    public static RegistryObject<SlabBlock> SLAB_MIRKWOOD = BLOCKS.register("slab_mirkwood", () -> new SlabBlock(AbstractBlock.Properties.create(Material.WOOD)));
+    public static RegistryObject<SlabBlock> SLAB_LEBETHRON = BLOCKS.register("slab_lebethron", () -> new SlabBlock(AbstractBlock.Properties.create(Material.WOOD)));
+    public static RegistryObject<SlabBlock> SLAB_CULUMALDA = BLOCKS.register("slab_culumalda", () -> new SlabBlock(AbstractBlock.Properties.create(Material.WOOD)));
+    public static RegistryObject<DoorBlock> DOOR_MALLORN = BLOCKS.register("door_mallorn", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD, PLANKS_MALLORN.get().getMaterialColor()).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+    public static RegistryObject<DoorBlock> DOOR_MIRKWOOD = BLOCKS.register("door_mirkwood", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD, PLANKS_MIRKWOOD.get().getMaterialColor()).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+    public static RegistryObject<DoorBlock> DOOR_CULUMALDA = BLOCKS.register("door_culumalda", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD, PLANKS_CULUMALDA.get().getMaterialColor()).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+    public static RegistryObject<DoorBlock> DOOR_LEBETHRON = BLOCKS.register("door_lebethron", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD, PLANKS_LEBETHRON.get().getMaterialColor()).hardnessAndResistance(3.0F).sound(SoundType.WOOD).notSolid()));
+    public static RegistryObject<FenceGateBlock> FENCE_GATE_MALLORN = BLOCKS.register("fence_gate_mallorn", () -> new FenceGateBlock(AbstractBlock.Properties.create(Material.WOOD, PLANKS_MALLORN.get().getMaterialColor()).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<FenceGateBlock> FENCE_GATE_MIRKWOOD = BLOCKS.register("fence_gate_mirkwood", () -> new FenceGateBlock(AbstractBlock.Properties.create(Material.WOOD, PLANKS_MIRKWOOD.get().getMaterialColor()).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<FenceGateBlock> FENCE_GATE_CULUMALDA = BLOCKS.register("fence_gate_culumalda", () -> new FenceGateBlock(AbstractBlock.Properties.create(Material.WOOD, PLANKS_CULUMALDA.get().getMaterialColor()).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<FenceGateBlock> FENCE_GATE_LEBETHRON = BLOCKS.register("fence_gate_lebethron", () -> new FenceGateBlock(AbstractBlock.Properties.create(Material.WOOD, PLANKS_LEBETHRON.get().getMaterialColor()).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<FenceBlock> FENCE_MALLORN = BLOCKS.register("fence_mallorn", () -> new FenceBlock(AbstractBlock.Properties.create(Material.WOOD, PLANKS_MALLORN.get().getMaterialColor()).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<FenceBlock> FENCE_MIRKWOOD = BLOCKS.register("fence_mirkwood", () -> new FenceBlock(AbstractBlock.Properties.create(Material.WOOD, PLANKS_MIRKWOOD.get().getMaterialColor()).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<FenceBlock> FENCE_CULUMALDA = BLOCKS.register("fence_culumalda", () -> new FenceBlock(AbstractBlock.Properties.create(Material.WOOD, PLANKS_CULUMALDA.get().getMaterialColor()).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<FenceBlock> FENCE_LEBETHRON = BLOCKS.register("fence_lebethron", () -> new FenceBlock(AbstractBlock.Properties.create(Material.WOOD, PLANKS_LEBETHRON.get().getMaterialColor()).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<Block> LEAVES_CULUMALDA = BLOCKS.register("leaves_culumalda", TTMContent::createLeavesBlock);
+    public static RegistryObject<Block> LEAVES_LEBETHRON = BLOCKS.register("leaves_lebethron", TTMContent::createLeavesBlock);
+    public static RegistryObject<Block> LEAVES_MALLORN = BLOCKS.register("leaves_mallorn", TTMContent::createLeavesBlock);
+    public static RegistryObject<Block> LEAVES_MIRKWOOD = BLOCKS.register("leaves_mirkwood", TTMContent::createLeavesBlock);
+    public static RegistryObject<SaplingBlock> SAPLING_MALLORN = BLOCKS.register("sapling_mallorn", () -> new SaplingBlock(new TTMMallornTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static RegistryObject<SaplingBlock> SAPLING_MIRKWOOD = BLOCKS.register("sapling_mirkwood", () -> new SaplingBlock(new TTMMirkwoodTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static RegistryObject<SaplingBlock> SAPLING_CULUMALDA = BLOCKS.register("sapling_culumalda", () -> new SaplingBlock(new TTMCulumaldaTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static RegistryObject<SaplingBlock> SAPLING_LEBETHRON = BLOCKS.register("sapling_lebethron", () -> new SaplingBlock(new TTMLebethronTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+
+    // Blocks - Plants & Flowers
+    public static RegistryObject<Block> MUSHROOM_DECAY_BLOOM = BLOCKS.register("mushroom_decay_bloom", () -> new BlockMushrooms(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.BROWN).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT).setLightLevel((state) -> {
+        return 1;
+    }).setNeedsPostProcessing(TTMContent::needsPostProcessing)));
+    public static RegistryObject<Block> MUSHROOM_BLOOM_DECAY = BLOCKS.register("mushroom_bloom_decay", () -> new BlockMushrooms(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.BROWN).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT).setLightLevel((state) -> {
+        return 1;
+    }).setNeedsPostProcessing(TTMContent::needsPostProcessing)));
+    public static RegistryObject<Block> FLOWER_SIMBELMYNE = BLOCKS.register("flower_simbelmyne", () -> new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static RegistryObject<Block> FLOWER_MIRKWOOD = BLOCKS.register("flower_mirkwood", () -> new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static RegistryObject<Block> FLOWER_ALFIRIN = BLOCKS.register("flower_alfirin", () -> new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static RegistryObject<Block> FLOWER_ATHELAS = BLOCKS.register("flower_athelas", () -> new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static RegistryObject<Block> FLOWER_NIPHREDIL = BLOCKS.register("flower_niphredil", () -> new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static RegistryObject<Block> FLOWER_SWAMPMILKWEED = BLOCKS.register("flower_swamp_milkweed", () -> new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static RegistryObject<Block> FLOWER_LILLYOFTHEVALLEY = BLOCKS.register("flower_valley_lilly", () -> new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 
     // Custom
     public static RegistryObject<Block> BLOCK_HALLOWED = BLOCKS.register("block_hallowed", () -> new BlockTMHallowed(AbstractBlock.Properties.create(Material.EARTH).sound(SoundType.GROUND).tickRandomly()));
@@ -159,10 +215,43 @@ public class TTMContent {
     public static RegistryObject<Item> PLANKS_LEBETHRON_ITEM = ITEMS.register("planks_lebethron", () -> new ItemBlockBCore(PLANKS_LEBETHRON.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> PLANKS_MALLORN_ITEM = ITEMS.register("planks_mallorn", () -> new ItemBlockBCore(PLANKS_MALLORN.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> PLANKS_MIRKWOOD_ITEM = ITEMS.register("planks_mirkwood", () -> new ItemBlockBCore(PLANKS_MIRKWOOD.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> STAIRS_MALLORN_ITEM = ITEMS.register("stairs_mallorn", () -> new ItemBlockBCore(STAIRS_MALLORN.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> STAIRS_MIRKWOOD_ITEM = ITEMS.register("stairs_mirkwood", () -> new ItemBlockBCore(STAIRS_MIRKWOOD.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> STAIRS_LEBETHRON_ITEM = ITEMS.register("stairs_lebethron", () -> new ItemBlockBCore(STAIRS_LEBETHRON.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> STAIRS_CULUMALDA_ITEM = ITEMS.register("stairs_culumalda", () -> new ItemBlockBCore(STAIRS_CULUMALDA.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> SLAB_MALLORN_ITEM = ITEMS.register("slab_mallorn", () -> new ItemBlockBCore(SLAB_MALLORN.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> SLAB_MIRKWOOD_ITEM = ITEMS.register("slab_mirkwood", () -> new ItemBlockBCore(SLAB_MIRKWOOD.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> SLAB_CULUMALDA_ITEM = ITEMS.register("slab_culumalda", () -> new ItemBlockBCore(SLAB_CULUMALDA.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> SLAB_LEBETHRON_ITEM = ITEMS.register("slab_lebethron", () -> new ItemBlockBCore(SLAB_LEBETHRON.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> DOOR_MALLORN_ITEM = ITEMS.register("door_mallorn", () -> new ItemBlockBCore(DOOR_MALLORN.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> DOOR_MIRKWOOD_ITEM = ITEMS.register("door_mirkwood", () -> new ItemBlockBCore(DOOR_MIRKWOOD.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> DOOR_CULUMALDA_ITEM = ITEMS.register("door_culumalda", () -> new ItemBlockBCore(DOOR_CULUMALDA.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> DOOR_LEBETHRON_ITEM = ITEMS.register("door_lebethron", () -> new ItemBlockBCore(DOOR_LEBETHRON.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> FENCE_GATE_MALLORN_ITEM = ITEMS.register("fence_gate_mallorn", () -> new ItemBlockBCore(FENCE_GATE_MALLORN.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> FENCE_GATE_MIRKWOOD_ITEM = ITEMS.register("fence_gate_mirkwood", () -> new ItemBlockBCore(FENCE_GATE_MIRKWOOD.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> FENCE_GATE_CULUMALDA_ITEM = ITEMS.register("fence_gate_culumalda", () -> new ItemBlockBCore(FENCE_GATE_CULUMALDA.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> FENCE_GATE_LEBETHRON_ITEM = ITEMS.register("fence_gate_lebethron", () -> new ItemBlockBCore(FENCE_GATE_LEBETHRON.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> FENCE_MALLORN_ITEM = ITEMS.register("fence_mallorn", () -> new ItemBlockBCore(FENCE_MALLORN.get(), new Item.Properties().group(matsGroup)));
+
     public static RegistryObject<Item> LEAVES_CULUMALDA_ITEM = ITEMS.register("leaves_culumalda", () -> new ItemBlockBCore(LEAVES_CULUMALDA.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> LEAVES_LEBETHRON_ITEM = ITEMS.register("leaves_lebethron", () -> new ItemBlockBCore(LEAVES_LEBETHRON.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> LEAVES_MALLORN_ITEM = ITEMS.register("leaves_mallorn", () -> new ItemBlockBCore(LEAVES_MALLORN.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> LEAVES_MIRKWOOD_ITEM = ITEMS.register("leaves_mirkwood", () -> new ItemBlockBCore(LEAVES_MIRKWOOD.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> SAPLING_CULUMALDA_ITEM = ITEMS.register("sapling_culumalda", () -> new ItemBlockBCore(SAPLING_CULUMALDA.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> SAPLING_LEBETHRON_ITEM = ITEMS.register("sapling_lebethron", () -> new ItemBlockBCore(SAPLING_LEBETHRON.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> SAPLING_MALLORN_ITEM = ITEMS.register("sapling_mallorn", () -> new ItemBlockBCore(SAPLING_MALLORN.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> SAPLING_MIRKWOOD_ITEM = ITEMS.register("sapling_mirkwood", () -> new ItemBlockBCore(SAPLING_MIRKWOOD.get(), new Item.Properties().group(matsGroup)));
+
+    // Blocks - Plants & Flowers
+    public static RegistryObject<Item> MUSHROOM_DECAY_BLOOM_ITEM = ITEMS.register("mushroom_decay_bloom", () -> new ItemBlockBCore(MUSHROOM_DECAY_BLOOM.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> MUSHROOM_BLOOM_DECAY_ITEM = ITEMS.register("mushroom_bloom_decay", () -> new ItemBlockBCore(MUSHROOM_BLOOM_DECAY.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> FLOWER_SIMBELMYNE_ITEM = ITEMS.register("flower_simbelmyne", () -> new ItemBlockBCore(FLOWER_SIMBELMYNE.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> FLOWER_MIRKWOOD_ITEM = ITEMS.register("flower_mirkwood", () -> new ItemBlockBCore(FLOWER_MIRKWOOD.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> FLOWER_ALFIRIN_ITEM = ITEMS.register("flower_alfirin", () -> new ItemBlockBCore(FLOWER_ALFIRIN.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> FLOWER_ATHELAS_ITEM = ITEMS.register("flower_athelas", () -> new ItemBlockBCore(FLOWER_ATHELAS.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> FLOWER_NIPHREDIL_ITEM = ITEMS.register("flower_niphredil", () -> new ItemBlockBCore(FLOWER_NIPHREDIL.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> FLOWER_SWAMPMILKWEED_ITEM = ITEMS.register("flower_swamp_milkweed", () -> new ItemBlockBCore(FLOWER_SWAMPMILKWEED.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> FLOWER_LILLYOFTHEVALLEY_ITEM = ITEMS.register("flower_valley_lilly", () -> new ItemBlockBCore(FLOWER_LILLYOFTHEVALLEY.get(), new Item.Properties().group(matsGroup)));
 
     // Blocks - Custom
     public static RegistryObject<Item> BLOCK_HALLOWED_ITEM = ITEMS.register("block_hallowed", () -> new ItemBlockBCore(BLOCK_HALLOWED.get(), new Item.Properties().group(matsGroup)));
@@ -202,24 +291,55 @@ public class TTMContent {
     public static RegistryObject<Item> GOLEM_STONE_SUMMON = ITEMS.register("item_golem_stone_summon", () -> new TTMLore(new Item.Properties().maxStackSize(16).group(matsGroup)).setEffectOverride().setHasLore());
 
     //#################################################################
+    // Record Items
+    //#################################################################
+    // Sounds - Music Disc
+    public static RegistryObject<Item> RECORD_RIVENDELL = ITEMS.register("record_rivendell", () -> new TTMRecord(1,ridersofrivendell,(new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_LOTHLORIEN = ITEMS.register("record_lothlorien", () -> new TTMRecord(2,thelightoflothlorien,(new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_EREBOR = ITEMS.register("record_erebor", () -> new TTMRecord(3,allthatglittersinerebor,(new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_WILLOW = ITEMS.register("record_willow", () -> new TTMRecord(4,willowsong,(new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_MINASTIRITH = ITEMS.register("record_minastirith", () -> new TTMRecord(5,minastirith,(new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_EDORAS = ITEMS.register("record_edoras", () -> new TTMRecord(6,wakeofedoras,(new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_WBATTLE = ITEMS.register("record_wbattle", () -> new TTMRecord(7,witchbattle,(new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_MURDERFROG = ITEMS.register("record_murderfrog", () -> new TTMRecord(8,murderfrog,(new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_REDER = ITEMS.register("record_reder", () -> new TTMRecord(9,rederssong,(new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_FUMBLE = ITEMS.register("record_fumble", () -> new TTMRecord(10,trollfumble,(new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_BOMBADIL = ITEMS.register("record_bombadil", () -> new TTMRecord(11,mysteryoftombombadil,(new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_HOBBITS = ITEMS.register("record_hobbits", () -> new TTMRecord(12,concerninghobbits,(new Item.Properties()).maxStackSize(1).group(questGroup)));
+
+    //#################################################################
+    // Food & Drink Items
+    //#################################################################
+    // Drinks
+    public static RegistryObject<Item> DRINK_ENT_DRAUGHT = ITEMS.register("drink_ent_draught", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.DRINK_ENT_DRAUGHT)).setEffectOverride());
+    public static RegistryObject<Item> DRINK_PERSONAL_BLACKSMITH = ITEMS.register("drink_personal_blacksmith", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.DRINK_PERSONAL_BLACKSMITH)).setEffectOverride());
+    public static RegistryObject<Item> DRINK_ELF_FLEETFOOT = ITEMS.register("drink_elf_blessing", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.DRINK_ELF_NIMBLENESS)).setEffectOverride());
+    public static RegistryObject<Item> DRINK_ELF_VITALITY = ITEMS.register("drink_elf_vitality", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.DRINK_ELF_VITALITY)).setEffectOverride());
+    public static RegistryObject<Item> DRINK_ERU_BLESSING = ITEMS.register("drink_eru_blessing", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.DRINK_ERU_BLESSING)).setEffectOverride());
+    public static RegistryObject<Item> MIRUVOR = ITEMS.register("drink_miruvor", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.MIRUVOR)).setEffectOverride());
+    public static RegistryObject<Item> GROG = ITEMS.register("drink_grog", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.GROG)).setEffectOverride());
+
+    // Food
+    public static RegistryObject<Item> LEMBAS = ITEMS.register("food_lembas", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.LEMBAS)).setEffectOverride());
+    public static RegistryObject<Item> HONEY_CAKE = ITEMS.register("food_honeycake", () -> new Item(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.HONEY_CAKE)));
+    public static RegistryObject<Item> CRAM = ITEMS.register("food_cram", () -> new Item(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.CRAM)));
+    public static RegistryObject<Item> MONSTER_FLESH = ITEMS.register("monster_flesh", () -> new Item(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.MONSTER_FLESH)));
+    public static RegistryObject<Item> INSECT = ITEMS.register("food_insect", () -> new Item(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.INSECT)));
+    public static RegistryObject<Item> GOLDEN_INSECT = ITEMS.register("food_golden_insect", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.GOLDEN_INSECT)).setEffectOverride());
+    public static RegistryObject<Item> TREE_ACORN = ITEMS.register("food_tree_acorn", () -> new Item(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.TREE_ACORN)));
+    public static RegistryObject<Item> GOLDEN_TREE_ACORN = ITEMS.register("food_golden_tree_acorn", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.GOLDEN_TREE_ACORN)).setEffectOverride());
+    public static RegistryObject<Item> FOOD_HONEY = ITEMS.register("food_honey", () -> new Item(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.FOOD_HONEY)));
+
+    //#################################################################
     // Tile Entity Types
     //#################################################################
-
     //public static RegistryObject<TileEntityType<ExampleTile>> EXAMPLE_TILE = TILE.register("example_tile", () -> TileEntityType.Builder.create(ExampleTile::new, EXAMPLE_BLOCK.get()).build(null));
 
     //#################################################################
     // Containers
     //#################################################################
-
     //TODO Will get back to this when its needed. I need to figure out a better way to do this.
-//    public static RegistryObject<ContainerType<ContainerBCTile<ExampleTile>>> EXAMPLE_CONTAINER = CONTAINER.register("example_container", (windowId, inv, data) -> new ContainerBCTile<ExampleTile>(EXAMPLE_CONTAINER.get(), windowId, inv, data, TRANSFUSER_LAYOUT));
-
-    //#################################################################
-    // Entities
-    //#################################################################
-
-    //public static RegistryObject<EntityType<PigEntity>> EXAMPLE_ENTITY = ENTITY.register("example_entity", () -> EntityType.Builder.create(PigEntity::new, EntityClassification.CREATURE).size(0.9F, 0.9F).trackingRange(10).build("example_entity"));
-
+    //public static RegistryObject<ContainerType<ContainerBCTile<ExampleTile>>> EXAMPLE_CONTAINER = CONTAINER.register("example_container", (windowId, inv, data) -> new ContainerBCTile<ExampleTile>(EXAMPLE_CONTAINER.get(), windowId, inv, data, TRANSFUSER_LAYOUT));
 
 
     //For demonstration purposes only
@@ -229,4 +349,25 @@ public class TTMContent {
     //    }
     //}
 
+    private static boolean needsPostProcessing(BlockState state, IBlockReader reader, BlockPos pos) {
+        return true;
+    }
+
+    private static boolean isntSolid(BlockState state, IBlockReader reader, BlockPos pos) {
+        return false;
+    }
+
+    private static Boolean allowsSpawnOnLeaves(BlockState state, IBlockReader reader, BlockPos pos, EntityType<?> entity) {
+        return entity == EntityType.OCELOT || entity == EntityType.PARROT;
+    }
+
+    private static LeavesBlock createLeavesBlock() {
+        return new LeavesBlock(AbstractBlock.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid().setAllowsSpawn(TTMContent::allowsSpawnOnLeaves).setSuffocates(TTMContent::isntSolid).setBlocksVision(TTMContent::isntSolid));
+    }
+
+    private static RotatedPillarBlock createLogBlock(MaterialColor topColor, MaterialColor barkColor) {
+        return new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD, (state) -> {
+            return state.get(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? topColor : barkColor;
+        }).hardnessAndResistance(2.0F).sound(SoundType.WOOD));
+    }
 }

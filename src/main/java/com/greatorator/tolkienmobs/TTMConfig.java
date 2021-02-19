@@ -69,12 +69,18 @@ public class TTMConfig {
     }
 
     //Client properties
+    public static boolean HeartOverlay;
     public static int exampleInt;
     public static List<Integer> exampleIntList;
 
     private static void loadClient() {
         clientTag = config.getTag("Client");
-        clientTag.setComment("These are client side config properties.");
+        clientTag.setComment("Enable Heart Overlay Feature - Default True");
+
+        clientTag.getTag("HeartOverlay")
+                .setComment("This is an example boolean")
+                .setDefaultBoolean(true)
+                .setSyncCallback((tag, type) -> HeartOverlay = tag.getBoolean());
 
         clientTag.getTag("exampleInt")
                 .setComment("This is an example integer")

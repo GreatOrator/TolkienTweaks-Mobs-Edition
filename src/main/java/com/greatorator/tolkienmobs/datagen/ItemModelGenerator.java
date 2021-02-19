@@ -36,18 +36,53 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.ORE_NETHER_AMMOLITE.get());
 
         // Block Items - Wood & Foliage
-        blockItem(TTMContent.LOG_CULUMALDA.get());
-        blockItem(TTMContent.LOG_LEBETHRON.get());
         blockItem(TTMContent.LOG_MALLORN.get());
         blockItem(TTMContent.LOG_MIRKWOOD.get());
-        blockItem(TTMContent.PLANKS_CULUMALDA.get());
-        blockItem(TTMContent.PLANKS_LEBETHRON.get());
+        blockItem(TTMContent.LOG_CULUMALDA.get());
+        blockItem(TTMContent.LOG_LEBETHRON.get());
         blockItem(TTMContent.PLANKS_MALLORN.get());
         blockItem(TTMContent.PLANKS_MIRKWOOD.get());
-        blockItem(TTMContent.LEAVES_CULUMALDA.get());
-        blockItem(TTMContent.LEAVES_LEBETHRON.get());
+        blockItem(TTMContent.PLANKS_CULUMALDA.get());
+        blockItem(TTMContent.PLANKS_LEBETHRON.get());
+        blockItem(TTMContent.STAIRS_MALLORN.get());
+        blockItem(TTMContent.STAIRS_MIRKWOOD.get());
+        blockItem(TTMContent.STAIRS_CULUMALDA.get());
+        blockItem(TTMContent.STAIRS_LEBETHRON.get());
+        blockItem(TTMContent.SLAB_MALLORN.get());
+        blockItem(TTMContent.SLAB_MIRKWOOD.get());
+        blockItem(TTMContent.SLAB_LEBETHRON.get());
+        blockItem(TTMContent.SLAB_CULUMALDA.get());
+        simpleItem(TTMContent.DOOR_MALLORN_ITEM.get());
+        simpleItem(TTMContent.DOOR_MIRKWOOD_ITEM.get());
+        simpleItem(TTMContent.DOOR_CULUMALDA_ITEM.get());
+        simpleItem(TTMContent.DOOR_LEBETHRON_ITEM.get());
+        blockItem(TTMContent.FENCE_GATE_MALLORN.get(), modLoc("block/fence_gate_mallorn_fence_gate"));
+        blockItem(TTMContent.FENCE_GATE_MIRKWOOD.get(), modLoc("block/fence_gate_mirkwood_fence_gate"));
+        blockItem(TTMContent.FENCE_GATE_CULUMALDA.get(), modLoc("block/fence_gate_culumalda_fence_gate"));
+        blockItem(TTMContent.FENCE_GATE_LEBETHRON.get(), modLoc("block/fence_gate_lebethron_fence_gate"));
+        blockItem(TTMContent.FENCE_MALLORN.get(), modLoc("block/mallorn_fence_inventory"));
+        blockItem(TTMContent.FENCE_MIRKWOOD.get(), modLoc("block/mirkwood_fence_inventory"));
+        blockItem(TTMContent.FENCE_CULUMALDA.get(), modLoc("block/culumalda_fence_inventory"));
+        blockItem(TTMContent.FENCE_LEBETHRON.get(), modLoc("block/lebethron_fence_inventory"));
         blockItem(TTMContent.LEAVES_MALLORN.get());
         blockItem(TTMContent.LEAVES_MIRKWOOD.get());
+        blockItem(TTMContent.LEAVES_CULUMALDA.get());
+        blockItem(TTMContent.LEAVES_LEBETHRON.get());
+        blockItem(TTMContent.SAPLING_MALLORN.get());
+        blockItem(TTMContent.SAPLING_MIRKWOOD.get());
+        blockItem(TTMContent.SAPLING_CULUMALDA.get());
+        blockItem(TTMContent.SAPLING_LEBETHRON.get());
+
+        // Block Items - Plants & Flowers
+        blockItem(TTMContent.MUSHROOM_DECAY_BLOOM.get());
+        blockItem(TTMContent.MUSHROOM_BLOOM_DECAY.get());
+        blockItem(TTMContent.FLOWER_SIMBELMYNE.get());
+        blockItem(TTMContent.FLOWER_MIRKWOOD.get());
+        blockItem(TTMContent.FLOWER_ALFIRIN.get());
+        blockItem(TTMContent.FLOWER_ATHELAS.get());
+        blockItem(TTMContent.FLOWER_NIPHREDIL.get());
+        blockItem(TTMContent.FLOWER_SWAMPMILKWEED.get());
+        blockItem(TTMContent.FLOWER_LILLYOFTHEVALLEY.get());
 
         // Block Items - Custom Blocks
         blockItem(TTMContent.BLOCK_HALLOWED.get());
@@ -132,6 +167,40 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.ITEM_FACTIONTOKEN.get());
         simpleItem(TTMContent.ITEM_CAVECOMPLETE.get());
         simpleItem(TTMContent.ITEM_WATCHERCOMPLETE.get());
+
+        //region Potions & Food
+        simpleItem(TTMContent.DRINK_ENT_DRAUGHT.get());
+        simpleItem(TTMContent.DRINK_PERSONAL_BLACKSMITH.get());
+        simpleItem(TTMContent.DRINK_ELF_FLEETFOOT.get());
+        simpleItem(TTMContent.DRINK_ELF_VITALITY.get());
+        simpleItem(TTMContent.DRINK_ERU_BLESSING.get());
+        simpleItem(TTMContent.MIRUVOR.get());
+        simpleItem(TTMContent.GROG.get());
+        simpleItem(TTMContent.LEMBAS.get());
+        simpleItem(TTMContent.HONEY_CAKE.get());
+        simpleItem(TTMContent.CRAM.get());
+        simpleItem(TTMContent.MONSTER_FLESH.get());
+        simpleItem(TTMContent.INSECT.get());
+        simpleItem(TTMContent.GOLDEN_INSECT.get());
+        simpleItem(TTMContent.TREE_ACORN.get());
+        simpleItem(TTMContent.GOLDEN_TREE_ACORN.get());
+        simpleItem(TTMContent.FOOD_HONEY.get());
+
+        //region Music Discs
+        simpleItem(TTMContent.RECORD_RIVENDELL.get());
+        simpleItem(TTMContent.RECORD_LOTHLORIEN.get());
+        simpleItem(TTMContent.RECORD_EREBOR.get());
+        simpleItem(TTMContent.RECORD_WILLOW.get());
+        simpleItem(TTMContent.RECORD_MINASTIRITH.get());
+        simpleItem(TTMContent.RECORD_EDORAS.get());
+        simpleItem(TTMContent.RECORD_WBATTLE.get());
+        simpleItem(TTMContent.RECORD_MURDERFROG.get());
+        simpleItem(TTMContent.RECORD_REDER.get());
+        simpleItem(TTMContent.RECORD_FUMBLE.get());
+        simpleItem(TTMContent.RECORD_BOMBADIL.get());
+        simpleItem(TTMContent.RECORD_HOBBITS.get());
+
+
 
 
 
@@ -305,6 +374,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 
     @Override
     public String getName() {
-        return "Draconic Evolution Item Models";
+        return "TolkienMobs Item Models";
     }
 }

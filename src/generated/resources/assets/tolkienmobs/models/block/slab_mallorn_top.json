@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "tolkienmobs:block/planks_mallorn",
+    "bottom": "tolkienmobs:block/planks_mallorn",
+    "top": "tolkienmobs:block/planks_mallorn"
+  }
+}

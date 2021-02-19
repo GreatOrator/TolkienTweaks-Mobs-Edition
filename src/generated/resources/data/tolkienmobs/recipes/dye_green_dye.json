@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tolkienmobs:flower_athelas"
+    }
+  ],
+  "result": {
+    "item": "minecraft:green_dye",
+    "count": 2
+  }
+}

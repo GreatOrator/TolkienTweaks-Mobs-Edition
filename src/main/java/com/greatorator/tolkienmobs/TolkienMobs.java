@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs;
 
 import com.greatorator.tolkienmobs.proxy.ClientProxy;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -14,6 +15,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Locale;
 
 @Mod(TolkienMobs.MODID)
 public class TolkienMobs {
@@ -27,10 +30,22 @@ public class TolkienMobs {
 
     /*TODO List
     * Registration Stuff
-    *  - Blocks
-    *  - Items
+    *  - Fix Fence Recipes
+    *  - Signs
     *  - Entities
-    *  - etc
+    *  - Ammunition
+    *  - Fireplace
+    *  - Potions
+    *  - Enchants
+    *  - Trinkets
+    *  - Tools
+    *  - Weapons
+    *  - Armor
+    *  - Generation
+    *   - Trees
+    *   - Biomes
+    *   - Structures
+    *   - Plants
     *
     * Data Generators
     *  - Block States and models
@@ -74,6 +89,10 @@ public class TolkienMobs {
     @SubscribeEvent
     public void onClientSetup(FMLClientSetupEvent event) {
         proxy.clientSetup(event);
+    }
+
+    public static ResourceLocation prefix(String name) {
+        return new ResourceLocation(MODID, name.toLowerCase(Locale.ROOT));
     }
 
 }

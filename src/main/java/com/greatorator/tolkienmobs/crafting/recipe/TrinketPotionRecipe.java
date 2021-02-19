@@ -2,7 +2,7 @@
 //
 //import codechicken.lib.util.ArrayUtils;
 //import com.greatorator.tolkienmobs.TTMConfig_Old;
-//import com.greatorator.tolkienmobs.item.magical.ItemTrinketRing;
+//import com.greatorator.tolkienmobs.item.item_old.magical.ItemTrinketRing;
 //import net.minecraft.inventory.InventoryCrafting;
 //import net.minecraft.item.ItemPotion;
 //import net.minecraft.item.ItemStack;

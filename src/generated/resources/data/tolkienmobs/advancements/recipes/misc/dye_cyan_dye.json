@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:dye_cyan_dye"
+    ]
+  },
+  "criteria": {
+    "has_flower_swamp_milkweed": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tolkienmobs:flower_swamp_milkweed"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:dye_cyan_dye"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_flower_swamp_milkweed",
+      "has_the_recipe"
+    ]
+  ]
+}

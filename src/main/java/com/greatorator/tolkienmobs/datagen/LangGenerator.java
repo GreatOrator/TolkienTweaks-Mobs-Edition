@@ -19,18 +19,22 @@ public class LangGenerator extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        PrefixHelper helper = new PrefixHelper(this);
-        blocks(helper);
-        items(helper);
-        quest(helper);
-        coinToken(helper);
+        blocks();
+        items();
+        quest();
+        food();
+        potion();
+        coinToken();
+        enchants();
+        records();
+        creativeTabGroups();
     }
 
     private void blocks(PrefixHelper helper) {
         helper.add(TTMContent.BLOCK_MITHRIL.get(),                               "Mithril Block");
     }
 
-    private void items(PrefixHelper helper) {
+    private void items() {
         //Components
         helper.add(TTMContent.INGOT_MITHRIL.get(),                                 "Mithril Ingot");
     }
@@ -406,7 +410,7 @@ public class LangGenerator extends LanguageProvider {
         add("key.draconicevolution.dislocator_down",                            "Advanced Dislocator Select Down");
     }
 
-    private void coinToken(PrefixHelper helper) {
+    private void coinToken() {
         add(TTMContent.ITEM_COIN_BRONZE.get(),                          "Bronze Coin");
             addLore(TTMContent.ITEM_COIN_BRONZE.get(),                       "64 Can be traded for 1 Silver coin");
         add(TTMContent.ITEM_COIN_SILVER.get(),                          "Silver Coin");
@@ -427,6 +431,139 @@ public class LangGenerator extends LanguageProvider {
             addLore(TTMContent.ITEM_WATCHERCOMPLETE.get(),                   "Proof of defeating the Watcher");
     }
 
+    private void creativeTabGroups() {
+        add("itemGroup.tolkienmobs.tools",                              "TolkienTweaks Tools");
+        add("itemGroup.tolkienmobs.mats",                               "TolkienTweaks Materials & World Gen");
+        add("itemGroup.tolkienmobs.spawn",                              "TolkienTweaks Mobs");
+        add("itemGroup.tolkienmobs.food",                               "TolkienTweaks Food");
+        add("itemGroup.tolkienmobs.quest",                              "TolkienTweaks Quest Items");
+        add("itemGroup.tolkienmobs.signs",                              "TolkienTweaks Signs");
+    }
+
+    private void potion() {
+        add("effect.tolkienmobs.ent_draught",                           "Ent Draught");
+        add("item.minecraft.potion.effect.ent_draught",                 "Potion of Ent Draught");
+        add("item.minecraft.splash_potion.effect.ent_draught",          "Splash Potion of Ent Draught");
+        add("item.minecraft.lingering_potion.effect.ent_draught",       "Lingering Potion of Ent Draught");
+        add("item.minecraft.tipped_arrow.effect.ent_draught",           "Arrow of Ent Draught");
+        add("effect.tolkienmobs.elf_vitality",                          "Elvish Life-span");
+        add("item.minecraft.potion.effect.elf_vitality",                "Potion of Elvish Life-span");
+        add("item.minecraft.splash_potion.effect.elf_vitality",         "Splash Potion of Elvish Life-span");
+        add("item.minecraft.lingering_potion.effect.elf_vitality",      "Lingering Potion of Elvish Life-span");
+        add("item.minecraft.tipped_arrow.effect.elf_vitality",          "Arrow of Elvish Life-span");
+        add("effect.tolkienmobs.inventory_corrosion",                           "Corrosion");
+        add("item.minecraft.potion.effect.inventory_corrosion",                 "Potion of Corrosion");
+        add("item.minecraft.splash_potion.effect.inventory_corrosion",          "Splash Potion of Corrosion");
+        add("item.minecraft.lingering_potion.effect.inventory_corrosion",       "Lingering Potion of Corrosion");
+        add("item.minecraft.tipped_arrow.effect.inventory_corrosion",           "Arrow of Corrosion");
+        add("effect.tolkienmobs.personal_blacksmith",                           "Portable Blacksmith");
+        add("item.minecraft.potion.effect.personal_blacksmith",                 "Potion of Portable Blacksmith");
+        add("item.minecraft.splash_potion.effect.personal_blacksmith",          "Splash Potion of Portable Blacksmith");
+        add("item.minecraft.lingering_potion.effect.personal_blacksmith",       "Lingering Potion of Portable Blacksmith");
+        add("item.minecraft.tipped_arrow.effect.personal_blacksmith",           "Arrow of Portable Blacksmith");
+        add("effect.tolkienmobs.dread_aura",                            "Great Dread");
+        add("item.minecraft.potion.effect.dread_aura",                  "Potion of Great Dread");
+        add("item.minecraft.splash_potion.effect.dread_aura",           "Splash Potion of Great Dread");
+        add("item.minecraft.lingering_potion.effect.dread_aura",        "Lingering Potion of Great Dread");
+        add("item.minecraft.tipped_arrow.effect.dread_aura",            "Arrow of Great Dread");
+        add("effect.tolkienmobs.elven_nimbleness",                      "Elvish Nimbleness");
+        add("item.minecraft.potion.effect.elven_nimbleness",            "Potion of Elvish Nimbleness");
+        add("item.minecraft.splash_potion.effect.elven_nimbleness",     "Splash Potion of Elvish Nimbleness");
+        add("item.minecraft.lingering_potion.effect.elven_nimbleness",  "Lingering Potion of Elvish Nimbleness");
+        add("item.minecraft.tipped_arrow.effect.elven_nimbleness",      "Arrow of Elvish Nimbleness");
+//        add("effect.tolkienmobs.sleepnesia",                          "Sleepnesia");
+//        add("item.minecraft.potion.effect.sleepnesia",                "Potion of Sleepnesia");
+//        add("item.minecraft.splash_potion.effect.sleepnesia",         "Splash Potion of Sleepnesia");
+//        add("item.minecraft.lingering_potion.effect.sleepnesia",      "Lingering Potion of Sleepnesia");
+//        add("item.minecraft.tipped_arrow.effect.sleepnesia",          "Arrow of Sleepnesia");
+        add("effect.tolkienmobs.crippling_terror",                      "Paralysing Fear");
+        add("item.minecraft.potion.effect.crippling_terror",            "Potion of Paralysing Fear");
+        add("item.minecraft.splash_potion.effect.crippling_terror",     "Splash Potion of Paralysing Fear");
+        add("item.minecraft.lingering_potion.effect.crippling_terror",  "Lingering Potion of Paralysing Fear");
+        add("item.minecraft.tipped_arrow.effect.crippling_terror",      "Arrow of Paralysing Fear");
+        add("effect.tolkienmobs.blessing_of_eru",                       "Eru's Blessing");
+        add("item.minecraft.potion.effect.blessing_of_eru",             "Potion of Eru's Blessing");
+        add("item.minecraft.splash_potion.effect.blessing_of_eru",      "Splash Potion of Eru's Blessing");
+        add("item.minecraft.lingering_potion.effect.blessing_of_eru",   "Lingering Potion of Eru's Blessing");
+        add("item.minecraft.tipped_arrow.effect.blessing_of_eru",       "Arrow of Eru's Blessing");
+//        add("effect.tolkienmobs.elemental_drowning",                          "Elemental Drowning");
+//        add("item.minecraft.potion.effect.elemental_drowning",                "Potion of Elemental Drowning");
+//        add("item.minecraft.splash_potion.effect.elemental_drowning",         "Splash Potion of Elemental Drowning");
+//        add("item.minecraft.lingering_potion.effect.elemental_drowning",      "Lingering Potion of Elemental Drowning");
+//        add("item.minecraft.tipped_arrow.effect.elemental_drowning",          "Arrow of Elemental Drowning");
+        add("effect.tolkienmobs.elemental_lightning",                          "Elemental Lightning");
+        add("item.minecraft.potion.effect.elemental_lightning",                "Potion of Elemental Lightning");
+        add("item.minecraft.splash_potion.effect.elemental_lightning",         "Splash Potion of Elemental Lightning");
+        add("item.minecraft.lingering_potion.effect.elemental_lightning",      "Lingering Potion of Elemental Lightning");
+        add("item.minecraft.tipped_arrow.effect.elemental_lightning",          "Arrow of Elemental Lightning");
+        add("effect.tolkienmobs.elemental_flight",                          "Elemental Flying");
+        add("item.minecraft.potion.effect.elemental_flight",                "Potion of Elemental Flying");
+        add("item.minecraft.splash_potion.effect.elemental_flight",         "Splash Potion of Elemental Flying");
+        add("item.minecraft.lingering_potion.effect.elemental_flight",      "Lingering Potion of Elemental Flying");
+        add("item.minecraft.tipped_arrow.effect.elemental_flight",          "Arrow of Elemental Flying");
+        add("effect.tolkienmobs.elemental_burning",                     "Elemental Burning");
+        add("item.minecraft.potion.effect.elemental_burning",           "Potion of Elemental Burning");
+        add("item.minecraft.splash_potion.effect.elemental_burning",    "Splash Potion of Elemental Burning");
+        add("item.minecraft.lingering_potion.effect.elemental_burning", "Lingering Potion of Elemental Burning");
+        add("item.minecraft.tipped_arrow.effect.elemental_burning",     "Arrow of Elemental Burning");
+//        add("effect.tolkienmobs.elemental_tornado",                          "Elemental Tornado");
+//        add("item.minecraft.potion.effect.elemental_tornado",                "Potion of Elemental Tornado");
+//        add("item.minecraft.splash_potion.effect.elemental_tornado",         "Splash Potion of Elemental Tornado");
+//        add("item.minecraft.lingering_potion.effect.elemental_tornado",      "Lingering Potion of Elemental Tornado");
+//        add("item.minecraft.tipped_arrow.effect.elemental_tornado",          "Arrow of Elemental Tornado");
+    }
+
+    private void enchants(){
+        add("enchantment.tolkienmobs.balrogs_mark",                     "Balrog's Mark");
+        add("enchantment.tolkienmobs.elven_longevity",                  "Elven Longevity");
+    }
+
+    private void food(){
+        add(TTMContent.DRINK_ENT_DRAUGHT.get(),                         "Ent Draught");
+        add(TTMContent.DRINK_PERSONAL_BLACKSMITH.get(),                 "Portable Blacksmith");
+        add(TTMContent.DRINK_ELF_FLEETFOOT.get(),                       "Blessing of the Elves");
+        add(TTMContent.DRINK_ELF_VITALITY.get(),                        "Vitality");
+        add(TTMContent.DRINK_ERU_BLESSING.get(),                        "Blessing of Eru Iluvatar");
+        add(TTMContent.MIRUVOR.get(),                                   "Miruvor");
+        add(TTMContent.GROG.get(),                                      "Grog");
+        add(TTMContent.LEMBAS.get(),                                    "Lembas");
+        add(TTMContent.HONEY_CAKE.get(),                                "Honey Cake");
+        add(TTMContent.CRAM.get(),                                      "Cram");
+        add(TTMContent.MONSTER_FLESH.get(),                             "Monster Flesh");
+        add(TTMContent.INSECT.get(),                                    "Frog Bait");
+        add(TTMContent.GOLDEN_INSECT.get(),                             "Fancy Frog Bait");
+        add(TTMContent.TREE_ACORN.get(),                                "Acorn");
+        add(TTMContent.GOLDEN_TREE_ACORN.get(),                         "Golden Acorn");
+        add(TTMContent.FOOD_HONEY.get(),                                "Honey");
+    }
+
+    private void records() {
+        add(TTMContent.RECORD_RIVENDELL.get(),                          "Travelling Music");
+            add("item.tolkienmobs." + TTMContent.RECORD_RIVENDELL.get() + ".desc",          "Riders of Rivendell");
+        add(TTMContent.RECORD_LOTHLORIEN.get(),                         "Travelling Music");
+            add("item.tolkienmobs." + TTMContent.RECORD_LOTHLORIEN.get() + ".desc",         "The Light of Lothlorien");
+        add(TTMContent.RECORD_EREBOR.get(),                             "Travelling Music");
+            add("item.tolkienmobs." + TTMContent.RECORD_EREBOR.get() + ".desc",             "All That Glitters in Erebor");
+        add(TTMContent.RECORD_WILLOW.get(),                             "Travelling Music");
+            add("item.tolkienmobs." + TTMContent.RECORD_WILLOW.get() + ".desc",             "Willow Song");
+        add(TTMContent.RECORD_MINASTIRITH.get(),                        "Travelling Music");
+            add("item.tolkienmobs." + TTMContent.RECORD_MINASTIRITH.get() + ".desc",        "White Tree of Gondor");
+        add(TTMContent.RECORD_EDORAS.get(),                             "Travelling Music");
+            add("item.tolkienmobs." + TTMContent.RECORD_EDORAS.get() + ".desc",             "Wake of Edoras");
+        add(TTMContent.RECORD_WBATTLE.get(),                            "Travelling Music");
+            add("item.tolkienmobs." + TTMContent.RECORD_WBATTLE.get() + ".desc",            "Fly My Pretties!");
+        add(TTMContent.RECORD_MURDERFROG.get(),                         "Travelling Music");
+            add("item.tolkienmobs." + TTMContent.RECORD_MURDERFROG.get() + ".desc",         "Ballad of Murder-Frog");
+        add(TTMContent.RECORD_REDER.get(),                              "Travelling Music");
+            add("item.tolkienmobs." + TTMContent.RECORD_REDER.get() + ".desc",              "Evil Incarnate");
+        add(TTMContent.RECORD_FUMBLE.get(),                             "Travelling Music");
+            add("item.tolkienmobs." + TTMContent.RECORD_FUMBLE.get() + ".desc",             "Bumbling Oaf");
+        add(TTMContent.RECORD_BOMBADIL.get(),                           "Travelling Music");
+            add("item.tolkienmobs." + TTMContent.RECORD_BOMBADIL.get() + ".desc",           "Mystery of Tom Bombadil");
+        add(TTMContent.RECORD_HOBBITS.get(),                            "Travelling Music");
+            add("item.tolkienmobs." + TTMContent.RECORD_HOBBITS.get() + ".desc",            "Concerning Hobbits - Remix");
+    }
+
 
 
     //region Helpers
@@ -442,29 +579,5 @@ public class LangGenerator extends LanguageProvider {
     }
 
 
-    public static class PrefixHelper {
-        private LangGenerator generator;
-        private String prefix;
-
-        public PrefixHelper(LangGenerator generator) {
-            this.generator = generator;
-        }
-
-        public void setPrefix(String prefix) {
-            this.prefix = prefix + ".";
-        }
-
-        public void add(String translationKey, String translation) {
-            generator.add(prefix + translationKey, translation);
-        }
-
-        public void add(Block key, String name) {
-            if (key != null) generator.add(key, name);
-        }
-
-        public void add(Item key, String name) {
-            if (key != null) generator.add(key, name);
-        }
-    }
     //endregion
 }

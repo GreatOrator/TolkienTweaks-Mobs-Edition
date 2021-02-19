@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:smelting",
-  "ingredient": {
-    "item": "tolkienmobs:dust_morguliron"
-  },
-  "result": "tolkienmobs:ingot_morguliron",
-  "experience": 0.35,
-  "cookingtime": 200
-}

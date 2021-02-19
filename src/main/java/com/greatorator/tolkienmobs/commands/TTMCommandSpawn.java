@@ -1,8 +1,8 @@
 //package com.greatorator.tolkienmobs.commands;
 //
-//import com.greatorator.tolkienmobs.handler.interfaces.ITTMStructureSummon;
+//import com.greatorator.tolkienmobs.handler.handler_old.interfaces.ITTMStructureSummon;
 //import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-//import com.greatorator.tolkienmobs.world.gen.generators.*;
+//import com.greatorator.tolkienmobs.world.world_old.gen.generators.*;
 //import net.minecraft.command.CommandBase;
 //import net.minecraft.command.CommandException;
 //import net.minecraft.command.ICommandSender;

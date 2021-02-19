@@ -1,7 +1,7 @@
 //package com.greatorator.tolkienmobs.block;
 //
 //import com.greatorator.tolkienmobs.TolkienMobs;
-//import com.greatorator.tolkienmobs.handler.interfaces.TTMHasModel;
+//import com.greatorator.tolkienmobs.handler.handler_old.interfaces.TTMHasModel;
 //import com.greatorator.tolkienmobs.init.TTMFeatures;
 //import net.minecraft.block.BlockDoor;
 //import net.minecraft.block.DoorBlock;

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:dye_orange_dye"
+    ]
+  },
+  "criteria": {
+    "has_flower_alfirin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tolkienmobs:flower_alfirin"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:dye_orange_dye"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_flower_alfirin",
+      "has_the_recipe"
+    ]
+  ]
+}

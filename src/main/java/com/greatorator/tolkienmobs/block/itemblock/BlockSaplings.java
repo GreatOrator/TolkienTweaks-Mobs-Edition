@@ -2,10 +2,10 @@
 //
 //import com.brandon3055.brandonscore.lib.IBCoreBlock;
 //import com.greatorator.tolkienmobs.block.BlockLogs.EnumType;
-//import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeCulumalda;
-//import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeLebethron;
-//import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeMallorn;
-//import com.greatorator.tolkienmobs.world.gen.generators.WorldGenTreeMirkwood;
+//import com.greatorator.tolkienmobs.world.world_old.gen.generators.WorldGenTreeCulumalda;
+//import com.greatorator.tolkienmobs.world.world_old.gen.generators.WorldGenTreeLebethron;
+//import com.greatorator.tolkienmobs.world.world_old.gen.generators.WorldGenTreeMallorn;
+//import com.greatorator.tolkienmobs.world.world_old.gen.generators.WorldGenTreeMirkwood;
 //import net.minecraft.block.BlockBush;
 //import net.minecraft.block.IGrowable;
 //import net.minecraft.block.SoundType;

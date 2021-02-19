@@ -3,8 +3,8 @@
 //import com.greatorator.tolkienmobs.init.BiomeInit;
 //import com.greatorator.tolkienmobs.init.PotionInit;
 //import com.greatorator.tolkienmobs.init.TTMFeatures;
-//import com.greatorator.tolkienmobs.item.magical.ItemTrinketRing;
-//import com.greatorator.tolkienmobs.item.potiontypes.PotionTTMDrowning;
+//import com.greatorator.tolkienmobs.item.item_old.magical.ItemTrinketRing;
+//import com.greatorator.tolkienmobs.item.item_old.potiontypes.PotionTTMDrowning;
 //import net.minecraft.block.material.Material;
 //import net.minecraft.client.Minecraft;
 //import net.minecraft.client.renderer.GlStateManager;

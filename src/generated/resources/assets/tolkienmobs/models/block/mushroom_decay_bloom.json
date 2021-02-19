@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "tolkienmobs:block/mushroom_decay_bloom"
+  }
+}

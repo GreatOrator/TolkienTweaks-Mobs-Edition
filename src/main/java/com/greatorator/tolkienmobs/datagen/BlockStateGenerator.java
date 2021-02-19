@@ -42,18 +42,53 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TTMContent.ORE_NETHER_AMMOLITE.get());
 
         // Basic Wood & Foliage
-        logBlock(TTMContent.LOG_CULUMALDA.get());
-        logBlock(TTMContent.LOG_LEBETHRON.get());
         logBlock(TTMContent.LOG_MALLORN.get());
         logBlock(TTMContent.LOG_MIRKWOOD.get());
-        simpleBlock(TTMContent.PLANKS_CULUMALDA.get());
-        simpleBlock(TTMContent.PLANKS_LEBETHRON.get());
+        logBlock(TTMContent.LOG_CULUMALDA.get());
+        logBlock(TTMContent.LOG_LEBETHRON.get());
         simpleBlock(TTMContent.PLANKS_MALLORN.get());
         simpleBlock(TTMContent.PLANKS_MIRKWOOD.get());
-        simpleBlock(TTMContent.LEAVES_CULUMALDA.get());
-        simpleBlock(TTMContent.LEAVES_LEBETHRON.get());
+        simpleBlock(TTMContent.PLANKS_CULUMALDA.get());
+        simpleBlock(TTMContent.PLANKS_LEBETHRON.get());
+        slabBlock(TTMContent.SLAB_MALLORN.get(), modLoc("block/planks_mallorn"), modLoc("block/planks_mallorn"));
+        slabBlock(TTMContent.SLAB_MIRKWOOD.get(), modLoc("block/planks_mirkwood"), modLoc("block/planks_mirkwood"));
+        slabBlock(TTMContent.SLAB_CULUMALDA.get(), modLoc("block/planks_culumalda"), modLoc("block/planks_culumalda"));
+        slabBlock(TTMContent.SLAB_LEBETHRON.get(), modLoc("block/planks_lebethron"), modLoc("block/planks_lebethron"));
+        stairsBlock(TTMContent.STAIRS_MALLORN.get(), modLoc("block/planks_mallorn"));
+        stairsBlock(TTMContent.STAIRS_MIRKWOOD.get(), modLoc("block/planks_mirkwood"));
+        stairsBlock(TTMContent.STAIRS_CULUMALDA.get(), modLoc("block/planks_culumalda"));
+        stairsBlock(TTMContent.STAIRS_LEBETHRON.get(), modLoc("block/planks_lebethron"));
+        doorBlock(TTMContent.DOOR_MALLORN.get(), "door_mallorn", modLoc("block/door_mallorn_bottom"), modLoc("block/door_mallorn_top"));
+        doorBlock(TTMContent.DOOR_MIRKWOOD.get(), "door_mirkwood", modLoc("block/door_mirkwood_bottom"), modLoc("block/door_mirkwood_top"));
+        doorBlock(TTMContent.DOOR_CULUMALDA.get(), "door_culumalda", modLoc("block/door_culumalda_bottom"), modLoc("block/door_culumalda_top"));
+        doorBlock(TTMContent.DOOR_LEBETHRON.get(), "door_lebethron", modLoc("block/door_lebethron_bottom"), modLoc("block/door_lebethron_top"));
+        fenceGateBlock(TTMContent.FENCE_GATE_MALLORN.get(), "fence_gate_mallorn", modLoc("block/planks_mallorn"));
+        fenceGateBlock(TTMContent.FENCE_GATE_MIRKWOOD.get(), "fence_gate_mirkwood", modLoc("block/planks_mirkwood"));
+        fenceGateBlock(TTMContent.FENCE_GATE_CULUMALDA.get(), "fence_gate_culumalda", modLoc("block/planks_culumalda"));
+        fenceGateBlock(TTMContent.FENCE_GATE_LEBETHRON.get(), "fence_gate_lebethron", modLoc("block/planks_lebethron"));
+        fenceBlock(TTMContent.FENCE_MALLORN.get(), "fence_mallorn", modLoc("block/planks_mallorn"));
+        fenceBlock(TTMContent.FENCE_MIRKWOOD.get(), "fence_mirkwood", modLoc("block/planks_mirkwood"));
+        fenceBlock(TTMContent.FENCE_CULUMALDA.get(), "fence_culumalda", modLoc("block/planks_culumalda"));
+        fenceBlock(TTMContent.FENCE_LEBETHRON.get(), "fence_lebethron", modLoc("block/planks_lebethron"));
         simpleBlock(TTMContent.LEAVES_MALLORN.get());
         simpleBlock(TTMContent.LEAVES_MIRKWOOD.get());
+        simpleBlock(TTMContent.LEAVES_CULUMALDA.get());
+        simpleBlock(TTMContent.LEAVES_LEBETHRON.get());
+        simpleBlock(TTMContent.SAPLING_MALLORN.get(), models().cross("sapling_mallorn", modLoc("block/sapling_mallorn")));
+        simpleBlock(TTMContent.SAPLING_MIRKWOOD.get(), models().cross("sapling_mirkwood", modLoc("block/sapling_mirkwood")));
+        simpleBlock(TTMContent.SAPLING_CULUMALDA.get(), models().cross("sapling_culumalda", modLoc("block/sapling_culumalda")));
+        simpleBlock(TTMContent.SAPLING_LEBETHRON.get(), models().cross("sapling_lebethron", modLoc("block/sapling_lebethron")));
+
+        // Basic Plants & Flowers
+        simpleBlock(TTMContent.MUSHROOM_DECAY_BLOOM.get(), models().cross("mushroom_decay_bloom", modLoc("block/mushroom_decay_bloom")));
+        simpleBlock(TTMContent.MUSHROOM_BLOOM_DECAY.get(), models().cross("mushroom_bloom_decay", modLoc("block/mushroom_bloom_decay")));
+        simpleBlock(TTMContent.FLOWER_SIMBELMYNE.get(), models().cross("flower_simbelmyne", modLoc("block/flower_simbelmyne")));
+        simpleBlock(TTMContent.FLOWER_MIRKWOOD.get(), models().cross("flower_mirkwood", modLoc("block/flower_mirkwood")));
+        simpleBlock(TTMContent.FLOWER_ALFIRIN.get(), models().cross("flower_alfirin", modLoc("block/flower_alfirin")));
+        simpleBlock(TTMContent.FLOWER_ATHELAS.get(), models().cross("flower_athelas", modLoc("block/flower_athelas")));
+        simpleBlock(TTMContent.FLOWER_NIPHREDIL.get(), models().cross("flower_niphredil", modLoc("block/flower_niphredil")));
+        simpleBlock(TTMContent.FLOWER_SWAMPMILKWEED.get(), models().cross("flower_swamp_milkweed", modLoc("block/flower_swamp_milkweed")));
+        simpleBlock(TTMContent.FLOWER_LILLYOFTHEVALLEY.get(), models().cross("flower_valley_lilly", modLoc("block/flower_valley_lilly")));
 
         // Custom
         simpleBlock(TTMContent.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
@@ -223,6 +258,7 @@ public class BlockStateGenerator extends BlockStateProvider {
                 .parent(block)
                 .element()
                 .allFaces((dir, face) -> face.texture("#" + dir.getString()).cullface(dir));
+
 
         ModelFile furnace = models().orientable("furnace", mcLoc("block/furnace_side"), mcLoc("block/furnace_front"), mcLoc("block/furnace_top"));
         ModelFile furnaceLit = models().orientable("furnace_on", mcLoc("block/furnace_side"), mcLoc("block/furnace_front_on"), mcLoc("block/furnace_top"));

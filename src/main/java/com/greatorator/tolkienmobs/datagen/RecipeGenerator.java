@@ -1,17 +1,11 @@
 package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.TolkienMobs;
-import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.data.*;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ITag;
 import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import java.io.IOException;
 import java.util.function.Consumer;
@@ -30,22 +24,66 @@ public class RecipeGenerator extends RecipeProvider {
 
         //Left in a couple of my builders so you can see how the recipe builders work
         components(consumer);
-        machines(consumer);
+        specialty(consumer);
+        magic(consumer);
     }
 
     private static void components(Consumer<IFinishedRecipe> consumer) {
 
         // Cooking & Smelting Recipes
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(TTMContent.DUST_MITHRIL.get()),
-                TTMContent.INGOT_MITHRIL.get(), 0.35F, 200)
-                .addCriterion("has_dust_mithril", InventoryChangeTrigger.Instance.forItems(TTMContent.DUST_MITHRIL.get()))
-                .build(consumer);
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(TTMContent.DUST_MORGULIRON.get()),
-                TTMContent.INGOT_MORGULIRON.get(), 0.35F, 200)
-                .addCriterion("has_dust_morguliron", InventoryChangeTrigger.Instance.forItems(TTMContent.DUST_MORGULIRON.get()))
-                .build(consumer);
+        smeltingRecipe(TTMContent.DUST_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), 0.35F, 200, consumer);
+        smeltingRecipe(TTMContent.DUST_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), 0.35F, 200, consumer);
 
-        // Shaped Recipes
+        //Common Recipes
+        storageRecipe(TTMContent.BLOCK_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), consumer);
+        storageRecipe(TTMContent.INGOT_MITHRIL.get(), TTMContent.NUGGET_MITHRIL.get(), consumer);
+        storageRecipe(TTMContent.BLOCK_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
+        storageRecipe(TTMContent.INGOT_MORGULIRON.get(), TTMContent.NUGGET_MORGULIRON.get(), consumer);
+
+        stairsRecipe(TTMContent.STAIRS_MALLORN.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
+        stairsRecipe(TTMContent.STAIRS_MIRKWOOD.get(), TTMContent.PLANKS_MIRKWOOD.get(), consumer);
+        stairsRecipe(TTMContent.STAIRS_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
+        stairsRecipe(TTMContent.STAIRS_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), consumer);
+
+        slabRecipe(TTMContent.SLAB_MALLORN.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
+        slabRecipe(TTMContent.SLAB_MIRKWOOD.get(), TTMContent.PLANKS_MIRKWOOD.get(), consumer);
+        slabRecipe(TTMContent.SLAB_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
+        slabRecipe(TTMContent.SLAB_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), consumer);
+
+        plankRecipe(TTMContent.PLANKS_MALLORN.get(), TTMContent.LOG_MALLORN.get(), consumer);
+        plankRecipe(TTMContent.PLANKS_MIRKWOOD.get(), TTMContent.LOG_MIRKWOOD.get(), consumer);
+        plankRecipe(TTMContent.PLANKS_CULUMALDA.get(), TTMContent.LOG_CULUMALDA.get(), consumer);
+        plankRecipe(TTMContent.PLANKS_LEBETHRON.get(), TTMContent.LOG_LEBETHRON.get(), consumer);
+
+        doorRecipe(TTMContent.DOOR_MALLORN.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
+        doorRecipe(TTMContent.DOOR_MIRKWOOD.get(), TTMContent.PLANKS_MIRKWOOD.get(), consumer);
+        doorRecipe(TTMContent.DOOR_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
+        doorRecipe(TTMContent.DOOR_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), consumer);
+
+        fenceGateRecipe(TTMContent.FENCE_GATE_MALLORN.get(), Items.STICK, TTMContent.PLANKS_MALLORN.get(), consumer);
+        fenceGateRecipe(TTMContent.FENCE_GATE_MIRKWOOD.get(), Items.STICK, TTMContent.PLANKS_MIRKWOOD.get(), consumer);
+        fenceGateRecipe(TTMContent.FENCE_GATE_CULUMALDA.get(), Items.STICK, TTMContent.PLANKS_CULUMALDA.get(), consumer);
+        fenceGateRecipe(TTMContent.FENCE_GATE_LEBETHRON.get(), Items.STICK, TTMContent.PLANKS_LEBETHRON.get(), consumer);
+
+        fenceRecipe(TTMContent.FENCE_MALLORN.get(), TTMContent.PLANKS_MALLORN.get(), Items.STICK, consumer);
+//        fenceRecipe(TTMContent.FENCE_MIRKWOOD.get(), TTMContent.PLANKS_MIRKWOOD.get(), Items.STICK, consumer);
+//        fenceRecipe(TTMContent.FENCE_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), Items.STICK, consumer);
+//        fenceRecipe(TTMContent.FENCE_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), Items.STICK, consumer);
+
+        // Shapeless Recipes
+        unstorageRecipe(TTMContent.INGOT_MITHRIL.get(), TTMContent.BLOCK_MITHRIL.get(), consumer);
+        unstorageRecipe(TTMContent.INGOT_MORGULIRON.get(), TTMContent.BLOCK_MORGULIRON.get(), consumer);
+
+        dyeRecipe(Items.LIGHT_GRAY_DYE, TTMContent.FLOWER_SIMBELMYNE.get(), consumer);
+        dyeRecipe(Items.RED_DYE, TTMContent.FLOWER_MIRKWOOD.get(), consumer);
+        dyeRecipe(Items.ORANGE_DYE, TTMContent.FLOWER_ALFIRIN.get(), consumer);
+        dyeRecipe(Items.GREEN_DYE, TTMContent.FLOWER_ATHELAS.get(), consumer);
+        dyeRecipe(Items.WHITE_DYE, TTMContent.FLOWER_NIPHREDIL.get(), consumer);
+        dyeRecipe(Items.CYAN_DYE, TTMContent.FLOWER_SWAMPMILKWEED.get(), consumer);
+        dyeRecipe(Items.PINK_DYE, TTMContent.FLOWER_LILLYOFTHEVALLEY.get(), consumer);
+    }
+
+    private static void specialty(Consumer<IFinishedRecipe> consumer) {
         ShapedRecipeBuilder.shapedRecipe(TTMContent.GOLEM_STONE_SUMMON.get())
                 .patternLine("MEM")
                 .patternLine("ASF")
@@ -59,121 +97,99 @@ public class RecipeGenerator extends RecipeProvider {
                 .key('O', Items.OBSIDIAN)
                 .addCriterion("has_golem_stones", hasItem(TTMContent.GOLEM_STONE.get()))
                 .build(consumer);
-
-        ShapedRecipeBuilder.shapedRecipe(TTMContent.BLOCK_MITHRIL.get())
-                .patternLine("BBB")
-                .patternLine("BBB")
-                .patternLine("BBB")
-                .key('B', TTMContent.INGOT_MITHRIL.get())
-                .addCriterion("has_mithril_ingot", hasItem(TTMContent.INGOT_MITHRIL.get()))
-                .build(consumer, "tolkienmobs:mithril_nugget_storage");
-
-        ShapedRecipeBuilder.shapedRecipe(TTMContent.BLOCK_MORGULIRON.get())
-                .patternLine("BBB")
-                .patternLine("BBB")
-                .patternLine("BBB")
-                .key('B', TTMContent.INGOT_MORGULIRON.get())
-                .addCriterion("has_morguliron_ingot", hasItem(TTMContent.INGOT_MORGULIRON.get()))
-                .build(consumer, "tolkienmobs:morguliron_nugget_storage");
-
-        ShapedRecipeBuilder.shapedRecipe(TTMContent.INGOT_MITHRIL.get())
-                .patternLine("BBB")
-                .patternLine("BBB")
-                .patternLine("BBB")
-                .key('B', TTMContent.NUGGET_MITHRIL.get())
-                .addCriterion("has_mithril_ingot", hasItem(TTMContent.NUGGET_MITHRIL.get()))
-                .build(consumer, "tolkienmobs:mithril_to_storage");
-
-        ShapedRecipeBuilder.shapedRecipe(TTMContent.INGOT_MORGULIRON.get())
-                .patternLine("BBB")
-                .patternLine("BBB")
-                .patternLine("BBB")
-                .key('B', TTMContent.NUGGET_MORGULIRON.get())
-                .addCriterion("has_morguliron_ingot", hasItem(TTMContent.NUGGET_MORGULIRON.get()))
-                .build(consumer, "tolkienmobs:morguliron_to_storage");
-
-        // Shapeless Recipes
-        ShapelessRecipeBuilder.shapelessRecipe(TTMContent.INGOT_MITHRIL.get(), 9)
-                .addIngredient(TTMContent.BLOCK_MITHRIL.get())
-                .addCriterion("has_mithril_block", hasItem(TTMContent.BLOCK_MITHRIL.get()))
-                .build(consumer, "tolkienmobs:mithril_from_storage");
-
-        ShapelessRecipeBuilder.shapelessRecipe(TTMContent.INGOT_MORGULIRON.get(), 9)
-                .addIngredient(TTMContent.BLOCK_MORGULIRON.get())
-                .addCriterion("has_morguliron_block", hasItem(TTMContent.BLOCK_MORGULIRON.get()))
-                .build(consumer, "tolkienmobs:morguliron_from_storage");
-
     }
 
-
-
-    private static void machines(Consumer<IFinishedRecipe> consumer) {
+    private static void magic(Consumer<IFinishedRecipe> consumer){
+        //
     }
 
+    public static void smeltingRecipe(IItemProvider output, IItemProvider input, float xp, int cook,Consumer<IFinishedRecipe> consumer) {
+        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(input),
+                output, xp, cook)
+                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
+                .build(consumer, "tolkienmobs:cooked_" + output.asItem().getRegistryName().getPath());
+    }
 
-    private static void compress3x3(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
-        ResourceLocation name = output.asItem().getRegistryName();
-        ShapedRecipeBuilder.shapedRecipe(output)
+    public static void slabRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shapedRecipe(output, 6)
+                .patternLine("###")
+                .key('#', input)
+                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
+                .build(consumer);
+    }
+
+    public static void stairsRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shapedRecipe(output, 4)
+                .patternLine("#  ")
+                .patternLine("## ")
+                .patternLine("###")
+                .key('#', input)
+                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
+                .build(consumer);
+    }
+
+    public static void storageRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shapedRecipe(output, 1)
                 .patternLine("###")
                 .patternLine("###")
                 .patternLine("###")
                 .key('#', input)
                 .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer, new ResourceLocation(name.getNamespace(), "compress/" + name.getPath()));
+                .build(consumer, "tolkienmobs:storage_" + output.asItem().getRegistryName().getPath());
     }
 
-    private static void compress3x3(IItemProvider output, ITag<Item> input, String inputName, Consumer<IFinishedRecipe> consumer) {
-        ResourceLocation name = output.asItem().getRegistryName();
-        ShapedRecipeBuilder.shapedRecipe(output)
-                .patternLine("###")
-                .patternLine("###")
-                .patternLine("###")
-                .key('#', input)
-                .addCriterion("has_" + inputName, hasItem(input))
-                .build(consumer, new ResourceLocation(name.getNamespace(), "compress/" + name.getPath()));
-    }
-
-    private static void compress2x2(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
-        ResourceLocation name = output.asItem().getRegistryName();
-        ShapedRecipeBuilder.shapedRecipe(output)
-                .patternLine("###")
-                .patternLine("###")
-                .patternLine("###")
+    public static void doorRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shapedRecipe(output, 3)
+                .patternLine("##")
+                .patternLine("##")
+                .patternLine("##")
                 .key('#', input)
                 .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer, new ResourceLocation(name.getNamespace(), "compress/" + name.getPath()));
+                .build(consumer);
     }
 
-    private static void deCompress(IItemProvider output, int count, IItemProvider from, Consumer<IFinishedRecipe> consumer) {
-        ResourceLocation name = output.asItem().getRegistryName();
-        ShapelessRecipeBuilder.shapelessRecipe(output, count)
-                .addIngredient(from)
-                .addCriterion("has_" + from.asItem().getRegistryName().getPath(), hasItem(from))
-                .build(consumer, new ResourceLocation(name.getNamespace(), "decompress/" + name.getPath()));
+    public static void fenceRecipe(IItemProvider output, IItemProvider input1, IItemProvider input2, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shapedRecipe(output, 3)
+                .patternLine("#-#")
+                .patternLine("#-#")
+                .key('#', input1)
+                .key('-', input2)
+                .addCriterion("has_" + input1.asItem().getRegistryName().getPath(), hasItem(input1))
+                .build(consumer);
     }
 
-    private static void deCompress(IItemProvider output, int count, ITag<Item> from, String hasName, Consumer<IFinishedRecipe> consumer) {
-        ResourceLocation name = output.asItem().getRegistryName();
-        ShapelessRecipeBuilder.shapelessRecipe(output, count)
-                .addIngredient(from)
-                .addCriterion("has_" + hasName, hasItem(from))
-                .build(consumer, new ResourceLocation(name.getNamespace(), "decompress/" + name.getPath()));
+    public static void fenceGateRecipe(IItemProvider output, IItemProvider input1, IItemProvider input2, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shapedRecipe(output, 1)
+                .patternLine("-#-")
+                .patternLine("-#-")
+                .key('-', input1)
+                .key('#', input2)
+                .addCriterion("has_" + input1.asItem().getRegistryName().getPath(), hasItem(input1))
+                .build(consumer);
     }
 
-    private static void deCompress(IItemProvider output, IItemProvider from, Consumer<IFinishedRecipe> consumer) {
-        deCompress(output, 9, from, consumer);
+    public static void unstorageRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapelessRecipeBuilder
+                .shapelessRecipe(output, 9)
+                .addIngredient(input)
+                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
+                .build(consumer, "tolkienmobs:unstorage_" + output.asItem().getRegistryName().getPath());
     }
 
-    private static void deCompress(IItemProvider output, ITag<Item> from, String hasName, Consumer<IFinishedRecipe> consumer) {
-        deCompress(output, 9, from, hasName, consumer);
+    public static void dyeRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapelessRecipeBuilder
+                .shapelessRecipe(output, 2)
+                .addIngredient(input)
+                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
+                .build(consumer, "tolkienmobs:dye_" + output.asItem().getRegistryName().getPath());
     }
 
-    public static String folder(String folder, IForgeRegistryEntry<?> key) {
-        return TolkienMobs.MODID + ":" + folder + "/" + key.getRegistryName().getPath();
-    }
-
-    public static String folder(String folder, String name) {
-        return TolkienMobs.MODID + ":" + folder + "/" + name;
+    public static void plankRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapelessRecipeBuilder
+                .shapelessRecipe(output, 4)
+                .addIngredient(input)
+                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
+                .build(consumer);
     }
 
     @Override
