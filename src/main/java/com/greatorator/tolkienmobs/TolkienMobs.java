@@ -34,8 +34,8 @@ public class TolkienMobs {
     *  - Entities
     *  - Ammunition
     *  - Fireplace
-    *  - Potions
-    *  - Enchants
+    *  - Potions - 3 left
+    *  - Enchants - 4 left
     *  - Trinkets
     *  - Armor
     *  - Generation
