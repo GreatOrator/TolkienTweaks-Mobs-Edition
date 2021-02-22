@@ -13,8 +13,8 @@ import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.PotionGenerator;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
+import com.greatorator.tolkienmobs.handler.TTMFood;
 import com.greatorator.tolkienmobs.handler.TTMFoods;
-import com.greatorator.tolkienmobs.handler.TTMItem;
 import com.greatorator.tolkienmobs.handler.TTMLore;
 import com.greatorator.tolkienmobs.handler.TTMRecord;
 import com.greatorator.tolkienmobs.item.TTMArrow;
@@ -344,23 +344,23 @@ public class TTMContent {
     // Food & Drink Items
     //#################################################################
     // Drinks
-    public static RegistryObject<Item> DRINK_ENT_DRAUGHT = ITEMS.register("drink_ent_draught", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.DRINK_ENT_DRAUGHT)).setEffectOverride());
-    public static RegistryObject<Item> DRINK_PERSONAL_BLACKSMITH = ITEMS.register("drink_personal_blacksmith", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.DRINK_PERSONAL_BLACKSMITH)).setEffectOverride());
-    public static RegistryObject<Item> DRINK_ELF_FLEETFOOT = ITEMS.register("drink_elf_blessing", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.DRINK_ELF_NIMBLENESS)).setEffectOverride());
-    public static RegistryObject<Item> DRINK_ELF_VITALITY = ITEMS.register("drink_elf_vitality", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.DRINK_ELF_VITALITY)).setEffectOverride());
-    public static RegistryObject<Item> DRINK_ERU_BLESSING = ITEMS.register("drink_eru_blessing", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.DRINK_ERU_BLESSING)).setEffectOverride());
-    public static RegistryObject<Item> MIRUVOR = ITEMS.register("drink_miruvor", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.MIRUVOR)).setEffectOverride());
-    public static RegistryObject<Item> GROG = ITEMS.register("drink_grog", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.GROG)).setEffectOverride());
+    public static RegistryObject<Item> DRINK_ENT_DRAUGHT = ITEMS.register("drink_ent_draught", () -> new TTMFood(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.DRINK_ENT_DRAUGHT)).setEffectOverride().setItemUseAction(true));
+    public static RegistryObject<Item> DRINK_PERSONAL_BLACKSMITH = ITEMS.register("drink_personal_blacksmith", () -> new TTMFood(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.DRINK_PERSONAL_BLACKSMITH)).setEffectOverride().setItemUseAction(true));
+    public static RegistryObject<Item> DRINK_ELF_FLEETFOOT = ITEMS.register("drink_elf_blessing", () -> new TTMFood(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.DRINK_ELF_NIMBLENESS)).setEffectOverride().setItemUseAction(true));
+    public static RegistryObject<Item> DRINK_ELF_VITALITY = ITEMS.register("drink_elf_vitality", () -> new TTMFood(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.DRINK_ELF_VITALITY)).setEffectOverride().setItemUseAction(true));
+    public static RegistryObject<Item> DRINK_ERU_BLESSING = ITEMS.register("drink_eru_blessing", () -> new TTMFood(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.DRINK_ERU_BLESSING)).setEffectOverride().setItemUseAction(true));
+    public static RegistryObject<Item> MIRUVOR = ITEMS.register("drink_miruvor", () -> new TTMFood(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.MIRUVOR)).setEffectOverride().setItemUseAction(true));
+    public static RegistryObject<Item> GROG = ITEMS.register("drink_grog", () -> new TTMFood(new Item.Properties().group(foodGroup).maxStackSize(16).food(TTMFoods.GROG)).setEffectOverride().setItemUseAction(true));
 
     // Food
-    public static RegistryObject<Item> LEMBAS = ITEMS.register("food_lembas", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.LEMBAS)).setEffectOverride());
+    public static RegistryObject<Item> LEMBAS = ITEMS.register("food_lembas", () -> new TTMFood(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.LEMBAS)).setEffectOverride());
     public static RegistryObject<Item> HONEY_CAKE = ITEMS.register("food_honeycake", () -> new Item(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.HONEY_CAKE)));
     public static RegistryObject<Item> CRAM = ITEMS.register("food_cram", () -> new Item(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.CRAM)));
     public static RegistryObject<Item> MONSTER_FLESH = ITEMS.register("monster_flesh", () -> new Item(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.MONSTER_FLESH)));
     public static RegistryObject<Item> INSECT = ITEMS.register("food_insect", () -> new Item(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.INSECT)));
-    public static RegistryObject<Item> GOLDEN_INSECT = ITEMS.register("food_golden_insect", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.GOLDEN_INSECT)).setEffectOverride());
+    public static RegistryObject<Item> GOLDEN_INSECT = ITEMS.register("food_golden_insect", () -> new TTMFood(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.GOLDEN_INSECT)).setEffectOverride());
     public static RegistryObject<Item> TREE_ACORN = ITEMS.register("food_tree_acorn", () -> new Item(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.TREE_ACORN)));
-    public static RegistryObject<Item> GOLDEN_TREE_ACORN = ITEMS.register("food_golden_tree_acorn", () -> new TTMItem(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.GOLDEN_TREE_ACORN)).setEffectOverride());
+    public static RegistryObject<Item> GOLDEN_TREE_ACORN = ITEMS.register("food_golden_tree_acorn", () -> new TTMFood(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.GOLDEN_TREE_ACORN)).setEffectOverride());
     public static RegistryObject<Item> FOOD_HONEY = ITEMS.register("food_honey", () -> new Item(new Item.Properties().group(foodGroup).maxStackSize(64).food(TTMFoods.FOOD_HONEY)));
 
     //#################################################################
