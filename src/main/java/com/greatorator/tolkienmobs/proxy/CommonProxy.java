@@ -3,8 +3,8 @@ package com.greatorator.tolkienmobs.proxy;
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.datagen.PotionGenerator;
+import com.greatorator.tolkienmobs.integration.TTMEquipMgr;
 import com.greatorator.tolkienmobs.server.TTMServerEvents;
-import com.greatorator.tolkienmobs.utils.utils_old.TTMSpawnEvent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -17,12 +17,14 @@ public class CommonProxy {
         registerEventListeners();
         TTMConfig.load();
         TTMContent.init();
+        TTMEquipMgr.initialize();
         MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::livingUpdate);
 
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
         PotionGenerator.addPotionRecipes();
+        //EntityGenerator.registerSpawnEggs();
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
@@ -35,7 +37,7 @@ public class CommonProxy {
 
 
     public void registerEventListeners() {
-        MinecraftForge.EVENT_BUS.addListener(TTMSpawnEvent::onEntitySpawn);
+
     }
 
     public PlayerEntity getPlayer() {

@@ -34,7 +34,7 @@ public class PotionGenerator {
     public static final RegistryObject<Effect> PERSONAL_BLACKSMITH = EFFECTS.register("personal_blacksmith", () -> new BlacksmithTTMEffect(EffectType.BENEFICIAL, 14370245));
     public static final RegistryObject<Effect> SLEEPNESIA = EFFECTS.register("sleepnesia", () -> new SleepTTMEffect(EffectType.HARMFUL, 2890775).addAttributesModifier(Attributes.MOVEMENT_SPEED, "380317e8-6efa-11eb-9439-0242ac130002", (double)-10.0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
     public static final RegistryObject<Effect> WATCHER_FEAR = EFFECTS.register("dread_aura", () -> new FearTTMEffect(EffectType.HARMFUL, 4852999));
-    public static final RegistryObject<Effect> PARALYSING_FEAR = EFFECTS.register("crippling_terror", () -> new TTMEffectBase(EffectType.HARMFUL, 5655556).addAttributesModifier(Attributes.MOVEMENT_SPEED, "38031964-6efa-11eb-9439-0242ac130002", (double)-10.0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
+//    public static final RegistryObject<Effect> PARALYSING_FEAR = EFFECTS.register("crippling_terror", () -> new TerrorTTMEffect(EffectType.HARMFUL, 5655556));
     public static final RegistryObject<Effect> ELF_NIMBLENESS = EFFECTS.register("elven_nimbleness", () -> new NimbleTTMEffect(EffectType.BENEFICIAL, 16777062));
     public static final RegistryObject<Effect> ERU_BLESSING = EFFECTS.register("blessing_of_eru", () -> new EruTTMEffect(EffectType.BENEFICIAL, 1873869));
 
@@ -45,14 +45,14 @@ public class PotionGenerator {
     public static final RegistryObject<Potion> ELVISH_LIFE = POTIONS.register("elf_vitality", () -> new Potion(new EffectInstance(ELF_VITALITY.get(), 4800)));
 //    public static final RegistryObject<Potion> GOLEM_DROWNING = POTIONS.register("elemental_drowning", () -> new Potion(new EffectInstance(ELEMENTAL_DROWNING.get(), 600)));
     public static final RegistryObject<Potion> GOLEM_LIGHTNING = POTIONS.register("elemental_lightning", () -> new Potion(new EffectInstance(ELEMENTAL_LIGHTNING.get(), 600)));
-//    public static final RegistryObject<Potion> GOLEM_FLYING = POTIONS.register("elemental_flight", () -> new Potion(new EffectInstance(ELEMENTAL_FLYING.get(), 600)));
+    public static final RegistryObject<Potion> GOLEM_FLYING = POTIONS.register("elemental_flight", () -> new Potion(new EffectInstance(ELEMENTAL_FLYING.get(), 600)));
     public static final RegistryObject<Potion> GOLEM_BURN = POTIONS.register("elemental_burning", () -> new Potion(new EffectInstance(ELEMENTAL_BURNING.get(), 600)));
 //    public static final RegistryObject<Potion> GOLEM_TORNADO = POTIONS.register("elemental_tornado", () -> new Potion(new EffectInstance(ELEMENTAL_TORNADO.get(), 600)));
     public static final RegistryObject<Potion> DECAYING_INVENTORY = POTIONS.register("inventory_corrosion", () -> new Potion(new EffectInstance(INVENTORY_CORROSION.get(), 600)));
     public static final RegistryObject<Potion> PORTABLE_REPAIR = POTIONS.register("personal_blacksmith", () -> new Potion(new EffectInstance(PERSONAL_BLACKSMITH.get(), 600)));
     public static final RegistryObject<Potion> DEEP_SLEEP = POTIONS.register("sleepnesia", () -> new Potion(new EffectInstance(SLEEPNESIA.get(), 600)));
     public static final RegistryObject<Potion> DREAD_AURA = POTIONS.register("dread_aura", () -> new Potion(new EffectInstance(WATCHER_FEAR.get(), 160)));
-    public static final RegistryObject<Potion> CRIPPLING_TERROR = POTIONS.register("crippling_terror", () -> new Potion(new EffectInstance(PARALYSING_FEAR.get(), 200)));
+//    public static final RegistryObject<Potion> CRIPPLING_TERROR = POTIONS.register("crippling_terror", () -> new Potion(new EffectInstance(PARALYSING_FEAR.get(), 200)));
     public static final RegistryObject<Potion> ELF_FLEETFOOT = POTIONS.register("elven_nimbleness", () -> new Potion(new EffectInstance(ELF_NIMBLENESS.get(), 300)));
     public static final RegistryObject<Potion> BLESSING_OF_ERU = POTIONS.register("blessing_of_eru", () -> new Potion(new EffectInstance(ERU_BLESSING.get(), 100)));
 
@@ -97,5 +97,9 @@ public class PotionGenerator {
                 return ItemStack.EMPTY;
             }
         }
+    }
+
+    public String getName() {
+        return "Tolkien Tweaks - Mobs Edition Potions";
     }
 }

@@ -319,7 +319,6 @@
 //    public static final Block FENCE_GATE_LEBETHRON = new BlockFenceGates(2.0F, 5.0F);
 //    /* End Region */
 //
-//    /* Plants */                                             //TODO add a way to avoid this mess in 1.13...
 //    @ModFeature(name = "leaves", variantMap = {"0:check_decay=false,decayable=false,variant=mallorn", "1:check_decay=false,decayable=false,variant=mirkwood", "2:check_decay=false,decayable=false,variant=culumalda", "3:check_decay=false,decayable=false,variant=lebethron"}, itemBlock = ItemBlockBCore.class, cTab = 1)
 //    public static final Block LEAVES = new BlockLeaf();
 //    @ModFeature(name = "sapling", variantMap = {"0:stage=0,variant=mallorn", "1:stage=0,variant=mirkwood", "2:stage=0,variant=culumalda", "3:stage=0,variant=lebethron"}, itemBlock = ItemBlockBCore.class, cTab = 1)

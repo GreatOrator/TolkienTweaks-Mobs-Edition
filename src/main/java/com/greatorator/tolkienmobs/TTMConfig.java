@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs;
 import codechicken.lib.config.ConfigTag;
 import codechicken.lib.config.StandardConfigFile;
 import com.google.common.collect.Lists;
+import net.minecraft.potion.Effect;
 
 import java.nio.file.Paths;
 import java.util.List;
@@ -47,6 +48,12 @@ public class TTMConfig {
         serverTag = config.getTag("Server");
         serverTag.setComment("These are server side config properties.");
 
+        serverTag.getTag("effectList")
+                .setComment("Add or remove effect types for trinkets")
+                .setDefaultStringList(Lists.newArrayList(effectTypeArray))
+                .setSyncToClient()
+                .setSyncCallback((tag, type) -> effectList = tag.getStringList());
+
         ConfigTag exampleTag = serverTag.getTag("exampleString")
                 .setComment("This is an example string")
                 .setDefaultString("Default Example String")
@@ -72,6 +79,7 @@ public class TTMConfig {
     public static boolean HeartOverlay;
     public static int exampleInt;
     public static List<Integer> exampleIntList;
+    public static List<String> effectList;
 
     private static void loadClient() {
         clientTag = config.getTag("Client");
@@ -92,4 +100,8 @@ public class TTMConfig {
                 .setDefaultIntList(Lists.newArrayList(4261, 3055, 1624))
                 .setSyncCallback((tag, type) -> exampleIntList = tag.getIntList());
     }
+
+    public static String[] effectTypeArray = new String[]{"tolkienmobs:blessing_of_eru", "tolkienmobs:elven_nimbleness", "tolkienmobs:ent_draught", "tolkienmobs:personal_blacksmith", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:glowing", "minecraft:fire_resistance"};
+
+    public static Effect[] effectArray = new Effect[0];
 }

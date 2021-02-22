@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.enchantments.EnchantmentBalrogMark;
 import com.greatorator.tolkienmobs.enchantments.EnchantmentElvenLongevity;
+import com.greatorator.tolkienmobs.enchantments.EnchantmentGondorResolve;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.util.registry.Registry;
@@ -18,10 +19,15 @@ public class EnchantmentGenerator {
 
     public static final RegistryObject<Enchantment> BALROG_MARK = ENCHANTS.register("balrogs_mark", () -> new EnchantmentBalrogMark(Enchantment.Rarity.RARE, EquipmentSlotType.FEET));
     public static final RegistryObject<Enchantment> ELVEN_LONGEVITY = ENCHANTS.register("elven_longevity", () -> new EnchantmentElvenLongevity(Enchantment.Rarity.RARE, EquipmentSlotType.CHEST));
+    public static final RegistryObject<Enchantment> GONDOR_RESOLVE = ENCHANTS.register("gondor_resolve", () -> new EnchantmentGondorResolve(Enchantment.Rarity.RARE, EquipmentSlotType.LEGS));
 //    public static final Enchantment SWEEPING = register("sweeping", new SweepingEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND));
 
 
     private static Enchantment register(String key, Enchantment enchantment) {
         return Registry.register(Registry.ENCHANTMENT, key, enchantment);
+    }
+
+    public String getName() {
+        return "Tolkien Tweaks - Mobs Edition Enchantments";
     }
 }

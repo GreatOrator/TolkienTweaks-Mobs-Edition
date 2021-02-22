@@ -126,7 +126,6 @@
 //        //Define the background "static" image
 //        GuiTexture texture = new GuiTexture(0, 16, 14, 14, TEXTURES);
 //
-//        //TODO make a roper element for this
 //        GuiTexture overlay = new GuiTexture(14, 16, 14, 14, TEXTURES);
 //        overlay.setYSizeMod((guiTexture, integer) -> (int) (14 * tile.getBurnProgress()));
 //        overlay.setTexYGetter(() -> 16 + (int)(14 * (1D - tile.getBurnProgress())));

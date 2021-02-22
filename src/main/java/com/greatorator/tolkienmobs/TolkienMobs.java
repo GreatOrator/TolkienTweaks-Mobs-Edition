@@ -30,7 +30,6 @@ public class TolkienMobs {
 
     /*TODO List
     * Registration Stuff
-    *  - Fix Fence Recipes
     *  - Signs
     *  - Entities
     *  - Ammunition
@@ -38,8 +37,6 @@ public class TolkienMobs {
     *  - Potions
     *  - Enchants
     *  - Trinkets
-    *  - Tools
-    *  - Weapons
     *  - Armor
     *  - Generation
     *   - Trees
@@ -48,19 +45,13 @@ public class TolkienMobs {
     *   - Plants
     *
     * Data Generators
-    *  - Block States and models
-    *  - Item Models
-    *  - Translations
     *  - Tags
-    *  - Loot
-    *  - Recipes
     *
     * Config (Done)
     * Network
     */
 
     public TolkienMobs() {
-
         synchronized (MinecraftForge.EVENT_BUS) {
             Logger ttLog = LogManager.getLogger("tolkientweaks");
             Logger bcLog = LogManager.getLogger("brandonscore");

@@ -17,14 +17,14 @@ import com.greatorator.tolkienmobs.handler.TTMFoods;
 import com.greatorator.tolkienmobs.handler.TTMItem;
 import com.greatorator.tolkienmobs.handler.TTMLore;
 import com.greatorator.tolkienmobs.handler.TTMRecord;
+import com.greatorator.tolkienmobs.item.TTMArrow;
+import com.greatorator.tolkienmobs.item.trinket.TrinketAmulet;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.potion.Effects;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
@@ -35,6 +35,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 import static com.greatorator.tolkienmobs.datagen.SoundGenerator.*;
 
@@ -44,24 +45,29 @@ import static com.greatorator.tolkienmobs.datagen.SoundGenerator.*;
 public class TTMContent {
 
     private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
-    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     private static final DeferredRegister<TileEntityType<?>> TILE = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MODID);
     private static final DeferredRegister<ContainerType<?>> CONTAINER = DeferredRegister.create(ForgeRegistries.CONTAINERS, MODID);
 
-    public static ItemGroup toolsGroup = new SimpleItemGroup("tolkienmobs.tools", () -> new ItemStack(TTMContent.BLOCK_MITHRIL.get()));
+    public static ItemGroup toolsGroup = new SimpleItemGroup("tolkienmobs.tools", () -> new ItemStack(TTMContent.PICKAXE_MITHRIL.get()));
     public static ItemGroup matsGroup = new SimpleItemGroup("tolkienmobs.mats", () -> new ItemStack(TTMContent.INGOT_MITHRIL.get()));
-    public static ItemGroup spawnGroup = new SimpleItemGroup("tolkienmobs.spawn", () -> new ItemStack(TTMContent.BLOCK_MITHRIL.get()));
+    public static ItemGroup spawnGroup = new SimpleItemGroup("tolkienmobs.spawn", () -> new ItemStack(TTMContent.GOLEM_STONE_SUMMON.get()));
     public static ItemGroup foodGroup = new SimpleItemGroup("tolkienmobs.food", () -> new ItemStack(TTMContent.LEMBAS.get()));
     public static ItemGroup questGroup = new SimpleItemGroup("tolkienmobs.quest", () -> new ItemStack(TTMContent.ITEM_FORTRESSMAP.get()));
     public static ItemGroup signsGroup = new SimpleItemGroup("tolkienmobs.signs", () -> new ItemStack(TTMContent.BLOCK_MITHRIL.get()));
 
     public static void init() {
+        LOGGER.info("Creating the light of the Valar in the land of Arda...");
         PotionGenerator.EFFECTS.register(FMLJavaModLoadingContext.get().getModEventBus());
         PotionGenerator.POTIONS.register(FMLJavaModLoadingContext.get().getModEventBus());
-        SoundGenerator.SOUND_EVENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
         EnchantmentGenerator.ENCHANTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        LOGGER.info("Asking the Ainur to sing the music of Eru Iluvatar...");
+        SoundGenerator.SOUND_EVENTS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        LOGGER.info("Populating the peoples of Middle-earth...");
         EntityGenerator.ENTITY.register(FMLJavaModLoadingContext.get().getModEventBus());
+        LOGGER.info("Preparing the Dwarves...");
         BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
+        LOGGER.info("Stocking the markets...");
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         TILE.register(FMLJavaModLoadingContext.get().getModEventBus());
         CONTAINER.register(FMLJavaModLoadingContext.get().getModEventBus());
@@ -75,10 +81,14 @@ public class TTMContent {
     public static RegistryObject<Block> ORE_END_MITHRIL = BLOCKS.register("ore_end_mithril", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
     public static RegistryObject<Block> ORE_NETHER_MITHRIL = BLOCKS.register("ore_nether_mithril", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
     public static RegistryObject<Block> BLOCK_MITHRIL = BLOCKS.register("block_mithril", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
+    public static RegistryObject<PaneBlock> MITHRIL_BARS = BLOCKS.register("mithril_bars", () -> new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
+    public static RegistryObject<DoorBlock> DOOR_MITHRIL = BLOCKS.register("door_mithril", () -> new DoorBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY_TERRACOTTA).setRequiresTool().hardnessAndResistance(5.0F).sound(SoundType.METAL).notSolid()));
     public static RegistryObject<Block> ORE_MORGULIRON = BLOCKS.register("ore_morguliron", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
     public static RegistryObject<Block> ORE_END_MORGULIRON = BLOCKS.register("ore_end_morguliron", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
     public static RegistryObject<Block> ORE_NETHER_MORGULIRON = BLOCKS.register("ore_nether_morguliron", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
     public static RegistryObject<Block> BLOCK_MORGULIRON = BLOCKS.register("block_morguliron", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
+    public static RegistryObject<PaneBlock> MORGULIRON_BARS = BLOCKS.register("morguliron_bars", () -> new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
+    public static RegistryObject<DoorBlock> DOOR_MORGULIRON = BLOCKS.register("door_morguliron", () -> new DoorBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.BLACK_TERRACOTTA).setRequiresTool().hardnessAndResistance(5.0F).sound(SoundType.METAL).notSolid()));
     public static RegistryObject<Block> ORE_AMMOLITE = BLOCKS.register("ore_ammolite", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
     public static RegistryObject<Block> ORE_END_AMMOLITE = BLOCKS.register("ore_end_ammolite", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
     public static RegistryObject<Block> ORE_NETHER_AMMOLITE = BLOCKS.register("ore_nether_ammolite", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
@@ -198,10 +208,14 @@ public class TTMContent {
     public static RegistryObject<Item> ORE_END_MITHRIL_ITEM = ITEMS.register("ore_end_mithril", () -> new ItemBlockBCore(ORE_END_MITHRIL.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> ORE_NETHER_MITHRIL_ITEM = ITEMS.register("ore_nether_mithril", () -> new ItemBlockBCore(ORE_NETHER_MITHRIL.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> BLOCK_MITHRIL_ITEM = ITEMS.register("block_mithril", () -> new ItemBlockBCore(BLOCK_MITHRIL.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> MITHRIL_BARS_ITEM = ITEMS.register("mithril_bars", () -> new ItemBlockBCore(MITHRIL_BARS.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> DOOR_MITHRIL_ITEM = ITEMS.register("door_mithril", () -> new ItemBlockBCore(DOOR_MITHRIL.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> ORE_MORGULIRON_ITEM = ITEMS.register("ore_morguliron", () -> new ItemBlockBCore(ORE_MORGULIRON.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> ORE_END_MORGULIRON_ITEM = ITEMS.register("ore_end_morguliron", () -> new ItemBlockBCore(ORE_END_MORGULIRON.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> ORE_NETHER_MORGULIRON_ITEM = ITEMS.register("ore_nether_morguliron", () -> new ItemBlockBCore(ORE_NETHER_MORGULIRON.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> BLOCK_MORGULIRON_ITEM = ITEMS.register("block_morguliron", () -> new ItemBlockBCore(BLOCK_MORGULIRON.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> MORGULIRON_BARS_ITEM = ITEMS.register("morguliron_bars", () -> new ItemBlockBCore(MORGULIRON_BARS.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> DOOR_MORGULIRON_ITEM = ITEMS.register("door_morguliron", () -> new ItemBlockBCore(DOOR_MORGULIRON.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> ORE_AMMOLITE_ITEM = ITEMS.register("ore_ammolite", () -> new ItemBlockBCore(ORE_AMMOLITE.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> ORE_END_AMMOLITE_ITEM = ITEMS.register("ore_end_ammolite", () -> new ItemBlockBCore(ORE_END_AMMOLITE.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> ORE_NETHER_AMMOLITE_ITEM = ITEMS.register("ore_nether_ammolite", () -> new ItemBlockBCore(ORE_NETHER_AMMOLITE.get(), new Item.Properties().group(matsGroup)));
@@ -232,6 +246,9 @@ public class TTMContent {
     public static RegistryObject<Item> FENCE_GATE_CULUMALDA_ITEM = ITEMS.register("fence_gate_culumalda", () -> new ItemBlockBCore(FENCE_GATE_CULUMALDA.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> FENCE_GATE_LEBETHRON_ITEM = ITEMS.register("fence_gate_lebethron", () -> new ItemBlockBCore(FENCE_GATE_LEBETHRON.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> FENCE_MALLORN_ITEM = ITEMS.register("fence_mallorn", () -> new ItemBlockBCore(FENCE_MALLORN.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> FENCE_MIRKWOOD_ITEM = ITEMS.register("fence_mirkwood", () -> new ItemBlockBCore(FENCE_MIRKWOOD.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> FENCE_CULUMALDA_ITEM = ITEMS.register("fence_culumalda", () -> new ItemBlockBCore(FENCE_CULUMALDA.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> FENCE_LEBETHRON_ITEM = ITEMS.register("fence_lebethron", () -> new ItemBlockBCore(FENCE_LEBETHRON.get(), new Item.Properties().group(matsGroup)));
 
     public static RegistryObject<Item> LEAVES_CULUMALDA_ITEM = ITEMS.register("leaves_culumalda", () -> new ItemBlockBCore(LEAVES_CULUMALDA.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> LEAVES_LEBETHRON_ITEM = ITEMS.register("leaves_lebethron", () -> new ItemBlockBCore(LEAVES_LEBETHRON.get(), new Item.Properties().group(matsGroup)));
@@ -266,6 +283,22 @@ public class TTMContent {
     public static RegistryObject<Item> INGOT_MORGULIRON = ITEMS.register("ingot_morguliron", () -> new Item(new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> GEM_AMMOLITE = ITEMS.register("gem_ammolite", () -> new TTMLore(new Item.Properties().maxStackSize(16).group(matsGroup)).setEffectOverride());
 
+    // Equipment & Armor
+    public static RegistryObject<AxeItem> AXE_MITHRIL = ITEMS.register("axe_mithril", () -> new AxeItem(ItemTier.NETHERITE, 8.0F, -1.5F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<HoeItem> HOE_MITHRIL = ITEMS.register("hoe_mithril", () -> new HoeItem(ItemTier.NETHERITE, 1, 0.8F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<PickaxeItem> PICKAXE_MITHRIL = ITEMS.register("pickaxe_mithril", () -> new PickaxeItem(ItemTier.NETHERITE, 1, -1.0F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<ShovelItem> SHOVEL_MITHRIL = ITEMS.register("shovel_mithril", () -> new ShovelItem(ItemTier.NETHERITE, 2.8F, -1.0F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<SwordItem> SWORD_MITHRIL = ITEMS.register("sword_mithril", () -> new SwordItem(ItemTier.NETHERITE, 7, -1.0F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<AxeItem> AXE_MORGULIRON = ITEMS.register("axe_morguliron", () -> new AxeItem(ItemTier.NETHERITE, 8.0F, -1.5F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<HoeItem> HOE_MORGULIRON = ITEMS.register("hoe_morguliron", () -> new HoeItem(ItemTier.NETHERITE, 1, 0.8F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<PickaxeItem> PICKAXE_MORGULIRON = ITEMS.register("pickaxe_morguliron", () -> new PickaxeItem(ItemTier.NETHERITE, 1, -1.5F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<ShovelItem> SHOVEL_MORGULIRON = ITEMS.register("shovel_morguliron", () -> new ShovelItem(ItemTier.NETHERITE, 2.8F, -1.5F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<SwordItem> SWORD_MORGULIRON = ITEMS.register("sword_morguliron", () -> new SwordItem(ItemTier.NETHERITE, 8, -2.3F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<SwordItem> SWORD_WITCHKING = ITEMS.register("sword_witchking", () -> new SwordItem(ItemTier.NETHERITE, 9, -0.5F, (new Item.Properties()).group(toolsGroup)));
+
+    public static RegistryObject<ArrowItem> GALADHRIM_ARROW = ITEMS.register("ammo_galadhrim_arrow", () -> new TTMArrow((new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new TrinketAmulet(new Item.Properties().group(toolsGroup)));
+
     // Coins & Tokens
     public static RegistryObject<Item> ITEM_COIN_BRONZE = ITEMS.register("item_coin_bronze", () -> new TTMLore(new Item.Properties().group(questGroup)).setHasLore());
     public static RegistryObject<Item> ITEM_COIN_SILVER = ITEMS.register("item_coin_silver", () -> new TTMLore(new Item.Properties().group(questGroup)).setHasLore());
@@ -294,18 +327,18 @@ public class TTMContent {
     // Record Items
     //#################################################################
     // Sounds - Music Disc
-    public static RegistryObject<Item> RECORD_RIVENDELL = ITEMS.register("record_rivendell", () -> new TTMRecord(1,ridersofrivendell,(new Item.Properties()).maxStackSize(1).group(questGroup)));
-    public static RegistryObject<Item> RECORD_LOTHLORIEN = ITEMS.register("record_lothlorien", () -> new TTMRecord(2,thelightoflothlorien,(new Item.Properties()).maxStackSize(1).group(questGroup)));
-    public static RegistryObject<Item> RECORD_EREBOR = ITEMS.register("record_erebor", () -> new TTMRecord(3,allthatglittersinerebor,(new Item.Properties()).maxStackSize(1).group(questGroup)));
-    public static RegistryObject<Item> RECORD_WILLOW = ITEMS.register("record_willow", () -> new TTMRecord(4,willowsong,(new Item.Properties()).maxStackSize(1).group(questGroup)));
-    public static RegistryObject<Item> RECORD_MINASTIRITH = ITEMS.register("record_minastirith", () -> new TTMRecord(5,minastirith,(new Item.Properties()).maxStackSize(1).group(questGroup)));
-    public static RegistryObject<Item> RECORD_EDORAS = ITEMS.register("record_edoras", () -> new TTMRecord(6,wakeofedoras,(new Item.Properties()).maxStackSize(1).group(questGroup)));
-    public static RegistryObject<Item> RECORD_WBATTLE = ITEMS.register("record_wbattle", () -> new TTMRecord(7,witchbattle,(new Item.Properties()).maxStackSize(1).group(questGroup)));
-    public static RegistryObject<Item> RECORD_MURDERFROG = ITEMS.register("record_murderfrog", () -> new TTMRecord(8,murderfrog,(new Item.Properties()).maxStackSize(1).group(questGroup)));
-    public static RegistryObject<Item> RECORD_REDER = ITEMS.register("record_reder", () -> new TTMRecord(9,rederssong,(new Item.Properties()).maxStackSize(1).group(questGroup)));
-    public static RegistryObject<Item> RECORD_FUMBLE = ITEMS.register("record_fumble", () -> new TTMRecord(10,trollfumble,(new Item.Properties()).maxStackSize(1).group(questGroup)));
-    public static RegistryObject<Item> RECORD_BOMBADIL = ITEMS.register("record_bombadil", () -> new TTMRecord(11,mysteryoftombombadil,(new Item.Properties()).maxStackSize(1).group(questGroup)));
-    public static RegistryObject<Item> RECORD_HOBBITS = ITEMS.register("record_hobbits", () -> new TTMRecord(12,concerninghobbits,(new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_RIVENDELL = ITEMS.register("record_rivendell", () -> new TTMRecord(1, ridersofrivendell, (new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_LOTHLORIEN = ITEMS.register("record_lothlorien", () -> new TTMRecord(2, thelightoflothlorien, (new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_EREBOR = ITEMS.register("record_erebor", () -> new TTMRecord(3, allthatglittersinerebor, (new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_WILLOW = ITEMS.register("record_willow", () -> new TTMRecord(4, willowsong, (new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_MINASTIRITH = ITEMS.register("record_minastirith", () -> new TTMRecord(5, minastirith, (new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_EDORAS = ITEMS.register("record_edoras", () -> new TTMRecord(6, wakeofedoras, (new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_WBATTLE = ITEMS.register("record_wbattle", () -> new TTMRecord(7, witchbattle, (new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_MURDERFROG = ITEMS.register("record_murderfrog", () -> new TTMRecord(8, murderfrog, (new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_REDER = ITEMS.register("record_reder", () -> new TTMRecord(9, rederssong, (new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_FUMBLE = ITEMS.register("record_fumble", () -> new TTMRecord(10, trollfumble, (new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_BOMBADIL = ITEMS.register("record_bombadil", () -> new TTMRecord(11, mysteryoftombombadil, (new Item.Properties()).maxStackSize(1).group(questGroup)));
+    public static RegistryObject<Item> RECORD_HOBBITS = ITEMS.register("record_hobbits", () -> new TTMRecord(12, concerninghobbits, (new Item.Properties()).maxStackSize(1).group(questGroup)));
 
     //#################################################################
     // Food & Drink Items
@@ -340,7 +373,6 @@ public class TTMContent {
     //#################################################################
     //TODO Will get back to this when its needed. I need to figure out a better way to do this.
     //public static RegistryObject<ContainerType<ContainerBCTile<ExampleTile>>> EXAMPLE_CONTAINER = CONTAINER.register("example_container", (windowId, inv, data) -> new ContainerBCTile<ExampleTile>(EXAMPLE_CONTAINER.get(), windowId, inv, data, TRANSFUSER_LAYOUT));
-
 
     //For demonstration purposes only
     //public static class ExampleTile extends TileBCore {

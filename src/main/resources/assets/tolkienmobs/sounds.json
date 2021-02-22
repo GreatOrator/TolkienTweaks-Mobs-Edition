@@ -72,31 +72,31 @@
       "tolkienmobs:mob/tmgreateagle/tmgreateagle_hurt"
     ]
   },
-  "mob.tmrat.idle":
+  "mob.entityttmrat.idle":
   {
     "category": "neutral",
     "sounds":
     [
-      "tolkienmobs:mob/tmrat/tmrat_say0",
-      "tolkienmobs:mob/tmrat/tmrat_say1",
-      "tolkienmobs:mob/tmrat/tmrat_say2",
-      "tolkienmobs:mob/tmrat/tmrat_say3"
+      "tolkienmobs:mob/entityttmrat/entityttmrat_say0",
+      "tolkienmobs:mob/entityttmrat/entityttmrat_say1",
+      "tolkienmobs:mob/entityttmrat/entityttmrat_say2",
+      "tolkienmobs:mob/entityttmrat/entityttmrat_say3"
     ]
   },
-  "mob.tmrat.hurt":
+  "mob.entityttmrat.hurt":
   {
     "category": "neutral",
     "sounds":
     [
-      "tolkienmobs:mob/tmrat/tmrat_hurt"
+      "tolkienmobs:mob/entityttmrat/entityttmrat_hurt"
     ]
   },
-  "mob.tmrat.death":
+  "mob.entityttmrat.death":
   {
     "category": "neutral",
     "sounds":
     [
-      "tolkienmobs:mob/tmrat/tmrat_death"
+      "tolkienmobs:mob/entityttmrat/entityttmrat_death"
     ]
   },
   "mob.crebain.death":

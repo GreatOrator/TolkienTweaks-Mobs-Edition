@@ -8,7 +8,7 @@ import net.minecraft.item.BookItem;
 import net.minecraft.item.ItemStack;
 
 public class EnchantmentElvenLongevity extends Enchantment {
-    public EnchantmentElvenLongevity(Enchantment.Rarity rarityIn, EquipmentSlotType... slots) {
+    public EnchantmentElvenLongevity(Rarity rarityIn, EquipmentSlotType... slots) {
         super(rarityIn, EnchantmentType.ARMOR_CHEST, slots);
     }
 

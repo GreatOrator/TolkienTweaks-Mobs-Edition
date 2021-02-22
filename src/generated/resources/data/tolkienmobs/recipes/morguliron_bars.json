@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:ingot_morguliron"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:morguliron_bars"
+  }
+}

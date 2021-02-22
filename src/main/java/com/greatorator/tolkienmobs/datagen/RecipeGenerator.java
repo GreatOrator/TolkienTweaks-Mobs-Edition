@@ -40,6 +40,9 @@ public class RecipeGenerator extends RecipeProvider {
         storageRecipe(TTMContent.BLOCK_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
         storageRecipe(TTMContent.INGOT_MORGULIRON.get(), TTMContent.NUGGET_MORGULIRON.get(), consumer);
 
+        barsRecipe(TTMContent.MITHRIL_BARS.get(), TTMContent.INGOT_MITHRIL.get(), consumer);
+        barsRecipe(TTMContent.MORGULIRON_BARS.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
+
         stairsRecipe(TTMContent.STAIRS_MALLORN.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
         stairsRecipe(TTMContent.STAIRS_MIRKWOOD.get(), TTMContent.PLANKS_MIRKWOOD.get(), consumer);
         stairsRecipe(TTMContent.STAIRS_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
@@ -59,6 +62,8 @@ public class RecipeGenerator extends RecipeProvider {
         doorRecipe(TTMContent.DOOR_MIRKWOOD.get(), TTMContent.PLANKS_MIRKWOOD.get(), consumer);
         doorRecipe(TTMContent.DOOR_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
         doorRecipe(TTMContent.DOOR_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), consumer);
+        doorRecipe(TTMContent.DOOR_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), consumer);
+        doorRecipe(TTMContent.DOOR_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
 
         fenceGateRecipe(TTMContent.FENCE_GATE_MALLORN.get(), Items.STICK, TTMContent.PLANKS_MALLORN.get(), consumer);
         fenceGateRecipe(TTMContent.FENCE_GATE_MIRKWOOD.get(), Items.STICK, TTMContent.PLANKS_MIRKWOOD.get(), consumer);
@@ -66,9 +71,24 @@ public class RecipeGenerator extends RecipeProvider {
         fenceGateRecipe(TTMContent.FENCE_GATE_LEBETHRON.get(), Items.STICK, TTMContent.PLANKS_LEBETHRON.get(), consumer);
 
         fenceRecipe(TTMContent.FENCE_MALLORN.get(), TTMContent.PLANKS_MALLORN.get(), Items.STICK, consumer);
-//        fenceRecipe(TTMContent.FENCE_MIRKWOOD.get(), TTMContent.PLANKS_MIRKWOOD.get(), Items.STICK, consumer);
-//        fenceRecipe(TTMContent.FENCE_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), Items.STICK, consumer);
-//        fenceRecipe(TTMContent.FENCE_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), Items.STICK, consumer);
+        fenceRecipe(TTMContent.FENCE_MIRKWOOD.get(), TTMContent.PLANKS_MIRKWOOD.get(), Items.STICK, consumer);
+        fenceRecipe(TTMContent.FENCE_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), Items.STICK, consumer);
+        fenceRecipe(TTMContent.FENCE_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), Items.STICK, consumer);
+
+        swordRecipe(TTMContent.SWORD_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), consumer);
+        swordRecipe(TTMContent.SWORD_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
+
+        axeRecipe(TTMContent.AXE_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), consumer);
+        axeRecipe(TTMContent.AXE_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
+
+        hoeRecipe(TTMContent.HOE_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), consumer);
+        hoeRecipe(TTMContent.HOE_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
+
+        shovelRecipe(TTMContent.SHOVEL_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), consumer);
+        shovelRecipe(TTMContent.SHOVEL_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
+
+        pickaxeRecipe(TTMContent.PICKAXE_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), consumer);
+        pickaxeRecipe(TTMContent.PICKAXE_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
 
         // Shapeless Recipes
         unstorageRecipe(TTMContent.INGOT_MITHRIL.get(), TTMContent.BLOCK_MITHRIL.get(), consumer);
@@ -103,6 +123,61 @@ public class RecipeGenerator extends RecipeProvider {
         //
     }
 
+    public static void swordRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shapedRecipe(output, 1)
+                .patternLine("#")
+                .patternLine("#")
+                .patternLine("-")
+                .key('#', input)
+                .key('-', Items.STICK)
+                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
+                .build(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
+    }
+
+    public static void axeRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shapedRecipe(output, 1)
+                .patternLine("##")
+                .patternLine("#-")
+                .patternLine(" -")
+                .key('#', input)
+                .key('-', Items.STICK)
+                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
+                .build(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
+    }
+
+    public static void shovelRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shapedRecipe(output, 1)
+                .patternLine("#")
+                .patternLine("-")
+                .patternLine("-")
+                .key('#', input)
+                .key('-', Items.STICK)
+                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
+                .build(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
+    }
+
+    public static void pickaxeRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shapedRecipe(output, 1)
+                .patternLine("###")
+                .patternLine(" - ")
+                .patternLine(" - ")
+                .key('#', input)
+                .key('-', Items.STICK)
+                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
+                .build(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
+    }
+
+    public static void hoeRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shapedRecipe(output, 1)
+                .patternLine("##")
+                .patternLine(" -")
+                .patternLine(" -")
+                .key('#', input)
+                .key('-', Items.STICK)
+                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
+                .build(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
+    }
+
     public static void smeltingRecipe(IItemProvider output, IItemProvider input, float xp, int cook,Consumer<IFinishedRecipe> consumer) {
         CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(input),
                 output, xp, cook)
@@ -122,6 +197,15 @@ public class RecipeGenerator extends RecipeProvider {
         ShapedRecipeBuilder.shapedRecipe(output, 4)
                 .patternLine("#  ")
                 .patternLine("## ")
+                .patternLine("###")
+                .key('#', input)
+                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
+                .build(consumer);
+    }
+
+    public static void barsRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shapedRecipe(output, 1)
+                .patternLine("###")
                 .patternLine("###")
                 .key('#', input)
                 .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
@@ -201,5 +285,9 @@ public class RecipeGenerator extends RecipeProvider {
         public NBTIngredient(ItemStack stack) {
             super(stack);
         }
+    }
+
+    public String getName() {
+        return "Tolkien Tweaks - Mobs Edition Recipes";
     }
 }

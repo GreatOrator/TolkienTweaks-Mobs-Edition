@@ -33,10 +33,14 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TTMContent.ORE_END_MITHRIL.get());
         simpleBlock(TTMContent.ORE_NETHER_MITHRIL.get());
         simpleBlock(TTMContent.BLOCK_MITHRIL.get());
+        paneBlock(TTMContent.MITHRIL_BARS.get(), modLoc("block/mithril_bars"), modLoc("block/mithril_bars"));
+        doorBlock(TTMContent.DOOR_MITHRIL.get(), "door_mithril", modLoc("block/door_mithril_bottom"), modLoc("block/door_mithril_top"));
         simpleBlock(TTMContent.ORE_MORGULIRON.get());
         simpleBlock(TTMContent.ORE_END_MORGULIRON.get());
         simpleBlock(TTMContent.ORE_NETHER_MORGULIRON.get());
         simpleBlock(TTMContent.BLOCK_MORGULIRON.get());
+        paneBlock(TTMContent.MORGULIRON_BARS.get(), modLoc("block/morguliron_bars"), modLoc("block/morguliron_bars"));
+        doorBlock(TTMContent.DOOR_MORGULIRON.get(), "door_morguliron", modLoc("block/door_morguliron_bottom"), modLoc("block/door_morguliron_top"));
         simpleBlock(TTMContent.ORE_AMMOLITE.get());
         simpleBlock(TTMContent.ORE_END_AMMOLITE.get());
         simpleBlock(TTMContent.ORE_NETHER_AMMOLITE.get());
@@ -326,28 +330,8 @@ public class BlockStateGenerator extends BlockStateProvider {
                 });
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Override
     public String getName() {
-        return "Draconic Evolution Blockstates";
+        return "Tolkien Tweaks - Mobs Edition Blockstates";
     }
 }

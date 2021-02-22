@@ -117,9 +117,9 @@ public class SoundGenerator {
     public static final RegistryObject<SoundEvent> soundAngryGoblin = addSound("mob.goblin.angry");
 
     //Sounds - Rat
-    public static final RegistryObject<SoundEvent> soundIdleTMRat = addSound("mob.tmrat.idle");
-    public static final RegistryObject<SoundEvent> soundHurtTMRat = addSound("mob.tmrat.hurt");
-    public static final RegistryObject<SoundEvent> soundDeathTMRat = addSound("mob.tmrat.death");
+    public static final RegistryObject<SoundEvent> soundIdleTMRat = addSound("mob.entityttmrat.idle");
+    public static final RegistryObject<SoundEvent> soundHurtTMRat = addSound("mob.entityttmrat.hurt");
+    public static final RegistryObject<SoundEvent> soundDeathTMRat = addSound("mob.entityttmrat.death");
 
     //Sounds - Thrush
     public static final RegistryObject<SoundEvent> soundIdleTMThrush = addSound("mob.tmthrush.idle");
@@ -176,5 +176,9 @@ public class SoundGenerator {
     {
         SoundEvent event = new SoundEvent(new ResourceLocation(MODID, name));
         return SOUND_EVENTS.register(name, () -> event);
+    }
+
+    public String getName() {
+        return "Tolkien Tweaks - Mobs Edition Music";
     }
 }

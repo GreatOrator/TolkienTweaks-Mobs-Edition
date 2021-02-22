@@ -82,12 +82,14 @@ minecraft {
 repositories {
     mavenLocal()
     maven { url = "http://chickenbones.net/maven" }
+    maven { url = "https://maven.theillusivec4.top/" }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${config.mc_version}-${config.forge_version}"
     compile fg.deobf("codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:universal")
     compile "com.brandon3055.brandonscore:BrandonsCore:${config.mc_version}-${config.bcore_version}:deobf"
+    compile fg.deobf("top.theillusivec4.curios:curios-forge:${config.mc_version}-${config.curios_version}")
 }
 
 signing {

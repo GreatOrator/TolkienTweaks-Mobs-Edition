@@ -61,7 +61,11 @@ public class LootTableGenerator extends LootTableProvider {
         protected void addTables() {
             // Blocks - Metals & Gems
             registerDropSelfLootTable(TTMContent.BLOCK_MITHRIL.get());
+            registerDropSelfLootTable(TTMContent.MITHRIL_BARS.get());
+            registerDropSelfLootTable(TTMContent.DOOR_MITHRIL.get());
             registerDropSelfLootTable(TTMContent.BLOCK_MORGULIRON.get());
+            registerDropSelfLootTable(TTMContent.MORGULIRON_BARS.get());
+            registerDropSelfLootTable(TTMContent.DOOR_MORGULIRON.get());
 
             // Blocks - Wood & Foliage
             registerDropSelfLootTable(TTMContent.LOG_MALLORN.get());
@@ -138,5 +142,9 @@ public class LootTableGenerator extends LootTableProvider {
             return Registry.BLOCK.stream().filter(block -> Objects.requireNonNull(block.getRegistryName()).getNamespace().equals(TolkienMobs.MODID)).collect(Collectors.toList());
         }
 
+    }
+
+    public String getName() {
+        return "Tolkien Tweaks - Mobs Edition Loot Tables";
     }
 }

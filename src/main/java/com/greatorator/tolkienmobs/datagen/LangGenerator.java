@@ -27,6 +27,8 @@ public class LangGenerator extends LanguageProvider {
         coinToken();
         enchants();
         records();
+        tools();
+        entities();
         creativeTabGroups();
     }
 
@@ -516,6 +518,7 @@ public class LangGenerator extends LanguageProvider {
     private void enchants(){
         add("enchantment.tolkienmobs.balrogs_mark",                     "Balrog's Mark");
         add("enchantment.tolkienmobs.elven_longevity",                  "Elven Longevity");
+        add("enchantment.tolkienmobs.gondor_resolve",                   "Gondorian Resolve");
     }
 
     private void food(){
@@ -564,6 +567,26 @@ public class LangGenerator extends LanguageProvider {
             add("item.tolkienmobs." + TTMContent.RECORD_HOBBITS.get() + ".desc",            "Concerning Hobbits - Remix");
     }
 
+    private void tools(){
+        add(TTMContent.AXE_MITHRIL.get(),                               "Mithril Axe");
+        add(TTMContent.SWORD_MITHRIL.get(),                             "Mithril Sword");
+        add(TTMContent.HOE_MITHRIL.get(),                               "Mithril Hoe");
+        add(TTMContent.SHOVEL_MITHRIL.get(),                            "Mithril Shovel");
+        add(TTMContent.PICKAXE_MITHRIL.get(),                           "Mithril Pickaxe");
+        add(TTMContent.AXE_MORGULIRON.get(),                            "Morgul Iron Axe");
+        add(TTMContent.SWORD_MORGULIRON.get(),                          "Morgul Iron Sword");
+        add(TTMContent.HOE_MORGULIRON.get(),                            "Morgul Iron Hoe");
+        add(TTMContent.SHOVEL_MORGULIRON.get(),                         "Morgul Iron Shovel");
+        add(TTMContent.PICKAXE_MORGULIRON.get(),                        "Morgul Iron Pickaxe");
+        add(TTMContent.SWORD_WITCHKING.get(),                           TextFormatting.DARK_RED + "Sword of the Witch-king");
+
+        add(TTMContent.TRINKET_AMULET.get(),                            "Magic Amulet of %s");
+    }
+
+    private void entities(){
+        add(EntityGenerator.ENTITY_TTM_RAT.get(),                       "Rat");
+    }
+
 
 
     //region Helpers
@@ -580,4 +603,8 @@ public class LangGenerator extends LanguageProvider {
 
 
     //endregion
+
+    public String getName() {
+        return "Tolkien Tweaks - Mobs Edition English Translation";
+    }
 }

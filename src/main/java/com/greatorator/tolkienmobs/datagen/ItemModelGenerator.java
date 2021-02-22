@@ -27,10 +27,14 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.ORE_END_MITHRIL.get());
         blockItem(TTMContent.ORE_NETHER_MITHRIL.get());
         blockItem(TTMContent.BLOCK_MITHRIL.get());
+        simpleItem(TTMContent.MITHRIL_BARS_ITEM.get());
+        simpleItem(TTMContent.DOOR_MITHRIL_ITEM.get());
         blockItem(TTMContent.ORE_MORGULIRON.get());
         blockItem(TTMContent.ORE_END_MORGULIRON.get());
         blockItem(TTMContent.ORE_NETHER_MORGULIRON.get());
         blockItem(TTMContent.BLOCK_MORGULIRON.get());
+        simpleItem(TTMContent.MORGULIRON_BARS_ITEM.get());
+        simpleItem(TTMContent.DOOR_MORGULIRON_ITEM.get());
         blockItem(TTMContent.ORE_AMMOLITE.get());
         blockItem(TTMContent.ORE_END_AMMOLITE.get());
         blockItem(TTMContent.ORE_NETHER_AMMOLITE.get());
@@ -199,6 +203,21 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.RECORD_FUMBLE.get());
         simpleItem(TTMContent.RECORD_BOMBADIL.get());
         simpleItem(TTMContent.RECORD_HOBBITS.get());
+
+        //region Tools & Armor
+        simpleItem(TTMContent.AXE_MITHRIL.get());
+        simpleItem(TTMContent.HOE_MITHRIL.get());
+        simpleItem(TTMContent.PICKAXE_MITHRIL.get());
+        simpleItem(TTMContent.SHOVEL_MITHRIL.get());
+        simpleItem(TTMContent.SWORD_MITHRIL.get());
+        simpleItem(TTMContent.AXE_MORGULIRON.get());
+        simpleItem(TTMContent.HOE_MORGULIRON.get());
+        simpleItem(TTMContent.PICKAXE_MORGULIRON.get());
+        simpleItem(TTMContent.SHOVEL_MORGULIRON.get());
+        simpleItem(TTMContent.SWORD_MORGULIRON.get());
+        simpleItem(TTMContent.SWORD_WITCHKING.get());
+        simpleItem(TTMContent.TRINKET_AMULET.get());
+        simpleItem(TTMContent.GALADHRIM_ARROW.get());
 
 
 
@@ -374,6 +393,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 
     @Override
     public String getName() {
-        return "TolkienMobs Item Models";
+        return "Tolkien Tweaks - Mobs Edition Item Models";
     }
 }
