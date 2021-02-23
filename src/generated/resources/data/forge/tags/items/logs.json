@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:log_mallorn",
+    "tolkienmobs:log_mirkwood",
+    "tolkienmobs:log_culumalda",
+    "tolkienmobs:log_lebethron"
+  ]
+}

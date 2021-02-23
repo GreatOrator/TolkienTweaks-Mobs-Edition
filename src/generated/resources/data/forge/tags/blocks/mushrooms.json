@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:mushroom_bloom_decay",
+    "tolkienmobs:mushroom_decay_bloom"
+  ]
+}
