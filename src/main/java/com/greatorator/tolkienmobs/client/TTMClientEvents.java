@@ -1,32 +1,148 @@
-//package com.greatorator.tolkienmobs.client;
+package com.greatorator.tolkienmobs.client;
+
+import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
+import com.greatorator.tolkienmobs.datagen.PotionGenerator;
+import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.Minecraft;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.potion.EffectInstance;
+import net.minecraftforge.event.entity.living.LivingEvent;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+/**
+ * Created by brandon3055 on 20/02/19.
+ */
+public class TTMClientEvents {
+
+    public static List<UUID> playersWithUphillStep = new ArrayList<>();
+    public static List<UUID> playersWithExtraHealth = new ArrayList<>();
+    public static List<UUID> playersWithHardStance = new ArrayList<>();
+    public static List<UUID> playersCoweringInFear = new ArrayList<>();
+
+    public static void livingUpdate(LivingEvent.LivingUpdateEvent event) {
+        LivingEntity entity = event.getEntityLiving();
+        PlayerEntity player = Minecraft.getInstance().player;
+        Entity render = Minecraft.getInstance().getRenderViewEntity();
+        EffectInstance effect = player.getActivePotionEffect(PotionGenerator.SLEEPNESIA.get());
+        //region/*---------------- Sleepnesia -----------------*/
+//        if (effect != null) {
+//            RenderSystem.pushMatrix();
+//            RenderSystem.rotatef(90, 0.0F, 1.0F, 0.0F);
+//            RenderSystem.rotatef(90, 0.0F, 0.0F, 1.0F);
+//            RenderSystem.rotatef(270.0F, 0.0F, 1.0F, 0.0F);
+//        }
 //
-//import com.greatorator.tolkienmobs.init.BiomeInit;
-//import com.greatorator.tolkienmobs.init.PotionInit;
-//import com.greatorator.tolkienmobs.init.TTMFeatures;
-//import com.greatorator.tolkienmobs.item.item_old.magical.ItemTrinketRing;
-//import com.greatorator.tolkienmobs.item.item_old.potiontypes.PotionTTMDrowning;
-//import net.minecraft.block.material.Material;
-//import net.minecraft.client.Minecraft;
-//import net.minecraft.client.renderer.GlStateManager;
-//import net.minecraft.entity.Entity;
-//import net.minecraft.entity.LivingEntity;
-//import net.minecraft.entity.player.PlayerEntity;
-//import net.minecraft.entity.player.ServerPlayerEntity;
-//import net.minecraft.potion.Potion;
-//import net.minecraft.potion.PotionEffect;
-//import net.minecraft.util.math.MathHelper;
-//import net.minecraft.world.biome.Biome;
-//import net.minecraftforge.client.GuiIngameForge;
-//import net.minecraftforge.client.event.*;
-//import net.minecraftforge.event.entity.living.LivingEvent;
-//import net.minecraftforge.fml.common.eventhandler.EventPriority;
-//import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-//import net.minecraftforge.fml.relauncher.Side;
-//import net.minecraftforge.fml.relauncher.SideOnly;
+//        PlayerEntity player = Minecraft.getInstance().player;
+//        EffectInstance effect = player.getActivePotionEffect(PotionGenerator.SLEEPNESIA.get());
 //
-///** Created by brandon3055 on 20/02/19. */
-//public class TTMClientEvents {
+//        if (effect != null) {
+//            RenderSystem.popMatrix();
+//        }
+
+        if (effect != null) {
+            if (entity != null) {
+                float partialTicks = Minecraft.getInstance().getRenderPartialTicks();
+
+                RenderSystem.translatef(0.0F, 1.2F, 0.0F);
+                RenderSystem.rotatef(render.prevRotationYaw + (render.rotationYaw - render.prevRotationYaw) * partialTicks + 180.0F, 0.0F, -1.0F, 0.0F);
+                RenderSystem.rotatef(render.prevRotationPitch + (render.rotationPitch - render.prevRotationPitch) * partialTicks, -1.0F, 0.0F, 0.0F);
+            }
+        }
+
+        if (effect != null) {
+            event.setCanceled(true);
+        }
+        //endregion
+        //region/*---------------- Elvish Nimbleness -----------------*/
+        if (entity.world.isRemote) {
+            boolean highStepListed = playersWithUphillStep.contains(entity.getUniqueID()) && entity.stepHeight >= 1f;
+            boolean hasHighStep = entity.getActivePotionEffect(PotionGenerator.ELF_NIMBLENESS.get()) != null;
+
+            if (hasHighStep && !highStepListed) {
+                playersWithUphillStep.add(entity.getUniqueID());
+                entity.stepHeight = 1.0625f;
+            }
+
+            if (!hasHighStep && highStepListed) {
+                playersWithUphillStep.remove(entity.getUniqueID());
+                entity.stepHeight = 0.6F;
+            }
+        }
+        //endregion
+        //region/*---------------- Elvish Longevity -----------------*/
+        if (entity.world.isRemote) {
+            int level = EnchantmentHelper.getMaxEnchantmentLevel(EnchantmentGenerator.ELVEN_LONGEVITY.get(), entity);
+            boolean extraHealthListed = playersWithExtraHealth.contains(entity.getUniqueID());
+            boolean hasExtraHealth = level > 0;
+
+            if (hasExtraHealth && entity.getAbsorptionAmount() == 0 || !extraHealthListed) {
+                playersWithExtraHealth.add(entity.getUniqueID());
+                entity.setAbsorptionAmount(entity.getAbsorptionAmount() + (float) (5 * (level + 1)));
+            }
+
+            if (!hasExtraHealth && extraHealthListed) {
+                playersWithExtraHealth.add(entity.getUniqueID());
+                entity.setAbsorptionAmount(entity.getAbsorptionAmount() - (float) (5 * (level + 1)));
+            }
+        }
+        //endregion
+        //region/*---------------- Gondor Resolve -----------------*/
+        if (entity.world.isRemote) {
+            int level = EnchantmentHelper.getMaxEnchantmentLevel(EnchantmentGenerator.GONDOR_RESOLVE.get(), entity);
+            ModifiableAttributeInstance battleResolve = entity.getAttribute(Attributes.KNOCKBACK_RESISTANCE);
+            AttributeModifier gondorResolve = new AttributeModifier(UUID.randomUUID(), "GondorResolve", 0.25D * level, AttributeModifier.Operation.ADDITION);
+            boolean hardStanceListed = playersWithHardStance.contains(entity.getUniqueID());
+            boolean hasHardStance = level > 0;
+
+            if (hasHardStance && !hardStanceListed) {
+                playersWithHardStance.add(entity.getUniqueID());
+                assert battleResolve != null;
+                battleResolve.applyPersistentModifier(gondorResolve);
+            }
+
+            if (!hasHardStance && hardStanceListed) {
+                playersWithHardStance.add(entity.getUniqueID());
+                assert battleResolve != null;
+                battleResolve.removePersistentModifier(UUID.fromString("GondorResolve"));
+            }
+        }
+        //endregion
+        //region/*---------------- Crippling Terror -----------------*/
+//        if (entity.world.isRemote) {
+//            boolean terrorListed = playersCoweringInFear.contains(entity.getUniqueID()) && entity.getAttributeValue(Attributes.MOVEMENT_SPEED) >= 1f;
+//            boolean hasTerror = entity.getActivePotionEffect(PotionGenerator.PARALYSING_FEAR.get()) != null;
 //
+//            if (hasTerror && !terrorListed) {
+//                playersCoweringInFear.add(entity.getUniqueID());
+//                LOGGER.info("The terror sets in...");
+//                entity.setVelocity(-10D, -10D, -10D);
+//                entity.velocityChanged = true;
+//                entity.moveVertical = -10;
+//                entity.moveStrafing = -10;
+//                entity.setVelocity(0D, 0D, 0D);
+//            }
+//
+//            if (!hasTerror && terrorListed) {
+//                playersCoweringInFear.remove(entity.getUniqueID());
+//                LOGGER.info("The terror wanes");
+//                entity.setVelocity(10D, 10D, 10D);
+//                entity.velocityChanged = true;
+//                entity.moveVertical = 10;
+//                entity.moveStrafing = 10;
+//            }
+//        }
+//        //endregion
+    }
+
 //    @SubscribeEvent
 //    @SideOnly(Side.CLIENT)
 //    public void itemColourEvent(ColorHandlerEvent.Item event) {
@@ -166,4 +282,4 @@
 //            event.setCanceled(true);
 //        }
 //    }
-//}
+}
