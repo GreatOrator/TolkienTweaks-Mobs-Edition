@@ -304,5 +304,8 @@
   "itemGroup.tolkienmobs.quest": "TolkienTweaks Quest Items",
   "itemGroup.tolkienmobs.signs": "TolkienTweaks Signs",
   "itemGroup.tolkienmobs.spawn": "TolkienTweaks Mobs",
-  "itemGroup.tolkienmobs.tools": "TolkienTweaks Tools"
+  "itemGroup.tolkienmobs.tools": "TolkienTweaks Tools",
+  "translation.infernalmobs:rareClass": "foo",
+  "translation.infernalmobs:ultraClass": "bar",
+  "translation.infernalmobs:infernalClass": "foobar"
 }

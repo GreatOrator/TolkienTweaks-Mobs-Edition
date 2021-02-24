@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.client;
 
 import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
 import com.greatorator.tolkienmobs.datagen.PotionGenerator;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -11,7 +10,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.EffectInstance;
 import net.minecraftforge.event.entity.living.LivingEvent;
 
 import java.util.ArrayList;
@@ -32,7 +30,7 @@ public class TTMClientEvents {
         LivingEntity entity = event.getEntityLiving();
         PlayerEntity player = Minecraft.getInstance().player;
         Entity render = Minecraft.getInstance().getRenderViewEntity();
-        EffectInstance effect = player.getActivePotionEffect(PotionGenerator.SLEEPNESIA.get());
+//        EffectInstance effect = player.getActivePotionEffect(PotionGenerator.SLEEPNESIA.get());
         //region/*---------------- Sleepnesia -----------------*/
 //        if (effect != null) {
 //            RenderSystem.pushMatrix();
@@ -48,19 +46,19 @@ public class TTMClientEvents {
 //            RenderSystem.popMatrix();
 //        }
 
-        if (effect != null) {
-            if (entity != null) {
-                float partialTicks = Minecraft.getInstance().getRenderPartialTicks();
+//        if (effect != null) {
+//            if (entity != null) {
+//                float partialTicks = Minecraft.getInstance().getRenderPartialTicks();
+//
+//                RenderSystem.translatef(0.0F, 1.2F, 0.0F);
+//                RenderSystem.rotatef(render.prevRotationYaw + (render.rotationYaw - render.prevRotationYaw) * partialTicks + 180.0F, 0.0F, -1.0F, 0.0F);
+//                RenderSystem.rotatef(render.prevRotationPitch + (render.rotationPitch - render.prevRotationPitch) * partialTicks, -1.0F, 0.0F, 0.0F);
+//            }
+//        }
 
-                RenderSystem.translatef(0.0F, 1.2F, 0.0F);
-                RenderSystem.rotatef(render.prevRotationYaw + (render.rotationYaw - render.prevRotationYaw) * partialTicks + 180.0F, 0.0F, -1.0F, 0.0F);
-                RenderSystem.rotatef(render.prevRotationPitch + (render.rotationPitch - render.prevRotationPitch) * partialTicks, -1.0F, 0.0F, 0.0F);
-            }
-        }
-
-        if (effect != null) {
-            event.setCanceled(true);
-        }
+//        if (effect != null) {
+//            event.setCanceled(true);
+//        }
         //endregion
         //region/*---------------- Elvish Nimbleness -----------------*/
         if (entity.world.isRemote) {

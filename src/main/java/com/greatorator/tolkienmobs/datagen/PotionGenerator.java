@@ -25,7 +25,7 @@ public class PotionGenerator {
     //#################################################################
     public static final RegistryObject<Effect> ENT_STANCE = EFFECTS.register("ent_draught", () -> new TTMEffectBase(EffectType.BENEFICIAL, 3135135).addAttributesModifier(Attributes.KNOCKBACK_RESISTANCE, "38030aa0-6efa-11eb-9439-0242ac130002", (double)1.0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
     public static final RegistryObject<Effect> ELF_VITALITY = EFFECTS.register("elf_vitality", () -> new TTMEffectBase(EffectType.BENEFICIAL, 14687673).addAttributesModifier(Attributes.MAX_HEALTH, "38031022-6efa-11eb-9439-0242ac130002", (double)1.0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
-//    public static final RegistryObject<Effect> ELEMENTAL_DROWNING = EFFECTS.register("elemental_drowning", () -> new TTMEffectBase(EffectType.HARMFUL, 7791097));
+    public static final RegistryObject<Effect> ELEMENTAL_DROWNING = EFFECTS.register("elemental_drowning", () -> new DrownTTMEffect(EffectType.HARMFUL, 7791097));
     public static final RegistryObject<Effect> ELEMENTAL_LIGHTNING = EFFECTS.register("elemental_lightning", () -> new LightningTTMEffect(EffectType.HARMFUL, 16640281));
     public static final RegistryObject<Effect> ELEMENTAL_FLYING = EFFECTS.register("elemental_flight", () -> new FlyingTTMEffect(EffectType.HARMFUL, 6498056));
     public static final RegistryObject<Effect> ELEMENTAL_BURNING = EFFECTS.register("elemental_burning", () -> new BurningTTMEffect(EffectType.HARMFUL, 15545365));
@@ -43,7 +43,7 @@ public class PotionGenerator {
     //#################################################################
     public static final RegistryObject<Potion> ENT_DRAUGHT = POTIONS.register("ent_draught", () -> new Potion(new EffectInstance(ENT_STANCE.get(), 2400)));
     public static final RegistryObject<Potion> ELVISH_LIFE = POTIONS.register("elf_vitality", () -> new Potion(new EffectInstance(ELF_VITALITY.get(), 4800)));
-//    public static final RegistryObject<Potion> GOLEM_DROWNING = POTIONS.register("elemental_drowning", () -> new Potion(new EffectInstance(ELEMENTAL_DROWNING.get(), 600)));
+    public static final RegistryObject<Potion> GOLEM_DROWNING = POTIONS.register("elemental_drowning", () -> new Potion(new EffectInstance(ELEMENTAL_DROWNING.get(), 600)));
     public static final RegistryObject<Potion> GOLEM_LIGHTNING = POTIONS.register("elemental_lightning", () -> new Potion(new EffectInstance(ELEMENTAL_LIGHTNING.get(), 600)));
     public static final RegistryObject<Potion> GOLEM_FLYING = POTIONS.register("elemental_flight", () -> new Potion(new EffectInstance(ELEMENTAL_FLYING.get(), 600)));
     public static final RegistryObject<Potion> GOLEM_BURN = POTIONS.register("elemental_burning", () -> new Potion(new EffectInstance(ELEMENTAL_BURNING.get(), 600)));

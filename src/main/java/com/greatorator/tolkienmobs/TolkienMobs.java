@@ -1,10 +1,17 @@
 package com.greatorator.tolkienmobs;
 
 
+import com.greatorator.tolkienmobs.common.MobModify;
+import com.greatorator.tolkienmobs.common.network.AirPacket;
+import com.greatorator.tolkienmobs.common.network.NetworkHelper;
 import com.greatorator.tolkienmobs.proxy.ClientProxy;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModList;
@@ -16,6 +23,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashMap;
 import java.util.Locale;
 
 @Mod(TolkienMobs.MODID)
@@ -25,6 +33,9 @@ public class TolkienMobs {
     public static final String MODID = "tolkienmobs";
     public static final String NAME = "Tolkien Tweaks (Mobs Edition)";
     public static final String VERSION = "${mod_version}"; //This will now be set automatically by the build.gradle when the jar is built.
+    private static TolkienMobs instance;
+    public NetworkHelper networkHelper;
+    private HashMap<String, Long> modifiedPlayerTimes;
 
     public static CommonProxy proxy;
 
@@ -52,6 +63,10 @@ public class TolkienMobs {
     */
 
     public TolkienMobs() {
+        instance = this;
+        networkHelper = new NetworkHelper("tolkienmobs", AirPacket.class);
+        modifiedPlayerTimes = new HashMap<>();
+
         synchronized (MinecraftForge.EVENT_BUS) {
             Logger ttLog = LogManager.getLogger("tolkientweaks");
             Logger bcLog = LogManager.getLogger("brandonscore");
@@ -72,6 +87,10 @@ public class TolkienMobs {
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
     }
 
+    public static TolkienMobs instance() {
+        return instance;
+    }
+
     @SubscribeEvent
     public void onCommonSetup(FMLCommonSetupEvent event) {
         proxy.commonSetup(event);
@@ -84,6 +103,24 @@ public class TolkienMobs {
 
     public static ResourceLocation prefix(String name) {
         return new ResourceLocation(MODID, name.toLowerCase(Locale.ROOT));
+    }
+
+    public void sendAirPacket(ServerPlayerEntity target, int lastAir) {
+        if (getIsEntityAllowedTarget(target)) {
+            networkHelper.sendPacketToPlayer(new AirPacket(lastAir), target);
+        }
+    }
+
+    public boolean getIsEntityAllowedTarget(Entity entity) {
+        return !(entity instanceof FakePlayer);
+    }
+
+    public static MobModify getMobModifiers(LivingEntity ent) {
+        return proxy.getRareMobs().get(ent);
+    }
+
+    public HashMap<String, Long> getModifiedPlayerTimes() {
+        return modifiedPlayerTimes;
     }
 
 }
