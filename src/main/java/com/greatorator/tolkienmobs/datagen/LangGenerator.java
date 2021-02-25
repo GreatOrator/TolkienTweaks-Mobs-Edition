@@ -286,11 +286,11 @@ public class LangGenerator extends LanguageProvider {
 //        add("item.minecraft.splash_potion.effect.sleepnesia",         "Splash Potion of Sleepnesia");
 //        add("item.minecraft.lingering_potion.effect.sleepnesia",      "Lingering Potion of Sleepnesia");
 //        add("item.minecraft.tipped_arrow.effect.sleepnesia",          "Arrow of Sleepnesia");
-        add("effect.tolkienmobs.crippling_terror",                      "Paralysing Fear");
-        add("item.minecraft.potion.effect.crippling_terror",            "Potion of Paralysing Fear");
-        add("item.minecraft.splash_potion.effect.crippling_terror",     "Splash Potion of Paralysing Fear");
-        add("item.minecraft.lingering_potion.effect.crippling_terror",  "Lingering Potion of Paralysing Fear");
-        add("item.minecraft.tipped_arrow.effect.crippling_terror",      "Arrow of Paralysing Fear");
+//        add("effect.tolkienmobs.crippling_terror",                      "Paralysing Fear");
+//        add("item.minecraft.potion.effect.crippling_terror",            "Potion of Paralysing Fear");
+//        add("item.minecraft.splash_potion.effect.crippling_terror",     "Splash Potion of Paralysing Fear");
+//        add("item.minecraft.lingering_potion.effect.crippling_terror",  "Lingering Potion of Paralysing Fear");
+//        add("item.minecraft.tipped_arrow.effect.crippling_terror",      "Arrow of Paralysing Fear");
         add("effect.tolkienmobs.blessing_of_eru",                       "Eru's Blessing");
         add("item.minecraft.potion.effect.blessing_of_eru",             "Potion of Eru's Blessing");
         add("item.minecraft.splash_potion.effect.blessing_of_eru",      "Splash Potion of Eru's Blessing");
@@ -301,6 +301,11 @@ public class LangGenerator extends LanguageProvider {
 //        add("item.minecraft.splash_potion.effect.elemental_drowning",         "Splash Potion of Elemental Drowning");
 //        add("item.minecraft.lingering_potion.effect.elemental_drowning",      "Lingering Potion of Elemental Drowning");
 //        add("item.minecraft.tipped_arrow.effect.elemental_drowning",          "Arrow of Elemental Drowning");
+//        add("effect.tolkienmobs.elemental_tornado",                          "Elemental Tornado");
+//        add("item.minecraft.potion.effect.elemental_tornado",                "Potion of Elemental Tornado");
+//        add("item.minecraft.splash_potion.effect.elemental_tornado",         "Splash Potion of Elemental Tornado");
+//        add("item.minecraft.lingering_potion.effect.elemental_tornado",      "Lingering Potion of Elemental Tornado");
+//        add("item.minecraft.tipped_arrow.effect.elemental_tornado",          "Arrow of Elemental Tornado");
         add("effect.tolkienmobs.elemental_lightning",                          "Elemental Lightning");
         add("item.minecraft.potion.effect.elemental_lightning",                "Potion of Elemental Lightning");
         add("item.minecraft.splash_potion.effect.elemental_lightning",         "Splash Potion of Elemental Lightning");
@@ -316,17 +321,13 @@ public class LangGenerator extends LanguageProvider {
         add("item.minecraft.splash_potion.effect.elemental_burning",    "Splash Potion of Elemental Burning");
         add("item.minecraft.lingering_potion.effect.elemental_burning", "Lingering Potion of Elemental Burning");
         add("item.minecraft.tipped_arrow.effect.elemental_burning",     "Arrow of Elemental Burning");
-//        add("effect.tolkienmobs.elemental_tornado",                          "Elemental Tornado");
-//        add("item.minecraft.potion.effect.elemental_tornado",                "Potion of Elemental Tornado");
-//        add("item.minecraft.splash_potion.effect.elemental_tornado",         "Splash Potion of Elemental Tornado");
-//        add("item.minecraft.lingering_potion.effect.elemental_tornado",      "Lingering Potion of Elemental Tornado");
-//        add("item.minecraft.tipped_arrow.effect.elemental_tornado",          "Arrow of Elemental Tornado");
     }
 
     private void enchants(){
         add("enchantment.tolkienmobs.balrogs_mark",                     "Balrog's Mark");
         add("enchantment.tolkienmobs.elven_longevity",                  "Elven Longevity");
         add("enchantment.tolkienmobs.gondor_resolve",                   "Gondorian Resolve");
+        add("enchantment.tolkienmobs.dwarven_endurance",                "Dwarven Endurance");
     }
 
     private void food(){

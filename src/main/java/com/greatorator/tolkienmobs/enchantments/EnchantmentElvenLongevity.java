@@ -30,7 +30,7 @@ public class EnchantmentElvenLongevity extends Enchantment {
 
     @Override
     public int getMaxLevel() {
-        return 5;
+        return 4;
     }
 
     @Override

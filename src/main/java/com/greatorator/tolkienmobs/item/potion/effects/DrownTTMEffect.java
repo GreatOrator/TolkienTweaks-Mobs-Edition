@@ -1,17 +1,17 @@
 package com.greatorator.tolkienmobs.item.potion.effects;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.common.MobModify;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.potion.EffectType;
+import net.minecraft.potion.EffectUtils;
 import net.minecraft.util.DamageSource;
 
 public class DrownTTMEffect extends TTMEffectBase {
     public static DrownTTMEffect instance = null;
     public static int drownDuration = 10;
-    private final int RESET_AIR_VALUE = -999;
     private LivingEntity lastTarget;
     private int lastAir;
 
@@ -20,33 +20,25 @@ public class DrownTTMEffect extends TTMEffectBase {
     }
 
     public void performEffect(LivingEntity entity, int amplifier) {
-        if (MobModify.getMobTarget() != lastTarget) {
-            lastAir = RESET_AIR_VALUE;
-            if (lastTarget != null) {
-                updateAir();
-            }
-            lastTarget = MobModify.getMobTarget();
-        }
+        lastTarget = entity;
 
-        if (lastTarget != null) {
-            if (entity.canEntityBeSeen(lastTarget)) {
-                if (lastAir == RESET_AIR_VALUE) {
-                    lastAir = lastTarget.getAir();
-                } else {
-                    lastAir = Math.min(lastAir, lastTarget.getAir());
-                }
+        boolean flag = lastTarget instanceof PlayerEntity;
+        boolean flag1 = flag && ((PlayerEntity)lastTarget).abilities.disableDamage;
 
-                if (!(lastTarget instanceof PlayerEntity && ((PlayerEntity) lastTarget).abilities.disableDamage)) {
-                    lastAir--;
-                    if (lastAir < -19) {
-                        lastAir = 0;
-                        lastTarget.attackEntityFrom(DamageSource.DROWN, 2.0F * amplifier);
-                    }
+        if (!EffectUtils.canBreatheUnderwater(lastTarget) && !flag1) {
+            int a = EnchantmentHelper.getRespirationModifier(entity);
+            lastAir = a > 0 && entity.world.rand.nextInt(a + 1) > 0 ? lastAir : lastAir - 1;
+            lastTarget.setAir(lastAir);
 
-                    updateAir();
-                }
+            if (lastTarget.getAir() < -19) {
+                TolkienMobs.LOGGER.info("Help me! I'm Drowning");
+                lastAir = 0;
+
+                lastTarget.attackEntityFrom(DamageSource.DROWN, 2.0F * amplifier);
+                TolkienMobs.LOGGER.info("Help me! Damage taken...");
             }
         }
+        updateAir();
     }
 
     private void updateAir() {

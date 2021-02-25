@@ -73,6 +73,7 @@
   "effect.tolkienmobs.inventory_corrosion": "Corrosion",
   "effect.tolkienmobs.personal_blacksmith": "Portable Blacksmith",
   "enchantment.tolkienmobs.balrogs_mark": "Balrog's Mark",
+  "enchantment.tolkienmobs.dwarven_endurance": "Dwarven Endurance",
   "enchantment.tolkienmobs.elven_longevity": "Elven Longevity",
   "enchantment.tolkienmobs.gondor_resolve": "Gondorian Resolve",
   "entity.tolkienmobs.entityttmrat": "Rat",
@@ -304,8 +305,5 @@
   "itemGroup.tolkienmobs.quest": "TolkienTweaks Quest Items",
   "itemGroup.tolkienmobs.signs": "TolkienTweaks Signs",
   "itemGroup.tolkienmobs.spawn": "TolkienTweaks Mobs",
-  "itemGroup.tolkienmobs.tools": "TolkienTweaks Tools",
-  "translation.infernalmobs:rareClass": "foo",
-  "translation.infernalmobs:ultraClass": "bar",
-  "translation.infernalmobs:infernalClass": "foobar"
+  "itemGroup.tolkienmobs.tools": "TolkienTweaks Tools"
 }
