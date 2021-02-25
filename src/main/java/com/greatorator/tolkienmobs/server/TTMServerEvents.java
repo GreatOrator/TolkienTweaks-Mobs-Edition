@@ -3,8 +3,11 @@ package com.greatorator.tolkienmobs.server;
 import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -13,10 +16,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent;
 
 public class TTMServerEvents {
+
     public static void livingUpdate (LivingEvent.LivingUpdateEvent living){
         LivingEntity entity = living.getEntityLiving();
+        PlayerEntity player = Minecraft.getInstance().player;
+        ItemStack harvestingItem = player.getHeldItemMainhand();
         BlockPos pos = entity.getPosition();
         World worldIn = living.getEntity().world;
+
         //region/*---------------- Balrog's Mark -----------------*/
         int level = EnchantmentHelper.getMaxEnchantmentLevel(EnchantmentGenerator.BALROG_MARK.get(), entity);
 
@@ -41,7 +48,8 @@ public class TTMServerEvents {
 
         }
         //endregion
-        //region/*---------------- Balrog's Mark -----------------*/
+        //region/*---------------- Hobbit Plow -----------------*/
+
         //endregion
     }
 }

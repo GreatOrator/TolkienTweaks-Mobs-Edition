@@ -1,13 +1,14 @@
-//package com.greatorator.tolkienmobs.enchantments;
-//
-//import net.minecraft.enchantment.Enchantment;
-//import net.minecraft.enchantment.EnumEnchantmentType;
-//import net.minecraft.inventory.EntityEquipmentSlot;
-//import net.minecraft.item.ItemBook;
-//import net.minecraft.item.ItemHoe;
-//import net.minecraft.item.ItemStack;
-//
-//public class EnchantmentHobbitPlow extends Enchantment {
+package com.greatorator.tolkienmobs.enchantments;
+
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.inventory.EquipmentSlotType;
+
+public class EnchantmentHobbitPlow extends Enchantment {
+
+    public EnchantmentHobbitPlow(Rarity rarityIn, EquipmentSlotType... slots) {
+        super(rarityIn, EnchantmentType.DIGGER, slots);
+    }
 //
 //    public EnchantmentHobbitPlow(Rarity rarity, EnumEnchantmentType location, EntityEquipmentSlot...slot) {
 //        super(rarity, location, slot);
@@ -48,4 +49,4 @@
 //    protected boolean canApplyTogether(Enchantment enchantment) {
 //        return super.canApplyTogether(enchantment);
 //    }
-//}
+}

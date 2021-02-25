@@ -1,9 +1,6 @@
 package com.greatorator.tolkienmobs.datagen;
 
-import com.greatorator.tolkienmobs.enchantments.EnchantmentBalrogMark;
-import com.greatorator.tolkienmobs.enchantments.EnchantmentDwarvenEndurance;
-import com.greatorator.tolkienmobs.enchantments.EnchantmentElvenLongevity;
-import com.greatorator.tolkienmobs.enchantments.EnchantmentGondorResolve;
+import com.greatorator.tolkienmobs.enchantments.*;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.util.registry.Registry;
@@ -22,6 +19,7 @@ public class EnchantmentGenerator {
     public static final RegistryObject<Enchantment> ELVEN_LONGEVITY = ENCHANTS.register("elven_longevity", () -> new EnchantmentElvenLongevity(Enchantment.Rarity.RARE, EquipmentSlotType.CHEST));
     public static final RegistryObject<Enchantment> GONDOR_RESOLVE = ENCHANTS.register("gondor_resolve", () -> new EnchantmentGondorResolve(Enchantment.Rarity.RARE, EquipmentSlotType.LEGS));
     public static final RegistryObject<Enchantment> DWARF_ENDURANCE = ENCHANTS.register("dwarven_endurance", () -> new EnchantmentDwarvenEndurance(Enchantment.Rarity.RARE, EquipmentSlotType.HEAD));
+    public static final RegistryObject<Enchantment> HOBBIT_PLOW = ENCHANTS.register("hobbit_plow", () -> new EnchantmentHobbitPlow(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND));
 //    public static final Enchantment SWEEPING = register("sweeping", new SweepingEnchantment(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND));
 
 
