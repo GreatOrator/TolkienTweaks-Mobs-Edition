@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.block.trees;
 
+import com.greatorator.tolkienmobs.world.gen.feature.TTMFeatures;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -12,6 +13,6 @@ public class TTMDeadTree extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
-        return null;
+        return TTMFeatures.DEADTREE;
     }
 }

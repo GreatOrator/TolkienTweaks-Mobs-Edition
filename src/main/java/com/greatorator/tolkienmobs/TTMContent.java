@@ -122,10 +122,10 @@ public class TTMContent {
     public static RegistryObject<FenceBlock> FENCE_MIRKWOOD = BLOCKS.register("fence_mirkwood", () -> new FenceBlock(AbstractBlock.Properties.create(Material.WOOD, PLANKS_MIRKWOOD.get().getMaterialColor()).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static RegistryObject<FenceBlock> FENCE_CULUMALDA = BLOCKS.register("fence_culumalda", () -> new FenceBlock(AbstractBlock.Properties.create(Material.WOOD, PLANKS_CULUMALDA.get().getMaterialColor()).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static RegistryObject<FenceBlock> FENCE_LEBETHRON = BLOCKS.register("fence_lebethron", () -> new FenceBlock(AbstractBlock.Properties.create(Material.WOOD, PLANKS_LEBETHRON.get().getMaterialColor()).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
-    public static RegistryObject<Block> LEAVES_CULUMALDA = BLOCKS.register("leaves_culumalda", TTMContent::createLeavesBlock);
-    public static RegistryObject<Block> LEAVES_LEBETHRON = BLOCKS.register("leaves_lebethron", TTMContent::createLeavesBlock);
-    public static RegistryObject<Block> LEAVES_MALLORN = BLOCKS.register("leaves_mallorn", TTMContent::createLeavesBlock);
-    public static RegistryObject<Block> LEAVES_MIRKWOOD = BLOCKS.register("leaves_mirkwood", TTMContent::createLeavesBlock);
+    public static RegistryObject<LeavesBlock> LEAVES_CULUMALDA = BLOCKS.register("leaves_culumalda", TTMContent::createLeavesBlock);
+    public static RegistryObject<LeavesBlock> LEAVES_LEBETHRON = BLOCKS.register("leaves_lebethron", TTMContent::createLeavesBlock);
+    public static RegistryObject<LeavesBlock> LEAVES_MALLORN = BLOCKS.register("leaves_mallorn", TTMContent::createLeavesBlock);
+    public static RegistryObject<LeavesBlock> LEAVES_MIRKWOOD = BLOCKS.register("leaves_mirkwood", TTMContent::createLeavesBlock);
     public static RegistryObject<SaplingBlock> SAPLING_MALLORN = BLOCKS.register("sapling_mallorn", () -> new SaplingBlock(new TTMMallornTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static RegistryObject<SaplingBlock> SAPLING_MIRKWOOD = BLOCKS.register("sapling_mirkwood", () -> new SaplingBlock(new TTMMirkwoodTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static RegistryObject<SaplingBlock> SAPLING_CULUMALDA = BLOCKS.register("sapling_culumalda", () -> new SaplingBlock(new TTMCulumaldaTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
