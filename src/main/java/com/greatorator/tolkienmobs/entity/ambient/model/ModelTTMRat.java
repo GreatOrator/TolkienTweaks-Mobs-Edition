@@ -143,8 +143,8 @@ public class ModelTTMRat<E extends AnimalEntity> extends EntityModel<EntityTTMRa
         }
 
         // flick ears
-        RatEarR.rotateAngleY = (float) Math.pow(MathHelper.cos(MathHelper.wrapDegrees(entityIn.ticksExisted*3)), 6) * MathHelper.wrapDegrees(15);
-        RatEarL.rotateAngleY = (float) Math.pow(MathHelper.cos(MathHelper.wrapDegrees(entityIn.ticksExisted*3)), 6) * MathHelper.wrapDegrees(-15);
+        RatEarR.rotateAngleY = (float) Math.pow(MathHelper.cos(MathHelper.wrapDegrees(entityIn.ticksExisted)), 6) * MathHelper.wrapDegrees(15);
+        RatEarL.rotateAngleY = (float) Math.pow(MathHelper.cos(MathHelper.wrapDegrees(entityIn.ticksExisted)), 6) * MathHelper.wrapDegrees(-15);
     }
 
     protected Iterable<ModelRenderer> getHeadParts() {
@@ -163,6 +163,11 @@ public class ModelTTMRat<E extends AnimalEntity> extends EntityModel<EntityTTMRa
 
     @Override
     public void render(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
-
+        this.getHeadParts().forEach((p_228228_8_) -> {
+            p_228228_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+        });
+        this.getBodyParts().forEach((p_228227_8_) -> {
+            p_228227_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);
+        });
     }
 }

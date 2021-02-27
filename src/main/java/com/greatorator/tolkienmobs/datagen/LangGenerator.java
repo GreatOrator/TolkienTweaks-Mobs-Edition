@@ -388,7 +388,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.SHOVEL_MORGULIRON.get(),                         "Morgul Iron Shovel");
         add(TTMContent.PICKAXE_MORGULIRON.get(),                        "Morgul Iron Pickaxe");
         add(TTMContent.SWORD_WITCHKING.get(),                           TextFormatting.DARK_RED + "Sword of the Witch-king");
-
+        add(TTMContent.GALADHRIM_ARROW.get(),                           "Galadhrim Arrows");
         add(TTMContent.TRINKET_AMULET.get(),                            "Magic Amulet of %s");
     }
 

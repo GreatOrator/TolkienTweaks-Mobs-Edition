@@ -1,14 +1,14 @@
 package com.greatorator.tolkienmobs.item.trinket;
 
-import com.brandon3055.brandonscore.items.ItemBCore;
 import com.brandon3055.brandonscore.utils.ItemNBTHelper;
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.TTMContent;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.Potion;
+import net.minecraft.item.PotionItem;
+import net.minecraft.potion.*;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
@@ -16,18 +16,21 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class TrinketAmulet extends ItemBCore {
+public class TrinketAmulet extends PotionItem {
     private static final String TAG_POTION_EFFECT = "effect";
 
     public TrinketAmulet(Properties properties) {
         super(properties);
     }
 
-    public void getSubItems(ItemGroup tab, NonNullList<ItemStack> subItems) {
-        if(tab == getCreativeTabs()) {
-            subItems.add(new ItemStack(this));
-            for(Effect p : TTMConfig.effectArray)
-                subItems.add(getTrinketForPotion(p));
+    @Override
+    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+        if (this.isInGroup(group)) {
+            for(Effect p : TTMConfig.effectArray) {
+                if (p != null) {
+                    items.add(getTrinketForPotion(p));
+                }
+            }
         }
     }
 
@@ -42,7 +45,7 @@ public class TrinketAmulet extends ItemBCore {
         if(stack == null)
             return null;
 
-        String effect = ItemNBTHelper.getString(stack, TAG_POTION_EFFECT, "");
+        String effect = ItemNBTHelper.getString(stack, TAG_POTION_EFFECT, "Nothingness");
         if(effect.isEmpty())
             return null;
 
@@ -72,24 +75,24 @@ public class TrinketAmulet extends ItemBCore {
         ItemNBTHelper.setBoolean(stack, "IsActive", !isEnabled(stack));
     }
 
-//    @SuppressWarnings("unchecked")
-//    public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean hotbar) {
-//        updateTrinket(stack, entity);
-//    }
+    @SuppressWarnings("unchecked")
+    public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean hotbar) {
+        updateTrinket(stack, entity);
+    }
 
-//    private void updateTrinket(ItemStack stack, Entity entity) {
-//        PlayerEntity player = (PlayerEntity) entity;
-//        Effects pe = new Effects(EffectInstance(stack));
-//
-//        if(isEnabled(stack)){
-//            //World world = entity.getEntityWorld();
-//            //boolean flag = false;
-//            player.addPotionEffect(new Potion(new EffectInstance(pe,2400,3,false,false));
-//            //LogHelperTTM.info("Ring has been enabled");
-//        }else {
-//            player.removePotionEffect(pe);
-//        }
-//    }
+    private void updateTrinket(ItemStack stack, Entity entity) {
+        PlayerEntity player = (PlayerEntity) entity;
+        Effect pe = (Effect) PotionUtils.getEffectsFromStack(stack);
+
+        if(isEnabled(stack)){
+            //World world = entity.getEntityWorld();
+            //boolean flag = false;
+            player.addPotionEffect(new EffectInstance(new EffectInstance(pe,2400,3,false,false)));
+            //LogHelperTTM.info("Ring has been enabled");
+        }else {
+            player.removePotionEffect(pe);
+        }
+    }
 
 //    public String getItemStackDisplayName(ItemStack stack) {
 //        String name = super.getItemStackDisplayName(stack);
