@@ -56,9 +56,6 @@ public class TolkienMobs {
     *   - Structures
     *   - Plants
     *
-    * Data Generators
-    *  - Tags
-    *
     * Config (Done)
     * Network
     */
