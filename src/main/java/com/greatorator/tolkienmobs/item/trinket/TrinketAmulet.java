@@ -85,22 +85,9 @@ public class TrinketAmulet extends PotionItem {
         Effect pe = (Effect) PotionUtils.getEffectsFromStack(stack);
 
         if(isEnabled(stack)){
-            //World world = entity.getEntityWorld();
-            //boolean flag = false;
             player.addPotionEffect(new EffectInstance(new EffectInstance(pe,2400,3,false,false)));
-            //LogHelperTTM.info("Ring has been enabled");
         }else {
             player.removePotionEffect(pe);
         }
     }
-
-//    public String getItemStackDisplayName(ItemStack stack) {
-//        String name = super.getItemStackDisplayName(stack);
-//        Potion p = getPotion(stack);
-//        String potionName = "Nothingness";
-//        if(p != null)
-//            potionName = I18n.translateToLocal(p.getName());
-//
-//        return String.format(name, potionName);
-//    }
 }
