@@ -1,4 +1,9 @@
-//package com.greatorator.tolkienmobs.enchantments;
+package com.greatorator.tolkienmobs.enchantments;
+
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentType;
+import net.minecraft.inventory.EquipmentSlotType;
+
 //
 //import net.minecraft.enchantment.Enchantment;
 //import net.minecraft.enchantment.EnumEnchantmentType;
@@ -8,7 +13,11 @@
 //import net.minecraft.item.ItemHoe;
 //import net.minecraft.item.ItemStack;
 //
-//public class EnchantmentHobbitHarvest extends Enchantment {
+public class EnchantmentHobbitHarvest extends Enchantment {
+
+    public EnchantmentHobbitHarvest(Rarity rarityIn, EquipmentSlotType... slots) {
+        super(rarityIn, EnchantmentType.DIGGER, slots);
+    }
 //    public EnchantmentHobbitHarvest(Rarity rarity, EnumEnchantmentType location, EntityEquipmentSlot...slot) {
 //        super(rarity, location, slot);
 //    }
@@ -48,4 +57,4 @@
 //    protected boolean canApplyTogether(Enchantment enchantment) {
 //        return super.canApplyTogether(enchantment) && enchantment != Enchantments.SILK_TOUCH;
 //    }
-//}
+}

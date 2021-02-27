@@ -45,10 +45,11 @@ public class TolkienMobs {
     *  - Entities
     *  - Ammunition
     *  - Fireplace
-    *  - Potions - 3 left
-    *  - Enchants - 4 left
+    *  - Potions - 2 left
+    *  - Enchants - 2 left
     *  - Trinkets
     *  - Armor
+    *  - 3D tools
     *  - Generation
     *   - Trees
     *   - Biomes
