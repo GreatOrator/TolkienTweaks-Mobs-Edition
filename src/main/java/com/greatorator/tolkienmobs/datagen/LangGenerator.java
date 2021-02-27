@@ -19,6 +19,7 @@ public class LangGenerator extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
+        PrefixHelper helper = new PrefixHelper(this);
         blocks();
         items();
         quest();
@@ -29,6 +30,7 @@ public class LangGenerator extends LanguageProvider {
         records();
         tools();
         entities();
+        trinket(helper);
         creativeTabGroups();
     }
 
@@ -389,7 +391,12 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.PICKAXE_MORGULIRON.get(),                        "Morgul Iron Pickaxe");
         add(TTMContent.SWORD_WITCHKING.get(),                           TextFormatting.DARK_RED + "Sword of the Witch-king");
         add(TTMContent.GALADHRIM_ARROW.get(),                           "Galadhrim Arrows");
-        add(TTMContent.TRINKET_AMULET.get(),                            "Magic Amulet of %s");
+    }
+
+    private void trinket(PrefixHelper helper){
+        helper.setPrefix("item.tolkienmobs.trinket_");
+        helper.add("amulet.effect.empty",                            "Magical Amulet of Nothingness");
+
     }
 
     private void entities(){
@@ -412,6 +419,23 @@ public class LangGenerator extends LanguageProvider {
 
     public void addLore(Item key, String lore) {
         add(key.getTranslationKey()+".lore", lore);
+    }
+
+    public static class PrefixHelper {
+        private LangGenerator generator;
+        private String prefix;
+
+        public PrefixHelper(LangGenerator generator) {
+            this.generator = generator;
+        }
+
+        public void setPrefix(String prefix) {
+            this.prefix = prefix + ".";
+        }
+
+        public void add(String translationKey, String translation) {
+            generator.add(prefix + translationKey, translation);
+        }
     }
 
     //endregion

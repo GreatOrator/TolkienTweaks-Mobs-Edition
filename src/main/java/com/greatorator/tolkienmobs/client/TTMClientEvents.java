@@ -1,7 +1,9 @@
 package com.greatorator.tolkienmobs.client;
 
+import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
 import com.greatorator.tolkienmobs.datagen.PotionGenerator;
+import com.greatorator.tolkienmobs.item.trinket.TrinketAmulet;
 import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -10,7 +12,11 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionUtils;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,5 +100,22 @@ public class TTMClientEvents {
                 ((PlayerEntity) entity).getFoodStats().addStats(level + 1, 1.0F);
             }
         }
+    }
+
+    @SubscribeEvent
+    public void itemColourEvent(ColorHandlerEvent.Item event) {
+
+        event.getItemColors().register((stack, tintIndex) -> {
+            if (tintIndex < 1) {
+                return -1;
+            }
+            else {
+                Potion potion = TrinketAmulet.getPotion(stack);
+                if (potion != null) {
+                    return PotionUtils.getColor(stack);
+                }
+            }
+            return -1;
+        }, TTMContent.TRINKET_AMULET.get());
     }
 }

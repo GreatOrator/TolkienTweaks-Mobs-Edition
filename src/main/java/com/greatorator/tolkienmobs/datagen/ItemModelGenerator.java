@@ -216,7 +216,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.SHOVEL_MORGULIRON.get());
         simpleItem(TTMContent.SWORD_MORGULIRON.get());
         simpleItem(TTMContent.SWORD_WITCHKING.get());
-        simpleItem(TTMContent.TRINKET_AMULET.get());
+        simpleItem(TTMContent.TRINKET_AMULET.get(),  modLoc("item/trinket_amulet"));
         simpleItem(TTMContent.GALADHRIM_ARROW.get());
 
 
