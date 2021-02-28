@@ -2,7 +2,11 @@ package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.entity.ambient.EntityTTMRat;
 import com.greatorator.tolkienmobs.entity.ambient.render.RenderTTMRat;
+import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
+import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.ammo.EntityGaladhrimArrow;
+import com.greatorator.tolkienmobs.entity.ammo.render.RenderBoulder;
+import com.greatorator.tolkienmobs.entity.ammo.render.RenderFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderGaladhrimArrow;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -31,6 +35,8 @@ public class EntityGenerator {
 
     // Ammo
     public static final RegistryObject<EntityType<?>> AMMO_ARROW_GALADHRIM = ENTITY.register("ammo_arrow_galadhrim", () -> EntityType.Builder.create(EntityGaladhrimArrow::new, EntityClassification.MISC).size(0.5F, 0.5F).setCustomClientFactory(EntityGaladhrimArrow::new).build(MODID + ":ammo_arrow_galadhrim"));
+    public static final RegistryObject<EntityType<?>> AMMO_FELLBEAST_FIREBALL = ENTITY.register("ammo_fellbeast_fireball", () -> EntityType.Builder.create(EntityFellBeastFireball::new, EntityClassification.MISC).size(0.5F, 0.5F).setCustomClientFactory(EntityFellBeastFireball::new).build(MODID + ":ammo_fellbeast_fireball"));
+    public static final RegistryObject<EntityType<?>> AMMO_BOULDER = ENTITY.register("ammo_boulder", () -> EntityType.Builder.create(EntityBoulder::new, EntityClassification.MISC).size(0.5F, 0.5F).setCustomClientFactory(EntityBoulder::new).build(MODID + ":ammo_boulder"));
 
     //#################################################################
     // Render Registry
@@ -41,7 +47,8 @@ public class EntityGenerator {
 
         // Ammo
         RenderingRegistry.registerEntityRenderingHandler(AMMO_ARROW_GALADHRIM.get(), new RenderGaladhrimArrow.RenderFactory());
-
+        RenderingRegistry.registerEntityRenderingHandler(AMMO_FELLBEAST_FIREBALL.get(), new RenderFellBeastFireball.RenderFactory());
+        RenderingRegistry.registerEntityRenderingHandler(AMMO_BOULDER.get(), new RenderBoulder.RenderFactory());
     }
 
     //#################################################################

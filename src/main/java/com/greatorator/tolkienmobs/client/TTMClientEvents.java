@@ -140,6 +140,6 @@ public class TTMClientEvents {
                 }
             }
             return -1;
-        }, TTMContent.TRINKET_AMULET.get());
+        }, TTMContent.TRINKET_AMULET.get(), TTMContent.TRINKET_BELT.get(), TTMContent.TRINKET_CHARM.get(), TTMContent.TRINKET_RING.get() );
     }
 }

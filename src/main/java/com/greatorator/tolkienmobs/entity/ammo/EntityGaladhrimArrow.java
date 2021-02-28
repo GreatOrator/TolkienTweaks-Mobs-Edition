@@ -29,36 +29,6 @@ public class EntityGaladhrimArrow extends AbstractArrowEntity {
         super((EntityType<? extends AbstractArrowEntity>) EntityGenerator.AMMO_ARROW_GALADHRIM.get(), world);
     }
 
-//    protected void arrowHit(LivingEntity living) {
-//        super.arrowHit(living);
-//
-//        LightningBoltEntity lightningBoltEntity = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,this.getEntityWorld());
-//        lightningBoltEntity.setPositionAndUpdate(living.getPosX(),living.getPosY(),living.getPosZ());
-//
-//        world.addEntity(lightningBoltEntity);
-//
-//
-//    }
-//
-//    @Override
-//    public void tick() {
-//        super.tick();
-//
-//        if (world.isRemote) {
-//
-//            System.out.println("I exist in the client");
-//        }
-//        if (this.inGround) {
-//            if (this.timeInGround == 0) {
-//                LightningBoltEntity lightningBoltEntity = new LightningBoltEntity(EntityType.LIGHTNING_BOLT,this.getEntityWorld());
-//                lightningBoltEntity.setPositionAndUpdate(this.getPosX(),this.getPosY(),this.getPosZ());
-//
-//                //     world.addEntity(lightningBoltEntity);
-//
-//            }
-//        }
-//    }
-
     @Override
     protected ItemStack getArrowStack() {
         return new ItemStack(TTMContent.GALADHRIM_ARROW.get());

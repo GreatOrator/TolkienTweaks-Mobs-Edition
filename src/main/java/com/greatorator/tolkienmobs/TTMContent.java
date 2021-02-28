@@ -13,12 +13,12 @@ import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.PotionGenerator;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.handler.TTMFood;
-import com.greatorator.tolkienmobs.handler.TTMFoods;
-import com.greatorator.tolkienmobs.handler.TTMLore;
-import com.greatorator.tolkienmobs.handler.TTMRecord;
+import com.greatorator.tolkienmobs.handler.*;
 import com.greatorator.tolkienmobs.item.TTMArrow;
 import com.greatorator.tolkienmobs.item.trinket.TrinketAmulet;
+import com.greatorator.tolkienmobs.item.trinket.TrinketBelt;
+import com.greatorator.tolkienmobs.item.trinket.TrinketCharm;
+import com.greatorator.tolkienmobs.item.trinket.TrinketRing;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -300,8 +300,14 @@ public class TTMContent {
     public static RegistryObject<SwordItem> SWORD_MORGULIRON = ITEMS.register("sword_morguliron", () -> new SwordItem(ItemTier.NETHERITE, 8, -2.3F, (new Item.Properties()).group(toolsGroup)));
     public static RegistryObject<SwordItem> SWORD_WITCHKING = ITEMS.register("sword_witchking", () -> new SwordItem(ItemTier.NETHERITE, 9, -0.5F, (new Item.Properties()).group(toolsGroup)));
 
-    public static RegistryObject<ArrowItem> GALADHRIM_ARROW = ITEMS.register("ammo_galadhrim_arrow", () -> new TTMArrow((new Item.Properties()).group(toolsGroup)));
     public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new TrinketAmulet(new Item.Properties().group(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new TrinketBelt(new Item.Properties().group(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new TrinketCharm(new Item.Properties().group(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_RING = ITEMS.register("trinket_ring", () -> new TrinketRing(new Item.Properties().group(toolsGroup)));
+
+    public static RegistryObject<ArrowItem> GALADHRIM_ARROW = ITEMS.register("ammo_galadhrim_arrow", () -> new TTMArrow((new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<Item> BOULDER = ITEMS.register("ammo_boulder", () -> new TTMAmmo((new Item.Properties()).maxStackSize(16).group(toolsGroup)));
+    public static RegistryObject<Item> FELLBEAST_FIREBALL = ITEMS.register("ammo_fellbeast_fireball", () -> new TTMAmmo((new Item.Properties()).maxStackSize(16).group(toolsGroup)));
 
     // Coins & Tokens
     public static RegistryObject<Item> ITEM_COIN_BRONZE = ITEMS.register("item_coin_bronze", () -> new TTMLore(new Item.Properties().group(questGroup)).setHasLore());

@@ -216,8 +216,15 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.SHOVEL_MORGULIRON.get());
         simpleItem(TTMContent.SWORD_MORGULIRON.get());
         simpleItem(TTMContent.SWORD_WITCHKING.get());
-        simpleItem(TTMContent.TRINKET_AMULET.get(), modLoc("item/trinket_amulet"));
         simpleItem(TTMContent.GALADHRIM_ARROW.get());
+        simpleItem(TTMContent.FELLBEAST_FIREBALL.get());
+        simpleItem(TTMContent.BOULDER.get());
+
+        //region Trinkets
+        trinketItem(TTMContent.TRINKET_AMULET.get(), modLoc("item/trinket_amulet"), modLoc("item/trinket_amulet"));
+        trinketItem(TTMContent.TRINKET_BELT.get(), modLoc("item/trinket_belt"), modLoc("item/trinket_belt"));
+        trinketItem(TTMContent.TRINKET_CHARM.get(), modLoc("item/trinket_charm"), modLoc("item/trinket_charm"));
+        trinketItem(TTMContent.TRINKET_RING.get(), modLoc("item/trinket_ring"), modLoc("item/trinket_ring"));
 
         //region Spawn Eggs
         eggItem(EntityGenerator.EGG_TTMRAT.get());
@@ -243,6 +250,15 @@ public class ItemModelGenerator extends ItemModelProvider {
         getBuilder(reg.getPath())
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
                 .texture("layer0", texture);
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    private void trinketItem(Item item, ResourceLocation texture1, ResourceLocation texture2) {
+        ResourceLocation reg = item.getRegistryName();
+        getBuilder(reg.getPath())
+                .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", texture1)
+                .texture("layer1", texture2 + "_gem");
     }
 
     @SuppressWarnings("ConstantConditions")

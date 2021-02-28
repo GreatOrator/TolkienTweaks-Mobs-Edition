@@ -393,11 +393,16 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.PICKAXE_MORGULIRON.get(),                        "Morgul Iron Pickaxe");
         add(TTMContent.SWORD_WITCHKING.get(),                           TextFormatting.DARK_RED + "Sword of the Witch-king");
         add(TTMContent.GALADHRIM_ARROW.get(),                           "Galadhrim Arrows");
+        add(TTMContent.FELLBEAST_FIREBALL.get(),                        "Fell Beast Fireball");
+        add(TTMContent.BOULDER.get(),                                   "Boulder");
     }
 
     private void trinket(PrefixHelper helper){
-        helper.setPrefix("item.tolkienmobs.trinket_");
-        helper.add("amulet.effect.empty",                            "Magical Amulet of Nothingness");
+        helper.setPrefix("item.tolkienmobs.trinket");
+            helper.add("amulet.effect.empty",                           "Magical Amulet of Nothingness");
+            helper.add("belt.effect.empty",                             "Magical Belt of Nothingness");
+            helper.add("charm.effect.empty",                            "Magical Charm of Nothingness");
+            helper.add("ring.effect.empty",                             "Magical Ring of Nothingness");
 
     }
 
