@@ -402,7 +402,9 @@ public class LangGenerator extends LanguageProvider {
     }
 
     private void entities(){
+        // Ambient
         add(EntityGenerator.ENTITY_TTM_RAT.get(),                       "Rat");
+        add(EntityGenerator.EGG_TTMRAT.get(),                           "Rat Spawn Egg");
     }
 
 
