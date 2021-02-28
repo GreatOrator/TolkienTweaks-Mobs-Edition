@@ -1,11 +1,9 @@
 package com.greatorator.tolkienmobs.datagen;
 
-import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.entity.ambient.EntityTTMRat;
 import com.greatorator.tolkienmobs.entity.ambient.render.RenderTTMRat;
 import com.greatorator.tolkienmobs.entity.ammo.EntityGaladhrimArrow;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderGaladhrimArrow;
-import com.greatorator.tolkienmobs.handler.TTMSpawnEgg;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
@@ -29,8 +27,6 @@ public class EntityGenerator {
     // Render Registry
     //#################################################################
     public static void registerEntityRenderer() {
-//        System.out.println(ENTITY_TTM_RAT.get());
-//        System.exit(0);
         RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_RAT.get(), RenderTTMRat::new);
         RenderingRegistry.registerEntityRenderingHandler(AMMO_ARROW_GALADHRIM.get(), new RenderGaladhrimArrow.RenderFactory());
 
@@ -41,15 +37,6 @@ public class EntityGenerator {
     //#################################################################
     public static void addEntityAttributes(){
         GlobalEntityTypeAttributes.put(ENTITY_TTM_RAT.get(), EntityTTMRat.registerAttributes().create());
-    }
-
-    //#################################################################
-    // Spawn Egg Registry
-    //#################################################################
-    public static void registerSpawnEggs() {
-        TTMSpawnEgg.setDefaultItemGroup();
-        // Ambient
-        TTMSpawnEgg.createRegistrySpawnEgg(TTMContent.ITEMS, "spawn_egg_entityttmrat", ENTITY_TTM_RAT.get(), 13354786, 2002668);
     }
 
     public String getName() {

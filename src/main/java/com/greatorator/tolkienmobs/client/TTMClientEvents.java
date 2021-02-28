@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
@@ -31,6 +32,7 @@ public class TTMClientEvents {
     public static List<UUID> playersWithExtraHealth = new ArrayList<>();
     public static List<UUID> playersWithHardStance = new ArrayList<>();
     public static List<UUID> playersCoweringInFear = new ArrayList<>();
+    public static List<UUID> playersWayTooTired = new ArrayList<>();
 
     public static void livingUpdate(LivingEvent.LivingUpdateEvent event) {
         LivingEntity entity = event.getEntityLiving();
@@ -56,7 +58,7 @@ public class TTMClientEvents {
         //region/*---------------- Elvish Longevity -----------------*/
         if (entity.world.isRemote) {
             int level = EnchantmentHelper.getMaxEnchantmentLevel(EnchantmentGenerator.ELVEN_LONGEVITY.get(), entity);
-            float absorb = (float)(10 * level);
+            float absorb = (float) (10 * level);
             boolean extraHealthListed = playersWithExtraHealth.contains(entity.getUniqueID());
             boolean hasExtraHealth = level > 0;
 
@@ -100,6 +102,29 @@ public class TTMClientEvents {
                 ((PlayerEntity) entity).getFoodStats().addStats(level + 1, 1.0F);
             }
         }
+        //endregion
+        //region/*---------------- Sleepnesia -----------------*/
+        boolean goneToSleepListed = playersWayTooTired.contains(entity.getUniqueID());
+        boolean hasGoneToSleep = entity.getActivePotionEffect(PotionGenerator.SLEEPNESIA.get()) != null;
+        ModifiableAttributeInstance nightyNight = entity.getAttribute(Attributes.MOVEMENT_SPEED);
+        AttributeModifier sleepTight = new AttributeModifier(UUID.randomUUID(), "SleepyTime", -10F, AttributeModifier.Operation.ADDITION);
+
+        if (entity.world.isRemote) {
+            if (player != null) {
+                if (hasGoneToSleep && !goneToSleepListed) {
+                    playersWayTooTired.add(entity.getUniqueID());
+                    player.setForcedPose(Pose.SLEEPING);
+                    nightyNight.applyPersistentModifier(sleepTight);
+                }
+
+                if (!hasGoneToSleep && goneToSleepListed) {
+                    playersWayTooTired.add(entity.getUniqueID());
+                    player.setForcedPose(null);
+                    nightyNight.removeModifier(sleepTight);
+                }
+            }
+            //endregion
+        }
     }
 
     @SubscribeEvent
@@ -108,8 +133,7 @@ public class TTMClientEvents {
         event.getItemColors().register((stack, tintIndex) -> {
             if (tintIndex < 1) {
                 return -1;
-            }
-            else {
+            } else {
                 Potion potion = TrinketAmulet.getPotion(stack);
                 if (potion != null) {
                     return PotionUtils.getColor(stack);

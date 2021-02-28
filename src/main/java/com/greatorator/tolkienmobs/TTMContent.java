@@ -38,6 +38,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 import static com.greatorator.tolkienmobs.datagen.SoundGenerator.*;
+import static com.greatorator.tolkienmobs.handler.TTMSpawnEgg.addDispenseBehaviorTo;
 
 /**
  * Created by brandon3055 on 31/1/21
@@ -369,6 +370,11 @@ public class TTMContent {
     //public static RegistryObject<TileEntityType<ExampleTile>> EXAMPLE_TILE = TILE.register("example_tile", () -> TileEntityType.Builder.create(ExampleTile::new, EXAMPLE_BLOCK.get()).build(null));
 
     //#################################################################
+    // Spawn Eggs
+    //#################################################################
+    //public static RegistryObject<SpawnEggItem> EGG_TTMRAT = ITEMS.register("spawn_egg_entityttmrat", () -> createSpawnEgg(EntityGenerator.ENTITY_TTM_RAT.get(), 13354786, 2002668));
+
+    //#################################################################
     // Containers
     //#################################################################
     //TODO Will get back to this when its needed. I need to figure out a better way to do this.
@@ -395,6 +401,14 @@ public class TTMContent {
 
     private static LeavesBlock createLeavesBlock() {
         return new LeavesBlock(AbstractBlock.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid().setAllowsSpawn(TTMContent::allowsSpawnOnLeaves).setSuffocates(TTMContent::isntSolid).setBlocksVision(TTMContent::isntSolid));
+    }
+
+    public static SpawnEggItem createSpawnEgg(EntityType< ? > entityType, int primaryColor, int secondaryColor ) {
+        Item.Properties itemProperties = new Item.Properties().group( spawnGroup );
+        SpawnEggItem spawnEggItem = new SpawnEggItem( entityType, primaryColor, secondaryColor, itemProperties );
+        addDispenseBehaviorTo( spawnEggItem );
+
+        return spawnEggItem;
     }
 
     private static RotatedPillarBlock createLogBlock(MaterialColor topColor, MaterialColor barkColor) {

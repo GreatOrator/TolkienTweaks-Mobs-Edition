@@ -283,26 +283,26 @@ public class LangGenerator extends LanguageProvider {
         add("item.minecraft.splash_potion.effect.elven_nimbleness",     "Splash Potion of Elvish Nimbleness");
         add("item.minecraft.lingering_potion.effect.elven_nimbleness",  "Lingering Potion of Elvish Nimbleness");
         add("item.minecraft.tipped_arrow.effect.elven_nimbleness",      "Arrow of Elvish Nimbleness");
-//        add("effect.tolkienmobs.sleepnesia",                          "Sleepnesia");
-//        add("item.minecraft.potion.effect.sleepnesia",                "Potion of Sleepnesia");
-//        add("item.minecraft.splash_potion.effect.sleepnesia",         "Splash Potion of Sleepnesia");
-//        add("item.minecraft.lingering_potion.effect.sleepnesia",      "Lingering Potion of Sleepnesia");
-//        add("item.minecraft.tipped_arrow.effect.sleepnesia",          "Arrow of Sleepnesia");
-//        add("effect.tolkienmobs.crippling_terror",                      "Paralysing Fear");
-//        add("item.minecraft.potion.effect.crippling_terror",            "Potion of Paralysing Fear");
-//        add("item.minecraft.splash_potion.effect.crippling_terror",     "Splash Potion of Paralysing Fear");
-//        add("item.minecraft.lingering_potion.effect.crippling_terror",  "Lingering Potion of Paralysing Fear");
-//        add("item.minecraft.tipped_arrow.effect.crippling_terror",      "Arrow of Paralysing Fear");
+        add("effect.tolkienmobs.sleepnesia",                            "Sleepnesia");
+        add("item.minecraft.potion.effect.sleepnesia",                  "Potion of Sleepnesia");
+        add("item.minecraft.splash_potion.effect.sleepnesia",           "Splash Potion of Sleepnesia");
+        add("item.minecraft.lingering_potion.effect.sleepnesia",        "Lingering Potion of Sleepnesia");
+        add("item.minecraft.tipped_arrow.effect.sleepnesia",            "Arrow of Sleepnesia");
+        add("effect.tolkienmobs.crippling_terror",                      "Paralysing Fear");
+        add("item.minecraft.potion.effect.crippling_terror",            "Potion of Paralysing Fear");
+        add("item.minecraft.splash_potion.effect.crippling_terror",     "Splash Potion of Paralysing Fear");
+        add("item.minecraft.lingering_potion.effect.crippling_terror",  "Lingering Potion of Paralysing Fear");
+        add("item.minecraft.tipped_arrow.effect.crippling_terror",      "Arrow of Paralysing Fear");
         add("effect.tolkienmobs.blessing_of_eru",                       "Eru's Blessing");
         add("item.minecraft.potion.effect.blessing_of_eru",             "Potion of Eru's Blessing");
         add("item.minecraft.splash_potion.effect.blessing_of_eru",      "Splash Potion of Eru's Blessing");
         add("item.minecraft.lingering_potion.effect.blessing_of_eru",   "Lingering Potion of Eru's Blessing");
         add("item.minecraft.tipped_arrow.effect.blessing_of_eru",       "Arrow of Eru's Blessing");
-//        add("effect.tolkienmobs.elemental_drowning",                          "Elemental Drowning");
-//        add("item.minecraft.potion.effect.elemental_drowning",                "Potion of Elemental Drowning");
-//        add("item.minecraft.splash_potion.effect.elemental_drowning",         "Splash Potion of Elemental Drowning");
-//        add("item.minecraft.lingering_potion.effect.elemental_drowning",      "Lingering Potion of Elemental Drowning");
-//        add("item.minecraft.tipped_arrow.effect.elemental_drowning",          "Arrow of Elemental Drowning");
+        add("effect.tolkienmobs.elemental_drowning",                          "Elemental Drowning");
+        add("item.minecraft.potion.effect.elemental_drowning",                "Potion of Elemental Drowning");
+        add("item.minecraft.splash_potion.effect.elemental_drowning",         "Splash Potion of Elemental Drowning");
+        add("item.minecraft.lingering_potion.effect.elemental_drowning",      "Lingering Potion of Elemental Drowning");
+        add("item.minecraft.tipped_arrow.effect.elemental_drowning",          "Arrow of Elemental Drowning");
 //        add("effect.tolkienmobs.elemental_tornado",                          "Elemental Tornado");
 //        add("item.minecraft.potion.effect.elemental_tornado",                "Potion of Elemental Tornado");
 //        add("item.minecraft.splash_potion.effect.elemental_tornado",         "Splash Potion of Elemental Tornado");
@@ -330,6 +330,8 @@ public class LangGenerator extends LanguageProvider {
         add("enchantment.tolkienmobs.elven_longevity",                  "Elven Longevity");
         add("enchantment.tolkienmobs.gondor_resolve",                   "Gondorian Resolve");
         add("enchantment.tolkienmobs.dwarven_endurance",                "Dwarven Endurance");
+//        add("enchantment.tolkienmobs.hobbit_plow",                "Hobbit Plowing");
+//        add("enchantment.tolkienmobs.hobbit_harvest",                "Hobbit Harvest");
     }
 
     private void food(){

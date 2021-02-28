@@ -32,7 +32,7 @@ public class PotionGenerator {
 //    public static final RegistryObject<Effect> ELEMENTAL_TORNADO = EFFECTS.register("elemental_tornado", () -> new TTMEffectBase(EffectType.HARMFUL, 11914084));
     public static final RegistryObject<Effect> INVENTORY_CORROSION = EFFECTS.register("inventory_corrosion", () -> new CorrosionTTMEffect(EffectType.HARMFUL, 7811840));
     public static final RegistryObject<Effect> PERSONAL_BLACKSMITH = EFFECTS.register("personal_blacksmith", () -> new BlacksmithTTMEffect(EffectType.BENEFICIAL, 14370245));
-    public static final RegistryObject<Effect> SLEEPNESIA = EFFECTS.register("sleepnesia", () -> new SleepTTMEffect(EffectType.HARMFUL, 2890775).addAttributesModifier(Attributes.MOVEMENT_SPEED, "380317e8-6efa-11eb-9439-0242ac130002", (double)-10.0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
+    public static final RegistryObject<Effect> SLEEPNESIA = EFFECTS.register("sleepnesia", () -> new SleepTTMEffect(EffectType.HARMFUL, 2890775));
     public static final RegistryObject<Effect> WATCHER_FEAR = EFFECTS.register("dread_aura", () -> new FearTTMEffect(EffectType.HARMFUL, 4852999));
     public static final RegistryObject<Effect> PARALYSING_FEAR = EFFECTS.register("crippling_terror", () -> new TerrorTTMEffect(EffectType.HARMFUL, 5655556).addAttributesModifier(Attributes.MOVEMENT_SPEED, "380317e8-11eb-6efa-9439-0242ac130002", (double)-10.0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
     public static final RegistryObject<Effect> ELF_NIMBLENESS = EFFECTS.register("elven_nimbleness", () -> new NimbleTTMEffect(EffectType.BENEFICIAL, 16777062));

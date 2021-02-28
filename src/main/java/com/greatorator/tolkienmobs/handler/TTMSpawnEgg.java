@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.handler;
 
-import com.greatorator.tolkienmobs.TTMContent;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
@@ -16,10 +15,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 
+import static com.greatorator.tolkienmobs.TTMContent.spawnGroup;
+
 /** Borrowed from Majrusz */
 public class TTMSpawnEgg {
     private static final SpawnEggBehavior SPAWN_EGG_BEHAVIOR = new SpawnEggBehavior();
-    private static ItemGroup ITEM_GROUP = ItemGroup.MISC;
+    private static ItemGroup ITEM_GROUP = spawnGroup;
 
     /**
      Adds dispense behavior to given spawn egg item. (entity will be spawned from using dispenser)
@@ -70,13 +71,8 @@ public class TTMSpawnEgg {
         return deferredRegister.register( registryName, ()->spawnEgg );
     }
 
-    /**
-     Changes default item group for spawn eggs.
-     Previously created eggs before calling this function will not be affected!
-     @param itemGroup New item group to set.
-     */
     public static void setDefaultItemGroup() {
-        ITEM_GROUP = TTMContent.spawnGroup;
+        ITEM_GROUP = spawnGroup;
     }
 
     private static final class SpawnEggBehavior extends DefaultDispenseItemBehavior {
