@@ -50,6 +50,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         logBlock(TTMContent.LOG_MIRKWOOD.get());
         logBlock(TTMContent.LOG_CULUMALDA.get());
         logBlock(TTMContent.LOG_LEBETHRON.get());
+        logBlock(TTMContent.LOG_DEADWOOD.get());
         simpleBlock(TTMContent.PLANKS_MALLORN.get());
         simpleBlock(TTMContent.PLANKS_MIRKWOOD.get());
         simpleBlock(TTMContent.PLANKS_CULUMALDA.get());
@@ -82,6 +83,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TTMContent.SAPLING_MIRKWOOD.get(), models().cross("sapling_mirkwood", modLoc("block/sapling_mirkwood")));
         simpleBlock(TTMContent.SAPLING_CULUMALDA.get(), models().cross("sapling_culumalda", modLoc("block/sapling_culumalda")));
         simpleBlock(TTMContent.SAPLING_LEBETHRON.get(), models().cross("sapling_lebethron", modLoc("block/sapling_lebethron")));
+        simpleBlock(TTMContent.SAPLING_DEADWOOD.get(), models().cross("sapling_deadwood", modLoc("block/sapling_deadwood")));
 
         // Basic Plants & Flowers
         simpleBlock(TTMContent.MUSHROOM_DECAY_BLOOM.get(), models().cross("mushroom_decay_bloom", modLoc("block/mushroom_decay_bloom")));

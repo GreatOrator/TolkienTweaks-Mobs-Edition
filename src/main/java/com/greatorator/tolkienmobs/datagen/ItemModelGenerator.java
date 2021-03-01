@@ -44,6 +44,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.LOG_MIRKWOOD.get());
         blockItem(TTMContent.LOG_CULUMALDA.get());
         blockItem(TTMContent.LOG_LEBETHRON.get());
+        blockItem(TTMContent.LOG_DEADWOOD.get());
         blockItem(TTMContent.PLANKS_MALLORN.get());
         blockItem(TTMContent.PLANKS_MIRKWOOD.get());
         blockItem(TTMContent.PLANKS_CULUMALDA.get());
@@ -76,6 +77,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.SAPLING_MIRKWOOD.get());
         blockItem(TTMContent.SAPLING_CULUMALDA.get());
         blockItem(TTMContent.SAPLING_LEBETHRON.get());
+        blockItem(TTMContent.SAPLING_DEADWOOD.get());
 
         // Block Items - Plants & Flowers
         blockItem(TTMContent.MUSHROOM_DECAY_BLOOM.get());

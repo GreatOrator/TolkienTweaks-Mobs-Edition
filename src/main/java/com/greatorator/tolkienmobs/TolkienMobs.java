@@ -42,14 +42,14 @@ public class TolkienMobs {
     /*TODO List
     * Registration Stuff
     *  - Signs
-    *  - Entities
-    *  - Ammunition
     *  - Fireplace
-    *  - Potions - 1 left
-    *  - Enchants - 2 left
-    *  - Trinkets
     *  - Armor
     *  - 3D tools
+    *  - Entities -
+    *  - Ammunition -
+    *  - Potions - 1 left
+    *  - Enchants - 2 left
+    *  - Trinkets -
     *  - Generation
     *   - Trees
     *   - Biomes

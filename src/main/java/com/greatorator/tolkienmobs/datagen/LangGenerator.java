@@ -57,6 +57,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.LOG_MIRKWOOD.get(),                              "Mirkwood Log");
         add(TTMContent.LOG_CULUMALDA.get(),                             "Culumalda Log");
         add(TTMContent.LOG_LEBETHRON.get(),                             "Lebethron Log");
+        add(TTMContent.LOG_DEADWOOD.get(),                              "Deadwood Log");
         add(TTMContent.PLANKS_MALLORN.get(),                            "Mallorn Planks");
         add(TTMContent.PLANKS_MIRKWOOD.get(),                           "Mirkwood Planks");
         add(TTMContent.PLANKS_CULUMALDA.get(),                          "Culumalda Planks");
@@ -89,6 +90,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.SAPLING_MIRKWOOD.get(),                          "Mirkwood Sapling");
         add(TTMContent.SAPLING_CULUMALDA.get(),                         "Culumalda Sapling");
         add(TTMContent.SAPLING_LEBETHRON.get(),                         "Lebethron Sapling");
+        add(TTMContent.SAPLING_DEADWOOD.get(),                          "Deadwood Sapling");
 
         // Plants & Flowers
         add(TTMContent.MUSHROOM_DECAY_BLOOM.get(),                      "Bloom of Decay");

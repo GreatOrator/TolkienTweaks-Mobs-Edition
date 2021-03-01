@@ -37,7 +37,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
         getOrCreateBuilder(TTMTags.blocks.STAIRS).add(TTMContent.STAIRS_MALLORN.get(), TTMContent.STAIRS_MIRKWOOD.get(), TTMContent.STAIRS_CULUMALDA.get(), TTMContent.STAIRS_LEBETHRON.get());
         getOrCreateBuilder(BlockTags.STAIRS).addTag(TTMTags.blocks.STAIRS);
         getOrCreateBuilder(TTMTags.blocks.SLABS).add(TTMContent.SLAB_MALLORN.get(), TTMContent.SLAB_MIRKWOOD.get(), TTMContent.SLAB_CULUMALDA.get(), TTMContent.SLAB_LEBETHRON.get());
-        getOrCreateBuilder(TTMTags.blocks.LOGS).add(TTMContent.LOG_MALLORN.get(), TTMContent.LOG_MIRKWOOD.get(), TTMContent.LOG_CULUMALDA.get(), TTMContent.LOG_LEBETHRON.get());
+        getOrCreateBuilder(TTMTags.blocks.LOGS).add(TTMContent.LOG_MALLORN.get(), TTMContent.LOG_MIRKWOOD.get(), TTMContent.LOG_CULUMALDA.get(), TTMContent.LOG_LEBETHRON.get(), TTMContent.LOG_DEADWOOD.get());
         getOrCreateBuilder(BlockTags.LOGS_THAT_BURN).addTag(TTMTags.blocks.LOGS);
         getOrCreateBuilder(TTMTags.blocks.DOORS_WOODEN).add(TTMContent.DOOR_MALLORN.get(), TTMContent.DOOR_MIRKWOOD.get(), TTMContent.DOOR_CULUMALDA.get(), TTMContent.DOOR_LEBETHRON.get());
         getOrCreateBuilder(BlockTags.WOODEN_DOORS).addTag(TTMTags.blocks.DOORS_WOODEN);

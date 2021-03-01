@@ -72,6 +72,7 @@ public class LootTableGenerator extends LootTableProvider {
             registerDropSelfLootTable(TTMContent.LOG_MIRKWOOD.get());
             registerDropSelfLootTable(TTMContent.LOG_CULUMALDA.get());
             registerDropSelfLootTable(TTMContent.LOG_LEBETHRON.get());
+            registerLootTable(TTMContent.LOG_DEADWOOD.get(), ChancesAndSticks(TTMContent.LOG_DEADWOOD.get(), TTMContent.LOG_DEADWOOD.get(), DEFAULT_SAPLING_DROP_RATES));
             registerDropSelfLootTable(TTMContent.PLANKS_MALLORN.get());
             registerDropSelfLootTable(TTMContent.PLANKS_MIRKWOOD.get());
             registerDropSelfLootTable(TTMContent.PLANKS_CULUMALDA.get());
@@ -100,6 +101,7 @@ public class LootTableGenerator extends LootTableProvider {
             registerDropSelfLootTable(TTMContent.SAPLING_MIRKWOOD.get());
             registerDropSelfLootTable(TTMContent.SAPLING_CULUMALDA.get());
             registerDropSelfLootTable(TTMContent.SAPLING_LEBETHRON.get());
+            registerDropSelfLootTable(TTMContent.SAPLING_DEADWOOD.get());
             registerLootTable(TTMContent.LEAVES_MALLORN.get(), SticksAndAcorns(TTMContent.LEAVES_MALLORN.get(), TTMContent.SAPLING_MALLORN.get(), RARE_SAPLING_DROP_RATES));
             registerLootTable(TTMContent.LEAVES_MIRKWOOD.get(), droppingWithChancesAndSticks(TTMContent.LEAVES_MIRKWOOD.get(), TTMContent.SAPLING_MIRKWOOD.get(), DEFAULT_SAPLING_DROP_RATES));
             registerLootTable(TTMContent.LEAVES_CULUMALDA.get(), droppingWithChancesSticksAndApples(TTMContent.LEAVES_CULUMALDA.get(), TTMContent.SAPLING_CULUMALDA.get(), DEFAULT_SAPLING_DROP_RATES));
@@ -136,6 +138,11 @@ public class LootTableGenerator extends LootTableProvider {
         protected static LootTable.Builder SticksAndAcorns(Block block, Block sapling, float... chances) {
             return droppingWithChancesAndSticks(block, sapling, chances).addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).acceptCondition(NOT_SILK_TOUCH_OR_SHEARS).addEntry(withSurvivesExplosion(block, ItemLootEntry.builder(TTMContent.TREE_ACORN.get())).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
         }
+
+        protected static LootTable.Builder ChancesAndSticks(Block block, Block log, float... chances) {
+            return droppingWithSilkTouch(block, withSurvivesExplosion(block, ItemLootEntry.builder(log)).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, chances))).addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).acceptCondition(NOT_SILK_TOUCH_OR_SHEARS).addEntry(withExplosionDecay(block, ItemLootEntry.builder(Items.STICK).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F)))).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
+        }
+
 
         @Override
         protected Iterable<Block> getKnownBlocks() {

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "tolkienmobs:block/log_deadwood_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "tolkienmobs:block/log_deadwood"
+    },
+    "axis=z": {
+      "model": "tolkienmobs:block/log_deadwood_horizontal",
+      "x": 90
+    }
+  }
+}

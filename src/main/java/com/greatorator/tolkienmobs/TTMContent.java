@@ -5,10 +5,7 @@ import com.brandon3055.brandonscore.blocks.ItemBlockBCore;
 import com.greatorator.tolkienmobs.block.BlockMushrooms;
 import com.greatorator.tolkienmobs.block.BlockStonePath;
 import com.greatorator.tolkienmobs.block.BlockTMHallowed;
-import com.greatorator.tolkienmobs.block.trees.TTMCulumaldaTree;
-import com.greatorator.tolkienmobs.block.trees.TTMLebethronTree;
-import com.greatorator.tolkienmobs.block.trees.TTMMallornTree;
-import com.greatorator.tolkienmobs.block.trees.TTMMirkwoodTree;
+import com.greatorator.tolkienmobs.block.trees.*;
 import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.PotionGenerator;
@@ -102,6 +99,7 @@ public class TTMContent {
     public static RegistryObject<RotatedPillarBlock> LOG_LEBETHRON = BLOCKS.register("log_lebethron", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.LIGHT_GRAY_TERRACOTTA));
     public static RegistryObject<RotatedPillarBlock> LOG_MALLORN = BLOCKS.register("log_mallorn", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.WHITE_TERRACOTTA));
     public static RegistryObject<RotatedPillarBlock> LOG_MIRKWOOD = BLOCKS.register("log_mirkwood", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.BLACK_TERRACOTTA));
+    public static RegistryObject<RotatedPillarBlock> LOG_DEADWOOD = BLOCKS.register("log_deadwood", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.ADOBE));
     public static RegistryObject<Block> PLANKS_CULUMALDA = BLOCKS.register("planks_culumalda", () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.GRAY_TERRACOTTA).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static RegistryObject<Block> PLANKS_LEBETHRON = BLOCKS.register("planks_lebethron", () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.LIGHT_GRAY_TERRACOTTA).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static RegistryObject<Block> PLANKS_MALLORN = BLOCKS.register("planks_mallorn", () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(2.0F, 3.0F).sound(SoundType.WOOD)));
@@ -134,6 +132,7 @@ public class TTMContent {
     public static RegistryObject<SaplingBlock> SAPLING_MIRKWOOD = BLOCKS.register("sapling_mirkwood", () -> new SaplingBlock(new TTMMirkwoodTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static RegistryObject<SaplingBlock> SAPLING_CULUMALDA = BLOCKS.register("sapling_culumalda", () -> new SaplingBlock(new TTMCulumaldaTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static RegistryObject<SaplingBlock> SAPLING_LEBETHRON = BLOCKS.register("sapling_lebethron", () -> new SaplingBlock(new TTMLebethronTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static RegistryObject<SaplingBlock> SAPLING_DEADWOOD = BLOCKS.register("sapling_deadwood", () -> new SaplingBlock(new TTMDeadTree(), AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 
     // Blocks - Plants & Flowers
     public static RegistryObject<Block> MUSHROOM_DECAY_BLOOM = BLOCKS.register("mushroom_decay_bloom", () -> new BlockMushrooms(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.BROWN).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT).setLightLevel((state) -> {
@@ -229,6 +228,7 @@ public class TTMContent {
     public static RegistryObject<Item> LOG_LEBETHRON_ITEM = ITEMS.register("log_lebethron", () -> new ItemBlockBCore(LOG_LEBETHRON.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> LOG_MALLORN_ITEM = ITEMS.register("log_mallorn", () -> new ItemBlockBCore(LOG_MALLORN.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> LOG_MIRKWOOD_ITEM = ITEMS.register("log_mirkwood", () -> new ItemBlockBCore(LOG_MIRKWOOD.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> LOG_DEADWOOD_ITEM = ITEMS.register("log_deadwood", () -> new ItemBlockBCore(LOG_DEADWOOD.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> PLANKS_CULUMALDA_ITEM = ITEMS.register("planks_culumalda", () -> new ItemBlockBCore(PLANKS_CULUMALDA.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> PLANKS_LEBETHRON_ITEM = ITEMS.register("planks_lebethron", () -> new ItemBlockBCore(PLANKS_LEBETHRON.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> PLANKS_MALLORN_ITEM = ITEMS.register("planks_mallorn", () -> new ItemBlockBCore(PLANKS_MALLORN.get(), new Item.Properties().group(matsGroup)));
@@ -262,6 +262,7 @@ public class TTMContent {
     public static RegistryObject<Item> SAPLING_LEBETHRON_ITEM = ITEMS.register("sapling_lebethron", () -> new ItemBlockBCore(SAPLING_LEBETHRON.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> SAPLING_MALLORN_ITEM = ITEMS.register("sapling_mallorn", () -> new ItemBlockBCore(SAPLING_MALLORN.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> SAPLING_MIRKWOOD_ITEM = ITEMS.register("sapling_mirkwood", () -> new ItemBlockBCore(SAPLING_MIRKWOOD.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> SAPLING_DEADWOOD_ITEM = ITEMS.register("sapling_deadwood", () -> new ItemBlockBCore(SAPLING_DEADWOOD.get(), new Item.Properties().group(matsGroup)));
 
     // Blocks - Plants & Flowers
     public static RegistryObject<Item> MUSHROOM_DECAY_BLOOM_ITEM = ITEMS.register("mushroom_decay_bloom", () -> new ItemBlockBCore(MUSHROOM_DECAY_BLOOM.get(), new Item.Properties().group(matsGroup)));
