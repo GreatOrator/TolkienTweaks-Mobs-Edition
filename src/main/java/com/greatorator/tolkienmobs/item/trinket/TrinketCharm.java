@@ -42,7 +42,7 @@ public class TrinketCharm extends Item {
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
 
         if (this.isInGroup(toolsGroup)) {
-            for(Effect p : TTMConfig.effectArray) {
+            for(Effect p : TTMConfig.potionArray) {
                 if (p != null) {
                     items.add(getTrinketForPotion(p));
                 }

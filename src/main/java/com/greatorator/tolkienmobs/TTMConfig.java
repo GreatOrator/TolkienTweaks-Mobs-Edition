@@ -53,9 +53,9 @@ public class TTMConfig {
 
         serverTag.getTag("effectList")
                 .setComment("Add or remove effect types for trinkets")
-                .setDefaultStringList(Lists.newArrayList(effectTypeArray))
+                .setDefaultStringList(Lists.newArrayList(potionTypeArray))
                 .setSyncToClient()
-                .setSyncCallback((tag, type) -> effectList = tag.getStringList());
+                .setSyncCallback((tag, type) -> potionList = tag.getStringList());
 
         ConfigTag exampleTag = serverTag.getTag("exampleString")
                 .setComment("This is an example string")
@@ -82,7 +82,7 @@ public class TTMConfig {
     public static boolean HeartOverlay;
     public static int exampleInt;
     public static List<Integer> exampleIntList;
-    public static List<String> effectList;
+    public static List<String> potionList;
 
     private static void loadClient() {
         clientTag = config.getTag("Client");
@@ -104,18 +104,18 @@ public class TTMConfig {
                 .setSyncCallback((tag, type) -> exampleIntList = tag.getIntList());
     }
 
-    public static String[] effectTypeArray = new String[]{"tolkienmobs:blessing_of_eru", "tolkienmobs:elven_nimbleness", "tolkienmobs:ent_draught", "tolkienmobs:personal_blacksmith", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:fire_resistance"};
+    public static String[] potionTypeArray = new String[]{"tolkienmobs:blessing_of_eru", "tolkienmobs:elven_nimbleness", "tolkienmobs:ent_draught", "tolkienmobs:personal_blacksmith", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:fire_resistance"};
 
-    public static Effect[] effectArray = new Effect[0];
+    public static Effect[] potionArray = new Effect[0];
 
     public static void loadPotionList() {
-        List<Effect> effects = new ArrayList<>();
-        for (String name : effectTypeArray) {
-            Effect effect = ForgeRegistries.POTIONS.getValue(new ResourceLocation(name));
-            if (effect != null) {
-                effects.add(effect);
+        List<Effect> potions = new ArrayList<>();
+        for (String name : potionTypeArray) {
+            Effect potion = ForgeRegistries.POTIONS.getValue(new ResourceLocation(name));
+            if (potion != null) {
+                potions.add(potion);
             }
         }
-        effectArray = effects.toArray(new Effect[0]);
+        potionArray = potions.toArray(new Effect[0]);
     }
 }
