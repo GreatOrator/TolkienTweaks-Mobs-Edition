@@ -4,8 +4,11 @@ import codechicken.lib.config.ConfigTag;
 import codechicken.lib.config.StandardConfigFile;
 import com.google.common.collect.Lists;
 import net.minecraft.potion.Effect;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -101,7 +104,18 @@ public class TTMConfig {
                 .setSyncCallback((tag, type) -> exampleIntList = tag.getIntList());
     }
 
-    public static String[] effectTypeArray = new String[]{"tolkienmobs:blessing_of_eru", "tolkienmobs:elven_nimbleness", "tolkienmobs:ent_draught", "tolkienmobs:personal_blacksmith", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:glowing", "minecraft:fire_resistance"};
+    public static String[] effectTypeArray = new String[]{"tolkienmobs:blessing_of_eru", "tolkienmobs:elven_nimbleness", "tolkienmobs:ent_draught", "tolkienmobs:personal_blacksmith", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:fire_resistance"};
 
     public static Effect[] effectArray = new Effect[0];
+
+    public static void loadPotionList() {
+        List<Effect> effects = new ArrayList<>();
+        for (String name : effectTypeArray) {
+            Effect effect = ForgeRegistries.POTIONS.getValue(new ResourceLocation(name));
+            if (effect != null) {
+                effects.add(effect);
+            }
+        }
+        effectArray = effects.toArray(new Effect[0]);
+    }
 }

@@ -2,10 +2,16 @@ package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import net.minecraft.data.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.potion.Potions;
 import net.minecraft.util.IItemProvider;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
+import net.minecraftforge.common.brewing.IBrewingRecipe;
 
 import java.io.IOException;
 import java.util.function.Consumer;
@@ -119,10 +125,18 @@ public class RecipeGenerator extends RecipeProvider {
                 .build(consumer);
     }
 
-    private static void magic(Consumer<IFinishedRecipe> consumer){
-        //
+    public static void potions() {
+        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TTMContent.MIRUVOR.get(), PotionGenerator.ENT_DRAUGHT.get()));
+        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TTMContent.GEM_AMMOLITE.get(), PotionGenerator.BLESSING_OF_ERU.get()));
+        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TTMContent.LEMBAS.get(), PotionGenerator.ELVISH_LIFE.get()));
+        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TTMContent.GOLDEN_INSECT.get(), PotionGenerator.ELF_FLEETFOOT.get()));
+        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TTMContent.BLOCK_MITHRIL_ITEM.get(), PotionGenerator.PORTABLE_REPAIR.get()));
     }
 
+    private static void magic(Consumer<IFinishedRecipe> consumer) {
+    }
+
+    // Helper Methods
     public static void swordRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
         ShapedRecipeBuilder.shapedRecipe(output, 1)
                 .patternLine("#")
@@ -279,6 +293,37 @@ public class RecipeGenerator extends RecipeProvider {
     @Override
     public void act(DirectoryCache cache) throws IOException {
         super.act(cache);
+    }
+
+    private static class ModBrewingRecipe implements IBrewingRecipe {
+        private final Potion bottleInput;
+        private final Item itemInput;
+        private final ItemStack output;
+
+        public ModBrewingRecipe(Potion bottleInput, Item itemInput, Potion output) {
+            this.bottleInput = bottleInput;
+            this.itemInput = itemInput;
+            this.output = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), output);
+        }
+
+        @Override
+        public boolean isInput(ItemStack input) {
+            return PotionUtils.getPotionFromItem(input).equals(this.bottleInput);
+        }
+
+        @Override
+        public boolean isIngredient(ItemStack ingredient) {
+            return ingredient.getItem().equals(this.itemInput);
+        }
+
+        @Override
+        public ItemStack getOutput(ItemStack input, ItemStack ingredient) {
+            if(isInput(input) && isIngredient(ingredient)) {
+                return this.output.copy();
+            } else {
+                return ItemStack.EMPTY;
+            }
+        }
     }
 
     public static class NBTIngredient extends net.minecraftforge.common.crafting.NBTIngredient {

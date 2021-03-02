@@ -3,11 +3,13 @@ package com.greatorator.tolkienmobs.item.trinket;
 import com.brandon3055.brandonscore.utils.ItemNBTHelper;
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.TTMContent;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.PotionItem;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Potion;
@@ -15,12 +17,22 @@ import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class TrinketCharm extends PotionItem {
+import javax.annotation.Nullable;
+import java.util.List;
+
+import static com.greatorator.tolkienmobs.TTMContent.toolsGroup;
+import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
+
+public class TrinketCharm extends Item {
     private static final String TAG_POTION_EFFECT = "effect";
+    private boolean hasLore = false;
 
     public TrinketCharm(Properties properties) {
         super(properties);
@@ -28,7 +40,8 @@ public class TrinketCharm extends PotionItem {
 
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if (this.isInGroup(group)) {
+
+        if (this.isInGroup(toolsGroup)) {
             for(Effect p : TTMConfig.effectArray) {
                 if (p != null) {
                     items.add(getTrinketForPotion(p));
@@ -37,18 +50,31 @@ public class TrinketCharm extends PotionItem {
         }
     }
 
-    public static ItemStack getTrinketForPotion(Effect potion) {
-        String id = potion.getRegistryName().toString();
+    public static ItemStack getTrinketForPotion(Effect effect) {
+        String id = effect.getRegistryName().toString();
         ItemStack stack = new ItemStack(TTMContent.TRINKET_CHARM.get());
         ItemNBTHelper.setString(stack, TAG_POTION_EFFECT, id);
         return stack;
+    }
+
+    @Override
+    public ITextComponent getDisplayName(ItemStack stack) {
+        Potion potion = TrinketCharm.getPotion(stack);
+        CompoundNBT compoundnbt = stack.getTag();
+        String s = compoundnbt.getString("effect");
+
+        if (compoundnbt.contains("effect")){
+            return new TranslationTextComponent(this.getTranslationKey() + ".effect." + s);
+        }else {
+            return new TranslationTextComponent(this.getTranslationKey() + ".effect.empty");
+        }
     }
 
     public static Potion getPotion(ItemStack stack) {
         if(stack == null)
             return null;
 
-        String effect = ItemNBTHelper.getString(stack, TAG_POTION_EFFECT, "Nothingness");
+        String effect = ItemNBTHelper.getString(stack, TAG_POTION_EFFECT, "");
         if(effect.isEmpty())
             return null;
 
@@ -88,9 +114,25 @@ public class TrinketCharm extends PotionItem {
         Effect pe = (Effect) PotionUtils.getEffectsFromStack(stack);
 
         if(isEnabled(stack)){
+            LOGGER.info("Hey you guys!");
+            LOGGER.info(pe);
             player.addPotionEffect(new EffectInstance(new EffectInstance(pe,2400,3,false,false)));
         }else {
             player.removePotionEffect(pe);
         }
+    }
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+        if (hasLore) {
+            tooltip.add(new TranslationTextComponent(getTranslationKey() + ".lore").mergeStyle(TextFormatting.DARK_PURPLE));
+        }
+    }
+
+    public TrinketCharm setHasLore() {
+        this.hasLore = true;
+        return this;
     }
 }

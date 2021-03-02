@@ -17,7 +17,7 @@ public class TTMLore extends Item {
     public boolean hasEffectOverride = false;
     private boolean canSpawnEntity = false;
     private boolean itemHasUse = true;
-    private  boolean hasLore = false;
+    private boolean hasLore = false;
 
     public TTMLore(Item.Properties props) {
         super(props);

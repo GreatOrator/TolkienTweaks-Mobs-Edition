@@ -34,6 +34,9 @@ public class CuriosTTM extends TTMEquipMgr {
 
     public static final Tags.IOptionalNamedTag<Item> CURIO_TAG = ItemTags.createOptional(new ResourceLocation("curios", "curio"));
     public static final Tags.IOptionalNamedTag<Item> NECK_TAG = ItemTags.createOptional(new ResourceLocation("curios", "necklace"));
+    public static final Tags.IOptionalNamedTag<Item> BELT_TAG = ItemTags.createOptional(new ResourceLocation("curios", "belt"));
+    public static final Tags.IOptionalNamedTag<Item> CHARM_TAG = ItemTags.createOptional(new ResourceLocation("curios", "charm"));
+    public static final Tags.IOptionalNamedTag<Item> RING_TAG = ItemTags.createOptional(new ResourceLocation("curios", "ring"));
     public static final Tags.IOptionalNamedTag<Item> BODY_TAG = ItemTags.createOptional(new ResourceLocation("curios", "body"));
 
     @CapabilityInject(ICurio.class)
@@ -100,7 +103,11 @@ public class CuriosTTM extends TTMEquipMgr {
     public static void generateTags(Function<Tags.IOptionalNamedTag<Item>, TagsProvider.Builder<Item>> builder) {
         builder.apply(NECK_TAG).add(
                 TTMContent.TRINKET_AMULET.get());
-
-        //builder.apply(BODY_TAG).add(DEContent.chestpiece_wyvern, DEContent.chestpiece_draconic, DEContent.chestpiece_chaotic);
+        builder.apply(BELT_TAG).add(
+                TTMContent.TRINKET_BELT.get());
+        builder.apply(CHARM_TAG).add(
+                TTMContent.TRINKET_CHARM.get());
+        builder.apply(RING_TAG).add(
+                TTMContent.TRINKET_RING.get());
     }
 }

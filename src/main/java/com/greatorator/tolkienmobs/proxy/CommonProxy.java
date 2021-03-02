@@ -4,7 +4,7 @@ import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.common.MobModify;
-import com.greatorator.tolkienmobs.datagen.PotionGenerator;
+import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
 import com.greatorator.tolkienmobs.init.TTMTags;
 import com.greatorator.tolkienmobs.integration.TTMEquipMgr;
 import com.greatorator.tolkienmobs.server.TTMServerEvents;
@@ -32,12 +32,13 @@ public class CommonProxy {
         TTMContent.init();
         TTMEquipMgr.initialize();
         TTMTags.init();
+        TTMConfig.loadPotionList();
         MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::livingUpdate);
 
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
-        PotionGenerator.addPotionRecipes();
+        RecipeGenerator.potions();
         //EntityGenerator.registerSpawnEggs();
     }
 

@@ -154,55 +154,6 @@ public class TTMContent {
     public static RegistryObject<Block> STONE_PATH = BLOCKS.register("block_stone_path", () -> new BlockStonePath(AbstractBlock.Properties.create(Material.ROCK).sound(SoundType.STONE).setBlocksVision(TTMContent::needsPostProcessing).setSuffocates(TTMContent::needsPostProcessing)));
 
     //#################################################################
-    // Quest Items
-    //#################################################################
-    public static RegistryObject<Item> ITEM_BERYL = ITEMS.register("item_beryl", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_FORTRESSMAP = ITEMS.register("item_fortressmap", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_WATCHERHEART = ITEMS.register("item_watcherheart", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_WATCHERHEART_CRACKED = ITEMS.register("item_watcherheart_cracked", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_KEYSTONE = ITEMS.register("item_keystone", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_DARKSADDLE = ITEMS.register("item_darksaddle", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_ARTIFACT = ITEMS.register("item_artifact", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_BLANKPAPER = ITEMS.register("item_blankpaper", () -> new TTMLore(new Item.Properties().maxStackSize(12).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_FANCYARMOR = ITEMS.register("item_fancyarmor", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_FANCYCLOTH = ITEMS.register("item_fancycloth", () -> new TTMLore(new Item.Properties().maxStackSize(3).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_FANCYHAMMER = ITEMS.register("item_fancyhammer", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_FANCYHELM = ITEMS.register("item_fancyhelm", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_FANCYKEY = ITEMS.register("item_fancykey", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_FANCYPICK = ITEMS.register("item_fancypick", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_FANCYSHIELD = ITEMS.register("item_fancyshield", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_FANCYSHIELD2 = ITEMS.register("item_fancyshield2", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_FANCYSWORD = ITEMS.register("item_fancysword", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_FANCYSWORD2 = ITEMS.register("item_fancysword2", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_LETTER = ITEMS.register("item_letter", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_SCROLL = ITEMS.register("item_scroll", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_SCROLL2 = ITEMS.register("item_scroll2", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_SPECIALFLOWER = ITEMS.register("item_specialflower", () -> new TTMLore(new Item.Properties().maxStackSize(12).group(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_STORYBOOK = ITEMS.register("item_storybook", () -> new TTMLore(new Item.Properties().maxStackSize(12).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_STORYBOOK2 = ITEMS.register("item_storybook2", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_STORYBOOK3 = ITEMS.register("item_storybook3", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_STORYBOOK4 = ITEMS.register("item_storybook4", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_WORNARMOR = ITEMS.register("item_wornarmor", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_WORNHELM = ITEMS.register("item_wornhelm", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_WORNKEY = ITEMS.register("item_wornkey", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_WORNPICK = ITEMS.register("item_wornpick", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_WORNSHIELD = ITEMS.register("item_wornshield", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_WORNSHIELD2 = ITEMS.register("item_wornshield2", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_WORNSWORD = ITEMS.register("item_wornsword", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_WOVENBASKET = ITEMS.register("item_wovenbasket", () -> new TTMLore(new Item.Properties().maxStackSize(3).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_WRITTENPAPER = ITEMS.register("item_writtenpaper", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_PUNGENTHERB = ITEMS.register("item_pungentherb", () -> new TTMLore(new Item.Properties().maxStackSize(3).group(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_LOCKPICK = ITEMS.register("item_lockpick", () -> new TTMLore(new Item.Properties().maxStackSize(16).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_BROKENSWORD = ITEMS.register("item_brokensword", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_REFORGEDSWORD = ITEMS.register("item_reforgedsword", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_MAGIC_CLOTH = ITEMS.register("item_magic_cloth", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_KEYFRAGMENT = ITEMS.register("item_keyfragment", () -> new TTMLore(new Item.Properties().maxStackSize(2).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_OILYKEY = ITEMS.register("item_oilykey", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_MITHRILNUGGET = ITEMS.register("item_mithrilnugget", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_REMAINS = ITEMS.register("item_remains", () -> new TTMLore(new Item.Properties().maxStackSize(16).group(questGroup)).setHasLore());
-    public static RegistryObject<Item> ITEM_RUNE_STONE = ITEMS.register("item_rune_stone", () -> new TTMLore(new Item.Properties().maxStackSize(8).group(questGroup)).setEffectOverride().setHasLore());
-
-    //#################################################################
     // Items
     //#################################################################
     // Blocks now require you to register their item separately. The item for a block should have the same registry name.
@@ -253,7 +204,6 @@ public class TTMContent {
     public static RegistryObject<Item> FENCE_MIRKWOOD_ITEM = ITEMS.register("fence_mirkwood", () -> new ItemBlockBCore(FENCE_MIRKWOOD.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> FENCE_CULUMALDA_ITEM = ITEMS.register("fence_culumalda", () -> new ItemBlockBCore(FENCE_CULUMALDA.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> FENCE_LEBETHRON_ITEM = ITEMS.register("fence_lebethron", () -> new ItemBlockBCore(FENCE_LEBETHRON.get(), new Item.Properties().group(matsGroup)));
-
     public static RegistryObject<Item> LEAVES_CULUMALDA_ITEM = ITEMS.register("leaves_culumalda", () -> new ItemBlockBCore(LEAVES_CULUMALDA.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> LEAVES_LEBETHRON_ITEM = ITEMS.register("leaves_lebethron", () -> new ItemBlockBCore(LEAVES_LEBETHRON.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> LEAVES_MALLORN_ITEM = ITEMS.register("leaves_mallorn", () -> new ItemBlockBCore(LEAVES_MALLORN.get(), new Item.Properties().group(matsGroup)));
@@ -279,6 +229,53 @@ public class TTMContent {
     public static RegistryObject<Item> BLOCK_HALLOWED_ITEM = ITEMS.register("block_hallowed", () -> new ItemBlockBCore(BLOCK_HALLOWED.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> STONE_PATH_ITEM = ITEMS.register("block_stone_path", () -> new ItemBlockBCore(STONE_PATH.get(), new Item.Properties().group(matsGroup)));
 
+    // Quest
+    public static RegistryObject<Item> ITEM_BERYL = ITEMS.register("item_beryl", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_FORTRESSMAP = ITEMS.register("item_fortressmap", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_WATCHERHEART = ITEMS.register("item_watcherheart", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_WATCHERHEART_CRACKED = ITEMS.register("item_watcherheart_cracked", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_KEYSTONE = ITEMS.register("item_keystone", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_DARKSADDLE = ITEMS.register("item_darksaddle", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_ARTIFACT = ITEMS.register("item_artifact", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_BLANKPAPER = ITEMS.register("item_blankpaper", () -> new TTMLore(new Item.Properties().maxStackSize(12).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_FANCYARMOR = ITEMS.register("item_fancyarmor", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_FANCYCLOTH = ITEMS.register("item_fancycloth", () -> new TTMLore(new Item.Properties().maxStackSize(3).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_FANCYHAMMER = ITEMS.register("item_fancyhammer", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_FANCYHELM = ITEMS.register("item_fancyhelm", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_FANCYKEY = ITEMS.register("item_fancykey", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_FANCYPICK = ITEMS.register("item_fancypick", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_FANCYSHIELD = ITEMS.register("item_fancyshield", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_FANCYSHIELD2 = ITEMS.register("item_fancyshield2", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_FANCYSWORD = ITEMS.register("item_fancysword", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_FANCYSWORD2 = ITEMS.register("item_fancysword2", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_LETTER = ITEMS.register("item_letter", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_SCROLL = ITEMS.register("item_scroll", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_SCROLL2 = ITEMS.register("item_scroll2", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_SPECIALFLOWER = ITEMS.register("item_specialflower", () -> new TTMLore(new Item.Properties().maxStackSize(12).group(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_STORYBOOK = ITEMS.register("item_storybook", () -> new TTMLore(new Item.Properties().maxStackSize(12).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_STORYBOOK2 = ITEMS.register("item_storybook2", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_STORYBOOK3 = ITEMS.register("item_storybook3", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_STORYBOOK4 = ITEMS.register("item_storybook4", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_WORNARMOR = ITEMS.register("item_wornarmor", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_WORNHELM = ITEMS.register("item_wornhelm", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_WORNKEY = ITEMS.register("item_wornkey", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_WORNPICK = ITEMS.register("item_wornpick", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_WORNSHIELD = ITEMS.register("item_wornshield", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_WORNSHIELD2 = ITEMS.register("item_wornshield2", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_WORNSWORD = ITEMS.register("item_wornsword", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_WOVENBASKET = ITEMS.register("item_wovenbasket", () -> new TTMLore(new Item.Properties().maxStackSize(3).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_WRITTENPAPER = ITEMS.register("item_writtenpaper", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_PUNGENTHERB = ITEMS.register("item_pungentherb", () -> new TTMLore(new Item.Properties().maxStackSize(3).group(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_LOCKPICK = ITEMS.register("item_lockpick", () -> new TTMLore(new Item.Properties().maxStackSize(16).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_BROKENSWORD = ITEMS.register("item_brokensword", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_REFORGEDSWORD = ITEMS.register("item_reforgedsword", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_MAGIC_CLOTH = ITEMS.register("item_magic_cloth", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_KEYFRAGMENT = ITEMS.register("item_keyfragment", () -> new TTMLore(new Item.Properties().maxStackSize(2).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_OILYKEY = ITEMS.register("item_oilykey", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_MITHRILNUGGET = ITEMS.register("item_mithrilnugget", () -> new TTMLore(new Item.Properties().maxStackSize(1).group(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_REMAINS = ITEMS.register("item_remains", () -> new TTMLore(new Item.Properties().maxStackSize(16).group(questGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_RUNE_STONE = ITEMS.register("item_rune_stone", () -> new TTMLore(new Item.Properties().maxStackSize(8).group(questGroup)).setEffectOverride().setHasLore());
+
     // Metals & Gems
     public static RegistryObject<Item> DUST_MITHRIL = ITEMS.register("dust_mithril", () -> new Item(new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> NUGGET_MITHRIL = ITEMS.register("nugget_mithril", () -> new Item(new Item.Properties().group(matsGroup)));
@@ -301,11 +298,13 @@ public class TTMContent {
     public static RegistryObject<SwordItem> SWORD_MORGULIRON = ITEMS.register("sword_morguliron", () -> new SwordItem(ItemTier.NETHERITE, 8, -2.3F, (new Item.Properties()).group(toolsGroup)));
     public static RegistryObject<SwordItem> SWORD_WITCHKING = ITEMS.register("sword_witchking", () -> new SwordItem(ItemTier.NETHERITE, 9, -0.5F, (new Item.Properties()).group(toolsGroup)));
 
-    public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new TrinketAmulet(new Item.Properties().group(toolsGroup)));
-    public static RegistryObject<Item> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new TrinketBelt(new Item.Properties().group(toolsGroup)));
-    public static RegistryObject<Item> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new TrinketCharm(new Item.Properties().group(toolsGroup)));
-    public static RegistryObject<Item> TRINKET_RING = ITEMS.register("trinket_ring", () -> new TrinketRing(new Item.Properties().group(toolsGroup)));
+    //Trinkets
+    public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new TrinketAmulet(new Item.Properties().group(toolsGroup)).setHasLore());
+    public static RegistryObject<Item> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new TrinketBelt(new Item.Properties().group(toolsGroup)).setHasLore());
+    public static RegistryObject<Item> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new TrinketCharm(new Item.Properties().group(toolsGroup)).setHasLore());
+    public static RegistryObject<Item> TRINKET_RING = ITEMS.register("trinket_ring", () -> new TrinketRing(new Item.Properties().group(toolsGroup)).setHasLore());
 
+    //Projectiles
     public static RegistryObject<ArrowItem> GALADHRIM_ARROW = ITEMS.register("ammo_galadhrim_arrow", () -> new TTMArrow((new Item.Properties()).group(toolsGroup)));
     public static RegistryObject<Item> BOULDER = ITEMS.register("ammo_boulder", () -> new TTMAmmo((new Item.Properties()).maxStackSize(16).group(toolsGroup)));
     public static RegistryObject<Item> FELLBEAST_FIREBALL = ITEMS.register("ammo_fellbeast_fireball", () -> new TTMAmmo((new Item.Properties()).maxStackSize(16).group(toolsGroup)));

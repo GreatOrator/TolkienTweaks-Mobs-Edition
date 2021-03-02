@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.proxy;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.client.TTMClientEvents;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
+import com.greatorator.tolkienmobs.init.TTMColor;
 import com.greatorator.tolkienmobs.handler.TTMExtraHearts;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
@@ -26,6 +27,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void commonSetup(FMLCommonSetupEvent event) {
         super.commonSetup(event);
+        MinecraftForge.EVENT_BUS.register(new TTMColor());
 
         if (!ModList.get().isLoaded("mantle")) {
             MinecraftForge.EVENT_BUS.register(new TTMExtraHearts());

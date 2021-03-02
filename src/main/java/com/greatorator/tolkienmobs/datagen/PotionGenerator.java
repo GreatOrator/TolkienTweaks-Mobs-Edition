@@ -1,15 +1,12 @@
 package com.greatorator.tolkienmobs.datagen;
 
-import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.item.potion.effects.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.*;
-import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
-import net.minecraftforge.common.brewing.IBrewingRecipe;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.EffectType;
+import net.minecraft.potion.Potion;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -55,49 +52,6 @@ public class PotionGenerator {
     public static final RegistryObject<Potion> CRIPPLING_TERROR = POTIONS.register("crippling_terror", () -> new Potion(new EffectInstance(PARALYSING_FEAR.get(), 200)));
     public static final RegistryObject<Potion> ELF_FLEETFOOT = POTIONS.register("elven_nimbleness", () -> new Potion(new EffectInstance(ELF_NIMBLENESS.get(), 300)));
     public static final RegistryObject<Potion> BLESSING_OF_ERU = POTIONS.register("blessing_of_eru", () -> new Potion(new EffectInstance(ERU_BLESSING.get(), 100)));
-
-    //#################################################################
-    // Potion Recipes
-    //#################################################################
-    public static void addPotionRecipes()
-    {
-        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TTMContent.MIRUVOR.get(), ENT_DRAUGHT.get()));
-        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TTMContent.GEM_AMMOLITE.get(), BLESSING_OF_ERU.get()));
-        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TTMContent.LEMBAS.get(), ELVISH_LIFE.get()));
-        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TTMContent.GOLDEN_INSECT.get(), ELF_FLEETFOOT.get()));
-        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TTMContent.BLOCK_MITHRIL_ITEM.get(), PORTABLE_REPAIR.get()));
-    }
-
-    private static class ModBrewingRecipe implements IBrewingRecipe {
-        private final Potion bottleInput;
-        private final Item itemInput;
-        private final ItemStack output;
-
-        public ModBrewingRecipe(Potion bottleInput, Item itemInput, Potion output) {
-            this.bottleInput = bottleInput;
-            this.itemInput = itemInput;
-            this.output = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), output);
-        }
-
-        @Override
-        public boolean isInput(ItemStack input) {
-            return PotionUtils.getPotionFromItem(input).equals(this.bottleInput);
-        }
-
-        @Override
-        public boolean isIngredient(ItemStack ingredient) {
-            return ingredient.getItem().equals(this.itemInput);
-        }
-
-        @Override
-        public ItemStack getOutput(ItemStack input, ItemStack ingredient) {
-            if(isInput(input) && isIngredient(ingredient)) {
-                return this.output.copy();
-            } else {
-                return ItemStack.EMPTY;
-            }
-        }
-    }
 
     public String getName() {
         return "Tolkien Tweaks - Mobs Edition Potions";
