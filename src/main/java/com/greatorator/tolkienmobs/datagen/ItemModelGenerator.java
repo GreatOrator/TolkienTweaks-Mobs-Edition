@@ -230,6 +230,9 @@ public class ItemModelGenerator extends ItemModelProvider {
 
         //region Spawn Eggs
         eggItem(EntityGenerator.EGG_TTMRAT.get());
+        eggItem(EntityGenerator.EGG_TTMSQUIRREL.get());
+        eggItem(EntityGenerator.EGG_TTMFROG.get());
+        eggItem(EntityGenerator.EGG_TTMSWARM.get());
 
 
 

@@ -1,0 +1,28 @@
+package com.greatorator.tolkienmobs.entity.ambient.render;
+
+import com.greatorator.tolkienmobs.entity.ambient.EntityTTMSquirrel;
+import com.greatorator.tolkienmobs.entity.ambient.model.ModelTTMSquirrel;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.util.ResourceLocation;
+
+import javax.annotation.Nullable;
+
+public class RenderTTMSquirrel extends MobRenderer<EntityTTMSquirrel, ModelTTMSquirrel<EntityTTMSquirrel>> {
+    public RenderTTMSquirrel(EntityRendererManager renderManagerIn) {
+        super(renderManagerIn, new ModelTTMSquirrel<>(), 0.5F);
+    }
+
+    @Nullable
+    @Override
+    public ResourceLocation getEntityTexture(EntityTTMSquirrel entity) {
+        return entity.getSquirrelTypeName();
+    }
+
+    protected void preRenderCallback(EntityTTMSquirrel entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+        super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
+        matrixStackIn.scale(0.8F, 0.8F, 0.8F);
+    }
+
+}

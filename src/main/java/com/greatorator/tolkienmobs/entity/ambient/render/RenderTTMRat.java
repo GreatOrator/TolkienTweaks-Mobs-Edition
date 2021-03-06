@@ -22,6 +22,5 @@ public class RenderTTMRat extends MobRenderer<EntityTTMRat, ModelTTMRat<EntityTT
 
     protected void preRenderCallback(EntityTTMRat entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
-//        matrixStackIn.scale(0.8F, 0.8F, 0.8F);
     }
 }

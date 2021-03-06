@@ -70,8 +70,10 @@ public class ItemTagGenerator extends ItemTagsProvider {
         getOrCreateBuilder(TTMTags.items.BOTTLE).add(TTMContent.BOTTLE_FANCY.get());
         getOrCreateBuilder(TTMTags.items.COINS).add(TTMContent.ITEM_COIN_BRONZE.get(), TTMContent.ITEM_COIN_BRONZE.get(), TTMContent.ITEM_COIN_SILVER.get(), TTMContent.ITEM_COIN_GOLD.get(), TTMContent.ITEM_COIN_MITHRIL.get(), TTMContent.ITEM_FACTIONCOIN.get());
         getOrCreateBuilder(TTMTags.items.TOKENS).add(TTMContent.ITEM_FACTIONTOKEN.get(), TTMContent.ITEM_CAVECOMPLETE.get(), TTMContent.ITEM_DARKSIGIL.get(), TTMContent.ITEM_WATCHERCOMPLETE.get());
-        getOrCreateBuilder(TTMTags.items.FOOD).add(TTMContent.FOOD_HONEY.get(), TTMContent.LEMBAS.get(), TTMContent.HONEY_CAKE.get(), TTMContent.CRAM.get(), TTMContent.MONSTER_FLESH.get(), TTMContent.INSECT.get(), TTMContent.GOLDEN_INSECT.get(), TTMContent.TREE_ACORN.get(), TTMContent.GOLDEN_TREE_ACORN.get());
+        getOrCreateBuilder(TTMTags.items.FOOD).add(TTMContent.FOOD_HONEY.get(), TTMContent.LEMBAS.get(), TTMContent.HONEY_CAKE.get(), TTMContent.CRAM.get(), TTMContent.MONSTER_FLESH.get(), TTMContent.INSECT.get(), TTMContent.GOLDEN_INSECT.get());
         getOrCreateBuilder(TTMTags.items.DRINKS).add(TTMContent.MIRUVOR.get(), TTMContent.GROG.get(), TTMContent.DRINK_ENT_DRAUGHT.get(), TTMContent.DRINK_PERSONAL_BLACKSMITH.get(), TTMContent.DRINK_ELF_FLEETFOOT.get(), TTMContent.DRINK_ELF_VITALITY.get(), TTMContent.DRINK_ERU_BLESSING.get());
+        getOrCreateBuilder(TTMTags.items.ACORNS).add(TTMContent.TREE_ACORN.get(), TTMContent.GOLDEN_TREE_ACORN.get());
+        getOrCreateBuilder(TTMTags.items.INSECTS).add(TTMContent.INSECT.get(), TTMContent.GOLDEN_INSECT.get());
         getOrCreateBuilder(TTMTags.items.FUR).add(TTMContent.MONSTER_FUR.get());
         getOrCreateBuilder(TTMTags.items.ARROW).add(TTMContent.GALADHRIM_ARROW.get());
         getOrCreateBuilder(ItemTags.ARROWS).addTag(TTMTags.items.ARROW);

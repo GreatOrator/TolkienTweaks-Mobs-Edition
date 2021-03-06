@@ -39,7 +39,6 @@ public class CommonProxy {
 
     public void commonSetup(FMLCommonSetupEvent event) {
         RecipeGenerator.potions();
-        //EntityGenerator.registerSpawnEggs();
     }
 
     public void clientSetup(FMLClientSetupEvent event) {

@@ -451,6 +451,12 @@ public class LangGenerator extends LanguageProvider {
         // Ambient
         add(EntityGenerator.ENTITY_TTM_RAT.get(), "Rat");
         add(EntityGenerator.EGG_TTMRAT.get(), "Rat Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_SQUIRREL.get(), "Squirrel");
+        add(EntityGenerator.EGG_TTMSQUIRREL.get(), "Squirrel Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_FROG.get(), "Frog");
+        add(EntityGenerator.EGG_TTMFROG.get(), "Frog Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_SWARM.get(), "Midge Flies");
+        add(EntityGenerator.EGG_TTMSWARM.get(), "Midge Flies Spawn Egg");
     }
 
 

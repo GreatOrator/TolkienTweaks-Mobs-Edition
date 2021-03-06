@@ -7,8 +7,6 @@
     "tolkienmobs:food_cram",
     "tolkienmobs:monster_flesh",
     "tolkienmobs:food_insect",
-    "tolkienmobs:food_golden_insect",
-    "tolkienmobs:food_tree_acorn",
-    "tolkienmobs:food_golden_tree_acorn"
+    "tolkienmobs:food_golden_insect"
   ]
 }

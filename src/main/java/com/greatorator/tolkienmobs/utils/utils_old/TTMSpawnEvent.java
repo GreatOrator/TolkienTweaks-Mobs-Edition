@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.utils.utils_old;
 
 import com.greatorator.tolkienmobs.TTMConfig_Old;
+import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.passive.horse.HorseEntity;

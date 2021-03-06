@@ -62,7 +62,7 @@ c8278b727674f4212a15d1f15e56a00af2c4128a assets/tolkienmobs/blockstates/slab_mal
 c99fe2d346c966947f2189b82e196124824f0c78 assets/tolkienmobs/blockstates/stairs_lebethron.json
 3e5106bdbc6151e47b9a6ea3ec951dcf9b499ecb assets/tolkienmobs/blockstates/stairs_mallorn.json
 f3a2a260ffba776442157d00261ad2a0923b1e6d assets/tolkienmobs/blockstates/stairs_mirkwood.json
-8535de43c30da067e63c0c4250682402ded6fbac assets/tolkienmobs/lang/en_us.json
+3d296008f73050c682b53b7bd1f6c246244f1e97 assets/tolkienmobs/lang/en_us.json
 18514641017b452bad1438275cd081960fd10677 assets/tolkienmobs/models/block/block_hallowed.json
 4150d9b4cf2eb93dfd66bcfe91923c56e938670b assets/tolkienmobs/models/block/block_mithril.json
 f2c05d86275dd99e93885a9b26af9cfb99a25124 assets/tolkienmobs/models/block/block_morguliron.json
@@ -210,7 +210,10 @@ dfc7223f3ff599ac29847d8fa141e53727db1bd7 assets/tolkienmobs/models/item/drink_gr
 37ccbfb5e90a2cec9ea57bcf620f3477c2fd131d assets/tolkienmobs/models/item/drink_personal_blacksmith.json
 f0216856d5324a82b918d78e189b1f2caa335b4a assets/tolkienmobs/models/item/dust_mithril.json
 a350fb5208c34e26837bfb9edbe2579f9a78f2e0 assets/tolkienmobs/models/item/dust_morguliron.json
+98167609bf3898587f7565736a6fc24a7966cacd assets/tolkienmobs/models/item/entityttmfrog_spawn_egg.json
 98167609bf3898587f7565736a6fc24a7966cacd assets/tolkienmobs/models/item/entityttmrat_spawn_egg.json
+98167609bf3898587f7565736a6fc24a7966cacd assets/tolkienmobs/models/item/entityttmsquirrel_spawn_egg.json
+98167609bf3898587f7565736a6fc24a7966cacd assets/tolkienmobs/models/item/entityttmswarm_spawn_egg.json
 0acffbdb10449af60427ebf5c3ebee643013ce24 assets/tolkienmobs/models/item/feather_bird.json
 b59dc36ba99a2c28ce7b9ceffee00232aeecc5ea assets/tolkienmobs/models/item/feather_crebain.json
 cc1823072ef0391e89ecf226bf597fd41d024151 assets/tolkienmobs/models/item/fence_culumalda.json
@@ -392,6 +395,7 @@ c83fada78695933dd9fa874d93a49e04615d8746 data/forge/tags/blocks/stairs.json
 5d718a50aed3bf9fb523a3285cdb79b63a8d3200 data/forge/tags/blocks/storage_blocks.json
 c6d01f4e417e0e3e761eaeaae1e51b6f5f8038ba data/forge/tags/blocks/storage_blocks/mithril.json
 9f7f8f3bcbaef7557f1bd220e5ba40b7d45b799e data/forge/tags/blocks/storage_blocks/morguliron.json
+96bd0f4b24387ab82c6f0403e3c166c6a3338d67 data/forge/tags/items/acorns.json
 8cb2eddc4d859b12754795370bb1a15ed515d94a data/forge/tags/items/arrow.json
 1234bae62420dcd68c1febfc7d21827c65d89a67 data/forge/tags/items/bars/iron.json
 20776cca97699797805c3779ff3c974ca49d3453 data/forge/tags/items/bottle.json
@@ -408,12 +412,13 @@ bfce96c53993bcc17d2dcf10e19186094f906e7c data/forge/tags/items/fence_gates.json
 5c71922aae82e4c159421da345ff00262f198e45 data/forge/tags/items/fence_gates/wooden.json
 b323c3de4d3bcc8bfbbd7bcda1706772f74be3d0 data/forge/tags/items/fences/wooden.json
 f54715a2d3aab7a82ca103bca93fdacc15197ceb data/forge/tags/items/flowers.json
-dbc78d462a079f606bca12c343957d067dbc2c5b data/forge/tags/items/food.json
+faad7f8d882f89c3399ef91b70a6f1b9ed6e4b6b data/forge/tags/items/food.json
 30f7f52ca9f1e25d9a3fb1cbecccfde22aae6e76 data/forge/tags/items/fur.json
 cfaaaadb2812342b3e0c8e492eb6d564716c1263 data/forge/tags/items/gems.json
 f120035aa25380853fa186166b0f1a8bc85b556e data/forge/tags/items/ingots.json
 401413df01a69be5c9eb69aea8bb079f1f1d09d2 data/forge/tags/items/ingots/mithril.json
 875a021a56d16b7f4d918f503623532c05ba2500 data/forge/tags/items/ingots/morguliron.json
+de36676f8d85808af0255388a3aad209ebe5d381 data/forge/tags/items/insects.json
 3bc52d921b251f3e2aa47143c5c795d57915a478 data/forge/tags/items/leather.json
 2aefe46e6e7b4a6b96bb2391a9574a8e6d4a9906 data/forge/tags/items/leaves.json
 c34d853c476b93c00442622e189342da4c806094 data/forge/tags/items/logs.json

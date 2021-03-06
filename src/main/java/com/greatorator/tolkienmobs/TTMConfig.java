@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
+
 /**
  * Created by brandon3055 on 31/1/21
  * <p>
@@ -57,6 +59,11 @@ public class TTMConfig {
                 .setSyncToClient()
                 .setSyncCallback((tag, type) -> potionList = tag.getStringList());
 
+        serverTag.getTag("exampleInt")
+                .setComment("This is an example integer")
+                .setDefaultInt(4261)
+                .setSyncCallback((tag, type) -> exampleInt = tag.getInt());
+
         ConfigTag exampleTag = serverTag.getTag("exampleString")
                 .setComment("This is an example string")
                 .setDefaultString("Default Example String")
@@ -86,10 +93,10 @@ public class TTMConfig {
 
     private static void loadClient() {
         clientTag = config.getTag("Client");
-        clientTag.setComment("Enable Heart Overlay Feature - Default True");
+        clientTag.setComment("These are client side config properties.");
 
         clientTag.getTag("HeartOverlay")
-                .setComment("This is an example boolean")
+                .setComment("Enable Heart Overlay Feature - Default True")
                 .setDefaultBoolean(true)
                 .setSyncCallback((tag, type) -> HeartOverlay = tag.getBoolean());
 
@@ -113,6 +120,7 @@ public class TTMConfig {
         for (String name : potionTypeArray) {
             Effect potion = ForgeRegistries.POTIONS.getValue(new ResourceLocation(name));
             if (potion != null) {
+                LOGGER.info(potion);
                 potions.add(potion);
             }
         }
