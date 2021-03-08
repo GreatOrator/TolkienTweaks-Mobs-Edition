@@ -94,8 +94,8 @@ public class EntityTTMRat extends EntityTTMAmbients {
     }
 
     public void setRatType(int type) {
-        if (type < 0 || type >= 11) {
-            type = this.rand.nextInt(10);
+        if (type < 0 || type >= 4) {
+            type = this.rand.nextInt(3);
         }
 
         this.dataManager.set(RAT_TYPE, type);

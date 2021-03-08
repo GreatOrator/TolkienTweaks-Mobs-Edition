@@ -48,7 +48,7 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
         super(type, worldIn);
     }
 
-    protected void initEntityAI()
+    protected void registerGoals()
     {
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
@@ -104,8 +104,8 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
         }
 
         this.dataManager.set(SQUIRREL_TYPE, type);
-        if (type < 0 || type >= 11) {
-            type = this.rand.nextInt(10);
+        if (type < 0 || type >= 4) {
+            type = this.rand.nextInt(3);
         }
 
         this.dataManager.set(SQUIRREL_TYPE, type);

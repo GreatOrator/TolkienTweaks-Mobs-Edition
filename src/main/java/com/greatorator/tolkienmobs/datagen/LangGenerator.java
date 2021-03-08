@@ -30,6 +30,7 @@ public class LangGenerator extends LanguageProvider {
         records();
         tools();
         entities();
+        merchants(helper);
         trinket(helper);
         creativeTabGroups();
     }
@@ -447,6 +448,15 @@ public class LangGenerator extends LanguageProvider {
 
     }
 
+    private void merchants(PrefixHelper helper){
+        helper.setPrefix("entity.minecraft.villager.tolkienmobs.");
+            helper.add("coin_trader",                                   "Coin Trader");
+            helper.add("grocery_store",                                   "Grocery Store");
+            helper.add("pet_merchant",                                   "Pet Merchant");
+            helper.add("junk_trader",                                   "Junk Trader");
+
+    }
+
     private void entities() {
         // Ambient
         add(EntityGenerator.ENTITY_TTM_RAT.get(), "Rat");
@@ -457,6 +467,12 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMFROG.get(), "Frog Spawn Egg");
         add(EntityGenerator.ENTITY_TTM_SWARM.get(), "Midge Flies");
         add(EntityGenerator.EGG_TTMSWARM.get(), "Midge Flies Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_THRUSH.get(), "Thrush");
+        add(EntityGenerator.EGG_TTMTHRUSH.get(), "Thrush Spawn Egg");
+
+        // Merchants
+        add(EntityGenerator.ENTITY_TTM_HUMAN.get(), "Human");
+        add(EntityGenerator.EGG_TTMHUMAN.get(), "Human Spawn Egg");
     }
 
 

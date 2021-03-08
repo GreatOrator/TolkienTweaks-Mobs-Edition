@@ -144,7 +144,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
 
     protected void registerData() {
         super.registerData();
-        this.dataManager.register(FROG_TYPE, 0);
+        this.dataManager.register(FROG_TYPE, 1);
     }
 
     public void updateAITasks() {

@@ -265,6 +265,10 @@ public class ModelTTMSquirrel<E extends AnimalEntity> extends EntityModel<Entity
         }
     }
 
+    public void setLivingAnimations(EntityTTMSquirrel entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
+        super.setLivingAnimations(entityIn, limbSwing, limbSwingAmount, partialTick);
+    }
+
     protected Iterable<ModelRenderer> getHeadParts() {
         return ImmutableList.of(this.Neck);
     }

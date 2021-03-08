@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 
 public class RenderTTMSquirrel extends MobRenderer<EntityTTMSquirrel, ModelTTMSquirrel<EntityTTMSquirrel>> {
     public RenderTTMSquirrel(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new ModelTTMSquirrel<>(), 0.5F);
+        super(renderManagerIn, new ModelTTMSquirrel<>(), 0.3F);
     }
 
     @Nullable
@@ -22,7 +22,7 @@ public class RenderTTMSquirrel extends MobRenderer<EntityTTMSquirrel, ModelTTMSq
 
     protected void preRenderCallback(EntityTTMSquirrel entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
-        matrixStackIn.scale(0.8F, 0.8F, 0.8F);
+        matrixStackIn.scale(0.2F, 0.2F, 0.2F);
     }
 
 }

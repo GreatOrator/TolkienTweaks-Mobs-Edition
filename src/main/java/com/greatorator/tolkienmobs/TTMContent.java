@@ -10,6 +10,7 @@ import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.PotionGenerator;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
+import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
 import com.greatorator.tolkienmobs.handler.*;
 import com.greatorator.tolkienmobs.item.TTMArrow;
 import com.greatorator.tolkienmobs.item.trinket.TrinketAmulet;
@@ -72,6 +73,9 @@ public class TTMContent {
         LOGGER.info("Populating the peoples of Middle-earth...");
         EntityGenerator.ENTITY.register(modBus);
         EntityGenerator.SPAWN_EGGS.register(modBus);
+        LOGGER.info("Setting the task master to work...");
+        ProfessionGenerator.PROFESSION.register(modBus);
+        ProfessionGenerator.POIT.register(modBus);
     }
 
     //#################################################################

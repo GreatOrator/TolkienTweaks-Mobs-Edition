@@ -3,8 +3,10 @@ package com.greatorator.tolkienmobs.proxy;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.client.TTMClientEvents;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
-import com.greatorator.tolkienmobs.init.TTMColor;
+import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
+import com.greatorator.tolkienmobs.entity.merchant.villager.VillagerTTMTrades;
 import com.greatorator.tolkienmobs.handler.TTMExtraHearts;
+import com.greatorator.tolkienmobs.init.TTMColor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -14,6 +16,8 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
+
+import static com.greatorator.tolkienmobs.entity.merchant.villager.VillagerTTMUtility.fixPOITypeBlockStates;
 
 public class ClientProxy extends CommonProxy {
 
@@ -32,6 +36,11 @@ public class ClientProxy extends CommonProxy {
         if (!ModList.get().isLoaded("mantle")) {
             MinecraftForge.EVENT_BUS.register(new TTMExtraHearts());
         }
+
+        fixPOITypeBlockStates(ProfessionGenerator.COIN_TRADER.get());
+        fixPOITypeBlockStates(ProfessionGenerator.GROCERY_STORE.get());
+        fixPOITypeBlockStates(ProfessionGenerator.PET_MERCHANT.get());
+        fixPOITypeBlockStates(ProfessionGenerator.JUNK_TRADER.get());
     }
 
     @Override
@@ -40,6 +49,7 @@ public class ClientProxy extends CommonProxy {
         setupRenderLayers();
         EntityGenerator.registerEntityRenderer();
         EntityGenerator.addEntityAttributes();
+        MinecraftForge.EVENT_BUS.addListener(VillagerTTMTrades::onVillagerTradesEvent);
     }
 
     public static void setupRenderLayers() {

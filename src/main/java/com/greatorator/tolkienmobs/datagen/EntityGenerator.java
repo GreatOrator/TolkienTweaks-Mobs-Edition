@@ -1,21 +1,17 @@
 package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.entity.ambient.EntityTTMFrog;
-import com.greatorator.tolkienmobs.entity.ambient.EntityTTMRat;
-import com.greatorator.tolkienmobs.entity.ambient.EntityTTMSquirrel;
-import com.greatorator.tolkienmobs.entity.ambient.EntityTTMSwarm;
+import com.greatorator.tolkienmobs.entity.ambient.*;
 import com.greatorator.tolkienmobs.entity.ambient.model.ModelTTMSwarm;
-import com.greatorator.tolkienmobs.entity.ambient.render.RenderTTMFrog;
-import com.greatorator.tolkienmobs.entity.ambient.render.RenderTTMRat;
-import com.greatorator.tolkienmobs.entity.ambient.render.RenderTTMSquirrel;
-import com.greatorator.tolkienmobs.entity.ambient.render.RenderTTMSwarm;
+import com.greatorator.tolkienmobs.entity.ambient.render.*;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.ammo.EntityGaladhrimArrow;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderGaladhrimArrow;
+import com.greatorator.tolkienmobs.entity.merchant.EntityTTMHuman;
+import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMHuman;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -46,6 +42,12 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<EntityTTMFrog>> ENTITY_TTM_FROG = ENTITY.register("entityttmfrog", () -> entityTTMFrog);
     private static final EntityType<EntityTTMSwarm> entityTTMSwarm = buildEntity("entityttmswarm", EntityTTMSwarm::new, EntityClassification.CREATURE, 0.5F, 0.5F);
     public static final RegistryObject<EntityType<EntityTTMSwarm>> ENTITY_TTM_SWARM = ENTITY.register("entityttmswarm", () -> entityTTMSwarm);
+    private static final EntityType<EntityTTMThrush> entityTTMThrush = buildEntity("entityttmthrush", EntityTTMThrush::new, EntityClassification.CREATURE, 0.5F, 0.5F);
+    public static final RegistryObject<EntityType<EntityTTMThrush>> ENTITY_TTM_THRUSH = ENTITY.register("entityttmthrush", () -> entityTTMThrush);
+
+    // Merchants
+    private static final EntityType<EntityTTMHuman> entityTTMHuman = buildEntity("entityttmhuman", EntityTTMHuman::new, EntityClassification.MISC, 0.5F, 0.5F);
+    public static final RegistryObject<EntityType<EntityTTMHuman>> ENTITY_TTM_HUMAN = ENTITY.register("entityttmhuman", () -> entityTTMHuman);
 
     // Ammo
     public static final RegistryObject<EntityType<?>> AMMO_ARROW_GALADHRIM = ENTITY.register("ammo_arrow_galadhrim", () -> EntityType.Builder.create(EntityGaladhrimArrow::new, EntityClassification.MISC).size(0.5F, 0.5F).setCustomClientFactory(EntityGaladhrimArrow::new).build(MODID + ":ammo_arrow_galadhrim"));
@@ -61,6 +63,10 @@ public class EntityGenerator {
         RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_SQUIRREL.get(), RenderTTMSquirrel::new);
         RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_FROG.get(), RenderTTMFrog::new);
         RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_SWARM.get(), m -> new RenderTTMSwarm<>(m, new ModelTTMSwarm(), 0.5F, TolkienMobs.MODID + ":textures/entity/midgeflies.png"));
+        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_THRUSH.get(), RenderTTMThrush::new);
+
+        // Merchants
+        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_HUMAN.get(), RenderTTMHuman::new);
 
         // Ammo
         RenderingRegistry.registerEntityRenderingHandler(AMMO_ARROW_GALADHRIM.get(), new RenderGaladhrimArrow.RenderFactory());
@@ -77,6 +83,10 @@ public class EntityGenerator {
         GlobalEntityTypeAttributes.put(ENTITY_TTM_SQUIRREL.get(), EntityTTMSquirrel.registerAttributes().create());
         GlobalEntityTypeAttributes.put(ENTITY_TTM_FROG.get(), EntityTTMSquirrel.registerAttributes().create());
         GlobalEntityTypeAttributes.put(ENTITY_TTM_SWARM.get(), EntityTTMSwarm.registerAttributes().create());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_THRUSH.get(), EntityTTMThrush.registerAttributes().create());
+
+        // Merchants
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_HUMAN.get(), EntityTTMHuman.registerAttributes().create());
     }
 
     //#################################################################
@@ -87,6 +97,10 @@ public class EntityGenerator {
     public static final RegistryObject<Item> EGG_TTMSQUIRREL = createSpawnEgg("entityttmsquirrel", entityTTMSquirrel, 13354786, 9918758);
     public static final RegistryObject<Item> EGG_TTMFROG = createSpawnEgg("entityttmfrog", entityTTMFrog, 13354786, 9984463);
     public static final RegistryObject<Item> EGG_TTMSWARM = createSpawnEgg("entityttmswarm", entityTTMSwarm, 13354786, 4069779);
+    public static final RegistryObject<Item> EGG_TTMTHRUSH = createSpawnEgg("entityttmthrush", entityTTMThrush, 13354786, 15775288);
+
+    // Merchants
+    public static final RegistryObject<Item> EGG_TTMHUMAN = createSpawnEgg("entityttmhuman", entityTTMHuman, 16426382, 7497469);
 
 
 
