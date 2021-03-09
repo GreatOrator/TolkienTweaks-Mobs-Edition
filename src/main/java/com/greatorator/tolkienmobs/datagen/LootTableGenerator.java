@@ -41,7 +41,8 @@ public class LootTableGenerator extends LootTableProvider {
     private static final ILootCondition.IBuilder SILK_TOUCH_OR_SHEARS = SHEARS.alternative(SILK_TOUCH);
     private static final ILootCondition.IBuilder NOT_SILK_TOUCH_OR_SHEARS = SILK_TOUCH_OR_SHEARS.inverted();
 
-    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> lootTables = ImmutableList.of(Pair.of(BlockLootTables::new, LootParameterSets.BLOCK));
+    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> lootTables = ImmutableList.of(
+            Pair.of(BlockLootTables::new, LootParameterSets.BLOCK));
 
     public LootTableGenerator(DataGenerator dataGeneratorIn) {
         super(dataGeneratorIn);
@@ -133,8 +134,22 @@ public class LootTableGenerator extends LootTableProvider {
             registerLootTable(TTMContent.ORE_END_AMMOLITE.get(), (block) -> droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(TTMContent.GEM_AMMOLITE.get()).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
             registerLootTable(TTMContent.ORE_NETHER_AMMOLITE.get(), (block) -> droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(TTMContent.GEM_AMMOLITE.get()).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F))).acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE)))));
 
-
         }
+
+//        public static class EntityLootTables extends net.minecraft.data.loot.EntityLootTables {
+//            protected void addTables() {
+//                // Ambient
+//
+//                // Merchant
+//                registerLootTable(EntityGenerator.ENTITY_TTM_HUMAN.get(),
+//                        LootTable.builder()
+//                                .addLootPool(LootPool.builder()
+//                                        .rolls(ConstantRange.of(1))
+//                                        .addEntry(ItemLootEntry.builder(TTMContent.CRAM.get())
+//                                                .acceptFunction(SetCount.builder(RandomValueRange.of(0.0F, 2.0F)))
+//                                                .acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(0.0F, 1.0F))))));
+//            }
+//        }
         protected static LootTable.Builder SticksAndAcorns(Block block, Block sapling, float... chances) {
             return droppingWithChancesAndSticks(block, sapling, chances).addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).acceptCondition(NOT_SILK_TOUCH_OR_SHEARS).addEntry(withSurvivesExplosion(block, ItemLootEntry.builder(TTMContent.TREE_ACORN.get())).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
         }
@@ -142,7 +157,6 @@ public class LootTableGenerator extends LootTableProvider {
         protected static LootTable.Builder ChancesAndSticks(Block block, Block log, float... chances) {
             return droppingWithSilkTouch(block, withSurvivesExplosion(block, ItemLootEntry.builder(log)).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, chances))).addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).acceptCondition(NOT_SILK_TOUCH_OR_SHEARS).addEntry(withExplosionDecay(block, ItemLootEntry.builder(Items.STICK).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F)))).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
         }
-
 
         @Override
         protected Iterable<Block> getKnownBlocks() {
