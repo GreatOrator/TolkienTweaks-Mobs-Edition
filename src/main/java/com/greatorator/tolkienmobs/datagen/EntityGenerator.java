@@ -10,7 +10,11 @@ import com.greatorator.tolkienmobs.entity.ammo.EntityGaladhrimArrow;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderGaladhrimArrow;
+import com.greatorator.tolkienmobs.entity.merchant.EntityTTMDwarf;
+import com.greatorator.tolkienmobs.entity.merchant.EntityTTMElves;
 import com.greatorator.tolkienmobs.entity.merchant.EntityTTMHuman;
+import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMDwarf;
+import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMElves;
 import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMHuman;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -40,14 +44,18 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<EntityTTMSquirrel>> ENTITY_TTM_SQUIRREL = ENTITY.register("entityttmsquirrel", () -> entityTTMSquirrel);
     private static final EntityType<EntityTTMFrog> entityTTMFrog = buildEntity("entityttmfrog", EntityTTMFrog::new, EntityClassification.CREATURE, 0.5F, 0.5F);
     public static final RegistryObject<EntityType<EntityTTMFrog>> ENTITY_TTM_FROG = ENTITY.register("entityttmfrog", () -> entityTTMFrog);
-    private static final EntityType<EntityTTMSwarm> entityTTMSwarm = buildEntity("entityttmswarm", EntityTTMSwarm::new, EntityClassification.CREATURE, 0.5F, 0.5F);
+    private static final EntityType<EntityTTMSwarm> entityTTMSwarm = buildEntity("entityttmswarm", EntityTTMSwarm::new, EntityClassification.CREATURE, 0.7F, 1.9F);
     public static final RegistryObject<EntityType<EntityTTMSwarm>> ENTITY_TTM_SWARM = ENTITY.register("entityttmswarm", () -> entityTTMSwarm);
     private static final EntityType<EntityTTMThrush> entityTTMThrush = buildEntity("entityttmthrush", EntityTTMThrush::new, EntityClassification.CREATURE, 0.5F, 0.5F);
     public static final RegistryObject<EntityType<EntityTTMThrush>> ENTITY_TTM_THRUSH = ENTITY.register("entityttmthrush", () -> entityTTMThrush);
 
     // Merchants
-    private static final EntityType<EntityTTMHuman> entityTTMHuman = buildEntity("entityttmhuman", EntityTTMHuman::new, EntityClassification.MISC, 0.5F, 0.5F);
+    private static final EntityType<EntityTTMHuman> entityTTMHuman = buildEntity("entityttmhuman", EntityTTMHuman::new, EntityClassification.MISC, 0.6F, 1.95F);
     public static final RegistryObject<EntityType<EntityTTMHuman>> ENTITY_TTM_HUMAN = ENTITY.register("entityttmhuman", () -> entityTTMHuman);
+    private static final EntityType<EntityTTMDwarf> entityTTMDwarf = buildEntity("entityttmdwarf", EntityTTMDwarf::new, EntityClassification.MISC, 0.6F, 1.7F);
+    public static final RegistryObject<EntityType<EntityTTMDwarf>> ENTITY_TTM_DWARF = ENTITY.register("entityttmdwarf", () -> entityTTMDwarf);
+    private static final EntityType<EntityTTMElves> entityTTMElves = buildEntity("entityttmelves", EntityTTMElves::new, EntityClassification.MISC, 0.6F, 1.7F);
+    public static final RegistryObject<EntityType<EntityTTMElves>> ENTITY_TTM_ELVES = ENTITY.register("entityttmelves", () -> entityTTMElves);
 
     // Ammo
     public static final RegistryObject<EntityType<?>> AMMO_ARROW_GALADHRIM = ENTITY.register("ammo_arrow_galadhrim", () -> EntityType.Builder.create(EntityGaladhrimArrow::new, EntityClassification.MISC).size(0.5F, 0.5F).setCustomClientFactory(EntityGaladhrimArrow::new).build(MODID + ":ammo_arrow_galadhrim"));
@@ -67,6 +75,8 @@ public class EntityGenerator {
 
         // Merchants
         RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_HUMAN.get(), RenderTTMHuman::new);
+        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_DWARF.get(), RenderTTMDwarf::new);
+        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_ELVES.get(), RenderTTMElves::new);
 
         // Ammo
         RenderingRegistry.registerEntityRenderingHandler(AMMO_ARROW_GALADHRIM.get(), new RenderGaladhrimArrow.RenderFactory());
@@ -87,6 +97,8 @@ public class EntityGenerator {
 
         // Merchants
         GlobalEntityTypeAttributes.put(ENTITY_TTM_HUMAN.get(), EntityTTMHuman.registerAttributes().create());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_DWARF.get(), EntityTTMDwarf.registerAttributes().create());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_ELVES.get(), EntityTTMElves.registerAttributes().create());
     }
 
     //#################################################################
@@ -101,6 +113,8 @@ public class EntityGenerator {
 
     // Merchants
     public static final RegistryObject<Item> EGG_TTMHUMAN = createSpawnEgg("entityttmhuman", entityTTMHuman, 16426382, 7497469);
+    public static final RegistryObject<Item> EGG_TTMDWARF = createSpawnEgg("entityttmdwarf", entityTTMDwarf, 16426382, 11416321);
+    public static final RegistryObject<Item> EGG_TTMELVES = createSpawnEgg("entityttmelves", entityTTMElves, 16426382, 8195056);
 
 
 

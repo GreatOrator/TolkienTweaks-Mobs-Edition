@@ -449,7 +449,17 @@ public class LangGenerator extends LanguageProvider {
     }
 
     private void merchants(PrefixHelper helper){
-        helper.setPrefix("entity.minecraft.villager.tolkienmobs.");
+        helper.setPrefix("entity.tolkienmobs.entityttmhuman.tolkienmobs.");
+            helper.add("coin_trader",                                   "Coin Trader");
+            helper.add("grocery_store",                                   "Grocery Store");
+            helper.add("pet_merchant",                                   "Pet Merchant");
+            helper.add("junk_trader",                                   "Junk Trader");
+        helper.setPrefix("entity.tolkienmobs.entityttmdwarf.tolkienmobs.");
+            helper.add("coin_trader",                                   "Coin Trader");
+            helper.add("grocery_store",                                   "Grocery Store");
+            helper.add("pet_merchant",                                   "Pet Merchant");
+            helper.add("junk_trader",                                   "Junk Trader");
+        helper.setPrefix("entity.tolkienmobs.entityttmelves.tolkienmobs.");
             helper.add("coin_trader",                                   "Coin Trader");
             helper.add("grocery_store",                                   "Grocery Store");
             helper.add("pet_merchant",                                   "Pet Merchant");
@@ -473,6 +483,10 @@ public class LangGenerator extends LanguageProvider {
         // Merchants
         add(EntityGenerator.ENTITY_TTM_HUMAN.get(), "Human");
         add(EntityGenerator.EGG_TTMHUMAN.get(), "Human Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_DWARF.get(), "Dwarf");
+        add(EntityGenerator.EGG_TTMDWARF.get(), "Dwarf Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_ELVES.get(), "Elf");
+        add(EntityGenerator.EGG_TTMELVES.get(), "Elf Spawn Egg");
     }
 
 

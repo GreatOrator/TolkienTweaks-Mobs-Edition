@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.datagen.loot.LootGenerator;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -24,7 +25,7 @@ public class DataGenEventHandler {
 
         if (event.includeServer()) {
             gen.addProvider(new RecipeGenerator(gen));
-            gen.addProvider(new LootTableGenerator(gen));
+            gen.addProvider(new LootGenerator(gen));
 
             //TODO
             BlockTagGenerator blockGenerator = new BlockTagGenerator(gen, TolkienMobs.MODID, event.getExistingFileHelper());
