@@ -15,7 +15,6 @@ import net.minecraft.entity.ai.controller.JumpController;
 import net.minecraft.entity.ai.controller.MovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -64,7 +63,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         option.put(5, new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/toaddle_white.png"));
     });
 
-    public EntityTTMFrog(EntityType<? extends AnimalEntity> type, World worldIn) {
+    public EntityTTMFrog(EntityType<? extends EntityTTMFrog> type, World worldIn) {
         super(type, worldIn);
         this.jumpController = new EntityTTMFrog.JumpHelperController(this);
         this.moveController = new EntityTTMFrog.MoveHelperController(this);

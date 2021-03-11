@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.entity.merchant.render;
 
-import com.greatorator.tolkienmobs.entity.EntityTTMVillager;
 import com.greatorator.tolkienmobs.entity.merchant.EntityTTMHuman;
 import com.greatorator.tolkienmobs.entity.merchant.model.ModelTTMHuman;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -18,8 +17,8 @@ public class RenderTTMHuman extends MobRenderer<EntityTTMHuman, ModelTTMHuman<En
         return entity.getHumanTypeName();
     }
 
-    protected void preRenderCallback(EntityTTMVillager entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
-        float f = 0.9375F;
+    protected void preRenderCallback(EntityTTMHuman entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+        float f = 0.93F;
         if (entitylivingbaseIn.isChild()) {
             f = (float)((double)f * 0.5D);
             this.shadowSize = 0.25F;

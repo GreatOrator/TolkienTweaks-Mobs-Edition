@@ -464,6 +464,11 @@ public class LangGenerator extends LanguageProvider {
             helper.add("grocery_store",                                   "Grocery Store");
             helper.add("pet_merchant",                                   "Pet Merchant");
             helper.add("junk_trader",                                   "Junk Trader");
+        helper.setPrefix("entity.tolkienmobs.entityttmhobbit.tolkienmobs.");
+            helper.add("coin_trader",                                   "Coin Trader");
+            helper.add("grocery_store",                                   "Grocery Store");
+            helper.add("pet_merchant",                                   "Pet Merchant");
+            helper.add("junk_trader",                                   "Junk Trader");
 
     }
 
@@ -487,6 +492,8 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMDWARF.get(), "Dwarf Spawn Egg");
         add(EntityGenerator.ENTITY_TTM_ELVES.get(), "Elf");
         add(EntityGenerator.EGG_TTMELVES.get(), "Elf Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_HOBBIT.get(), "Hobbit");
+        add(EntityGenerator.EGG_TTMHOBBIT.get(), "Hobbit Spawn Egg");
     }
 
 

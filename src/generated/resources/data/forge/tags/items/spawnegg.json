@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:entityttmelves_spawn_egg",
+    "tolkienmobs:entityttmdwarf_spawn_egg",
+    "tolkienmobs:entityttmhuman_spawn_egg",
+    "tolkienmobs:entityttmthrush_spawn_egg",
+    "tolkienmobs:entityttmfrog_spawn_egg",
+    "tolkienmobs:entityttmswarm_spawn_egg",
+    "tolkienmobs:entityttmsquirrel_spawn_egg",
+    "tolkienmobs:entityttmrat_spawn_egg"
+  ]
+}

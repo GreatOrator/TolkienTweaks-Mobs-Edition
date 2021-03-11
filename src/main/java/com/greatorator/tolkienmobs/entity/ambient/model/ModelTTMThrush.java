@@ -104,7 +104,7 @@ public class ModelTTMThrush extends SegmentedModel<EntityTTMThrush> {
     }
 
     public Iterable<ModelRenderer> getParts() {
-        return ImmutableList.of(this.ThrushBody, this.ThrushWingL1, this.ThrushWingR1, this.ThrushTail1, this.ThrushHead, this.ThrushLegL1, this.ThrushLegR1);
+        return ImmutableList.of(this.ThrushBody);
     }
 
     public void setRotationAngles(EntityTTMThrush entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
@@ -124,35 +124,36 @@ public class ModelTTMThrush extends SegmentedModel<EntityTTMThrush> {
     }
 
     private void setRotationAngles(ModelTTMThrush.State p_217162_1_, int p_217162_2_, float p_217162_3_, float p_217162_4_, float p_217162_5_, float p_217162_6_, float p_217162_7_) {
-        this.ThrushHead.rotateAngleX = p_217162_7_ * ((float)Math.PI / 180F);
-        this.ThrushHead.rotateAngleY = p_217162_6_ * ((float)Math.PI / 180F);
+        this.ThrushHead.rotateAngleX = p_217162_7_ * 0.017453292F;
+        this.ThrushHead.rotateAngleY = p_217162_6_ * 0.017453292F;
         this.ThrushHead.rotateAngleZ = 0.0F;
-        this.ThrushHead.rotationPointX = 0.0F;
+        this.ThrushHead.rotationPointX = 0.5F;
         this.ThrushBody.rotationPointX = 0.0F;
         this.ThrushTail1.rotationPointX = 0.0F;
-        this.ThrushWingR1.rotationPointX = -1.5F;
-        this.ThrushWingL1.rotationPointX = 1.5F;
+        this.ThrushWingR1.rotationPointX = 1.0F;
+        this.ThrushWingL1.rotationPointX = 1.0F;
         switch(p_217162_1_) {
             case SITTING:
                 break;
             case PARTY:
-                float f = MathHelper.cos((float)p_217162_2_);
-                float f1 = MathHelper.sin((float)p_217162_2_);
-                this.ThrushHead.rotationPointX = f;
-                this.ThrushHead.rotationPointY = 15.69F + f1;
+                float f1 = MathHelper.cos((float)p_217162_2_);
+                float f2 = MathHelper.sin((float)p_217162_2_);
+                this.ThrushHead.rotationPointX = f1;
+                this.ThrushHead.rotationPointY = 15.69F + f2;
                 this.ThrushHead.rotateAngleX = 0.0F;
                 this.ThrushHead.rotateAngleY = 0.0F;
                 this.ThrushHead.rotateAngleZ = MathHelper.sin((float)p_217162_2_) * 0.4F;
-                this.ThrushBody.rotationPointX = f;
-                this.ThrushBody.rotationPointY = 16.5F + f1;
+                this.ThrushBody.rotationPointX = f1;
+                this.ThrushBody.rotationPointY = -0.1F + f2;
                 this.ThrushWingL1.rotateAngleZ = -0.0873F - p_217162_5_;
-                this.ThrushWingL1.rotationPointX = 1.5F + f;
-                this.ThrushWingL1.rotationPointY = 16.94F + f1;
+                this.ThrushWingL1.rotationPointX = 1.0F + f1;
+                this.ThrushWingL1.rotationPointY = 1.65F + f2;
+                this.ThrushWingL1.rotationPointZ = -0.3F + f1;
                 this.ThrushWingR1.rotateAngleZ = 0.0873F + p_217162_5_;
-                this.ThrushWingR1.rotationPointX = -1.5F + f;
-                this.ThrushWingR1.rotationPointY = 16.94F + f1;
-                this.ThrushTail1.rotationPointX = f;
-                this.ThrushTail1.rotationPointY = 21.07F + f1;
+                this.ThrushWingR1.rotationPointX = -1.0F + f1;
+                this.ThrushWingR1.rotationPointY = -0.05F + f2;
+                this.ThrushTail1.rotationPointX = f1;
+                this.ThrushTail1.rotationPointY = -0.8F + f2;
                 break;
             case STANDING:
                 this.ThrushLegL1.rotateAngleX += MathHelper.cos(p_217162_3_ * 0.6662F) * 1.4F * p_217162_4_;
@@ -160,44 +161,43 @@ public class ModelTTMThrush extends SegmentedModel<EntityTTMThrush> {
             case FLYING:
             case ON_SHOULDER:
             default:
-                float f2 = p_217162_5_ * 0.3F;
-                this.ThrushHead.rotationPointY = 15.69F + f2;
+                float f3 = p_217162_5_ * 0.3F;
+                this.ThrushHead.rotationPointY = f3;
                 this.ThrushTail1.rotateAngleX = 1.015F + MathHelper.cos(p_217162_3_ * 0.6662F) * 0.3F * p_217162_4_;
-                this.ThrushTail1.rotationPointY = 21.07F + f2;
-                this.ThrushBody.rotationPointY = 16.5F + f2;
+                this.ThrushTail1.rotationPointY = -0.8F + f3;
+                this.ThrushBody.rotationPointY = -0.1F + f3;
                 this.ThrushWingL1.rotateAngleZ = -0.0873F - p_217162_5_;
-                this.ThrushWingL1.rotationPointY = 16.94F + f2;
+                this.ThrushWingL1.rotationPointY = 1.65F + f3;
+                this.ThrushWingL1.rotationPointZ = -0.3F + f3;
                 this.ThrushWingR1.rotateAngleZ = 0.0873F + p_217162_5_;
-                this.ThrushWingR1.rotationPointY = 16.94F + f2;
-                this.ThrushLegL1.rotationPointY = 22.0F + f2;
-                this.ThrushLegR1.rotationPointY = 22.0F + f2;
+                this.ThrushWingR1.rotationPointY = -0.05F + f3;
+                this.ThrushLegL1.rotationPointY = 1.5F + f3;
+                this.ThrushLegR1.rotationPointY = 1.5F + f3;
         }
 
     }
 
     private void setLivingAnimations(ModelTTMThrush.State p_217160_1_) {
         this.ThrushBody.rotateAngleX = 0.4937F;
-        this.ThrushWingL1.rotateAngleX = -0.6981F;
+        this.ThrushWingL1.rotateAngleX = -((float)Math.PI * 2F / 9F);
         this.ThrushWingL1.rotateAngleY = -(float)Math.PI;
-        this.ThrushWingR1.rotateAngleX = -0.6981F;
+        this.ThrushWingR1.rotateAngleX = -((float)Math.PI * 2F / 9F);
         this.ThrushWingR1.rotateAngleY = -(float)Math.PI;
         this.ThrushLegL1.rotateAngleX = -0.0299F;
         this.ThrushLegR1.rotateAngleX = -0.0299F;
-        this.ThrushLegL1.rotationPointY = 22.0F;
-        this.ThrushLegR1.rotationPointY = 22.0F;
-        this.ThrushLegL1.rotateAngleZ = 0.0F;
-        this.ThrushLegR1.rotateAngleZ = 0.0F;
+        this.ThrushLegL1.rotationPointY = 1.5F;
+        this.ThrushLegR1.rotationPointY = 1.5F;
         switch(p_217160_1_) {
             case SITTING:
                 float f = 1.9F;
-                this.ThrushHead.rotationPointY = 17.59F;
+                this.ThrushHead.rotationPointY = -0.1F;
                 this.ThrushTail1.rotateAngleX = 1.5388988F;
-                this.ThrushTail1.rotationPointY = 22.97F;
-                this.ThrushBody.rotationPointY = 18.4F;
+                this.ThrushTail1.rotationPointY = 1.1F;
+                this.ThrushBody.rotationPointY = 20.3F;
                 this.ThrushWingL1.rotateAngleZ = -0.0873F;
-                this.ThrushWingL1.rotationPointY = 18.84F;
+                this.ThrushWingL1.rotationPointY = 0.0F;
                 this.ThrushWingR1.rotateAngleZ = 0.0873F;
-                this.ThrushWingR1.rotationPointY = 18.84F;
+                this.ThrushWingR1.rotationPointY = 0.0F;
                 ++this.ThrushLegL1.rotationPointY;
                 ++this.ThrushLegR1.rotationPointY;
                 ++this.ThrushLegL1.rotateAngleX;
@@ -209,10 +209,11 @@ public class ModelTTMThrush extends SegmentedModel<EntityTTMThrush> {
             case STANDING:
             case ON_SHOULDER:
             default:
-                break;
+                this.ThrushLegL1.rotateAngleZ = 0.0F;
+                this.ThrushLegR1.rotateAngleZ = 0.0F;
             case FLYING:
-                this.ThrushLegL1.rotateAngleX += 0.6981317F;
-                this.ThrushLegR1.rotateAngleX += 0.6981317F;
+                this.ThrushLegL1.rotateAngleX += ((float)Math.PI * 2F / 9F);
+                this.ThrushLegR1.rotateAngleX += ((float)Math.PI * 2F / 9F);
         }
 
     }

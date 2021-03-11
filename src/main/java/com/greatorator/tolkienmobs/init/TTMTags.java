@@ -52,6 +52,8 @@ public class TTMTags {
         public static final Tags.IOptionalNamedTag<Item> ARROW = tag("arrow");
         public static final Tags.IOptionalNamedTag<Item> ACORNS = tag("acorns");
         public static final Tags.IOptionalNamedTag<Item> INSECTS = tag("insects");
+        public static final Tags.IOptionalNamedTag<Item> SPAWNEGG = tag("spawnegg");
+
 
         private static Tags.IOptionalNamedTag<Item> tag(String name) {
             return ItemTags.createOptional(new ResourceLocation("forge", name));

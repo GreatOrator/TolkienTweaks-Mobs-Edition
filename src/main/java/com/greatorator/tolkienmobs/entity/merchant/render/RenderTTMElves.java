@@ -19,7 +19,7 @@ public class RenderTTMElves extends MobRenderer<EntityTTMElves, ModelTTMElves<En
     }
 
     protected void preRenderCallback(EntityTTMVillager entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
-        float f = 0.9375F;
+        float f = 0.98F;
         if (entitylivingbaseIn.isChild()) {
             f = (float) ((double) f * 0.5D);
             this.shadowSize = 0.25F;

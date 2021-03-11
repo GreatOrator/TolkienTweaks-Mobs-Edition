@@ -6,13 +6,12 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.util.math.MathHelper;
 
 /**
  * Frog - GreatOrator
  */
-public class ModelTTMFrog<E extends AnimalEntity> extends EntityModel<EntityTTMFrog> {
+public class ModelTTMFrog<E extends EntityTTMFrog> extends EntityModel<EntityTTMFrog> {
     public ModelRenderer frogHead;
     public ModelRenderer frogFootLeft;
     public ModelRenderer frogLeftThigh;
@@ -71,23 +70,10 @@ public class ModelTTMFrog<E extends AnimalEntity> extends EntityModel<EntityTTMF
         this.frogHead.addChild(this.frogEyeLeft);
     }
 
-    @Override
-    public void setRotationAngles(EntityTTMFrog entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        float f = ageInTicks - (float)entityIn.ticksExisted;
-        this.frogHead.rotateAngleX = headPitch * ((float)Math.PI / 180F);
-        this.frogHead.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-        this.jumpRotation = MathHelper.sin(entityIn.getJumpCompletion(f) * (float)Math.PI);
-        this.frogLeftThigh.rotateAngleX = (this.jumpRotation * 50.0F - 21.0F) * ((float)Math.PI / 180F);
-        this.frogRightThigh.rotateAngleX = (this.jumpRotation * 50.0F - 21.0F) * ((float)Math.PI / 180F);
-        this.frogFootLeft.rotateAngleX = this.jumpRotation * 50.0F * ((float)Math.PI / 180F);
-        this.frogFootRight.rotateAngleX = this.jumpRotation * 50.0F * ((float)Math.PI / 180F);
-        this.frogLeftArm.rotateAngleX = (this.jumpRotation * -40.0F - 11.0F) * ((float)Math.PI / 180F);
-        this.frogRightArm.rotateAngleX = (this.jumpRotation * -40.0F - 11.0F) * ((float)Math.PI / 180F);
-    }
-
-    public void setLivingAnimations(EntityTTMFrog entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
-        super.setLivingAnimations(entityIn, limbSwing, limbSwingAmount, partialTick);
-        this.jumpRotation = MathHelper.sin(entityIn.getJumpCompletion(partialTick) * (float)Math.PI);
+    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+        modelRenderer.rotateAngleX = x;
+        modelRenderer.rotateAngleY = y;
+        modelRenderer.rotateAngleZ = z;
     }
 
     public void render(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
@@ -118,9 +104,22 @@ public class ModelTTMFrog<E extends AnimalEntity> extends EntityModel<EntityTTMF
         }
     }
 
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
+    @Override
+    public void setRotationAngles(EntityTTMFrog entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        float f = ageInTicks - (float)entityIn.ticksExisted;
+        this.frogHead.rotateAngleX = headPitch * 0.017453292F;
+        this.frogHead.rotateAngleY = netHeadYaw * 0.017453292F;
+        this.jumpRotation = MathHelper.sin(entityIn.getJumpCompletion(f) * (float)Math.PI);
+        this.frogLeftThigh.rotateAngleX = (this.jumpRotation * 50.0F - 21.0F) * 0.017453292F;
+        this.frogRightThigh.rotateAngleX = (this.jumpRotation * 50.0F - 21.0F) * 0.017453292F;
+        this.frogFootLeft.rotateAngleX = this.jumpRotation * 50.0F * 0.017453292F;
+        this.frogFootRight.rotateAngleX = this.jumpRotation * 50.0F * 0.017453292F;
+        this.frogLeftArm.rotateAngleX = (this.jumpRotation * -40.0F - 11.0F) * 0.017453292F;
+        this.frogRightArm.rotateAngleX = (this.jumpRotation * -40.0F - 11.0F) * 0.017453292F;
+    }
+
+    public void setLivingAnimations(EntityTTMFrog entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
+        super.setLivingAnimations(entityIn, limbSwing, limbSwingAmount, partialTick);
+        this.jumpRotation = MathHelper.sin(entityIn.getJumpCompletion(partialTick) * (float)Math.PI);
     }
 }

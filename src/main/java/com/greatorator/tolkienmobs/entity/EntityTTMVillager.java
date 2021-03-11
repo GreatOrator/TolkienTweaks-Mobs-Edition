@@ -1,8 +1,10 @@
 package com.greatorator.tolkienmobs.entity;
 
 import com.greatorator.tolkienmobs.utils.TTMRand;
+import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.Pose;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
@@ -48,6 +50,10 @@ public class EntityTTMVillager extends VillagerEntity {
         this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.35D));
         this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
         this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
+    }
+
+    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+        return sizeIn.height * 0.85F;
     }
 
     public int getTextureIndex() {
