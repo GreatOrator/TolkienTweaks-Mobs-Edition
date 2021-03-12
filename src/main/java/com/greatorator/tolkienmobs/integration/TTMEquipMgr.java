@@ -4,6 +4,7 @@ import com.brandon3055.brandonscore.BrandonsCore;
 import com.brandon3055.brandonscore.capability.MultiCapabilityProvider;
 import com.brandon3055.brandonscore.lib.IEquipmentManager;
 import com.google.common.collect.ImmutableList;
+import com.greatorator.tolkienmobs.handler.interfaces.ITTMEquip;
 import com.greatorator.tolkienmobs.lib.FlamingBalrog;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
@@ -31,8 +32,8 @@ public abstract class TTMEquipMgr implements IEquipmentManager {
         curiosLoaded = ModList.get().isLoaded("curios");
 
         if (curiosLoaded) {
-            modBus.addListener(CuriosTTM::sendIMC);
-            instance = new CuriosTTM();
+            modBus.addListener(TTMCurios::sendIMC);
+            instance = new TTMCurios();
         }
 
         BrandonsCore.equipmentManager = instance;

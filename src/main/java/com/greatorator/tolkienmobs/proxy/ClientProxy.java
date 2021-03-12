@@ -5,7 +5,7 @@ import com.greatorator.tolkienmobs.client.TTMClientEvents;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
 import com.greatorator.tolkienmobs.entity.merchant.villager.VillagerTTMTrades;
-import com.greatorator.tolkienmobs.handler.TTMExtraHearts;
+import com.greatorator.tolkienmobs.handler.TTMHearts;
 import com.greatorator.tolkienmobs.init.TTMColor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
@@ -34,7 +34,7 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.register(new TTMColor());
 
         if (!ModList.get().isLoaded("mantle")) {
-            MinecraftForge.EVENT_BUS.register(new TTMExtraHearts());
+            MinecraftForge.EVENT_BUS.register(new TTMHearts());
         }
 
         fixPOITypeBlockStates(ProfessionGenerator.COIN_TRADER.get());

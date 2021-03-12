@@ -28,7 +28,7 @@ import java.util.Random;
 import static net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType.HEALTH;
 
 @OnlyIn(Dist.CLIENT)
-public class TTMExtraHearts {
+public class TTMHearts {
     private static final ResourceLocation ICON_HEARTS = new ResourceLocation(TolkienMobs.MODID, "textures/gui/hearts.png");
     private static final ResourceLocation ICON_ABSORB = new ResourceLocation(TolkienMobs.MODID, "textures/gui/absorb.png");
     private static final ResourceLocation ICON_VANILLA = AbstractGui.GUI_ICONS_LOCATION;

@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.init.TTMTags;
-import com.greatorator.tolkienmobs.integration.CuriosTTM;
+import com.greatorator.tolkienmobs.integration.TTMCurios;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
@@ -80,7 +80,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
         getOrCreateBuilder(TTMTags.items.SPAWNEGG).add(EntityGenerator.EGG_TTMELVES.get(), EntityGenerator.EGG_TTMDWARF.get(), EntityGenerator.EGG_TTMHUMAN.get(), EntityGenerator.EGG_TTMTHRUSH.get(), EntityGenerator.EGG_TTMFROG.get(), EntityGenerator.EGG_TTMSWARM.get(), EntityGenerator.EGG_TTMSQUIRREL.get(), EntityGenerator.EGG_TTMRAT.get());
 
         if (ModList.get().isLoaded("curios")) {
-            CuriosTTM.generateTags(this::getOrCreateBuilder);
+            TTMCurios.generateTags(this::getOrCreateBuilder);
         }
     }
 }

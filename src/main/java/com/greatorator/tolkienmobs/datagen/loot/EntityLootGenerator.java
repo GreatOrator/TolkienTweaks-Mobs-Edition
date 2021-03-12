@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.datagen.loot;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
+import net.minecraft.data.loot.EntityLootTables;
 import net.minecraft.entity.EntityType;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.KilledByPlayer;
@@ -11,7 +12,7 @@ import net.minecraft.loot.functions.SetCount;
 import java.util.HashSet;
 import java.util.Set;
 
-public class EntityLootGenerator extends net.minecraft.data.loot.EntityLootTables {
+public class EntityLootGenerator extends EntityLootTables {
     private final Set<EntityType<?>> knownEntities = new HashSet<>();
 
     @Override

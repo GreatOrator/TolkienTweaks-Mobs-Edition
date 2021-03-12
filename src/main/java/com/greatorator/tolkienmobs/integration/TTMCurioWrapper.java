@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.integration;
 
+import com.greatorator.tolkienmobs.handler.interfaces.ITTMEquip;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.entity.LivingEntity;
@@ -10,11 +11,11 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 import java.util.List;
 
 /** Borrowed from Draconic Evolution */
-public class WrapperTTMCurio implements ICurio {
+public class TTMCurioWrapper implements ICurio {
     private ITTMEquip item;
     private ItemStack stack;
 
-    public WrapperTTMCurio(ItemStack stack) {
+    public TTMCurioWrapper(ItemStack stack) {
         this.item = (ITTMEquip) stack.getItem();
         this.stack = stack;
     }

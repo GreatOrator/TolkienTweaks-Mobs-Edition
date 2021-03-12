@@ -20,7 +20,8 @@ import java.util.function.Supplier;
 public class LootGenerator extends LootTableProvider {
     private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> lootTables = ImmutableList.of(
             Pair.of(BlockLootGenerator::new, LootParameterSets.BLOCK),
-            Pair.of(EntityLootGenerator::new, LootParameterSets.ENTITY)
+            Pair.of(EntityLootGenerator::new, LootParameterSets.ENTITY),
+            Pair.of(ChestLootGenerator::new, LootParameterSets.CHEST)
     );
 
     public LootGenerator(DataGenerator dataGeneratorIn) {

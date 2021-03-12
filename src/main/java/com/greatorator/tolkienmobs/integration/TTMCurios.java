@@ -30,7 +30,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /** Borrowed from Draconic Evolution */
-public class CuriosTTM extends TTMEquipMgr {
+public class TTMCurios extends TTMEquipMgr {
 
     public static final Tags.IOptionalNamedTag<Item> CURIO_TAG = ItemTags.createOptional(new ResourceLocation("curios", "curio"));
     public static final Tags.IOptionalNamedTag<Item> NECK_TAG = ItemTags.createOptional(new ResourceLocation("curios", "necklace"));
@@ -57,7 +57,7 @@ public class CuriosTTM extends TTMEquipMgr {
 
     @Override
     public void addEquipCaps(ItemStack stack, MultiCapabilityProvider provider) {
-        provider.addUnsavedCap(CURIO_CAP, new WrapperTTMCurio(stack));
+        provider.addUnsavedCap(CURIO_CAP, new TTMCurioWrapper(stack));
     }
 
     @Override

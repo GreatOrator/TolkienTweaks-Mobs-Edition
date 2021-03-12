@@ -1,5 +1,7 @@
 package com.greatorator.tolkienmobs.block;
 
+import com.greatorator.tolkienmobs.TTMConfig;
+import com.greatorator.tolkienmobs.utils.TTMDamageSource;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -8,7 +10,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -21,9 +22,6 @@ import java.util.Random;
 
 public class BlockTMHallowed extends Block
 {
-    private static final String hallowedDamageName = "hallowed";
-    public static final DamageSource hallowed = new DamageSource(hallowedDamageName);
-
     public BlockTMHallowed(Properties properties)
     {
         super(properties);
@@ -36,8 +34,12 @@ public class BlockTMHallowed extends Block
     {
         if (entityIn instanceof LivingEntity && ((LivingEntity) entityIn).isEntityUndead() && entityIn.isNonBoss())
         {
+            if(!TTMConfig.disableFakePlayer) {
                 FakePlayer fakePlayer = FakePlayerFactory.getMinecraft((ServerWorld) worldIn);
-                entityIn.attackEntityFrom(new EntityDamageSource(hallowedDamageName, fakePlayer), 2.0F);
+                entityIn.attackEntityFrom(TTMDamageSource.causeHallowedDamage(fakePlayer), 3.0F);
+            }else {
+                entityIn.attackEntityFrom(DamageSource.MAGIC, 2.0F);
+            }
         }
 
         super.onEntityWalk(worldIn, pos, entityIn);

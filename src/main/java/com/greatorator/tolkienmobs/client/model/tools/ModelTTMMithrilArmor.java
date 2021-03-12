@@ -1,13 +1,13 @@
-//package com.greatorator.tolkienmobs.client.render.model.items;
+//package com.greatorator.tolkienmobs.client.model.tools;
 //
-//import net.minecraft.client.model.ModelBiped;
-//import net.minecraft.client.model.ModelRenderer;
+//import net.minecraft.client.renderer.entity.model.BipedModel;
+//import net.minecraft.client.renderer.model.ModelRenderer;
 //import net.minecraft.entity.Entity;
 //
 ///**
 // *CustomArmor - GreatOrator
 // */
-//public class ModelMithrilArmor extends ModelBiped {
+//public class ModelTTMMithrilArmor extends BipedModel {
 //    public ModelRenderer HelmMithril;
 //    public ModelRenderer ChestMithril;
 //    public ModelRenderer MithrilLA;
@@ -31,7 +31,7 @@
 //    public ModelRenderer MithrilRFPart;
 //    public ModelRenderer MithrilLFPart;
 //
-//    public ModelMithrilArmor() {
+//    public ModelTTMMithrilArmor() {
 //        this.textureWidth = 128;
 //        this.textureHeight = 128;
 //        this.MithrilRAPart_1 = new ModelRenderer(this, 102, 94);

@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.integration;
+package com.greatorator.tolkienmobs.handler.interfaces;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;

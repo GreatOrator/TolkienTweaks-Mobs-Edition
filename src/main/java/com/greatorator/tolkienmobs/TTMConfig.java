@@ -45,9 +45,13 @@ public class TTMConfig {
     }
 
     //Server properties
+    public static List<String> potionList;
+    public static int spawnChance;
+    public static boolean disableVanilla;
+    public static boolean disableTolkienMobs;
+    public static boolean disableFakePlayer;
     public static String exampleString;
     public static double exampleDouble;
-    public static boolean exampleBoolean;
 
     private static void loadServer() {
         serverTag = config.getTag("Server");
@@ -59,37 +63,42 @@ public class TTMConfig {
                 .setSyncToClient()
                 .setSyncCallback((tag, type) -> potionList = tag.getStringList());
 
-        serverTag.getTag("exampleInt")
-                .setComment("This is an example integer")
-                .setDefaultInt(4261)
-                .setSyncCallback((tag, type) -> exampleInt = tag.getInt());
+        serverTag.getTag("spawnChance")
+                .setComment("Chance to spawn mob out of 100 (Default 10)")
+                .setDefaultInt(10)
+                .setSyncCallback((tag, type) -> spawnChance = tag.getInt());
 
-        ConfigTag exampleTag = serverTag.getTag("exampleString")
+//        serverTag.getTag("disableVanilla")
+//                .setComment("Disable Spawning of TolkienMobs (Default False)")
+//                .setDefaultBoolean(false)
+//                .setSyncToClient()
+//                .setSyncCallback((tag, type) -> disableVanilla = tag.getBoolean());
+//
+//        serverTag.getTag("disableTolkienMobs")
+//                .setComment("Disable Spawning of vanilla hostile mobs (Default True)")
+//                .setDefaultBoolean(true)
+//                .setSyncToClient()
+//                .setSyncCallback((tag, type) -> disableTolkienMobs = tag.getBoolean());
+//
+//        serverTag.getTag("disableFakePlayer")
+//                .setComment("Disable fake player in TolkienMobs (Default True)")
+//                .setDefaultBoolean(false)
+//                .setSyncToClient()
+//                .setSyncCallback((tag, type) -> disableFakePlayer = tag.getBoolean());
+
+        serverTag.getTag("exampleString")
                 .setComment("This is an example string")
                 .setDefaultString("Default Example String")
                 .setSyncCallback((tag, type) -> exampleString = tag.getString());
-        //The sync call back is what we use to automatically apply this to our static field whenever the config is loaded or synchronized.
-        //You can manually read the value from the tag but this is just simpler.
-        //You can also technically assign each config tag to a field and access it via that field but this is much less efficient
-        exampleString = exampleTag.getString(); //<- So you could do this instead of using setSyncCallback but i prefer setSyncCallback
 
         serverTag.getTag("exampleDouble")
                 .setComment("This is an example double")
                 .setDefaultDouble(99)
                 .setSyncCallback((tag, type) -> exampleDouble = tag.getDouble());
-
-        serverTag.getTag("exampleBoolean")
-                .setComment("This is an example boolean")
-                .setDefaultBoolean(false)
-                .setSyncToClient() // <- Adding this will make this config sync from the server to the client when the client connects. The client client will automatically revert when the client disconnects.
-                .setSyncCallback((tag, type) -> exampleBoolean = tag.getBoolean());
     }
 
     //Client properties
     public static boolean HeartOverlay;
-    public static int exampleInt;
-    public static List<Integer> exampleIntList;
-    public static List<String> potionList;
 
     private static void loadClient() {
         clientTag = config.getTag("Client");
@@ -99,16 +108,6 @@ public class TTMConfig {
                 .setComment("Enable Heart Overlay Feature - Default True")
                 .setDefaultBoolean(true)
                 .setSyncCallback((tag, type) -> HeartOverlay = tag.getBoolean());
-
-        clientTag.getTag("exampleInt")
-                .setComment("This is an example integer")
-                .setDefaultInt(4261)
-                .setSyncCallback((tag, type) -> exampleInt = tag.getInt());
-
-        clientTag.getTag("exampleIntList")
-                .setComment("This is an example Int List")
-                .setDefaultIntList(Lists.newArrayList(4261, 3055, 1624))
-                .setSyncCallback((tag, type) -> exampleIntList = tag.getIntList());
     }
 
     public static String[] potionTypeArray = new String[]{"tolkienmobs:blessing_of_eru", "tolkienmobs:elven_nimbleness", "tolkienmobs:ent_draught", "tolkienmobs:personal_blacksmith", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:fire_resistance"};

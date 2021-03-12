@@ -218,6 +218,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.SHOVEL_MORGULIRON.get());
         simpleItem(TTMContent.SWORD_MORGULIRON.get());
         simpleItem(TTMContent.SWORD_WITCHKING.get());
+        simpleItem(TTMContent.WHIP_FIRE.get());
+        simpleItem(TTMContent.CLUB_WOODEN.get());
         simpleItem(TTMContent.GALADHRIM_ARROW.get());
         simpleItem(TTMContent.FELLBEAST_FIREBALL.get());
         simpleItem(TTMContent.BOULDER.get());

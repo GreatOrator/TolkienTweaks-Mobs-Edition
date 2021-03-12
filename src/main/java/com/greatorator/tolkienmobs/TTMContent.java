@@ -6,13 +6,8 @@ import com.greatorator.tolkienmobs.block.BlockMushrooms;
 import com.greatorator.tolkienmobs.block.BlockStonePath;
 import com.greatorator.tolkienmobs.block.BlockTMHallowed;
 import com.greatorator.tolkienmobs.block.trees.*;
-import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
-import com.greatorator.tolkienmobs.datagen.EntityGenerator;
-import com.greatorator.tolkienmobs.datagen.PotionGenerator;
-import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
+import com.greatorator.tolkienmobs.datagen.*;
 import com.greatorator.tolkienmobs.handler.*;
-import com.greatorator.tolkienmobs.item.TTMArrow;
 import com.greatorator.tolkienmobs.item.trinket.TrinketAmulet;
 import com.greatorator.tolkienmobs.item.trinket.TrinketBelt;
 import com.greatorator.tolkienmobs.item.trinket.TrinketCharm;
@@ -86,7 +81,7 @@ public class TTMContent {
     public static RegistryObject<Block> ORE_END_MITHRIL = BLOCKS.register("ore_end_mithril", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
     public static RegistryObject<Block> ORE_NETHER_MITHRIL = BLOCKS.register("ore_nether_mithril", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
     public static RegistryObject<Block> BLOCK_MITHRIL = BLOCKS.register("block_mithril", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
-    public static RegistryObject<PaneBlock> MITHRIL_BARS = BLOCKS.register("mithril_bars", () -> new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.AIR).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
+    public static RegistryObject<PaneBlock> MITHRIL_BARS = BLOCKS.register("mithril_bars", () -> new PaneBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY_TERRACOTTA).setRequiresTool().hardnessAndResistance(5.0F, 6.0F).sound(SoundType.METAL).notSolid()));
     public static RegistryObject<DoorBlock> DOOR_MITHRIL = BLOCKS.register("door_mithril", () -> new DoorBlock(AbstractBlock.Properties.create(Material.IRON, MaterialColor.GRAY_TERRACOTTA).setRequiresTool().hardnessAndResistance(5.0F).sound(SoundType.METAL).notSolid()));
     public static RegistryObject<Block> ORE_MORGULIRON = BLOCKS.register("ore_morguliron", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
     public static RegistryObject<Block> ORE_END_MORGULIRON = BLOCKS.register("ore_end_morguliron", () -> new Block(AbstractBlock.Properties.create(Material.IRON)));
@@ -145,13 +140,13 @@ public class TTMContent {
     public static RegistryObject<Block> MUSHROOM_BLOOM_DECAY = BLOCKS.register("mushroom_bloom_decay", () -> new BlockMushrooms(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.BROWN).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT).setLightLevel((state) -> {
         return 1;
     }).setNeedsPostProcessing(TTMContent::needsPostProcessing)));
-    public static RegistryObject<Block> FLOWER_SIMBELMYNE = BLOCKS.register("flower_simbelmyne", () -> new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
-    public static RegistryObject<Block> FLOWER_MIRKWOOD = BLOCKS.register("flower_mirkwood", () -> new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static RegistryObject<Block> FLOWER_SIMBELMYNE = BLOCKS.register("flower_simbelmyne", () -> new FlowerBlock(Effects.HERO_OF_THE_VILLAGE, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static RegistryObject<Block> FLOWER_MIRKWOOD = BLOCKS.register("flower_mirkwood", () -> new FlowerBlock(Effects.BAD_OMEN, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static RegistryObject<Block> FLOWER_ALFIRIN = BLOCKS.register("flower_alfirin", () -> new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
-    public static RegistryObject<Block> FLOWER_ATHELAS = BLOCKS.register("flower_athelas", () -> new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static RegistryObject<Block> FLOWER_ATHELAS = BLOCKS.register("flower_athelas", () -> new FlowerBlock(Effects.REGENERATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static RegistryObject<Block> FLOWER_NIPHREDIL = BLOCKS.register("flower_niphredil", () -> new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
-    public static RegistryObject<Block> FLOWER_SWAMPMILKWEED = BLOCKS.register("flower_swamp_milkweed", () -> new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
-    public static RegistryObject<Block> FLOWER_LILLYOFTHEVALLEY = BLOCKS.register("flower_valley_lilly", () -> new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static RegistryObject<Block> FLOWER_SWAMPMILKWEED = BLOCKS.register("flower_swamp_milkweed", () -> new FlowerBlock(Effects.SLOWNESS, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
+    public static RegistryObject<Block> FLOWER_LILLYOFTHEVALLEY = BLOCKS.register("flower_valley_lilly", () -> new FlowerBlock(Effects.INSTANT_HEALTH, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
 
     // Custom
     public static RegistryObject<Block> BLOCK_HALLOWED = BLOCKS.register("block_hallowed", () -> new BlockTMHallowed(AbstractBlock.Properties.create(Material.EARTH).sound(SoundType.GROUND).tickRandomly()));
@@ -290,17 +285,19 @@ public class TTMContent {
     public static RegistryObject<Item> GEM_AMMOLITE = ITEMS.register("gem_ammolite", () -> new TTMLore(new Item.Properties().maxStackSize(16).group(matsGroup)).setEffectOverride());
 
     // Equipment & Armor
-    public static RegistryObject<AxeItem> AXE_MITHRIL = ITEMS.register("axe_mithril", () -> new AxeItem(ItemTier.NETHERITE, 8.0F, -1.5F, (new Item.Properties()).group(toolsGroup)));
-    public static RegistryObject<HoeItem> HOE_MITHRIL = ITEMS.register("hoe_mithril", () -> new HoeItem(ItemTier.NETHERITE, 1, 0.8F, (new Item.Properties()).group(toolsGroup)));
-    public static RegistryObject<PickaxeItem> PICKAXE_MITHRIL = ITEMS.register("pickaxe_mithril", () -> new PickaxeItem(ItemTier.NETHERITE, 1, -1.0F, (new Item.Properties()).group(toolsGroup)));
-    public static RegistryObject<ShovelItem> SHOVEL_MITHRIL = ITEMS.register("shovel_mithril", () -> new ShovelItem(ItemTier.NETHERITE, 2.8F, -1.0F, (new Item.Properties()).group(toolsGroup)));
-    public static RegistryObject<SwordItem> SWORD_MITHRIL = ITEMS.register("sword_mithril", () -> new SwordItem(ItemTier.NETHERITE, 7, -1.0F, (new Item.Properties()).group(toolsGroup)));
-    public static RegistryObject<AxeItem> AXE_MORGULIRON = ITEMS.register("axe_morguliron", () -> new AxeItem(ItemTier.NETHERITE, 8.0F, -1.5F, (new Item.Properties()).group(toolsGroup)));
-    public static RegistryObject<HoeItem> HOE_MORGULIRON = ITEMS.register("hoe_morguliron", () -> new HoeItem(ItemTier.NETHERITE, 1, 0.8F, (new Item.Properties()).group(toolsGroup)));
-    public static RegistryObject<PickaxeItem> PICKAXE_MORGULIRON = ITEMS.register("pickaxe_morguliron", () -> new PickaxeItem(ItemTier.NETHERITE, 1, -1.5F, (new Item.Properties()).group(toolsGroup)));
-    public static RegistryObject<ShovelItem> SHOVEL_MORGULIRON = ITEMS.register("shovel_morguliron", () -> new ShovelItem(ItemTier.NETHERITE, 2.8F, -1.5F, (new Item.Properties()).group(toolsGroup)));
-    public static RegistryObject<SwordItem> SWORD_MORGULIRON = ITEMS.register("sword_morguliron", () -> new SwordItem(ItemTier.NETHERITE, 8, -2.3F, (new Item.Properties()).group(toolsGroup)));
-    public static RegistryObject<SwordItem> SWORD_WITCHKING = ITEMS.register("sword_witchking", () -> new SwordItem(ItemTier.NETHERITE, 9, -0.5F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<AxeItem> AXE_MITHRIL = ITEMS.register("axe_mithril", () -> new AxeItem(TTMItemTier.MITHRIL, 8.0F, -1.5F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<HoeItem> HOE_MITHRIL = ITEMS.register("hoe_mithril", () -> new HoeItem(TTMItemTier.MITHRIL, 1, 0.8F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<PickaxeItem> PICKAXE_MITHRIL = ITEMS.register("pickaxe_mithril", () -> new PickaxeItem(TTMItemTier.MITHRIL, 1, -1.0F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<ShovelItem> SHOVEL_MITHRIL = ITEMS.register("shovel_mithril", () -> new ShovelItem(TTMItemTier.MITHRIL, 2.8F, -1.0F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<SwordItem> SWORD_MITHRIL = ITEMS.register("sword_mithril", () -> new SwordItem(TTMItemTier.MITHRIL, 7, -1.0F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<AxeItem> AXE_MORGULIRON = ITEMS.register("axe_morguliron", () -> new AxeItem(TTMItemTier.MORGULIRON, 8.0F, -1.5F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<HoeItem> HOE_MORGULIRON = ITEMS.register("hoe_morguliron", () -> new HoeItem(TTMItemTier.MORGULIRON, 1, 0.8F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<PickaxeItem> PICKAXE_MORGULIRON = ITEMS.register("pickaxe_morguliron", () -> new PickaxeItem(TTMItemTier.MORGULIRON, 1, -1.5F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<ShovelItem> SHOVEL_MORGULIRON = ITEMS.register("shovel_morguliron", () -> new ShovelItem(TTMItemTier.MORGULIRON, 2.8F, -1.5F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<SwordItem> SWORD_MORGULIRON = ITEMS.register("sword_morguliron", () -> new SwordItem(TTMItemTier.MORGULIRON, 8, -2.3F, (new Item.Properties()).group(toolsGroup)));
+    public static RegistryObject<SwordItem> SWORD_WITCHKING = ITEMS.register("sword_witchking", () -> new TTMSword(TTMItemTier.MORGULIRON, 9, -0.5F, (new Item.Properties()).group(toolsGroup)).setEffectOverride());
+    public static RegistryObject<SwordItem> WHIP_FIRE = ITEMS.register("whip_fire", () -> new TTM3DObj(TTMItemTier.MORGULIRON, 9, -0.5F, (new Item.Properties()).group(toolsGroup), "whip_fire.obj", "whip_fire.png").setEffectOverride());
+    public static RegistryObject<SwordItem> CLUB_WOODEN = ITEMS.register("club_wooden", () -> new TTM3DObj(TTMItemTier.MORGULIRON, 9, -0.5F, (new Item.Properties()).group(toolsGroup), "club_wooden.obj", "club_wooden.png").setEffectOverride());
 
     //Trinkets
     public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new TrinketAmulet(new Item.Properties().group(toolsGroup)).setHasLore());
