@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.init.TTMTags;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.tags.BlockTags;
@@ -47,5 +48,6 @@ public class BlockTagGenerator extends BlockTagsProvider {
         getOrCreateBuilder(TTMTags.blocks.MUSHROOMS).add(TTMContent.MUSHROOM_BLOOM_DECAY.get(), TTMContent.MUSHROOM_DECAY_BLOOM.get());
         getOrCreateBuilder(TTMTags.blocks.FLOWERS).add(TTMContent.FLOWER_ALFIRIN.get(), TTMContent.FLOWER_ATHELAS.get(), TTMContent.FLOWER_MIRKWOOD.get(), TTMContent.FLOWER_NIPHREDIL.get(), TTMContent.FLOWER_SIMBELMYNE.get(), TTMContent.FLOWER_LILLYOFTHEVALLEY.get(), TTMContent.FLOWER_SWAMPMILKWEED.get());
         getOrCreateBuilder(BlockTags.FLOWERS).addTag(TTMTags.blocks.FLOWERS);
+        getOrCreateBuilder(TTMTags.blocks.DECAY_GROW_BLOCK).addItemEntry(Blocks.COBBLESTONE).addItemEntry(Blocks.STONE).addItemEntry(Blocks.MYCELIUM).addItemEntry(Blocks.PODZOL).addItemEntry(Blocks.CRIMSON_NYLIUM).addItemEntry(Blocks.WARPED_NYLIUM);
     }
 }

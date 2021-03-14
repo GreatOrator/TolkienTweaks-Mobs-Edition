@@ -82,6 +82,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         // Block Items - Plants & Flowers
         blockItem(TTMContent.MUSHROOM_DECAY_BLOOM.get());
         blockItem(TTMContent.MUSHROOM_BLOOM_DECAY.get());
+        blockItem(TTMContent.BLOCK_BLOOM_DECAY.get(), modLoc("block/block_decay_bloom_inventory"));
+        blockItem(TTMContent.BLOCK_DECAY_BLOOM.get(), modLoc("block/block_bloom_decay_inventory"));
         blockItem(TTMContent.FLOWER_SIMBELMYNE.get());
         blockItem(TTMContent.FLOWER_MIRKWOOD.get());
         blockItem(TTMContent.FLOWER_ALFIRIN.get());

@@ -140,6 +140,8 @@ public class TTMContent {
     public static RegistryObject<Block> MUSHROOM_BLOOM_DECAY = BLOCKS.register("mushroom_bloom_decay", () -> new BlockMushrooms(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.BROWN).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT).setLightLevel((state) -> {
         return 1;
     }).setNeedsPostProcessing(TTMContent::needsPostProcessing)));
+    public static RegistryObject<Block> BLOCK_DECAY_BLOOM = BLOCKS.register("block_decay_bloom", () -> new HugeMushroomBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.MAGENTA).hardnessAndResistance(0.2F).sound(SoundType.WOOD)));
+    public static RegistryObject<Block> BLOCK_BLOOM_DECAY = BLOCKS.register("block_bloom_decay", () -> new HugeMushroomBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.MAGENTA).hardnessAndResistance(0.2F).sound(SoundType.WOOD)));
     public static RegistryObject<Block> FLOWER_SIMBELMYNE = BLOCKS.register("flower_simbelmyne", () -> new FlowerBlock(Effects.HERO_OF_THE_VILLAGE, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static RegistryObject<Block> FLOWER_MIRKWOOD = BLOCKS.register("flower_mirkwood", () -> new FlowerBlock(Effects.BAD_OMEN, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static RegistryObject<Block> FLOWER_ALFIRIN = BLOCKS.register("flower_alfirin", () -> new FlowerBlock(Effects.SATURATION, 7, AbstractBlock.Properties.create(Material.PLANTS).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.PLANT)));
@@ -216,6 +218,8 @@ public class TTMContent {
     // Blocks - Plants & Flowers
     public static RegistryObject<Item> MUSHROOM_DECAY_BLOOM_ITEM = ITEMS.register("mushroom_decay_bloom", () -> new ItemBlockBCore(MUSHROOM_DECAY_BLOOM.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> MUSHROOM_BLOOM_DECAY_ITEM = ITEMS.register("mushroom_bloom_decay", () -> new ItemBlockBCore(MUSHROOM_BLOOM_DECAY.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> BLOCK_DECAY_BLOOM_ITEM = ITEMS.register("block_decay_bloom", () -> new ItemBlockBCore(BLOCK_DECAY_BLOOM.get(), new Item.Properties().group(matsGroup)));
+    public static RegistryObject<Item> BLOCK_BLOOM_DECAY_ITEM = ITEMS.register("block_bloom_decay", () -> new ItemBlockBCore(BLOCK_BLOOM_DECAY.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> FLOWER_SIMBELMYNE_ITEM = ITEMS.register("flower_simbelmyne", () -> new ItemBlockBCore(FLOWER_SIMBELMYNE.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> FLOWER_MIRKWOOD_ITEM = ITEMS.register("flower_mirkwood", () -> new ItemBlockBCore(FLOWER_MIRKWOOD.get(), new Item.Properties().group(matsGroup)));
     public static RegistryObject<Item> FLOWER_ALFIRIN_ITEM = ITEMS.register("flower_alfirin", () -> new ItemBlockBCore(FLOWER_ALFIRIN.get(), new Item.Properties().group(matsGroup)));

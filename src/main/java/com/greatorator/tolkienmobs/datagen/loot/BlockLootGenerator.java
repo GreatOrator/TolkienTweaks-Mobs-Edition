@@ -14,7 +14,9 @@ import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.loot.conditions.MatchTool;
 import net.minecraft.loot.conditions.TableBonus;
 import net.minecraft.loot.functions.ApplyBonus;
+import net.minecraft.loot.functions.LimitCount;
 import net.minecraft.loot.functions.SetCount;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.registry.Registry;
 
 import java.util.HashSet;
@@ -91,6 +93,8 @@ public class BlockLootGenerator extends BlockLootTables {
         // Blocks - Plants & Flowers
         registerDropSelfLootTable(TTMContent.MUSHROOM_DECAY_BLOOM.get());
         registerDropSelfLootTable(TTMContent.MUSHROOM_BLOOM_DECAY.get());
+        registerLootTable(TTMContent.BLOCK_BLOOM_DECAY.get(), droppingItemRarely(TTMContent.MUSHROOM_BLOOM_DECAY.get(), TTMContent.MUSHROOM_BLOOM_DECAY_ITEM.get()));
+        registerLootTable(TTMContent.BLOCK_DECAY_BLOOM.get(), droppingItemRarely(TTMContent.MUSHROOM_DECAY_BLOOM.get(), TTMContent.MUSHROOM_DECAY_BLOOM_ITEM.get()));
         registerDropSelfLootTable(TTMContent.FLOWER_SIMBELMYNE.get());
         registerDropSelfLootTable(TTMContent.FLOWER_MIRKWOOD.get());
         registerDropSelfLootTable(TTMContent.FLOWER_ALFIRIN.get());
@@ -122,6 +126,10 @@ public class BlockLootGenerator extends BlockLootTables {
 
     protected static LootTable.Builder ChancesAndSticks(Block block, Block log, float... chances) {
         return droppingWithSilkTouch(block, withSurvivesExplosion(block, ItemLootEntry.builder(log)).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, chances))).addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).acceptCondition(NOT_SILK_TOUCH_OR_SHEARS).addEntry(withExplosionDecay(block, ItemLootEntry.builder(Items.STICK).acceptFunction(SetCount.builder(RandomValueRange.of(1.0F, 2.0F)))).acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
+    }
+
+    protected static LootTable.Builder droppingItemRarely(Block block, IItemProvider item) {
+        return droppingWithSilkTouch(block, withExplosionDecay(block, ItemLootEntry.builder(item).acceptFunction(SetCount.builder(RandomValueRange.of(-6.0F, 2.0F))).acceptFunction(LimitCount.func_215911_a(IntClamper.func_215848_a(0)))));
     }
 
     @Override

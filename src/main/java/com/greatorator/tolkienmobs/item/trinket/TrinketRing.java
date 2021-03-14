@@ -27,7 +27,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-import static com.greatorator.tolkienmobs.TTMContent.toolsGroup;
 import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 
 public class TrinketRing extends Item {
@@ -41,7 +40,7 @@ public class TrinketRing extends Item {
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
 
-        if (this.isInGroup(toolsGroup)) {
+        if (this.isInGroup(group)) {
             for(Effect p : TTMConfig.potionArray) {
                 if (p != null) {
                     items.add(getTrinketForPotion(p));

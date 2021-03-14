@@ -88,6 +88,8 @@ public class BlockStateGenerator extends BlockStateProvider {
         // Basic Plants & Flowers
         simpleBlock(TTMContent.MUSHROOM_DECAY_BLOOM.get(), models().cross("mushroom_decay_bloom", modLoc("block/mushroom_decay_bloom")));
         simpleBlock(TTMContent.MUSHROOM_BLOOM_DECAY.get(), models().cross("mushroom_bloom_decay", modLoc("block/mushroom_bloom_decay")));
+        simpleBlock(TTMContent.BLOCK_BLOOM_DECAY.get(), models().getExistingFile(modLoc("block/block_bloom_decay")));
+        simpleBlock(TTMContent.BLOCK_DECAY_BLOOM.get(), models().getExistingFile(modLoc("block/block_decay_bloom")));
         simpleBlock(TTMContent.FLOWER_SIMBELMYNE.get(), models().cross("flower_simbelmyne", modLoc("block/flower_simbelmyne")));
         simpleBlock(TTMContent.FLOWER_MIRKWOOD.get(), models().cross("flower_mirkwood", modLoc("block/flower_mirkwood")));
         simpleBlock(TTMContent.FLOWER_ALFIRIN.get(), models().cross("flower_alfirin", modLoc("block/flower_alfirin")));
@@ -99,76 +101,6 @@ public class BlockStateGenerator extends BlockStateProvider {
         // Custom
         simpleBlock(TTMContent.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
         simpleBlock(TTMContent.STONE_PATH.get(), models().getExistingFile(modLoc("block/block_stone_path")));
-
-
-
-//        simpleBlock(DEContent.block_draconium);
-//        simpleBlock(DEContent.block_draconium_awakened, models().cubeBottomTop("awakened_draconium_block", modLoc("block/awakened_draconium_block_side"), modLoc("block/awakened_draconium_block"), modLoc("block/awakened_draconium_block")));
-//        simpleBlock(DEContent.ore_draconium_end);
-//        simpleBlock(DEContent.ore_draconium_nether);
-//        simpleBlock(DEContent.ore_draconium_overworld);
-//        simpleBlock(DEContent.infused_obsidian);
-//        simpleBlock(DEContent.energy_core);
-//        simpleBlock(DEContent.energy_core_stabilizer, models().getExistingFile(modLoc("block/energy_core_stabilizer")));
-//        simpleBlock(DEContent.creative_op_capacitor);
-//        simpleBlock(DEContent.stabilized_spawner, models().getExistingFile(modLoc("block/stabilized_spawner")));
-//        simpleBlock(DEContent.particle_generator, models().getExistingFile(modLoc("block/particle_generator")));
-//        simpleBlock(DEContent.crafting_core, models().getExistingFile(modLoc("block/crafting/fusion_crafting_core")));
-//
-//        simpleBlock(DEContent.dislocation_inhibitor, models().cubeBottomTop("dislocation_inhibitor", modLoc("block/dislocation_inhibitor"), modLoc("block/parts/machine_top"), modLoc("block/parts/machine_top")));
-//
-//        directionalBlock(DEContent.crafting_injector_basic, models().getExistingFile(modLoc("block/crafting/crafting_injector_draconium")));
-//        directionalBlock(DEContent.crafting_injector_wyvern, models().getExistingFile(modLoc("block/crafting/crafting_injector_wyvern")));
-//        directionalBlock(DEContent.crafting_injector_awakened, models().getExistingFile(modLoc("block/crafting/crafting_injector_draconic")));
-//        directionalBlock(DEContent.crafting_injector_chaotic, models().getExistingFile(modLoc("block/crafting/crafting_injector_chaotic")));
-//
-//        directionalFromNorth(DEContent.fluid_gate, models().getExistingFile(modLoc("block/fluid_gate")));
-//        directionalFromNorth(DEContent.flux_gate, models().getExistingFile(modLoc("block/flux_gate")));
-//
-//        directionalBlock(DEContent.potentiometer, models().getExistingFile(modLoc("block/potentiometer")));
-//
-//        simpleBlock(DEContent.energy_transfuser, models().getExistingFile(modLoc("block/energy_transfuser")));
-//
-//        dummyBlock(DEContent.crystal_io_basic);
-//        dummyBlock(DEContent.crystal_io_wyvern);
-//        dummyBlock(DEContent.crystal_io_draconic);
-////        dummyBlock(DEContent.  crystal_io_chaotic);
-//        dummyBlock(DEContent.crystal_relay_basic);
-//        dummyBlock(DEContent.crystal_relay_wyvern);
-//        dummyBlock(DEContent.crystal_relay_draconic);
-////        dummyBlock(DEContent.  crystal_relay_chaotic);
-//        dummyBlock(DEContent.crystal_wireless_basic);
-//        dummyBlock(DEContent.crystal_wireless_wyvern);
-//        dummyBlock(DEContent.crystal_wireless_draconic);
-////        dummyBlock(DEContent.  crystal_wireless_chaotic);
-//        dummyBlock(DEContent.energy_core_structure);
-//        dummyBlock(DEContent.chaos_crystal);
-//        dummyBlock(DEContent.chaos_crystal_part);
-//
-//
-//        getVariantBuilder(DEContent.energy_pylon).forAllStates(state -> ConfiguredModel.builder().modelFile(models().cubeBottomTop(state.get(EnergyPylon.OUTPUT) ? "energy_pylon_output" : "energy_pylon_input", modLoc("block/energy_pylon/energy_pylon_" + (state.get(EnergyPylon.OUTPUT) ? "output" : "input")), modLoc("block/energy_pylon/energy_pylon_active_face"), modLoc("block/energy_pylon/energy_pylon_active_face"))).build());
-//
-//
-//        //Generator
-//        ModelFile modelGenerator = models().getExistingFile(modLoc("block/generator/generator"));
-//        ModelFile modelGeneratorFlame = models().getExistingFile(modLoc("block/generator/generator_flame"));
-//        MultiPartBlockStateBuilder generatorBuilder = getMultipartBuilder(DEContent.generator);
-//        for (Direction dir : FenceGateBlock.HORIZONTAL_FACING.getAllowedValues()) {
-//            int angle = (int) dir.getOpposite().getHorizontalAngle();
-//            generatorBuilder.part().modelFile(modelGenerator).rotationY(angle).addModel().condition(Generator.FACING, dir).end()
-//                    .part().modelFile(modelGeneratorFlame).rotationY(angle).addModel().condition(Generator.FACING, dir).condition(Generator.ACTIVE, true).end();
-//        }
-//
-//        //Grinder
-//        ModelFile modelGrinder = models().getExistingFile(modLoc("block/grinder/grinder"));
-//        ModelFile modelGrinderActive = models().getExistingFile(modLoc("block/grinder/grinder_eyes"));
-//        MultiPartBlockStateBuilder grinderBuilder = getMultipartBuilder(DEContent.grinder);
-//        for (Direction dir : Direction.BY_HORIZONTAL_INDEX) {
-//            int angle = (int) dir.getOpposite().getHorizontalAngle();
-//            grinderBuilder.part().modelFile(modelGrinder).rotationY(angle).addModel().condition(Grinder.FACING, dir).end()
-//                    .part().modelFile(modelGrinderActive).rotationY(angle).addModel().condition(Grinder.FACING, dir).condition(Grinder.ACTIVE, true).end();
-//        }
-
 
 
         //Bellow is some extra example stuff i left in for reference

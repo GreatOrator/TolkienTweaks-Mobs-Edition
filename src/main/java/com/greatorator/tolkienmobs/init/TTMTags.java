@@ -81,6 +81,7 @@ public class TTMTags {
         public static final Tags.IOptionalNamedTag<Block> DOORS_IRON = tag("doors/iron");
         public static final Tags.IOptionalNamedTag<Block> BARS_IRON = tag("bars/iron");
         public static final Tags.IOptionalNamedTag<Block> FLOWERS = tag("flowers");
+        public static final Tags.IOptionalNamedTag<Block> DECAY_GROW_BLOCK = tag("decay_grow_block");
 
         private static Tags.IOptionalNamedTag<Block> tag(String name) {
             return BlockTags.createOptional(new ResourceLocation("forge", name));

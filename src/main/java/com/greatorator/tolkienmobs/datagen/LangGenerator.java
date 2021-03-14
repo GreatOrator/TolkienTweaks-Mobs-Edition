@@ -96,6 +96,8 @@ public class LangGenerator extends LanguageProvider {
         // Plants & Flowers
         add(TTMContent.MUSHROOM_DECAY_BLOOM.get(), "Bloom of Decay");
         add(TTMContent.MUSHROOM_BLOOM_DECAY.get(), "Bloom of Decay");
+        add(TTMContent.BLOCK_DECAY_BLOOM.get(), "Bloom of Decay Block");
+        add(TTMContent.BLOCK_BLOOM_DECAY.get(), "Bloom of Decay Block");
         add(TTMContent.FLOWER_SIMBELMYNE.get(), "Simbelmyne");
         add(TTMContent.FLOWER_MIRKWOOD.get(), "Seregon");
         add(TTMContent.FLOWER_ALFIRIN.get(), "Alfirin");

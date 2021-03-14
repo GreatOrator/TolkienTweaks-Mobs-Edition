@@ -41,7 +41,7 @@ public class TrinketBelt extends Item {
     @Override
     public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
 
-        if (this.isInGroup(toolsGroup)) {
+        if (this.isInGroup(group)) {
             for(Effect p : TTMConfig.potionArray) {
                 if (p != null) {
                     items.add(getTrinketForPotion(p));
