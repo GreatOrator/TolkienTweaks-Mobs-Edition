@@ -5,21 +5,21 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.culling.ClippingHelper;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Matrix3f;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3f;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
-
+@OnlyIn(Dist.CLIENT)
 public class RenderGaladhrimArrow<T extends EntityGaladhrimArrow> extends EntityRenderer<T> {
     private static final ResourceLocation GALADHRIM_ARROW_TEXTURES = new ResourceLocation(MODID,"textures/entity/ammo_galadhrim_arrow.png");
 
@@ -33,23 +33,7 @@ public class RenderGaladhrimArrow<T extends EntityGaladhrimArrow> extends Entity
         return GALADHRIM_ARROW_TEXTURES;
     }
 
-
-    @Override
-    protected int func_239381_b_(T p_239381_1_, BlockPos p_239381_2_) {
-        return super.func_239381_b_(p_239381_1_, p_239381_2_);
-    }
-
-    @Override
-    public boolean shouldRender(T livingEntityIn, ClippingHelper camera, double camX, double camY, double camZ) {
-        boolean yes= super.shouldRender(livingEntityIn, camera, camX, camY, camZ);
-
-        System.out.println("Should we render? " + yes);
-        return  yes;
-    }
-
-    @Override
     public void render(T entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-        System.out.println("RENDER");
         matrixStackIn.push();
         matrixStackIn.rotate(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.prevRotationYaw, entityIn.rotationYaw) - 90.0F));
         matrixStackIn.rotate(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.prevRotationPitch, entityIn.rotationPitch)));
@@ -107,8 +91,8 @@ public class RenderGaladhrimArrow<T extends EntityGaladhrimArrow> extends Entity
         @Override
         public EntityRenderer<? super Entity> createRenderFor(EntityRendererManager manager) {
 
-            final RenderGaladhrimArrow galadhrimArrowRenderer = new RenderGaladhrimArrow(manager);
-            return galadhrimArrowRenderer;
+            final RenderGaladhrimArrow renderGaladhrimArrow = new RenderGaladhrimArrow(manager);
+            return renderGaladhrimArrow;
         }
     }
 }

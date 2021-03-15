@@ -11,6 +11,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import static com.greatorator.tolkienmobs.utils.TTMRand.degToRad;
+
 @OnlyIn(Dist.CLIENT)
 public class ModelTTMRat<E extends AnimalEntity> extends EntityModel<EntityTTMRat> {
     public ModelRenderer RatBody;
@@ -133,18 +135,16 @@ public class ModelTTMRat<E extends AnimalEntity> extends EntityModel<EntityTTMRa
 
         if (limbSwingAmount > 0.2) {
             float flick = Math.min(limbSwingAmount, 0.6F);
-            this.RatTail1.rotateAngleY = MathHelper.sin(MathHelper.wrapDegrees(entityIn.ticksExisted*7)) * (MathHelper.wrapDegrees(5) * flick);
-            RatTail2.rotateAngleY = RatTail1.rotateAngleX * 4;
-            RatTail3.rotateAngleY = RatTail2.rotateAngleX * 3;
+            this.RatTail1.rotateAngleY = MathHelper.sin(degToRad(entityIn.ticksExisted*7)) * (degToRad(5) * flick);
         } else {
-            this.RatTail1.rotateAngleY = MathHelper.sin(MathHelper.wrapDegrees(entityIn.ticksExisted * 7)) * MathHelper.wrapDegrees(5);
-            RatTail2.rotateAngleY = RatTail1.rotateAngleX * 4;
-            RatTail3.rotateAngleY = RatTail2.rotateAngleX * 3;
+            this.RatTail1.rotateAngleY = MathHelper.sin(degToRad(entityIn.ticksExisted*7)) * degToRad(5);
         }
+        RatTail2.rotateAngleY = RatTail1.rotateAngleX * 4;
+        RatTail3.rotateAngleY = RatTail2.rotateAngleX * 3;
 
         // flick ears
-        RatEarR.rotateAngleY = (float) Math.pow(MathHelper.cos(MathHelper.wrapDegrees(entityIn.ticksExisted)), 6) * MathHelper.wrapDegrees(15);
-        RatEarL.rotateAngleY = (float) Math.pow(MathHelper.cos(MathHelper.wrapDegrees(entityIn.ticksExisted)), 6) * MathHelper.wrapDegrees(-15);
+        RatEarR.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(entityIn.ticksExisted*3)), 6) * degToRad(15);
+        RatEarL.rotateAngleY = (float) Math.pow(MathHelper.cos(degToRad(entityIn.ticksExisted*3)), 6) * degToRad(-15);
     }
 
     protected Iterable<ModelRenderer> getHeadParts() {

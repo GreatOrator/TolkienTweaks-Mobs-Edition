@@ -6,7 +6,6 @@ import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
 import com.greatorator.tolkienmobs.entity.merchant.villager.VillagerTTMTrades;
 import com.greatorator.tolkienmobs.handler.TTMHearts;
-import com.greatorator.tolkienmobs.init.TTMColor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -31,7 +30,6 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void commonSetup(FMLCommonSetupEvent event) {
         super.commonSetup(event);
-        MinecraftForge.EVENT_BUS.register(new TTMColor());
 
         if (!ModList.get().isLoaded("mantle")) {
             MinecraftForge.EVENT_BUS.register(new TTMHearts());
@@ -49,6 +47,7 @@ public class ClientProxy extends CommonProxy {
         setupRenderLayers();
         EntityGenerator.registerEntityRenderer();
         EntityGenerator.addEntityAttributes();
+//        MinecraftForge.EVENT_BUS.addListener(TTMColor::itemColourEvent);
         MinecraftForge.EVENT_BUS.addListener(VillagerTTMTrades::onVillagerTradesEvent);
     }
 

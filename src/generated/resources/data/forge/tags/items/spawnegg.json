@@ -8,6 +8,8 @@
     "tolkienmobs:entityttmfrog_spawn_egg",
     "tolkienmobs:entityttmswarm_spawn_egg",
     "tolkienmobs:entityttmsquirrel_spawn_egg",
-    "tolkienmobs:entityttmrat_spawn_egg"
+    "tolkienmobs:entityttmrat_spawn_egg",
+    "tolkienmobs:entityttmauroch_spawn_egg",
+    "tolkienmobs:entityttmmumakil_spawn_egg"
   ]
 }

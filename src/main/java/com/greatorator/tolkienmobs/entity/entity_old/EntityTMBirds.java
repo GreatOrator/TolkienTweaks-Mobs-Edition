@@ -8,7 +8,7 @@
 //import com.greatorator.tolkienmobs.entity.entityai.ProcessStateBirds;
 //import com.greatorator.tolkienmobs.entity.entityai.UpdateStateBirds;
 //import com.greatorator.tolkienmobs.entity.events.BirdTameEvent;
-//import com.greatorator.tolkienmobs.handler.handler_old.interfaces.IModEntity;
+//import com.greatorator.tolkienmobs.handler.interfaces.IModEntity;
 //import com.greatorator.tolkienmobs.init.SoundInit;
 //import com.greatorator.tolkienmobs.init.TTMFeatures;
 //import com.greatorator.tolkienmobs.utils.LogHelperTTM;

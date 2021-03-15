@@ -1,6 +1,6 @@
 //package com.greatorator.tolkienmobs.utils;
 //
-//import com.greatorator.tolkienmobs.handler.handler_old.interfaces.IModEntity;
+//import com.greatorator.tolkienmobs.handler.interfaces.IModEntity;
 //import com.greatorator.tolkienmobs.handler.handler_old.interfaces.providers.PetListProvider;
 //import net.minecraft.block.Block;
 //

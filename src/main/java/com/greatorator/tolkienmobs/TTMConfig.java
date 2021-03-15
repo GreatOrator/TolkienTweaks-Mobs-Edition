@@ -119,7 +119,6 @@ public class TTMConfig {
         for (String name : potionTypeArray) {
             Effect potion = ForgeRegistries.POTIONS.getValue(new ResourceLocation(name));
             if (potion != null) {
-                LOGGER.info(potion);
                 potions.add(potion);
             }
         }
