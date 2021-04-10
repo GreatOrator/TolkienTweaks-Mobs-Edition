@@ -50,4 +50,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
         getOrCreateBuilder(BlockTags.FLOWERS).addTag(TTMTags.blocks.FLOWERS);
         getOrCreateBuilder(TTMTags.blocks.DECAY_GROW_BLOCK).addItemEntry(Blocks.COBBLESTONE).addItemEntry(Blocks.STONE).addItemEntry(Blocks.MYCELIUM).addItemEntry(Blocks.PODZOL).addItemEntry(Blocks.CRIMSON_NYLIUM).addItemEntry(Blocks.WARPED_NYLIUM);
     }
+    public String getName() {
+        return "Tolkien Tweaks - Mobs Edition Block Tags";
+    }
 }

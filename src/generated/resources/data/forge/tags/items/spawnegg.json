@@ -10,6 +10,9 @@
     "tolkienmobs:entityttmsquirrel_spawn_egg",
     "tolkienmobs:entityttmrat_spawn_egg",
     "tolkienmobs:entityttmauroch_spawn_egg",
-    "tolkienmobs:entityttmmumakil_spawn_egg"
+    "tolkienmobs:entityttmmumakil_spawn_egg",
+    "tolkienmobs:entityttmgoat_spawn_egg",
+    "tolkienmobs:entityttmgoblin_spawn_egg",
+    "tolkienmobs:entityttmgoblinking_spawn_egg"
   ]
 }

@@ -12,7 +12,10 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.horse.AbstractChestedHorseEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -26,7 +29,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class EntityTTMGoat extends AbstractChestedHorseEntity {
-    private static final DataParameter<Boolean> DATA_ID_CHEST = EntityDataManager.createKey(AbstractChestedHorseEntity.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> DATA_ID_CHEST = EntityDataManager.createKey(EntityTTMGoat.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> GOAT_TYPE = EntityDataManager.createKey(EntityTTMGoat.class, DataSerializers.VARINT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/goat/goat1.png"));
@@ -55,14 +58,9 @@ public class EntityTTMGoat extends AbstractChestedHorseEntity {
     }
 
     @Override
-    public boolean hasChest() {
-        return this.dataManager.get(DATA_ID_CHEST);
-    }
-
-    @Override
     public double getMountedYOffset()
     {
-        return super.getMountedYOffset() * 0.58F;
+        return super.getMountedYOffset() - 0.025D;
     }
 
     @Override
@@ -149,13 +147,65 @@ public class EntityTTMGoat extends AbstractChestedHorseEntity {
         this.dataManager.register(DATA_ID_CHEST, false);
     }
 
+    @Override
+    public boolean hasChest() {
+        return this.dataManager.get(DATA_ID_CHEST);
+    }
+
+    @Override
+    public void setChested(boolean chested) {
+        this.dataManager.set(DATA_ID_CHEST, chested);
+    }
+
+    protected int getInventorySize() {
+        return this.hasChest() ? 17 : super.getInventorySize();
+    }
+
     public void writeAdditional(CompoundNBT compound) {
         super.writeAdditional(compound);
         compound.putInt("GoatType", this.getGoatType());
+        compound.putBoolean("ChestedGoat", this.hasChest());
+        if (this.hasChest()) {
+            ListNBT listnbt = new ListNBT();
+
+            for(int i = 2; i < this.horseChest.getSizeInventory(); ++i) {
+                ItemStack itemstack = this.horseChest.getStackInSlot(i);
+                if (!itemstack.isEmpty()) {
+                    CompoundNBT compoundnbt = new CompoundNBT();
+                    compoundnbt.putByte("Slot", (byte)i);
+                    itemstack.write(compoundnbt);
+                    listnbt.add(compoundnbt);
+                }
+            }
+
+            compound.put("Items", listnbt);
+        }
+        if (!this.horseChest.getStackInSlot(0).isEmpty()) {
+            compound.put("SaddleItem", this.horseChest.getStackInSlot(0).write(new CompoundNBT()));
+        }
     }
 
     public void readAdditional(CompoundNBT compound) {
         super.readAdditional(compound);
         this.setGoatType(compound.getInt("GoatType"));
+        this.setChested(compound.getBoolean("ChestedGoat"));
+        if (this.hasChest()) {
+            ListNBT listnbt = compound.getList("Items", 10);
+            this.initHorseChest();
+
+            for(int i = 0; i < listnbt.size(); ++i) {
+                CompoundNBT compoundnbt = listnbt.getCompound(i);
+                int j = compoundnbt.getByte("Slot") & 255;
+                if (j >= 2 && j < this.horseChest.getSizeInventory()) {
+                    this.horseChest.setInventorySlotContents(j, ItemStack.read(compoundnbt));
+                }
+            }
+        }
+        if (compound.contains("SaddleItem", 10)) {
+            ItemStack itemstack = ItemStack.read(compound.getCompound("SaddleItem"));
+            if (itemstack.getItem() == Items.SADDLE) {
+                this.horseChest.setInventorySlotContents(0, itemstack);
+            }
+        }
     }
 }

@@ -47,11 +47,6 @@ public class EntityTTMSwarm extends MonsterEntity {
     }
 
     @Override
-    protected SoundEvent getAmbientSound() {
-        return SoundGenerator.soundIdleMidgeFly.get();
-    }
-
-    @Override
     public boolean attackEntityAsMob(Entity entity) {
         if (super.attackEntityAsMob(entity)) {
             if (entity instanceof LivingEntity) {
@@ -86,6 +81,11 @@ public class EntityTTMSwarm extends MonsterEntity {
         } else {
             return MonsterEntity.canMonsterSpawn(type, world, reason, pos, rand);
         }
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundGenerator.soundIdleMidgeFly.get();
     }
 
     @Override

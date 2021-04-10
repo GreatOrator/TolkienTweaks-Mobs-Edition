@@ -10,6 +10,8 @@ import com.greatorator.tolkienmobs.entity.ammo.EntityGaladhrimArrow;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderGaladhrimArrow;
+import com.greatorator.tolkienmobs.entity.boss.EntityTTMGoblinKing;
+import com.greatorator.tolkienmobs.entity.boss.render.RenderTTMGoblinKing;
 import com.greatorator.tolkienmobs.entity.merchant.EntityTTMDwarf;
 import com.greatorator.tolkienmobs.entity.merchant.EntityTTMElves;
 import com.greatorator.tolkienmobs.entity.merchant.EntityTTMHobbit;
@@ -18,6 +20,10 @@ import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMDwarf;
 import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMElves;
 import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMHobbit;
 import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMHuman;
+import com.greatorator.tolkienmobs.entity.monster.EntityTTMBarrowWight;
+import com.greatorator.tolkienmobs.entity.monster.EntityTTMGoblin;
+import com.greatorator.tolkienmobs.entity.monster.render.RenderTTMBarrowWight;
+import com.greatorator.tolkienmobs.entity.monster.render.RenderTTMGoblin;
 import com.greatorator.tolkienmobs.entity.passive.EntityTTMAuroch;
 import com.greatorator.tolkienmobs.entity.passive.EntityTTMGoat;
 import com.greatorator.tolkienmobs.entity.passive.EntityTTMMumakil;
@@ -67,6 +73,16 @@ public class EntityGenerator {
     private static final EntityType<EntityTTMHobbit> entityTTMHobbit = buildEntity("entityttmhobbit", EntityTTMHobbit::new, EntityClassification.MISC, 0.6F, 1.4F);
     public static final RegistryObject<EntityType<EntityTTMHobbit>> ENTITY_TTM_HOBBIT = ENTITY.register("entityttmhobbit", () -> entityTTMHobbit);
 
+    // Monster
+    private static final EntityType<EntityTTMGoblin> entityTTMGoblin = buildEntity("entityttmgoblin", EntityTTMGoblin::new, EntityClassification.MONSTER, 0.9F, 1.0F);
+    public static final RegistryObject<EntityType<EntityTTMGoblin>> ENTITY_TTM_GOBLIN = ENTITY.register("entityttmgoblin", () -> entityTTMGoblin);
+    private static final EntityType<EntityTTMBarrowWight> entityTTMBarrow = buildEntity("entityttmbarrow", EntityTTMBarrowWight::new, EntityClassification.MONSTER, 0.9F, 1.0F);
+    public static final RegistryObject<EntityType<EntityTTMBarrowWight>> ENTITY_TTM_BARROW = ENTITY.register("entityttmbarrow", () -> entityTTMBarrow);
+
+    // Boss
+    private static final EntityType<EntityTTMGoblinKing> entityTTMGoblinKing = buildEntity("entityttmgoblinking", EntityTTMGoblinKing::new, EntityClassification.MONSTER, 0.9F, 1.0F);
+    public static final RegistryObject<EntityType<EntityTTMGoblinKing>> ENTITY_TTM_GOBLINKING = ENTITY.register("entityttmgoblinking", () -> entityTTMGoblinKing);
+
     // Passive
     private static final EntityType<EntityTTMAuroch> entityTTMAuroch = buildEntity("entityttmauroch", EntityTTMAuroch::new, EntityClassification.CREATURE, 1.9F, 1.4F);
     public static final RegistryObject<EntityType<EntityTTMAuroch>> ENTITY_TTM_AUROCH = ENTITY.register("entityttmauroch", () -> entityTTMAuroch);
@@ -97,6 +113,13 @@ public class EntityGenerator {
         RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_ELVES.get(), RenderTTMElves::new);
         RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_HOBBIT.get(), RenderTTMHobbit::new);
 
+        // Monster
+        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_GOBLIN.get(), RenderTTMGoblin::new);
+        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_BARROW.get(), RenderTTMBarrowWight::new);
+
+        // Boss
+        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_GOBLINKING.get(), RenderTTMGoblinKing::new);
+
         // Passive
         RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_AUROCH.get(), RenderTTMAuroch::new);
         RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_MUMAKIL.get(), RenderTTMMumakil::new);
@@ -125,6 +148,13 @@ public class EntityGenerator {
         GlobalEntityTypeAttributes.put(ENTITY_TTM_ELVES.get(), EntityTTMElves.registerAttributes().create());
         GlobalEntityTypeAttributes.put(ENTITY_TTM_HOBBIT.get(), EntityTTMHobbit.registerAttributes().create());
 
+        // Monster
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_GOBLIN.get(), EntityTTMGoblin.registerAttributes().create());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_BARROW.get(), EntityTTMBarrowWight.registerAttributes().create());
+
+        // Boss
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_GOBLINKING.get(), EntityTTMGoblinKing.registerAttributes().create());
+
         // Passive
         GlobalEntityTypeAttributes.put(ENTITY_TTM_AUROCH.get(), EntityTTMAuroch.registerAttributes().create());
         GlobalEntityTypeAttributes.put(ENTITY_TTM_MUMAKIL.get(), EntityTTMMumakil.registerAttributes().create());
@@ -146,6 +176,13 @@ public class EntityGenerator {
     public static final RegistryObject<Item> EGG_TTMDWARF = createSpawnEgg("entityttmdwarf", entityTTMDwarf, 16426382, 11416321);
     public static final RegistryObject<Item> EGG_TTMELVES = createSpawnEgg("entityttmelves", entityTTMElves, 16426382, 8195056);
     public static final RegistryObject<Item> EGG_TTMHOBBIT = createSpawnEgg("entityttmhobbit", entityTTMHobbit, 16426382, 7063795);
+
+    // Monster
+    public static final RegistryObject<Item> EGG_TTMGOBLIN = createSpawnEgg("entityttmgoblin", entityTTMGoblin, 14705521, 11525638);
+    public static final RegistryObject<Item> EGG_TTMBARROW = createSpawnEgg("entityttmbarrow", entityTTMBarrow, 14705521, 6628136);
+
+    // Boss
+    public static final RegistryObject<Item> EGG_TTMGOBLINKING = createSpawnEgg("entityttmgoblinking", entityTTMGoblinKing, 11025577, 9488223);
 
     // Passive
     public static final RegistryObject<Item> EGG_TTMAUROCH = createSpawnEgg("entityttmauroch", entityTTMAuroch, 4751910, 11812051);

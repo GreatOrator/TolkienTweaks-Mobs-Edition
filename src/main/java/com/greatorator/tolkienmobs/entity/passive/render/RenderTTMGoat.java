@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderTTMGoat extends MobRenderer<EntityTTMGoat, ModelTTMGoat<EntityTTMGoat>> {
     public RenderTTMGoat(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new ModelTTMGoat<>(), 3.0F);
+        super(renderManagerIn, new ModelTTMGoat<>(), 1.0F);
     }
 
     public ResourceLocation getEntityTexture(EntityTTMGoat entity) {

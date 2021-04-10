@@ -245,6 +245,10 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(EntityGenerator.EGG_TTMAUROCH.get());
         eggItem(EntityGenerator.EGG_TTMMUMAKIL.get());
         eggItem(EntityGenerator.EGG_TTMGOAT.get());
+        eggItem(EntityGenerator.EGG_TTMGOBLIN.get());
+        eggItem(EntityGenerator.EGG_TTMGOBLINKING.get());
+        eggItem(EntityGenerator.EGG_TTMBARROW.get());
+
 
 
 

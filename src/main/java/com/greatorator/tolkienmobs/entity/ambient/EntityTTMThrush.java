@@ -89,7 +89,9 @@ public class EntityTTMThrush extends ParrotEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 6.0D).createMutableAttribute(Attributes.FLYING_SPEED, (double) 0.4F).createMutableAttribute(Attributes.MOVEMENT_SPEED, (double) 0.2F);
+        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 6.0D)
+                .createMutableAttribute(Attributes.FLYING_SPEED, (double) 0.4F)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, (double) 0.2F);
     }
 
     /**

@@ -77,10 +77,13 @@ public class ItemTagGenerator extends ItemTagsProvider {
         getOrCreateBuilder(TTMTags.items.FUR).add(TTMContent.MONSTER_FUR.get());
         getOrCreateBuilder(TTMTags.items.ARROW).add(TTMContent.GALADHRIM_ARROW.get());
         getOrCreateBuilder(ItemTags.ARROWS).addTag(TTMTags.items.ARROW);
-        getOrCreateBuilder(TTMTags.items.SPAWNEGG).add(EntityGenerator.EGG_TTMELVES.get(), EntityGenerator.EGG_TTMDWARF.get(), EntityGenerator.EGG_TTMHUMAN.get(), EntityGenerator.EGG_TTMTHRUSH.get(), EntityGenerator.EGG_TTMFROG.get(), EntityGenerator.EGG_TTMSWARM.get(), EntityGenerator.EGG_TTMSQUIRREL.get(), EntityGenerator.EGG_TTMRAT.get(), EntityGenerator.EGG_TTMAUROCH.get(), EntityGenerator.EGG_TTMMUMAKIL.get(), EntityGenerator.EGG_TTMGOAT.get());
+        getOrCreateBuilder(TTMTags.items.SPAWNEGG).add(EntityGenerator.EGG_TTMELVES.get(), EntityGenerator.EGG_TTMDWARF.get(), EntityGenerator.EGG_TTMHUMAN.get(), EntityGenerator.EGG_TTMTHRUSH.get(), EntityGenerator.EGG_TTMFROG.get(), EntityGenerator.EGG_TTMSWARM.get(), EntityGenerator.EGG_TTMSQUIRREL.get(), EntityGenerator.EGG_TTMRAT.get(), EntityGenerator.EGG_TTMAUROCH.get(), EntityGenerator.EGG_TTMMUMAKIL.get(), EntityGenerator.EGG_TTMGOAT.get(), EntityGenerator.EGG_TTMGOBLIN.get(), EntityGenerator.EGG_TTMGOBLINKING.get(), EntityGenerator.EGG_TTMBARROW.get());
 
         if (ModList.get().isLoaded("curios")) {
             TTMCurios.generateTags(this::getOrCreateBuilder);
         }
+    }
+    public String getName() {
+        return "Tolkien Tweaks - Mobs Edition Item Tags";
     }
 }

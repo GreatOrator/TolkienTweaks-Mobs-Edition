@@ -336,7 +336,7 @@ public class TTMContent {
     public static RegistryObject<Item> GOLEM_STONE_AIR = ITEMS.register("item_golem_stone_air", () -> new Item(new Item.Properties().maxStackSize(16).group(matsGroup)));
     public static RegistryObject<Item> GOLEM_STONE_FIRE = ITEMS.register("item_golem_stone_fire", () -> new Item(new Item.Properties().maxStackSize(16).group(matsGroup)));
     public static RegistryObject<Item> GOLEM_STONE_WATER = ITEMS.register("item_golem_stone_water", () -> new Item(new Item.Properties().maxStackSize(16).group(matsGroup)));
-    public static RegistryObject<Item> GOLEM_STONE_SUMMON = ITEMS.register("item_golem_stone_summon", () -> new TTMLore(new Item.Properties().maxStackSize(16).group(matsGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> GOLEM_STONE_SUMMON = ITEMS.register("item_golem_stone_summon", () -> new TTMLore(new Item.Properties().maxStackSize(16).group(spawnGroup)).setEffectOverride().setHasLore().setItemHasUse().setSpawnInfo());
 
     //#################################################################
     // Record Items
