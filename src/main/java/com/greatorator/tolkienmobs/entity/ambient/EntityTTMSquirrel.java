@@ -33,7 +33,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class EntityTTMSquirrel extends EntityTTMAmbients {
-    private static final DataParameter<Integer> SQUIRREL_TYPE = EntityDataManager.createKey(EntityTTMSquirrel.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> SQUIRREL_TYPE = EntityDataManager.defineId(EntityTTMSquirrel.class, DataSerializers.INT);
     private static final ResourceLocation KILLER_SQUIRREL = new ResourceLocation(TolkienMobs.MODID, "textures/entity/sosquirrel/killer_squirrel");
 
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
@@ -53,12 +53,12 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, Ingredient.fromTag(TTMTags.items.ACORNS), true));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, Ingredient.of(TTMTags.items.ACORNS), true));
         this.goalSelector.addGoal(5, new PanicGoal(this, 1.3F));
         this.goalSelector.addGoal(6, new AvoidEntityGoal<>(this, PlayerEntity.class, 2.0F, 0.8F, 1.4F));
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers());
     }
 
     protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
@@ -77,8 +77,8 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
          * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
          * method as well.
          */
-        public boolean shouldExecute() {
-            return this.ttmSquirrel.getSquirrelType() != 99 && super.shouldExecute();
+        public boolean canUse() {
+            return this.ttmSquirrel.getSquirrelType() != 99 && super.canUse();
         }
     }
 
@@ -88,27 +88,27 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
     }
 
     public int getSquirrelType() {
-        return this.dataManager.get(SQUIRREL_TYPE);
+        return this.entityData.get(SQUIRREL_TYPE);
     }
 
     public void setSquirrelType(int type) {
         if (type == 99) {
             this.getAttribute(Attributes.ARMOR).setBaseValue(8.0D);
-            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
+            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers());
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
             this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WolfEntity.class, true));
             this.goalSelector.addGoal(4, new EntityTTMSquirrel.EvilAttackGoal(this));
             if (!this.hasCustomName()) {
-                this.setCustomName(new TranslationTextComponent(Util.makeTranslationKey("entity", KILLER_SQUIRREL)));
+                this.setCustomName(new TranslationTextComponent(Util.makeDescriptionId("entity", KILLER_SQUIRREL)));
             }
         }
 
-        this.dataManager.set(SQUIRREL_TYPE, type);
+        this.entityData.set(SQUIRREL_TYPE, type);
         if (type < 0 || type >= 4) {
-            type = this.rand.nextInt(3);
+            type = this.random.nextInt(3);
         }
 
-        this.dataManager.set(SQUIRREL_TYPE, type);
+        this.entityData.set(SQUIRREL_TYPE, type);
     }
 
     static class EvilAttackGoal extends MeleeAttackGoal {
@@ -117,22 +117,22 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
         }
 
         protected double getAttackReachSqr(LivingEntity attackTarget) {
-            return (double)(4.0F + attackTarget.getWidth());
+            return (double)(4.0F + attackTarget.getBbWidth());
         }
     }
 
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(SQUIRREL_TYPE, 1);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(SQUIRREL_TYPE, 1);
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         compound.putInt("SquirrelType", this.getSquirrelType());
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         this.setSquirrelType(compound.getInt("SquirrelType"));
     }
 
@@ -156,21 +156,21 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
         return SoundGenerator.soundDeathSOSquirrel.get();
     }
 
-    public SoundCategory getSoundCategory()
+    public SoundCategory getSoundSource()
     {
         return this.getSquirrelType() == 99 ? SoundCategory.HOSTILE : SoundCategory.NEUTRAL;
     }
 
-    public boolean attackEntityAsMob(Entity entityIn)
+    public boolean doHurtTarget(Entity entityIn)
     {
         if (this.getSquirrelType() == 99)
         {
-            this.playSound(SoundGenerator.soundAngrySOSquirrel.get(), 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-            return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 8.0F);
+            this.playSound(SoundGenerator.soundAngrySOSquirrel.get(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+            return entityIn.hurt(DamageSource.mobAttack(this), 8.0F);
         }
         else
         {
-            return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 3.0F);
+            return entityIn.hurt(DamageSource.mobAttack(this), 3.0F);
         }
     }
 
@@ -179,30 +179,30 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
         return itemIn == TTMContent.TREE_ACORN.get() || itemIn == TTMContent.GOLDEN_TREE_ACORN.get();
     }
 
-    public boolean isBreedingItem(ItemStack stack)
+    public boolean isFood(ItemStack stack)
     {
         return this.isSquirrelBreedingItem(stack.getItem());
     }
 
     @Override
-    public float getBlockPathWeight(BlockPos pos) {
+    public float getWalkTargetValue(BlockPos pos) {
         // prefer standing on leaves
-        Material underMaterial = this.world.getBlockState(pos.down()).getMaterial();
+        Material underMaterial = this.level.getBlockState(pos.below()).getMaterial();
         if (underMaterial == Material.LEAVES) {
             return 12.0F;
         }
         if (underMaterial == Material.WOOD) {
             return 15.0F;
         }
-        if (underMaterial == Material.EARTH) {
+        if (underMaterial == Material.DIRT) {
             return 10.0F;
         }
 
-        return this.world.getLightValue(pos) - 0.5F;
+        return this.level.getLightEmission(pos) - 0.5F;
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag)
+    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag)
     {
         int i = this.getRandomSquirrelType(worldIn);
         if (spawnDataIn instanceof EntityTTMSquirrel.SquirrelData) {
@@ -212,17 +212,17 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
         }
 
         this.setSquirrelType(i);
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
     private int getRandomSquirrelType(IWorld worldIn)
     {
-        Biome biome = worldIn.getBiome(this.getPosition());
-        int i = this.rand.nextInt(100);
+        Biome biome = worldIn.getBiome(this.blockPosition());
+        int i = this.random.nextInt(100);
 
         if (biome.getPrecipitation() == Biome.RainType.SNOW) {
             return i < 80 ? 1 : 3;
-        } else if (biome.getCategory() == Biome.Category.DESERT) {
+        } else if (biome.getBiomeCategory() == Biome.Category.DESERT) {
             return 4;
         } else {
             return i < 50 ? 0 : (i < 90 ? 4 : 2);
@@ -240,13 +240,13 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
 
     @Nullable
     @Override
-    public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+    public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         return null;
     }
 
     @Override
     @Nullable
-    protected ResourceLocation getLootTable() {
+    protected ResourceLocation getDefaultLootTable() {
         return null;
     }
 }

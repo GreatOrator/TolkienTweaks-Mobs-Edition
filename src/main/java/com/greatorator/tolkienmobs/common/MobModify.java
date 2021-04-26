@@ -16,11 +16,11 @@ public abstract class MobModify {
             return nextMod.onUpdate(mob);
         } else {
             if (attackTarget == null) {
-                attackTarget = mob.world.getClosestPlayer(mob, 7.5f);
+                attackTarget = mob.level.getNearestPlayer(mob, 7.5f);
             }
 
             if (attackTarget != null) {
-                if (!attackTarget.isAlive() || attackTarget.getDistance(mob) > 15f) {
+                if (!attackTarget.isAlive() || attackTarget.distanceTo(mob) > 15f) {
                     attackTarget = null;
                 }
             }

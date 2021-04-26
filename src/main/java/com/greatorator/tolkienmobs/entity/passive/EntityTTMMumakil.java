@@ -31,7 +31,7 @@ import java.util.Map;
 
 /** Borrowed from Jabelar https://github.com/jabelar */
 public class EntityTTMMumakil extends EntityTTMHerds {
-    private static final DataParameter<Integer> MUMAKIL_TYPE = EntityDataManager.createKey(EntityTTMMumakil.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> MUMAKIL_TYPE = EntityDataManager.defineId(EntityTTMMumakil.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mumakil/mumakil1.png"));
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mumakil/mumakil2.png"));
@@ -45,16 +45,16 @@ public class EntityTTMMumakil extends EntityTTMHerds {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 50.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 16.0D).createMutableAttribute(Attributes.ARMOR, 8.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.30000001192092896D);
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 50.0D).add(Attributes.ATTACK_DAMAGE, 16.0D).add(Attributes.ARMOR, 8.0D).add(Attributes.KNOCKBACK_RESISTANCE, 1.0D).add(Attributes.MOVEMENT_SPEED, 0.30000001192092896D);
     }
 
     public boolean getCanSpawnHere()
     {
-        int i = MathHelper.floor(this.getPosX());
-        int j = MathHelper.floor(this.getPosY());
-        int k = MathHelper.floor(this.getPosZ());
+        int i = MathHelper.floor(this.getX());
+        int j = MathHelper.floor(this.getY());
+        int k = MathHelper.floor(this.getZ());
         BlockPos blockpos = new BlockPos(i, j, k);
-        return this.world.getDifficulty() != Difficulty.PEACEFUL && this.world.getBlockState(blockpos.down()).getBlock() == this.spawnableBlock && this.world.getLight(blockpos) > 8;
+        return this.level.getDifficulty() != Difficulty.PEACEFUL && this.level.getBlockState(blockpos.below()).getBlock() == this.spawnableBlock && this.level.getMaxLocalRawBrightness(blockpos) > 8;
     }
 
 
@@ -64,7 +64,7 @@ public class EntityTTMMumakil extends EntityTTMHerds {
         return 0.4F;
     }
 
-    public EntityTTMMumakil func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+    public EntityTTMMumakil getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         return EntityGenerator.ENTITY_TTM_MUMAKIL.get().create(p_241840_1_);
     }
 
@@ -81,7 +81,7 @@ public class EntityTTMMumakil extends EntityTTMHerds {
     }
 
     protected void playStepSound(BlockPos pos, BlockState blockIn) {
-        this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
+        this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
     }
 
     /** Region for determining random skin */
@@ -90,37 +90,37 @@ public class EntityTTMMumakil extends EntityTTMHerds {
     }
 
     public int getMumakilType() {
-        return this.dataManager.get(MUMAKIL_TYPE);
+        return this.entityData.get(MUMAKIL_TYPE);
     }
 
     public void setMumakilType(int type) {
         if (type < 0 || type >= 5) {
-            type = this.rand.nextInt(4);
+            type = this.random.nextInt(4);
         }
 
-        this.dataManager.set(MUMAKIL_TYPE, type);
+        this.entityData.set(MUMAKIL_TYPE, type);
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(1, 4);
         this.setMumakilType(job);
 
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(MUMAKIL_TYPE, 1);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(MUMAKIL_TYPE, 1);
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         compound.putInt("MumakilType", this.getMumakilType());
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         this.setMumakilType(compound.getInt("MumakilType"));
     }
 }

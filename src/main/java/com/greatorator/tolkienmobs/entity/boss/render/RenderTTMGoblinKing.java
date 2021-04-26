@@ -14,11 +14,11 @@ public class RenderTTMGoblinKing extends MobRenderer<EntityTTMGoblinKing, ModelT
     }
 
     @Override
-    public ResourceLocation getEntityTexture(EntityTTMGoblinKing entity) {
+    public ResourceLocation getTextureLocation(EntityTTMGoblinKing entity) {
         return entity.getGoblinKingTypeName();
     }
 
-    protected void preRenderCallback(EntityTTMGoblinKing entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
-        super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
+    protected void scale(EntityTTMGoblinKing entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+        super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }
 }

@@ -12,11 +12,11 @@ public class RenderTTMGoat extends MobRenderer<EntityTTMGoat, ModelTTMGoat<Entit
         super(renderManagerIn, new ModelTTMGoat<>(), 1.0F);
     }
 
-    public ResourceLocation getEntityTexture(EntityTTMGoat entity) {
+    public ResourceLocation getTextureLocation(EntityTTMGoat entity) {
         return entity.getGoatTypeName();
     }
 
-    protected void preRenderCallback(EntityTTMGoat entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
-        super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
+    protected void scale(EntityTTMGoat entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+        super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }
 }

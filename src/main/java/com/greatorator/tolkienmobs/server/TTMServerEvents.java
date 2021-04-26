@@ -16,26 +16,26 @@ public class TTMServerEvents {
 
     public static void livingUpdate (LivingEvent.LivingUpdateEvent living){
         LivingEntity entity = living.getEntityLiving();
-        BlockPos pos = entity.getPosition();
-        World worldIn = living.getEntity().world;
+        BlockPos pos = entity.blockPosition();
+        World worldIn = living.getEntity().level;
 
         //region/*---------------- Balrog's Mark -----------------*/
-        int level = EnchantmentHelper.getMaxEnchantmentLevel(EnchantmentGenerator.BALROG_MARK.get(), entity);
+        int level = EnchantmentHelper.getEnchantmentLevel(EnchantmentGenerator.BALROG_MARK.get(), entity);
 
         if (entity.isOnGround() && level > 0) {
-            BlockState blockstate = Blocks.MAGMA_BLOCK.getDefaultState();
+            BlockState blockstate = Blocks.MAGMA_BLOCK.defaultBlockState();
             float f = (float)Math.min(16, 2 + level);
             BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
 
-            for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add((double)(-f), -1.0D, (double)(-f)), pos.add((double)f, -1.0D, (double)f))) {
-                if (blockpos.withinDistance(entity.getPositionVec(), (double)f)) {
-                    blockpos$mutable.setPos(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+            for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset((double)(-f), -1.0D, (double)(-f)), pos.offset((double)f, -1.0D, (double)f))) {
+                if (blockpos.closerThan(entity.position(), (double)f)) {
+                    blockpos$mutable.set(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
                     BlockState blockstate1 = worldIn.getBlockState(blockpos$mutable);
                     if (blockstate1.isAir(worldIn, blockpos$mutable)) {
                         BlockState blockstate2 = worldIn.getBlockState(blockpos);
-                        if (blockstate2.getBlock() == Blocks.GRASS_BLOCK || blockstate2.getBlock() == Blocks.DIRT && worldIn.placedBlockCollides(blockstate, blockpos, ISelectionContext.dummy()) && !net.minecraftforge.event.ForgeEventFactory.onBlockPlace(entity, net.minecraftforge.common.util.BlockSnapshot.create(worldIn.getDimensionKey(), worldIn, blockpos), Direction.DOWN)) {
-                            worldIn.setBlockState(blockpos, blockstate);
-                            worldIn.getPendingBlockTicks().scheduleTick(blockpos, Blocks.MAGMA_BLOCK, MathHelper.nextInt(entity.getRNG(), 60, 120));
+                        if (blockstate2.getBlock() == Blocks.GRASS_BLOCK || blockstate2.getBlock() == Blocks.DIRT && worldIn.isUnobstructed(blockstate, blockpos, ISelectionContext.empty()) && !net.minecraftforge.event.ForgeEventFactory.onBlockPlace(entity, net.minecraftforge.common.util.BlockSnapshot.create(worldIn.dimension(), worldIn, blockpos), Direction.DOWN)) {
+                            worldIn.setBlockAndUpdate(blockpos, blockstate);
+                            worldIn.getBlockTicks().scheduleTick(blockpos, Blocks.MAGMA_BLOCK, MathHelper.nextInt(entity.getRandom(), 60, 120));
                         }
                     }
                 }

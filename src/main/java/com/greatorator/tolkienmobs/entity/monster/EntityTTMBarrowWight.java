@@ -29,7 +29,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class EntityTTMBarrowWight extends MonsterEntity {
-    private static final DataParameter<Integer> BARROW_TYPE = EntityDataManager.createKey(EntityTTMBarrowWight.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> BARROW_TYPE = EntityDataManager.defineId(EntityTTMBarrowWight.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/barrowwight/barrowwight1.png"));
         option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/barrowwight/barrowwight2.png"));
@@ -42,24 +42,24 @@ public class EntityTTMBarrowWight extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 16.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D)
-                .createMutableAttribute(Attributes.ARMOR, 5.0D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 16.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.23D)
+                .add(Attributes.ATTACK_DAMAGE, 3.0D)
+                .add(Attributes.ARMOR, 5.0D);
     }
 
-    public void livingTick() {
+    public void aiStep() {
         if (this.isAlive()) {
-            boolean flag = this.shouldBurnInDay() && this.isInDaylight();
+            boolean flag = this.shouldBurnInDay() && this.isSunBurnTick();
             if (flag) {
-                ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
+                ItemStack itemstack = this.getItemBySlot(EquipmentSlotType.HEAD);
                 if (!itemstack.isEmpty()) {
-                    if (itemstack.isDamageable()) {
-                        itemstack.setDamage(itemstack.getDamage() + this.rand.nextInt(2));
-                        if (itemstack.getDamage() >= itemstack.getMaxDamage()) {
-                            this.sendBreakAnimation(EquipmentSlotType.HEAD);
-                            this.setItemStackToSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+                    if (itemstack.isDamageableItem()) {
+                        itemstack.setDamageValue(itemstack.getDamageValue() + this.random.nextInt(2));
+                        if (itemstack.getDamageValue() >= itemstack.getMaxDamage()) {
+                            this.broadcastBreakEvent(EquipmentSlotType.HEAD);
+                            this.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
                         }
                     }
 
@@ -67,19 +67,19 @@ public class EntityTTMBarrowWight extends MonsterEntity {
                 }
 
                 if (flag) {
-                    this.setFire(8);
+                    this.setSecondsOnFire(8);
                 }
             }
         }
 
-        super.livingTick();
+        super.aiStep();
     }
 
     protected boolean shouldBurnInDay() {
         return true;
     }
 
-    public CreatureAttribute getCreatureAttribute()
+    public CreatureAttribute getMobType()
     {
         return CreatureAttribute.UNDEAD;
     }
@@ -110,38 +110,38 @@ public class EntityTTMBarrowWight extends MonsterEntity {
     }
 
     public int getBarrowType() {
-        return this.dataManager.get(BARROW_TYPE);
+        return this.entityData.get(BARROW_TYPE);
     }
 
     public void setBarrowType(int type) {
         if (type < 0 || type >= 5) {
-            type = this.rand.nextInt(4);
+            type = this.random.nextInt(4);
         }
 
-        this.dataManager.set(BARROW_TYPE, type);
+        this.entityData.set(BARROW_TYPE, type);
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(1, 4);
         this.setBarrowType(job);
-        this.setEquipmentBasedOnDifficulty(difficultyIn);
+        this.populateDefaultEquipmentSlots(difficultyIn);
 
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(BARROW_TYPE, 3);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(BARROW_TYPE, 3);
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         compound.putInt("BarrowType", this.getBarrowType());
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         this.setBarrowType(compound.getInt("BarrowType"));
     }
 }

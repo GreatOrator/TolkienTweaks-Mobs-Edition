@@ -27,7 +27,7 @@ public class EntityTTMSwarm extends MonsterEntity {
     public EntityTTMSwarm(EntityType<? extends EntityTTMSwarm> type, World world) {
         super(type, world);
 
-        this.stepHeight = 2.1f;
+        this.maxUpStep = 2.1f;
     }
 
     @Override
@@ -40,18 +40,18 @@ public class EntityTTMSwarm extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 12.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 12.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.23D)
+                .add(Attributes.ATTACK_DAMAGE, 3.0D);
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entity) {
-        if (super.attackEntityAsMob(entity)) {
+    public boolean doHurtTarget(Entity entity) {
+        if (super.doHurtTarget(entity)) {
             if (entity instanceof LivingEntity) {
                 int duration;
-                switch (world.getDifficulty()) {
+                switch (level.getDifficulty()) {
                     case EASY:
                         duration = 7;
                         break;
@@ -64,7 +64,7 @@ public class EntityTTMSwarm extends MonsterEntity {
                         break;
                 }
 
-                ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.HUNGER, duration * 20, 0));
+                ((LivingEntity) entity).addEffect(new EffectInstance(Effects.HUNGER, duration * 20, 0));
             }
 
             return true;
@@ -74,12 +74,12 @@ public class EntityTTMSwarm extends MonsterEntity {
     }
 
     public static boolean canSpawn(EntityType<? extends MonsterEntity> type, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
-        Optional<RegistryKey<Biome>> key = world.func_242406_i(pos);
+        Optional<RegistryKey<Biome>> key = world.getBiomeName(pos);
         if (Objects.equals(key, Optional.of(Biomes.SWAMP))) {
             // no light level check
-            return world.getDifficulty() != Difficulty.PEACEFUL && MobEntity.canSpawnOn(type, world, reason, pos, rand);
+            return world.getDifficulty() != Difficulty.PEACEFUL && MobEntity.checkMobSpawnRules(type, world, reason, pos, rand);
         } else {
-            return MonsterEntity.canMonsterSpawn(type, world, reason, pos, rand);
+            return MonsterEntity.checkAnyLightMonsterSpawnRules(type, world, reason, pos, rand);
         }
     }
 
@@ -89,7 +89,7 @@ public class EntityTTMSwarm extends MonsterEntity {
     }
 
     @Override
-    public int getMaxSpawnedInChunk() {
+    public int getMaxSpawnClusterSize() {
         return 1;
     }
 }

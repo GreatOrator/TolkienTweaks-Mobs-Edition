@@ -14,18 +14,18 @@ public class TerrorTTMEffect extends TTMEffectBase {
     }
 
     @Override
-    public void performEffect(LivingEntity entity, int amplifier) {
-        int level = EnchantmentHelper.getMaxEnchantmentLevel(EnchantmentGenerator.GONDOR_RESOLVE.get(), entity);
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
+        int level = EnchantmentHelper.getEnchantmentLevel(EnchantmentGenerator.GONDOR_RESOLVE.get(), entity);
 
         if (level > 0) {
-            entity.removePotionEffect(this);
+            entity.removeEffect(this);
         }else{
             return;
         }
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return duration % terrorDuration == 0;
     }
 }

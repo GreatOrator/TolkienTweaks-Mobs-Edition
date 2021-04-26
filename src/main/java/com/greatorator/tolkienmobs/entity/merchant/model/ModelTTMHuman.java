@@ -21,25 +21,25 @@ public class ModelTTMHuman<T extends Entity> extends SegmentedModel<T> implement
     private ModelRenderer bipedLeftArm;
 
     public ModelTTMHuman() {
-        this.textureWidth = 64;
-        this.textureHeight = 64;
+        this.texWidth = 64;
+        this.texHeight = 64;
         this.HumanHead = new ModelRenderer(this, 0, 0);
-        this.HumanHead.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.HumanHead.setPos(0.0F, 0.0F, 0.0F);
         this.HumanHead.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
         this.bipedLeftArm = new ModelRenderer(this, 32, 48);
-        this.bipedLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
+        this.bipedLeftArm.setPos(5.0F, 2.0F, 0.0F);
         this.bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
         this.HumanBody = new ModelRenderer(this, 16, 16);
-        this.HumanBody.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.HumanBody.setPos(0.0F, 0.0F, 0.0F);
         this.HumanBody.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.0F);
         this.HumanLegLeft = new ModelRenderer(this, 16, 48);
-        this.HumanLegLeft.setRotationPoint(1.9F, 12.0F, 0.0F);
+        this.HumanLegLeft.setPos(1.9F, 12.0F, 0.0F);
         this.HumanLegLeft.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
         this.HumanLegRight = new ModelRenderer(this, 0, 16);
-        this.HumanLegRight.setRotationPoint(-1.9F, 12.0F, 0.0F);
+        this.HumanLegRight.setPos(-1.9F, 12.0F, 0.0F);
         this.HumanLegRight.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
         this.bipedRightArm = new ModelRenderer(this, 40, 16);
-        this.bipedRightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
+        this.bipedRightArm.setPos(-5.0F, 2.0F, 0.0F);
         this.bipedRightArm.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
         this.HumanBody.addChild(this.HumanHead);
         this.HumanBody.addChild(this.bipedLeftArm);
@@ -48,42 +48,42 @@ public class ModelTTMHuman<T extends Entity> extends SegmentedModel<T> implement
         this.HumanBody.addChild(this.bipedRightArm);
     }
 
-    public Iterable<ModelRenderer> getParts() {
+    public Iterable<ModelRenderer> parts() {
         return ImmutableList.of(this.HumanHead, this.HumanBody, this.HumanLegRight, this.HumanLegLeft, this.bipedLeftArm, this.bipedRightArm);
     }
 
     /**
      * Sets this entity's model rotation angles
      */
-    public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         boolean flag = false;
         if (entityIn instanceof AbstractVillagerEntity) {
-            flag = ((AbstractVillagerEntity)entityIn).getShakeHeadTicks() > 0;
+            flag = ((AbstractVillagerEntity)entityIn).getUnhappyCounter() > 0;
         }
 
-        this.HumanHead.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-        this.HumanHead.rotateAngleX = headPitch * ((float)Math.PI / 180F);
+        this.HumanHead.yRot = netHeadYaw * ((float)Math.PI / 180F);
+        this.HumanHead.xRot = headPitch * ((float)Math.PI / 180F);
         if (flag) {
-            this.HumanHead.rotateAngleZ = 0.3F * MathHelper.sin(0.45F * ageInTicks);
-            this.HumanHead.rotateAngleX = 0.4F;
+            this.HumanHead.zRot = 0.3F * MathHelper.sin(0.45F * ageInTicks);
+            this.HumanHead.xRot = 0.4F;
         } else {
-            this.HumanHead.rotateAngleZ = 0.0F;
+            this.HumanHead.zRot = 0.0F;
         }
 
-        this.bipedRightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.bipedLeftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-        this.HumanLegRight.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount * 0.5F;
-        this.HumanLegLeft.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount * 0.5F;
-        this.HumanLegRight.rotateAngleY = 0.0F;
-        this.HumanLegLeft.rotateAngleY = 0.0F;
+        this.bipedRightArm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.bipedLeftArm.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+        this.HumanLegRight.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount * 0.5F;
+        this.HumanLegLeft.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount * 0.5F;
+        this.HumanLegRight.yRot = 0.0F;
+        this.HumanLegLeft.yRot = 0.0F;
     }
 
-    public ModelRenderer getModelHead() {
+    public ModelRenderer getHead() {
         return this.HumanHead;
     }
 
     @Override
-    public void func_217146_a(boolean p_217146_1_) {
+    public void hatVisible(boolean p_217146_1_) {
 
     }
 }

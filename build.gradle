@@ -8,7 +8,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:4.1.+'
     }
 }
 
@@ -60,7 +60,7 @@ println "Starting build of ${archivesBaseName}, Version: ${config.mod_version}"
 println "Using Forge: ${config.forge_version}, for Minecraft: ${config.mc_version}, with Mappings: ${config.mappings}"
 
 minecraft {
-    mappings channel: 'snapshot', version: config.mappings
+    mappings channel: 'official', version: config.mc_version
     accessTransformer = file("src/main/resources/META-INF/accesstransformer.cfg")
     runs {
         client {
@@ -87,7 +87,7 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${config.mc_version}-${config.forge_version}"
-    compile fg.deobf("codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:universal")
+    compile "codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:deobf"
     compile "com.brandon3055.brandonscore:BrandonsCore:${config.mc_version}-${config.bcore_version}:deobf"
     compile fg.deobf("top.theillusivec4.curios:curios-forge:${config.mc_version}-${config.curios_version}")
 }

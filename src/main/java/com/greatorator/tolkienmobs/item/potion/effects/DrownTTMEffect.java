@@ -19,22 +19,22 @@ public class DrownTTMEffect extends TTMEffectBase {
         super(typeIn, liquidColorIn);
     }
 
-    public void performEffect(LivingEntity entity, int amplifier) {
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
         lastTarget = entity;
 
         boolean flag = lastTarget instanceof PlayerEntity;
-        boolean flag1 = flag && ((PlayerEntity)lastTarget).abilities.disableDamage;
+        boolean flag1 = flag && ((PlayerEntity)lastTarget).abilities.invulnerable;
 
-        if (!EffectUtils.canBreatheUnderwater(lastTarget) && !flag1) {
-            int a = EnchantmentHelper.getRespirationModifier(entity);
-            lastAir = a > 0 && entity.world.rand.nextInt(a + 1) > 0 ? lastAir : lastAir - 1;
-            lastTarget.setAir(lastAir);
+        if (!EffectUtils.hasWaterBreathing(lastTarget) && !flag1) {
+            int a = EnchantmentHelper.getRespiration(entity);
+            lastAir = a > 0 && entity.level.random.nextInt(a + 1) > 0 ? lastAir : lastAir - 1;
+            lastTarget.setAirSupply(lastAir);
 
-            if (lastTarget.getAir() < -19) {
+            if (lastTarget.getAirSupply() < -19) {
                 TolkienMobs.LOGGER.info("Help me! I'm Drowning");
                 lastAir = 0;
 
-                lastTarget.attackEntityFrom(DamageSource.DROWN, 2.0F * amplifier);
+                lastTarget.hurt(DamageSource.DROWN, 2.0F * amplifier);
                 TolkienMobs.LOGGER.info("Help me! Damage taken...");
             }
         }
@@ -42,15 +42,15 @@ public class DrownTTMEffect extends TTMEffectBase {
     }
 
     private void updateAir() {
-        lastTarget.setAir(lastAir);
+        lastTarget.setAirSupply(lastAir);
         if (lastTarget instanceof ServerPlayerEntity) {
             TolkienMobs.instance().sendAirPacket((ServerPlayerEntity) lastTarget, lastAir);
-            TolkienMobs.instance().getModifiedPlayerTimes().put(lastTarget.getName().getUnformattedComponentText(), System.currentTimeMillis());
+            TolkienMobs.instance().getModifiedPlayerTimes().put(lastTarget.getName().getContents(), System.currentTimeMillis());
         }
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return duration % drownDuration == 0;
     }
 }

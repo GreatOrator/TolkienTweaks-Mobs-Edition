@@ -13,17 +13,17 @@ public class RenderTTMDwarf extends MobRenderer<EntityTTMDwarf, ModelTTMDwarf<En
     }
 
     @Override
-    public ResourceLocation getEntityTexture(EntityTTMDwarf entity) {
+    public ResourceLocation getTextureLocation(EntityTTMDwarf entity) {
         return entity.getDwarfTypeName();
     }
 
-    protected void preRenderCallback(EntityTTMDwarf entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+    protected void scale(EntityTTMDwarf entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         float f = 0.95F;
-        if (entitylivingbaseIn.isChild()) {
+        if (entitylivingbaseIn.isBaby()) {
             f = (float)((double)f * 0.5D);
-            this.shadowSize = 0.25F;
+            this.shadowRadius = 0.25F;
         } else {
-            this.shadowSize = 0.5F;
+            this.shadowRadius = 0.5F;
         }
 
         matrixStackIn.scale(f, f, f);

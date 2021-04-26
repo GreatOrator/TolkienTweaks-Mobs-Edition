@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[32,)"
+loaderVersion="[36,)"
 license="MIT License"
 
 [[mods]]
@@ -13,7 +13,7 @@ license="MIT License"
 [[dependencies.tolkienmobs]]
     modId="forge"
     mandatory=true
-    versionRange="[35.1,)"
+    versionRange="[36.1,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.tolkienmobs]]
@@ -26,5 +26,11 @@ license="MIT License"
     modId="codechickenlib"
     mandatory=true
     versionRange="[${ccl_version},)"
+    ordering="AFTER"
+    side="BOTH"
+[[dependencies.tolkienmobs]]
+    modId="brandonscore"
+    mandatory=true
+    versionRange="[${bcore_version},)"
     ordering="AFTER"
     side="BOTH"

@@ -114,11 +114,11 @@ public class BlockStateGenerator extends BlockStateProvider {
         ModelFile birchFenceGateWallOpen = models().fenceGateWallOpen("birch_fence_gate_wall_open", mcLoc("block/birch_planks"));
         ModelFile invisbleModel = new ModelFile.UncheckedModelFile(new ResourceLocation("builtin/generated"));
         VariantBlockStateBuilder builder = getVariantBuilder(Blocks.BIRCH_FENCE_GATE);
-        for (Direction dir : FenceGateBlock.HORIZONTAL_FACING.getAllowedValues()) {
-            int angle = (int) dir.getHorizontalAngle();
+        for (Direction dir : FenceGateBlock.FACING.getPossibleValues()) {
+            int angle = (int) dir.toYRot();
             builder
                     .partialState()
-                    .with(FenceGateBlock.HORIZONTAL_FACING, dir)
+                    .with(FenceGateBlock.FACING, dir)
                     .with(FenceGateBlock.IN_WALL, false)
                     .with(FenceGateBlock.OPEN, false)
                     .modelForState()
@@ -130,7 +130,7 @@ public class BlockStateGenerator extends BlockStateProvider {
                     .weight(100)
                     .addModel()
                     .partialState()
-                    .with(FenceGateBlock.HORIZONTAL_FACING, dir)
+                    .with(FenceGateBlock.FACING, dir)
                     .with(FenceGateBlock.IN_WALL, false)
                     .with(FenceGateBlock.OPEN, true)
                     .modelForState()
@@ -139,7 +139,7 @@ public class BlockStateGenerator extends BlockStateProvider {
                     .uvLock(true)
                     .addModel()
                     .partialState()
-                    .with(FenceGateBlock.HORIZONTAL_FACING, dir)
+                    .with(FenceGateBlock.FACING, dir)
                     .with(FenceGateBlock.IN_WALL, true)
                     .with(FenceGateBlock.OPEN, false)
                     .modelForState()
@@ -148,7 +148,7 @@ public class BlockStateGenerator extends BlockStateProvider {
                     .uvLock(true)
                     .addModel()
                     .partialState()
-                    .with(FenceGateBlock.HORIZONTAL_FACING, dir)
+                    .with(FenceGateBlock.FACING, dir)
                     .with(FenceGateBlock.IN_WALL, true)
                     .with(FenceGateBlock.OPEN, true)
                     .modelForState()
@@ -195,7 +195,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         models().getBuilder("cube")
                 .parent(block)
                 .element()
-                .allFaces((dir, face) -> face.texture("#" + dir.getString()).cullface(dir));
+                .allFaces((dir, face) -> face.texture("#" + dir.getSerializedName()).cullface(dir));
 
 
         ModelFile furnace = models().orientable("furnace", mcLoc("block/furnace_side"), mcLoc("block/furnace_front"), mcLoc("block/furnace_top"));
@@ -203,14 +203,14 @@ public class BlockStateGenerator extends BlockStateProvider {
 
         getVariantBuilder(Blocks.FURNACE)
                 .forAllStates(state -> ConfiguredModel.builder()
-                        .modelFile(state.get(FurnaceBlock.LIT) ? furnaceLit : furnace)
-                        .rotationY((int) state.get(FurnaceBlock.FACING).getOpposite().getHorizontalAngle())
+                        .modelFile(state.getValue(FurnaceBlock.LIT) ? furnaceLit : furnace)
+                        .rotationY((int) state.getValue(FurnaceBlock.FACING).getOpposite().toYRot())
                         .build()
                 );
 
         ModelFile barrel = models().cubeBottomTop("barrel", mcLoc("block/barrel_side"), mcLoc("block/barrel_bottom"), mcLoc("block/barrel_top"));
         ModelFile barrelOpen = models().cubeBottomTop("barrel_open", mcLoc("block/barrel_side"), mcLoc("block/barrel_bottom"), mcLoc("block/barrel_top_open"));
-        directionalBlock(Blocks.BARREL, state -> state.get(BarrelBlock.PROPERTY_OPEN) ? barrelOpen : barrel); // Testing custom state interpreter
+        directionalBlock(Blocks.BARREL, state -> state.getValue(BarrelBlock.OPEN) ? barrelOpen : barrel); // Testing custom state interpreter
 
 //        logBlock((LogBlock) Blocks.ACACIA_LOG);
 
@@ -255,11 +255,11 @@ public class BlockStateGenerator extends BlockStateProvider {
     public void directionalFromNorth(Block block, Function<BlockState, ModelFile> modelFunc, int angleOffset) {
         getVariantBuilder(block)
                 .forAllStates(state -> {
-                    Direction dir = state.get(BlockStateProperties.FACING);
+                    Direction dir = state.getValue(BlockStateProperties.FACING);
                     return ConfiguredModel.builder()
                             .modelFile(modelFunc.apply(state))
                             .rotationX(dir == Direction.DOWN ? 90 : dir == Direction.UP ? -90 : 0)
-                            .rotationY(dir.getAxis().isVertical() ? 0 : (((int) dir.getHorizontalAngle()) + angleOffset) % 360)
+                            .rotationY(dir.getAxis().isVertical() ? 0 : (((int) dir.toYRot()) + angleOffset) % 360)
                             .build();
                 });
     }

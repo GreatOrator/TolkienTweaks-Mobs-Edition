@@ -14,17 +14,17 @@ public class RenderTTMElves extends MobRenderer<EntityTTMElves, ModelTTMElves<En
     }
 
     @Override
-    public ResourceLocation getEntityTexture(EntityTTMElves entity) {
+    public ResourceLocation getTextureLocation(EntityTTMElves entity) {
         return entity.getElvesTypeName();
     }
 
     protected void preRenderCallback(EntityTTMVillager entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         float f = 0.98F;
-        if (entitylivingbaseIn.isChild()) {
+        if (entitylivingbaseIn.isBaby()) {
             f = (float) ((double) f * 0.5D);
-            this.shadowSize = 0.25F;
+            this.shadowRadius = 0.25F;
         } else {
-            this.shadowSize = 0.5F;
+            this.shadowRadius = 0.5F;
         }
 
         matrixStackIn.scale(f, f, f);

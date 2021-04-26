@@ -23,16 +23,16 @@ public class TTMPanicOnFlockDeath extends Goal {
     public TTMPanicOnFlockDeath(CreatureEntity creature, float speed) {
         this.flockCreature = creature;
         this.speed = speed;
-        this.setMutexFlags(EnumSet.of(Flag.MOVE));
+        this.setFlags(EnumSet.of(Flag.MOVE));
         this.fleeTimer = 0;
     }
 
     @Override
-    public boolean shouldExecute() {
+    public boolean canUse() {
         boolean yikes = fleeTimer > 0;
 
         // check if any of us is dead within 4 squares
-        List<CreatureEntity> flockList = this.flockCreature.world.getEntitiesWithinAABB(this.flockCreature.getClass(), this.flockCreature.getBoundingBox().grow(4.0D, 2.0D, 4.0D));
+        List<CreatureEntity> flockList = this.flockCreature.level.getEntitiesOfClass(this.flockCreature.getClass(), this.flockCreature.getBoundingBox().inflate(4.0D, 2.0D, 4.0D));
         for (LivingEntity flocker : flockList) {
             if (flocker.deathTime > 0) {
                 yikes = true;
@@ -43,7 +43,7 @@ public class TTMPanicOnFlockDeath extends Goal {
         if (!yikes) {
             return false;
         } else {
-            Vector3d target = RandomPositionGenerator.findRandomTarget(this.flockCreature, 5, 4);
+            Vector3d target = RandomPositionGenerator.getPos(this.flockCreature, 5, 4);
 
             if (target == null) {
                 return false;
@@ -60,9 +60,9 @@ public class TTMPanicOnFlockDeath extends Goal {
      * Execute a one shot task or start executing a continuous task
      */
     @Override
-    public void startExecuting() {
+    public void start() {
         this.fleeTimer = 40;
-        this.flockCreature.getNavigator().tryMoveToXYZ(this.fleeX, this.fleeY, this.fleeZ, this.speed);
+        this.flockCreature.getNavigation().moveTo(this.fleeX, this.fleeY, this.fleeZ, this.speed);
 
         // panic flag for kobold animations
         if (flockCreature instanceof EntityTTMGoblin) {
@@ -74,8 +74,8 @@ public class TTMPanicOnFlockDeath extends Goal {
      * Returns whether an in-progress EntityAIBase should continue executing
      */
     @Override
-    public boolean shouldContinueExecuting() {
-        return fleeTimer > 0 && !this.flockCreature.getNavigator().noPath();
+    public boolean canContinueToUse() {
+        return fleeTimer > 0 && !this.flockCreature.getNavigation().isDone();
     }
 
     /**
@@ -90,7 +90,7 @@ public class TTMPanicOnFlockDeath extends Goal {
      * Resets the task
      */
     @Override
-    public void resetTask() {
+    public void stop() {
         fleeTimer -= 20;
 
         // panic flag for kobold animations

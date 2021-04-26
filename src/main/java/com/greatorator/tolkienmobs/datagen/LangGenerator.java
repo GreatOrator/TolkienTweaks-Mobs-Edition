@@ -535,7 +535,7 @@ public class LangGenerator extends LanguageProvider {
     }
 
     public void addLore(Item key, String lore) {
-        add(key.getTranslationKey() + ".lore", lore);
+        add(key.getDescriptionId() + ".lore", lore);
     }
 
     public static class PrefixHelper {

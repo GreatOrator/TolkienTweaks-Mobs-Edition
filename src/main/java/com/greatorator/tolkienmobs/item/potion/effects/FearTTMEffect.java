@@ -14,15 +14,15 @@ public class FearTTMEffect extends TTMEffectBase {
     }
 
     @Override
-    public void performEffect(LivingEntity entity, int amplifier) {
-        entity.addPotionEffect((new EffectInstance(Effects.WITHER, 40, amplifier, true, false, false, null)));
-        entity.addPotionEffect((new EffectInstance(Effects.BLINDNESS, 40, amplifier, true, false, false, null)));
-        entity.addPotionEffect((new EffectInstance(Effects.WEAKNESS, 40, amplifier, true, false, false, null)));
-        entity.addPotionEffect((new EffectInstance(Effects.SLOWNESS, 40, amplifier, true, false, false, null)));
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
+        entity.addEffect((new EffectInstance(Effects.WITHER, 40, amplifier, true, false, false, null)));
+        entity.addEffect((new EffectInstance(Effects.BLINDNESS, 40, amplifier, true, false, false, null)));
+        entity.addEffect((new EffectInstance(Effects.WEAKNESS, 40, amplifier, true, false, false, null)));
+        entity.addEffect((new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 40, amplifier, true, false, false, null)));
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return duration % fearDuration == 0;
     }
 }

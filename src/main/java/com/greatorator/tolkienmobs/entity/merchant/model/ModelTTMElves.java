@@ -27,44 +27,44 @@ public class ModelTTMElves<T extends Entity> extends SegmentedModel<T> implement
     public ModelRenderer ElfEarRight3;
 
     public ModelTTMElves() {
-        this.textureWidth = 64;
-        this.textureHeight = 64;
+        this.texWidth = 64;
+        this.texHeight = 64;
         this.ElfEarRight3 = new ModelRenderer(this, 35, 10);
-        this.ElfEarRight3.setRotationPoint(0.0F, -2.0F, 2.7F);
+        this.ElfEarRight3.setPos(0.0F, -2.0F, 2.7F);
         this.ElfEarRight3.addBox(-0.5F, -0.5F, -0.5F, 1, 2, 1, 0.0F);
         this.ElfEarRight1 = new ModelRenderer(this, 35, 10);
-        this.ElfEarRight1.setRotationPoint(-4.0F, -3.5F, -1.6F);
+        this.ElfEarRight1.setPos(-4.0F, -3.5F, -1.6F);
         this.ElfEarRight1.addBox(-0.5F, -0.5F, -0.5F, 1, 2, 2, 0.0F);
         this.ElfEarLeft2 = new ModelRenderer(this, 35, 10);
-        this.ElfEarLeft2.setRotationPoint(0.0F, -1.0F, 1.0F);
+        this.ElfEarLeft2.setPos(0.0F, -1.0F, 1.0F);
         this.ElfEarLeft2.addBox(-0.5F, -0.5F, -0.5F, 1, 2, 2, 0.0F);
         this.bipedRightArm = new ModelRenderer(this, 40, 16);
-        this.bipedRightArm.setRotationPoint(-5.0F, 2.0F, 0.0F);
+        this.bipedRightArm.setPos(-5.0F, 2.0F, 0.0F);
         this.bipedRightArm.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
         this.ElfBody = new ModelRenderer(this, 16, 16);
-        this.ElfBody.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.ElfBody.setPos(0.0F, 0.0F, 0.0F);
         this.ElfBody.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.0F);
         this.ElfEarLeft1 = new ModelRenderer(this, 35, 10);
         this.ElfEarLeft1.mirror = true;
-        this.ElfEarLeft1.setRotationPoint(4.0F, -3.5F, -1.6F);
+        this.ElfEarLeft1.setPos(4.0F, -3.5F, -1.6F);
         this.ElfEarLeft1.addBox(-0.5F, -0.5F, -0.5F, 1, 2, 2, 0.0F);
         this.ElfHead = new ModelRenderer(this, 0, 0);
-        this.ElfHead.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.ElfHead.setPos(0.0F, 0.0F, 0.0F);
         this.ElfHead.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
         this.ElfLegRight = new ModelRenderer(this, 0, 16);
-        this.ElfLegRight.setRotationPoint(-1.9F, 12.0F, 0.0F);
+        this.ElfLegRight.setPos(-1.9F, 12.0F, 0.0F);
         this.ElfLegRight.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
         this.ElfEarRight2 = new ModelRenderer(this, 35, 10);
-        this.ElfEarRight2.setRotationPoint(0.0F, -1.0F, 1.0F);
+        this.ElfEarRight2.setPos(0.0F, -1.0F, 1.0F);
         this.ElfEarRight2.addBox(-0.5F, -0.5F, -0.5F, 1, 2, 2, 0.0F);
         this.bipedLeftArm = new ModelRenderer(this, 32, 48);
-        this.bipedLeftArm.setRotationPoint(5.0F, 2.0F, 0.0F);
+        this.bipedLeftArm.setPos(5.0F, 2.0F, 0.0F);
         this.bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
         this.ElfLegLeft = new ModelRenderer(this, 16, 48);
-        this.ElfLegLeft.setRotationPoint(1.9F, 12.0F, 0.0F);
+        this.ElfLegLeft.setPos(1.9F, 12.0F, 0.0F);
         this.ElfLegLeft.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
         this.ElfEarLeft3 = new ModelRenderer(this, 35, 10);
-        this.ElfEarLeft3.setRotationPoint(0.0F, -2.0F, 2.7F);
+        this.ElfEarLeft3.setPos(0.0F, -2.0F, 2.7F);
         this.ElfEarLeft3.addBox(-0.5F, -0.5F, -0.5F, 1, 2, 1, 0.0F);
         this.ElfEarRight1.addChild(this.ElfEarRight3);
         this.ElfHead.addChild(this.ElfEarRight1);
@@ -79,42 +79,42 @@ public class ModelTTMElves<T extends Entity> extends SegmentedModel<T> implement
         this.ElfEarLeft1.addChild(this.ElfEarLeft3);
     }
 
-public Iterable<ModelRenderer> getParts() {
+public Iterable<ModelRenderer> parts() {
         return ImmutableList.of(this.ElfHead, this.ElfBody, this.ElfLegRight, this.ElfLegLeft, this.bipedLeftArm, this.bipedRightArm);
         }
 
 /**
  * Sets this entity's model rotation angles
  */
-public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         boolean flag = false;
         if (entityIn instanceof AbstractVillagerEntity) {
-        flag = ((AbstractVillagerEntity)entityIn).getShakeHeadTicks() > 0;
+        flag = ((AbstractVillagerEntity)entityIn).getUnhappyCounter() > 0;
         }
 
-        this.ElfHead.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
-        this.ElfHead.rotateAngleX = headPitch * ((float)Math.PI / 180F);
+        this.ElfHead.yRot = netHeadYaw * ((float)Math.PI / 180F);
+        this.ElfHead.xRot = headPitch * ((float)Math.PI / 180F);
         if (flag) {
-        this.ElfHead.rotateAngleZ = 0.3F * MathHelper.sin(0.45F * ageInTicks);
-        this.ElfHead.rotateAngleX = 0.4F;
+        this.ElfHead.zRot = 0.3F * MathHelper.sin(0.45F * ageInTicks);
+        this.ElfHead.xRot = 0.4F;
         } else {
-        this.ElfHead.rotateAngleZ = 0.0F;
+        this.ElfHead.zRot = 0.0F;
         }
 
-        this.bipedRightArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.bipedLeftArm.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-        this.ElfLegRight.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount * 0.5F;
-        this.ElfLegLeft.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount * 0.5F;
-        this.ElfLegRight.rotateAngleY = 0.0F;
-        this.ElfLegLeft.rotateAngleY = 0.0F;
+        this.bipedRightArm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.bipedLeftArm.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+        this.ElfLegRight.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount * 0.5F;
+        this.ElfLegLeft.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount * 0.5F;
+        this.ElfLegRight.yRot = 0.0F;
+        this.ElfLegLeft.yRot = 0.0F;
         }
 
-public ModelRenderer getModelHead() {
+public ModelRenderer getHead() {
         return this.ElfHead;
         }
 
 @Override
-public void func_217146_a(boolean p_217146_1_) {
+public void hatVisible(boolean p_217146_1_) {
 
         }
 }

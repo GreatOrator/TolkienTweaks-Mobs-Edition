@@ -16,11 +16,11 @@ public class RenderTTMRat extends MobRenderer<EntityTTMRat, ModelTTMRat<EntityTT
 
     @Nullable
     @Override
-    public ResourceLocation getEntityTexture(EntityTTMRat entity) {
+    public ResourceLocation getTextureLocation(EntityTTMRat entity) {
         return entity.getRatTypeName();
     }
 
-    protected void preRenderCallback(EntityTTMRat entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
-        super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
+    protected void scale(EntityTTMRat entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+        super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }
 }

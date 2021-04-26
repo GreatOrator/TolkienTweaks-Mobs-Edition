@@ -29,8 +29,8 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class EntityTTMGoat extends AbstractChestedHorseEntity {
-    private static final DataParameter<Boolean> DATA_ID_CHEST = EntityDataManager.createKey(EntityTTMGoat.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Integer> GOAT_TYPE = EntityDataManager.createKey(EntityTTMGoat.class, DataSerializers.VARINT);
+    private static final DataParameter<Boolean> DATA_ID_CHEST = EntityDataManager.defineId(EntityTTMGoat.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> GOAT_TYPE = EntityDataManager.defineId(EntityTTMGoat.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/goat/goat1.png"));
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/goat/goat2.png"));
@@ -43,7 +43,7 @@ public class EntityTTMGoat extends AbstractChestedHorseEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20.0D).createMutableAttribute(Attributes.HORSE_JUMP_STRENGTH, 2.5D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 8.0D).createMutableAttribute(Attributes.ARMOR, 4.0D).createMutableAttribute(Attributes.KNOCKBACK_RESISTANCE, 1.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.8D);
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.JUMP_STRENGTH, 2.5D).add(Attributes.ATTACK_DAMAGE, 8.0D).add(Attributes.ARMOR, 4.0D).add(Attributes.KNOCKBACK_RESISTANCE, 1.0D).add(Attributes.MOVEMENT_SPEED, 0.8D);
     }
 
     protected void registerGoals() {
@@ -54,13 +54,13 @@ public class EntityTTMGoat extends AbstractChestedHorseEntity {
         this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 0.7D));
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-        this.initExtraAI();
+        this.addBehaviourGoals();
     }
 
     @Override
-    public double getMountedYOffset()
+    public double getPassengersRidingOffset()
     {
-        return super.getMountedYOffset() - 0.025D;
+        return super.getPassengersRidingOffset() - 0.025D;
     }
 
     @Override
@@ -68,9 +68,9 @@ public class EntityTTMGoat extends AbstractChestedHorseEntity {
     {
         super.playGallopSound(p_190680_1_);
 
-        if (this.rand.nextInt(10) == 0)
+        if (this.random.nextInt(10) == 0)
         {
-            this.playSound(SoundEvents.ENTITY_HORSE_BREATHE, p_190680_1_.getVolume() * 0.6F, p_190680_1_.getPitch());
+            this.playSound(SoundEvents.HORSE_BREATHE, p_190680_1_.getVolume() * 0.6F, p_190680_1_.getPitch());
         }
     }
 
@@ -103,7 +103,7 @@ public class EntityTTMGoat extends AbstractChestedHorseEntity {
     }
 
     @Override
-    public int getMaxSpawnedInChunk() {
+    public int getMaxSpawnClusterSize() {
         return 4;
     }
 
@@ -112,7 +112,7 @@ public class EntityTTMGoat extends AbstractChestedHorseEntity {
         return true;
     }
 
-    public EntityTTMGoat func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+    public EntityTTMGoat getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         return EntityGenerator.ENTITY_TTM_GOAT.get().create(p_241840_1_);
     }
 
@@ -122,89 +122,89 @@ public class EntityTTMGoat extends AbstractChestedHorseEntity {
     }
 
     public int getGoatType() {
-        return this.dataManager.get(GOAT_TYPE);
+        return this.entityData.get(GOAT_TYPE);
     }
 
     public void setGoatType(int type) {
         if (type < 0 || type >= 5) {
-            type = this.rand.nextInt(4);
+            type = this.random.nextInt(4);
         }
 
-        this.dataManager.set(GOAT_TYPE, type);
+        this.entityData.set(GOAT_TYPE, type);
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(1, 4);
         this.setGoatType(job);
 
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(GOAT_TYPE, 1);
-        this.dataManager.register(DATA_ID_CHEST, false);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(GOAT_TYPE, 1);
+        this.entityData.define(DATA_ID_CHEST, false);
     }
 
     @Override
     public boolean hasChest() {
-        return this.dataManager.get(DATA_ID_CHEST);
+        return this.entityData.get(DATA_ID_CHEST);
     }
 
     @Override
-    public void setChested(boolean chested) {
-        this.dataManager.set(DATA_ID_CHEST, chested);
+    public void setChest(boolean chested) {
+        this.entityData.set(DATA_ID_CHEST, chested);
     }
 
     protected int getInventorySize() {
         return this.hasChest() ? 17 : super.getInventorySize();
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         compound.putInt("GoatType", this.getGoatType());
         compound.putBoolean("ChestedGoat", this.hasChest());
         if (this.hasChest()) {
             ListNBT listnbt = new ListNBT();
 
-            for(int i = 2; i < this.horseChest.getSizeInventory(); ++i) {
-                ItemStack itemstack = this.horseChest.getStackInSlot(i);
+            for(int i = 2; i < this.inventory.getContainerSize(); ++i) {
+                ItemStack itemstack = this.inventory.getItem(i);
                 if (!itemstack.isEmpty()) {
                     CompoundNBT compoundnbt = new CompoundNBT();
                     compoundnbt.putByte("Slot", (byte)i);
-                    itemstack.write(compoundnbt);
+                    itemstack.save(compoundnbt);
                     listnbt.add(compoundnbt);
                 }
             }
 
             compound.put("Items", listnbt);
         }
-        if (!this.horseChest.getStackInSlot(0).isEmpty()) {
-            compound.put("SaddleItem", this.horseChest.getStackInSlot(0).write(new CompoundNBT()));
+        if (!this.inventory.getItem(0).isEmpty()) {
+            compound.put("SaddleItem", this.inventory.getItem(0).save(new CompoundNBT()));
         }
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         this.setGoatType(compound.getInt("GoatType"));
-        this.setChested(compound.getBoolean("ChestedGoat"));
+        this.setChest(compound.getBoolean("ChestedGoat"));
         if (this.hasChest()) {
             ListNBT listnbt = compound.getList("Items", 10);
-            this.initHorseChest();
+            this.createInventory();
 
             for(int i = 0; i < listnbt.size(); ++i) {
                 CompoundNBT compoundnbt = listnbt.getCompound(i);
                 int j = compoundnbt.getByte("Slot") & 255;
-                if (j >= 2 && j < this.horseChest.getSizeInventory()) {
-                    this.horseChest.setInventorySlotContents(j, ItemStack.read(compoundnbt));
+                if (j >= 2 && j < this.inventory.getContainerSize()) {
+                    this.inventory.setItem(j, ItemStack.of(compoundnbt));
                 }
             }
         }
         if (compound.contains("SaddleItem", 10)) {
-            ItemStack itemstack = ItemStack.read(compound.getCompound("SaddleItem"));
+            ItemStack itemstack = ItemStack.of(compound.getCompound("SaddleItem"));
             if (itemstack.getItem() == Items.SADDLE) {
-                this.horseChest.setInventorySlotContents(0, itemstack);
+                this.inventory.setItem(0, itemstack);
             }
         }
     }

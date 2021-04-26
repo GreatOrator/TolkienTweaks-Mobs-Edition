@@ -20,40 +20,40 @@ public class BlockMushrooms extends MushroomBlock
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        BlockPos blockpos = pos.down();
+    public boolean canSurvive(BlockState state, IWorldReader worldIn, BlockPos pos) {
+        BlockPos blockpos = pos.below();
         BlockState blockstate = worldIn.getBlockState(blockpos);
-        if (blockstate.isIn(TTMTags.blocks.DECAY_GROW_BLOCK)) {
+        if (blockstate.is(TTMTags.blocks.DECAY_GROW_BLOCK)) {
             return true;
         } else {
-            return worldIn.getLightSubtracted(pos, 0) < 13 && blockstate.canSustainPlant(worldIn, blockpos, net.minecraft.util.Direction.UP, this);
+            return worldIn.getRawBrightness(pos, 0) < 13 && blockstate.canSustainPlant(worldIn, blockpos, net.minecraft.util.Direction.UP, this);
         }
     }
 
     @Override
-    public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
         return true;
     }
 
     @Override
-    public boolean grow(ServerWorld world, BlockPos pos, BlockState state, Random rand) {
+    public boolean growMushroom(ServerWorld world, BlockPos pos, BlockState state, Random rand) {
         world.removeBlock(pos, false);
         ConfiguredFeature<?, ?> configuredfeature;
         if (this == TTMContent.MUSHROOM_BLOOM_DECAY.get()) {
             configuredfeature = TTMTreeFeatures.ConfiguredFeatures.MUSHROOM_BLOOM_DECAY;
         } else {
             if (this != TTMContent.MUSHROOM_DECAY_BLOOM.get()) {
-                world.setBlockState(pos, state, 3);
+                world.setBlock(pos, state, 3);
                 return false;
             }
 
             configuredfeature = TTMTreeFeatures.ConfiguredFeatures.MUSHROOM_DECAY_BLOOM;
         }
 
-        if (configuredfeature.generate(world, world.getChunkProvider().getChunkGenerator(), rand, pos)) {
+        if (configuredfeature.place(world, world.getChunkSource().getGenerator(), rand, pos)) {
             return true;
         } else {
-            world.setBlockState(pos, state, 3);
+            world.setBlock(pos, state, 3);
             return false;
         }
     }

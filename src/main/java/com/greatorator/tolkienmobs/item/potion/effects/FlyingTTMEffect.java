@@ -14,12 +14,12 @@ public class FlyingTTMEffect extends TTMEffectBase {
     }
 
     @Override
-    public void performEffect(LivingEntity entity, int amplifier) {
-        entity.addPotionEffect((new EffectInstance(Effects.LEVITATION, 40, amplifier, true, false, false, null)));
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
+        entity.addEffect((new EffectInstance(Effects.LEVITATION, 40, amplifier, true, false, false, null)));
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return duration % flyDuration == 0;
     }
 }

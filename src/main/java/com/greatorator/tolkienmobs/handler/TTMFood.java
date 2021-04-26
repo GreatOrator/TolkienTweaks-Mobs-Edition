@@ -22,8 +22,8 @@ public class TTMFood extends Item {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
-        return hasEffectOverride || super.hasEffect(stack);
+    public boolean isFoil(ItemStack stack) {
+        return hasEffectOverride || super.isFoil(stack);
     }
 
     public TTMFood setItemUseAction(boolean getUseAction) {
@@ -32,13 +32,13 @@ public class TTMFood extends Item {
     }
 
     @Override
-    public UseAction getUseAction(ItemStack stack) {
+    public UseAction getUseAnimation(ItemStack stack) {
         return hasDrinkAction ? UseAction.DRINK : UseAction.EAT;
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-        ItemStack itemstack = super.onItemUseFinish(stack, worldIn, entityLiving);
+    public ItemStack finishUsingItem(ItemStack stack, World worldIn, LivingEntity entityLiving) {
+        ItemStack itemstack = super.finishUsingItem(stack, worldIn, entityLiving);
 
-        return entityLiving instanceof PlayerEntity && ((PlayerEntity)entityLiving).abilities.isCreativeMode ? itemstack : new ItemStack(TTMContent.BOTTLE_FANCY.get());
+        return entityLiving instanceof PlayerEntity && ((PlayerEntity)entityLiving).abilities.instabuild ? itemstack : new ItemStack(TTMContent.BOTTLE_FANCY.get());
     }
 }

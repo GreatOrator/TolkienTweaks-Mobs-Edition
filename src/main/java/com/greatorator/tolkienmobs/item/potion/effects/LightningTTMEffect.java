@@ -20,24 +20,24 @@ public class LightningTTMEffect extends TTMEffectBase {
     }
 
     @Override
-    public boolean isInstant() {
+    public boolean isInstantenous() {
         return true;
     }
 
     @Override
-    public void performEffect(LivingEntity entity, int amplifier) {
-        World world = entity.getEntityWorld();
-        BlockPos blockpos = entity.getPosition();
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
+        World world = entity.getCommandSenderWorld();
+        BlockPos blockpos = entity.blockPosition();
 
         LightningBoltEntity lightningboltentity = EntityType.LIGHTNING_BOLT.create(world);
-        lightningboltentity.moveForced(Vector3d.copyCenteredHorizontally(blockpos));
-        lightningboltentity.setCaster(null);
-        world.addEntity(lightningboltentity);
-        world.playSound((PlayerEntity) null, entity.getPosX(), entity.getPosY(), entity.getPosZ(), SoundEvents.ITEM_TRIDENT_THUNDER, SoundCategory.WEATHER, 5.0f, 1.0f);
+        lightningboltentity.moveTo(Vector3d.atBottomCenterOf(blockpos));
+        lightningboltentity.setCause(null);
+        world.addFreshEntity(lightningboltentity);
+        world.playSound((PlayerEntity) null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.TRIDENT_THUNDER, SoundCategory.WEATHER, 5.0f, 1.0f);
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return duration % lightningDuration == 0;
     }
 }

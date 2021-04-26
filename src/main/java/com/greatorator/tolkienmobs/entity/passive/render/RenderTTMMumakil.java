@@ -13,11 +13,11 @@ public class RenderTTMMumakil extends MobRenderer<EntityTTMMumakil, ModelTTMMuma
     }
 
     @Override
-    public ResourceLocation getEntityTexture(EntityTTMMumakil entity) {
+    public ResourceLocation getTextureLocation(EntityTTMMumakil entity) {
         return entity.getMumakilTypeName();
     }
 
-    protected void preRenderCallback(EntityTTMMumakil entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
-        super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
+    protected void scale(EntityTTMMumakil entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+        super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }
 }

@@ -19,19 +19,19 @@ public class BlacksmithTTMEffect extends TTMEffectBase {
     }
 
     @Override
-    public void performEffect(LivingEntity entity, int amplifier) {
-        if(entity.world.isRemote)
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
+        if(entity.level.isClientSide)
             return;
 
         List<ItemStack> equipment;
         if (entity instanceof PlayerEntity) {
             equipment = new ArrayList<>();
             PlayerEntity player = (PlayerEntity) entity;
-            for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
-                equipment.add(player.inventory.getStackInSlot(i));
+            for (int i = 0; i < player.inventory.getContainerSize(); i++) {
+                equipment.add(player.inventory.getItem(i));
             }
         } else {
-            equipment = Lists.newArrayList(entity.getEquipmentAndArmor());
+            equipment = Lists.newArrayList(entity.getAllSlots());
         }
 
         equipment.removeIf(stack -> stack.isEmpty() || !stack.isDamaged());
@@ -39,17 +39,17 @@ public class BlacksmithTTMEffect extends TTMEffectBase {
         if (equipment.isEmpty())
             return;
 
-        ItemStack stack = equipment.get(entity.world.rand.nextInt(equipment.size()));
+        ItemStack stack = equipment.get(entity.level.random.nextInt(equipment.size()));
 
-        if (stack.getDamage() - (amplifier + 1) < 0) {
-            stack.setDamage(0);
+        if (stack.getDamageValue() - (amplifier + 1) < 0) {
+            stack.setDamageValue(0);
         } else {
-            stack.setDamage(stack.getDamage() - (amplifier + 1));
+            stack.setDamageValue(stack.getDamageValue() - (amplifier + 1));
         }
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return duration % damageTime == 0;
     }
 }

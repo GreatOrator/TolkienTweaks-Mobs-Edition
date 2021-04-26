@@ -20,12 +20,12 @@ public class VillagerTTMUtility {
 
     static
     {
-        VillagerTTMUtility.blockStatesInjector = ObfuscationReflectionHelper.findMethod(PointOfInterestType.class, "func_221052_a", PointOfInterestType.class);
+        VillagerTTMUtility.blockStatesInjector = ObfuscationReflectionHelper.findMethod(PointOfInterestType.class, "registerBlockStates", PointOfInterestType.class);
     }
 
     public static Set<BlockState> getAllStates(Block block)
     {
-        return ImmutableSet.copyOf(block.getStateContainer().getValidStates());
+        return ImmutableSet.copyOf(block.getStateDefinition().getPossibleStates());
     }
 
     public static void fixPOITypeBlockStates(PointOfInterestType poiType)

@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class EntityTTMAuroch extends EntityTTMHerds {
-    private static final DataParameter<Integer> AUROCH_TYPE = EntityDataManager.createKey(EntityTTMAuroch.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> AUROCH_TYPE = EntityDataManager.defineId(EntityTTMAuroch.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/auroch/auroch1.png"));
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/auroch/auroch2.png"));
@@ -43,24 +43,24 @@ public class EntityTTMAuroch extends EntityTTMHerds {
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return SoundEvents.ENTITY_COW_AMBIENT;
+        return SoundEvents.COW_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return SoundEvents.ENTITY_COW_HURT;
+        return SoundEvents.COW_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return SoundEvents.ENTITY_COW_DEATH;
+        return SoundEvents.COW_DEATH;
     }
 
     protected void playStepSound(BlockPos pos, Block blockIn)
     {
-        this.playSound(SoundEvents.ENTITY_COW_STEP, 0.15F, 1.0F);
+        this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class EntityTTMAuroch extends EntityTTMHerds {
         return 0.4F;
     }
 
-    public EntityTTMAuroch func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+    public EntityTTMAuroch getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         return EntityGenerator.ENTITY_TTM_AUROCH.get().create(p_241840_1_);
     }
 
@@ -79,42 +79,42 @@ public class EntityTTMAuroch extends EntityTTMHerds {
     }
 
     public int getAurochType() {
-        return this.dataManager.get(AUROCH_TYPE);
+        return this.entityData.get(AUROCH_TYPE);
     }
 
     public void setAurochType(int type) {
         if (type < 0 || type >= 5) {
-            type = this.rand.nextInt(4);
+            type = this.random.nextInt(4);
         }
 
-        this.dataManager.set(AUROCH_TYPE, type);
+        this.entityData.set(AUROCH_TYPE, type);
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(1, 4);
         this.setAurochType(job);
 
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(AUROCH_TYPE, 1);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(AUROCH_TYPE, 1);
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         compound.putInt("AurochType", this.getAurochType());
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         this.setAurochType(compound.getInt("AurochType"));
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

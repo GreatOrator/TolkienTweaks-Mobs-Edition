@@ -30,7 +30,7 @@ public class EntityGaladhrimArrow extends AbstractArrowEntity {
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(TTMContent.GALADHRIM_ARROW.get());
     }
 }

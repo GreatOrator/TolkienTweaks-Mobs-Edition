@@ -33,8 +33,8 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttackMob {
-    private final ServerBossInfo bossInfo = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(), BossInfo.Color.GREEN, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
-    private static final DataParameter<Integer> GOBLINKING_TYPE = EntityDataManager.createKey(EntityTTMGoblinKing.class, DataSerializers.VARINT);
+    private final ServerBossInfo bossInfo = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(), BossInfo.Color.GREEN, BossInfo.Overlay.PROGRESS)).setDarkenScreen(true);
+    private static final DataParameter<Integer> GOBLINKING_TYPE = EntityDataManager.defineId(EntityTTMGoblinKing.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/goblin/goblinking.png"));
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/goblin/goblinking.png"));
@@ -51,22 +51,22 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 60.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.35D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 10.0D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 60.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.35D)
+                .add(Attributes.ATTACK_DAMAGE, 10.0D);
     }
 
-    public void attackEntityWithRangedAttack(LivingEntity target, float distanceFactor) {
-        SnowballEntity snowballentity = new SnowballEntity(this.world, this);
-        double d0 = target.getPosYEye() - (double)1.1F;
-        double d1 = target.getPosX() - this.getPosX();
-        double d2 = d0 - snowballentity.getPosY();
-        double d3 = target.getPosZ() - this.getPosZ();
+    public void performRangedAttack(LivingEntity target, float distanceFactor) {
+        SnowballEntity snowballentity = new SnowballEntity(this.level, this);
+        double d0 = target.getEyeY() - (double)1.1F;
+        double d1 = target.getX() - this.getX();
+        double d2 = d0 - snowballentity.getY();
+        double d3 = target.getZ() - this.getZ();
         float f = MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.2F;
         snowballentity.shoot(d1, d2 + (double)f, d3, 1.6F, 12.0F);
-        this.playSound(SoundEvents.ENTITY_SNOW_GOLEM_SHOOT, 1.0F, 0.4F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
-        this.world.addEntity(snowballentity);
+        this.playSound(SoundEvents.SNOW_GOLEM_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+        this.level.addFreshEntity(snowballentity);
     }
 
     @Override
@@ -93,37 +93,37 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
     }
 
     public int getGoblinKingType() {
-        return this.dataManager.get(GOBLINKING_TYPE);
+        return this.entityData.get(GOBLINKING_TYPE);
     }
 
     public void setGoblinKingType(int type) {
         if (type < 0 || type >= 3) {
-            type = this.rand.nextInt(2);
+            type = this.random.nextInt(2);
         }
 
-        this.dataManager.set(GOBLINKING_TYPE, type);
+        this.entityData.set(GOBLINKING_TYPE, type);
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(1, 1);
         this.setGoblinKingType(job);
 
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(GOBLINKING_TYPE, 1);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(GOBLINKING_TYPE, 1);
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         compound.putInt("GoblinKingType", this.getGoblinKingType());
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         this.setGoblinKingType(compound.getInt("GoblinKingType"));
         if (this.hasCustomName()) {
             this.bossInfo.setName(this.getDisplayName());
@@ -135,18 +135,18 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
         this.bossInfo.setName(this.getDisplayName());
     }
 
-    public void addTrackingPlayer(ServerPlayerEntity player) {
-        super.addTrackingPlayer(player);
+    public void startSeenByPlayer(ServerPlayerEntity player) {
+        super.startSeenByPlayer(player);
         this.bossInfo.addPlayer(player);
     }
 
-    public void removeTrackingPlayer(ServerPlayerEntity player) {
-        super.removeTrackingPlayer(player);
+    public void stopSeenByPlayer(ServerPlayerEntity player) {
+        super.stopSeenByPlayer(player);
         this.bossInfo.removePlayer(player);
     }
 
-    protected void updateAITasks() {
-        if (this.ticksExisted % 20 == 0) {
+    protected void customServerAiStep() {
+        if (this.tickCount % 20 == 0) {
             this.heal(1.0F);
         }
 
@@ -154,7 +154,7 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

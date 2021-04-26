@@ -12,6 +12,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
+import net.minecraft.item.Item.Properties;
+
 public class TTMSword extends SwordItem {
     public boolean hasEffectOverride = false;
     private boolean hasLore = false;
@@ -22,10 +24,10 @@ public class TTMSword extends SwordItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        super.addInformation(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
         if (hasLore) {
-            tooltip.add(new TranslationTextComponent(getTranslationKey() + ".lore").mergeStyle(TextFormatting.GOLD));
+            tooltip.add(new TranslationTextComponent(getDescriptionId() + ".lore").withStyle(TextFormatting.GOLD));
         }
     }
 
@@ -35,7 +37,7 @@ public class TTMSword extends SwordItem {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
-        return hasEffectOverride || super.hasEffect(stack);
+    public boolean isFoil(ItemStack stack) {
+        return hasEffectOverride || super.isFoil(stack);
     }
 }

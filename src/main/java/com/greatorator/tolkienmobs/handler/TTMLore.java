@@ -26,10 +26,10 @@ public class TTMLore extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        super.addInformation(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
         if (hasLore) {
-            tooltip.add(new TranslationTextComponent(getTranslationKey() + ".lore").mergeStyle(TextFormatting.GOLD));
+            tooltip.add(new TranslationTextComponent(getDescriptionId() + ".lore").withStyle(TextFormatting.GOLD));
         }
     }
 
@@ -84,7 +84,7 @@ public class TTMLore extends Item {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
-        return hasEffectOverride || super.hasEffect(stack);
+    public boolean isFoil(ItemStack stack) {
+        return hasEffectOverride || super.isFoil(stack);
     }
 }

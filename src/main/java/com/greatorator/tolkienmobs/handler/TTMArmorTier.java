@@ -13,11 +13,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.function.Supplier;
 
 public enum TTMArmorTier implements IArmorMaterial {
-    MITHRIL("mithril", 41, new int[]{5, 8, 10, 5}, 30, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 4.0F, 0.4F, () -> {
-        return Ingredient.fromItems(TTMContent.INGOT_MITHRIL.get());
+    MITHRIL("mithril", 41, new int[]{5, 8, 10, 5}, 30, SoundEvents.ARMOR_EQUIP_DIAMOND, 4.0F, 0.4F, () -> {
+        return Ingredient.of(TTMContent.INGOT_MITHRIL.get());
     }),
-    MORGULIRON("morguliron", 39, new int[]{4, 7, 9, 4}, 22, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 3.5F, 0.2F, () -> {
-        return Ingredient.fromItems(TTMContent.INGOT_MORGULIRON.get());
+    MORGULIRON("morguliron", 39, new int[]{4, 7, 9, 4}, 22, SoundEvents.ARMOR_EQUIP_DIAMOND, 3.5F, 0.2F, () -> {
+        return Ingredient.of(TTMContent.INGOT_MORGULIRON.get());
     });
 
     private static final int[] MAX_DAMAGE_ARRAY = new int[]{13, 15, 16, 11};
@@ -41,24 +41,24 @@ public enum TTMArmorTier implements IArmorMaterial {
         this.repairMaterial = new LazyValue<>(repairMaterial);
     }
 
-    public int getDurability(EquipmentSlotType slotIn) {
+    public int getDurabilityForSlot(EquipmentSlotType slotIn) {
         return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
     }
 
-    public int getDamageReductionAmount(EquipmentSlotType slotIn) {
+    public int getDefenseForSlot(EquipmentSlotType slotIn) {
         return this.damageReductionAmountArray[slotIn.getIndex()];
     }
 
-    public int getEnchantability() {
+    public int getEnchantmentValue() {
         return this.enchantability;
     }
 
-    public SoundEvent getSoundEvent() {
+    public SoundEvent getEquipSound() {
         return this.soundEvent;
     }
 
-    public Ingredient getRepairMaterial() {
-        return this.repairMaterial.getValue();
+    public Ingredient getRepairIngredient() {
+        return this.repairMaterial.get();
     }
 
     @OnlyIn(Dist.CLIENT)

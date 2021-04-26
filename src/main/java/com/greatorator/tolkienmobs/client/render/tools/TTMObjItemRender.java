@@ -14,6 +14,7 @@ import com.google.common.collect.ImmutableMap;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.model.IModelTransform;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
@@ -58,12 +59,12 @@ public class TTMObjItemRender implements IItemRenderer {
     }
 
     @Override
-    public ImmutableMap<ItemCameraTransforms.TransformType, TransformationMatrix> getTransforms() {
+    public IModelTransform getModelTransform() {
         return TransformUtils.DEFAULT_TOOL;
     }
 
     @Override
-    public boolean isAmbientOcclusion() {
+    public boolean useAmbientOcclusion() {
         return false;
     }
 
@@ -73,7 +74,7 @@ public class TTMObjItemRender implements IItemRenderer {
     }
 
     @Override
-    public boolean isSideLit() {
+    public boolean usesBlockLight() {
         return false;
     }
 }

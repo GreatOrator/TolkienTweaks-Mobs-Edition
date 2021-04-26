@@ -13,11 +13,11 @@ public class RenderTTMBarrowWight extends MobRenderer<EntityTTMBarrowWight, Mode
     }
 
     @Override
-    public ResourceLocation getEntityTexture(EntityTTMBarrowWight entity) {
+    public ResourceLocation getTextureLocation(EntityTTMBarrowWight entity) {
         return entity.getBarrowTypeName();
     }
 
-    protected void preRenderCallback(EntityTTMBarrowWight entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
-        super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
+    protected void scale(EntityTTMBarrowWight entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+        super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }
 }

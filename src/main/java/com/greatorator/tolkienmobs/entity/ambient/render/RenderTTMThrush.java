@@ -21,14 +21,14 @@ public class RenderTTMThrush extends MobRenderer<EntityTTMThrush, ModelTTMThrush
     /**
      * Returns the location of an entity's texture.
      */
-    public ResourceLocation getEntityTexture(EntityTTMThrush entity) {
+    public ResourceLocation getTextureLocation(EntityTTMThrush entity) {
         return THRUSH_TEXTURES[entity.getVariant()];
     }
 
     /**
      * Defines what float the third param in setRotationAngles of ModelBase is
      */
-    public float handleRotationFloat(EntityTTMThrush livingBase, float partialTicks) {
+    public float getBob(EntityTTMThrush livingBase, float partialTicks) {
         float f = MathHelper.lerp(partialTicks, livingBase.oFlap, livingBase.flap);
         float f1 = MathHelper.lerp(partialTicks, livingBase.oFlapSpeed, livingBase.flapSpeed);
         return (MathHelper.sin(f) + 1.0F) * f1;

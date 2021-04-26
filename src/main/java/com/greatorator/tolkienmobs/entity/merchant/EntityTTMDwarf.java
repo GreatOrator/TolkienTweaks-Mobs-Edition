@@ -27,8 +27,8 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class EntityTTMDwarf extends EntityTTMVillager {
-    private static final DataParameter<Integer> DWARF_TYPE = EntityDataManager.createKey(EntityTTMDwarf.class, DataSerializers.VARINT);
-    private static final DataParameter<VillagerData> DWARF_DATA = EntityDataManager.createKey(EntityTTMDwarf.class, DataSerializers.VILLAGER_DATA);
+    private static final DataParameter<Integer> DWARF_TYPE = EntityDataManager.defineId(EntityTTMDwarf.class, DataSerializers.INT);
+    private static final DataParameter<VillagerData> DWARF_DATA = EntityDataManager.defineId(EntityTTMDwarf.class, DataSerializers.VILLAGER_DATA);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/dwarf/dwarf1.png"));
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/dwarf/dwarf1.png"));
@@ -54,39 +54,39 @@ public class EntityTTMDwarf extends EntityTTMVillager {
     }
 
     public int getDwarfType() {
-        return this.dataManager.get(DWARF_TYPE);
+        return this.entityData.get(DWARF_TYPE);
     }
 
     public void setDwarfType(int type) {
         if (type < 0 || type >= 5) {
-            type = this.rand.nextInt(4);
+            type = this.random.nextInt(4);
         }
 
-        this.dataManager.set(DWARF_TYPE, type);
+        this.entityData.set(DWARF_TYPE, type);
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(1, 4);
         this.setDwarfType(job);
 
         if (job == 0) {
-            this.setVillagerData(this.getVillagerData().withProfession(ProfessionGenerator.COIN_TRADER_PROFESSION.get()));
+            this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.COIN_TRADER_PROFESSION.get()));
         }
         if (job == 1) {
-            this.setVillagerData(this.getVillagerData().withProfession(ProfessionGenerator.GROCERY_STORE_PROFESSION.get()));
+            this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.GROCERY_STORE_PROFESSION.get()));
         }
         if (job == 2) {
-            this.setVillagerData(this.getVillagerData().withProfession(ProfessionGenerator.JUNK_TRADER_PROFESSION.get()));
+            this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.JUNK_TRADER_PROFESSION.get()));
         }
         if (job == 3) {
-            this.setVillagerData(this.getVillagerData().withProfession(ProfessionGenerator.PET_MERCHANT_PROFESSION.get()));
+            this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.PET_MERCHANT_PROFESSION.get()));
         }
         if (job == 4) {
-            this.setVillagerData(this.getVillagerData().withProfession(VillagerProfession.WEAPONSMITH));
+            this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.WEAPONSMITH));
         }
 
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
     @Nullable
@@ -94,7 +94,7 @@ public class EntityTTMDwarf extends EntityTTMVillager {
         if (this.isSleeping()) {
             return null;
         } else {
-            return this.hasCustomer() ? SoundEvents.ENTITY_VILLAGER_TRADE : SoundGenerator.soundIdleDwarf.get();
+            return this.isTrading() ? SoundEvents.VILLAGER_TRADE : SoundGenerator.soundIdleDwarf.get();
         }
     }
 
@@ -106,19 +106,19 @@ public class EntityTTMDwarf extends EntityTTMVillager {
         return SoundGenerator.soundDeathDwarf.get();
     }
 
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(DWARF_TYPE, 3);
-        this.dataManager.register(DWARF_DATA, new VillagerData(VillagerType.PLAINS, ProfessionGenerator.UNEMPLOYED_PROFESSION.get(), 1));
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(DWARF_TYPE, 3);
+        this.entityData.define(DWARF_DATA, new VillagerData(VillagerType.PLAINS, ProfessionGenerator.UNEMPLOYED_PROFESSION.get(), 1));
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         compound.putInt("DwarfType", this.getDwarfType());
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         this.setDwarfType(compound.getInt("DwarfType"));
     }
 }

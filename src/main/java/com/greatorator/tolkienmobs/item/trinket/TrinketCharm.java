@@ -38,9 +38,9 @@ public class TrinketCharm extends Item {
     }
 
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
 
-        if (this.isInGroup(group)) {
+        if (this.allowdedIn(group)) {
             for(Effect p : TTMConfig.potionArray) {
                 if (p != null) {
                     items.add(getTrinketForPotion(p));
@@ -57,15 +57,15 @@ public class TrinketCharm extends Item {
     }
 
     @Override
-    public ITextComponent getDisplayName(ItemStack stack) {
+    public ITextComponent getName(ItemStack stack) {
         Potion potion = TrinketCharm.getPotion(stack);
         CompoundNBT compoundnbt = stack.getTag();
         String s = compoundnbt.getString("effect");
 
         if (compoundnbt.contains("effect")){
-            return new TranslationTextComponent(this.getTranslationKey() + ".effect." + s);
+            return new TranslationTextComponent(this.getDescriptionId() + ".effect." + s);
         }else {
-            return new TranslationTextComponent(this.getTranslationKey() + ".effect.empty");
+            return new TranslationTextComponent(this.getDescriptionId() + ".effect.empty");
         }
     }
 
@@ -77,21 +77,21 @@ public class TrinketCharm extends Item {
         if(effect.isEmpty())
             return null;
 
-        return Potion.getPotionTypeForName(effect);
+        return Potion.byName(effect);
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        ItemStack stack = player.getHeldItem(hand);
-        if (player.isSneaking() && (getPotion(stack) != null)) {
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        if (player.isShiftKeyDown() && (getPotion(stack) != null)) {
             toggleEnabled(stack);
         }
-        return super.onItemRightClick(world, player, hand);
+        return super.use(world, player, hand);
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return isEnabled(stack);
     }
 
@@ -110,23 +110,23 @@ public class TrinketCharm extends Item {
 
     private void updateTrinket(ItemStack stack, Entity entity) {
         PlayerEntity player = (PlayerEntity) entity;
-        Effect pe = (Effect) PotionUtils.getEffectsFromStack(stack);
+        Effect pe = (Effect) PotionUtils.getMobEffects(stack);
 
         if(isEnabled(stack)){
             LOGGER.info("Hey you guys!");
             LOGGER.info(pe);
-            player.addPotionEffect(new EffectInstance(new EffectInstance(pe,2400,3,false,false)));
+            player.addEffect(new EffectInstance(new EffectInstance(pe,2400,3,false,false)));
         }else {
-            player.removePotionEffect(pe);
+            player.removeEffect(pe);
         }
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        super.addInformation(stack, worldIn, tooltip, flagIn);
+    public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
         if (hasLore) {
-            tooltip.add(new TranslationTextComponent(getTranslationKey() + ".lore").mergeStyle(TextFormatting.DARK_PURPLE));
+            tooltip.add(new TranslationTextComponent(getDescriptionId() + ".lore").withStyle(TextFormatting.DARK_PURPLE));
         }
     }
 

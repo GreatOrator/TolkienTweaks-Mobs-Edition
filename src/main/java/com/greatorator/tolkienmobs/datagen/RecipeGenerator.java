@@ -26,7 +26,7 @@ public class RecipeGenerator extends RecipeProvider {
     }
 
     @Override
-    protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
+    protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
 
         //Left in a couple of my builders so you can see how the recipe builders work
         components(consumer);
@@ -110,19 +110,19 @@ public class RecipeGenerator extends RecipeProvider {
     }
 
     private static void specialty(Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(TTMContent.GOLEM_STONE_SUMMON.get())
-                .patternLine("MEM")
-                .patternLine("ASF")
-                .patternLine("OWO")
-                .key('W', TTMContent.GOLEM_STONE_WATER.get())
-                .key('A', TTMContent.GOLEM_STONE_AIR.get())
-                .key('M', TTMContent.BLOCK_MITHRIL.get())
-                .key('S', TTMContent.GOLEM_STONE.get())
-                .key('F', TTMContent.GOLEM_STONE_FIRE.get())
-                .key('E', TTMContent.GOLEM_STONE_EARTH.get())
-                .key('O', Items.OBSIDIAN)
-                .addCriterion("has_golem_stones", hasItem(TTMContent.GOLEM_STONE.get()))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(TTMContent.GOLEM_STONE_SUMMON.get())
+                .pattern("MEM")
+                .pattern("ASF")
+                .pattern("OWO")
+                .define('W', TTMContent.GOLEM_STONE_WATER.get())
+                .define('A', TTMContent.GOLEM_STONE_AIR.get())
+                .define('M', TTMContent.BLOCK_MITHRIL.get())
+                .define('S', TTMContent.GOLEM_STONE.get())
+                .define('F', TTMContent.GOLEM_STONE_FIRE.get())
+                .define('E', TTMContent.GOLEM_STONE_EARTH.get())
+                .define('O', Items.OBSIDIAN)
+                .unlockedBy("has_golem_stones", has(TTMContent.GOLEM_STONE.get()))
+                .save(consumer);
     }
 
     public static void potions() {
@@ -138,161 +138,161 @@ public class RecipeGenerator extends RecipeProvider {
 
     // Helper Methods
     public static void swordRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(output, 1)
-                .patternLine("#")
-                .patternLine("#")
-                .patternLine("-")
-                .key('#', input)
-                .key('-', Items.STICK)
-                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("#")
+                .pattern("#")
+                .pattern("-")
+                .define('#', input)
+                .define('-', Items.STICK)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
     }
 
     public static void axeRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(output, 1)
-                .patternLine("##")
-                .patternLine("#-")
-                .patternLine(" -")
-                .key('#', input)
-                .key('-', Items.STICK)
-                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("##")
+                .pattern("#-")
+                .pattern(" -")
+                .define('#', input)
+                .define('-', Items.STICK)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
     }
 
     public static void shovelRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(output, 1)
-                .patternLine("#")
-                .patternLine("-")
-                .patternLine("-")
-                .key('#', input)
-                .key('-', Items.STICK)
-                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("#")
+                .pattern("-")
+                .pattern("-")
+                .define('#', input)
+                .define('-', Items.STICK)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
     }
 
     public static void pickaxeRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(output, 1)
-                .patternLine("###")
-                .patternLine(" - ")
-                .patternLine(" - ")
-                .key('#', input)
-                .key('-', Items.STICK)
-                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("###")
+                .pattern(" - ")
+                .pattern(" - ")
+                .define('#', input)
+                .define('-', Items.STICK)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
     }
 
     public static void hoeRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(output, 1)
-                .patternLine("##")
-                .patternLine(" -")
-                .patternLine(" -")
-                .key('#', input)
-                .key('-', Items.STICK)
-                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("##")
+                .pattern(" -")
+                .pattern(" -")
+                .define('#', input)
+                .define('-', Items.STICK)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
     }
 
     public static void smeltingRecipe(IItemProvider output, IItemProvider input, float xp, int cook,Consumer<IFinishedRecipe> consumer) {
-        CookingRecipeBuilder.smeltingRecipe(Ingredient.fromItems(input),
+        CookingRecipeBuilder.smelting(Ingredient.of(input),
                 output, xp, cook)
-                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer, "tolkienmobs:cooked_" + output.asItem().getRegistryName().getPath());
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer, "tolkienmobs:cooked_" + output.asItem().getRegistryName().getPath());
     }
 
     public static void slabRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(output, 6)
-                .patternLine("###")
-                .key('#', input)
-                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(output, 6)
+                .pattern("###")
+                .define('#', input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer);
     }
 
     public static void stairsRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(output, 4)
-                .patternLine("#  ")
-                .patternLine("## ")
-                .patternLine("###")
-                .key('#', input)
-                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(output, 4)
+                .pattern("#  ")
+                .pattern("## ")
+                .pattern("###")
+                .define('#', input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer);
     }
 
     public static void barsRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(output, 1)
-                .patternLine("###")
-                .patternLine("###")
-                .key('#', input)
-                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("###")
+                .pattern("###")
+                .define('#', input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer);
     }
 
     public static void storageRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(output, 1)
-                .patternLine("###")
-                .patternLine("###")
-                .patternLine("###")
-                .key('#', input)
-                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer, "tolkienmobs:storage_" + output.asItem().getRegistryName().getPath());
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .define('#', input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer, "tolkienmobs:storage_" + output.asItem().getRegistryName().getPath());
     }
 
     public static void doorRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(output, 3)
-                .patternLine("##")
-                .patternLine("##")
-                .patternLine("##")
-                .key('#', input)
-                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(output, 3)
+                .pattern("##")
+                .pattern("##")
+                .pattern("##")
+                .define('#', input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer);
     }
 
     public static void fenceRecipe(IItemProvider output, IItemProvider input1, IItemProvider input2, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(output, 3)
-                .patternLine("#-#")
-                .patternLine("#-#")
-                .key('#', input1)
-                .key('-', input2)
-                .addCriterion("has_" + input1.asItem().getRegistryName().getPath(), hasItem(input1))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(output, 3)
+                .pattern("#-#")
+                .pattern("#-#")
+                .define('#', input1)
+                .define('-', input2)
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
+                .save(consumer);
     }
 
     public static void fenceGateRecipe(IItemProvider output, IItemProvider input1, IItemProvider input2, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shapedRecipe(output, 1)
-                .patternLine("-#-")
-                .patternLine("-#-")
-                .key('-', input1)
-                .key('#', input2)
-                .addCriterion("has_" + input1.asItem().getRegistryName().getPath(), hasItem(input1))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("-#-")
+                .pattern("-#-")
+                .define('-', input1)
+                .define('#', input2)
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
+                .save(consumer);
     }
 
     public static void unstorageRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
         ShapelessRecipeBuilder
-                .shapelessRecipe(output, 9)
-                .addIngredient(input)
-                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer, "tolkienmobs:unstorage_" + output.asItem().getRegistryName().getPath());
+                .shapeless(output, 9)
+                .requires(input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer, "tolkienmobs:unstorage_" + output.asItem().getRegistryName().getPath());
     }
 
     public static void dyeRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
         ShapelessRecipeBuilder
-                .shapelessRecipe(output, 2)
-                .addIngredient(input)
-                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer, "tolkienmobs:dye_" + output.asItem().getRegistryName().getPath());
+                .shapeless(output, 2)
+                .requires(input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer, "tolkienmobs:dye_" + output.asItem().getRegistryName().getPath());
     }
 
     public static void plankRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
         ShapelessRecipeBuilder
-                .shapelessRecipe(output, 4)
-                .addIngredient(input)
-                .addCriterion("has_" + input.asItem().getRegistryName().getPath(), hasItem(input))
-                .build(consumer);
+                .shapeless(output, 4)
+                .requires(input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer);
     }
 
     @Override
-    public void act(DirectoryCache cache) throws IOException {
-        super.act(cache);
+    public void run(DirectoryCache cache) throws IOException {
+        super.run(cache);
     }
 
     private static class ModBrewingRecipe implements IBrewingRecipe {
@@ -303,12 +303,12 @@ public class RecipeGenerator extends RecipeProvider {
         public ModBrewingRecipe(Potion bottleInput, Item itemInput, Potion output) {
             this.bottleInput = bottleInput;
             this.itemInput = itemInput;
-            this.output = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), output);
+            this.output = PotionUtils.setPotion(new ItemStack(Items.POTION), output);
         }
 
         @Override
         public boolean isInput(ItemStack input) {
-            return PotionUtils.getPotionFromItem(input).equals(this.bottleInput);
+            return PotionUtils.getPotion(input).equals(this.bottleInput);
         }
 
         @Override

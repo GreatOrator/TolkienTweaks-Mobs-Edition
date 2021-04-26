@@ -17,7 +17,7 @@ public class RenderTTMSwarm<T extends MobEntity, M extends EntityModel<T>> exten
     }
 
     @Override
-    public ResourceLocation getEntityTexture(T entity) {
+    public ResourceLocation getTextureLocation(T entity) {
         return SWARM_TEXTURE;
     }
 }

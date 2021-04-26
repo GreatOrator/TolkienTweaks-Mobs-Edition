@@ -23,16 +23,16 @@ public class EntityTTMAmbients extends AnimalEntity {
         super(type, worldIn);
     }
 
-    public boolean attackEntityFrom(DamageSource source, float amount) {
-        return this.isInvulnerableTo(source) ? false : super.attackEntityFrom(source, amount);
+    public boolean hurt(DamageSource source, float amount) {
+        return this.isInvulnerableTo(source) ? false : super.hurt(source, amount);
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 10.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25D)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 16D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 2.0D);
+        return MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 10.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.25D)
+                .add(Attributes.FOLLOW_RANGE, 16D)
+                .add(Attributes.ATTACK_DAMAGE, 2.0D);
     }
 
     protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
@@ -40,7 +40,7 @@ public class EntityTTMAmbients extends AnimalEntity {
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -52,7 +52,7 @@ public class EntityTTMAmbients extends AnimalEntity {
 
     @Nullable
     @Override
-    public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+    public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         return null;
     }
 
@@ -61,11 +61,11 @@ public class EntityTTMAmbients extends AnimalEntity {
     }
 
     public boolean getCanSpawnHere() {
-        int i = MathHelper.floor(this.getPosX());
+        int i = MathHelper.floor(this.getX());
         int j = MathHelper.floor(this.getBoundingBox().minY);
-        int k = MathHelper.floor(this.getPosZ());
+        int k = MathHelper.floor(this.getZ());
         BlockPos blockpos = new BlockPos(i, j, k);
 
-        return this.world.getDifficulty() != Difficulty.PEACEFUL && this.isValidLightLevel();
+        return this.level.getDifficulty() != Difficulty.PEACEFUL && this.isValidLightLevel();
     }
 }

@@ -22,11 +22,11 @@ import java.util.Set;
 
 public class TTMFeatureUtil {
     public static void putLeafBlock(IWorldGenerationReader world, Random random, BlockPos pos, BlockStateProvider state, Set<BlockPos> leavesPos) {
-        if (/*leavesPos.contains(pos) ||*/ !TreeFeature.isReplaceableAt(world, pos))
+        if (/*leavesPos.contains(pos) ||*/ !TreeFeature.validTreePos(world, pos))
             return;
 
-        world.setBlockState(pos, state.getBlockState(random, pos), 3);
-        leavesPos.add(pos.toImmutable());
+        world.setBlock(pos, state.getState(random, pos), 3);
+        leavesPos.add(pos.immutable());
     }
 
     public static void makeLeafCircle(IWorldGenerationReader world, Random random, BlockPos centerPos, float radius, BlockStateProvider state, Set<BlockPos> leaves) {
@@ -41,10 +41,10 @@ public class TTMFeatureUtil {
                 // if we're inside the blob, fill it
                 if (x * x + z * z <= radiusSquared) {
                     // do four at a time for easiness!
-                    putLeafBlock(world, random, centerPos.add(  x, 0,  z), state, leaves);
-                    putLeafBlock(world, random, centerPos.add( -x, 0, -z), state, leaves);
-                    putLeafBlock(world, random, centerPos.add( -z, 0,  x), state, leaves);
-                    putLeafBlock(world, random, centerPos.add(  z, 0, -x), state, leaves);
+                    putLeafBlock(world, random, centerPos.offset(  x, 0,  z), state, leaves);
+                    putLeafBlock(world, random, centerPos.offset( -x, 0, -z), state, leaves);
+                    putLeafBlock(world, random, centerPos.offset( -z, 0,  x), state, leaves);
+                    putLeafBlock(world, random, centerPos.offset(  z, 0, -x), state, leaves);
                     // Confused how this circle pixel-filling algorithm works exactly? https://www.desmos.com/calculator/psqynhk21k
                 }
             }
@@ -60,41 +60,41 @@ public class TTMFeatureUtil {
         for (int y = 0; y <= yRadius; y++) {
             if (y > yRadius) continue;
 
-            putLeafBlock(world, random, centerPos.add( 0,  y, 0), state, leaves);
-            putLeafBlock(world, random, centerPos.add( 0,  y, 0), state, leaves);
-            putLeafBlock(world, random, centerPos.add( 0,  y, 0), state, leaves);
-            putLeafBlock(world, random, centerPos.add( 0,  y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0,  y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0,  y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0,  y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0,  y, 0), state, leaves);
 
-            putLeafBlock(world, random, centerPos.add( 0, -y, 0), state, leaves);
-            putLeafBlock(world, random, centerPos.add( 0, -y, 0), state, leaves);
-            putLeafBlock(world, random, centerPos.add( 0, -y, 0), state, leaves);
-            putLeafBlock(world, random, centerPos.add( 0, -y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0, -y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0, -y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0, -y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0, -y, 0), state, leaves);
         }
 
         for (int x = 0; x <= xzRadius; x++) {
             for (int z = 1; z <= xzRadius; z++) {
                 if (x * x + z * z > xzRadiusSquared) continue;
 
-                putLeafBlock(world, random, centerPos.add(  x, 0,  z), state, leaves);
-                putLeafBlock(world, random, centerPos.add( -x, 0, -z), state, leaves);
-                putLeafBlock(world, random, centerPos.add( -z, 0,  x), state, leaves);
-                putLeafBlock(world, random, centerPos.add(  z, 0, -x), state, leaves);
+                putLeafBlock(world, random, centerPos.offset(  x, 0,  z), state, leaves);
+                putLeafBlock(world, random, centerPos.offset( -x, 0, -z), state, leaves);
+                putLeafBlock(world, random, centerPos.offset( -z, 0,  x), state, leaves);
+                putLeafBlock(world, random, centerPos.offset(  z, 0, -x), state, leaves);
 
                 for (int y = 1; y <= yRadius; y++) {
                     float xzSquare = ((x * x + z * z) * yRadiusSquared);
 
                     if (xzSquare + (((y - verticalBias) * (y - verticalBias)) * xzRadiusSquared) <= superRadiusSquared) {
-                        putLeafBlock(world, random, centerPos.add(  x,  y,  z), state, leaves);
-                        putLeafBlock(world, random, centerPos.add( -x,  y, -z), state, leaves);
-                        putLeafBlock(world, random, centerPos.add( -z,  y,  x), state, leaves);
-                        putLeafBlock(world, random, centerPos.add(  z,  y, -x), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset(  x,  y,  z), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset( -x,  y, -z), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset( -z,  y,  x), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset(  z,  y, -x), state, leaves);
                     }
 
                     if (xzSquare + (((y + verticalBias) * (y + verticalBias)) * xzRadiusSquared) <= superRadiusSquared) {
-                        putLeafBlock(world, random, centerPos.add(  x, -y,  z), state, leaves);
-                        putLeafBlock(world, random, centerPos.add( -x, -y, -z), state, leaves);
-                        putLeafBlock(world, random, centerPos.add( -z, -y,  x), state, leaves);
-                        putLeafBlock(world, random, centerPos.add(  z, -y, -x), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset(  x, -y,  z), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset( -x, -y, -z), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset( -z, -y,  x), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset(  z, -y, -x), state, leaves);
                     }
                 }
             }
@@ -108,15 +108,15 @@ public class TTMFeatureUtil {
         for (int y = 0; y <= radius; y++) {
             if (y > radius) continue;
 
-            putLeafBlock(world, random, centerPos.add( 0,  y, 0), state, leaves);
-            putLeafBlock(world, random, centerPos.add( 0,  y, 0), state, leaves);
-            putLeafBlock(world, random, centerPos.add( 0,  y, 0), state, leaves);
-            putLeafBlock(world, random, centerPos.add( 0,  y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0,  y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0,  y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0,  y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0,  y, 0), state, leaves);
 
-            putLeafBlock(world, random, centerPos.add( 0, -y, 0), state, leaves);
-            putLeafBlock(world, random, centerPos.add( 0, -y, 0), state, leaves);
-            putLeafBlock(world, random, centerPos.add( 0, -y, 0), state, leaves);
-            putLeafBlock(world, random, centerPos.add( 0, -y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0, -y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0, -y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0, -y, 0), state, leaves);
+            putLeafBlock(world, random, centerPos.offset( 0, -y, 0), state, leaves);
         }
 
         for (int x = 0; x <= radius; x++) {
@@ -125,23 +125,23 @@ public class TTMFeatureUtil {
 
                 if (xzSquare > radiusSquared) continue;
 
-                putLeafBlock(world, random, centerPos.add(  x, 0,  z), state, leaves);
-                putLeafBlock(world, random, centerPos.add( -x, 0, -z), state, leaves);
-                putLeafBlock(world, random, centerPos.add( -z, 0,  x), state, leaves);
-                putLeafBlock(world, random, centerPos.add(  z, 0, -x), state, leaves);
+                putLeafBlock(world, random, centerPos.offset(  x, 0,  z), state, leaves);
+                putLeafBlock(world, random, centerPos.offset( -x, 0, -z), state, leaves);
+                putLeafBlock(world, random, centerPos.offset( -z, 0,  x), state, leaves);
+                putLeafBlock(world, random, centerPos.offset(  z, 0, -x), state, leaves);
 
                 for (int y = 1; y <= radius; y++) {
 
                     if (xzSquare + y * y <= radius * radius) {
-                        putLeafBlock(world, random, centerPos.add(  x,  y,  z), state, leaves);
-                        putLeafBlock(world, random, centerPos.add( -x,  y, -z), state, leaves);
-                        putLeafBlock(world, random, centerPos.add( -z,  y,  x), state, leaves);
-                        putLeafBlock(world, random, centerPos.add(  z,  y, -x), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset(  x,  y,  z), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset( -x,  y, -z), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset( -z,  y,  x), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset(  z,  y, -x), state, leaves);
 
-                        putLeafBlock(world, random, centerPos.add(  x, -y,  z), state, leaves);
-                        putLeafBlock(world, random, centerPos.add( -x, -y, -z), state, leaves);
-                        putLeafBlock(world, random, centerPos.add( -z, -y,  x), state, leaves);
-                        putLeafBlock(world, random, centerPos.add(  z, -y, -x), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset(  x, -y,  z), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset( -x, -y, -z), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset( -z, -y,  x), state, leaves);
+                        putLeafBlock(world, random, centerPos.offset(  z, -y, -x), state, leaves);
                     }
                 }
             }
@@ -150,7 +150,7 @@ public class TTMFeatureUtil {
 
     public static boolean hasAirAround(IWorldGenerationReader world, BlockPos pos) {
         for (Direction e : directionsExceptDown) {
-            if (world.hasBlockState(pos, b -> b.getBlock() instanceof AirBlock)) {
+            if (world.isStateAtPosition(pos, b -> b.getBlock() instanceof AirBlock)) {
                 return true;
             }
         }
@@ -160,7 +160,7 @@ public class TTMFeatureUtil {
 
     public static void drawBresenhamBranch(IWorldGenerationReader world, Random random, BlockPos from, BlockPos to, Set<BlockPos> state, MutableBoundingBox mbb, BaseTreeFeatureConfig config) {
         for (BlockPos pixel : getBresenhamArrays(from, to)) {
-            AbstractTrunkPlacer.func_236911_a_(world, random, pixel, state, mbb, config);
+            AbstractTrunkPlacer.placeLog(world, random, pixel, state, mbb, config);
         }
     }
 
@@ -168,7 +168,7 @@ public class TTMFeatureUtil {
         double rangle = angle * 2.0D * Math.PI;
         double rtilt = tilt * Math.PI;
 
-        return pos.add(
+        return pos.offset(
                 Math.round(Math.sin(rangle) * Math.sin(rtilt) * distance),
                 Math.round(Math.cos(rtilt) * distance),
                 Math.round(Math.cos(rangle) * Math.sin(rtilt) * distance)
@@ -184,8 +184,8 @@ public class TTMFeatureUtil {
 
     public static void drawBresenhamTree(IWorld world, BlockPos from, BlockPos to, BlockState state, Set<BlockPos> treepos) {
         for (BlockPos pixel : getBresenhamArrays(from, to)) {
-            world.setBlockState(pixel, state, 3);
-            treepos.add(pixel.toImmutable());
+            world.setBlock(pixel, state, 3);
+            treepos.add(pixel.immutable());
         }
     }
 
@@ -219,7 +219,7 @@ public class TTMFeatureUtil {
             for (i = 0; i < absDx; i++) {
                 lineArray[i] = pixel;
                 if (err_1 > 0) {
-                    pixel = pixel.up(y_inc);
+                    pixel = pixel.above(y_inc);
                     err_1 -= doubleAbsDx;
                 }
                 if (err_2 > 0) {
@@ -246,7 +246,7 @@ public class TTMFeatureUtil {
                 }
                 err_1 += doubleAbsDx;
                 err_2 += doubleAbsDz;
-                pixel = pixel.up(y_inc);
+                pixel = pixel.above(y_inc);
             }
         } else {
             err_1 = doubleAbsDy - absDz;
@@ -255,7 +255,7 @@ public class TTMFeatureUtil {
             for (i = 0; i < absDz; i++) {
                 lineArray[i] = pixel;
                 if (err_1 > 0) {
-                    pixel = pixel.up(y_inc);
+                    pixel = pixel.above(y_inc);
                     err_1 -= doubleAbsDz;
                 }
                 if (err_2 > 0) {
@@ -283,10 +283,10 @@ public class TTMFeatureUtil {
                 }
 
                 if (dist <= rad) {
-                    putLeafBlock(world, pos.add(+dx, 0, +dz), state, leaves);
-                    putLeafBlock(world, pos.add(+dx, 0, -dz), state, leaves);
-                    putLeafBlock(world, pos.add(-dx, 0, +dz), state, leaves);
-                    putLeafBlock(world, pos.add(-dx, 0, -dz), state, leaves);
+                    putLeafBlock(world, pos.offset(+dx, 0, +dz), state, leaves);
+                    putLeafBlock(world, pos.offset(+dx, 0, -dz), state, leaves);
+                    putLeafBlock(world, pos.offset(-dx, 0, +dz), state, leaves);
+                    putLeafBlock(world, pos.offset(-dx, 0, -dz), state, leaves);
                 }
             }
         }
@@ -296,8 +296,8 @@ public class TTMFeatureUtil {
         BlockState whatsThere = world.getBlockState(pos);
 
         if (whatsThere.canBeReplacedByLeaves(world, pos) && whatsThere.getBlock() != state.getBlock()) {
-            world.setBlockState(pos, state, 3);
-            leavespos.add(pos.toImmutable());
+            world.setBlock(pos, state, 3);
+            leavespos.add(pos.immutable());
         }
     }
 
@@ -306,17 +306,17 @@ public class TTMFeatureUtil {
             for (byte dz = 0; dz <= rad; dz++) {
 
                 if (dx * dx + dz * dz <= rad * rad) {
-                    putLeafBlock(world, pos.add(1 + dx, 0, 1 + dz), state, leaves);
-                    putLeafBlock(world, pos.add(1 + dx, 0, -dz), state, leaves);
-                    putLeafBlock(world, pos.add(-dx, 0, 1 + dz), state, leaves);
-                    putLeafBlock(world, pos.add(-dx, 0, -dz), state, leaves);
+                    putLeafBlock(world, pos.offset(1 + dx, 0, 1 + dz), state, leaves);
+                    putLeafBlock(world, pos.offset(1 + dx, 0, -dz), state, leaves);
+                    putLeafBlock(world, pos.offset(-dx, 0, 1 + dz), state, leaves);
+                    putLeafBlock(world, pos.offset(-dx, 0, -dz), state, leaves);
                 }
             }
         }
     }
 
     public static BlockState randStone(Random rand, int howMuch) {
-        return rand.nextInt(howMuch) >= 1 ? Blocks.COBBLESTONE.getDefaultState() : Blocks.MOSSY_COBBLESTONE.getDefaultState();
+        return rand.nextInt(howMuch) >= 1 ? Blocks.COBBLESTONE.defaultBlockState() : Blocks.MOSSY_COBBLESTONE.defaultBlockState();
     }
 
     public static boolean isAreaSuitable(IWorld world, Random rand, BlockPos pos, int width, int height, int depth) {
@@ -324,15 +324,15 @@ public class TTMFeatureUtil {
 
         for (int cx = 0; cx < width; cx++) {
             for (int cz = 0; cz < depth; cz++) {
-                BlockPos pos_ = pos.add(cx, 0, cz);
-                if (world.isBlockLoaded(pos_)) {
-                    Material m = world.getBlockState(pos_.down()).getMaterial();
-                    if (m != Material.EARTH && m != Material.ORGANIC && m != Material.ROCK) {
+                BlockPos pos_ = pos.offset(cx, 0, cz);
+                if (world.hasChunkAt(pos_)) {
+                    Material m = world.getBlockState(pos_.below()).getMaterial();
+                    if (m != Material.DIRT && m != Material.GRASS && m != Material.STONE) {
                         flag = false;
                     }
 
                     for (int cy = 0; cy < height; cy++) {
-                        if (!world.isAirBlock(pos_.up(cy))) {
+                        if (!world.isEmptyBlock(pos_.above(cy))) {
                             flag = false;
                         }
                     }
@@ -359,14 +359,14 @@ public class TTMFeatureUtil {
 
 
                     if (dist <= rad) {
-                        world.setBlockState(pos.add(+dx, +dy, +dz), state, 3);
-                        world.setBlockState(pos.add(+dx, +dy, -dz), state, 3);
-                        world.setBlockState(pos.add(-dx, +dy, +dz), state, 3);
-                        world.setBlockState(pos.add(-dx, +dy, -dz), state, 3);
-                        world.setBlockState(pos.add(+dx, -dy, +dz), state, 3);
-                        world.setBlockState(pos.add(+dx, -dy, -dz), state, 3);
-                        world.setBlockState(pos.add(-dx, -dy, +dz), state, 3);
-                        world.setBlockState(pos.add(-dx, -dy, -dz), state, 3);
+                        world.setBlock(pos.offset(+dx, +dy, +dz), state, 3);
+                        world.setBlock(pos.offset(+dx, +dy, -dz), state, 3);
+                        world.setBlock(pos.offset(-dx, +dy, +dz), state, 3);
+                        world.setBlock(pos.offset(-dx, +dy, -dz), state, 3);
+                        world.setBlock(pos.offset(+dx, -dy, +dz), state, 3);
+                        world.setBlock(pos.offset(+dx, -dy, -dz), state, 3);
+                        world.setBlock(pos.offset(-dx, -dy, +dz), state, 3);
+                        world.setBlock(pos.offset(-dx, -dy, -dz), state, 3);
                     }
                 }
             }
@@ -387,14 +387,14 @@ public class TTMFeatureUtil {
                     }
 
                     if (dist <= rad) {
-                        putLeafBlock(world, pos.add(+dx, +dy, +dz), state, leaves);
-                        putLeafBlock(world, pos.add(+dx, +dy, -dz), state, leaves);
-                        putLeafBlock(world, pos.add(-dx, +dy, +dz), state, leaves);
-                        putLeafBlock(world, pos.add(-dx, +dy, -dz), state, leaves);
-                        putLeafBlock(world, pos.add(+dx, -dy, +dz), state, leaves);
-                        putLeafBlock(world, pos.add(+dx, -dy, -dz), state, leaves);
-                        putLeafBlock(world, pos.add(-dx, -dy, +dz), state, leaves);
-                        putLeafBlock(world, pos.add(-dx, -dy, -dz), state, leaves);
+                        putLeafBlock(world, pos.offset(+dx, +dy, +dz), state, leaves);
+                        putLeafBlock(world, pos.offset(+dx, +dy, -dz), state, leaves);
+                        putLeafBlock(world, pos.offset(-dx, +dy, +dz), state, leaves);
+                        putLeafBlock(world, pos.offset(-dx, +dy, -dz), state, leaves);
+                        putLeafBlock(world, pos.offset(+dx, -dy, +dz), state, leaves);
+                        putLeafBlock(world, pos.offset(+dx, -dy, -dz), state, leaves);
+                        putLeafBlock(world, pos.offset(-dx, -dy, +dz), state, leaves);
+                        putLeafBlock(world, pos.offset(-dx, -dy, -dz), state, leaves);
                     }
                 }
             }
@@ -403,7 +403,7 @@ public class TTMFeatureUtil {
 
     public static boolean surroundedByAir(IWorldReader world, BlockPos pos) {
         for (Direction e : Direction.values()) {
-            if (!world.isAirBlock(pos.offset(e))) {
+            if (!world.isEmptyBlock(pos.relative(e))) {
                 return false;
             }
         }
@@ -415,7 +415,7 @@ public class TTMFeatureUtil {
 
     public static boolean hasAirAround(IWorld world, BlockPos pos) {
         for (Direction e : directionsExceptDown) {
-            if (world.isAirBlock(pos.offset(e))) {
+            if (world.isEmptyBlock(pos.relative(e))) {
                 return true;
             }
         }
@@ -425,8 +425,8 @@ public class TTMFeatureUtil {
 
     public static boolean isNearSolid(IWorldReader world, BlockPos pos) {
         for (Direction e : Direction.values()) {
-            if (world.isBlockLoaded(pos.offset(e))
-                    && world.getBlockState(pos.offset(e)).getMaterial().isSolid()) {
+            if (world.hasChunkAt(pos.relative(e))
+                    && world.getBlockState(pos.relative(e)).getMaterial().isSolid()) {
                 return true;
             }
         }
@@ -435,6 +435,6 @@ public class TTMFeatureUtil {
     }
 
     public static void setBlockStateProvider(IWorld world, BlockStateProvider provider, Random rand, BlockPos pos) {
-        world.setBlockState(pos, provider.getBlockState(rand, pos), 3);
+        world.setBlock(pos, provider.getState(rand, pos), 3);
     }
 }

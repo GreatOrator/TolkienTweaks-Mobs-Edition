@@ -25,8 +25,8 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class EntityTTMHuman extends EntityTTMVillager {
-    private static final DataParameter<Integer> HUMAN_TYPE = EntityDataManager.createKey(EntityTTMHuman.class, DataSerializers.VARINT);
-    private static final DataParameter<VillagerData> HUMAN_DATA = EntityDataManager.createKey(EntityTTMHuman.class, DataSerializers.VILLAGER_DATA);
+    private static final DataParameter<Integer> HUMAN_TYPE = EntityDataManager.defineId(EntityTTMHuman.class, DataSerializers.INT);
+    private static final DataParameter<VillagerData> HUMAN_DATA = EntityDataManager.defineId(EntityTTMHuman.class, DataSerializers.VILLAGER_DATA);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/human/human1.png"));
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/human/human1.png"));
@@ -58,63 +58,63 @@ public class EntityTTMHuman extends EntityTTMVillager {
     }
 
     public int getHumanType() {
-        return this.dataManager.get(HUMAN_TYPE);
+        return this.entityData.get(HUMAN_TYPE);
     }
 
     public void setHumanType(int type) {
         if (type < 0 || type >= 17) {
-            type = this.rand.nextInt(16);
+            type = this.random.nextInt(16);
         }
 
-        this.dataManager.set(HUMAN_TYPE, type);
+        this.entityData.set(HUMAN_TYPE, type);
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(1, 16);
         this.setHumanType(job);
 
         if (job == 0 || job == 4 || job == 8) {
-            this.setVillagerData(this.getVillagerData().withProfession(ProfessionGenerator.COIN_TRADER_PROFESSION.get()));
+            this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.COIN_TRADER_PROFESSION.get()));
         }
         if (job == 1 || job == 5 || job == 9) {
-            this.setVillagerData(this.getVillagerData().withProfession(ProfessionGenerator.GROCERY_STORE_PROFESSION.get()));
+            this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.GROCERY_STORE_PROFESSION.get()));
         }
         if (job == 2 || job == 6 || job == 10) {
-            this.setVillagerData(this.getVillagerData().withProfession(ProfessionGenerator.JUNK_TRADER_PROFESSION.get()));
+            this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.JUNK_TRADER_PROFESSION.get()));
         }
         if (job == 3 || job == 7 || job == 11) {
-            this.setVillagerData(this.getVillagerData().withProfession(ProfessionGenerator.PET_MERCHANT_PROFESSION.get()));
+            this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.PET_MERCHANT_PROFESSION.get()));
         }
         if (job == 12) {
-            this.setVillagerData(this.getVillagerData().withProfession(VillagerProfession.FARMER));
+            this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.FARMER));
         }
         if (job == 13) {
-            this.setVillagerData(this.getVillagerData().withProfession(VillagerProfession.FISHERMAN));
+            this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.FISHERMAN));
         }
         if (job == 14) {
-            this.setVillagerData(this.getVillagerData().withProfession(VillagerProfession.MASON));
+            this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.MASON));
         }
         if (job == 15) {
-            this.setVillagerData(this.getVillagerData().withProfession(VillagerProfession.NONE));
+            this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.NONE));
         }
 
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(HUMAN_TYPE, 10);
-        this.dataManager.register(HUMAN_DATA, new VillagerData(VillagerType.PLAINS, ProfessionGenerator.UNEMPLOYED_PROFESSION.get(), 1));
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(HUMAN_TYPE, 10);
+        this.entityData.define(HUMAN_DATA, new VillagerData(VillagerType.PLAINS, ProfessionGenerator.UNEMPLOYED_PROFESSION.get(), 1));
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         compound.putInt("HumanType", this.getHumanType());
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         this.setHumanType(compound.getInt("HumanType"));
     }
 }

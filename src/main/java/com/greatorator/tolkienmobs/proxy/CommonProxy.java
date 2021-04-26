@@ -57,12 +57,12 @@ public class CommonProxy {
 
     @SubscribeEvent
     public void onTick(TickEvent.RenderTickEvent tick) {
-        if (mc.world == null || (mc.currentScreen != null && mc.currentScreen.isPauseScreen()))
+        if (mc.level == null || (mc.screen != null && mc.screen.isPauseScreen()))
             return;
 
-        if (mc.world != lastWorld) {
+        if (mc.level != lastWorld) {
             boolean newGame = lastWorld == null;
-            lastWorld = mc.world;
+            lastWorld = mc.level;
 
             if (!newGame) {
                 TolkienMobs.proxy.getRareMobs().clear();

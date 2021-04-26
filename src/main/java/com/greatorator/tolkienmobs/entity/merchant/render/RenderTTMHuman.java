@@ -13,17 +13,17 @@ public class RenderTTMHuman extends MobRenderer<EntityTTMHuman, ModelTTMHuman<En
     }
 
     @Override
-    public ResourceLocation getEntityTexture(EntityTTMHuman entity) {
+    public ResourceLocation getTextureLocation(EntityTTMHuman entity) {
         return entity.getHumanTypeName();
     }
 
-    protected void preRenderCallback(EntityTTMHuman entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+    protected void scale(EntityTTMHuman entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         float f = 0.93F;
-        if (entitylivingbaseIn.isChild()) {
+        if (entitylivingbaseIn.isBaby()) {
             f = (float)((double)f * 0.5D);
-            this.shadowSize = 0.25F;
+            this.shadowRadius = 0.25F;
         } else {
-            this.shadowSize = 0.5F;
+            this.shadowRadius = 0.5F;
         }
 
         matrixStackIn.scale(f, f, f);

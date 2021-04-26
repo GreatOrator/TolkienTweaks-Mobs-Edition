@@ -48,7 +48,7 @@ public class EntityFellBeastFireball extends ProjectileItemEntity {
 
    @OnlyIn(Dist.CLIENT)
    private IParticleData makeParticle() {
-      ItemStack itemstack = this.func_213882_k();
+      ItemStack itemstack = this.getItemRaw();
       return (IParticleData)(itemstack.isEmpty() ? ParticleTypes.LARGE_SMOKE : new ItemParticleData(ParticleTypes.ITEM, itemstack));
    }
 
@@ -56,12 +56,12 @@ public class EntityFellBeastFireball extends ProjectileItemEntity {
     * Handler for {@link World#setEntityState}
     */
    @OnlyIn(Dist.CLIENT)
-   public void handleStatusUpdate(byte id) {
+   public void handleEntityEvent(byte id) {
       if (id == 3) {
          IParticleData iparticledata = this.makeParticle();
 
          for(int i = 0; i < 8; ++i) {
-            this.world.addParticle(iparticledata, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D, 0.0D);
+            this.level.addParticle(iparticledata, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
          }
       }
 
@@ -70,35 +70,35 @@ public class EntityFellBeastFireball extends ProjectileItemEntity {
    /**
     * Called when the arrow hits an entity
     */
-   protected void onEntityHit(EntityRayTraceResult p_213868_1_) {
-      super.onEntityHit(p_213868_1_);
+   protected void onHitEntity(EntityRayTraceResult p_213868_1_) {
+      super.onHitEntity(p_213868_1_);
       Entity entity = p_213868_1_.getEntity();
       int i = 10;
-      entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.func_234616_v_()), (float)i);
+      entity.hurt(DamageSource.thrown(this, this.getOwner()), (float)i);
    }
 
    /**
     * Called when this EntityFireball hits a block or entity.
     */
-   protected void onImpact(RayTraceResult result) {
-      super.onImpact(result);
-      if (!this.world.isRemote) {
-         boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.world, this.func_234616_v_());
-         this.world.createExplosion((Entity)null, this.getPosX(), this.getPosY(), this.getPosZ(), (float)this.explosionPower, flag, flag ? Explosion.Mode.DESTROY : Explosion.Mode.NONE);
+   protected void onHit(RayTraceResult result) {
+      super.onHit(result);
+      if (!this.level.isClientSide) {
+         boolean flag = net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this.getOwner());
+         this.level.explode((Entity)null, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower, flag, flag ? Explosion.Mode.DESTROY : Explosion.Mode.NONE);
          this.remove();
       }
    }
 
-   public void writeAdditional(CompoundNBT compound) {
-      super.writeAdditional(compound);
+   public void addAdditionalSaveData(CompoundNBT compound) {
+      super.addAdditionalSaveData(compound);
       compound.putInt("ExplosionPower", this.explosionPower);
    }
 
    /**
     * (abstract) Protected helper method to read subclass entity data from NBT.
     */
-   public void readAdditional(CompoundNBT compound) {
-      super.readAdditional(compound);
+   public void readAdditionalSaveData(CompoundNBT compound) {
+      super.readAdditionalSaveData(compound);
       if (compound.contains("ExplosionPower", 99)) {
          this.explosionPower = compound.getInt("ExplosionPower");
       }

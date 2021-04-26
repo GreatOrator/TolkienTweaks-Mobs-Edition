@@ -25,7 +25,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class EntityTTMRat extends EntityTTMAmbients {
-    private static final DataParameter<Integer> RAT_TYPE = EntityDataManager.createKey(EntityTTMRat.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> RAT_TYPE = EntityDataManager.defineId(EntityTTMRat.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/entityttmrat/entityttmrat0.png"));
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/entityttmrat/entityttmrat1.png"));
@@ -46,7 +46,7 @@ public class EntityTTMRat extends EntityTTMAmbients {
         this.goalSelector.addGoal(6, new AvoidEntityGoal<>(this, PlayerEntity.class, 2.0F, 0.8F, 1.4F));
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp());
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers());
     }
 
     protected SoundEvent getAmbientSound() {
@@ -73,14 +73,14 @@ public class EntityTTMRat extends EntityTTMAmbients {
          * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
          * method as well.
          */
-        public boolean shouldExecute() {
-            return this.ttmRat.getRatType() != 99 && super.shouldExecute();
+        public boolean canUse() {
+            return this.ttmRat.getRatType() != 99 && super.canUse();
         }
     }
 
     @Nullable
     @Override
-    public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+    public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         return null;
     }
 
@@ -90,34 +90,34 @@ public class EntityTTMRat extends EntityTTMAmbients {
     }
 
     public int getRatType() {
-        return this.dataManager.get(RAT_TYPE);
+        return this.entityData.get(RAT_TYPE);
     }
 
     public void setRatType(int type) {
         if (type < 0 || type >= 4) {
-            type = this.rand.nextInt(3);
+            type = this.random.nextInt(3);
         }
 
-        this.dataManager.set(RAT_TYPE, type);
+        this.entityData.set(RAT_TYPE, type);
     }
 
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(RAT_TYPE, 1);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(RAT_TYPE, 1);
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         compound.putInt("RatType", this.getRatType());
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         this.setRatType(compound.getInt("RatType"));
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

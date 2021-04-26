@@ -10,7 +10,7 @@ public class TTMDamageSource extends DamageSource {
     }
 
     public static DamageSource causeHallowedDamage(Entity source) {
-        return (new EntityDamageSource("hallowed", source)).setIsThornsDamage().setMagicDamage();
+        return (new EntityDamageSource("hallowed", source)).setThorns().setMagic();
     }
 
 }

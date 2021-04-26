@@ -14,7 +14,7 @@ public class TTMLebethronTree extends Tree {
     }
 
     @Nullable
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean largeHive) {
             return LEBETHRON;
     }
 

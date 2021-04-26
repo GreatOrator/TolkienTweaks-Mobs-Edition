@@ -14,29 +14,29 @@ public class BurningTTMEffect extends TTMEffectBase {
     }
 
     @Override
-    public boolean isInstant() {
+    public boolean isInstantenous() {
         return true;
     }
 
     @Override
-    public void affectEntity(Entity thrownPotion, Entity thrower, LivingEntity entity, int amplifier, double potency) {
+    public void applyInstantenousEffect(Entity thrownPotion, Entity thrower, LivingEntity entity, int amplifier, double potency) {
 
         int duration = MathHelper.ceil((double)(amplifier + 1) * (double)fireDuration * potency);
 
-        entity.setFire(duration);
+        entity.setSecondsOnFire(duration);
     }
 
     @Override
-    public void performEffect(LivingEntity entity, int amplifier) {
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
 
         //10 seconds of fire for each level
         int duration = MathHelper.ceil((float)(amplifier+1) * fireDuration);
 
-        entity.setFire(duration);
+        entity.setSecondsOnFire(duration);
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return duration % fireDuration == 0;
     }
 }

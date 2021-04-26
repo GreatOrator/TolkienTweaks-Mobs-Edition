@@ -30,40 +30,40 @@ public class BlockTMHallowed extends Block
     /**
      * Called when the given entity walks on this Block
      */
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
+    public void stepOn(World worldIn, BlockPos pos, Entity entityIn)
     {
-        if (entityIn instanceof LivingEntity && ((LivingEntity) entityIn).isEntityUndead() && entityIn.isNonBoss())
+        if (entityIn instanceof LivingEntity && ((LivingEntity) entityIn).isInvertedHealAndHarm() && entityIn.canChangeDimensions())
         {
             if(!TTMConfig.disableFakePlayer) {
                 FakePlayer fakePlayer = FakePlayerFactory.getMinecraft((ServerWorld) worldIn);
-                entityIn.attackEntityFrom(TTMDamageSource.causeHallowedDamage(fakePlayer), 3.0F);
+                entityIn.hurt(TTMDamageSource.causeHallowedDamage(fakePlayer), 3.0F);
             }else {
-                entityIn.attackEntityFrom(DamageSource.MAGIC, 2.0F);
+                entityIn.hurt(DamageSource.MAGIC, 2.0F);
             }
         }
 
-        super.onEntityWalk(worldIn, pos, entityIn);
+        super.stepOn(worldIn, pos, entityIn);
     }
 
     public void update(World worldIn, BlockPos pos, BlockState state, Random rand)
     {
-        BlockPos blockpos = pos.up();
+        BlockPos blockpos = pos.above();
         BlockState iblockstate = worldIn.getBlockState(blockpos);
 
         if (iblockstate.getBlock() == Blocks.WATER)
         {
-            worldIn.setBlockState(blockpos, Blocks.AIR.getDefaultState());
-            worldIn.playSound((PlayerEntity)null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (worldIn.rand.nextFloat() - worldIn.rand.nextFloat()) * 0.8F);
+            worldIn.setBlockAndUpdate(blockpos, Blocks.AIR.defaultBlockState());
+            worldIn.playSound((PlayerEntity)null, pos, SoundEvents.FIRE_EXTINGUISH, SoundCategory.BLOCKS, 0.5F, 2.6F + (worldIn.random.nextFloat() - worldIn.random.nextFloat()) * 0.8F);
 
             if (worldIn instanceof ServerWorld)
             {
-                ((ServerWorld)worldIn).spawnParticle(ParticleTypes.LARGE_SMOKE, (double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.25D, (double)blockpos.getZ() + 0.5D, 8, 0.5D, 0.25D, 0.5D, 0.0D);
+                ((ServerWorld)worldIn).sendParticles(ParticleTypes.LARGE_SMOKE, (double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.25D, (double)blockpos.getZ() + 0.5D, 8, 0.5D, 0.25D, 0.5D, 0.0D);
             }
         }
     }
 
     public boolean canEntitySpawn(BlockState state, Entity entityIn)
     {
-        return entityIn.isImmuneToFire();
+        return entityIn.fireImmune();
     }
 }

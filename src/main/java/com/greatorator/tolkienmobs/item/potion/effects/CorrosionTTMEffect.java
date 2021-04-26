@@ -25,27 +25,27 @@ public class CorrosionTTMEffect extends TTMEffectBase {
     }
 
     @Override
-    public void performEffect(LivingEntity entity, int amplifier) {
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
         List<ItemStack> equipment;
         if (entity instanceof PlayerEntity) {
             equipment = new ArrayList<>();
             PlayerEntity player = (PlayerEntity) entity;
-            for (int i = 0; i < player.inventory.getSizeInventory(); i++) {
-                equipment.add(player.inventory.getStackInSlot(i));
+            for (int i = 0; i < player.inventory.getContainerSize(); i++) {
+                equipment.add(player.inventory.getItem(i));
             }
         } else {
-            equipment = Lists.newArrayList(entity.getEquipmentAndArmor());
+            equipment = Lists.newArrayList(entity.getAllSlots());
         }
 
-        equipment.removeIf(stack -> stack.isDamaged() || !stack.getItem().isDamageable() || stack.getItem().getIsRepairable(stack, new ItemStack(Items.GOLD_INGOT)));
+        equipment.removeIf(stack -> stack.isDamaged() || !stack.getItem().canBeDepleted() || stack.getItem().isValidRepairItem(stack, new ItemStack(Items.GOLD_INGOT)));
 
         if (!equipment.isEmpty()) {
-            equipment.get(entity.world.rand.nextInt(equipment.size())). damageItem(amplifier + 1, entity, null);
+            equipment.get(entity.level.random.nextInt(equipment.size())). hurtAndBreak(amplifier + 1, entity, null);
         }
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return duration % damageTime == 0;
     }
 }

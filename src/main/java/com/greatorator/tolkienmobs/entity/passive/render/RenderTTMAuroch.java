@@ -13,11 +13,11 @@ public class RenderTTMAuroch extends MobRenderer<EntityTTMAuroch, ModelTTMAuroch
     }
 
     @Override
-    public ResourceLocation getEntityTexture(EntityTTMAuroch entity) {
+    public ResourceLocation getTextureLocation(EntityTTMAuroch entity) {
         return entity.getAurochTypeName();
     }
 
-    protected void preRenderCallback(EntityTTMAuroch entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
-        super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
+    protected void scale(EntityTTMAuroch entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+        super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }
 }

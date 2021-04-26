@@ -33,8 +33,8 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class EntityTTMGoblin extends MonsterEntity {
-    private static final DataParameter<Boolean> PANICKED = EntityDataManager.createKey(EntityTTMGoblin.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Integer> GOBLIN_TYPE = EntityDataManager.createKey(EntityTTMGoblin.class, DataSerializers.VARINT);
+    private static final DataParameter<Boolean> PANICKED = EntityDataManager.defineId(EntityTTMGoblin.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> GOBLIN_TYPE = EntityDataManager.defineId(EntityTTMGoblin.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/goblin/goblin1.png"));
         option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/goblin/goblin2.png"));
@@ -45,7 +45,7 @@ public class EntityTTMGoblin extends MonsterEntity {
     public EntityTTMGoblin(EntityType<? extends EntityTTMGoblin> type, World worldIn) {
         super(type, worldIn);
 
-        this.experienceValue = 5;
+        this.xpReward = 5;
     }
 
     @Override
@@ -59,24 +59,24 @@ public class EntityTTMGoblin extends MonsterEntity {
         this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setCallsForHelp(TTMRand.getRandomInteger(1, 10) > 10 ? EntityTTMGoblin.class : EntityTTMGoblinKing.class));
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(TTMRand.getRandomInteger(1, 10) > 10 ? EntityTTMGoblin.class : EntityTTMGoblinKing.class));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 12.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 12.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.23D)
+                .add(Attributes.ATTACK_DAMAGE, 3.0D);
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entity) {
-        if (super.attackEntityAsMob(entity)) {
+    public boolean doHurtTarget(Entity entity) {
+        if (super.doHurtTarget(entity)) {
             if (entity instanceof LivingEntity) {
                 int duration;
-                switch (world.getDifficulty()) {
+                switch (level.getDifficulty()) {
                     case EASY:
                         duration = 7;
                         break;
@@ -89,7 +89,7 @@ public class EntityTTMGoblin extends MonsterEntity {
                         break;
                 }
 
-                ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.HUNGER, duration * 20, 0));
+                ((LivingEntity) entity).addEffect(new EffectInstance(Effects.HUNGER, duration * 20, 0));
             }
 
             return true;
@@ -115,20 +115,20 @@ public class EntityTTMGoblin extends MonsterEntity {
     }
 
     public boolean isPanicked() {
-        return dataManager.get(PANICKED);
+        return entityData.get(PANICKED);
     }
 
     public void setPanicked(boolean flag) {
-        dataManager.set(PANICKED, flag);
+        entityData.set(PANICKED, flag);
     }
 
     @Override
-    public void livingTick() {
-        super.livingTick();
+    public void aiStep() {
+        super.aiStep();
 
-        if (world.isRemote && isPanicked()) {
+        if (level.isClientSide && isPanicked()) {
             for (int i = 0; i < 2; i++) {
-                this.world.addParticle(ParticleTypes.SPLASH, this.getPosX() + (this.rand.nextDouble() - 0.5D) * this.getWidth() * 0.5, this.getPosY() + this.getEyeHeight(), this.getPosZ() + (this.rand.nextDouble() - 0.5D) * this.getWidth() * 0.5, 0, 0, 0);
+                this.level.addParticle(ParticleTypes.SPLASH, this.getX() + (this.random.nextDouble() - 0.5D) * this.getBbWidth() * 0.5, this.getY() + this.getEyeHeight(), this.getZ() + (this.random.nextDouble() - 0.5D) * this.getBbWidth() * 0.5, 0, 0, 0);
             }
         }
     }
@@ -138,15 +138,15 @@ public class EntityTTMGoblin extends MonsterEntity {
             super(Blocks.TURTLE_EGG, creatureIn, speed, yMax);
         }
 
-        public void playBreakingSound(IWorld worldIn, BlockPos pos) {
-            worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ENTITY_ZOMBIE_DESTROY_EGG, SoundCategory.HOSTILE, 0.5F, 0.9F + EntityTTMGoblin.this.rand.nextFloat() * 0.2F);
+        public void playDestroyProgressSound(IWorld worldIn, BlockPos pos) {
+            worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ZOMBIE_DESTROY_EGG, SoundCategory.HOSTILE, 0.5F, 0.9F + EntityTTMGoblin.this.random.nextFloat() * 0.2F);
         }
 
-        public void playBrokenSound(World worldIn, BlockPos pos) {
-            worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ENTITY_TURTLE_EGG_BREAK, SoundCategory.BLOCKS, 0.7F, 0.9F + worldIn.rand.nextFloat() * 0.2F);
+        public void playBreakSound(World worldIn, BlockPos pos) {
+            worldIn.playSound((PlayerEntity)null, pos, SoundEvents.TURTLE_EGG_BREAK, SoundCategory.BLOCKS, 0.7F, 0.9F + worldIn.random.nextFloat() * 0.2F);
         }
 
-        public double getTargetDistanceSq() {
+        public double acceptedDistance() {
             return 1.14D;
         }
     }
@@ -157,7 +157,7 @@ public class EntityTTMGoblin extends MonsterEntity {
 //    }
 
     @Override
-    public int getMaxSpawnedInChunk() {
+    public int getMaxSpawnClusterSize() {
         return 8;
     }
 
@@ -169,39 +169,39 @@ public class EntityTTMGoblin extends MonsterEntity {
     }
 
     public int getGoblinType() {
-        return this.dataManager.get(GOBLIN_TYPE);
+        return this.entityData.get(GOBLIN_TYPE);
     }
 
     public void setGoblinType(int type) {
         if (type < 0 || type >= 5) {
-            type = this.rand.nextInt(4);
+            type = this.random.nextInt(4);
         }
 
-        this.dataManager.set(GOBLIN_TYPE, type);
+        this.entityData.set(GOBLIN_TYPE, type);
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(1, 4);
         this.setGoblinType(job);
-        this.setEquipmentBasedOnDifficulty(difficultyIn);
+        this.populateDefaultEquipmentSlots(difficultyIn);
 
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(GOBLIN_TYPE, 3);
-        dataManager.register(PANICKED, false);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(GOBLIN_TYPE, 3);
+        entityData.define(PANICKED, false);
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         compound.putInt("GoblinType", this.getGoblinType());
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         this.setGoblinType(compound.getInt("GoblinType"));
     }
 }

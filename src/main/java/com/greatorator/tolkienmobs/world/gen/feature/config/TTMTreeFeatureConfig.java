@@ -23,7 +23,7 @@ public class TTMTreeFeatureConfig implements IFeatureConfig {
                     Codec.INT.fieldOf("add_second_five_chance").orElse(1).forGetter((obj) -> obj.chanceAddFiveSecond),
                     Codec.BOOL.fieldOf("has_leaves").orElse(true).forGetter((obj) -> obj.hasLeaves),
                     Codec.BOOL.fieldOf("check_water").orElse(false).forGetter((obj) -> obj.checkWater),
-                    BlockStateProvider.CODEC.fieldOf("sapling").orElse(new SimpleBlockStateProvider(Blocks.OAK_SAPLING.getDefaultState())).forGetter((obj) -> obj.sapling))
+                    BlockStateProvider.CODEC.fieldOf("sapling").orElse(new SimpleBlockStateProvider(Blocks.OAK_SAPLING.defaultBlockState())).forGetter((obj) -> obj.sapling))
                     .apply(instance, TTMTreeFeatureConfig::new));
 
     public final BlockStateProvider trunkProvider;
@@ -57,7 +57,7 @@ public class TTMTreeFeatureConfig implements IFeatureConfig {
     }
 
     public IPlantable getSapling(Random rand, BlockPos pos) {
-        return (IPlantable) sapling.getBlockState(rand, pos).getBlock();
+        return (IPlantable) sapling.getState(rand, pos).getBlock();
     }
 
     public static class Builder {
@@ -105,7 +105,7 @@ public class TTMTreeFeatureConfig implements IFeatureConfig {
         }
 
         public TTMTreeFeatureConfig.Builder setSapling(SaplingBlock plant) {
-            this.sapling = new SimpleBlockStateProvider(plant.getDefaultState());
+            this.sapling = new SimpleBlockStateProvider(plant.defaultBlockState());
             return this;
         }
 

@@ -4,6 +4,8 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.inventory.EquipmentSlotType;
 
+import net.minecraft.enchantment.Enchantment.Rarity;
+
 public class EnchantmentHobbitPlow extends Enchantment {
 
     public EnchantmentHobbitPlow(Rarity rarityIn, EquipmentSlotType... slots) {

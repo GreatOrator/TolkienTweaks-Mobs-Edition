@@ -45,7 +45,7 @@ public class EntityBoulder extends ProjectileItemEntity {
 
    @OnlyIn(Dist.CLIENT)
    private IParticleData makeParticle() {
-      ItemStack itemstack = this.func_213882_k();
+      ItemStack itemstack = this.getItemRaw();
       return (IParticleData)(itemstack.isEmpty() ? ParticleTypes.SMOKE : new ItemParticleData(ParticleTypes.ITEM, itemstack));
    }
 
@@ -53,12 +53,12 @@ public class EntityBoulder extends ProjectileItemEntity {
     * Handler for {@link World#setEntityState}
     */
    @OnlyIn(Dist.CLIENT)
-   public void handleStatusUpdate(byte id) {
+   public void handleEntityEvent(byte id) {
       if (id == 3) {
          IParticleData iparticledata = this.makeParticle();
 
          for(int i = 0; i < 8; ++i) {
-            this.world.addParticle(iparticledata, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0D, 0.0D, 0.0D);
+            this.level.addParticle(iparticledata, this.getX(), this.getY(), this.getZ(), 0.0D, 0.0D, 0.0D);
          }
       }
 
@@ -67,20 +67,20 @@ public class EntityBoulder extends ProjectileItemEntity {
    /**
     * Called when the arrow hits an entity
     */
-   protected void onEntityHit(EntityRayTraceResult p_213868_1_) {
-      super.onEntityHit(p_213868_1_);
+   protected void onHitEntity(EntityRayTraceResult p_213868_1_) {
+      super.onHitEntity(p_213868_1_);
       Entity entity = p_213868_1_.getEntity();
       int i = 6;
-      entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.func_234616_v_()), (float)i);
+      entity.hurt(DamageSource.thrown(this, this.getOwner()), (float)i);
    }
 
    /**
     * Called when this EntityFireball hits a block or entity.
     */
-   protected void onImpact(RayTraceResult result) {
-      super.onImpact(result);
-      if (!this.world.isRemote) {
-         this.world.setEntityState(this, (byte)3);
+   protected void onHit(RayTraceResult result) {
+      super.onHit(result);
+      if (!this.level.isClientSide) {
+         this.level.broadcastEntityEvent(this, (byte)3);
          this.remove();
       }
 

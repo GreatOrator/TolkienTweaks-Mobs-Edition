@@ -9,10 +9,10 @@ import java.util.function.Supplier;
 
 public enum TTMItemTier implements IItemTier {
     MITHRIL(6, 2531, 15, 2.0F, 27, () -> {
-        return Ingredient.fromItems(TTMContent.INGOT_MITHRIL.get());
+        return Ingredient.of(TTMContent.INGOT_MITHRIL.get());
     }),
     MORGULIRON(5, 2243, 11.0F, 5.0F, 23, () -> {
-        return Ingredient.fromItems(TTMContent.INGOT_MORGULIRON.get());
+        return Ingredient.of(TTMContent.INGOT_MORGULIRON.get());
     });
 
     private final int harvestLevel;
@@ -31,27 +31,27 @@ public enum TTMItemTier implements IItemTier {
         this.repairMaterial = new LazyValue<>(repairMaterialIn);
     }
 
-    public int getMaxUses() {
+    public int getUses() {
         return this.maxUses;
     }
 
-    public float getEfficiency() {
+    public float getSpeed() {
         return this.efficiency;
     }
 
-    public float getAttackDamage() {
+    public float getAttackDamageBonus() {
         return this.attackDamage;
     }
 
-    public int getHarvestLevel() {
+    public int getLevel() {
         return this.harvestLevel;
     }
 
-    public int getEnchantability() {
+    public int getEnchantmentValue() {
         return this.enchantability;
     }
 
-    public Ingredient getRepairMaterial() {
-        return this.repairMaterial.getValue();
+    public Ingredient getRepairIngredient() {
+        return this.repairMaterial.get();
     }
 }

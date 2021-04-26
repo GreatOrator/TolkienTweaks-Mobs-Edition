@@ -16,12 +16,12 @@ public class RenderTTMSquirrel extends MobRenderer<EntityTTMSquirrel, ModelTTMSq
 
     @Nullable
     @Override
-    public ResourceLocation getEntityTexture(EntityTTMSquirrel entity) {
+    public ResourceLocation getTextureLocation(EntityTTMSquirrel entity) {
         return entity.getSquirrelTypeName();
     }
 
-    protected void preRenderCallback(EntityTTMSquirrel entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
-        super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
+    protected void scale(EntityTTMSquirrel entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+        super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
         matrixStackIn.scale(0.2F, 0.2F, 0.2F);
     }
 

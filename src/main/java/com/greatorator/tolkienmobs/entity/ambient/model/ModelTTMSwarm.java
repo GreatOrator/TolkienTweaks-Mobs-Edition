@@ -24,36 +24,36 @@ public class ModelTTMSwarm extends SegmentedModel<EntityTTMSwarm> {
     public ModelTTMSwarm() {
         core = new ModelRenderer(this, rand.nextInt(28), rand.nextInt(28));
         core.addBox(-4F, 0.0F, -2F, 1, 1, 1);
-        core.setRotationPoint(0.0F, -4.0F, 0.0F);
+        core.setPos(0.0F, -4.0F, 0.0F);
 
         node1 = new ModelRenderer(this, rand.nextInt(28), rand.nextInt(28));
         node1.addBox(-5.5F, -5F, -13F, 1, 1, 1);
-        node1.setRotationPoint(2F, -1F, -6F);
+        node1.setPos(2F, -1F, -6F);
         core.addChild(node1);
 
         node2 = new ModelRenderer(this, rand.nextInt(28), rand.nextInt(28));
         node2.addBox(-5.5F, -13F, -5F, 1, 1, 1);
-        node2.setRotationPoint(0F, -7F, -1F);
+        node2.setPos(0F, -7F, -1F);
         core.addChild(node2);
 
         node3 = new ModelRenderer(this, rand.nextInt(28), rand.nextInt(28));
         node3.addBox(-13F, -5F, -5F, 1, 1, 1);
-        node3.setRotationPoint(5F, -2F, -1F);
+        node3.setPos(5F, -2F, -1F);
         core.addChild(node3);
 
         node4 = new ModelRenderer(this, rand.nextInt(28), rand.nextInt(28));
         node4.addBox(-5.5F, -5F, -13F, 1, 1, 1);
-        node4.setRotationPoint(2F, -1F, -6F);
+        node4.setPos(2F, -1F, -6F);
         core.addChild(node4);
 
         node5 = new ModelRenderer(this, rand.nextInt(28), rand.nextInt(28));
         node5.addBox(-5.5F, -13F, -5F, 1, 1, 1);
-        node5.setRotationPoint(0F, -7F, -1F);
+        node5.setPos(0F, -7F, -1F);
         core.addChild(node5);
 
         node6 = new ModelRenderer(this, rand.nextInt(28), rand.nextInt(28));
         node6.addBox(-13F, -5F, -5F, 1, 1, 1);
-        node6.setRotationPoint(5F, -2F, -1F);
+        node6.setPos(5F, -2F, -1F);
         core.addChild(node6);
 
         addBugsToNodes(node1);
@@ -65,7 +65,7 @@ public class ModelTTMSwarm extends SegmentedModel<EntityTTMSwarm> {
     }
 
     @Override
-    public Iterable<ModelRenderer> getParts() {
+    public Iterable<ModelRenderer> parts() {
         return ImmutableList.of(core);
     }
 
@@ -78,7 +78,7 @@ public class ModelTTMSwarm extends SegmentedModel<EntityTTMSwarm> {
         for (int i = 0; i < bugs; i++) {
             Vector3d vec = new Vector3d(11, 0, 0);
             float rotateY = ((i * (360F / bugs)) * 3.141593F) / 180F;
-            vec.rotateYaw(rotateY);
+            vec.yRot(rotateY);
             ModelRenderer bug = new ModelRenderer(this, rand.nextInt(28), rand.nextInt(28));
 
             float bugX = (rand.nextFloat() - rand.nextFloat()) * 4.0f;
@@ -87,44 +87,44 @@ public class ModelTTMSwarm extends SegmentedModel<EntityTTMSwarm> {
 
             bug.addBox(bugX, bugY, bugZ, 1, 1, 1);
 
-            bug.setRotationPoint((float) vec.x, (float) vec.y, (float) vec.z);
-            bug.rotateAngleY = rotateY;
+            bug.setPos((float) vec.x, (float) vec.y, (float) vec.z);
+            bug.yRot = rotateY;
             node.addChild(bug);
         }
     }
 
     @Override
-    public void setRotationAngles(EntityTTMSwarm entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) { }
+    public void setupAnim(EntityTTMSwarm entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) { }
 
 
     @Override
-    public void setLivingAnimations(EntityTTMSwarm entity, float limbSwing, float limbSwingAmount, float partialTicks) {
-        core.rotateAngleY = (entity.ticksExisted + partialTicks) / 5.0F;
-        core.rotateAngleX = MathHelper.sin((entity.ticksExisted + partialTicks) / 5.0F) / 4.0F;
-        core.rotateAngleZ = MathHelper.cos((entity.ticksExisted + partialTicks) / 5.0F) / 4.0F;
+    public void prepareMobModel(EntityTTMSwarm entity, float limbSwing, float limbSwingAmount, float partialTicks) {
+        core.yRot = (entity.tickCount + partialTicks) / 5.0F;
+        core.xRot = MathHelper.sin((entity.tickCount + partialTicks) / 5.0F) / 4.0F;
+        core.zRot = MathHelper.cos((entity.tickCount + partialTicks) / 5.0F) / 4.0F;
 
-        node1.rotateAngleY = (entity.ticksExisted + partialTicks) / 2.0F;
-        node1.rotateAngleX = MathHelper.sin((entity.ticksExisted + partialTicks) / 6.0F) / 2.0F;
-        node1.rotateAngleZ = MathHelper.cos((entity.ticksExisted + partialTicks) / 5.0F) / 4.0F;
+        node1.yRot = (entity.tickCount + partialTicks) / 2.0F;
+        node1.xRot = MathHelper.sin((entity.tickCount + partialTicks) / 6.0F) / 2.0F;
+        node1.zRot = MathHelper.cos((entity.tickCount + partialTicks) / 5.0F) / 4.0F;
 
-        node2.rotateAngleY = MathHelper.sin((entity.ticksExisted + partialTicks) / 2.0F) / 3.0F;
-        node2.rotateAngleX = (entity.ticksExisted + partialTicks) / 5.0F;
-        node2.rotateAngleZ = MathHelper.cos((entity.ticksExisted + partialTicks) / 5.0F) / 4.0F;
+        node2.yRot = MathHelper.sin((entity.tickCount + partialTicks) / 2.0F) / 3.0F;
+        node2.xRot = (entity.tickCount + partialTicks) / 5.0F;
+        node2.zRot = MathHelper.cos((entity.tickCount + partialTicks) / 5.0F) / 4.0F;
 
-        node3.rotateAngleY = MathHelper.sin((entity.ticksExisted + partialTicks) / 7.0F) / 3.0F;
-        node3.rotateAngleX = MathHelper.cos((entity.ticksExisted + partialTicks) / 4.0F) / 2.0F;
-        node3.rotateAngleZ = (entity.ticksExisted + partialTicks) / 5.0F;
+        node3.yRot = MathHelper.sin((entity.tickCount + partialTicks) / 7.0F) / 3.0F;
+        node3.xRot = MathHelper.cos((entity.tickCount + partialTicks) / 4.0F) / 2.0F;
+        node3.zRot = (entity.tickCount + partialTicks) / 5.0F;
 
-        node4.rotateAngleX = (entity.ticksExisted + partialTicks) / 2.0F;
-        node4.rotateAngleZ = MathHelper.sin((entity.ticksExisted + partialTicks) / 6.0F) / 2.0F;
-        node4.rotateAngleY = MathHelper.sin((entity.ticksExisted + partialTicks) / 5.0F) / 4.0F;
+        node4.xRot = (entity.tickCount + partialTicks) / 2.0F;
+        node4.zRot = MathHelper.sin((entity.tickCount + partialTicks) / 6.0F) / 2.0F;
+        node4.yRot = MathHelper.sin((entity.tickCount + partialTicks) / 5.0F) / 4.0F;
 
-        node5.rotateAngleZ = MathHelper.sin((entity.ticksExisted + partialTicks) / 2.0F) / 3.0F;
-        node5.rotateAngleY = MathHelper.cos((entity.ticksExisted + partialTicks) / 5.0F) / 4.0F;
-        node5.rotateAngleX = MathHelper.cos((entity.ticksExisted + partialTicks) / 5.0F) / 4.0F;
+        node5.zRot = MathHelper.sin((entity.tickCount + partialTicks) / 2.0F) / 3.0F;
+        node5.yRot = MathHelper.cos((entity.tickCount + partialTicks) / 5.0F) / 4.0F;
+        node5.xRot = MathHelper.cos((entity.tickCount + partialTicks) / 5.0F) / 4.0F;
 
-        node6.rotateAngleZ = MathHelper.cos((entity.ticksExisted + partialTicks) / 7.0F) / 3.0F;
-        node6.rotateAngleX = MathHelper.cos((entity.ticksExisted + partialTicks) / 4.0F) / 2.0F;
-        node6.rotateAngleY = (entity.ticksExisted + partialTicks) / 5.0F;
+        node6.zRot = MathHelper.cos((entity.tickCount + partialTicks) / 7.0F) / 3.0F;
+        node6.xRot = MathHelper.cos((entity.tickCount + partialTicks) / 4.0F) / 2.0F;
+        node6.yRot = (entity.tickCount + partialTicks) / 5.0F;
     }
 }

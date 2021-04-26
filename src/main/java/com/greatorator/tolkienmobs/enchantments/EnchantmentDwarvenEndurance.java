@@ -18,13 +18,13 @@ public class EnchantmentDwarvenEndurance extends Enchantment {
     }
 
     @Override
-    public int getMinEnchantability(int enchantmentLevel) {
+    public int getMinCost(int enchantmentLevel) {
         return 20 * enchantmentLevel;
     }
 
     @Override
-    public int getMaxEnchantability(int enchantmentLevel) {
-        return this.getMinEnchantability(enchantmentLevel) + 10;
+    public int getMaxCost(int enchantmentLevel) {
+        return this.getMinCost(enchantmentLevel) + 10;
     }
 
     @Override
@@ -33,8 +33,8 @@ public class EnchantmentDwarvenEndurance extends Enchantment {
     }
 
     @Override
-    protected boolean canApplyTogether(Enchantment enchantment) {
-        return super.canApplyTogether(enchantment);
+    protected boolean checkCompatibility(Enchantment enchantment) {
+        return super.checkCompatibility(enchantment);
     }
 //
 //    @Override

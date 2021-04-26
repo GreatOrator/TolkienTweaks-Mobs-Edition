@@ -20,8 +20,8 @@ public class PotionGenerator {
     //#################################################################
     // Effects
     //#################################################################
-    public static final RegistryObject<Effect> ENT_STANCE = EFFECTS.register("ent_draught", () -> new TTMEffectBase(EffectType.BENEFICIAL, 3135135).addAttributesModifier(Attributes.KNOCKBACK_RESISTANCE, "38030aa0-6efa-11eb-9439-0242ac130002", (double)1.0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
-    public static final RegistryObject<Effect> ELF_VITALITY = EFFECTS.register("elf_vitality", () -> new TTMEffectBase(EffectType.BENEFICIAL, 14687673).addAttributesModifier(Attributes.MAX_HEALTH, "38031022-6efa-11eb-9439-0242ac130002", (double)1.0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
+    public static final RegistryObject<Effect> ENT_STANCE = EFFECTS.register("ent_draught", () -> new TTMEffectBase(EffectType.BENEFICIAL, 3135135).addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE, "38030aa0-6efa-11eb-9439-0242ac130002", (double)1.0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
+    public static final RegistryObject<Effect> ELF_VITALITY = EFFECTS.register("elf_vitality", () -> new TTMEffectBase(EffectType.BENEFICIAL, 14687673).addAttributeModifier(Attributes.MAX_HEALTH, "38031022-6efa-11eb-9439-0242ac130002", (double)1.0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
     public static final RegistryObject<Effect> ELEMENTAL_DROWNING = EFFECTS.register("elemental_drowning", () -> new DrownTTMEffect(EffectType.HARMFUL, 7791097));
     public static final RegistryObject<Effect> ELEMENTAL_LIGHTNING = EFFECTS.register("elemental_lightning", () -> new LightningTTMEffect(EffectType.HARMFUL, 16640281));
     public static final RegistryObject<Effect> ELEMENTAL_FLYING = EFFECTS.register("elemental_flight", () -> new FlyingTTMEffect(EffectType.HARMFUL, 6498056));
@@ -31,7 +31,7 @@ public class PotionGenerator {
     public static final RegistryObject<Effect> PERSONAL_BLACKSMITH = EFFECTS.register("personal_blacksmith", () -> new BlacksmithTTMEffect(EffectType.BENEFICIAL, 14370245));
     public static final RegistryObject<Effect> SLEEPNESIA = EFFECTS.register("sleepnesia", () -> new SleepTTMEffect(EffectType.HARMFUL, 2890775));
     public static final RegistryObject<Effect> WATCHER_FEAR = EFFECTS.register("dread_aura", () -> new FearTTMEffect(EffectType.HARMFUL, 4852999));
-    public static final RegistryObject<Effect> PARALYSING_FEAR = EFFECTS.register("crippling_terror", () -> new TerrorTTMEffect(EffectType.HARMFUL, 5655556).addAttributesModifier(Attributes.MOVEMENT_SPEED, "380317e8-11eb-6efa-9439-0242ac130002", (double)-10.0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
+    public static final RegistryObject<Effect> PARALYSING_FEAR = EFFECTS.register("crippling_terror", () -> new TerrorTTMEffect(EffectType.HARMFUL, 5655556).addAttributeModifier(Attributes.MOVEMENT_SPEED, "380317e8-11eb-6efa-9439-0242ac130002", (double)-10.0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
     public static final RegistryObject<Effect> ELF_NIMBLENESS = EFFECTS.register("elven_nimbleness", () -> new NimbleTTMEffect(EffectType.BENEFICIAL, 16777062));
     public static final RegistryObject<Effect> ERU_BLESSING = EFFECTS.register("blessing_of_eru", () -> new EruTTMEffect(EffectType.BENEFICIAL, 1873869));
 

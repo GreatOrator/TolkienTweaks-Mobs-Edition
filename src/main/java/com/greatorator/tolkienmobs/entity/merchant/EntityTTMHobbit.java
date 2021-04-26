@@ -25,8 +25,8 @@ import java.util.Map;
 
 public class EntityTTMHobbit extends EntityTTMVillager {
 
-private static final DataParameter<Integer> HOBBIT_TYPE = EntityDataManager.createKey(EntityTTMHobbit.class, DataSerializers.VARINT);
-private static final DataParameter<VillagerData> HOBBIT_DATA = EntityDataManager.createKey(EntityTTMHobbit.class, DataSerializers.VILLAGER_DATA);
+private static final DataParameter<Integer> HOBBIT_TYPE = EntityDataManager.defineId(EntityTTMHobbit.class, DataSerializers.INT);
+private static final DataParameter<VillagerData> HOBBIT_DATA = EntityDataManager.defineId(EntityTTMHobbit.class, DataSerializers.VILLAGER_DATA);
 public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit1.png"));
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit1.png"));
@@ -53,51 +53,51 @@ public ResourceLocation getHobbitTypeName() {
         }
 
 public int getHobbitType() {
-        return this.dataManager.get(HOBBIT_TYPE);
+        return this.entityData.get(HOBBIT_TYPE);
         }
 
 public void setHobbitType(int type) {
         if (type < 0 || type >= 12) {
-        type = this.rand.nextInt(11);
+        type = this.random.nextInt(11);
         }
 
-        this.dataManager.set(HOBBIT_TYPE, type);
+        this.entityData.set(HOBBIT_TYPE, type);
         }
 
 @Nullable
-public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(1, 11);
         this.setHobbitType(job);
 
         if (job == 0 || job == 4 || job == 8) {
-        this.setVillagerData(this.getVillagerData().withProfession(ProfessionGenerator.COIN_TRADER_PROFESSION.get()));
+        this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.COIN_TRADER_PROFESSION.get()));
         }
         if (job == 1 || job == 5 || job == 9) {
-        this.setVillagerData(this.getVillagerData().withProfession(ProfessionGenerator.GROCERY_STORE_PROFESSION.get()));
+        this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.GROCERY_STORE_PROFESSION.get()));
         }
         if (job == 2 || job == 6 || job == 10) {
-        this.setVillagerData(this.getVillagerData().withProfession(ProfessionGenerator.JUNK_TRADER_PROFESSION.get()));
+        this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.JUNK_TRADER_PROFESSION.get()));
         }
         if (job == 3 || job == 7 || job == 11) {
-        this.setVillagerData(this.getVillagerData().withProfession(ProfessionGenerator.PET_MERCHANT_PROFESSION.get()));
+        this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.PET_MERCHANT_PROFESSION.get()));
         }
 
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
         }
 
-protected void registerData() {
-        super.registerData();
-        this.dataManager.register(HOBBIT_TYPE, 10);
-        this.dataManager.register(HOBBIT_DATA, new VillagerData(VillagerType.PLAINS, ProfessionGenerator.UNEMPLOYED_PROFESSION.get(), 1));
+protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(HOBBIT_TYPE, 10);
+        this.entityData.define(HOBBIT_DATA, new VillagerData(VillagerType.PLAINS, ProfessionGenerator.UNEMPLOYED_PROFESSION.get(), 1));
         }
 
-public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         compound.putInt("HobbitType", this.getHobbitType());
         }
 
-public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         this.setHobbitType(compound.getInt("HobbitType"));
         }
 }

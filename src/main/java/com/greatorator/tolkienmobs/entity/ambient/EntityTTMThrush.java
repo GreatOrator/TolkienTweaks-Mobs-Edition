@@ -40,7 +40,7 @@ import java.util.Random;
 import java.util.Set;
 
 public class EntityTTMThrush extends ParrotEntity {
-    private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(EntityTTMThrush.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> VARIANT = EntityDataManager.defineId(EntityTTMThrush.class, DataSerializers.INT);
     private static final Item DEADLY_ITEM = Items.COOKIE;
     private static final Set<Item> TAME_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
 
@@ -54,26 +54,26 @@ public class EntityTTMThrush extends ParrotEntity {
 
     public EntityTTMThrush(EntityType<? extends EntityTTMThrush> type, World worldIn) {
         super(type, worldIn);
-        this.moveController = new FlyingMovementController(this, 10, false);
-        this.setPathPriority(PathNodeType.DANGER_FIRE, -1.0F);
-        this.setPathPriority(PathNodeType.DAMAGE_FIRE, -1.0F);
-        this.setPathPriority(PathNodeType.COCOA, -1.0F);
+        this.moveControl = new FlyingMovementController(this, 10, false);
+        this.setPathfindingMalus(PathNodeType.DANGER_FIRE, -1.0F);
+        this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, -1.0F);
+        this.setPathfindingMalus(PathNodeType.COCOA, -1.0F);
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        this.setVariant(this.rand.nextInt(5));
+    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+        this.setVariant(this.random.nextInt(5));
         if (spawnDataIn == null) {
             spawnDataIn = new AgeableEntity.AgeableData(false);
         }
 
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
     /**
      * If Animal, checks if the age timer is negative
      */
-    public boolean isChild() {
+    public boolean isBaby() {
         return false;
     }
 
@@ -89,19 +89,19 @@ public class EntityTTMThrush extends ParrotEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 6.0D)
-                .createMutableAttribute(Attributes.FLYING_SPEED, (double) 0.4F)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, (double) 0.2F);
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D)
+                .add(Attributes.FLYING_SPEED, (double) 0.4F)
+                .add(Attributes.MOVEMENT_SPEED, (double) 0.2F);
     }
 
     /**
      * Returns new PathNavigateGround instance
      */
-    protected PathNavigator createNavigator(World worldIn) {
+    protected PathNavigator createNavigation(World worldIn) {
         FlyingPathNavigator flyingpathnavigator = new FlyingPathNavigator(this, worldIn);
         flyingpathnavigator.setCanOpenDoors(false);
-        flyingpathnavigator.setCanSwim(true);
-        flyingpathnavigator.setCanEnterDoors(true);
+        flyingpathnavigator.setCanFloat(true);
+        flyingpathnavigator.setCanPassDoors(true);
         return flyingpathnavigator;
     }
 
@@ -113,17 +113,17 @@ public class EntityTTMThrush extends ParrotEntity {
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
-    public void livingTick() {
-        if (this.jukeboxPosition == null || !this.jukeboxPosition.withinDistance(this.getPositionVec(), 3.46D) || !this.world.getBlockState(this.jukeboxPosition).isIn(Blocks.JUKEBOX)) {
+    public void aiStep() {
+        if (this.jukeboxPosition == null || !this.jukeboxPosition.closerThan(this.position(), 3.46D) || !this.level.getBlockState(this.jukeboxPosition).is(Blocks.JUKEBOX)) {
             this.partyParrot = false;
             this.jukeboxPosition = null;
         }
 
-        if (this.world.rand.nextInt(400) == 0) {
-            playMimicSound(this.world, this);
+        if (this.level.random.nextInt(400) == 0) {
+            playMimicSound(this.level, this);
         }
 
-        super.livingTick();
+        super.aiStep();
         this.calculateFlapping();
     }
 
@@ -131,13 +131,13 @@ public class EntityTTMThrush extends ParrotEntity {
      * Called when a record starts or stops playing. Used to make parrots start or stop partying.
      */
     @OnlyIn(Dist.CLIENT)
-    public void setPartying(BlockPos pos, boolean isPartying) {
+    public void setRecordPlayingNearby(BlockPos pos, boolean isPartying) {
         this.jukeboxPosition = pos;
         this.partyParrot = isPartying;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public boolean isPartying() {
+    public boolean isPartyParrot() {
         return this.partyParrot;
     }
 
@@ -151,9 +151,9 @@ public class EntityTTMThrush extends ParrotEntity {
         }
 
         this.flapping = (float) ((double) this.flapping * 0.9D);
-        Vector3d vector3d = this.getMotion();
+        Vector3d vector3d = this.getDeltaMovement();
         if (!this.onGround && vector3d.y < 0.0D) {
-            this.setMotion(vector3d.mul(1.0D, 0.6D, 1.0D));
+            this.setDeltaMovement(vector3d.multiply(1.0D, 0.6D, 1.0D));
         }
 
         this.flap += this.flapping * 2.0F;
@@ -163,46 +163,46 @@ public class EntityTTMThrush extends ParrotEntity {
         return false;
     }
 
-    public ActionResultType func_230254_b_(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-        ItemStack itemstack = p_230254_1_.getHeldItem(p_230254_2_);
-        if (!this.isTamed() && TAME_ITEMS.contains(itemstack.getItem())) {
-            if (!p_230254_1_.abilities.isCreativeMode) {
+    public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
+        ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
+        if (!this.isTame() && TAME_ITEMS.contains(itemstack.getItem())) {
+            if (!p_230254_1_.abilities.instabuild) {
                 itemstack.shrink(1);
             }
 
             if (!this.isSilent()) {
-                this.world.playSound((PlayerEntity) null, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_PARROT_EAT, this.getSoundCategory(), 1.0F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
+                this.level.playSound((PlayerEntity) null, this.getX(), this.getY(), this.getZ(), SoundEvents.PARROT_EAT, this.getSoundSource(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
             }
 
-            if (!this.world.isRemote) {
-                if (this.rand.nextInt(10) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, p_230254_1_)) {
-                    this.setTamedBy(p_230254_1_);
-                    this.world.setEntityState(this, (byte) 7);
+            if (!this.level.isClientSide) {
+                if (this.random.nextInt(10) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, p_230254_1_)) {
+                    this.tame(p_230254_1_);
+                    this.level.broadcastEntityEvent(this, (byte) 7);
                 } else {
-                    this.world.setEntityState(this, (byte) 6);
+                    this.level.broadcastEntityEvent(this, (byte) 6);
                 }
             }
 
-            return ActionResultType.func_233537_a_(this.world.isRemote);
+            return ActionResultType.sidedSuccess(this.level.isClientSide);
         } else if (itemstack.getItem() == DEADLY_ITEM) {
-            if (!p_230254_1_.abilities.isCreativeMode) {
+            if (!p_230254_1_.abilities.instabuild) {
                 itemstack.shrink(1);
             }
 
-            this.addPotionEffect(new EffectInstance(Effects.POISON, 900));
+            this.addEffect(new EffectInstance(Effects.POISON, 900));
             if (p_230254_1_.isCreative() || !this.isInvulnerable()) {
-                this.attackEntityFrom(DamageSource.causePlayerDamage(p_230254_1_), Float.MAX_VALUE);
+                this.hurt(DamageSource.playerAttack(p_230254_1_), Float.MAX_VALUE);
             }
 
-            return ActionResultType.func_233537_a_(this.world.isRemote);
-        } else if (!this.isFlying() && this.isTamed() && this.isOwner(p_230254_1_)) {
-            if (!this.world.isRemote) {
-                this.func_233687_w_(!this.isSitting());
+            return ActionResultType.sidedSuccess(this.level.isClientSide);
+        } else if (!this.isFlying() && this.isTame() && this.isOwnedBy(p_230254_1_)) {
+            if (!this.level.isClientSide) {
+                this.setOrderedToSit(!this.isOrderedToSit());
             }
 
-            return ActionResultType.func_233537_a_(this.world.isRemote);
+            return ActionResultType.sidedSuccess(this.level.isClientSide);
         } else {
-            return super.func_230254_b_(p_230254_1_, p_230254_2_);
+            return super.mobInteract(p_230254_1_, p_230254_2_);
         }
     }
 
@@ -210,39 +210,39 @@ public class EntityTTMThrush extends ParrotEntity {
      * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
      * the animal type)
      */
-    public boolean isBreedingItem(ItemStack stack) {
+    public boolean isFood(ItemStack stack) {
         return false;
     }
 
-    public boolean onLivingFall(float distance, float damageMultiplier) {
+    public boolean causeFallDamage(float distance, float damageMultiplier) {
         return false;
     }
 
-    protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
+    protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
     }
 
     /**
      * Returns true if the mob is currently able to mate with the specified mob.
      */
-    public boolean canMateWith(AnimalEntity otherAnimal) {
+    public boolean canMate(AnimalEntity otherAnimal) {
         return false;
     }
 
     @Nullable
-    public AgeableEntity func_241840_a(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+    public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         return null;
     }
 
-    public boolean attackEntityAsMob(Entity entityIn) {
-        return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 3.0F);
+    public boolean doHurtTarget(Entity entityIn) {
+        return entityIn.hurt(DamageSource.mobAttack(this), 3.0F);
     }
 
     @Nullable
     public SoundEvent getAmbientSound() {
-        return func_234212_a_(this.world, this.world.rand);
+        return getAmbient(this.level, this.level.random);
     }
 
-    public static SoundEvent func_234212_a_(World p_234212_0_, Random p_234212_1_) {
+    public static SoundEvent getAmbient(World p_234212_0_, Random p_234212_1_) {
         return SoundGenerator.soundIdleTMThrush.get();
     }
 
@@ -255,7 +255,7 @@ public class EntityTTMThrush extends ParrotEntity {
     }
 
     protected void playStepSound(BlockPos pos, BlockState blockIn) {
-        this.playSound(SoundEvents.ENTITY_PARROT_STEP, 0.15F, 1.0F);
+        this.playSound(SoundEvents.PARROT_STEP, 0.15F, 1.0F);
     }
 
     protected float playFlySound(float volume) {
@@ -270,66 +270,66 @@ public class EntityTTMThrush extends ParrotEntity {
     /**
      * Gets the pitch of living sounds in living entities.
      */
-    protected float getSoundPitch() {
-        return getPitch(this.rand);
+    protected float getVoicePitch() {
+        return getPitch(this.random);
     }
 
     public static float getPitch(Random random) {
         return (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F;
     }
 
-    public SoundCategory getSoundCategory() {
+    public SoundCategory getSoundSource() {
         return SoundCategory.NEUTRAL;
     }
 
     /**
      * Returns true if this entity should push and be pushed by other entities when colliding.
      */
-    public boolean canBePushed() {
+    public boolean isPushable() {
         return true;
     }
 
-    protected void collideWithEntity(Entity entityIn) {
+    protected void doPush(Entity entityIn) {
         if (!(entityIn instanceof PlayerEntity)) {
-            super.collideWithEntity(entityIn);
+            super.doPush(entityIn);
         }
     }
 
     /**
      * Called when the entity is attacked.
      */
-    public boolean attackEntityFrom(DamageSource source, float amount) {
+    public boolean hurt(DamageSource source, float amount) {
         if (this.isInvulnerableTo(source)) {
             return false;
         } else {
-            this.func_233687_w_(false);
-            return super.attackEntityFrom(source, amount);
+            this.setOrderedToSit(false);
+            return super.hurt(source, amount);
         }
     }
 
     public int getVariant() {
-        return MathHelper.clamp(this.dataManager.get(VARIANT), 0, 4);
+        return MathHelper.clamp(this.entityData.get(VARIANT), 0, 4);
     }
 
     public void setVariant(int variantIn) {
-        this.dataManager.set(VARIANT, variantIn);
+        this.entityData.set(VARIANT, variantIn);
     }
 
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(VARIANT, 0);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(VARIANT, 0);
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
+    public void addAdditionalSaveData(CompoundNBT compound) {
+        super.addAdditionalSaveData(compound);
         compound.putInt("Variant", this.getVariant());
     }
 
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
+    public void readAdditionalSaveData(CompoundNBT compound) {
+        super.readAdditionalSaveData(compound);
         this.setVariant(compound.getInt("Variant"));
     }
 
@@ -338,7 +338,7 @@ public class EntityTTMThrush extends ParrotEntity {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public Vector3d func_241205_ce_() {
-        return new Vector3d(0.0D, (double) (0.5F * this.getEyeHeight()), (double) (this.getWidth() * 0.4F));
+    public Vector3d getLeashOffset() {
+        return new Vector3d(0.0D, (double) (0.5F * this.getEyeHeight()), (double) (this.getBbWidth() * 0.4F));
     }
 }

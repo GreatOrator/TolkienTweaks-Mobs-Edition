@@ -37,11 +37,11 @@ public class EntityTTMVillager extends VillagerEntity {
 
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.INVISIBILITY), SoundEvents.ENTITY_WANDERING_TRADER_DISAPPEARED, (p_213733_1_) -> {
-            return !this.world.isDaytime() && !p_213733_1_.isInvisible();
+        this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.INVISIBILITY), SoundEvents.WANDERING_TRADER_DISAPPEARED, (p_213733_1_) -> {
+            return !this.level.isDay() && !p_213733_1_.isInvisible();
         }));
-        this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), SoundEvents.ENTITY_WANDERING_TRADER_REAPPEARED, (p_213736_1_) -> {
-            return this.world.isDaytime() && p_213736_1_.isInvisible();
+        this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), SoundEvents.WANDERING_TRADER_REAPPEARED, (p_213736_1_) -> {
+            return this.level.isDay() && p_213736_1_.isInvisible();
         }));
         this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
@@ -66,78 +66,78 @@ public class EntityTTMVillager extends VillagerEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.5D).createMutableAttribute(Attributes.FOLLOW_RANGE, 48.0D);
+        return MobEntity.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.5D).add(Attributes.FOLLOW_RANGE, 48.0D);
     }
 
     @Override
-    protected void onVillagerTrade(MerchantOffer offer) {
-        if (offer.getDoesRewardExp()) {
-            int i = 3 + this.rand.nextInt(4);
-            this.world.addEntity(new ExperienceOrbEntity(this.world, this.getPosX(), this.getPosY() + 0.5D, this.getPosZ(), i));
+    protected void rewardTradeXp(MerchantOffer offer) {
+        if (offer.shouldRewardExp()) {
+            int i = 3 + this.random.nextInt(4);
+            this.level.addFreshEntity(new ExperienceOrbEntity(this.level, this.getX(), this.getY() + 0.5D, this.getZ(), i));
         }
     }
 
-    public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
-        ItemStack itemstack = player.getHeldItem(hand);
-        if (itemstack.getItem() != Items.VILLAGER_SPAWN_EGG && this.isAlive() && !this.hasCustomer() && !this.isSleeping() && !player.isSecondaryUseActive()) {
-            if (this.isChild()) {
+    public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
+        ItemStack itemstack = player.getItemInHand(hand);
+        if (itemstack.getItem() != Items.VILLAGER_SPAWN_EGG && this.isAlive() && !this.isTrading() && !this.isSleeping() && !player.isSecondaryUseActive()) {
+            if (this.isBaby()) {
                 this.shakeHead();
-                return ActionResultType.func_233537_a_(this.world.isRemote);
+                return ActionResultType.sidedSuccess(this.level.isClientSide);
             } else {
                 boolean flag = this.getOffers().isEmpty();
                 if (hand == Hand.MAIN_HAND) {
-                    if (flag && !this.world.isRemote) {
+                    if (flag && !this.level.isClientSide) {
                         this.shakeHead();
                     }
 
-                    player.addStat(Stats.TALKED_TO_VILLAGER);
+                    player.awardStat(Stats.TALKED_TO_VILLAGER);
                 }
 
                 if (flag) {
-                    return ActionResultType.func_233537_a_(this.world.isRemote);
+                    return ActionResultType.sidedSuccess(this.level.isClientSide);
                 } else {
-                    if (!this.world.isRemote && !this.offers.isEmpty()) {
+                    if (!this.level.isClientSide && !this.offers.isEmpty()) {
                         this.displayMerchantGui(player);
                     }
 
-                    return ActionResultType.func_233537_a_(this.world.isRemote);
+                    return ActionResultType.sidedSuccess(this.level.isClientSide);
                 }
             }
         } else {
-            return super.func_230254_b_(player, hand);
+            return super.mobInteract(player, hand);
         }
     }
 
     private void shakeHead() {
-        this.setShakeHeadTicks(40);
-        if (!this.world.isRemote()) {
-            this.playSound(SoundEvents.ENTITY_VILLAGER_NO, this.getSoundVolume(), this.getSoundPitch());
+        this.setUnhappyCounter(40);
+        if (!this.level.isClientSide()) {
+            this.playSound(SoundEvents.VILLAGER_NO, this.getSoundVolume(), this.getVoicePitch());
         }
 
     }
 
     private void displayMerchantGui(PlayerEntity player) {
         this.recalculateSpecialPricesFor(player);
-        this.setCustomer(player);
-        this.openMerchantContainer(player, this.getDisplayName(), this.getVillagerData().getLevel());
+        this.setTradingPlayer(player);
+        this.openTradingScreen(player, this.getDisplayName(), this.getVillagerData().getLevel());
     }
 
     private void recalculateSpecialPricesFor(PlayerEntity playerIn) {
         int i = this.getPlayerReputation(playerIn);
         if (i != 0) {
             for(MerchantOffer merchantoffer : this.getOffers()) {
-                merchantoffer.increaseSpecialPrice(-MathHelper.floor((float)i * merchantoffer.getPriceMultiplier()));
+                merchantoffer.addToSpecialPriceDiff(-MathHelper.floor((float)i * merchantoffer.getPriceMultiplier()));
             }
         }
 
-        if (playerIn.isPotionActive(Effects.HERO_OF_THE_VILLAGE)) {
-            EffectInstance effectinstance = playerIn.getActivePotionEffect(Effects.HERO_OF_THE_VILLAGE);
+        if (playerIn.hasEffect(Effects.HERO_OF_THE_VILLAGE)) {
+            EffectInstance effectinstance = playerIn.getEffect(Effects.HERO_OF_THE_VILLAGE);
             int k = effectinstance.getAmplifier();
 
             for(MerchantOffer merchantoffer1 : this.getOffers()) {
                 double d0 = 0.3D + 0.0625D * (double)k;
-                int j = (int)Math.floor(d0 * (double)merchantoffer1.getBuyingStackFirst().getCount());
-                merchantoffer1.increaseSpecialPrice(-Math.max(j, 1));
+                int j = (int)Math.floor(d0 * (double)merchantoffer1.getBaseCostA().getCount());
+                merchantoffer1.addToSpecialPriceDiff(-Math.max(j, 1));
             }
         }
 

@@ -16,12 +16,12 @@ public class RenderTTMFrog extends MobRenderer<EntityTTMFrog, ModelTTMFrog<Entit
 
     @Nullable
     @Override
-    public ResourceLocation getEntityTexture(EntityTTMFrog entity) {
+    public ResourceLocation getTextureLocation(EntityTTMFrog entity) {
         return entity.getFrogTypeName();
     }
 
-    protected void preRenderCallback(EntityTTMFrog entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
-        super.preRenderCallback(entitylivingbaseIn, matrixStackIn, partialTickTime);
+    protected void scale(EntityTTMFrog entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+        super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
         matrixStackIn.scale(0.8F, 0.8F, 0.8F);
     }
 

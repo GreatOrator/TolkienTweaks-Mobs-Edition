@@ -11,35 +11,36 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
+
 public class TTMAmmo extends Item {
     public TTMAmmo(Properties properties) {
         super(properties);
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack itemstack = playerIn.getHeldItem(handIn);
-        if (!worldIn.isRemote && itemstack.getItem() == TTMContent.BOULDER.get()) {
-            worldIn.playSound((PlayerEntity)null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundGenerator.sound_Boulder_Shoot.get(), SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        ItemStack itemstack = playerIn.getItemInHand(handIn);
+        if (!worldIn.isClientSide && itemstack.getItem() == TTMContent.BOULDER.get()) {
+            worldIn.playSound((PlayerEntity)null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundGenerator.sound_Boulder_Shoot.get(), SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
 
             EntityBoulder entityboulder = new EntityBoulder(worldIn, playerIn);
             entityboulder.setItem(itemstack);
-            entityboulder.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-            worldIn.addEntity(entityboulder);
+            entityboulder.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
+            worldIn.addFreshEntity(entityboulder);
         }
 
-        if (!worldIn.isRemote && itemstack.getItem() == TTMContent.FELLBEAST_FIREBALL.get()) {
-            worldIn.playSound((PlayerEntity)null, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ENTITY_FIREWORK_ROCKET_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+        if (!worldIn.isClientSide && itemstack.getItem() == TTMContent.FELLBEAST_FIREBALL.get()) {
+            worldIn.playSound((PlayerEntity)null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEvents.FIREWORK_ROCKET_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
             EntityFellBeastFireball entityfbfb = new EntityFellBeastFireball(worldIn, playerIn);
             entityfbfb.setItem(itemstack);
-            entityfbfb.func_234612_a_(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-            worldIn.addEntity(entityfbfb);
+            entityfbfb.shootFromRotation(playerIn, playerIn.xRot, playerIn.yRot, 0.0F, 1.5F, 1.0F);
+            worldIn.addFreshEntity(entityfbfb);
         }
 
-        playerIn.addStat(Stats.ITEM_USED.get(this));
-        if (!playerIn.abilities.isCreativeMode) {
+        playerIn.awardStat(Stats.ITEM_USED.get(this));
+        if (!playerIn.abilities.instabuild) {
             itemstack.shrink(1);
         }
 
-        return ActionResult.func_233538_a_(itemstack, worldIn.isRemote());
+        return ActionResult.sidedSuccess(itemstack, worldIn.isClientSide());
     }
 }

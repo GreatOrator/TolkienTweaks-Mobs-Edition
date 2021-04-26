@@ -52,23 +52,23 @@ public class ClientProxy extends CommonProxy {
     }
 
     public static void setupRenderLayers() {
-        RenderTypeLookup.setRenderLayer(TTMContent.MUSHROOM_DECAY_BLOOM.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.MUSHROOM_BLOOM_DECAY.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.FLOWER_SIMBELMYNE.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.FLOWER_MIRKWOOD.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.FLOWER_ALFIRIN.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.FLOWER_ATHELAS.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.FLOWER_NIPHREDIL.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.FLOWER_SWAMPMILKWEED.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.FLOWER_LILLYOFTHEVALLEY.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.SAPLING_MALLORN.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.SAPLING_MIRKWOOD.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.SAPLING_CULUMALDA.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.SAPLING_LEBETHRON.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.SAPLING_DEADWOOD.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.MITHRIL_BARS.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.MORGULIRON_BARS.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(TTMContent.DOOR_MORGULIRON.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.MUSHROOM_DECAY_BLOOM.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.MUSHROOM_BLOOM_DECAY.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.FLOWER_SIMBELMYNE.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.FLOWER_MIRKWOOD.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.FLOWER_ALFIRIN.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.FLOWER_ATHELAS.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.FLOWER_NIPHREDIL.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.FLOWER_SWAMPMILKWEED.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.FLOWER_LILLYOFTHEVALLEY.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.SAPLING_MALLORN.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.SAPLING_MIRKWOOD.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.SAPLING_CULUMALDA.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.SAPLING_LEBETHRON.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.SAPLING_DEADWOOD.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.MITHRIL_BARS.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.MORGULIRON_BARS.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.DOOR_MORGULIRON.get(), RenderType.cutout());
     }
 
     @Override

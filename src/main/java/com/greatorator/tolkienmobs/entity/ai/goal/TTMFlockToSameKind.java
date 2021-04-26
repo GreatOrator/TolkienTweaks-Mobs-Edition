@@ -28,12 +28,12 @@ public class TTMFlockToSameKind extends Goal {
      * Returns whether the EntityAIBase should begin execution.
      */
     @Override
-    public boolean shouldExecute() {
-        if (this.flockCreature.getRNG().nextInt(40) != 0) {
+    public boolean canUse() {
+        if (this.flockCreature.getRandom().nextInt(40) != 0) {
             return false;
         }
 
-        List<LivingEntity> flockList = this.flockCreature.world.getEntitiesWithinAABB(this.flockCreature.getClass(), this.flockCreature.getBoundingBox().grow(16.0D, 4.0D, 16.0D));
+        List<LivingEntity> flockList = this.flockCreature.level.getEntitiesOfClass(this.flockCreature.getClass(), this.flockCreature.getBoundingBox().inflate(16.0D, 4.0D, 16.0D));
 
         int flocknum = 0;
         double flockX = 0;
@@ -42,9 +42,9 @@ public class TTMFlockToSameKind extends Goal {
 
         for (LivingEntity flocker : flockList) {
             flocknum++;
-            flockX += flocker.getPosX();
-            flockY += flocker.getPosY();
-            flockZ += flocker.getPosZ();
+            flockX += flocker.getX();
+            flockY += flocker.getY();
+            flockZ += flocker.getZ();
         }
 
         flockX /= flocknum;
@@ -52,7 +52,7 @@ public class TTMFlockToSameKind extends Goal {
         flockZ /= flocknum;
 
 
-        if (flockCreature.getDistanceSq(flockX, flockY, flockZ) < MIN_DIST) {
+        if (flockCreature.distanceToSqr(flockX, flockY, flockZ) < MIN_DIST) {
             return false;
         } else {
             this.flockPosition = new Vector3d(flockX, flockY, flockZ);
@@ -64,11 +64,11 @@ public class TTMFlockToSameKind extends Goal {
      * Returns whether an in-progress EntityAIBase should continue executing
      */
     @Override
-    public boolean shouldContinueExecuting() {
+    public boolean canContinueToUse() {
         if (flockPosition == null) {
             return false;
         } else {
-            double distance = this.flockCreature.getDistanceSq(flockPosition.x, flockPosition.y, flockPosition.z);
+            double distance = this.flockCreature.distanceToSqr(flockPosition.x, flockPosition.y, flockPosition.z);
             return distance >= MIN_DIST && distance <= MAX_DIST;
         }
     }
@@ -77,7 +77,7 @@ public class TTMFlockToSameKind extends Goal {
      * Execute a one shot task or start executing a continuous task
      */
     @Override
-    public void startExecuting() {
+    public void start() {
         this.moveTimer = 0;
     }
 
@@ -85,7 +85,7 @@ public class TTMFlockToSameKind extends Goal {
      * Resets the task
      */
     @Override
-    public void resetTask() {
+    public void stop() {
         this.flockPosition = null;
     }
 
@@ -96,7 +96,7 @@ public class TTMFlockToSameKind extends Goal {
     public void tick() {
         if (--this.moveTimer <= 0) {
             this.moveTimer = 10;
-            this.flockCreature.getNavigator().tryMoveToXYZ(flockPosition.x, flockPosition.y, flockPosition.z, this.speed);
+            this.flockCreature.getNavigation().moveTo(flockPosition.x, flockPosition.y, flockPosition.z, this.speed);
         }
     }
 }
