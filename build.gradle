@@ -73,7 +73,7 @@ minecraft {
         }
         data {
             workingDirectory file('run')
-            args '--mod', 'tolkienmobs', '--all', '--output', file("src/generated/resources")
+            args '--mod', 'tolkienmobs', '--all', '--output', file("src/generated/resources"), '--existing', file("src/main/resources")
             mods { tolkienmobs { source sourceSets.main } }
         }
     }
@@ -83,6 +83,7 @@ repositories {
     mavenLocal()
     maven { url = "http://chickenbones.net/maven" }
     maven { url = "https://maven.theillusivec4.top/" }
+    maven { url 'http://dvs1.progwml6.com/files/maven' }
 }
 
 dependencies {
@@ -90,6 +91,8 @@ dependencies {
     compile "codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:deobf"
     compile "com.brandon3055.brandonscore:BrandonsCore:${config.mc_version}-${config.bcore_version}:deobf"
     compile fg.deobf("top.theillusivec4.curios:curios-forge:${config.mc_version}-${config.curios_version}")
+    compile fg.deobf("slimeknights.mantle:Mantle:${config.mc_version}-${config.mantle_version}")
+    compile fg.deobf("slimeknights.tconstruct:TConstruct:${config.mc_version}-${config.tic_version}")
 }
 
 signing {
@@ -115,7 +118,8 @@ processResources { task ->
         task.doFirst {
             spec.expand 'version': config.mod_version,
                     'mc_version': config.mc_version,
-                    'ccl_version': resolve("CodeChickenLib")
+                    'ccl_version': resolve("CodeChickenLib"),
+                    'bcore_version': resolve("BrandonsCore")
         }
     }
 }
