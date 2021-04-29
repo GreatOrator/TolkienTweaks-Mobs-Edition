@@ -37,7 +37,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(TTMTags.items.ORES_AMMOLITE).add(TTMContent.ORE_AMMOLITE_ITEM.get(), TTMContent.ORE_END_AMMOLITE_ITEM.get(), TTMContent.ORE_NETHER_AMMOLITE_ITEM.get());
         tag(Tags.Items.ORES).addTags(TTMTags.items.ORES_MITHRIL, TTMTags.items.ORES_MORGULIRON, TTMTags.items.ORES_AMMOLITE);
         tag(TTMTags.items.MUSHROOMS).add(TTMContent.MUSHROOM_BLOOM_DECAY_ITEM.get(), TTMContent.MUSHROOM_DECAY_BLOOM_ITEM.get());
-//        getOrCreateBuilder(Tags.Items.MUSHROOMS).addTag(TTMTags.items.MUSHROOMS);
+        tag(Tags.Items.MUSHROOMS).addTag(TTMTags.items.MUSHROOMS);
         tag(TTMTags.items.FENCES_WOODEN).add(TTMContent.FENCE_MALLORN_ITEM.get(), TTMContent.FENCE_MIRKWOOD_ITEM.get(), TTMContent.FENCE_CULUMALDA_ITEM.get(), TTMContent.FENCE_LEBETHRON_ITEM.get());
         tag(ItemTags.WOODEN_FENCES).addTag(TTMTags.items.FENCES_WOODEN);
         tag(TTMTags.items.FENCE_GATES_WOODEN).add(TTMContent.FENCE_GATE_MALLORN_ITEM.get(), TTMContent.FENCE_GATE_MIRKWOOD_ITEM.get(), TTMContent.FENCE_GATE_CULUMALDA_ITEM.get(), TTMContent.FENCE_GATE_LEBETHRON_ITEM.get());
@@ -62,9 +62,9 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(ItemTags.DOORS).addTag(TTMTags.items.DOORS_IRON);
         tag(TTMTags.items.BARS_IRON).add(TTMContent.MITHRIL_BARS_ITEM.get(), TTMContent.MORGULIRON_BARS_ITEM.get());
         tag(TTMTags.items.GEMS).add(TTMContent.GEM_AMMOLITE.get());
-//        getOrCreateBuilder(Tags.Items.GEMS).addTag(TTMTags.items.GEMS);
+        tag(Tags.Items.GEMS).addTag(TTMTags.items.GEMS);
         tag(TTMTags.items.LEATHER).add(TTMContent.MUMAKIL_LEATHER.get());
-//        getOrCreateBuilder(Tags.Items.LEATHER).addTag(TTMTags.items.LEATHER);
+        tag(Tags.Items.LEATHER).addTag(TTMTags.items.LEATHER);
         tag(TTMTags.items.FEATHER).add(TTMContent.BIRD_FEATHER.get(), TTMContent.CREBAIN_FEATHER.get());
         tag(Tags.Items.FEATHERS).addTag(TTMTags.items.FEATHER);
         tag(TTMTags.items.BOTTLE).add(TTMContent.BOTTLE_FANCY.get());

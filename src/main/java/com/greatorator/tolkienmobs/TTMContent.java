@@ -369,7 +369,7 @@ public class TTMContent {
 
     // Food
     public static RegistryObject<Item> LEMBAS = ITEMS.register("food_lembas", () -> new TTMFood(new Item.Properties().tab(foodGroup).stacksTo(64).food(TTMFoods.LEMBAS)).setEffectOverride());
-    public static RegistryObject<Item> HONEY_CAKE = ITEMS.register("food_honeycake", () -> new Item(new Item.Properties().tab(foodGroup).stacksTo(64).food(TTMFoods.HONEY_CAKE)));
+    public static RegistryObject<Item> HONEY_CAKE = ITEMS.register("food_honeycomb", () -> new Item(new Item.Properties().tab(foodGroup).stacksTo(64).food(TTMFoods.HONEY_CAKE)));
     public static RegistryObject<Item> CRAM = ITEMS.register("food_cram", () -> new Item(new Item.Properties().tab(foodGroup).stacksTo(64).food(TTMFoods.CRAM)));
     public static RegistryObject<Item> MONSTER_FLESH = ITEMS.register("monster_flesh", () -> new Item(new Item.Properties().tab(foodGroup).stacksTo(64).food(TTMFoods.MONSTER_FLESH)));
     public static RegistryObject<Item> INSECT = ITEMS.register("food_insect", () -> new Item(new Item.Properties().tab(foodGroup).stacksTo(64).food(TTMFoods.INSECT)));
@@ -387,7 +387,8 @@ public class TTMContent {
     // Containers
     //#################################################################
     //TODO Will get back to this when its needed. I need to figure out a better way to do this.
-    //public static RegistryObject<ContainerType<ContainerBCTile<ExampleTile>>> EXAMPLE_CONTAINER = CONTAINER.register("example_container", (windowId, inv, data) -> new ContainerBCTile<ExampleTile>(EXAMPLE_CONTAINER.get(), windowId, inv, data, TRANSFUSER_LAYOUT));
+    //public static RegistryObject<ContainerType<ContainerBCTile<ExampleTile>>> EXAMPLE_CONTAINER = CONTAINER.register("example_container", (windowId, inv, data) -> new ContainerBCTile<ExampleTile>(EXAMPLE_CONTAINER.get(), windowId, inv, data,
+    // TRANSFUSER_LAYOUT));
 
     //For demonstration purposes only
     //public static class ExampleTile extends TileBCore {

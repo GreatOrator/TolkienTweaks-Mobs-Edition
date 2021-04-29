@@ -28,9 +28,3 @@ license="MIT License"
     versionRange="[${ccl_version},)"
     ordering="AFTER"
     side="BOTH"
-[[dependencies.tolkienmobs]]
-    modId="brandonscore"
-    mandatory=true
-    versionRange="[${bcore_version},)"
-    ordering="AFTER"
-    side="BOTH"
