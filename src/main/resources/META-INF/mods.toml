@@ -25,6 +25,6 @@ license="MIT License"
 [[dependencies.tolkienmobs]]
     modId="codechickenlib"
     mandatory=true
-    versionRange="[${ccl_version},)"
+    versionRange="${ccl_version}"
     ordering="AFTER"
     side="BOTH"
