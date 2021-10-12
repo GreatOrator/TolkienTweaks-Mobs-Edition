@@ -64,7 +64,7 @@ c8278b727674f4212a15d1f15e56a00af2c4128a assets/tolkienmobs/blockstates/slab_mal
 c99fe2d346c966947f2189b82e196124824f0c78 assets/tolkienmobs/blockstates/stairs_lebethron.json
 3e5106bdbc6151e47b9a6ea3ec951dcf9b499ecb assets/tolkienmobs/blockstates/stairs_mallorn.json
 f3a2a260ffba776442157d00261ad2a0923b1e6d assets/tolkienmobs/blockstates/stairs_mirkwood.json
-cc72d3c79f857a24ad2aef388e80994da68f9a88 assets/tolkienmobs/lang/en_us.json
+b92ab29dc2f32f3e10830b8ec2d47591bcb6ee48 assets/tolkienmobs/lang/en_us.json
 18514641017b452bad1438275cd081960fd10677 assets/tolkienmobs/models/block/block_hallowed.json
 4150d9b4cf2eb93dfd66bcfe91923c56e938670b assets/tolkienmobs/models/block/block_mithril.json
 f2c05d86275dd99e93885a9b26af9cfb99a25124 assets/tolkienmobs/models/block/block_morguliron.json
@@ -432,15 +432,12 @@ b323c3de4d3bcc8bfbbd7bcda1706772f74be3d0 data/forge/tags/items/fences/wooden.jso
 f54715a2d3aab7a82ca103bca93fdacc15197ceb data/forge/tags/items/flowers.json
 faad7f8d882f89c3399ef91b70a6f1b9ed6e4b6b data/forge/tags/items/food.json
 30f7f52ca9f1e25d9a3fb1cbecccfde22aae6e76 data/forge/tags/items/fur.json
-cfaaaadb2812342b3e0c8e492eb6d564716c1263 data/forge/tags/items/gems.json
 f120035aa25380853fa186166b0f1a8bc85b556e data/forge/tags/items/ingots.json
 401413df01a69be5c9eb69aea8bb079f1f1d09d2 data/forge/tags/items/ingots/mithril.json
 875a021a56d16b7f4d918f503623532c05ba2500 data/forge/tags/items/ingots/morguliron.json
 de36676f8d85808af0255388a3aad209ebe5d381 data/forge/tags/items/insects.json
-3bc52d921b251f3e2aa47143c5c795d57915a478 data/forge/tags/items/leather.json
 2aefe46e6e7b4a6b96bb2391a9574a8e6d4a9906 data/forge/tags/items/leaves.json
 c34d853c476b93c00442622e189342da4c806094 data/forge/tags/items/logs.json
-f7ef1c00090ba19ca3eddef15e3b488ae2c8a07e data/forge/tags/items/mushrooms.json
 9d9c5cff2e7e5eb7fc9c3eb4902e355a25ffadb9 data/forge/tags/items/nuggets.json
 77114975b0f590be60d7b48d86f3551e8fdff78d data/forge/tags/items/nuggets/mithril.json
 6c7309d0d772a890da5d43afa9f3f52f4ec47dc5 data/forge/tags/items/nuggets/morguliron.json

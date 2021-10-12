@@ -43,12 +43,14 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.BLOCK_MITHRIL.get(), "Mithril Block");
         add(TTMContent.MITHRIL_BARS.get(), "Mithril Bars");
         add(TTMContent.DOOR_MITHRIL.get(), "Mithril Door");
+        add(TTMContent.MITHRIL_BUCKET.get(), "Molten Mithril Bucket");
         add(TTMContent.ORE_MORGULIRON.get(), "Morgul Iron Ore");
         add(TTMContent.ORE_END_MORGULIRON.get(), "Ender Morgul Iron Ore");
         add(TTMContent.ORE_NETHER_MORGULIRON.get(), "Fiery Morgul Iron Ore");
         add(TTMContent.BLOCK_MORGULIRON.get(), "Morgul Iron Block");
         add(TTMContent.MORGULIRON_BARS.get(), "Morgul Iron Bars");
         add(TTMContent.DOOR_MORGULIRON.get(), "Morgul Iron Door");
+        add(TTMContent.MORGULIRON_BUCKET.get(), "Molten Morguliron Bucket");
         add(TTMContent.ORE_AMMOLITE.get(), "Ammolite Ore");
         add(TTMContent.ORE_END_AMMOLITE.get(), "Ender Ammolite Ore");
         add(TTMContent.ORE_NETHER_AMMOLITE.get(), "Firey Ammolite Ore");

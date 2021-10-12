@@ -24,6 +24,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -60,6 +61,7 @@ public class TTMContent {
         LOGGER.info("Asking the Ainur to sing the music of Eru Iluvatar...");
         SoundGenerator.SOUND_EVENTS.register(modBus);
         LOGGER.info("Preparing the Dwarves...");
+        FluidGenerator.FLUIDS.register(modBus);
         BLOCKS.register(modBus);
         LOGGER.info("Stocking the markets...");
         ITEMS.register(modBus);
@@ -92,6 +94,10 @@ public class TTMContent {
     public static RegistryObject<Block> ORE_AMMOLITE = BLOCKS.register("ore_ammolite", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
     public static RegistryObject<Block> ORE_END_AMMOLITE = BLOCKS.register("ore_end_ammolite", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
     public static RegistryObject<Block> ORE_NETHER_AMMOLITE = BLOCKS.register("ore_nether_ammolite", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
+
+    // Basic - Fluids
+    public static final RegistryObject<FlowingFluidBlock> MOLTEN_MITHRIL = BLOCKS.register("molten_mithril_block", () -> new FlowingFluidBlock(FluidGenerator.MITHRIL, Block.Properties.of(Material.LAVA).lightLevel((state) -> {	return 15;	}).randomTicks().strength(100.0F).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> MOLTEN_MORGULIRON = BLOCKS.register("molten_morguliron_block", () -> new FlowingFluidBlock(FluidGenerator.MORGULIRON, Block.Properties.of(Material.LAVA).lightLevel((state) -> {	return 15;	}).randomTicks().strength(100.0F).noDrops()));
 
     // Basic - Wood & Foliage
     public static RegistryObject<RotatedPillarBlock> LOG_CULUMALDA = BLOCKS.register("log_culumalda", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_GRAY));
@@ -134,10 +140,10 @@ public class TTMContent {
     public static RegistryObject<SaplingBlock> SAPLING_DEADWOOD = BLOCKS.register("sapling_deadwood", () -> new SaplingBlock(new TTMDeadTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
 
     // Blocks - Plants & Flowers
-    public static RegistryObject<Block> MUSHROOM_DECAY_BLOOM = BLOCKS.register("mushroom_decay_bloom", () -> new BlockMushrooms(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_BROWN).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
+    public static RegistryObject<Block> MUSHROOM_DECAY_BLOOM = BLOCKS.register("mushroom_decay_bloom", () -> new BlockMushrooms(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_PURPLE).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
         return 1;
     }).hasPostProcess(TTMContent::needsPostProcessing)));
-    public static RegistryObject<Block> MUSHROOM_BLOOM_DECAY = BLOCKS.register("mushroom_bloom_decay", () -> new BlockMushrooms(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_BROWN).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
+    public static RegistryObject<Block> MUSHROOM_BLOOM_DECAY = BLOCKS.register("mushroom_bloom_decay", () -> new BlockMushrooms(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_PURPLE).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
         return 1;
     }).hasPostProcess(TTMContent::needsPostProcessing)));
     public static RegistryObject<Block> BLOCK_DECAY_BLOOM = BLOCKS.register("block_decay_bloom", () -> new HugeMushroomBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_MAGENTA).strength(0.2F).sound(SoundType.WOOD)));
@@ -174,6 +180,10 @@ public class TTMContent {
     public static RegistryObject<Item> ORE_AMMOLITE_ITEM = ITEMS.register("ore_ammolite", () -> new ItemBlockBCore(ORE_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_END_AMMOLITE_ITEM = ITEMS.register("ore_end_ammolite", () -> new ItemBlockBCore(ORE_END_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_NETHER_AMMOLITE_ITEM = ITEMS.register("ore_nether_ammolite", () -> new ItemBlockBCore(ORE_NETHER_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
+
+    // Fluid - Blocks
+    public static final RegistryObject<Item> MITHRIL_BUCKET = ITEMS.register("mithril_bucket", () -> new BucketItem(FluidGenerator.MITHRIL, new BucketItem.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(matsGroup)));
+    public static final RegistryObject<Item> MORGULIRON_BUCKET = ITEMS.register("morguliron_bucket", () -> new BucketItem(FluidGenerator.MORGULIRON, new BucketItem.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(matsGroup)));
 
     // Blocks - Wood & Foliage
     public static RegistryObject<Item> LOG_CULUMALDA_ITEM = ITEMS.register("log_culumalda", () -> new ItemBlockBCore(LOG_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
@@ -369,7 +379,7 @@ public class TTMContent {
 
     // Food
     public static RegistryObject<Item> LEMBAS = ITEMS.register("food_lembas", () -> new TTMFood(new Item.Properties().tab(foodGroup).stacksTo(64).food(TTMFoods.LEMBAS)).setEffectOverride());
-    public static RegistryObject<Item> HONEY_CAKE = ITEMS.register("food_honeycomb", () -> new Item(new Item.Properties().tab(foodGroup).stacksTo(64).food(TTMFoods.HONEY_CAKE)));
+    public static RegistryObject<Item> HONEY_CAKE = ITEMS.register("food_honeycake", () -> new Item(new Item.Properties().tab(foodGroup).stacksTo(64).food(TTMFoods.HONEY_CAKE)));
     public static RegistryObject<Item> CRAM = ITEMS.register("food_cram", () -> new Item(new Item.Properties().tab(foodGroup).stacksTo(64).food(TTMFoods.CRAM)));
     public static RegistryObject<Item> MONSTER_FLESH = ITEMS.register("monster_flesh", () -> new Item(new Item.Properties().tab(foodGroup).stacksTo(64).food(TTMFoods.MONSTER_FLESH)));
     public static RegistryObject<Item> INSECT = ITEMS.register("food_insect", () -> new Item(new Item.Properties().tab(foodGroup).stacksTo(64).food(TTMFoods.INSECT)));

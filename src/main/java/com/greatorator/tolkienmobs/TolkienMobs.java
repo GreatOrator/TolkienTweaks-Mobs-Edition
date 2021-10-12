@@ -40,19 +40,43 @@ public class TolkienMobs {
     public static CommonProxy proxy;
 
     /*TODO List
-    * Registration Stuff
-    *  - Signs
-    *  - Fireplace
-    *  - Armor
-    *  - Entities
-    *  - Generation
-    *   - Trees
-    *   - Biomes
-    *   - Structures
-    *   - Plants
-    *
-    * Config (Done)
-    * Network
+    1. Trinkets
+	    a. applying said effect (not activating onUpdate)
+	    b. rendering color on trinket
+	    c. tolkienmobs effects not working
+    2. Effects
+        a. The Terror effect - Need on-screen rendering
+        b. Sleep Effect - Need on-screen rendering
+        c. Drown Effect - does not apply drown damage (or any substituted damage for that matter)
+        d. Tornado Effect - That had some extremely fancy packets handling and other GL stuff, not sure it is doable in 1.16
+    3. Enchantments Remaining
+        a. Hobbit Harvest - Was supposed to be fortune for using the Hoe to harvest crops
+        b. Hobbit Plow - Allowed for wide area "plowing" of farmland with right click instead of 1x1 (level made area wider)
+    4. Entities
+	    a. Frog - not jumping when moving
+	    b. Thrush - Model adjustments and placed on ground instead of in the air
+	    c. Remaining Entities
+	        1.
+    5. Remaining blocks -
+        a. Fireplace
+        b. custom Signs
+    6. Custom weapon & tool models
+        a. Fire Whip - Proper rendering
+        b. Wooden Club - Proper rendering
+        c. Mithril armor
+	    d. Morguliron armor
+    7. Ammo
+        a. Fell Beast Fireball - rendering
+	    b. Boulder - rendering
+	    c. Galadhrim Arrow - rendering
+    8. Fluids
+	    a. Fluid/color not rendering on buckets in hand/inventory
+    9. Generation
+        a. Trees
+        b. Biomes
+        c. Structures
+        d. Plants
+    10. Network Stuff
     */
 
     public TolkienMobs() {

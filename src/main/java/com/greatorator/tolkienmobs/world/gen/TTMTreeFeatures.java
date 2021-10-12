@@ -66,7 +66,7 @@ public final class TTMTreeFeatures {
                 new SimpleBlockStateProvider(States.MALLORN_LOG),
                 new SimpleBlockStateProvider(States.MALLORN_LEAVES),
                 new DarkOakFoliagePlacer(FeatureSpread.fixed(0), FeatureSpread.fixed(0)),
-                new DarkOakTrunkPlacer(6, 2, 1),
+                new DarkOakTrunkPlacer(9, 2, 1),
                 new ThreeLayerFeature(1, 1, 0, 1, 2, OptionalInt.empty())).maxWaterDepth(Integer.MAX_VALUE).heightmap(Heightmap.Type.MOTION_BLOCKING)
                 .ignoreVines()
                 .build();
@@ -102,7 +102,7 @@ public final class TTMTreeFeatures {
                 new SimpleBlockStateProvider(States.MUSHROOM_STEM),
                 new SimpleBlockStateProvider(States.CAP_BLOOM_DECAY),
                 new TTMSpheroidFoliagePlacer(4.25f, 0f, FeatureSpread.fixed(1), 1, 0, 0f, 0),
-                new TTMBranchingTrunkPlacer(3, 5, 5, 6, new TTMBranchesConfig(3, 1, 9, 1, 0.3, 0.2), true),
+                new TTMBranchingTrunkPlacer(3, 5, 4, 6, new TTMBranchesConfig(3, 1, 9, 1, 0.3, 0.2), true),
                 new TwoLayerFeature(11, 0, canopyDistancing))
                 .ignoreVines()
                 .build();
@@ -111,7 +111,7 @@ public final class TTMTreeFeatures {
                 new SimpleBlockStateProvider(States.MUSHROOM_STEM),
                 new SimpleBlockStateProvider(States.CAP_DECAY_BLOOM),
                 new TTMSpheroidFoliagePlacer(4.25f, 1.75f, FeatureSpread.fixed(1), 0, 0, -0.45f, 0),
-                new TTMBranchingTrunkPlacer(4, 5, 5, 6, new TTMBranchesConfig(3, 1, 9, 1, 0.3, 0.2), true),
+                new TTMBranchingTrunkPlacer(4, 5, 4, 6, new TTMBranchesConfig(3, 1, 9, 1, 0.3, 0.2), true),
                 new TwoLayerFeature(11, 0, canopyDistancing))
                 .ignoreVines()
                 .build();

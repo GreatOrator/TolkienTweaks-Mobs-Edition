@@ -232,6 +232,10 @@ public class ItemModelGenerator extends ItemModelProvider {
         trinketItem(TTMContent.TRINKET_CHARM.get(), modLoc("item/trinket_charm"), modLoc("item/trinket_charm"));
         trinketItem(TTMContent.TRINKET_RING.get(), modLoc("item/trinket_ring"), modLoc("item/trinket_ring"));
 
+        //region Fluids
+        simpleItem(TTMContent.MITHRIL_BUCKET.get(), modLoc("item/mithril_bucket"));
+        simpleItem(TTMContent.MORGULIRON_BUCKET.get(), modLoc("item/morguliron_bucket"));
+
         //region Spawn Eggs
         eggItem(EntityGenerator.EGG_TTMRAT.get());
         eggItem(EntityGenerator.EGG_TTMSQUIRREL.get());
@@ -248,11 +252,6 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(EntityGenerator.EGG_TTMGOBLIN.get());
         eggItem(EntityGenerator.EGG_TTMGOBLINKING.get());
         eggItem(EntityGenerator.EGG_TTMBARROW.get());
-
-
-
-
-
     }
 
     private void simpleItem(Item item) {
