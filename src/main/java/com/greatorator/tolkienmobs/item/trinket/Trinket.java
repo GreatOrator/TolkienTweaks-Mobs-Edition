@@ -3,7 +3,6 @@ package com.greatorator.tolkienmobs.item.trinket;
 import com.brandon3055.brandonscore.api.TimeKeeper;
 import com.brandon3055.brandonscore.utils.ItemNBTHelper;
 import com.greatorator.tolkienmobs.TTMConfig;
-import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -32,7 +31,6 @@ import java.util.List;
  * Created by brandon3055 on 13/10/2021
  */
 public class Trinket extends Item {
-    private boolean hasLore = false;
 
     public Trinket(Properties properties) {
         super(properties);
@@ -120,14 +118,6 @@ public class Trinket extends Item {
     public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
         PotionUtils.addPotionTooltip(stack, tooltip, 1.0F);
-        if (hasLore) {
-            tooltip.add(new TranslationTextComponent(getDescriptionId() + ".lore").withStyle(TextFormatting.DARK_PURPLE));
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    public Trinket setHasLore() {
-        this.hasLore = true;
-        return this;
+        tooltip.add(new TranslationTextComponent("item_info.tolkienmobs.sneak_right_click_activate").withStyle(TextFormatting.DARK_PURPLE));
     }
 }

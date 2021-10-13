@@ -134,6 +134,9 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.GOLEM_STONE_WATER.get(), TextFormatting.BLUE + "Water " + TextFormatting.RESET + "Golem Stone");
         add(TTMContent.GOLEM_STONE_SUMMON.get(), "Summon Legendary " + TextFormatting.AQUA + "Mithril " + TextFormatting.RESET + "Golem");
         addLore(TTMContent.GOLEM_STONE_SUMMON.get(), "Ancient artifact to summon a Legendary Golem");
+
+
+        add("item_info.tolkienmobs.sneak_right_click_activate", "Shift right-click to activate/deactivate effect");
     }
 
     private void quest() {
@@ -513,10 +516,6 @@ public class LangGenerator extends LanguageProvider {
 
         public void add(String translationKey, String translation) {
             generator.add(prefix + translationKey, translation);
-        }
-
-        public void addLore(Item key) {
-            generator.add("item.tolkienmobs." + key + ".lore", "Shift right-click to activate/deactivate effect");
         }
     }
 
