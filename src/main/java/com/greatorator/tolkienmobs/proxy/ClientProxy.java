@@ -6,14 +6,13 @@ import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
 import com.greatorator.tolkienmobs.entity.merchant.villager.VillagerTTMTrades;
 import com.greatorator.tolkienmobs.handler.TTMHearts;
-import com.greatorator.tolkienmobs.init.ColourHandler;
+import com.greatorator.tolkienmobs.init.TTMColor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.ModLoader;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
@@ -28,7 +27,7 @@ public class ClientProxy extends CommonProxy {
         super.construct();
         MinecraftForge.EVENT_BUS.addListener(TTMClientEvents::livingUpdate);
         MinecraftForge.EVENT_BUS.addListener(VillagerTTMTrades::onVillagerTradesEvent);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(ColourHandler::itemColourEvent);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(TTMColor::itemColourEvent);
     }
 
     @Override

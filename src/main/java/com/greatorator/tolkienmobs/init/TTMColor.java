@@ -15,7 +15,7 @@ import net.minecraftforge.client.event.ColorHandlerEvent;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
-public class ColourHandler {
+public class TTMColor {
 
     public static void itemColourEvent(ColorHandlerEvent.Item event) {
         event.getItemColors().register(new TrinketColour(), TTMContent.TRINKET_CHARM.get(), TTMContent.TRINKET_AMULET.get(), TTMContent.TRINKET_BELT.get(), TTMContent.TRINKET_RING.get());
