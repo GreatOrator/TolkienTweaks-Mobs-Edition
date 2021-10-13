@@ -410,51 +410,10 @@ public class LangGenerator extends LanguageProvider {
     }
 
     private void trinket(PrefixHelper helper) {
-        helper.setPrefix("item.tolkienmobs.trinket_amulet.effect.");
-        helper.addLore(TTMContent.TRINKET_AMULET.get());
-        helper.add("minecraft:absorption", "Magical Amulet of Absorption");
-        helper.add("minecraft:invisibility", "Magical Amulet of Invisibility");
-        helper.add("minecraft:night_vision", "Magical Amulet of Night Vision");
-        helper.add("minecraft:speed", "Magical Amulet of Speed");
-        helper.add("minecraft:regeneration", "Magical Amulet of Regeneration");
-        helper.add("minecraft:jump_boost", "Magical Amulet of Jump Boost");
-        helper.add("minecraft:haste", "Magical Amulet of Haste");
-        helper.add("minecraft:water_breathing", "Magical Amulet of Water Breathing");
-        helper.add("minecraft:fire_resistance", "Magical Amulet of Fire Resistance");
-        helper.setPrefix("item.tolkienmobs.trinket_belt.effect.");
-        helper.addLore(TTMContent.TRINKET_BELT.get());
-        helper.add("minecraft:absorption", "Magical Belt of Absorption");
-        helper.add("minecraft:invisibility", "Magical Belt of Invisibility");
-        helper.add("minecraft:night_vision", "Magical Belt of Night Vision");
-        helper.add("minecraft:speed", "Magical Belt of Speed");
-        helper.add("minecraft:regeneration", "Magical Belt of Regeneration");
-        helper.add("minecraft:jump_boost", "Magical Belt of Jump Boost");
-        helper.add("minecraft:haste", "Magical Belt of Haste");
-        helper.add("minecraft:water_breathing", "Magical Belt of Water Breathing");
-        helper.add("minecraft:fire_resistance", "Magical Belt of Fire Resistance");
-        helper.setPrefix("item.tolkienmobs.trinket_charm.effect.");
-        helper.addLore(TTMContent.TRINKET_CHARM.get());
-        helper.add("minecraft:absorption", "Magical Charm of Absorption");
-        helper.add("minecraft:invisibility", "Magical Charm of Invisibility");
-        helper.add("minecraft:night_vision", "Magical Charm of Night Vision");
-        helper.add("minecraft:speed", "Magical Charm of Speed");
-        helper.add("minecraft:regeneration", "Magical Charm of Regeneration");
-        helper.add("minecraft:jump_boost", "Magical Charm of Jump Boost");
-        helper.add("minecraft:haste", "Magical Charm of Haste");
-        helper.add("minecraft:water_breathing", "Magical Charm of Water Breathing");
-        helper.add("minecraft:fire_resistance", "Magical Charm of Fire Resistance");
-        helper.setPrefix("item.tolkienmobs.trinket_ring.effect.");
-        helper.addLore(TTMContent.TRINKET_RING.get());
-        helper.add("minecraft:absorption", "Magical Ring of Absorption");
-        helper.add("minecraft:invisibility", "Magical Ring of Invisibility");
-        helper.add("minecraft:night_vision", "Magical Ring of Night Vision");
-        helper.add("minecraft:speed", "Magical Ring of Speed");
-        helper.add("minecraft:regeneration", "Magical Ring of Regeneration");
-        helper.add("minecraft:jump_boost", "Magical Ring of Jump Boost");
-        helper.add("minecraft:haste", "Magical Ring of Haste");
-        helper.add("minecraft:water_breathing", "Magical Ring of Water Breathing");
-        helper.add("minecraft:fire_resistance", "Magical Ring of Fire Resistance");
-
+        add(TTMContent.TRINKET_AMULET.get(), "Magical Amulet of ");
+        add(TTMContent.TRINKET_BELT.get(), "Magical Belt of ");
+        add(TTMContent.TRINKET_CHARM.get(), "Magical Charm of ");
+        add(TTMContent.TRINKET_RING.get(), "Magical Ring of ");
     }
 
     private void merchants(PrefixHelper helper) {

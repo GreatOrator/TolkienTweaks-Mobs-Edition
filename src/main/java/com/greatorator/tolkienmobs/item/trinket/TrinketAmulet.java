@@ -18,6 +18,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -25,12 +26,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
 import java.util.List;
 
-import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
-
+@Deprecated
 public class TrinketAmulet extends Item {
-    private static final String TAG_POTION_EFFECT = "effect";
     private boolean hasLore = false;
 
     public TrinketAmulet(Properties properties) {
@@ -39,53 +39,47 @@ public class TrinketAmulet extends Item {
 
     @Override
     public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
-
         if (this.allowdedIn(group)) {
             for(Effect p : TTMConfig.potionArray) {
                 if (p != null) {
-                    items.add(getTrinketForPotion(p));
+                    items.add(getTrinketForEffect(p));
                 }
             }
         }
     }
 
-    public static ItemStack getTrinketForPotion(Effect effect) {
-        String id = effect.getRegistryName().toString();
+    public static ItemStack getTrinketForEffect(Effect effect) {
         ItemStack stack = new ItemStack(TTMContent.TRINKET_AMULET.get());
-        ItemNBTHelper.setString(stack, TAG_POTION_EFFECT, id);
+        PotionUtils.setCustomEffects(stack, Collections.singleton(new EffectInstance(effect, 0, 0)));
         return stack;
     }
 
     @Override
     public ITextComponent getName(ItemStack stack) {
-        Potion potion = TrinketAmulet.getPotion(stack);
-        CompoundNBT compoundnbt = stack.getTag();
-        String s = compoundnbt.getString("effect");
-
-        if (compoundnbt.contains("effect")){
-            return new TranslationTextComponent(this.getDescriptionId() + ".effect." + s);
-        }else {
-            return new TranslationTextComponent(this.getDescriptionId() + ".effect.empty");
+        List<EffectInstance> effects = getEffects(stack);
+        if (effects.isEmpty()) {
+            return super.getName(stack);
         }
+
+        ITextComponent effectName = effects.get(0).getEffect().getDisplayName();
+        TextComponent itemName = (TextComponent) super.getName(stack);
+
+        return itemName.append(effectName);
     }
 
-    public static Potion getPotion(ItemStack stack) {
-        if(stack == null)
+    public static List<EffectInstance> getEffects(ItemStack stack) {
+        if(stack.isEmpty()){
             return null;
-
-        String effect = ItemNBTHelper.getString(stack, TAG_POTION_EFFECT, "");
-        if(effect.isEmpty())
-            return null;
-
-        return Potion.byName(effect);
+        }
+        return PotionUtils.getCustomEffects(stack);
     }
 
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack stack = player.getItemInHand(hand);
-        if (player.isShiftKeyDown() && (getPotion(stack) != null)) {
-            toggleEnabled(stack);
-        }
+//        if (player.isShiftKeyDown() && (getPotion(stack) != null)) {
+//            toggleEnabled(stack);
+//        }
         return super.use(world, player, hand);
     }
 
@@ -103,22 +97,22 @@ public class TrinketAmulet extends Item {
         ItemNBTHelper.setBoolean(stack, "IsActive", !isEnabled(stack));
     }
 
-    @SuppressWarnings("unchecked")
-    public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean hotbar) {
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean hotbar) {
         updateTrinket(stack, entity);
     }
 
     private void updateTrinket(ItemStack stack, Entity entity) {
         PlayerEntity player = (PlayerEntity) entity;
-        Effect pe = (Effect) PotionUtils.getMobEffects(stack);
-
-        if(isEnabled(stack)){
-            LOGGER.info("Hey you guys!");
-            LOGGER.info(pe);
-            player.addEffect(new EffectInstance(new EffectInstance(pe,2400,3,false,false)));
-        }else {
-            player.removeEffect(pe);
-        }
+//        Effect pe = PotionUtils.getMobEffects(stack);
+//
+//        if(isEnabled(stack)){
+//            LOGGER.info("Hey you guys!");
+//            LOGGER.info(pe);
+//            player.addEffect(new EffectInstance(new EffectInstance(pe,2400,3,false,false)));
+//        }else {
+//            player.removeEffect(pe);
+//        }
     }
 
     @Override

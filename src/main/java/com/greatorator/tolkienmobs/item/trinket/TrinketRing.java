@@ -29,6 +29,7 @@ import java.util.List;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 
+@Deprecated
 public class TrinketRing extends Item {
     private static final String TAG_POTION_EFFECT = "effect";
     private boolean hasLore = false;
@@ -39,7 +40,6 @@ public class TrinketRing extends Item {
 
     @Override
     public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
-
         if (this.allowdedIn(group)) {
             for(Effect p : TTMConfig.potionArray) {
                 if (p != null) {
@@ -103,22 +103,22 @@ public class TrinketRing extends Item {
         ItemNBTHelper.setBoolean(stack, "IsActive", !isEnabled(stack));
     }
 
-    @SuppressWarnings("unchecked")
-    public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean hotbar) {
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean hotbar) {
         updateTrinket(stack, entity);
     }
 
     private void updateTrinket(ItemStack stack, Entity entity) {
         PlayerEntity player = (PlayerEntity) entity;
-        Effect pe = (Effect) PotionUtils.getMobEffects(stack);
-
-        if(isEnabled(stack)){
-            LOGGER.info("Hey you guys!");
-            LOGGER.info(pe);
-            player.addEffect(new EffectInstance(new EffectInstance(pe,2400,3,false,false)));
-        }else {
-            player.removeEffect(pe);
-        }
+//        Effect pe = (Effect) PotionUtils.getMobEffects(stack);
+//
+//        if(isEnabled(stack)){
+//            LOGGER.info("Hey you guys!");
+//            LOGGER.info(pe);
+//            player.addEffect(new EffectInstance(new EffectInstance(pe,2400,3,false,false)));
+//        }else {
+//            player.removeEffect(pe);
+//        }
     }
 
     @Override

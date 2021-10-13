@@ -1,23 +1,23 @@
 package com.greatorator.tolkienmobs.item.trinket;
 
+import com.brandon3055.brandonscore.api.TimeKeeper;
 import com.brandon3055.brandonscore.utils.ItemNBTHelper;
 import com.greatorator.tolkienmobs.TTMConfig;
-import com.greatorator.tolkienmobs.TTMContent;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -25,67 +25,65 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
 import java.util.List;
 
-import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
-
-@Deprecated
-public class TrinketCharm extends Item {
-    private static final String TAG_POTION_EFFECT = "effect";
+/**
+ * Created by brandon3055 on 13/10/2021
+ */
+public class Trinket extends Item {
     private boolean hasLore = false;
 
-    public TrinketCharm(Properties properties) {
+    public Trinket(Properties properties) {
         super(properties);
     }
 
     @Override
     public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
-
         if (this.allowdedIn(group)) {
-            for(Effect p : TTMConfig.potionArray) {
+            for (Effect p : TTMConfig.potionArray) {
                 if (p != null) {
-                    items.add(getTrinketForPotion(p));
+                    items.add(getTrinketForEffect(p));
                 }
             }
         }
     }
 
-    public static ItemStack getTrinketForPotion(Effect effect) {
-        String id = effect.getRegistryName().toString();
-        ItemStack stack = new ItemStack(TTMContent.TRINKET_CHARM.get());
-        ItemNBTHelper.setString(stack, TAG_POTION_EFFECT, id);
+    public ItemStack getTrinketForEffect(Effect effect) {
+        ItemStack stack = new ItemStack(this);
+        PotionUtils.setCustomEffects(stack, Collections.singleton(new EffectInstance(effect, 415, 0, false, false)));
         return stack;
     }
 
     @Override
     public ITextComponent getName(ItemStack stack) {
-        Potion potion = TrinketCharm.getPotion(stack);
-        CompoundNBT compoundnbt = stack.getTag();
-        String s = compoundnbt.getString("effect");
-
-        if (compoundnbt.contains("effect")){
-            return new TranslationTextComponent(this.getDescriptionId() + ".effect." + s);
-        }else {
-            return new TranslationTextComponent(this.getDescriptionId() + ".effect.empty");
+        List<EffectInstance> effects = getEffects(stack);
+        if (effects.isEmpty()) {
+            return super.getName(stack);
         }
+
+        ITextComponent effectName = effects.get(0).getEffect().getDisplayName();
+        TextComponent itemName = (TextComponent) super.getName(stack);
+
+        return itemName.append(effectName);
     }
 
-    public static Potion getPotion(ItemStack stack) {
-        if(stack == null)
-            return null;
-
-        String effect = ItemNBTHelper.getString(stack, TAG_POTION_EFFECT, "");
-        if(effect.isEmpty())
-            return null;
-
-        return Potion.byName(effect);
+    public static List<EffectInstance> getEffects(ItemStack stack) {
+        if (stack.isEmpty()) {
+            return Collections.emptyList();
+        }
+        return PotionUtils.getCustomEffects(stack);
     }
 
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack stack = player.getItemInHand(hand);
-        if (player.isShiftKeyDown() && (getPotion(stack) != null)) {
+        if (player.isShiftKeyDown() && !getEffects(stack).isEmpty()) {
             toggleEnabled(stack);
+            if (!isEnabled(stack)) {
+                List<EffectInstance> effects = getEffects(stack);
+                effects.forEach(effect -> player.removeEffect(effect.getEffect()));
+            }
         }
         return super.use(world, player, hand);
     }
@@ -97,11 +95,11 @@ public class TrinketCharm extends Item {
     }
 
     public static boolean isEnabled(ItemStack stack) {
-        return ItemNBTHelper.getBoolean(stack, "IsActive", false);
+        return ItemNBTHelper.getBoolean(stack, "is_active", false);
     }
 
     public static void toggleEnabled(ItemStack stack) {
-        ItemNBTHelper.setBoolean(stack, "IsActive", !isEnabled(stack));
+        ItemNBTHelper.setBoolean(stack, "is_active", !isEnabled(stack));
     }
 
     @Override
@@ -111,27 +109,24 @@ public class TrinketCharm extends Item {
 
     private void updateTrinket(ItemStack stack, Entity entity) {
         PlayerEntity player = (PlayerEntity) entity;
-//        Effect pe = (Effect) PotionUtils.getMobEffects(stack);
-//
-//        if(isEnabled(stack)){
-//            LOGGER.info("Hey you guys!");
-//            LOGGER.info(pe);
-//            player.addEffect(new EffectInstance(new EffectInstance(pe,2400,3,false,false)));
-//        }else {
-//            player.removeEffect(pe);
-//        }
+        if (isEnabled(stack) && TimeKeeper.getServerTick() % 10 == 0) {
+            List<EffectInstance> effects = getEffects(stack);
+            effects.forEach(player::addEffect);
+        }
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
+        PotionUtils.addPotionTooltip(stack, tooltip, 1.0F);
         if (hasLore) {
             tooltip.add(new TranslationTextComponent(getDescriptionId() + ".lore").withStyle(TextFormatting.DARK_PURPLE));
         }
     }
 
-    public TrinketCharm setHasLore() {
+    @SuppressWarnings("unchecked")
+    public Trinket setHasLore() {
         this.hasLore = true;
         return this;
     }

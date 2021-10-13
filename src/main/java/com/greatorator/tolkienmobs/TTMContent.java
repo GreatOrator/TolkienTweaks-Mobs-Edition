@@ -8,10 +8,7 @@ import com.greatorator.tolkienmobs.block.BlockTMHallowed;
 import com.greatorator.tolkienmobs.block.trees.*;
 import com.greatorator.tolkienmobs.datagen.*;
 import com.greatorator.tolkienmobs.handler.*;
-import com.greatorator.tolkienmobs.item.trinket.TrinketAmulet;
-import com.greatorator.tolkienmobs.item.trinket.TrinketBelt;
-import com.greatorator.tolkienmobs.item.trinket.TrinketCharm;
-import com.greatorator.tolkienmobs.item.trinket.TrinketRing;
+import com.greatorator.tolkienmobs.item.trinket.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -314,10 +311,10 @@ public class TTMContent {
     public static RegistryObject<SwordItem> CLUB_WOODEN = ITEMS.register("club_wooden", () -> new TTM3DObj(TTMItemTier.MORGULIRON, 9, -0.5F, (new Item.Properties()).tab(toolsGroup), "club_wooden.obj", "club_wooden.png").setEffectOverride());
 
     //Trinkets
-    public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new TrinketAmulet(new Item.Properties().tab(toolsGroup)).setHasLore());
-    public static RegistryObject<Item> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new TrinketBelt(new Item.Properties().tab(toolsGroup)).setHasLore());
-    public static RegistryObject<Item> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new TrinketCharm(new Item.Properties().tab(toolsGroup)).setHasLore());
-    public static RegistryObject<Item> TRINKET_RING = ITEMS.register("trinket_ring", () -> new TrinketRing(new Item.Properties().tab(toolsGroup)).setHasLore());
+    public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new Trinket(new Item.Properties().tab(toolsGroup)).setHasLore());
+    public static RegistryObject<Item> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new Trinket(new Item.Properties().tab(toolsGroup)).setHasLore());
+    public static RegistryObject<Item> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new Trinket(new Item.Properties().tab(toolsGroup)).setHasLore());
+    public static RegistryObject<Item> TRINKET_RING = ITEMS.register("trinket_ring", () -> new Trinket(new Item.Properties().tab(toolsGroup)).setHasLore());
 
     //Projectiles
     public static RegistryObject<ArrowItem> GALADHRIM_ARROW = ITEMS.register("ammo_galadhrim_arrow", () -> new TTMArrow((new Item.Properties()).tab(toolsGroup)));
