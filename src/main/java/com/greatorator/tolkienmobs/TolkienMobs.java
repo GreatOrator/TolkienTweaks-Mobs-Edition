@@ -41,9 +41,9 @@ public class TolkienMobs {
 
     /*TODO List
     1. Trinkets
-	    a. applying said effect (not activating onUpdate)
-	    b. rendering color on trinket
-	    c. tolkienmobs effects not working
+	(Done)    a. applying said effect (not activating onUpdate)
+	(Done)    b. rendering color on trinket
+	(Done)    c. tolkienmobs effects not woreking
     2. Effects
         a. The Terror effect - Need on-screen rendering
         b. Sleep Effect - Need on-screen rendering

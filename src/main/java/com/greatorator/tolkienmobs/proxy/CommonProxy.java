@@ -34,17 +34,15 @@ public class CommonProxy {
         TTMContent.init();
         TTMEquipMgr.initialize();
         TTMTags.init();
-        TTMConfig.loadPotionList();
         MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::livingUpdate);
-
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
         RecipeGenerator.potions();
+        TTMConfig.loadPotionList(); //Construction was too early. Your potions were not registered yet.
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
-
     }
 
     public void serverSetup(FMLDedicatedServerSetupEvent event) {

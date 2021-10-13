@@ -311,10 +311,10 @@ public class TTMContent {
     public static RegistryObject<SwordItem> CLUB_WOODEN = ITEMS.register("club_wooden", () -> new TTM3DObj(TTMItemTier.MORGULIRON, 9, -0.5F, (new Item.Properties()).tab(toolsGroup), "club_wooden.obj", "club_wooden.png").setEffectOverride());
 
     //Trinkets
-    public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new Trinket(new Item.Properties().tab(toolsGroup)).setHasLore());
-    public static RegistryObject<Item> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new Trinket(new Item.Properties().tab(toolsGroup)).setHasLore());
-    public static RegistryObject<Item> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new Trinket(new Item.Properties().tab(toolsGroup)).setHasLore());
-    public static RegistryObject<Item> TRINKET_RING = ITEMS.register("trinket_ring", () -> new Trinket(new Item.Properties().tab(toolsGroup)).setHasLore());
+    public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_RING = ITEMS.register("trinket_ring", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
 
     //Projectiles
     public static RegistryObject<ArrowItem> GALADHRIM_ARROW = ITEMS.register("ammo_galadhrim_arrow", () -> new TTMArrow((new Item.Properties()).tab(toolsGroup)));

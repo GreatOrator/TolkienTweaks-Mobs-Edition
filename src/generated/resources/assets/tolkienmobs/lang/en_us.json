@@ -377,5 +377,6 @@
   "itemGroup.tolkienmobs.quest": "TolkienTweaks Quest Items",
   "itemGroup.tolkienmobs.signs": "TolkienTweaks Signs",
   "itemGroup.tolkienmobs.spawn": "TolkienTweaks Mobs",
-  "itemGroup.tolkienmobs.tools": "TolkienTweaks Tools"
+  "itemGroup.tolkienmobs.tools": "TolkienTweaks Tools",
+  "item_info.tolkienmobs.sneak_right_click_activate": "Shift right-click to activate/deactivate effect"
 }

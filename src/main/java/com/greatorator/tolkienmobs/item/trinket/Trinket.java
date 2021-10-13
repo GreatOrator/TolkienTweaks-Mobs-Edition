@@ -49,7 +49,7 @@ public class Trinket extends Item {
 
     public ItemStack getTrinketForEffect(Effect effect) {
         ItemStack stack = new ItemStack(this);
-        PotionUtils.setCustomEffects(stack, Collections.singleton(new EffectInstance(effect, 415, 0, false, false)));
+        PotionUtils.setCustomEffects(stack, Collections.singleton(new EffectInstance(effect, 60*20, 0, false, false)));
         return stack;
     }
 
@@ -109,7 +109,12 @@ public class Trinket extends Item {
         PlayerEntity player = (PlayerEntity) entity;
         if (isEnabled(stack) && TimeKeeper.getServerTick() % 10 == 0) {
             List<EffectInstance> effects = getEffects(stack);
-            effects.forEach(player::addEffect);
+            for (EffectInstance effect : effects) {
+                EffectInstance active = player.getEffect(effect.getEffect());
+                if (active == null || active.getDuration() < 30 * 20){
+                    player.addEffect(effect);
+                }
+            }
         }
     }
 
