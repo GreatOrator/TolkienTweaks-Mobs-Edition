@@ -93,6 +93,8 @@ dependencies {
     compile fg.deobf("top.theillusivec4.curios:curios-forge:${config.mc_version}-${config.curios_version}")
     compile fg.deobf("slimeknights.mantle:Mantle:${config.mc_version}-${config.mantle_version}")
     compile fg.deobf("slimeknights.tconstruct:TConstruct:${config.mc_version}-${config.tic_version}")
+
+    compile fg.deobf("mezz.jei:jei-${config.mc_version}:${config.jei_version}")
 }
 
 signing {
