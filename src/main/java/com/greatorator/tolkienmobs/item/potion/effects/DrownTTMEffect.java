@@ -19,6 +19,7 @@ public class DrownTTMEffect extends TTMEffectBase {
         super(typeIn, liquidColorIn);
     }
 
+    @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         lastTarget = entity;
 
