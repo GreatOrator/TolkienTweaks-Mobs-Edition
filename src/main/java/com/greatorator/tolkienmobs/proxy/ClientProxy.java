@@ -26,6 +26,7 @@ public class ClientProxy extends CommonProxy {
     public void construct() {
         super.construct();
         MinecraftForge.EVENT_BUS.addListener(TTMClientEvents::livingUpdate);
+        MinecraftForge.EVENT_BUS.addListener(TTMClientEvents::renderOverlayEvent);
         MinecraftForge.EVENT_BUS.addListener(VillagerTTMTrades::onVillagerTradesEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(TTMColor::itemColourEvent);
     }

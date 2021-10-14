@@ -1,8 +1,16 @@
 package com.greatorator.tolkienmobs.client;
 
+import codechicken.lib.util.SneakyUtils;
+import com.brandon3055.brandonscore.api.render.GuiHelper;
 import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
 import com.greatorator.tolkienmobs.datagen.PotionGenerator;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -11,22 +19,30 @@ import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.border.WorldBorder;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import org.lwjgl.opengl.GL11;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+
+import static net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType.VIGNETTE;
 
 /**
  * Created by brandon3055 on 20/02/19.
  */
 public class TTMClientEvents {
 
-    public static List<UUID> playersWithUphillStep = new ArrayList<>();
-    public static List<UUID> playersWithExtraHealth = new ArrayList<>();
-    public static List<UUID> playersWithHardStance = new ArrayList<>();
-    public static List<UUID> playersCoweringInFear = new ArrayList<>();
-    public static List<UUID> playersWayTooTired = new ArrayList<>();
+    private static final ResourceLocation VIGNETTE_LOCATION = new ResourceLocation("textures/misc/vignette.png");
+    public static Set<UUID> playersWithUphillStep = new HashSet<>();
+    public static Set<UUID> playersWithExtraHealth = new HashSet<>();
+    public static Set<UUID> playersWithHardStance = new HashSet<>();
+    public static Set<UUID> playersCoweringInFear = new HashSet<>();
+    public static Set<UUID> playersWayTooTired = new HashSet<>();
+
+    private static AttributeModifier gondorResolve = new AttributeModifier(UUID.randomUUID(), "GondorResolve", 0.25D, AttributeModifier.Operation.ADDITION);
+    private static AttributeModifier sleepTight = new AttributeModifier(UUID.randomUUID(), "SleepyTime", -10F, AttributeModifier.Operation.ADDITION);
 
     public static void livingUpdate(LivingEvent.LivingUpdateEvent event) {
         LivingEntity entity = event.getEntityLiving();
@@ -56,6 +72,8 @@ public class TTMClientEvents {
             boolean extraHealthListed = playersWithExtraHealth.contains(entity.getUUID());
             boolean hasExtraHealth = level > 0;
 
+            //TODO this will be broken now because level is not accounted for
+
             if (hasExtraHealth && entity.getAbsorptionAmount() == 0 || !extraHealthListed) {
                 playersWithExtraHealth.add(entity.getUUID());
                 entity.setAbsorptionAmount(entity.getAbsorptionAmount() + (absorb));
@@ -71,7 +89,6 @@ public class TTMClientEvents {
         if (entity.level.isClientSide) {
             int level = EnchantmentHelper.getEnchantmentLevel(EnchantmentGenerator.GONDOR_RESOLVE.get(), entity);
             ModifiableAttributeInstance battleResolve = entity.getAttribute(Attributes.KNOCKBACK_RESISTANCE);
-            AttributeModifier gondorResolve = new AttributeModifier(UUID.randomUUID(), "GondorResolve", 0.25D * level, AttributeModifier.Operation.ADDITION);
             boolean hardStanceListed = playersWithHardStance.contains(entity.getUUID());
             boolean hasHardStance = level > 0;
 
@@ -101,7 +118,6 @@ public class TTMClientEvents {
         boolean goneToSleepListed = playersWayTooTired.contains(entity.getUUID());
         boolean hasGoneToSleep = entity.getEffect(PotionGenerator.SLEEPNESIA.get()) != null;
         ModifiableAttributeInstance nightyNight = entity.getAttribute(Attributes.MOVEMENT_SPEED);
-        AttributeModifier sleepTight = new AttributeModifier(UUID.randomUUID(), "SleepyTime", -10F, AttributeModifier.Operation.ADDITION);
 
         if (entity.level.isClientSide) {
             if (player != null) {
@@ -112,12 +128,43 @@ public class TTMClientEvents {
                 }
 
                 if (!hasGoneToSleep && goneToSleepListed) {
-                    playersWayTooTired.add(entity.getUUID());
+                    playersWayTooTired.remove(entity.getUUID());
                     player.setForcedPose(null);
                     nightyNight.removeModifier(sleepTight);
                 }
             }
             //endregion
+        }
+    }
+
+
+    public static void renderOverlayEvent(RenderGameOverlayEvent.Post event) {
+        if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
+            PlayerEntity player = Minecraft.getInstance().player;
+            boolean sleepEffectActive = player.getEffect(PotionGenerator.SLEEPNESIA.get()) != null;
+            boolean terrorEffectActive = player.getEffect(PotionGenerator.PARALYSING_FEAR.get()) != null;
+            boolean effectActive = sleepEffectActive || terrorEffectActive;
+
+            float darkness = player.getPersistentData().getFloat("ttm_darkness_effect");
+            if (effectActive && darkness < 1) {
+                darkness = Math.min(darkness + 0.05F, 1F);
+            } else if (!effectActive && darkness > 0) {
+                darkness = Math.max(darkness - 0.05F, 0F);
+            }
+            player.getPersistentData().putFloat("ttm_darkness_effect", darkness);
+
+            int darkValue = 200; //255 == completely black
+
+            if (darkness > 0) {
+                MatrixStack matrixStack = event.getMatrixStack();
+                int darkHex = (int) ((double) darkValue * darkness);
+                int screenHeight = event.getWindow().getScreenHeight();
+                int screenWidth = event.getWindow().getScreenWidth();
+                int effectColour = 0x000000;
+                IRenderTypeBuffer.Impl getter = Minecraft.getInstance().renderBuffers().bufferSource();
+                GuiHelper.drawRect(getter, matrixStack, 0, 0, screenWidth, screenHeight, effectColour | darkHex << 24);
+                getter.endBatch();
+            }
         }
     }
 }

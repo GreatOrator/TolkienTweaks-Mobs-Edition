@@ -40,11 +40,6 @@ public class TolkienMobs {
     public static CommonProxy proxy;
 
     /*TODO List
-    2. Effects
-        a. The Terror effect - Need on-screen rendering
-        b. Sleep Effect - Need on-screen rendering
-        c. Drown Effect - does not apply drown damage (or any substituted damage for that matter)
-        d. Tornado Effect - That had some extremely fancy packets handling and other GL stuff, not sure it is doable in 1.16
     3. Enchantments Remaining
         a. Hobbit Harvest - Was supposed to be fortune for using the Hoe to harvest crops
         b. Hobbit Plow - Allowed for wide area "plowing" of farmland with right click instead of 1x1 (level made area wider)
