@@ -32,6 +32,7 @@ public class LangGenerator extends LanguageProvider {
         entities();
         merchants(helper);
         trinket(helper);
+        biomes(helper);
         creativeTabGroups();
     }
 
@@ -313,11 +314,11 @@ public class LangGenerator extends LanguageProvider {
         add("item.minecraft.splash_potion.effect.elemental_drowning", "Splash Potion of Elemental Drowning");
         add("item.minecraft.lingering_potion.effect.elemental_drowning", "Lingering Potion of Elemental Drowning");
         add("item.minecraft.tipped_arrow.effect.elemental_drowning", "Arrow of Elemental Drowning");
-//        add("effect.tolkienmobs.elemental_tornado",                          "Elemental Tornado");
-//        add("item.minecraft.potion.effect.elemental_tornado",                "Potion of Elemental Tornado");
-//        add("item.minecraft.splash_potion.effect.elemental_tornado",         "Splash Potion of Elemental Tornado");
-//        add("item.minecraft.lingering_potion.effect.elemental_tornado",      "Lingering Potion of Elemental Tornado");
-//        add("item.minecraft.tipped_arrow.effect.elemental_tornado",          "Arrow of Elemental Tornado");
+        add("effect.tolkienmobs.elemental_tornado",                          "Elemental Tornado");
+        add("item.minecraft.potion.effect.elemental_tornado",                "Potion of Elemental Tornado");
+        add("item.minecraft.splash_potion.effect.elemental_tornado",         "Splash Potion of Elemental Tornado");
+        add("item.minecraft.lingering_potion.effect.elemental_tornado",      "Lingering Potion of Elemental Tornado");
+        add("item.minecraft.tipped_arrow.effect.elemental_tornado",          "Arrow of Elemental Tornado");
         add("effect.tolkienmobs.elemental_lightning", "Elemental Lightning");
         add("item.minecraft.potion.effect.elemental_lightning", "Potion of Elemental Lightning");
         add("item.minecraft.splash_potion.effect.elemental_lightning", "Splash Potion of Elemental Lightning");
@@ -417,6 +418,9 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.TRINKET_BELT.get(), "Magical Belt of ");
         add(TTMContent.TRINKET_CHARM.get(), "Magical Charm of ");
         add(TTMContent.TRINKET_RING.get(), "Magical Ring of ");
+    }
+
+    private void biomes(PrefixHelper helper) {
     }
 
     private void merchants(PrefixHelper helper) {

@@ -1,27 +1,17 @@
-//package com.greatorator.tolkienmobs.world.world_old.biomes;
-//
-//import com.greatorator.tolkienmobs.TTMConfig_Old;
-//import com.greatorator.tolkienmobs.block.itemblock.BlockFlowers;
-//import com.greatorator.tolkienmobs.entity.ambient.EntityTMSquirrel;
-//import com.greatorator.tolkienmobs.entity.passive.EntityTMElves;
-//import com.greatorator.tolkienmobs.init.TTMFeatures;
-//import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-//import com.greatorator.tolkienmobs.world.world_old.gen.WorldGenCustomFlowers;
-//import com.greatorator.tolkienmobs.world.world_old.gen.generators.WorldGenTreeMallorn;
-//import net.minecraft.block.BlockFlower;
-//import net.minecraft.entity.passive.EntityRabbit;
-//import net.minecraft.init.Blocks;
-//import net.minecraft.util.math.BlockPos;
-//import net.minecraft.util.math.MathHelper;
-//import net.minecraft.world.World;
-//import net.minecraft.world.biome.Biome;
-//import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-//import net.minecraftforge.fml.relauncher.Side;
-//import net.minecraftforge.fml.relauncher.SideOnly;
-//
-//import java.util.Random;
-//
+package com.greatorator.tolkienmobs.world.biome;
+
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.DefaultBiomeFeatures;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.IFeatureConfig;
+import net.minecraft.world.gen.feature.structure.MineshaftConfig;
+import net.minecraft.world.gen.feature.structure.MineshaftStructure;
+import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+
 //public class BiomeLorinand extends Biome {
+
 //    private WorldGenCustomFlowers flowers = new WorldGenCustomFlowers();
 //
 //    public BiomeLorinand()
