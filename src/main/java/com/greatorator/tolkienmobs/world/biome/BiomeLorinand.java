@@ -3,10 +3,7 @@ package com.greatorator.tolkienmobs.world.biome;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
-import net.minecraft.world.biome.MobSpawnInfo;
-import net.minecraft.world.biome.MoodSoundAmbience;
+import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.MineshaftConfig;
@@ -27,7 +24,8 @@ public class BiomeLorinand {
         DefaultBiomeFeatures.farmAnimals(spawnInf);
         DefaultBiomeFeatures.commonSpawns(spawnInf);
         spawnInf.setPlayerCanSpawn();
-        net.minecraft.world.biome.BiomeGenerationSettings.Builder builder = (new net.minecraft.world.biome.BiomeGenerationSettings.Builder()).surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
+        BiomeGenerationSettings.Builder builder = (new net.minecraft.world.biome.BiomeGenerationSettings.Builder())
+                .surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
         DefaultBiomeFeatures.addDefaultCarvers(builder);
         DefaultBiomeFeatures.addDefaultLakes(builder);
         DefaultBiomeFeatures.baseJungleSpawns(spawnInf);
@@ -43,7 +41,25 @@ public class BiomeLorinand {
         DefaultBiomeFeatures.addDefaultSprings(builder);
         DefaultBiomeFeatures.addJungleGrass(builder);
         DefaultBiomeFeatures.addLightBambooVegetation(builder);
-        return (new net.minecraft.world.biome.Biome.Builder()).precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.JUNGLE).depth(depth).scale(scale).temperature(0.6F).downfall(0.2F).specialEffects((new net.minecraft.world.biome.BiomeAmbience.Builder()).waterColor(3124991).waterFogColor(5541815).fogColor(14412287).foliageColorOverride(8640564).skyColor(getSkyColorWithTemperatureModifier(0.6F)).ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS).build()).mobSpawnSettings(spawnInf.build()).generationSettings(builder.build()).build();
+        return (new Biome.Builder())
+                .precipitation(Biome.RainType.RAIN)
+                .biomeCategory(Biome.Category.FOREST)
+                .depth(0.125F)
+                .scale(0.05F)
+                .temperature(0.8F)
+                .downfall(0.4F)
+                .specialEffects((new BiomeAmbience.Builder())
+                        .waterColor(54011)
+                        .grassColorOverride(7006317)
+                        .waterFogColor(5541815)
+                        .fogColor(14412287)
+                        .foliageColorOverride(8640564)
+                        .skyColor(getSkyColorWithTemperatureModifier(0.6F))
+                        .ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .mobSpawnSettings(spawnInf.build())
+                .generationSettings(builder.build())
+                .build();
     }
 
 //    private WorldGenCustomFlowers flowers = new WorldGenCustomFlowers();
