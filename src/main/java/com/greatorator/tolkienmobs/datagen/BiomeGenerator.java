@@ -24,10 +24,14 @@ public class BiomeGenerator {
     public static final RegistryObject<Biome> BIOME_LORINAND = BIOMES.register("biome_lorinand",()-> BiomeLorinand.makeBiomeLorinand(0.4f,0.6f));
 
     // Setting the biome keys
-    public static final RegistryKey<Biome> BIOME_LORINAND_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(MODID, "test_forest"));
+    public static final RegistryKey<Biome> BIOME_LORINAND_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(MODID, "biome_lorinand"));
 
     // Register the Biomes
     public static void addBiomesToOverworld() {
         BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(BIOME_LORINAND_KEY, 1));
+    }
+
+    public String getName() {
+        return "Tolkien Tweaks - Mobs Edition Biomes";
     }
 }

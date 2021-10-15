@@ -70,6 +70,8 @@ public class TTMContent {
         LOGGER.info("Setting the task master to work...");
         ProfessionGenerator.PROFESSION.register(modBus);
         ProfessionGenerator.POIT.register(modBus);
+//        LOGGER.info("Time to create the land...");
+//        BiomeGenerator.addBiomesToOverworld();
     }
 
     //#################################################################
