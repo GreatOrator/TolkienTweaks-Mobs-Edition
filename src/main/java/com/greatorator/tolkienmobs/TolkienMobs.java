@@ -60,8 +60,6 @@ public class TolkienMobs {
         a. Fell Beast Fireball - rendering
 	    b. Boulder - rendering
 	    c. Galadhrim Arrow - rendering
-    8. Fluids
-	    a. Fluid/color not rendering on buckets in hand/inventory
     9. Generation
         a. Trees
         b. Biomes
