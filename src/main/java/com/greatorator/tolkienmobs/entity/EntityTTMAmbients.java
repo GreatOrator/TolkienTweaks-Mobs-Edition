@@ -66,6 +66,6 @@ public class EntityTTMAmbients extends AnimalEntity {
         int k = MathHelper.floor(this.getZ());
         BlockPos blockpos = new BlockPos(i, j, k);
 
-        return this.level.getDifficulty() != Difficulty.PEACEFUL && this.isValidLightLevel();
+        return this.level.getDifficulty() != Difficulty.PEACEFUL && this.isValidLightLevel() && spawnChance()<5;
     }
 }

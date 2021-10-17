@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.world.gen.placers;
 
 import com.greatorator.tolkienmobs.utils.TTMFeatureUtil;
-import com.greatorator.tolkienmobs.world.gen.TTMTreeFeatures;
+import com.greatorator.tolkienmobs.world.gen.TTMGenFeatures;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.math.BlockPos;
@@ -16,7 +16,6 @@ import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
 
 import java.util.Random;
 import java.util.Set;
-import net.minecraft.world.gen.foliageplacer.FoliagePlacer.Foliage;
 
 public class TTMSpheroidFoliagePlacer extends FoliagePlacer {
     public static final Codec<TTMSpheroidFoliagePlacer> CODEC = RecordCodecBuilder.create(
@@ -54,7 +53,7 @@ public class TTMSpheroidFoliagePlacer extends FoliagePlacer {
 
     @Override
     protected FoliagePlacerType<TTMSpheroidFoliagePlacer> type() {
-        return TTMTreeFeatures.FOLIAGE_SPHEROID;
+        return TTMGenFeatures.FOLIAGE_SPHEROID;
     }
 
     private final float TWO_PI = (float) (2.0 * Math.PI);

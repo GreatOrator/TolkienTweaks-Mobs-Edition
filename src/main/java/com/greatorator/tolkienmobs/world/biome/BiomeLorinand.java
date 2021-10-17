@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.biome;
 
+import com.greatorator.tolkienmobs.world.gen.feature.TTMBiomeFeatures;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.util.math.MathHelper;
@@ -20,27 +21,28 @@ public class BiomeLorinand {
 
 
     public static Biome makeBiomeLorinand(float depth, float scale) {
+        // Spawn Settings
         MobSpawnInfo.Builder spawnInf = new MobSpawnInfo.Builder();
-        DefaultBiomeFeatures.farmAnimals(spawnInf);
-        DefaultBiomeFeatures.commonSpawns(spawnInf);
+        TTMBiomeFeatures.passiveAnimals(spawnInf);
+        TTMBiomeFeatures.elvishSpawns(spawnInf);
         spawnInf.setPlayerCanSpawn();
-        BiomeGenerationSettings.Builder builder = (new net.minecraft.world.biome.BiomeGenerationSettings.Builder())
+
+        // Biome Settings
+        BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder())
                 .surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
-        DefaultBiomeFeatures.addDefaultCarvers(builder);
-        DefaultBiomeFeatures.addDefaultLakes(builder);
-        DefaultBiomeFeatures.baseJungleSpawns(spawnInf);
-        DefaultBiomeFeatures.addDefaultMonsterRoom(builder);
+        TTMBiomeFeatures.addWaterLakes(builder);
+        TTMBiomeFeatures.addLorinandFlowers(builder);
         DefaultBiomeFeatures.addDefaultUndergroundVariety(builder);
         DefaultBiomeFeatures.addDefaultOres(builder);
+        TTMBiomeFeatures.addAmmoliteOres(builder);
         DefaultBiomeFeatures.addDefaultSoftDisks(builder);
         DefaultBiomeFeatures.addForestGrass(builder);
         DefaultBiomeFeatures.addForestGrass(builder);
         DefaultBiomeFeatures.addFerns(builder);
-        DefaultBiomeFeatures.addJungleTrees(builder);
+        TTMBiomeFeatures.addMallornTrees(builder);
         DefaultBiomeFeatures.addDefaultMushrooms(builder);
-        DefaultBiomeFeatures.addDefaultSprings(builder);
-        DefaultBiomeFeatures.addJungleGrass(builder);
-        DefaultBiomeFeatures.addLightBambooVegetation(builder);
+
+        // Let's set the mood
         return (new Biome.Builder())
                 .precipitation(Biome.RainType.RAIN)
                 .biomeCategory(Biome.Category.FOREST)

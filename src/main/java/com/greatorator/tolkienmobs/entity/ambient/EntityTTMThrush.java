@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.ambient;
 
 import com.google.common.collect.Sets;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
+import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -28,6 +29,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -340,5 +342,24 @@ public class EntityTTMThrush extends ParrotEntity {
     @OnlyIn(Dist.CLIENT)
     public Vector3d getLeashOffset() {
         return new Vector3d(0.0D, (double) (0.5F * this.getEyeHeight()), (double) (this.getBbWidth() * 0.4F));
+    }
+
+    public static int spawnChance()
+    {
+        int i = TTMRand.getRandomInteger(100, 1);
+        return i;
+    }
+
+    protected boolean isValidLightLevel() {
+        return true;
+    }
+
+    public boolean getCanSpawnHere() {
+        int i = MathHelper.floor(this.getX());
+        int j = MathHelper.floor(this.getBoundingBox().minY);
+        int k = MathHelper.floor(this.getZ());
+        BlockPos blockpos = new BlockPos(i, j, k);
+
+        return this.level.getDifficulty() != Difficulty.PEACEFUL && this.isValidLightLevel() && spawnChance()<5;
     }
 }

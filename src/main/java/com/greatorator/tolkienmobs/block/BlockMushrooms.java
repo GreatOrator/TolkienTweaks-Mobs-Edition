@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.init.TTMTags;
-import com.greatorator.tolkienmobs.world.gen.TTMTreeFeatures;
+import com.greatorator.tolkienmobs.world.gen.TTMGenFeatures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.MushroomBlock;
 import net.minecraft.util.math.BlockPos;
@@ -40,14 +40,14 @@ public class BlockMushrooms extends MushroomBlock
         world.removeBlock(pos, false);
         ConfiguredFeature<?, ?> configuredfeature;
         if (this == TTMContent.MUSHROOM_BLOOM_DECAY.get()) {
-            configuredfeature = TTMTreeFeatures.ConfiguredFeatures.MUSHROOM_BLOOM_DECAY;
+            configuredfeature = TTMGenFeatures.ConfiguredFeatures.MUSHROOM_BLOOM_DECAY;
         } else {
             if (this != TTMContent.MUSHROOM_DECAY_BLOOM.get()) {
                 world.setBlock(pos, state, 3);
                 return false;
             }
 
-            configuredfeature = TTMTreeFeatures.ConfiguredFeatures.MUSHROOM_DECAY_BLOOM;
+            configuredfeature = TTMGenFeatures.ConfiguredFeatures.MUSHROOM_DECAY_BLOOM;
         }
 
         if (configuredfeature.place(world, world.getChunkSource().getGenerator(), rand, pos)) {

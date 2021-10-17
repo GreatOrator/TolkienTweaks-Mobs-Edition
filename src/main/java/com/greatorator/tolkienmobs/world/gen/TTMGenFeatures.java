@@ -1,7 +1,10 @@
 package com.greatorator.tolkienmobs.world.gen;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.world.gen.feature.TTMFeatures;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMBranchesConfig;
 import com.greatorator.tolkienmobs.world.gen.placers.TTMBranchingTrunkPlacer;
 import com.greatorator.tolkienmobs.world.gen.placers.TTMSpheroidFoliagePlacer;
@@ -12,9 +15,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.blockplacer.ColumnBlockPlacer;
+import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
+import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
+import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.foliageplacer.*;
+import net.minecraft.world.gen.placement.*;
+import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
 import net.minecraft.world.gen.trunkplacer.*;
 import net.minecraftforge.fml.common.Mod;
 
@@ -25,7 +34,7 @@ import java.util.OptionalInt;
 import static net.minecraft.block.LeavesBlock.PERSISTENT;
 
 @Mod.EventBusSubscriber(modid = TolkienMobs.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public final class TTMTreeFeatures {
+public final class TTMGenFeatures {
     private static final List<FoliagePlacerType<?>> FOLIAGE_PLACER_TYPES = new ArrayList<>();
 
     private final static int LEAF_SHAG_FACTOR = 24;
@@ -50,6 +59,12 @@ public final class TTMTreeFeatures {
         protected static final BlockState CAP_BLOOM_DECAY = TTMContent.BLOCK_BLOOM_DECAY.get().defaultBlockState();
         protected static final BlockState MUSHROOM_STEM = Blocks.MUSHROOM_STEM.defaultBlockState();
         protected static final BlockState AIR = Blocks.AIR.defaultBlockState();
+        protected static final BlockState AMMOLITE_ORE = TTMContent.ORE_AMMOLITE.get().defaultBlockState();
+        protected static final BlockState MITHRIL_ORE = TTMContent.ORE_MITHRIL.get().defaultBlockState();
+        protected static final BlockState MORGULIRON_ORE = TTMContent.ORE_MORGULIRON.get().defaultBlockState();
+        protected static final BlockState FLOWER_ALFIRIN = TTMContent.FLOWER_ALFIRIN.get().defaultBlockState();
+        protected static final BlockState DANDELION = Blocks.DANDELION.defaultBlockState();
+
     }
 
     public static final class TreeConfigurations {
@@ -65,9 +80,9 @@ public final class TTMTreeFeatures {
         public static final BaseTreeFeatureConfig MALLORN = new BaseTreeFeatureConfig.Builder(
                 new SimpleBlockStateProvider(States.MALLORN_LOG),
                 new SimpleBlockStateProvider(States.MALLORN_LEAVES),
-                new DarkOakFoliagePlacer(FeatureSpread.fixed(0), FeatureSpread.fixed(0)),
-                new DarkOakTrunkPlacer(9, 2, 1),
-                new ThreeLayerFeature(1, 1, 0, 1, 2, OptionalInt.empty())).maxWaterDepth(Integer.MAX_VALUE).heightmap(Heightmap.Type.MOTION_BLOCKING)
+                new FancyFoliagePlacer(FeatureSpread.fixed(4), FeatureSpread.fixed(4), 4),
+                new TTMBranchingTrunkPlacer(9, 2, 3, 5, new TTMBranchesConfig(4, 0, 10, 4, 0.23, 0.23), false),
+                new ThreeLayerFeature(5, 1, 0, 1, 2, OptionalInt.empty())).maxWaterDepth(Integer.MAX_VALUE).heightmap(Heightmap.Type.MOTION_BLOCKING)
                 .ignoreVines()
                 .build();
 
@@ -125,6 +140,22 @@ public final class TTMTreeFeatures {
         public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> DEADTREE = registerWorldFeature(TolkienMobs.prefix("deadtree"), Feature.TREE.configured(TreeConfigurations.DEADTREE));
         public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> MUSHROOM_BLOOM_DECAY = registerWorldFeature(TolkienMobs.prefix("bloomdecay"), Feature.TREE.configured(TreeConfigurations.MUSHROOM_BLOOM_DECAY));
         public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> MUSHROOM_DECAY_BLOOM = registerWorldFeature(TolkienMobs.prefix("decaybloom"), Feature.TREE.configured(TreeConfigurations.MUSHROOM_DECAY_BLOOM));
+
+        // Biome placement
+        public static final ConfiguredFeature<?, ? extends Feature<?>> TREES_LORINAND = register("trees_lorinand", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(CULUMALDA.weighted(0.1F), MALLORN.weighted(0.5F), MALLORN.weighted(0.33333334F)), MALLORN)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(50, 0.1F, 1))));
+        public static final ConfiguredFeature<?, ? extends Feature<?>> ORE_AMMOLITE = register("ore_ammolite", Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, States.AMMOLITE_ORE, 8)).range(16).squared());
+        public static final ConfiguredFeature<?, ? extends Feature<?>> ORE_MITHRIL = register("ore_mithril", Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, States.MITHRIL_ORE, 8)).range(16).squared());
+        public static final ConfiguredFeature<?, ? extends Feature<?>> ORE_MORGULIRON = register("ore_morguliron", Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, States.MORGULIRON_ORE, 8)).range(16).squared());
+        public static final ConfiguredFeature<?, ? extends Feature<?>> FLOWER_LORINAND = register("flower_default", Feature.FLOWER.configured(TTMConfigs.DEFAULT_LORINAND_CONFIG).decorated(Features.Placements.ADD_32).decorated(Features.Placements.HEIGHTMAP_SQUARE).count(2));
+
+    }
+
+    public static final class TTMConfigs {
+        public static final BlockClusterFeatureConfig DEFAULT_LORINAND_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).add(States.FLOWER_ALFIRIN, 2).add(States.DANDELION, 1), SimpleBlockPlacer.INSTANCE)).tries(64).build();
+    }
+
+    private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String p_243968_0_, ConfiguredFeature<FC, ?> p_243968_1_) {
+        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, p_243968_0_, p_243968_1_);
     }
 
     private static <P extends FoliagePlacer> FoliagePlacerType<P> registerFoliage(ResourceLocation name, Codec<P> codec) {
