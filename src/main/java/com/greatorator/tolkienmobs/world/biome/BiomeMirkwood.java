@@ -5,6 +5,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
+
 public class BiomeMirkwood {
     private static int getSkyColorWithTemperatureModifier(float p_244206_0_) {
         float lvt_1_1_ = p_244206_0_ / 3.0F;
@@ -32,7 +34,7 @@ public class BiomeMirkwood {
         DefaultBiomeFeatures.addForestGrass(builder);
         DefaultBiomeFeatures.addFerns(builder);
         DefaultBiomeFeatures.addDefaultMushrooms(builder);
-
+        LOGGER.info("Preparing for the necromancer's return...");
         // Let's set the mood
         return (new Biome.Builder())
                 .precipitation(Biome.RainType.RAIN)

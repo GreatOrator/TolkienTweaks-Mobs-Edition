@@ -5,6 +5,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
+
 public class BiomeLorinand {
     private static int getSkyColorWithTemperatureModifier(float p_244206_0_) {
         float lvt_1_1_ = p_244206_0_ / 3.0F;
@@ -34,7 +36,7 @@ public class BiomeLorinand {
         DefaultBiomeFeatures.addFerns(builder);
         TTMBiomeFeatures.addMallornTrees(builder);
         DefaultBiomeFeatures.addDefaultMushrooms(builder);
-
+        LOGGER.info("Making the land beautiful...");
         // Let's set the mood
         return (new Biome.Builder())
                 .precipitation(Biome.RainType.RAIN)
