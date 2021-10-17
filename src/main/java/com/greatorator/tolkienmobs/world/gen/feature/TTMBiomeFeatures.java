@@ -12,31 +12,31 @@ import net.minecraft.world.gen.feature.Features;
 public class TTMBiomeFeatures {
 
     public static void addMallornTrees(BiomeGenerationSettings.Builder p_243689_0_) {
-        p_243689_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMGenFeatures.ConfiguredFeatures.TREES_LORINAND);
+        p_243689_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMGenFeatures.TREES_LORINAND);
     }
 
     public static void addMirkwoodTrees(BiomeGenerationSettings.Builder p_243763_0_) {
-        p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMGenFeatures.ConfiguredFeatures.TREES_MIRKWOOD);
+        p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMGenFeatures.TREES_MIRKWOOD);
     }
 
     public static void addAmmoliteOres(BiomeGenerationSettings.Builder p_243750_0_) {
-        p_243750_0_.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TTMGenFeatures.ConfiguredFeatures.ORE_AMMOLITE);
+        p_243750_0_.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TTMGenFeatures.ORE_AMMOLITE);
     }
 
     public static void addMithrilOres(BiomeGenerationSettings.Builder p_243750_0_) {
-        p_243750_0_.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TTMGenFeatures.ConfiguredFeatures.ORE_MITHRIL);
+        p_243750_0_.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TTMGenFeatures.ORE_MITHRIL);
     }
 
     public static void addMorgulironOres(BiomeGenerationSettings.Builder p_243750_0_) {
-        p_243750_0_.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TTMGenFeatures.ConfiguredFeatures.ORE_MORGULIRON);
+        p_243750_0_.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TTMGenFeatures.ORE_MORGULIRON);
     }
 
     public static void addLorinandFlowers(BiomeGenerationSettings.Builder p_243707_0_) {
-        p_243707_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMGenFeatures.ConfiguredFeatures.FLOWER_LORINAND);
+        p_243707_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMGenFeatures.FLOWER_LORINAND);
     }
 
     public static void addMirkwoodFlowers(BiomeGenerationSettings.Builder p_243707_0_) {
-        p_243707_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMGenFeatures.ConfiguredFeatures.FLOWER_MIRKWOOD);
+        p_243707_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMGenFeatures.FLOWER_MIRKWOOD);
     }
 
     public static void addWaterLakes(BiomeGenerationSettings.Builder p_243742_0_) {

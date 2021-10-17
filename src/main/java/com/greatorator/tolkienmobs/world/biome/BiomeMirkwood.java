@@ -22,15 +22,15 @@ public class BiomeMirkwood {
         // Biome Settings
         BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder())
                 .surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
-        TTMBiomeFeatures.addWaterLakes(builder);
+        TTMBiomeFeatures.addMirkwoodTrees(builder);
         TTMBiomeFeatures.addMirkwoodFlowers(builder);
+        TTMBiomeFeatures.addWaterLakes(builder);
         DefaultBiomeFeatures.addDefaultUndergroundVariety(builder);
         DefaultBiomeFeatures.addDefaultOres(builder);
         DefaultBiomeFeatures.addDefaultSoftDisks(builder);
         DefaultBiomeFeatures.addForestGrass(builder);
         DefaultBiomeFeatures.addForestGrass(builder);
         DefaultBiomeFeatures.addFerns(builder);
-        TTMBiomeFeatures.addMirkwoodTrees(builder);
         DefaultBiomeFeatures.addDefaultMushrooms(builder);
 
         // Let's set the mood

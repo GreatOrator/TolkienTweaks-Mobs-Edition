@@ -23,7 +23,7 @@ public class BiomeGenerator {
 
     // Creating the Biomes
     public static final RegistryObject<Biome> BIOME_LORINAND = BIOMES.register("biome_lorinand",()-> BiomeLorinand.makeBiomeLorinand(0.4f,0.6f));
-    public static final RegistryObject<Biome> BIOME_MIRKWOOD = BIOMES.register("biome_mirkwood",()-> BiomeMirkwood.makeBiomeMirkwood(0.4f,0.6f));
+    public static final RegistryObject<Biome> BIOME_MIRKWOOD = BIOMES.register("biome_mirkwood",()-> BiomeMirkwood.makeBiomeMirkwood(0.2F,0.2F));
 
     // Setting the biome keys
     public static final RegistryKey<Biome> BIOME_LORINAND_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_lorinand"));
