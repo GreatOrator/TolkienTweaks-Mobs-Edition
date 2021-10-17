@@ -423,6 +423,7 @@ public class LangGenerator extends LanguageProvider {
     private void biomes(PrefixHelper helper) {
         helper.setPrefix("biome.tolkienmobs.");
         helper.add("biome_lorinand", "Lothlorien");
+        helper.add("biome_mirkwood", "Mirkwood");
     }
 
     private void merchants(PrefixHelper helper) {
