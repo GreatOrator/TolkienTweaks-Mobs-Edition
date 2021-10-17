@@ -14,7 +14,6 @@ public class BiomeMirkwood {
         return MathHelper.hsvToRgb(0.62222224F - lvt_1_1_ * 0.05F, 0.5F + lvt_1_1_ * 0.1F, 1.0F);
     }
 
-
     public static Biome makeBiomeMirkwood(float depth, float scale) {
         // Spawn Settings
         MobSpawnInfo.Builder spawnInf = new MobSpawnInfo.Builder();
