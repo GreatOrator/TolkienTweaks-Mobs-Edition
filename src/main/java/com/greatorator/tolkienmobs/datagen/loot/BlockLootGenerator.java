@@ -89,6 +89,10 @@ public class BlockLootGenerator extends BlockLootTables {
         add(TTMContent.LEAVES_MIRKWOOD.get(), createLeavesDrops(TTMContent.LEAVES_MIRKWOOD.get(), TTMContent.SAPLING_MIRKWOOD.get(), DEFAULT_SAPLING_DROP_RATES));
         add(TTMContent.LEAVES_CULUMALDA.get(), createOakLeavesDrops(TTMContent.LEAVES_CULUMALDA.get(), TTMContent.SAPLING_CULUMALDA.get(), DEFAULT_SAPLING_DROP_RATES));
         add(TTMContent.LEAVES_LEBETHRON.get(), createOakLeavesDrops(TTMContent.LEAVES_LEBETHRON.get(), TTMContent.SAPLING_LEBETHRON.get(), DEFAULT_SAPLING_DROP_RATES));
+        dropSelf(TTMContent.LEAFPILE_MALLORN.get());
+        dropSelf(TTMContent.LEAFPILE_MIRKWOOD.get());
+        dropSelf(TTMContent.LEAFPILE_CULUMALDA.get());
+        dropSelf(TTMContent.LEAFPILE_LEBETHRON.get());
 
         // Blocks - Plants & Flowers
         dropSelf(TTMContent.MUSHROOM_DECAY_BLOOM.get());

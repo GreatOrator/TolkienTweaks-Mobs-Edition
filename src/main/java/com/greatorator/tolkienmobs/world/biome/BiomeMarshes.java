@@ -1,32 +1,61 @@
-//package com.greatorator.tolkienmobs.world.world_old.biomes;
-//
-//import com.greatorator.tolkienmobs.TTMConfig_Old;
-//import com.greatorator.tolkienmobs.block.itemblock.BlockFlowers;
-//import com.greatorator.tolkienmobs.entity.ambient.EntityTMMidgeFly;
-//import com.greatorator.tolkienmobs.entity.ambient.EntityTMToad;
-//import com.greatorator.tolkienmobs.entity.hostile.EntityTMFellSpirit;
-//import com.greatorator.tolkienmobs.entity.hostile.EntityTMSwampHag;
-//import com.greatorator.tolkienmobs.handler.handler_old.interfaces.IFogyBiome;
-//import com.greatorator.tolkienmobs.init.TTMFeatures;
-//import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-//import com.greatorator.tolkienmobs.world.world_old.gen.WorldGenCustomFlowers;
-//import net.minecraft.block.material.Material;
-//import net.minecraft.block.state.IBlockState;
-//import net.minecraft.entity.player.PlayerEntity;
-//import net.minecraft.init.Blocks;
-//import net.minecraft.util.math.BlockPos;
-//import net.minecraft.util.math.MathHelper;
-//import net.minecraft.world.World;
-//import net.minecraft.world.biome.Biome;
-//import net.minecraft.world.chunk.ChunkPrimer;
-//import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-//import net.minecraft.world.gen.feature.WorldGenFossils;
-//import net.minecraftforge.fml.relauncher.Side;
-//import net.minecraftforge.fml.relauncher.SideOnly;
-//
-//import java.util.Random;
-//
-//public class BiomeMarshes extends Biome implements IFogyBiome
+package com.greatorator.tolkienmobs.world.biome;
+
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.biome.*;
+import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
+
+public class BiomeMarshes {
+    private static int getSkyColorWithTemperatureModifier(float p_244206_0_) {
+        float lvt_1_1_ = p_244206_0_ / 3.0F;
+        lvt_1_1_ = MathHelper.clamp(lvt_1_1_, -1.0F, 1.0F);
+        return MathHelper.hsvToRgb(0.62222224F - lvt_1_1_ * 0.05F, 0.5F + lvt_1_1_ * 0.1F, 1.0F);
+    }
+
+    public static Biome makeBiomeMarshes(float depth, float scale) {
+        // Spawn Settings
+        MobSpawnInfo.Builder spawnInf = new MobSpawnInfo.Builder();
+        spawnInf.setPlayerCanSpawn();
+//        DefaultBiomeFeatures.farmAnimals(spawnInf);
+//        DefaultBiomeFeatures.commonSpawns(spawnInf);
+//        spawnInf.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SLIME, 1, 1, 1));
+        BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder())
+                .surfaceBuilder(ConfiguredSurfaceBuilders.SWAMP);
+        DefaultBiomeFeatures.addFossilDecoration(biomegenerationsettings$builder);
+
+        DefaultBiomeFeatures.addDefaultLakes(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.addDefaultMonsterRoom(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.addDefaultUndergroundVariety(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.addDefaultOres(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.addSwampClayDisk(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.addSwampVegetation(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.addDefaultMushrooms(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.addSwampExtraVegetation(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.addDefaultSprings(biomegenerationsettings$builder);
+
+        DefaultBiomeFeatures.addSurfaceFreezing(biomegenerationsettings$builder);
+        LOGGER.info("Where the Entwash meets the Anduin...");
+        return (new Biome.Builder())
+                .precipitation(Biome.RainType.RAIN)
+                .biomeCategory(Biome.Category.SWAMP)
+                .depth(-0.2F)
+                .scale(0.1F)
+                .temperature(0.8F)
+                .downfall(0.9F)
+                .specialEffects((new BiomeAmbience.Builder())
+                        .waterColor(14745540)
+                        .waterFogColor(2302743)
+                        .fogColor(5988193)
+                        .skyColor(getSkyColorWithTemperatureModifier(0.8F))
+                        .foliageColorOverride(6316071)
+                        .grassColorModifier(BiomeAmbience.GrassColorModifier.SWAMP)
+                        .ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS)
+                        .build())
+                .mobSpawnSettings(spawnInf.build())
+                .generationSettings(biomegenerationsettings$builder.build())
+                .build();
+    }
 //{
 //    protected static final IBlockState WATER_LILY = Blocks.WATERLILY.getDefaultState();
 //    private WorldGenCustomFlowers flowers = new WorldGenCustomFlowers();
@@ -182,4 +211,4 @@
 //            }
 //        }
 //    }
-//}
+}

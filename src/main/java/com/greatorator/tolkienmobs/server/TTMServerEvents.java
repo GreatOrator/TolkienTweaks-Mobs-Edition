@@ -3,14 +3,19 @@ package com.greatorator.tolkienmobs.server;
 import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class TTMServerEvents {
 
@@ -47,4 +52,20 @@ public class TTMServerEvents {
 
         //endregion
     }
+
+//    @SubscribeEvent
+//    public void onEntityLiving(LivingEvent.LivingUpdateEvent event){
+//        PlayerEntity player = Minecraft.getInstance().player;
+//
+//        if(player.wo.isRemote || !player.isAlive()) return;
+//
+//        if(player.isInsideOfMaterial(Material.WATER) && player.tick() % 20 == 0 && player instanceof EntityPlayerMP) {
+//            Biome biome = player.world.getBiome(player.getPosition());
+//
+//            if(biome == BiomeInit.MIRKWOOD) {
+//
+//                player.addPotionEffect(new PotionEffect(PotionInit.SLEEPNESIA, 1200, 8));
+//            }
+//        }
+//    }
 }

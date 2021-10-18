@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs;
 
 import codechicken.lib.gui.SimpleItemGroup;
 import com.brandon3055.brandonscore.blocks.ItemBlockBCore;
+import com.greatorator.tolkienmobs.block.BlockLeafPile;
 import com.greatorator.tolkienmobs.block.BlockMushrooms;
 import com.greatorator.tolkienmobs.block.BlockStonePath;
 import com.greatorator.tolkienmobs.block.BlockTMHallowed;
@@ -132,6 +133,10 @@ public class TTMContent {
     public static RegistryObject<LeavesBlock> LEAVES_LEBETHRON = BLOCKS.register("leaves_lebethron", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_MALLORN = BLOCKS.register("leaves_mallorn", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_MIRKWOOD = BLOCKS.register("leaves_mirkwood", TTMContent::createLeavesBlock);
+    public static RegistryObject<Block> LEAFPILE_MALLORN = BLOCKS.register("leafpile_mallorn", () -> new BlockLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_YELLOW).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_MIRKWOOD = BLOCKS.register("leafpile_mirkwood", () -> new BlockLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_CULUMALDA = BLOCKS.register("leafpile_culumalda", () -> new BlockLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_PINK).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_LEBETHRON = BLOCKS.register("leafpile_lebethron", () -> new BlockLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_LIGHT_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
     public static RegistryObject<SaplingBlock> SAPLING_MALLORN = BLOCKS.register("sapling_mallorn", () -> new SaplingBlock(new TTMMallornTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
     public static RegistryObject<SaplingBlock> SAPLING_MIRKWOOD = BLOCKS.register("sapling_mirkwood", () -> new SaplingBlock(new TTMMirkwoodTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
     public static RegistryObject<SaplingBlock> SAPLING_CULUMALDA = BLOCKS.register("sapling_culumalda", () -> new SaplingBlock(new TTMCulumaldaTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
@@ -218,6 +223,10 @@ public class TTMContent {
     public static RegistryObject<Item> LEAVES_LEBETHRON_ITEM = ITEMS.register("leaves_lebethron", () -> new ItemBlockBCore(LEAVES_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LEAVES_MALLORN_ITEM = ITEMS.register("leaves_mallorn", () -> new ItemBlockBCore(LEAVES_MALLORN.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LEAVES_MIRKWOOD_ITEM = ITEMS.register("leaves_mirkwood", () -> new ItemBlockBCore(LEAVES_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> LEAFPILE_MALLORN_ITEM = ITEMS.register("leafpile_mallorn", () -> new ItemBlockBCore(LEAFPILE_MALLORN.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> LEAFPILE_MIRKWOOD_ITEM = ITEMS.register("leafpile_mirkwood", () -> new ItemBlockBCore(LEAFPILE_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> LEAFPILE_CULUMALDA_ITEM = ITEMS.register("leafpile_culumalda", () -> new ItemBlockBCore(LEAFPILE_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> LEAFPILE_LEBETHRON_ITEM = ITEMS.register("leafpile_lebethron", () -> new ItemBlockBCore(LEAFPILE_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> SAPLING_CULUMALDA_ITEM = ITEMS.register("sapling_culumalda", () -> new ItemBlockBCore(SAPLING_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> SAPLING_LEBETHRON_ITEM = ITEMS.register("sapling_lebethron", () -> new ItemBlockBCore(SAPLING_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> SAPLING_MALLORN_ITEM = ITEMS.register("sapling_mallorn", () -> new ItemBlockBCore(SAPLING_MALLORN.get(), new Item.Properties().tab(matsGroup)));
