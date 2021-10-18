@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.entity.EntityTTMAmbients;
 import com.greatorator.tolkienmobs.entity.ambient.*;
 import com.greatorator.tolkienmobs.entity.ambient.model.ModelTTMSwarm;
 import com.greatorator.tolkienmobs.entity.ambient.render.*;
@@ -32,10 +33,15 @@ import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMGoat;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMMumakil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
+import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.BatEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.registries.DeferredRegister;
@@ -96,39 +102,13 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<?>> AMMO_FELLBEAST_FIREBALL = ENTITY.register("ammo_fellbeast_fireball", () -> EntityType.Builder.of(EntityFellBeastFireball::new, EntityClassification.MISC).sized(0.5F, 0.5F).setCustomClientFactory(EntityFellBeastFireball::new).build(MODID + ":ammo_fellbeast_fireball"));
     public static final RegistryObject<EntityType<?>> AMMO_BOULDER = ENTITY.register("ammo_boulder", () -> EntityType.Builder.of(EntityBoulder::new, EntityClassification.MISC).sized(0.5F, 0.5F).setCustomClientFactory(EntityBoulder::new).build(MODID + ":ammo_boulder"));
 
-    //#################################################################
-    // Render Registry
-    //#################################################################
-    public static void registerEntityRenderer() {
-        // Ambient
-        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_RAT.get(), RenderTTMRat::new);
-        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_SQUIRREL.get(), RenderTTMSquirrel::new);
-        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_FROG.get(), RenderTTMFrog::new);
-        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_SWARM.get(), m -> new RenderTTMSwarm<>(m, new ModelTTMSwarm(), 0.5F, TolkienMobs.MODID + ":textures/entity/midgeflies.png"));
-        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_THRUSH.get(), RenderTTMThrush::new);
+    public static void registerSpawnPlacement() {
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_SQUIRREL.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMAmbients::checkTTMAmbientSpawn);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_FROG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMFrog::checkFrogSpawn);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_THRUSH.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMThrush::checkThrushSpawn);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_SWARM.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
 
-        // Merchants
-        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_HUMAN.get(), RenderTTMHuman::new);
-        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_DWARF.get(), RenderTTMDwarf::new);
-        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_ELVES.get(), RenderTTMElves::new);
-        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_HOBBIT.get(), RenderTTMHobbit::new);
-
-        // Monster
-        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_GOBLIN.get(), RenderTTMGoblin::new);
-        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_BARROW.get(), RenderTTMBarrowWight::new);
-
-        // Boss
-        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_GOBLINKING.get(), RenderTTMGoblinKing::new);
-
-        // Passive
-        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_AUROCH.get(), RenderTTMAuroch::new);
-        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_MUMAKIL.get(), RenderTTMMumakil::new);
-        RenderingRegistry.registerEntityRenderingHandler(ENTITY_TTM_GOAT.get(), RenderTTMGoat::new);
-
-        // Ammo
-        RenderingRegistry.registerEntityRenderingHandler(AMMO_ARROW_GALADHRIM.get(), new RenderGaladhrimArrow.RenderFactory());
-        RenderingRegistry.registerEntityRenderingHandler(AMMO_FELLBEAST_FIREBALL.get(), new RenderFellBeastFireball.RenderFactory());
-        RenderingRegistry.registerEntityRenderingHandler(AMMO_BOULDER.get(), new RenderBoulder.RenderFactory());
+        //Look in EntitySpawnPlacementRegistry for examples
     }
 
     //#################################################################

@@ -112,14 +112,14 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         }
 
         if (!this.level.isClientSide) {
-            this.level.broadcastEntityEvent(this, (byte)1);
+            this.level.broadcastEntityEvent(this, (byte) 1);
         }
 
     }
 
     @OnlyIn(Dist.CLIENT)
     public float getJumpCompletion(float p_175521_1_) {
-        return this.jumpDuration == 0 ? 0.0F : ((float)this.jumpTicks + p_175521_1_) / (float)this.jumpDuration;
+        return this.jumpDuration == 0 ? 0.0F : ((float) this.jumpTicks + p_175521_1_) / (float) this.jumpDuration;
     }
 
     public void setMovementSpeed(double newSpeed) {
@@ -174,7 +174,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
                 }
             }
 
-            EntityTTMFrog.JumpHelperController frogentity$jumphelpercontroller = (EntityTTMFrog.JumpHelperController)this.jumpControl;
+            EntityTTMFrog.JumpHelperController frogentity$jumphelpercontroller = (EntityTTMFrog.JumpHelperController) this.jumpControl;
             if (!frogentity$jumphelpercontroller.getIsJumping()) {
                 if (this.moveControl.hasWanted() && this.currentMoveTypeDuration == 0) {
                     Path path = this.navigation.getPath();
@@ -199,15 +199,15 @@ public class EntityTTMFrog extends EntityTTMAmbients {
     }
 
     private void calculateRotationYaw(double x, double z) {
-        this.yRot = (float)(MathHelper.atan2(z - this.getZ(), x - this.getX()) * (double)(180F / (float)Math.PI)) - 90.0F;
+        this.yRot = (float) (MathHelper.atan2(z - this.getZ(), x - this.getX()) * (double) (180F / (float) Math.PI)) - 90.0F;
     }
 
     private void enableJumpControl() {
-        ((EntityTTMFrog.JumpHelperController)this.jumpControl).setCanJump(true);
+        ((EntityTTMFrog.JumpHelperController) this.jumpControl).setCanJump(true);
     }
 
     private void disableJumpControl() {
-        ((EntityTTMFrog.JumpHelperController)this.jumpControl).setCanJump(false);
+        ((EntityTTMFrog.JumpHelperController) this.jumpControl).setCanJump(false);
     }
 
     private void updateMoveTypeDuration() {
@@ -241,7 +241,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
     }
 
     public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 3.0D).add(Attributes.MOVEMENT_SPEED, (double)0.3F);
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 3.0D).add(Attributes.MOVEMENT_SPEED, (double) 0.3F);
     }
 
     public void addAdditionalSaveData(CompoundNBT compound) {
@@ -304,7 +304,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         int i = this.getRandomFrogType(p_241840_1_);
         if (this.random.nextInt(20) != 0) {
             if (p_241840_2_ instanceof EntityTTMFrog && this.random.nextBoolean()) {
-                i = ((EntityTTMFrog)p_241840_2_).getFrogType();
+                i = ((EntityTTMFrog) p_241840_2_).getFrogType();
             } else {
                 i = this.getFrogType();
             }
@@ -322,7 +322,9 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         return this.isFrogBreedingItem(stack.getItem());
     }
 
-    /** Region for determining random skin */
+    /**
+     * Region for determining random skin
+     */
     public ResourceLocation getFrogTypeName() {
         return TEXTURE_BY_ID.getOrDefault(this.getFrogType(), TEXTURE_BY_ID.get(0));
     }
@@ -350,7 +352,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int i = this.getRandomFrogType(worldIn);
         if (spawnDataIn instanceof EntityTTMFrog.FrogData) {
-            i = ((EntityTTMFrog.FrogData)spawnDataIn).typeData;
+            i = ((EntityTTMFrog.FrogData) spawnDataIn).typeData;
         } else {
             spawnDataIn = new EntityTTMFrog.FrogData(i);
         }
@@ -380,6 +382,15 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         return this.insectTicks == 0;
     }
 
+    public static boolean checkFrogSpawn(EntityType<EntityTTMFrog> type, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
+//        int chance = 2; //1 in 2
+        //This if is a little nasty but its more efficient than iterating over a cubic area.
+        if (world.isWaterAt(pos.offset(2, 0, 2)) || world.isWaterAt(pos.offset(-2, 0, -2)) || world.isWaterAt(pos.offset(-2, 0, 2)) || world.isWaterAt(pos.offset(2, 0, -2)) || world.isWaterAt(pos.offset(2, -1, 2)) || world.isWaterAt(pos.offset(-2, -1, -2)) || world.isWaterAt(pos.offset(-2, -1, 2)) || world.isWaterAt(pos.offset(2, -1, -2))) {
+            return true;//random.nextInt(chance) == 0;// && checkMobSpawnRules(type, world, reason, pos, random);
+        }
+        return false;
+    }
+
     /**
      * Handler for {@link World#setEntityState}
      */
@@ -397,7 +408,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
 
     @OnlyIn(Dist.CLIENT)
     public Vector3d getLeashOffset() {
-        return new Vector3d(0.0D, (double)(0.6F * this.getEyeHeight()), (double)(this.getBbWidth() * 0.4F));
+        return new Vector3d(0.0D, (double) (0.6F * this.getEyeHeight()), (double) (this.getBbWidth() * 0.4F));
     }
 
     static class AvoidEntityGoal<T extends LivingEntity> extends net.minecraft.entity.ai.goal.AvoidEntityGoal<T> {
@@ -423,7 +434,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         }
 
         protected double getAttackReachSqr(LivingEntity attackTarget) {
-            return (double)(4.0F + attackTarget.getBbWidth());
+            return (double) (4.0F + attackTarget.getBbWidth());
         }
     }
 
@@ -470,7 +481,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         }
 
         public void tick() {
-            if (this.ttmfrog.onGround && !this.ttmfrog.jumping && !((EntityTTMFrog.JumpHelperController)this.ttmfrog.jumpControl).getIsJumping()) {
+            if (this.ttmfrog.onGround && !this.ttmfrog.jumping && !((EntityTTMFrog.JumpHelperController) this.ttmfrog.jumpControl).getIsJumping()) {
                 this.ttmfrog.setMovementSpeed(0.0D);
             } else if (this.hasWanted()) {
                 this.ttmfrog.setMovementSpeed(this.nextJumpSpeed);

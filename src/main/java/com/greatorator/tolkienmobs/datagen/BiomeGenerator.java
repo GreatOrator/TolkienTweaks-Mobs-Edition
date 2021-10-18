@@ -18,8 +18,7 @@ import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 public class BiomeGenerator {
     public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, MODID);
-    public static final DeferredRegister<SurfaceBuilder<?>> SURFACE_BUILDERS
-            = DeferredRegister.create(ForgeRegistries.SURFACE_BUILDERS, MODID);
+    public static final DeferredRegister<SurfaceBuilder<?>> SURFACE_BUILDERS = DeferredRegister.create(ForgeRegistries.SURFACE_BUILDERS, MODID);
 
     // Creating the Biomes
     public static final RegistryObject<Biome> BIOME_LORINAND = BIOMES.register("biome_lorinand",()-> BiomeLorinand.makeBiomeLorinand(0.4f,0.6f));

@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.ambient;
 
 import com.google.common.collect.Sets;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
+import com.greatorator.tolkienmobs.entity.EntityTTMAmbients;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -29,10 +30,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -361,5 +359,10 @@ public class EntityTTMThrush extends ParrotEntity {
         BlockPos blockpos = new BlockPos(i, j, k);
 
         return this.level.getDifficulty() != Difficulty.PEACEFUL && this.isValidLightLevel() && spawnChance()<5;
+    }
+
+    public static boolean checkThrushSpawn(EntityType<EntityTTMThrush> type, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
+        int chance = 200; //1 in x
+        return random.nextInt(chance) == 0 && checkMobSpawnRules(type, world, reason, pos, random);
     }
 }

@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.common.MobModify;
+import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
 import com.greatorator.tolkienmobs.init.TTMTags;
 import com.greatorator.tolkienmobs.integration.TTMEquipMgr;
@@ -40,6 +41,7 @@ public class CommonProxy {
     public void commonSetup(FMLCommonSetupEvent event) {
         RecipeGenerator.potions();
         TTMConfig.loadPotionList(); //Construction was too early. Your potions were not registered yet.
+        EntityGenerator.registerSpawnPlacement();
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
