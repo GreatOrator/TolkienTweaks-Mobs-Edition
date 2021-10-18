@@ -1,10 +1,8 @@
 package com.greatorator.tolkienmobs.world.gen;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.world.gen.feature.TTMFeatures;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMBranchesConfig;
 import com.greatorator.tolkienmobs.world.gen.placers.TTMBranchingTrunkPlacer;
 import com.greatorator.tolkienmobs.world.gen.placers.TTMSpheroidFoliagePlacer;
@@ -15,34 +13,37 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.blockplacer.ColumnBlockPlacer;
-import net.minecraft.world.gen.blockplacer.DoublePlantBlockPlacer;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.foliageplacer.*;
 import net.minecraft.world.gen.placement.*;
-import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
 import net.minecraft.world.gen.trunkplacer.*;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalInt;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 import static net.minecraft.block.LeavesBlock.PERSISTENT;
 
 @Mod.EventBusSubscriber(modid = TolkienMobs.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class TTMGenFeatures {
     private static final List<FoliagePlacerType<?>> FOLIAGE_PLACER_TYPES = new ArrayList<>();
 
+    public static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACER_REGISTER = DeferredRegister.create(ForgeRegistries.FOLIAGE_PLACER_TYPES, MODID);
+
     private final static int LEAF_SHAG_FACTOR = 24;
     private static final int canopyDistancing = 5;
 
     public static final TrunkPlacerType<TTMBranchingTrunkPlacer> TRUNK_BRANCHING = registerTrunk(TolkienMobs.prefix("branching_trunk_placer"), TTMBranchingTrunkPlacer.CODEC);
 
-    public static final FoliagePlacerType<TTMSpheroidFoliagePlacer> FOLIAGE_SPHEROID = registerFoliage(TolkienMobs.prefix("spheroid_foliage_placer"), TTMSpheroidFoliagePlacer.CODEC);
+    public static final RegistryObject<FoliagePlacerType<TTMSpheroidFoliagePlacer>> FOLIAGE_SPHEROID = FOLIAGE_PLACER_REGISTER.register("spheroid_foliage_placer", () -> new FoliagePlacerType<>(TTMSpheroidFoliagePlacer.CODEC));
 
 
     public static final class States {
@@ -145,7 +146,8 @@ public final class TTMGenFeatures {
 
         // Biome placement
         public static final ConfiguredFeature<?, ? extends Feature<?>> TREES_LORINAND = register("trees_lorinand", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(CULUMALDA.weighted(0.1F), MALLORN.weighted(0.5F), MALLORN.weighted(0.33333334F)), MALLORN)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(50, 0.1F, 1))));
-        public static final ConfiguredFeature<?, ? extends Feature<?>> TREES_MIRKWOOD = register("trees_mirkwood", MIRKWOOD.decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(10, 0.1F, 1))));
+//        public static final ConfiguredFeature<?, ? extends Feature<?>> TREES_MIRKWOOD = register("trees_mirkwood", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(MIRKWOOD.weighted(0.5F), MIRKWOOD.weighted(0.33333334F)), MIRKWOOD)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(50, 0.1F, 1))));
+                public static final ConfiguredFeature<?, ? extends Feature<?>> TREES_MIRKWOOD = register("trees_mirkwood", MIRKWOOD.decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(10, 0.1F, 1))));
         public static final ConfiguredFeature<?, ? extends Feature<?>> ORE_AMMOLITE = register("ore_ammolite", Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, States.AMMOLITE_ORE, 8)).range(16).squared());
         public static final ConfiguredFeature<?, ? extends Feature<?>> ORE_MITHRIL = register("ore_mithril", Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, States.MITHRIL_ORE, 8)).range(16).squared());
         public static final ConfiguredFeature<?, ? extends Feature<?>> ORE_MORGULIRON = register("ore_morguliron", Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, States.MORGULIRON_ORE, 8)).range(16).squared());
@@ -159,8 +161,8 @@ public final class TTMGenFeatures {
         public static final BlockClusterFeatureConfig DEFAULT_MIRKWOOD_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).add(States.FLOWER_MIRKWOOD, 2).add(States.DEAD_BUSH, 1), SimpleBlockPlacer.INSTANCE)).tries(64).build();
     }
 
-    private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String p_243968_0_, ConfiguredFeature<FC, ?> p_243968_1_) {
-        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, p_243968_0_, p_243968_1_);
+    private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> feature) {
+        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, TolkienMobs.MODID + ":" + name, feature);
     }
 
     private static <P extends FoliagePlacer> FoliagePlacerType<P> registerFoliage(ResourceLocation name, Codec<P> codec) {

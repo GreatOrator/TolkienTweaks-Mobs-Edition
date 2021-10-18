@@ -53,7 +53,7 @@ public class TTMSpheroidFoliagePlacer extends FoliagePlacer {
 
     @Override
     protected FoliagePlacerType<TTMSpheroidFoliagePlacer> type() {
-        return TTMGenFeatures.FOLIAGE_SPHEROID;
+        return TTMGenFeatures.FOLIAGE_SPHEROID.get();
     }
 
     private final float TWO_PI = (float) (2.0 * Math.PI);

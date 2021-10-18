@@ -9,16 +9,19 @@ import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
 import com.greatorator.tolkienmobs.init.TTMTags;
 import com.greatorator.tolkienmobs.integration.TTMEquipMgr;
 import com.greatorator.tolkienmobs.server.TTMServerEvents;
+import com.greatorator.tolkienmobs.world.gen.TTMGenFeatures;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -36,6 +39,9 @@ public class CommonProxy {
         TTMEquipMgr.initialize();
         TTMTags.init();
         MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::livingUpdate);
+
+        IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+        TTMGenFeatures.FOLIAGE_PLACER_REGISTER.register(modBus);
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
