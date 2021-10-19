@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.world.gen.feature.TTMFeature;
 import com.greatorator.tolkienmobs.world.gen.feature.TTMStoneSpikeFeature;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMBranchesConfig;
 import com.greatorator.tolkienmobs.world.gen.placers.TTMBranchingTrunkPlacer;
@@ -20,9 +19,18 @@ import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.foliageplacer.*;
-import net.minecraft.world.gen.placement.*;
-import net.minecraft.world.gen.trunkplacer.*;
+import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
+import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
+import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
+import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
+import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
+import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.trunkplacer.AbstractTrunkPlacer;
+import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
+import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
+import net.minecraft.world.gen.trunkplacer.TrunkPlacerType;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
@@ -143,6 +151,10 @@ public final class TTMFeatures {
                 .build();
     }
 
+    public static class FeaturesStore { // Every better name is taken xD
+        public static Feature<NoFeatureConfig> STONE_SPIKE = new TTMStoneSpikeFeature(NoFeatureConfig.CODEC);
+    }
+
     public static final class ConfiguredFeatures {
         public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> MIRKWOOD = registerWorldFeature(TolkienMobs.prefix("mirkwood"), Feature.TREE.configured(TreeConfigurations.MIRKWOOD));
         public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> MALLORN = registerWorldFeature(TolkienMobs.prefix("mallorn"), Feature.TREE.configured(TreeConfigurations.MALLORN));
@@ -153,7 +165,7 @@ public final class TTMFeatures {
         public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> MUSHROOM_DECAY_BLOOM = registerWorldFeature(TolkienMobs.prefix("decaybloom"), Feature.TREE.configured(TreeConfigurations.MUSHROOM_DECAY_BLOOM));
 
         // Biome placement
-        public static final ConfiguredFeature<?, ? extends Feature<?>> STONE_SPIKE = register("stone_spike", TTMFeature.STONE_SPIKE.get().configured(IFeatureConfig.NONE).count(3));
+        public static ConfiguredFeature<?, ? extends Feature<?>> STONE_SPIKE;
         public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_MALLORN_LEAFPILES = register("patch_mallorn_leafpiles", Feature.RANDOM_PATCH.configured(TTMConfigs.MALLORN_LEAFPILES_CONFIG));
         public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_MIRKWOOD_LEAFPILES = register("patch_mirkwood_leafpiles", Feature.RANDOM_PATCH.configured(TTMConfigs.MIRKWOOD_LEAFPILES_CONFIG));
         public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_CULUMALDA_LEAFPILES = register("patch_culumalda_leafpiles", Feature.RANDOM_PATCH.configured(TTMConfigs.CULUMALDA_LEAFPILES_CONFIG));
@@ -171,7 +183,7 @@ public final class TTMFeatures {
         public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_MIRKWOOD_LEAFPILES_SPARSE = register("patch_mirkwood_leafpiles_sparse", PATCH_MIRKWOOD_LEAFPILES.decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE));
         public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_CULUMALDA_LEAFPILES_SPARSE = register("patch_culumalda_leafpiles_sparse", PATCH_CULUMALDA_LEAFPILES.decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE));
         public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_LEBETHRON_LEAFPILES_SPARSE = register("patch_lebethron_leafpiles_sparse", PATCH_LEBETHRON_LEAFPILES.decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE));
-        public static final ConfiguredFeature<?, ? extends Feature<?>> BLEAK_LAND = register("bleak_land", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(DEADTREE.weighted(0.1F), STONE_SPIKE.weighted(0.1F)), STONE_SPIKE)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(50, 0.1F, 1))));
+        public static ConfiguredFeature<?, ? extends Feature<?>> BLEAK_LAND;
 
     }
 
@@ -201,5 +213,17 @@ public final class TTMFeatures {
 
     protected static <FC extends IFeatureConfig, F extends Feature<FC>> ConfiguredFeature<FC, F> registerWorldFeature(ResourceLocation rl, ConfiguredFeature<FC, F> feature) {
         return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, rl, feature);
+    }
+
+
+    @SubscribeEvent
+    public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
+        event.getRegistry().register(FeaturesStore.STONE_SPIKE.setRegistryName("stone_spike"));
+
+
+        //Register Dependents.
+        ConfiguredFeatures.STONE_SPIKE = register("stone_spike", FeaturesStore.STONE_SPIKE.configured(IFeatureConfig.NONE).count(3));
+        ConfiguredFeatures.BLEAK_LAND = register("bleak_land", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(ConfiguredFeatures.DEADTREE.weighted(0.1F), ConfiguredFeatures.STONE_SPIKE.weighted(0.1F)), ConfiguredFeatures.STONE_SPIKE)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(50, 0.1F, 1))));
+
     }
 }
