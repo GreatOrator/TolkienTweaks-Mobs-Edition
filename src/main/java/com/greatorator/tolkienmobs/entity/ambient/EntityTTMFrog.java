@@ -391,9 +391,6 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         return false;
     }
 
-    /**
-     * Handler for {@link World#setEntityState}
-     */
     @OnlyIn(Dist.CLIENT)
     public void handleEntityEvent(byte id) {
         if (id == 1) {

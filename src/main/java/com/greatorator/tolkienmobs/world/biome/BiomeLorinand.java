@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.world.biome;
 
-import com.greatorator.tolkienmobs.world.gen.feature.TTMBiomeFeatures;
+import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
@@ -18,23 +18,23 @@ public class BiomeLorinand {
     public static Biome makeBiomeLorinand(float depth, float scale) {
         // Spawn Settings
         MobSpawnInfo.Builder spawnInf = new MobSpawnInfo.Builder();
-        TTMBiomeFeatures.passiveAnimals(spawnInf);
-        TTMBiomeFeatures.elvishSpawns(spawnInf);
+        TTMDefaultBiomeFeatures.passiveAnimals(spawnInf);
+        TTMDefaultBiomeFeatures.elvishSpawns(spawnInf);
         spawnInf.setPlayerCanSpawn();
 
         // Biome Settings
         BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder())
                 .surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
-        TTMBiomeFeatures.addWaterLakes(builder);
-        TTMBiomeFeatures.addLorinandFlowers(builder);
+        TTMDefaultBiomeFeatures.addWaterLakes(builder);
+        TTMDefaultBiomeFeatures.addLorinandFlowers(builder);
         DefaultBiomeFeatures.addDefaultUndergroundVariety(builder);
         DefaultBiomeFeatures.addDefaultOres(builder);
-        TTMBiomeFeatures.addAmmoliteOres(builder);
+        TTMDefaultBiomeFeatures.addAmmoliteOres(builder);
         DefaultBiomeFeatures.addDefaultSoftDisks(builder);
         DefaultBiomeFeatures.addForestGrass(builder);
-        DefaultBiomeFeatures.addForestGrass(builder);
+        TTMDefaultBiomeFeatures.addMallornLeafPiles(builder);
         DefaultBiomeFeatures.addFerns(builder);
-        TTMBiomeFeatures.addMallornTrees(builder);
+        TTMDefaultBiomeFeatures.addMallornTrees(builder);
         DefaultBiomeFeatures.addDefaultMushrooms(builder);
         LOGGER.info("Making the land beautiful...");
         // Let's set the mood
@@ -52,7 +52,7 @@ public class BiomeLorinand {
                         .fogColor(14412287)
                         .foliageColorOverride(8640564)
                         .skyColor(getSkyColorWithTemperatureModifier(0.6F))
-                        .ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS)
+                        .ambientLoopSound(SoundGenerator.thelightoflothlorien.get())
                         .build())
                 .mobSpawnSettings(spawnInf.build())
                 .generationSettings(builder.build())

@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.world.gen.placers;
 
 import com.google.common.collect.Lists;
 import com.greatorator.tolkienmobs.utils.TTMFeatureUtil;
-import com.greatorator.tolkienmobs.world.gen.TTMGenFeatures;
+import com.greatorator.tolkienmobs.world.gen.TTMFeatures;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMBranchesConfig;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -39,7 +39,7 @@ public class TTMBranchingTrunkPlacer extends AbstractTrunkPlacer {public static 
 
     @Override
     protected TrunkPlacerType<TTMBranchingTrunkPlacer> type() {
-        return TTMGenFeatures.TRUNK_BRANCHING;
+        return TTMFeatures.TRUNK_BRANCHING;
     }
 
     @Override

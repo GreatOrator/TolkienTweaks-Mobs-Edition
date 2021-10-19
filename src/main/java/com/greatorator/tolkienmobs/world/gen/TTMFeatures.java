@@ -1,8 +1,11 @@
 package com.greatorator.tolkienmobs.world.gen;
 
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.world.gen.feature.TTMFeature;
+import com.greatorator.tolkienmobs.world.gen.feature.TTMStoneSpikeFeature;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMBranchesConfig;
 import com.greatorator.tolkienmobs.world.gen.placers.TTMBranchingTrunkPlacer;
 import com.greatorator.tolkienmobs.world.gen.placers.TTMSpheroidFoliagePlacer;
@@ -33,7 +36,7 @@ import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 import static net.minecraft.block.LeavesBlock.PERSISTENT;
 
 @Mod.EventBusSubscriber(modid = TolkienMobs.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public final class TTMGenFeatures {
+public final class TTMFeatures {
     private static final List<FoliagePlacerType<?>> FOLIAGE_PLACER_TYPES = new ArrayList<>();
 
     public static final DeferredRegister<FoliagePlacerType<?>> FOLIAGE_PLACER_REGISTER = DeferredRegister.create(ForgeRegistries.FOLIAGE_PLACER_TYPES, MODID);
@@ -42,7 +45,6 @@ public final class TTMGenFeatures {
     private static final int canopyDistancing = 5;
 
     public static final TrunkPlacerType<TTMBranchingTrunkPlacer> TRUNK_BRANCHING = registerTrunk(TolkienMobs.prefix("branching_trunk_placer"), TTMBranchingTrunkPlacer.CODEC);
-
     public static final RegistryObject<FoliagePlacerType<TTMSpheroidFoliagePlacer>> FOLIAGE_SPHEROID = FOLIAGE_PLACER_REGISTER.register("spheroid_foliage_placer", () -> new FoliagePlacerType<>(TTMSpheroidFoliagePlacer.CODEC));
 
 
@@ -65,8 +67,14 @@ public final class TTMGenFeatures {
         protected static final BlockState MORGULIRON_ORE = TTMContent.ORE_MORGULIRON.get().defaultBlockState();
         protected static final BlockState FLOWER_ALFIRIN = TTMContent.FLOWER_ALFIRIN.get().defaultBlockState();
         protected static final BlockState FLOWER_MIRKWOOD = TTMContent.FLOWER_MIRKWOOD.get().defaultBlockState();
+        protected static final BlockState FLOWER_SWAMPMILKWEED = TTMContent.FLOWER_SWAMPMILKWEED.get().defaultBlockState();
+        protected static final BlockState LEAFPILE_MIRKWOOD = TTMContent.LEAFPILE_MIRKWOOD.get().defaultBlockState();
+        protected static final BlockState LEAFPILE_MALLORN = TTMContent.LEAFPILE_MALLORN.get().defaultBlockState();
+        protected static final BlockState LEAFPILE_CULUMALDA = TTMContent.LEAFPILE_CULUMALDA.get().defaultBlockState();
+        protected static final BlockState LEAFPILE_LEBETHRON = TTMContent.LEAFPILE_LEBETHRON.get().defaultBlockState();
         protected static final BlockState DANDELION = Blocks.DANDELION.defaultBlockState();
         protected static final BlockState DEAD_BUSH = Blocks.DEAD_BUSH.defaultBlockState();
+        protected static final BlockState GRASS_BLOCK = Blocks.GRASS_BLOCK.defaultBlockState();
 
     }
 
@@ -145,6 +153,11 @@ public final class TTMGenFeatures {
         public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> MUSHROOM_DECAY_BLOOM = registerWorldFeature(TolkienMobs.prefix("decaybloom"), Feature.TREE.configured(TreeConfigurations.MUSHROOM_DECAY_BLOOM));
 
         // Biome placement
+        public static final ConfiguredFeature<?, ? extends Feature<?>> STONE_SPIKE = register("stone_spike", TTMFeature.STONE_SPIKE.get().configured(IFeatureConfig.NONE).count(3));
+        public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_MALLORN_LEAFPILES = register("patch_mallorn_leafpiles", Feature.RANDOM_PATCH.configured(TTMConfigs.MALLORN_LEAFPILES_CONFIG));
+        public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_MIRKWOOD_LEAFPILES = register("patch_mirkwood_leafpiles", Feature.RANDOM_PATCH.configured(TTMConfigs.MIRKWOOD_LEAFPILES_CONFIG));
+        public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_CULUMALDA_LEAFPILES = register("patch_culumalda_leafpiles", Feature.RANDOM_PATCH.configured(TTMConfigs.CULUMALDA_LEAFPILES_CONFIG));
+        public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_LEBETHRON_LEAFPILES = register("patch_lebethron_leafpiles", Feature.RANDOM_PATCH.configured(TTMConfigs.LEBETHRON_LEAFPILES_CONFIG));
         public static final ConfiguredFeature<?, ? extends Feature<?>> TREES_LORINAND = register("trees_lorinand", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(CULUMALDA.weighted(0.1F), MALLORN.weighted(0.5F), MALLORN.weighted(0.33333334F)), MALLORN)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(50, 0.1F, 1))));
         public static final ConfiguredFeature<?, ? extends Feature<?>> TREES_MIRKWOOD = register("trees_mirkwood", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(DEADTREE.weighted(0.1F), MIRKWOOD.weighted(0.5F), MIRKWOOD.weighted(0.33333334F)), MIRKWOOD)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(50, 0.1F, 1))));
 //        public static final ConfiguredFeature<?, ? extends Feature<?>> TREES_MIRKWOOD = register("trees_mirkwood", MIRKWOOD.decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(10, 0.1F, 1))));
@@ -153,12 +166,22 @@ public final class TTMGenFeatures {
         public static final ConfiguredFeature<?, ? extends Feature<?>> ORE_MORGULIRON = register("ore_morguliron", Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, States.MORGULIRON_ORE, 8)).range(16).squared());
         public static final ConfiguredFeature<?, ? extends Feature<?>> FLOWER_LORINAND = register("flower_lorinand", Feature.FLOWER.configured(TTMConfigs.DEFAULT_LORINAND_CONFIG).decorated(Features.Placements.ADD_32).decorated(Features.Placements.HEIGHTMAP_SQUARE).count(2));
         public static final ConfiguredFeature<?, ? extends Feature<?>> FLOWER_MIRKWOOD = register("flower_mirkwood", Feature.FLOWER.configured(TTMConfigs.DEFAULT_MIRKWOOD_CONFIG).decorated(Features.Placements.ADD_32).decorated(Features.Placements.HEIGHTMAP_SQUARE).count(2));
+        public static final ConfiguredFeature<?, ? extends Feature<?>> FLOWER_MARSH = register("flower_marsh", Feature.FLOWER.configured((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(States.FLOWER_SWAMPMILKWEED), SimpleBlockPlacer.INSTANCE)).tries(64).build()).decorated(Features.Placements.ADD_32).decorated(Features.Placements.HEIGHTMAP_SQUARE));
+        public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_MALLORN_LEAFPILES_SPARSE = register("patch_mallorn_leafpiles_sparse", PATCH_MALLORN_LEAFPILES.decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE));
+        public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_MIRKWOOD_LEAFPILES_SPARSE = register("patch_mirkwood_leafpiles_sparse", PATCH_MIRKWOOD_LEAFPILES.decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE));
+        public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_CULUMALDA_LEAFPILES_SPARSE = register("patch_culumalda_leafpiles_sparse", PATCH_CULUMALDA_LEAFPILES.decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE));
+        public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_LEBETHRON_LEAFPILES_SPARSE = register("patch_lebethron_leafpiles_sparse", PATCH_LEBETHRON_LEAFPILES.decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE));
+        public static final ConfiguredFeature<?, ? extends Feature<?>> BLEAK_LAND = register("bleak_land", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(DEADTREE.weighted(0.1F), STONE_SPIKE.weighted(0.1F)), STONE_SPIKE)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(50, 0.1F, 1))));
 
     }
 
     public static final class TTMConfigs {
         public static final BlockClusterFeatureConfig DEFAULT_LORINAND_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).add(States.FLOWER_ALFIRIN, 2).add(States.DANDELION, 1), SimpleBlockPlacer.INSTANCE)).tries(64).build();
         public static final BlockClusterFeatureConfig DEFAULT_MIRKWOOD_CONFIG = (new BlockClusterFeatureConfig.Builder((new WeightedBlockStateProvider()).add(States.FLOWER_MIRKWOOD, 2).add(States.DEAD_BUSH, 1), SimpleBlockPlacer.INSTANCE)).tries(64).build();
+        public static final BlockClusterFeatureConfig MALLORN_LEAFPILES_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(States.LEAFPILE_MALLORN), SimpleBlockPlacer.INSTANCE)).tries(64).whitelist(ImmutableSet.of(States.GRASS_BLOCK.getBlock())).noProjection().build();
+        public static final BlockClusterFeatureConfig MIRKWOOD_LEAFPILES_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(States.LEAFPILE_MIRKWOOD), SimpleBlockPlacer.INSTANCE)).tries(64).whitelist(ImmutableSet.of(States.GRASS_BLOCK.getBlock())).noProjection().build();
+        public static final BlockClusterFeatureConfig CULUMALDA_LEAFPILES_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(States.LEAFPILE_CULUMALDA), SimpleBlockPlacer.INSTANCE)).tries(64).whitelist(ImmutableSet.of(States.GRASS_BLOCK.getBlock())).noProjection().build();
+        public static final BlockClusterFeatureConfig LEBETHRON_LEAFPILES_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(States.LEAFPILE_LEBETHRON), SimpleBlockPlacer.INSTANCE)).tries(64).whitelist(ImmutableSet.of(States.GRASS_BLOCK.getBlock())).noProjection().build();
     }
 
     private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> feature) {

@@ -1,5 +1,7 @@
 package com.greatorator.tolkienmobs.world.biome;
 
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
@@ -17,9 +19,10 @@ public class BiomeMarshes {
         // Spawn Settings
         MobSpawnInfo.Builder spawnInf = new MobSpawnInfo.Builder();
         spawnInf.setPlayerCanSpawn();
-//        DefaultBiomeFeatures.farmAnimals(spawnInf);
-//        DefaultBiomeFeatures.commonSpawns(spawnInf);
-//        spawnInf.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SLIME, 1, 1, 1));
+        TTMDefaultBiomeFeatures.ttmSwampSpawns(spawnInf);
+        TTMDefaultBiomeFeatures.passiveAnimals(spawnInf);
+        DefaultBiomeFeatures.commonSpawns(spawnInf);
+        spawnInf.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SLIME, 1, 1, 1));
         BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder())
                 .surfaceBuilder(ConfiguredSurfaceBuilders.SWAMP);
         DefaultBiomeFeatures.addFossilDecoration(biomegenerationsettings$builder);
@@ -29,7 +32,7 @@ public class BiomeMarshes {
         DefaultBiomeFeatures.addDefaultUndergroundVariety(biomegenerationsettings$builder);
         DefaultBiomeFeatures.addDefaultOres(biomegenerationsettings$builder);
         DefaultBiomeFeatures.addSwampClayDisk(biomegenerationsettings$builder);
-        DefaultBiomeFeatures.addSwampVegetation(biomegenerationsettings$builder);
+        TTMDefaultBiomeFeatures.addMarshVegetation(biomegenerationsettings$builder);
         DefaultBiomeFeatures.addDefaultMushrooms(biomegenerationsettings$builder);
         DefaultBiomeFeatures.addSwampExtraVegetation(biomegenerationsettings$builder);
         DefaultBiomeFeatures.addDefaultSprings(biomegenerationsettings$builder);

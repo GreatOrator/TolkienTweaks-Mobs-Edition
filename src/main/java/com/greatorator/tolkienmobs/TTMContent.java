@@ -6,10 +6,11 @@ import com.greatorator.tolkienmobs.block.BlockLeafPile;
 import com.greatorator.tolkienmobs.block.BlockMushrooms;
 import com.greatorator.tolkienmobs.block.BlockStonePath;
 import com.greatorator.tolkienmobs.block.BlockTMHallowed;
-import com.greatorator.tolkienmobs.block.trees.*;
+import com.greatorator.tolkienmobs.world.trees.*;
 import com.greatorator.tolkienmobs.datagen.*;
 import com.greatorator.tolkienmobs.handler.*;
 import com.greatorator.tolkienmobs.item.trinket.*;
+import com.greatorator.tolkienmobs.world.gen.feature.TTMFeature;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -22,7 +23,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -72,6 +72,7 @@ public class TTMContent {
         ProfessionGenerator.PROFESSION.register(modBus);
         ProfessionGenerator.POIT.register(modBus);
         LOGGER.info("Time to create the land...");
+        TTMFeature.FEATURES.register(modBus);
         BiomeGenerator.BIOMES.register(modBus);
     }
 

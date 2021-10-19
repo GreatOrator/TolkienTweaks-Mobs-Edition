@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.world.biome;
 
-import com.greatorator.tolkienmobs.world.gen.feature.TTMBiomeFeatures;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
@@ -17,20 +16,20 @@ public class BiomeMirkwood {
     public static Biome makeBiomeMirkwood(float depth, float scale) {
         // Spawn Settings
         MobSpawnInfo.Builder spawnInf = new MobSpawnInfo.Builder();
-//        TTMBiomeFeatures.mirkwoodSpawns(spawnInf);
+        TTMDefaultBiomeFeatures.mirkwoodSpawns(spawnInf);
         spawnInf.setPlayerCanSpawn();
 
         // Biome Settings
         BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder())
                 .surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
-        TTMBiomeFeatures.addMirkwoodTrees(builder);
-        TTMBiomeFeatures.addMirkwoodFlowers(builder);
-        TTMBiomeFeatures.addWaterLakes(builder);
+        TTMDefaultBiomeFeatures.addMirkwoodTrees(builder);
+        TTMDefaultBiomeFeatures.addMirkwoodFlowers(builder);
+        TTMDefaultBiomeFeatures.addWaterLakes(builder);
         DefaultBiomeFeatures.addDefaultUndergroundVariety(builder);
         DefaultBiomeFeatures.addDefaultOres(builder);
         DefaultBiomeFeatures.addDefaultSoftDisks(builder);
         DefaultBiomeFeatures.addForestGrass(builder);
-        DefaultBiomeFeatures.addForestGrass(builder);
+        TTMDefaultBiomeFeatures.addMirkwoodLeafPiles(builder);
         DefaultBiomeFeatures.addFerns(builder);
         DefaultBiomeFeatures.addDefaultMushrooms(builder);
         LOGGER.info("Preparing for the necromancer's return...");

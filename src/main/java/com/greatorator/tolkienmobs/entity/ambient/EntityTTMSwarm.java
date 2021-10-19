@@ -83,6 +83,11 @@ public class EntityTTMSwarm extends MonsterEntity {
         }
     }
 
+    public static boolean checkSwarmSpawn(EntityType<EntityTTMSwarm> type, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
+        int chance = 200; //1 in x
+        return random.nextInt(chance) == 0 && checkMobSpawnRules(type, world, reason, pos, random);
+    }
+
     @Override
     protected SoundEvent getAmbientSound() {
         return SoundGenerator.soundIdleMidgeFly.get();

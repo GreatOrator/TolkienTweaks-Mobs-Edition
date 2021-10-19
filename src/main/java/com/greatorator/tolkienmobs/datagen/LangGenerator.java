@@ -428,6 +428,8 @@ public class LangGenerator extends LanguageProvider {
         helper.setPrefix("biome.tolkienmobs.");
         helper.add("biome_lorinand", "Lothlorien");
         helper.add("biome_mirkwood", "Mirkwood");
+        helper.add("biome_marshes", "Nindalf Marsh");
+        helper.add("biome_mordor", "Mordor");
     }
 
     private void merchants(PrefixHelper helper) {
