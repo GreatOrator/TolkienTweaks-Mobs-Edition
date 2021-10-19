@@ -12,31 +12,31 @@ import net.minecraft.world.gen.feature.Features;
 public class TTMDefaultBiomeFeatures {
 
     public static void addMallornTrees(BiomeGenerationSettings.Builder p_243689_0_) {
-        p_243689_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.ConfiguredFeatures.TREES_LORINAND);
+        p_243689_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.TREES_LORINAND);
     }
 
     public static void addMirkwoodTrees(BiomeGenerationSettings.Builder p_243763_0_) {
-        p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.ConfiguredFeatures.TREES_MIRKWOOD);
+        p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.TREES_MIRKWOOD);
     }
 
     public static void addAmmoliteOres(BiomeGenerationSettings.Builder p_243750_0_) {
-        p_243750_0_.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TTMFeatures.ConfiguredFeatures.ORE_AMMOLITE);
+        p_243750_0_.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TTMFeatures.ORE_AMMOLITE);
     }
 
     public static void addMithrilOres(BiomeGenerationSettings.Builder p_243750_0_) {
-        p_243750_0_.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TTMFeatures.ConfiguredFeatures.ORE_MITHRIL);
+        p_243750_0_.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TTMFeatures.ORE_MITHRIL);
     }
 
     public static void addMorgulironOres(BiomeGenerationSettings.Builder p_243750_0_) {
-        p_243750_0_.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TTMFeatures.ConfiguredFeatures.ORE_MORGULIRON);
+        p_243750_0_.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TTMFeatures.ORE_MORGULIRON);
     }
 
     public static void addLorinandFlowers(BiomeGenerationSettings.Builder p_243707_0_) {
-        p_243707_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.ConfiguredFeatures.FLOWER_LORINAND);
+        p_243707_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.FLOWER_LORINAND);
     }
 
     public static void addMirkwoodFlowers(BiomeGenerationSettings.Builder p_243707_0_) {
-        p_243707_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.ConfiguredFeatures.FLOWER_MIRKWOOD);
+        p_243707_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.FLOWER_MIRKWOOD);
     }
 
     public static void addWaterLakes(BiomeGenerationSettings.Builder p_243742_0_) {
@@ -44,29 +44,29 @@ public class TTMDefaultBiomeFeatures {
     }
 
     public static void addMallornLeafPiles(BiomeGenerationSettings.Builder p_243758_0_) {
-        p_243758_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.ConfiguredFeatures.PATCH_MALLORN_LEAFPILES_SPARSE);
+        p_243758_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.PATCH_MALLORN_LEAFPILES_SPARSE);
     }
 
     public static void addMirkwoodLeafPiles(BiomeGenerationSettings.Builder p_243758_0_) {
-        p_243758_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.ConfiguredFeatures.PATCH_MIRKWOOD_LEAFPILES_SPARSE);
+        p_243758_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.PATCH_MIRKWOOD_LEAFPILES_SPARSE);
     }
 
     public static void addDesolation(BiomeGenerationSettings.Builder p_243758_0_) {
-        p_243758_0_.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, TTMFeatures.ConfiguredFeatures.BLEAK_LAND);
+        p_243758_0_.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, TTMFeatures.BLEAK_LAND);
     }
 
     public static void addCulumaldaLeafPiles(BiomeGenerationSettings.Builder p_243758_0_) {
-        p_243758_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.ConfiguredFeatures.PATCH_CULUMALDA_LEAFPILES_SPARSE);
+        p_243758_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.PATCH_CULUMALDA_LEAFPILES_SPARSE);
     }
 
     public static void addLebethronLeafPiles(BiomeGenerationSettings.Builder p_243758_0_) {
-        p_243758_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.ConfiguredFeatures.PATCH_LEBETHRON_LEAFPILES_SPARSE);
+        p_243758_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.PATCH_LEBETHRON_LEAFPILES_SPARSE);
     }
 
     public static void addMarshVegetation(BiomeGenerationSettings.Builder p_243702_0_) {
         p_243702_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.SWAMP_TREE);
         p_243702_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.FLOWER_SWAMP);
-        p_243702_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.ConfiguredFeatures.FLOWER_MARSH);
+        p_243702_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.FLOWER_MARSH);
         p_243702_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.PATCH_GRASS_NORMAL);
         p_243702_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.PATCH_DEAD_BUSH);
         p_243702_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.PATCH_WATERLILLY);

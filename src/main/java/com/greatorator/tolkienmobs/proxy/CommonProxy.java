@@ -10,6 +10,7 @@ import com.greatorator.tolkienmobs.init.TTMTags;
 import com.greatorator.tolkienmobs.integration.TTMEquipMgr;
 import com.greatorator.tolkienmobs.server.TTMServerEvents;
 import com.greatorator.tolkienmobs.world.gen.TTMFeatures;
+import com.greatorator.tolkienmobs.world.gen.feature.config.TTMTreeFeatureConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,7 +42,7 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::livingUpdate);
 
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-        TTMFeatures.FOLIAGE_PLACER_REGISTER.register(modBus);
+        TTMTreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {

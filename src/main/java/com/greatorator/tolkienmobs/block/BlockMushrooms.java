@@ -40,14 +40,14 @@ public class BlockMushrooms extends MushroomBlock
         world.removeBlock(pos, false);
         ConfiguredFeature<?, ?> configuredfeature;
         if (this == TTMContent.MUSHROOM_BLOOM_DECAY.get()) {
-            configuredfeature = TTMFeatures.ConfiguredFeatures.MUSHROOM_BLOOM_DECAY;
+            configuredfeature = TTMFeatures.MUSHROOM_BLOOM_DECAY;
         } else {
             if (this != TTMContent.MUSHROOM_DECAY_BLOOM.get()) {
                 world.setBlock(pos, state, 3);
                 return false;
             }
 
-            configuredfeature = TTMFeatures.ConfiguredFeatures.MUSHROOM_DECAY_BLOOM;
+            configuredfeature = TTMFeatures.MUSHROOM_DECAY_BLOOM;
         }
 
         if (configuredfeature.place(world, world.getChunkSource().getGenerator(), rand, pos)) {

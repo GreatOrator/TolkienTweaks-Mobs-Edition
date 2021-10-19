@@ -7,7 +7,7 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-import static com.greatorator.tolkienmobs.world.gen.TTMFeatures.ConfiguredFeatures.MIRKWOOD;
+import static com.greatorator.tolkienmobs.world.gen.TTMFeatures.MIRKWOOD;
 
 public class TTMMirkwoodTree extends Tree {
     public TTMMirkwoodTree() {
