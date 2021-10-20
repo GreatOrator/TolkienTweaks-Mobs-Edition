@@ -35,8 +35,8 @@ public class TTMForgeFeatures {
 
 
         //Register Dependents.
-        STONE_SPIKE_CONFIG = register("stone_spike", STONE_SPIKE.configured(IFeatureConfig.NONE).count(3));
-        BLEAK_LAND_CONFIG = register("bleak_land", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(TTMFeatures.DEADTREE.weighted(0.1F), STONE_SPIKE_CONFIG.weighted(0.1F)), STONE_SPIKE_CONFIG)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(50, 0.1F, 1))));
+        STONE_SPIKE_CONFIG = register("stone_spike", STONE_SPIKE.configured(IFeatureConfig.NONE).count(1));
+        BLEAK_LAND_CONFIG = register("bleak_land", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(TTMFeatures.DEADTREE.weighted(0.4F), STONE_SPIKE_CONFIG.weighted(0.05F)), STONE_SPIKE_CONFIG)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(1, 0.1F, 1))));
 
     }
 

@@ -24,8 +24,7 @@ public class TTMStoneSpikeFeature extends Feature<NoFeatureConfig> {
          p_241855_4_ = p_241855_4_.below();
       }
 
-//      if (!p_241855_1_.getBlockState(p_241855_4_).is(Blocks.COBBLESTONE)) {
-      if (!p_241855_1_.getBlockState(p_241855_4_).is(Blocks.GRASS_BLOCK)) { //Did this to check if the spikes worked. You will probably want to change this back if you plan to make the top layer of the dimension cobblestone.
+      if (!p_241855_1_.getBlockState(p_241855_4_).is(Blocks.GRASS_BLOCK)) {
          return false;
       } else {
          p_241855_4_ = p_241855_4_.above(p_241855_3_.nextInt(4));
