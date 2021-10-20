@@ -33,7 +33,6 @@ public final class TTMFeatures {
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> MUSHROOM_DECAY_BLOOM = registerWorldFeature(TolkienMobs.prefix("decaybloom"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.MUSHROOM_DECAY_BLOOM));
 
     // Biome placement
-    public static ConfiguredFeature<?, ? extends Feature<?>> STONE_SPIKE;
     public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_MALLORN_LEAFPILES = register("patch_mallorn_leafpiles", Feature.RANDOM_PATCH.configured(TTMConfigs.MALLORN_LEAFPILES_CONFIG));
     public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_MIRKWOOD_LEAFPILES = register("patch_mirkwood_leafpiles", Feature.RANDOM_PATCH.configured(TTMConfigs.MIRKWOOD_LEAFPILES_CONFIG));
     public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_CULUMALDA_LEAFPILES = register("patch_culumalda_leafpiles", Feature.RANDOM_PATCH.configured(TTMConfigs.CULUMALDA_LEAFPILES_CONFIG));
@@ -51,7 +50,6 @@ public final class TTMFeatures {
     public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_MIRKWOOD_LEAFPILES_SPARSE = register("patch_mirkwood_leafpiles_sparse", PATCH_MIRKWOOD_LEAFPILES.decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE));
     public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_CULUMALDA_LEAFPILES_SPARSE = register("patch_culumalda_leafpiles_sparse", PATCH_CULUMALDA_LEAFPILES.decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE));
     public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_LEBETHRON_LEAFPILES_SPARSE = register("patch_lebethron_leafpiles_sparse", PATCH_LEBETHRON_LEAFPILES.decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE));
-    public static ConfiguredFeature<?, ? extends Feature<?>> BLEAK_LAND;
 
     private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> feature) {
         return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, TolkienMobs.MODID + ":" + name, feature);
@@ -97,21 +95,6 @@ public final class TTMFeatures {
         public static final BlockState DANDELION = Blocks.DANDELION.defaultBlockState();
         public static final BlockState DEAD_BUSH = Blocks.DEAD_BUSH.defaultBlockState();
         public static final BlockState GRASS_BLOCK = Blocks.GRASS_BLOCK.defaultBlockState();
-
-    }
-
-    public static class FeaturesStore { // Every better name is taken xD
-        public static Feature<NoFeatureConfig> STONE_SPIKE = new TTMStoneSpikeFeature(NoFeatureConfig.CODEC);
-    }
-
-    @SubscribeEvent
-    public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
-        event.getRegistry().register(FeaturesStore.STONE_SPIKE.setRegistryName("stone_spike"));
-
-
-        //Register Dependents.
-        STONE_SPIKE = register("stone_spike", FeaturesStore.STONE_SPIKE.configured(IFeatureConfig.NONE).count(3));
-        BLEAK_LAND = register("bleak_land", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(DEADTREE.weighted(0.1F), STONE_SPIKE.weighted(0.1F)), STONE_SPIKE)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(50, 0.1F, 1))));
 
     }
 }

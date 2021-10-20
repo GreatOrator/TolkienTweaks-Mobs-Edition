@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.world.biome;
 
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.world.gen.TTMFeatures;
+import com.greatorator.tolkienmobs.world.gen.TTMForgeFeatures;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.BiomeGenerationSettings;
@@ -52,7 +53,7 @@ public class TTMDefaultBiomeFeatures {
     }
 
     public static void addDesolation(BiomeGenerationSettings.Builder p_243758_0_) {
-        p_243758_0_.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, TTMFeatures.BLEAK_LAND);
+        p_243758_0_.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, TTMForgeFeatures.BLEAK_LAND_CONFIG);
     }
 
     public static void addCulumaldaLeafPiles(BiomeGenerationSettings.Builder p_243758_0_) {
