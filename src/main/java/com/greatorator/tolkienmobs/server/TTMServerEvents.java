@@ -1,6 +1,9 @@
 package com.greatorator.tolkienmobs.server;
 
+import com.brandon3055.brandonscore.api.TimeKeeper;
+import com.greatorator.tolkienmobs.datagen.BiomeGenerator;
 import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
+import com.greatorator.tolkienmobs.datagen.PotionGenerator;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
@@ -8,13 +11,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class TTMServerEvents {
@@ -53,19 +60,16 @@ public class TTMServerEvents {
         //endregion
     }
 
-//    @SubscribeEvent
-//    public void onEntityLiving(LivingEvent.LivingUpdateEvent event){
-//        PlayerEntity player = Minecraft.getInstance().player;
-//
-//        if(player.wo.isRemote || !player.isAlive()) return;
-//
-//        if(player.isInsideOfMaterial(Material.WATER) && player.tick() % 20 == 0 && player instanceof EntityPlayerMP) {
-//            Biome biome = player.world.getBiome(player.getPosition());
-//
-//            if(biome == BiomeInit.MIRKWOOD) {
-//
-//                player.addPotionEffect(new PotionEffect(PotionInit.SLEEPNESIA, 1200, 8));
-//            }
-//        }
-//    }
+    @SubscribeEvent
+    public void onPlayerUpdate(TickEvent.PlayerTickEvent event){
+        PlayerEntity player = event.player;
+        if(!(player instanceof ServerPlayerEntity) || !player.isAlive()) return;
+
+        if(player.isInWater() && TimeKeeper.getServerTick() % 20 == 0) {
+            Biome biome = player.level.getBiome(player.blockPosition());
+            if(biome == BiomeGenerator.BIOME_MIRKWOOD.get()) {
+                player.addEffect(new EffectInstance(PotionGenerator.SLEEPNESIA.get(), 1200, 8));
+            }
+        }
+    }
 }
