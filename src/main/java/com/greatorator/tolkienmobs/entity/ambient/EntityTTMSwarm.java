@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.entity.ambient;
 
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -92,6 +93,9 @@ public class EntityTTMSwarm extends MonsterEntity {
     protected SoundEvent getAmbientSound() {
         return SoundGenerator.soundIdleMidgeFly.get();
     }
+
+    @Override
+    protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {}
 
     @Override
     public int getMaxSpawnClusterSize() {

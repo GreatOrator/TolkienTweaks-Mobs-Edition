@@ -21,7 +21,7 @@ import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
  * Created by brandon3055 on 20/10/2021
  */
 @Mod.EventBusSubscriber(modid = TolkienMobs.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class TTMForgeFeatures {
+public class TTMFeature {
 
     public static Feature<NoFeatureConfig> STONE_SPIKE = new TTMStoneSpikeFeature(NoFeatureConfig.CODEC);
 
@@ -45,7 +45,6 @@ public class TTMForgeFeatures {
 
             event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, BLEAK_LAND_CONFIG);
 
-            LOGGER.info("What? " + event);
         }
     }
 

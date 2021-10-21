@@ -12,8 +12,11 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -23,6 +26,8 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 
 public class TTMServerEvents {
 
@@ -60,14 +65,15 @@ public class TTMServerEvents {
         //endregion
     }
 
-    @SubscribeEvent
-    public void onPlayerUpdate(TickEvent.PlayerTickEvent event){
+    public static void onPlayerUpdate(TickEvent.PlayerTickEvent event){
         PlayerEntity player = event.player;
+        Biome biome = player.level.getBiome(player.blockPosition());
+
         if(!(player instanceof ServerPlayerEntity) || !player.isAlive()) return;
 
         if(player.isInWater() && TimeKeeper.getServerTick() % 20 == 0) {
-            Biome biome = player.level.getBiome(player.blockPosition());
-            if(biome == BiomeGenerator.BIOME_MIRKWOOD.get()) {
+
+            if(biome.getRegistryName().equals(BiomeGenerator.BIOME_MIRKWOOD.get().getRegistryName())) {
                 player.addEffect(new EffectInstance(PotionGenerator.SLEEPNESIA.get(), 1200, 8));
             }
         }
