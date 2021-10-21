@@ -35,6 +35,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
         tag(BlockTags.LEAVES).addTag(TTMTags.blocks.LEAVES);
         tag(TTMTags.blocks.PLANKS).add(TTMContent.PLANKS_MALLORN.get(), TTMContent.PLANKS_MIRKWOOD.get(), TTMContent.PLANKS_CULUMALDA.get(), TTMContent.PLANKS_LEBETHRON.get());
         tag(BlockTags.PLANKS).addTag(TTMTags.blocks.PLANKS);
+        tag(TTMTags.blocks.TORCHES).add(TTMContent.TORCH_MALLORN.get(), TTMContent.TORCH_MIRKWOOD.get(), TTMContent.TORCH_CULUMALDA.get(), TTMContent.TORCH_LEBETHRON.get());
         tag(TTMTags.blocks.STAIRS).add(TTMContent.STAIRS_MALLORN.get(), TTMContent.STAIRS_MIRKWOOD.get(), TTMContent.STAIRS_CULUMALDA.get(), TTMContent.STAIRS_LEBETHRON.get());
         tag(BlockTags.STAIRS).addTag(TTMTags.blocks.STAIRS);
         tag(TTMTags.blocks.SLABS).add(TTMContent.SLAB_MALLORN.get(), TTMContent.SLAB_MIRKWOOD.get(), TTMContent.SLAB_CULUMALDA.get(), TTMContent.SLAB_LEBETHRON.get());

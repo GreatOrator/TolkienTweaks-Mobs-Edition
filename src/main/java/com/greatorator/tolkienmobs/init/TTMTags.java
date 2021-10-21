@@ -33,6 +33,7 @@ public class TTMTags {
         public static final Tags.IOptionalNamedTag<Item> SAPLINGS = tag("saplings");
         public static final Tags.IOptionalNamedTag<Item> LEAVES = tag("leaves");
         public static final Tags.IOptionalNamedTag<Item> PLANKS = tag("planks");
+        public static final Tags.IOptionalNamedTag<Item> TORCHES = tag("torches");
         public static final Tags.IOptionalNamedTag<Item> STAIRS = tag("stairs");
         public static final Tags.IOptionalNamedTag<Item> SLABS = tag("slabs");
         public static final Tags.IOptionalNamedTag<Item> LOGS = tag("logs");
@@ -74,6 +75,7 @@ public class TTMTags {
         public static final Tags.IOptionalNamedTag<Block> SAPLINGS = tag("saplings");
         public static final Tags.IOptionalNamedTag<Block> LEAVES = tag("leaves");
         public static final Tags.IOptionalNamedTag<Block> PLANKS = tag("planks");
+        public static final Tags.IOptionalNamedTag<Block> TORCHES = tag("torches");
         public static final Tags.IOptionalNamedTag<Block> STAIRS = tag("stairs");
         public static final Tags.IOptionalNamedTag<Block> SLABS = tag("slabs");
         public static final Tags.IOptionalNamedTag<Block> LOGS = tag("logs");

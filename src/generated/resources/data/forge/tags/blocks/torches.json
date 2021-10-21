@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:torch_mallorn",
+    "tolkienmobs:torch_mirkwood",
+    "tolkienmobs:torch_culumalda",
+    "tolkienmobs:torch_lebethron"
+  ]
+}

@@ -86,6 +86,10 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.FENCE_MIRKWOOD.get(), "Mirkwood Fence");
         add(TTMContent.FENCE_CULUMALDA.get(), "Culumalda Fence");
         add(TTMContent.FENCE_LEBETHRON.get(), "Lebethron Fence");
+        add(TTMContent.TORCH_MALLORN.get(), "Mallorn Torch");
+        add(TTMContent.TORCH_MIRKWOOD.get(), "Mirkwood Torch");
+        add(TTMContent.TORCH_CULUMALDA.get(), "Culumalda Torch");
+        add(TTMContent.TORCH_LEBETHRON.get(), "Lebethron Torch");
         add(TTMContent.LEAVES_MALLORN.get(), "Mallorn Leaves");
         add(TTMContent.LEAVES_MIRKWOOD.get(), "Mirkwood Leaves");
         add(TTMContent.LEAVES_CULUMALDA.get(), "Culumalda Leaves");

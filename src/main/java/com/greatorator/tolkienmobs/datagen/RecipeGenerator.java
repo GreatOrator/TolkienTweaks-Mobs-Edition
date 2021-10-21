@@ -81,6 +81,11 @@ public class RecipeGenerator extends RecipeProvider {
         fenceRecipe(TTMContent.FENCE_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), Items.STICK, consumer);
         fenceRecipe(TTMContent.FENCE_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), Items.STICK, consumer);
 
+        torchRecipe(TTMContent.TORCH_MALLORN.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
+        torchRecipe(TTMContent.TORCH_MIRKWOOD.get(), TTMContent.PLANKS_MIRKWOOD.get(), consumer);
+        torchRecipe(TTMContent.TORCH_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
+        torchRecipe(TTMContent.TORCH_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), consumer);
+
         swordRecipe(TTMContent.SWORD_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), consumer);
         swordRecipe(TTMContent.SWORD_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
 
@@ -190,6 +195,16 @@ public class RecipeGenerator extends RecipeProvider {
                 .define('-', Items.STICK)
                 .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
                 .save(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
+    }
+
+    public static void torchRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 16)
+                .pattern("#")
+                .pattern("-")
+                .define('#', Items.COAL)
+                .define('-', input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer, "tolkienmobs:torch_" + output.asItem().getRegistryName().getPath());
     }
 
     public static void smeltingRecipe(IItemProvider output, IItemProvider input, float xp, int cook,Consumer<IFinishedRecipe> consumer) {

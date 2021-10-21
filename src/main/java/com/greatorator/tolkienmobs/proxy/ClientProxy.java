@@ -88,6 +88,11 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(TTMContent.MITHRIL_BARS.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(TTMContent.MORGULIRON_BARS.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(TTMContent.DOOR_MORGULIRON.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.TORCH_MALLORN.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.TORCH_MIRKWOOD.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.TORCH_CULUMALDA.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.TORCH_LEBETHRON.get(), RenderType.cutout());
+
     }
 
     //#################################################################

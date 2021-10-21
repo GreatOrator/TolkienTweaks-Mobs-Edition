@@ -69,6 +69,10 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.FENCE_MIRKWOOD.get(), modLoc("block/mirkwood_fence_inventory"));
         blockItem(TTMContent.FENCE_CULUMALDA.get(), modLoc("block/culumalda_fence_inventory"));
         blockItem(TTMContent.FENCE_LEBETHRON.get(), modLoc("block/lebethron_fence_inventory"));
+        blockItem(TTMContent.TORCH_MALLORN.get(), modLoc("block/torch_mallorn"));
+        blockItem(TTMContent.TORCH_MIRKWOOD.get(), modLoc("block/torch_mirkwood"));
+        blockItem(TTMContent.TORCH_CULUMALDA.get(), modLoc("block/torch_culumalda"));
+        blockItem(TTMContent.TORCH_LEBETHRON.get(), modLoc("block/torch_lebethron"));
         blockItem(TTMContent.LEAVES_MALLORN.get());
         blockItem(TTMContent.LEAVES_MIRKWOOD.get());
         blockItem(TTMContent.LEAVES_CULUMALDA.get());

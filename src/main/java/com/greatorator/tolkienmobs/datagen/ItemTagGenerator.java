@@ -61,6 +61,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(TTMTags.items.DOORS_IRON).add(TTMContent.DOOR_MITHRIL_ITEM.get(), TTMContent.DOOR_MORGULIRON_ITEM.get());
         tag(ItemTags.DOORS).addTag(TTMTags.items.DOORS_IRON);
         tag(TTMTags.items.BARS_IRON).add(TTMContent.MITHRIL_BARS_ITEM.get(), TTMContent.MORGULIRON_BARS_ITEM.get());
+        tag(TTMTags.items.TORCHES).add(TTMContent.TORCH_MALLORN_ITEM.get(), TTMContent.TORCH_MIRKWOOD_ITEM.get(), TTMContent.TORCH_CULUMALDA_ITEM.get(), TTMContent.TORCH_LEBETHRON_ITEM.get());
 //        tag(TTMTags.items.GEMS).add(TTMContent.GEM_AMMOLITE.get());
 //        tag(Tags.Items.GEMS).addTag(TTMTags.items.GEMS);
 //        tag(TTMTags.items.LEATHER).add(TTMContent.MUMAKIL_LEATHER.get());
