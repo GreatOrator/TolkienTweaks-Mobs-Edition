@@ -19,16 +19,19 @@ public class BiomeMordor {
         spawnInf.setPlayerCanSpawn();
 //        TTMBiomeFeatures.ttmSwampSpawns(spawnInf);
 //        DefaultBiomeFeatures.commonSpawns(spawnInf);
-        BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder()).surfaceBuilder(ConfiguredSurfaceBuilders.SWAMP);
-        DefaultBiomeFeatures.addFossilDecoration(biomegenerationsettings$builder);
 
-        DefaultBiomeFeatures.addDefaultLakes(biomegenerationsettings$builder);
-        DefaultBiomeFeatures.addDefaultMonsterRoom(biomegenerationsettings$builder);
-        DefaultBiomeFeatures.addDefaultUndergroundVariety(biomegenerationsettings$builder);
-        DefaultBiomeFeatures.addDefaultOres(biomegenerationsettings$builder);
-        TTMDefaultBiomeFeatures.addMorgulironOres(biomegenerationsettings$builder);
+        BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder())
+                .surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
 
-        DefaultBiomeFeatures.addSurfaceFreezing(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.addFossilDecoration(builder);
+        DefaultBiomeFeatures.addDefaultMonsterRoom(builder);
+        DefaultBiomeFeatures.addDefaultUndergroundVariety(builder);
+        DefaultBiomeFeatures.addDefaultOres(builder);
+
+        TTMDefaultBiomeFeatures.addMorgulironOres(builder);
+        TTMDefaultBiomeFeatures.addDeadTrees(builder);
+        TTMDefaultBiomeFeatures.addLavaLakes(builder);
+
         LOGGER.info("Beware the all-seeing eye...");
         return (new Biome.Builder())
                 .precipitation(Biome.RainType.NONE)
@@ -41,13 +44,13 @@ public class BiomeMordor {
                         .skyColor(getSkyColorWithTemperatureModifier(2.0F))
                         .foliageColorOverride(6908265)
                         .fogColor(0)
-                        .waterColor(4159204)
+                        .waterColor(0)
                         .waterFogColor(329011)
                         .fogColor(12638463)
                         .ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS)
                         .build())
                 .mobSpawnSettings(spawnInf.build())
-                .generationSettings(biomegenerationsettings$builder.build())
+                .generationSettings(builder.build())
                 .build();
     }
 }

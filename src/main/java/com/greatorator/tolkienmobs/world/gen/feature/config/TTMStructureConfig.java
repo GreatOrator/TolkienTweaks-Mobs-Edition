@@ -15,6 +15,9 @@ public class TTMStructureConfig {
      * Static instance of our structure so we can reference it and add it to biomes easily.
      */
     public static StructureFeature<?, ?> CONFIGURED_TTMHOUSE_ELVEN = StructureGenerator.TTMHOUSE_ELVEN.get().configured(IFeatureConfig.NONE);
+    public static StructureFeature<?, ?> CONFIGURED_TTMBARROW = StructureGenerator.TTMBARROW.get().configured(IFeatureConfig.NONE);
+    public static StructureFeature<?, ?> CONFIGURED_TTMRUIN_LARGE = StructureGenerator.TTMRUIN_LARGE.get().configured(IFeatureConfig.NONE);
+    public static StructureFeature<?, ?> CONFIGURED_TTMRUIN_SMALL = StructureGenerator.TTMRUIN_SMALL.get().configured(IFeatureConfig.NONE);
 
     /**
      * Registers the configured structure which is what gets added to the biomes.
@@ -26,7 +29,13 @@ public class TTMStructureConfig {
     public static void registerConfiguredStructures() {
         Registry<StructureFeature<?, ?>> registry = WorldGenRegistries.CONFIGURED_STRUCTURE_FEATURE;
         Registry.register(registry, new ResourceLocation(MODID, "configured_ttmhouse_elven"), CONFIGURED_TTMHOUSE_ELVEN);
+        Registry.register(registry, new ResourceLocation(MODID, "configured_ttmbarrow"), CONFIGURED_TTMBARROW);
+        Registry.register(registry, new ResourceLocation(MODID, "configured_ttmruin_large"), CONFIGURED_TTMRUIN_LARGE);
+        Registry.register(registry, new ResourceLocation(MODID, "configured_ttmruin_small"), CONFIGURED_TTMRUIN_SMALL);
 
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMHOUSE_ELVEN.get(), CONFIGURED_TTMHOUSE_ELVEN);
+        FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMBARROW.get(), CONFIGURED_TTMBARROW);
+        FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMRUIN_LARGE.get(), CONFIGURED_TTMRUIN_LARGE);
+        FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMRUIN_SMALL.get(), CONFIGURED_TTMRUIN_SMALL);
     }
 }

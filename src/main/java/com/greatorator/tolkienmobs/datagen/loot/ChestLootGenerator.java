@@ -185,6 +185,42 @@ public class ChestLootGenerator extends ChestLootTables {
                                         .setWeight(10))
                                         .apply(SetCount.setCount(RandomValueRange.between(1, 3)))));
 
+        registrar.accept(new ResourceLocation(MODID, "chests/desolate_ruins"),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(RandomValueRange.between(1, 2))
+                                .bonusRolls(1, 2)
+                                .add(ItemLootEntry.lootTableItem(Items.DIAMOND)
+                                        .setWeight(18)
+                                        .apply(SetCount.setCount(RandomValueRange.between(3, 7))))
+                                .add(ItemLootEntry.lootTableItem(Items.IRON_INGOT)
+                                        .setWeight(12)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 5))))
+                                .add(ItemLootEntry.lootTableItem(Items.BOOK)
+                                        .setWeight(10)
+                                        .apply(EnchantRandomly.randomApplicableEnchantment())
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 1))))
+                                .add(ItemLootEntry.lootTableItem(Items.BONE)
+                                        .setWeight(15)
+                                        .apply(SetCount.setCount(RandomValueRange.between(4, 6))))
+                                .add(ItemLootEntry.lootTableItem(Items.EMERALD)
+                                        .setWeight(20)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                                .add(ItemLootEntry.lootTableItem(Items.GOLD_INGOT)
+                                        .setWeight(2))
+                                .apply(SetCount.setCount(RandomValueRange.between(2, 7)))
+                                .add(ItemLootEntry.lootTableItem(Items.ROTTEN_FLESH)
+                                        .setWeight(10)
+                                        .apply(SetCount.setCount(RandomValueRange.between(3, 7))))
+                                .add(ItemLootEntry.lootTableItem(Items.SADDLE)
+                                        .setWeight(15))
+                                .add(ItemLootEntry.lootTableItem(Items.GOLDEN_HORSE_ARMOR)
+                                        .setWeight(15))
+                                .add(ItemLootEntry.lootTableItem(Items.DIAMOND_HORSE_ARMOR)
+                                        .setWeight(15))
+                                .add(ItemLootEntry.lootTableItem(Items.IRON_HORSE_ARMOR)
+                                        .setWeight(15))));
+
     }
 
     public void createInjectPool(BiConsumer<ResourceLocation, LootTable.Builder> consumer, String name, LootTable.Builder builder) {

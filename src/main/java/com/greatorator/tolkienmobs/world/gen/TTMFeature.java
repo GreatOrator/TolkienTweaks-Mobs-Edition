@@ -15,8 +15,6 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
-
 /**
  * Created by brandon3055 on 20/10/2021
  */
@@ -41,9 +39,9 @@ public class TTMFeature {
     }
 
     public static void biomeLoading(BiomeLoadingEvent event) {
-        if (event.getName().equals(BiomeGenerator.BIOME_MORDOR.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_BARROWDOWNS.getId())) {
 
-            event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, BLEAK_LAND_CONFIG);
+//            event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, STONE_SPIKE_CONFIG);
 
         }
     }

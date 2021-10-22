@@ -25,17 +25,18 @@ public class BiomeLorinand {
         // Biome Settings
         BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder())
                 .surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
-        TTMDefaultBiomeFeatures.addWaterLakes(builder);
-        TTMDefaultBiomeFeatures.addLorinandFlowers(builder);
         DefaultBiomeFeatures.addDefaultUndergroundVariety(builder);
         DefaultBiomeFeatures.addDefaultOres(builder);
-        TTMDefaultBiomeFeatures.addAmmoliteOres(builder);
+        DefaultBiomeFeatures.addDefaultMushrooms(builder);
         DefaultBiomeFeatures.addDefaultSoftDisks(builder);
         DefaultBiomeFeatures.addForestGrass(builder);
-        TTMDefaultBiomeFeatures.addMallornLeafPiles(builder);
         DefaultBiomeFeatures.addFerns(builder);
+
+        TTMDefaultBiomeFeatures.addMallornLeafPiles(builder);
+        TTMDefaultBiomeFeatures.addAmmoliteOres(builder);
         TTMDefaultBiomeFeatures.addMallornTrees(builder);
-        DefaultBiomeFeatures.addDefaultMushrooms(builder);
+        TTMDefaultBiomeFeatures.addWaterLakes(builder);
+        TTMDefaultBiomeFeatures.addLorinandFlowers(builder);
         LOGGER.info("Making the land beautiful...");
         // Let's set the mood
         return (new Biome.Builder())

@@ -132,7 +132,7 @@ public class TTMContent {
     public static RegistryObject<FenceBlock> FENCE_LEBETHRON = BLOCKS.register("fence_lebethron", () -> new FenceBlock(AbstractBlock.Properties.of(Material.WOOD, PLANKS_LEBETHRON.get().defaultMaterialColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static RegistryObject<TorchBlock> TORCH_MALLORN = BLOCKS.register("torch_mallorn", () -> new TorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
-    }).sound(SoundType.WOOD), ParticleTypes.FLAME));
+    }).sound(SoundType.WOOD), ParticleTypes.SOUL_FIRE_FLAME));
     public static RegistryObject<TorchBlock> TORCH_MIRKWOOD = BLOCKS.register("torch_mirkwood", () -> new TorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
     }).sound(SoundType.WOOD), ParticleTypes.FLAME));

@@ -23,6 +23,7 @@ public class BiomeMarshes {
 //        TTMDefaultBiomeFeatures.passiveAnimals(spawnInf);
 //        DefaultBiomeFeatures.commonSpawns(spawnInf);
         spawnInf.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SLIME, 1, 1, 1));
+
         BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder())
                 .surfaceBuilder(ConfiguredSurfaceBuilders.SWAMP);
         DefaultBiomeFeatures.addFossilDecoration(biomegenerationsettings$builder);
@@ -32,12 +33,12 @@ public class BiomeMarshes {
         DefaultBiomeFeatures.addDefaultUndergroundVariety(biomegenerationsettings$builder);
         DefaultBiomeFeatures.addDefaultOres(biomegenerationsettings$builder);
         DefaultBiomeFeatures.addSwampClayDisk(biomegenerationsettings$builder);
-        TTMDefaultBiomeFeatures.addMarshVegetation(biomegenerationsettings$builder);
         DefaultBiomeFeatures.addDefaultMushrooms(biomegenerationsettings$builder);
         DefaultBiomeFeatures.addSwampExtraVegetation(biomegenerationsettings$builder);
         DefaultBiomeFeatures.addDefaultSprings(biomegenerationsettings$builder);
-
         DefaultBiomeFeatures.addSurfaceFreezing(biomegenerationsettings$builder);
+
+        TTMDefaultBiomeFeatures.addMarshVegetation(biomegenerationsettings$builder);
         LOGGER.info("Where the Entwash meets the Anduin...");
         return (new Biome.Builder())
                 .precipitation(Biome.RainType.RAIN)

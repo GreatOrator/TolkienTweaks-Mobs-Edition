@@ -20,6 +20,18 @@ public class TTMDefaultBiomeFeatures {
         p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.TREES_MIRKWOOD);
     }
 
+    public static void addDesolation(BiomeGenerationSettings.Builder p_243763_0_) {
+        p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.OAK_BADLANDS);
+        p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.FOREST_ROCK);
+        p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.GENERAL_ROCK);
+    }
+
+    public static void addDeadTrees(BiomeGenerationSettings.Builder p_243763_0_) {
+        p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.TREES_DEADWOOD);
+        p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.FOREST_ROCK);
+        p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.GENERAL_ROCK);
+    }
+
     public static void addAmmoliteOres(BiomeGenerationSettings.Builder p_243750_0_) {
         p_243750_0_.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TTMFeatures.ORE_AMMOLITE);
     }
@@ -44,6 +56,10 @@ public class TTMDefaultBiomeFeatures {
         p_243742_0_.addFeature(GenerationStage.Decoration.LAKES, Features.LAKE_WATER);
     }
 
+    public static void addLavaLakes(BiomeGenerationSettings.Builder p_243742_0_) {
+        p_243742_0_.addFeature(GenerationStage.Decoration.LAKES, Features.LAKE_LAVA);
+    }
+
     public static void addMallornLeafPiles(BiomeGenerationSettings.Builder p_243758_0_) {
         p_243758_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.PATCH_MALLORN_LEAFPILES_SPARSE);
     }
@@ -53,7 +69,6 @@ public class TTMDefaultBiomeFeatures {
     }
 
     public static void addElvenHomes(BiomeGenerationSettings.Builder p_243758_0_) {
-        p_243758_0_.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, TTMFeature.BLEAK_LAND_CONFIG);
     }
 
     public static void addCulumaldaLeafPiles(BiomeGenerationSettings.Builder p_243758_0_) {

@@ -434,6 +434,8 @@ public class LangGenerator extends LanguageProvider {
         helper.add("biome_mirkwood", "Mirkwood");
         helper.add("biome_marshes", "Nindalf Marsh");
         helper.add("biome_mordor", "Mordor");
+        helper.add("biome_barrowdowns", "Tyrn Gorthad");
+        helper.add("biome_dagorlad", "The Brown Lands");
     }
 
     private void merchants(PrefixHelper helper) {
