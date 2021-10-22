@@ -6,6 +6,7 @@ import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
@@ -55,7 +56,7 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.LOG_MIRKWOOD.get());
         dropSelf(TTMContent.LOG_CULUMALDA.get());
         dropSelf(TTMContent.LOG_LEBETHRON.get());
-        add(TTMContent.LOG_DEADWOOD.get(), ChancesAndSticks(TTMContent.LOG_DEADWOOD.get(), TTMContent.LOG_DEADWOOD.get(), DEFAULT_SAPLING_DROP_RATES));
+        add(TTMContent.LOG_DEADWOOD.get(), createSingleItemTable(Items.STICK, RandomValueRange.between(0.0F, 1.0F)));
         dropSelf(TTMContent.PLANKS_MALLORN.get());
         dropSelf(TTMContent.PLANKS_MIRKWOOD.get());
         dropSelf(TTMContent.PLANKS_CULUMALDA.get());
@@ -89,10 +90,10 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.SAPLING_CULUMALDA.get());
         dropSelf(TTMContent.SAPLING_LEBETHRON.get());
         dropSelf(TTMContent.SAPLING_DEADWOOD.get());
-        add(TTMContent.LEAVES_MALLORN.get(), SticksAndAcorns(TTMContent.LEAVES_MALLORN.get(), TTMContent.SAPLING_MALLORN.get(), RARE_SAPLING_DROP_RATES));
-        add(TTMContent.LEAVES_MIRKWOOD.get(), createLeavesDrops(TTMContent.LEAVES_MIRKWOOD.get(), TTMContent.SAPLING_MIRKWOOD.get(), DEFAULT_SAPLING_DROP_RATES));
-        add(TTMContent.LEAVES_CULUMALDA.get(), createOakLeavesDrops(TTMContent.LEAVES_CULUMALDA.get(), TTMContent.SAPLING_CULUMALDA.get(), DEFAULT_SAPLING_DROP_RATES));
-        add(TTMContent.LEAVES_LEBETHRON.get(), createOakLeavesDrops(TTMContent.LEAVES_LEBETHRON.get(), TTMContent.SAPLING_LEBETHRON.get(), DEFAULT_SAPLING_DROP_RATES));
+        add(TTMContent.LEAVES_MALLORN.get(), (block) -> createLeavesDrops(block, TTMContent.SAPLING_MALLORN.get(), .05f, .0625f, .083333336f, .1f));
+        add(TTMContent.LEAVES_MIRKWOOD.get(), (block) -> createLeavesDrops(block, TTMContent.SAPLING_MIRKWOOD.get(), .05f, .0625f, .083333336f, .1f));
+        add(TTMContent.LEAVES_CULUMALDA.get(), (block) -> createLeavesDrops(block, TTMContent.SAPLING_CULUMALDA.get(), .05f, .0625f, .083333336f, .1f));
+        add(TTMContent.LEAVES_LEBETHRON.get(), (block) -> createLeavesDrops(block, TTMContent.SAPLING_LEBETHRON.get(), .05f, .0625f, .083333336f, .1f));
         dropSelf(TTMContent.LEAFPILE_MALLORN.get());
         dropSelf(TTMContent.LEAFPILE_MIRKWOOD.get());
         dropSelf(TTMContent.LEAFPILE_CULUMALDA.get());
@@ -101,8 +102,12 @@ public class BlockLootGenerator extends BlockLootTables {
         // Blocks - Plants & Flowers
         dropSelf(TTMContent.MUSHROOM_DECAY_BLOOM.get());
         dropSelf(TTMContent.MUSHROOM_BLOOM_DECAY.get());
-        add(TTMContent.BLOCK_BLOOM_DECAY.get(), droppingItemRarely(TTMContent.MUSHROOM_BLOOM_DECAY.get(), TTMContent.MUSHROOM_BLOOM_DECAY_ITEM.get()));
-        add(TTMContent.BLOCK_DECAY_BLOOM.get(), droppingItemRarely(TTMContent.MUSHROOM_DECAY_BLOOM.get(), TTMContent.MUSHROOM_DECAY_BLOOM_ITEM.get()));
+        add(TTMContent.BLOCK_BLOOM_DECAY.get(), (p_229434_0_) -> {
+            return createMushroomBlockDrop(p_229434_0_, TTMContent.BLOCK_BLOOM_DECAY_ITEM.get());
+        });
+        add(TTMContent.BLOCK_DECAY_BLOOM.get(), (p_229434_0_) -> {
+            return createMushroomBlockDrop(p_229434_0_, TTMContent.BLOCK_DECAY_BLOOM_ITEM.get());
+        });
         dropSelf(TTMContent.FLOWER_SIMBELMYNE.get());
         dropSelf(TTMContent.FLOWER_MIRKWOOD.get());
         dropSelf(TTMContent.FLOWER_ALFIRIN.get());
@@ -128,16 +133,16 @@ public class BlockLootGenerator extends BlockLootTables {
 
     }
 
-    protected static LootTable.Builder SticksAndAcorns(Block block, Block sapling, float... chances) {
-        return createLeavesDrops(block, sapling, chances).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).when(NOT_SILK_TOUCH_OR_SHEARS).add(applyExplosionCondition(block, ItemLootEntry.lootTableItem(TTMContent.TREE_ACORN.get())).when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
+    protected static LootTable.Builder createMushroomBlockDrop(Block p_218491_0_, IItemProvider p_218491_1_) {
+        return createSilkTouchDispatchTable(p_218491_0_, applyExplosionDecay(p_218491_0_, ItemLootEntry.lootTableItem(p_218491_1_).apply(SetCount.setCount(RandomValueRange.between(-6.0F, 2.0F))).apply(LimitCount.limitCount(IntClamper.lowerBound(0)))));
     }
 
     protected static LootTable.Builder ChancesAndSticks(Block block, Block log, float... chances) {
         return createSilkTouchDispatchTable(block, applyExplosionCondition(block, ItemLootEntry.lootTableItem(log)).when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, chances))).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).when(NOT_SILK_TOUCH_OR_SHEARS).add(applyExplosionDecay(block, ItemLootEntry.lootTableItem(Items.STICK).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F)))).when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
     }
 
-    protected static LootTable.Builder droppingItemRarely(Block block, IItemProvider item) {
-        return createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(item).apply(SetCount.setCount(RandomValueRange.between(-6.0F, 2.0F))).apply(LimitCount.limitCount(IntClamper.lowerBound(0)))));
+    protected static LootTable.Builder createSingleItemTable(IItemProvider p_218463_0_, IRandomRange p_218463_1_) {
+        return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(applyExplosionDecay(p_218463_0_, ItemLootEntry.lootTableItem(p_218463_0_).apply(SetCount.setCount(p_218463_1_)))));
     }
 
     @Override

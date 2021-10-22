@@ -24,7 +24,7 @@
                   }
                 }
               ],
-              "name": "tolkienmobs:mushroom_decay_bloom"
+              "name": "tolkienmobs:block_decay_bloom"
             },
             {
               "type": "minecraft:item",
@@ -47,7 +47,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "tolkienmobs:mushroom_decay_bloom"
+              "name": "tolkienmobs:block_decay_bloom"
             }
           ]
         }

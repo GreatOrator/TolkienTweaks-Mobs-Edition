@@ -52,7 +52,7 @@ public class TTMDefaultBiomeFeatures {
         p_243758_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.PATCH_MIRKWOOD_LEAFPILES_SPARSE);
     }
 
-    public static void addDesolation(BiomeGenerationSettings.Builder p_243758_0_) {
+    public static void addElvenHomes(BiomeGenerationSettings.Builder p_243758_0_) {
         p_243758_0_.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, TTMFeature.BLEAK_LAND_CONFIG);
     }
 
