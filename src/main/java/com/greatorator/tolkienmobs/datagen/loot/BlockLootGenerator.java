@@ -56,7 +56,7 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.LOG_MIRKWOOD.get());
         dropSelf(TTMContent.LOG_CULUMALDA.get());
         dropSelf(TTMContent.LOG_LEBETHRON.get());
-        add(TTMContent.LOG_DEADWOOD.get(), createSingleItemTable(Items.STICK, RandomValueRange.between(0.0F, 1.0F)));
+        add(TTMContent.LOG_DEADWOOD.get(), createSingleItemTable(Items.STICK, RandomValueRange.between(0.0F, 4.0F)));
         dropSelf(TTMContent.PLANKS_MALLORN.get());
         dropSelf(TTMContent.PLANKS_MIRKWOOD.get());
         dropSelf(TTMContent.PLANKS_CULUMALDA.get());
@@ -85,6 +85,10 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.TORCH_MIRKWOOD.get());
         dropSelf(TTMContent.TORCH_CULUMALDA.get());
         dropSelf(TTMContent.TORCH_LEBETHRON.get());
+        add(TTMContent.WALL_TORCH_MALLORN.get(), createSingleItemTable(TTMContent.TORCH_MALLORN.get(), RandomValueRange.between(1.0F, 1.0F)));
+        add(TTMContent.WALL_TORCH_MIRKWOOD.get(), createSingleItemTable(TTMContent.TORCH_MIRKWOOD.get(), RandomValueRange.between(1.0F, 1.0F)));
+        add(TTMContent.WALL_TORCH_CULUMALDA.get(), createSingleItemTable(TTMContent.TORCH_CULUMALDA.get(), RandomValueRange.between(1.0F, 1.0F)));
+        add(TTMContent.WALL_TORCH_LEBETHRON.get(), createSingleItemTable(TTMContent.TORCH_LEBETHRON.get(), RandomValueRange.between(1.0F, 1.0F)));
         dropSelf(TTMContent.SAPLING_MALLORN.get());
         dropSelf(TTMContent.SAPLING_MIRKWOOD.get());
         dropSelf(TTMContent.SAPLING_CULUMALDA.get());

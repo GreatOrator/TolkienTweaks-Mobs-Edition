@@ -142,6 +142,18 @@ public class TTMContent {
     public static RegistryObject<TorchBlock> TORCH_LEBETHRON = BLOCKS.register("torch_lebethron", () -> new TorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
     }).sound(SoundType.WOOD), ParticleTypes.FLAME));
+    public static RegistryObject<TorchBlock> WALL_TORCH_MALLORN = BLOCKS.register("wall_torch_mallorn", () -> new WallTorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
+        return 14;
+    }).sound(SoundType.WOOD), ParticleTypes.SOUL_FIRE_FLAME));
+    public static RegistryObject<TorchBlock> WALL_TORCH_MIRKWOOD = BLOCKS.register("wall_torch_mirkwood", () -> new WallTorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
+        return 14;
+    }).sound(SoundType.WOOD), ParticleTypes.FLAME));
+    public static RegistryObject<TorchBlock> WALL_TORCH_CULUMALDA = BLOCKS.register("wall_torch_culumalda", () -> new WallTorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
+        return 14;
+    }).sound(SoundType.WOOD), ParticleTypes.FLAME));
+    public static RegistryObject<TorchBlock> WALL_TORCH_LEBETHRON = BLOCKS.register("wall_torch_lebethron", () -> new WallTorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
+        return 14;
+    }).sound(SoundType.WOOD), ParticleTypes.FLAME));
     public static RegistryObject<LeavesBlock> LEAVES_CULUMALDA = BLOCKS.register("leaves_culumalda", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_LEBETHRON = BLOCKS.register("leaves_lebethron", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_MALLORN = BLOCKS.register("leaves_mallorn", TTMContent::createLeavesBlock);
@@ -232,10 +244,10 @@ public class TTMContent {
     public static RegistryObject<Item> FENCE_MIRKWOOD_ITEM = ITEMS.register("fence_mirkwood", () -> new ItemBlockBCore(FENCE_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> FENCE_CULUMALDA_ITEM = ITEMS.register("fence_culumalda", () -> new ItemBlockBCore(FENCE_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> FENCE_LEBETHRON_ITEM = ITEMS.register("fence_lebethron", () -> new ItemBlockBCore(FENCE_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> TORCH_MALLORN_ITEM = ITEMS.register("torch_mallorn", () -> new ItemBlockBCore(TORCH_MALLORN.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> TORCH_MIRKWOOD_ITEM = ITEMS.register("torch_mirkwood", () -> new ItemBlockBCore(TORCH_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> TORCH_CULUMALDA_ITEM = ITEMS.register("torch_culumalda", () -> new ItemBlockBCore(TORCH_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> TORCH_LEBETHRON_ITEM = ITEMS.register("torch_lebethron", () -> new ItemBlockBCore(TORCH_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> TORCH_MALLORN_ITEM = ITEMS.register("torch_mallorn", () -> new WallOrFloorItem(TORCH_MALLORN.get(), WALL_TORCH_MALLORN.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> TORCH_MIRKWOOD_ITEM = ITEMS.register("torch_mirkwood", () -> new WallOrFloorItem(TORCH_MIRKWOOD.get(), WALL_TORCH_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> TORCH_CULUMALDA_ITEM = ITEMS.register("torch_culumalda", () -> new WallOrFloorItem(TORCH_CULUMALDA.get(), WALL_TORCH_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> TORCH_LEBETHRON_ITEM = ITEMS.register("torch_lebethron", () -> new WallOrFloorItem(TORCH_LEBETHRON.get(), WALL_TORCH_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LEAVES_CULUMALDA_ITEM = ITEMS.register("leaves_culumalda", () -> new ItemBlockBCore(LEAVES_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LEAVES_LEBETHRON_ITEM = ITEMS.register("leaves_lebethron", () -> new ItemBlockBCore(LEAVES_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LEAVES_MALLORN_ITEM = ITEMS.register("leaves_mallorn", () -> new ItemBlockBCore(LEAVES_MALLORN.get(), new Item.Properties().tab(matsGroup)));

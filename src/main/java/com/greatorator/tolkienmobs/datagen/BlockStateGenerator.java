@@ -79,6 +79,10 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TTMContent.TORCH_MIRKWOOD.get(), models().getExistingFile(modLoc("block/torch_mirkwood")));
         simpleBlock(TTMContent.TORCH_CULUMALDA.get(), models().getExistingFile(modLoc("block/torch_culumalda")));
         simpleBlock(TTMContent.TORCH_LEBETHRON.get(), models().getExistingFile(modLoc("block/torch_lebethron")));
+        simpleBlock(TTMContent.WALL_TORCH_MALLORN.get(), models().getExistingFile(modLoc("block/wall_torch_mallorn")));
+        simpleBlock(TTMContent.WALL_TORCH_MIRKWOOD.get(), models().getExistingFile(modLoc("block/wall_torch_mirkwood")));
+        simpleBlock(TTMContent.WALL_TORCH_CULUMALDA.get(), models().getExistingFile(modLoc("block/wall_torch_culumalda")));
+        simpleBlock(TTMContent.WALL_TORCH_LEBETHRON.get(), models().getExistingFile(modLoc("block/wall_torch_lebethron")));
         simpleBlock(TTMContent.LEAVES_MALLORN.get());
         simpleBlock(TTMContent.LEAVES_MIRKWOOD.get());
         simpleBlock(TTMContent.LEAVES_CULUMALDA.get());
