@@ -490,6 +490,8 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMGOBLIN.get(), "Goblin Spawn Egg");
         add(EntityGenerator.ENTITY_TTM_BARROW.get(), "Barrow Wight");
         add(EntityGenerator.EGG_TTMBARROW.get(), "Barrow Wight Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_BRIGAND.get(), "Brigand");
+        add(EntityGenerator.EGG_TTMBRIGAND.get(), "Brigand Spawn Egg");
 
         // Boss
         add(EntityGenerator.ENTITY_TTM_GOBLINKING.get(), "Goblin King");

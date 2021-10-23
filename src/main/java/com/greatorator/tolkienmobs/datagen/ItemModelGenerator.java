@@ -260,6 +260,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(EntityGenerator.EGG_TTMGOBLIN.get());
         eggItem(EntityGenerator.EGG_TTMGOBLINKING.get());
         eggItem(EntityGenerator.EGG_TTMBARROW.get());
+        eggItem(EntityGenerator.EGG_TTMBRIGAND.get());
     }
 
     private void simpleItem(Item item) {

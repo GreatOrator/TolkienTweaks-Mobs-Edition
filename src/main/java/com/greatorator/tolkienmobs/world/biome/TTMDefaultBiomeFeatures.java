@@ -105,6 +105,11 @@ public class TTMDefaultBiomeFeatures {
         p_243737_0_.addSpawn(EntityClassification.MISC, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_ELVES.get(), 80, 4, 4));
     }
 
+    public static void barrowDownsSpawns(MobSpawnInfo.Builder p_243737_0_) {
+        ttmSwampSpawns(p_243737_0_);
+        p_243737_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_BARROW.get(), 80, 4, 4));
+    }
+
     public static void mirkwoodSpawns(MobSpawnInfo.Builder p_243737_0_) {
         ttmSwampSpawns(p_243737_0_);
         p_243737_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_GOBLIN.get(), 80, 4, 4));

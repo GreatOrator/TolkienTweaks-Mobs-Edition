@@ -6,24 +6,6 @@ import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 
-//
-//import com.greatorator.tolkienmobs.TTMConfig_Old;
-//import com.greatorator.tolkienmobs.entity.hostile.EntityTMBarrowWight;
-//import com.greatorator.tolkienmobs.handler.handler_old.interfaces.IFogyBiome;
-//import com.greatorator.tolkienmobs.utils.LogHelperTTM;
-//import com.greatorator.tolkienmobs.world.world_old.gen.generators.WorldGenTreeDead;
-//import com.greatorator.tolkienmobs.world.world_old.gen.generators.WorldGenBiomeSpike;
-//import net.minecraft.entity.player.PlayerEntity;
-//import net.minecraft.init.Blocks;
-//import net.minecraft.util.math.BlockPos;
-//import net.minecraft.util.math.MathHelper;
-//import net.minecraft.world.biome.Biome;
-//import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-//import net.minecraftforge.fml.relauncher.Side;
-//import net.minecraftforge.fml.relauncher.SideOnly;
-//
-//import java.util.Random;
-//
 public class BiomeBarrowDowns {
 
     private static int getSkyColorWithTemperatureModifier(float p_244206_0_) {
@@ -35,7 +17,7 @@ public class BiomeBarrowDowns {
     public static Biome makeBiomeBarrowDowns(float depth, float scale) {
         // Spawn Settings
         MobSpawnInfo.Builder spawnInf = new MobSpawnInfo.Builder();
-//        TTMDefaultBiomeFeatures.mirkwoodSpawns(spawnInf);
+        TTMDefaultBiomeFeatures.barrowDownsSpawns(spawnInf);
         spawnInf.setPlayerCanSpawn();
 
         // Biome Settings

@@ -17,6 +17,7 @@ import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMHobbit;
 import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMHuman;
 import com.greatorator.tolkienmobs.entity.merchant.villager.VillagerTTMTrades;
 import com.greatorator.tolkienmobs.entity.monster.render.RenderTTMBarrowWight;
+import com.greatorator.tolkienmobs.entity.monster.render.RenderTTMBrigand;
 import com.greatorator.tolkienmobs.entity.monster.render.RenderTTMGoblin;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMAuroch;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMGoat;
@@ -119,6 +120,7 @@ public class ClientProxy extends CommonProxy {
         // Monster
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOBLIN.get(), RenderTTMGoblin::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_BARROW.get(), RenderTTMBarrowWight::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_BRIGAND.get(), RenderTTMBrigand::new);
 
         // Boss
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOBLINKING.get(), RenderTTMGoblinKing::new);

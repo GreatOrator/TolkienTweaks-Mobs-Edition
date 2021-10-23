@@ -22,6 +22,7 @@ import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMElves;
 import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMHobbit;
 import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMHuman;
 import com.greatorator.tolkienmobs.entity.monster.EntityTTMBarrowWight;
+import com.greatorator.tolkienmobs.entity.monster.EntityTTMBrigand;
 import com.greatorator.tolkienmobs.entity.monster.EntityTTMGoblin;
 import com.greatorator.tolkienmobs.entity.monster.render.RenderTTMBarrowWight;
 import com.greatorator.tolkienmobs.entity.monster.render.RenderTTMGoblin;
@@ -83,8 +84,10 @@ public class EntityGenerator {
     // Monster
     private static final EntityType<EntityTTMGoblin> entityTTMGoblin = buildEntity("entityttmgoblin", EntityTTMGoblin::new, EntityClassification.MONSTER, 0.9F, 1.0F);
     public static final RegistryObject<EntityType<EntityTTMGoblin>> ENTITY_TTM_GOBLIN = ENTITY.register("entityttmgoblin", () -> entityTTMGoblin);
-    private static final EntityType<EntityTTMBarrowWight> entityTTMBarrow = buildEntity("entityttmbarrow", EntityTTMBarrowWight::new, EntityClassification.MONSTER, 0.9F, 1.0F);
+    private static final EntityType<EntityTTMBarrowWight> entityTTMBarrow = buildEntity("entityttmbarrow", EntityTTMBarrowWight::new, EntityClassification.MONSTER, 0.7F, 1.6F);
     public static final RegistryObject<EntityType<EntityTTMBarrowWight>> ENTITY_TTM_BARROW = ENTITY.register("entityttmbarrow", () -> entityTTMBarrow);
+    private static final EntityType<EntityTTMBrigand> entityTTMBrigand = buildEntity("entityttmbrigand", EntityTTMBrigand::new, EntityClassification.MONSTER, 0.7F, 1.6F);
+    public static final RegistryObject<EntityType<EntityTTMBrigand>> ENTITY_TTM_BRIGAND = ENTITY.register("entityttmbrigand", () -> entityTTMBrigand);
 
     // Boss
     private static final EntityType<EntityTTMGoblinKing> entityTTMGoblinKing = buildEntity("entityttmgoblinking", EntityTTMGoblinKing::new, EntityClassification.MONSTER, 0.9F, 1.0F);
@@ -104,12 +107,24 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<?>> AMMO_BOULDER = ENTITY.register("ammo_boulder", () -> EntityType.Builder.of(EntityBoulder::new, EntityClassification.MISC).sized(0.5F, 0.5F).setCustomClientFactory(EntityBoulder::new).build(MODID + ":ammo_boulder"));
 
     public static void registerSpawnPlacement() {
+        //Look in EntitySpawnPlacementRegistry for examples
+        // Ambient
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_SQUIRREL.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMAmbients::checkTTMAmbientSpawn);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_FROG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMFrog::checkFrogSpawn);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_THRUSH.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMThrush::checkThrushSpawn);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_SWARM.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMSwarm::checkSwarmSpawn);
-        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_GOBLIN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+
+        // Merchants
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_ELVES.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
+
+        //Monster
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_GOBLIN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_BARROW.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_BRIGAND.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+
+        // Boss
+
+        //Passive
 
         //Look in EntitySpawnPlacementRegistry for examples
     }
@@ -134,6 +149,7 @@ public class EntityGenerator {
         // Monster
         GlobalEntityTypeAttributes.put(ENTITY_TTM_GOBLIN.get(), EntityTTMGoblin.registerAttributes().build());
         GlobalEntityTypeAttributes.put(ENTITY_TTM_BARROW.get(), EntityTTMBarrowWight.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_BRIGAND.get(), EntityTTMBrigand.registerAttributes().build());
 
         // Boss
         GlobalEntityTypeAttributes.put(ENTITY_TTM_GOBLINKING.get(), EntityTTMGoblinKing.registerAttributes().build());
@@ -163,6 +179,7 @@ public class EntityGenerator {
     // Monster
     public static final RegistryObject<Item> EGG_TTMGOBLIN = createSpawnEgg("entityttmgoblin", entityTTMGoblin, 14705521, 11525638);
     public static final RegistryObject<Item> EGG_TTMBARROW = createSpawnEgg("entityttmbarrow", entityTTMBarrow, 14705521, 6628136);
+    public static final RegistryObject<Item> EGG_TTMBRIGAND = createSpawnEgg("entityttmbrigand", entityTTMBrigand, 14705521, 682449);
 
     // Boss
     public static final RegistryObject<Item> EGG_TTMGOBLINKING = createSpawnEgg("entityttmgoblinking", entityTTMGoblinKing, 11025577, 9488223);

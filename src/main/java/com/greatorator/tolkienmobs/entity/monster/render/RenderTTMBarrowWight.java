@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderTTMBarrowWight extends MobRenderer<EntityTTMBarrowWight, ModelTTMBarrowWight<EntityTTMBarrowWight>> {
     public RenderTTMBarrowWight(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new ModelTTMBarrowWight<>(0.0F, true), 0.5F);
+        super(renderManagerIn, new ModelTTMBarrowWight<>(0.0F, true), 1.0F);
     }
 
     @Override
