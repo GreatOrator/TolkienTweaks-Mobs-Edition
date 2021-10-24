@@ -20,8 +20,6 @@ public class BiomeMarshes {
         MobSpawnInfo.Builder spawnInf = new MobSpawnInfo.Builder();
         spawnInf.setPlayerCanSpawn();
         TTMDefaultBiomeFeatures.ttmSwampSpawns(spawnInf);
-//        TTMDefaultBiomeFeatures.passiveAnimals(spawnInf);
-//        DefaultBiomeFeatures.commonSpawns(spawnInf);
         spawnInf.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SLIME, 1, 1, 1));
 
         BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder())

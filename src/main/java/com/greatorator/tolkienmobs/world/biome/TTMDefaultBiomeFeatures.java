@@ -98,6 +98,8 @@ public class TTMDefaultBiomeFeatures {
 
     public static void ttmSwampSpawns(MobSpawnInfo.Builder p_243734_0_) {
         p_243734_0_.addSpawn(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_SWARM.get(), 2, 1, 1));
+        p_243734_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_FELLSPIRIT.get(), 2, 1, 1));
+        p_243734_0_.addSpawn(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_FROG.get(), 2, 1, 1));
     }
 
     public static void elvishSpawns(MobSpawnInfo.Builder p_243737_0_) {
@@ -106,12 +108,11 @@ public class TTMDefaultBiomeFeatures {
     }
 
     public static void barrowDownsSpawns(MobSpawnInfo.Builder p_243737_0_) {
-        ttmSwampSpawns(p_243737_0_);
         p_243737_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_BARROW.get(), 80, 4, 4));
+        p_243737_0_.addSpawn(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_SWARM.get(), 2, 1, 1));
     }
 
     public static void mirkwoodSpawns(MobSpawnInfo.Builder p_243737_0_) {
-        ttmSwampSpawns(p_243737_0_);
         p_243737_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_GOBLIN.get(), 80, 4, 4));
     }
 
