@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.merchant;
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMVillager;
+import com.greatorator.tolkienmobs.entity.EntityTTMVillagers;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class EntityTTMHobbit extends EntityTTMVillager {
+public class EntityTTMHobbit extends EntityTTMVillagers {
 
 private static final DataParameter<Integer> HOBBIT_TYPE = EntityDataManager.defineId(EntityTTMHobbit.class, DataSerializers.INT);
 private static final DataParameter<VillagerData> HOBBIT_DATA = EntityDataManager.defineId(EntityTTMHobbit.class, DataSerializers.VILLAGER_DATA);
@@ -42,7 +42,7 @@ public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Map
         option.put(11, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit11.png"));
         });
 
-public EntityTTMHobbit(EntityType<? extends EntityTTMVillager> type, World worldIn) {
+public EntityTTMHobbit(EntityType<? extends EntityTTMVillagers> type, World worldIn) {
         super(type, worldIn);
         this.setRndMinMax(1,11);
         }

@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.merchant.render;
 
-import com.greatorator.tolkienmobs.entity.EntityTTMVillager;
+import com.greatorator.tolkienmobs.entity.EntityTTMVillagers;
 import com.greatorator.tolkienmobs.entity.merchant.EntityTTMElves;
 import com.greatorator.tolkienmobs.entity.merchant.model.ModelTTMElves;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -18,7 +18,7 @@ public class RenderTTMElves extends MobRenderer<EntityTTMElves, ModelTTMElves<En
         return entity.getElvesTypeName();
     }
 
-    protected void preRenderCallback(EntityTTMVillager entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+    protected void preRenderCallback(EntityTTMVillagers entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         float f = 0.98F;
         if (entitylivingbaseIn.isBaby()) {
             f = (float) ((double) f * 0.5D);

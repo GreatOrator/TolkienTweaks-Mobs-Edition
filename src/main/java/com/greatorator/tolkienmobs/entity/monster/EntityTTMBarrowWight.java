@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMMonster;
+import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.EntityType;
@@ -14,8 +14,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -35,7 +33,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class EntityTTMBarrowWight extends EntityTTMMonster {
+public class EntityTTMBarrowWight extends EntityTTMMonsters {
     private static final DataParameter<Integer> BARROW_TYPE = EntityDataManager.defineId(EntityTTMBarrowWight.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/barrowwight/barrowwight1.png"));

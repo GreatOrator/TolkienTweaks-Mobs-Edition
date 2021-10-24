@@ -5,7 +5,6 @@ import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,21 +19,21 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
-public class EntityTTMMonster extends MonsterEntity implements IRangedAttackMob {
-    private final RangedBowAttackGoal<EntityTTMMonster> bowGoal = new RangedBowAttackGoal<>(this, 1.0D, 20, 15.0F);
+public class EntityTTMMonsters extends MonsterEntity implements IRangedAttackMob {
+    private final RangedBowAttackGoal<EntityTTMMonsters> bowGoal = new RangedBowAttackGoal<>(this, 1.0D, 20, 15.0F);
     private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false) {
         public void stop() {
             super.stop();
-            EntityTTMMonster.this.setAggressive(false);
+            EntityTTMMonsters.this.setAggressive(false);
         }
 
         public void start() {
             super.start();
-            EntityTTMMonster.this.setAggressive(true);
+            EntityTTMMonsters.this.setAggressive(true);
         }
     };
 
-    protected EntityTTMMonster(EntityType<? extends MonsterEntity> type, World worldIn) {
+    protected EntityTTMMonsters(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
         this.reassessWeaponGoal();
     }

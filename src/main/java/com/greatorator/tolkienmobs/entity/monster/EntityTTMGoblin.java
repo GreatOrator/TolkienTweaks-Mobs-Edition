@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMMonster;
+import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMFlockToSameKind;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMPanicOnFlockDeath;
 import com.greatorator.tolkienmobs.entity.boss.EntityTTMGoblinKing;
@@ -33,7 +33,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class EntityTTMGoblin extends EntityTTMMonster {
+public class EntityTTMGoblin extends EntityTTMMonsters {
     private static final DataParameter<Boolean> PANICKED = EntityDataManager.defineId(EntityTTMGoblin.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> GOBLIN_TYPE = EntityDataManager.defineId(EntityTTMGoblin.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {

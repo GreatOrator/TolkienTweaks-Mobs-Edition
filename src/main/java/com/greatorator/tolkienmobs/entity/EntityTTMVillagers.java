@@ -25,12 +25,12 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityTTMVillager extends VillagerEntity {
+public class EntityTTMVillagers extends VillagerEntity {
     private int texture_index;
     private int rndMax;
     private int rndMin;
 
-    public EntityTTMVillager(EntityType<? extends EntityTTMVillager> type, World worldIn) {
+    public EntityTTMVillagers(EntityType<? extends EntityTTMVillagers> type, World worldIn) {
         super(type, worldIn);
         this.texture_index = TTMRand.getRandomInteger(rndMax, rndMin);
     }
