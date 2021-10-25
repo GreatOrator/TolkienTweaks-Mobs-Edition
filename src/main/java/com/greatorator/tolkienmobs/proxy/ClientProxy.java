@@ -16,9 +16,7 @@ import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMElves;
 import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMHobbit;
 import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMHuman;
 import com.greatorator.tolkienmobs.entity.merchant.villager.VillagerTTMTrades;
-import com.greatorator.tolkienmobs.entity.monster.render.RenderTTMBarrowWight;
-import com.greatorator.tolkienmobs.entity.monster.render.RenderTTMBrigand;
-import com.greatorator.tolkienmobs.entity.monster.render.RenderTTMGoblin;
+import com.greatorator.tolkienmobs.entity.monster.render.*;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMAuroch;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMGoat;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMMumakil;
@@ -121,6 +119,11 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOBLIN.get(), RenderTTMGoblin::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_BARROW.get(), RenderTTMBarrowWight::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_BRIGAND.get(), RenderTTMBrigand::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_DEEPCLAW.get(), RenderTTMDeepClaw::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_TREEENT.get(), RenderTTMTreeEnt::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_DUERGAR.get(), RenderTTMDuergar::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_FELLSPIRIT.get(), RenderTTMFellSpirit::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_SWAMPHAG.get(), RenderTTMSwampHag::new);
 
         // Boss
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOBLINKING.get(), RenderTTMGoblinKing::new);

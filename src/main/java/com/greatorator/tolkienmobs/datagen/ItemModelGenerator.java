@@ -245,22 +245,36 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.MORGULIRON_BUCKET.get(), modLoc("item/morguliron_bucket"));
 
         //region Spawn Eggs
+            // Ambient
         eggItem(EntityGenerator.EGG_TTMRAT.get());
         eggItem(EntityGenerator.EGG_TTMSQUIRREL.get());
         eggItem(EntityGenerator.EGG_TTMFROG.get());
         eggItem(EntityGenerator.EGG_TTMSWARM.get());
         eggItem(EntityGenerator.EGG_TTMTHRUSH.get());
+
+            // Merchants
         eggItem(EntityGenerator.EGG_TTMHUMAN.get());
         eggItem(EntityGenerator.EGG_TTMDWARF.get());
         eggItem(EntityGenerator.EGG_TTMELVES.get());
         eggItem(EntityGenerator.EGG_TTMHOBBIT.get());
-        eggItem(EntityGenerator.EGG_TTMAUROCH.get());
-        eggItem(EntityGenerator.EGG_TTMMUMAKIL.get());
-        eggItem(EntityGenerator.EGG_TTMGOAT.get());
+
+            // Monster
         eggItem(EntityGenerator.EGG_TTMGOBLIN.get());
         eggItem(EntityGenerator.EGG_TTMGOBLINKING.get());
         eggItem(EntityGenerator.EGG_TTMBARROW.get());
         eggItem(EntityGenerator.EGG_TTMBRIGAND.get());
+        eggItem(EntityGenerator.EGG_TTMDEEPCLAW.get());
+        eggItem(EntityGenerator.EGG_TTMTREEENT.get());
+        eggItem(EntityGenerator.EGG_TTMDUERGAR.get());
+        eggItem(EntityGenerator.EGG_TTMFELLSPIRIT.get());
+        eggItem(EntityGenerator.EGG_TTMSWAMPHAG.get());
+
+            // Boss
+
+            // Passive
+        eggItem(EntityGenerator.EGG_TTMAUROCH.get());
+        eggItem(EntityGenerator.EGG_TTMMUMAKIL.get());
+        eggItem(EntityGenerator.EGG_TTMGOAT.get());
     }
 
     private void simpleItem(Item item) {

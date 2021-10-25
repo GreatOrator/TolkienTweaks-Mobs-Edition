@@ -26,6 +26,7 @@ public class BiomeGenerator {
     public static final RegistryObject<Biome> BIOME_MORDOR = BIOMES.register("biome_mordor",()-> BiomeMordor.makeBiomeMordor(0.125F, 0.5F));
     public static final RegistryObject<Biome> BIOME_BARROWDOWNS = BIOMES.register("biome_barrowdowns",()-> BiomeBarrowDowns.makeBiomeBarrowDowns(0.2F,0.2F));
     public static final RegistryObject<Biome> BIOME_DAGORLAD = BIOMES.register("biome_dagorlad",()-> BiomeDagorlad.makeBiomeDagorlad(0.2F,0.2F));
+    public static final RegistryObject<Biome> BIOME_SHIRE = BIOMES.register("biome_shire",()-> BiomeShire.makeBiomeShire(0.125F,0.5F));
 
     public String getName() {
         return "Tolkien Tweaks - Mobs Edition Biomes";

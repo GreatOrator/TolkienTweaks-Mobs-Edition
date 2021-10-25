@@ -220,6 +220,38 @@ public class ChestLootGenerator extends ChestLootTables {
                                         .setWeight(15))
                                 .add(ItemLootEntry.lootTableItem(Items.IRON_HORSE_ARMOR)
                                         .setWeight(15))));
+        registrar.accept(new ResourceLocation(MODID, "chests/swamp_hag_hut"),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(RandomValueRange.between(3, 5))
+                                .bonusRolls(1, 2)
+                                .add(ItemLootEntry.lootTableItem(TTMContent.ITEM_COIN_BRONZE.get())
+                                        .setWeight(18)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 5))))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.MONSTER_FLESH.get())
+                                        .setWeight(12)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                                .add(ItemLootEntry.lootTableItem(Items.ENDER_PEARL)
+                                        .setWeight(15)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                                .add(ItemLootEntry.lootTableItem(Items.GLASS_BOTTLE)
+                                        .setWeight(15)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 2))))
+                                .add(ItemLootEntry.lootTableItem(Items.SPIDER_EYE)
+                                        .setWeight(20)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                                .add(ItemLootEntry.lootTableItem(Items.GUNPOWDER)
+                                        .setWeight(2)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                                .add(ItemLootEntry.lootTableItem(Items.GLOWSTONE_DUST)
+                                        .setWeight(10)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                                .add(ItemLootEntry.lootTableItem(Items.REDSTONE)
+                                        .setWeight(15)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                                .add(ItemLootEntry.lootTableItem(Items.BLAZE_POWDER)
+                                        .setWeight(10)))
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))));
 
     }
 

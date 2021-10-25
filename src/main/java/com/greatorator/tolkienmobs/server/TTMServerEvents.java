@@ -117,6 +117,8 @@ public class TTMServerEvents {
             tempMap.putIfAbsent(StructureGenerator.TTMBARROW.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMBARROW.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMRUIN_LARGE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMRUIN_LARGE.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMRUIN_SMALL.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMRUIN_SMALL.get()));
+            tempMap.putIfAbsent(StructureGenerator.TTMHOBBIT_HOUSE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOBBIT_HOUSE.get()));
+            tempMap.putIfAbsent(StructureGenerator.TTMSWAMP_HAG_HUT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMSWAMP_HAG_HUT.get()));
 
             serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
         }
@@ -127,11 +129,15 @@ public class TTMServerEvents {
         if (event.getName().equals(BiomeGenerator.BIOME_LORINAND.getId())) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOUSE_ELVEN);
         }
-
         if (event.getName().equals(BiomeGenerator.BIOME_BARROWDOWNS.getId())) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMBARROW);
         }
-
+        if (event.getName().equals(BiomeGenerator.BIOME_MARSHES.getId())) {
+            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMSWAMP_HAG_HUT);
+        }
+        if (event.getName().equals(BiomeGenerator.BIOME_SHIRE.getId())) {
+            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOBBIT_HOUSE);
+        }
         if (event.getName().equals(BiomeGenerator.BIOME_DAGORLAD.getId())) {
             int i = TTMRand.getRandomInteger(100, 1);
 
@@ -144,6 +150,7 @@ public class TTMServerEvents {
 
         /* Used to test for structure generation */
         if (event.getCategory() == Biome.Category.PLAINS) {
+
         }
     }
 }

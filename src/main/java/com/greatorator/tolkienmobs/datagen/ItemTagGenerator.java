@@ -62,9 +62,9 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(ItemTags.DOORS).addTag(TTMTags.items.DOORS_IRON);
         tag(TTMTags.items.BARS_IRON).add(TTMContent.MITHRIL_BARS_ITEM.get(), TTMContent.MORGULIRON_BARS_ITEM.get());
         tag(TTMTags.items.TORCHES).add(TTMContent.TORCH_MALLORN_ITEM.get(), TTMContent.TORCH_MIRKWOOD_ITEM.get(), TTMContent.TORCH_CULUMALDA_ITEM.get(), TTMContent.TORCH_LEBETHRON_ITEM.get());
-//        tag(TTMTags.items.GEMS).add(TTMContent.GEM_AMMOLITE.get());
+        tag(TTMTags.items.GEMS).add(TTMContent.GEM_AMMOLITE.get());
 //        tag(Tags.Items.GEMS).addTag(TTMTags.items.GEMS);
-//        tag(TTMTags.items.LEATHER).add(TTMContent.MUMAKIL_LEATHER.get());
+        tag(TTMTags.items.LEATHER).add(TTMContent.MUMAKIL_LEATHER.get());
 //        tag(Tags.Items.LEATHER).addTag(TTMTags.items.LEATHER);
         tag(TTMTags.items.FEATHER).add(TTMContent.BIRD_FEATHER.get(), TTMContent.CREBAIN_FEATHER.get());
         tag(Tags.Items.FEATHERS).addTag(TTMTags.items.FEATHER);
@@ -78,7 +78,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(TTMTags.items.FUR).add(TTMContent.MONSTER_FUR.get());
         tag(TTMTags.items.ARROW).add(TTMContent.GALADHRIM_ARROW.get());
         tag(ItemTags.ARROWS).addTag(TTMTags.items.ARROW);
-        tag(TTMTags.items.SPAWNEGG).add(EntityGenerator.EGG_TTMELVES.get(), EntityGenerator.EGG_TTMDWARF.get(), EntityGenerator.EGG_TTMHUMAN.get(), EntityGenerator.EGG_TTMTHRUSH.get(), EntityGenerator.EGG_TTMFROG.get(), EntityGenerator.EGG_TTMSWARM.get(), EntityGenerator.EGG_TTMSQUIRREL.get(), EntityGenerator.EGG_TTMRAT.get(), EntityGenerator.EGG_TTMAUROCH.get(), EntityGenerator.EGG_TTMMUMAKIL.get(), EntityGenerator.EGG_TTMGOAT.get(), EntityGenerator.EGG_TTMGOBLIN.get(), EntityGenerator.EGG_TTMGOBLINKING.get(), EntityGenerator.EGG_TTMBARROW.get());
+        tag(TTMTags.items.SPAWNEGG).add(EntityGenerator.EGG_TTMELVES.get(), EntityGenerator.EGG_TTMDWARF.get(), EntityGenerator.EGG_TTMHUMAN.get(), EntityGenerator.EGG_TTMTHRUSH.get(), EntityGenerator.EGG_TTMFROG.get(), EntityGenerator.EGG_TTMSWARM.get(), EntityGenerator.EGG_TTMSQUIRREL.get(), EntityGenerator.EGG_TTMRAT.get(), EntityGenerator.EGG_TTMAUROCH.get(), EntityGenerator.EGG_TTMMUMAKIL.get(), EntityGenerator.EGG_TTMGOAT.get(), EntityGenerator.EGG_TTMGOBLIN.get(), EntityGenerator.EGG_TTMGOBLINKING.get(), EntityGenerator.EGG_TTMBARROW.get(), EntityGenerator.EGG_TTMBRIGAND.get(), EntityGenerator.EGG_TTMDEEPCLAW.get(), EntityGenerator.EGG_TTMTREEENT.get(), EntityGenerator.EGG_TTMDUERGAR.get(), EntityGenerator.EGG_TTMFELLSPIRIT.get(), EntityGenerator.EGG_TTMSWAMPHAG.get());
 
         if (ModList.get().isLoaded("curios")) {
             TTMCurios.generateTags(this::tag);

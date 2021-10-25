@@ -16,9 +16,7 @@ public class BiomeMordor {
     public static Biome makeBiomeMordor(float depth, float scale) {
         // Spawn Settings
         MobSpawnInfo.Builder spawnInf = new MobSpawnInfo.Builder();
-        spawnInf.setPlayerCanSpawn();
-//        TTMBiomeFeatures.ttmSwampSpawns(spawnInf);
-//        DefaultBiomeFeatures.commonSpawns(spawnInf);
+        TTMDefaultBiomeFeatures.mordorSpawns(spawnInf);
 
         BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder())
                 .surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);

@@ -14,6 +14,12 @@
     "tolkienmobs:entityttmgoat_spawn_egg",
     "tolkienmobs:entityttmgoblin_spawn_egg",
     "tolkienmobs:entityttmgoblinking_spawn_egg",
-    "tolkienmobs:entityttmbarrow_spawn_egg"
+    "tolkienmobs:entityttmbarrow_spawn_egg",
+    "tolkienmobs:entityttmbrigand_spawn_egg",
+    "tolkienmobs:entityttmdeepclaw_spawn_egg",
+    "tolkienmobs:entityttmtreeent_spawn_egg",
+    "tolkienmobs:entityttmduergar_spawn_egg",
+    "tolkienmobs:entityttmfellspirit_spawn_egg",
+    "tolkienmobs:entityttmswamphag_spawn_egg"
   ]
 }

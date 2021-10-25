@@ -2,10 +2,7 @@ package com.greatorator.tolkienmobs.datagen;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.greatorator.tolkienmobs.world.gen.structures.TTMBarrowStructure;
-import com.greatorator.tolkienmobs.world.gen.structures.TTMHouseElvenStructure;
-import com.greatorator.tolkienmobs.world.gen.structures.TTMLargeRuinStructure;
-import com.greatorator.tolkienmobs.world.gen.structures.TTMSmallRuinStructure;
+import com.greatorator.tolkienmobs.world.gen.structures.*;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -27,6 +24,8 @@ public class StructureGenerator {
     public static final RegistryObject<Structure<NoFeatureConfig>> TTMBARROW = STRUCTURES.register("ttmbarrow", () -> (new TTMBarrowStructure(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> TTMRUIN_LARGE = STRUCTURES.register("ttmruin_large", () -> (new TTMLargeRuinStructure(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> TTMRUIN_SMALL = STRUCTURES.register("ttmruin_small", () -> (new TTMSmallRuinStructure(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> TTMHOBBIT_HOUSE = STRUCTURES.register("ttmhobbit_house", () -> (new TTMHobbitHouseStructure(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> TTMSWAMP_HAG_HUT = STRUCTURES.register("ttmswamp_hag_hut", () -> (new TTMSwampHagHutStructure(NoFeatureConfig.CODEC)));
 
     public static void setupStructures() {
         setupMapSpacingAndLand(
@@ -45,13 +44,25 @@ public class StructureGenerator {
                 TTMRUIN_LARGE.get(), /* The instance of the structure */
                 new StructureSeparationSettings(10 /* average distance apart in chunks between spawn attempts */,
                         5 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
-                        987654321 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                        249904528 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
         setupMapSpacingAndLand(
                 TTMRUIN_SMALL.get(), /* The instance of the structure */
                 new StructureSeparationSettings(10 /* average distance apart in chunks between spawn attempts */,
                         5 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
-                        987654321 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                        672963780 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                true);
+        setupMapSpacingAndLand(
+                TTMHOBBIT_HOUSE.get(), /* The instance of the structure */
+                new StructureSeparationSettings(10 /* average distance apart in chunks between spawn attempts */,
+                        5 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                        385132341 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                true);
+        setupMapSpacingAndLand(
+                TTMSWAMP_HAG_HUT.get(), /* The instance of the structure */
+                new StructureSeparationSettings(20 /* average distance apart in chunks between spawn attempts */,
+                        10 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                        481284127 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
 
 

@@ -436,6 +436,7 @@ public class LangGenerator extends LanguageProvider {
         helper.add("biome_mordor", "Mordor");
         helper.add("biome_barrowdowns", "Tyrn Gorthad");
         helper.add("biome_dagorlad", "The Brown Lands");
+        helper.add("biome_shire", "The Shire");
     }
 
     private void merchants(PrefixHelper helper) {
@@ -492,6 +493,16 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMBARROW.get(), "Barrow Wight Spawn Egg");
         add(EntityGenerator.ENTITY_TTM_BRIGAND.get(), "Brigand");
         add(EntityGenerator.EGG_TTMBRIGAND.get(), "Brigand Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_DEEPCLAW.get(), "Deepclaw");
+        add(EntityGenerator.EGG_TTMDEEPCLAW.get(), "Deepclaw Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_TREEENT.get(), "Tree Ent");
+        add(EntityGenerator.EGG_TTMTREEENT.get(), "Tree Ent Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_DUERGAR.get(), "Duergar");
+        add(EntityGenerator.EGG_TTMDUERGAR.get(), "Duergar Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_FELLSPIRIT.get(), "Fell Spirit");
+        add(EntityGenerator.EGG_TTMFELLSPIRIT.get(), "Fell Spirit Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_SWAMPHAG.get(), "Swamp Hag");
+        add(EntityGenerator.EGG_TTMSWAMPHAG.get(), "Swamp Hag Spawn Egg");
 
         // Boss
         add(EntityGenerator.ENTITY_TTM_GOBLINKING.get(), "Goblin King");

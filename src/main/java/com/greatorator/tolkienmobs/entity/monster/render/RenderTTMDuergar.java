@@ -1,4 +1,14 @@
-//package com.greatorator.tolkienmobs.client.render.entity.monster;
+package com.greatorator.tolkienmobs.entity.monster.render;
+
+import com.greatorator.tolkienmobs.entity.merchant.model.ModelTTMDwarf;
+import com.greatorator.tolkienmobs.entity.monster.EntityTTMBarrowWight;
+import com.greatorator.tolkienmobs.entity.monster.EntityTTMDuergar;
+import com.greatorator.tolkienmobs.entity.monster.model.ModelTTMBarrowWight;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.util.ResourceLocation;
+
 //
 //import com.greatorator.tolkienmobs.TolkienMobs;
 //import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
@@ -14,7 +24,19 @@
 //import javax.annotation.Nonnull;
 //import javax.annotation.Nullable;
 //
-//public class RenderTMDuergar extends RenderLiving<EntityTMDuergar> {
+public class RenderTTMDuergar extends MobRenderer<EntityTTMDuergar, ModelTTMDwarf<EntityTTMDuergar>> {
+    public RenderTTMDuergar(EntityRendererManager renderManagerIn) {
+        super(renderManagerIn, new ModelTTMDwarf<>(), 1.0F);
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(EntityTTMDuergar entity) {
+        return entity.getDuergarTypeName();
+    }
+
+    protected void scale(EntityTTMDuergar entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+        super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
+    }
 //    private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/tmduergar/tmduergar1.png");
 //    private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/tmduergar/tmduergar2.png");
 //    private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/tmduergar/tmduergar3.png");
@@ -57,4 +79,4 @@
 //    public void transformHeldFull3DItemLayer() {
 //        GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
 //    }
-//}
+}
