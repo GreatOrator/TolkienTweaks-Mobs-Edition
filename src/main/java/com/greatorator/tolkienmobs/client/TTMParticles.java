@@ -23,12 +23,12 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.MOD;
 @Mod.EventBusSubscriber(modid = TolkienMobs.MODID, bus = MOD)
 @ObjectHolder(TolkienMobs.MODID)
 public class TTMParticles {
-    @ObjectHolder("mirkwood_flame")
-    public static BasicParticleType mirkwood_flame;
+
+    public static BasicParticleType mirkwood_flame = new BasicParticleType(false);
 
     @SubscribeEvent
     public static void registerParticles(RegistryEvent.Register<ParticleType<?>> event) {
-        event.getRegistry().register(new BasicParticleType(false).setRegistryName("mirkwood_flame"));
+        event.getRegistry().register(mirkwood_flame.setRegistryName("mirkwood_flame"));
     }
 
     @OnlyIn(Dist.CLIENT)
