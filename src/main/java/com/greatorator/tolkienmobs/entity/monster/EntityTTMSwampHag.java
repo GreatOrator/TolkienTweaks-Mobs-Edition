@@ -71,7 +71,7 @@ public class EntityTTMSwampHag extends AbstractRaiderEntity implements IRangedAt
         this.targetSelector.addGoal(3, this.attackPlayersGoal);
     }
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
+    public static AttributeModifierMap.MutableAttribute registerAttributes() {
         return MonsterEntity.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 26.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D);

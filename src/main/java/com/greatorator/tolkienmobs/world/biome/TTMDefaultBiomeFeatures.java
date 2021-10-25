@@ -130,6 +130,7 @@ public class TTMDefaultBiomeFeatures {
         p_243737_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_GOBLIN.get(), 80, 4, 4));
         p_243737_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_FELLSPIRIT.get(), 80, 4, 4));
         p_243737_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_BRIGAND.get(), 80, 4, 4));
+        p_243737_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_MIRKWOODSPIDER.get(), 80, 4, 4));
     }
 
     public static void passiveAnimals(MobSpawnInfo.Builder p_243714_0_) {

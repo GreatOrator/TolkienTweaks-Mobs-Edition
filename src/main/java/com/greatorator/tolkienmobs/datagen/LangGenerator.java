@@ -503,6 +503,8 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMFELLSPIRIT.get(), "Fell Spirit Spawn Egg");
         add(EntityGenerator.ENTITY_TTM_SWAMPHAG.get(), "Swamp Hag");
         add(EntityGenerator.EGG_TTMSWAMPHAG.get(), "Swamp Hag Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_MIRKWOODSPIDER.get(), "Mirkwood Spider");
+        add(EntityGenerator.EGG_TTMMIRKWOODSPIDER.get(), "Mirkwood Spider Spawn Egg");
 
         // Boss
         add(EntityGenerator.ENTITY_TTM_GOBLINKING.get(), "Goblin King");

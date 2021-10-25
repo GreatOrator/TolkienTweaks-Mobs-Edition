@@ -138,6 +138,9 @@ public class TTMServerEvents {
         if (event.getName().equals(BiomeGenerator.BIOME_SHIRE.getId())) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOBBIT_HOUSE);
         }
+        if (event.getName().equals(BiomeGenerator.BIOME_MIRKWOOD.getId())) {
+            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMSPIDER_TREE);
+        }
         if (event.getName().equals(BiomeGenerator.BIOME_DAGORLAD.getId())) {
             int i = TTMRand.getRandomInteger(100, 1);
 
@@ -150,7 +153,6 @@ public class TTMServerEvents {
 
         /* Used to test for structure generation */
         if (event.getCategory() == Biome.Category.PLAINS) {
-
         }
     }
 }

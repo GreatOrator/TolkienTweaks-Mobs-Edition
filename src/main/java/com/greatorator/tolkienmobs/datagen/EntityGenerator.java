@@ -96,6 +96,8 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<EntityTTMFellSpirit>> ENTITY_TTM_FELLSPIRIT = ENTITY.register("entityttmfellspirit", () -> entityTTMFellSpirit);
     private static final EntityType<EntityTTMSwampHag> entityTTMSwampHag = buildEntity("entityttmswamphag", EntityTTMSwampHag::new, EntityClassification.MONSTER, 0.7F, 1.85F);
     public static final RegistryObject<EntityType<EntityTTMSwampHag>> ENTITY_TTM_SWAMPHAG = ENTITY.register("entityttmswamphag", () -> entityTTMSwampHag);
+    private static final EntityType<EntityTTMMirkwoodSpider> entityTTMMirkwoodSpider = buildEntity("entityttmmirkwoodspider", EntityTTMMirkwoodSpider::new, EntityClassification.MONSTER, 1.4F, 0.9F);
+    public static final RegistryObject<EntityType<EntityTTMMirkwoodSpider>> ENTITY_TTM_MIRKWOODSPIDER = ENTITY.register("entityttmmirkwoodspider", () -> entityTTMMirkwoodSpider);
 
     // Boss
     private static final EntityType<EntityTTMGoblinKing> entityTTMGoblinKing = buildEntity("entityttmgoblinking", EntityTTMGoblinKing::new, EntityClassification.MONSTER, 0.9F, 1.0F);
@@ -134,6 +136,7 @@ public class EntityGenerator {
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_DUERGAR.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_FELLSPIRIT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_SWAMPHAG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_MIRKWOODSPIDER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
 
         // Boss
 
@@ -167,7 +170,8 @@ public class EntityGenerator {
         GlobalEntityTypeAttributes.put(ENTITY_TTM_TREEENT.get(), EntityTTMTreeEnt.registerAttributes().build());
         GlobalEntityTypeAttributes.put(ENTITY_TTM_DUERGAR.get(), EntityTTMDuergar.registerAttributes().build());
         GlobalEntityTypeAttributes.put(ENTITY_TTM_FELLSPIRIT.get(), EntityTTMFellSpirit.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_SWAMPHAG.get(), EntityTTMFellSpirit.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_SWAMPHAG.get(), EntityTTMSwampHag.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_MIRKWOODSPIDER.get(), EntityTTMMirkwoodSpider.registerAttributes().build());
 
         // Boss
         GlobalEntityTypeAttributes.put(ENTITY_TTM_GOBLINKING.get(), EntityTTMGoblinKing.registerAttributes().build());
@@ -203,6 +207,7 @@ public class EntityGenerator {
     public static final RegistryObject<Item> EGG_TTMDUERGAR = createSpawnEgg("entityttmduergar", entityTTMDuergar, 14705521, 9226665);
     public static final RegistryObject<Item> EGG_TTMFELLSPIRIT = createSpawnEgg("entityttmfellspirit", entityTTMFellSpirit, 14705521, 7405383);
     public static final RegistryObject<Item> EGG_TTMSWAMPHAG = createSpawnEgg("entityttmswamphag", entityTTMSwampHag, 14705521, 12659887);
+    public static final RegistryObject<Item> EGG_TTMMIRKWOODSPIDER = createSpawnEgg("entityttmmirkwoodspider", entityTTMMirkwoodSpider, 14705521, 16211457);
 
     // Boss
     public static final RegistryObject<Item> EGG_TTMGOBLINKING = createSpawnEgg("entityttmgoblinking", entityTTMGoblinKing, 11025577, 2301661);
