@@ -6,6 +6,7 @@ import com.greatorator.tolkienmobs.block.BlockLeafPile;
 import com.greatorator.tolkienmobs.block.BlockMushrooms;
 import com.greatorator.tolkienmobs.block.BlockStonePath;
 import com.greatorator.tolkienmobs.block.BlockTMHallowed;
+import com.greatorator.tolkienmobs.client.TTMParticles;
 import com.greatorator.tolkienmobs.datagen.*;
 import com.greatorator.tolkienmobs.handler.*;
 import com.greatorator.tolkienmobs.item.trinket.Trinket;
@@ -135,7 +136,7 @@ public class TTMContent {
     }).sound(SoundType.WOOD), ParticleTypes.SOUL_FIRE_FLAME));
     public static RegistryObject<TorchBlock> TORCH_MIRKWOOD = BLOCKS.register("torch_mirkwood", () -> new TorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
-    }).sound(SoundType.WOOD), ParticleTypes.FLAME));
+    }).sound(SoundType.WOOD), TTMParticles.mirkwood_flame));
     public static RegistryObject<TorchBlock> TORCH_CULUMALDA = BLOCKS.register("torch_culumalda", () -> new TorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
     }).sound(SoundType.WOOD), ParticleTypes.FLAME));
@@ -147,7 +148,7 @@ public class TTMContent {
     }).sound(SoundType.WOOD), ParticleTypes.SOUL_FIRE_FLAME));
     public static RegistryObject<TorchBlock> WALL_TORCH_MIRKWOOD = BLOCKS.register("wall_torch_mirkwood", () -> new WallTorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
-    }).sound(SoundType.WOOD), ParticleTypes.FLAME));
+    }).sound(SoundType.WOOD), TTMParticles.mirkwood_flame));
     public static RegistryObject<TorchBlock> WALL_TORCH_CULUMALDA = BLOCKS.register("wall_torch_culumalda", () -> new WallTorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
     }).sound(SoundType.WOOD), ParticleTypes.FLAME));
