@@ -77,15 +77,18 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.LEAVES_MIRKWOOD.get());
         blockItem(TTMContent.LEAVES_CULUMALDA.get());
         blockItem(TTMContent.LEAVES_LEBETHRON.get());
+        blockItem(TTMContent.LEAVES_FANGORNOAK.get());
         blockItem(TTMContent.LEAFPILE_MALLORN.get(), modLoc("block/leafpile_mallorn"));
         blockItem(TTMContent.LEAFPILE_MIRKWOOD.get(), modLoc("block/leafpile_mirkwood"));
         blockItem(TTMContent.LEAFPILE_CULUMALDA.get(), modLoc("block/leafpile_culumalda"));
         blockItem(TTMContent.LEAFPILE_LEBETHRON.get(), modLoc("block/leafpile_lebethron"));
+        blockItem(TTMContent.LEAFPILE_FANGORNOAK.get(), modLoc("block/leafpile_fangornoak"));
         blockItem(TTMContent.SAPLING_MALLORN.get());
         blockItem(TTMContent.SAPLING_MIRKWOOD.get());
         blockItem(TTMContent.SAPLING_CULUMALDA.get());
         blockItem(TTMContent.SAPLING_LEBETHRON.get());
         blockItem(TTMContent.SAPLING_DEADWOOD.get());
+        blockItem(TTMContent.SAPLING_FANGORNOAK.get());
 
         // Block Items - Plants & Flowers
         blockItem(TTMContent.MUSHROOM_DECAY_BLOOM.get());

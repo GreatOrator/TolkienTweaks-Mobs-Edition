@@ -152,11 +152,6 @@ public class EntityTTMGoblin extends EntityTTMMonsters {
         }
     }
 
-//    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-//        super.setEquipmentBasedOnDifficulty(difficulty);
-//        this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(TTMContent.SWORD_MORGULIRON.get()));
-//    }
-
     @Override
     public int getMaxSpawnClusterSize() {
         return 8;

@@ -1,14 +1,8 @@
 package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.world.biome.*;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeMaker;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -27,6 +21,7 @@ public class BiomeGenerator {
     public static final RegistryObject<Biome> BIOME_BARROWDOWNS = BIOMES.register("biome_barrowdowns",()-> BiomeBarrowDowns.makeBiomeBarrowDowns(0.2F,0.2F));
     public static final RegistryObject<Biome> BIOME_DAGORLAD = BIOMES.register("biome_dagorlad",()-> BiomeDagorlad.makeBiomeDagorlad(0.2F,0.2F));
     public static final RegistryObject<Biome> BIOME_SHIRE = BIOMES.register("biome_shire",()-> BiomeShire.makeBiomeShire(0.125F,0.5F));
+    public static final RegistryObject<Biome> BIOME_FANGORN = BIOMES.register("biome_fangorn",()-> BiomeFangorn.makeBiomeFangorn(0.125F,0.5F));
 
     public String getName() {
         return "Tolkien Tweaks - Mobs Edition Biomes";

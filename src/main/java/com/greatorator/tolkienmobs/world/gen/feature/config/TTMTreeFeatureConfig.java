@@ -1,7 +1,9 @@
 package com.greatorator.tolkienmobs.world.gen.feature.config;
 
+import com.google.common.collect.ImmutableList;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.world.gen.TTMFeatures;
+import com.greatorator.tolkienmobs.world.gen.placers.TTMBranchingLargeTrunkPlacer;
 import com.greatorator.tolkienmobs.world.gen.placers.TTMBranchingTrunkPlacer;
 import com.greatorator.tolkienmobs.world.gen.placers.TTMSpheroidFoliagePlacer;
 import com.mojang.serialization.Codec;
@@ -19,6 +21,8 @@ import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
+import net.minecraft.world.gen.treedecorator.LeaveVineTreeDecorator;
+import net.minecraft.world.gen.treedecorator.TrunkVineTreeDecorator;
 import net.minecraft.world.gen.trunkplacer.AbstractTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
@@ -84,6 +88,7 @@ public class TTMTreeFeatureConfig implements IFeatureConfig {
     private static final int canopyDistancing = 5;
 
     public static final TrunkPlacerType<TTMBranchingTrunkPlacer> TRUNK_BRANCHING = registerTrunk(TolkienMobs.prefix("branching_trunk_placer"), TTMBranchingTrunkPlacer.CODEC);
+    public static final TrunkPlacerType<TTMBranchingLargeTrunkPlacer> TRUNK_BRANCHING_LARGE = registerTrunk(TolkienMobs.prefix("branching_large_trunk_placer"), TTMBranchingLargeTrunkPlacer.CODEC);
     public static final RegistryObject<FoliagePlacerType<TTMSpheroidFoliagePlacer>> FOLIAGE_SPHEROID = FOLIAGE_PLACER_REGISTER.register("spheroid_foliage_placer", () -> new FoliagePlacerType<>(TTMSpheroidFoliagePlacer.CODEC));
 
     public void forcePlacement() {
@@ -108,7 +113,7 @@ public class TTMTreeFeatureConfig implements IFeatureConfig {
                 new SimpleBlockStateProvider(TTMFeatures.States.MALLORN_LOG),
                 new SimpleBlockStateProvider(TTMFeatures.States.MALLORN_LEAVES),
                 new FancyFoliagePlacer(FeatureSpread.fixed(4), FeatureSpread.fixed(4), 4),
-                new TTMBranchingTrunkPlacer(9, 2, 3, 5, new TTMBranchesConfig(4, 0, 10, 4, 0.23, 0.23), false),
+                new TTMBranchingLargeTrunkPlacer(6, 3, 3, 5, new TTMBranchesConfig(4, 0, 10, 4, 0.23, 0.23), false),
                 new ThreeLayerFeature(5, 1, 0, 1, 2, OptionalInt.empty())).maxWaterDepth(Integer.MAX_VALUE).heightmap(Heightmap.Type.MOTION_BLOCKING)
                 .ignoreVines()
                 .build();
@@ -138,6 +143,15 @@ public class TTMTreeFeatureConfig implements IFeatureConfig {
                 new FancyTrunkPlacer(3, 11, 0),
                 new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))
                 .ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING)
+                .build();
+
+        public static final BaseTreeFeatureConfig FANGORNOAK = new BaseTreeFeatureConfig.Builder(
+                new SimpleBlockStateProvider(TTMFeatures.States.DARK_OAK_LOGS),
+                new SimpleBlockStateProvider(TTMFeatures.States.FANGORNOAK_LEAVES),
+                new FancyFoliagePlacer(FeatureSpread.fixed(4), FeatureSpread.fixed(4), 4),
+                new TTMBranchingLargeTrunkPlacer(6, 3, 3, 5, new TTMBranchesConfig(4, 0, 10, 4, 0.23, 0.23), false),
+                new TwoLayerFeature(1, 0, 1))
+                .decorators(ImmutableList.of(TrunkVineTreeDecorator.INSTANCE, LeaveVineTreeDecorator.INSTANCE))
                 .build();
 
         public static final BaseTreeFeatureConfig MUSHROOM_BLOOM_DECAY = new BaseTreeFeatureConfig.Builder(

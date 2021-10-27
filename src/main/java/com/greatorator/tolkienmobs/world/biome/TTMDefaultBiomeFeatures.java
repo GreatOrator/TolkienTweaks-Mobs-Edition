@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.world.biome;
 
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.world.gen.TTMFeatures;
-import com.greatorator.tolkienmobs.world.gen.TTMFeature;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.BiomeGenerationSettings;
@@ -22,6 +21,10 @@ public class TTMDefaultBiomeFeatures {
 
     public static void addShireTrees(BiomeGenerationSettings.Builder p_243763_0_) {
         p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.TREES_CULUMALDA);
+    }
+
+    public static void addFangornTrees(BiomeGenerationSettings.Builder p_243763_0_) {
+        p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.TREES_FANGORNOAK);
     }
 
     public static void addDesolation(BiomeGenerationSettings.Builder p_243763_0_) {
@@ -72,7 +75,8 @@ public class TTMDefaultBiomeFeatures {
         p_243758_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.PATCH_MIRKWOOD_LEAFPILES_SPARSE);
     }
 
-    public static void addElvenHomes(BiomeGenerationSettings.Builder p_243758_0_) {
+    public static void addFangornLeafPiles(BiomeGenerationSettings.Builder p_243758_0_) {
+        p_243758_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.PATCH_FANGORNOAK_LEAFPILES_SPARSE);
     }
 
     public static void addCulumaldaLeafPiles(BiomeGenerationSettings.Builder p_243758_0_) {
@@ -124,6 +128,10 @@ public class TTMDefaultBiomeFeatures {
 
     public static void mordorSpawns(MobSpawnInfo.Builder p_243737_0_) {
         p_243737_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_GOBLIN.get(), 80, 4, 4));
+    }
+
+    public static void fangornSpawns(MobSpawnInfo.Builder p_243737_0_) {
+        p_243737_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_TREEENT.get(), 80, 4, 4));
     }
 
     public static void mirkwoodSpawns(MobSpawnInfo.Builder p_243737_0_) {

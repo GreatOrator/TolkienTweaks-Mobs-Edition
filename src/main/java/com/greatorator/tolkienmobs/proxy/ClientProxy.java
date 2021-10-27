@@ -84,6 +84,7 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(TTMContent.SAPLING_CULUMALDA.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(TTMContent.SAPLING_LEBETHRON.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(TTMContent.SAPLING_DEADWOOD.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.SAPLING_FANGORNOAK.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(TTMContent.MITHRIL_BARS.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(TTMContent.MORGULIRON_BARS.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(TTMContent.DOOR_MORGULIRON.get(), RenderType.cutout());
@@ -95,6 +96,11 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(TTMContent.WALL_TORCH_MIRKWOOD.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(TTMContent.WALL_TORCH_CULUMALDA.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(TTMContent.WALL_TORCH_LEBETHRON.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_MALLORN.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_MIRKWOOD.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_CULUMALDA.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_LEBETHRON.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_FANGORNOAK.get(), RenderType.cutout());
 
     }
 

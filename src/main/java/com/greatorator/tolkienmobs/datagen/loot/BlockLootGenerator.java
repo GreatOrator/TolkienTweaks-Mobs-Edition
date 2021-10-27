@@ -6,7 +6,6 @@ import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
@@ -94,14 +93,17 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.SAPLING_CULUMALDA.get());
         dropSelf(TTMContent.SAPLING_LEBETHRON.get());
         dropSelf(TTMContent.SAPLING_DEADWOOD.get());
+        dropSelf(TTMContent.SAPLING_FANGORNOAK.get());
         add(TTMContent.LEAVES_MALLORN.get(), (block) -> createLeavesDrops(block, TTMContent.SAPLING_MALLORN.get(), .05f, .0625f, .083333336f, .1f));
         add(TTMContent.LEAVES_MIRKWOOD.get(), (block) -> createLeavesDrops(block, TTMContent.SAPLING_MIRKWOOD.get(), .05f, .0625f, .083333336f, .1f));
         add(TTMContent.LEAVES_CULUMALDA.get(), (block) -> createLeavesDrops(block, TTMContent.SAPLING_CULUMALDA.get(), .05f, .0625f, .083333336f, .1f));
         add(TTMContent.LEAVES_LEBETHRON.get(), (block) -> createLeavesDrops(block, TTMContent.SAPLING_LEBETHRON.get(), .05f, .0625f, .083333336f, .1f));
+        add(TTMContent.LEAVES_FANGORNOAK.get(), (block) -> createLeavesDrops(block, TTMContent.SAPLING_FANGORNOAK.get(), .05f, .0625f, .083333336f, .1f));
         dropSelf(TTMContent.LEAFPILE_MALLORN.get());
         dropSelf(TTMContent.LEAFPILE_MIRKWOOD.get());
         dropSelf(TTMContent.LEAFPILE_CULUMALDA.get());
         dropSelf(TTMContent.LEAFPILE_LEBETHRON.get());
+        dropSelf(TTMContent.LEAFPILE_FANGORNOAK.get());
 
         // Blocks - Plants & Flowers
         dropSelf(TTMContent.MUSHROOM_DECAY_BLOOM.get());

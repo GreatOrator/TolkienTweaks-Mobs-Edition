@@ -94,15 +94,18 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.LEAVES_MIRKWOOD.get(), "Mirkwood Leaves");
         add(TTMContent.LEAVES_CULUMALDA.get(), "Culumalda Leaves");
         add(TTMContent.LEAVES_LEBETHRON.get(), "Lebethron Leaves");
+        add(TTMContent.LEAVES_FANGORNOAK.get(), "Fangorn Oak Leaves");
         add(TTMContent.LEAFPILE_MALLORN.get(), "Pile of Mallorn Leaves");
         add(TTMContent.LEAFPILE_MIRKWOOD.get(), "Pile of Mirkwood Leaves");
         add(TTMContent.LEAFPILE_CULUMALDA.get(), "Pile of Culumalda Leaves");
         add(TTMContent.LEAFPILE_LEBETHRON.get(), "Pile of Lebethron Leaves");
+        add(TTMContent.LEAFPILE_FANGORNOAK.get(), "Pile of Fangorn Oak Leaves");
         add(TTMContent.SAPLING_MALLORN.get(), "Mallorn Sapling");
         add(TTMContent.SAPLING_MIRKWOOD.get(), "Mirkwood Sapling");
         add(TTMContent.SAPLING_CULUMALDA.get(), "Culumalda Sapling");
         add(TTMContent.SAPLING_LEBETHRON.get(), "Lebethron Sapling");
         add(TTMContent.SAPLING_DEADWOOD.get(), "Deadwood Sapling");
+        add(TTMContent.SAPLING_FANGORNOAK.get(), "Fangorn Oak Sapling");
 
         // Plants & Flowers
         add(TTMContent.MUSHROOM_DECAY_BLOOM.get(), "Bloom of Decay");
@@ -437,6 +440,7 @@ public class LangGenerator extends LanguageProvider {
         helper.add("biome_barrowdowns", "Tyrn Gorthad");
         helper.add("biome_dagorlad", "The Brown Lands");
         helper.add("biome_shire", "The Shire");
+        helper.add("biome_fangorn", "Fangorn Forest");
     }
 
     private void merchants(PrefixHelper helper) {

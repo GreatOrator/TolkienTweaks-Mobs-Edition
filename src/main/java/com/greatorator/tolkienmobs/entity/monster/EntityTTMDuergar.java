@@ -105,36 +105,4 @@ public class EntityTTMDuergar extends EntityTTMMonsters {
         super.readAdditionalSaveData(compound);
         this.setDuergarType(compound.getInt("DuergarType"));
     }
-//
-//    public EntityTMDuergar(World worldIn) {
-//        super(worldIn);
-//        this.setSize(1.0F, 1.5F);
-//        this.setWeaponType(TTMFeatures.AXE_MORGULIRON);
-//        this.setLootTable(LootInit.TMDUERGAR);
-//        this.setMobMentality(true, SoundInit.soundAngryDwarf);
-//        this.setRndMinMax(1,5);
-//        this.setCombatTask();
-//    }
-//
-//    @Override
-//    public boolean getCanSpawnHere() {
-//        int willSpawn = TTMSpawnEvent.spawnChance();
-//
-//        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && !this.world.canSeeSky(new BlockPos(this)) && willSpawn <= 10;
-//    }
-//
-//    @Override
-//    public double getAttackDamage() {
-//        return 9.0D;
-//    }
-//
-//    @Override
-//    public double getArmorStrength() {
-//        return 6.0D;
-//    }
-//
-//    @Override
-//    public double getHealthLevel() {
-//        return 25.0D;
-//    }
 }

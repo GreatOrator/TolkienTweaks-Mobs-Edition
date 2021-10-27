@@ -29,9 +29,9 @@ public class BlockTagGenerator extends BlockTagsProvider {
         tag(BlockTags.WOODEN_FENCES).addTag(TTMTags.blocks.FENCES_WOODEN);
         tag(TTMTags.blocks.FENCE_GATES_WOODEN).add(TTMContent.FENCE_GATE_MALLORN.get(), TTMContent.FENCE_GATE_MIRKWOOD.get(), TTMContent.FENCE_GATE_CULUMALDA.get(), TTMContent.FENCE_GATE_LEBETHRON.get());
         tag(BlockTags.FENCE_GATES).addTag(TTMTags.blocks.FENCE_GATES_WOODEN);
-        tag(TTMTags.blocks.SAPLINGS).add(TTMContent.SAPLING_MALLORN.get(),TTMContent.SAPLING_MIRKWOOD.get(), TTMContent.SAPLING_CULUMALDA.get(), TTMContent.SAPLING_LEBETHRON.get());
+        tag(TTMTags.blocks.SAPLINGS).add(TTMContent.SAPLING_MALLORN.get(),TTMContent.SAPLING_MIRKWOOD.get(), TTMContent.SAPLING_CULUMALDA.get(), TTMContent.SAPLING_LEBETHRON.get(), TTMContent.SAPLING_FANGORNOAK.get());
         tag(BlockTags.SAPLINGS).addTag(TTMTags.blocks.SAPLINGS);
-        tag(TTMTags.blocks.LEAVES).add(TTMContent.LEAVES_MALLORN.get(), TTMContent.LEAVES_MIRKWOOD.get(), TTMContent.LEAVES_CULUMALDA.get(), TTMContent.LEAVES_LEBETHRON.get());
+        tag(TTMTags.blocks.LEAVES).add(TTMContent.LEAVES_MALLORN.get(), TTMContent.LEAVES_MIRKWOOD.get(), TTMContent.LEAVES_CULUMALDA.get(), TTMContent.LEAVES_LEBETHRON.get(), TTMContent.LEAVES_FANGORNOAK.get());
         tag(BlockTags.LEAVES).addTag(TTMTags.blocks.LEAVES);
         tag(TTMTags.blocks.PLANKS).add(TTMContent.PLANKS_MALLORN.get(), TTMContent.PLANKS_MIRKWOOD.get(), TTMContent.PLANKS_CULUMALDA.get(), TTMContent.PLANKS_LEBETHRON.get());
         tag(BlockTags.PLANKS).addTag(TTMTags.blocks.PLANKS);

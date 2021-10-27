@@ -319,19 +319,26 @@ public class TTMFeatureUtil {
         return rand.nextInt(howMuch) >= 1 ? Blocks.COBBLESTONE.defaultBlockState() : Blocks.MOSSY_COBBLESTONE.defaultBlockState();
     }
 
-    public static boolean isAreaSuitable(IWorld world, Random rand, BlockPos pos, int width, int height, int depth) {
+    /**
+     * Checks an area to see if it consists of flat natural ground below and air above
+     */
+    public static boolean isAreaSuitable(IWorld world, BlockPos pos, int width, int height, int depth) {
         boolean flag = true;
 
+        // check if there's anything within the diameter
         for (int cx = 0; cx < width; cx++) {
             for (int cz = 0; cz < depth; cz++) {
                 BlockPos pos_ = pos.offset(cx, 0, cz);
-                if (world.hasChunkAt(pos_)) {
+                // check if the blocks even exist?
+                if (world.isEmptyBlock(pos_)) {
+                    // is there grass, dirt or stone below?
                     Material m = world.getBlockState(pos_.below()).getMaterial();
-                    if (m != Material.DIRT && m != Material.GRASS && m != Material.STONE) {
+                    if (m != Material.DIRT && m != Material.PLANT && m != Material.STONE) {
                         flag = false;
                     }
 
                     for (int cy = 0; cy < height; cy++) {
+                        // blank space above?
                         if (!world.isEmptyBlock(pos_.above(cy))) {
                             flag = false;
                         }
@@ -341,6 +348,8 @@ public class TTMFeatureUtil {
                 }
             }
         }
+
+        // Okie dokie
         return flag;
     }
 
