@@ -333,7 +333,7 @@ public class TTMFeatureUtil {
                 if (world.isEmptyBlock(pos_)) {
                     // is there grass, dirt or stone below?
                     Material m = world.getBlockState(pos_.below()).getMaterial();
-                    if (m != Material.DIRT && m != Material.PLANT && m != Material.STONE) {
+                    if (m != Material.GRASS && m != Material.DIRT && m != Material.PLANT && m != Material.STONE) {
                         flag = false;
                     }
 

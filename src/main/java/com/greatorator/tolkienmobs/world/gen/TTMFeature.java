@@ -39,8 +39,8 @@ public class TTMFeature {
 
 
         //Register Dependents.
-        STONE_SPIKE_CONFIG = register("stone_spike", STONE_SPIKE.configured(IFeatureConfig.NONE).count(3));
-        SMALL_LOG_CONFIG = register("small_log", SMALL_LOG.configured(IFeatureConfig.NONE).count(3));
+        STONE_SPIKE_CONFIG = register("stone_spike", STONE_SPIKE.configured(IFeatureConfig.NONE).range(128).squared().count(3));
+        SMALL_LOG_CONFIG = register("small_log", SMALL_LOG.configured(IFeatureConfig.NONE).range(128).squared().count(10));
         BLEAK_LAND_CONFIG = register("bleak_land", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(SMALL_LOG_CONFIG.weighted(0.4F), SMALL_LOG_CONFIG.weighted(0.05F)), SMALL_LOG_CONFIG)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(50, 0.1F, 1))));
 
     }
@@ -48,6 +48,7 @@ public class TTMFeature {
     public static void biomeLoading(BiomeLoadingEvent event) {
         if (event.getName().equals(BiomeGenerator.BIOME_MORDOR.getId())) {
             event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, STONE_SPIKE_CONFIG);
+            event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, SMALL_LOG_CONFIG);
             LOGGER.info("What? " + event);
         }
 
