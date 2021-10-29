@@ -21,6 +21,11 @@
     "tolkienmobs:entityttmduergar_spawn_egg",
     "tolkienmobs:entityttmfellspirit_spawn_egg",
     "tolkienmobs:entityttmswamphag_spawn_egg",
-    "tolkienmobs:entityttmmirkwoodspider_spawn_egg"
+    "tolkienmobs:entityttmmirkwoodspider_spawn_egg",
+    "tolkienmobs:entityttmharadrim_spawn_egg",
+    "tolkienmobs:entityttmtroll_spawn_egg",
+    "tolkienmobs:entityttmwarg_spawn_egg",
+    "tolkienmobs:entityttmmordororc_spawn_egg",
+    "tolkienmobs:entityttmhuron_spawn_egg"
   ]
 }

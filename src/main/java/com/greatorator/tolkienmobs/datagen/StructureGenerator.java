@@ -27,6 +27,7 @@ public class StructureGenerator {
     public static final RegistryObject<Structure<NoFeatureConfig>> TTMHOBBIT_HOUSE = STRUCTURES.register("ttmhobbit_house", () -> (new TTMHobbitHouseStructure(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> TTMSWAMP_HAG_HUT = STRUCTURES.register("ttmswamp_hag_hut", () -> (new TTMSwampHagHutStructure(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> TTMSPIDER_TREE = STRUCTURES.register("ttmspidertree", () -> (new TTMSpiderTreeStructure(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> TTMWARG_PIT = STRUCTURES.register("ttmwargpit", () -> (new TTMWargPitStructure(NoFeatureConfig.CODEC)));
 
     public static void setupStructures() {
         setupMapSpacingAndLand(
@@ -70,6 +71,12 @@ public class StructureGenerator {
                 new StructureSeparationSettings(30 /* average distance apart in chunks between spawn attempts */,
                         10 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         481284127 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                true);
+        setupMapSpacingAndLand(
+                TTMWARG_PIT.get(), /* The instance of the structure */
+                new StructureSeparationSettings(10 /* average distance apart in chunks between spawn attempts */,
+                        5 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                        188808256 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
 
 

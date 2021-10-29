@@ -154,6 +154,15 @@ public class TTMTreeFeatureConfig implements IFeatureConfig {
                 .decorators(ImmutableList.of(TrunkVineTreeDecorator.INSTANCE, LeaveVineTreeDecorator.INSTANCE))
                 .build();
 
+        public static final BaseTreeFeatureConfig OLDFORESTOAK = new BaseTreeFeatureConfig.Builder(
+                new SimpleBlockStateProvider(TTMFeatures.States.DARK_OAK_LOGS),
+                new SimpleBlockStateProvider(TTMFeatures.States.DARK_OAK_LEAVES),
+                new FancyFoliagePlacer(FeatureSpread.fixed(4), FeatureSpread.fixed(4), 4),
+                new TTMBranchingLargeTrunkPlacer(6, 3, 3, 5, new TTMBranchesConfig(4, 0, 10, 4, 0.23, 0.23), false),
+                new TwoLayerFeature(1, 0, 1))
+                .decorators(ImmutableList.of(LeaveVineTreeDecorator.INSTANCE))
+                .build();
+
         public static final BaseTreeFeatureConfig MUSHROOM_BLOOM_DECAY = new BaseTreeFeatureConfig.Builder(
                 new SimpleBlockStateProvider(TTMFeatures.States.MUSHROOM_STEM),
                 new SimpleBlockStateProvider(TTMFeatures.States.CAP_BLOOM_DECAY),

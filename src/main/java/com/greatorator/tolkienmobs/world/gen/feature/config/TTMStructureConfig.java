@@ -21,6 +21,7 @@ public class TTMStructureConfig {
     public static StructureFeature<?, ?> CONFIGURED_TTMHOBBIT_HOUSE = StructureGenerator.TTMHOBBIT_HOUSE.get().configured(IFeatureConfig.NONE);
     public static StructureFeature<?, ?> CONFIGURED_TTMSWAMP_HAG_HUT = StructureGenerator.TTMSWAMP_HAG_HUT.get().configured(IFeatureConfig.NONE);
     public static StructureFeature<?, ?> CONFIGURED_TTMSPIDER_TREE = StructureGenerator.TTMSPIDER_TREE.get().configured(IFeatureConfig.NONE);
+    public static StructureFeature<?, ?> CONFIGURED_TTMWARG_PIT = StructureGenerator.TTMWARG_PIT.get().configured(IFeatureConfig.NONE);
 
     /**
      * Registers the configured structure which is what gets added to the biomes.
@@ -38,6 +39,7 @@ public class TTMStructureConfig {
         Registry.register(registry, new ResourceLocation(MODID, "configured_ttmhobbit_house"), CONFIGURED_TTMHOBBIT_HOUSE);
         Registry.register(registry, new ResourceLocation(MODID, "configured_ttmswamp_hag_hut"), CONFIGURED_TTMSWAMP_HAG_HUT);
         Registry.register(registry, new ResourceLocation(MODID, "configured_ttmspidertree"), CONFIGURED_TTMSPIDER_TREE);
+        Registry.register(registry, new ResourceLocation(MODID, "configured_ttmwargpit"), CONFIGURED_TTMWARG_PIT);
 
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMHOUSE_ELVEN.get(), CONFIGURED_TTMHOUSE_ELVEN);
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMBARROW.get(), CONFIGURED_TTMBARROW);
@@ -46,5 +48,6 @@ public class TTMStructureConfig {
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMHOBBIT_HOUSE.get(), CONFIGURED_TTMHOBBIT_HOUSE);
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMSWAMP_HAG_HUT.get(), CONFIGURED_TTMSWAMP_HAG_HUT);
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMSPIDER_TREE.get(), CONFIGURED_TTMSPIDER_TREE);
+        FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMWARG_PIT.get(), CONFIGURED_TTMWARG_PIT);
     }
 }

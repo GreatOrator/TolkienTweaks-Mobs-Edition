@@ -26,6 +26,7 @@ public final class TTMFeatures {
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> LEBETHRON = registerWorldFeature(TolkienMobs.prefix("lebethron"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.LEBETHRON));
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> DEADTREE = registerWorldFeature(TolkienMobs.prefix("deadtree"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.DEADTREE));
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> FANGORNOAK = registerWorldFeature(TolkienMobs.prefix("fangornoak"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.FANGORNOAK));
+    public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> OLDFORESTOAK = registerWorldFeature(TolkienMobs.prefix("oldforestoak"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.OLDFORESTOAK));
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> MUSHROOM_BLOOM_DECAY = registerWorldFeature(TolkienMobs.prefix("bloomdecay"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.MUSHROOM_BLOOM_DECAY));
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> MUSHROOM_DECAY_BLOOM = registerWorldFeature(TolkienMobs.prefix("decaybloom"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.MUSHROOM_DECAY_BLOOM));
 
@@ -40,6 +41,7 @@ public final class TTMFeatures {
     public static final ConfiguredFeature<?, ? extends Feature<?>> TREES_DEADWOOD = register("trees_deadtree", DEADTREE.decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(1 , 0.1F, 1))));
     public static final ConfiguredFeature<?, ? extends Feature<?>> TREES_CULUMALDA = register("trees_culumalda", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(CULUMALDA.weighted(0.1F), Features.OAK_BEES_002.weighted(0.5F), LEBETHRON.weighted(0.33333334F)), CULUMALDA)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(0, 0.5F, 1))));
     public static final ConfiguredFeature<?, ? extends Feature<?>> TREES_FANGORNOAK = register("trees_fangornoak", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(FANGORNOAK.weighted(0.1F), Features.OAK_BEES_002.weighted(0.5F), FANGORNOAK.weighted(0.33333334F)), FANGORNOAK)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(35, 0.5F, 1))));
+    public static final ConfiguredFeature<?, ? extends Feature<?>> TREES_OLDFORESTOAK = register("trees_oldforestoak", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(OLDFORESTOAK.weighted(0.1F), Features.OAK_BEES_005.weighted(0.5F), OLDFORESTOAK.weighted(0.33333334F)), FANGORNOAK)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(35, 0.5F, 1))));
     public static final ConfiguredFeature<?, ?> FOREST_ROCK = register("forest_rock", Feature.FOREST_ROCK.configured(new BlockStateFeatureConfig(States.MOSSY_COBBLESTONE)).decorated(Features.Placements.HEIGHTMAP_SQUARE).countRandom(2));
     public static final ConfiguredFeature<?, ?> GENERAL_ROCK = register("general_rock", Feature.FOREST_ROCK.configured(new BlockStateFeatureConfig(States.STONE)).decorated(Features.Placements.HEIGHTMAP_SQUARE).countRandom(2));
     public static final ConfiguredFeature<?, ? extends Feature<?>> ORE_AMMOLITE = register("ore_ammolite", Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, States.AMMOLITE_ORE, 8)).range(16).squared());
@@ -103,6 +105,7 @@ public final class TTMFeatures {
         public static final BlockState MOSSY_COBBLESTONE = Blocks.MOSSY_COBBLESTONE.defaultBlockState();
         public static final BlockState FANGORNOAK_LEAVES = TTMContent.LEAVES_FANGORNOAK.get().defaultBlockState();
         public static final BlockState DARK_OAK_LOGS = Blocks.DARK_OAK_LOG.defaultBlockState();
+        public static final BlockState DARK_OAK_LEAVES = Blocks.DARK_OAK_LEAVES.defaultBlockState();
         public static final BlockState STONE = Blocks.STONE.defaultBlockState();
     }
 }

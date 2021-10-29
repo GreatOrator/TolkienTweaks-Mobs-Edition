@@ -1,4 +1,12 @@
-//package com.greatorator.tolkienmobs.client.render.entity.monster;
+package com.greatorator.tolkienmobs.entity.monster.render;
+
+import com.greatorator.tolkienmobs.entity.monster.EntityTTMHaradrim;
+import com.greatorator.tolkienmobs.entity.monster.model.ModelTMHaradrim;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.util.ResourceLocation;
+
 //
 //import com.greatorator.tolkienmobs.TolkienMobs;
 //import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
@@ -14,7 +22,19 @@
 //import javax.annotation.Nonnull;
 //import javax.annotation.Nullable;
 //
-//public class RenderTMHaradrim extends RenderLiving<EntityTMHaradrim> {
+public class RenderTTMHaradrim extends MobRenderer<EntityTTMHaradrim, ModelTMHaradrim<EntityTTMHaradrim>> {
+    public RenderTTMHaradrim(EntityRendererManager renderManagerIn) {
+        super(renderManagerIn, new ModelTMHaradrim<>(0.0F, true), 1.0F);
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(EntityTTMHaradrim entity) {
+        return entity.getHaradrimTypeName();
+    }
+
+    protected void scale(EntityTTMHaradrim entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+        super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
+    }
 //    private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/tmharadrim/haradrim0.png");
 //    private static final ResourceLocation BLUE = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/tmharadrim/haradrim1.png");
 //    private static final ResourceLocation BLACK = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/tmharadrim/haradrim2.png");
@@ -77,4 +97,4 @@
 //    public void transformHeldFull3DItemLayer() {
 //        GlStateManager.translate(0.09375F, 0.1875F, 0.0F);
 //    }
-//}
+}

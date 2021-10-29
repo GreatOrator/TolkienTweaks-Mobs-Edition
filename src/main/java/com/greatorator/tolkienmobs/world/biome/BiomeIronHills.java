@@ -1,4 +1,4 @@
-//package com.greatorator.tolkienmobs.world.world_old.biomes;
+package com.greatorator.tolkienmobs.world.biome;
 //
 //import com.greatorator.tolkienmobs.TTMConfig_Old;
 //import com.greatorator.tolkienmobs.entity.passive.EntityTMDwarf;

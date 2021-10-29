@@ -254,7 +254,7 @@ public class EntityTTMSwampHag extends AbstractRaiderEntity implements IRangedAt
 
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        int job = TTMRand.getRandomInteger(1, 4);
+        int job = TTMRand.getRandomInteger(5, 1);
         this.setSwampHagType(job);
         this.populateDefaultEquipmentSlots(difficultyIn);
 

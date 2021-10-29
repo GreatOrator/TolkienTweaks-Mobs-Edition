@@ -38,7 +38,6 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 
@@ -119,6 +118,8 @@ public class TTMServerEvents {
             tempMap.putIfAbsent(StructureGenerator.TTMRUIN_SMALL.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMRUIN_SMALL.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMHOBBIT_HOUSE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOBBIT_HOUSE.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMSWAMP_HAG_HUT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMSWAMP_HAG_HUT.get()));
+            tempMap.putIfAbsent(StructureGenerator.TTMSPIDER_TREE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMSPIDER_TREE.get()));
+            tempMap.putIfAbsent(StructureGenerator.TTMWARG_PIT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMWARG_PIT.get()));
 
             serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
         }
@@ -141,6 +142,9 @@ public class TTMServerEvents {
         if (event.getName().equals(BiomeGenerator.BIOME_MIRKWOOD.getId())) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMSPIDER_TREE);
         }
+        if (event.getName().equals(BiomeGenerator.BIOME_MORDOR.getId())) {
+            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMWARG_PIT);
+        }
         if (event.getName().equals(BiomeGenerator.BIOME_DAGORLAD.getId())) {
             int i = TTMRand.getRandomInteger(100, 1);
 
@@ -153,6 +157,7 @@ public class TTMServerEvents {
 
         /* Used to test for structure generation */
         if (event.getCategory() == Biome.Category.PLAINS) {
+//            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMWARG_PIT);
         }
     }
 }

@@ -19,7 +19,7 @@ public class BiomeShire {
         spawnInf.setPlayerCanSpawn();
         TTMDefaultBiomeFeatures.hobbitSpawns(spawnInf);
         TTMDefaultBiomeFeatures.passiveAnimals(spawnInf);
-        TTMDefaultBiomeFeatures.ttmAmbientSpawns(spawnInf);
+        TTMDefaultBiomeFeatures.AmbientSpawns(spawnInf);
 
         BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder())
                 .surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);

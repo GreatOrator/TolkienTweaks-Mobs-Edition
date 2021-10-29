@@ -1,35 +1,19 @@
 package com.greatorator.tolkienmobs.datagen;
 
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.EntityTTMAmbients;
 import com.greatorator.tolkienmobs.entity.ambient.*;
-import com.greatorator.tolkienmobs.entity.ambient.model.ModelTTMSwarm;
-import com.greatorator.tolkienmobs.entity.ambient.render.*;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.ammo.EntityGaladhrimArrow;
-import com.greatorator.tolkienmobs.entity.ammo.render.RenderBoulder;
-import com.greatorator.tolkienmobs.entity.ammo.render.RenderFellBeastFireball;
-import com.greatorator.tolkienmobs.entity.ammo.render.RenderGaladhrimArrow;
 import com.greatorator.tolkienmobs.entity.boss.EntityTTMGoblinKing;
-import com.greatorator.tolkienmobs.entity.boss.render.RenderTTMGoblinKing;
 import com.greatorator.tolkienmobs.entity.merchant.EntityTTMDwarf;
 import com.greatorator.tolkienmobs.entity.merchant.EntityTTMElves;
 import com.greatorator.tolkienmobs.entity.merchant.EntityTTMHobbit;
 import com.greatorator.tolkienmobs.entity.merchant.EntityTTMHuman;
-import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMDwarf;
-import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMElves;
-import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMHobbit;
-import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMHuman;
 import com.greatorator.tolkienmobs.entity.monster.*;
-import com.greatorator.tolkienmobs.entity.monster.render.RenderTTMBarrowWight;
-import com.greatorator.tolkienmobs.entity.monster.render.RenderTTMGoblin;
 import com.greatorator.tolkienmobs.entity.passive.EntityTTMAuroch;
 import com.greatorator.tolkienmobs.entity.passive.EntityTTMGoat;
 import com.greatorator.tolkienmobs.entity.passive.EntityTTMMumakil;
-import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMAuroch;
-import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMGoat;
-import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMMumakil;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
@@ -38,12 +22,10 @@ import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.BatEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -98,6 +80,16 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<EntityTTMSwampHag>> ENTITY_TTM_SWAMPHAG = ENTITY.register("entityttmswamphag", () -> entityTTMSwampHag);
     private static final EntityType<EntityTTMMirkwoodSpider> entityTTMMirkwoodSpider = buildEntity("entityttmmirkwoodspider", EntityTTMMirkwoodSpider::new, EntityClassification.MONSTER, 1.4F, 0.9F);
     public static final RegistryObject<EntityType<EntityTTMMirkwoodSpider>> ENTITY_TTM_MIRKWOODSPIDER = ENTITY.register("entityttmmirkwoodspider", () -> entityTTMMirkwoodSpider);
+    private static final EntityType<EntityTTMHaradrim> entityTTMHaradrim = buildEntity("entityttmharadrim", EntityTTMHaradrim::new, EntityClassification.MONSTER, 0.7F, 1.6F);
+    public static final RegistryObject<EntityType<EntityTTMHaradrim>> ENTITY_TTM_HARADRIM = ENTITY.register("entityttmharadrim", () -> entityTTMHaradrim);
+    private static final EntityType<EntityTTMTroll> entityTTMTroll = buildEntity("entityttmtroll", EntityTTMTroll::new, EntityClassification.MONSTER, 3.4F, 4.6F);
+    public static final RegistryObject<EntityType<EntityTTMTroll>> ENTITY_TTM_TROLL = ENTITY.register("entityttmtroll", () -> entityTTMTroll);
+    private static final EntityType<EntityTTMWarg> entityTTMWarg = buildEntity("entityttmwarg", EntityTTMWarg::new, EntityClassification.MONSTER, 1.5F, 1.4F);
+    public static final RegistryObject<EntityType<EntityTTMWarg>> ENTITY_TTM_WARG = ENTITY.register("entityttmwarg", () -> entityTTMWarg);
+    private static final EntityType<EntityTTMMordorOrc> entityTTMMordorOrc = buildEntity("entityttmmordororc", EntityTTMMordorOrc::new, EntityClassification.MONSTER, 1.5F, 1.4F);
+    public static final RegistryObject<EntityType<EntityTTMMordorOrc>> ENTITY_TTM_MORDORORC = ENTITY.register("entityttmmordororc", () -> entityTTMMordorOrc);
+    private static final EntityType<EntityTTMHuron> entityTTMHuron = buildEntity("entityttmhuron", EntityTTMHuron::new, EntityClassification.MONSTER, 1.5F, 1.4F);
+    public static final RegistryObject<EntityType<EntityTTMHuron>> ENTITY_TTM_HURON = ENTITY.register("entityttmhuron", () -> entityTTMHuron);
 
     // Boss
     private static final EntityType<EntityTTMGoblinKing> entityTTMGoblinKing = buildEntity("entityttmgoblinking", EntityTTMGoblinKing::new, EntityClassification.MONSTER, 0.9F, 1.0F);
@@ -137,10 +129,16 @@ public class EntityGenerator {
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_FELLSPIRIT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_SWAMPHAG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_MIRKWOODSPIDER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_HARADRIM.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_TROLL.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_WARG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::checkAnimalSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_MORDORORC.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_HURON.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
 
         // Boss
 
         //Passive
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_MUMAKIL.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMMumakil::checkMumakilSpawn);
 
         //Look in EntitySpawnPlacementRegistry for examples
     }
@@ -172,6 +170,11 @@ public class EntityGenerator {
         GlobalEntityTypeAttributes.put(ENTITY_TTM_FELLSPIRIT.get(), EntityTTMFellSpirit.registerAttributes().build());
         GlobalEntityTypeAttributes.put(ENTITY_TTM_SWAMPHAG.get(), EntityTTMSwampHag.registerAttributes().build());
         GlobalEntityTypeAttributes.put(ENTITY_TTM_MIRKWOODSPIDER.get(), EntityTTMMirkwoodSpider.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_HARADRIM.get(), EntityTTMHaradrim.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_TROLL.get(), EntityTTMTroll.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_WARG.get(), EntityTTMWarg.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_MORDORORC.get(), EntityTTMMordorOrc.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_HURON.get(), EntityTTMMordorOrc.registerAttributes().build());
 
         // Boss
         GlobalEntityTypeAttributes.put(ENTITY_TTM_GOBLINKING.get(), EntityTTMGoblinKing.registerAttributes().build());
@@ -208,6 +211,11 @@ public class EntityGenerator {
     public static final RegistryObject<Item> EGG_TTMFELLSPIRIT = createSpawnEgg("entityttmfellspirit", entityTTMFellSpirit, 14705521, 7405383);
     public static final RegistryObject<Item> EGG_TTMSWAMPHAG = createSpawnEgg("entityttmswamphag", entityTTMSwampHag, 14705521, 12659887);
     public static final RegistryObject<Item> EGG_TTMMIRKWOODSPIDER = createSpawnEgg("entityttmmirkwoodspider", entityTTMMirkwoodSpider, 14705521, 16211457);
+    public static final RegistryObject<Item> EGG_TTMHARADRIM = createSpawnEgg("entityttmharadrim", entityTTMHaradrim, 14705521, 12198412);
+    public static final RegistryObject<Item> EGG_TTMTROLL = createSpawnEgg("entityttmtroll", entityTTMTroll, 14705521, 13146148);
+    public static final RegistryObject<Item> EGG_TTMWARG = createSpawnEgg("entityttmwarg", entityTTMWarg, 14705521, 2703752);
+    public static final RegistryObject<Item> EGG_TTMMORDORORC = createSpawnEgg("entityttmmordororc", entityTTMMordorOrc, 14705521, 8755748);
+    public static final RegistryObject<Item> EGG_TTMHURON = createSpawnEgg("entityttmhuron", entityTTMHuron, 14705521, 10600204);
 
     // Boss
     public static final RegistryObject<Item> EGG_TTMGOBLINKING = createSpawnEgg("entityttmgoblinking", entityTTMGoblinKing, 11025577, 2301661);

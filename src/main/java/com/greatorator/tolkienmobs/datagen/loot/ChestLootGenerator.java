@@ -2,11 +2,9 @@ package com.greatorator.tolkienmobs.datagen.loot;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import net.minecraft.data.loot.ChestLootTables;
-import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.Items;
 import net.minecraft.loot.*;
 import net.minecraft.loot.functions.EnchantRandomly;
-import net.minecraft.loot.functions.EnchantWithLevels;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
 
@@ -284,6 +282,38 @@ public class ChestLootGenerator extends ChestLootTables {
                                 .add(ItemLootEntry.lootTableItem(Items.BLAZE_POWDER)
                                         .setWeight(10)))
                         .apply(SetCount.setCount(RandomValueRange.between(1, 3))));
+        registrar.accept(new ResourceLocation(MODID, "chests/warg_pit"),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(RandomValueRange.between(3, 5))
+                                .bonusRolls(1, 2)
+                                .add(ItemLootEntry.lootTableItem(TTMContent.ITEM_COIN_BRONZE.get())
+                                        .setWeight(18)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 5))))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.MONSTER_FLESH.get())
+                                        .setWeight(12)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                                .add(ItemLootEntry.lootTableItem(Items.BONE)
+                                        .setWeight(15)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                                .add(ItemLootEntry.lootTableItem(Items.NAME_TAG)
+                                        .setWeight(15)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 2))))
+                                .add(ItemLootEntry.lootTableItem(Items.GOLD_INGOT)
+                                        .setWeight(20)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.INGOT_MORGULIRON.get())
+                                        .setWeight(2)
+                                        .apply(SetCount.setCount(RandomValueRange.between(2, 8))))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.GROG.get())
+                                        .setWeight(10)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.CRAM.get())
+                                        .setWeight(15)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.ITEM_COIN_SILVER.get())
+                                        .setWeight(10)))
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))));
 
     }
 

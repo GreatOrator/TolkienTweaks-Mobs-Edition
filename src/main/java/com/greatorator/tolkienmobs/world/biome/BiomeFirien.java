@@ -1,17 +1,17 @@
-//package com.greatorator.tolkienmobs.world.world_old.biomes;
+package com.greatorator.tolkienmobs.world.biome;
 //
 //import com.greatorator.tolkienmobs.TTMConfig_Old;
 //import com.greatorator.tolkienmobs.block.itemblock.BlockFlowers;
 //import com.greatorator.tolkienmobs.entity.ambient.EntityTMSquirrel;
-//import com.greatorator.tolkienmobs.entity.hostile.EntityTMHuron;
-//import com.greatorator.tolkienmobs.handler.handler_old.interfaces.IFogyBiome;
+//import com.greatorator.tolkienmobs.entity.passive.EntityTMElves;
+//import com.greatorator.tolkienmobs.entity.special.EntityTMMithrilGolem;
 //import com.greatorator.tolkienmobs.init.TTMFeatures;
 //import com.greatorator.tolkienmobs.utils.LogHelperTTM;
 //import com.greatorator.tolkienmobs.world.world_old.gen.WorldGenCustomFlowers;
-//import com.greatorator.tolkienmobs.world.world_old.gen.generators.WorldGenTreeOldForest;
+//import com.greatorator.tolkienmobs.world.world_old.gen.generators.WorldGenTreeCulumalda;
+//import com.greatorator.tolkienmobs.world.world_old.gen.generators.WorldGenTreeLebethron;
 //import net.minecraft.block.BlockFlower;
 //import net.minecraft.entity.passive.EntityWolf;
-//import net.minecraft.entity.player.PlayerEntity;
 //import net.minecraft.init.Blocks;
 //import net.minecraft.util.math.BlockPos;
 //import net.minecraft.util.math.MathHelper;
@@ -23,36 +23,39 @@
 //
 //import java.util.Random;
 //
-//public class BiomeOldForest extends Biome implements IFogyBiome {
+//public class BiomeFirien extends Biome {
+//    /* The Culumalda generator. */
+//    protected static final WorldGenTreeCulumalda CULUMALDA_FEATURE = new WorldGenTreeCulumalda(false);
+//    /* The Lebethron generator. */
+//    protected static final WorldGenTreeLebethron LEBETHRON_FEATURE = new WorldGenTreeLebethron(false);
 //    private WorldGenCustomFlowers flowers = new WorldGenCustomFlowers();
 //
-//    public BiomeOldForest()
+//    public BiomeFirien()
 //    {
-//        super(new BiomeProperties("Old Forest")
+//        super(new BiomeProperties("Firien Wood")
 //                .setTemperature(0.7F)
 //                .setRainfall(0.8F));
 //
-//        LogHelperTTM.info("Realm of Tom Bombadil & the Withywindle");
+//        LogHelperTTM.info("The Last Homely House East of the Sea...");
 //        this.topBlock = Blocks.GRASS.getDefaultState();
 //        this.fillerBlock = Blocks.DIRT.getDefaultState();
 //
-//        this.decorator = this.createBiomeDecorator();
-//
-//        this.decorator.waterlilyPerChunk = 4;
-//        this.decorator.treesPerChunk = 7;
-//        this.decorator.extraTreeChance = 0.5F;
-//        this.decorator.flowersPerChunk = 0;
-//        this.decorator.grassPerChunk = 6;
-//        this.decorator.mushroomsPerChunk = 12;
-//        this.decorator.generateFalls = true;
-//
 //        setSpawnables();
+//
+//        this.decorator = this.createBiomeDecorator();
+//        this.decorator.treesPerChunk = 10;
+//        this.decorator.extraTreeChance = 0.05F;
+//        this.decorator.grassPerChunk = 2;
+//        this.decorator.mushroomsPerChunk = 12;
+//        this.decorator.bigMushroomsPerChunk = 1;
+//        this.decorator.waterlilyPerChunk = 4;
+//        this.decorator.flowersPerChunk = 0;
+//        this.decorator.generateFalls = true;
 //    }
 //
 //    @Override
-//    public WorldGenAbstractTree getRandomTreeFeature(Random rand)
-//    {
-//        return new WorldGenTreeOldForest(false);
+//    public WorldGenAbstractTree getRandomTreeFeature(Random rand) {
+//        return (WorldGenAbstractTree)(rand.nextInt(10) == 0 ? CULUMALDA_FEATURE : LEBETHRON_FEATURE);
 //    }
 //
 //    public void decorate(World worldIn, Random rand, BlockPos pos)
@@ -62,8 +65,7 @@
 //        generateFlowers(worldIn, rand, 10);
 //    }
 //
-//    private void setSpawnables()
-//    {
+//    private void setSpawnables() {
 //
 //        this.spawnableCaveCreatureList.clear();
 //        this.spawnableCreatureList.clear();
@@ -71,39 +73,23 @@
 //        this.spawnableWaterCreatureList.clear();
 //
 //        if (TTMConfig_Old.enableNaturalSpawn) {
+//            if (TTMConfig_Old.enablePassive) {
+//                if (TTMConfig_Old.enableElves) {
+//                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMElves.class, 12, 1, 3));
+//                }
+//            }
 //            if (TTMConfig_Old.enableAmbient) {
 //                if (TTMConfig_Old.enableSquirrels) {
-//                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMSquirrel.class, 1, 1, 1));
+//                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMSquirrel.class, 4, 1, 1));
 //                }
-//                if (TTMConfig_Old.enableHurons) {
-//                    this.spawnableMonsterList.add(new SpawnListEntry(EntityTMHuron.class, 1, 1, 2));
+//            }
+//            if (TTMConfig_Old.enableSpecial) {
+//                if (TTMConfig_Old.enableMithrilGolem) {
+//                    this.spawnableCreatureList.add(new SpawnListEntry(EntityTMMithrilGolem.class, 12, 1, 1));
 //                }
 //            }
 //        }
-//        this.spawnableMonsterList.add(new SpawnListEntry(EntityWolf.class, 1, 1, 1));
-//    }
-//
-//    @SideOnly(Side.CLIENT)
-//    public int getGrassColorAtPos(BlockPos pos)
-//    {
-//        double d0 = GRASS_COLOR_NOISE.getValue((double)pos.getX() * 0.0225D, (double)pos.getZ() * 0.0225D);
-//        return d0 < -0.1D ? 5163086 : 5156174;
-//    }
-//
-//    @SideOnly(Side.CLIENT)
-//    public int getFoliageColorAtPos(BlockPos pos)
-//    {
-//        return 5163086;
-//    }
-//
-//    @Override
-//    public int getFogColour(PlayerEntity player) {
-//        return 0x707071;
-//    }
-//
-//    @Override
-//    public float getFogDensity(PlayerEntity player) {
-//        return 0.01F;
+//        this.spawnableCreatureList.add(new SpawnListEntry(EntityWolf.class, 5, 4, 4));
 //    }
 //
 //    @SideOnly(Side.CLIENT)
@@ -121,13 +107,12 @@
 //            int y = worldIn.getHeight(decorator.chunkPos.add(x, 0, z)).getY() + 32;
 //
 //            BlockFlower red = net.minecraft.init.Blocks.RED_FLOWER;
-//            BlockFlower yel = net.minecraft.init.Blocks.YELLOW_FLOWER;
 //
 //            if (y > 0) {
 //                int y2 = random.nextInt(y);
 //                BlockPos blockpos1 = decorator.chunkPos.add(x, y2, z);
 //                flowers.setGenFlowerList(true);
-//                flowers.setBiomeFlower(random.nextInt(10) == 0 ? TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.ALFIRIN) : random.nextInt(10) == 0 ? TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.ATHELAS) : Blocks.RED_FLOWER.getDefaultState().withProperty(Blocks.RED_FLOWER.getTypeProperty(), BlockFlower.EnumFlowerType.OXEYE_DAISY));
+//                flowers.setBiomeFlower(random.nextInt(10) == 0 ? TTMFeatures.FLOWERS.getDefaultState().withProperty(BlockFlowers.VARIANT, BlockFlowers.EnumType.NIPHREDIL) : random.nextInt(10) == 0 ? red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.RED_TULIP) : red.getDefaultState().withProperty(red.getTypeProperty(), BlockFlower.EnumFlowerType.ORANGE_TULIP));
 //                flowers.generate(worldIn, random, blockpos1);
 //            }
 //        }

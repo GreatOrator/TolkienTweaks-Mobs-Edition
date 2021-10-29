@@ -19,9 +19,8 @@ public class BiomeDagorlad {
         // Spawn Settings
         MobSpawnInfo.Builder spawnInf = new MobSpawnInfo.Builder();
         spawnInf.setPlayerCanSpawn();
-//        TTMDefaultBiomeFeatures.ttmSwampSpawns(spawnInf);
-//        TTMDefaultBiomeFeatures.passiveAnimals(spawnInf);
-//        DefaultBiomeFeatures.commonSpawns(spawnInf);
+        TTMDefaultBiomeFeatures.DagorladSpawns(spawnInf);
+        TTMDefaultBiomeFeatures.AmbientSpawns(spawnInf);
         spawnInf.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.SLIME, 1, 1, 1));
 
         BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder())

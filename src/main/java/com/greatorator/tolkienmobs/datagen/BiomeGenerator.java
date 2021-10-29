@@ -1,8 +1,12 @@
 package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.world.biome.*;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -22,7 +26,34 @@ public class BiomeGenerator {
     public static final RegistryObject<Biome> BIOME_DAGORLAD = BIOMES.register("biome_dagorlad",()-> BiomeDagorlad.makeBiomeDagorlad(0.2F,0.2F));
     public static final RegistryObject<Biome> BIOME_SHIRE = BIOMES.register("biome_shire",()-> BiomeShire.makeBiomeShire(0.125F,0.5F));
     public static final RegistryObject<Biome> BIOME_FANGORN = BIOMES.register("biome_fangorn",()-> BiomeFangorn.makeBiomeFangorn(0.125F,0.5F));
+    public static final RegistryObject<Biome> BIOME_HARADWAITH = BIOMES.register("biome_haradwaith",()-> BiomeHaradwaith.makeBiomeHaradwaith(0.125F,0.05F));
+    public static final RegistryObject<Biome> BIOME_OLDFOREST = BIOMES.register("biome_oldforest",()-> BiomeOldForest.makeBiomeOldForest(0.125F,0.05F));
 
+    // Setting the biome keys
+    public static final RegistryKey<Biome> BIOME_LORINAND_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_lorinand"));
+    public static final RegistryKey<Biome> BIOME_MIRKWOOD_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_mirkwood"));
+    public static final RegistryKey<Biome> BIOME_MARSHES_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_marshes"));
+    public static final RegistryKey<Biome> BIOME_MORDOR_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_mordor"));
+    public static final RegistryKey<Biome> BIOME_BARROWDOWNS_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_barrowdowns"));
+    public static final RegistryKey<Biome> BIOME_DAGORLAD_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_dagorlad"));
+    public static final RegistryKey<Biome> BIOME_SHIRE_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_shire"));
+    public static final RegistryKey<Biome> BIOME_FANGORN_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_fangorn"));
+    public static final RegistryKey<Biome> BIOME_HARADWAITH_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_haradwaith"));
+    public static final RegistryKey<Biome> BIOME_OLDFOREST_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_oldforest"));
+
+    // Register the Biomes
+    public static void addBiomesToOverworld() {
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(BIOME_LORINAND_KEY, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_MIRKWOOD_KEY, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(BIOME_MARSHES_KEY, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(BIOME_MORDOR_KEY, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_BARROWDOWNS_KEY, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(BIOME_DAGORLAD_KEY, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(BIOME_SHIRE_KEY, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_FANGORN_KEY, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(BIOME_HARADWAITH_KEY, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_OLDFOREST_KEY, 1));
+    }
     public String getName() {
         return "Tolkien Tweaks - Mobs Edition Biomes";
     }

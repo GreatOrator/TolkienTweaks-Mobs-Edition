@@ -859,8 +859,5 @@ public class ModelTTMTreeEnt<T extends MonsterEntity> extends BipedModel<T> {
 
         this.EntHead.yRot = netHeadYaw * 0.017453292F;
         this.EntHead.xRot = headPitch * 0.017453292F;
-
-//        this.EntArmR.x = -5.0F;
-//        this.EntArmL.x = 5.0F;
     }
 }

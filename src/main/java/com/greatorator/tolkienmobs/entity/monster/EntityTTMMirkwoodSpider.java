@@ -233,7 +233,7 @@ public class EntityTTMMirkwoodSpider extends EntityTTMMonsters {
     @Nullable
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        int job = TTMRand.getRandomInteger(1, 4);
+        int job = TTMRand.getRandomInteger(5, 1);
         this.setMirkwoodSpiderType(job);
         this.populateDefaultEquipmentSlots(difficultyIn);
         spawnDataIn = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
