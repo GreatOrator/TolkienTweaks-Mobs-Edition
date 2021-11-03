@@ -277,6 +277,11 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(EntityGenerator.EGG_TTMWARG.get());
         eggItem(EntityGenerator.EGG_TTMMORDORORC.get());
         eggItem(EntityGenerator.EGG_TTMHURON.get());
+        eggItem(EntityGenerator.EGG_TTMOATHBREAKER.get());
+        eggItem(EntityGenerator.EGG_TTMROMIEWALKER.get());
+        eggItem(EntityGenerator.EGG_TTMURUKHAI.get());
+        eggItem(EntityGenerator.EGG_TTMELEMENTALGOLEM.get());
+        eggItem(EntityGenerator.EGG_TTMMINOTAUR.get());
 
             // Boss
 

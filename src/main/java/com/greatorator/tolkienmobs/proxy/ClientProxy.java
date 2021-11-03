@@ -136,6 +136,11 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_WARG.get(), RenderTTMWarg::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MORDORORC.get(), RenderTTMMordorOrc::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_HURON.get(), RenderTTMHuron::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_OATHBREAKER.get(), RenderTTMOathbreaker::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_ROMIEWALKER.get(), RenderTTMRomieWalker::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_URUKHAI.get(), RenderTTMUrukHai::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_ELEMENTALGOLEM.get(), RenderTTMElementalGolem::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MINOTAUR.get(), RenderTTMMinotaur::new);
 
         // Boss
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOBLINKING.get(), RenderTTMGoblinKing::new);

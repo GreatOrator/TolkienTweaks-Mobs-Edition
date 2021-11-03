@@ -51,4 +51,7 @@ public class ProfessionGenerator {
    public static final RegistryObject<VillagerProfession> PET_MERCHANT_PROFESSION = PROFESSION.register("pet_merchant", () -> new VillagerProfession("pet_merchant", PET_MERCHANT.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_LIBRARIAN));
    public static final RegistryObject<VillagerProfession> JUNK_TRADER_PROFESSION = PROFESSION.register("junk_trader", () -> new VillagerProfession("junk_trader", JUNK_TRADER.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_CLERIC));
 
+   public String getName() {
+      return "Tolkien Tweaks - Mobs Edition Villager Professions";
+   }
 }

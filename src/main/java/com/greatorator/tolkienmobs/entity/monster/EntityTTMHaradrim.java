@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class EntityTTMHaradrim extends EntityTTMMonsters {
-    private static final DataParameter<Integer> HARADRIM_TYPE = EntityDataManager.defineId(EntityTTMBrigand.class, DataSerializers.INT);
+    private static final DataParameter<Integer> HARADRIM_TYPE = EntityDataManager.defineId(EntityTTMHaradrim.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/tmharadrim/haradrim0.png"));
         option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/tmharadrim/haradrim1.png"));

@@ -1,0 +1,15 @@
+{
+  "name": "tolkienmobs:ttmhouse_hobbit",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 80,
+      "element": {
+        "location": "tolkienmobs:ttmhouse_hobbit",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:legacy_single_pool_element"
+      }
+    }
+  ]
+}

@@ -1,11 +1,11 @@
 {
-  "name": "tolkienmobs:ttmhobbit_house",
+  "name": "tolkienmobs:ttmhouse_human",
   "fallback": "minecraft:empty",
   "elements": [
     {
       "weight": 80,
       "element": {
-        "location": "tolkienmobs:ttmhobbit_house",
+        "location": "tolkienmobs:ttmhouse_human",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:legacy_single_pool_element"

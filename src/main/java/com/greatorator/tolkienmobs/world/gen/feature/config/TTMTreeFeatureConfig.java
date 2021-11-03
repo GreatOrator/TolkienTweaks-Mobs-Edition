@@ -136,6 +136,24 @@ public class TTMTreeFeatureConfig implements IFeatureConfig {
                 .ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING)
                 .build();
 
+        public static final BaseTreeFeatureConfig CULUMALDA_FIRIEN = new BaseTreeFeatureConfig.Builder(
+                new SimpleBlockStateProvider(TTMFeatures.States.CULUMALDA_LOG),
+                new SimpleBlockStateProvider(TTMFeatures.States.CULUMALDA_LEAVES),
+                new FancyFoliagePlacer(FeatureSpread.fixed(4), FeatureSpread.fixed(4), 4),
+                new TTMBranchingLargeTrunkPlacer(6, 3, 3, 5, new TTMBranchesConfig(4, 0, 10, 4, 0.23, 0.23), false),
+                new ThreeLayerFeature(5, 1, 0, 1, 2, OptionalInt.empty())).maxWaterDepth(Integer.MAX_VALUE).heightmap(Heightmap.Type.MOTION_BLOCKING)
+                .ignoreVines()
+                .build();
+
+        public static final BaseTreeFeatureConfig LEBETHRON_FIRIEN = new BaseTreeFeatureConfig.Builder(
+                new SimpleBlockStateProvider(TTMFeatures.States.LEBETHRON_LOG),
+                new SimpleBlockStateProvider(TTMFeatures.States.LEBETHRON_LEAVES),
+                new FancyFoliagePlacer(FeatureSpread.fixed(4), FeatureSpread.fixed(4), 4),
+                new TTMBranchingLargeTrunkPlacer(6, 3, 3, 5, new TTMBranchesConfig(4, 0, 10, 4, 0.23, 0.23), false),
+                new ThreeLayerFeature(5, 1, 0, 1, 2, OptionalInt.empty())).maxWaterDepth(Integer.MAX_VALUE).heightmap(Heightmap.Type.MOTION_BLOCKING)
+                .ignoreVines()
+                .build();
+
         public static final BaseTreeFeatureConfig DEADTREE = new BaseTreeFeatureConfig.Builder(
                 new SimpleBlockStateProvider(TTMFeatures.States.DEADWOOD_LOG),
                 new SimpleBlockStateProvider(TTMFeatures.States.AIR),

@@ -31,14 +31,14 @@ import java.util.List;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class TTMHobbitHouseStructure extends Structure<NoFeatureConfig> {
-    public TTMHobbitHouseStructure(Codec<NoFeatureConfig> codec) {
+public class TTMHouseHobbitStructure extends Structure<NoFeatureConfig> {
+    public TTMHouseHobbitStructure(Codec<NoFeatureConfig> codec) {
         super(codec);
     }
 
     @Override
     public IStartFactory<NoFeatureConfig> getStartFactory() {
-        return TTMHobbitHouseStructure.Start::new;
+        return TTMHouseHobbitStructure.Start::new;
     }
 
     @Override
@@ -94,7 +94,7 @@ public class TTMHobbitHouseStructure extends Structure<NoFeatureConfig> {
 
             JigsawManager.addPieces(
                     dynamicRegistryManager,
-                    new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(new ResourceLocation(MODID, "ttmhobbit_house")), 10),
+                    new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(new ResourceLocation(MODID, "ttmhouse_hobbit")), 10),
                     AbstractVillagePiece::new,
                     chunkGenerator,
                     templateManagerIn,

@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class EntityTTMFellSpirit extends EntityTTMMonsters {
-    private static final DataParameter<Integer> FELLSPIRIT_TYPE = EntityDataManager.defineId(com.greatorator.tolkienmobs.entity.monster.EntityTTMFellSpirit.class, DataSerializers.INT);
+    private static final DataParameter<Integer> FELLSPIRIT_TYPE = EntityDataManager.defineId(EntityTTMFellSpirit.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/fellspirit/fellspirit1.png"));
         option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/fellspirit/fellspirit2.png"));

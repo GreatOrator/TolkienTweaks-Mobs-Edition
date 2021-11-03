@@ -42,4 +42,7 @@ public class FluidGenerator {
                             .luminosity(15).density(3000).viscosity(6000).temperature(1000).sound(SoundEvents.BUCKET_FILL_LAVA, SoundEvents.BUCKET_EMPTY_LAVA))
                     .bucket(TTMContent.MORGULIRON_BUCKET).block(TTMContent.MOLTEN_MORGULIRON).explosionResistance(1000F).tickRate(9);
     }
+    public String getName() {
+        return "Tolkien Tweaks - Mobs Edition Fluids";
+    }
 }

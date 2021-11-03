@@ -31,6 +31,10 @@ public class TTMDefaultBiomeFeatures {
         p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.TREES_OLDFORESTOAK);
     }
 
+    public static void addFirienTrees(BiomeGenerationSettings.Builder p_243763_0_) {
+        p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.TREES_CULUMALDA_FIRIEN);
+    }
+
     public static void addDesolation(BiomeGenerationSettings.Builder p_243763_0_) {
         p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.OAK_BADLANDS);
         p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.FOREST_ROCK);
@@ -113,6 +117,7 @@ public class TTMDefaultBiomeFeatures {
         p_243734_0_.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_FELLSPIRIT.get(), 2, 1, 1));
         p_243734_0_.addSpawn(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_FROG.get(), 2, 1, 1));
         p_243734_0_.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_SWAMPHAG.get(), 2, 1, 1));
+        p_243734_0_.addSpawn(EntityClassification.MISC, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_HUMAN.get(), 2, 1, 1));
     }
 
     public static void DagorladSpawns(MobSpawnInfo.Builder p_243734_0_) {
@@ -120,6 +125,7 @@ public class TTMDefaultBiomeFeatures {
         p_243734_0_.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_BRIGAND.get(), 2, 1, 1));
         p_243734_0_.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_WARG.get(), 2, 1, 1));
         p_243734_0_.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_MORDORORC.get(), 2, 1, 1));
+        p_243734_0_.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_URUKHAI.get(), 2, 1, 1));
     }
 
     public static void elvishSpawns(MobSpawnInfo.Builder p_243737_0_) {
@@ -131,6 +137,18 @@ public class TTMDefaultBiomeFeatures {
         AmbientSpawns(p_243737_0_);
         p_243737_0_.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_HURON.get(), 80, 4, 4));
         p_243737_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.WOLF, 80, 4, 4));
+    }
+
+    public static void HithaeglirSpawns(MobSpawnInfo.Builder p_243737_0_) {
+        p_243737_0_.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_TROLL.get(), 80, 4, 4));
+        p_243737_0_.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_GOBLIN.get(), 80, 4, 4));
+        p_243737_0_.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_DUERGAR.get(), 80, 4, 4));
+    }
+
+    public static void ironHillsSpawns(MobSpawnInfo.Builder p_243737_0_) {
+        p_243737_0_.addSpawn(EntityClassification.MISC, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_DWARF.get(), 80, 4, 4));
+        p_243737_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_GOAT.get(), 80, 4, 4));
+        p_243737_0_.addSpawn(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_THRUSH.get(), 80, 4, 4));
     }
 
     public static void hobbitSpawns(MobSpawnInfo.Builder p_243737_0_) {
@@ -147,10 +165,15 @@ public class TTMDefaultBiomeFeatures {
         p_243737_0_.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_GOBLIN.get(), 80, 4, 4));
         p_243737_0_.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_WARG.get(), 80, 4, 4));
         p_243737_0_.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_MORDORORC.get(), 2, 1, 1));
+        p_243737_0_.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_URUKHAI.get(), 2, 1, 1));
     }
 
     public static void fangornSpawns(MobSpawnInfo.Builder p_243737_0_) {
         p_243737_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_TREEENT.get(), 80, 4, 4));
+    }
+
+    public static void gladdenSpawns(MobSpawnInfo.Builder p_243737_0_) {
+        p_243737_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_HUMAN.get(), 80, 4, 4));
     }
 
     public static void mirkwoodSpawns(MobSpawnInfo.Builder p_243737_0_) {
@@ -170,6 +193,8 @@ public class TTMDefaultBiomeFeatures {
         p_243714_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.PIG, 10, 4, 4));
         p_243714_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.CHICKEN, 10, 4, 4));
         p_243714_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.COW, 8, 4, 4));
+        p_243714_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.HORSE, 8, 4, 4));
+        p_243714_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityType.DONKEY, 8, 4, 4));
         p_243714_0_.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_AUROCH.get(), 8, 4, 4));
     }
 }

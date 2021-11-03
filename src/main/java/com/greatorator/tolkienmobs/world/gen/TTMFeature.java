@@ -38,6 +38,7 @@ public class TTMFeature {
     public static void registerFeatures(RegistryEvent.Register<Feature<?>> event) {
         event.getRegistry().register(STONE_SPIKE.setRegistryName("stone_spike_feature"));
         event.getRegistry().register(SMALL_LOG.setRegistryName("small_log_feature"));
+        event.getRegistry().register(RANDOM_RUBBLE.setRegistryName("random_rubble_feature"));
 
 
         //Register Dependents.

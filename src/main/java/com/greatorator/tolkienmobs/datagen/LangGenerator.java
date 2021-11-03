@@ -443,6 +443,10 @@ public class LangGenerator extends LanguageProvider {
         helper.add("biome_fangorn", "Fangorn Forest");
         helper.add("biome_haradwaith", "Haradwaith");
         helper.add("biome_oldforest", "Old Forest");
+        helper.add("biome_gladden", "Gladden Fields");
+        helper.add("biome_firien", "Firien Wood");
+        helper.add("biome_hithaeglir", "Misty Mountains");
+        helper.add("biome_ironhills", "Iron Hills");
     }
 
     private void merchants(PrefixHelper helper) {
@@ -521,6 +525,16 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMMORDORORC.get(), "Mordor Orc Spawn Egg");
         add(EntityGenerator.ENTITY_TTM_HURON.get(), "Huron");
         add(EntityGenerator.EGG_TTMHURON.get(), "Huron Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_OATHBREAKER.get(), "Oath Breaker");
+        add(EntityGenerator.EGG_TTMOATHBREAKER.get(), "Oath Breaker Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_ROMIEWALKER.get(), "Romie Walker");
+        add(EntityGenerator.EGG_TTMROMIEWALKER.get(), "Romie Walker Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_URUKHAI.get(), "Uruk Hai");
+        add(EntityGenerator.EGG_TTMURUKHAI.get(), "Uruk Hai Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_ELEMENTALGOLEM.get(), "Elemental Golem");
+        add(EntityGenerator.EGG_TTMELEMENTALGOLEM.get(), "Elemental Golem Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_MINOTAUR.get(), "Minotaur");
+        add(EntityGenerator.EGG_TTMMINOTAUR.get(), "Minotaur Spawn Egg");
 
         // Boss
         add(EntityGenerator.ENTITY_TTM_GOBLINKING.get(), "Goblin King");

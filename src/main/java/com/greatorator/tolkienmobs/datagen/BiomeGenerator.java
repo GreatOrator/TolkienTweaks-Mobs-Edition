@@ -28,6 +28,10 @@ public class BiomeGenerator {
     public static final RegistryObject<Biome> BIOME_FANGORN = BIOMES.register("biome_fangorn",()-> BiomeFangorn.makeBiomeFangorn(0.125F,0.5F));
     public static final RegistryObject<Biome> BIOME_HARADWAITH = BIOMES.register("biome_haradwaith",()-> BiomeHaradwaith.makeBiomeHaradwaith(0.125F,0.05F));
     public static final RegistryObject<Biome> BIOME_OLDFOREST = BIOMES.register("biome_oldforest",()-> BiomeOldForest.makeBiomeOldForest(0.125F,0.05F));
+    public static final RegistryObject<Biome> BIOME_GLADDEN = BIOMES.register("biome_gladden",()-> BiomeGladden.makeBiomeGladden(0.125F,0.05F));
+    public static final RegistryObject<Biome> BIOME_FIRIEN = BIOMES.register("biome_firien",()-> BiomeFirien.makeBiomeFirien(-0.5F,0.25F));
+    public static final RegistryObject<Biome> BIOME_HITHAEGLIR = BIOMES.register("biome_hithaeglir",()-> BiomeHithaeglir.makeBiomeHithaeglir(3.0F,0.75F));
+    public static final RegistryObject<Biome> BIOME_IRONHILLS = BIOMES.register("biome_ironhills",()-> BiomeIronHills.makeBiomeIronHills(3.0F,0.75F));
 
     // Setting the biome keys
     public static final RegistryKey<Biome> BIOME_LORINAND_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_lorinand"));
@@ -40,6 +44,10 @@ public class BiomeGenerator {
     public static final RegistryKey<Biome> BIOME_FANGORN_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_fangorn"));
     public static final RegistryKey<Biome> BIOME_HARADWAITH_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_haradwaith"));
     public static final RegistryKey<Biome> BIOME_OLDFOREST_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_oldforest"));
+    public static final RegistryKey<Biome> BIOME_GLADDEN_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_gladden"));
+    public static final RegistryKey<Biome> BIOME_FIRIEN_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_firien"));
+    public static final RegistryKey<Biome> BIOME_HITHAEGLIR_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_hithaeglir"));
+    public static final RegistryKey<Biome> BIOME_IRONHILLS_KEY = RegistryKey.create(Registry.BIOME_REGISTRY, new ResourceLocation("biome.tolkienmobs.biome_ironhills"));
 
     // Register the Biomes
     public static void addBiomesToOverworld() {
@@ -53,6 +61,10 @@ public class BiomeGenerator {
         BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_FANGORN_KEY, 1));
         BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(BIOME_HARADWAITH_KEY, 1));
         BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_OLDFOREST_KEY, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_GLADDEN_KEY, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_FIRIEN_KEY, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_HITHAEGLIR_KEY, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_IRONHILLS_KEY, 1));
     }
     public String getName() {
         return "Tolkien Tweaks - Mobs Edition Biomes";

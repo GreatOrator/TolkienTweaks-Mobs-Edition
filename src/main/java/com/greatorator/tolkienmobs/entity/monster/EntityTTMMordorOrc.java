@@ -29,7 +29,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class EntityTTMMordorOrc extends EntityTTMMonsters {
-    private static final DataParameter<Integer> ORC_TYPE = EntityDataManager.defineId(EntityTTMBarrowWight.class, DataSerializers.INT);
+    private static final DataParameter<Integer> ORC_TYPE = EntityDataManager.defineId(EntityTTMMordorOrc.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/orc/mordororc1.png"));
         option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/orc/mordororc2.png"));

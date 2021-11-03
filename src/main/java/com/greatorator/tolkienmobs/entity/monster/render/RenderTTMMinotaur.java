@@ -1,20 +1,25 @@
-//package com.greatorator.tolkienmobs.client.render.entity.monster;
-//
-//import com.greatorator.tolkienmobs.TolkienMobs;
-//import com.greatorator.tolkienmobs.client.render.entity.layers.LayerArmed;
-//import com.greatorator.tolkienmobs.client.render.model.monster.ModelMinotaur;
-//import com.greatorator.tolkienmobs.entity.hostile.EntityTMMinotaur;
-//import net.minecraft.client.renderer.GlStateManager;
-//import net.minecraft.client.renderer.entity.Render;
-//import net.minecraft.client.renderer.entity.RenderLiving;
-//import net.minecraft.client.renderer.entity.RenderManager;
-//import net.minecraft.util.ResourceLocation;
-//import net.minecraftforge.fml.client.registry.IRenderFactory;
-//
-//import javax.annotation.Nonnull;
-//import javax.annotation.Nullable;
-//
-//public class RenderMinotaur extends RenderLiving<EntityTMMinotaur> {
+package com.greatorator.tolkienmobs.entity.monster.render;
+
+import com.greatorator.tolkienmobs.entity.monster.EntityTTMMinotaur;
+import com.greatorator.tolkienmobs.entity.monster.model.ModelTTMMinotaur;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.util.ResourceLocation;
+
+public class RenderTTMMinotaur extends MobRenderer<EntityTTMMinotaur, ModelTTMMinotaur<EntityTTMMinotaur>> {
+    public RenderTTMMinotaur(EntityRendererManager renderManagerIn) {
+        super(renderManagerIn, new ModelTTMMinotaur<>(0.0F, true), 1.0F);
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(EntityTTMMinotaur entity) {
+        return entity.getMinotaurTypeName();
+    }
+
+    protected void scale(EntityTTMMinotaur entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+        super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
+    }
 //    private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/minotaur.png");
 //
 //    public static final Factory FACTORY = new Factory();
@@ -54,4 +59,4 @@
 //    protected void preRenderCallback(EntityTMMinotaur LivingEntityIn, float partialTickTime) {
 //        GlStateManager.scale(scale, scale, scale);
 //    }
-//}
+}

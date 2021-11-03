@@ -90,6 +90,16 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<EntityTTMMordorOrc>> ENTITY_TTM_MORDORORC = ENTITY.register("entityttmmordororc", () -> entityTTMMordorOrc);
     private static final EntityType<EntityTTMHuron> entityTTMHuron = buildEntity("entityttmhuron", EntityTTMHuron::new, EntityClassification.MONSTER, 1.5F, 1.4F);
     public static final RegistryObject<EntityType<EntityTTMHuron>> ENTITY_TTM_HURON = ENTITY.register("entityttmhuron", () -> entityTTMHuron);
+    private static final EntityType<EntityTTMOathbreaker> entityTTMOathbreaker = buildEntity("entityttmoathbreaker", EntityTTMOathbreaker::new, EntityClassification.MONSTER, 0.7F, 1.85F);
+    public static final RegistryObject<EntityType<EntityTTMOathbreaker>> ENTITY_TTM_OATHBREAKER = ENTITY.register("entityttmoathbreaker", () -> entityTTMOathbreaker);
+    private static final EntityType<EntityTTMRomieWalker> entityTTMRomieWalker = buildEntity("entityttmromiewalker", EntityTTMRomieWalker::new, EntityClassification.MONSTER, 0.7F, 1.85F);
+    public static final RegistryObject<EntityType<EntityTTMRomieWalker>> ENTITY_TTM_ROMIEWALKER = ENTITY.register("entityttmromiewalker", () -> entityTTMRomieWalker);
+    private static final EntityType<EntityTTMUrukHai> entityTTMUrukHai = buildEntity("entityttmurukhai", EntityTTMUrukHai::new, EntityClassification.MONSTER, 1.0F, 2.6F);
+    public static final RegistryObject<EntityType<EntityTTMUrukHai>> ENTITY_TTM_URUKHAI = ENTITY.register("entityttmurukhai", () -> entityTTMUrukHai);
+    private static final EntityType<EntityTTMElementalGolem> entityTTMElementalGolem = buildEntity("entityttmelementalgolem", EntityTTMElementalGolem::new, EntityClassification.MONSTER, 1.8F, 3.1F);
+    public static final RegistryObject<EntityType<EntityTTMElementalGolem>> ENTITY_TTM_ELEMENTALGOLEM = ENTITY.register("entityttmelementalgolem", () -> entityTTMElementalGolem);
+    private static final EntityType<EntityTTMMinotaur> entityTTMMinotaur = buildEntity("entityttmminotaur", EntityTTMMinotaur::new, EntityClassification.MONSTER, 1.8F, 4.0F);
+    public static final RegistryObject<EntityType<EntityTTMMinotaur>> ENTITY_TTM_MINOTAUR = ENTITY.register("entityttmminotaur", () -> entityTTMMinotaur);
 
     // Boss
     private static final EntityType<EntityTTMGoblinKing> entityTTMGoblinKing = buildEntity("entityttmgoblinking", EntityTTMGoblinKing::new, EntityClassification.MONSTER, 0.9F, 1.0F);
@@ -134,11 +144,18 @@ public class EntityGenerator {
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_WARG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::checkAnimalSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_MORDORORC.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_HURON.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_OATHBREAKER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_ROMIEWALKER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_URUKHAI.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_ELEMENTALGOLEM.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_MINOTAUR.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMMinotaur::checkMinotaurSpawn);
 
         // Boss
 
         //Passive
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_MUMAKIL.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMMumakil::checkMumakilSpawn);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_AUROCH.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::checkAnimalSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_GOAT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::checkAnimalSpawnRules);
 
         //Look in EntitySpawnPlacementRegistry for examples
     }
@@ -174,7 +191,12 @@ public class EntityGenerator {
         GlobalEntityTypeAttributes.put(ENTITY_TTM_TROLL.get(), EntityTTMTroll.registerAttributes().build());
         GlobalEntityTypeAttributes.put(ENTITY_TTM_WARG.get(), EntityTTMWarg.registerAttributes().build());
         GlobalEntityTypeAttributes.put(ENTITY_TTM_MORDORORC.get(), EntityTTMMordorOrc.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_HURON.get(), EntityTTMMordorOrc.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_HURON.get(), EntityTTMHuron.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_OATHBREAKER.get(), EntityTTMOathbreaker.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_ROMIEWALKER.get(), EntityTTMRomieWalker.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_URUKHAI.get(), EntityTTMUrukHai.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_ELEMENTALGOLEM.get(), EntityTTMElementalGolem.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_MINOTAUR.get(), EntityTTMMinotaur.registerAttributes().build());
 
         // Boss
         GlobalEntityTypeAttributes.put(ENTITY_TTM_GOBLINKING.get(), EntityTTMGoblinKing.registerAttributes().build());
@@ -216,6 +238,11 @@ public class EntityGenerator {
     public static final RegistryObject<Item> EGG_TTMWARG = createSpawnEgg("entityttmwarg", entityTTMWarg, 14705521, 2703752);
     public static final RegistryObject<Item> EGG_TTMMORDORORC = createSpawnEgg("entityttmmordororc", entityTTMMordorOrc, 14705521, 8755748);
     public static final RegistryObject<Item> EGG_TTMHURON = createSpawnEgg("entityttmhuron", entityTTMHuron, 14705521, 10600204);
+    public static final RegistryObject<Item> EGG_TTMOATHBREAKER = createSpawnEgg("entityttmoathbreaker", entityTTMOathbreaker, 14705521, 16121867);
+    public static final RegistryObject<Item> EGG_TTMROMIEWALKER = createSpawnEgg("entityttmromiewalker", entityTTMRomieWalker, 14705521, 16739362);
+    public static final RegistryObject<Item> EGG_TTMURUKHAI = createSpawnEgg("entityttmurukhai", entityTTMUrukHai, 14705521, 698898);
+    public static final RegistryObject<Item> EGG_TTMELEMENTALGOLEM = createSpawnEgg("entityttmelementalgolem", entityTTMElementalGolem, 14705521, 1380646);
+    public static final RegistryObject<Item> EGG_TTMMINOTAUR = createSpawnEgg("entityttmminotaur", entityTTMMinotaur, 14705521, 2973229);
 
     // Boss
     public static final RegistryObject<Item> EGG_TTMGOBLINKING = createSpawnEgg("entityttmgoblinking", entityTTMGoblinKing, 11025577, 2301661);

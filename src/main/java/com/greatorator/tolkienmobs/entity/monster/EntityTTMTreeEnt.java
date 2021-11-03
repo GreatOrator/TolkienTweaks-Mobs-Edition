@@ -63,7 +63,7 @@ public class EntityTTMTreeEnt extends EntityTTMMonsters {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, EntityTTMGoblin.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, EntityTTMMordorOrc.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, EntityTTMGoblinKing.class, true));
-//        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, EntityTTMUrukHai.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, EntityTTMUrukHai.class, true));
     }
 
     public static boolean checkTreeEntSpawn(EntityType<EntityTTMTreeEnt> type, IWorld world, SpawnReason reason, BlockPos pos, Random random) {

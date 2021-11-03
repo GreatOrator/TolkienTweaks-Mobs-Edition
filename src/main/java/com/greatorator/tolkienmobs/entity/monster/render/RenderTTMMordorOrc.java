@@ -8,16 +8,16 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderTTMMordorOrc extends MobRenderer<EntityTTMMordorOrc, ModelTTMMordorOrc<EntityTTMMordorOrc>> {
-public RenderTTMMordorOrc(EntityRendererManager renderManagerIn) {
+    public RenderTTMMordorOrc(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new ModelTTMMordorOrc<>(0.0F, true), 1.0F);
-        }
+    }
 
-@Override
-public ResourceLocation getTextureLocation(EntityTTMMordorOrc entity) {
+    @Override
+    public ResourceLocation getTextureLocation(EntityTTMMordorOrc entity) {
         return entity.getMordorOrcTypeName();
-        }
+    }
 
-protected void scale(EntityTTMMordorOrc entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+    protected void scale(EntityTTMMordorOrc entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
-        }
+    }
 }

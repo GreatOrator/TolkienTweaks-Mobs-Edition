@@ -113,13 +113,16 @@ public class TTMServerEvents {
             Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkSource().generator.getSettings().structureConfig());
 
             tempMap.putIfAbsent(StructureGenerator.TTMHOUSE_ELVEN.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOUSE_ELVEN.get()));
+            tempMap.putIfAbsent(StructureGenerator.TTMHOUSE_HOBBIT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOUSE_HOBBIT.get()));
+            tempMap.putIfAbsent(StructureGenerator.TTMHOUSE_HUMAN.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOUSE_HUMAN.get()));
+            tempMap.putIfAbsent(StructureGenerator.TTMHOUSE_DWARF.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOUSE_DWARF.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMBARROW.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMBARROW.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMRUIN_LARGE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMRUIN_LARGE.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMRUIN_SMALL.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMRUIN_SMALL.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMHOBBIT_HOUSE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOBBIT_HOUSE.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMSWAMP_HAG_HUT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMSWAMP_HAG_HUT.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMSPIDER_TREE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMSPIDER_TREE.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMWARG_PIT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMWARG_PIT.get()));
+            tempMap.putIfAbsent(StructureGenerator.TTMMINOTAUR_MAZE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMMINOTAUR_MAZE.get()));
 
             serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
         }
@@ -137,13 +140,22 @@ public class TTMServerEvents {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMSWAMP_HAG_HUT);
         }
         if (event.getName().equals(BiomeGenerator.BIOME_SHIRE.getId())) {
-            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOBBIT_HOUSE);
+            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOUSE_HOBBIT);
         }
         if (event.getName().equals(BiomeGenerator.BIOME_MIRKWOOD.getId())) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMSPIDER_TREE);
         }
         if (event.getName().equals(BiomeGenerator.BIOME_MORDOR.getId())) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMWARG_PIT);
+        }
+        if (event.getName().equals(BiomeGenerator.BIOME_IRONHILLS.getId())) {
+            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOUSE_DWARF);
+        }
+        if (event.getName().equals(BiomeGenerator.BIOME_GLADDEN.getId())) {
+            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOUSE_HUMAN);
+        }
+        if (event.getName().equals(BiomeGenerator.BIOME_HARADWAITH.getId())) {
+            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMMINOTAUR_MAZE);
         }
         if (event.getName().equals(BiomeGenerator.BIOME_DAGORLAD.getId())) {
             int i = TTMRand.getRandomInteger(100, 1);
@@ -157,7 +169,7 @@ public class TTMServerEvents {
 
         /* Used to test for structure generation */
         if (event.getCategory() == Biome.Category.PLAINS) {
-//            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMWARG_PIT);
+//            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMMINOTAUR_MAZE);
         }
     }
 }

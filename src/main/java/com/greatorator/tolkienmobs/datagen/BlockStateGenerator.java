@@ -118,7 +118,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TTMContent.STONE_PATH.get(), models().getExistingFile(modLoc("block/block_stone_path")));
 
 
-        //Bellow is some extra example stuff i left in for reference
+        //Bellow is some extra example stuff I left in for reference
         if (true) return;
 
 

@@ -47,6 +47,9 @@ public class TTMWargPitStructure extends Structure<NoFeatureConfig> {
     }
 
     private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of(
+            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_WARG.get(), 100, 4, 9),
+            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_MORDORORC.get(), 100, 4, 9),
+            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_URUKHAI.get(), 100, 4, 9)
     );
 
     @Override
@@ -55,8 +58,6 @@ public class TTMWargPitStructure extends Structure<NoFeatureConfig> {
     }
 
     private static final List<MobSpawnInfo.Spawners> STRUCTURE_CREATURES = ImmutableList.of(
-            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_WARG.get(), 100, 4, 9),
-            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_MORDORORC.get(), 100, 4, 9)
     );
 
     @Override

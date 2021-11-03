@@ -26,6 +26,11 @@
     "tolkienmobs:entityttmtroll_spawn_egg",
     "tolkienmobs:entityttmwarg_spawn_egg",
     "tolkienmobs:entityttmmordororc_spawn_egg",
-    "tolkienmobs:entityttmhuron_spawn_egg"
+    "tolkienmobs:entityttmhuron_spawn_egg",
+    "tolkienmobs:entityttmoathbreaker_spawn_egg",
+    "tolkienmobs:entityttmromiewalker_spawn_egg",
+    "tolkienmobs:entityttmurukhai_spawn_egg",
+    "tolkienmobs:entityttmelementalgolem_spawn_egg",
+    "tolkienmobs:entityttmminotaur_spawn_egg"
   ]
 }
