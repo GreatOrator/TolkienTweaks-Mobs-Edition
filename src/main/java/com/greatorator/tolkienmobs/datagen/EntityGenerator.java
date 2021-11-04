@@ -100,6 +100,8 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<EntityTTMElementalGolem>> ENTITY_TTM_ELEMENTALGOLEM = ENTITY.register("entityttmelementalgolem", () -> entityTTMElementalGolem);
     private static final EntityType<EntityTTMMinotaur> entityTTMMinotaur = buildEntity("entityttmminotaur", EntityTTMMinotaur::new, EntityClassification.MONSTER, 1.8F, 4.0F);
     public static final RegistryObject<EntityType<EntityTTMMinotaur>> ENTITY_TTM_MINOTAUR = ENTITY.register("entityttmminotaur", () -> entityTTMMinotaur);
+    private static final EntityType<EntityTTMMimicChest> entityTTMMimicChest = buildEntity("entityttmmimicchest", EntityTTMMimicChest::new, EntityClassification.MONSTER, 1.0F, 1.7F);
+    public static final RegistryObject<EntityType<EntityTTMMimicChest>> ENTITY_TTM_MIMICCHEST = ENTITY.register("entityttmmimicchest", () -> entityTTMMimicChest);
 
     // Boss
     private static final EntityType<EntityTTMGoblinKing> entityTTMGoblinKing = buildEntity("entityttmgoblinking", EntityTTMGoblinKing::new, EntityClassification.MONSTER, 0.9F, 1.0F);
@@ -149,6 +151,7 @@ public class EntityGenerator {
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_URUKHAI.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_ELEMENTALGOLEM.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_MINOTAUR.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMMinotaur::checkMinotaurSpawn);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_MIMICCHEST.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
 
         // Boss
 
@@ -197,6 +200,7 @@ public class EntityGenerator {
         GlobalEntityTypeAttributes.put(ENTITY_TTM_URUKHAI.get(), EntityTTMUrukHai.registerAttributes().build());
         GlobalEntityTypeAttributes.put(ENTITY_TTM_ELEMENTALGOLEM.get(), EntityTTMElementalGolem.registerAttributes().build());
         GlobalEntityTypeAttributes.put(ENTITY_TTM_MINOTAUR.get(), EntityTTMMinotaur.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_MIMICCHEST.get(), EntityTTMMimicChest.registerAttributes().build());
 
         // Boss
         GlobalEntityTypeAttributes.put(ENTITY_TTM_GOBLINKING.get(), EntityTTMGoblinKing.registerAttributes().build());
@@ -243,6 +247,7 @@ public class EntityGenerator {
     public static final RegistryObject<Item> EGG_TTMURUKHAI = createSpawnEgg("entityttmurukhai", entityTTMUrukHai, 14705521, 698898);
     public static final RegistryObject<Item> EGG_TTMELEMENTALGOLEM = createSpawnEgg("entityttmelementalgolem", entityTTMElementalGolem, 14705521, 1380646);
     public static final RegistryObject<Item> EGG_TTMMINOTAUR = createSpawnEgg("entityttmminotaur", entityTTMMinotaur, 14705521, 2973229);
+    public static final RegistryObject<Item> EGG_TTMMIMICCHEST = createSpawnEgg("entityttmmimicchest", entityTTMMimicChest, 14705521, 8807990);
 
     // Boss
     public static final RegistryObject<Item> EGG_TTMGOBLINKING = createSpawnEgg("entityttmgoblinking", entityTTMGoblinKing, 11025577, 2301661);

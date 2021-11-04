@@ -535,6 +535,8 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMELEMENTALGOLEM.get(), "Elemental Golem Spawn Egg");
         add(EntityGenerator.ENTITY_TTM_MINOTAUR.get(), "Minotaur");
         add(EntityGenerator.EGG_TTMMINOTAUR.get(), "Minotaur Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_MIMICCHEST.get(), "Mimic");
+        add(EntityGenerator.EGG_TTMMIMICCHEST.get(), "Mimic Spawn Egg");
 
         // Boss
         add(EntityGenerator.ENTITY_TTM_GOBLINKING.get(), "Goblin King");

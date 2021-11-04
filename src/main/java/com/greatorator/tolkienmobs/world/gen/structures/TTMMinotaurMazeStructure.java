@@ -49,8 +49,8 @@ public class TTMMinotaurMazeStructure extends Structure<NoFeatureConfig> {
     private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of(
             new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_MINOTAUR.get(), 80, 1, 1),
             new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_GOBLIN.get(), 100, 2, 6),
-            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_GOBLINKING.get(), 1, 1, 1)
-//            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_GOBLINKING.get(), 1, 1, 1)
+            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_GOBLINKING.get(), 1, 1, 1),
+            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_MIMICCHEST.get(), 1, 1, 1)
     );
 
     @Override
