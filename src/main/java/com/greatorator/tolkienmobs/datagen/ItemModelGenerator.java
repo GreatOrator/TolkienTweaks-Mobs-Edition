@@ -220,19 +220,20 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.RECORD_HOBBITS.get());
 
         //region Tools & Armor
-        simpleItem(TTMContent.AXE_MITHRIL.get());
-        simpleItem(TTMContent.HOE_MITHRIL.get());
-        simpleItem(TTMContent.PICKAXE_MITHRIL.get());
-        simpleItem(TTMContent.SHOVEL_MITHRIL.get());
-        simpleItem(TTMContent.SWORD_MITHRIL.get());
-        simpleItem(TTMContent.AXE_MORGULIRON.get());
-        simpleItem(TTMContent.HOE_MORGULIRON.get());
-        simpleItem(TTMContent.PICKAXE_MORGULIRON.get());
-        simpleItem(TTMContent.SHOVEL_MORGULIRON.get());
-        simpleItem(TTMContent.SWORD_MORGULIRON.get());
-        simpleItem(TTMContent.SWORD_WITCHKING.get());
-        simpleItem(TTMContent.WHIP_FIRE.get());
-        simpleItem(TTMContent.CLUB_WOODEN.get());
+        handheldItem(TTMContent.AXE_MITHRIL.get());
+        handheldItem(TTMContent.HOE_MITHRIL.get());
+        handheldItem(TTMContent.PICKAXE_MITHRIL.get());
+        handheldItem(TTMContent.SHOVEL_MITHRIL.get());
+        handheldItem(TTMContent.SWORD_MITHRIL.get());
+        handheldItem(TTMContent.AXE_MORGULIRON.get());
+        handheldItem(TTMContent.HOE_MORGULIRON.get());
+        handheldItem(TTMContent.PICKAXE_MORGULIRON.get());
+        handheldItem(TTMContent.SHOVEL_MORGULIRON.get());
+        handheldItem(TTMContent.SWORD_MORGULIRON.get());
+        handheldItem(TTMContent.SWORD_WITCHKING.get());
+        handheldItem(TTMContent.SWORD_URUK.get());
+        handheldItem(TTMContent.WHIP_FIRE.get());
+        handheldItem(TTMContent.CLUB_WOODEN.get());
         simpleItem(TTMContent.GALADHRIM_ARROW.get());
         simpleItem(TTMContent.FELLBEAST_FIREBALL.get());
         simpleItem(TTMContent.BOULDER.get());
@@ -307,6 +308,24 @@ public class ItemModelGenerator extends ItemModelProvider {
         ResourceLocation reg = item.getRegistryName();
         getBuilder(reg.getPath())
                 .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                .texture("layer0", texture);
+    }
+
+    private void handheldItem(Item item) {
+        handheldItem(item, "item");
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    private void handheldItem(Item item, String textureFolder) {
+        ResourceLocation reg = item.getRegistryName();
+        handheldItem(item, new ResourceLocation(reg.getNamespace(), textureFolder + "/" + reg.getPath()));
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    private void handheldItem(Item item, ResourceLocation texture) {
+        ResourceLocation reg = item.getRegistryName();
+        getBuilder(reg.getPath())
+                .parent(new ModelFile.UncheckedModelFile("item/handheld"))
                 .texture("layer0", texture);
     }
 

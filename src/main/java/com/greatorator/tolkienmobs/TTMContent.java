@@ -354,6 +354,7 @@ public class TTMContent {
     public static RegistryObject<ShovelItem> SHOVEL_MORGULIRON = ITEMS.register("shovel_morguliron", () -> new ShovelItem(TTMItemTier.MORGULIRON, 2.8F, -1.5F, (new Item.Properties()).tab(toolsGroup)));
     public static RegistryObject<SwordItem> SWORD_MORGULIRON = ITEMS.register("sword_morguliron", () -> new SwordItem(TTMItemTier.MORGULIRON, 8, -2.3F, (new Item.Properties()).tab(toolsGroup)));
     public static RegistryObject<SwordItem> SWORD_WITCHKING = ITEMS.register("sword_witchking", () -> new TTMSword(TTMItemTier.MORGULIRON, 9, -0.5F, (new Item.Properties()).tab(toolsGroup)).setEffectOverride());
+    public static RegistryObject<SwordItem> SWORD_URUK = ITEMS.register("sword_uruk", () -> new TTMSword(TTMItemTier.MORGULIRON, 11, -0.5F, (new Item.Properties()).tab(toolsGroup)).setEffectOverride());
     public static RegistryObject<SwordItem> WHIP_FIRE = ITEMS.register("whip_fire", () -> new TTM3DObj(TTMItemTier.MORGULIRON, 9, -0.5F, (new Item.Properties()).tab(toolsGroup), "whip_fire.obj", "whip_fire.png").setEffectOverride());
     public static RegistryObject<SwordItem> CLUB_WOODEN = ITEMS.register("club_wooden", () -> new TTM3DObj(TTMItemTier.MORGULIRON, 9, -0.5F, (new Item.Properties()).tab(toolsGroup), "club_wooden.obj", "club_wooden.png").setEffectOverride());
 

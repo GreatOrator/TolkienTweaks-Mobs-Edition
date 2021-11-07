@@ -415,6 +415,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.PICKAXE_MORGULIRON.get(), "Morgul Iron Pickaxe");
         add(TTMContent.SWORD_WITCHKING.get(), TextFormatting.DARK_RED + "Sword of the Witch-king");
         addLore(TTMContent.SWORD_WITCHKING.get(), "Forged in fear, the powerful weapon of the Witch-king");
+        add(TTMContent.SWORD_URUK.get(), "Uruk Sword");
         add(TTMContent.WHIP_FIRE.get(), TextFormatting.DARK_RED + "Whip of Fire");
         addLore(TTMContent.WHIP_FIRE.get(), "Primary weapon of the fearsome Balrog");
         add(TTMContent.CLUB_WOODEN.get(), "Troll Club");
