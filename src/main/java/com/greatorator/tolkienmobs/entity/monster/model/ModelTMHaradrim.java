@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.entity.monster.model;
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -109,5 +110,14 @@ public class ModelTMHaradrim<T extends MonsterEntity> extends BipedModel<T> {
 
         this.rightArm.x = -5.0F;
         this.leftArm.x = 5.0F;
+    }
+
+    @Override
+    public void translateToHand(HandSide hand, MatrixStack matrixStackIn) {
+        float pos = hand == HandSide.RIGHT ? 8.5F : -1.0F;
+        ModelRenderer modelrenderer = this.getArm(hand);
+        modelrenderer.x += pos;
+        modelrenderer.translateAndRotate(matrixStackIn);
+        modelrenderer.x -= pos;
     }
 }

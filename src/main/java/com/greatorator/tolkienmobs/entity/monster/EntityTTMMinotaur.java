@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
 import com.google.common.collect.Maps;
+import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
@@ -15,6 +16,9 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileHelper;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -41,6 +45,21 @@ public class EntityTTMMinotaur extends EntityTTMMonsters {
         option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/minotaur.png"));
         option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/minotaur.png"));
     });
+
+    /** Set up using weapons **/
+    private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false) {
+        public void stop() {
+            super.stop();
+            EntityTTMMinotaur.this.setAggressive(false);
+        }
+
+        public void start() {
+            super.start();
+            EntityTTMMinotaur.this.setAggressive(true);
+        }
+    };
+    /** End Region **/
+
     public EntityTTMMinotaur(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
     }
@@ -65,6 +84,34 @@ public class EntityTTMMinotaur extends EntityTTMMonsters {
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, EntityTTMGoblinKing.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, EntityTTMUrukHai.class, true));
     }
+
+    /** Set up using weapons **/
+    @Override
+    protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
+        super.populateDefaultEquipmentSlots(p_180481_1_);
+        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TTMContent.AXE_MORGULIRON.get()));
+    }
+
+    @Override
+    public void reassessWeaponGoal() {
+        if (this.level != null && !this.level.isClientSide) {
+            this.goalSelector.removeGoal(this.meleeGoal);
+            ItemStack itemstack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, TTMContent.AXE_MORGULIRON.get()));
+            if (itemstack.getItem() == TTMContent.AXE_MORGULIRON.get()) {
+                this.goalSelector.addGoal(4, this.meleeGoal);
+            }
+        }
+    }
+
+    @Override
+    public void setItemSlot(EquipmentSlotType p_184201_1_, ItemStack p_184201_2_) {
+        super.setItemSlot(p_184201_1_, p_184201_2_);
+        if (!this.level.isClientSide) {
+            this.reassessWeaponGoal();
+        }
+
+    }
+    /** End Region **/
 
     public static boolean checkMinotaurSpawn(EntityType<EntityTTMMinotaur> type, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
         int chance = 200; //1 in x
@@ -117,6 +164,8 @@ public class EntityTTMMinotaur extends EntityTTMMonsters {
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(5, 1);
         this.setMinotaurType(job);
+        this.populateDefaultEquipmentSlots(difficultyIn);
+        this.reassessWeaponGoal();
 
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
@@ -134,56 +183,7 @@ public class EntityTTMMinotaur extends EntityTTMMonsters {
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setMinotaurType(compound.getInt("MinotaurType"));
+        this.reassessWeaponGoal();
     }
 
 }
-//    public EntityTMMinotaur(World worldIn) {
-//        super(worldIn);
-//        this.setSize(2.3F, 6.9F);
-//        this.setWeaponType(TTMFeatures.AXE_MORGULIRON);
-//        this.setLootTable(LootInit.MINOTAUR);
-//    }
-//
-//    @Override
-//    public boolean getCanSpawnHere() {
-//        int willSpawn = TTMSpawnEvent.spawnChance();
-//
-//        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.posY < 64.0D && !this.world.canSeeSky(new BlockPos(this)) && willSpawn <= 10;
-//    }
-//
-//    protected SoundEvent getAmbientSound()
-//    {
-//        return SoundInit.soundIdleMinotaur;
-//    }
-//
-//    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-//    {
-//        return SoundInit.soundHurtMinotaur;
-//    }
-//
-//    protected SoundEvent getDeathSound()
-//    {
-//        return SoundInit.soundDeathMinotaur;
-//    }
-//
-//    @Override
-//    protected void playStepSound(BlockPos pos, Block blockIn)
-//    {
-//        this.playSound(SoundInit.soundStepMinotaur, 0.25F, 1.0F);
-//    }
-//
-//    @Override
-//    public double getAttackDamage() {
-//        return 3.0D;
-//    }
-//
-//    @Override
-//    public double getArmorStrength() {
-//        return 5.0D;
-//    }
-//
-//    @Override
-//    public double getHealthLevel() {
-//        return 25.0D;
-//    }
-//}

@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.entity.monster.render;
 
+import com.greatorator.tolkienmobs.entity.layers.TTMHeldItemLayer;
 import com.greatorator.tolkienmobs.entity.monster.EntityTTMBrigand;
 import com.greatorator.tolkienmobs.entity.monster.model.ModelTTMBrigand;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -10,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 public class RenderTTMBrigand extends MobRenderer<EntityTTMBrigand, ModelTTMBrigand<EntityTTMBrigand>> {
     public RenderTTMBrigand(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new ModelTTMBrigand<>(0.0F, true), 1.0F);
+        this.addLayer(new TTMHeldItemLayer(this));
     }
 
     @Override

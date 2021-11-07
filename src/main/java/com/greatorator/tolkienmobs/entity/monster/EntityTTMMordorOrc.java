@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
 import com.google.common.collect.Maps;
+import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
@@ -14,6 +15,9 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileHelper;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -37,11 +41,24 @@ public class EntityTTMMordorOrc extends EntityTTMMonsters {
         option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/orc/mordororc4.png"));
     });
 
+    /** Set up using weapons **/
+    private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false) {
+        public void stop() {
+            super.stop();
+            EntityTTMMordorOrc.this.setAggressive(false);
+        }
+
+        public void start() {
+            super.start();
+            EntityTTMMordorOrc.this.setAggressive(true);
+        }
+    };
+    /** End Region **/
+
     public EntityTTMMordorOrc(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
-    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(2, new RestrictSunGoal(this));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
@@ -50,7 +67,36 @@ public class EntityTTMMordorOrc extends EntityTTMMonsters {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
+        super.registerGoals();
     }
+
+    /** Set up using weapons **/
+    @Override
+    protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
+        super.populateDefaultEquipmentSlots(p_180481_1_);
+        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TTMContent.SWORD_MORGULIRON.get()));
+    }
+
+    @Override
+    public void reassessWeaponGoal() {
+        if (this.level != null && !this.level.isClientSide) {
+            this.goalSelector.removeGoal(this.meleeGoal);
+            ItemStack itemstack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, TTMContent.SWORD_MORGULIRON.get()));
+            if (itemstack.getItem() == TTMContent.SWORD_MORGULIRON.get()) {
+                this.goalSelector.addGoal(4, this.meleeGoal);
+            }
+        }
+    }
+
+    @Override
+    public void setItemSlot(EquipmentSlotType p_184201_1_, ItemStack p_184201_2_) {
+        super.setItemSlot(p_184201_1_, p_184201_2_);
+        if (!this.level.isClientSide) {
+            this.reassessWeaponGoal();
+        }
+
+    }
+    /** End Region **/
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
         return MonsterEntity.createMonsterAttributes()
@@ -90,6 +136,7 @@ public class EntityTTMMordorOrc extends EntityTTMMonsters {
         int job = TTMRand.getRandomInteger(5, 1);
         this.setMordorOrcType(job);
         this.populateDefaultEquipmentSlots(difficultyIn);
+        this.reassessWeaponGoal();
 
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
@@ -107,5 +154,6 @@ public class EntityTTMMordorOrc extends EntityTTMMonsters {
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setMordorOrcType(compound.getInt("MordorOrcType"));
+        this.reassessWeaponGoal();
     }
 }

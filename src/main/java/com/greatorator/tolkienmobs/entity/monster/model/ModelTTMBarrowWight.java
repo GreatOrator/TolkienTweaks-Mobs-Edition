@@ -28,8 +28,8 @@ public class ModelTTMBarrowWight<T extends MonsterEntity> extends BipedModel<T> 
     public ModelTTMBarrowWight(float modelSize, boolean ghostModel) {
         super(modelSize);
         this.ghostModel = ghostModel;
-            this.texWidth = 64;
-            this.texHeight = 64;
+        this.texWidth = 64;
+        this.texHeight = 64;
             this.bipedRightArmwear = new ModelRenderer(this, 40, 32);
             this.bipedRightArmwear.setPos(-5.0F, 2.0F, 0.0F);
             this.bipedRightArmwear.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.25F);
@@ -69,11 +69,11 @@ public class ModelTTMBarrowWight<T extends MonsterEntity> extends BipedModel<T> 
     }
 
     protected Iterable<ModelRenderer> headParts() {
-        return ImmutableList.of(this.bipedHead);
+        return ImmutableList.of(this.bipedHead, this.bipedDeadmau5Head);
     }
 
     protected Iterable<ModelRenderer> bodyParts() {
-        return ImmutableList.of(this.bipedBody, this.rightArm, this.leftArm, this.bipedRightLeg, this.bipedLeftLeg);
+        return ImmutableList.of(this.bipedBody, this.rightArm, this.leftArm, this.bipedRightLeg, this.bipedLeftLeg, this.bipedBodyWear, this.bipedRightArmwear, this.bipedLeftArmwear, this.bipedRightLegwear, this.bipedLeftLegwear);
     }
 
     public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
@@ -100,6 +100,7 @@ public class ModelTTMBarrowWight<T extends MonsterEntity> extends BipedModel<T> 
         this.bipedLeftArmwear.copyFrom(this.leftArm);
         this.bipedRightArmwear.copyFrom(this.rightArm);
         this.bipedBodyWear.copyFrom(this.bipedBody);
+        this.bipedDeadmau5Head.copyFrom(this.bipedHead);
 
         this.leftArm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.rightArm.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;

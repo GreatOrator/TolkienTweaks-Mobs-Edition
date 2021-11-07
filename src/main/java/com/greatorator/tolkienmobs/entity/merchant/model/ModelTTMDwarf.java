@@ -177,6 +177,11 @@ public class ModelTTMDwarf<T extends Entity> extends SegmentedModel<T> implement
         this.DwarfHelmetMain.addChild(this.DwarfHelmet1);
     }
 
+    @Override
+    public ModelRenderer getHead() {
+        return this.DwarfHead;
+    }
+
     public Iterable<ModelRenderer> parts() {
         return ImmutableList.of(this.DwarfBody);
     }
@@ -213,11 +218,6 @@ public class ModelTTMDwarf<T extends Entity> extends SegmentedModel<T> implement
         modelRenderer.xRot = x;
         modelRenderer.yRot = y;
         modelRenderer.zRot = z;
-    }
-
-    @Override
-    public ModelRenderer getHead() {
-        return this.DwarfHead;
     }
 
     @Override
