@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.vector.Vector3f;
 
+@Deprecated //You probably dont need this. In most cases you should be able to handle item placement via translateToHand in the entity model.
 public class TTMHeldItemLayer extends HeldItemLayer {
     public TTMHeldItemLayer(IEntityRenderer p_i50934_1_) {
         super(p_i50934_1_);

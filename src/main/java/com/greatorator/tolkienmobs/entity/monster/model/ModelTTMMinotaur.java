@@ -447,11 +447,8 @@ public class ModelTTMMinotaur<T extends MonsterEntity> extends BipedModel<T> {
     }
 
     @Override
-    public void translateToHand(HandSide hand, MatrixStack matrixStackIn) {
-        float pos = hand == HandSide.RIGHT ? 6.5F : -1.0F;
-        ModelRenderer modelrenderer = this.getArm(hand);
-        modelrenderer.x += pos;
-        modelrenderer.translateAndRotate(matrixStackIn);
-        modelrenderer.x -= pos;
+    public void translateToHand(HandSide hand, MatrixStack mStack) {
+        this.getArm(hand).translateAndRotate(mStack);
+        mStack.scale(2, 2, 2);
     }
 }
