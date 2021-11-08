@@ -123,7 +123,7 @@ public class EntityTTMBarrowWight extends EntityTTMMonsters {
      * Region for determining random skin
      */
     public ResourceLocation getBarrowTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getBarrowType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getBarrowType(), TEXTURE_BY_ID.get(1)); //There was no id '0' which was causing a null pointer
     }
 
     public int getBarrowType() {

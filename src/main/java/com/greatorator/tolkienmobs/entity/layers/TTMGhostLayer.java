@@ -17,13 +17,14 @@ public class TTMGhostLayer<T extends MonsterEntity> extends LayerRenderer<T, Mod
         super(p_i50923_1_);
     }
 
-    public void render(MatrixStack p_225628_1_, IRenderTypeBuffer p_225628_2_, int p_225628_3_, T entityIn, float p_225628_5_, float p_225628_6_, float p_225628_7_, float p_225628_8_, float p_225628_9_, float p_225628_10_) {
-//        if (!entityIn.isInvisible()) {
-            this.getParentModel().copyPropertiesTo(this.model);
-            this.model.prepareMobModel(entityIn, p_225628_5_, p_225628_6_, p_225628_7_);
-            this.model.setupAnim(entityIn, p_225628_5_, p_225628_6_, p_225628_8_, p_225628_9_, p_225628_10_);
-            IVertexBuilder lvt_11_1_ = p_225628_2_.getBuffer(RenderType.entityTranslucent(this.getTextureLocation(entityIn)));
-            this.model.renderToBuffer(p_225628_1_, lvt_11_1_, p_225628_3_, LivingRenderer.getOverlayCoords(entityIn, 0.0F), 1.0F, 1.0F, 1.0F, 1.0F);
+    public void render(MatrixStack mStack, IRenderTypeBuffer getter, int packedLight, T entity, float limkSwing, float limbSwingAmount, float partialTick, float p_225628_8_, float p_225628_9_, float p_225628_10_) {
+//        if (!entity.isInvisible()) {
+        this.getParentModel().copyPropertiesTo(this.model);
+        this.model.prepareMobModel(entity, limkSwing, limbSwingAmount, partialTick);
+        this.model.setupAnim(entity, limkSwing, limbSwingAmount, p_225628_8_, p_225628_9_, p_225628_10_);
+        IVertexBuilder buffer = getter.getBuffer(RenderType.entityTranslucent(this.getTextureLocation(entity)));
+        float alpha = 0.2F; //Adjust this to adjust transparency
+        this.model.renderToBuffer(mStack, buffer, packedLight, LivingRenderer.getOverlayCoords(entity, 0.0F), 1.0F, 1.0F, 1.0F, alpha);
 //        }
     }
 }

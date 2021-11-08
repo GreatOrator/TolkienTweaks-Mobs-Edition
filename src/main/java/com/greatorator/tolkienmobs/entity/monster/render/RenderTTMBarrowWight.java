@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderTTMBarrowWight extends MobRenderer<EntityTTMBarrowWight, ModelTTMBarrowWight<EntityTTMBarrowWight>> {
     public RenderTTMBarrowWight(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new ModelTTMBarrowWight<>(0.0F, true), 1.0F);
+        super(renderManagerIn, new ModelTTMBarrowWight<>(0.0F, false), 1.0F);
         this.addLayer(new TTMGhostLayer(this));
         this.addLayer(new BipedArmorLayer(this, new ModelTTMBarrowWight(0.5F, true), new ModelTTMBarrowWight(1.0F, true)));
     }
