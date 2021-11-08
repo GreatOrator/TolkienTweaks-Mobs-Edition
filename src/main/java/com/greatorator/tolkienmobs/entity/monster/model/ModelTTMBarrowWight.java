@@ -51,6 +51,9 @@ public class ModelTTMBarrowWight<T extends MonsterEntity> extends BipedModel<T> 
         this.jacket = new ModelRenderer(this, 16, 32);
         this.jacket.setPos(0.0F, 0.0F, 0.0F);
         this.jacket.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.25F);
+        this.hat = new ModelRenderer(this, 32, 0);
+        this.hat.setPos(0.0F, 0.0F, 0.0F);
+        this.hat.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.5F);
         this.rightLeg = new ModelRenderer(this, 0, 16);
         this.rightLeg.setPos(-1.9F, 12.0F, 0.0F);
         this.rightLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
