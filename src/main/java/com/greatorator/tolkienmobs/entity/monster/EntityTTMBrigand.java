@@ -4,14 +4,13 @@ import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
 import com.greatorator.tolkienmobs.utils.TTMRand;
-import net.minecraft.entity.CreatureAttribute;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -21,7 +20,10 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -71,6 +73,27 @@ public class EntityTTMBrigand extends EntityTTMMonsters {
                 .add(Attributes.MOVEMENT_SPEED, 0.23D)
                 .add(Attributes.ATTACK_DAMAGE, 3.0D)
                 .add(Attributes.ARMOR, 5.0D);
+    }
+
+    public boolean doHurtTarget(Entity entityIn) {
+        long time = System.currentTimeMillis();
+        nextAbilityUse = time + coolDown;
+        PlayerEntity player = null;
+        assert false;
+        BlockPos blockpos = player.blockPosition();
+        ItemEntity dropItem = player.drop(player.inventory.removeItem(player.inventory.selected, 1), false);
+        
+        if (super.doHurtTarget(entityIn)) {
+            if (entityIn instanceof PlayerEntity) {
+                if (time > nextAbilityUse) {
+                    if (dropItem != null) {
+                        dropItem.setPickUpDelay(50);
+                        level.playSound(null, blockpos, SoundEvents.SLIME_ATTACK, SoundCategory.HOSTILE, 1.0F + level.random.nextFloat(), level.random.nextFloat() * 0.7F + 0.3F);
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     /** Set up using weapons **/
