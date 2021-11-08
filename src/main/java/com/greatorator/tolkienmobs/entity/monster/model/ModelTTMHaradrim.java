@@ -10,7 +10,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
 
-public class ModelTMHaradrim<T extends MonsterEntity> extends BipedModel<T> {
+public class ModelTTMHaradrim<T extends MonsterEntity> extends BipedModel<T> {
     public ModelRenderer bipedLeftArmwear;
     public ModelRenderer bipedRightLegwear;
     public ModelRenderer bipedRightArmwear;
@@ -23,7 +23,7 @@ public class ModelTMHaradrim<T extends MonsterEntity> extends BipedModel<T> {
     public ModelRenderer bipedBodyWear;
     private boolean ghostModel;
 
-    public ModelTMHaradrim(float modelSize, boolean p_i46303_2_) {
+    public ModelTTMHaradrim(float modelSize, boolean p_i46303_2_) {
         super(modelSize);
         this.ghostModel = p_i46303_2_;
         this.texWidth = 64;

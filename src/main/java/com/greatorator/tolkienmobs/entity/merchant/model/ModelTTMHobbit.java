@@ -43,6 +43,12 @@ public class ModelTTMHobbit<T extends Entity> extends SegmentedModel<T> implemen
         this.HobbitHead.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
     }
 
+    @Override
+    public ModelRenderer getHead() {
+        return this.HobbitHead;
+    }
+
+    @Override
     public Iterable<ModelRenderer> parts() {
         return ImmutableList.of(this.HobbitHead, this.HobbitBody, this.HobbitLegR, this.HobbitLegL, this.bipedLeftArm, this.bipedRightArm);
     }
@@ -71,10 +77,6 @@ public class ModelTTMHobbit<T extends Entity> extends SegmentedModel<T> implemen
         this.HobbitLegL.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount * 0.5F;
         this.HobbitLegR.yRot = 0.0F;
         this.HobbitLegL.yRot = 0.0F;
-    }
-
-    public ModelRenderer getHead() {
-        return this.HobbitHead;
     }
 
     @Override
