@@ -125,7 +125,7 @@ public class EntityTTMFellSpirit extends EntityTTMMonsters {
      * Region for determining random skin
      */
     public ResourceLocation getFellSpiritTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getFellSpiritType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getFellSpiritType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getFellSpiritType() {

@@ -161,7 +161,7 @@ public class EntityTTMGoblin extends EntityTTMMonsters {
      * Region for determining random skin
      */
     public ResourceLocation getGoblinTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getGoblinType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getGoblinType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getGoblinType() {

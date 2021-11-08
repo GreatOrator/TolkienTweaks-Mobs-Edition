@@ -50,7 +50,7 @@ public class EntityTTMDwarf extends EntityTTMVillagers {
      * Region for determining random skin
      */
     public ResourceLocation getDwarfTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getDwarfType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getDwarfType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getDwarfType() {

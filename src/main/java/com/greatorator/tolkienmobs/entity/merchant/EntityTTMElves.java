@@ -54,7 +54,7 @@ public class EntityTTMElves extends EntityTTMVillagers {
 
     /** Region for determining random skin */
     public ResourceLocation getElvesTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getElvesType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getElvesType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getElvesType() {

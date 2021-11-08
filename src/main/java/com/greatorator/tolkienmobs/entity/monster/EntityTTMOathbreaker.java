@@ -123,7 +123,7 @@ public class EntityTTMOathbreaker extends EntityTTMMonsters {
      * Region for determining random skin
      */
     public ResourceLocation getOathbreakerTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getOathbreakerType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getOathbreakerType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getOathbreakerType() {

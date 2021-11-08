@@ -163,7 +163,7 @@ public class EntityTTMElementalGolem extends EntityTTMMonsters implements IAnger
      * Region for determining random skin
      */
     public ResourceLocation getElementalGolemTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getElementalGolemType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getElementalGolemType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getElementalGolemType() {

@@ -237,7 +237,7 @@ public class EntityTTMSwampHag extends AbstractRaiderEntity implements IRangedAt
      * Region for determining random skin
      */
     public ResourceLocation getSwampHagTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getSwampHagType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getSwampHagType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getSwampHagType() {

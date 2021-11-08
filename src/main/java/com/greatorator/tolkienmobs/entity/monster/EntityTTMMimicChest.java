@@ -2,18 +2,22 @@ package com.greatorator.tolkienmobs.entity.monster;
 
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.datagen.PotionGenerator;
 import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
 import com.greatorator.tolkienmobs.utils.TTMRand;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.world.DifficultyInstance;
@@ -22,7 +26,6 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.Map;
-import java.util.UUID;
 
 public class EntityTTMMimicChest extends EntityTTMMonsters {
     private static final DataParameter<Integer> MIMIC_TYPE = EntityDataManager.defineId(EntityTTMMimicChest.class, DataSerializers.INT);
@@ -32,15 +35,8 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
         option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest1.png"));
         option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest2.png"));
     });
-    private static final UUID ATTACK_SPEED_BOOST_MODIFIER_UUID = UUID.fromString("763926b2-45ba-11e9-b210-d663bd873d93");
-//    private static final AttributeModifier ATTACK_SPEED_BOOST_MODIFIER = (new AttributeModifier(ATTACK_SPEED_BOOST_MODIFIER_UUID, "Attacking speed boost", 0.05D, 0)).setSaved(false);
-    /** Above zero if this Mimic is Angry. */
-    private int angerLevel;
     private long nextAbilityUse = 0L;
     private final static long coolDown = 15000L;
-    /** A random delay until this Mimic next makes a sound. */
-    private int randomSoundDelay;
-    private UUID angerTargetUUID;
 
     public EntityTTMMimicChest(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
@@ -54,147 +50,27 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
                 .add(Attributes.ARMOR, 5.0D);
     }
 
-//    public void setRevengeTarget(@Nullable LivingEntity livingBase)
-//    {
-//        super.setRevengeTarget(livingBase);
-//
-//        if (livingBase != null)
-//        {
-//            this.angerTargetUUID = livingBase.getUUID();
-//        }
-//    }
-//
-//    public void updateAITasks()
-//    {
-//        Attributes iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
-//
-//        if (this.isAngry())
-//        {
-//            --this.angerLevel;
-//        }
-//        else if (iattributeinstance.hasModifier(ATTACK_SPEED_BOOST_MODIFIER))
-//        {
-//            iattributeinstance.removeModifier(ATTACK_SPEED_BOOST_MODIFIER);
-//        }
-//
-//        if (this.randomSoundDelay > 0 && --this.randomSoundDelay == 0)
-//        {
-//            this.playSound(SoundInit.soundAngryMimic, this.getSoundVolume() * 2.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) * 1.8F);
-//        }
-//
-//        if (this.angerLevel > 0 && this.angerTargetUUID != null && this.getRevengeTarget() == null)
-//        {
-//            PlayerEntity entityplayer = this.world.getPlayerEntityByUUID(this.angerTargetUUID);
-//            this.setRevengeTarget(entityplayer);
-//            this.attackingPlayer = entityplayer;
-//            this.recentlyHit = this.getRevengeTimer();
-//            this.tasks.addTask(2, new EntityAITTMAttack(this, 1.2D, false));
-//            this.tasks.addTask(2, new EntityAINearestAttackableTarget(this, PlayerEntity.class, true));
-//        }
-//        super.updateAITasks();
-//    }
-//
-//    @Override
-//    public boolean attackEntityFrom(DamageSource damageSource, float damage)
-//    {
-//        if (damageSource.getImmediateSource() instanceof PlayerEntity)
-//        {
-//            Entity entity = damageSource.getTrueSource();
-//            PlayerEntity player = (PlayerEntity)damageSource.getTrueSource();
-//            ItemStack weapon = player != null ? player.inventory.getStackInSlot(player.inventory.currentItem) : null;
-//
-//            if (entity instanceof PlayerEntity)
-//            {
-//                this.becomeAngryAt(entity);
-//            }
-//
-//            assert player != null;
-//            if (player.getActiveItemStack().getItem() instanceof ItemAxe)
-//            {
-//                damage *= 1.25F;
-//            }
-//
-//            long time = System.currentTimeMillis();
-//            if (time > nextAbilityUse && damageSource.getTrueSource() != null && !(damageSource instanceof EntityDamageSourceIndirect)) {
-//                nextAbilityUse = time + coolDown;
-//                player.addPotionEffect(new PotionEffect(PotionInit.INVENTORY_CORROSION, 30, 3));
-//            }
-//        }
-//
-//        return super.attackEntityFrom(damageSource, damage);
-//    }
-//
-//    public boolean processInteract(PlayerEntity player, EnumHand hand)
-//    {
-//        ItemStack itemstack = player.getHeldItem(hand);
-//        boolean flag = itemstack.getItem() == Items.NAME_TAG;
-//
-//        if (flag)
-//        {
-//            itemstack.interactWithEntity(player, this, hand);
-//            return true;
-//        }
-//        else if (!isAngry())
-//        {
-//            this.becomeAngryAt(player);
-//        }
-//            return super.processInteract(player, hand);
-//    }
-//
-//    private void becomeAngryAt(Entity p_70835_1_)
-//    {
-//        this.angerLevel = 400 + this.rand.nextInt(400);
-//
-//        if (p_70835_1_ instanceof LivingEntity)
-//        {
-//            this.setRevengeTarget((LivingEntity)p_70835_1_);
-//        }
-//    }
-//
-//    public boolean isAngry()
-//    {
-//        return this.angerLevel > 0;
-//    }
-//
-//    static class AIHurtByAggressor extends EntityAIHurtByTarget
-//    {
-//        public AIHurtByAggressor(EntityTMMimicChest p_i45828_1_)
-//        {
-//            super(p_i45828_1_, true);
-//        }
-//
-//        protected void setEntityAttackTarget(EntityCreature creatureIn, LivingEntity LivingEntityIn)
-//        {
-//            super.setEntityAttackTarget(creatureIn, LivingEntityIn);
-//
-//            if (creatureIn instanceof EntityTMMimicChest)
-//            {
-//                ((EntityTMMimicChest)creatureIn).becomeAngryAt(LivingEntityIn);
-//            }
-//        }
-//    }
-//
-//    static class AITargetAggressor extends EntityAINearestAttackableTarget<PlayerEntity>
-//    {
-//        public AITargetAggressor(EntityTMMimicChest p_i45829_1_)
-//        {
-//            super(p_i45829_1_, PlayerEntity.class, true);
-//        }
-//
-//        /**
-//         * Returns whether the EntityAIBase should begin execution.
-//         */
-//        public boolean shouldExecute()
-//        {
-//            return ((EntityTMMimicChest)this.taskOwner).isAngry() && super.shouldExecute();
-//        }
-//    }
+    /** Special Attack */
+    public boolean doHurtTarget(Entity entityIn) {
+        long time = System.currentTimeMillis();
+        if (super.doHurtTarget(entityIn)) {
+            if (entityIn instanceof PlayerEntity) {
+                if (time > nextAbilityUse) {
+                    nextAbilityUse = time + coolDown;
+                    PlayerEntity player = (PlayerEntity) entityIn;
+                    int strength = 2;
+                    player.addEffect(new EffectInstance(PotionGenerator.INVENTORY_CORROSION.get(), strength * 20, 0));
+                }
+            }
+        }
+        return true;
+    }
 
     /**
      * Region for determining random skin
      */
     public ResourceLocation getMimicChestTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getMimicChestType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getMimicChestType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getMimicChestType() {

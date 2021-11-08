@@ -2,10 +2,10 @@ package com.greatorator.tolkienmobs.entity.monster.model;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.HandSide;
@@ -89,7 +89,6 @@ public class ModelTTMBarrowWight<T extends MonsterEntity> extends BipedModel<T> 
                 this.leftArmPose = ArmPose.ITEM;
             }
         }
-
         super.prepareMobModel(entityIn, limbSwing, limbSwingAmount, partialTick);
     }
 
@@ -105,5 +104,11 @@ public class ModelTTMBarrowWight<T extends MonsterEntity> extends BipedModel<T> 
 
         this.leftLeg.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.rightLeg.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+    }
+
+    @Override
+    public void translateToHand(HandSide hand, MatrixStack mStack) {
+        this.getArm(hand).translateAndRotate(mStack);
+        mStack.scale(1.0F, 1.0F, 1.0F);
     }
 }

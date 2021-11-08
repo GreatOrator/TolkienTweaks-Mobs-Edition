@@ -123,7 +123,7 @@ public class EntityTTMRomieWalker extends EntityTTMMonsters {
      * Region for determining random skin
      */
     public ResourceLocation getRomieWalkerTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getRomieWalkerType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getRomieWalkerType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getRomieWalkerType() {

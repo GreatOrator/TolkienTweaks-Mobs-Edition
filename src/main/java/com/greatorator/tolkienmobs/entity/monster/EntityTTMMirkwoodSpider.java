@@ -215,7 +215,7 @@ public class EntityTTMMirkwoodSpider extends EntityTTMMonsters {
      * Region for determining random skin
      */
     public ResourceLocation getMirkwoodSpiderTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getMirkwoodSpiderType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getMirkwoodSpiderType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getMirkwoodSpiderType() {

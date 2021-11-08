@@ -118,7 +118,7 @@ public class EntityTTMGoat extends AbstractChestedHorseEntity {
 
     /** Region for determining random skin */
     public ResourceLocation getGoatTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getGoatType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getGoatType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getGoatType() {

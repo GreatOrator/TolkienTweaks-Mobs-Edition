@@ -182,11 +182,9 @@ public class ModelTTMGoblin<T extends MonsterEntity> extends BipedModel<T> {
         GoblinEarL1.yRot = (float) Math.pow(MathHelper.cos(degToRad(entityIn.tickCount*3)), 6) * degToRad(-15);
     }
 
-    public void translateToHand(HandSide sideIn, MatrixStack matrixStackIn) {
-        float f = sideIn == HandSide.RIGHT ? 1.0F : -1.0F;
-        ModelRenderer modelrenderer = this.getArm(sideIn);
-        modelrenderer.x += f;
-        modelrenderer.translateAndRotate(matrixStackIn);
-        modelrenderer.x -= f;
+    @Override
+    public void translateToHand(HandSide hand, MatrixStack mStack) {
+        this.getArm(hand).translateAndRotate(mStack);
+        mStack.scale(1, 1, 1);
     }
 }

@@ -95,7 +95,7 @@ public class EntityTTMTreeEnt extends EntityTTMMonsters {
      * Region for determining random skin
      */
     public ResourceLocation getTreeEntTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getTreeEntType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getTreeEntType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getTreeEntType() {

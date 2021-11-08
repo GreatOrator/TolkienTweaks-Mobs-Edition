@@ -116,7 +116,7 @@ public class EntityTTMMordorOrc extends EntityTTMMonsters {
      * Region for determining random skin
      */
     public ResourceLocation getMordorOrcTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getMordorOrcType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getMordorOrcType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getMordorOrcType() {

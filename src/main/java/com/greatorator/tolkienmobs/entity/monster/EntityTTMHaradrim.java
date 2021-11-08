@@ -5,13 +5,16 @@ import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
 import com.greatorator.tolkienmobs.utils.TTMRand;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -20,7 +23,10 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -71,6 +77,26 @@ public class EntityTTMHaradrim extends EntityTTMMonsters {
                 .add(Attributes.ARMOR, 6.0D);
     }
 
+    /** Special Attack */
+    public boolean doHurtTarget(Entity entityIn) {
+        long time = System.currentTimeMillis();
+        if (super.doHurtTarget(entityIn)) {
+            if (entityIn instanceof PlayerEntity) {
+                if (time > nextAbilityUse) {
+                    nextAbilityUse = time + coolDown;
+                    PlayerEntity player = (PlayerEntity) entityIn;
+                    BlockPos blockpos = player.blockPosition();
+                    ItemEntity dropItem = player.drop(player.inventory.removeItem(player.inventory.selected, 1), false);
+                    if (dropItem != null) {
+                        dropItem.setPickUpDelay(50);
+                        level.playSound(null, blockpos, SoundEvents.SLIME_ATTACK, SoundCategory.HOSTILE, 1.0F + level.random.nextFloat(), level.random.nextFloat() * 0.7F + 0.3F);
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
     /** Set up using weapons **/
     @Override
     protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
@@ -103,7 +129,7 @@ public class EntityTTMHaradrim extends EntityTTMMonsters {
      * Region for determining random skin
      */
     public ResourceLocation getHaradrimTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getHaradrimType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getHaradrimType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getHaradrimType() {

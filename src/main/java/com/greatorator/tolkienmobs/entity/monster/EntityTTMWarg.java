@@ -71,7 +71,7 @@ public class EntityTTMWarg extends WolfEntity {
      * Region for determining random skin
      */
     public ResourceLocation getWargTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getWargType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getWargType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getWargType() {

@@ -61,7 +61,7 @@ public class EntityTTMHuron extends EntityTTMMonsters {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, EntityTTMGoblin.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, EntityTTMMordorOrc.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, EntityTTMGoblinKing.class, true));
-//        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, EntityTTMUrukHai.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, EntityTTMUrukHai.class, true));
     }
 
     @Override
@@ -88,7 +88,7 @@ public class EntityTTMHuron extends EntityTTMMonsters {
      * Region for determining random skin
      */
     public ResourceLocation getHuronTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getHuronType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getHuronType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getHuronType() {

@@ -93,12 +93,6 @@ public class ModelTMHaradrim<T extends MonsterEntity> extends BipedModel<T> {
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 
-        this.bipedLeftLegwear.copyFrom(this.bipedLeftLeg);
-        this.bipedRightLegwear.copyFrom(this.bipedRightLeg);
-        this.bipedLeftArmwear.copyFrom(this.leftArm);
-        this.bipedRightArmwear.copyFrom(this.rightArm);
-        this.bipedBodyWear.copyFrom(this.bipedBody);
-
         this.leftArm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.rightArm.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 
@@ -113,11 +107,8 @@ public class ModelTMHaradrim<T extends MonsterEntity> extends BipedModel<T> {
     }
 
     @Override
-    public void translateToHand(HandSide hand, MatrixStack matrixStackIn) {
-        float pos = hand == HandSide.RIGHT ? 8.5F : -1.0F;
-        ModelRenderer modelrenderer = this.getArm(hand);
-        modelrenderer.x += pos;
-        modelrenderer.translateAndRotate(matrixStackIn);
-        modelrenderer.x -= pos;
+    public void translateToHand(HandSide hand, MatrixStack mStack) {
+        this.getArm(hand).translateAndRotate(mStack);
+        mStack.scale(1, 1, 1);
     }
 }

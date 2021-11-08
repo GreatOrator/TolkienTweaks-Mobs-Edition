@@ -99,7 +99,7 @@ public class EntityTTMMumakil extends EntityTTMHerds {
 
     /** Region for determining random skin */
     public ResourceLocation getMumakilTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getMumakilType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getMumakilType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getMumakilType() {

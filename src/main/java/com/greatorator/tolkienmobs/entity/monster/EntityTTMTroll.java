@@ -76,7 +76,7 @@ public class EntityTTMTroll extends EntityTTMMonsters {
      * Region for determining random skin
      */
     public ResourceLocation getTrollTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getTrollType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getTrollType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getTrollType() {

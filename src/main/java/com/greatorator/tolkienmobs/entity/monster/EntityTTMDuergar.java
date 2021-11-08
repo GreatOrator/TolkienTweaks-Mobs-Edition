@@ -67,7 +67,7 @@ public class EntityTTMDuergar extends EntityTTMMonsters {
      * Region for determining random skin
      */
     public ResourceLocation getDuergarTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getDuergarType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getDuergarType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getDuergarType() {

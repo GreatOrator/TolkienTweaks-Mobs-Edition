@@ -75,17 +75,16 @@ public class EntityTTMBrigand extends EntityTTMMonsters {
                 .add(Attributes.ARMOR, 5.0D);
     }
 
+    /** Special Attack */
     public boolean doHurtTarget(Entity entityIn) {
         long time = System.currentTimeMillis();
-        nextAbilityUse = time + coolDown;
-        PlayerEntity player = null;
-        assert false;
-        BlockPos blockpos = player.blockPosition();
-        ItemEntity dropItem = player.drop(player.inventory.removeItem(player.inventory.selected, 1), false);
-        
         if (super.doHurtTarget(entityIn)) {
             if (entityIn instanceof PlayerEntity) {
                 if (time > nextAbilityUse) {
+                    nextAbilityUse = time + coolDown;
+                    PlayerEntity player = (PlayerEntity) entityIn;
+                    BlockPos blockpos = player.blockPosition();
+                    ItemEntity dropItem = player.drop(player.inventory.removeItem(player.inventory.selected, 1), false);
                     if (dropItem != null) {
                         dropItem.setPickUpDelay(50);
                         level.playSound(null, blockpos, SoundEvents.SLIME_ATTACK, SoundCategory.HOSTILE, 1.0F + level.random.nextFloat(), level.random.nextFloat() * 0.7F + 0.3F);

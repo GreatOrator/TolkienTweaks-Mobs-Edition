@@ -48,7 +48,7 @@ public class EntityTTMDeepClaw extends EntityTTMMonsters {
      * Region for determining random skin
      */
     public ResourceLocation getDeepclawTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getDeepclawType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getDeepclawType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getDeepclawType() {

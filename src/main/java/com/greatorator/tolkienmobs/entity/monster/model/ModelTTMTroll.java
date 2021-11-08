@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.entity.monster.model;
 
 import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -166,5 +167,11 @@ public class ModelTTMTroll<T extends MonsterEntity> extends BipedModel<T> {
 
         this.TrollNeck.yRot = netHeadYaw * 0.017453292F;
         this.TrollNeck.xRot = headPitch * 0.017453292F;
+    }
+
+    @Override
+    public void translateToHand(HandSide hand, MatrixStack mStack) {
+        this.getArm(hand).translateAndRotate(mStack);
+        mStack.scale(2, 2, 2);
     }
 }

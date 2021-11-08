@@ -76,15 +76,15 @@ public class EntityTTMUrukHai extends EntityTTMMonsters {
     @Override
     protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
         super.populateDefaultEquipmentSlots(p_180481_1_);
-        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TTMContent.SWORD_MORGULIRON.get()));
+        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TTMContent.SWORD_URUK.get()));
     }
 
     @Override
     public void reassessWeaponGoal() {
         if (this.level != null && !this.level.isClientSide) {
             this.goalSelector.removeGoal(this.meleeGoal);
-            ItemStack itemstack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, TTMContent.SWORD_MORGULIRON.get()));
-            if (itemstack.getItem() == TTMContent.SWORD_MORGULIRON.get()) {
+            ItemStack itemstack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, TTMContent.SWORD_URUK.get()));
+            if (itemstack.getItem() == TTMContent.SWORD_URUK.get()) {
                 this.goalSelector.addGoal(4, this.meleeGoal);
             }
         }
@@ -128,7 +128,7 @@ public class EntityTTMUrukHai extends EntityTTMMonsters {
      * Region for determining random skin
      */
     public ResourceLocation getUrukHaiTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getUrukHaiType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getUrukHaiType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getUrukHaiType() {

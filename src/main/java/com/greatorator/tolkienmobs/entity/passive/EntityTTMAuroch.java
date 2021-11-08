@@ -75,7 +75,7 @@ public class EntityTTMAuroch extends EntityTTMHerds {
 
     /** Region for determining random skin */
     public ResourceLocation getAurochTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getAurochType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getAurochType(), TEXTURE_BY_ID.get(1));
     }
 
     public int getAurochType() {

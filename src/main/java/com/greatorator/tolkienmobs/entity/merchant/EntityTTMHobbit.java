@@ -49,7 +49,7 @@ public EntityTTMHobbit(EntityType<? extends EntityTTMVillagers> type, World worl
 
 /** Region for determining random skin */
 public ResourceLocation getHobbitTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getHobbitType(), TEXTURE_BY_ID.get(0));
+        return TEXTURE_BY_ID.getOrDefault(this.getHobbitType(), TEXTURE_BY_ID.get(1));
         }
 
 public int getHobbitType() {
