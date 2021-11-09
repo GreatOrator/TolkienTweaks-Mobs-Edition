@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.entity.monster.model;
 
 import com.google.common.collect.ImmutableList;
+import com.greatorator.tolkienmobs.entity.monster.EntityTTMMimicChest;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -44,8 +45,7 @@ public class ModelTTMMimicChest<T extends MonsterEntity> extends SegmentedModel<
     public ModelRenderer rightLeg_1;
     public ModelRenderer leftbackLeg_1;
     public ModelRenderer rightbackLeg_1;
-    public static boolean renderChest;
-    private boolean mimicAttack;
+    public static boolean renderChest = true;
 
     public ModelTTMMimicChest()
     {
@@ -200,6 +200,11 @@ public class ModelTTMMimicChest<T extends MonsterEntity> extends SegmentedModel<
         this.boxLid2.addChild(this.MimicLatch);
     }
 
+    public boolean getRenderChest() {
+        renderChest = EntityTTMMimicChest.getMimicChest();
+        return renderChest;
+    }
+
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.xRot = x;
         modelRenderer.yRot = y;
@@ -207,17 +212,16 @@ public class ModelTTMMimicChest<T extends MonsterEntity> extends SegmentedModel<
     }
 
     public Iterable<ModelRenderer> parts() {
-        if(getRenderChest()){
-            return ImmutableList.of(this.box2, this.boxLid2, this.MimicLatch);
+        if(this.getRenderChest()){
+            return ImmutableList.of(this.box2, this.boxLid2);
         }
         else {
-            setMimicAttack(true);
             return ImmutableList.of(this.box, this.boxLid, this.leftLeg, this.rightLeg, this.leftbackLeg, this.rightbackLeg);
         }
     }
 
     public void setupAnim(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
-        if(isMimicAttack()){
+        if(EntityTTMMimicChest.getMimicAttack()){
             float baseBackLegRotation = 0.2617993877991494F;
             float baseFrontLegRotation = -0.2617993877991494F;
             float baseLidRotation = 2.356194490192345F;
@@ -234,21 +238,5 @@ public class ModelTTMMimicChest<T extends MonsterEntity> extends SegmentedModel<
             MimicTongue_1.xRot = MimicTongue.xRot * 3;
             MimicTongue_2.xRot = MimicTongue_1.xRot * 1;
         }
-    }
-
-    public static void setRenderChest(boolean renderChest) {
-        ModelTTMMimicChest.renderChest = renderChest;
-    }
-
-    private boolean getRenderChest() {
-        return renderChest;
-    }
-
-    public void setMimicAttack(boolean mimicAttack) {
-        this.mimicAttack = mimicAttack;
-    }
-
-    public boolean isMimicAttack() {
-        return mimicAttack;
     }
 }

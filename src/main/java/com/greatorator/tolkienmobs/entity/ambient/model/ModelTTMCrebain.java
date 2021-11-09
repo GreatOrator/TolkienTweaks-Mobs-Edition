@@ -1,340 +1,209 @@
-//package com.greatorator.tolkienmobs.client.render.model.ambient;
-//
-//import com.greatorator.tolkienmobs.client.render.model.ModelTTM;
-//import com.greatorator.tolkienmobs.entity.ambient.EntityTMCrebain;
-//import net.minecraft.client.model.ModelRenderer;
-//import net.minecraft.entity.Entity;
-//import net.minecraft.entity.LivingEntity;
-//import net.minecraft.util.math.MathHelper;
-//import net.minecraftforge.fml.relauncher.Side;
-//import net.minecraftforge.fml.relauncher.SideOnly;
-//
-///* Crebain - GreatOrator */
-//@SideOnly(Side.CLIENT)
-//public class ModelCrebain extends ModelTTM {
-//    public ModelRenderer CrebainBody;
-//    public ModelRenderer CrebainBodyWingless;
-//    public ModelRenderer CrebainTail1;
-//    public ModelRenderer CrebainLegL1;
-//    public ModelRenderer CrebainLegR1;
-//    public ModelRenderer CrebainHead;
-//    public ModelRenderer CrebainWingL1;
-//    public ModelRenderer CrebainWingR1;
-//    public ModelRenderer CrebainTail2;
-//    public ModelRenderer CrebainTail3;
-//    public ModelRenderer CrebainLegL2;
-//    public ModelRenderer CrebainLegR2;
-//    public ModelRenderer CrebainBeakTop;
-//    public ModelRenderer CrebainBeakBottom;
-//    public ModelRenderer CrebainWingL2;
-//    public ModelRenderer CrebainWingR2;
-//    private ModelCrebain.State state = ModelCrebain.State.STANDING;
-//
-//    protected float[][] perchedCycle = new float[][] {
-//                    // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleY, wing1AngleZ, wing2AngleZ
-//                    { -70F, 70F, 70F, 0F, 0F, 0F, 90F, 0F }
-//    };
-//
-//    protected float[][] takingOffCycle = new float[][] {
-//                    // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleY, wing1AngleZ, wing2AngleZ
-//                    { -5F, 5F, 70F, -10F, 0F, 0F, 20F, -20F },
-//                    { -4F, 4F, 70F, -10F, 0F, 0F, 15F, -15F },
-//                    { -2F, 2F, 70F, -10F, 0F, 0F, 10F, -10F },
-//                    { -1F, 1F, 70F, -10F, 0F, 0F, 5F, -5F },
-//                    { 0F, 0F, 70F, -10F, 0F, 0F, 0F, 0F },
-//                    { 1F, -1F, 70F, -10F, 0F, 0F, -5F, 5F },
-//                    { 2F, -2F, 70F, -10F, 0F, 0F, -10F, 10F },
-//                    { 4F, -4F, 70F, -10F, 0F, 0F, -15F, 15F },
-//                    { 5F, -5F, 70F, -10F, 0F, 0F, -20F, 20F },
-//                    { 6F, -6F, 70F, -10F, 0F, 0F, -25F, 20F },
-//                    { 7F, -7F, 70F, -10F, 0F, 0F, -30F, 20F },
-//                    { 4F, -4F, 70F, -10F, 0F, 0F, -15F, 15F },
-//                    { 0F, 0F, 70F, -10F, 0F, 0F, -0F, 0F },
-//                    { -3F, 3F, 70F, -10F, 0F, 0F, 10F, -10F },
-//                    { -5F, 5F, 70F, -10F, 0F, 0F, 20F, -20F },
-//                    { -7F, 7F, 70F, -10F, 0F, 0F, 30F, -20F },
-//                    { -10F, 10F, 70F, -10F, 0F, 0F, 40F, -20F },
-//                    { -12F, 12F, 70F, -10F, 0F, 0F, 50F, -20F },
-//                    { -10F, 10F, 70F, -10F, 0F, 0F, 45F, -20F },
-//                    { -10F, 10F, 70F, -10F, 0F, 0F, 40F, -20F },
-//                    { -8F, 8F, 70F, -10F, 0F, 0F, 35F, -20F },
-//                    { -7F, 7F, 70F, -10F, 0F, 0F, 30F, -20F },
-//                    { -6F, 6F, 70F, -10F, 0F, 0F, 25F, -20F }
-//    };
-//
-//    protected float[][] soaringCycle = new float[][] {
-//                    // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleY, wing1AngleZ, wing2AngleZ
-//                    { 0F, 0F, 0F, 0F, 0F, 0F, 0F, 0F }
-//    };
-//
-//    protected float[][] divingCycle = new float[][] {
-//                    // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleY, wing1AngleZ, wing2AngleZ
-//                    { 90F, 0F, 0F, 0F, 0F, -50F, 0F, 0F }
-//    };
-//
-//    protected float[][] attackingCycle = new float[][] {
-//                    // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleY, wing1AngleZ, wing2AngleZ
-//                    { 90F, 0F, 0F, 0F, 0F, -50F, 0F, 0F }
-//    };
-//
-//    protected float[][] landingCycle = new float[][] {
-//                    // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleY, wing1AngleZ, wing2AngleZ
-//                    { -5F, 5F, 70F, -10F, 0F, 0F, 20F, -20F },
-//    };
-//
-//    protected float[][] travellingCycle = new float[][] {
-//                    // bodyAngleX, headAngleX, legsAngleX, tailAngleX, wing1AngleX, wing1AngleY, wing1AngleZ, wing2AngleZ
-//                    { -5F, 5F, 70F, -10F, 0F, 0F, 20F, -20F },
-//                    { -4F, 4F, 70F, -10F, 0F, 0F, 15F, -15F },
-//                    { -2F, 2F, 70F, -10F, 0F, 0F, 10F, -10F },
-//                    { -1F, 1F, 70F, -10F, 0F, 0F, 5F, -5F },
-//                    { 0F, 0F, 70F, -10F, 0F, 0F, 0F, 0F },
-//                    { 1F, -1F, 70F, -10F, 0F, 0F, -5F, 5F },
-//                    { 2F, -2F, 70F, -10F, 0F, 0F, -10F, 10F },
-//                    { 4F, -4F, 70F, -10F, 0F, 0F, -15F, 15F },
-//                    { 5F, -5F, 70F, -10F, 0F, 0F, -20F, 20F },
-//                    { 6F, -6F, 70F, -10F, 0F, 0F, -25F, 20F },
-//                    { 7F, -7F, 70F, -10F, 0F, 0F, -30F, 20F },
-//                    { 4F, -4F, 70F, -10F, 0F, 0F, -15F, 15F },
-//                    { 0F, 0F, 70F, -10F, 0F, 0F, -0F, 0F },
-//                    { -3F, 3F, 70F, -10F, 0F, 0F, 10F, -10F },
-//                    { -5F, 5F, 70F, -10F, 0F, 0F, 20F, -20F },
-//                    { -7F, 7F, 70F, -10F, 0F, 0F, 30F, -20F },
-//                    { -10F, 10F, 70F, -10F, 0F, 0F, 40F, -20F },
-//                    { -12F, 12F, 70F, -10F, 0F, 0F, 50F, -20F },
-//                    { -10F, 10F, 70F, -10F, 0F, 0F, 45F, -20F },
-//                    { -10F, 10F, 70F, -10F, 0F, 0F, 40F, -20F },
-//                    { -8F, 8F, 70F, -10F, 0F, 0F, 35F, -20F },
-//                    { -7F, 7F, 70F, -10F, 0F, 0F, 30F, -20F },
-//                    { -6F, 6F, 70F, -10F, 0F, 0F, 25F, -20F }
-//    };
-//
-//    public ModelCrebain() {
-//        this.textureWidth = 32;
-//        this.textureHeight = 32;
-//        this.CrebainWingL2 = new ModelRenderer(this, 2, 9);
-//        this.CrebainWingL2.setRotationPoint(5.0F, -1.0F, -1.5F);
-//        this.CrebainWingL2.addBox(0.0F, 0.0F, -1.5F, 4, 0, 3, 0.0F);
-//        this.CrebainWingR1 = new ModelRenderer(this, 0, 9);
-//        this.CrebainWingR1.setRotationPoint(-1.0F, 0.0F, 0.0F);
-//        this.CrebainWingR1.addBox(-4.0F, 0.0F, -1.5F, 4, 0, 3, 0.0F);
-//        this.CrebainTail3 = new ModelRenderer(this, -3, 9);
-//        this.CrebainTail3.setRotationPoint(0.0F, 0.0F, -1.5F);
-//        this.CrebainTail3.addBox(-1.0F, -0.5F, 0.0F, 2, 0, 3, 0.0F);
-//        this.setRotateAngle(CrebainTail3, 0.0F, -0.2665117767795341F, 0.0F);
-//        this.CrebainBody = new ModelRenderer(this, 0, 0);
-//        this.CrebainBody.setRotationPoint(0.0F, 20.1F, 0.5F);
-//        this.CrebainBody.addBox(-1.0F, -1.0F, -3.0F, 3, 3, 6, 0.0F);
-//        this.setRotateAngle(CrebainBody, -0.2617993877991494F, 0.0F, 0.0F);
-//        this.CrebainWingL1 = new ModelRenderer(this, 0, 9);
-//        this.CrebainWingL1.setRotationPoint(1.0F, 1.0F, 1.3F);
-//        this.CrebainWingL1.addBox(1.0F, -1.0F, -3.0F, 4, 0, 3, 0.0F);
-//        this.CrebainBeakBottom = new ModelRenderer(this, 0, 0);
-//        this.CrebainBeakBottom.setRotationPoint(0.0F, 0.4F, 0.0F);
-//        this.CrebainBeakBottom.addBox(-0.5F, -0.9F, -2.0F, 1, 1, 2, 0.0F);
-//        this.setRotateAngle(CrebainBeakBottom, -0.08726646259971647F, 0.0F, 0.0F);
-//        this.CrebainWingR2 = new ModelRenderer(this, 2, 9);
-//        this.CrebainWingR2.setRotationPoint(-4.0F, 0.0F, 0.0F);
-//        this.CrebainWingR2.addBox(-4.0F, 0.0F, -1.5F, 4, 0, 3, 0.0F);
-//        this.CrebainLegL1 = new ModelRenderer(this, 0, 3);
-//        this.CrebainLegL1.setRotationPoint(1.3F, 1.5F, 0.0F);
-//        this.CrebainLegL1.addBox(-0.5F, 0.5F, 0.0F, 1, 2, 0, 0.0F);
-//        this.CrebainLegR2 = new ModelRenderer(this, 0, 5);
-//        this.CrebainLegR2.setRotationPoint(0.0F, 2.4F, 0.5F);
-//        this.CrebainLegR2.addBox(-0.5F, 0.5F, 0.0F, 1, 1, 0, 0.0F);
-//        this.setRotateAngle(CrebainLegR2, -1.3613568165555772F, 0.0F, 0.0F);
-//        this.CrebainLegR1 = new ModelRenderer(this, 0, 3);
-//        this.CrebainLegR1.setRotationPoint(-0.3F, 1.5F, 0.0F);
-//        this.CrebainLegR1.addBox(-0.5F, 0.5F, 0.0F, 1, 2, 0, 0.0F);
-//        this.CrebainTail1 = new ModelRenderer(this, -4, 9);
-//        this.CrebainTail1.setRotationPoint(0.0F, -0.8F, 4.3F);
-//        this.CrebainTail1.addBox(-0.5F, -0.5F, -1.5F, 2, 0, 4, 0.0F);
-//        this.setRotateAngle(CrebainTail1, 0.2617993877991494F, 0.0F, 0.0F);
-//        this.CrebainTail2 = new ModelRenderer(this, -3, 9);
-//        this.CrebainTail2.setRotationPoint(1.0F, 0.0F, -1.5F);
-//        this.CrebainTail2.addBox(-1.0F, -0.5F, 0.0F, 2, 0, 3, 0.0F);
-//        this.setRotateAngle(CrebainTail2, 0.0F, 0.2617993877991494F, 0.0F);
-//        this.CrebainHead = new ModelRenderer(this, 12, 0);
-//        this.CrebainHead.setRotationPoint(0.5F, -0.1F, -3.0F);
-//        this.CrebainHead.addBox(-1.0F, -1.5F, -2.5F, 2, 2, 3, 0.0F);
-//        this.setRotateAngle(CrebainHead, 0.2617993877991494F, 0.0F, 0.0F);
-//        this.CrebainLegL2 = new ModelRenderer(this, 0, 5);
-//        this.CrebainLegL2.setRotationPoint(0.0F, 2.4F, 0.5F);
-//        this.CrebainLegL2.addBox(-0.5F, 0.5F, 0.0F, 1, 1, 0, 0.0F);
-//        this.setRotateAngle(CrebainLegL2, -1.3613568165555772F, 0.0F, 0.0F);
-//        this.CrebainBeakTop = new ModelRenderer(this, 0, 0);
-//        this.CrebainBeakTop.setRotationPoint(0.0F, 0.0F, -2.0F);
-//        this.CrebainBeakTop.addBox(-0.5F, -0.8F, -2.0F, 1, 1, 2, 0.0F);
-//        this.setRotateAngle(CrebainBeakTop, 0.08726646259971647F, 0.0F, 0.0F);
-//        this.CrebainWingL1.addChild(this.CrebainWingL2);
-//        this.CrebainBody.addChild(this.CrebainWingR1);
-//        this.CrebainTail1.addChild(this.CrebainTail3);
-//        this.CrebainBody.addChild(this.CrebainWingL1);
-//        this.CrebainBeakTop.addChild(this.CrebainBeakBottom);
-//        this.CrebainWingR1.addChild(this.CrebainWingR2);
-//        this.CrebainBody.addChild(this.CrebainLegL1);
-//        this.CrebainLegR1.addChild(this.CrebainLegR2);
-//        this.CrebainBody.addChild(this.CrebainLegR1);
-//        this.CrebainBody.addChild(this.CrebainTail1);
-//        this.CrebainTail1.addChild(this.CrebainTail2);
-//        this.CrebainBody.addChild(this.CrebainHead);
-//        this.CrebainLegL1.addChild(this.CrebainLegL2);
-//        this.CrebainHead.addChild(this.CrebainBeakTop);
-//
-//        this.CrebainBodyWingless = new ModelRenderer(this, 0, 0);
-//        this.CrebainBodyWingless.addBox(-1.0F, -1.0F, -3.0F, 3, 3, 6, 0.0F);
-//        this.CrebainBodyWingless.setRotationPoint(0.0F, 20.1F, 0.5F);
-//        this.CrebainBodyWingless.setTextureSize(textureWidth, textureHeight);
-//        this.CrebainBodyWingless.mirror = true;
-//        this.setRotateAngle(CrebainBodyWingless, -0.2617993877991494F, 0.0F, 0.0F);
-//        this.CrebainBodyWingless.addChild(CrebainHead);
-//        this.CrebainBodyWingless.addChild(CrebainLegL1);
-//        this.CrebainBodyWingless.addChild(CrebainLegR1);
-//        this.CrebainBodyWingless.addChild(CrebainTail1);
-//    }
-//
-//    @Override
-//    public void render(Entity parEntity, float f, float f1, float f2, float f3, float f4, float f5)
-//    {
-//        if (this.state != State.STANDING) {
-//            this.CrebainBody.render(f5);
-//        }else {
-//            this.CrebainBodyWingless.render(f5);
-//        }
-//    }
-//
-//    /**
-//     * Sets the model's various rotation angles. For bipeds, par1 and par2 are used for animating the movement of arms
-//     * and legs, where par1 represents the time(so that arms and legs swing back and forth) and par2 represents how
-//     * "far" arms and legs can swing at most.
-//     */
-//    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
-//    {
-//        float f = ageInTicks * 0.3F;
-//        this.CrebainHead.rotateAngleX = headPitch * 0.017453292F;
-//        this.CrebainHead.rotateAngleY = netHeadYaw * 0.017453292F;
-//        this.CrebainHead.rotateAngleZ = 0.0F;
-//        this.CrebainHead.rotationPointX = 0.5F;
-//        this.CrebainBody.rotationPointX = 0.0F;
-//        this.CrebainTail1.rotationPointX = 0.0F;
-//        this.CrebainWingR1.rotationPointX = 1.0F;
-//        this.CrebainWingL1.rotationPointX = 1.0F;
-//
-//        if (this.state != State.FLYING)
-//        {
-//            if (this.state == State.SITTING)
-//            {
-//                return;
-//            }
-//
-//            if (this.state == State.PARTY)
-//            {
-//                float f1 = MathHelper.cos((float)entityIn.ticksExisted);
-//                float f2 = MathHelper.sin((float)entityIn.ticksExisted);
-//                this.CrebainHead.rotationPointX = f1;
-//                this.CrebainHead.rotationPointY = 15.69F + f2;
-//                this.CrebainHead.rotateAngleX = 0.0F;
-//                this.CrebainHead.rotateAngleY = 0.0F;
-//                this.CrebainHead.rotateAngleZ = MathHelper.sin((float)entityIn.ticksExisted) * 0.4F;
-//                this.CrebainBody.rotationPointX = f1;
-//                this.CrebainBody.rotationPointY = -0.1F + f2;
-//                this.CrebainWingL1.rotateAngleZ = -0.0873F - ageInTicks;
-//                this.CrebainWingL1.rotationPointX = 1.0F + f1;
-//                this.CrebainWingL1.rotationPointY = 1.65F + f2;
-//                this.CrebainWingL1.rotationPointZ = -0.3F + f1;
-//                this.CrebainWingR1.rotateAngleZ = 0.0873F + ageInTicks;
-//                this.CrebainWingR1.rotationPointX = -1.0F + f1;
-//                this.CrebainWingR1.rotationPointY = -0.05F + f2;
-//                this.CrebainTail1.rotationPointX = f1;
-//                this.CrebainTail1.rotationPointY = -0.8F + f2;
-//                return;
-//            }
-//
-//            this.CrebainLegL1.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-//            this.CrebainLegR1.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-//        }
-//
-//        this.CrebainHead.rotationPointY = f;
-//        this.CrebainTail1.rotateAngleX = 1.015F + MathHelper.cos(limbSwing * 0.6662F) * 0.3F * limbSwingAmount;
-//        this.CrebainTail1.rotationPointY = -0.8F + f;
-//        this.CrebainBody.rotationPointY = -0.1F + f;
-//        this.CrebainWingL1.rotateAngleZ = -0.0873F - ageInTicks;
-//        this.CrebainWingL1.rotationPointY = 1.65F + f;
-//        this.CrebainWingL1.rotationPointZ = -0.3F + f;
-//        this.CrebainWingR1.rotateAngleZ = 0.0873F + ageInTicks;
-//        this.CrebainWingR1.rotationPointY = -0.05F + f;
-//        this.CrebainLegL1.rotationPointY = 1.5F + f;
-//        this.CrebainLegR1.rotationPointY = 1.5F + f;
-//    }
-//
-//    /**
-//     * Used for easily adding entity-dependent animations. The second and third float params here are the same second
-//     * and third as in the setRotationAngles method.
-//     */
-//    public void setLivingAnimations(LivingEntity LivingEntityIn, float limbSwing, float limbSwingAmount, float partialTickTime)
-//    {
-//        //this.feather.rotateAngleX = -0.2214F;
-//        this.CrebainBody.rotateAngleX = 0.4937F;
-//        this.CrebainWingL1.rotateAngleX = -((float)Math.PI * 2F / 9F);
-//        this.CrebainWingL1.rotateAngleY = -(float)Math.PI;
-//        this.CrebainWingR1.rotateAngleX = -((float)Math.PI * 2F / 9F);
-//        this.CrebainWingR1.rotateAngleY = -(float)Math.PI;
-//        this.CrebainLegL1.rotateAngleX = -0.0299F;
-//        this.CrebainLegR1.rotateAngleX = -0.0299F;
-//        this.CrebainLegL1.rotationPointY = 1.5F;
-//        this.CrebainLegR1.rotationPointY = 1.5F;
-//
-//        if (LivingEntityIn instanceof EntityTMCrebain)
-//        {
-//            EntityTMCrebain entitycrebain = (EntityTMCrebain)LivingEntityIn;
-//
-//            if (entitycrebain.isPartying())
-//            {
-//                this.CrebainLegL1.rotateAngleZ = -0.34906584F;
-//                this.CrebainLegR1.rotateAngleZ = 0.34906584F;
-//                this.state = ModelCrebain.State.PARTY;
-//                return;
-//            }
-//
-//            if (entitycrebain.isSitting())
-//            {
-//                float f = 1.9F;
-//                this.CrebainHead.rotationPointY = -0.1F;
-//                this.CrebainTail1.rotateAngleX = 1.5388988F;
-//                this.CrebainTail1.rotationPointY = 1.1F;
-//                this.CrebainBody.rotationPointY = 20.3F;
-//                this.CrebainWingL1.rotateAngleZ = -0.0873F;
-//                this.CrebainWingL1.rotationPointY = 0.0F;
-//                this.CrebainWingR1.rotateAngleZ = 0.0873F;
-//                this.CrebainWingR1.rotationPointY = 0.0F;
-//                ++this.CrebainLegL1.rotationPointY;
-//                ++this.CrebainLegR1.rotationPointY;
-//                ++this.CrebainLegL1.rotateAngleX;
-//                ++this.CrebainLegR1.rotateAngleX;
-//                this.state = ModelCrebain.State.SITTING;
-//            }
-//            else if (entitycrebain.isFlying())
-//            {
-//                this.CrebainLegL1.rotateAngleX += ((float)Math.PI * 2F / 9F);
-//                this.CrebainLegR1.rotateAngleX += ((float)Math.PI * 2F / 9F);
-//                this.state = ModelCrebain.State.FLYING;
-//            }
-//            else
-//            {
-//                this.state = ModelCrebain.State.STANDING;
-//            }
-//
-//            this.CrebainLegL1.rotateAngleZ = 0.0F;
-//            this.CrebainLegR1.rotateAngleZ = 0.0F;
-//        }
-//    }
-//
-//    @SideOnly(Side.CLIENT)
-//    static enum State
-//    {
-//        FLYING,
-//        STANDING,
-//        SITTING,
-//        PARTY
-//    }
-//}
+package com.greatorator.tolkienmobs.entity.ambient.model;
+
+import com.google.common.collect.ImmutableList;
+import com.greatorator.tolkienmobs.entity.ambient.EntityTTMCrebain;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.client.renderer.entity.model.SegmentedModel;
+import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.util.math.MathHelper;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+/* Crebain - GreatOrator */
+public class ModelTTMCrebain extends SegmentedModel<EntityTTMCrebain> {
+    private final ModelRenderer body;
+    private final ModelRenderer tail;
+    private final ModelRenderer wingLeft;
+    private final ModelRenderer wingRight;
+    private final ModelRenderer head;
+    private final ModelRenderer head2;
+    private final ModelRenderer beak1;
+    private final ModelRenderer beak2;
+    private final ModelRenderer feather;
+    private final ModelRenderer legLeft;
+    private final ModelRenderer legRight;
+
+    public ModelTTMCrebain() {
+        this.texWidth = 32;
+        this.texHeight = 32;
+        this.body = new ModelRenderer(this, 2, 8);
+        this.body.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 6.0F, 3.0F);
+        this.body.setPos(0.0F, 16.5F, -3.0F);
+        this.tail = new ModelRenderer(this, 22, 1);
+        this.tail.addBox(-1.5F, -1.0F, -1.0F, 3.0F, 4.0F, 1.0F);
+        this.tail.setPos(0.0F, 21.07F, 1.16F);
+        this.wingLeft = new ModelRenderer(this, 19, 8);
+        this.wingLeft.addBox(-0.5F, 0.0F, -1.5F, 1.0F, 5.0F, 3.0F);
+        this.wingLeft.setPos(1.5F, 16.94F, -2.76F);
+        this.wingRight = new ModelRenderer(this, 19, 8);
+        this.wingRight.addBox(-0.5F, 0.0F, -1.5F, 1.0F, 5.0F, 3.0F);
+        this.wingRight.setPos(-1.5F, 16.94F, -2.76F);
+        this.head = new ModelRenderer(this, 2, 2);
+        this.head.addBox(-1.0F, -1.5F, -1.0F, 2.0F, 3.0F, 2.0F);
+        this.head.setPos(0.0F, 15.69F, -2.76F);
+        this.head2 = new ModelRenderer(this, 10, 0);
+        this.head2.addBox(-1.0F, -0.5F, -2.0F, 2.0F, 1.0F, 4.0F);
+        this.head2.setPos(0.0F, -2.0F, -1.0F);
+        this.head.addChild(this.head2);
+        this.beak1 = new ModelRenderer(this, 11, 7);
+        this.beak1.addBox(-0.5F, -1.0F, -0.5F, 1.0F, 2.0F, 1.0F);
+        this.beak1.setPos(0.0F, -0.5F, -1.5F);
+        this.head.addChild(this.beak1);
+        this.beak2 = new ModelRenderer(this, 16, 7);
+        this.beak2.addBox(-0.5F, 0.0F, -0.5F, 1.0F, 2.0F, 1.0F);
+        this.beak2.setPos(0.0F, -1.75F, -2.45F);
+        this.head.addChild(this.beak2);
+        this.feather = new ModelRenderer(this, 2, 18);
+        this.feather.addBox(0.0F, -4.0F, -2.0F, 0.0F, 5.0F, 4.0F);
+        this.feather.setPos(0.0F, -2.15F, 0.15F);
+        this.head.addChild(this.feather);
+        this.legLeft = new ModelRenderer(this, 14, 18);
+        this.legLeft.addBox(-0.5F, 0.0F, -0.5F, 1.0F, 2.0F, 1.0F);
+        this.legLeft.setPos(1.0F, 22.0F, -1.05F);
+        this.legRight = new ModelRenderer(this, 14, 18);
+        this.legRight.addBox(-0.5F, 0.0F, -0.5F, 1.0F, 2.0F, 1.0F);
+        this.legRight.setPos(-1.0F, 22.0F, -1.05F);
+    }
+
+    public Iterable<ModelRenderer> parts() {
+        return ImmutableList.of(this.body, this.wingLeft, this.wingRight, this.tail, this.head, this.legLeft, this.legRight);
+    }
+
+    public void setupAnim(EntityTTMCrebain p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
+        this.setupAnim(getState(p_225597_1_), p_225597_1_.tickCount, p_225597_2_, p_225597_3_, p_225597_4_, p_225597_5_, p_225597_6_);
+    }
+
+    public void prepareMobModel(EntityTTMCrebain p_212843_1_, float p_212843_2_, float p_212843_3_, float p_212843_4_) {
+        this.prepare(getState(p_212843_1_));
+    }
+
+    public void renderOnShoulder(MatrixStack p_228284_1_, IVertexBuilder p_228284_2_, int p_228284_3_, int p_228284_4_, float p_228284_5_, float p_228284_6_, float p_228284_7_, float p_228284_8_, int p_228284_9_) {
+        this.prepare(ModelTTMCrebain.State.ON_SHOULDER);
+        this.setupAnim(ModelTTMCrebain.State.ON_SHOULDER, p_228284_9_, p_228284_5_, p_228284_6_, 0.0F, p_228284_7_, p_228284_8_);
+        this.parts().forEach((p_228285_4_) -> {
+            p_228285_4_.render(p_228284_1_, p_228284_2_, p_228284_3_, p_228284_4_);
+        });
+    }
+
+    private void setupAnim(ModelTTMCrebain.State p_217162_1_, int p_217162_2_, float p_217162_3_, float p_217162_4_, float p_217162_5_, float p_217162_6_, float p_217162_7_) {
+        this.head.xRot = p_217162_7_ * 0.017453292F;
+        this.head.yRot = p_217162_6_ * 0.017453292F;
+        this.head.zRot = 0.0F;
+        this.head.x = 0.0F;
+        this.body.x = 0.0F;
+        this.tail.x = 0.0F;
+        this.wingRight.x = -1.5F;
+        this.wingLeft.x = 1.5F;
+        switch(p_217162_1_) {
+            case SITTING:
+                break;
+            case PARTY:
+                float lvt_8_1_ = MathHelper.cos((float)p_217162_2_);
+                float lvt_9_1_ = MathHelper.sin((float)p_217162_2_);
+                this.head.x = lvt_8_1_;
+                this.head.y = 15.69F + lvt_9_1_;
+                this.head.xRot = 0.0F;
+                this.head.yRot = 0.0F;
+                this.head.zRot = MathHelper.sin((float)p_217162_2_) * 0.4F;
+                this.body.x = lvt_8_1_;
+                this.body.y = 16.5F + lvt_9_1_;
+                this.wingLeft.zRot = -0.0873F - p_217162_5_;
+                this.wingLeft.x = 1.5F + lvt_8_1_;
+                this.wingLeft.y = 16.94F + lvt_9_1_;
+                this.wingRight.zRot = 0.0873F + p_217162_5_;
+                this.wingRight.x = -1.5F + lvt_8_1_;
+                this.wingRight.y = 16.94F + lvt_9_1_;
+                this.tail.x = lvt_8_1_;
+                this.tail.y = 21.07F + lvt_9_1_;
+                break;
+            case STANDING:
+                ModelRenderer var10000 = this.legLeft;
+                var10000.xRot += MathHelper.cos(p_217162_3_ * 0.6662F) * 1.4F * p_217162_4_;
+                var10000 = this.legRight;
+                var10000.xRot += MathHelper.cos(p_217162_3_ * 0.6662F + 3.1415927F) * 1.4F * p_217162_4_;
+            case FLYING:
+            case ON_SHOULDER:
+            default:
+                float lvt_10_1_ = p_217162_5_ * 0.3F;
+                this.head.y = 15.69F + lvt_10_1_;
+                this.tail.xRot = 1.015F + MathHelper.cos(p_217162_3_ * 0.6662F) * 0.3F * p_217162_4_;
+                this.tail.y = 21.07F + lvt_10_1_;
+                this.body.y = 16.5F + lvt_10_1_;
+                this.wingLeft.zRot = -0.0873F - p_217162_5_;
+                this.wingLeft.y = 16.94F + lvt_10_1_;
+                this.wingRight.zRot = 0.0873F + p_217162_5_;
+                this.wingRight.y = 16.94F + lvt_10_1_;
+                this.legLeft.y = 22.0F + lvt_10_1_;
+                this.legRight.y = 22.0F + lvt_10_1_;
+        }
+
+    }
+
+    private void prepare(ModelTTMCrebain.State p_217160_1_) {
+        this.feather.xRot = -0.2214F;
+        this.body.xRot = 0.4937F;
+        this.wingLeft.xRot = -0.6981F;
+        this.wingLeft.yRot = -3.1415927F;
+        this.wingRight.xRot = -0.6981F;
+        this.wingRight.yRot = -3.1415927F;
+        this.legLeft.xRot = -0.0299F;
+        this.legRight.xRot = -0.0299F;
+        this.legLeft.y = 22.0F;
+        this.legRight.y = 22.0F;
+        this.legLeft.zRot = 0.0F;
+        this.legRight.zRot = 0.0F;
+        switch(p_217160_1_) {
+            case SITTING:
+                float lvt_2_1_ = 1.9F;
+                this.head.y = 17.59F;
+                this.tail.xRot = 1.5388988F;
+                this.tail.y = 22.97F;
+                this.body.y = 18.4F;
+                this.wingLeft.zRot = -0.0873F;
+                this.wingLeft.y = 18.84F;
+                this.wingRight.zRot = 0.0873F;
+                this.wingRight.y = 18.84F;
+                ++this.legLeft.y;
+                ++this.legRight.y;
+                ++this.legLeft.xRot;
+                ++this.legRight.xRot;
+                break;
+            case PARTY:
+                this.legLeft.zRot = -0.34906584F;
+                this.legRight.zRot = 0.34906584F;
+            case STANDING:
+            case ON_SHOULDER:
+            default:
+                break;
+            case FLYING:
+                ModelRenderer var10000 = this.legLeft;
+                var10000.xRot += 0.6981317F;
+                var10000 = this.legRight;
+                var10000.xRot += 0.6981317F;
+        }
+
+    }
+
+    private static ModelTTMCrebain.State getState(EntityTTMCrebain p_217158_0_) {
+        if (p_217158_0_.isPartyParrot()) {
+            return ModelTTMCrebain.State.PARTY;
+        } else if (p_217158_0_.isInSittingPose()) {
+            return ModelTTMCrebain.State.SITTING;
+        } else {
+            return p_217158_0_.isFlying() ? ModelTTMCrebain.State.FLYING : ModelTTMCrebain.State.STANDING;
+        }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public static enum State {
+        FLYING,
+        STANDING,
+        SITTING,
+        PARTY,
+        ON_SHOULDER;
+
+        private State() {
+        }
+    }
+}

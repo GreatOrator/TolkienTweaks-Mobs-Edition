@@ -20,6 +20,8 @@ import com.greatorator.tolkienmobs.entity.monster.render.*;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMAuroch;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMGoat;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMMumakil;
+import com.greatorator.tolkienmobs.entity.special.render.RenderTTMGollum;
+import com.greatorator.tolkienmobs.entity.special.render.RenderTTMShadowfax;
 import com.greatorator.tolkienmobs.handler.TTMHearts;
 import com.greatorator.tolkienmobs.init.TTMColor;
 import net.minecraft.client.Minecraft;
@@ -119,6 +121,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_FROG.get(), RenderTTMFrog::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_SWARM.get(), m -> new RenderTTMSwarm<>(m, new ModelTTMSwarm(), 0.5F, TolkienMobs.MODID + ":textures/entity/midgeflies.png"));
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_THRUSH.get(), RenderTTMThrush::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_CREBAIN.get(), RenderTTMCrebain::new);
 
         // Merchants
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_HUMAN.get(), RenderTTMHuman::new);
@@ -155,6 +158,10 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_AUROCH.get(), RenderTTMAuroch::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MUMAKIL.get(), RenderTTMMumakil::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOAT.get(), RenderTTMGoat::new);
+
+        // Special
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_SHADOWFAX.get(), RenderTTMShadowfax::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOLLUM.get(), RenderTTMGollum::new);
 
         // Ammo
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_ARROW_GALADHRIM.get(), new RenderGaladhrimArrow.RenderFactory());

@@ -255,6 +255,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(EntityGenerator.EGG_TTMFROG.get());
         eggItem(EntityGenerator.EGG_TTMSWARM.get());
         eggItem(EntityGenerator.EGG_TTMTHRUSH.get());
+        eggItem(EntityGenerator.EGG_TTMCREBAIN.get());
 
             // Merchants
         eggItem(EntityGenerator.EGG_TTMHUMAN.get());
@@ -291,6 +292,10 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(EntityGenerator.EGG_TTMAUROCH.get());
         eggItem(EntityGenerator.EGG_TTMMUMAKIL.get());
         eggItem(EntityGenerator.EGG_TTMGOAT.get());
+
+            // Special
+        eggItem(EntityGenerator.EGG_TTMSHADOWFAX.get());
+        eggItem(EntityGenerator.EGG_TTMGOLLUM.get());
     }
 
     private void simpleItem(Item item) {

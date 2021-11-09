@@ -17,17 +17,6 @@ public class RenderTTMMimicChest extends MobRenderer<EntityTTMMimicChest, ModelT
         return entity.getMimicChestTypeName();
     }
 
-//    @Override
-//    public void doRender(EntityTMMimicChest mimic, double x, double y, double z, float pitch, float yaw) {
-//        if(mimic.getRevengeTarget() == null && !mimic.isAngry()) {
-//            ModelMimicChest.renderChest = true;
-//        }
-//        else{
-//            ModelMimicChest.renderChest = false;
-//        }
-//        super.doRender(mimic, x, y, z, pitch, yaw);
-//    }
-
     protected void scale(EntityTTMMimicChest entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

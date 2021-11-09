@@ -123,6 +123,7 @@ public class TTMServerEvents {
             tempMap.putIfAbsent(StructureGenerator.TTMSPIDER_TREE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMSPIDER_TREE.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMWARG_PIT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMWARG_PIT.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMMINOTAUR_MAZE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMMINOTAUR_MAZE.get()));
+            tempMap.putIfAbsent(StructureGenerator.TTMGOLLUM_CAVE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMGOLLUM_CAVE.get()));
 
             serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
         }
@@ -157,6 +158,9 @@ public class TTMServerEvents {
         if (event.getName().equals(BiomeGenerator.BIOME_HARADWAITH.getId())) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMMINOTAUR_MAZE);
         }
+        if (event.getName().equals(BiomeGenerator.BIOME_HITHAEGLIR.getId())) {
+            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMGOLLUM_CAVE);
+        }
         if (event.getName().equals(BiomeGenerator.BIOME_DAGORLAD.getId())) {
             int i = TTMRand.getRandomInteger(100, 1);
 
@@ -169,7 +173,7 @@ public class TTMServerEvents {
 
         /* Used to test for structure generation */
         if (event.getCategory() == Biome.Category.PLAINS) {
-//            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMMINOTAUR_MAZE);
+//            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMGOLLUM_CAVE);
         }
     }
 }

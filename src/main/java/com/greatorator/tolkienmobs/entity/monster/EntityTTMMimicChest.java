@@ -11,6 +11,8 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -18,6 +20,8 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraft.world.DifficultyInstance;
@@ -35,6 +39,8 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
         option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest1.png"));
         option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest2.png"));
     });
+    private static boolean mimicAttack;
+    public static boolean mimicChest;
     private long nextAbilityUse = 0L;
     private final static long coolDown = 15000L;
 
@@ -48,6 +54,18 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
                 .add(Attributes.MOVEMENT_SPEED, 0.23D)
                 .add(Attributes.ATTACK_DAMAGE, 3.0D)
                 .add(Attributes.ARMOR, 5.0D);
+    }
+
+    @Override
+    protected void registerGoals() {
+        if (mimicAttack) {
+            this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+            this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+            this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
+            this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+            this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
+        }
     }
 
     /** Special Attack */
@@ -65,6 +83,41 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
         }
         return true;
     }
+
+    @Override
+    public ActionResultType mobInteract(PlayerEntity playerIn, Hand handIn) {
+        if (mimicChest && !this.level.isClientSide) {
+            this.setMimicChest(!this.isMimicChest());
+            this.setMimicAttack(!this.isMimicAttack());
+            return ActionResultType.PASS;
+        }
+        return ActionResultType.FAIL;
+    }
+
+    private boolean isMimicAttack() {
+        return mimicAttack;
+    }
+
+    private boolean isMimicChest() {
+        return mimicChest;
+    }
+
+    public void setMimicChest(boolean chestRender) {
+        mimicChest = chestRender;
+    }
+
+    public static boolean getMimicChest() {
+        return mimicChest;
+    }
+
+    public void setMimicAttack(boolean setAttack) {
+        mimicAttack = setAttack;
+    }
+
+    public static boolean getMimicAttack() {
+        return mimicAttack;
+    }
+
 
     /**
      * Region for determining random skin
@@ -89,7 +142,8 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(5, 1);
         this.setMimicChestType(job);
-        this.populateDefaultEquipmentSlots(difficultyIn);
+        this.setMimicChest(true);
+        this.setMimicAttack(false);
 
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
@@ -102,140 +156,14 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("MimicChestType", this.getMimicChestType());
+        compound.putBoolean("isChest", getMimicChest());
+        compound.putBoolean("canAttack", getMimicAttack());
     }
 
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setMimicChestType(compound.getInt("MimicChestType"));
+        this.setMimicChest(compound.getBoolean("isChest"));
+        this.setMimicAttack(compound.getBoolean("canAttack"));
     }
 }
-//    private static final UUID ATTACK_SPEED_BOOST_MODIFIER_UUID = UUID.fromString("763926b2-45ba-11e9-b210-d663bd873d93");
-//    private static final AttributeModifier ATTACK_SPEED_BOOST_MODIFIER = (new AttributeModifier(ATTACK_SPEED_BOOST_MODIFIER_UUID, "Attacking speed boost", 0.05D, 0)).setSaved(false);
-//    /** Above zero if this Mimic is Angry. */
-//    private int angerLevel;
-//    private long nextAbilityUse = 0L;
-//    private final static long coolDown = 15000L;
-//    /** A random delay until this Mimic next makes a sound. */
-//    private int randomSoundDelay;
-//    private UUID angerTargetUUID;
-//
-//    public EntityTMMimicChest(World world)
-//    {
-//        super(world);
-//
-//        this.setSize(1.0F, 1.7F);
-//        this.setLootTable(LootInit.MIMICCHEST);
-//        this.setRndMinMax(1,5);
-//    }
-//
-//    @Override
-//    public boolean getCanSpawnHere() {
-//        int willSpawn = TTMSpawnEvent.spawnChance();
-//
-//        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.isValidLightLevel() && this.posY < 64.0D && !this.world.canSeeSky(new BlockPos(this)) && willSpawn <= 10;
-//    }
-//
-
-//
-//    @Override
-//    protected void initEntityAI()
-//    {
-//        this.applyEntityAI();
-//    }
-//
-//    @Override
-//    protected void applyEntityAttributes()
-//    {
-//        super.applyEntityAttributes();
-//        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(8.0D);
-//        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.28000000417232513D);
-//        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
-//        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
-//    }
-//
-//    protected void applyEntityAI()
-//    {
-//        this.targetTasks.addTask(1, new EntityTMMimicChest.AIHurtByAggressor(this));
-//        this.targetTasks.addTask(2, new EntityTMMimicChest.AITargetAggressor(this));
-//    }
-//
-
-//
-//    @Override
-//    public double getAttackDamage() {
-//        return 3.0D;
-//    }
-//
-//    @Override
-//    public double getArmorStrength() {
-//        return 0;
-//    }
-//
-//    @Override
-//    public double getHealthLevel() {
-//        return 40.0D;
-//    }
-//
-//    @Override
-//    public void onUpdate()
-//    {
-//        super.onUpdate();
-//    }
-//
-
-//
-//    @Override
-//    protected void playStepSound(BlockPos pos, Block blockIn)
-//    {
-//        this.playSound(SoundInit.soundStepMimic, 0.25F, 1.0F);
-//    }
-//
-//    @Override
-//    protected SoundEvent getHurtSound(DamageSource source)
-//    {
-//        return SoundEvents.BLOCK_WOOD_HIT;
-//    }
-//
-//    @Override
-//    protected SoundEvent getDeathSound()
-//    {
-//        return SoundEvents.BLOCK_CHEST_CLOSE;
-//    }
-//
-//    public void writeEntityToNBT(NBTTagCompound compound)
-//    {
-//        super.writeEntityToNBT(compound);
-//        compound.setInteger("SkinType", this.getMobType());
-//        compound.setShort("Anger", (short)this.angerLevel);
-//
-//        if (this.angerTargetUUID != null)
-//        {
-//            compound.setString("HurtBy", this.angerTargetUUID.toString());
-//        }
-//        else
-//        {
-//            compound.setString("HurtBy", "");
-//        }
-//    }
-//
-//    public void readEntityFromNBT(NBTTagCompound compound)
-//    {
-//        super.readEntityFromNBT(compound);
-//        this.setMobType(compound.getInteger("SkinType"));
-//        this.angerLevel = compound.getShort("Anger");
-//        String s = compound.getString("HurtBy");
-//
-//        if (!s.isEmpty())
-//        {
-//            this.angerTargetUUID = UUID.fromString(s);
-//            PlayerEntity entityplayer = this.world.getPlayerEntityByUUID(this.angerTargetUUID);
-//            this.setRevengeTarget(entityplayer);
-//
-//            if (entityplayer != null)
-//            {
-//                this.attackingPlayer = entityplayer;
-//                this.recentlyHit = this.getRevengeTimer();
-//            }
-//        }
-//    }
-//}

@@ -43,6 +43,20 @@ public class EntityLootGenerator extends EntityLootTables {
                                         .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))
                                         .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
                                 .when(KilledByPlayer.killedByPlayer())));
+        add(EntityGenerator.ENTITY_TTM_CREBAIN.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.CREBAIN_FEATHER.get())
+                                        .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer()))
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.ITEM_DARKSIGIL.get())
+                                        .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer())));
         add(EntityGenerator.ENTITY_TTM_FROG.get(),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
@@ -863,6 +877,56 @@ public class EntityLootGenerator extends EntityLootTables {
                                 .add(ItemLootEntry.lootTableItem(TTMContent.DRINK_PERSONAL_BLACKSMITH.get())
                                         .apply(SetCount.setCount(RandomValueRange.between(1.0F, 1.0F)))
                                         .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer())));
+
+        // Special
+        add(EntityGenerator.ENTITY_TTM_SHADOWFAX.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.MONSTER_FUR.get())
+                                        .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer()))
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(Items.LEATHER)
+                                        .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer()))
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(Items.BEEF)
+                                        .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))
+                                        .apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE))))
+                                .when(KilledByPlayer.killedByPlayer())));
+        add(EntityGenerator.ENTITY_TTM_GOLLUM.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.MONSTER_FLESH.get())
+                                        .apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer()))
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.ITEM_COIN_BRONZE.get())
+                                        .apply(SetCount.setCount(RandomValueRange.between(0.0F, 6.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer()))
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.SHOVEL_MORGULIRON.get())
+                                        .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 0.0F))))
+                                .when(KilledByPlayer.killedByPlayer()))
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(Items.SALMON)
+                                        .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))
+                                        .apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE))))
                                 .when(KilledByPlayer.killedByPlayer())));
 
         // Boss

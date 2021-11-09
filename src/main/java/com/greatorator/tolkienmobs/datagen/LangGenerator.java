@@ -11,7 +11,6 @@ import net.minecraftforge.common.data.LanguageProvider;
 /**
  * Created by brandon3055 on 21/5/20.
  */
-//@formatter:off
 public class LangGenerator extends LanguageProvider {
     public LangGenerator(DataGenerator gen) {
         super(gen, TolkienMobs.MODID, "en_us");
@@ -486,6 +485,8 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMSWARM.get(), "Midge Flies Spawn Egg");
         add(EntityGenerator.ENTITY_TTM_THRUSH.get(), "Thrush");
         add(EntityGenerator.EGG_TTMTHRUSH.get(), "Thrush Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_CREBAIN.get(), "Crebain");
+        add(EntityGenerator.EGG_TTMCREBAIN.get(), "Crebain Spawn Egg");
 
         // Merchants
         add(EntityGenerator.ENTITY_TTM_HUMAN.get(), "Human");
@@ -550,6 +551,12 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMMUMAKIL.get(), "Mumakil Spawn Egg");
         add(EntityGenerator.ENTITY_TTM_GOAT.get(), "Goat");
         add(EntityGenerator.EGG_TTMGOAT.get(), "Goat Spawn Egg");
+
+        // Special
+        add(EntityGenerator.ENTITY_TTM_SHADOWFAX.get(), "Shadowfax");
+        add(EntityGenerator.EGG_TTMSHADOWFAX.get(), "Shadowfax Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_GOLLUM.get(), "Gollum");
+        add(EntityGenerator.EGG_TTMGOLLUM.get(), "Gollum Spawn Egg");
     }
 
 

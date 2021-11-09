@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.entity.layers.HeldItemLayer;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderTTMHaradrim extends MobRenderer<EntityTTMHaradrim, ModelTTMHaradrim<EntityTTMHaradrim>> {
+
     public RenderTTMHaradrim(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new ModelTTMHaradrim<>(0.0F, true), 1.0F);
         this.addLayer(new HeldItemLayer<>(this));

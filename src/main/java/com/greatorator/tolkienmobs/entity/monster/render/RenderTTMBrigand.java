@@ -13,7 +13,7 @@ public class RenderTTMBrigand extends MobRenderer<EntityTTMBrigand, ModelTTMBrig
     public RenderTTMBrigand(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new ModelTTMBrigand<>(0.0F, false), 1.0F);
         this.addLayer(new HeldItemLayer<>(this));
-        this.addLayer(new BipedArmorLayer(this, new ModelTTMBrigand(0.5F, false), new ModelTTMBrigand(1.0F, true)));
+        this.addLayer(new BipedArmorLayer<>(this, new ModelTTMBrigand<EntityTTMBrigand>(0.5F, false), new ModelTTMBrigand<EntityTTMBrigand>(1.0F, true)));
     }
 
     @Override

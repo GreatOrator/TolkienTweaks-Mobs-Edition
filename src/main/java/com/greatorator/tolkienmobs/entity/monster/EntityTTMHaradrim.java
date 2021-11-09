@@ -62,6 +62,7 @@ public class EntityTTMHaradrim extends EntityTTMMonsters {
         }
     };
     /** End Region **/
+
     private long nextAbilityUse = 0L;
     private final static long coolDown = 15000L;
 
@@ -123,7 +124,6 @@ public class EntityTTMHaradrim extends EntityTTMMonsters {
         }
 
     }
-    /** End Region **/
 
     /**
      * Region for determining random skin
@@ -169,30 +169,4 @@ public class EntityTTMHaradrim extends EntityTTMMonsters {
         this.setHaradrimType(compound.getInt("HaradrimType"));
         this.reassessWeaponGoal();
     }
-//    @Override
-//    public boolean attackEntityFrom(DamageSource damageSource, float damage) {
-//        Entity damageSourceP = damageSource.getTrueSource();
-//
-//        if (damageSourceP != null && (damageSourceP instanceof PlayerEntity))
-//        {
-//            PlayerEntity p = (PlayerEntity)damageSourceP;
-//            ItemStack w = p.inventory.getStackInSlot(p.inventory.currentItem);
-//
-//            long time = System.currentTimeMillis();
-//            if(w != null) {
-//                if (time > nextAbilityUse
-//                        && damageSourceP != null
-//                        && !(damageSource instanceof EntityDamageSourceIndirect)) {
-//                    nextAbilityUse = time + coolDown;
-//                    EntityItem drop = p.dropItem(p.inventory.decrStackSize(p.inventory.currentItem, 1), false);
-//
-//                    if (drop != null) {
-//                        drop.setPickupDelay(50);
-//                        mob.world.playSound(null, new BlockPos(mob), SoundEvents.ENTITY_SLIME_ATTACK, SoundCategory.HOSTILE, 1.0F + mob.getRNG().nextFloat(), mob.getRNG().nextFloat() * 0.7F + 0.3F);
-//                    }
-//                }
-//            }
-//        }
-//        return super.attackEntityFrom(damageSource, damage);
-//    }
 }

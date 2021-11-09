@@ -25,6 +25,7 @@ public class TTMStructureConfig {
     public static StructureFeature<?, ?> CONFIGURED_TTMSPIDER_TREE = StructureGenerator.TTMSPIDER_TREE.get().configured(IFeatureConfig.NONE);
     public static StructureFeature<?, ?> CONFIGURED_TTMWARG_PIT = StructureGenerator.TTMWARG_PIT.get().configured(IFeatureConfig.NONE);
     public static StructureFeature<?, ?> CONFIGURED_TTMMINOTAUR_MAZE = StructureGenerator.TTMMINOTAUR_MAZE.get().configured(IFeatureConfig.NONE);
+    public static StructureFeature<?, ?> CONFIGURED_TTMGOLLUM_CAVE = StructureGenerator.TTMGOLLUM_CAVE.get().configured(IFeatureConfig.NONE);
 
     /**
      * Registers the configured structure which is what gets added to the biomes.
@@ -46,6 +47,7 @@ public class TTMStructureConfig {
         Registry.register(registry, new ResourceLocation(MODID, "configured_ttmspidertree"), CONFIGURED_TTMSPIDER_TREE);
         Registry.register(registry, new ResourceLocation(MODID, "configured_ttmwargpit"), CONFIGURED_TTMWARG_PIT);
         Registry.register(registry, new ResourceLocation(MODID, "maze/configured_ttmminotaurmaze"), CONFIGURED_TTMMINOTAUR_MAZE);
+        Registry.register(registry, new ResourceLocation(MODID, "maze/configured_ttmgollum_cave"), CONFIGURED_TTMGOLLUM_CAVE);
 
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMHOUSE_ELVEN.get(), CONFIGURED_TTMHOUSE_ELVEN);
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMHOUSE_HOBBIT.get(), CONFIGURED_TTMHOUSE_HOBBIT);
@@ -58,5 +60,6 @@ public class TTMStructureConfig {
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMSPIDER_TREE.get(), CONFIGURED_TTMSPIDER_TREE);
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMWARG_PIT.get(), CONFIGURED_TTMWARG_PIT);
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMMINOTAUR_MAZE.get(), CONFIGURED_TTMMINOTAUR_MAZE);
+        FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMGOLLUM_CAVE.get(), CONFIGURED_TTMGOLLUM_CAVE);
     }
 }
