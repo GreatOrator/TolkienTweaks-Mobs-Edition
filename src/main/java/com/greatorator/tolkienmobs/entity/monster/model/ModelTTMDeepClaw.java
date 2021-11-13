@@ -2,11 +2,8 @@ package com.greatorator.tolkienmobs.entity.monster.model;
 
 import com.google.common.collect.ImmutableList;
 import com.greatorator.tolkienmobs.entity.monster.EntityTTMDeepClaw;
-import net.minecraft.client.renderer.entity.model.ModelUtils;
 import net.minecraft.client.renderer.entity.model.QuadrupedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.PandaEntity;
 import net.minecraft.util.math.MathHelper;
 
 /** DeepClaw - GreatOrator */
@@ -346,23 +343,4 @@ public class ModelTTMDeepClaw<T extends EntityTTMDeepClaw> extends QuadrupedMode
         this.deepClawLegRR.xRot = MathHelper.cos(p_225597_2_ * 0.6662F + 3.1415927F) * 1.4F * p_225597_3_;
         this.deepClawLegRL.xRot = MathHelper.cos(p_225597_2_ * 0.6662F) * 1.4F * p_225597_3_;
     }
-//
-//    @Override
-//    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-//        this.deepClawBody.render(f5);
-//    }
-//
-//    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
-//    {
-//        super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
-//        float baseLegRotation = 0.33161255787892263F; // needs to be the original value of rotateAngleX
-//
-//        this.deepClawLegFR.rotateAngleX = (MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
-//        this.deepClawLegRR.rotateAngleX = baseLegRotation + (MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount);
-//        this.deepClawLegFL.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-//        this.deepClawLegRL.rotateAngleX = baseLegRotation + (MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
-//
-//        this.clawNeck.rotateAngleX = headPitch * 0.017453292F;
-//        this.clawNeck.rotateAngleY = (netHeadYaw * 0.017453292F);
-//    }
 }

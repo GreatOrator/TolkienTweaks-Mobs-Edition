@@ -227,7 +227,7 @@ public class ModelTTMMimicChest<T extends MonsterEntity> extends SegmentedModel<
             float baseLidRotation = 2.356194490192345F;
             float baseTongueRotation = -0.3665191429188092F;
             float hinge = Math.min(p_225597_3_, 0.6F);
-            this.boxLid.xRot = baseLidRotation + ((MathHelper.cos(p_225597_4_ * 0.6662F) * 1.0F - (float) Math.PI / 3) * hinge);
+            this.boxLid.xRot = baseLidRotation + ((MathHelper.cos(p_225597_4_ * 0.6662F) - (float) Math.PI / 3) * hinge);
 
             this.leftLeg.xRot = baseFrontLegRotation + (MathHelper.cos(p_225597_2_ * 0.6662F) * 1.4F * p_225597_3_);
             this.leftbackLeg.xRot = baseBackLegRotation + (MathHelper.cos(p_225597_2_ * 0.6662F) * 1.4F * p_225597_3_);

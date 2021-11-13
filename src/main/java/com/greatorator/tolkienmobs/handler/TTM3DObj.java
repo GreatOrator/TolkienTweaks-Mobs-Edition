@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.handler;
 
 import codechicken.lib.render.item.IItemRenderer;
 import codechicken.lib.util.TransformUtils;
-import com.google.common.collect.ImmutableMap;
 import com.greatorator.tolkienmobs.client.render.tools.TTMObjItemRender;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -10,9 +9,6 @@ import net.minecraft.client.renderer.model.IModelTransform;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.vector.TransformationMatrix;
-
-import net.minecraft.item.Item.Properties;
 
 public class TTM3DObj extends TTMSword implements IItemRenderer {
     private String toolRender;

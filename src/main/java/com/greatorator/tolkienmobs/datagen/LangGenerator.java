@@ -557,6 +557,10 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMSHADOWFAX.get(), "Shadowfax Spawn Egg");
         add(EntityGenerator.ENTITY_TTM_GOLLUM.get(), "Gollum");
         add(EntityGenerator.EGG_TTMGOLLUM.get(), "Gollum Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_NAZGUL.get(), "Nazgul");
+        add(EntityGenerator.EGG_TTMNAZGUL.get(), "Nazgul Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_NAZGULSTEED.get(), "Nazgul Steed");
+        add(EntityGenerator.EGG_TTMNAZGULSTEED.get(), "Nazgul Steed Spawn Egg");
     }
 
 

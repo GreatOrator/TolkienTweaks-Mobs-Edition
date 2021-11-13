@@ -65,7 +65,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
 
     public EntityTTMFrog(EntityType<? extends EntityTTMFrog> type, World worldIn) {
         super(type, worldIn);
-        this.jumpControl = new EntityTTMFrog.JumpHelperController(this);
+        this.jumpControl = new JumpHelperController(this);
         this.moveControl = new EntityTTMFrog.MoveHelperController(this);
         this.setMovementSpeed(0.0D);
     }
@@ -435,7 +435,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         }
     }
 
-    public class JumpHelperController extends JumpController {
+    public static class JumpHelperController extends JumpController {
         private final EntityTTMFrog ttmfrog;
         private boolean canJump;
 

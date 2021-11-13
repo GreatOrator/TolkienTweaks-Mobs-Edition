@@ -52,9 +52,6 @@ public class EntityFellBeastFireball extends ProjectileItemEntity {
       return (IParticleData)(itemstack.isEmpty() ? ParticleTypes.LARGE_SMOKE : new ItemParticleData(ParticleTypes.ITEM, itemstack));
    }
 
-   /**
-    * Handler for {@link World#setEntityState}
-    */
    @OnlyIn(Dist.CLIENT)
    public void handleEntityEvent(byte id) {
       if (id == 3) {

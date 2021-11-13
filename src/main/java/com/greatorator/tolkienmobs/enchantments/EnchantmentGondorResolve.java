@@ -38,33 +38,4 @@ public class EnchantmentGondorResolve extends Enchantment {
     protected boolean checkCompatibility(Enchantment enchantment) {
         return super.checkCompatibility(enchantment) && enchantment != Enchantments.THORNS && enchantment != Enchantments.PROJECTILE_PROTECTION;
     }
-//    public EnchantmentGondorianResolve(Rarity rarity, EnumEnchantmentType location, EntityEquipmentSlot...slot) {
-//        super(rarity, location, slot);
-//    }
-//
-//    @Override
-//    public boolean canApplyAtEnchantingTable(ItemStack stack)
-//    {
-//        return stack.getItem() instanceof ItemBook;
-//    }
-//
-//    @Override
-//    public int getMinEnchantability(int enchantmentLevel) {
-//        return 20 * enchantmentLevel;
-//    }
-//
-//    @Override
-//    public int getMaxEnchantability(int enchantmentLevel) {
-//        return this.getMinEnchantability(enchantmentLevel) + 10;
-//    }
-//
-//    @Override
-//    public int getMaxLevel() {
-//        return 5;
-//    }
-//
-//    @Override
-//    protected boolean canApplyTogether(Enchantment enchantment) {
-//        return super.canApplyTogether(enchantment) && enchantment != Enchantments.THORNS && enchantment != Enchantments.PROJECTILE_PROTECTION;
-//    }
 }

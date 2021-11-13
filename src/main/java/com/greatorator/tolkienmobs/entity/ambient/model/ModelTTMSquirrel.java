@@ -259,7 +259,7 @@ public class ModelTTMSquirrel<E extends AnimalEntity> extends EntityModel<Entity
 
         if (limbSwingAmount > 0.2) {
             float flick = Math.min(limbSwingAmount, 0.6F);
-            this.tail.xRot = baseTailRotation + ((MathHelper.cos(ageInTicks * 0.6662F) * 1.0F - (float) Math.PI / 3) * flick);
+            this.tail.xRot = baseTailRotation + ((MathHelper.cos(ageInTicks * 0.6662F) - (float) Math.PI / 3) * flick);
         } else {
             this.tail.xRot = baseTailRotation + (0.2F + MathHelper.cos(ageInTicks * 0.3335F) * 0.15F);
         }

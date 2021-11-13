@@ -296,6 +296,8 @@ public class ItemModelGenerator extends ItemModelProvider {
             // Special
         eggItem(EntityGenerator.EGG_TTMSHADOWFAX.get());
         eggItem(EntityGenerator.EGG_TTMGOLLUM.get());
+        eggItem(EntityGenerator.EGG_TTMNAZGUL.get());
+        eggItem(EntityGenerator.EGG_TTMNAZGULSTEED.get());
     }
 
     private void simpleItem(Item item) {

@@ -10,7 +10,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.passive.BatEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -32,7 +31,6 @@ import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.Map;
-import java.util.Random;
 
 public class EntityTTMSquirrel extends EntityTTMAmbients {
     private static final DataParameter<Integer> SQUIRREL_TYPE = EntityDataManager.defineId(EntityTTMSquirrel.class, DataSerializers.INT);

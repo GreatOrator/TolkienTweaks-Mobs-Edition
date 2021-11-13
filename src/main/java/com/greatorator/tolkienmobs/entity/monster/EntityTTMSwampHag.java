@@ -45,7 +45,6 @@ public class EntityTTMSwampHag extends AbstractRaiderEntity implements IRangedAt
     private static final AttributeModifier SPEED_MODIFIER_DRINKING;
     private static final DataParameter<Boolean> DATA_USING_ITEM;
     private int usingTime;
-    private ToggleableNearestAttackableTargetGoal<PlayerEntity> attackPlayersGoal;
     private static final DataParameter<Integer> SWAMPHAG_TYPE = EntityDataManager.defineId(EntityTTMSwampHag.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/swamphag/swamp_hag1.png"));
@@ -61,14 +60,14 @@ public class EntityTTMSwampHag extends AbstractRaiderEntity implements IRangedAt
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.attackPlayersGoal = new ToggleableNearestAttackableTargetGoal(this, PlayerEntity.class, 10, true, false, (Predicate)null);
+        ToggleableNearestAttackableTargetGoal<PlayerEntity> attackPlayersGoal = new ToggleableNearestAttackableTargetGoal(this, PlayerEntity.class, 10, true, false, (Predicate) null);
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(2, new RangedAttackGoal(this, 1.0D, 60, 10.0F));
         this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(3, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this, new Class[]{AbstractRaiderEntity.class}));
-        this.targetSelector.addGoal(3, this.attackPlayersGoal);
+        this.targetSelector.addGoal(3, attackPlayersGoal);
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {

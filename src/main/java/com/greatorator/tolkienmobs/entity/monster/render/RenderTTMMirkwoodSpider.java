@@ -1,8 +1,6 @@
 package com.greatorator.tolkienmobs.entity.monster.render;
 
-import com.greatorator.tolkienmobs.entity.monster.EntityTTMDeepClaw;
 import com.greatorator.tolkienmobs.entity.monster.EntityTTMMirkwoodSpider;
-import com.greatorator.tolkienmobs.entity.monster.model.ModelTTMDeepClaw;
 import com.greatorator.tolkienmobs.entity.monster.model.ModelTTMMirkwoodSpider;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

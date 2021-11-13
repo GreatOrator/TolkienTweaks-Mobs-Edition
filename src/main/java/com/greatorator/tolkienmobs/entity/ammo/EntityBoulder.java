@@ -49,9 +49,6 @@ public class EntityBoulder extends ProjectileItemEntity {
       return (IParticleData)(itemstack.isEmpty() ? ParticleTypes.SMOKE : new ItemParticleData(ParticleTypes.ITEM, itemstack));
    }
 
-   /**
-    * Handler for {@link World#setEntityState}
-    */
    @OnlyIn(Dist.CLIENT)
    public void handleEntityEvent(byte id) {
       if (id == 3) {

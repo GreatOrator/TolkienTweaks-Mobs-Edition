@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.entity.ambient;
 
 import com.google.common.collect.Sets;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMAmbients;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

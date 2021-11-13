@@ -11,8 +11,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
-
 /**
  * Created by brandon3055 on 31/1/21
  * <p>

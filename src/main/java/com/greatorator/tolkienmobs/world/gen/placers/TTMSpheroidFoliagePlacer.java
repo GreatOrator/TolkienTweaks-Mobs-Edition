@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.world.gen.placers;
 
 import com.greatorator.tolkienmobs.utils.TTMFeatureUtil;
-import com.greatorator.tolkienmobs.world.gen.TTMFeatures;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMTreeFeatureConfig;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

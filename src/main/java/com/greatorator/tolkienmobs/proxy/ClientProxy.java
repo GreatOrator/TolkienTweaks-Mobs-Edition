@@ -21,6 +21,8 @@ import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMAuroch;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMGoat;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMMumakil;
 import com.greatorator.tolkienmobs.entity.special.render.RenderTTMGollum;
+import com.greatorator.tolkienmobs.entity.special.render.RenderTTMNazgul;
+import com.greatorator.tolkienmobs.entity.special.render.RenderTTMNazgulSteed;
 import com.greatorator.tolkienmobs.entity.special.render.RenderTTMShadowfax;
 import com.greatorator.tolkienmobs.handler.TTMHearts;
 import com.greatorator.tolkienmobs.init.TTMColor;
@@ -162,6 +164,8 @@ public class ClientProxy extends CommonProxy {
         // Special
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_SHADOWFAX.get(), RenderTTMShadowfax::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOLLUM.get(), RenderTTMGollum::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_NAZGUL.get(), RenderTTMNazgul::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_NAZGULSTEED.get(), RenderTTMNazgulSteed::new);
 
         // Ammo
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_ARROW_GALADHRIM.get(), new RenderGaladhrimArrow.RenderFactory());

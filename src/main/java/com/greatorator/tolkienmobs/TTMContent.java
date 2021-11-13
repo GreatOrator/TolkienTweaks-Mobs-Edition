@@ -446,11 +446,6 @@ public class TTMContent {
     // TRANSFUSER_LAYOUT));
 
     //For demonstration purposes only
-    //public static class ExampleTile extends TileBCore {
-    //    public ExampleTile() {
-    //        super(EXAMPLE_TILE.get());
-    //    }
-    //}
 
     private static boolean needsPostProcessing(BlockState state, IBlockReader reader, BlockPos pos) {
         return true;

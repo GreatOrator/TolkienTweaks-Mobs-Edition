@@ -15,6 +15,8 @@ import com.greatorator.tolkienmobs.entity.passive.EntityTTMAuroch;
 import com.greatorator.tolkienmobs.entity.passive.EntityTTMGoat;
 import com.greatorator.tolkienmobs.entity.passive.EntityTTMMumakil;
 import com.greatorator.tolkienmobs.entity.special.EntityTTMGollum;
+import com.greatorator.tolkienmobs.entity.special.EntityTTMNazgul;
+import com.greatorator.tolkienmobs.entity.special.EntityTTMNazgulSteed;
 import com.greatorator.tolkienmobs.entity.special.EntityTTMShadowfax;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -124,6 +126,10 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<EntityTTMShadowfax>> ENTITY_TTM_SHADOWFAX = ENTITY.register("entityttmshadowfax", () -> entityTTMShadowfax);
     private static final EntityType<EntityTTMGollum> entityTTMGollum = buildEntity("entityttmgollum", EntityTTMGollum::new, EntityClassification.CREATURE, 1.0F, 1.0F);
     public static final RegistryObject<EntityType<EntityTTMGollum>> ENTITY_TTM_GOLLUM = ENTITY.register("entityttmgollum", () -> entityTTMGollum);
+    private static final EntityType<EntityTTMNazgul> entityTTMNazgul = buildEntity("entityttmnazgul", EntityTTMNazgul::new, EntityClassification.MONSTER, 1.7F, 3.0F);
+    public static final RegistryObject<EntityType<EntityTTMNazgul>> ENTITY_TTM_NAZGUL = ENTITY.register("entityttmnazgul", () -> entityTTMNazgul);
+    private static final EntityType<EntityTTMNazgulSteed> entityTTMNazgulSteed = buildEntity("entityttmnazgulsteed", EntityTTMNazgulSteed::new, EntityClassification.CREATURE, 1.3964844F, 1.6F);
+    public static final RegistryObject<EntityType<EntityTTMNazgulSteed>> ENTITY_TTM_NAZGULSTEED = ENTITY.register("entityttmnazgulsteed", () -> entityTTMNazgulSteed);
 
     // Ammo
     public static final RegistryObject<EntityType<?>> AMMO_ARROW_GALADHRIM = ENTITY.register("ammo_arrow_galadhrim", () -> EntityType.Builder.of(EntityGaladhrimArrow::new, EntityClassification.MISC).sized(0.5F, 0.5F).setCustomClientFactory(EntityGaladhrimArrow::new).build(MODID + ":ammo_arrow_galadhrim"));
@@ -175,6 +181,8 @@ public class EntityGenerator {
         // Special
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_SHADOWFAX.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::checkAnimalSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_GOLLUM.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMGollum::checkGollumSpawn);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_NAZGUL.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMNazgul::checkNazgulSpawn);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_NAZGULSTEED.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::checkAnimalSpawnRules);
 
         //Look in EntitySpawnPlacementRegistry for examples
     }
@@ -230,6 +238,8 @@ public class EntityGenerator {
         // Special
         GlobalEntityTypeAttributes.put(ENTITY_TTM_SHADOWFAX.get(), EntityTTMShadowfax.registerAttributes().build());
         GlobalEntityTypeAttributes.put(ENTITY_TTM_GOLLUM.get(), EntityTTMGollum.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_NAZGUL.get(), EntityTTMNazgul.registerAttributes().build());
+        GlobalEntityTypeAttributes.put(ENTITY_TTM_NAZGULSTEED.get(), EntityTTMNazgulSteed.registerAttributes().build());
 
     }
 
@@ -283,6 +293,8 @@ public class EntityGenerator {
     // Special
     public static final RegistryObject<Item> EGG_TTMSHADOWFAX = createSpawnEgg("entityttmshadowfax", entityTTMShadowfax, 14151567, 2301661);
     public static final RegistryObject<Item> EGG_TTMGOLLUM = createSpawnEgg("entityttmgollum", entityTTMGollum, 14151567, 5600397);
+    public static final RegistryObject<Item> EGG_TTMNAZGUL = createSpawnEgg("entityttmnazgul", entityTTMNazgul, 14151567, 14289362);
+    public static final RegistryObject<Item> EGG_TTMNAZGULSTEED = createSpawnEgg("entityttmnazgulsteed", entityTTMNazgulSteed, 14151567, 14088652);
 
     // Helper Methods
     public static RegistryObject<Item> createSpawnEgg(String name, EntityType< ? > entityType, int primaryColor, int secondaryColor ) {

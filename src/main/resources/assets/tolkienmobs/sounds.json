@@ -895,7 +895,6 @@
   "mob.tmthrush.hurt":
   {
     "category": "neutral",
-    "category": "neutral",
     "sounds":
     [
       "tolkienmobs:mob/tmthrush/tmthrush_hurt"
