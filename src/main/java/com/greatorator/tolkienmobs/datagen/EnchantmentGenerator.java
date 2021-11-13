@@ -20,7 +20,7 @@ public class EnchantmentGenerator {
     public static final RegistryObject<Enchantment> GONDOR_RESOLVE = ENCHANTS.register("gondor_resolve", () -> new EnchantmentGondorResolve(Enchantment.Rarity.RARE, EquipmentSlotType.LEGS));
     public static final RegistryObject<Enchantment> DWARF_ENDURANCE = ENCHANTS.register("dwarven_endurance", () -> new EnchantmentDwarvenEndurance(Enchantment.Rarity.RARE, EquipmentSlotType.HEAD));
     public static final RegistryObject<Enchantment> HOBBIT_PLOW = ENCHANTS.register("hobbit_plow", () -> new EnchantmentHobbitPlow(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND));
-//    public static final RegistryObject<Enchantment> HOBBIT_HARVEST = ENCHANTS.register("hobbit_harvest", () -> new EnchantmentHobbitHarvest(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND));
+    public static final RegistryObject<Enchantment> HOBBIT_HARVEST = ENCHANTS.register("hobbit_harvest", () -> new EnchantmentHobbitHarvest(Enchantment.Rarity.RARE, EquipmentSlotType.MAINHAND));
 
 
     private static Enchantment register(String key, Enchantment enchantment) {

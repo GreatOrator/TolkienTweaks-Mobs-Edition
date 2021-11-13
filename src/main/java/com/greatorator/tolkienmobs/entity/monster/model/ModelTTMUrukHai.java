@@ -184,6 +184,6 @@ public class ModelTTMUrukHai<T extends MonsterEntity> extends BipedModel<T> {
     @Override
     public void translateToHand(HandSide hand, MatrixStack mStack) {
         this.getArm(hand).translateAndRotate(mStack);
-        mStack.scale(1, 1, 1);
+        mStack.scale(1.25F, 1.25F, 1.25F);
     }
 }

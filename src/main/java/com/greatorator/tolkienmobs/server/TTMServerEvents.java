@@ -48,7 +48,7 @@ public class TTMServerEvents {
         BlockPos pos = entity.blockPosition();
         World worldIn = living.getEntity().level;
 
-        //region/*---------------- Balrog's Mark -----------------*/
+        /*---------------- Balrog's Mark -----------------*/
         int level = EnchantmentHelper.getEnchantmentLevel(EnchantmentGenerator.BALROG_MARK.get(), entity);
 
         if (entity.isOnGround() && level > 0) {
@@ -71,10 +71,7 @@ public class TTMServerEvents {
             }
 
         }
-        //endregion
-        //region/*---------------- Hobbit Plow -----------------*/
-
-        //endregion
+        /*endregion*/
     }
 
     public static void onPlayerUpdate(TickEvent.PlayerTickEvent event){
