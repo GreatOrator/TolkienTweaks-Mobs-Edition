@@ -29,6 +29,8 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -190,57 +192,57 @@ public class EntityGenerator {
     //#################################################################
     // Attribute Registry
     //#################################################################
-    public static void addEntityAttributes(){
+
+    public static void registerAttributes(EntityAttributeCreationEvent event) {
         // Ambient
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_RAT.get(), EntityTTMRat.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_SQUIRREL.get(), EntityTTMSquirrel.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_FROG.get(), EntityTTMSquirrel.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_SWARM.get(), EntityTTMSwarm.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_THRUSH.get(), EntityTTMThrush.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_CREBAIN.get(), EntityTTMCrebain.registerAttributes().build());
+        event.put(ENTITY_TTM_RAT.get(), EntityTTMRat.registerAttributes().build());
+        event.put(ENTITY_TTM_SQUIRREL.get(), EntityTTMSquirrel.registerAttributes().build());
+        event.put(ENTITY_TTM_FROG.get(), EntityTTMSquirrel.registerAttributes().build());
+        event.put(ENTITY_TTM_SWARM.get(), EntityTTMSwarm.registerAttributes().build());
+        event.put(ENTITY_TTM_THRUSH.get(), EntityTTMThrush.registerAttributes().build());
+        event.put(ENTITY_TTM_CREBAIN.get(), EntityTTMCrebain.registerAttributes().build());
 
         // Merchants
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_HUMAN.get(), EntityTTMHuman.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_DWARF.get(), EntityTTMDwarf.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_ELVES.get(), EntityTTMElves.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_HOBBIT.get(), EntityTTMHobbit.registerAttributes().build());
+        event.put(ENTITY_TTM_HUMAN.get(), EntityTTMHuman.registerAttributes().build());
+        event.put(ENTITY_TTM_DWARF.get(), EntityTTMDwarf.registerAttributes().build());
+        event.put(ENTITY_TTM_ELVES.get(), EntityTTMElves.registerAttributes().build());
+        event.put(ENTITY_TTM_HOBBIT.get(), EntityTTMHobbit.registerAttributes().build());
 
         // Monster
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_GOBLIN.get(), EntityTTMGoblin.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_BARROW.get(), EntityTTMBarrowWight.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_BRIGAND.get(), EntityTTMBrigand.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_DEEPCLAW.get(), EntityTTMDeepClaw.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_TREEENT.get(), EntityTTMTreeEnt.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_DUERGAR.get(), EntityTTMDuergar.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_FELLSPIRIT.get(), EntityTTMFellSpirit.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_SWAMPHAG.get(), EntityTTMSwampHag.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_MIRKWOODSPIDER.get(), EntityTTMMirkwoodSpider.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_HARADRIM.get(), EntityTTMHaradrim.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_TROLL.get(), EntityTTMTroll.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_WARG.get(), EntityTTMWarg.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_MORDORORC.get(), EntityTTMMordorOrc.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_HURON.get(), EntityTTMHuron.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_OATHBREAKER.get(), EntityTTMOathbreaker.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_ROMIEWALKER.get(), EntityTTMRomieWalker.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_URUKHAI.get(), EntityTTMUrukHai.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_ELEMENTALGOLEM.get(), EntityTTMElementalGolem.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_MINOTAUR.get(), EntityTTMMinotaur.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_MIMICCHEST.get(), EntityTTMMimicChest.registerAttributes().build());
+        event.put(ENTITY_TTM_GOBLIN.get(), EntityTTMGoblin.registerAttributes().build());
+        event.put(ENTITY_TTM_BARROW.get(), EntityTTMBarrowWight.registerAttributes().build());
+        event.put(ENTITY_TTM_BRIGAND.get(), EntityTTMBrigand.registerAttributes().build());
+        event.put(ENTITY_TTM_DEEPCLAW.get(), EntityTTMDeepClaw.registerAttributes().build());
+        event.put(ENTITY_TTM_TREEENT.get(), EntityTTMTreeEnt.registerAttributes().build());
+        event.put(ENTITY_TTM_DUERGAR.get(), EntityTTMDuergar.registerAttributes().build());
+        event.put(ENTITY_TTM_FELLSPIRIT.get(), EntityTTMFellSpirit.registerAttributes().build());
+        event.put(ENTITY_TTM_SWAMPHAG.get(), EntityTTMSwampHag.registerAttributes().build());
+        event.put(ENTITY_TTM_MIRKWOODSPIDER.get(), EntityTTMMirkwoodSpider.registerAttributes().build());
+        event.put(ENTITY_TTM_HARADRIM.get(), EntityTTMHaradrim.registerAttributes().build());
+        event.put(ENTITY_TTM_TROLL.get(), EntityTTMTroll.registerAttributes().build());
+        event.put(ENTITY_TTM_WARG.get(), EntityTTMWarg.registerAttributes().build());
+        event.put(ENTITY_TTM_MORDORORC.get(), EntityTTMMordorOrc.registerAttributes().build());
+        event.put(ENTITY_TTM_HURON.get(), EntityTTMHuron.registerAttributes().build());
+        event.put(ENTITY_TTM_OATHBREAKER.get(), EntityTTMOathbreaker.registerAttributes().build());
+        event.put(ENTITY_TTM_ROMIEWALKER.get(), EntityTTMRomieWalker.registerAttributes().build());
+        event.put(ENTITY_TTM_URUKHAI.get(), EntityTTMUrukHai.registerAttributes().build());
+        event.put(ENTITY_TTM_ELEMENTALGOLEM.get(), EntityTTMElementalGolem.registerAttributes().build());
+        event.put(ENTITY_TTM_MINOTAUR.get(), EntityTTMMinotaur.registerAttributes().build());
+        event.put(ENTITY_TTM_MIMICCHEST.get(), EntityTTMMimicChest.registerAttributes().build());
 
         // Boss
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_GOBLINKING.get(), EntityTTMGoblinKing.registerAttributes().build());
+        event.put(ENTITY_TTM_GOBLINKING.get(), EntityTTMGoblinKing.registerAttributes().build());
 
         // Passive
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_AUROCH.get(), EntityTTMAuroch.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_MUMAKIL.get(), EntityTTMMumakil.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_GOAT.get(), EntityTTMGoat.registerAttributes().build());
+        event.put(ENTITY_TTM_AUROCH.get(), EntityTTMAuroch.registerAttributes().build());
+        event.put(ENTITY_TTM_MUMAKIL.get(), EntityTTMMumakil.registerAttributes().build());
+        event.put(ENTITY_TTM_GOAT.get(), EntityTTMGoat.registerAttributes().build());
 
         // Special
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_SHADOWFAX.get(), EntityTTMShadowfax.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_GOLLUM.get(), EntityTTMGollum.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_NAZGUL.get(), EntityTTMNazgul.registerAttributes().build());
-        GlobalEntityTypeAttributes.put(ENTITY_TTM_NAZGULSTEED.get(), EntityTTMNazgulSteed.registerAttributes().build());
-
+        event.put(ENTITY_TTM_SHADOWFAX.get(), EntityTTMShadowfax.registerAttributes().build());
+        event.put(ENTITY_TTM_GOLLUM.get(), EntityTTMGollum.registerAttributes().build());
+        event.put(ENTITY_TTM_NAZGUL.get(), EntityTTMNazgul.registerAttributes().build());
+        event.put(ENTITY_TTM_NAZGULSTEED.get(), EntityTTMNazgulSteed.registerAttributes().build());
     }
 
     //#################################################################

@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.boss;
 
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.TTMEntityType;
 import com.greatorator.tolkienmobs.entity.monster.EntityTTMGoblin;
@@ -55,6 +56,7 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
         super(type, worldIn);
     }
 
+    @Override
     protected void registerGoals() {
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(EntityTTMGoblin.class));
         this.goalSelector.addGoal(2, new RangedAttackGoal(this, 1.0D, 40, 20.0F));
@@ -73,6 +75,7 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
                 .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE, 90.0D);
     }
 
+    @Override
     public void performRangedAttack(LivingEntity target, float distanceFactor) {
         SnowballEntity snowballentity = new SnowballEntity(this.level, this);
         double d0 = target.getEyeY() - (double)1.1F;
@@ -85,6 +88,7 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
         this.level.addFreshEntity(snowballentity);
     }
 
+    @Override
     public boolean hurt(DamageSource source, float amount) {
         if (!super.hurt(source, amount)) {
             return false;
@@ -97,26 +101,26 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
                 livingentity = (LivingEntity)source.getEntity();
             }
 
-            int i = MathHelper.floor(this.getX());
-            int j = MathHelper.floor(this.getY());
-            int k = MathHelper.floor(this.getZ());
+            int xPos = MathHelper.floor(this.getX());
+            int yPos = MathHelper.floor(this.getY());
+            int zPos = MathHelper.floor(this.getZ());
 
-            TTMGoblinEvent.SummonAidEvent event = TTMEventFactory.fireGoblinSummonAid(this, level, i, j, k, livingentity, this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).getValue());
+            TTMGoblinEvent.SummonAidEvent event = TTMEventFactory.fireGoblinSummonAid(this, level, xPos, yPos, zPos, livingentity, this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).getValue());
             if (event.getResult() == Event.Result.DENY) return true;
             if (event.getResult() == Event.Result.ALLOW  ||
                     livingentity != null && this.level.getDifficulty() == Difficulty.HARD && (double)this.random.nextFloat() < this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).getValue() && this.level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING)) {
-                EntityTTMGoblin goblinentity = event.getCustomSummonedAid() != null && event.getResult() == Event.Result.ALLOW ? event.getCustomSummonedAid() : TTMEntityType.GOBLIN.create(this.level);
+                EntityTTMGoblin goblinentity = event.getCustomSummonedAid() != null && event.getResult() == Event.Result.ALLOW ? event.getCustomSummonedAid() : EntityGenerator.ENTITY_TTM_GOBLIN.get().create(this.level);
 
                 for(int l = 0; l < 50; ++l) {
-                    int i1 = i + MathHelper.nextInt(this.random, 7, 40) * MathHelper.nextInt(this.random, -1, 1);
-                    int j1 = j + MathHelper.nextInt(this.random, 7, 40) * MathHelper.nextInt(this.random, -1, 1);
-                    int k1 = k + MathHelper.nextInt(this.random, 7, 40) * MathHelper.nextInt(this.random, -1, 1);
-                    BlockPos blockpos = new BlockPos(i1, j1, k1);
+                    int spawnX = xPos + MathHelper.nextInt(this.random, 7, 40) * MathHelper.nextInt(this.random, -1, 1);
+                    int spawnY = yPos + MathHelper.nextInt(this.random, 7, 40) * MathHelper.nextInt(this.random, -1, 1);
+                    int spawnZ = zPos + MathHelper.nextInt(this.random, 7, 40) * MathHelper.nextInt(this.random, -1, 1);
+                    BlockPos blockpos = new BlockPos(spawnX, spawnY, spawnZ);
                     EntityType<?> entitytype = goblinentity.getType();
                     EntitySpawnPlacementRegistry.PlacementType entityspawnplacementregistry$placementtype = EntitySpawnPlacementRegistry.getPlacementType(entitytype);
                     if (WorldEntitySpawner.isSpawnPositionOk(entityspawnplacementregistry$placementtype, this.level, blockpos, entitytype) && EntitySpawnPlacementRegistry.checkSpawnRules(entitytype, serverworld, SpawnReason.REINFORCEMENT, blockpos, this.level.random)) {
-                        goblinentity.setPos((double)i1, (double)j1, (double)k1);
-                        if (!this.level.hasNearbyAlivePlayer((double)i1, (double)j1, (double)k1, 7.0D) && this.level.isUnobstructed(goblinentity) && this.level.noCollision(goblinentity) && !this.level.containsAnyLiquid(goblinentity.getBoundingBox())) {
+                        goblinentity.setPos((double)spawnX, (double)spawnY, (double)spawnZ);
+                        if (!this.level.hasNearbyAlivePlayer((double)spawnX, (double)spawnY, (double)spawnZ, 7.0D) && this.level.isUnobstructed(goblinentity) && this.level.noCollision(goblinentity) && !this.level.containsAnyLiquid(goblinentity.getBoundingBox())) {
                             if (livingentity != null)
                                 goblinentity.setTarget(livingentity);
                             goblinentity.finalizeSpawn(serverworld, this.level.getCurrentDifficultyAt(goblinentity.blockPosition()), SpawnReason.REINFORCEMENT, (ILivingEntityData)null, (CompoundNBT)null);
@@ -139,11 +143,13 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
         return SoundGenerator.soundIdleGoblin.get();
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundGenerator.soundHurtGoblin.get();
     }
 
+    @Override
     protected SoundEvent getDeathSound()
     {
         return SoundGenerator.soundDeathGoblin.get();
@@ -169,6 +175,7 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(1, 1);
         this.setGoblinKingType(job);
@@ -176,16 +183,19 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(GOBLINKING_TYPE, 1);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("GoblinKingType", this.getGoblinKingType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setGoblinKingType(compound.getInt("GoblinKingType"));
@@ -194,21 +204,25 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
         }
     }
 
+    @Override
     public void setCustomName(@Nullable ITextComponent name) {
         super.setCustomName(name);
         this.bossInfo.setName(this.getDisplayName());
     }
 
+    @Override
     public void startSeenByPlayer(ServerPlayerEntity player) {
         super.startSeenByPlayer(player);
         this.bossInfo.addPlayer(player);
     }
 
+    @Override
     public void stopSeenByPlayer(ServerPlayerEntity player) {
         super.stopSeenByPlayer(player);
         this.bossInfo.removePlayer(player);
     }
 
+    @Override
     protected void customServerAiStep() {
         if (this.tickCount % 20 == 0) {
             this.heal(1.0F);

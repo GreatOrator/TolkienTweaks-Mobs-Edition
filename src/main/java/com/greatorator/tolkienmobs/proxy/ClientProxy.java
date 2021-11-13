@@ -70,7 +70,6 @@ public class ClientProxy extends CommonProxy {
         super.clientSetup(event);
         setupRenderLayers();
         registerEntityRenderer();
-        EntityGenerator.addEntityAttributes();
     }
 
     public static void setupRenderLayers() {

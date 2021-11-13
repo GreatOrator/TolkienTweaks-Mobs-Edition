@@ -49,6 +49,8 @@ public class CommonProxy {
 
         TTMTreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
         MinecraftForge.EVENT_BUS.addListener(TTMFeature::biomeLoading);
+
+        modBus.addListener(EntityGenerator::registerAttributes);
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
