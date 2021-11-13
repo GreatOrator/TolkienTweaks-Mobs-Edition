@@ -60,11 +60,6 @@ public class TolkienMobs {
         a. Fell Beast Fireball - rendering
 	    b. Boulder - rendering
 	    c. Galadhrim Arrow - rendering
-    9. Generation
-        a. Trees
-        b. Biomes
-        c. Structures
-        d. Plants
     10. Network Stuff
     */
 
