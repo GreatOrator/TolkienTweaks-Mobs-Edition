@@ -9,7 +9,7 @@ import net.minecraft.util.math.MathHelper;
 
 import static com.greatorator.tolkienmobs.utils.TTMRand.degToRad;
 
-public class ModelTTMMimicChest<T extends MonsterEntity> extends SegmentedModel<T> {
+public class ModelTTMMimicChest extends SegmentedModel<EntityTTMMimicChest> {
     public ModelRenderer box;
     public ModelRenderer boxLid;
     public ModelRenderer box2;
@@ -201,7 +201,6 @@ public class ModelTTMMimicChest<T extends MonsterEntity> extends SegmentedModel<
     }
 
     public boolean getRenderChest() {
-        renderChest = EntityTTMMimicChest.getMimicChest();
         return renderChest;
     }
 
@@ -211,6 +210,7 @@ public class ModelTTMMimicChest<T extends MonsterEntity> extends SegmentedModel<
         modelRenderer.zRot = z;
     }
 
+    @Override
     public Iterable<ModelRenderer> parts() {
         if(this.getRenderChest()){
             return ImmutableList.of(this.box2, this.boxLid2);
@@ -220,8 +220,10 @@ public class ModelTTMMimicChest<T extends MonsterEntity> extends SegmentedModel<
         }
     }
 
-    public void setupAnim(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
-        if(EntityTTMMimicChest.getMimicAttack()){
+    @Override
+    public void setupAnim(EntityTTMMimicChest mimic, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
+        renderChest = mimic.getMimicChest();
+        if(mimic.getMimicAttack()){
             float baseBackLegRotation = 0.2617993877991494F;
             float baseFrontLegRotation = -0.2617993877991494F;
             float baseLidRotation = 2.356194490192345F;
@@ -234,7 +236,7 @@ public class ModelTTMMimicChest<T extends MonsterEntity> extends SegmentedModel<
             this.rightLeg.xRot = baseFrontLegRotation + (MathHelper.cos(p_225597_2_ * 0.6662F + (float) Math.PI) * 1.4F * p_225597_3_);
             this.rightbackLeg.xRot = baseBackLegRotation + (MathHelper.cos(p_225597_2_ * 0.6662F + (float) Math.PI) * 1.4F * p_225597_3_);
 
-            MimicTongue.xRot = baseTongueRotation + (MathHelper.cos(degToRad(p_225597_1_.tickCount * 7)) * degToRad(10));
+            MimicTongue.xRot = baseTongueRotation + (MathHelper.cos(degToRad(mimic.tickCount * 7)) * degToRad(10));
             MimicTongue_1.xRot = MimicTongue.xRot * 3;
             MimicTongue_2.xRot = MimicTongue_1.xRot * 1;
         }

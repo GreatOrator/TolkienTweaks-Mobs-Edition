@@ -39,8 +39,8 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
         option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest1.png"));
         option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest2.png"));
     });
-    private static boolean mimicAttack;
-    public static boolean mimicChest;
+    private boolean mimicAttack;
+    public boolean mimicChest;
     private long nextAbilityUse = 0L;
     private final static long coolDown = 15000L;
 
@@ -58,6 +58,11 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
 
     @Override
     protected void registerGoals() {
+        // ##################################################################################################################################################
+        // Just FYI if you're trying to "toggle" goals on and off with this. It won't work. Goals are only registered the moment the entity is first created.
+        // In fact if i'm not mistaken this won't work at all regardless. Because even if you did 'new EntityTTMMimicChest().setMimicAttack(true)'
+        // The constructor would call this method before setMimicAttack gets processed.
+        // ##################################################################################################################################################
         if (mimicAttack) {
             this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
             this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
@@ -107,7 +112,7 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
         mimicChest = chestRender;
     }
 
-    public static boolean getMimicChest() {
+    public boolean getMimicChest() {
         return mimicChest;
     }
 
@@ -115,7 +120,7 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
         mimicAttack = setAttack;
     }
 
-    public static boolean getMimicAttack() {
+    public boolean getMimicAttack() {
         return mimicAttack;
     }
 
