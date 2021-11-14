@@ -33,36 +33,6 @@ public class TTMLore extends Item {
         }
     }
 
-//    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-//        ItemStack itemstack = playerIn.getHeldItem(handIn);
-//        RayTraceResult raytraceresult = rayTrace(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
-//        if (raytraceresult.getType() != RayTraceResult.Type.BLOCK && itemHasUse) {
-//            return ActionResult.resultPass(itemstack);
-//        } else if (!(worldIn instanceof ServerWorld)) {
-//            return ActionResult.resultSuccess(itemstack);
-//        } else {
-//            BlockRayTraceResult blockraytraceresult = (BlockRayTraceResult) raytraceresult;
-//            BlockPos blockpos = blockraytraceresult.getPos();
-//            if (!(worldIn.getBlockState(blockpos).getBlock() instanceof FlowingFluidBlock)) {
-//                return ActionResult.resultPass(itemstack);
-//            } else if (worldIn.isBlockModifiable(playerIn, blockpos) && canSpawnEntity && playerIn.canPlayerEdit(blockpos, blockraytraceresult.getFace(), itemstack)) {
-//                EntityType<?> entitytype = new EntityTMMithrilGolem(worldIn);
-//                if (entitytype.spawn((ServerWorld) worldIn, itemstack, playerIn, blockpos, SpawnReason.SPAWN_EGG, false, false) == null) {
-//                    return ActionResult.resultPass(itemstack);
-//                } else {
-//                    if (!playerIn.abilities.isCreativeMode) {
-//                        itemstack.shrink(1);
-//                    }
-//
-//                    playerIn.addStat(Stats.ITEM_USED.get(this));
-//                    return ActionResult.resultConsume(itemstack);
-//                }
-//            } else {
-//                return ActionResult.resultFail(itemstack);
-//            }
-//        }
-//    }
-
     public TTMLore setEffectOverride() {
         this.hasEffectOverride = true;
         return this;

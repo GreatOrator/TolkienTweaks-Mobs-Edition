@@ -20,6 +20,7 @@ public class RenderTTMFrog extends MobRenderer<EntityTTMFrog, ModelTTMFrog<Entit
         return entity.getFrogTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMFrog entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
         matrixStackIn.scale(0.8F, 0.8F, 0.8F);

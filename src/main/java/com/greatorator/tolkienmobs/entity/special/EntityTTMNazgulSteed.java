@@ -31,6 +31,7 @@ public class EntityTTMNazgulSteed extends HorseEntity {
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         if (TTMRand.getRandomInteger(15, 1) == 2) {
             EntityTTMNazgul entitynazgul = EntityGenerator.ENTITY_TTM_NAZGUL.get().create(this.level);
@@ -41,10 +42,12 @@ public class EntityTTMNazgulSteed extends HorseEntity {
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     public boolean causeFallDamage(float distance, float damageMultiplier) {
         return false;
     }
 
+    @Override
     protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
     }
 }

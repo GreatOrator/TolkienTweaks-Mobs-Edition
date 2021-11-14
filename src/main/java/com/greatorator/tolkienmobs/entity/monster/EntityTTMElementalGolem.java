@@ -56,6 +56,7 @@ public class EntityTTMElementalGolem extends EntityTTMMonsters implements IAnger
         super(type, worldIn);
     }
 
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, true));
         this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9D, 32.0F));
@@ -79,6 +80,7 @@ public class EntityTTMElementalGolem extends EntityTTMMonsters implements IAnger
                 .add(Attributes.ATTACK_DAMAGE, 15.0D);
     }
 
+    @Override
     public void aiStep() {
         super.aiStep();
         if (this.attackAnimationTick > 0) {
@@ -111,6 +113,7 @@ public class EntityTTMElementalGolem extends EntityTTMMonsters implements IAnger
         return EntityTTMElementalGolem.attackAnimationTick;
     }
 
+    @Override
     public boolean doHurtTarget(Entity p_70652_1_) {
         this.attackAnimationTick = 10;
         this.level.broadcastEntityEvent(this, (byte)4);
@@ -127,6 +130,7 @@ public class EntityTTMElementalGolem extends EntityTTMMonsters implements IAnger
     }
 
     @OnlyIn(Dist.CLIENT)
+    @Override
     public void handleEntityEvent(byte p_70103_1_) {
         if (p_70103_1_ == 4)
             this.attackAnimationTick = 10;
@@ -179,6 +183,7 @@ public class EntityTTMElementalGolem extends EntityTTMMonsters implements IAnger
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(7, 1);
         this.setElementalGolemType(job);
@@ -187,16 +192,19 @@ public class EntityTTMElementalGolem extends EntityTTMMonsters implements IAnger
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(GOLEM_TYPE, 3);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("ElementalGolemType", this.getElementalGolemType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setElementalGolemType(compound.getInt("ElementalGolemType"));

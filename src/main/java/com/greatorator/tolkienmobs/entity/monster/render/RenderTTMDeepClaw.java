@@ -17,6 +17,7 @@ public class RenderTTMDeepClaw extends MobRenderer<EntityTTMDeepClaw, ModelTTMDe
         return entity.getDeepclawTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMDeepClaw entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

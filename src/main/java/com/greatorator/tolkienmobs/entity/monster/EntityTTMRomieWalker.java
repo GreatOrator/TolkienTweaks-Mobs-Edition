@@ -61,6 +61,7 @@ public class EntityTTMRomieWalker extends EntityTTMMonsters {
                 .add(Attributes.ARMOR, 5.0D);
     }
 
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
@@ -110,11 +111,13 @@ public class EntityTTMRomieWalker extends EntityTTMMonsters {
         return SoundGenerator.soundIdleRomieWalker.get();
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundGenerator.soundHurtRomieWalker.get();
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundGenerator.soundDeathRomieWalker.get();
     }
@@ -139,6 +142,7 @@ public class EntityTTMRomieWalker extends EntityTTMMonsters {
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(6, 1);
         this.setRomieWalkerType(job);
@@ -147,16 +151,19 @@ public class EntityTTMRomieWalker extends EntityTTMMonsters {
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(ROMIE_TYPE, 3);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("RomieWalkerType", this.getRomieWalkerType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setRomieWalkerType(compound.getInt("RomieWalkerType"));

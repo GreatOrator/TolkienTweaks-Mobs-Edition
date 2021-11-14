@@ -19,6 +19,7 @@ public class RenderTTMMordorOrc extends MobRenderer<EntityTTMMordorOrc, ModelTTM
         return entity.getMordorOrcTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMMordorOrc entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

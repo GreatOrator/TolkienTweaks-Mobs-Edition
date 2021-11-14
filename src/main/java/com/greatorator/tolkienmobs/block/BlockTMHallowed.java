@@ -30,6 +30,7 @@ public class BlockTMHallowed extends Block
     /**
      * Called when the given entity walks on this Block
      */
+    @Override
     public void stepOn(World worldIn, BlockPos pos, Entity entityIn)
     {
         if (entityIn instanceof LivingEntity && ((LivingEntity) entityIn).isInvertedHealAndHarm() && entityIn.canChangeDimensions())

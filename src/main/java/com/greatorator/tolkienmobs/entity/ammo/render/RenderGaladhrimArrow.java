@@ -33,6 +33,7 @@ public class RenderGaladhrimArrow<T extends EntityGaladhrimArrow> extends Entity
         return GALADHRIM_ARROW_TEXTURES;
     }
 
+    @Override
     public void render(T entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
         matrixStackIn.pushPose();
         matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.yRotO, entityIn.yRot) - 90.0F));

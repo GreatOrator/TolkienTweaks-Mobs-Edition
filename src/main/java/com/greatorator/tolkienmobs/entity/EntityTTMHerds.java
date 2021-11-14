@@ -39,18 +39,22 @@ public class EntityTTMHerds extends AnimalEntity
         return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 10.0D).add(Attributes.MOVEMENT_SPEED, (double)0.2F);
     }
 
+    @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.COW_AMBIENT;
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return SoundEvents.COW_HURT;
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.COW_DEATH;
     }
 
+    @Override
     protected void playStepSound(BlockPos pos, BlockState blockIn) {
         this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
     }
@@ -58,10 +62,12 @@ public class EntityTTMHerds extends AnimalEntity
     /**
      * Returns the volume for the sounds this mob makes.
      */
+    @Override
     protected float getSoundVolume() {
         return 0.4F;
     }
 
+    @Override
     public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
         ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
         if (itemstack.getItem() == Items.BUCKET && !this.isBaby()) {
@@ -74,6 +80,7 @@ public class EntityTTMHerds extends AnimalEntity
         }
     }
 
+    @Override
     protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
         return this.isBaby() ? sizeIn.height * 0.95F : 1.3F;
     }

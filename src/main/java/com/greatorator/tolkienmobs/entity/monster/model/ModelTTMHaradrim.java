@@ -66,14 +66,17 @@ public class ModelTTMHaradrim<T extends MonsterEntity> extends BipedModel<T> {
         this.bipedLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
     }
 
+    @Override
     protected Iterable<ModelRenderer> headParts() {
         return ImmutableList.of(this.bipedHead);
     }
 
+    @Override
     protected Iterable<ModelRenderer> bodyParts() {
         return ImmutableList.of(this.bipedBody, this.rightArm, this.leftArm, this.bipedRightLeg, this.bipedLeftLeg);
     }
 
+    @Override
     public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
         this.rightArmPose = BipedModel.ArmPose.EMPTY;
         this.leftArmPose = BipedModel.ArmPose.EMPTY;

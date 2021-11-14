@@ -20,6 +20,7 @@ public class RenderTTMSquirrel extends MobRenderer<EntityTTMSquirrel, ModelTTMSq
         return entity.getSquirrelTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMSquirrel entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
         matrixStackIn.scale(0.2F, 0.2F, 0.2F);

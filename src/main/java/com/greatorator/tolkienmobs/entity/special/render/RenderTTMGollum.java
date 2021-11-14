@@ -21,6 +21,7 @@ public class RenderTTMGollum extends MobRenderer<EntityTTMGollum, ModelTTMGollum
         return mobTexture;
     }
 
+    @Override
     protected void scale(EntityTTMGollum entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

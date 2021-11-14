@@ -21,6 +21,7 @@ public class RenderTTMFellSpirit extends MobRenderer<EntityTTMFellSpirit, ModelT
         return entity.getFellSpiritTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMFellSpirit entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

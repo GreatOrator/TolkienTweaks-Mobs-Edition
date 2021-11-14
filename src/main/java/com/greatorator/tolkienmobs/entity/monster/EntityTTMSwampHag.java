@@ -73,7 +73,9 @@ public class EntityTTMSwampHag extends AbstractRaiderEntity implements IRangedAt
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
         return MonsterEntity.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 26.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.25D);
+                .add(Attributes.MOVEMENT_SPEED, 0.25D)
+                .add(Attributes.ATTACK_DAMAGE, 3.0D)
+                .add(Attributes.ARMOR, 5.0D);
     }
 
     @Override
@@ -252,6 +254,7 @@ public class EntityTTMSwampHag extends AbstractRaiderEntity implements IRangedAt
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(5, 1);
         this.setSwampHagType(job);
@@ -260,17 +263,20 @@ public class EntityTTMSwampHag extends AbstractRaiderEntity implements IRangedAt
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.getEntityData().define(DATA_USING_ITEM, false);
         this.entityData.define(SWAMPHAG_TYPE, 3);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("SwampHagType", this.getSwampHagType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setSwampHagType(compound.getInt("SwampHagType"));

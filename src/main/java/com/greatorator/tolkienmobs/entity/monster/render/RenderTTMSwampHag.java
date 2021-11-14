@@ -22,6 +22,7 @@ public class RenderTTMSwampHag extends MobRenderer<EntityTTMSwampHag, WitchModel
         return entity.getSwampHagTypeName();
     }
 
+    @Override
     public void render(EntityTTMSwampHag p_225623_1_, float p_225623_2_, float p_225623_3_, MatrixStack p_225623_4_, IRenderTypeBuffer p_225623_5_, int p_225623_6_) {
         ((WitchModel)this.model).setHoldingItem(!p_225623_1_.getMainHandItem().isEmpty());
         super.render(p_225623_1_, p_225623_2_, p_225623_3_, p_225623_4_, p_225623_5_, p_225623_6_);

@@ -20,6 +20,7 @@ public class RenderTTMRat extends MobRenderer<EntityTTMRat, ModelTTMRat<EntityTT
         return entity.getRatTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMRat entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

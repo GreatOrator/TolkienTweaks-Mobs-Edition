@@ -265,6 +265,7 @@ public class ModelTTMSquirrel<E extends AnimalEntity> extends EntityModel<Entity
         }
     }
 
+    @Override
     public void prepareMobModel(EntityTTMSquirrel entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
         super.prepareMobModel(entityIn, limbSwing, limbSwingAmount, partialTick);
     }

@@ -48,11 +48,13 @@ public class EntityTTMBrigand extends EntityTTMMonsters {
 
     /** Set up using weapons **/
     private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false) {
+        @Override
         public void stop() {
             super.stop();
             EntityTTMBrigand.this.setAggressive(false);
         }
 
+        @Override
         public void start() {
             super.start();
             EntityTTMBrigand.this.setAggressive(true);
@@ -76,6 +78,7 @@ public class EntityTTMBrigand extends EntityTTMMonsters {
     }
 
     /** Special Attack */
+    @Override
     public boolean doHurtTarget(Entity entityIn) {
         long time = System.currentTimeMillis();
         if (super.doHurtTarget(entityIn)) {
@@ -149,6 +152,7 @@ public class EntityTTMBrigand extends EntityTTMMonsters {
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(10, 1);
         this.setBrigandType(job);
@@ -158,16 +162,19 @@ public class EntityTTMBrigand extends EntityTTMMonsters {
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(BRIGAND_TYPE, 3);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("BrigandType", this.getBrigandType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setBrigandType(compound.getInt("BrigandType"));

@@ -37,6 +37,7 @@ public class TTMThrowandAttack<T extends CreatureEntity & IRangedAttackMob> exte
     /**
      * Returns whether the EntityAIBase should begin execution.
      */
+    @Override
     public boolean canUse()
     {
         if(hasThrowableItemInMainhand()){
@@ -56,6 +57,7 @@ public class TTMThrowandAttack<T extends CreatureEntity & IRangedAttackMob> exte
     /**
      * Returns whether an in-progress EntityAIBase should continue executing
      */
+    @Override
     public boolean canContinueToUse()
     {
         if(hasThrowableItemInMainhand()){
@@ -69,6 +71,7 @@ public class TTMThrowandAttack<T extends CreatureEntity & IRangedAttackMob> exte
     /**
      * Resets the task
      */
+    @Override
     public void stop()
     {
         if(hasThrowableItemInMainhand()){
@@ -83,6 +86,7 @@ public class TTMThrowandAttack<T extends CreatureEntity & IRangedAttackMob> exte
     /**
      * Updates the task
      */
+    @Override
     public void tick()
     {
         LivingEntity attackTarget = this.hostCreature.getTarget();

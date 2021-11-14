@@ -17,6 +17,7 @@ public class RenderTTMMimicChest extends MobRenderer<EntityTTMMimicChest, ModelT
         return entity.getMimicChestTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMMimicChest entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

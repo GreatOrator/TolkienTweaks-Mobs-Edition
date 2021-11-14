@@ -23,6 +23,7 @@ public class RenderTTMShadowfax extends AbstractHorseRenderer<EntityTTMShadowfax
         return mobTexture;
     }
 
+    @Override
     protected void scale(EntityTTMShadowfax entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

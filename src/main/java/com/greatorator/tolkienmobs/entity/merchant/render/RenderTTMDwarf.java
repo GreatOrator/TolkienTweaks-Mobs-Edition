@@ -17,6 +17,7 @@ public class RenderTTMDwarf extends MobRenderer<EntityTTMDwarf, ModelTTMDwarf<En
         return entity.getDwarfTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMDwarf entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         float f = 0.95F;
         if (entitylivingbaseIn.isBaby()) {

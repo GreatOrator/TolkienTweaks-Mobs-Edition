@@ -348,8 +348,6 @@ public class TTMFeatureUtil {
                 }
             }
         }
-
-        // Okie dokie
         return flag;
     }
 

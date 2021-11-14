@@ -17,6 +17,7 @@ public class RenderTTMAuroch extends MobRenderer<EntityTTMAuroch, ModelTTMAuroch
         return entity.getAurochTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMAuroch entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

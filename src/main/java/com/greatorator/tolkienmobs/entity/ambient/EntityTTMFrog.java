@@ -70,6 +70,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         this.setMovementSpeed(0.0D);
     }
 
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(1, new EntityTTMFrog.PanicGoal(this, 2.2D));
@@ -82,6 +83,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         this.goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 10.0F));
     }
 
+    @Override
     protected float getJumpPower() {
         if (!this.horizontalCollision && (!this.moveControl.hasWanted() || !(this.moveControl.getWantedY() > this.getY() + 0.5D))) {
             Path path = this.navigation.getPath();
@@ -101,6 +103,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
     /**
      * Causes this entity to do an upwards motion (jumping).
      */
+    @Override
     protected void jumpFromGround() {
         super.jumpFromGround();
         double d0 = this.moveControl.getSpeedModifier();
@@ -127,6 +130,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         this.moveControl.setWantedPosition(this.moveControl.getWantedX(), this.moveControl.getWantedY(), this.moveControl.getWantedZ(), newSpeed);
     }
 
+    @Override
     public void setJumping(boolean jumping) {
         super.setJumping(jumping);
         if (jumping) {
@@ -141,11 +145,13 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         this.jumpTicks = 0;
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(FROG_TYPE, 1);
     }
 
+    @Override
     public void customServerAiStep() {
         if (this.currentMoveTypeDuration > 0) {
             --this.currentMoveTypeDuration;
@@ -194,6 +200,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         this.wasOnGround = this.onGround;
     }
 
+    @Override
     public boolean canSpawnSprintParticle() {
         return false;
     }
@@ -228,6 +235,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
+    @Override
     public void aiStep() {
         super.aiStep();
         if (this.jumpTicks != this.jumpDuration) {
@@ -244,6 +252,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 3.0D).add(Attributes.MOVEMENT_SPEED, (double) 0.3F);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("FrogType", this.getFrogType());
@@ -253,6 +262,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setFrogType(compound.getInt("FrogType"));
@@ -263,18 +273,22 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         return SoundEvents.RABBIT_JUMP;
     }
 
+    @Override
     protected SoundEvent getAmbientSound() {
         return SoundGenerator.soundIdleToaddle.get();
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return SoundGenerator.soundHurtToaddle.get();
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundGenerator.soundDeathToaddle.get();
     }
 
+    @Override
     public boolean doHurtTarget(Entity entityIn) {
         if (this.getFrogType() == 99) {
             this.playSound(SoundGenerator.soundAngryToaddle.get(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
@@ -284,6 +298,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         }
     }
 
+    @Override
     public SoundCategory getSoundSource() {
         return this.getFrogType() == 99 ? SoundCategory.HOSTILE : SoundCategory.NEUTRAL;
     }
@@ -291,6 +306,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
     /**
      * Called when the entity is attacked.
      */
+    @Override
     public boolean hurt(DamageSource source, float amount) {
         return this.isInvulnerableTo(source) ? false : super.hurt(source, amount);
     }
@@ -299,6 +315,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         return itemIn == TTMContent.INSECT.get() || itemIn == TTMContent.GOLDEN_INSECT.get();
     }
 
+    @Override
     public EntityTTMFrog getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         EntityTTMFrog frogentity = EntityGenerator.ENTITY_TTM_FROG.get().create(p_241840_1_);
         int i = this.getRandomFrogType(p_241840_1_);
@@ -318,6 +335,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
      * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
      * the animal type)
      */
+    @Override
     public boolean isFood(ItemStack stack) {
         return this.isFrogBreedingItem(stack.getItem());
     }
@@ -349,6 +367,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int i = this.getRandomFrogType(worldIn);
         if (spawnDataIn instanceof EntityTTMFrog.FrogData) {
@@ -392,6 +411,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
     }
 
     @OnlyIn(Dist.CLIENT)
+    @Override
     public void handleEntityEvent(byte id) {
         if (id == 1) {
             this.spawnSprintParticle();
@@ -404,6 +424,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
     }
 
     @OnlyIn(Dist.CLIENT)
+    @Override
     public Vector3d getLeashOffset() {
         return new Vector3d(0.0D, (double) (0.6F * this.getEyeHeight()), (double) (this.getBbWidth() * 0.4F));
     }
@@ -420,6 +441,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
          * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
          * method as well.
          */
+        @Override
         public boolean canUse() {
             return this.ttmfrog.getFrogType() != 99 && super.canUse();
         }
@@ -430,6 +452,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
             super(ttmfrog, 1.4D, true);
         }
 
+        @Override
         protected double getAttackReachSqr(LivingEntity attackTarget) {
             return (double) (4.0F + attackTarget.getBbWidth());
         }
@@ -459,6 +482,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         /**
          * Called to actually make the entity jump if isJumping is true.
          */
+        @Override
         public void tick() {
             if (this.jump) {
                 this.ttmfrog.startJumping();
@@ -477,6 +501,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
             this.ttmfrog = ttmfrog;
         }
 
+        @Override
         public void tick() {
             if (this.ttmfrog.onGround && !this.ttmfrog.jumping && !((EntityTTMFrog.JumpHelperController) this.ttmfrog.jumpControl).getIsJumping()) {
                 this.ttmfrog.setMovementSpeed(0.0D);
@@ -490,6 +515,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         /**
          * Sets the speed and location to move to
          */
+        @Override
         public void setWantedPosition(double x, double y, double z, double speedIn) {
             if (this.ttmfrog.isInWater()) {
                 speedIn = 1.5D;
@@ -514,6 +540,7 @@ public class EntityTTMFrog extends EntityTTMAmbients {
         /**
          * Keep ticking a continuous task that has already been started
          */
+        @Override
         public void tick() {
             super.tick();
             this.ttmfrog.setMovementSpeed(this.speedModifier);

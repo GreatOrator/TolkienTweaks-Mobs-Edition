@@ -21,10 +21,12 @@ public class EntityTTMShadowfax extends HorseEntity {
                 .add(Attributes.JUMP_STRENGTH, 2.5D);
     }
 
+    @Override
     public boolean causeFallDamage(float distance, float damageMultiplier) {
         return false;
     }
 
+    @Override
     protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
     }
 }

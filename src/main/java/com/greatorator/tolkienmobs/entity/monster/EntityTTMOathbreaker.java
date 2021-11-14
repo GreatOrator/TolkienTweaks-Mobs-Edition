@@ -96,6 +96,7 @@ public class EntityTTMOathbreaker extends EntityTTMMonsters {
         return true;
     }
 
+    @Override
     public CreatureAttribute getMobType()
     {
         return CreatureAttribute.UNDEAD;
@@ -139,6 +140,7 @@ public class EntityTTMOathbreaker extends EntityTTMMonsters {
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(5, 1);
         this.setOathbreakerType(job);
@@ -147,16 +149,19 @@ public class EntityTTMOathbreaker extends EntityTTMMonsters {
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(OATHBREAKER_TYPE, 3);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("OathbreakerType", this.getOathbreakerType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setOathbreakerType(compound.getInt("OathbreakerType"));

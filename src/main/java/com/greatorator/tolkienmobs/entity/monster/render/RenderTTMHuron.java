@@ -17,6 +17,7 @@ public class RenderTTMHuron extends MobRenderer<EntityTTMHuron, ModelTTMHuron<En
         return entity.getHuronTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMHuron entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

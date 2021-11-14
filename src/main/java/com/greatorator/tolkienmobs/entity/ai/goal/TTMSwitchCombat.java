@@ -78,6 +78,7 @@ public class TTMSwitchCombat extends Goal
     /**
      * Resets the task
      */
+    @Override
     public void stop()
     {
         target = null;
@@ -86,6 +87,7 @@ public class TTMSwitchCombat extends Goal
     /**
      * Updates the task
      */
+    @Override
     public void tick()
     {
         if(this.hostMob.distanceTo(this.target) < minDistance && hasRangedItemInMainhand() && !hasRangedItemInOffhand())

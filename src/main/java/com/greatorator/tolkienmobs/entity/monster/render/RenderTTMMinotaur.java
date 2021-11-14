@@ -19,6 +19,7 @@ public class RenderTTMMinotaur extends MobRenderer<EntityTTMMinotaur, ModelTTMMi
         return entity.getMinotaurTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMMinotaur entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

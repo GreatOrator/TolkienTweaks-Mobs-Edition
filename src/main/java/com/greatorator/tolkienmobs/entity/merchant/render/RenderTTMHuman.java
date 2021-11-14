@@ -17,6 +17,7 @@ public class RenderTTMHuman extends MobRenderer<EntityTTMHuman, ModelTTMHuman<En
         return entity.getHumanTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMHuman entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         float f = 0.93F;
         if (entitylivingbaseIn.isBaby()) {

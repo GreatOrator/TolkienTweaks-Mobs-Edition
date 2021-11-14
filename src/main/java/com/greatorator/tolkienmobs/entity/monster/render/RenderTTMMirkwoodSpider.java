@@ -17,6 +17,7 @@ public class RenderTTMMirkwoodSpider extends MobRenderer<EntityTTMMirkwoodSpider
         return entity.getMirkwoodSpiderTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMMirkwoodSpider entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

@@ -118,6 +118,7 @@ public class ModelTTMFrog<E extends EntityTTMFrog> extends EntityModel<EntityTTM
         this.frogRightArm.xRot = (this.jumpRotation * -40.0F - 11.0F) * 0.017453292F;
     }
 
+    @Override
     public void prepareMobModel(EntityTTMFrog entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
         super.prepareMobModel(entityIn, limbSwing, limbSwingAmount, partialTick);
         this.jumpRotation = MathHelper.sin(entityIn.getJumpCompletion(partialTick) * (float)Math.PI);

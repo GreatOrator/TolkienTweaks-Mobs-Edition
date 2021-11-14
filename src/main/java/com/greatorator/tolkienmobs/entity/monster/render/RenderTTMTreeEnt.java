@@ -17,6 +17,7 @@ public class RenderTTMTreeEnt extends MobRenderer<EntityTTMTreeEnt, ModelTTMTree
         return entity.getTreeEntTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMTreeEnt entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

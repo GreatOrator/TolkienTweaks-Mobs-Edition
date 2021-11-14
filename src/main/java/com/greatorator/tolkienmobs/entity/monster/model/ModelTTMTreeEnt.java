@@ -828,10 +828,12 @@ public class ModelTTMTreeEnt<T extends MonsterEntity> extends BipedModel<T> {
         modelRenderer.zRot = z;
     }
 
+    @Override
     protected Iterable<ModelRenderer> bodyParts() {
         return ImmutableList.of(this.EntBody);
     }
 
+    @Override
     public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
         this.rightArmPose = BipedModel.ArmPose.EMPTY;
         this.leftArmPose = BipedModel.ArmPose.EMPTY;

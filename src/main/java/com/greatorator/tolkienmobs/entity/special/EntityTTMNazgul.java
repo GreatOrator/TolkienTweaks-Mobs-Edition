@@ -36,11 +36,13 @@ public class EntityTTMNazgul extends EntityTTMMonsters {
 
     /** Set up using weapons **/
     private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false) {
+        @Override
         public void stop() {
             super.stop();
             EntityTTMNazgul.this.setAggressive(false);
         }
 
+        @Override
         public void start() {
             super.start();
             EntityTTMNazgul.this.setAggressive(true);
@@ -74,6 +76,7 @@ public class EntityTTMNazgul extends EntityTTMMonsters {
     }
 
     /** Special Attack */
+    @Override
     public boolean doHurtTarget(Entity entityIn) {
         long time = System.currentTimeMillis();
         if (super.doHurtTarget(entityIn)) {
@@ -149,16 +152,19 @@ public class EntityTTMNazgul extends EntityTTMMonsters {
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         this.populateDefaultEquipmentSlots(difficultyIn);
         this.reassessWeaponGoal();
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         if (this.hasCustomName()) {
@@ -167,21 +173,25 @@ public class EntityTTMNazgul extends EntityTTMMonsters {
         this.reassessWeaponGoal();
     }
 
+    @Override
     public void setCustomName(@Nullable ITextComponent name) {
         super.setCustomName(name);
         this.bossInfo.setName(this.getDisplayName());
     }
 
+    @Override
     public void startSeenByPlayer(ServerPlayerEntity player) {
         super.startSeenByPlayer(player);
         this.bossInfo.addPlayer(player);
     }
 
+    @Override
     public void stopSeenByPlayer(ServerPlayerEntity player) {
         super.stopSeenByPlayer(player);
         this.bossInfo.removePlayer(player);
     }
 
+    @Override
     protected void customServerAiStep() {
         if (this.tickCount % 20 == 0) {
             this.heal(1.0F);

@@ -21,6 +21,7 @@ public class RenderTTMOathbreaker extends MobRenderer<EntityTTMOathbreaker, Mode
         return entity.getOathbreakerTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMOathbreaker entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

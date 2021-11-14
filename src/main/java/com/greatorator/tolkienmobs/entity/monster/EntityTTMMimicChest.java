@@ -69,6 +69,7 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
     }
 
     /** Special Attack */
+    @Override
     public boolean doHurtTarget(Entity entityIn) {
         long time = System.currentTimeMillis();
         if (super.doHurtTarget(entityIn)) {
@@ -139,6 +140,7 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(5, 1);
         this.setMimicChestType(job);
@@ -148,11 +150,13 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(MIMIC_TYPE, 3);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("MimicChestType", this.getMimicChestType());
@@ -160,6 +164,7 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
         compound.putBoolean("canAttack", getMimicAttack());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setMimicChestType(compound.getInt("MimicChestType"));

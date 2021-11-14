@@ -25,6 +25,7 @@ public class RenderTTMNazgul extends MobRenderer<EntityTTMNazgul, ModelTTMWitchK
         return mobTexture;
     }
 
+    @Override
     protected void scale(EntityTTMNazgul entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

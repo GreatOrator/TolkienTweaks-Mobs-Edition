@@ -17,6 +17,7 @@ public class RenderTTMMumakil extends MobRenderer<EntityTTMMumakil, ModelTTMMuma
         return entity.getMumakilTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMMumakil entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

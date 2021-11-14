@@ -91,16 +91,19 @@ public class EntityTTMUrukHai extends MonsterEntity implements IRangedAttackMob 
             this.urukHai = urukEntity;
         }
 
+        @Override
         public void start() {
             super.start();
             this.raiseArmTicks = 0;
         }
 
+        @Override
         public void stop() {
             super.stop();
             this.urukHai.setAggressive(false);
         }
 
+        @Override
         public void tick() {
             super.tick();
             ++this.raiseArmTicks;
@@ -152,6 +155,7 @@ public class EntityTTMUrukHai extends MonsterEntity implements IRangedAttackMob 
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(5, 1);
         this.setUrukHaiType(job);
@@ -160,16 +164,19 @@ public class EntityTTMUrukHai extends MonsterEntity implements IRangedAttackMob 
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(URUKHAI_TYPE, 3);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("UrukHaiType", this.getUrukHaiType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setUrukHaiType(compound.getInt("UrukHaiType"));

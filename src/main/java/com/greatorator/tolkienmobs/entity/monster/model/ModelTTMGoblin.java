@@ -124,14 +124,17 @@ public class ModelTTMGoblin<T extends MonsterEntity> extends BipedModel<T> {
         this.GoblinLeftArm.addChild(this.GoblinHandR);
     }
 
+    @Override
     protected Iterable<ModelRenderer> headParts() {
         return ImmutableList.of(this.GoblinHead);
     }
 
+    @Override
     protected Iterable<ModelRenderer> bodyParts() {
         return ImmutableList.of(this.GoblinBody, this.GoblinRightArm, this.GoblinLeftArm, this.GoblinLegR, this.GoblinLegL);
     }
 
+    @Override
     public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
         this.rightArmPose = BipedModel.ArmPose.EMPTY;
         this.leftArmPose = BipedModel.ArmPose.EMPTY;

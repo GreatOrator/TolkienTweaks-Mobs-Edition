@@ -42,6 +42,7 @@ public class EntityTTMDwarf extends EntityTTMVillagers {
         this.setRndMinMax(1, 4);
     }
 
+    @Override
     protected void registerGoals() {
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal(this, ZombieEntity.class, true));
     }
@@ -66,6 +67,7 @@ public class EntityTTMDwarf extends EntityTTMVillagers {
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(1, 4);
         this.setDwarfType(job);
@@ -90,6 +92,7 @@ public class EntityTTMDwarf extends EntityTTMVillagers {
     }
 
     @Nullable
+    @Override
     protected net.minecraft.util.SoundEvent getAmbientSound() {
         if (this.isSleeping()) {
             return null;
@@ -98,25 +101,30 @@ public class EntityTTMDwarf extends EntityTTMVillagers {
         }
     }
 
+    @Override
     protected net.minecraft.util.SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return SoundGenerator.soundHurtDwarf.get();
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundGenerator.soundDeathDwarf.get();
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DWARF_TYPE, 3);
         this.entityData.define(DWARF_DATA, new VillagerData(VillagerType.PLAINS, ProfessionGenerator.UNEMPLOYED_PROFESSION.get(), 1));
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("DwarfType", this.getDwarfType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setDwarfType(compound.getInt("DwarfType"));

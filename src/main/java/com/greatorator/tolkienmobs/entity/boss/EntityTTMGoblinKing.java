@@ -4,7 +4,6 @@ import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.TTMEntityType;
 import com.greatorator.tolkienmobs.entity.monster.EntityTTMGoblin;
 import com.greatorator.tolkienmobs.event.TTMEventFactory;
 import com.greatorator.tolkienmobs.event.entity.living.TTMGoblinEvent;
@@ -72,7 +71,7 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
                 .add(Attributes.MAX_HEALTH, 120.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.35D)
                 .add(Attributes.ATTACK_DAMAGE, 10.0D)
-                .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE, 90.0D);
+                .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE, 100.0D);
     }
 
     @Override

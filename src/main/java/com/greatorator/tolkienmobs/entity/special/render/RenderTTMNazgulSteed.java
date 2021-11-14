@@ -23,6 +23,7 @@ public class RenderTTMNazgulSteed extends AbstractHorseRenderer<EntityTTMNazgulS
         return mobTexture;
     }
 
+    @Override
     protected void scale(EntityTTMNazgulSteed entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

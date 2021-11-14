@@ -46,6 +46,7 @@ public class EntityTTMGoat extends AbstractChestedHorseEntity {
         return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.JUMP_STRENGTH, 2.5D).add(Attributes.ATTACK_DAMAGE, 8.0D).add(Attributes.ARMOR, 4.0D).add(Attributes.KNOCKBACK_RESISTANCE, 1.0D).add(Attributes.MOVEMENT_SPEED, 0.8D);
     }
 
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.2D));
         this.goalSelector.addGoal(1, new RunAroundLikeCrazyGoal(this, 1.2D));
@@ -112,6 +113,7 @@ public class EntityTTMGoat extends AbstractChestedHorseEntity {
         return true;
     }
 
+    @Override
     public EntityTTMGoat getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         return EntityGenerator.ENTITY_TTM_GOAT.get().create(p_241840_1_);
     }
@@ -134,6 +136,7 @@ public class EntityTTMGoat extends AbstractChestedHorseEntity {
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(1, 4);
         this.setGoatType(job);
@@ -141,6 +144,7 @@ public class EntityTTMGoat extends AbstractChestedHorseEntity {
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(GOAT_TYPE, 1);
@@ -157,10 +161,12 @@ public class EntityTTMGoat extends AbstractChestedHorseEntity {
         this.entityData.set(DATA_ID_CHEST, chested);
     }
 
+    @Override
     protected int getInventorySize() {
         return this.hasChest() ? 17 : super.getInventorySize();
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("GoatType", this.getGoatType());
@@ -185,6 +191,7 @@ public class EntityTTMGoat extends AbstractChestedHorseEntity {
         }
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setGoatType(compound.getInt("GoatType"));

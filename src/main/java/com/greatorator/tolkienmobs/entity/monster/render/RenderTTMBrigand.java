@@ -21,6 +21,7 @@ public class RenderTTMBrigand extends MobRenderer<EntityTTMBrigand, ModelTTMBrig
         return entity.getBrigandTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMBrigand entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

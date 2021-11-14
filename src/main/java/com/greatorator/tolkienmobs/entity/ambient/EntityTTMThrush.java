@@ -60,6 +60,7 @@ public class EntityTTMThrush extends ParrotEntity {
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         this.setVariant(this.random.nextInt(5));
         if (spawnDataIn == null) {
@@ -72,10 +73,12 @@ public class EntityTTMThrush extends ParrotEntity {
     /**
      * If Animal, checks if the age timer is negative
      */
+    @Override
     public boolean isBaby() {
         return false;
     }
 
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
         this.goalSelector.addGoal(0, new SwimGoal(this));
@@ -96,6 +99,7 @@ public class EntityTTMThrush extends ParrotEntity {
     /**
      * Returns new PathNavigateGround instance
      */
+    @Override
     protected PathNavigator createNavigation(World worldIn) {
         FlyingPathNavigator flyingpathnavigator = new FlyingPathNavigator(this, worldIn);
         flyingpathnavigator.setCanOpenDoors(false);
@@ -104,6 +108,7 @@ public class EntityTTMThrush extends ParrotEntity {
         return flyingpathnavigator;
     }
 
+    @Override
     protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
         return sizeIn.height * 0.6F;
     }
@@ -112,6 +117,7 @@ public class EntityTTMThrush extends ParrotEntity {
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
+    @Override
     public void aiStep() {
         if (this.jukeboxPosition == null || !this.jukeboxPosition.closerThan(this.position(), 3.46D) || !this.level.getBlockState(this.jukeboxPosition).is(Blocks.JUKEBOX)) {
             this.partyParrot = false;
@@ -130,12 +136,14 @@ public class EntityTTMThrush extends ParrotEntity {
      * Called when a record starts or stops playing. Used to make parrots start or stop partying.
      */
     @OnlyIn(Dist.CLIENT)
+    @Override
     public void setRecordPlayingNearby(BlockPos pos, boolean isPartying) {
         this.jukeboxPosition = pos;
         this.partyParrot = isPartying;
     }
 
     @OnlyIn(Dist.CLIENT)
+    @Override
     public boolean isPartyParrot() {
         return this.partyParrot;
     }
@@ -162,6 +170,7 @@ public class EntityTTMThrush extends ParrotEntity {
         return false;
     }
 
+    @Override
     public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
         ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
         if (!this.isTame() && TAME_ITEMS.contains(itemstack.getItem())) {
@@ -209,34 +218,41 @@ public class EntityTTMThrush extends ParrotEntity {
      * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
      * the animal type)
      */
+    @Override
     public boolean isFood(ItemStack stack) {
         return false;
     }
 
+    @Override
     public boolean causeFallDamage(float distance, float damageMultiplier) {
         return false;
     }
 
+    @Override
     protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
     }
 
     /**
      * Returns true if the mob is currently able to mate with the specified mob.
      */
+    @Override
     public boolean canMate(AnimalEntity otherAnimal) {
         return false;
     }
 
     @Nullable
+    @Override
     public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         return null;
     }
 
+    @Override
     public boolean doHurtTarget(Entity entityIn) {
         return entityIn.hurt(DamageSource.mobAttack(this), 3.0F);
     }
 
     @Nullable
+    @Override
     public SoundEvent getAmbientSound() {
         return getAmbient(this.level, this.level.random);
     }
@@ -245,23 +261,28 @@ public class EntityTTMThrush extends ParrotEntity {
         return SoundGenerator.soundIdleTMThrush.get();
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return SoundGenerator.soundHurtTMThrush.get();
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundGenerator.soundDeathTMThrush.get();
     }
 
+    @Override
     protected void playStepSound(BlockPos pos, BlockState blockIn) {
         this.playSound(SoundEvents.PARROT_STEP, 0.15F, 1.0F);
     }
 
+    @Override
     protected float playFlySound(float volume) {
         this.playSound(SoundGenerator.soundFlappingCrebain.get(), 0.15F, 1.0F);
         return volume + this.flapSpeed / 2.0F;
     }
 
+    @Override
     protected boolean makeFlySound() {
         return true;
     }
@@ -269,6 +290,7 @@ public class EntityTTMThrush extends ParrotEntity {
     /**
      * Gets the pitch of living sounds in living entities.
      */
+    @Override
     protected float getVoicePitch() {
         return getPitch(this.random);
     }
@@ -277,6 +299,7 @@ public class EntityTTMThrush extends ParrotEntity {
         return (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F;
     }
 
+    @Override
     public SoundCategory getSoundSource() {
         return SoundCategory.NEUTRAL;
     }
@@ -284,10 +307,12 @@ public class EntityTTMThrush extends ParrotEntity {
     /**
      * Returns true if this entity should push and be pushed by other entities when colliding.
      */
+    @Override
     public boolean isPushable() {
         return true;
     }
 
+    @Override
     protected void doPush(Entity entityIn) {
         if (!(entityIn instanceof PlayerEntity)) {
             super.doPush(entityIn);
@@ -297,6 +322,7 @@ public class EntityTTMThrush extends ParrotEntity {
     /**
      * Called when the entity is attacked.
      */
+    @Override
     public boolean hurt(DamageSource source, float amount) {
         if (this.isInvulnerableTo(source)) {
             return false;
@@ -306,19 +332,23 @@ public class EntityTTMThrush extends ParrotEntity {
         }
     }
 
+    @Override
     public int getVariant() {
         return MathHelper.clamp(this.entityData.get(VARIANT), 0, 4);
     }
 
+    @Override
     public void setVariant(int variantIn) {
         this.entityData.set(VARIANT, variantIn);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(VARIANT, 0);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("Variant", this.getVariant());
@@ -327,16 +357,19 @@ public class EntityTTMThrush extends ParrotEntity {
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setVariant(compound.getInt("Variant"));
     }
 
+    @Override
     public boolean isFlying() {
         return !this.onGround;
     }
 
     @OnlyIn(Dist.CLIENT)
+    @Override
     public Vector3d getLeashOffset() {
         return new Vector3d(0.0D, (double) (0.5F * this.getEyeHeight()), (double) (this.getBbWidth() * 0.4F));
     }

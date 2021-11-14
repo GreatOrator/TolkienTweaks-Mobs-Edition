@@ -74,6 +74,7 @@ public class ModelTTMThrush extends SegmentedModel<EntityTTMThrush> {
         this.setupAnim(getState(p_225597_1_), p_225597_1_.tickCount, p_225597_2_, p_225597_3_, p_225597_4_, p_225597_5_, p_225597_6_);
     }
 
+    @Override
     public void prepareMobModel(EntityTTMThrush p_212843_1_, float p_212843_2_, float p_212843_3_, float p_212843_4_) {
         this.prepare(getState(p_212843_1_));
     }

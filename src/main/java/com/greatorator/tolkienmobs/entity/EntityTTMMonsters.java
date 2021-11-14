@@ -21,11 +21,13 @@ import net.minecraft.world.World;
 public class EntityTTMMonsters extends MonsterEntity implements IRangedAttackMob {
     private final RangedBowAttackGoal<EntityTTMMonsters> bowGoal = new RangedBowAttackGoal<>(this, 1.0D, 20, 15.0F);
     private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false) {
+        @Override
         public void stop() {
             super.stop();
             EntityTTMMonsters.this.setAggressive(false);
         }
 
+        @Override
         public void start() {
             super.start();
             EntityTTMMonsters.this.setAggressive(true);

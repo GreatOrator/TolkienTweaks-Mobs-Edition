@@ -21,6 +21,7 @@ public class RenderTTMBarrowWight extends MobRenderer<EntityTTMBarrowWight, Mode
         return entity.getBarrowTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMBarrowWight entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

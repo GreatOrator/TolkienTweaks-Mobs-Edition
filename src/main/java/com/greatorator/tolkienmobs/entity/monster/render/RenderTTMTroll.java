@@ -19,6 +19,7 @@ public class RenderTTMTroll extends MobRenderer<EntityTTMTroll, ModelTTMTroll<En
         return entity.getTrollTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMTroll entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

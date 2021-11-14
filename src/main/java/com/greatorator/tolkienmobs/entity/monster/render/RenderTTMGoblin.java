@@ -18,6 +18,7 @@ public class RenderTTMGoblin extends MobRenderer<EntityTTMGoblin, ModelTTMGoblin
         return entity.getGoblinTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMGoblin entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

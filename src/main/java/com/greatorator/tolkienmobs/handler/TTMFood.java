@@ -36,6 +36,7 @@ public class TTMFood extends Item {
         return hasDrinkAction ? UseAction.DRINK : UseAction.EAT;
     }
 
+    @Override
     public ItemStack finishUsingItem(ItemStack stack, World worldIn, LivingEntity entityLiving) {
         ItemStack itemstack = super.finishUsingItem(stack, worldIn, entityLiving);
 

@@ -13,14 +13,17 @@ public class EnchantmentBalrogMark extends Enchantment {
     /**
      * Returns the minimal value of enchantability needed on the enchantment level passed.
      */
+    @Override
     public int getMinCost(int enchantmentLevel) {
         return enchantmentLevel * 10;
     }
 
+    @Override
     public int getMaxCost(int enchantmentLevel) {
         return this.getMinCost(enchantmentLevel) + 15;
     }
 
+    @Override
     public boolean isTreasureOnly() {
         return true;
     }
@@ -28,6 +31,7 @@ public class EnchantmentBalrogMark extends Enchantment {
     /**
      * Returns the maximum level that the enchantment can have.
      */
+    @Override
     public int getMaxLevel() {
         return 2;
     }
@@ -35,6 +39,7 @@ public class EnchantmentBalrogMark extends Enchantment {
     /**
      * Determines if the enchantment passed can be applyied together with this enchantment.
      */
+    @Override
     public boolean checkCompatibility(Enchantment ench) {
         return super.checkCompatibility(ench) && ench != Enchantments.DEPTH_STRIDER && ench != Enchantments.FROST_WALKER;
     }

@@ -187,14 +187,17 @@ public class ModelTTMGoblinKing<T extends MonsterEntity> extends BipedModel<T> {
         this.Crown.addChild(this.Crown_4);
     }
 
+    @Override
     protected Iterable<ModelRenderer> headParts() {
         return ImmutableList.of(this.GoblinHead);
     }
 
+    @Override
     protected Iterable<ModelRenderer> bodyParts() {
         return ImmutableList.of(this.GoblinBody, this.GoblinRightArm, this.GoblinLeftArm, this.GoblinLegR, this.GoblinLegL);
     }
 
+    @Override
     public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
         this.rightArmPose = BipedModel.ArmPose.EMPTY;
         this.leftArmPose = BipedModel.ArmPose.EMPTY;
@@ -245,6 +248,7 @@ public class ModelTTMGoblinKing<T extends MonsterEntity> extends BipedModel<T> {
         GoblinEarL1.yRot = (float) Math.pow(MathHelper.cos(degToRad(entityIn.tickCount*3)), 6) * degToRad(-15);
     }
 
+    @Override
     public void translateToHand(HandSide sideIn, MatrixStack matrixStackIn) {
         float f = sideIn == HandSide.RIGHT ? 1.0F : -1.0F;
         ModelRenderer modelrenderer = this.getArm(sideIn);

@@ -227,16 +227,18 @@ public class ModelTTMWarg<T extends EntityTTMWarg> extends QuadrupedModel<T> {
         this.WargLegFR.addChild(this.leg2lf);
     }
 
-public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.xRot = x;
         modelRenderer.yRot = y;
         modelRenderer.zRot = z;
         }
 
+    @Override
     protected Iterable<ModelRenderer> headParts() {
         return ImmutableList.of(this.WargNeck);
     }
 
+    @Override
     protected Iterable<ModelRenderer> bodyParts() {
         return ImmutableList.of(this.WargBody, this.WargLegFR, this.WargLegFL, this.WargLegRR, this.WargLegRL);
     }

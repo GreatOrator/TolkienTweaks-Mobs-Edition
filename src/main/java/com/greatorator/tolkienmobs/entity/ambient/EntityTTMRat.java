@@ -39,6 +39,7 @@ public class EntityTTMRat extends EntityTTMAmbients {
         super(type, worldIn);
     }
 
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
@@ -51,14 +52,17 @@ public class EntityTTMRat extends EntityTTMAmbients {
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers());
     }
 
+    @Override
     protected SoundEvent getAmbientSound() {
         return SoundGenerator.soundIdleTMRat.get();
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return SoundGenerator.soundHurtTMRat.get();
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundGenerator.soundDeathTMRat.get();
     }
@@ -75,6 +79,7 @@ public class EntityTTMRat extends EntityTTMAmbients {
          * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
          * method as well.
          */
+        @Override
         public boolean canUse() {
             return this.ttmRat.getRatType() != 99 && super.canUse();
         }
@@ -103,16 +108,19 @@ public class EntityTTMRat extends EntityTTMAmbients {
         this.entityData.set(RAT_TYPE, type);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(RAT_TYPE, 1);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("RatType", this.getRatType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setRatType(compound.getInt("RatType"));

@@ -65,9 +65,9 @@ public class TTMHearts {
      */
     @SubscribeEvent(priority = EventPriority.LOW)
     public void renderHealthbar(RenderGameOverlayEvent.Pre event) {
-        Entity renderViewEnity = this.mc.getCameraEntity();
+        Entity renderViewEntity = this.mc.getCameraEntity();
         if (event.getType() != RenderGameOverlayEvent.ElementType.HEALTH || event.isCanceled()
-                || !TTMConfig.HeartOverlay || !(renderViewEnity instanceof PlayerEntity)) {
+                || !TTMConfig.HeartOverlay || !(renderViewEntity instanceof PlayerEntity)) {
             return;
         }
 
@@ -82,7 +82,7 @@ public class TTMHearts {
         this.mc.getProfiler().push("health");
         RenderSystem.enableBlend();
 
-        PlayerEntity player = (PlayerEntity) renderViewEnity;
+        PlayerEntity player = (PlayerEntity) renderViewEntity;
         int health = MathHelper.ceil(player.getHealth());
         boolean highlight = this.healthUpdateCounter > (long) updateCounter && (this.healthUpdateCounter - (long) updateCounter) / 3L % 2L == 1L;
 

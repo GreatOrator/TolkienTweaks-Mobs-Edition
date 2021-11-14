@@ -43,13 +43,11 @@ public class RenderFellBeastFireball<T extends EntityFellBeastFireball> extends 
     public boolean shouldRender(T livingEntityIn, ClippingHelper camera, double camX, double camY, double camZ) {
         boolean yes= super.shouldRender(livingEntityIn, camera, camX, camY, camZ);
 
-        System.out.println("Should we render? " + yes);
         return  yes;
     }
 
     @Override
     public void render(T entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
-        System.out.println("RENDER");
         matrixStackIn.pushPose();
         matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.yRotO, entityIn.yRot) - 90.0F));
         matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.xRotO, entityIn.xRot)));

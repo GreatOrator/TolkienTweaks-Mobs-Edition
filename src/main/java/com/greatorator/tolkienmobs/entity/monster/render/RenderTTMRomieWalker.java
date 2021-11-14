@@ -17,6 +17,7 @@ public class RenderTTMRomieWalker extends MobRenderer<EntityTTMRomieWalker, Mode
         return entity.getRomieWalkerTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMRomieWalker entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

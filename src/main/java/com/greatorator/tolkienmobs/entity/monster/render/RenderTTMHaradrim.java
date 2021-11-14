@@ -20,6 +20,7 @@ public class RenderTTMHaradrim extends MobRenderer<EntityTTMHaradrim, ModelTTMHa
         return entity.getHaradrimTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMHaradrim entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

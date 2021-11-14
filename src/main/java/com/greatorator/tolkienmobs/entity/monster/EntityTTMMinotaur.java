@@ -48,11 +48,13 @@ public class EntityTTMMinotaur extends EntityTTMMonsters {
 
     /** Set up using weapons **/
     private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false) {
+        @Override
         public void stop() {
             super.stop();
             EntityTTMMinotaur.this.setAggressive(false);
         }
 
+        @Override
         public void start() {
             super.start();
             EntityTTMMinotaur.this.setAggressive(true);
@@ -161,6 +163,7 @@ public class EntityTTMMinotaur extends EntityTTMMonsters {
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(5, 1);
         this.setMinotaurType(job);
@@ -170,16 +173,19 @@ public class EntityTTMMinotaur extends EntityTTMMonsters {
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(MINOTAUR_TYPE, 3);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("MinotaurType", this.getMinotaurType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setMinotaurType(compound.getInt("MinotaurType"));

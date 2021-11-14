@@ -142,14 +142,17 @@ public class ModelTTMUrukHai<T extends MonsterEntity> extends BipedModel<T> {
         modelRenderer.zRot = z;
     }
 
+    @Override
     protected Iterable<ModelRenderer> headParts() {
         return ImmutableList.of(this.UrukHaiHead);
     }
 
+    @Override
     protected Iterable<ModelRenderer> bodyParts() {
         return ImmutableList.of(this.UrukHaiBody, this.rightArm, this.leftArm, this.UrukHaiLegR, this.UrukHaiLegL);
     }
 
+    @Override
     public void prepareMobModel(T entityIn, float limbSwing, float limbSwingAmount, float partialTick) {
         this.rightArmPose = BipedModel.ArmPose.EMPTY;
         this.leftArmPose = BipedModel.ArmPose.EMPTY;

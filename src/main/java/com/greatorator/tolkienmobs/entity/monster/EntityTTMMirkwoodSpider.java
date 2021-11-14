@@ -83,7 +83,11 @@ public class EntityTTMMirkwoodSpider extends EntityTTMMonsters {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.createMonsterAttributes().add(Attributes.MAX_HEALTH, 26.0D).add(Attributes.MOVEMENT_SPEED, (double)0.3F);
+        return MonsterEntity.createMonsterAttributes()
+                .add(Attributes.MAX_HEALTH, 26.0D)
+                .add(Attributes.MOVEMENT_SPEED, (double)0.3F)
+                .add(Attributes.ATTACK_DAMAGE, 3.0D)
+                .add(Attributes.ARMOR, 5.0D);
     }
 
     @Override
@@ -261,17 +265,20 @@ public class EntityTTMMirkwoodSpider extends EntityTTMMonsters {
         return spawnDataIn;
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_FLAGS_ID, (byte)0);
         this.entityData.define(MIRKWOODSPIDER_TYPE, 3);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("MirkwoodSpiderType", this.getMirkwoodSpiderType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setMirkwoodSpiderType(compound.getInt("MirkwoodSpiderType"));

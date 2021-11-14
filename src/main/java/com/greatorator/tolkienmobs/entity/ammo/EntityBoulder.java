@@ -50,6 +50,7 @@ public class EntityBoulder extends ProjectileItemEntity {
    }
 
    @OnlyIn(Dist.CLIENT)
+   @Override
    public void handleEntityEvent(byte id) {
       if (id == 3) {
          IParticleData iparticledata = this.makeParticle();
@@ -64,6 +65,7 @@ public class EntityBoulder extends ProjectileItemEntity {
    /**
     * Called when the arrow hits an entity
     */
+   @Override
    protected void onHitEntity(EntityRayTraceResult p_213868_1_) {
       super.onHitEntity(p_213868_1_);
       Entity entity = p_213868_1_.getEntity();
@@ -74,6 +76,7 @@ public class EntityBoulder extends ProjectileItemEntity {
    /**
     * Called when this EntityFireball hits a block or entity.
     */
+   @Override
    protected void onHit(RayTraceResult result) {
       super.onHit(result);
       if (!this.level.isClientSide) {

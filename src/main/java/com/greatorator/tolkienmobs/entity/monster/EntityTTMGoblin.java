@@ -105,11 +105,13 @@ public class EntityTTMGoblin extends EntityTTMMonsters {
         return SoundGenerator.soundIdleGoblin.get();
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundGenerator.soundHurtGoblin.get();
     }
 
+    @Override
     protected SoundEvent getDeathSound()
     {
         return SoundGenerator.soundDeathGoblin.get();
@@ -139,14 +141,17 @@ public class EntityTTMGoblin extends EntityTTMMonsters {
             super(Blocks.TURTLE_EGG, creatureIn, speed, yMax);
         }
 
+        @Override
         public void playDestroyProgressSound(IWorld worldIn, BlockPos pos) {
             worldIn.playSound((PlayerEntity)null, pos, SoundEvents.ZOMBIE_DESTROY_EGG, SoundCategory.HOSTILE, 0.5F, 0.9F + EntityTTMGoblin.this.random.nextFloat() * 0.2F);
         }
 
+        @Override
         public void playBreakSound(World worldIn, BlockPos pos) {
             worldIn.playSound((PlayerEntity)null, pos, SoundEvents.TURTLE_EGG_BREAK, SoundCategory.BLOCKS, 0.7F, 0.9F + worldIn.random.nextFloat() * 0.2F);
         }
 
+        @Override
         public double acceptedDistance() {
             return 1.14D;
         }
@@ -177,6 +182,7 @@ public class EntityTTMGoblin extends EntityTTMMonsters {
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(5, 1);
         this.setGoblinType(job);
@@ -185,17 +191,20 @@ public class EntityTTMGoblin extends EntityTTMMonsters {
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(GOBLIN_TYPE, 3);
         entityData.define(PANICKED, false);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("GoblinType", this.getGoblinType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setGoblinType(compound.getInt("GoblinType"));

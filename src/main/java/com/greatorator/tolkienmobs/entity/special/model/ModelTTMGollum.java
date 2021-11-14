@@ -133,6 +133,7 @@ public class ModelTTMGollum<T extends MonsterEntity> extends BipedModel<T> {
         return ImmutableList.of(this.GollumHead);
     }
 
+    @Override
     protected Iterable<ModelRenderer> bodyParts() {
         return ImmutableList.of(this.GollumBody, this.bipedRightArm, this.bipedLeftArm, this.GollumLegR, this.GollumLegL, this.GollumPants);
     }

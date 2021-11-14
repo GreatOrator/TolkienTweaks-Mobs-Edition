@@ -19,6 +19,7 @@ public class RenderTTMUrukHai extends MobRenderer<EntityTTMUrukHai, ModelTTMUruk
         return entity.getUrukHaiTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMUrukHai entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

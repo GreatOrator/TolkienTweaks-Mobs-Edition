@@ -42,6 +42,7 @@ public class BlockStonePath extends Block
         return !blockstate.getMaterial().isSolid() || blockstate.getBlock() instanceof FenceGateBlock || blockstate.getBlock() instanceof MovingPistonBlock;
     }
 
+    @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return !this.defaultBlockState().canSurvive(context.getLevel(), context.getClickedPos()) ? Blocks.COBBLESTONE.defaultBlockState() : super.getStateForPlacement(context);
     }
@@ -58,6 +59,7 @@ public class BlockStonePath extends Block
         }
     }
 
+    @Override
     public void fallOn(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
         if (!worldIn.isClientSide && net.minecraftforge.common.ForgeHooks.onFarmlandTrample(worldIn, pos, Blocks.COBBLESTONE.defaultBlockState(), fallDistance, entityIn)) { // Forge: Move logic to Entity#canTrample
             turnToCobble(worldIn.getBlockState(pos), worldIn, pos);

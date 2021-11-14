@@ -16,6 +16,7 @@ public class RenderTTMGoat extends MobRenderer<EntityTTMGoat, ModelTTMGoat<Entit
         return entity.getGoatTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMGoat entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

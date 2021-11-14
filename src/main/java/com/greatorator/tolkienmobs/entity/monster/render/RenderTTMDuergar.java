@@ -17,6 +17,7 @@ public class RenderTTMDuergar extends MobRenderer<EntityTTMDuergar, ModelTTMDwar
         return entity.getDuergarTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMDuergar entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

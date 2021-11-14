@@ -17,6 +17,7 @@ public class RenderTTMWarg extends MobRenderer<EntityTTMWarg, ModelTTMWarg<Entit
         return entity.getWargTypeName();
     }
 
+    @Override
     protected void scale(EntityTTMWarg entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
         super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
     }

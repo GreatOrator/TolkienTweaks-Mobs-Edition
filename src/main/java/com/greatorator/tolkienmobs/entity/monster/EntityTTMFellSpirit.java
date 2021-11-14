@@ -98,6 +98,7 @@ public class EntityTTMFellSpirit extends EntityTTMMonsters {
         return true;
     }
 
+    @Override
     public CreatureAttribute getMobType()
     {
         return CreatureAttribute.UNDEAD;
@@ -141,6 +142,7 @@ public class EntityTTMFellSpirit extends EntityTTMMonsters {
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(5, 1);
         this.setFellSpiritType(job);
@@ -149,16 +151,19 @@ public class EntityTTMFellSpirit extends EntityTTMMonsters {
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(FELLSPIRIT_TYPE, 3);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("FellSpiritType", this.getFellSpiritType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setFellSpiritType(compound.getInt("FellSpiritType"));

@@ -43,11 +43,13 @@ public class EntityTTMMordorOrc extends EntityTTMMonsters {
 
     /** Set up using weapons **/
     private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false) {
+        @Override
         public void stop() {
             super.stop();
             EntityTTMMordorOrc.this.setAggressive(false);
         }
 
+        @Override
         public void start() {
             super.start();
             EntityTTMMordorOrc.this.setAggressive(true);
@@ -59,6 +61,7 @@ public class EntityTTMMordorOrc extends EntityTTMMonsters {
         super(type, worldIn);
     }
 
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(2, new RestrictSunGoal(this));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
@@ -132,6 +135,7 @@ public class EntityTTMMordorOrc extends EntityTTMMonsters {
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(5, 1);
         this.setMordorOrcType(job);
@@ -141,16 +145,19 @@ public class EntityTTMMordorOrc extends EntityTTMMonsters {
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(ORC_TYPE, 3);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("MordorOrcType", this.getMordorOrcType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setMordorOrcType(compound.getInt("MordorOrcType"));

@@ -69,6 +69,7 @@ public class EntityTTMAuroch extends EntityTTMHerds {
         return 0.4F;
     }
 
+    @Override
     public EntityTTMAuroch getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         return EntityGenerator.ENTITY_TTM_AUROCH.get().create(p_241840_1_);
     }

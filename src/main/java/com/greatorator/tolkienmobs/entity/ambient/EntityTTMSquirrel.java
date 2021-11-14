@@ -48,6 +48,7 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
         super(type, worldIn);
     }
 
+    @Override
     protected void registerGoals()
     {
         this.goalSelector.addGoal(1, new SwimGoal(this));
@@ -61,6 +62,7 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers());
     }
 
+    @Override
     protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
         return 0.13F;
     }
@@ -77,6 +79,7 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
          * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
          * method as well.
          */
+        @Override
         public boolean canUse() {
             return this.ttmSquirrel.getSquirrelType() != 99 && super.canUse();
         }
@@ -116,21 +119,25 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
             super(squirrel, 1.4D, true);
         }
 
+        @Override
         protected double getAttackReachSqr(LivingEntity attackTarget) {
             return (double)(4.0F + attackTarget.getBbWidth());
         }
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(SQUIRREL_TYPE, 1);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("SquirrelType", this.getSquirrelType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setSquirrelType(compound.getInt("SquirrelType"));
@@ -141,26 +148,31 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
         return SoundGenerator.soundStepSOSquirrel.get();
     }
 
+    @Override
     protected SoundEvent getAmbientSound()
     {
         return SoundGenerator.soundIdleSOSquirrel.get();
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return SoundGenerator.soundHurtSOSquirrel.get();
     }
 
+    @Override
     protected SoundEvent getDeathSound()
     {
         return SoundGenerator.soundDeathSOSquirrel.get();
     }
 
+    @Override
     public SoundCategory getSoundSource()
     {
         return this.getSquirrelType() == 99 ? SoundCategory.HOSTILE : SoundCategory.NEUTRAL;
     }
 
+    @Override
     public boolean doHurtTarget(Entity entityIn)
     {
         if (this.getSquirrelType() == 99)
@@ -179,6 +191,7 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
         return itemIn == TTMContent.TREE_ACORN.get() || itemIn == TTMContent.GOLDEN_TREE_ACORN.get();
     }
 
+    @Override
     public boolean isFood(ItemStack stack)
     {
         return this.isSquirrelBreedingItem(stack.getItem());
@@ -202,6 +215,7 @@ public class EntityTTMSquirrel extends EntityTTMAmbients {
     }
 
     @Nullable
+    @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag)
     {
         int i = this.getRandomSquirrelType(worldIn);

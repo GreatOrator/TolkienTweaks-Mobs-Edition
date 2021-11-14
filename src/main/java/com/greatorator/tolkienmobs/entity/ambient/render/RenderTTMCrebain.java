@@ -28,6 +28,7 @@ public class RenderTTMCrebain extends MobRenderer<EntityTTMCrebain, ModelTTMCreb
     /**
      * Defines what float the third param in setRotationAngles of ModelBase is
      */
+    @Override
     public float getBob(EntityTTMCrebain livingBase, float partialTicks) {
         float f = MathHelper.lerp(partialTicks, livingBase.oFlap, livingBase.flap);
         float f1 = MathHelper.lerp(partialTicks, livingBase.oFlapSpeed, livingBase.flapSpeed);
