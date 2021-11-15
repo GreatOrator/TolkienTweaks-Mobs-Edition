@@ -19,6 +19,7 @@ import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.item.ShootableItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -28,6 +29,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -36,6 +38,10 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class EntityTTMUrukHai extends MonsterEntity implements IRangedAttackMob {
+    private final RangedBowAttackGoal<EntityTTMUrukHai> bowGoal = new RangedBowAttackGoal<>(this, 1.0D, 20, 15.0F);
+    private final MeleeAttackGoal meleeGoal = new UrukAttackGoal(this, 1.0D, 20, 15.0F, false);
+    private boolean schedualWeaponGoalUpdate = true;
+
     private static final DataParameter<Integer> URUKHAI_TYPE = EntityDataManager.defineId(EntityTTMUrukHai.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/urukhai/urukhai1.png"));
@@ -46,11 +52,12 @@ public class EntityTTMUrukHai extends MonsterEntity implements IRangedAttackMob 
 
     public EntityTTMUrukHai(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
+        reassessWeaponGoal();
     }
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(2, new UrukAttackGoal(this, 1.0D, 20, 15.0F, false));
+//        this.goalSelector.addGoal(2, new UrukAttackGoal(this, 1.0D, 20, 15.0F, false));
         this.goalSelector.addGoal(3, new TTMSwitchCombat(this, 6.0D, 6.0D));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
@@ -66,6 +73,11 @@ public class EntityTTMUrukHai extends MonsterEntity implements IRangedAttackMob 
         super.populateDefaultEquipmentSlots(p_180481_1_);
         this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TTMContent.SWORD_URUK.get()));
         this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(Items.BOW));
+    }
+
+    @Override
+    public boolean canFireProjectileWeapon(ShootableItem p_230280_1_) {
+        return true;
     }
 
     @Override
@@ -161,7 +173,7 @@ public class EntityTTMUrukHai extends MonsterEntity implements IRangedAttackMob 
         int job = TTMRand.getRandomInteger(5, 1);
         this.setUrukHaiType(job);
         this.populateDefaultEquipmentSlots(difficultyIn);
-
+        reassessWeaponGoal();
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
@@ -181,5 +193,44 @@ public class EntityTTMUrukHai extends MonsterEntity implements IRangedAttackMob 
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setUrukHaiType(compound.getInt("UrukHaiType"));
+        reassessWeaponGoal();
+    }
+
+    @Override
+    public void setItemSlot(EquipmentSlotType p_184201_1_, ItemStack p_184201_2_) {
+        super.setItemSlot(p_184201_1_, p_184201_2_);
+        reassessWeaponGoal();
+    }
+
+    public void reassessWeaponGoal() {
+        if (this.level != null && !this.level.isClientSide) {
+            schedualWeaponGoalUpdate = true;
+        }
+    }
+
+    @Override
+    public void tick() {
+        if (schedualWeaponGoalUpdate) {
+            updateWeaponGoal();
+        }
+        super.tick();
+    }
+
+    protected void updateWeaponGoal() {
+        schedualWeaponGoalUpdate = false;
+        this.goalSelector.removeGoal(this.meleeGoal);
+        this.goalSelector.removeGoal(this.bowGoal);
+        ItemStack itemstack = this.getMainHandItem();
+        if (itemstack.getItem() == Items.BOW) {
+            int i = 20;
+            if (this.level.getDifficulty() != Difficulty.HARD) {
+                i = 40;
+            }
+
+            this.bowGoal.setMinAttackInterval(i);
+            this.goalSelector.addGoal(4, this.bowGoal);
+        } else {
+            this.goalSelector.addGoal(4, this.meleeGoal);
+        }
     }
 }

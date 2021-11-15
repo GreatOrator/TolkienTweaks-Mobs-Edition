@@ -64,15 +64,7 @@ public class TTMSwitchCombat extends Goal
         {
             // check if we are close to the target and have a ranged item in mainhand and do not have one in offhand,
             // or if we are far from the target, and we do not have a ranged item in our mainhand but do have one in our offhand
-            if((
-                    (this.hostMob.distanceTo(this.target) < minDistance && hasRangedItemInMainhand() && !hasRangedItemInOffhand())
-                            || (this.hostMob.distanceTo(this.target) > maxDistance && !hasRangedItemInMainhand()) && hasRangedItemInOffhand())
-                    && this.hostMob.canSee(this.target))
-            {
-                return true;
-            }
-
-            return false;
+            return this.hostMob.canSee(this.target) && shouldSwitch();
         }
     }
 
@@ -91,13 +83,12 @@ public class TTMSwitchCombat extends Goal
     @Override
     public void tick()
     {
-        if(this.hostMob.distanceTo(this.target) < minDistance && hasRangedItemInMainhand() && !hasRangedItemInOffhand())
-        {
+        if (shouldSwitch()) {
             swapWeapons();
         }
-        else if(this.hostMob.distanceTo(this.target) > maxDistance && !hasRangedItemInMainhand() && hasRangedItemInOffhand())
-        {
-            swapWeapons();
-        }
+    }
+
+    private boolean shouldSwitch() {
+        return this.hostMob.distanceTo(this.target) < minDistance != hasRangedItemInOffhand();
     }
 }
