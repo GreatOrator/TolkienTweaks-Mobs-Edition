@@ -107,17 +107,19 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
                 livingentity = (LivingEntity)source.getEntity();
             }
 
+            if (livingentity == null) return true;
+
             if (this.random.nextFloat() < 0.15F && this.isEyeInFluid(FluidTags.WATER) && !this.hasEffect(Effects.WATER_BREATHING)) {
-                ((PlayerEntity) livingentity).sendMessage(new TranslationTextComponent(MODID + ".msg.nodrown").withStyle(TextFormatting.DARK_BLUE), Util.NIL_UUID);
+                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.nodrown").withStyle(TextFormatting.DARK_BLUE), Util.NIL_UUID);
                 this.addEffect(new EffectInstance(Effects.WATER_BREATHING, 2 * 20, 0));
             } else if (this.random.nextFloat() < 0.15F && (this.isOnFire() || this.getLastDamageSource() != null && this.getLastDamageSource().isFire()) && !this.hasEffect(Effects.FIRE_RESISTANCE)) {
-                ((PlayerEntity) livingentity).sendMessage(new TranslationTextComponent(MODID + ".msg.onfire").withStyle(TextFormatting.DARK_RED), Util.NIL_UUID);
+                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.onfire").withStyle(TextFormatting.DARK_RED), Util.NIL_UUID);
                 this.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 2 * 20, 0));
             } else if (this.random.nextFloat() < 0.05F && this.getHealth() < this.getMaxHealth()) {
-                ((PlayerEntity) livingentity).sendMessage(new TranslationTextComponent(MODID + ".msg.healself").withStyle(TextFormatting.LIGHT_PURPLE), Util.NIL_UUID);
+                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.healself").withStyle(TextFormatting.LIGHT_PURPLE), Util.NIL_UUID);
                 this.addEffect(new EffectInstance(Effects.REGENERATION, 2 * 20, 0));
             } else if (this.random.nextFloat() < 0.5F && this.getTarget() != null && !this.hasEffect(Effects.MOVEMENT_SPEED) && this.getTarget().distanceToSqr(this) > 121.0D) {
-                ((PlayerEntity) livingentity).sendMessage(new TranslationTextComponent(MODID + ".msg.speedup").withStyle(TextFormatting.AQUA), Util.NIL_UUID);
+                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.speedup").withStyle(TextFormatting.AQUA), Util.NIL_UUID);
                 this.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 2 * 20, 0));
             }
 
@@ -130,7 +132,7 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
             if (event.getResult() == Event.Result.DENY) {
 
                 if (livingentity instanceof PlayerEntity){
-                    ((PlayerEntity) livingentity).sendMessage(new TranslationTextComponent(MODID + ".msg.nohelp").withStyle(TextFormatting.DARK_RED), Util.NIL_UUID);
+                    livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.nohelp").withStyle(TextFormatting.DARK_RED), Util.NIL_UUID);
                 }
                 return true;
             }
@@ -138,7 +140,7 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
                     livingentity != null && (double)this.random.nextFloat() < this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).getValue() && this.level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING)) {
 
                 if (livingentity instanceof PlayerEntity){
-                    ((PlayerEntity) livingentity).sendMessage(new TranslationTextComponent(MODID + ".msg.helpcomming").withStyle(TextFormatting.DARK_GREEN), Util.NIL_UUID);
+                    livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.helpcomming").withStyle(TextFormatting.DARK_GREEN), Util.NIL_UUID);
                 }
 
                 EntityTTMGoblin goblinentity = event.getCustomSummonedAid() != null && event.getResult() == Event.Result.ALLOW ? event.getCustomSummonedAid() : EntityGenerator.ENTITY_TTM_GOBLIN.get().create(this.level);
