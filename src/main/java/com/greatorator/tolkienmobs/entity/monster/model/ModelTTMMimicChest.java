@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.greatorator.tolkienmobs.entity.monster.EntityTTMMimicChest;
 import net.minecraft.client.renderer.entity.model.SegmentedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.util.math.MathHelper;
 
 import static com.greatorator.tolkienmobs.utils.TTMRand.degToRad;
@@ -199,26 +200,19 @@ public class ModelTTMMimicChest extends SegmentedModel<EntityTTMMimicChest> {
         this.boxLid2.addChild(this.MimicLatch);
     }
 
+    public boolean getRenderChest() {
+        return renderChest;
+    }
+
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
         modelRenderer.xRot = x;
         modelRenderer.yRot = y;
         modelRenderer.zRot = z;
     }
 
-    private boolean getChest(EntityTTMMimicChest mimic) {
-        return mimic.getMimicChest();
-    }
-
-    private boolean isChest() {
-        renderChest = this.getChest();
-        return renderChest;
-    }
-
-
-
     @Override
     public Iterable<ModelRenderer> parts() {
-        if(this.isChest()){
+        if(this.getRenderChest()){
             return ImmutableList.of(this.box2, this.boxLid2);
         }
         else {
@@ -228,6 +222,7 @@ public class ModelTTMMimicChest extends SegmentedModel<EntityTTMMimicChest> {
 
     @Override
     public void setupAnim(EntityTTMMimicChest mimic, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
+        renderChest = mimic.getMimicChest();
         if(mimic.getMimicAttack()){
             float baseBackLegRotation = 0.2617993877991494F;
             float baseFrontLegRotation = -0.2617993877991494F;
