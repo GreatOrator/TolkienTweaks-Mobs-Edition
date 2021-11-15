@@ -92,16 +92,12 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
 
     @Override
     public ActionResultType mobInteract(PlayerEntity playerIn, Hand handIn) {
-        if (this.entityData.get(MIMIC_STATE) && !this.level.isClientSide) {
-            this.setMimicChest(!this.isMimicChest());
+        if (getMimicChest() && !this.level.isClientSide) {
+            this.setMimicChest(!this.getMimicChest());
             this.setMimicAttack(!this.isMimicAttack());
             return ActionResultType.PASS;
         }
         return ActionResultType.FAIL;
-    }
-
-    private boolean isMimicChest() {
-        return this.entityData.get(MIMIC_STATE);
     }
 
     public void setMimicChest(boolean chestRender) {
