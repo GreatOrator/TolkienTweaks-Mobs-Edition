@@ -146,9 +146,9 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
                 EntityTTMGoblin goblinentity = event.getCustomSummonedAid() != null && event.getResult() == Event.Result.ALLOW ? event.getCustomSummonedAid() : EntityGenerator.ENTITY_TTM_GOBLIN.get().create(this.level);
 
                 for(int l = 0; l < 50; ++l) {
-                    int spawnX = xPos + MathHelper.nextInt(this.random, 7, 40) * MathHelper.nextInt(this.random, -1, 1);
-                    int spawnY = yPos + MathHelper.nextInt(this.random, 7, 40) * MathHelper.nextInt(this.random, -1, 1);
-                    int spawnZ = zPos + MathHelper.nextInt(this.random, 7, 40) * MathHelper.nextInt(this.random, -1, 1);
+                    int spawnX = xPos + MathHelper.nextInt(this.random, 7, 10) * MathHelper.nextInt(this.random, -1, 1);
+                    int spawnY = yPos + MathHelper.nextInt(this.random, 7, 10) * MathHelper.nextInt(this.random, -1, 1);
+                    int spawnZ = zPos + MathHelper.nextInt(this.random, 7, 10) * MathHelper.nextInt(this.random, -1, 1);
                     BlockPos blockpos = new BlockPos(spawnX, spawnY, spawnZ);
                     EntityType<?> entitytype = goblinentity.getType();
                     EntitySpawnPlacementRegistry.PlacementType entityspawnplacementregistry$placementtype = EntitySpawnPlacementRegistry.getPlacementType(entitytype);

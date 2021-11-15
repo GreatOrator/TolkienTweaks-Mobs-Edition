@@ -38,8 +38,9 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest1.png"));
         option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest2.png"));
-        option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest1.png"));
-        option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest2.png"));
+        option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest3.png"));
+        option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest4.png"));
+        option.put(5, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest5.png"));
     });
     private long nextAbilityUse = 0L;
     private final static long coolDown = 15000L;
@@ -58,14 +59,14 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
 
     @Override
     protected void registerGoals() {
-        if (this.entityData.get(MIMIC_ATTACK)) {
-            this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-            this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-            this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
-            this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-            this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
-        }
+        this.goalSelector.addGoal(2, new LeapAtTargetGoal(this, 0.3F));
+        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0D, false));
+        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
     }
 
     /** Special Attack */
@@ -90,9 +91,24 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
         if (getMimicChest() && !this.level.isClientSide) {
             this.setMimicChest(!this.getMimicChest());
             this.setMimicAttack(!this.isMimicAttack());
+            this.setNoAi(false);
+            this.isEffectiveAi();
             return ActionResultType.PASS;
         }
         return ActionResultType.FAIL;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (!getMimicChest()) {
+            setNoAi(false);
+        }
+    }
+
+    @Override
+    public boolean isPushedByFluid() {
+        return false;
     }
 
     public void setMimicChest(boolean chestRender) {
@@ -128,8 +144,8 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
     }
 
     public void setMimicChestType(int type) {
-        if (type < 0 || type >= 5) {
-            type = this.random.nextInt(4);
+        if (type < 0 || type >= 6) {
+            type = this.random.nextInt(5);
         }
 
         this.entityData.set(MIMIC_TYPE, type);
@@ -138,10 +154,11 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
     @Nullable
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        int job = TTMRand.getRandomInteger(5, 1);
+        int job = TTMRand.getRandomInteger(6, 1);
         this.setMimicChestType(job);
         this.setMimicChest(true);
         this.setMimicAttack(false);
+        this.setNoAi(true);
 
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
@@ -149,7 +166,7 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(MIMIC_TYPE, 3);
+        this.entityData.define(MIMIC_TYPE, 1);
         this.entityData.define(MIMIC_STATE, true);
         this.entityData.define(MIMIC_ATTACK, false);
     }
@@ -160,6 +177,10 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
         compound.putInt("MimicChestType", this.getMimicChestType());
         compound.putBoolean("isChest", getMimicChest());
         compound.putBoolean("canAttack", getMimicAttack());
+
+        if (this.isNoAi()) {
+            compound.putBoolean("NoAI", this.isNoAi());
+        }
     }
 
     @Override
@@ -168,5 +189,6 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
         this.setMimicChestType(compound.getInt("MimicChestType"));
         this.setMimicChest(compound.getBoolean("isChest"));
         this.setMimicAttack(compound.getBoolean("canAttack"));
+        this.setNoAi(compound.getBoolean("NoAI"));
     }
 }
