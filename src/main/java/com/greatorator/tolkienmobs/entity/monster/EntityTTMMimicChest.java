@@ -58,11 +58,6 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
 
     @Override
     protected void registerGoals() {
-        // ##################################################################################################################################################
-        // Just FYI if you're trying to "toggle" goals on and off with this. It won't work. Goals are only registered the moment the entity is first created.
-        // In fact if i'm not mistaken this won't work at all regardless. Because even if you did 'new EntityTTMMimicChest().setMimicAttack(true)'
-        // The constructor would call this method before setMimicAttack gets processed.
-        // ##################################################################################################################################################
         if (this.entityData.get(MIMIC_ATTACK)) {
             this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
             this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));

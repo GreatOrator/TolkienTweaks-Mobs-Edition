@@ -57,7 +57,6 @@ public class EntityTTMUrukHai extends MonsterEntity implements IRangedAttackMob 
 
     @Override
     protected void registerGoals() {
-//        this.goalSelector.addGoal(2, new UrukAttackGoal(this, 1.0D, 20, 15.0F, false));
         this.goalSelector.addGoal(3, new TTMSwitchCombat(this, 6.0D, 6.0D));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));

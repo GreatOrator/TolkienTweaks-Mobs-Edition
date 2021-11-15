@@ -1,14 +1,11 @@
 package com.greatorator.tolkienmobs.entity.monster.model;
 
 import com.google.common.collect.ImmutableList;
-import com.greatorator.tolkienmobs.TTMContent;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.math.MathHelper;
@@ -159,7 +156,7 @@ public class ModelTTMMordorOrc<T extends MonsterEntity> extends BipedModel<T> {
         this.rightArmPose = BipedModel.ArmPose.EMPTY;
         this.leftArmPose = BipedModel.ArmPose.EMPTY;
         ItemStack itemstack = entityIn.getItemInHand(Hand.MAIN_HAND);
-        if (itemstack.getItem() == TTMContent.SWORD_MORGULIRON.get() && entityIn.isAggressive()) {
+        if (itemstack.getItem() instanceof net.minecraft.item.SwordItem || itemstack.getItem() instanceof net.minecraft.item.AxeItem && entityIn.isAggressive()) {
             if (entityIn.getMainArm() == HandSide.RIGHT) {
                 this.rightArmPose = ArmPose.ITEM;
             } else {
@@ -173,7 +170,6 @@ public class ModelTTMMordorOrc<T extends MonsterEntity> extends BipedModel<T> {
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-        ItemStack stack = entityIn.getMainHandItem();
         if (this.riding) {
             this.rightArm.xRot = -0.62831855F;
             this.rightArm.yRot = 0.0F;
@@ -197,22 +193,6 @@ public class ModelTTMMordorOrc<T extends MonsterEntity> extends BipedModel<T> {
             this.OrcHead.yRot = netHeadYaw * 0.017453292F;
             this.OrcHead.xRot = headPitch * 0.017453292F;
 
-        }
-
-        if (entityIn.isAggressive() && (stack.isEmpty() || stack.getItem() != Items.BOW)) {
-            float lvt_8_1_ = MathHelper.sin(this.attackTime * 3.1415927F);
-            float lvt_9_1_ = MathHelper.sin((1.0F - (1.0F - this.attackTime) * (1.0F - this.attackTime)) * 3.1415927F);
-            this.rightArm.zRot = 0.0F;
-            this.leftArm.zRot = 0.0F;
-            this.rightArm.yRot = -(0.1F - lvt_8_1_ * 0.6F);
-            this.leftArm.yRot = 0.1F - lvt_8_1_ * 0.6F;
-            this.rightArm.xRot = -1.5707964F;
-            this.leftArm.xRot = -1.5707964F;
-            ModelRenderer var10000 = this.rightArm;
-            var10000.xRot -= lvt_8_1_ * 1.2F - lvt_9_1_ * 0.4F;
-            var10000 = this.leftArm;
-            var10000.xRot -= lvt_8_1_ * 1.2F - lvt_9_1_ * 0.4F;
-            ModelHelper.bobArms(this.rightArm, this.leftArm, ageInTicks);
         }
         this.rightArm.x = -8.0F;
         this.leftArm.x = 8.0F;
