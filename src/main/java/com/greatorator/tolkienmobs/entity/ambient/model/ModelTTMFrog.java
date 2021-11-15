@@ -76,6 +76,7 @@ public class ModelTTMFrog<E extends EntityTTMFrog> extends EntityModel<EntityTTM
         modelRenderer.zRot = z;
     }
 
+    @Override
     public void renderToBuffer(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         if (this.young) {
             float f = 1.5F;

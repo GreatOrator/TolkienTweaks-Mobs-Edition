@@ -166,10 +166,12 @@ public class ModelTTMAuroch<T extends Entity> extends AgeableModel<T> {
         this.AurochLegFL.addChild(this.AurochLegFL_1);
     }
 
+    @Override
     public Iterable<ModelRenderer> headParts() {
         return ImmutableList.of(this.AurochHead);
     }
 
+    @Override
     protected Iterable<ModelRenderer> bodyParts() {
         return ImmutableList.of(this.AurochBody);
     }

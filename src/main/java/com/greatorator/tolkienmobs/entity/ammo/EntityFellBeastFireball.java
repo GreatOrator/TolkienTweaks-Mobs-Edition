@@ -42,6 +42,7 @@ public class EntityFellBeastFireball extends ProjectileItemEntity {
       super((EntityType<? extends SnowballEntity>) EntityGenerator.AMMO_FELLBEAST_FIREBALL.get(), world);
    }
 
+   @Override
    protected Item getDefaultItem() {
       return TTMContent.FELLBEAST_FIREBALL.get();
    }

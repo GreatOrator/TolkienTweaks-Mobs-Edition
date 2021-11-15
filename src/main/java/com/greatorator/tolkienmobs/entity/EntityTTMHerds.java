@@ -24,6 +24,7 @@ public class EntityTTMHerds extends AnimalEntity
         super(type, worldIn);
     }
 
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));

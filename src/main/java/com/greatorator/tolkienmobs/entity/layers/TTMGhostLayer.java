@@ -17,6 +17,7 @@ public class TTMGhostLayer<T extends MonsterEntity> extends LayerRenderer<T, Mod
         super(p_i50923_1_);
     }
 
+    @Override
     public void render(MatrixStack mStack, IRenderTypeBuffer getter, int packedLight, T entity, float limkSwing, float limbSwingAmount, float partialTick, float p_225628_8_, float p_225628_9_, float p_225628_10_) {
 //        if (!entity.isInvisible()) {
         this.getParentModel().copyPropertiesTo(this.model);

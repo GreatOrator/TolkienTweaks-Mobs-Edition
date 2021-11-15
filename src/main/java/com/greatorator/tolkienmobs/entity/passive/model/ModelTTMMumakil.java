@@ -280,10 +280,12 @@ public class ModelTTMMumakil<T extends Entity> extends AgeableModel<T> {
         this.childNeck.addChild(this.childTrunk1);
     }
 
+    @Override
     public Iterable<ModelRenderer> headParts() {
         return ImmutableList.of(this.MumuNeck);
     }
 
+    @Override
     protected Iterable<ModelRenderer> bodyParts() {
         return ImmutableList.of(this.MumuBody, this.MumuLegFL, this.MumuLegFR, this.MumuLegRL, this.MumuLegRR);
     }

@@ -48,6 +48,7 @@ public class ModelTTMHuman<T extends Entity> extends SegmentedModel<T> implement
         this.HumanBody.addChild(this.bipedRightArm);
     }
 
+    @Override
     public Iterable<ModelRenderer> parts() {
         return ImmutableList.of(this.HumanHead, this.HumanBody, this.HumanLegRight, this.HumanLegLeft, this.bipedLeftArm, this.bipedRightArm);
     }
@@ -55,6 +56,7 @@ public class ModelTTMHuman<T extends Entity> extends SegmentedModel<T> implement
     /**
      * Sets this entity's model rotation angles
      */
+    @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         boolean flag = false;
         if (entityIn instanceof AbstractVillagerEntity) {
@@ -78,6 +80,7 @@ public class ModelTTMHuman<T extends Entity> extends SegmentedModel<T> implement
         this.HumanLegLeft.yRot = 0.0F;
     }
 
+    @Override
     public ModelRenderer getHead() {
         return this.HumanHead;
     }

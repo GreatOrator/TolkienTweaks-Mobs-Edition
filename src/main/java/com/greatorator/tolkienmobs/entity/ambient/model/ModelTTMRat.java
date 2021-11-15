@@ -123,6 +123,7 @@ public class ModelTTMRat<E extends AnimalEntity> extends EntityModel<EntityTTMRa
         this.RatLegFL.addChild(this.RatFootFL);
     }
 
+    @Override
     public void setupAnim(EntityTTMRat entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.RatLegFL.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.RatLegFR.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;

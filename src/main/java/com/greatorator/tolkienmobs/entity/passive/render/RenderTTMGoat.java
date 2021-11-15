@@ -12,6 +12,7 @@ public class RenderTTMGoat extends MobRenderer<EntityTTMGoat, ModelTTMGoat<Entit
         super(renderManagerIn, new ModelTTMGoat<>(), 1.0F);
     }
 
+    @Override
     public ResourceLocation getTextureLocation(EntityTTMGoat entity) {
         return entity.getGoatTypeName();
     }

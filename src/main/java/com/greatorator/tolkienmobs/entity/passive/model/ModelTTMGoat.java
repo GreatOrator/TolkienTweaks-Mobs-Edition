@@ -305,6 +305,7 @@ public class ModelTTMGoat<T extends AbstractHorseEntity> extends AgeableModel<En
         return ImmutableList.of(this.GoatBody, this.GoatLegRight, this.GoatLegLeft, this.GoatLegRearRight, this.GoatLegRearLeft, this.GoatLeftChest, this.GoatRightChest, this.GoatRightChest);
     }
 
+    @Override
     public void setupAnim(EntityTTMGoat entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         float baseHeadRotation = 0.7853981633974483F; // needs to be the original value of GoatNeck.rotateAngleX
             if (entityIn.isSaddled()){

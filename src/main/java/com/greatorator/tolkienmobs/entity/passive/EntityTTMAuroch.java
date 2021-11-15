@@ -91,6 +91,7 @@ public class EntityTTMAuroch extends EntityTTMHerds {
         this.entityData.set(AUROCH_TYPE, type);
     }
 
+    @Override
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(1, 4);
@@ -99,16 +100,19 @@ public class EntityTTMAuroch extends EntityTTMHerds {
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(AUROCH_TYPE, 1);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("AurochType", this.getAurochType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setAurochType(compound.getInt("AurochType"));

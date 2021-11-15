@@ -103,6 +103,7 @@ public class EntityTTMHuron extends EntityTTMMonsters {
         this.entityData.set(HURON_TYPE, type);
     }
 
+    @Override
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         int job = TTMRand.getRandomInteger(5, 1);
@@ -111,16 +112,19 @@ public class EntityTTMHuron extends EntityTTMMonsters {
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(HURON_TYPE, 3);
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("HuronType", this.getHuronType());
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setHuronType(compound.getInt("HuronType"));

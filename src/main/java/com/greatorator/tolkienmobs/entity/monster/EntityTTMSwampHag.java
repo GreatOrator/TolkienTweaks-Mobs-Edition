@@ -180,6 +180,7 @@ public class EntityTTMSwampHag extends AbstractRaiderEntity implements IRangedAt
         return p_70672_2_;
     }
 
+    @Override
     public void performRangedAttack(LivingEntity p_82196_1_, float p_82196_2_) {
         if (!this.isDrinkingPotion()) {
             Vector3d lvt_3_1_ = p_82196_1_.getDeltaMovement();

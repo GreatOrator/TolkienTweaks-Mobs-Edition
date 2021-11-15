@@ -56,6 +56,7 @@ public class ModelTTMHobbit<T extends Entity> extends SegmentedModel<T> implemen
     /**
      * Sets this entity's model rotation angles
      */
+    @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         boolean flag = false;
         if (entityIn instanceof AbstractVillagerEntity) {

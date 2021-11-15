@@ -13,6 +13,7 @@ public class TTMLebethronTree extends Tree {
     public TTMLebethronTree() {
     }
 
+    @Override
     @Nullable
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean largeHive) {
             return LEBETHRON;

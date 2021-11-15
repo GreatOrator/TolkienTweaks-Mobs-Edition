@@ -81,6 +81,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
             TTMCurios.generateTags(this::tag);
         }
     }
+    @Override
     public String getName() {
         return "Tolkien Tweaks - Mobs Edition Item Tags";
     }

@@ -21,6 +21,7 @@ public class RenderTTMCrebain extends MobRenderer<EntityTTMCrebain, ModelTTMCreb
     /**
      * Returns the location of an entity's texture.
      */
+    @Override
     public ResourceLocation getTextureLocation(EntityTTMCrebain entity) {
         return THRUSH_TEXTURES[entity.getVariant()];
     }

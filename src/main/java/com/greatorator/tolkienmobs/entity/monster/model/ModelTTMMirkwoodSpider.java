@@ -195,10 +195,12 @@ public class ModelTTMMirkwoodSpider<T extends Entity> extends SegmentedModel<T> 
         modelRenderer.zRot = z;
     }
 
+    @Override
     public Iterable<ModelRenderer> parts() {
         return ImmutableList.of(this.SpiderHead, this.SpiderAbdomen, this.SpiderThorax, this.SpiderLegA, this.SpiderLegB, this.SpiderLegA, this.SpiderLegC, this.SpiderLegD, this.SpiderLegE, this.SpiderLegG, this.SpiderLegH);
     }
 
+    @Override
     public void setupAnim(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
         this.SpiderHead.yRot = p_225597_5_ * 0.017453292F;
         this.SpiderHead.xRot = p_225597_6_ * 0.017453292F;

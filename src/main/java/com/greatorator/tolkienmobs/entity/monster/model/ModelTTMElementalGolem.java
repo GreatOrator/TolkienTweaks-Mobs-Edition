@@ -284,10 +284,12 @@ public class ModelTTMElementalGolem<T extends MonsterEntity> extends SegmentedMo
         modelRenderer.zRot = z;
     }
 
+    @Override
     public Iterable<ModelRenderer> parts() {
         return ImmutableList.of(this.GolemHead, this.GolemBody, this.GolemUpperLegR, this.GolemUpperLegL, this.arm0, this.arm1);
     }
 
+    @Override
     public void setupAnim(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
         this.GolemHead.yRot = p_225597_5_ * 0.017453292F;
         this.GolemHead.xRot = p_225597_6_ * 0.017453292F;

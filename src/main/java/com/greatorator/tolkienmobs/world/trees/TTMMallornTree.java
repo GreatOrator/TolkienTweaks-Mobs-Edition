@@ -13,6 +13,7 @@ public class TTMMallornTree extends Tree {
     public TTMMallornTree() {
     }
 
+    @Override
     @Nullable
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean largeHive) {
             return MALLORN;

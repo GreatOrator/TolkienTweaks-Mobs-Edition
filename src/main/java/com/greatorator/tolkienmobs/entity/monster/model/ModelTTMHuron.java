@@ -67,10 +67,12 @@ public class ModelTTMHuron<T extends MonsterEntity> extends SegmentedModel<T> {
         this.HuronHead.addChild(this.HuronHatTop);
     }
 
+    @Override
     public Iterable<ModelRenderer> parts() {
         return ImmutableList.of(this.HuronHead, this.HuronBody, this.HuronArmR, this.HuronArmL, this.HuronLegFR, this.HuronLegFL, this.HuronLegBR, this.HuronLegBL);
     }
 
+    @Override
     public void setupAnim(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
         this.HuronHead.yRot = p_225597_5_ * 0.017453292F;
         this.HuronHead.xRot = p_225597_6_ * 0.017453292F;

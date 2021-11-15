@@ -47,6 +47,7 @@ public class TTMSwitchCombat extends Goal
     /**
      * Returns whether the EntityAIBase should begin execution.
      */
+    @Override
     public boolean canUse()
     {
         this.target = this.hostMob.getTarget();

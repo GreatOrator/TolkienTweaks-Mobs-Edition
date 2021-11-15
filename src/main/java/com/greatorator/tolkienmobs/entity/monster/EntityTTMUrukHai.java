@@ -68,6 +68,7 @@ public class EntityTTMUrukHai extends MonsterEntity implements IRangedAttackMob 
         this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(Items.BOW));
     }
 
+    @Override
     public void performRangedAttack(LivingEntity p_82196_1_, float p_82196_2_) {
         ItemStack itemstack = this.getProjectile(this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, Items.BOW)));
         AbstractArrowEntity abstractarrowentity = this.getArrow(itemstack, p_82196_2_);

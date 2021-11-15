@@ -13,6 +13,7 @@ public class TTMMirkwoodTree extends Tree {
     public TTMMirkwoodTree() {
     }
 
+    @Override
     @Nullable
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean largeHive) {
             return MIRKWOOD;

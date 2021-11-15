@@ -610,6 +610,7 @@ public class LangGenerator extends LanguageProvider {
 
     //endregion
 
+    @Override
     public String getName() {
         return "Tolkien Tweaks - Mobs Edition English Translation";
     }

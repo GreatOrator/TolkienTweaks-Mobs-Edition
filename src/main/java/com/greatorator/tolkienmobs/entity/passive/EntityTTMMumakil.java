@@ -77,22 +77,27 @@ public class EntityTTMMumakil extends EntityTTMHerds {
         return 0.4F;
     }
 
+    @Override
     public EntityTTMMumakil getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
         return EntityGenerator.ENTITY_TTM_MUMAKIL.get().create(p_241840_1_);
     }
 
+    @Override
     protected SoundEvent getAmbientSound() {
         return SoundGenerator.soundAmbientMumakil.get();
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
         return SoundGenerator.soundHurtMumakil.get();
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return SoundGenerator.soundHurtMumakil.get();
     }
 
+    @Override
     protected void playStepSound(BlockPos pos, BlockState blockIn) {
         this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
     }

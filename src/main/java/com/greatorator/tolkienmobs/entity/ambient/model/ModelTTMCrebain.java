@@ -66,10 +66,12 @@ public class ModelTTMCrebain extends SegmentedModel<EntityTTMCrebain> {
         this.legRight.setPos(-1.0F, 22.0F, -1.05F);
     }
 
+    @Override
     public Iterable<ModelRenderer> parts() {
         return ImmutableList.of(this.body, this.wingLeft, this.wingRight, this.tail, this.head, this.legLeft, this.legRight);
     }
 
+    @Override
     public void setupAnim(EntityTTMCrebain p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
         this.setupAnim(getState(p_225597_1_), p_225597_1_.tickCount, p_225597_2_, p_225597_3_, p_225597_4_, p_225597_5_, p_225597_6_);
     }

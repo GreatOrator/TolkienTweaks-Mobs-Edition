@@ -177,6 +177,7 @@ public class ClientProxy extends CommonProxy {
         super.serverSetup(event);
     }
 
+    @Override
     public PlayerEntity getPlayer() {
         return Minecraft.getInstance().player;
     }

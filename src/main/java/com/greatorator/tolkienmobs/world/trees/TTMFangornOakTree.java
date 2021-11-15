@@ -13,6 +13,7 @@ public class TTMFangornOakTree extends Tree {
     public TTMFangornOakTree() {
     }
 
+    @Override
     @Nullable
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean largeHive) {
             return FANGORNOAK;

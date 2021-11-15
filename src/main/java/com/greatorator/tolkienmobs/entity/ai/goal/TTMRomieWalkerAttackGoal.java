@@ -12,16 +12,19 @@ public class TTMRomieWalkerAttackGoal extends MeleeAttackGoal {
         this.walker = p_i46803_1_;
     }
 
+    @Override
     public void start() {
         super.start();
         this.raiseArmTicks = 0;
     }
 
+    @Override
     public void stop() {
         super.stop();
         this.walker.setAggressive(false);
     }
 
+    @Override
     public void tick() {
         super.tick();
         ++this.raiseArmTicks;

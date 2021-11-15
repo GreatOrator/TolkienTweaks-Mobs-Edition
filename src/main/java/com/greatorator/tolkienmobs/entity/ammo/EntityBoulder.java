@@ -39,6 +39,7 @@ public class EntityBoulder extends ProjectileItemEntity {
       super((EntityType<? extends SnowballEntity>) EntityGenerator.AMMO_BOULDER.get(), world);
    }
 
+   @Override
    protected Item getDefaultItem() {
       return TTMContent.BOULDER.get();
    }

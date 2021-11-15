@@ -79,6 +79,7 @@ public class ModelTTMElves<T extends Entity> extends SegmentedModel<T> implement
         this.ElfEarLeft1.addChild(this.ElfEarLeft3);
     }
 
+@Override
 public Iterable<ModelRenderer> parts() {
         return ImmutableList.of(this.ElfHead, this.ElfBody, this.ElfLegRight, this.ElfLegLeft, this.bipedLeftArm, this.bipedRightArm);
         }
@@ -86,6 +87,7 @@ public Iterable<ModelRenderer> parts() {
 /**
  * Sets this entity's model rotation angles
  */
+@Override
 public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         boolean flag = false;
         if (entityIn instanceof AbstractVillagerEntity) {
@@ -109,6 +111,7 @@ public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float 
         this.ElfLegLeft.yRot = 0.0F;
         }
 
+@Override
 public ModelRenderer getHead() {
         return this.ElfHead;
         }

@@ -182,10 +182,12 @@ public class ModelTTMDwarf<T extends Entity> extends SegmentedModel<T> implement
         return this.DwarfHead;
     }
 
+    @Override
     public Iterable<ModelRenderer> parts() {
         return ImmutableList.of(this.DwarfBody);
     }
 
+    @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         boolean flag = false;
         if (entityIn instanceof AbstractVillagerEntity) {

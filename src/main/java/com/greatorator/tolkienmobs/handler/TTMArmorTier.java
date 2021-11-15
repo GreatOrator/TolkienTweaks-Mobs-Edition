@@ -41,31 +41,38 @@ public enum TTMArmorTier implements IArmorMaterial {
         this.repairMaterial = new LazyValue<>(repairMaterial);
     }
 
+    @Override
     public int getDurabilityForSlot(EquipmentSlotType slotIn) {
         return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
     }
 
+    @Override
     public int getDefenseForSlot(EquipmentSlotType slotIn) {
         return this.damageReductionAmountArray[slotIn.getIndex()];
     }
 
+    @Override
     public int getEnchantmentValue() {
         return this.enchantability;
     }
 
+    @Override
     public SoundEvent getEquipSound() {
         return this.soundEvent;
     }
 
+    @Override
     public Ingredient getRepairIngredient() {
         return this.repairMaterial.get();
     }
 
+    @Override
     @OnlyIn(Dist.CLIENT)
     public String getName() {
         return this.name;
     }
 
+    @Override
     public float getToughness() {
         return this.toughness;
     }
@@ -73,6 +80,7 @@ public enum TTMArmorTier implements IArmorMaterial {
     /**
      * Gets the percentage of knockback resistance provided by armor of the material.
      */
+    @Override
     public float getKnockbackResistance() {
         return this.knockbackResistance;
     }

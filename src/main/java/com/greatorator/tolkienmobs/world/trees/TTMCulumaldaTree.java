@@ -13,6 +13,7 @@ public class TTMCulumaldaTree extends Tree {
     public TTMCulumaldaTree() {
     }
 
+    @Override
     @Nullable
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random randomIn, boolean largeHive) {
             return CULUMALDA;

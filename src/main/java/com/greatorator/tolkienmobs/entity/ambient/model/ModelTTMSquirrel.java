@@ -278,6 +278,7 @@ public class ModelTTMSquirrel<E extends AnimalEntity> extends EntityModel<Entity
         return ImmutableList.of(this.body, this.BackLegR, this.BackLegL, this.FrontLegR, this.FrontLegL);
     }
 
+    @Override
     public void renderToBuffer(MatrixStack matrixStackIn, IVertexBuilder bufferIn, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float alpha) {
         this.getHeadParts().forEach((p_228228_8_) -> {
             p_228228_8_.render(matrixStackIn, bufferIn, packedLightIn, packedOverlayIn, red, green, blue, alpha);

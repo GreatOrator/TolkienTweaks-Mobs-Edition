@@ -21,6 +21,7 @@ public class RenderTTMThrush extends MobRenderer<EntityTTMThrush, ModelTTMThrush
     /**
      * Returns the location of an entity's texture.
      */
+    @Override
     public ResourceLocation getTextureLocation(EntityTTMThrush entity) {
         return THRUSH_TEXTURES[entity.getVariant()];
     }
