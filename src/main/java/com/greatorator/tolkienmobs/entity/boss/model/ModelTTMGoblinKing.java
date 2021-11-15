@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.entity.boss.model;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -246,15 +245,6 @@ public class ModelTTMGoblinKing<T extends MonsterEntity> extends BipedModel<T> {
         // flick ears
         GoblinEarR1.yRot = (float) Math.pow(MathHelper.cos(degToRad(entityIn.tickCount*3)), 6) * degToRad(15);
         GoblinEarL1.yRot = (float) Math.pow(MathHelper.cos(degToRad(entityIn.tickCount*3)), 6) * degToRad(-15);
-    }
-
-    @Override
-    public void translateToHand(HandSide sideIn, MatrixStack matrixStackIn) {
-        float f = sideIn == HandSide.RIGHT ? 1.0F : -1.0F;
-        ModelRenderer modelrenderer = this.getArm(sideIn);
-        modelrenderer.x += f;
-        modelrenderer.translateAndRotate(matrixStackIn);
-        modelrenderer.x -= f;
     }
 
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {

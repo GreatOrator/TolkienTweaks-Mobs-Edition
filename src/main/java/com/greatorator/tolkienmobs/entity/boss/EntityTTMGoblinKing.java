@@ -28,10 +28,15 @@ import net.minecraft.network.IPacket;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.*;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
@@ -41,6 +46,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.Map;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttackMob {
 
@@ -100,14 +107,40 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
                 livingentity = (LivingEntity)source.getEntity();
             }
 
+            if (this.random.nextFloat() < 0.15F && this.isEyeInFluid(FluidTags.WATER) && !this.hasEffect(Effects.WATER_BREATHING)) {
+                ((PlayerEntity) livingentity).sendMessage(new TranslationTextComponent(MODID + ".msg.nodrown").withStyle(TextFormatting.DARK_BLUE), Util.NIL_UUID);
+                this.addEffect(new EffectInstance(Effects.WATER_BREATHING, 2 * 20, 0));
+            } else if (this.random.nextFloat() < 0.15F && (this.isOnFire() || this.getLastDamageSource() != null && this.getLastDamageSource().isFire()) && !this.hasEffect(Effects.FIRE_RESISTANCE)) {
+                ((PlayerEntity) livingentity).sendMessage(new TranslationTextComponent(MODID + ".msg.onfire").withStyle(TextFormatting.DARK_RED), Util.NIL_UUID);
+                this.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 2 * 20, 0));
+            } else if (this.random.nextFloat() < 0.05F && this.getHealth() < this.getMaxHealth()) {
+                ((PlayerEntity) livingentity).sendMessage(new TranslationTextComponent(MODID + ".msg.healself").withStyle(TextFormatting.LIGHT_PURPLE), Util.NIL_UUID);
+                this.addEffect(new EffectInstance(Effects.REGENERATION, 2 * 20, 0));
+            } else if (this.random.nextFloat() < 0.5F && this.getTarget() != null && !this.hasEffect(Effects.MOVEMENT_SPEED) && this.getTarget().distanceToSqr(this) > 121.0D) {
+                ((PlayerEntity) livingentity).sendMessage(new TranslationTextComponent(MODID + ".msg.speedup").withStyle(TextFormatting.AQUA), Util.NIL_UUID);
+                this.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 2 * 20, 0));
+            }
+
             int xPos = MathHelper.floor(this.getX());
             int yPos = MathHelper.floor(this.getY());
             int zPos = MathHelper.floor(this.getZ());
 
             TTMGoblinEvent.SummonAidEvent event = TTMEventFactory.fireGoblinSummonAid(this, level, xPos, yPos, zPos, livingentity, this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).getValue());
-            if (event.getResult() == Event.Result.DENY) return true;
+
+            if (event.getResult() == Event.Result.DENY) {
+
+                if (livingentity instanceof PlayerEntity){
+                    ((PlayerEntity) livingentity).sendMessage(new TranslationTextComponent(MODID + ".msg.nohelp").withStyle(TextFormatting.DARK_RED), Util.NIL_UUID);
+                }
+                return true;
+            }
             if (event.getResult() == Event.Result.ALLOW  ||
-                    livingentity != null && this.level.getDifficulty() == Difficulty.HARD && (double)this.random.nextFloat() < this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).getValue() && this.level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING)) {
+                    livingentity != null && (double)this.random.nextFloat() < this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).getValue() && this.level.getGameRules().getBoolean(GameRules.RULE_DOMOBSPAWNING)) {
+
+                if (livingentity instanceof PlayerEntity){
+                    ((PlayerEntity) livingentity).sendMessage(new TranslationTextComponent(MODID + ".msg.helpcomming").withStyle(TextFormatting.DARK_GREEN), Util.NIL_UUID);
+                }
+
                 EntityTTMGoblin goblinentity = event.getCustomSummonedAid() != null && event.getResult() == Event.Result.ALLOW ? event.getCustomSummonedAid() : EntityGenerator.ENTITY_TTM_GOBLIN.get().create(this.level);
 
                 for(int l = 0; l < 50; ++l) {

@@ -12,7 +12,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.SkeletonEntity;
-import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -38,7 +37,7 @@ import java.util.Random;
 
 public class EntityTTMMirkwoodSpider extends EntityTTMMonsters {
     private static final DataParameter<Integer> MIRKWOODSPIDER_TYPE = EntityDataManager.defineId(EntityTTMMirkwoodSpider.class, DataSerializers.INT);
-    private static final DataParameter<Byte> DATA_FLAGS_ID = EntityDataManager.defineId(SpiderEntity.class, DataSerializers.BYTE);
+    private static final DataParameter<Byte> DATA_FLAGS_ID = EntityDataManager.defineId(EntityTTMMirkwoodSpider.class, DataSerializers.BYTE);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mirkwoodspider.png"));
         option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mirkwoodspider.png"));

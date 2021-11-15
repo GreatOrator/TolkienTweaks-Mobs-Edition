@@ -11,7 +11,6 @@ import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.AbstractRaiderEntity;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.monster.WitchEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PotionEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -106,10 +105,10 @@ public class EntityTTMSwampHag extends AbstractRaiderEntity implements IRangedAt
             if (this.isDrinkingPotion()) {
                 if (this.usingTime-- <= 0) {
                     this.setUsingItem(false);
-                    ItemStack lvt_1_1_ = this.getMainHandItem();
+                    ItemStack itemStack = this.getMainHandItem();
                     this.setItemSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
-                    if (lvt_1_1_.getItem() == Items.POTION) {
-                        List<EffectInstance> lvt_2_1_ = PotionUtils.getMobEffects(lvt_1_1_);
+                    if (itemStack.getItem() == Items.POTION) {
+                        List<EffectInstance> lvt_2_1_ = PotionUtils.getMobEffects(itemStack);
                         if (lvt_2_1_ != null) {
                             Iterator var3 = lvt_2_1_.iterator();
 
@@ -221,7 +220,7 @@ public class EntityTTMSwampHag extends AbstractRaiderEntity implements IRangedAt
 
     static {
         SPEED_MODIFIER_DRINKING = new AttributeModifier(SPEED_MODIFIER_DRINKING_UUID, "Drinking speed penalty", -0.25D, AttributeModifier.Operation.ADDITION);
-        DATA_USING_ITEM = EntityDataManager.defineId(WitchEntity.class, DataSerializers.BOOLEAN);
+        DATA_USING_ITEM = EntityDataManager.defineId(EntityTTMSwampHag.class, DataSerializers.BOOLEAN);
     }
 
     @Override

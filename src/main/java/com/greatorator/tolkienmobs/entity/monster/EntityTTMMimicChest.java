@@ -33,14 +33,14 @@ import java.util.Map;
 
 public class EntityTTMMimicChest extends EntityTTMMonsters {
     private static final DataParameter<Integer> MIMIC_TYPE = EntityDataManager.defineId(EntityTTMMimicChest.class, DataSerializers.INT);
+    private static final DataParameter<Boolean> MIMIC_STATE = EntityDataManager.defineId(EntityTTMMimicChest.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> MIMIC_ATTACK = EntityDataManager.defineId(EntityTTMMimicChest.class, DataSerializers.BOOLEAN);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest1.png"));
         option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest2.png"));
         option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest1.png"));
         option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest2.png"));
     });
-    private boolean mimicAttack;
-    public boolean mimicChest;
     private long nextAbilityUse = 0L;
     private final static long coolDown = 15000L;
 
@@ -63,7 +63,7 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
         // In fact if i'm not mistaken this won't work at all regardless. Because even if you did 'new EntityTTMMimicChest().setMimicAttack(true)'
         // The constructor would call this method before setMimicAttack gets processed.
         // ##################################################################################################################################################
-        if (mimicAttack) {
+        if (this.entityData.get(MIMIC_ATTACK)) {
             this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
             this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
             this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
@@ -92,7 +92,7 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
 
     @Override
     public ActionResultType mobInteract(PlayerEntity playerIn, Hand handIn) {
-        if (mimicChest && !this.level.isClientSide) {
+        if (this.entityData.get(MIMIC_STATE) && !this.level.isClientSide) {
             this.setMimicChest(!this.isMimicChest());
             this.setMimicAttack(!this.isMimicAttack());
             return ActionResultType.PASS;
@@ -100,28 +100,28 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
         return ActionResultType.FAIL;
     }
 
-    private boolean isMimicAttack() {
-        return mimicAttack;
-    }
-
     private boolean isMimicChest() {
-        return mimicChest;
+        return this.entityData.get(MIMIC_STATE);
     }
 
     public void setMimicChest(boolean chestRender) {
-        mimicChest = chestRender;
+        this.entityData.set(MIMIC_STATE, chestRender);
     }
 
     public boolean getMimicChest() {
-        return mimicChest;
+        return this.entityData.get(MIMIC_STATE);
+    }
+
+    private boolean isMimicAttack() {
+        return this.entityData.get(MIMIC_ATTACK);
     }
 
     public void setMimicAttack(boolean setAttack) {
-        mimicAttack = setAttack;
+        this.entityData.set(MIMIC_ATTACK, setAttack);
     }
 
     public boolean getMimicAttack() {
-        return mimicAttack;
+        return this.entityData.get(MIMIC_ATTACK);
     }
 
 
@@ -159,6 +159,8 @@ public class EntityTTMMimicChest extends EntityTTMMonsters {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(MIMIC_TYPE, 3);
+        this.entityData.define(MIMIC_STATE, true);
+        this.entityData.define(MIMIC_ATTACK, false);
     }
 
     @Override

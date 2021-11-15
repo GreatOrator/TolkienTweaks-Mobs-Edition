@@ -32,6 +32,7 @@ public class LangGenerator extends LanguageProvider {
         merchants(helper);
         trinket(helper);
         biomes(helper);
+        chatMessages(helper);
         creativeTabGroups();
     }
 
@@ -563,8 +564,18 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMNAZGULSTEED.get(), "Nazgul Steed Spawn Egg");
     }
 
+    private void chatMessages(PrefixHelper helper) {
+        add("tolkienmobs.msg.helpcomming", "Goblin King is attempting to call for help...Reinforcements have arrived!");
+        add("tolkienmobs.msg.nohelp", "Goblin King is attempting to call for help, but no help came.");
+        add("tolkienmobs.msg.nodrown", "Goblin King doesn't want to drown.");
+        add("tolkienmobs.msg.onfire", "Goblin King is protecting himself from fire.");
+        add("tolkienmobs.msg.healself", "Goblin King is hurt and is healing.");
+        add("tolkienmobs.msg.speedup", "Goblin King is attempting to match your speed.");
+    }
 
-    //region Helpers
+
+
+        //region Helpers
 
     @Override
     public void add(Block key, String name) {
