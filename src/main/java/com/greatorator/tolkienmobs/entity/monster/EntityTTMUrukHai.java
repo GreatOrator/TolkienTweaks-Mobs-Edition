@@ -40,7 +40,7 @@ import java.util.Map;
 public class EntityTTMUrukHai extends MonsterEntity implements IRangedAttackMob {
     private final RangedBowAttackGoal<EntityTTMUrukHai> bowGoal = new RangedBowAttackGoal<>(this, 1.0D, 20, 15.0F);
     private final MeleeAttackGoal meleeGoal = new UrukAttackGoal(this, 1.0D, 20, 15.0F, false);
-    private boolean schedualWeaponGoalUpdate = true;
+    private boolean scheduleWeaponGoalUpdate = true;
 
     private static final DataParameter<Integer> URUKHAI_TYPE = EntityDataManager.defineId(EntityTTMUrukHai.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
@@ -204,20 +204,20 @@ public class EntityTTMUrukHai extends MonsterEntity implements IRangedAttackMob 
 
     public void reassessWeaponGoal() {
         if (this.level != null && !this.level.isClientSide) {
-            schedualWeaponGoalUpdate = true;
+            scheduleWeaponGoalUpdate = true;
         }
     }
 
     @Override
     public void tick() {
-        if (schedualWeaponGoalUpdate) {
+        if (scheduleWeaponGoalUpdate) {
             updateWeaponGoal();
         }
         super.tick();
     }
 
     protected void updateWeaponGoal() {
-        schedualWeaponGoalUpdate = false;
+        scheduleWeaponGoalUpdate = false;
         this.goalSelector.removeGoal(this.meleeGoal);
         this.goalSelector.removeGoal(this.bowGoal);
         ItemStack itemstack = this.getMainHandItem();

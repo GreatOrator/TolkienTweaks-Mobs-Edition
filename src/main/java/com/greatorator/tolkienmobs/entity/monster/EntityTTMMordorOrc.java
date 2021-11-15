@@ -5,9 +5,12 @@ import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
+import com.greatorator.tolkienmobs.entity.ai.goal.TTMSwitchCombat;
+import com.greatorator.tolkienmobs.entity.ai.goal.TTMThrowandAttack;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -15,16 +18,22 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.ShootableItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -33,6 +42,10 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public class EntityTTMMordorOrc extends EntityTTMMonsters {
+    private final RangedBowAttackGoal<EntityTTMMordorOrc> bowGoal = new RangedBowAttackGoal<>(this, 1.0D, 20, 15.0F);
+    private final MeleeAttackGoal meleeGoal = new MordorOrcAttackGoal(this, 1.0D, 20, 15.0F, false);
+    private boolean scheduleWeaponGoalUpdate = true;
+
     private static final DataParameter<Integer> ORC_TYPE = EntityDataManager.defineId(EntityTTMMordorOrc.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/orc/mordororc1.png"));
@@ -41,29 +54,15 @@ public class EntityTTMMordorOrc extends EntityTTMMonsters {
         option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/orc/mordororc4.png"));
     });
 
-    /** Set up using weapons **/
-    private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false) {
-        @Override
-        public void stop() {
-            super.stop();
-            EntityTTMMordorOrc.this.setAggressive(false);
-        }
-
-        @Override
-        public void start() {
-            super.start();
-            EntityTTMMordorOrc.this.setAggressive(true);
-        }
-    };
-    /** End Region **/
-
     public EntityTTMMordorOrc(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
+        reassessWeaponGoal();
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(2, new RestrictSunGoal(this));
+        this.goalSelector.addGoal(3, new TTMSwitchCombat(this, 6.0D, 6.0D));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
@@ -78,26 +77,65 @@ public class EntityTTMMordorOrc extends EntityTTMMonsters {
     protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
         super.populateDefaultEquipmentSlots(p_180481_1_);
         this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TTMContent.SWORD_MORGULIRON.get()));
+        this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(Items.BOW));
     }
 
     @Override
-    public void reassessWeaponGoal() {
-        if (this.level != null && !this.level.isClientSide) {
-            this.goalSelector.removeGoal(this.meleeGoal);
-            ItemStack itemstack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, TTMContent.SWORD_MORGULIRON.get()));
-            if (itemstack.getItem() == TTMContent.SWORD_MORGULIRON.get()) {
-                this.goalSelector.addGoal(4, this.meleeGoal);
+    public boolean canFireProjectileWeapon(ShootableItem p_230280_1_) {
+        return true;
+    }
+
+    @Override
+    public void performRangedAttack(LivingEntity p_82196_1_, float p_82196_2_) {
+        ItemStack itemstack = this.getProjectile(this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, Items.BOW)));
+        AbstractArrowEntity abstractarrowentity = this.getArrow(itemstack, p_82196_2_);
+        if (this.getMainHandItem().getItem() instanceof net.minecraft.item.BowItem)
+            abstractarrowentity = ((net.minecraft.item.BowItem)this.getMainHandItem().getItem()).customArrow(abstractarrowentity);
+        double d0 = p_82196_1_.getX() - this.getX();
+        double d1 = p_82196_1_.getY(0.3333333333333333D) - abstractarrowentity.getY();
+        double d2 = p_82196_1_.getZ() - this.getZ();
+        double d3 = (double) MathHelper.sqrt(d0 * d0 + d2 * d2);
+        abstractarrowentity.shoot(d0, d1 + d3 * (double)0.2F, d2, 1.6F, (float)(14 - this.level.getDifficulty().getId() * 4));
+        this.playSound(SoundEvents.SKELETON_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+        this.level.addFreshEntity(abstractarrowentity);
+    }
+
+    static class MordorOrcAttackGoal extends TTMThrowandAttack {
+        private final EntityTTMMordorOrc mordorOrc;
+        private int raiseArmTicks;
+
+        MordorOrcAttackGoal(EntityTTMMordorOrc mordorOrcEntity, double speedAmplifier, int attackInterval, float maxDistance, boolean useLongMemory) {
+            super(mordorOrcEntity, speedAmplifier, attackInterval, maxDistance, useLongMemory);
+            this.mordorOrc = mordorOrcEntity;
+        }
+
+        @Override
+        public void start() {
+            super.start();
+            this.raiseArmTicks = 0;
+        }
+
+        @Override
+        public void stop() {
+            super.stop();
+            this.mordorOrc.setAggressive(false);
+        }
+
+        @Override
+        public void tick() {
+            super.tick();
+            ++this.raiseArmTicks;
+            if (this.raiseArmTicks >= 5 && this.getTicksUntilNextAttack() < this.getAttackInterval() / 2) {
+                this.mordorOrc.setAggressive(true);
+            } else {
+                this.mordorOrc.setAggressive(false);
             }
+
         }
     }
 
-    @Override
-    public void setItemSlot(EquipmentSlotType p_184201_1_, ItemStack p_184201_2_) {
-        super.setItemSlot(p_184201_1_, p_184201_2_);
-        if (!this.level.isClientSide) {
-            this.reassessWeaponGoal();
-        }
-
+    protected AbstractArrowEntity getArrow(ItemStack p_213624_1_, float p_213624_2_) {
+        return ProjectileHelper.getMobArrow(this, p_213624_1_, p_213624_2_);
     }
     /** End Region **/
 
@@ -161,6 +199,38 @@ public class EntityTTMMordorOrc extends EntityTTMMonsters {
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setMordorOrcType(compound.getInt("MordorOrcType"));
-        this.reassessWeaponGoal();
+        reassessWeaponGoal();
+    }
+
+    public void reassessWeaponGoal() {
+        if (this.level != null && !this.level.isClientSide) {
+            scheduleWeaponGoalUpdate = true;
+        }
+    }
+
+    @Override
+    public void tick() {
+        if (scheduleWeaponGoalUpdate) {
+            updateWeaponGoal();
+        }
+        super.tick();
+    }
+
+    protected void updateWeaponGoal() {
+        scheduleWeaponGoalUpdate = false;
+        this.goalSelector.removeGoal(this.meleeGoal);
+        this.goalSelector.removeGoal(this.bowGoal);
+        ItemStack itemstack = this.getMainHandItem();
+        if (itemstack.getItem() == Items.BOW) {
+            int i = 20;
+            if (this.level.getDifficulty() != Difficulty.HARD) {
+                i = 40;
+            }
+
+            this.bowGoal.setMinAttackInterval(i);
+            this.goalSelector.addGoal(4, this.bowGoal);
+        } else {
+            this.goalSelector.addGoal(4, this.meleeGoal);
+        }
     }
 }
