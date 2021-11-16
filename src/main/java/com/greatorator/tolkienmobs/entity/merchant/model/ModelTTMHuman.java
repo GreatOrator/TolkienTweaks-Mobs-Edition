@@ -1,92 +1,92 @@
 package com.greatorator.tolkienmobs.entity.merchant.model;
 
 import com.google.common.collect.ImmutableList;
-import net.minecraft.client.renderer.entity.model.IHasHead;
-import net.minecraft.client.renderer.entity.model.IHeadToggle;
-import net.minecraft.client.renderer.entity.model.SegmentedModel;
+import com.google.common.collect.Iterables;
+import com.greatorator.tolkienmobs.entity.EntityTTMVillagers;
+import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.util.math.MathHelper;
 
 /**
  * Human - GreatOrator
  */
-public class ModelTTMHuman<T extends Entity> extends SegmentedModel<T> implements IHasHead, IHeadToggle {
-    public ModelRenderer HumanBody;
-    public ModelRenderer HumanHead;
-    public ModelRenderer HumanLegRight;
-    public ModelRenderer HumanLegLeft;
-    private ModelRenderer bipedRightArm;
-    private ModelRenderer bipedLeftArm;
+public class ModelTTMHuman<T extends EntityTTMVillagers> extends BipedModel<T> {
+    public ModelRenderer leftSleeve;
+    public ModelRenderer rightPants;
+    public ModelRenderer rightSleeve;
+    public ModelRenderer leftPants;
+    public ModelRenderer jacket;
+    private boolean ghostModel;
 
-    public ModelTTMHuman() {
+    public ModelTTMHuman(float modelSize, boolean ghostModel) {
+        super(modelSize);
+        this.ghostModel = ghostModel;
         this.texWidth = 64;
         this.texHeight = 64;
-        this.HumanHead = new ModelRenderer(this, 0, 0);
-        this.HumanHead.setPos(0.0F, 0.0F, 0.0F);
-        this.HumanHead.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
-        this.bipedLeftArm = new ModelRenderer(this, 32, 48);
-        this.bipedLeftArm.setPos(5.0F, 2.0F, 0.0F);
-        this.bipedLeftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
-        this.HumanBody = new ModelRenderer(this, 16, 16);
-        this.HumanBody.setPos(0.0F, 0.0F, 0.0F);
-        this.HumanBody.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.0F);
-        this.HumanLegLeft = new ModelRenderer(this, 16, 48);
-        this.HumanLegLeft.setPos(1.9F, 12.0F, 0.0F);
-        this.HumanLegLeft.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
-        this.HumanLegRight = new ModelRenderer(this, 0, 16);
-        this.HumanLegRight.setPos(-1.9F, 12.0F, 0.0F);
-        this.HumanLegRight.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
-        this.bipedRightArm = new ModelRenderer(this, 40, 16);
-        this.bipedRightArm.setPos(-5.0F, 2.0F, 0.0F);
-        this.bipedRightArm.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
-        this.HumanBody.addChild(this.HumanHead);
-        this.HumanBody.addChild(this.bipedLeftArm);
-        this.HumanBody.addChild(this.HumanLegLeft);
-        this.HumanBody.addChild(this.HumanLegRight);
-        this.HumanBody.addChild(this.bipedRightArm);
+        this.rightSleeve = new ModelRenderer(this, 40, 32);
+        this.rightSleeve.setPos(-5.0F, 2.0F, 0.0F);
+        this.rightSleeve.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.25F);
+        this.rightArm = new ModelRenderer(this, 40, 16);
+        this.rightArm.setPos(-5.0F, 2.0F, 0.0F);
+        this.rightArm.addBox(-3.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+        this.body = new ModelRenderer(this, 16, 16);
+        this.body.setPos(0.0F, 0.0F, 0.0F);
+        this.body.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.0F);
+        this.rightPants = new ModelRenderer(this, 0, 32);
+        this.rightPants.setPos(-1.9F, 12.0F, 0.0F);
+        this.rightPants.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.25F);
+        this.leftPants = new ModelRenderer(this, 0, 48);
+        this.leftPants.setPos(1.9F, 12.0F, 0.0F);
+        this.leftPants.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.25F);
+        this.leftLeg = new ModelRenderer(this, 16, 48);
+        this.leftLeg.setPos(1.9F, 12.0F, 0.0F);
+        this.leftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
+        this.leftSleeve = new ModelRenderer(this, 48, 48);
+        this.leftSleeve.setPos(5.0F, 2.0F, 0.0F);
+        this.leftSleeve.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.25F);
+        this.jacket = new ModelRenderer(this, 16, 32);
+        this.jacket.setPos(0.0F, 0.0F, 0.0F);
+        this.jacket.addBox(-4.0F, 0.0F, -2.0F, 8, 12, 4, 0.25F);
+        this.hat = new ModelRenderer(this, 32, 0);
+        this.hat.setPos(0.0F, 0.0F, 0.0F);
+        this.hat.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.5F);
+        this.rightLeg = new ModelRenderer(this, 0, 16);
+        this.rightLeg.setPos(-1.9F, 12.0F, 0.0F);
+        this.rightLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, 0.0F);
+        this.head = new ModelRenderer(this, 0, 0);
+        this.head.setPos(0.0F, 0.0F, 0.0F);
+        this.head.addBox(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
+        this.leftArm = new ModelRenderer(this, 32, 48);
+        this.leftArm.setPos(5.0F, 2.0F, 0.0F);
+        this.leftArm.addBox(-1.0F, -2.0F, -2.0F, 4, 12, 4, 0.0F);
+
+        if (!ghostModel) {
+            bodyParts().forEach(part -> part.visible = true);
+            headParts().forEach(part -> part.visible = true);
+        }
     }
 
     @Override
-    public Iterable<ModelRenderer> parts() {
-        return ImmutableList.of(this.HumanHead, this.HumanBody, this.HumanLegRight, this.HumanLegLeft, this.bipedLeftArm, this.bipedRightArm);
+    protected Iterable<ModelRenderer> headParts() {
+        return ImmutableList.of(this.head);
     }
 
-    /**
-     * Sets this entity's model rotation angles
-     */
+    @Override
+    protected Iterable<ModelRenderer> bodyParts() {
+        return Iterables.concat(super.bodyParts(), ImmutableList.of(this.leftPants, this.rightPants, this.leftSleeve, this.rightSleeve, this.jacket));
+    }
+
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        boolean flag = false;
-        if (entityIn instanceof AbstractVillagerEntity) {
-            flag = ((AbstractVillagerEntity)entityIn).getUnhappyCounter() > 0;
-        }
+        super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 
-        this.HumanHead.yRot = netHeadYaw * ((float)Math.PI / 180F);
-        this.HumanHead.xRot = headPitch * ((float)Math.PI / 180F);
-        if (flag) {
-            this.HumanHead.zRot = 0.3F * MathHelper.sin(0.45F * ageInTicks);
-            this.HumanHead.xRot = 0.4F;
-        } else {
-            this.HumanHead.zRot = 0.0F;
-        }
+        this.leftPants.copyFrom(this.leftLeg);
+        this.rightPants.copyFrom(this.rightLeg);
+        this.leftSleeve.copyFrom(this.leftArm);
+        this.rightSleeve.copyFrom(this.rightArm);
+        this.jacket.copyFrom(this.body);
 
-        this.bipedRightArm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.bipedLeftArm.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
-        this.HumanLegRight.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount * 0.5F;
-        this.HumanLegLeft.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount * 0.5F;
-        this.HumanLegRight.yRot = 0.0F;
-        this.HumanLegLeft.yRot = 0.0F;
-    }
-
-    @Override
-    public ModelRenderer getHead() {
-        return this.HumanHead;
-    }
-
-    @Override
-    public void hatVisible(boolean p_217146_1_) {
-
+        this.leftLeg.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.rightLeg.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
     }
 }

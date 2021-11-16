@@ -13,10 +13,7 @@ import com.greatorator.tolkienmobs.entity.ammo.render.RenderGaladhrimArrow;
 import com.greatorator.tolkienmobs.entity.boss.render.RenderTTMGoblinKing;
 import com.greatorator.tolkienmobs.entity.boss.render.RenderTTMMithrilGolem;
 import com.greatorator.tolkienmobs.entity.boss.render.RenderTTMMorgulIronGolem;
-import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMDwarf;
-import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMElves;
-import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMHobbit;
-import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMHuman;
+import com.greatorator.tolkienmobs.entity.merchant.render.*;
 import com.greatorator.tolkienmobs.entity.merchant.villager.VillagerTTMTrades;
 import com.greatorator.tolkienmobs.entity.monster.render.*;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMAuroch;
@@ -131,6 +128,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_DWARF.get(), RenderTTMDwarf::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_ELVES.get(), RenderTTMElves::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_HOBBIT.get(), RenderTTMHobbit::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_DESERTDWELLER.get(), RenderTTMDesertDweller::new);
 
         // Monster
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOBLIN.get(), RenderTTMGoblin::new);

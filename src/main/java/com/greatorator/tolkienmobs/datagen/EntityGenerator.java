@@ -8,10 +8,7 @@ import com.greatorator.tolkienmobs.entity.ammo.EntityGaladhrimArrow;
 import com.greatorator.tolkienmobs.entity.boss.EntityTTMGoblinKing;
 import com.greatorator.tolkienmobs.entity.boss.EntityTTMMithrilGolem;
 import com.greatorator.tolkienmobs.entity.boss.EntityTTMMorgulIronGolem;
-import com.greatorator.tolkienmobs.entity.merchant.EntityTTMDwarf;
-import com.greatorator.tolkienmobs.entity.merchant.EntityTTMElves;
-import com.greatorator.tolkienmobs.entity.merchant.EntityTTMHobbit;
-import com.greatorator.tolkienmobs.entity.merchant.EntityTTMHuman;
+import com.greatorator.tolkienmobs.entity.merchant.*;
 import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.entity.passive.EntityTTMAuroch;
 import com.greatorator.tolkienmobs.entity.passive.EntityTTMGoat;
@@ -68,6 +65,8 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<EntityTTMElves>> ENTITY_TTM_ELVES = ENTITY.register("entityttmelves", () -> entityTTMElves);
     private static final EntityType<EntityTTMHobbit> entityTTMHobbit = buildEntity("entityttmhobbit", EntityTTMHobbit::new, EntityClassification.MISC, 0.6F, 1.4F);
     public static final RegistryObject<EntityType<EntityTTMHobbit>> ENTITY_TTM_HOBBIT = ENTITY.register("entityttmhobbit", () -> entityTTMHobbit);
+    private static final EntityType<EntityTTMDesertDweller> entityTTMDesertDweller = buildEntity("entityttmdesertdweller", EntityTTMDesertDweller::new, EntityClassification.MISC, 0.7F, 1.85F);
+    public static final RegistryObject<EntityType<EntityTTMDesertDweller>> ENTITY_TTM_DESERTDWELLER = ENTITY.register("entityttmdesertdweller", () -> entityTTMDesertDweller);
 
     // Monster
     private static final EntityType<EntityTTMGoblin> entityTTMGoblin = buildEntity("entityttmgoblin", EntityTTMGoblin::new, EntityClassification.MONSTER, 0.9F, 1.0F);
@@ -157,6 +156,7 @@ public class EntityGenerator {
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_DWARF.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_HUMAN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_HOBBIT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_DESERTDWELLER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
 
         //Monster
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_GOBLIN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
@@ -214,6 +214,7 @@ public class EntityGenerator {
         event.put(ENTITY_TTM_DWARF.get(), EntityTTMDwarf.registerAttributes().build());
         event.put(ENTITY_TTM_ELVES.get(), EntityTTMElves.registerAttributes().build());
         event.put(ENTITY_TTM_HOBBIT.get(), EntityTTMHobbit.registerAttributes().build());
+        event.put(ENTITY_TTM_DESERTDWELLER.get(), EntityTTMDesertDweller.registerAttributes().build());
 
         // Monster
         event.put(ENTITY_TTM_GOBLIN.get(), EntityTTMGoblin.registerAttributes().build());
@@ -269,7 +270,8 @@ public class EntityGenerator {
     public static final RegistryObject<Item> EGG_TTMHUMAN = createSpawnEgg("entityttmhuman", entityTTMHuman, 16426382, 2301661);
     public static final RegistryObject<Item> EGG_TTMDWARF = createSpawnEgg("entityttmdwarf", entityTTMDwarf, 16426382, 5600397);
     public static final RegistryObject<Item> EGG_TTMELVES = createSpawnEgg("entityttmelves", entityTTMElves, 16426382, 14289362);
-    public static final RegistryObject<Item> EGG_TTMHOBBIT = createSpawnEgg("entityttmhobbit", entityTTMHobbit, 16426382, 7063795);
+    public static final RegistryObject<Item> EGG_TTMHOBBIT = createSpawnEgg("entityttmhobbit", entityTTMHobbit, 16426382, 14088652);
+    public static final RegistryObject<Item> EGG_TTMDESERTDWELLER = createSpawnEgg("entityttmdesertdweller", entityTTMDesertDweller, 16426382, 9467561);
 
     // Monster
     public static final RegistryObject<Item> EGG_TTMGOBLIN = createSpawnEgg("entityttmgoblin", entityTTMGoblin, 14705521, 2301661);

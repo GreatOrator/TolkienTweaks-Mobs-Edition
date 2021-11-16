@@ -1,24 +1,24 @@
-package com.greatorator.tolkienmobs.entity.special;
-
-import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.TameableEntity;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-
-import javax.annotation.Nullable;
-
-public class EntityTMGreatEagle extends TameableEntity {
-    protected EntityTMGreatEagle(EntityType<? extends TameableEntity> p_i48574_1_, World p_i48574_2_) {
-        super(p_i48574_1_, p_i48574_2_);
-    }
-
-    @Nullable
-    @Override
-    public AgeableEntity getBreedOffspring(ServerWorld serverWorld, AgeableEntity ageableEntity) {
-        return null;
-    }
-}
+//package com.greatorator.tolkienmobs.entity.special;
+//
+//import net.minecraft.entity.AgeableEntity;
+//import net.minecraft.entity.EntityType;
+//import net.minecraft.entity.passive.TameableEntity;
+//import net.minecraft.world.World;
+//import net.minecraft.world.server.ServerWorld;
+//
+//import javax.annotation.Nullable;
+//
+//public class EntityTMGreatEagle extends TameableEntity {
+//    protected EntityTMGreatEagle(EntityType<? extends TameableEntity> p_i48574_1_, World p_i48574_2_) {
+//        super(p_i48574_1_, p_i48574_2_);
+//    }
+//
+//    @Nullable
+//    @Override
+//    public AgeableEntity getBreedOffspring(ServerWorld serverWorld, AgeableEntity ageableEntity) {
+//        return null;
+//    }
+//}
 //    public EntityTMGreatEagle(World parWorld)
 //    {
 //        super(parWorld);

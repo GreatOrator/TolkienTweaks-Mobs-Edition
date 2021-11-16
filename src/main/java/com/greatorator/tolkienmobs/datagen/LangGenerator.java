@@ -498,6 +498,8 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMELVES.get(), "Elf Spawn Egg");
         add(EntityGenerator.ENTITY_TTM_HOBBIT.get(), "Hobbit");
         add(EntityGenerator.EGG_TTMHOBBIT.get(), "Hobbit Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_DESERTDWELLER.get(), "Wandering Villager");
+        add(EntityGenerator.EGG_TTMDESERTDWELLER.get(), "Wandering Villager Spawn Egg");
 
         // Monster
         add(EntityGenerator.ENTITY_TTM_GOBLIN.get(), "Goblin");

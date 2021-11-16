@@ -47,7 +47,6 @@ public class TTMHouseDesertStructure extends Structure<NoFeatureConfig> {
     }
 
     private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of(
-            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_HARADRIM.get(), 100, 4, 9)
     );
 
     @Override
@@ -56,6 +55,7 @@ public class TTMHouseDesertStructure extends Structure<NoFeatureConfig> {
     }
 
     private static final List<MobSpawnInfo.Spawners> STRUCTURE_CREATURES = ImmutableList.of(
+            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_DESERTDWELLER.get(), 100, 2, 2)
     );
 
     @Override

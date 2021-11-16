@@ -84,6 +84,7 @@ public class EntityLootGenerator extends EntityLootTables {
 //        add(EntityGenerator.ENTITY_TTM_DWARF.get(), LootTable.lootTable());
 //        add(EntityGenerator.ENTITY_TTM_ELVES.get(), LootTable.lootTable());
 //        add(EntityGenerator.ENTITY_TTM_HOBBIT.get(), LootTable.lootTable());
+//        add(EntityGenerator.ENTITY_TTM_DESERTDWELLER.get(), LootTable.lootTable());
 
         // Passive
         add(EntityGenerator.ENTITY_TTM_AUROCH.get(),
