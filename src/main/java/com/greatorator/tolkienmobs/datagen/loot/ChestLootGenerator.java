@@ -469,6 +469,38 @@ public class ChestLootGenerator extends ChestLootTables {
                                         .setWeight(10)
                                         .apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
 
+        registrar.accept(new ResourceLocation(MODID, "chests/tower_chest"),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(RandomValueRange.between(3, 5))
+                                .bonusRolls(1, 2)
+                                .add(ItemLootEntry.lootTableItem(TTMContent.GROG.get())
+                                        .setWeight(18))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.CRAM.get())
+                                        .setWeight(12)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                                .add(ItemLootEntry.lootTableItem(Items.NAME_TAG)
+                                        .setWeight(15)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                                .add(ItemLootEntry.lootTableItem(Items.COOKIE)
+                                        .setWeight(15)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 2))))
+                                .add(ItemLootEntry.lootTableItem(Items.GOLDEN_APPLE)
+                                        .setWeight(20)
+                                        .apply(SetCount.setCount(RandomValueRange.between(0, 1))))
+                                .add(ItemLootEntry.lootTableItem(Items.ENCHANTED_GOLDEN_APPLE)
+                                        .setWeight(2)
+                                        .apply(SetCount.setCount(RandomValueRange.between(0, 1))))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.MONSTER_FLESH.get())
+                                        .setWeight(10)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.NUGGET_MORGULIRON.get())
+                                        .setWeight(15)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 7))))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.ITEM_COIN_GOLD.get())
+                                        .setWeight(10)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1, 3))))));
+
     }
 
     public void createInjectPool(BiConsumer<ResourceLocation, LootTable.Builder> consumer, String name, LootTable.Builder builder) {

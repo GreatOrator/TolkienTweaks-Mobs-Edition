@@ -11,6 +11,8 @@ import com.greatorator.tolkienmobs.entity.ammo.render.RenderBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderGaladhrimArrow;
 import com.greatorator.tolkienmobs.entity.boss.render.RenderTTMGoblinKing;
+import com.greatorator.tolkienmobs.entity.boss.render.RenderTTMMithrilGolem;
+import com.greatorator.tolkienmobs.entity.boss.render.RenderTTMMorgulIronGolem;
 import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMDwarf;
 import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMElves;
 import com.greatorator.tolkienmobs.entity.merchant.render.RenderTTMHobbit;
@@ -154,6 +156,8 @@ public class ClientProxy extends CommonProxy {
 
         // Boss
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOBLINKING.get(), RenderTTMGoblinKing::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MITHRILGOLEM.get(), RenderTTMMithrilGolem::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MORGULIRONGOLEM.get(), RenderTTMMorgulIronGolem::new);
 
         // Passive
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_AUROCH.get(), RenderTTMAuroch::new);

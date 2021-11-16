@@ -265,7 +265,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 
             // Monster
         eggItem(EntityGenerator.EGG_TTMGOBLIN.get());
-        eggItem(EntityGenerator.EGG_TTMGOBLINKING.get());
         eggItem(EntityGenerator.EGG_TTMBARROW.get());
         eggItem(EntityGenerator.EGG_TTMBRIGAND.get());
         eggItem(EntityGenerator.EGG_TTMDEEPCLAW.get());
@@ -287,6 +286,9 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(EntityGenerator.EGG_TTMMIMICCHEST.get());
 
             // Boss
+        eggItem(EntityGenerator.EGG_TTMGOBLINKING.get());
+        eggItem(EntityGenerator.EGG_TTMMITHRILGOLEM.get());
+        eggItem(EntityGenerator.EGG_TTMMORGULIRONGOLEM.get());
 
             // Passive
         eggItem(EntityGenerator.EGG_TTMAUROCH.get());

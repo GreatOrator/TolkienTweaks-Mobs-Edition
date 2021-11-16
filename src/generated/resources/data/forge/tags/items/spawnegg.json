@@ -37,6 +37,8 @@
     "tolkienmobs:entityttmshadowfax_spawn_egg",
     "tolkienmobs:entityttmgollum_spawn_egg",
     "tolkienmobs:entityttmnazgul_spawn_egg",
-    "tolkienmobs:entityttmnazgulsteed_spawn_egg"
+    "tolkienmobs:entityttmnazgulsteed_spawn_egg",
+    "tolkienmobs:entityttmmithrilgolem_spawn_egg",
+    "tolkienmobs:entityttmmorgulirongolem_spawn_egg"
   ]
 }

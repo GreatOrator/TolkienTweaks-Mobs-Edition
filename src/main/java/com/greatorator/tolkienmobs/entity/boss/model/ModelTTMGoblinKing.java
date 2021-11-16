@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.entity.boss.model;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.client.renderer.entity.model.BipedModel;
-import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.item.ItemStack;
@@ -19,10 +18,10 @@ public class ModelTTMGoblinKing<T extends MonsterEntity> extends BipedModel<T> {
     public ModelRenderer GoblinBody;
     public ModelRenderer GoblinHead;
     public ModelRenderer GoblinArmR;
-    public ModelRenderer GoblinRightArm;
+    public ModelRenderer rightArm;
     public ModelRenderer GoblinHandR;
     public ModelRenderer GoblinArmL;
-    public ModelRenderer GoblinLeftArm;
+    public ModelRenderer leftArm;
     public ModelRenderer GoblinHandL;
     public ModelRenderer GoblinMouth;
     public ModelRenderer GoblinToothL;
@@ -51,10 +50,10 @@ public class ModelTTMGoblinKing<T extends MonsterEntity> extends BipedModel<T> {
         super(modelSize);
         this.texWidth = 64;
         this.texHeight = 32;
-        this.GoblinLeftArm = new ModelRenderer(this, 0, 29);
-        this.GoblinLeftArm.mirror = true;
-        this.GoblinLeftArm.setPos(-4.0F, 14.5F, 0.0F);
-        this.GoblinLeftArm.addBox(-1.0F, 0.0F, -1.0F, 2, 1, 2, 0.0F);
+        this.leftArm = new ModelRenderer(this, 0, 29);
+        this.leftArm.mirror = true;
+        this.leftArm.setPos(-4.0F, 14.5F, 0.0F);
+        this.leftArm.addBox(-1.0F, 0.0F, -1.0F, 2, 1, 2, 0.0F);
         this.GoblinArmR = new ModelRenderer(this, 0, 25);
         this.GoblinArmR.setPos(-0.5F, 1.0F, -0.5F);
         this.GoblinArmR.addBox(-1.0F, 0.0F, -1.0F, 3, 1, 3, 0.0F);
@@ -91,9 +90,9 @@ public class ModelTTMGoblinKing<T extends MonsterEntity> extends BipedModel<T> {
         this.Crown_2 = new ModelRenderer(this, 32, 19);
         this.Crown_2.setPos(0.0F, -0.2F, 0.0F);
         this.Crown_2.addBox(-5.0F, 0.0F, -4.0F, 10, 1, 1, 0.0F);
-        this.GoblinRightArm = new ModelRenderer(this, 0, 29);
-        this.GoblinRightArm.setPos(4.0F, 14.5F, 0.0F);
-        this.GoblinRightArm.addBox(-1.0F, 0.0F, -1.0F, 2, 1, 2, 0.0F);
+        this.rightArm = new ModelRenderer(this, 0, 29);
+        this.rightArm.setPos(4.0F, 14.5F, 0.0F);
+        this.rightArm.addBox(-1.0F, 0.0F, -1.0F, 2, 1, 2, 0.0F);
         this.GoblinEarL2 = new ModelRenderer(this, 27, 2);
         this.GoblinEarL2.mirror = true;
         this.GoblinEarL2.setPos(0.0F, 1.0F, 0.0F);
@@ -158,17 +157,17 @@ public class ModelTTMGoblinKing<T extends MonsterEntity> extends BipedModel<T> {
         this.Crown_4 = new ModelRenderer(this, 34, 19);
         this.Crown_4.setPos(0.0F, -0.2F, 0.0F);
         this.Crown_4.addBox(4.2F, -0.7F, -4.0F, 1, 1, 1, 0.0F);
-        this.GoblinRightArm.addChild(this.GoblinArmR);
+        this.rightArm.addChild(this.GoblinArmR);
         this.GoblinEarR1.addChild(this.GoblinEarR3);
-        this.GoblinLeftArm.addChild(this.GoblinArmL);
+        this.leftArm.addChild(this.GoblinArmL);
         this.Crown.addChild(this.Crown_3);
         this.GoblinEarL1.addChild(this.GoblinEarL3);
         this.Crown.addChild(this.Crown_1);
-        this.GoblinLeftArm.addChild(this.GoblinHandL);
+        this.leftArm.addChild(this.GoblinHandL);
         this.Crown.addChild(this.Crown_6);
         this.Crown.addChild(this.Crown_2);
         this.GoblinEarL1.addChild(this.GoblinEarL2);
-        this.GoblinRightArm.addChild(this.GoblinHandR);
+        this.rightArm.addChild(this.GoblinHandR);
         this.Crown.addChild(this.Crown_10);
         this.GoblinHead.addChild(this.GoblinHair1);
         this.GoblinEarR1.addChild(this.GoblinEarR2);
@@ -193,7 +192,7 @@ public class ModelTTMGoblinKing<T extends MonsterEntity> extends BipedModel<T> {
 
     @Override
     protected Iterable<ModelRenderer> bodyParts() {
-        return ImmutableList.of(this.GoblinBody, this.GoblinRightArm, this.GoblinLeftArm, this.GoblinLegR, this.GoblinLegL);
+        return ImmutableList.of(this.GoblinBody, this.rightArm, this.leftArm, this.GoblinLegR, this.GoblinLegL);
     }
 
     @Override
@@ -215,24 +214,8 @@ public class ModelTTMGoblinKing<T extends MonsterEntity> extends BipedModel<T> {
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-        ItemStack itemstack = entityIn.getMainHandItem();
-        if (entityIn.isAggressive() && (itemstack.isEmpty() || !(itemstack.getItem() instanceof net.minecraft.item.BowItem))) {
-            float f = MathHelper.sin(this.attackTime * (float)Math.PI);
-            float f1 = MathHelper.sin((1.0F - (1.0F - this.attackTime) * (1.0F - this.attackTime)) * (float)Math.PI);
-
-            this.GoblinRightArm.zRot = 0.0F;
-            this.GoblinLeftArm.zRot = 0.0F;
-            this.GoblinRightArm.yRot = -(0.1F - f * 0.6F);
-            this.GoblinLeftArm.yRot = 0.1F - f * 0.6F;
-            this.GoblinRightArm.xRot = (-(float)Math.PI / 2F);
-            this.GoblinLeftArm.xRot = (-(float)Math.PI / 2F);
-            this.GoblinRightArm.xRot -= f * 1.2F - f1 * 0.4F;
-            this.GoblinLeftArm.xRot -= f * 1.2F - f1 * 0.4F;
-
-            ModelHelper.bobArms(this.GoblinRightArm, this.GoblinLeftArm, ageInTicks);
-        }
-        this.GoblinLeftArm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-        this.GoblinRightArm.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
+        this.leftArm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        this.rightArm.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 
         this.GoblinLegL.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
         this.GoblinLegR.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
@@ -240,8 +223,9 @@ public class ModelTTMGoblinKing<T extends MonsterEntity> extends BipedModel<T> {
         this.GoblinHead.yRot = netHeadYaw * 0.017453292F;
         this.GoblinHead.xRot = headPitch * 0.017453292F;
 
-        this.GoblinRightArm.x = 4.0F;
-        this.GoblinLeftArm.x = -4.0F;
+        this.rightArm.x = 4.0F;
+        this.leftArm.x = -4.0F;
+
         // flick ears
         GoblinEarR1.yRot = (float) Math.pow(MathHelper.cos(degToRad(entityIn.tickCount*3)), 6) * degToRad(15);
         GoblinEarL1.yRot = (float) Math.pow(MathHelper.cos(degToRad(entityIn.tickCount*3)), 6) * degToRad(-15);
@@ -252,4 +236,11 @@ public class ModelTTMGoblinKing<T extends MonsterEntity> extends BipedModel<T> {
         modelRenderer.yRot = y;
         modelRenderer.zRot = z;
     }
+//
+//    @Override
+//    public void translateToHand(HandSide hand, MatrixStack mStack) {
+//        this.getArm(hand).translateAndRotate(mStack);
+//        mStack.scale(0.5F, 0.5F, 0.5F);
+//        mStack.translate(0, 1.4, 0.5);
+//    }
 }

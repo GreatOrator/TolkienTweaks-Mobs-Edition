@@ -31,14 +31,14 @@ import java.util.List;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class TTMLargeRuinStructure extends Structure<NoFeatureConfig> {
-    public TTMLargeRuinStructure(Codec<NoFeatureConfig> codec) {
+public class TTMDesertInnStructure extends Structure<NoFeatureConfig> {
+    public TTMDesertInnStructure(Codec<NoFeatureConfig> codec) {
         super(codec);
     }
 
     @Override
     public IStartFactory<NoFeatureConfig> getStartFactory() {
-        return TTMLargeRuinStructure.Start::new;
+        return TTMDesertInnStructure.Start::new;
     }
 
     @Override
@@ -47,10 +47,8 @@ public class TTMLargeRuinStructure extends Structure<NoFeatureConfig> {
     }
 
     private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of(
-            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_ELEMENTALGOLEM.get(), 80, 1, 1),
-            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_MITHRILGOLEM.get(), 1, 1, 1),
-            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_MORGULIRONGOLEM.get(), 1, 1, 1)
-            );
+            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_HARADRIM.get(), 100, 4, 9)
+    );
 
     @Override
     public List<MobSpawnInfo.Spawners> getDefaultSpawnList() {
@@ -96,7 +94,7 @@ public class TTMLargeRuinStructure extends Structure<NoFeatureConfig> {
 
             JigsawManager.addPieces(
                     dynamicRegistryManager,
-                    new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(new ResourceLocation(MODID, "ttmruin_large")), 10),
+                    new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(new ResourceLocation(MODID, "ttminn_desert")), 10),
                     AbstractVillagePiece::new,
                     chunkGenerator,
                     templateManagerIn,

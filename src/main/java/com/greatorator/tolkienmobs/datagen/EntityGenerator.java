@@ -6,6 +6,8 @@ import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.ammo.EntityGaladhrimArrow;
 import com.greatorator.tolkienmobs.entity.boss.EntityTTMGoblinKing;
+import com.greatorator.tolkienmobs.entity.boss.EntityTTMMithrilGolem;
+import com.greatorator.tolkienmobs.entity.boss.EntityTTMMorgulIronGolem;
 import com.greatorator.tolkienmobs.entity.merchant.EntityTTMDwarf;
 import com.greatorator.tolkienmobs.entity.merchant.EntityTTMElves;
 import com.greatorator.tolkienmobs.entity.merchant.EntityTTMHobbit;
@@ -22,7 +24,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -30,7 +31,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -114,6 +114,10 @@ public class EntityGenerator {
     // Boss
     private static final EntityType<EntityTTMGoblinKing> entityTTMGoblinKing = buildEntity("entityttmgoblinking", EntityTTMGoblinKing::new, EntityClassification.MONSTER, 0.9F, 1.0F);
     public static final RegistryObject<EntityType<EntityTTMGoblinKing>> ENTITY_TTM_GOBLINKING = ENTITY.register("entityttmgoblinking", () -> entityTTMGoblinKing);
+    private static final EntityType<EntityTTMMithrilGolem> entityTTMMithrilGolem = buildEntity("entityttmmithrilgolem", EntityTTMMithrilGolem::new, EntityClassification.MONSTER, 1.8F, 3.1F);
+    public static final RegistryObject<EntityType<EntityTTMMithrilGolem>> ENTITY_TTM_MITHRILGOLEM = ENTITY.register("entityttmmithrilgolem", () -> entityTTMMithrilGolem);
+    private static final EntityType<EntityTTMMorgulIronGolem> entityTTMMorgulIronGolem = buildEntity("entityttmmorgulirongolem", EntityTTMMorgulIronGolem::new, EntityClassification.MONSTER, 1.8F, 3.1F);
+    public static final RegistryObject<EntityType<EntityTTMMorgulIronGolem>> ENTITY_TTM_MORGULIRONGOLEM = ENTITY.register("entityttmmorgulirongolem", () -> entityTTMMorgulIronGolem);
 
     // Passive
     private static final EntityType<EntityTTMAuroch> entityTTMAuroch = buildEntity("entityttmauroch", EntityTTMAuroch::new, EntityClassification.CREATURE, 1.9F, 1.4F);
@@ -128,7 +132,7 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<EntityTTMShadowfax>> ENTITY_TTM_SHADOWFAX = ENTITY.register("entityttmshadowfax", () -> entityTTMShadowfax);
     private static final EntityType<EntityTTMGollum> entityTTMGollum = buildEntity("entityttmgollum", EntityTTMGollum::new, EntityClassification.CREATURE, 1.0F, 1.0F);
     public static final RegistryObject<EntityType<EntityTTMGollum>> ENTITY_TTM_GOLLUM = ENTITY.register("entityttmgollum", () -> entityTTMGollum);
-    private static final EntityType<EntityTTMNazgul> entityTTMNazgul = buildEntity("entityttmnazgul", EntityTTMNazgul::new, EntityClassification.MONSTER, 1.7F, 3.0F);
+    private static final EntityType<EntityTTMNazgul> entityTTMNazgul = buildEntity("entityttmnazgul", EntityTTMNazgul::new, EntityClassification.MONSTER, 1.3F, 2.2F);
     public static final RegistryObject<EntityType<EntityTTMNazgul>> ENTITY_TTM_NAZGUL = ENTITY.register("entityttmnazgul", () -> entityTTMNazgul);
     private static final EntityType<EntityTTMNazgulSteed> entityTTMNazgulSteed = buildEntity("entityttmnazgulsteed", EntityTTMNazgulSteed::new, EntityClassification.CREATURE, 1.3964844F, 1.6F);
     public static final RegistryObject<EntityType<EntityTTMNazgulSteed>> ENTITY_TTM_NAZGULSTEED = ENTITY.register("entityttmnazgulsteed", () -> entityTTMNazgulSteed);
@@ -150,6 +154,9 @@ public class EntityGenerator {
 
         // Merchants
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_ELVES.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_DWARF.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_HUMAN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_HOBBIT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
 
         //Monster
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_GOBLIN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
@@ -232,6 +239,8 @@ public class EntityGenerator {
 
         // Boss
         event.put(ENTITY_TTM_GOBLINKING.get(), EntityTTMGoblinKing.registerAttributes().build());
+        event.put(ENTITY_TTM_MITHRILGOLEM.get(), EntityTTMMithrilGolem.registerAttributes().build());
+        event.put(ENTITY_TTM_MORGULIRONGOLEM.get(), EntityTTMMorgulIronGolem.registerAttributes().build());
 
         // Passive
         event.put(ENTITY_TTM_AUROCH.get(), EntityTTMAuroch.registerAttributes().build());
@@ -286,6 +295,8 @@ public class EntityGenerator {
 
     // Boss
     public static final RegistryObject<Item> EGG_TTMGOBLINKING = createSpawnEgg("entityttmgoblinking", entityTTMGoblinKing, 11025577, 2301661);
+    public static final RegistryObject<Item> EGG_TTMMITHRILGOLEM = createSpawnEgg("entityttmmithrilgolem", entityTTMMithrilGolem, 11025577, 5600397);
+    public static final RegistryObject<Item> EGG_TTMMORGULIRONGOLEM = createSpawnEgg("entityttmmorgulirongolem", entityTTMMorgulIronGolem, 11025577, 14289362);
 
     // Passive
     public static final RegistryObject<Item> EGG_TTMAUROCH = createSpawnEgg("entityttmauroch", entityTTMAuroch, 4751910, 2301661);

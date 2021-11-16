@@ -113,6 +113,7 @@ public class TTMServerEvents {
             tempMap.putIfAbsent(StructureGenerator.TTMHOUSE_HOBBIT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOUSE_HOBBIT.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMHOUSE_HUMAN.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOUSE_HUMAN.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMHOUSE_DWARF.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOUSE_DWARF.get()));
+            tempMap.putIfAbsent(StructureGenerator.TTMHOUSE_DESERT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOUSE_DESERT.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMBARROW.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMBARROW.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMRUIN_LARGE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMRUIN_LARGE.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMRUIN_SMALL.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMRUIN_SMALL.get()));
@@ -121,6 +122,8 @@ public class TTMServerEvents {
             tempMap.putIfAbsent(StructureGenerator.TTMWARG_PIT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMWARG_PIT.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMMINOTAUR_MAZE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMMINOTAUR_MAZE.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMGOLLUM_CAVE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMGOLLUM_CAVE.get()));
+            tempMap.putIfAbsent(StructureGenerator.TTMDARK_TOWER.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMDARK_TOWER.get()));
+            tempMap.putIfAbsent(StructureGenerator.TTMINN_DESERT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMINN_DESERT.get()));
 
             serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
         }
@@ -144,7 +147,13 @@ public class TTMServerEvents {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMSPIDER_TREE);
         }
         if (event.getName().equals(BiomeGenerator.BIOME_MORDOR.getId())) {
-            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMWARG_PIT);
+            int i = TTMRand.getRandomInteger(100, 1);
+
+            if(i<=25){
+                event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMDARK_TOWER);
+            }else {
+                event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMWARG_PIT);
+            }
         }
         if (event.getName().equals(BiomeGenerator.BIOME_IRONHILLS.getId())) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOUSE_DWARF);
@@ -152,11 +161,20 @@ public class TTMServerEvents {
         if (event.getName().equals(BiomeGenerator.BIOME_GLADDEN.getId())) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOUSE_HUMAN);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_HARADWAITH.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_OLDFOREST.getId())) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMMINOTAUR_MAZE);
         }
         if (event.getName().equals(BiomeGenerator.BIOME_HITHAEGLIR.getId())) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMGOLLUM_CAVE);
+        }
+        if (event.getName().equals(BiomeGenerator.BIOME_HARADWAITH.getId())) {
+            int i = TTMRand.getRandomInteger(100, 1);
+
+            if(i<=50){
+                event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOUSE_DESERT);
+            }else {
+                event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMINN_DESERT);
+            }
         }
         if (event.getName().equals(BiomeGenerator.BIOME_DAGORLAD.getId())) {
             int i = TTMRand.getRandomInteger(100, 1);
@@ -170,7 +188,7 @@ public class TTMServerEvents {
 
         /* Used to test for structure generation */
         if (event.getCategory() == Biome.Category.PLAINS) {
-//            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMGOLLUM_CAVE);
+//            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMINN_DESERT);
         }
     }
 }

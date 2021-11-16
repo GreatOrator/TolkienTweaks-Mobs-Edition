@@ -1,6 +1,6 @@
-package com.greatorator.tolkienmobs.entity.monster.render;
+package com.greatorator.tolkienmobs.entity.boss.render;
 
-import com.greatorator.tolkienmobs.entity.monster.EntityTTMElementalGolem;
+import com.greatorator.tolkienmobs.entity.boss.EntityTTMMithrilGolem;
 import com.greatorator.tolkienmobs.entity.monster.model.ModelTTMElementalGolem;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -8,18 +8,22 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.vector.Vector3f;
 
-public class RenderTTMElementalGolem extends MobRenderer<EntityTTMElementalGolem, ModelTTMElementalGolem<EntityTTMElementalGolem>> {
-    public RenderTTMElementalGolem(EntityRendererManager renderManagerIn) {
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+
+public class RenderTTMMithrilGolem extends MobRenderer<EntityTTMMithrilGolem, ModelTTMElementalGolem<EntityTTMMithrilGolem>> {
+    private final ResourceLocation mobTexture = new ResourceLocation(MODID + ":textures/entity/elementalgolem/elemental_golem_mithril.png");
+
+    public RenderTTMMithrilGolem(EntityRendererManager renderManagerIn) {
         super(renderManagerIn, new ModelTTMElementalGolem<>(), 1.0F);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(EntityTTMElementalGolem entity) {
-        return entity.getElementalGolemTypeName();
+    public ResourceLocation getTextureLocation(EntityTTMMithrilGolem entity) {
+        return mobTexture;
     }
 
     @Override
-    protected void setupRotations(EntityTTMElementalGolem entity, MatrixStack matrixStack, float f1, float f2, float f3) {
+    protected void setupRotations(EntityTTMMithrilGolem entity, MatrixStack matrixStack, float f1, float f2, float f3) {
         super.setupRotations(entity, matrixStack, f1, f2, f3);
         if (!((double)entity.animationSpeed < 0.01D)) {
             float lvt_6_1_ = 13.0F;

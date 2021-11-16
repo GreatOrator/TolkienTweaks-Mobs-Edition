@@ -24,6 +24,7 @@ public class StructureGenerator {
     public static final RegistryObject<Structure<NoFeatureConfig>> TTMHOUSE_HOBBIT = STRUCTURES.register("ttmhouse_hobbit", () -> (new TTMHouseHobbitStructure(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> TTMHOUSE_DWARF = STRUCTURES.register("ttmhouse_dwarf", () -> (new TTMHouseDwarfStructure(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> TTMHOUSE_HUMAN = STRUCTURES.register("ttmhouse_human", () -> (new TTMHouseHumanStructure(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> TTMHOUSE_DESERT = STRUCTURES.register("ttmhouse_desert", () -> (new TTMHouseDesertStructure(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> TTMBARROW = STRUCTURES.register("ttmbarrow", () -> (new TTMBarrowStructure(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> TTMRUIN_LARGE = STRUCTURES.register("ttmruin_large", () -> (new TTMLargeRuinStructure(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> TTMRUIN_SMALL = STRUCTURES.register("ttmruin_small", () -> (new TTMSmallRuinStructure(NoFeatureConfig.CODEC)));
@@ -32,6 +33,8 @@ public class StructureGenerator {
     public static final RegistryObject<Structure<NoFeatureConfig>> TTMWARG_PIT = STRUCTURES.register("ttmwargpit", () -> (new TTMWargPitStructure(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> TTMMINOTAUR_MAZE = STRUCTURES.register("ttmminotaurmaze", () -> (new TTMMinotaurMazeStructure(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> TTMGOLLUM_CAVE = STRUCTURES.register("ttmgollum_cave", () -> (new TTMGollumCaveStructure(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> TTMDARK_TOWER = STRUCTURES.register("ttmdark_tower", () -> (new TTMDarkTowerStructure(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> TTMINN_DESERT = STRUCTURES.register("ttminn_desert", () -> (new TTMDesertInnStructure(NoFeatureConfig.CODEC)));
 
     public static void setupStructures() {
         setupMapSpacingAndLand(
@@ -57,6 +60,12 @@ public class StructureGenerator {
                 new StructureSeparationSettings(10 /* average distance apart in chunks between spawn attempts */,
                         5 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         264205014 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                true);
+        setupMapSpacingAndLand(
+                TTMHOUSE_DESERT.get(), /* The instance of the structure */
+                new StructureSeparationSettings(25 /* average distance apart in chunks between spawn attempts */,
+                        20 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                        629453018 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
         setupMapSpacingAndLand(
                 TTMBARROW.get(), /* The instance of the structure */
@@ -105,6 +114,18 @@ public class StructureGenerator {
                 new StructureSeparationSettings(40 /* average distance apart in chunks between spawn attempts */,
                         35 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         462108679 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                true);
+        setupMapSpacingAndLand(
+                TTMDARK_TOWER.get(), /* The instance of the structure */
+                new StructureSeparationSettings(40 /* average distance apart in chunks between spawn attempts */,
+                        35 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                        211506422 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                true);
+        setupMapSpacingAndLand(
+                TTMINN_DESERT.get(), /* The instance of the structure */
+                new StructureSeparationSettings(35 /* average distance apart in chunks between spawn attempts */,
+                        30 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                        244749734 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
 
 

@@ -2,6 +2,8 @@ package com.greatorator.tolkienmobs.entity.monster;
 
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.datagen.PotionGenerator;
+import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.BlockState;
@@ -19,6 +21,8 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -34,16 +38,14 @@ import java.util.Map;
 import java.util.UUID;
 
 public class EntityTTMElementalGolem extends EntityTTMMonsters implements IAngerable {
-    private static final DataParameter<String> ELEMENT_TYPE = EntityDataManager.defineId(EntityTTMElementalGolem.class, DataSerializers.STRING);
+    private static final DataParameter<Integer> ELEMENT_TYPE = EntityDataManager.defineId(EntityTTMElementalGolem.class, DataSerializers.INT);
     private static final DataParameter<Integer> GOLEM_TYPE = EntityDataManager.defineId(EntityTTMElementalGolem.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
-        option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/elementalgolem/elemental_golem_earth.png"));
-        option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/elementalgolem/elemental_golem_air.png"));
-        option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/elementalgolem/elemental_golem_fire.png"));
-        option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/elementalgolem/elemental_golem_water.png"));
-        option.put(5, new ResourceLocation(TolkienMobs.MODID, "textures/entity/elementalgolem/elemental_golem_none.png"));
-        option.put(6, new ResourceLocation(TolkienMobs.MODID, "textures/entity/elementalgolem/elemental_golem_mithril.png"));
-        option.put(7, new ResourceLocation(TolkienMobs.MODID, "textures/entity/elementalgolem/elemental_golem_morgul.png"));
+        option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/elementalgolem/elemental_golem_none.png"));
+        option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/elementalgolem/elemental_golem_earth.png"));
+        option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/elementalgolem/elemental_golem_air.png"));
+        option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/elementalgolem/elemental_golem_fire.png"));
+        option.put(5, new ResourceLocation(TolkienMobs.MODID, "textures/entity/elementalgolem/elemental_golem_water.png"));
     });
     private static final RangedInteger PERSISTENT_ANGER_TIME = TickRangeConverter.rangeOfSeconds(20, 39);
     private static int attackAnimationTick;
@@ -109,20 +111,97 @@ public class EntityTTMElementalGolem extends EntityTTMMonsters implements IAnger
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static int getAttackAnimationTick() {
-        return EntityTTMElementalGolem.attackAnimationTick;
+    public int getAttackAnimationTick() {
+        return this.attackAnimationTick;
     }
 
     @Override
-    public boolean doHurtTarget(Entity p_70652_1_) {
+    public boolean doHurtTarget(Entity entityIn) {
         this.attackAnimationTick = 10;
         this.level.broadcastEntityEvent(this, (byte)4);
         float f = this.getAttackDamage();
         float f1 = (int)f > 0 ? f / 2.0F + (float)this.random.nextInt((int)f) : f;
-        boolean flag = p_70652_1_.hurt(DamageSource.mobAttack(this), f1);
+        boolean flag = entityIn.hurt(DamageSource.mobAttack(this), f1);
         if (flag) {
-            p_70652_1_.setDeltaMovement(p_70652_1_.getDeltaMovement().add(0.0D, (double)0.4F, 0.0D));
-            this.doEnchantDamageEffects(this, p_70652_1_);
+            entityIn.setDeltaMovement(entityIn.getDeltaMovement().add(0.0D, (double)0.4F, 0.0D));
+            this.doEnchantDamageEffects(this, entityIn);
+            if (this.getGolemType() == 1) { /* Stone */
+                long time = System.currentTimeMillis();
+                if (super.doHurtTarget(entityIn)) {
+                    if (entityIn instanceof PlayerEntity) {
+                        if (time > nextAbilityUse) {
+                            nextAbilityUse = time + coolDown;
+                            PlayerEntity player = (PlayerEntity) entityIn;
+                            int strength = 2;
+                            player.addEffect(new EffectInstance(PotionGenerator.INVENTORY_CORROSION.get(), strength * 20, 0));
+                        }
+                    }
+                }
+            } else if (this.getGolemType() == 2) { /* Earth */
+                long time = System.currentTimeMillis();
+                if (super.doHurtTarget(entityIn)) {
+                    if (entityIn instanceof PlayerEntity) {
+                        if (time > nextAbilityUse) {
+                            nextAbilityUse = time + coolDown;
+                            PlayerEntity player = (PlayerEntity) entityIn;
+                            int strength = 2;
+                            if (TTMRand.getRandom(10) <= 3) {
+                                player.addEffect(new EffectInstance(PotionGenerator.ELEMENTAL_FLYING.get(), strength * 20, 0));
+                            } else {
+                                player.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, strength * 20, 0));
+                            }
+                        }
+                    }
+                }
+            } else if (this.getGolemType() == 3) { /* Air */
+                long time = System.currentTimeMillis();
+                if (super.doHurtTarget(entityIn)) {
+                    if (entityIn instanceof PlayerEntity) {
+                        if (time > nextAbilityUse) {
+                            nextAbilityUse = time + coolDown;
+                            PlayerEntity player = (PlayerEntity) entityIn;
+                            int strength = 2;
+                            if (TTMRand.getRandom(10) <= 3) {
+                                player.addEffect(new EffectInstance(PotionGenerator.ELEMENTAL_TORNADO.get(), strength * 20, 0));
+                            } else {
+                                player.addEffect(new EffectInstance(PotionGenerator.ELEMENTAL_LIGHTNING.get(), strength * 20, 0));
+                            }
+                        }
+                    }
+                }
+            } else if (this.getGolemType() == 4) { /* Fire */
+                long time = System.currentTimeMillis();
+                if (super.doHurtTarget(entityIn)) {
+                    if (entityIn instanceof PlayerEntity) {
+                        if (time > nextAbilityUse) {
+                            nextAbilityUse = time + coolDown;
+                            PlayerEntity player = (PlayerEntity) entityIn;
+                            int strength = 2;
+                            if (TTMRand.getRandom(10) <= 3) {
+                                player.addEffect(new EffectInstance(PotionGenerator.ELEMENTAL_BURNING.get(), strength * 20, 0));
+                            } else {
+                                player.addEffect(new EffectInstance(Effects.WEAKNESS, strength * 20, 0));
+                            }
+                        }
+                    }
+                }
+            } else if (this.getGolemType() == 5) { /* Water */
+                long time = System.currentTimeMillis();
+                if (super.doHurtTarget(entityIn)) {
+                    if (entityIn instanceof PlayerEntity) {
+                        if (time > nextAbilityUse) {
+                            nextAbilityUse = time + coolDown;
+                            PlayerEntity player = (PlayerEntity) entityIn;
+                            int strength = 2;
+                            if (TTMRand.getRandom(10) <= 3) {
+                                player.addEffect(new EffectInstance(PotionGenerator.ELEMENTAL_DROWNING.get(), strength * 20, 0));
+                            } else {
+                                player.addEffect(new EffectInstance(Effects.BLINDNESS, strength * 20, 0));
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         this.playSound(SoundEvents.IRON_GOLEM_ATTACK, 1.0F, 1.0F);
@@ -166,6 +245,15 @@ public class EntityTTMElementalGolem extends EntityTTMMonsters implements IAnger
     /**
      * Region for determining random skin
      */
+
+    public void setGolemType(int golemType) {
+        this.entityData.set(ELEMENT_TYPE, golemType);
+    }
+
+    public int getGolemType() {
+        return this.entityData.get(ELEMENT_TYPE);
+    }
+
     public ResourceLocation getElementalGolemTypeName() {
         return TEXTURE_BY_ID.getOrDefault(this.getElementalGolemType(), TEXTURE_BY_ID.get(1));
     }
@@ -175,18 +263,26 @@ public class EntityTTMElementalGolem extends EntityTTMMonsters implements IAnger
     }
 
     public void setElementalGolemType(int type) {
-        if (type < 0 || type >= 8) {
-            type = this.random.nextInt(8);
+        if (type < 0 || type >= 6) {
+            type = this.random.nextInt(5);
         }
 
         this.entityData.set(GOLEM_TYPE, type);
+        this.entityData.set(ELEMENT_TYPE, type);
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return SoundGenerator.soundDeathGolem.get();
     }
 
     @Nullable
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        int job = TTMRand.getRandomInteger(7, 1);
+        int job = TTMRand.getRandomInteger(5, 1);
         this.setElementalGolemType(job);
+        this.setGolemType(job);
         this.reassessWeaponGoal();
 
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
@@ -195,346 +291,21 @@ public class EntityTTMElementalGolem extends EntityTTMMonsters implements IAnger
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(GOLEM_TYPE, 3);
+        this.entityData.define(GOLEM_TYPE, 1);
+        this.entityData.define(ELEMENT_TYPE, 1);
     }
 
     @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("ElementalGolemType", this.getElementalGolemType());
+        compound.putInt("ElementalType", this.getGolemType());
     }
 
     @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setElementalGolemType(compound.getInt("ElementalGolemType"));
+        this.setGolemType(compound.getInt("ElementalType"));
     }
-//    private long nextAbilityUse = 0L;
-//    private final static long coolDown = 15000L;
-//    private LivingEntity mob;
-//
-//    private static final DataParameter<Integer> ELEMENT_TYPE = EntityDataManager.<Integer>createKey(EntityTMElementalGolem.class, DataSerializers.VARIANT);
-//
-//    public EntityTMElementalGolem(World worldIn) {
-//        super(worldIn);
-//        this.setSize(1.8F, 3.1F);
-//        this.setMob(this);
-//    }
-//
-//    protected void entityInit()
-//    {
-//        super.entityInit();
-//        this.dataManager.register(ELEMENT_TYPE, Integer.valueOf(0));
-//    }
-//
-//    @Override
-//    public boolean attackEntityFrom(DamageSource damageSource, float damage) {
-//        PlayerEntity player = (PlayerEntity)damageSource.getTrueSource();
-//
-//        if (damageSource.getImmediateSource() instanceof PlayerEntity)
-//        {
-//            if(getElementType() == 1) {
-//                long time = System.currentTimeMillis();
-//                if (time > nextAbilityUse && damageSource.getTrueSource() != null && !(damageSource instanceof EntityDamageSourceIndirect)) {
-//                    nextAbilityUse = time + coolDown;
-//
-//                    if (rand.nextInt(10) == 0){
-//                        assert player != null;
-//                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_TORNADO, 120, 3));}
-//                    else {
-//                        assert player != null;
-//                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_LIGHTNING, 45, 1));
-//                    }
-//                }
-//            }
-//            else if(getElementType() == 2) {
-//                long time = System.currentTimeMillis();
-//                if (time > nextAbilityUse && damageSource.getTrueSource() != null && !(damageSource instanceof EntityDamageSourceIndirect)) {
-//                    nextAbilityUse = time + coolDown;
-//
-//                    if (rand.nextInt(10) == 0){
-//                        assert player != null;
-//                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_FLYING,40, 3));
-//                    }
-//                    else {
-//                        assert player != null;
-//                        player.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 200, 3));
-//                    }
-//                }
-//            }
-//            else if(getElementType() == 3) {
-//                long time = System.currentTimeMillis();
-//                if (time > nextAbilityUse && damageSource.getTrueSource() != null && !(damageSource instanceof EntityDamageSourceIndirect)) {
-//                    nextAbilityUse = time + coolDown;
-//
-//                    if (rand.nextInt(10) == 0){
-//                        assert player != null;
-//                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_BURNING, 200, 3));
-//                    }
-//                    else {
-//                        assert player != null;
-//                        player.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 200, 3));
-//                    }
-//                }
-//            }
-//            else if(getElementType() == 4) {
-//                long time = System.currentTimeMillis();
-//                if (time > nextAbilityUse && damageSource.getTrueSource() != null && !(damageSource instanceof EntityDamageSourceIndirect)) {
-//                    nextAbilityUse = time + coolDown;
-//
-//                    if (rand.nextInt(10) == 0){
-//                        assert player != null;
-//                        player.addPotionEffect(new PotionEffect(PotionInit.ELEMENTAL_DROWNING, 600));
-//                    }
-//                    else {
-//                        assert player != null;
-//                        player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 200, 3));
-//                    }
-//                }
-//            }
-//        }
-//        return super.attackEntityFrom(damageSource, damage);
-//    }
-//
-//    public int getElementType()
-//    {
-//        return ((Integer)this.dataManager.get(ELEMENT_TYPE)).intValue();
-//    }
-//
-//    public void setElementType(int elementTypeId)
-//    {
-//        if (elementTypeId == 1)
-//        {
-//            this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(15.0D);
-//            this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-//
-//            if (!this.hasCustomName())
-//            {
-//                this.setCustomNameTag(I18n.translateToLocal("entity.elementalgolem1.name"));
-//            }
-//        }
-//        else if (elementTypeId == 2)
-//        {
-//            this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(15.0D);
-//            this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-//
-//            if (!this.hasCustomName())
-//            {
-//                this.setCustomNameTag(I18n.translateToLocal("entity.elementalgolem2.name"));
-//            }
-//        }
-//        else if (elementTypeId == 3)
-//        {
-//            this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(15.0D);
-//            this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-//
-//            if (!this.hasCustomName())
-//            {
-//                this.setCustomNameTag(I18n.translateToLocal("entity.elementalgolem3.name"));
-//            }
-//        }
-//        else if (elementTypeId == 4)
-//        {
-//            this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(15.0D);
-//            this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-//
-//            if (!this.hasCustomName())
-//            {
-//                this.setCustomNameTag(I18n.translateToLocal("entity.elementalgolem4.name"));
-//            }
-//        }
-//        else
-//        {
-//            this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(15.0D);
-//            this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
-//
-//            if (!this.hasCustomName())
-//            {
-//                this.setCustomNameTag(I18n.translateToLocal("entity.elementalgolem5.name"));
-//            }
-//        }
-//
-//        this.dataManager.set(ELEMENT_TYPE, Integer.valueOf(elementTypeId));
-//    }
-//
-//    @Nullable
-//    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
-//        IEntityLivingData ientitylivingdata = super.onInitialSpawn(difficulty, livingdata);
-//        this.setEquipmentBasedOnDifficulty(difficulty);
-//        int i = this.getRandomElementType();
-//
-//        if (ientitylivingdata instanceof EntityTMElementalGolem.ElementTypeData)
-//        {
-//            i = ((EntityTMElementalGolem.ElementTypeData)livingdata).typeData;
-//        }
-//        else
-//        {
-//            ientitylivingdata = new EntityTMElementalGolem.ElementTypeData(i);
-//        }
-//
-//        this.setElementType(i);
-//        this.setCombatTask();
-//        return ientitylivingdata;
-//    }
-//
-//    public static class ElementTypeData implements IEntityLivingData
-//    {
-//        public int typeData;
-//
-//        public ElementTypeData(int type)
-//        {
-//            this.typeData = type;
-//        }
-//    }
-//
-//    private int getRandomElementType()
-//    {
-//        int i = TTMRand.getRandomInteger(6, 1);
-//        return i;
-//    }
-//
-//    @Override
-//    public double getAttackDamage() {
-//        return 15;
-//    }
-//
-//    @Override
-//    public double getArmorStrength() {
-//        return 20;
-//    }
-//
-//    @Override
-//    public double getHealthLevel() {
-//        return 100;
-//    }
-//
-//    @Override
-//    protected SoundEvent getDeathSound()
-//    {
-//        return SoundInit.soundDeathGolem;
-//    }
-//
-//    @Override
-//    protected void playStepSound(BlockPos pos, Block blockIn)
-//    {
-//        this.playSound(SoundInit.soundStepTroll, 0.25F, 1.0F);
-//    }
-//
-//    @Override
-//    public void writeEntityToNBT(NBTTagCompound compound)
-//    {
-//        super.writeEntityToNBT(compound);
-//        compound.setInteger("ElementType", this.getElementType());
-//    }
-//
-//    @Override
-//    public void readEntityFromNBT(NBTTagCompound compound)
-//    {
-//        super.readEntityFromNBT(compound);
-//        this.setElementType(compound.getInteger("ElementType"));
-//    }
-//
-//    public void setMob(LivingEntity mob) {
-//        this.mob = mob;
-//    }
-//
-//    @Override
-//    public boolean getCanSpawnHere() {
-//        boolean nearMaterial = false;
-//        int i = (int) Math.floor(posX);
-//        int j = (int) Math.floor(posY);
-//        int k = (int) Math.floor(posZ);
-//        int willSpawn = TTMSpawnEvent.spawnChance();
-//        BlockPos blockpos = new BlockPos(i, j, k);
-//        Block block = this.world.getBlockState(blockpos.down()).getBlock();
-//
-//        if (getElementType() == 1)
-//        {
-//            if(this.posY > 145.0D && this.world.canSeeSky(new BlockPos(this))) {
-//                if (willSpawn <= 10) {
-//                    nearMaterial = true;
-//                }
-//            }
-//            return super.getCanSpawnHere() && nearMaterial;
-//        }
-//        else if (getElementType() == 2)
-//        {
-//            for (int i1 = i - 16; i1 <= i + 16; i1++) {
-//                for (int j1 = j - 6; j1 <= j + 6; j1++) {
-//                    for (int k1 = k - 16; k1 <= k + 16; k1++) {
-//                        BlockPos pos = new BlockPos(i1, j1, k1);
-//                        IBlockState iblockstate = world.getBlockState(blockpos);
-//
-//                        if (iblockstate.getValue(BlockDirt.VARIANT) == BlockDirt.DirtType.PODZOL && this.world.canSeeSky(new BlockPos(this)) && this.posY > 36.0D) {
-//                            if (willSpawn <= 10) {
-//                                nearMaterial = true;
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//            return super.getCanSpawnHere() && nearMaterial;
-//        }
-//        else if (getElementType() == 3)
-//        {
-//            for (int i1 = i - 16; i1 <= i + 16; i1++) {
-//                for (int j1 = j - 6; j1 <= j + 6; j1++) {
-//                    for (int k1 = k - 16; k1 <= k + 16; k1++) {
-//                        BlockPos pos = new BlockPos(i1, j1, k1);
-//                        if (world.getBlockState(pos).getMaterial() == Material.LAVA && this.world.canSeeSky(new BlockPos(this)) && this.posY > 36.0D) {
-//                            if (willSpawn <= 10) {
-//                                nearMaterial = true;
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//            return super.getCanSpawnHere() && nearMaterial;
-//        }
-//        else if (getElementType() == 4)
-//        {
-//            for (int i1 = i - 16; i1 <= i + 16; i1++) {
-//                for (int j1 = j - 6; j1 <= j + 6; j1++) {
-//                    for (int k1 = k - 16; k1 <= k + 16; k1++) {
-//                        BlockPos pos = new BlockPos(i1, j1, k1);
-//                        if (world.getBlockState(pos).getMaterial() == Material.WATER && this.world.canSeeSky(new BlockPos(this)) && this.posY > 36.0D) {
-//                            if (willSpawn <= 10) {
-//                                nearMaterial = true;
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//            return super.getCanSpawnHere() && nearMaterial;
-//        }
-//        else
-//        {
-//            if(this.posY > 36.0D && this.world.canSeeSky(new BlockPos(this))) {
-//                if (willSpawn <= 10) {
-//                    nearMaterial = true;
-//                }
-//            }
-//            return super.getCanSpawnHere() && nearMaterial;
-//        }
-//    }
-//
-//    @Override
-//    @Nullable
-//    protected ResourceLocation getLootTable() {
-//        if (getElementType() == 1){
-//            return LootInit.GOLEM_STONE_AIR;
-//        }
-//        else if (getElementType() == 2){
-//            return LootInit.GOLEM_STONE_EARTH;
-//        }
-//        else if (getElementType() == 3){
-//            return LootInit.GOLEM_STONE_FIRE;
-//        }
-//        else if (getElementType() == 4){
-//            return LootInit.GOLEM_STONE_WATER;
-//        }
-//        else {
-//            return LootInit.GOLEM_STONE;
-//        }
-//    }
 }

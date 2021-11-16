@@ -160,7 +160,6 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
                             goblinentity.finalizeSpawn(serverworld, this.level.getCurrentDifficultyAt(goblinentity.blockPosition()), SpawnReason.REINFORCEMENT, (ILivingEntityData)null, (CompoundNBT)null);
                             serverworld.addFreshEntityWithPassengers(goblinentity);
                             this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).addPermanentModifier(new AttributeModifier("Goblin reinforcement caller charge", (double)-0.05F, AttributeModifier.Operation.ADDITION));
-                            goblinentity.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).addPermanentModifier(new AttributeModifier("Goblin reinforcement callee charge", (double)-0.05F, AttributeModifier.Operation.ADDITION));
                             break;
                         }
                     }

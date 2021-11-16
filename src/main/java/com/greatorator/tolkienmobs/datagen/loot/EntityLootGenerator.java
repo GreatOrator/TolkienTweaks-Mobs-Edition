@@ -1020,6 +1020,40 @@ public class EntityLootGenerator extends EntityLootTables {
                                         .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))
                                         .apply(Smelt.smelted().when(EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE))))
                                 .when(KilledByPlayer.killedByPlayer())));
+        add(EntityGenerator.ENTITY_TTM_MITHRILGOLEM.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.ITEM_COIN_MITHRIL.get())
+                                        .apply(SetCount.setCount(RandomValueRange.between(0.0F, 2.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer()))
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.INGOT_MITHRIL.get())
+                                        .apply(SetCount.setCount(RandomValueRange.between(3.0F, 5.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer()))
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.GOLEM_STONE_SUMMON.get())
+                                        .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer())));
+        add(EntityGenerator.ENTITY_TTM_MORGULIRONGOLEM.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.ITEM_COIN_MITHRIL.get())
+                                        .apply(SetCount.setCount(RandomValueRange.between(0.0F, 2.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer()))
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.INGOT_MORGULIRON.get())
+                                        .apply(SetCount.setCount(RandomValueRange.between(3.0F, 5.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer())));
     }
 
     public LootTable.Builder noLoot() {

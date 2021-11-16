@@ -299,9 +299,14 @@ public class ModelTTMElementalGolem<T extends MonsterEntity> extends SegmentedMo
         this.GolemUpperLegL.yRot = 0.0F;
     }
 
-    public void prepareMobModel(EntityTTMElementalGolem entityIn, float p_212843_2_, float p_212843_3_, float p_212843_4_) {
+    public void prepareMobModel(EntityTTMElementalGolem entityIn, float f1, float f2, float f3) {
         int lvt_5_1_ = entityIn.getAttackAnimationTick();
-            this.arm0.xRot = -2.0F + 1.5F * MathHelper.triangleWave((float)lvt_5_1_ - p_212843_4_, 10.0F);
-            this.arm1.xRot = -2.0F + 1.5F * MathHelper.triangleWave((float)lvt_5_1_ - p_212843_4_, 10.0F);
-    }
+        if (lvt_5_1_ > 0) {
+            this.arm0.xRot = -2.0F + 1.5F * MathHelper.triangleWave((float)lvt_5_1_ - f3, 10.0F);
+            this.arm1.xRot = -2.0F + 1.5F * MathHelper.triangleWave((float)lvt_5_1_ - f3, 10.0F);
+        } else {
+                this.arm0.xRot = (-0.2F + 1.5F * MathHelper.triangleWave(f1, 13.0F)) * f2;
+                this.arm1.xRot = (-0.2F - 1.5F * MathHelper.triangleWave(f1, 13.0F)) * f2;
+            }
+        }
 }
