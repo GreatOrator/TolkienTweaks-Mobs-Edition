@@ -47,7 +47,7 @@ public class TTMDarkTowerStructure extends Structure<NoFeatureConfig> {
     }
 
     private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of(
-            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_NAZGUL.get(), 10, 1, 1),
+            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_WITCHKING.get(), 10, 1, 1),
             new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_NAZGUL.get(), 80, 1, 1),
             new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_NAZGULSTEED.get(), 100, 1, 1)
     );

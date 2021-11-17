@@ -50,7 +50,6 @@ import java.util.Map;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttackMob {
-
     private final ServerBossInfo bossInfo = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(), BossInfo.Color.GREEN, BossInfo.Overlay.PROGRESS)).setDarkenScreen(true);
     private static final DataParameter<Integer> GOBLINKING_TYPE = EntityDataManager.defineId(EntityTTMGoblinKing.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
@@ -165,7 +164,6 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
                     }
                 }
             }
-
             return true;
         }
     }

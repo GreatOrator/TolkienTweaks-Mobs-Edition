@@ -40,6 +40,9 @@
     "tolkienmobs:entityttmnazgulsteed_spawn_egg",
     "tolkienmobs:entityttmmithrilgolem_spawn_egg",
     "tolkienmobs:entityttmmorgulirongolem_spawn_egg",
-    "tolkienmobs:entityttmdesertdweller_spawn_egg"
+    "tolkienmobs:entityttmdesertdweller_spawn_egg",
+    "tolkienmobs:entityttmwitchking_spawn_egg",
+    "tolkienmobs:entityttmshelob_spawn_egg",
+    "tolkienmobs:entityttmbalrog_spawn_egg"
   ]
 }

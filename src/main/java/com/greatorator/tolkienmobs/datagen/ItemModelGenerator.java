@@ -290,6 +290,9 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(EntityGenerator.EGG_TTMGOBLINKING.get());
         eggItem(EntityGenerator.EGG_TTMMITHRILGOLEM.get());
         eggItem(EntityGenerator.EGG_TTMMORGULIRONGOLEM.get());
+        eggItem(EntityGenerator.EGG_TTMWITCHKING.get());
+        eggItem(EntityGenerator.EGG_TTMSHELOB.get());
+        eggItem(EntityGenerator.EGG_TTMBALROG.get());
 
             // Passive
         eggItem(EntityGenerator.EGG_TTMAUROCH.get());

@@ -5,9 +5,7 @@ import com.greatorator.tolkienmobs.entity.ambient.*;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.ammo.EntityGaladhrimArrow;
-import com.greatorator.tolkienmobs.entity.boss.EntityTTMGoblinKing;
-import com.greatorator.tolkienmobs.entity.boss.EntityTTMMithrilGolem;
-import com.greatorator.tolkienmobs.entity.boss.EntityTTMMorgulIronGolem;
+import com.greatorator.tolkienmobs.entity.boss.*;
 import com.greatorator.tolkienmobs.entity.merchant.*;
 import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.entity.passive.EntityTTMAuroch;
@@ -117,6 +115,12 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<EntityTTMMithrilGolem>> ENTITY_TTM_MITHRILGOLEM = ENTITY.register("entityttmmithrilgolem", () -> entityTTMMithrilGolem);
     private static final EntityType<EntityTTMMorgulIronGolem> entityTTMMorgulIronGolem = buildEntity("entityttmmorgulirongolem", EntityTTMMorgulIronGolem::new, EntityClassification.MONSTER, 1.8F, 3.1F);
     public static final RegistryObject<EntityType<EntityTTMMorgulIronGolem>> ENTITY_TTM_MORGULIRONGOLEM = ENTITY.register("entityttmmorgulirongolem", () -> entityTTMMorgulIronGolem);
+    private static final EntityType<EntityTTMWitchKing> entityTTMWitchKing = buildEntity("entityttmwitchking", EntityTTMWitchKing::new, EntityClassification.MONSTER, 1.3F, 2.2F);
+    public static final RegistryObject<EntityType<EntityTTMWitchKing>> ENTITY_TTM_WITCHKING = ENTITY.register("entityttmwitchking", () -> entityTTMWitchKing);
+    private static final EntityType<EntityTTMShelob> entityTTMShelob = buildEntity("entityttmshelob", EntityTTMShelob::new, EntityClassification.MONSTER, 2.3F, 1.1F);
+    public static final RegistryObject<EntityType<EntityTTMShelob>> ENTITY_TTM_SHELOB = ENTITY.register("entityttmshelob", () -> entityTTMShelob);
+    private static final EntityType<EntityTTMBalrog> entityTTMBalrog = buildFireEntity("entityttmbalrog", EntityTTMBalrog::new, EntityClassification.MONSTER, 2.3F, 3.5F);
+    public static final RegistryObject<EntityType<EntityTTMBalrog>> ENTITY_TTM_BALROG = ENTITY.register("entityttmbalrog", () -> entityTTMBalrog);
 
     // Passive
     private static final EntityType<EntityTTMAuroch> entityTTMAuroch = buildEntity("entityttmauroch", EntityTTMAuroch::new, EntityClassification.CREATURE, 1.9F, 1.4F);
@@ -242,6 +246,9 @@ public class EntityGenerator {
         event.put(ENTITY_TTM_GOBLINKING.get(), EntityTTMGoblinKing.registerAttributes().build());
         event.put(ENTITY_TTM_MITHRILGOLEM.get(), EntityTTMMithrilGolem.registerAttributes().build());
         event.put(ENTITY_TTM_MORGULIRONGOLEM.get(), EntityTTMMorgulIronGolem.registerAttributes().build());
+        event.put(ENTITY_TTM_WITCHKING.get(), EntityTTMWitchKing.registerAttributes().build());
+        event.put(ENTITY_TTM_SHELOB.get(), EntityTTMShelob.registerAttributes().build());
+        event.put(ENTITY_TTM_BALROG.get(), EntityTTMBalrog.registerAttributes().build());
 
         // Passive
         event.put(ENTITY_TTM_AUROCH.get(), EntityTTMAuroch.registerAttributes().build());
@@ -299,6 +306,9 @@ public class EntityGenerator {
     public static final RegistryObject<Item> EGG_TTMGOBLINKING = createSpawnEgg("entityttmgoblinking", entityTTMGoblinKing, 11025577, 2301661);
     public static final RegistryObject<Item> EGG_TTMMITHRILGOLEM = createSpawnEgg("entityttmmithrilgolem", entityTTMMithrilGolem, 11025577, 5600397);
     public static final RegistryObject<Item> EGG_TTMMORGULIRONGOLEM = createSpawnEgg("entityttmmorgulirongolem", entityTTMMorgulIronGolem, 11025577, 14289362);
+    public static final RegistryObject<Item> EGG_TTMWITCHKING = createSpawnEgg("entityttmwitchking", entityTTMWitchKing, 11025577, 14088652);
+    public static final RegistryObject<Item> EGG_TTMSHELOB = createSpawnEgg("entityttmshelob", entityTTMShelob, 11025577, 9467561);
+    public static final RegistryObject<Item> EGG_TTMBALROG = createSpawnEgg("entityttmbalrog", entityTTMBalrog, 11025577, 9226665);
 
     // Passive
     public static final RegistryObject<Item> EGG_TTMAUROCH = createSpawnEgg("entityttmauroch", entityTTMAuroch, 4751910, 2301661);
@@ -318,6 +328,9 @@ public class EntityGenerator {
 
     private static<T extends Entity> EntityType<T> buildEntity(String name, EntityType.IFactory<T> factory, EntityClassification classification, float size1, float size2) {
         return makeBuilder(factory, classification).sized(size1, size2).build(name);
+    }
+    private static<T extends Entity> EntityType<T> buildFireEntity(String name, EntityType.IFactory<T> factory, EntityClassification classification, float size1, float size2) {
+        return makeBuilder(factory, classification).fireImmune().sized(size1, size2).build(name);
     }
     private static<T extends Entity> EntityType<T> buildEntity(String name, EntityType.IFactory<T> factory, EntityClassification classification) {
         return makeBuilder(factory, classification).build(name);
