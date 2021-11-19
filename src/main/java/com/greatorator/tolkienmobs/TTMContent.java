@@ -131,6 +131,10 @@ public class TTMContent {
     public static RegistryObject<FenceBlock> FENCE_MIRKWOOD = BLOCKS.register("fence_mirkwood", () -> new FenceBlock(AbstractBlock.Properties.of(Material.WOOD, PLANKS_MIRKWOOD.get().defaultMaterialColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static RegistryObject<FenceBlock> FENCE_CULUMALDA = BLOCKS.register("fence_culumalda", () -> new FenceBlock(AbstractBlock.Properties.of(Material.WOOD, PLANKS_CULUMALDA.get().defaultMaterialColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static RegistryObject<FenceBlock> FENCE_LEBETHRON = BLOCKS.register("fence_lebethron", () -> new FenceBlock(AbstractBlock.Properties.of(Material.WOOD, PLANKS_LEBETHRON.get().defaultMaterialColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<TrapDoorBlock> TRAPDOOR_MALLORN = BLOCKS.register("trapdoor_mallorn", () -> new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TTMContent::never)));
+    public static RegistryObject<TrapDoorBlock> TRAPDOOR_MIRKWOOD = BLOCKS.register("trapdoor_mirkwood", () -> new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TTMContent::never)));
+    public static RegistryObject<TrapDoorBlock> TRAPDOOR_CULUMALDA = BLOCKS.register("trapdoor_culumalda", () -> new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TTMContent::never)));
+    public static RegistryObject<TrapDoorBlock> TRAPDOOR_LEBETHRON = BLOCKS.register("trapdoor_lebethron", () -> new TrapDoorBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TTMContent::never)));
     public static RegistryObject<TorchBlock> TORCH_MALLORN = BLOCKS.register("torch_mallorn", () -> new TorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
     }).sound(SoundType.WOOD), ParticleTypes.SOUL_FIRE_FLAME));
@@ -248,6 +252,10 @@ public class TTMContent {
     public static RegistryObject<Item> FENCE_MIRKWOOD_ITEM = ITEMS.register("fence_mirkwood", () -> new ItemBlockBCore(FENCE_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> FENCE_CULUMALDA_ITEM = ITEMS.register("fence_culumalda", () -> new ItemBlockBCore(FENCE_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> FENCE_LEBETHRON_ITEM = ITEMS.register("fence_lebethron", () -> new ItemBlockBCore(FENCE_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> TRAPDOOR_MALLORN_ITEM = ITEMS.register("trapdoor_mallorn", () -> new ItemBlockBCore(TRAPDOOR_MALLORN.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> TRAPDOOR_MIRKWOOD_ITEM = ITEMS.register("trapdoor_mirkwood", () -> new ItemBlockBCore(TRAPDOOR_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> TRAPDOOR_CULUMALDA_ITEM = ITEMS.register("trapdoor_culumalda", () -> new ItemBlockBCore(TRAPDOOR_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> TRAPDOOR_LEBETHRON_ITEM = ITEMS.register("trapdoor_lebethron", () -> new ItemBlockBCore(TRAPDOOR_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> TORCH_MALLORN_ITEM = ITEMS.register("torch_mallorn", () -> new WallOrFloorItem(TORCH_MALLORN.get(), WALL_TORCH_MALLORN.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> TORCH_MIRKWOOD_ITEM = ITEMS.register("torch_mirkwood", () -> new WallOrFloorItem(TORCH_MIRKWOOD.get(), WALL_TORCH_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> TORCH_CULUMALDA_ITEM = ITEMS.register("torch_culumalda", () -> new WallOrFloorItem(TORCH_CULUMALDA.get(), WALL_TORCH_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
@@ -457,6 +465,10 @@ public class TTMContent {
 
     private static Boolean allowsSpawnOnLeaves(BlockState state, IBlockReader reader, BlockPos pos, EntityType<?> entity) {
         return entity == EntityType.OCELOT || entity == EntityType.PARROT;
+    }
+
+    private static boolean never(BlockState blockState, IBlockReader iBlockReader, BlockPos blockPos, EntityType<?> entityType) {
+        return false;
     }
 
     private static LeavesBlock createLeavesBlock() {

@@ -93,6 +93,10 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(TTMContent.MITHRIL_BARS.get(), cutout);
         RenderTypeLookup.setRenderLayer(TTMContent.MORGULIRON_BARS.get(), cutout);
         RenderTypeLookup.setRenderLayer(TTMContent.DOOR_MORGULIRON.get(), cutout);
+        RenderTypeLookup.setRenderLayer(TTMContent.TRAPDOOR_MALLORN.get(), cutout);
+        RenderTypeLookup.setRenderLayer(TTMContent.TRAPDOOR_MIRKWOOD.get(), cutout);
+        RenderTypeLookup.setRenderLayer(TTMContent.TRAPDOOR_CULUMALDA.get(), cutout);
+        RenderTypeLookup.setRenderLayer(TTMContent.TRAPDOOR_LEBETHRON.get(), cutout);
         RenderTypeLookup.setRenderLayer(TTMContent.TORCH_MALLORN.get(), cutout);
         RenderTypeLookup.setRenderLayer(TTMContent.TORCH_MIRKWOOD.get(), cutout);
         RenderTypeLookup.setRenderLayer(TTMContent.TORCH_CULUMALDA.get(), cutout);
@@ -157,6 +161,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_WITCHKING.get(), RenderTTMWitchKing::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_SHELOB.get(), RenderTTMShelob::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_BALROG.get(), RenderTTMBalrog::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_WATCHER.get(), RenderTTMWatcher::new);
 
         // Passive
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_AUROCH.get(), RenderTTMAuroch::new);

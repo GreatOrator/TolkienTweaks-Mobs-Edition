@@ -1,19 +1,32 @@
-//package com.greatorator.tolkienmobs.client.render.entity.boss;
+package com.greatorator.tolkienmobs.entity.boss.render;
+
+import com.greatorator.tolkienmobs.entity.boss.EntityTTMWatcher;
+import com.greatorator.tolkienmobs.entity.boss.model.ModelTTMWatcher;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.util.ResourceLocation;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+
+public class RenderTTMWatcher extends MobRenderer<EntityTTMWatcher, ModelTTMWatcher<EntityTTMWatcher>> {
+    private final ResourceLocation mobTexture = new ResourceLocation(MODID + ":textures/entity/tmwatcher.png");
+
+    public RenderTTMWatcher(EntityRendererManager renderManagerIn) {
+        super(renderManagerIn, new ModelTTMWatcher<>(), 1.0F);
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(EntityTTMWatcher entity) {
+        return mobTexture;
+    }
+
+    @Override
+    protected void scale(EntityTTMWatcher entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
+        super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
+    }
 //
-//import com.greatorator.tolkienmobs.TolkienMobs;
-//import com.greatorator.tolkienmobs.client.render.model.boss.ModelWatcher;
-//import com.greatorator.tolkienmobs.entity.boss.EntityTMWatcher;
-//import net.minecraft.client.renderer.GlStateManager;
-//import net.minecraft.client.renderer.entity.Render;
-//import net.minecraft.client.renderer.entity.RenderLiving;
-//import net.minecraft.client.renderer.entity.RenderManager;
-//import net.minecraft.util.ResourceLocation;
-//import net.minecraftforge.fml.client.registry.IRenderFactory;
-//
-//import javax.annotation.Nonnull;
-//import javax.annotation.Nullable;
-//
-//public class RenderWatcher extends RenderLiving<EntityTMWatcher> {
+//    extends RenderLiving<EntityTMWatcher> {
 //    private static final ResourceLocation GREEN = new ResourceLocation(TolkienMobs.MODID + ":textures/entity/tmwatcher.png");
 //
 //    public static final Factory FACTORY = new Factory();
@@ -52,4 +65,4 @@
 //    protected void preRenderCallback(EntityTMWatcher LivingEntityIn, float partialTickTime) {
 //        GlStateManager.scale(scale, scale, scale);
 //    }
-//}
+}

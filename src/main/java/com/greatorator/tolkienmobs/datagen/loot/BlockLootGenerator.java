@@ -80,6 +80,10 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.FENCE_MIRKWOOD.get());
         dropSelf(TTMContent.FENCE_CULUMALDA.get());
         dropSelf(TTMContent.FENCE_LEBETHRON.get());
+        dropSelf(TTMContent.TRAPDOOR_MALLORN.get());
+        dropSelf(TTMContent.TRAPDOOR_MIRKWOOD.get());
+        dropSelf(TTMContent.TRAPDOOR_CULUMALDA.get());
+        dropSelf(TTMContent.TRAPDOOR_LEBETHRON.get());
         dropSelf(TTMContent.TORCH_MALLORN.get());
         dropSelf(TTMContent.TORCH_MIRKWOOD.get());
         dropSelf(TTMContent.TORCH_CULUMALDA.get());

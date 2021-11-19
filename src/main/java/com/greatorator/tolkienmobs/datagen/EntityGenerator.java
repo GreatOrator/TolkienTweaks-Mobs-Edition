@@ -121,6 +121,8 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<EntityTTMShelob>> ENTITY_TTM_SHELOB = ENTITY.register("entityttmshelob", () -> entityTTMShelob);
     private static final EntityType<EntityTTMBalrog> entityTTMBalrog = buildFireEntity("entityttmbalrog", EntityTTMBalrog::new, EntityClassification.MONSTER, 2.3F, 3.5F);
     public static final RegistryObject<EntityType<EntityTTMBalrog>> ENTITY_TTM_BALROG = ENTITY.register("entityttmbalrog", () -> entityTTMBalrog);
+    private static final EntityType<EntityTTMWatcher> entityTTMWatcher = buildEntity("entityttmwatcher", EntityTTMWatcher::new, EntityClassification.WATER_CREATURE, 2.3F, 3.5F);
+    public static final RegistryObject<EntityType<EntityTTMWatcher>> ENTITY_TTM_WATCHER = ENTITY.register("entityttmwatcher", () -> entityTTMWatcher);
 
     // Passive
     private static final EntityType<EntityTTMAuroch> entityTTMAuroch = buildEntity("entityttmauroch", EntityTTMAuroch::new, EntityClassification.CREATURE, 1.9F, 1.4F);
@@ -249,6 +251,7 @@ public class EntityGenerator {
         event.put(ENTITY_TTM_WITCHKING.get(), EntityTTMWitchKing.registerAttributes().build());
         event.put(ENTITY_TTM_SHELOB.get(), EntityTTMShelob.registerAttributes().build());
         event.put(ENTITY_TTM_BALROG.get(), EntityTTMBalrog.registerAttributes().build());
+        event.put(ENTITY_TTM_WATCHER.get(), EntityTTMWatcher.registerAttributes().build());
 
         // Passive
         event.put(ENTITY_TTM_AUROCH.get(), EntityTTMAuroch.registerAttributes().build());
@@ -309,6 +312,7 @@ public class EntityGenerator {
     public static final RegistryObject<Item> EGG_TTMWITCHKING = createSpawnEgg("entityttmwitchking", entityTTMWitchKing, 11025577, 14088652);
     public static final RegistryObject<Item> EGG_TTMSHELOB = createSpawnEgg("entityttmshelob", entityTTMShelob, 11025577, 9467561);
     public static final RegistryObject<Item> EGG_TTMBALROG = createSpawnEgg("entityttmbalrog", entityTTMBalrog, 11025577, 9226665);
+    public static final RegistryObject<Item> EGG_TTMWATCHER = createSpawnEgg("entityttmwatcher", entityTTMWatcher, 11025577, 7405383);
 
     // Passive
     public static final RegistryObject<Item> EGG_TTMAUROCH = createSpawnEgg("entityttmauroch", entityTTMAuroch, 4751910, 2301661);

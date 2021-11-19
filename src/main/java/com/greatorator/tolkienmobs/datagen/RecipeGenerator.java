@@ -81,6 +81,11 @@ public class RecipeGenerator extends RecipeProvider {
         fenceRecipe(TTMContent.FENCE_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), Items.STICK, consumer);
         fenceRecipe(TTMContent.FENCE_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), Items.STICK, consumer);
 
+        trapDoorRecipe(TTMContent.TRAPDOOR_MALLORN.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
+        trapDoorRecipe(TTMContent.TRAPDOOR_MIRKWOOD.get(), TTMContent.PLANKS_MIRKWOOD.get(), consumer);
+        trapDoorRecipe(TTMContent.TRAPDOOR_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
+        trapDoorRecipe(TTMContent.TRAPDOOR_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), consumer);
+
         torchRecipe(TTMContent.TORCH_MALLORN.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
         torchRecipe(TTMContent.TORCH_MIRKWOOD.get(), TTMContent.PLANKS_MIRKWOOD.get(), consumer);
         torchRecipe(TTMContent.TORCH_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
@@ -216,6 +221,15 @@ public class RecipeGenerator extends RecipeProvider {
 
     public static void slabRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(output, 6)
+                .pattern("###")
+                .define('#', input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer);
+    }
+
+    public static void trapDoorRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 4)
+                .pattern("###")
                 .pattern("###")
                 .define('#', input)
                 .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))

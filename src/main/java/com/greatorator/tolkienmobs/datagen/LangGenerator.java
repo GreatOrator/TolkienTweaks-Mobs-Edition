@@ -86,6 +86,10 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.FENCE_MIRKWOOD.get(), "Mirkwood Fence");
         add(TTMContent.FENCE_CULUMALDA.get(), "Culumalda Fence");
         add(TTMContent.FENCE_LEBETHRON.get(), "Lebethron Fence");
+        add(TTMContent.TRAPDOOR_MALLORN.get(), "Mallorn Trapdoor");
+        add(TTMContent.TRAPDOOR_MIRKWOOD.get(), "Mirkwood Trapdoor");
+        add(TTMContent.TRAPDOOR_CULUMALDA.get(), "Culumalda Trapdoor");
+        add(TTMContent.TRAPDOOR_LEBETHRON.get(), "Lebethron Trapdoor");
         add(TTMContent.TORCH_MALLORN.get(), "Mallorn Torch");
         add(TTMContent.TORCH_MIRKWOOD.get(), "Mirkwood Torch");
         add(TTMContent.TORCH_CULUMALDA.get(), "Culumalda Torch");
@@ -556,6 +560,8 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMSHELOB.get(), "Shelob Spawn Egg");
         add(EntityGenerator.ENTITY_TTM_BALROG.get(), "Balrog");
         add(EntityGenerator.EGG_TTMBALROG.get(), "Balrog Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_WATCHER.get(), "Watcher of the Water");
+        add(EntityGenerator.EGG_TTMWATCHER.get(), "Watcher Spawn Egg");
 
         // Passive
         add(EntityGenerator.ENTITY_TTM_AUROCH.get(), "Auroch");

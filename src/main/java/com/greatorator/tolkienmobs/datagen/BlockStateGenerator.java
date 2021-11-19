@@ -75,6 +75,10 @@ public class BlockStateGenerator extends BlockStateProvider {
         fenceBlock(TTMContent.FENCE_MIRKWOOD.get(), "fence_mirkwood", modLoc("block/planks_mirkwood"));
         fenceBlock(TTMContent.FENCE_CULUMALDA.get(), "fence_culumalda", modLoc("block/planks_culumalda"));
         fenceBlock(TTMContent.FENCE_LEBETHRON.get(), "fence_lebethron", modLoc("block/planks_lebethron"));
+        trapdoorBlock(TTMContent.TRAPDOOR_MALLORN.get(), "mallorn", modLoc("block/trapdoor_mallorn"), true);
+        trapdoorBlock(TTMContent.TRAPDOOR_MIRKWOOD.get(), "mirkwood", modLoc("block/trapdoor_mirkwood"), true);
+        trapdoorBlock(TTMContent.TRAPDOOR_CULUMALDA.get(), "culumalda", modLoc("block/trapdoor_culumalda"), true);
+        trapdoorBlock(TTMContent.TRAPDOOR_LEBETHRON.get(), "lebethron", modLoc("block/trapdoor_lebethron"), true);
         simpleBlock(TTMContent.TORCH_MALLORN.get(), models().getExistingFile(modLoc("block/torch_mallorn")));
         simpleBlock(TTMContent.TORCH_MIRKWOOD.get(), models().getExistingFile(modLoc("block/torch_mirkwood")));
         simpleBlock(TTMContent.TORCH_CULUMALDA.get(), models().getExistingFile(modLoc("block/torch_culumalda")));

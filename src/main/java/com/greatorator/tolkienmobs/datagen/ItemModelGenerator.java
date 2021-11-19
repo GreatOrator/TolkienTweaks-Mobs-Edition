@@ -69,6 +69,10 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.FENCE_MIRKWOOD.get(), modLoc("block/mirkwood_fence_inventory"));
         blockItem(TTMContent.FENCE_CULUMALDA.get(), modLoc("block/culumalda_fence_inventory"));
         blockItem(TTMContent.FENCE_LEBETHRON.get(), modLoc("block/lebethron_fence_inventory"));
+        blockItem(TTMContent.TRAPDOOR_MALLORN.get(), modLoc("block/mallorn_trapdoor_bottom"));
+        blockItem(TTMContent.TRAPDOOR_MIRKWOOD.get(), modLoc("block/mirkwood_trapdoor_bottom"));
+        blockItem(TTMContent.TRAPDOOR_CULUMALDA.get(), modLoc("block/culumalda_trapdoor_bottom"));
+        blockItem(TTMContent.TRAPDOOR_LEBETHRON.get(), modLoc("block/lebethron_trapdoor_bottom"));
         blockItem(TTMContent.TORCH_MALLORN.get(), modLoc("block/torch_mallorn"));
         blockItem(TTMContent.TORCH_MIRKWOOD.get(), modLoc("block/torch_mirkwood"));
         blockItem(TTMContent.TORCH_CULUMALDA.get(), modLoc("block/torch_culumalda"));
@@ -293,6 +297,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(EntityGenerator.EGG_TTMWITCHKING.get());
         eggItem(EntityGenerator.EGG_TTMSHELOB.get());
         eggItem(EntityGenerator.EGG_TTMBALROG.get());
+        eggItem(EntityGenerator.EGG_TTMWATCHER.get());
 
             // Passive
         eggItem(EntityGenerator.EGG_TTMAUROCH.get());
