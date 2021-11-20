@@ -37,6 +37,8 @@ public class TTMCurios extends TTMEquipMgr {
     public static final Tags.IOptionalNamedTag<Item> BELT_TAG = ItemTags.createOptional(new ResourceLocation("curios", "belt"));
     public static final Tags.IOptionalNamedTag<Item> CHARM_TAG = ItemTags.createOptional(new ResourceLocation("curios", "charm"));
     public static final Tags.IOptionalNamedTag<Item> RING_TAG = ItemTags.createOptional(new ResourceLocation("curios", "ring"));
+    public static final Tags.IOptionalNamedTag<Item> HAND_TAG = ItemTags.createOptional(new ResourceLocation("curios", "hands"));
+    public static final Tags.IOptionalNamedTag<Item> HEAD_TAG = ItemTags.createOptional(new ResourceLocation("curios", "head"));
     public static final Tags.IOptionalNamedTag<Item> BODY_TAG = ItemTags.createOptional(new ResourceLocation("curios", "body"));
 
     @CapabilityInject(ICurio.class)
@@ -109,5 +111,9 @@ public class TTMCurios extends TTMEquipMgr {
                 TTMContent.TRINKET_CHARM.get());
         builder.apply(RING_TAG).add(
                 TTMContent.TRINKET_RING.get());
+        builder.apply(HAND_TAG).add(
+                TTMContent.TRINKET_GLOVE.get());
+        builder.apply(HEAD_TAG).add(
+                TTMContent.TRINKET_HAT.get());
     }
 }

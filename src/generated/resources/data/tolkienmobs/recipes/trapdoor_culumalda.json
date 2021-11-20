@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:planks_culumalda"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:trapdoor_culumalda",
+    "count": 4
+  }
+}

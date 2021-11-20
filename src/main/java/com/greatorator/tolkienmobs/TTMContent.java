@@ -371,6 +371,8 @@ public class TTMContent {
     public static RegistryObject<Item> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
     public static RegistryObject<Item> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
     public static RegistryObject<Item> TRINKET_RING = ITEMS.register("trinket_ring", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_GLOVE = ITEMS.register("trinket_glove", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_HAT = ITEMS.register("trinket_hat", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
 
     //Projectiles
     public static RegistryObject<ArrowItem> GALADHRIM_ARROW = ITEMS.register("ammo_galadhrim_arrow", () -> new TTMArrow((new Item.Properties()).tab(toolsGroup)));

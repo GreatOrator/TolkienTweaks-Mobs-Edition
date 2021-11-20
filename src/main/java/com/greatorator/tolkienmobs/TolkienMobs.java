@@ -45,9 +45,21 @@ public class TolkienMobs {
         b. Hobbit Plow - Allowed for wide area "plowing" of farmland with right click instead of 1x1 (level made area wider)
     4. Entities
 	    a. Frog - not jumping when moving
-	    b. Thrush - Model adjustments and placed on ground instead of in the air
-	    c. Remaining Entities
-	        1.
+	    b. Remaining Entities
+	        1. Fell Beast
+			2. Gwaihir
+			3. Great Eagle
+			4. Watcher - Does not want to move around
+			5. Deep Claw - Texture Issue (near head, extra texture layer that shouldn't be there)
+			6. Tree Ent - not "breathing"
+			7. Duergar - not "breathing", not holding weapon
+			8. Troll - Texture issue (chest area, looks to be extra texture attached to neck), not "breathing"
+			9. Huron - not "breathing"
+			10. Mithril & Morgul Golems - not "breathing"
+			11. Witch King - Texture Issue (Noticeable on legs, "armor" skin not moving correctly)
+			12. Wandering Trader - Texture Issue (Noticeable on legs, "armor" skin not moving correctly)
+			13. Balrog - not "breathing", switching attacks based on range
+			14. Nazgul - Texture issue (Noticeable on legs, "armor" skin not moving correctly)
     5. Remaining blocks -
         a. Fireplace
         b. custom Signs

@@ -36,7 +36,7 @@ import java.util.Random;
 public class EntityTTMTreeEnt extends EntityTTMMonsters {
     private static final DataParameter<Integer> TREEENT_TYPE = EntityDataManager.defineId(EntityTTMTreeEnt.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
-        option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/treeent/treeent.png"));
+        option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/treeent/treeent1.png"));
         option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/treeent/treeent2.png"));
         option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/treeent/treeent3.png"));
         option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/treeent/treeent4.png"));

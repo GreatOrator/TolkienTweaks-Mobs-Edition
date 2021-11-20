@@ -434,6 +434,8 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.TRINKET_BELT.get(), "Magical Belt of ");
         add(TTMContent.TRINKET_CHARM.get(), "Magical Charm of ");
         add(TTMContent.TRINKET_RING.get(), "Magical Ring of ");
+        add(TTMContent.TRINKET_GLOVE.get(), "Magical Glove of ");
+        add(TTMContent.TRINKET_HAT.get(), "Magical Hat of ");
     }
 
     private void biomes(PrefixHelper helper) {

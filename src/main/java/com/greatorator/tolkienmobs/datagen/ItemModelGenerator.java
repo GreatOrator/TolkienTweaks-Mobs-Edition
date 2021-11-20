@@ -247,6 +247,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         trinketItem(TTMContent.TRINKET_BELT.get(), modLoc("item/trinket_belt"), modLoc("item/trinket_belt"));
         trinketItem(TTMContent.TRINKET_CHARM.get(), modLoc("item/trinket_charm"), modLoc("item/trinket_charm"));
         trinketItem(TTMContent.TRINKET_RING.get(), modLoc("item/trinket_ring"), modLoc("item/trinket_ring"));
+        trinketItem(TTMContent.TRINKET_GLOVE.get(), modLoc("item/trinket_glove"), modLoc("item/trinket_glove"));
+        trinketItem(TTMContent.TRINKET_HAT.get(), modLoc("item/trinket_hat"), modLoc("item/trinket_hat"));
 
         //region Fluids
         simpleItem(TTMContent.MITHRIL_BUCKET.get(), modLoc("item/mithril_bucket"));

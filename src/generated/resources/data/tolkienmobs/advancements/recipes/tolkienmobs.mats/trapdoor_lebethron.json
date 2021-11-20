@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:trapdoor_lebethron"
+    ]
+  },
+  "criteria": {
+    "has_planks_lebethron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tolkienmobs:planks_lebethron"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:trapdoor_lebethron"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_planks_lebethron",
+      "has_the_recipe"
+    ]
+  ]
+}
