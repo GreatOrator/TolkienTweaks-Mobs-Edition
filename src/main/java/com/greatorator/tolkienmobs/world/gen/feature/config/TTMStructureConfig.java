@@ -26,6 +26,7 @@ public class TTMStructureConfig {
     public static StructureFeature<?, ?> CONFIGURED_TTMSPIDER_TREE = StructureGenerator.TTMSPIDER_TREE.get().configured(IFeatureConfig.NONE);
     public static StructureFeature<?, ?> CONFIGURED_TTMWARG_PIT = StructureGenerator.TTMWARG_PIT.get().configured(IFeatureConfig.NONE);
     public static StructureFeature<?, ?> CONFIGURED_TTMMINOTAUR_MAZE = StructureGenerator.TTMMINOTAUR_MAZE.get().configured(IFeatureConfig.NONE);
+    public static StructureFeature<?, ?> CONFIGURED_TTMSPIDER_CAVE = StructureGenerator.TTMSPIDER_CAVE.get().configured(IFeatureConfig.NONE);
     public static StructureFeature<?, ?> CONFIGURED_TTMGOLLUM_CAVE = StructureGenerator.TTMGOLLUM_CAVE.get().configured(IFeatureConfig.NONE);
     public static StructureFeature<?, ?> CONFIGURED_TTMDARK_TOWER = StructureGenerator.TTMDARK_TOWER.get().configured(IFeatureConfig.NONE);
     public static StructureFeature<?, ?> CONFIGURED_TTMINN_DESERT = StructureGenerator.TTMINN_DESERT.get().configured(IFeatureConfig.NONE);
@@ -51,8 +52,9 @@ public class TTMStructureConfig {
         Registry.register(registry, new ResourceLocation(MODID, "configured_ttmspidertree"), CONFIGURED_TTMSPIDER_TREE);
         Registry.register(registry, new ResourceLocation(MODID, "configured_ttmwargpit"), CONFIGURED_TTMWARG_PIT);
         Registry.register(registry, new ResourceLocation(MODID, "maze/configured_ttmminotaurmaze"), CONFIGURED_TTMMINOTAUR_MAZE);
+        Registry.register(registry, new ResourceLocation(MODID, "cave/configured_ttmspider_cave_main"), CONFIGURED_TTMSPIDER_CAVE);
         Registry.register(registry, new ResourceLocation(MODID, "configured_ttmgollum_cave"), CONFIGURED_TTMGOLLUM_CAVE);
-        Registry.register(registry, new ResourceLocation(MODID, "configured_ttmgollum_cave"), CONFIGURED_TTMDARK_TOWER);
+        Registry.register(registry, new ResourceLocation(MODID, "configured_ttmdark_tower"), CONFIGURED_TTMDARK_TOWER);
         Registry.register(registry, new ResourceLocation(MODID, "configured_ttminn_desert"), CONFIGURED_TTMINN_DESERT);
 
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMHOUSE_ELVEN.get(), CONFIGURED_TTMHOUSE_ELVEN);
@@ -67,6 +69,7 @@ public class TTMStructureConfig {
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMSPIDER_TREE.get(), CONFIGURED_TTMSPIDER_TREE);
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMWARG_PIT.get(), CONFIGURED_TTMWARG_PIT);
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMMINOTAUR_MAZE.get(), CONFIGURED_TTMMINOTAUR_MAZE);
+        FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMSPIDER_CAVE.get(), CONFIGURED_TTMSPIDER_CAVE);
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMGOLLUM_CAVE.get(), CONFIGURED_TTMGOLLUM_CAVE);
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMDARK_TOWER.get(), CONFIGURED_TTMDARK_TOWER);
         FlatGenerationSettings.STRUCTURE_FEATURES.put(StructureGenerator.TTMINN_DESERT.get(), CONFIGURED_TTMINN_DESERT);

@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.EntityType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -31,14 +32,14 @@ import java.util.List;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class TTMWargPitStructure extends Structure<NoFeatureConfig> {
-    public TTMWargPitStructure(Codec<NoFeatureConfig> codec) {
+public class TTMSpiderCaveStructure extends Structure<NoFeatureConfig> {
+    public TTMSpiderCaveStructure(Codec<NoFeatureConfig> codec) {
         super(codec);
     }
 
     @Override
     public IStartFactory<NoFeatureConfig> getStartFactory() {
-        return TTMWargPitStructure.Start::new;
+        return TTMSpiderCaveStructure.Start::new;
     }
 
     @Override
@@ -47,9 +48,10 @@ public class TTMWargPitStructure extends Structure<NoFeatureConfig> {
     }
 
     private static final List<MobSpawnInfo.Spawners> STRUCTURE_MONSTERS = ImmutableList.of(
-            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_WARG.get(), 100, 4, 9),
-            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_MORDORORC.get(), 100, 4, 9),
-            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_URUKHAI.get(), 100, 4, 9)
+            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_SHELOB.get(), 1, 1, 1),
+            new MobSpawnInfo.Spawners(EntityType.CAVE_SPIDER, 50, 2, 6),
+            new MobSpawnInfo.Spawners(EntityType.SPIDER, 50, 2, 6),
+            new MobSpawnInfo.Spawners(EntityGenerator.ENTITY_TTM_MIMICCHEST.get(), 1, 1, 1)
     );
 
     @Override
@@ -92,11 +94,12 @@ public class TTMWargPitStructure extends Structure<NoFeatureConfig> {
             int x = chunkX * 16;
             int z = chunkZ * 16;
             int landHeight = chunkGenerator.getFirstFreeHeight(x, z, Heightmap.Type.WORLD_SURFACE_WG);
-            BlockPos centerPos = new BlockPos(x, landHeight - 8, z);
+            BlockPos centerPos = new BlockPos(x, landHeight - 20, z);
 
             JigsawManager.addPieces(
                     dynamicRegistryManager,
-                    new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(new ResourceLocation(MODID, "ttmwargpit")), 10),
+                    new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY)
+                            .get(new ResourceLocation(MODID, "cave/ttmspider_cave_main")), 10),
                     AbstractVillagePiece::new,
                     chunkGenerator,
                     templateManagerIn,

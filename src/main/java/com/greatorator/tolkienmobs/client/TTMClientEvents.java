@@ -65,8 +65,6 @@ public class TTMClientEvents {
             boolean extraHealthListed = playersWithExtraHealth.contains(entity.getUUID());
             boolean hasExtraHealth = level > 0;
 
-            //TODO this will be broken now because level is not accounted for
-
             if (hasExtraHealth && entity.getAbsorptionAmount() == 0 || !extraHealthListed) {
                 playersWithExtraHealth.add(entity.getUUID());
                 entity.setAbsorptionAmount(entity.getAbsorptionAmount() + (absorb));

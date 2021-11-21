@@ -124,6 +124,7 @@ public class TTMServerEvents {
             tempMap.putIfAbsent(StructureGenerator.TTMGOLLUM_CAVE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMGOLLUM_CAVE.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMDARK_TOWER.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMDARK_TOWER.get()));
             tempMap.putIfAbsent(StructureGenerator.TTMINN_DESERT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMINN_DESERT.get()));
+            tempMap.putIfAbsent(StructureGenerator.TTMSPIDER_CAVE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMSPIDER_CAVE.get()));
 
             serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
         }
@@ -151,7 +152,10 @@ public class TTMServerEvents {
 
             if(i<=25){
                 event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMDARK_TOWER);
-            }else {
+            }else if(i<=50){
+                event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMSPIDER_CAVE);
+
+            }else{
                 event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMWARG_PIT);
             }
         }
@@ -188,7 +192,7 @@ public class TTMServerEvents {
 
         /* Used to test for structure generation */
         if (event.getCategory() == Biome.Category.PLAINS) {
-//            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMINN_DESERT);
+//            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMWARG_PIT);
         }
     }
 }
