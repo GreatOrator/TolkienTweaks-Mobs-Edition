@@ -17,7 +17,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
-import net.minecraft.entity.monster.BlazeEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.TurtleEntity;
@@ -362,7 +361,7 @@ public class EntityTTMBalrog extends EntityTTMMonsters {
     }
 
     static {
-        DATA_FLAGS_ID = EntityDataManager.defineId(BlazeEntity.class, DataSerializers.BYTE);
+        DATA_FLAGS_ID = EntityDataManager.defineId(EntityTTMBalrog.class, DataSerializers.BYTE);
     }
 
     @Override

@@ -72,6 +72,8 @@ public class TolkienMobs {
         a. Fell Beast Fireball - rendering
 	    b. Boulder - rendering
 	    c. Galadhrim Arrow - rendering
+	8. World Type
+	    a. find out how to make biomes larger when generated
     10. Network Stuff
     */
 

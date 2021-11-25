@@ -74,6 +74,7 @@ public class TTMContent {
         ProfessionGenerator.POIT.register(modBus);
         LOGGER.info("Time to create the land...");
         BiomeGenerator.BIOMES.register(modBus);
+        BiomeGenerator.FORGE_WORLD_TYPES.register(modBus);
         StructureGenerator.STRUCTURES.register(modBus);
     }
 

@@ -454,6 +454,7 @@ public class LangGenerator extends LanguageProvider {
         helper.add("biome_firien", "Firien Wood");
         helper.add("biome_hithaeglir", "Misty Mountains");
         helper.add("biome_ironhills", "Iron Hills");
+        add("generator.tolkienmobs.arda", "Middle-earth");
     }
 
     private void merchants(PrefixHelper helper) {

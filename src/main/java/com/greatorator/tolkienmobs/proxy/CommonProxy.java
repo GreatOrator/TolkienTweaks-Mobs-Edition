@@ -48,6 +48,7 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::biomeModification);
 
         TTMTreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
+
         MinecraftForge.EVENT_BUS.addListener(TTMFeature::biomeLoading);
 
         modBus.addListener(EntityGenerator::registerAttributes);
