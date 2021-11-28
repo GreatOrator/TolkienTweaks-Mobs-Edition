@@ -35,12 +35,16 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TTMContent.BLOCK_MITHRIL.get());
         paneBlock(TTMContent.MITHRIL_BARS.get(), modLoc("block/mithril_bars"), modLoc("block/mithril_bars"));
         doorBlock(TTMContent.DOOR_MITHRIL.get(), "door_mithril", modLoc("block/door_mithril_bottom"), modLoc("block/door_mithril_top"));
+        trapdoorBlock(TTMContent.TRAPDOOR_MITHRIL.get(), "mithril", modLoc("block/trapdoor_mithril"), true);
+        simpleBlock(TTMContent.PRESSURE_PLATE_MITHRIL.get(), models().getExistingFile(modLoc("block/pressure_plate_mithril")));
         simpleBlock(TTMContent.ORE_MORGULIRON.get());
         simpleBlock(TTMContent.ORE_END_MORGULIRON.get());
         simpleBlock(TTMContent.ORE_NETHER_MORGULIRON.get());
         simpleBlock(TTMContent.BLOCK_MORGULIRON.get());
         paneBlock(TTMContent.MORGULIRON_BARS.get(), modLoc("block/morguliron_bars"), modLoc("block/morguliron_bars"));
         doorBlock(TTMContent.DOOR_MORGULIRON.get(), "door_morguliron", modLoc("block/door_morguliron_bottom"), modLoc("block/door_morguliron_top"));
+        trapdoorBlock(TTMContent.TRAPDOOR_MORGULIRON.get(), "morguliron", modLoc("block/trapdoor_morguliron"), true);
+        simpleBlock(TTMContent.PRESSURE_PLATE_MORGULIRON.get(), models().getExistingFile(modLoc("block/pressure_plate_morguliron")));
         simpleBlock(TTMContent.ORE_AMMOLITE.get());
         simpleBlock(TTMContent.ORE_END_AMMOLITE.get());
         simpleBlock(TTMContent.ORE_NETHER_AMMOLITE.get());
@@ -79,6 +83,10 @@ public class BlockStateGenerator extends BlockStateProvider {
         trapdoorBlock(TTMContent.TRAPDOOR_MIRKWOOD.get(), "mirkwood", modLoc("block/trapdoor_mirkwood"), true);
         trapdoorBlock(TTMContent.TRAPDOOR_CULUMALDA.get(), "culumalda", modLoc("block/trapdoor_culumalda"), true);
         trapdoorBlock(TTMContent.TRAPDOOR_LEBETHRON.get(), "lebethron", modLoc("block/trapdoor_lebethron"), true);
+        simpleBlock(TTMContent.PRESSURE_PLATE_MALLORN.get(), models().getExistingFile(modLoc("block/pressure_plate_mallorn")));
+        simpleBlock(TTMContent.PRESSURE_PLATE_MIRKWOOD.get(), models().getExistingFile(modLoc("block/pressure_plate_mirkwood")));
+        simpleBlock(TTMContent.PRESSURE_PLATE_CULUMALDA.get(), models().getExistingFile(modLoc("block/pressure_plate_culumalda")));
+        simpleBlock(TTMContent.PRESSURE_PLATE_LEBETHRON.get(), models().getExistingFile(modLoc("block/pressure_plate_lebethron")));
         simpleBlock(TTMContent.TORCH_MALLORN.get(), models().getExistingFile(modLoc("block/torch_mallorn")));
         simpleBlock(TTMContent.TORCH_MIRKWOOD.get(), models().getExistingFile(modLoc("block/torch_mirkwood")));
         simpleBlock(TTMContent.TORCH_CULUMALDA.get(), models().getExistingFile(modLoc("block/torch_culumalda")));

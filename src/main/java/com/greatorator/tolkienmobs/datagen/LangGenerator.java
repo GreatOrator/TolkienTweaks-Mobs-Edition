@@ -44,6 +44,8 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.BLOCK_MITHRIL.get(), "Mithril Block");
         add(TTMContent.MITHRIL_BARS.get(), "Mithril Bars");
         add(TTMContent.DOOR_MITHRIL.get(), "Mithril Door");
+        add(TTMContent.TRAPDOOR_MITHRIL.get(), "Mithril Trap Door");
+        add(TTMContent.PRESSURE_PLATE_MITHRIL.get(), "Mithril Pressure Plate");
         add(TTMContent.MITHRIL_BUCKET.get(), "Molten Mithril Bucket");
         add(TTMContent.ORE_MORGULIRON.get(), "Morgul Iron Ore");
         add(TTMContent.ORE_END_MORGULIRON.get(), "Ender Morgul Iron Ore");
@@ -51,6 +53,8 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.BLOCK_MORGULIRON.get(), "Morgul Iron Block");
         add(TTMContent.MORGULIRON_BARS.get(), "Morgul Iron Bars");
         add(TTMContent.DOOR_MORGULIRON.get(), "Morgul Iron Door");
+        add(TTMContent.TRAPDOOR_MORGULIRON.get(), "Morgul Iron Trap Door");
+        add(TTMContent.PRESSURE_PLATE_MORGULIRON.get(), "Morgul Iron Pressure Plate");
         add(TTMContent.MORGULIRON_BUCKET.get(), "Molten Morguliron Bucket");
         add(TTMContent.ORE_AMMOLITE.get(), "Ammolite Ore");
         add(TTMContent.ORE_END_AMMOLITE.get(), "Ender Ammolite Ore");
@@ -90,6 +94,10 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.TRAPDOOR_MIRKWOOD.get(), "Mirkwood Trapdoor");
         add(TTMContent.TRAPDOOR_CULUMALDA.get(), "Culumalda Trapdoor");
         add(TTMContent.TRAPDOOR_LEBETHRON.get(), "Lebethron Trapdoor");
+        add(TTMContent.PRESSURE_PLATE_MALLORN.get(), "Mallorn Pressure Plate");
+        add(TTMContent.PRESSURE_PLATE_MIRKWOOD.get(), "Mirkwood Pressure Plate");
+        add(TTMContent.PRESSURE_PLATE_CULUMALDA.get(), "Culumalda Pressure Plate");
+        add(TTMContent.PRESSURE_PLATE_LEBETHRON.get(), "Lebethron Pressure Plate");
         add(TTMContent.TORCH_MALLORN.get(), "Mallorn Torch");
         add(TTMContent.TORCH_MIRKWOOD.get(), "Mirkwood Torch");
         add(TTMContent.TORCH_CULUMALDA.get(), "Culumalda Torch");

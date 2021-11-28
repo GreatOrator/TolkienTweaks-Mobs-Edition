@@ -29,12 +29,16 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.BLOCK_MITHRIL.get());
         simpleItem(TTMContent.MITHRIL_BARS_ITEM.get());
         simpleItem(TTMContent.DOOR_MITHRIL_ITEM.get());
+        blockItem(TTMContent.TRAPDOOR_MITHRIL.get(), modLoc("block/mithril_trapdoor_bottom"));
+        blockItem(TTMContent.PRESSURE_PLATE_MITHRIL.get(), modLoc("block/pressure_plate_mithril"));
         blockItem(TTMContent.ORE_MORGULIRON.get());
         blockItem(TTMContent.ORE_END_MORGULIRON.get());
         blockItem(TTMContent.ORE_NETHER_MORGULIRON.get());
         blockItem(TTMContent.BLOCK_MORGULIRON.get());
         simpleItem(TTMContent.MORGULIRON_BARS_ITEM.get());
         simpleItem(TTMContent.DOOR_MORGULIRON_ITEM.get());
+        blockItem(TTMContent.TRAPDOOR_MORGULIRON.get(), modLoc("block/morguliron_trapdoor_bottom"));
+        blockItem(TTMContent.PRESSURE_PLATE_MORGULIRON.get(), modLoc("block/pressure_plate_morguliron"));
         blockItem(TTMContent.ORE_AMMOLITE.get());
         blockItem(TTMContent.ORE_END_AMMOLITE.get());
         blockItem(TTMContent.ORE_NETHER_AMMOLITE.get());
@@ -73,6 +77,10 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.TRAPDOOR_MIRKWOOD.get(), modLoc("block/mirkwood_trapdoor_bottom"));
         blockItem(TTMContent.TRAPDOOR_CULUMALDA.get(), modLoc("block/culumalda_trapdoor_bottom"));
         blockItem(TTMContent.TRAPDOOR_LEBETHRON.get(), modLoc("block/lebethron_trapdoor_bottom"));
+        blockItem(TTMContent.PRESSURE_PLATE_MALLORN.get(), modLoc("block/pressure_plate_mallorn"));
+        blockItem(TTMContent.PRESSURE_PLATE_MIRKWOOD.get(), modLoc("block/pressure_plate_mirkwood"));
+        blockItem(TTMContent.PRESSURE_PLATE_CULUMALDA.get(), modLoc("block/pressure_plate_culumalda"));
+        blockItem(TTMContent.PRESSURE_PLATE_LEBETHRON.get(), modLoc("block/pressure_plate_lebethron"));
         blockItem(TTMContent.TORCH_MALLORN.get(), modLoc("block/torch_mallorn"));
         blockItem(TTMContent.TORCH_MIRKWOOD.get(), modLoc("block/torch_mirkwood"));
         blockItem(TTMContent.TORCH_CULUMALDA.get(), modLoc("block/torch_culumalda"));

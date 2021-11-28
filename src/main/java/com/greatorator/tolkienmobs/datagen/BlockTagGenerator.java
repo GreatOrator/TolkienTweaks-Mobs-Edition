@@ -38,6 +38,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
         tag(TTMTags.blocks.TORCHES).add(TTMContent.TORCH_MALLORN.get(), TTMContent.TORCH_MIRKWOOD.get(), TTMContent.TORCH_CULUMALDA.get(), TTMContent.TORCH_LEBETHRON.get());
         tag(TTMTags.blocks.STAIRS).add(TTMContent.STAIRS_MALLORN.get(), TTMContent.STAIRS_MIRKWOOD.get(), TTMContent.STAIRS_CULUMALDA.get(), TTMContent.STAIRS_LEBETHRON.get());
         tag(BlockTags.STAIRS).addTag(TTMTags.blocks.STAIRS);
+        tag(TTMTags.blocks.PRESSURE_PLATE).add(TTMContent.PRESSURE_PLATE_MALLORN.get(), TTMContent.PRESSURE_PLATE_MIRKWOOD.get(), TTMContent.PRESSURE_PLATE_CULUMALDA.get(), TTMContent.PRESSURE_PLATE_LEBETHRON.get(), TTMContent.PRESSURE_PLATE_MITHRIL.get(), TTMContent.PRESSURE_PLATE_MORGULIRON.get());
+        tag(BlockTags.PRESSURE_PLATES).addTag(TTMTags.blocks.PRESSURE_PLATE);
         tag(TTMTags.blocks.SLABS).add(TTMContent.SLAB_MALLORN.get(), TTMContent.SLAB_MIRKWOOD.get(), TTMContent.SLAB_CULUMALDA.get(), TTMContent.SLAB_LEBETHRON.get());
         tag(TTMTags.blocks.LOGS).add(TTMContent.LOG_MALLORN.get(), TTMContent.LOG_MIRKWOOD.get(), TTMContent.LOG_CULUMALDA.get(), TTMContent.LOG_LEBETHRON.get(), TTMContent.LOG_DEADWOOD.get());
         tag(BlockTags.LOGS_THAT_BURN).addTag(TTMTags.blocks.LOGS);

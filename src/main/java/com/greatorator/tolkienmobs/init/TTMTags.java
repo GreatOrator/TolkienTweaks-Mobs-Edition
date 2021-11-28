@@ -35,6 +35,7 @@ public class TTMTags {
         public static final Tags.IOptionalNamedTag<Item> PLANKS = tag("planks");
         public static final Tags.IOptionalNamedTag<Item> TORCHES = tag("torches");
         public static final Tags.IOptionalNamedTag<Item> STAIRS = tag("stairs");
+        public static final Tags.IOptionalNamedTag<Item> PRESSURE_PLATE = tag("pressure_plates");
         public static final Tags.IOptionalNamedTag<Item> SLABS = tag("slabs");
         public static final Tags.IOptionalNamedTag<Item> LOGS = tag("logs");
         public static final Tags.IOptionalNamedTag<Item> FLOWERS = tag("flowers");
@@ -78,6 +79,7 @@ public class TTMTags {
         public static final Tags.IOptionalNamedTag<Block> TORCHES = tag("torches");
         public static final Tags.IOptionalNamedTag<Block> STAIRS = tag("stairs");
         public static final Tags.IOptionalNamedTag<Block> SLABS = tag("slabs");
+        public static final Tags.IOptionalNamedTag<Block> PRESSURE_PLATE = tag("pressure_plates");
         public static final Tags.IOptionalNamedTag<Block> LOGS = tag("logs");
         public static final Tags.IOptionalNamedTag<Block> DOORS_WOODEN = tag("doors/wooden");
         public static final Tags.IOptionalNamedTag<Block> DOORS_IRON = tag("doors/iron");

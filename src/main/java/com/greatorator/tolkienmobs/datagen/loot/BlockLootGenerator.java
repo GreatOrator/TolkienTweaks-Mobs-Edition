@@ -46,9 +46,13 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.BLOCK_MITHRIL.get());
         dropSelf(TTMContent.MITHRIL_BARS.get());
         dropSelf(TTMContent.DOOR_MITHRIL.get());
+        dropSelf(TTMContent.TRAPDOOR_MITHRIL.get());
+        dropSelf(TTMContent.PRESSURE_PLATE_MITHRIL.get());
         dropSelf(TTMContent.BLOCK_MORGULIRON.get());
         dropSelf(TTMContent.MORGULIRON_BARS.get());
         dropSelf(TTMContent.DOOR_MORGULIRON.get());
+        dropSelf(TTMContent.TRAPDOOR_MORGULIRON.get());
+        dropSelf(TTMContent.PRESSURE_PLATE_MORGULIRON.get());
 
         // Blocks - Wood & Foliage
         dropSelf(TTMContent.LOG_MALLORN.get());
@@ -84,6 +88,10 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.TRAPDOOR_MIRKWOOD.get());
         dropSelf(TTMContent.TRAPDOOR_CULUMALDA.get());
         dropSelf(TTMContent.TRAPDOOR_LEBETHRON.get());
+        dropSelf(TTMContent.PRESSURE_PLATE_MALLORN.get());
+        dropSelf(TTMContent.PRESSURE_PLATE_MIRKWOOD.get());
+        dropSelf(TTMContent.PRESSURE_PLATE_CULUMALDA.get());
+        dropSelf(TTMContent.PRESSURE_PLATE_LEBETHRON.get());
         dropSelf(TTMContent.TORCH_MALLORN.get());
         dropSelf(TTMContent.TORCH_MIRKWOOD.get());
         dropSelf(TTMContent.TORCH_CULUMALDA.get());

@@ -85,6 +85,15 @@ public class RecipeGenerator extends RecipeProvider {
         trapDoorRecipe(TTMContent.TRAPDOOR_MIRKWOOD.get(), TTMContent.PLANKS_MIRKWOOD.get(), consumer);
         trapDoorRecipe(TTMContent.TRAPDOOR_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
         trapDoorRecipe(TTMContent.TRAPDOOR_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), consumer);
+        metalTrapDoorRecipe(TTMContent.TRAPDOOR_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), consumer);
+        metalTrapDoorRecipe(TTMContent.TRAPDOOR_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
+
+        pressurePlateRecipe(TTMContent.PRESSURE_PLATE_MALLORN.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
+        pressurePlateRecipe(TTMContent.PRESSURE_PLATE_MIRKWOOD.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
+        pressurePlateRecipe(TTMContent.PRESSURE_PLATE_CULUMALDA.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
+        pressurePlateRecipe(TTMContent.PRESSURE_PLATE_LEBETHRON.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
+        pressurePlateRecipe(TTMContent.PRESSURE_PLATE_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), consumer);
+        pressurePlateRecipe(TTMContent.PRESSURE_PLATE_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
 
         torchRecipe(TTMContent.TORCH_MALLORN.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
         torchRecipe(TTMContent.TORCH_MIRKWOOD.get(), TTMContent.PLANKS_MIRKWOOD.get(), consumer);
@@ -231,6 +240,23 @@ public class RecipeGenerator extends RecipeProvider {
         ShapedRecipeBuilder.shaped(output, 4)
                 .pattern("###")
                 .pattern("###")
+                .define('#', input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer);
+    }
+
+    public static void metalTrapDoorRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 4)
+                .pattern("##")
+                .pattern("##")
+                .define('#', input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer);
+    }
+
+    public static void pressurePlateRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("##")
                 .define('#', input)
                 .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
                 .save(consumer);
