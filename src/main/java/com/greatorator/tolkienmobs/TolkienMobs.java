@@ -42,7 +42,6 @@ public class TolkienMobs {
     /*TODO List
     1. Enchantments Remaining
         a. Hobbit Harvest - Was supposed to be fortune for using the Hoe to harvest crops
-        b. Hobbit Plow - Allowed for wide area "plowing" of farmland with right click instead of 1x1 (level made area wider)
     2. Entities
 	    a. Frog - not jumping when moving
 	    b. Remaining Entities
