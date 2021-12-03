@@ -8,15 +8,17 @@ import com.greatorator.tolkienmobs.datagen.StructureGenerator;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMStructureConfig;
 import com.mojang.serialization.Codec;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -29,9 +31,11 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
@@ -43,7 +47,7 @@ import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 
 public class TTMServerEvents {
 
-    public static void livingUpdate (LivingEvent.LivingUpdateEvent living){
+    public static void balrogMark (LivingEvent.LivingUpdateEvent living){
         LivingEntity entity = living.getEntityLiving();
         BlockPos pos = entity.blockPosition();
         World worldIn = living.getEntity().level;
@@ -69,9 +73,36 @@ public class TTMServerEvents {
                     }
                 }
             }
-
         }
-        /*endregion*/
+    }
+
+    public static void hobbitPlow(BlockEvent.BlockToolInteractEvent event) {
+        PlayerEntity player = event.getPlayer();
+        World world = (World) event.getWorld();
+        BlockPos blockPos = event.getPos();
+        Block targetBlock = event.getWorld().getBlockState(blockPos).getBlock();
+        ItemStack holding = event.getHeldItemStack();
+        int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentGenerator.HOBBIT_PLOW.get(), holding);
+
+        if (event.getToolType().equals(ToolType.HOE)) {
+            if (targetBlock == Blocks.GRASS_BLOCK || targetBlock == Blocks.DIRT || targetBlock == Blocks.PODZOL) {
+                world.playSound(player, blockPos, SoundEvents.HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                if (!world.isClientSide() && !player.isCreative()) {
+                    player.getItemInHand(Hand.MAIN_HAND).hurtAndBreak((enchantmentLevel * 2) + 1, player, entity -> entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
+                }
+
+                for (int x = -enchantmentLevel; x <= enchantmentLevel; x++) {
+                    for (int z = -enchantmentLevel; z <= enchantmentLevel; z++) {
+                        BlockPos targetPos = new BlockPos(blockPos.getX() + x, blockPos.getY(), blockPos.getZ() + z);
+                        if (world.isEmptyBlock(targetPos.above())) {
+                            if (!world.isClientSide()) {
+                                world.setBlock(targetPos, Blocks.FARMLAND.defaultBlockState(), 11);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public static void onPlayerUpdate(TickEvent.PlayerTickEvent event){

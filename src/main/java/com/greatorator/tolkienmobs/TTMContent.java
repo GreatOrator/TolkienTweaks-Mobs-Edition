@@ -9,7 +9,6 @@ import com.greatorator.tolkienmobs.block.BlockTMHallowed;
 import com.greatorator.tolkienmobs.client.TTMParticles;
 import com.greatorator.tolkienmobs.datagen.*;
 import com.greatorator.tolkienmobs.handler.*;
-import com.greatorator.tolkienmobs.item.ItemTTMHoe;
 import com.greatorator.tolkienmobs.item.trinket.Trinket;
 import com.greatorator.tolkienmobs.world.trees.*;
 import net.minecraft.block.*;
@@ -370,7 +369,7 @@ public class TTMContent {
 
     // Equipment & Armor
     public static RegistryObject<AxeItem> AXE_MITHRIL = ITEMS.register("axe_mithril", () -> new AxeItem(TTMItemTier.MITHRIL, 8.0F, -1.5F, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<HoeItem> HOE_MITHRIL = ITEMS.register("hoe_mithril", () -> new ItemTTMHoe(TTMItemTier.MITHRIL, 1, 0.8F, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<HoeItem> HOE_MITHRIL = ITEMS.register("hoe_mithril", () -> new HoeItem(TTMItemTier.MITHRIL, 1, 0.8F, (new Item.Properties()).tab(toolsGroup)));
     public static RegistryObject<PickaxeItem> PICKAXE_MITHRIL = ITEMS.register("pickaxe_mithril", () -> new PickaxeItem(TTMItemTier.MITHRIL, 1, -1.0F, (new Item.Properties()).tab(toolsGroup)));
     public static RegistryObject<ShovelItem> SHOVEL_MITHRIL = ITEMS.register("shovel_mithril", () -> new ShovelItem(TTMItemTier.MITHRIL, 2.8F, -1.0F, (new Item.Properties()).tab(toolsGroup)));
     public static RegistryObject<SwordItem> SWORD_MITHRIL = ITEMS.register("sword_mithril", () -> new SwordItem(TTMItemTier.MITHRIL, 7, -1.0F, (new Item.Properties()).tab(toolsGroup)));

@@ -42,7 +42,8 @@ public class CommonProxy {
         TTMEquipMgr.initialize();
         TTMTags.init();
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-        MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::livingUpdate);
+        MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::balrogMark);
+        MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::hobbitPlow);
         MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::onPlayerUpdate);
         MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::addDimensionalSpacing);
         MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::biomeModification);
