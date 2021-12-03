@@ -1,9 +1,9 @@
-package com.greatorator.tolkienmobs.handler.enchantments;
+package com.greatorator.tolkienmobs.item;
 
-import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
 import net.minecraft.block.BlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.HoeItem;
+import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -13,24 +13,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber
-public class TTMHobbitPlowHandler {
+public class ItemTTMHoe extends HoeItem {
+    public ItemTTMHoe(IItemTier p_i231595_1_, int p_i231595_2_, float p_i231595_3_, Properties p_i231595_4_) {
+        super(p_i231595_1_, p_i231595_2_, p_i231595_3_, p_i231595_4_);
+    }
 
-//    @SubscribeEvent(priority = EventPriority.LOW)
-//    public void hobbitPlow(BlockEvent.BreakEvent event) {
-//        PlayerEntity player = event.getPlayer();
-//        if (!(player instanceof ServerPlayerEntity)) {
-//            return;
-//        }
-//    }
-//
     @SuppressWarnings("deprecation")
+    @Override
     public ActionResultType useOn (ItemUseContext itemUse){
         World world = itemUse.getLevel();
         BlockPos blockpos = itemUse.getClickedPos();
-        int radius = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentGenerator.HOBBIT_PLOW.get(), itemUse.getItemInHand());
+//        int radius = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentGenerator.HOBBIT_PLOW.get(), itemUse.getItemInHand());
+        int radius = 4;
         int hook = ForgeEventFactory.onHoeUse(itemUse);
         if (hook != 0) return hook > 0 ? ActionResultType.SUCCESS : ActionResultType.FAIL;
         if (itemUse.getClickedFace() != Direction.DOWN && world.isEmptyBlock(blockpos.above())) {
@@ -57,7 +52,6 @@ public class TTMHobbitPlowHandler {
                 return ActionResultType.sidedSuccess(world.isClientSide);
             }
         }
-
         return ActionResultType.PASS;
     }
 }
