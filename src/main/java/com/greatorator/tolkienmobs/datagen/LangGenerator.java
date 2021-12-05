@@ -365,7 +365,6 @@ public class LangGenerator extends LanguageProvider {
         add("enchantment.tolkienmobs.gondor_resolve", "Gondorian Resolve");
         add("enchantment.tolkienmobs.dwarven_endurance", "Dwarven Endurance");
         add("enchantment.tolkienmobs.hobbit_plow",                "Hobbit Plowing");
-        add("enchantment.tolkienmobs.hobbit_harvest",                "Hobbit Harvest");
     }
 
     private void food() {

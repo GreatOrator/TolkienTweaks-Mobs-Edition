@@ -40,9 +40,7 @@ public class TolkienMobs {
     public static CommonProxy proxy;
 
     /*TODO List
-    1. Enchantments Remaining
-        a. Hobbit Harvest - Was supposed to be fortune for using the Hoe to harvest crops
-    2. Entities
+    1. Entities
 	    a. Frog - not jumping when moving
 	    b. Remaining Entities
 	        1. Fell Beast
@@ -59,21 +57,21 @@ public class TolkienMobs {
 			12. Wandering Trader - Texture Issue (Noticeable on legs, "armor" skin not moving correctly)
 			13. Balrog - not "breathing", switching attacks based on range
 			14. Nazgul - Texture issue (Noticeable on legs, "armor" skin not moving correctly)
-    3. Remaining blocks -
+    2. Remaining blocks -
         a. Fireplace
         b. custom Signs
-    4. Custom weapon & tool models
+    3. Custom weapon & tool models
         a. Fire Whip - Proper rendering
         b. Wooden Club - Proper rendering
         c. Mithril armor
 	    d. Morguliron armor
-    5. Ammo
+    4. Ammo
         a. Fell Beast Fireball - rendering
 	    b. Boulder - rendering
 	    c. Galadhrim Arrow - rendering
-	6. World Type
+	5. World Type
 	    a. find out how to make biomes larger when generated
-    7. Network Stuff
+    6. Network Stuff
     */
 
     public TolkienMobs() {

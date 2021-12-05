@@ -103,6 +103,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.SAPLING_FANGORNOAK.get());
 
         // Block Items - Plants & Flowers
+//        simpleItem(TTMContent.PIPEWEED_SEED.get());
+//        blockItem(TTMContent.PIPEWEED.get());
         blockItem(TTMContent.MUSHROOM_DECAY_BLOOM.get());
         blockItem(TTMContent.MUSHROOM_BLOOM_DECAY.get());
         blockItem(TTMContent.BLOCK_BLOOM_DECAY.get(), modLoc("block/block_decay_bloom_inventory"));
