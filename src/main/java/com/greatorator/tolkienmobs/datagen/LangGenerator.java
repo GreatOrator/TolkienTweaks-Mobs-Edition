@@ -135,6 +135,7 @@ public class LangGenerator extends LanguageProvider {
         //Custom Blocks
         add(TTMContent.BLOCK_HALLOWED.get(), "Hallowed Earth");
         add(TTMContent.STONE_PATH.get(), "Stone Path");
+        add(TTMContent.TTMFIREPLACE.get(), "Fireplace");
     }
 
     private void items() {
@@ -161,6 +162,7 @@ public class LangGenerator extends LanguageProvider {
 
 
         add("item_info.tolkienmobs.sneak_right_click_activate", "Shift right-click to activate/deactivate effect");
+        add("screen.tolkienmobs.block_tmfireplace", "Fireplace");
     }
 
     private void quest() {

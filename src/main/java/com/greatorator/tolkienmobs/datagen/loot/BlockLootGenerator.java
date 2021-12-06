@@ -137,6 +137,7 @@ public class BlockLootGenerator extends BlockLootTables {
         // Blocks - Custom
         dropSelf(TTMContent.BLOCK_HALLOWED.get());
         dropSelf(TTMContent.STONE_PATH.get());
+        dropSelf(TTMContent.TTMFIREPLACE.get());
 
         //Fortune
         add(TTMContent.ORE_MITHRIL.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.DUST_MITHRIL.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));

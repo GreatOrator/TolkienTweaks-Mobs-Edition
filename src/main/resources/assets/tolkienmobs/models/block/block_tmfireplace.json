@@ -1,6 +1,12 @@
 {
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/cube",
+	"textures":{
+			"0":"tolkienmobs:block/fireplace/fire_layer_0",
+			"1":"tolkienmobs:block/fireplace/block_fireplace",
+			"2":"tolkienmobs:block/fireplace/block_fireplace_concrete",
+			"particle":"tolkienmobs:block/fireplace/block_fireplace"
+		},
 	"elements": [
 		{
 			"name": "brick",
@@ -787,5 +793,22 @@
 				"north": {"uv": [0.125, 0.125, 15.875, 15.875], "texture": "#0"}
 			}
 		}
-	]
+	],
+	"variants": {
+		"facing": {
+			"north": {},
+			"south": {"y": 180},
+			"west": {"y": 270},
+			"east": {"y": 90}
+		},
+		"burning": {
+			"true": {},
+			"false": {
+				"textures":{
+					"0":"tolkienmobs:block/fireplace/fire_out"
+				}
+			}
+		},
+		"normal": [{}]
+	}
 }

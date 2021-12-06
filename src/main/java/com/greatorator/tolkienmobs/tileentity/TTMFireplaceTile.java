@@ -1,31 +1,99 @@
-//package com.greatorator.tolkienmobs.tile;
-//
-//import com.brandon3055.brandonscore.blocks.TileInventoryBase;
-//import com.brandon3055.brandonscore.lib.datamanager.ManagedInt;
-//import com.brandon3055.brandonscore.lib.datamanager.ManagedString;
-//import com.greatorator.tolkienmobs.block.itemblock.BlockTMFireplace;
-//import com.greatorator.tolkienmobs.crafting.recipe.TMFireplaceRecipes;
-//import com.greatorator.tolkienmobs.init.TTMFeatures;
-//import net.minecraft.block.Block;
-//import net.minecraft.block.material.Material;
-//import net.minecraft.block.state.IBlockState;
-//import net.minecraft.init.Blocks;
-//import net.minecraft.init.Items;
-//import net.minecraft.inventory.ISidedInventory;
-//import net.minecraft.item.*;
-//import net.minecraft.item.crafting.FurnaceRecipes;
-//import net.minecraft.util.EnumFacing;
-//import net.minecraft.util.ITickable;
-//import net.minecraft.util.text.ITextComponent;
-//import net.minecraft.util.text.TextComponentString;
-//import net.minecraft.util.text.TextComponentTranslation;
-//import net.minecraftforge.fml.common.registry.GameRegistry;
-//import net.minecraftforge.fml.relauncher.Side;
-//import net.minecraftforge.fml.relauncher.SideOnly;
-//import net.minecraftforge.items.IItemHandlerModifiable;
-//
-//public class TileTMFireplace extends TileInventoryBase implements ITickable, ISidedInventory {
-////    private ItemStack smelting = ItemStack.EMPTY;
+package com.greatorator.tolkienmobs.tileentity;
+
+import com.greatorator.tolkienmobs.TTMContent;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.Direction;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+public class TTMFireplaceTile extends TileEntity {
+    public final ItemStackHandler itemHandler = createHandler();
+    private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
+
+
+    public TTMFireplaceTile(TileEntityType<?> tileEntityTypeIn) {
+        super(tileEntityTypeIn);
+    }
+
+    public TTMFireplaceTile() {
+        this(TTMContent.TMFIREPLACE_TILE.get());
+    }
+
+    private ItemStackHandler createHandler() {
+        return new ItemStackHandler(4) {
+            @Override
+            protected void onContentsChanged(int slot) {
+                setChanged();
+            }
+
+            @Override
+            public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
+                switch (slot) {
+                    case 0: return stack.getItem() == TTMContent.DUST_MORGULIRON.get();
+                    case 1: return stack.getItem() == TTMContent.GEM_AMMOLITE.get();
+                    case 2: return stack.getItem() == Items.COAL;
+                    case 3: return stack.getItem() == TTMContent.INGOT_MORGULIRON.get();
+                    default:
+                        return false;
+                }
+            }
+
+            @Override
+            public int getSlotLimit(int slot) {
+                return 1;
+            }
+
+            @Nonnull
+            @Override
+            public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+                if(!isItemValid(slot, stack)) {
+                    return stack;
+                }
+                return super.insertItem(slot, stack, simulate);
+            }
+        };
+    }
+
+    @Override
+    public void load(BlockState state, CompoundNBT nbt) {
+        itemHandler.deserializeNBT(nbt.getCompound("inv"));
+        super.load(state, nbt);
+    }
+
+    @Override
+    public CompoundNBT save(CompoundNBT compound) {
+        compound.put("inv", itemHandler.serializeNBT());
+        return super.save(compound);
+    }
+
+    @Nonnull
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+        if(cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return handler.cast();
+        }
+        //if we wanted sidedness we would add it here
+        return super.getCapability(cap, side);
+    }
+
+    public BlockState getBlockState(Block block) {
+        return null;
+    }
+
+
+    ////    private ItemStack smelting = ItemStack.EMPTY;
 //
 //    private ManagedString customName = register("customName", new ManagedString("")).saveToTile().saveToItem().syncViaContainer().finish();
 //    public ManagedInt burnTime = register("burnTime", new ManagedInt(0)).saveToTile().syncViaTile().syncViaContainer().finish();
@@ -287,4 +355,4 @@
 //        updateBlock();
 //        return ret;
 //    }
-//}
+}

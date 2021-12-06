@@ -1,42 +1,100 @@
-//package com.greatorator.tolkienmobs.block.itemblock;
-//
-//import com.brandon3055.brandonscore.blocks.BlockBCore;
-//import com.brandon3055.brandonscore.registry.Feature;
-//import com.brandon3055.brandonscore.registry.IRenderOverride;
-//import com.greatorator.tolkienmobs.TolkienMobs;
-//import com.greatorator.tolkienmobs.client.render.tile.RenderTileFireplace;
-//import com.greatorator.tolkienmobs.handler.TTMGUIHandler;
-//import com.greatorator.tolkienmobs.tile.TileTMFireplace;
-//import net.minecraft.block.BlockHorizontal;
-//import net.minecraft.block.SoundType;
-//import net.minecraft.block.material.MapColor;
-//import net.minecraft.block.material.Material;
-//import net.minecraft.block.properties.PropertyBool;
-//import net.minecraft.block.properties.PropertyDirection;
-//import net.minecraft.block.state.BlockStateContainer;
-//import net.minecraft.block.state.IBlockState;
-//import net.minecraft.entity.LivingEntity;
-//import net.minecraft.entity.player.PlayerEntity;
-//import net.minecraft.item.ItemStack;
-//import net.minecraft.tileentity.TileEntity;
-//import net.minecraft.util.*;
-//import net.minecraft.util.math.BlockPos;
-//import net.minecraft.world.IBlockAccess;
-//import net.minecraft.world.World;
-//import net.minecraftforge.fml.client.registry.ClientRegistry;
-//import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
-//import net.minecraftforge.fml.relauncher.Side;
-//import net.minecraftforge.fml.relauncher.SideOnly;
-//
-//public class BlockTMFireplace extends BlockBCore implements IRenderOverride {
-//    public static final PropertyDirection FACING = BlockHorizontal.FACING;
-//    public static final PropertyBool BURNING = PropertyBool.create("burning");
-//
-//    public BlockTMFireplace() {
-//        super(Material.ROCK);
-//        setSoundType(SoundType.STONE);
-//        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(BURNING, false));
-//    }
+package com.greatorator.tolkienmobs.block;
+
+import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.tileentity.TTMFireplaceTile;
+import com.greatorator.tolkienmobs.tileentity.container.ContainerTTMFireplace;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
+
+import javax.annotation.Nullable;
+import java.util.Locale;
+
+public class BlockTTMFireplace extends Block {
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
+
+    protected static final VoxelShape SHAPE = Block.box(1.0, 0.0D, 1.0, 15.0, 14.0, 15.0);
+    public BlockTTMFireplace(Properties properties) {
+        super(properties);
+        this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ACTIVE, false));
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult trace) {
+        if (!world.isClientSide) {
+            TileEntity tileEntity = world.getBlockEntity(pos);
+            if (tileEntity instanceof TTMFireplaceTile) {
+                INamedContainerProvider containerProvider = new INamedContainerProvider() {
+                    @Override
+                    public ITextComponent getDisplayName() {
+                        return new TranslationTextComponent("screen.tolkienmobs.block_tmfireplace");
+                    }
+
+                    @Override
+                    public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+                        return new ContainerTTMFireplace(i, world, pos, playerInventory, playerEntity);
+                    }
+                };
+                NetworkHooks.openGui((ServerPlayerEntity) player, containerProvider, tileEntity.getBlockPos());
+            } else {
+                throw new IllegalStateException("Our named container provider is missing!");
+            }
+        }
+        return ActionResultType.SUCCESS;
+    }
+
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(FACING, ACTIVE);
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return new TTMFireplaceTile();
+    }
+
+    public static boolean isStackValid(ItemStack stack) {
+        if (stack.getItem() == Item.byBlock(TTMContent.TTMFIREPLACE.get())) {
+            return false;
+        }
+        else if (!stack.isEmpty()) {
+            String name = stack.getDescriptionId().toLowerCase(Locale.ENGLISH);
+            if (name.contains("pouch") || name.contains("bag") || name.contains("strongbox") || name.contains("shulker_box")) {
+                return false;
+            }
+        }
+        return true;
+    }
 //
 //    /**
 //     * Get the MapColor for this Block and the given BlockState
@@ -152,4 +210,4 @@
 //    public boolean registerNormal(Feature feature) {
 //        return true;
 //    }
-//}
+}

@@ -1,24 +1,39 @@
-//package com.greatorator.tolkienmobs.client.gui;
+package com.greatorator.tolkienmobs.client.gui;
+
+import com.greatorator.tolkienmobs.tileentity.container.ContainerTTMFireplace;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+
+public class GuiTTMFireplace extends ContainerScreen<ContainerTTMFireplace> {
+    private final ResourceLocation GUI = new ResourceLocation(MODID, "textures/gui/tmfireplace_gui.png");
+
+    public GuiTTMFireplace(ContainerTTMFireplace screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+        super(screenContainer, inv, titleIn);
+    }
+
+    public void render(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
+        this.renderBackground(matrixStack);
+        super.render(matrixStack, mouseX, mouseY, partialTicks);
+        this.renderTooltip(matrixStack, mouseX, mouseY);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    protected void renderBg(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        this.minecraft.getTextureManager().bind(GUI);
+        int relX = (this.width - this.imageWidth) / 2;
+        int relY = (this.height - this.imageHeight) / 2;
+        this.blit(matrixStack, relX, relY, 0, 0, this.imageWidth, this.imageHeight);
+    }
 //
-//import com.brandon3055.brandonscore.client.gui.modulargui.GuiElementManager;
-//import com.brandon3055.brandonscore.client.gui.modulargui.MGuiElementBase;
-//import com.brandon3055.brandonscore.client.gui.modulargui.ModularGuiContainer;
-//import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiLabel;
-//import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiSlotRender;
-//import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiTexture;
-//import com.greatorator.tolkienmobs.TolkienMobs;
-//import com.greatorator.tolkienmobs.tile.TileTMFireplace;
-//import com.greatorator.tolkienmobs.tile.container.ContainerTMFireplace;
-//import net.minecraft.entity.player.PlayerEntity;
-//import net.minecraft.util.ResourceLocation;
-//import net.minecraft.util.text.ITextComponent;
-//
-///**
-// * Created by brandon3055 on 25/03/19.
-// */
-//public class GuiTMFireplace extends ModularGuiContainer<ContainerTMFireplace> {
-//
-//    private static final ResourceLocation TEXTURES = new ResourceLocation(TolkienMobs.MODID + ":textures/gui/tmfireplace.png");
+//    private static final ResourceLocation TEXTURES = new ResourceLocation(TolkienMobs.MODID + ":textures/gui/tmfireplace_gui.png");
 //    private PlayerEntity player;
 //    private TileTMFireplace tile;
 //
@@ -178,4 +193,4 @@
 //
 //        return playerSlots;
 //    }
-//}
+}

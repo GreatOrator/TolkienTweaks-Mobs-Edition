@@ -128,6 +128,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         // Custom
         simpleBlock(TTMContent.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
         simpleBlock(TTMContent.STONE_PATH.get(), models().getExistingFile(modLoc("block/block_stone_path")));
+        simpleBlock(TTMContent.TTMFIREPLACE.get(), models().getExistingFile(modLoc("block/block_tmfireplace")));
 
 
         //Bellow is some extra example stuff I left in for reference

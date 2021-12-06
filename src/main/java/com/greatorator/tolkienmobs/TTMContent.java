@@ -2,14 +2,13 @@ package com.greatorator.tolkienmobs;
 
 import codechicken.lib.gui.SimpleItemGroup;
 import com.brandon3055.brandonscore.blocks.ItemBlockBCore;
-import com.greatorator.tolkienmobs.block.BlockLeafPile;
-import com.greatorator.tolkienmobs.block.BlockMushrooms;
-import com.greatorator.tolkienmobs.block.BlockStonePath;
-import com.greatorator.tolkienmobs.block.BlockTMHallowed;
+import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.client.TTMParticles;
 import com.greatorator.tolkienmobs.datagen.*;
 import com.greatorator.tolkienmobs.handler.*;
 import com.greatorator.tolkienmobs.item.trinket.Trinket;
+import com.greatorator.tolkienmobs.tileentity.TTMFireplaceTile;
+import com.greatorator.tolkienmobs.tileentity.container.ContainerTTMFireplace;
 import com.greatorator.tolkienmobs.world.trees.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -19,15 +18,20 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.function.ToIntFunction;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
@@ -206,6 +210,7 @@ public class TTMContent {
     // Custom
     public static RegistryObject<Block> BLOCK_HALLOWED = BLOCKS.register("block_hallowed", () -> new BlockTMHallowed(AbstractBlock.Properties.of(Material.DIRT).sound(SoundType.GRAVEL).randomTicks()));
     public static RegistryObject<Block> STONE_PATH = BLOCKS.register("block_stone_path", () -> new BlockStonePath(AbstractBlock.Properties.of(Material.STONE).sound(SoundType.STONE).isViewBlocking(TTMContent::needsPostProcessing).isSuffocating(TTMContent::needsPostProcessing)));
+    public static RegistryObject<Block> TTMFIREPLACE = BLOCKS.register("block_tmfireplace", () -> new BlockTTMFireplace(AbstractBlock.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.5F)));
 
     //#################################################################
     // Items
@@ -313,6 +318,7 @@ public class TTMContent {
     // Blocks - Custom
     public static RegistryObject<Item> BLOCK_HALLOWED_ITEM = ITEMS.register("block_hallowed", () -> new ItemBlockBCore(BLOCK_HALLOWED.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> STONE_PATH_ITEM = ITEMS.register("block_stone_path", () -> new ItemBlockBCore(STONE_PATH.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> TTMFIREPLACE_ITEM = ITEMS.register("block_tmfireplace", () -> new ItemBlockBCore(TTMFIREPLACE.get(), new Item.Properties().tab(matsGroup)));
 
     // Quest
     public static RegistryObject<Item> ITEM_BERYL = ITEMS.register("item_beryl", () -> new TTMLore(new Item.Properties().stacksTo(1).tab(questGroup)).setEffectOverride().setHasLore());
@@ -466,16 +472,16 @@ public class TTMContent {
     //#################################################################
     // Tile Entity Types
     //#################################################################
-    //public static RegistryObject<TileEntityType<ExampleTile>> EXAMPLE_TILE = TILE.register("example_tile", () -> TileEntityType.Builder.create(ExampleTile::new, EXAMPLE_BLOCK.get()).build(null));
+    public static RegistryObject<TileEntityType<TTMFireplaceTile>> TMFIREPLACE_TILE = TILE.register("tmfireplace_tile", () -> TileEntityType.Builder.of(TTMFireplaceTile::new, TTMFIREPLACE.get()).build(null));
 
     //#################################################################
     // Containers
     //#################################################################
-    //TODO Will get back to this when its needed. I need to figure out a better way to do this.
-    //public static RegistryObject<ContainerType<ContainerBCTile<ExampleTile>>> EXAMPLE_CONTAINER = CONTAINER.register("example_container", (windowId, inv, data) -> new ContainerBCTile<ExampleTile>(EXAMPLE_CONTAINER.get(), windowId, inv, data,
-    // TRANSFUSER_LAYOUT));
-
-    //For demonstration purposes only
+    public static final RegistryObject<ContainerType<ContainerTTMFireplace>> TMFIREPLACE_CONTAINER = CONTAINER.register("tmfireplace_container", () -> IForgeContainerType.create(((windowId, inv, data) -> {
+        BlockPos pos = data.readBlockPos();
+        World world = inv.player.level;
+        return new ContainerTTMFireplace(windowId, world, pos, inv, inv.player);
+    })));
 
     private static boolean needsPostProcessing(BlockState state, IBlockReader reader, BlockPos pos) {
         return true;
@@ -487,6 +493,12 @@ public class TTMContent {
 
     private static Boolean allowsSpawnOnLeaves(BlockState state, IBlockReader reader, BlockPos pos, EntityType<?> entity) {
         return entity == EntityType.OCELOT || entity == EntityType.PARROT;
+    }
+
+    private static ToIntFunction<BlockState> litBlockEmission(int level) {
+        return (p_235421_1_) -> {
+            return p_235421_1_.getValue(BlockStateProperties.LIT) ? level : 0;
+        };
     }
 
     private static boolean never(BlockState blockState, IBlockReader iBlockReader, BlockPos blockPos, EntityType<?> entityType) {

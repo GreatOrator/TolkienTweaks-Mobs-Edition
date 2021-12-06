@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.proxy;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.TTMClientEvents;
+import com.greatorator.tolkienmobs.client.gui.GuiTTMFireplace;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
 import com.greatorator.tolkienmobs.entity.ambient.model.ModelTTMSwarm;
@@ -24,6 +25,7 @@ import com.greatorator.tolkienmobs.entity.special.render.RenderTTMShadowfax;
 import com.greatorator.tolkienmobs.handler.TTMHearts;
 import com.greatorator.tolkienmobs.init.TTMColor;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
@@ -119,6 +121,9 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_LEBETHRON.get(), cutout);
         RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_FANGORNOAK.get(), cutout);
 //        RenderTypeLookup.setRenderLayer(TTMContent.PIPEWEED.get(), cutout);
+
+        // GUI Rendering
+        ScreenManager.register(TTMContent.TMFIREPLACE_CONTAINER.get(), GuiTTMFireplace::new);
 
     }
 

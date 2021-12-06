@@ -3,7 +3,7 @@
 //import com.greatorator.tolkienmobs.TolkienMobs;
 //import com.greatorator.tolkienmobs.client.gui.GuiTMFireplace;
 //import com.greatorator.tolkienmobs.tile.TileTMFireplace;
-//import com.greatorator.tolkienmobs.tile.container.ContainerTMFireplace;
+//import com.greatorator.tolkienmobs.tileentity.container.ContainerTMFireplace;
 //import net.minecraft.entity.player.PlayerEntity;
 //import net.minecraft.tileentity.TileEntity;
 //import net.minecraft.util.math.BlockPos;
