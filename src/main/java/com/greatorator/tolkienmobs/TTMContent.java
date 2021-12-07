@@ -27,7 +27,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -217,7 +217,7 @@ public class TTMContent {
     // Custom
     public static RegistryObject<Block> BLOCK_HALLOWED = BLOCKS.register("block_hallowed", () -> new BlockTMHallowed(AbstractBlock.Properties.of(Material.DIRT).sound(SoundType.GRAVEL).randomTicks()));
     public static RegistryObject<Block> STONE_PATH = BLOCKS.register("block_stone_path", () -> new BlockStonePath(AbstractBlock.Properties.of(Material.STONE).sound(SoundType.STONE).isViewBlocking(TTMContent::needsPostProcessing).isSuffocating(TTMContent::needsPostProcessing)));
-    public static RegistryObject<Block> TTMFIREPLACE = BLOCKS.register("block_tmfireplace", () -> new BlockTTMFireplace(AbstractBlock.Properties.of(Material.STONE).requiresCorrectToolForDrops().strength(3.5F)));
+    public static RegistryObject<Block> TTMFIREPLACE = BLOCKS.register("block_tmfireplace", () -> new BlockTTMFireplace(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).harvestLevel(2).strength(5f, 6f)));
 
     //#################################################################
     // Items
@@ -484,11 +484,7 @@ public class TTMContent {
     //#################################################################
     // Containers
     //#################################################################
-    public static final RegistryObject<ContainerType<ContainerTTMFireplace>> TMFIREPLACE_CONTAINER = CONTAINER.register("tmfireplace_container", () -> IForgeContainerType.create(((windowId, inv, data) -> {
-        BlockPos pos = data.readBlockPos();
-        World world = inv.player.level;
-        return new ContainerTTMFireplace(windowId, world, pos, inv, inv.player);
-    })));
+    public static final RegistryObject<ContainerType<ContainerTTMFireplace>> TMFIREPLACE_CONTAINER = CONTAINER.register("tmfireplace_container", () -> IForgeContainerType.create(ContainerTTMFireplace::new));
 
     //#################################################################
     // Recipe Serializers

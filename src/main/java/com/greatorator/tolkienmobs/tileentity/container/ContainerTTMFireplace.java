@@ -1,121 +1,121 @@
 package com.greatorator.tolkienmobs.tileentity.container;
 
 import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.tileentity.TTMFireplaceTile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.SlotItemHandler;
-import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraft.util.IntArray;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 
 public class ContainerTTMFireplace extends Container {
-    private final TileEntity tileEntity;
-    private final PlayerEntity playerEntity;
-    private final IItemHandler playerInventory;
+    public final TTMFireplaceTile tileEntity;
+    private final IIntArray data;
+    private final IWorldPosCallable canInteractWithCallable;
 
-    public ContainerTTMFireplace(int windowId, World world, BlockPos pos, PlayerInventory playerInventory, PlayerEntity player) {
+    public ContainerTTMFireplace(int windowId, PlayerInventory playerInventory, TTMFireplaceTile tileEntity, IIntArray data) {
         super(TTMContent.TMFIREPLACE_CONTAINER.get(), windowId);
-        this.tileEntity = world.getBlockEntity(pos);
-        playerEntity = player;
-        this.playerInventory = new InvWrapper(playerInventory);
-        layoutPlayerInventorySlots(8, 86);
+        this.data = data;
+        this.tileEntity = tileEntity;
+        this.canInteractWithCallable = IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos());
 
-        if(tileEntity != null) {
-            tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new SlotItemHandler(h, 0, 39, 16)); // Input 1
-                addSlot(new SlotItemHandler(h, 1, 61, 16)); // Input 2
-                addSlot(new FuelSlot(h, 2, 50, 56)); // Fuel
-                addSlot(new OutputSlot(h, 3, 117, 36)); // Output
-            });
+        this.addSlot(new InputSlot((IInventory) tileEntity, 0, 39, 16)); // Input 1
+        this.addSlot(new InputSlot((IInventory) tileEntity, 1, 61, 16)); // Input 1
+        this.addSlot(new FuelSlot((IInventory) tileEntity, 2, 50, 56)); // Fuel
+        this.addSlot(new OutputSlot((IInventory) tileEntity, 3, 117, 36)); // Output
+
+        // Main Player Inventory
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0 ; col < 9; col++) {
+                this.addSlot(new Slot(playerInventory, col + row * 9 + 9, 8 + col * 18, 168 - (4 - row) * 18 - 10));
+            }
         }
+
+        // Player Hotbar
+        for (int col = 0; col < 9; col++) {
+            this.addSlot(new Slot(playerInventory, col, 8 + col * 18, 144));
+        }
+
+        addDataSlots(this.data);
+    }
+
+    public ContainerTTMFireplace(final int windowId, final PlayerInventory playerInv, final PacketBuffer data) {
+        this(windowId, playerInv, getTileEntity(playerInv, data), new IntArray(4));
+    }
+
+    private static TTMFireplaceTile getTileEntity(final PlayerInventory playerInv, final PacketBuffer data) {
+        Objects.requireNonNull(playerInv,"Player inv cannot be null");
+        Objects.requireNonNull(data,"Pack buffer cannot be null");
+        final TileEntity te = playerInv.player.level.getBlockEntity(data.readBlockPos());
+
+        if (te instanceof TTMFireplaceTile) {
+            return (TTMFireplaceTile) te;
+        }
+        throw new IllegalStateException("Tile entity is null");
+    }
+
+    public boolean canInteractWith(PlayerEntity playerIn) {
+        return stillValid(canInteractWithCallable, playerIn, TTMContent.TTMFIREPLACE.get());
     }
 
     @Override
     public boolean stillValid(PlayerEntity playerIn) {
-        return stillValid(IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos()), playerEntity, TTMContent.TTMFIREPLACE.get());    }
-
-    private int addSlotRange(IItemHandler handler, int index, int x, int y, int amount, int dx) {
-        for (int i = 0; i < amount; i++) {
-            addSlot(new SlotItemHandler(handler, index, x, y));
-            x += dx;
-            index++;
-        }
-
-        return index;
+        return true;
     }
 
-    private int addSlotBox(IItemHandler handler, int index, int x, int y, int horAmount, int dx, int verAmount, int dy) {
-        for (int j = 0; j < verAmount; j++) {
-            index = addSlotRange(handler, index, x, y, horAmount, dx);
-            y += dy;
-        }
-
-        return index;
-    }
-
-    private void layoutPlayerInventorySlots(int leftCol, int topRow) {
-        addSlotBox(playerInventory, 9, leftCol, topRow, 9, 18, 3, 18);
-
-        topRow += 58;
-        addSlotRange(playerInventory, 0, leftCol, topRow, 9, 18);
-    }
-
-    private static final int HOTBAR_SLOT_COUNT = 9;
-    private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
-    private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
-    private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
-    private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
-    private static final int VANILLA_FIRST_SLOT_INDEX = 0;
-    private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-
-    // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 4;  // Set number of tile entity slots
-
-    @Override
     public ItemStack quickMoveStack(PlayerEntity playerIn, int index) {
-        Slot sourceSlot = this.slots.get(index);
-        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
-        ItemStack sourceStack = sourceSlot.getItem();
-        ItemStack copyOfSourceStack = sourceStack.copy();
-
-        // Check if the slot clicked is one of the vanilla container slots
-        if (index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-            // This is a vanilla container slot so merge the stack into the tile inventory
-            if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
-                    + TE_INVENTORY_SLOT_COUNT, false)) {
-                return ItemStack.EMPTY;  // EMPTY_ITEM
-            }
-        } else if (index < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
-            // This is a TE slot so merge the stack into the players inventory
-            if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
+        ItemStack stack = ItemStack.EMPTY;
+        Slot slot = this.getSlot(index);
+        if (slot != null && slot.hasItem()) {
+            ItemStack stack1 = slot.getItem();
+            stack = stack1.copy();
+            if (index < TTMFireplaceTile.ContainerSize
+                    && !this.moveItemStackTo(stack1, TTMFireplaceTile.ContainerSize, this.slots.size(), true)) {
                 return ItemStack.EMPTY;
             }
-        } else {
-            System.out.println("Invalid slotIndex:" + index);
-            return ItemStack.EMPTY;
+            if (!this.moveItemStackTo(stack1, 0, TTMFireplaceTile.ContainerSize, false)) {
+                return ItemStack.EMPTY;
+            }
+
+            if (stack1.isEmpty()) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
         }
-        // If stack size == 0 (the entire stack was moved) set slot contents to null
-        if (sourceStack.getCount() == 0) {
-            sourceSlot.set(ItemStack.EMPTY);
-        } else {
-            sourceSlot.setChanged();
-        }
-        sourceSlot.onTake(playerEntity, sourceStack);
-        return copyOfSourceStack;
+        return stack;
     }
 
-    private static class FuelSlot extends SlotItemHandler {
-        public FuelSlot(IItemHandler inventory, int index, int x, int y) {
-            super(inventory, index, x, y);
+    public static class InputSlot extends Slot {
+
+        public InputSlot(IInventory inventoryIn, int index, int xPosition, int yPosition) {
+            super(inventoryIn, index, xPosition, yPosition);
+        }
+
+        @Override
+        public boolean mayPlace(@Nullable ItemStack stack) {
+            return stack.getItem().isEdible() || !isFuel(stack);
+        }
+
+        public static boolean isFuel(ItemStack stack) {
+            return net.minecraftforge.common.ForgeHooks.getBurnTime(stack) > 0;
+        }
+    }
+
+    private static class FuelSlot extends Slot {
+        public FuelSlot(IInventory inventoryIn, int index, int xPosition, int yPosition) {
+            super(inventoryIn, index, xPosition, yPosition);
         }
 
         @Override
@@ -138,9 +138,9 @@ public class ContainerTTMFireplace extends Container {
         }
     }
 
-    public static class OutputSlot extends SlotItemHandler {
+    public static class OutputSlot extends Slot {
 
-        public OutputSlot(IItemHandler inventoryIn, int index, int xPosition, int yPosition) {
+        public OutputSlot(IInventory inventoryIn, int index, int xPosition, int yPosition) {
             super(inventoryIn, index, xPosition, yPosition);
         }
 
@@ -148,5 +148,19 @@ public class ContainerTTMFireplace extends Container {
         public boolean mayPlace(@Nullable ItemStack stack) {
             return false; //Don't let the player place anything in this slot
         }
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getProcess() {
+        int process = data.get(0);
+        int maxTick = data.get(1);
+        return maxTick != 0 && process != 0 ? process * 32 / maxTick : 0;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getFuel() {
+        int fuel = data.get(2);
+        int maxFuel = data.get(3);
+        return maxFuel != 0 && fuel != 0 ? fuel * 17 / maxFuel : 0;
     }
 }

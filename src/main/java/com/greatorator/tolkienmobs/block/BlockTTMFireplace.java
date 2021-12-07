@@ -2,29 +2,25 @@ package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.tileentity.TTMFireplaceTile;
-import com.greatorator.tolkienmobs.tileentity.container.ContainerTTMFireplace;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -33,38 +29,47 @@ import javax.annotation.Nullable;
 import java.util.Locale;
 
 public class BlockTTMFireplace extends Block {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final DirectionProperty FACING = DirectionProperty.create("faces", Direction.Plane.HORIZONTAL);
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
 
-    protected static final VoxelShape SHAPE = Block.box(1.0, 0.0D, 1.0, 15.0, 14.0, 15.0);
+    protected static final VoxelShape SHAPE_NORTH = Block.box(1.0, 0.0D, 1.0, 15.0, 14.0, 15.0);
+    protected static final VoxelShape SHAPE_SOUTH = Block.box(1.0, 0.0D, 1.0, 15.0, 14.0, 15.0);
+    protected static final VoxelShape SHAPE_EAST = Block.box(1.0, 0.0D, 1.0, 15.0, 14.0, 15.0);
+    protected static final VoxelShape SHAPE_WEST = Block.box(1.0, 0.0D, 1.0, 15.0, 14.0, 15.0);
+    protected static final VoxelShape SHAPE_COMMON = Block.box(1.0, 0.0D, 1.0, 15.0, 14.0, 15.0);
+
     public BlockTTMFireplace(Properties properties) {
         super(properties);
-        this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ACTIVE, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ACTIVE, false));
     }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
+        switch((Direction)state.getValue(FACING)) {
+            case NORTH:
+                return SHAPE_NORTH;
+            case SOUTH:
+                return SHAPE_SOUTH;
+            case EAST:
+                return SHAPE_EAST;
+            case WEST:
+                return SHAPE_WEST;
+            default:
+                return SHAPE_COMMON;
+        }    }
 
     @SuppressWarnings("deprecation")
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult trace) {
         if (!world.isClientSide) {
             TileEntity tileEntity = world.getBlockEntity(pos);
-            if (tileEntity instanceof TTMFireplaceTile) {
-                INamedContainerProvider containerProvider = new INamedContainerProvider() {
-                    @Override
-                    public ITextComponent getDisplayName() {
-                        return new TranslationTextComponent("screen.tolkienmobs.block_tmfireplace");
-                    }
 
-                    @Override
-                    public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-                        return new ContainerTTMFireplace(i, world, pos, playerInventory, playerEntity);
-                    }
-                };
-                NetworkHooks.openGui((ServerPlayerEntity) player, containerProvider, tileEntity.getBlockPos());
-            } else {
-                throw new IllegalStateException("Our named container provider is missing!");
+            if (tileEntity instanceof TTMFireplaceTile) {
+                NetworkHooks.openGui((ServerPlayerEntity) player, (TTMFireplaceTile) tileEntity, pos);
             }
         }
-        return ActionResultType.SUCCESS;
+        return super.use(state, world, pos, player, hand, trace);
     }
 
     @Override
@@ -75,6 +80,18 @@ public class BlockTTMFireplace extends Block {
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FACING, ACTIVE);
+        super.createBlockStateDefinition(builder);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public BlockState rotate(BlockState state, Rotation direction) {
+        return state.setValue(FACING, direction.rotate(state.getValue(FACING)));
     }
 
     @Nullable
@@ -95,27 +112,11 @@ public class BlockTTMFireplace extends Block {
         }
         return true;
     }
-//
-//    /**
-//     * Get the MapColor for this Block and the given BlockState
-//     */
-//    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos)
-//    {
-//        return MapColor.RED_STAINED_HARDENED_CLAY;
-//    }
-//
-//    @Override
-//    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, PlayerEntity playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-//        if (!worldIn.isRemote) {
-//            FMLNetworkHandler.openGui(playerIn, TolkienMobs.instance, TTMGUIHandler.GUI_TMFIREPLACE, worldIn, pos.getX(), pos.getY(), pos.getZ());
-//        }
-//        return true;
-//    }
-//
-//    @Override
-//    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos) {
-//        return state.getValue(BURNING) ? 15 : 0;
-//    }
+
+    @Override
+    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
+        return state.getValue(ACTIVE) ? 15 : 0;
+    }
 //
 //    @Override
 //    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
