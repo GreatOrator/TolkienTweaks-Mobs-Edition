@@ -217,7 +217,7 @@ public class TTMContent {
     // Custom
     public static RegistryObject<Block> BLOCK_HALLOWED = BLOCKS.register("block_hallowed", () -> new BlockTMHallowed(AbstractBlock.Properties.of(Material.DIRT).sound(SoundType.GRAVEL).randomTicks()));
     public static RegistryObject<Block> STONE_PATH = BLOCKS.register("block_stone_path", () -> new BlockStonePath(AbstractBlock.Properties.of(Material.STONE).sound(SoundType.STONE).isViewBlocking(TTMContent::needsPostProcessing).isSuffocating(TTMContent::needsPostProcessing)));
-    public static RegistryObject<Block> TTMFIREPLACE = BLOCKS.register("block_tmfireplace", () -> new BlockTTMFireplace(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).harvestLevel(2).strength(5f, 6f)));
+    public static RegistryObject<Block> TTMFIREPLACE = BLOCKS.register("block_tmfireplace", () -> new BlockTTMFireplace(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
 
     //#################################################################
     // Items

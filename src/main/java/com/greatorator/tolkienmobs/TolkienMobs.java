@@ -41,8 +41,7 @@ public class TolkienMobs {
 
     /*TODO List
     1. Entities
-	    a. Frog - not jumping when moving
-	    b. Remaining Entities
+	    a. Remaining Entities
 	        1. Fell Beast
 			2. Gwaihir
 			3. Great Eagle
@@ -57,6 +56,7 @@ public class TolkienMobs {
 			12. Wandering Trader - Texture Issue (Noticeable on legs, "armor" skin not moving correctly)
 			13. Balrog - not "breathing", switching attacks based on range
 			14. Nazgul - Texture issue (Noticeable on legs, "armor" skin not moving correctly)
+			15. Frog - not jumping when moving
     2. Remaining blocks -
         a. Fireplace
         b. custom Signs
