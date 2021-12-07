@@ -1,7 +1,34 @@
 {
   "variants": {
-    "": {
-      "model": "tolkienmobs:block/block_tmfireplace"
+    "active=false,facing=north": {
+      "model": "tolkienmobs:block/fireplace_inactive"
+    },
+    "active=true,facing=north": {
+      "model": "tolkienmobs:block/fireplace_active"
+    },
+    "active=false,facing=south": {
+      "model": "tolkienmobs:block/fireplace_inactive",
+      "y": 180
+    },
+    "active=true,facing=south": {
+      "model": "tolkienmobs:block/fireplace_active",
+      "y": 180
+    },
+    "active=false,facing=west": {
+      "model": "tolkienmobs:block/fireplace_inactive",
+      "y": 270
+    },
+    "active=true,facing=west": {
+      "model": "tolkienmobs:block/fireplace_active",
+      "y": 270
+    },
+    "active=false,facing=east": {
+      "model": "tolkienmobs:block/fireplace_inactive",
+      "y": 90
+    },
+    "active=true,facing=east": {
+      "model": "tolkienmobs:block/fireplace_active",
+      "y": 90
     }
   }
 }

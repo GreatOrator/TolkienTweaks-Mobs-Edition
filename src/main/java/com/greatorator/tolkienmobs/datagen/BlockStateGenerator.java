@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.block.BlockTTMFireplace;
 import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -128,7 +129,10 @@ public class BlockStateGenerator extends BlockStateProvider {
         // Custom
         simpleBlock(TTMContent.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
         simpleBlock(TTMContent.STONE_PATH.get(), models().getExistingFile(modLoc("block/block_stone_path")));
-        simpleBlock(TTMContent.TTMFIREPLACE.get(), models().getExistingFile(modLoc("block/block_tmfireplace")));
+
+        ModelFile fireActive = models().getExistingFile(modLoc("block/fireplace_active"));
+        ModelFile fireInactive = models().getExistingFile(modLoc("block/fireplace_inactive"));
+        directionalFromNorthHoz(TTMContent.TTMFIREPLACE.get(), e -> e.getValue(BlockTTMFireplace.ACTIVE) ? fireActive : fireInactive, 180);
 
 
         //Bellow is some extra example stuff I left in for reference
@@ -284,6 +288,18 @@ public class BlockStateGenerator extends BlockStateProvider {
         getVariantBuilder(block)
                 .forAllStates(state -> {
                     Direction dir = state.getValue(BlockStateProperties.FACING);
+                    return ConfiguredModel.builder()
+                            .modelFile(modelFunc.apply(state))
+                            .rotationX(dir == Direction.DOWN ? 90 : dir == Direction.UP ? -90 : 0)
+                            .rotationY(dir.getAxis().isVertical() ? 0 : (((int) dir.toYRot()) + angleOffset) % 360)
+                            .build();
+                });
+    }
+
+    public void directionalFromNorthHoz(Block block, Function<BlockState, ModelFile> modelFunc, int angleOffset) {
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                    Direction dir = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
                     return ConfiguredModel.builder()
                             .modelFile(modelFunc.apply(state))
                             .rotationX(dir == Direction.DOWN ? 90 : dir == Direction.UP ? -90 : 0)
