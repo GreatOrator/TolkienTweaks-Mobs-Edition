@@ -4,6 +4,7 @@ import codechicken.lib.gui.SimpleItemGroup;
 import com.brandon3055.brandonscore.blocks.ItemBlockBCore;
 import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.client.TTMParticles;
+import com.greatorator.tolkienmobs.crafting.recipe.TTMFireplaceRecipe;
 import com.greatorator.tolkienmobs.datagen.*;
 import com.greatorator.tolkienmobs.handler.*;
 import com.greatorator.tolkienmobs.item.trinket.Trinket;
@@ -16,12 +17,15 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -46,6 +50,7 @@ public class TTMContent {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
     private static final DeferredRegister<TileEntityType<?>> TILE = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MODID);
     private static final DeferredRegister<ContainerType<?>> CONTAINER = DeferredRegister.create(ForgeRegistries.CONTAINERS, MODID);
+    public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZER = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, MODID);
 
     public static ItemGroup toolsGroup = new SimpleItemGroup("tolkienmobs.tools", () -> new ItemStack(TTMContent.PICKAXE_MITHRIL.get()));
     public static ItemGroup matsGroup = new SimpleItemGroup("tolkienmobs.mats", () -> new ItemStack(TTMContent.INGOT_MITHRIL.get()));
@@ -70,6 +75,8 @@ public class TTMContent {
         ITEMS.register(modBus);
         TILE.register(modBus);
         CONTAINER.register(modBus);
+        RECIPE_SERIALIZER.register(modBus);
+        Registry.register(Registry.RECIPE_TYPE, TTMFireplaceRecipe.TYPE_ID, TMFIREPLACE_RECIPE);
         LOGGER.info("Populating the peoples of Middle-earth...");
         EntityGenerator.ENTITY.register(modBus);
         EntityGenerator.SPAWN_EGGS.register(modBus);
@@ -482,6 +489,12 @@ public class TTMContent {
         World world = inv.player.level;
         return new ContainerTTMFireplace(windowId, world, pos, inv, inv.player);
     })));
+
+    //#################################################################
+    // Recipe Serializers
+    //#################################################################
+    public static final RegistryObject<TTMFireplaceRecipe.Serializer> TMFIREPLACE_SERIALIZER = RECIPE_SERIALIZER.register("tmfireplace", TTMFireplaceRecipe.Serializer::new);
+    public static IRecipeType<TTMFireplaceRecipe> TMFIREPLACE_RECIPE = new TTMFireplaceRecipe.FireplaceRecipeType();
 
     private static boolean needsPostProcessing(BlockState state, IBlockReader reader, BlockPos pos) {
         return true;

@@ -1,11 +1,13 @@
 package com.greatorator.tolkienmobs.tileentity;
 
 import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.crafting.recipe.TTMFireplaceRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
@@ -17,11 +19,11 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Optional;
 
-public class TTMFireplaceTile extends TileEntity {
+public class TTMFireplaceTile extends TileEntity implements ITickableTileEntity {
     public final ItemStackHandler itemHandler = createHandler();
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> itemHandler);
-
 
     public TTMFireplaceTile(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
@@ -40,19 +42,13 @@ public class TTMFireplaceTile extends TileEntity {
 
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
-                switch (slot) {
-                    case 0: return stack.getItem() == TTMContent.DUST_MORGULIRON.get();
-                    case 1: return stack.getItem() == TTMContent.GEM_AMMOLITE.get();
-                    case 2: return stack.getItem() == Items.COAL;
-                    case 3: return stack.getItem() == TTMContent.INGOT_MORGULIRON.get();
-                    default:
-                        return false;
-                }
+//                if(stack.getItem() instanceof Foods)
+                        return true;
             }
 
             @Override
             public int getSlotLimit(int slot) {
-                return 1;
+                return 64;
             }
 
             @Nonnull
@@ -90,6 +86,36 @@ public class TTMFireplaceTile extends TileEntity {
 
     public BlockState getBlockState(Block block) {
         return null;
+    }
+
+    public void craft() {
+        Inventory inv = new Inventory(itemHandler.getSlots());
+
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            inv.setItem(i, itemHandler.getStackInSlot(i));
+        }
+
+        Optional<TTMFireplaceRecipe> recipe = level.getRecipeManager().getRecipeFor(TTMContent.TMFIREPLACE_RECIPE, inv, level);
+
+        recipe.ifPresent(iRecipe -> {
+            ItemStack output = iRecipe.getResultItem();
+            craftTheItem(output);
+
+        });
+    }
+
+    private void craftTheItem(ItemStack output) {
+        itemHandler.extractItem(0, 1, false);
+        itemHandler.extractItem(1, 1, false);
+        itemHandler.insertItem(3, output, false);
+    }
+
+    @Override
+    public void tick() {
+        if(!level.isClientSide)
+            return;
+
+        craft();
     }
 
 
