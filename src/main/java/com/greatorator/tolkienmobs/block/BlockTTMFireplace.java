@@ -65,8 +65,9 @@ public class BlockTTMFireplace extends Block {
             if (tileEntity instanceof TTMFireplaceTile) {
                 NetworkHooks.openGui((ServerPlayerEntity) player, (TTMFireplaceTile) tileEntity, pos);
             }
+            return ActionResultType.CONSUME;
         }
-        return super.use(state, world, pos, player, hand, trace);
+        return ActionResultType.SUCCESS;
     }
 
     @Override

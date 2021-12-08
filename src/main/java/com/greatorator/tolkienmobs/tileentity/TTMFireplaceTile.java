@@ -161,7 +161,8 @@ public class TTMFireplaceTile extends LockableLootTileEntity implements ITickabl
     }
 
     private void setLit(boolean lit) {
-        level.setBlock(worldPosition, getBlockState().setValue(BlockTTMFireplace.ACTIVE, lit), ContainerSize);
+        level.setBlock(worldPosition, getBlockState().setValue(BlockTTMFireplace.ACTIVE, lit), 3);
+        setChanged();
     }
 
     private void customShrink(ItemStack stack, int toShrink, int ItemIndex) {

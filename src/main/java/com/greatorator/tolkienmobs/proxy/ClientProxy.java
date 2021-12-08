@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.TTMClientEvents;
 import com.greatorator.tolkienmobs.client.gui.GuiTTMFireplace;
+import com.greatorator.tolkienmobs.client.render.tile.RenderTTMFireplaceTile;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
 import com.greatorator.tolkienmobs.entity.ambient.model.ModelTTMSwarm;
@@ -31,6 +32,7 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -69,6 +71,7 @@ public class ClientProxy extends CommonProxy {
         super.clientSetup(event);
         setupRenderLayers();
         registerEntityRenderer();
+        registerTileRenderers();
     }
 
     public static void setupRenderLayers() {
@@ -193,6 +196,10 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_ARROW_GALADHRIM.get(), new RenderGaladhrimArrow.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_FELLBEAST_FIREBALL.get(), new RenderFellBeastFireball.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_BOULDER.get(), new RenderBoulder.RenderFactory());
+    }
+
+    private void registerTileRenderers() {
+        ClientRegistry.bindTileEntityRenderer(TTMContent.TMFIREPLACE_TILE.get(), RenderTTMFireplaceTile::new);
     }
 
     @Override
