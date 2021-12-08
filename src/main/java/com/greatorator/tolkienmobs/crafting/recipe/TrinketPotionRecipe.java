@@ -1,26 +1,40 @@
-//package com.greatorator.tolkienmobs.crafting.recipe;
-//
-//import codechicken.lib.util.ArrayUtils;
-//import com.greatorator.tolkienmobs.TTMConfig_Old;
-//import com.greatorator.tolkienmobs.item.item_old.magical.ItemTrinketRing;
-//import net.minecraft.inventory.InventoryCrafting;
-//import net.minecraft.item.ItemPotion;
-//import net.minecraft.item.ItemStack;
-//import net.minecraft.item.crafting.Ingredient;
-//import net.minecraft.item.crafting.ShapelessRecipes;
-//import net.minecraft.potion.Potion;
-//import net.minecraft.potion.PotionEffect;
-//import net.minecraft.potion.PotionUtils;
-//import net.minecraft.util.NonNullList;
-//import net.minecraft.world.World;
-//
-//import javax.annotation.Nullable;
-//import java.util.List;
-//
-///**
-// * Created by brandon3055 on 21/02/19.
-// */
-//public class TrinketPotionRecipe extends ShapelessRecipes {
+package com.greatorator.tolkienmobs.crafting.recipe;//package com.greatorator.tolkienmobs.crafting.recipe;
+
+import com.greatorator.tolkienmobs.handler.interfaces.ITTMTrinketRecipe;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+
+/**
+ * Created by brandon3055 on 21/02/19.
+ */
+public class TrinketPotionRecipe implements ITTMTrinketRecipe {
+    @Override
+    public boolean matches(IInventory inventory, World world) {
+        return false;
+    }
+
+    @Override
+    public ItemStack assemble(IInventory inventory) {
+        return null;
+    }
+
+    @Override
+    public ItemStack getResultItem() {
+        return null;
+    }
+
+    @Override
+    public ResourceLocation getId() {
+        return null;
+    }
+
+    @Override
+    public IRecipeSerializer<?> getSerializer() {
+        return null;
+    }
 //    public TrinketPotionRecipe(String group, ItemStack output, NonNullList<Ingredient> ingredients) {
 //        super(group, output, ingredients);
 //    }
@@ -74,4 +88,4 @@
 //
 //        return potion;
 //    }
-//}
+}

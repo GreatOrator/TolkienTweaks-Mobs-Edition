@@ -75,8 +75,9 @@ public class ArmorTTMMithril extends ArmorItem {
         return (A) model;
     }
 
-    public void tick(World world, PlayerEntity player, ItemStack armor) {
-        if(!world.isClientSide()) {
+    @Override
+    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
+        if(!world.isClientSide() && player != null) {
             if (player.inventory.getArmor(3).getItem() == TTMContent.HELMET_MITHRIL.get()) {
                 player.addEffect(new EffectInstance(Effects.NIGHT_VISION, 40, 2, true, false));
             }
@@ -92,5 +93,9 @@ public class ArmorTTMMithril extends ArmorItem {
                 player.addEffect(new EffectInstance(PotionGenerator.ELF_NIMBLENESS.get(), 40, 1, true, false));
             }
         }
+        super.onArmorTick(stack, world, player);
+    }
+
+    public void tick(World world, PlayerEntity player, ItemStack armor) {
     }
 }

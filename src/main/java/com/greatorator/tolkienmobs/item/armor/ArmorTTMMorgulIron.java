@@ -1,7 +1,9 @@
 package com.greatorator.tolkienmobs.item.armor;
 
+import com.google.common.collect.ImmutableMap;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.client.model.tools.ModelTTMMorgulIronArmor;
+import com.greatorator.tolkienmobs.handler.TTMArmorTier;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -10,6 +12,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.world.World;
@@ -17,10 +20,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.Map;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 public class ArmorTTMMorgulIron extends ArmorItem {
+    private static final Map<IArmorMaterial, Effect> MATERIAL_TO_EFFECT_MAP =
+            new ImmutableMap.Builder<IArmorMaterial, Effect>()
+                    .put(TTMArmorTier.MORGULIRON, Effects.INVISIBILITY)
+                    .build();
     @OnlyIn(Dist.CLIENT)
     private BipedModel model;
     private final String texture;
@@ -74,8 +82,9 @@ public class ArmorTTMMorgulIron extends ArmorItem {
         return (A) model;
     }
 
-    public void tick(World world, PlayerEntity player, ItemStack armor) {
-        if(!world.isClientSide()) {
+    @Override
+    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
+        if(!world.isClientSide() && player != null) {
             if (player.inventory.getArmor(3).getItem() == TTMContent.HELMET_MORGULIRON.get()) {
                 player.addEffect(new EffectInstance(Effects.ABSORPTION, 40, 3, true, false));
                 player.addEffect(new EffectInstance(Effects.SATURATION, 40, 2, true, false));
@@ -91,5 +100,10 @@ public class ArmorTTMMorgulIron extends ArmorItem {
                 player.addEffect(new EffectInstance(Effects.REGENERATION, 40, 1, true, false));
             }
         }
+        super.onArmorTick(stack, world, player);
+    }
+
+    public void tick(World world, PlayerEntity player, ItemStack armor) {
+
     }
 }

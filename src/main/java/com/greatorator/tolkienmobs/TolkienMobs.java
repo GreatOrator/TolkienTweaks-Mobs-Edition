@@ -67,6 +67,9 @@ public class TolkienMobs {
         a. Fell Beast Fireball - rendering
 	    b. Boulder - rendering
 	    c. Galadhrim Arrow - rendering
+	5. Custom Recipe
+	    a. Fireplace
+	    b. Trinket
     */
 
     public TolkienMobs() {
