@@ -35,7 +35,7 @@
 //import java.util.LinkedHashMap;
 //import java.util.Map;
 //
-//public class BlockSigns extends BlockBCore implements IRenderOverride, ITileEntityProvider {
+//public class BlockTTMSigns extends BlockBCore implements IRenderOverride, ITileEntityProvider {
 //    public static final AxisAlignedBB BLOCK_SIGN_Z = new AxisAlignedBB(0.45D, 0.0D, 0D, 0.55D, 0.5D, 1D);
 //    public static final AxisAlignedBB BLOCK_SIGN_X = new AxisAlignedBB(0D, 0.0D, 0.45D, 1D, 0.5D, 0.55D);
 //    public static final AxisAlignedBB SIGN_EAST_AABB = new AxisAlignedBB(0.0D, 0.28125D, 0.0D, 0.125D, 0.78125D, 1.0D);

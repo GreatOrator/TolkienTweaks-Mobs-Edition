@@ -63,15 +63,10 @@ public class TolkienMobs {
     3. Custom weapon & tool models
         a. Fire Whip - Proper rendering
         b. Wooden Club - Proper rendering
-        c. Mithril armor
-	    d. Morguliron armor
     4. Ammo
         a. Fell Beast Fireball - rendering
 	    b. Boulder - rendering
 	    c. Galadhrim Arrow - rendering
-	5. World Type
-	    a. find out how to make biomes larger when generated
-    6. Network Stuff
     */
 
     public TolkienMobs() {

@@ -416,6 +416,15 @@ public class LangGenerator extends LanguageProvider {
     }
 
     private void tools() {
+        add(TTMContent.HELMET_MITHRIL.get(), "Mithril Helmet");
+        add(TTMContent.CHESTPLATE_MITHRIL.get(), "Mithril Chestplate");
+        add(TTMContent.LEGGINGS_MITHRIL.get(), "Mithril Leggings");
+        add(TTMContent.BOOTS_MITHRIL.get(), "Mithril Boots");
+        add(TTMContent.HELMET_MORGULIRON.get(), "Morgul Iron Helmet");
+        add(TTMContent.CHESTPLATE_MORGULIRON.get(), "Morgul Iron Chestplate");
+        add(TTMContent.LEGGINGS_MORGULIRON.get(), "Morgul Iron Leggings");
+        add(TTMContent.BOOTS_MORGULIRON.get(), "Morgul Iron Boots");
+
         add(TTMContent.AXE_MITHRIL.get(), "Mithril Axe");
         add(TTMContent.SWORD_MITHRIL.get(), "Mithril Sword");
         add(TTMContent.HOE_MITHRIL.get(), "Mithril Hoe");

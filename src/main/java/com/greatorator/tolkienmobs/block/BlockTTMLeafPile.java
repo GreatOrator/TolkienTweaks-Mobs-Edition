@@ -15,7 +15,7 @@ import net.minecraftforge.common.ToolType;
 
 import java.util.stream.Stream;
 
-public class BlockLeafPile extends Block {
+public class BlockTTMLeafPile extends Block {
     public static Block.Properties PROPERTIES = Block.Properties.of(Material.LEAVES)
             .sound(SoundType.GRASS)
             .harvestLevel(1)
@@ -30,7 +30,7 @@ public class BlockLeafPile extends Block {
             Block.box(1, 0, 1, 15, 1, 15)
     ).reduce((v1, v2) -> {return VoxelShapes.join(v1, v2, IBooleanFunction.OR);}).get();
 
-    public BlockLeafPile(Properties properties) {
+    public BlockTTMLeafPile(Properties properties) {
         super(properties);
     }
 

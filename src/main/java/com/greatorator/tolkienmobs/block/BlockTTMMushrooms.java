@@ -13,9 +13,9 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class BlockMushrooms extends MushroomBlock
+public class BlockTTMMushrooms extends MushroomBlock
 {
-    public BlockMushrooms(Properties properties) {
+    public BlockTTMMushrooms(Properties properties) {
         super(properties);
     }
 

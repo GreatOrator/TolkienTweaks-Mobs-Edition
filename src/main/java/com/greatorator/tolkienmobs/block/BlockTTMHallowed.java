@@ -20,9 +20,9 @@ import net.minecraftforge.common.util.FakePlayerFactory;
 
 import java.util.Random;
 
-public class BlockTMHallowed extends Block
+public class BlockTTMHallowed extends Block
 {
-    public BlockTMHallowed(Properties properties)
+    public BlockTTMHallowed(Properties properties)
     {
         super(properties);
     }

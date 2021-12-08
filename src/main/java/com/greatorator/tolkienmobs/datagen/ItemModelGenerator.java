@@ -235,6 +235,15 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.RECORD_HOBBITS.get());
 
         //region Tools & Armor
+        simpleItem(TTMContent.HELMET_MITHRIL.get());
+        simpleItem(TTMContent.CHESTPLATE_MITHRIL.get());
+        simpleItem(TTMContent.LEGGINGS_MITHRIL.get());
+        simpleItem(TTMContent.BOOTS_MITHRIL.get());
+        simpleItem(TTMContent.HELMET_MORGULIRON.get());
+        simpleItem(TTMContent.CHESTPLATE_MORGULIRON.get());
+        simpleItem(TTMContent.LEGGINGS_MORGULIRON.get());
+        simpleItem(TTMContent.BOOTS_MORGULIRON.get());
+
         handheldItem(TTMContent.AXE_MITHRIL.get());
         handheldItem(TTMContent.HOE_MITHRIL.get());
         handheldItem(TTMContent.PICKAXE_MITHRIL.get());

@@ -17,11 +17,11 @@ import net.minecraft.world.server.ServerWorld;
 import java.util.Random;
 
 
-public class BlockStonePath extends Block
+public class BlockTTMStonePath extends Block
 {
     protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 
-    public BlockStonePath(Properties properties)
+    public BlockTTMStonePath(Properties properties)
     {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any());

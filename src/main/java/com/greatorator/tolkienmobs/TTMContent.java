@@ -7,6 +7,8 @@ import com.greatorator.tolkienmobs.client.TTMParticles;
 import com.greatorator.tolkienmobs.crafting.recipe.TTMFireplaceRecipe;
 import com.greatorator.tolkienmobs.datagen.*;
 import com.greatorator.tolkienmobs.handler.*;
+import com.greatorator.tolkienmobs.item.armor.ArmorTTMMithril;
+import com.greatorator.tolkienmobs.item.armor.ArmorTTMMorgulIron;
 import com.greatorator.tolkienmobs.item.trinket.Trinket;
 import com.greatorator.tolkienmobs.tileentity.TTMFireplaceTile;
 import com.greatorator.tolkienmobs.tileentity.container.ContainerTTMFireplace;
@@ -15,6 +17,7 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.EntityType;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -184,11 +187,11 @@ public class TTMContent {
     public static RegistryObject<LeavesBlock> LEAVES_MALLORN = BLOCKS.register("leaves_mallorn", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_MIRKWOOD = BLOCKS.register("leaves_mirkwood", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_FANGORNOAK = BLOCKS.register("leaves_fangornoak", TTMContent::createLeavesBlock);
-    public static RegistryObject<Block> LEAFPILE_MALLORN = BLOCKS.register("leafpile_mallorn", () -> new BlockLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_YELLOW).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAFPILE_MIRKWOOD = BLOCKS.register("leafpile_mirkwood", () -> new BlockLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAFPILE_CULUMALDA = BLOCKS.register("leafpile_culumalda", () -> new BlockLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_PINK).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAFPILE_LEBETHRON = BLOCKS.register("leafpile_lebethron", () -> new BlockLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_LIGHT_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAFPILE_FANGORNOAK = BLOCKS.register("leafpile_fangornoak", () -> new BlockLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_MALLORN = BLOCKS.register("leafpile_mallorn", () -> new BlockTTMLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_YELLOW).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_MIRKWOOD = BLOCKS.register("leafpile_mirkwood", () -> new BlockTTMLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_CULUMALDA = BLOCKS.register("leafpile_culumalda", () -> new BlockTTMLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_PINK).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_LEBETHRON = BLOCKS.register("leafpile_lebethron", () -> new BlockTTMLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_LIGHT_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_FANGORNOAK = BLOCKS.register("leafpile_fangornoak", () -> new BlockTTMLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
     public static RegistryObject<SaplingBlock> SAPLING_MALLORN = BLOCKS.register("sapling_mallorn", () -> new SaplingBlock(new TTMMallornTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
     public static RegistryObject<SaplingBlock> SAPLING_MIRKWOOD = BLOCKS.register("sapling_mirkwood", () -> new SaplingBlock(new TTMMirkwoodTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
     public static RegistryObject<SaplingBlock> SAPLING_CULUMALDA = BLOCKS.register("sapling_culumalda", () -> new SaplingBlock(new TTMCulumaldaTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
@@ -198,10 +201,10 @@ public class TTMContent {
 
     // Blocks - Plants & Flowers
 //    public static RegistryObject<Block> PIPEWEED = BLOCKS.register("pipeweed", () -> new BlockPipeweed(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_GREEN).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
-    public static RegistryObject<Block> MUSHROOM_DECAY_BLOOM = BLOCKS.register("mushroom_decay_bloom", () -> new BlockMushrooms(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_PURPLE).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
+    public static RegistryObject<Block> MUSHROOM_DECAY_BLOOM = BLOCKS.register("mushroom_decay_bloom", () -> new BlockTTMMushrooms(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_PURPLE).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
         return 1;
     }).hasPostProcess(TTMContent::needsPostProcessing)));
-    public static RegistryObject<Block> MUSHROOM_BLOOM_DECAY = BLOCKS.register("mushroom_bloom_decay", () -> new BlockMushrooms(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_PURPLE).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
+    public static RegistryObject<Block> MUSHROOM_BLOOM_DECAY = BLOCKS.register("mushroom_bloom_decay", () -> new BlockTTMMushrooms(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_PURPLE).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
         return 1;
     }).hasPostProcess(TTMContent::needsPostProcessing)));
     public static RegistryObject<Block> BLOCK_DECAY_BLOOM = BLOCKS.register("block_decay_bloom", () -> new HugeMushroomBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_MAGENTA).strength(0.2F).sound(SoundType.WOOD)));
@@ -215,8 +218,8 @@ public class TTMContent {
     public static RegistryObject<Block> FLOWER_LILLYOFTHEVALLEY = BLOCKS.register("flower_valley_lilly", () -> new FlowerBlock(Effects.HEAL, 7, AbstractBlock.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
 
     // Custom
-    public static RegistryObject<Block> BLOCK_HALLOWED = BLOCKS.register("block_hallowed", () -> new BlockTMHallowed(AbstractBlock.Properties.of(Material.DIRT).sound(SoundType.GRAVEL).randomTicks()));
-    public static RegistryObject<Block> STONE_PATH = BLOCKS.register("block_stone_path", () -> new BlockStonePath(AbstractBlock.Properties.of(Material.STONE).sound(SoundType.STONE).isViewBlocking(TTMContent::needsPostProcessing).isSuffocating(TTMContent::needsPostProcessing)));
+    public static RegistryObject<Block> BLOCK_HALLOWED = BLOCKS.register("block_hallowed", () -> new BlockTTMHallowed(AbstractBlock.Properties.of(Material.DIRT).sound(SoundType.GRAVEL).randomTicks()));
+    public static RegistryObject<Block> STONE_PATH = BLOCKS.register("block_stone_path", () -> new BlockTTMStonePath(AbstractBlock.Properties.of(Material.STONE).sound(SoundType.STONE).isViewBlocking(TTMContent::needsPostProcessing).isSuffocating(TTMContent::needsPostProcessing)));
     public static RegistryObject<Block> TTMFIREPLACE = BLOCKS.register("block_tmfireplace", () -> new BlockTTMFireplace(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
 
     //#################################################################
@@ -384,6 +387,15 @@ public class TTMContent {
     public static RegistryObject<Item> GEM_AMMOLITE = ITEMS.register("gem_ammolite", () -> new TTMLore(new Item.Properties().stacksTo(16).tab(matsGroup)).setEffectOverride());
 
     // Equipment & Armor
+    public static RegistryObject<ArmorItem> HELMET_MITHRIL = ITEMS.register("helmet_mithril", () -> new ArmorTTMMithril(TTMArmorTier.MITHRIL, EquipmentSlotType.HEAD, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> CHESTPLATE_MITHRIL = ITEMS.register("chestplate_mithril", () -> new ArmorTTMMithril(TTMArmorTier.MITHRIL, EquipmentSlotType.CHEST, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> LEGGINGS_MITHRIL = ITEMS.register("leggings_mithril", () -> new ArmorTTMMithril(TTMArmorTier.MITHRIL, EquipmentSlotType.LEGS, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> BOOTS_MITHRIL = ITEMS.register("boots_mithril", () -> new ArmorTTMMithril(TTMArmorTier.MITHRIL, EquipmentSlotType.FEET, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> HELMET_MORGULIRON = ITEMS.register("helmet_morguliron", () -> new ArmorTTMMorgulIron(TTMArmorTier.MORGULIRON, EquipmentSlotType.HEAD, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> CHESTPLATE_MORGULIRON = ITEMS.register("chestplate_morguliron", () -> new ArmorTTMMorgulIron(TTMArmorTier.MORGULIRON, EquipmentSlotType.CHEST, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> LEGGINGS_MORGULIRON = ITEMS.register("leggings_morguliron", () -> new ArmorTTMMorgulIron(TTMArmorTier.MORGULIRON, EquipmentSlotType.LEGS, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> BOOTS_MORGULIRON = ITEMS.register("boots_morguliron", () -> new ArmorTTMMorgulIron(TTMArmorTier.MORGULIRON, EquipmentSlotType.FEET, (new Item.Properties()).tab(toolsGroup)));
+
     public static RegistryObject<AxeItem> AXE_MITHRIL = ITEMS.register("axe_mithril", () -> new AxeItem(TTMItemTier.MITHRIL, 8.0F, -1.5F, (new Item.Properties()).tab(toolsGroup)));
     public static RegistryObject<HoeItem> HOE_MITHRIL = ITEMS.register("hoe_mithril", () -> new HoeItem(TTMItemTier.MITHRIL, 1, 0.8F, (new Item.Properties()).tab(toolsGroup)));
     public static RegistryObject<PickaxeItem> PICKAXE_MITHRIL = ITEMS.register("pickaxe_mithril", () -> new PickaxeItem(TTMItemTier.MITHRIL, 1, -1.0F, (new Item.Properties()).tab(toolsGroup)));
