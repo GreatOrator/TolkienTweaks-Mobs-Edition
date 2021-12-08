@@ -1,13 +1,19 @@
 package com.greatorator.tolkienmobs.item.armor;
 
+import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.client.model.tools.ModelTTMMithrilArmor;
+import com.greatorator.tolkienmobs.datagen.PotionGenerator;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -68,22 +74,23 @@ public class ArmorTTMMithril extends ArmorItem {
 
         return (A) model;
     }
-//
-//    @Override
-//    public void onArmorTick(World world, PlayerEntity player, ItemStack armor) {
-//        if (player.inventory.armorItemInSlot(3).getItem() == TTMFeatures.HELMET_MITHRIL) {
-//            player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 40, 2, true, false));
-//        }
-//        if (player.inventory.armorItemInSlot(2).getItem() == TTMFeatures.CHESTPLATE_MITHRIL) {
-//            player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 40, 2, true, false));
-//        }
-//        if (player.inventory.armorItemInSlot(1).getItem() == TTMFeatures.LEGGINGS_MITHRIL) {
-//            player.addPotionEffect(new PotionEffect(MobEffects.SPEED, 40, 2, true, false));
-//            player.addPotionEffect(new PotionEffect(MobEffects.JUMP_BOOST, 40, 2, true, false));
-//            player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 40, 3, true, false));
-//        }
-//        if (player.inventory.armorItemInSlot(0).getItem() == TTMFeatures.BOOTS_MITHRIL) {
-//            player.addPotionEffect(new PotionEffect(PotionInit.ELF_NIMBLENESS, 40, 1, true, false));
-//        }
-//    }
+
+    public void tick(World world, PlayerEntity player, ItemStack armor) {
+        if(!world.isClientSide()) {
+            if (player.inventory.getArmor(3).getItem() == TTMContent.HELMET_MITHRIL.get()) {
+                player.addEffect(new EffectInstance(Effects.NIGHT_VISION, 40, 2, true, false));
+            }
+            if (player.inventory.getArmor(2).getItem() == TTMContent.CHESTPLATE_MITHRIL.get()) {
+                player.addEffect(new EffectInstance(Effects.DIG_SPEED, 40, 2, true, false));
+            }
+            if (player.inventory.getArmor(1).getItem() == TTMContent.LEGGINGS_MITHRIL.get()) {
+                player.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 40, 2, true, false));
+                player.addEffect(new EffectInstance(Effects.JUMP, 40, 2, true, false));
+                player.addEffect(new EffectInstance(Effects.DIG_SPEED, 40, 3, true, false));
+            }
+            if (player.inventory.getArmor(0).getItem() == TTMContent.BOOTS_MITHRIL.get()) {
+                player.addEffect(new EffectInstance(PotionGenerator.ELF_NIMBLENESS.get(), 40, 1, true, false));
+            }
+        }
+    }
 }
