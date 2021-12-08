@@ -154,13 +154,13 @@ public class ContainerTTMFireplace extends Container {
     public int getProcess() {
         int process = data.get(0);
         int maxTick = data.get(1);
-        return maxTick != 0 && process != 0 ? process * 32 / maxTick : 0;
+        return maxTick != 0 && process != 0 ? (int)Math.ceil(process * 32D / maxTick) : 0;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public int getFuel() {
+    public double getFuel() {
         int fuel = data.get(2);
         int maxFuel = data.get(3);
-        return maxFuel != 0 && fuel != 0 ? fuel * 17 / maxFuel : 0;
+        return maxFuel != 0 && fuel != 0 ? (double) fuel / maxFuel : 0;
     }
 }

@@ -17,25 +17,26 @@ public class GuiTTMFireplace extends ContainerScreen<ContainerTTMFireplace> {
         super(screenContainer, inv, titleIn);
     }
 
-    public void render(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
-        this.renderBackground(matrixStack);
-        super.render(matrixStack, mouseX, mouseY, partialTicks);
-        this.renderTooltip(matrixStack, mouseX, mouseY);
+    @Override
+    public void render(MatrixStack mStack, int mouseX, int mouseY, float partialTicks) {
+        renderBackground(mStack);
+        super.render(mStack, mouseX, mouseY, partialTicks);
+        this.renderTooltip(mStack, mouseX, mouseY);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    protected void renderBg(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
-        RenderSystem.color4f(1f, 1f , 1f, 1f);
+    protected void renderBg(MatrixStack mStack, float partialTicks, int mouseX, int mouseY) {
         this.minecraft.textureManager.bind(GUI);
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
 
+        double fuel = menu.getFuel();
+        int flameY = (int)Math.ceil(fuel * 17);
         // GUI Render
-        this.blit(matrixStack, x, y, 0, 0, this.imageWidth, this.imageHeight);
+        this.blit(mStack, x, y, 0, 0, this.imageWidth, this.imageHeight);
         // Fire Icon
-        this.blit(matrixStack, x + 52, y + 36, 176, 0, 14, this.menu.getFuel() + 1);
+        this.blit(mStack, x + 52, y + 36 + (17 - flameY), 176, 17 - flameY, 14, flameY);
         // Progress Icon
-        this.blit(matrixStack, x + 80, y + 34, 176, 17, this.menu.getProcess() + 1, 19);
+        this.blit(mStack, x + 80, y + 34, 176, 17, this.menu.getProcess(), 19);
     }
 }
