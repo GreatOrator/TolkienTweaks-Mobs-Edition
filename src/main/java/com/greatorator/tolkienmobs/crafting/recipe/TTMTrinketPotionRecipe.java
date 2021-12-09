@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 /**
  * Created by brandon3055 on 21/02/19.
  */
-public class TrinketPotionRecipe implements ITTMTrinketRecipe {
+public class TTMTrinketPotionRecipe implements ITTMTrinketRecipe {
     @Override
     public boolean matches(IInventory inventory, World world) {
         return false;
