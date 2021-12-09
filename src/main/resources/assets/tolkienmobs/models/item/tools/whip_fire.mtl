@@ -1,4 +1,4 @@
 # Made in Blockbench 2.5.1
-newmtl 2
-map_Kd tolkienmobs:textures/items/tools/obj/whip_fire.png
+newmtl whip_fire
+map_Kd tolkienmobs:item/tools/obj/whip_fire
 newmtl none

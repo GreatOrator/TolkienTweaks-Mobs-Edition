@@ -62,8 +62,7 @@ public class TolkienMobs {
 			14. Nazgul - Texture issue (Noticeable on legs, "armor" skin not moving correctly)
 			15. Frog - not jumping when moving
     2. Remaining blocks -
-        a. Fireplace
-        b. custom Signs
+       a. custom Signs
     3. Custom weapon & tool models
         a. Fire Whip - Proper rendering
         b. Wooden Club - Proper rendering
@@ -72,7 +71,7 @@ public class TolkienMobs {
 	    b. Boulder - rendering
 	    c. Galadhrim Arrow - rendering
 	5. Custom Recipe
-	    a. Fireplace
+	    a. Fireplace - JEI Integration & Vanilla Recipes
 	    b. Trinket
     */
 
