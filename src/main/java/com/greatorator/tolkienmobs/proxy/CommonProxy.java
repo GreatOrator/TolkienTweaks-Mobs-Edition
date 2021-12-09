@@ -8,7 +8,7 @@ import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
 import com.greatorator.tolkienmobs.datagen.StructureGenerator;
 import com.greatorator.tolkienmobs.init.TTMTags;
-import com.greatorator.tolkienmobs.integration.TTMEquipMgr;
+import com.greatorator.tolkienmobs.integration.curios.TTMEquipMgr;
 import com.greatorator.tolkienmobs.server.TTMServerEvents;
 import com.greatorator.tolkienmobs.world.gen.TTMFeature;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMStructureConfig;
@@ -16,7 +16,6 @@ import com.greatorator.tolkienmobs.world.gen.feature.config.TTMTreeFeatureConfig
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
@@ -30,7 +29,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static com.greatorator.tolkienmobs.TTMConfig.disableVanilla;
-import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 public class CommonProxy {
     private Minecraft mc;

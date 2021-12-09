@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.crafting.FireplaceRecipeBuilder;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,24 +34,7 @@ public class RecipeGenerator extends RecipeProvider {
         components(consumer);
         specialty(consumer);
         magic(consumer);
-
-        FireplaceRecipeBuilder.fireplaceRecipe(Items.GOLDEN_APPLE, 100, 500)
-                .ingredient(Items.APPLE)
-                .ingredient(Items.GOLD_INGOT)
-                .build(consumer);
-
-        FireplaceRecipeBuilder.fireplaceRecipe(Items.ENCHANTED_GOLDEN_APPLE, 500, 200)
-                .ingredient(Items.APPLE)
-                .ingredient(Items.GOLD_BLOCK)
-                .build(consumer);
-
-        FireplaceRecipeBuilder.fireplaceRecipe(Items.COOKED_BEEF, 50, 100)
-                .ingredient(Items.BEEF)
-                .build(consumer);
-
-        FireplaceRecipeBuilder.fireplaceRecipe(TTMContent.MONSTER_FLESH.get(), 50, 100)
-                .ingredient(Items.COOKED_BEEF, Items.COOKED_CHICKEN, Items.ROTTEN_FLESH) //Any of thees will be accepted for this recipe
-                .build(consumer);
+        fireplace(consumer);
     }
 
     private static void components(Consumer<IFinishedRecipe> consumer) {
@@ -119,6 +103,18 @@ public class RecipeGenerator extends RecipeProvider {
         torchRecipe(TTMContent.TORCH_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
         torchRecipe(TTMContent.TORCH_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), consumer);
 
+        helmetRecipe(TTMContent.HELMET_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
+        helmetRecipe(TTMContent.HELMET_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
+
+        leggingRecipe(TTMContent.LEGGINGS_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
+        leggingRecipe(TTMContent.LEGGINGS_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
+
+        bootRecipe(TTMContent.BOOTS_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
+        bootRecipe(TTMContent.BOOTS_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
+
+        chestRecipe(TTMContent.CHESTPLATE_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
+        chestRecipe(TTMContent.CHESTPLATE_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
+
         swordRecipe(TTMContent.SWORD_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), consumer);
         swordRecipe(TTMContent.SWORD_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
 
@@ -161,6 +157,15 @@ public class RecipeGenerator extends RecipeProvider {
                 .define('O', Items.OBSIDIAN)
                 .unlockedBy("has_golem_stones", has(TTMContent.GOLEM_STONE.get()))
                 .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.TTMFIREPLACE.get())
+                .pattern("MMM")
+                .pattern("A A")
+                .pattern("AMA")
+                .define('A', Blocks.BRICKS)
+                .define('M', Items.GRAY_CONCRETE)
+                .unlockedBy("has_mithril", has(Items.OAK_LOG))
+                .save(consumer);
     }
 
     public static void potions() {
@@ -172,9 +177,138 @@ public class RecipeGenerator extends RecipeProvider {
     }
 
     private static void magic(Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(TTMContent.TRINKET_AMULET.get())
+                .pattern("GMG")
+                .pattern("G G")
+                .pattern("MAM")
+                .define('A', TTMContent.GEM_AMMOLITE.get())
+                .define('M', TTMContent.INGOT_MITHRIL.get())
+                .define('G', TTMContent.MUMAKIL_LEATHER.get())
+                .unlockedBy("has_mithril", has(TTMContent.INGOT_MITHRIL.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.TRINKET_BELT.get())
+                .pattern("GGG")
+                .pattern("M G")
+                .pattern("AMG")
+                .define('A', TTMContent.GEM_AMMOLITE.get())
+                .define('M', TTMContent.INGOT_MITHRIL.get())
+                .define('G', TTMContent.MUMAKIL_LEATHER.get())
+                .unlockedBy("has_mithril", has(TTMContent.INGOT_MITHRIL.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.TRINKET_CHARM.get())
+                .pattern("MMG")
+                .pattern("CAC")
+                .pattern("MMM")
+                .define('A', TTMContent.GEM_AMMOLITE.get())
+                .define('M', TTMContent.INGOT_MITHRIL.get())
+                .define('G', TTMContent.MUMAKIL_LEATHER.get())
+                .define('C', Blocks.TERRACOTTA)
+                .unlockedBy("has_mithril", has(TTMContent.INGOT_MITHRIL.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.TRINKET_RING.get())
+                .pattern("GM ")
+                .pattern("M M")
+                .pattern(" M ")
+                .define('G', TTMContent.GEM_AMMOLITE.get())
+                .define('M', TTMContent.INGOT_MITHRIL.get())
+                .unlockedBy("has_mithril", has(TTMContent.INGOT_MITHRIL.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.TRINKET_GLOVE.get())
+                .pattern(" MM")
+                .pattern("AGA")
+                .pattern("MMM")
+                .define('G', TTMContent.GEM_AMMOLITE.get())
+                .define('A', TTMContent.INGOT_MITHRIL.get())
+                .define('M', TTMContent.MUMAKIL_LEATHER.get())
+                .unlockedBy("has_mithril", has(TTMContent.INGOT_MITHRIL.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.TRINKET_HAT.get())
+                .pattern("AAA")
+                .pattern("MGM")
+                .pattern("   ")
+                .define('G', TTMContent.GEM_AMMOLITE.get())
+                .define('A', TTMContent.INGOT_MITHRIL.get())
+                .define('M', TTMContent.MUMAKIL_LEATHER.get())
+                .unlockedBy("has_mithril", has(TTMContent.INGOT_MITHRIL.get()))
+                .save(consumer);
+    }
+
+    private static void fireplace(Consumer<IFinishedRecipe> consumer) {
+        fireplaceRecipe1(Items.COOKED_BEEF, 50, 100, Items.BEEF, consumer);
+        fireplaceRecipe1(Items.COOKED_SALMON, 50, 100, Items.SALMON, consumer);
+        fireplaceRecipe2(TTMContent.LEMBAS.get(), 50, 100, TTMContent.CRAM.get(), TTMContent.FOOD_HONEY.get(), consumer);
+        fireplaceRecipe2(Items.GOLDEN_APPLE, 100, 500, Items.APPLE, Items.GOLD_INGOT, consumer);
+        fireplaceRecipe2(Items.ENCHANTED_GOLDEN_APPLE, 500, 200, Items.GOLDEN_APPLE, Items.GOLD_BLOCK, consumer);
+        fireplaceRecipe3(TTMContent.MONSTER_FLESH.get(), 50, 100, consumer, Items.COOKED_BEEF, Items.COOKED_CHICKEN, Items.ROTTEN_FLESH);
     }
 
     // Helper Methods
+    public static void fireplaceRecipe1(IItemProvider output, int experience, int cookTime, IItemProvider input1, Consumer<IFinishedRecipe> consumer){
+        FireplaceRecipeBuilder.fireplaceRecipe(output, experience, cookTime)
+                .ingredient(input1)
+                .build(consumer);
+    }
+
+    public static void fireplaceRecipe2(IItemProvider output, int experience, int cookTime, IItemProvider input1, IItemProvider input2, Consumer<IFinishedRecipe> consumer){
+        FireplaceRecipeBuilder.fireplaceRecipe(output, experience, cookTime)
+                .ingredient(input1)
+                .ingredient(input2)
+                .build(consumer);
+    }
+
+    public static void fireplaceRecipe3(IItemProvider output, int experience, int cookTime, Consumer<IFinishedRecipe> consumer, IItemProvider... input1){
+        FireplaceRecipeBuilder.fireplaceRecipe(output, experience, cookTime)
+                .ingredient(input1)
+                .build(consumer);
+    }
+
+    public static void chestRecipe(IItemProvider output, IItemProvider input1, IItemProvider input2, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("#-#")
+                .pattern("###")
+                .pattern("###")
+                .define('#', input1)
+                .define('-', input2)
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
+                .save(consumer, "tolkienmobs:armor_" + output.asItem().getRegistryName().getPath());
+    }
+
+    public static void leggingRecipe(IItemProvider output, IItemProvider input1, IItemProvider input2, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("###")
+                .pattern("#-#")
+                .pattern("# #")
+                .define('#', input1)
+                .define('-', input2)
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
+                .save(consumer, "tolkienmobs:armor_" + output.asItem().getRegistryName().getPath());
+    }
+
+    public static void bootRecipe(IItemProvider output, IItemProvider input1, IItemProvider input2, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("#-#")
+                .pattern("# #")
+                .define('#', input1)
+                .define('-', input2)
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
+                .save(consumer, "tolkienmobs:armor_" + output.asItem().getRegistryName().getPath());
+    }
+
+    public static void helmetRecipe(IItemProvider output, IItemProvider input1, IItemProvider input2, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("###")
+                .pattern("#-#")
+                .define('#', input1)
+                .define('-', input2)
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
+                .save(consumer, "tolkienmobs:armor_" + output.asItem().getRegistryName().getPath());
+    }
+
     public static void swordRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(output, 1)
                 .pattern("#")

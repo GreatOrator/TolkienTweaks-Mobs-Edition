@@ -1,0 +1,16 @@
+{
+  "type": "tolkienmobs:tmfireplace",
+  "result": {
+    "item": "tolkienmobs:food_lembas"
+  },
+  "ingredients": [
+    {
+      "item": "tolkienmobs:food_cram"
+    },
+    {
+      "item": "tolkienmobs:food_honey"
+    }
+  ],
+  "experience": 50.0,
+  "cookingtime": 100
+}

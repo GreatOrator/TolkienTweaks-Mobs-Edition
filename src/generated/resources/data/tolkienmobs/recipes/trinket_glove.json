@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " MM",
+    "AGA",
+    "MMM"
+  ],
+  "key": {
+    "G": {
+      "item": "tolkienmobs:gem_ammolite"
+    },
+    "A": {
+      "item": "tolkienmobs:ingot_mithril"
+    },
+    "M": {
+      "item": "tolkienmobs:leather_mumakil"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:trinket_glove"
+  }
+}

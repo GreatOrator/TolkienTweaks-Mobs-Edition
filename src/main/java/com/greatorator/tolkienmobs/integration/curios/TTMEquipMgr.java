@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.integration;
+package com.greatorator.tolkienmobs.integration.curios;
 
 import com.brandon3055.brandonscore.BrandonsCore;
 import com.brandon3055.brandonscore.capability.MultiCapabilityProvider;

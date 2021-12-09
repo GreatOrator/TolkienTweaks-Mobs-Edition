@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:block_tmfireplace"
+    ]
+  },
+  "criteria": {
+    "has_mithril": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:oak_log"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:block_tmfireplace"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mithril",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -99,7 +99,7 @@ public class TolkienMobs {
         proxy.construct();
 
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
-        TolkienMobs.FIREPLACE_RECIPE_TYPE = IRecipeType.register(MODID + ":fireplace");
+        TolkienMobs.FIREPLACE_RECIPE_TYPE = IRecipeType.register(MODID + ":tmfireplace");
     }
 
     public static TolkienMobs instance() {
