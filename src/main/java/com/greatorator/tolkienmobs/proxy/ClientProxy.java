@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.proxy;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.TTMClientEvents;
+import com.greatorator.tolkienmobs.client.TTMSprites;
 import com.greatorator.tolkienmobs.client.gui.GuiTTMFireplace;
 import com.greatorator.tolkienmobs.client.render.tile.RenderTTMFireplaceTile;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
@@ -50,6 +51,7 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.addListener(TTMClientEvents::renderOverlayEvent);
         MinecraftForge.EVENT_BUS.addListener(VillagerTTMTrades::onVillagerTradesEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(TTMColor::itemColourEvent);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(TTMSprites::initialize);
     }
 
     @Override
@@ -127,7 +129,7 @@ public class ClientProxy extends CommonProxy {
 //        RenderTypeLookup.setRenderLayer(TTMContent.PIPEWEED.get(), cutout);
 
         // GUI Rendering
-        ScreenManager.register(TTMContent.TMFIREPLACE_CONTAINER.get(), GuiTTMFireplace::new);
+        ScreenManager.register(TTMContent.TMFIREPLACE_CONTAINER, GuiTTMFireplace::new);
 
     }
 

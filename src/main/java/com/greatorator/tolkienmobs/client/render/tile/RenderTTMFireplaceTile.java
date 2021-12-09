@@ -25,11 +25,11 @@ public class RenderTTMFireplaceTile extends TileEntityRenderer<TTMFireplaceTile>
 
     @Override
     public void render(TTMFireplaceTile te, float partialTicks, MatrixStack mStack, IRenderTypeBuffer getter, int packedLight, int packedOverlay) {
-        ItemStack stack1 = te.getItem(0);
-        ItemStack stack2 = te.getItem(1);
-        ItemStack stack3 = te.getItem(3);
+        ItemStack stack1 = te.itemHandler.getStackInSlot(0);
+        ItemStack stack2 = te.itemHandler.getStackInSlot(1);
+        ItemStack stack3 = te.itemHandler.getStackInSlot(3);
         if (stack1.isEmpty() && stack2.isEmpty() && stack3.isEmpty()) return;
-        BlockState state = te.getBlockState(TTMContent.TTMFIREPLACE.get());
+        BlockState state = te.getBlockState();
         Direction facing = state.getValue(BlockTTMFireplace.FACING);
         ItemStack bars = new ItemStack(Blocks.IRON_BARS);
         Minecraft mc = Minecraft.getInstance();

@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.crafting.recipe;//package com.greatorator.tolkienmobs.crafting.recipe;
+package com.greatorator.tolkienmobs.crafting;//package com.greatorator.tolkienmobs.crafting.recipe;
 
 import com.greatorator.tolkienmobs.handler.interfaces.ITTMTrinketRecipe;
 import net.minecraft.inventory.IInventory;

@@ -2,16 +2,16 @@ package com.greatorator.tolkienmobs;
 
 import codechicken.lib.gui.SimpleItemGroup;
 import com.brandon3055.brandonscore.blocks.ItemBlockBCore;
+import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.client.TTMParticles;
-import com.greatorator.tolkienmobs.crafting.recipe.TTMFireplaceRecipe;
+import com.greatorator.tolkienmobs.crafting.FireplaceRecipe;
 import com.greatorator.tolkienmobs.datagen.*;
 import com.greatorator.tolkienmobs.handler.*;
 import com.greatorator.tolkienmobs.item.armor.ArmorTTMMithril;
 import com.greatorator.tolkienmobs.item.armor.ArmorTTMMorgulIron;
 import com.greatorator.tolkienmobs.item.trinket.Trinket;
 import com.greatorator.tolkienmobs.tileentity.TTMFireplaceTile;
-import com.greatorator.tolkienmobs.tileentity.container.ContainerTTMFireplace;
 import com.greatorator.tolkienmobs.world.trees.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -21,17 +21,16 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
 import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -79,7 +78,6 @@ public class TTMContent {
         TILE.register(modBus);
         CONTAINER.register(modBus);
         RECIPE_SERIALIZER.register(modBus);
-        Registry.register(Registry.RECIPE_TYPE, TTMFireplaceRecipe.TYPE_ID, TMFIREPLACE_RECIPE);
         LOGGER.info("Populating the peoples of Middle-earth...");
         EntityGenerator.ENTITY.register(modBus);
         EntityGenerator.SPAWN_EGGS.register(modBus);
@@ -90,6 +88,7 @@ public class TTMContent {
         BiomeGenerator.BIOMES.register(modBus);
         BiomeGenerator.FORGE_WORLD_TYPES.register(modBus);
         StructureGenerator.STRUCTURES.register(modBus);
+        modBus.addGenericListener(ContainerType.class, TTMContent::registerContainers);
     }
 
     //#################################################################
@@ -496,13 +495,18 @@ public class TTMContent {
     //#################################################################
     // Containers
     //#################################################################
-    public static final RegistryObject<ContainerType<ContainerTTMFireplace>> TMFIREPLACE_CONTAINER = CONTAINER.register("tmfireplace_container", () -> IForgeContainerType.create(ContainerTTMFireplace::new));
+    public static ContainerType<ContainerBCTile<TTMFireplaceTile>> TMFIREPLACE_CONTAINER;
+
+    public static void registerContainers(RegistryEvent.Register<ContainerType<?>> event) {
+        //noinspection unchecked
+        event.getRegistry().register(TMFIREPLACE_CONTAINER = (ContainerType<ContainerBCTile<TTMFireplaceTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(TMFIREPLACE_CONTAINER, id, playerInv, extraData, TTMFireplaceTile.SLOT_LAYOUT)).setRegistryName("tmfireplace_container"));
+    }
+
 
     //#################################################################
     // Recipe Serializers
     //#################################################################
-    public static final RegistryObject<TTMFireplaceRecipe.Serializer> TMFIREPLACE_SERIALIZER = RECIPE_SERIALIZER.register("tmfireplace", TTMFireplaceRecipe.Serializer::new);
-    public static IRecipeType<TTMFireplaceRecipe> TMFIREPLACE_RECIPE = new TTMFireplaceRecipe.FireplaceRecipeType();
+    public static final RegistryObject<FireplaceRecipe.Serializer> TMFIREPLACE_SERIALIZER = RECIPE_SERIALIZER.register("tmfireplace", FireplaceRecipe.Serializer::new);
 
     private static boolean needsPostProcessing(BlockState state, IBlockReader reader, BlockPos pos) {
         return true;

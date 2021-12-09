@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.crafting.FireplaceRecipeBuilder;
 import net.minecraft.data.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -32,6 +33,24 @@ public class RecipeGenerator extends RecipeProvider {
         components(consumer);
         specialty(consumer);
         magic(consumer);
+
+        FireplaceRecipeBuilder.fireplaceRecipe(Items.GOLDEN_APPLE, 100, 500)
+                .ingredient(Items.APPLE)
+                .ingredient(Items.GOLD_INGOT)
+                .build(consumer);
+
+        FireplaceRecipeBuilder.fireplaceRecipe(Items.ENCHANTED_GOLDEN_APPLE, 500, 200)
+                .ingredient(Items.APPLE)
+                .ingredient(Items.GOLD_BLOCK)
+                .build(consumer);
+
+        FireplaceRecipeBuilder.fireplaceRecipe(Items.COOKED_BEEF, 50, 100)
+                .ingredient(Items.BEEF)
+                .build(consumer);
+
+        FireplaceRecipeBuilder.fireplaceRecipe(TTMContent.MONSTER_FLESH.get(), 50, 100)
+                .ingredient(Items.COOKED_BEEF, Items.COOKED_CHICKEN, Items.ROTTEN_FLESH) //Any of thees will be accepted for this recipe
+                .build(consumer);
     }
 
     private static void components(Consumer<IFinishedRecipe> consumer) {

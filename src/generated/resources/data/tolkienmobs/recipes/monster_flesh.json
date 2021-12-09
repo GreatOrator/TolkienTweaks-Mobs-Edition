@@ -1,0 +1,21 @@
+{
+  "type": "tolkienmobs:tmfireplace",
+  "result": {
+    "item": "tolkienmobs:monster_flesh"
+  },
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:cooked_beef"
+      },
+      {
+        "item": "minecraft:cooked_chicken"
+      },
+      {
+        "item": "minecraft:rotten_flesh"
+      }
+    ]
+  ],
+  "experience": 50.0,
+  "cookingtime": 100
+}

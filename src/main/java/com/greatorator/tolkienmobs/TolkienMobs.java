@@ -4,11 +4,13 @@ package com.greatorator.tolkienmobs;
 import com.greatorator.tolkienmobs.common.MobModify;
 import com.greatorator.tolkienmobs.common.network.AirPacket;
 import com.greatorator.tolkienmobs.common.network.NetworkHelper;
+import com.greatorator.tolkienmobs.handler.interfaces.IFireplaceRecipe;
 import com.greatorator.tolkienmobs.proxy.ClientProxy;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
@@ -38,6 +40,8 @@ public class TolkienMobs {
     private HashMap<String, Long> modifiedPlayerTimes;
 
     public static CommonProxy proxy;
+
+    public static IRecipeType<IFireplaceRecipe> FIREPLACE_RECIPE_TYPE;
 
     /*TODO List
     1. Entities
@@ -95,6 +99,7 @@ public class TolkienMobs {
         proxy.construct();
 
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
+        TolkienMobs.FIREPLACE_RECIPE_TYPE = IRecipeType.register(MODID + ":fireplace");
     }
 
     public static TolkienMobs instance() {
