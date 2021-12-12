@@ -244,7 +244,7 @@ public class RecipeGenerator extends RecipeProvider {
         fireplaceRecipe2(TTMContent.LEMBAS.get(), 50, 100, TTMContent.CRAM.get(), TTMContent.FOOD_HONEY.get(), consumer);
         fireplaceRecipe2(Items.GOLDEN_APPLE, 100, 500, Items.APPLE, Items.GOLD_INGOT, consumer);
         fireplaceRecipe2(Items.ENCHANTED_GOLDEN_APPLE, 500, 200, Items.GOLDEN_APPLE, Items.GOLD_BLOCK, consumer);
-        fireplaceRecipe3(TTMContent.MONSTER_FLESH.get(), 50, 100, consumer, Items.COOKED_BEEF, Items.COOKED_CHICKEN, Items.ROTTEN_FLESH);
+        fireplaceRecipe3(TTMContent.MONSTER_FLESH.get(), 50, 100, consumer, Items.COOKED_RABBIT, Items.COOKED_PORKCHOP, Items.COOKED_MUTTON, Items.COOKED_BEEF, Items.COOKED_SALMON, Items.COOKED_COD, Items.COOKED_CHICKEN, Items.ROTTEN_FLESH);
     }
 
     // Helper Methods
