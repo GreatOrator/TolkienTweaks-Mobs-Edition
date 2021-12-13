@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "MAM",
+    "MMM"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:iron_pickaxe"
+    },
+    "M": {
+      "item": "minecraft:mossy_cobblestone"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:block_stone_path",
+    "count": 8
+  }
+}

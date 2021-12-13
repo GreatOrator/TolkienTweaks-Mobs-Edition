@@ -6,7 +6,22 @@
   "ingredients": [
     [
       {
+        "item": "minecraft:cooked_rabbit"
+      },
+      {
+        "item": "minecraft:cooked_porkchop"
+      },
+      {
+        "item": "minecraft:cooked_mutton"
+      },
+      {
         "item": "minecraft:cooked_beef"
+      },
+      {
+        "item": "minecraft:cooked_salmon"
+      },
+      {
+        "item": "minecraft:cooked_cod"
       },
       {
         "item": "minecraft:cooked_chicken"

@@ -164,7 +164,25 @@ public class RecipeGenerator extends RecipeProvider {
                 .pattern("AMA")
                 .define('A', Blocks.BRICKS)
                 .define('M', Items.GRAY_CONCRETE)
-                .unlockedBy("has_mithril", has(Items.OAK_LOG))
+                .unlockedBy("has_oaklog", has(Items.OAK_LOG))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.BLOCK_HALLOWED.get(), 8)
+                .pattern("MMM")
+                .pattern("MAM")
+                .pattern("MMM")
+                .define('A', TTMContent.GEM_AMMOLITE.get())
+                .define('M', Blocks.GRASS_BLOCK)
+                .unlockedBy("has_ammolite", has(TTMContent.GEM_AMMOLITE.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.STONE_PATH.get(), 8)
+                .pattern("MMM")
+                .pattern("MAM")
+                .pattern("MMM")
+                .define('A', Items.IRON_PICKAXE)
+                .define('M', Blocks.MOSSY_COBBLESTONE)
+                .unlockedBy("has_iron", has(Items.IRON_INGOT))
                 .save(consumer);
     }
 
@@ -240,6 +258,13 @@ public class RecipeGenerator extends RecipeProvider {
 
     private static void fireplace(Consumer<IFinishedRecipe> consumer) {
         fireplaceRecipe1(Items.COOKED_BEEF, 50, 100, Items.BEEF, consumer);
+        fireplaceRecipe1(Items.COOKED_CHICKEN, 50, 100, Items.CHICKEN, consumer);
+        fireplaceRecipe1(Items.COOKED_COD, 50, 100, Items.COD, consumer);
+        fireplaceRecipe1(Items.DRIED_KELP, 50, 100, Items.KELP, consumer);
+        fireplaceRecipe1(Items.COOKED_MUTTON, 50, 100, Items.MUTTON, consumer);
+        fireplaceRecipe1(Items.COOKED_PORKCHOP, 50, 100, Items.PORKCHOP, consumer);
+        fireplaceRecipe1(Items.BAKED_POTATO, 50, 100, Items.POTATO, consumer);
+        fireplaceRecipe1(Items.COOKED_RABBIT, 50, 100, Items.RABBIT, consumer);
         fireplaceRecipe1(Items.COOKED_SALMON, 50, 100, Items.SALMON, consumer);
         fireplaceRecipe2(TTMContent.LEMBAS.get(), 50, 100, TTMContent.CRAM.get(), TTMContent.FOOD_HONEY.get(), consumer);
         fireplaceRecipe2(Items.GOLDEN_APPLE, 100, 500, Items.APPLE, Items.GOLD_INGOT, consumer);

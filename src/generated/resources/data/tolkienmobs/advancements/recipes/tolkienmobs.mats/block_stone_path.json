@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "tolkienmobs:block_tmfireplace"
+      "tolkienmobs:block_stone_path"
     ]
   },
   "criteria": {
-    "has_oaklog": {
+    "has_iron": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:oak_log"
+            "item": "minecraft:iron_ingot"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tolkienmobs:block_tmfireplace"
+        "recipe": "tolkienmobs:block_stone_path"
       }
     }
   },
   "requirements": [
     [
-      "has_oaklog",
+      "has_iron",
       "has_the_recipe"
     ]
   ]

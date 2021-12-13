@@ -1,0 +1,13 @@
+{
+  "type": "tolkienmobs:tmfireplace",
+  "result": {
+    "item": "minecraft:dried_kelp"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:kelp"
+    }
+  ],
+  "experience": 50.0,
+  "cookingtime": 100
+}
