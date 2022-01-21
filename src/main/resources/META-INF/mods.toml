@@ -13,7 +13,7 @@ license="MIT License"
 [[dependencies.tolkienmobs]]
     modId="forge"
     mandatory=true
-    versionRange="[36.1,)"
+    versionRange="[36.2,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.tolkienmobs]]
