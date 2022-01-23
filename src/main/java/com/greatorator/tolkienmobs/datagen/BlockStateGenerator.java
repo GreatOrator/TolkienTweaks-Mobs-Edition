@@ -129,6 +129,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         // Custom
         simpleBlock(TTMContent.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
         simpleBlock(TTMContent.STONE_PATH.get(), models().getExistingFile(modLoc("block/block_stone_path")));
+        simpleBlock(TTMContent.PIGGYBANK.get(), models().getExistingFile(modLoc("block/block_piggybank")));
 
         ModelFile fireActive = models().getExistingFile(modLoc("block/fireplace_active"));
         ModelFile fireInactive = models().getExistingFile(modLoc("block/fireplace_inactive"));

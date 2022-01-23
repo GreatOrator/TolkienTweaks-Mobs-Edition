@@ -1,0 +1,118 @@
+{   "__comment": "PiggyBank - GreatOrator, created using Tabula 8.0.0",
+    "parent": "minecraft:block/block",
+    "ambientocclusion": false,
+    "textures": {
+        "particle": "tolkienmobs:block/piggybank"
+    },
+    "elements": [
+        {   "__comment": "ears",
+            "from": [ 0, 14, 0 ],
+            "to": [ 16, 16, 2 ],
+            "faces": {
+                "down":  { "uv": [ 8.0, 7.5, 4.25, 8.0 ], "texture": "#particle" },
+                "up":  { "uv": [ 4.25, 8.0, 0.5, 7.5 ], "texture": "#particle" },
+                "north":  { "uv": [ 0.5, 8.0, 4.25, 8.5 ], "texture": "#particle" },
+                "south":  { "uv": [ 4.75, 8.0, 8.5, 8.5 ], "texture": "#particle" },
+                "west":  { "uv": [ 4.25, 8.0, 4.75, 8.5 ], "texture": "#particle" },
+                "east":  { "uv": [ 0.0, 8.0, 0.5, 8.5 ], "texture": "#particle" }
+            }
+        },
+        {   "__comment": "slot",
+            "from": [ 3, 14, 3 ],
+            "to": [ 13, 16, 13 ],
+            "faces": {
+                "down":  { "uv": [ 7.5, 8.75, 5.0, 11.25 ], "texture": "#particle" },
+                "up":  { "uv": [ 5.0, 11.25, 2.5, 8.75 ], "texture": "#particle" },
+                "north":  { "uv": [ 2.5, 11.25, 5.0, 11.75 ], "texture": "#particle" },
+                "south":  { "uv": [ 7.5, 11.25, 10.0, 11.75 ], "texture": "#particle" },
+                "west":  { "uv": [ 5.0, 11.25, 7.5, 11.75 ], "texture": "#particle" },
+                "east":  { "uv": [ 0.0, 11.25, 2.5, 11.75 ], "texture": "#particle" }
+            }
+        },
+        {   "__comment": "piggybank",
+            "from": [ 1, 1, 1 ],
+            "to": [ 15, 15, 15 ],
+            "faces": {
+                "down":  { "uv": [ 10.5, 0.0, 7.0, 3.5 ], "texture": "#particle" },
+                "up":  { "uv": [ 7.0, 3.5, 3.5, 0.0 ], "texture": "#particle" },
+                "north":  { "uv": [ 3.5, 3.5, 7.0, 7.0 ], "texture": "#particle" },
+                "south":  { "uv": [ 10.5, 3.5, 14.0, 7.0 ], "texture": "#particle" },
+                "west":  { "uv": [ 7.0, 3.5, 10.5, 7.0 ], "texture": "#particle" },
+                "east":  { "uv": [ 0.0, 3.5, 3.5, 7.0 ], "texture": "#particle" }
+            }
+        },
+        {   "__comment": "tail",
+            "from": [ 7, 8, 14 ],
+            "to": [ 9, 10, 16 ],
+            "faces": {
+                "down":  { "uv": [ 1.5, 1.5, 1.0, 2.0 ], "texture": "#particle" },
+                "up":  { "uv": [ 1.0, 2.0, 0.5, 1.5 ], "texture": "#particle" },
+                "north":  { "uv": [ 0.5, 2.0, 1.0, 2.5 ], "texture": "#particle" },
+                "south":  { "uv": [ 1.5, 2.0, 2.0, 2.5 ], "texture": "#particle" },
+                "west":  { "uv": [ 1.0, 2.0, 1.5, 2.5 ], "texture": "#particle" },
+                "east":  { "uv": [ 0.0, 2.0, 0.5, 2.5 ], "texture": "#particle" }
+            }
+        },
+        {   "__comment": "nose",
+            "from": [ 5, 5, 0 ],
+            "to": [ 11, 8, 1 ],
+            "faces": {
+                "down":  { "uv": [ 14.5, 0.0, 13.0, 0.25 ], "texture": "#particle" },
+                "up":  { "uv": [ 13.0, 0.25, 11.5, 0.0 ], "texture": "#particle" },
+                "north":  { "uv": [ 11.5, 0.25, 13.0, 1.0 ], "texture": "#particle" },
+                "south":  { "uv": [ 13.25, 0.25, 14.75, 1.0 ], "texture": "#particle" },
+                "west":  { "uv": [ 13.0, 0.25, 13.25, 1.0 ], "texture": "#particle" },
+                "east":  { "uv": [ 11.25, 0.25, 11.5, 1.0 ], "texture": "#particle" }
+            }
+        },
+        {   "__comment": "foot_1",
+            "from": [ 0, 0, 14 ],
+            "to": [ 2, 2, 16 ],
+            "faces": {
+                "down":  { "uv": [ 1.5, 0.0, 1.0, 0.5 ], "texture": "#particle" },
+                "up":  { "uv": [ 1.0, 0.5, 0.5, 0.0 ], "texture": "#particle" },
+                "north":  { "uv": [ 0.5, 0.5, 1.0, 1.0 ], "texture": "#particle" },
+                "south":  { "uv": [ 1.5, 0.5, 2.0, 1.0 ], "texture": "#particle" },
+                "west":  { "uv": [ 1.0, 0.5, 1.5, 1.0 ], "texture": "#particle" },
+                "east":  { "uv": [ 0.0, 0.5, 0.5, 1.0 ], "texture": "#particle" }
+            }
+        },
+        {   "__comment": "foot_2",
+            "from": [ 14, 0, 14 ],
+            "to": [ 16, 2, 16 ],
+            "faces": {
+                "down":  { "uv": [ 1.5, 0.0, 1.0, 0.5 ], "texture": "#particle" },
+                "up":  { "uv": [ 1.0, 0.5, 0.5, 0.0 ], "texture": "#particle" },
+                "north":  { "uv": [ 0.5, 0.5, 1.0, 1.0 ], "texture": "#particle" },
+                "south":  { "uv": [ 1.5, 0.5, 2.0, 1.0 ], "texture": "#particle" },
+                "west":  { "uv": [ 1.0, 0.5, 1.5, 1.0 ], "texture": "#particle" },
+                "east":  { "uv": [ 0.0, 0.5, 0.5, 1.0 ], "texture": "#particle" }
+            }
+        },
+        {   "__comment": "foot_3",
+            "from": [ 0, 0, 0 ],
+            "to": [ 2, 2, 2 ],
+            "faces": {
+                "down":  { "uv": [ 1.5, 0.0, 1.0, 0.5 ], "texture": "#particle" },
+                "up":  { "uv": [ 1.0, 0.5, 0.5, 0.0 ], "texture": "#particle" },
+                "north":  { "uv": [ 0.5, 0.5, 1.0, 1.0 ], "texture": "#particle" },
+                "south":  { "uv": [ 1.5, 0.5, 2.0, 1.0 ], "texture": "#particle" },
+                "west":  { "uv": [ 1.0, 0.5, 1.5, 1.0 ], "texture": "#particle" },
+                "east":  { "uv": [ 0.0, 0.5, 0.5, 1.0 ], "texture": "#particle" }
+            }
+        },
+        {   "__comment": "foot",
+            "from": [ 14, 0, 0 ],
+            "to": [ 16, 2, 2 ],
+            "shade": true,
+            "faces": {
+                "down":  { "uv": [ 1.5, 0.0, 1.0, 0.5 ], "texture": "#particle" },
+                "up":  { "uv": [ 1.0, 0.5, 0.5, 0.0 ], "texture": "#particle" },
+                "north":  { "uv": [ 0.5, 0.5, 1.0, 1.0 ], "texture": "#particle" },
+                "south":  { "uv": [ 1.5, 0.5, 2.0, 1.0 ], "texture": "#particle" },
+                "west":  { "uv": [ 1.0, 0.5, 1.5, 1.0 ], "texture": "#particle" },
+                "east":  { "uv": [ 0.0, 0.5, 0.5, 1.0 ], "texture": "#particle" }
+            }
+        }
+    ]
+}

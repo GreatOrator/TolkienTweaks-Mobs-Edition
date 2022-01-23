@@ -121,6 +121,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.BLOCK_HALLOWED.get());
         blockItem(TTMContent.STONE_PATH.get());
         blockItem(TTMContent.TTMFIREPLACE.get(), modLoc("block/fireplace_inactive"));
+        blockItem(TTMContent.PIGGYBANK.get(), modLoc("block/block_piggybank"));
 
         // Metals & Gems Items
         simpleItem(TTMContent.DUST_MITHRIL.get());

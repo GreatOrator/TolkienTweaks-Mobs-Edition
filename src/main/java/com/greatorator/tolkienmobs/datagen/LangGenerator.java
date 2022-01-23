@@ -136,6 +136,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.BLOCK_HALLOWED.get(), "Hallowed Earth");
         add(TTMContent.STONE_PATH.get(), "Stone Path");
         add(TTMContent.TTMFIREPLACE.get(), "Fireplace");
+        add(TTMContent.PIGGYBANK.get(), "Piggy Bank");
     }
 
     private void items() {
