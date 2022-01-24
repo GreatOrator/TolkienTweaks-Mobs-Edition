@@ -164,6 +164,7 @@ public class LangGenerator extends LanguageProvider {
 
         add("item_info.tolkienmobs.sneak_right_click_activate", "Shift right-click to activate/deactivate effect");
         add("container.tolkienmobs.ttmfireplace", "Fireplace");
+        add("container.tolkienmobs.piggybank", "Piggy Bank");
     }
 
     private void quest() {

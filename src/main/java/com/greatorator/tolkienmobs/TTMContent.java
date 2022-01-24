@@ -500,10 +500,12 @@ public class TTMContent {
     // Containers
     //#################################################################
     public static ContainerType<ContainerBCTile<TTMFireplaceTile>> TMFIREPLACE_CONTAINER;
+    public static ContainerType<ContainerBCTile<TTMPiggyBankTile>> PIGGYBANK_CONTAINER;
 
     public static void registerContainers(RegistryEvent.Register<ContainerType<?>> event) {
         //noinspection unchecked
         event.getRegistry().register(TMFIREPLACE_CONTAINER = (ContainerType<ContainerBCTile<TTMFireplaceTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(TMFIREPLACE_CONTAINER, id, playerInv, extraData, TTMFireplaceTile.SLOT_LAYOUT)).setRegistryName("tmfireplace_container"));
+        event.getRegistry().register(PIGGYBANK_CONTAINER = (ContainerType<ContainerBCTile<TTMPiggyBankTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(PIGGYBANK_CONTAINER, id, playerInv, extraData, TTMPiggyBankTile.SLOT_LAYOUT)).setRegistryName("piggybank_container"));
     }
 
 

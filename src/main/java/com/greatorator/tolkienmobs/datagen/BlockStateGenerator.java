@@ -131,7 +131,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TTMContent.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
         simpleBlock(TTMContent.STONE_PATH.get(), models().getExistingFile(modLoc("block/block_stone_path")));
 
-        ModelFile bankFull = models().getExistingFile(modLoc("block/block_piggybank"));
+        ModelFile bankFull = models().getExistingFile(modLoc("block/block_piggybank_full"));
         ModelFile bankEmpty = models().getExistingFile(modLoc("block/block_piggybank"));
         directionalFromNorthHoz(TTMContent.PIGGYBANK.get(), e -> e.getValue(BlockTTMPiggyBank.FULL) ? bankFull : bankEmpty, 180);
 
