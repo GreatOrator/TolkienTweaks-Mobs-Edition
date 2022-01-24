@@ -1,10 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.tile;
 
-import com.brandon3055.brandonscore.client.render.TESRBase;
-import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.BlockTTMFireplace;
-import com.greatorator.tolkienmobs.tileentity.TTMFireplaceTile;
-import com.greatorator.tolkienmobs.world.gen.TTMFeatures;
+import com.greatorator.tolkienmobs.entity.tile.TTMFireplaceTile;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -16,7 +13,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Quaternion;
 
-import static net.minecraft.client.renderer.model.ItemCameraTransforms.TransformType.*;
+import static net.minecraft.client.renderer.model.ItemCameraTransforms.TransformType.GROUND;
+import static net.minecraft.client.renderer.model.ItemCameraTransforms.TransformType.NONE;
 
 public class RenderTTMFireplaceTile extends TileEntityRenderer<TTMFireplaceTile> {
     public RenderTTMFireplaceTile(TileEntityRendererDispatcher rendererDispatcherIn) {

@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.tileentity;
+package com.greatorator.tolkienmobs.entity.tile;
 
 import com.brandon3055.brandonscore.blocks.TileBCore;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;

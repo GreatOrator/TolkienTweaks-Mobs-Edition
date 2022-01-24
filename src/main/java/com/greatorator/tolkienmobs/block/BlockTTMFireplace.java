@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.greatorator.tolkienmobs.tileentity.TTMFireplaceTile;
+import com.greatorator.tolkienmobs.entity.tile.TTMFireplaceTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

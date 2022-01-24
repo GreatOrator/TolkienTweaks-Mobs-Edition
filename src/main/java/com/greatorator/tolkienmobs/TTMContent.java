@@ -7,11 +7,12 @@ import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.client.TTMParticles;
 import com.greatorator.tolkienmobs.crafting.FireplaceRecipe;
 import com.greatorator.tolkienmobs.datagen.*;
+import com.greatorator.tolkienmobs.entity.tile.TTMFireplaceTile;
+import com.greatorator.tolkienmobs.entity.tile.TTMPiggyBankTile;
 import com.greatorator.tolkienmobs.handler.*;
 import com.greatorator.tolkienmobs.item.armor.ArmorTTMMithril;
 import com.greatorator.tolkienmobs.item.armor.ArmorTTMMorgulIron;
 import com.greatorator.tolkienmobs.item.trinket.Trinket;
-import com.greatorator.tolkienmobs.tileentity.TTMFireplaceTile;
 import com.greatorator.tolkienmobs.world.trees.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -217,10 +218,10 @@ public class TTMContent {
     public static RegistryObject<Block> FLOWER_LILLYOFTHEVALLEY = BLOCKS.register("flower_valley_lilly", () -> new FlowerBlock(Effects.HEAL, 7, AbstractBlock.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
 
     // Custom
-    public static RegistryObject<Block> BLOCK_HALLOWED = BLOCKS.register("block_hallowed", () -> new BlockTTMHallowed(AbstractBlock.Properties.of(Material.DIRT).sound(SoundType.GRAVEL).randomTicks()));
-    public static RegistryObject<Block> STONE_PATH = BLOCKS.register("block_stone_path", () -> new BlockTTMStonePath(AbstractBlock.Properties.of(Material.STONE).sound(SoundType.STONE).isViewBlocking(TTMContent::needsPostProcessing).isSuffocating(TTMContent::needsPostProcessing)));
-    public static RegistryObject<Block> TTMFIREPLACE = BLOCKS.register("block_tmfireplace", () -> new BlockTTMFireplace(AbstractBlock.Properties.of(Material.STONE).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
-    public static RegistryObject<Block> PIGGYBANK = BLOCKS.register("block_piggybank", () -> createLogBlock(MaterialColor.STONE, MaterialColor.COLOR_PINK));
+    public static RegistryObject<Block> BLOCK_HALLOWED = BLOCKS.register("block_hallowed", () -> new BlockTTMHallowed(AbstractBlock.Properties.of(Material.DIRT, MaterialColor.TERRACOTTA_WHITE).sound(SoundType.GRAVEL).randomTicks()));
+    public static RegistryObject<Block> STONE_PATH = BLOCKS.register("block_stone_path", () -> new BlockTTMStonePath(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_LIGHT_GREEN).sound(SoundType.STONE).isViewBlocking(TTMContent::needsPostProcessing).isSuffocating(TTMContent::needsPostProcessing)));
+    public static RegistryObject<Block> TTMFIREPLACE = BLOCKS.register("block_tmfireplace", () -> new BlockTTMFireplace(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_RED).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
+    public static RegistryObject<Block> PIGGYBANK = BLOCKS.register("block_piggybank", () -> new BlockTTMPiggyBank(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_PINK).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
 
     //#################################################################
     // Items
@@ -493,6 +494,7 @@ public class TTMContent {
     // Tile Entity Types
     //#################################################################
     public static RegistryObject<TileEntityType<TTMFireplaceTile>> TMFIREPLACE_TILE = TILE.register("tmfireplace_tile", () -> TileEntityType.Builder.of(TTMFireplaceTile::new, TTMFIREPLACE.get()).build(null));
+    public static RegistryObject<TileEntityType<TTMPiggyBankTile>> PIGGYBANK_TILE = TILE.register("piggybank_tile", () -> TileEntityType.Builder.of(TTMPiggyBankTile::new, PIGGYBANK.get()).build(null));
 
     //#################################################################
     // Containers

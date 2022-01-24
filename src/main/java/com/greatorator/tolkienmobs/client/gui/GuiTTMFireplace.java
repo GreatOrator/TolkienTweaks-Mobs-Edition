@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.client.gui;
 
 import codechicken.lib.math.MathHelper;
-import com.brandon3055.brandonscore.api.TimeKeeper;
 import com.brandon3055.brandonscore.api.render.GuiHelper;
 import com.brandon3055.brandonscore.client.BCSprites;
 import com.brandon3055.brandonscore.client.gui.GuiToolkit;
@@ -11,13 +10,11 @@ import com.brandon3055.brandonscore.client.gui.modulargui.ModularGuiContainer;
 import com.brandon3055.brandonscore.client.gui.modulargui.templates.TBasicMachine;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.greatorator.tolkienmobs.client.TTMSprites;
-import com.greatorator.tolkienmobs.tileentity.TTMFireplaceTile;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.greatorator.tolkienmobs.entity.tile.TTMFireplaceTile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.model.RenderMaterial;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 

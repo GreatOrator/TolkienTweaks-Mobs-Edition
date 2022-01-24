@@ -6,6 +6,7 @@ import com.greatorator.tolkienmobs.client.TTMClientEvents;
 import com.greatorator.tolkienmobs.client.TTMSprites;
 import com.greatorator.tolkienmobs.client.gui.GuiTTMFireplace;
 import com.greatorator.tolkienmobs.client.render.tile.RenderTTMFireplaceTile;
+import com.greatorator.tolkienmobs.client.render.tile.RenderTTMPiggyBankTile;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
 import com.greatorator.tolkienmobs.entity.ambient.model.ModelTTMSwarm;
@@ -203,6 +204,7 @@ public class ClientProxy extends CommonProxy {
 
     private void registerTileRenderers() {
         ClientRegistry.bindTileEntityRenderer(TTMContent.TMFIREPLACE_TILE.get(), RenderTTMFireplaceTile::new);
+        ClientRegistry.bindTileEntityRenderer(TTMContent.PIGGYBANK_TILE.get(), RenderTTMPiggyBankTile::new);
     }
 
     @Override

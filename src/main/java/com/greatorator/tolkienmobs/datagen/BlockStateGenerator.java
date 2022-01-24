@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.datagen;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.BlockTTMFireplace;
+import com.greatorator.tolkienmobs.block.BlockTTMPiggyBank;
 import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -129,7 +130,10 @@ public class BlockStateGenerator extends BlockStateProvider {
         // Custom
         simpleBlock(TTMContent.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
         simpleBlock(TTMContent.STONE_PATH.get(), models().getExistingFile(modLoc("block/block_stone_path")));
-        simpleBlock(TTMContent.PIGGYBANK.get(), models().getExistingFile(modLoc("block/block_piggybank")));
+
+        ModelFile bankFull = models().getExistingFile(modLoc("block/block_piggybank"));
+        ModelFile bankEmpty = models().getExistingFile(modLoc("block/block_piggybank"));
+        directionalFromNorthHoz(TTMContent.PIGGYBANK.get(), e -> e.getValue(BlockTTMPiggyBank.FULL) ? bankFull : bankEmpty, 180);
 
         ModelFile fireActive = models().getExistingFile(modLoc("block/fireplace_active"));
         ModelFile fireInactive = models().getExistingFile(modLoc("block/fireplace_inactive"));
