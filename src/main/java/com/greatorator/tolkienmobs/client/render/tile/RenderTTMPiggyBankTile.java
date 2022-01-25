@@ -27,19 +27,15 @@ public class RenderTTMPiggyBankTile extends TileEntityRenderer<TTMPiggyBankTile>
         switch (facing) {
             case NORTH:
                 mStack.mulPose(new Quaternion(0, 0, 90, true));
-                mStack.scale(0.5F, 0.5F,0.5F);
                 break;
             case SOUTH:
                 mStack.mulPose(new Quaternion(0, 0, -90, true));
-                mStack.scale(0.5F, 0.5F,0.5F);
                 break;
             case WEST:
                 mStack.mulPose(new Quaternion(0, 0, 90, true));
-                mStack.scale(0.5F, 0.5F,0.5F);
                 break;
             case EAST:
                 mStack.mulPose(new Quaternion(0, 0, 180, true));
-                mStack.scale(0.5F, 0.5F,0.5F);
                 break;
         }
 

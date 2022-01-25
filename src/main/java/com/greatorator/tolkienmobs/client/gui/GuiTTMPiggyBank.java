@@ -29,7 +29,7 @@ public class GuiTTMPiggyBank extends ModularGuiContainer<ContainerBCTile<TTMPigg
     public void addElements(GuiElementManager manager) {
         TBasicMachine template = toolkit.loadTemplate(new TBasicMachine(this, tile));
 
-        GuiElement<?> inputSlots = toolkit.createSlots(template.background, 9, 7, 1, (x, y) -> container.getSlotLayout().getSlotData(TILE_INV, (x * 9) + y), null);
+        GuiElement<?> inputSlots = toolkit.createSlots(template.background, 9, 7, 1, (x, y) -> container.getSlotLayout().getSlotData(TILE_INV, (y * 9) + x), null);
         toolkit.placeInside(inputSlots, template.background, TOP_LEFT, 8, 16);
     }
 }

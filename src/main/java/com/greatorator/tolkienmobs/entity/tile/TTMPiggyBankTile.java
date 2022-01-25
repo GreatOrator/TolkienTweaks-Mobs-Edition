@@ -6,12 +6,16 @@ import com.brandon3055.brandonscore.inventory.ContainerSlotLayout;
 import com.brandon3055.brandonscore.inventory.ItemHandlerIOControl;
 import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
 import com.brandon3055.brandonscore.lib.IRSSwitchable;
+import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
 import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.block.BlockTTMPiggyBank;
 import com.greatorator.tolkienmobs.crafting.IFireplaceInventory;
+import com.greatorator.tolkienmobs.init.TTMTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -19,11 +23,13 @@ import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
 
+import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_BOTH_SYNC_TILE;
 import static net.minecraft.util.Direction.UP;
 
 public class TTMPiggyBankTile extends TileBCore implements ITickableTileEntity, INamedContainerProvider, IRSSwitchable, IFireplaceInventory {
     public static final ContainerSlotLayout.LayoutFactory<TTMPiggyBankTile> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.itemHandler);
     public TileItemStackHandler itemHandler = new TileItemStackHandler(63);
+    public final ManagedBool isfull = register(new ManagedBool("is_full", false, SAVE_BOTH_SYNC_TILE));
 
     public TTMPiggyBankTile() {
         super(TTMContent.PIGGYBANK_TILE.get());
@@ -38,11 +44,23 @@ public class TTMPiggyBankTile extends TileBCore implements ITickableTileEntity, 
     }
 
     private boolean isInput(ItemStack stack) {
-        return true;
+        Item coin = stack.getItem();
+        return coin.is(TTMTags.items.COINS);
     }
 
     private void inventoryChange() {
 
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        for (int i = 0; i <= 62; i++) {
+            ItemStack stack = itemHandler.getStackInSlot(i);
+            if (!stack.isEmpty()) {
+                level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(BlockTTMPiggyBank.FULL, isfull.get()));
+            }
+        }
     }
 
     @Override

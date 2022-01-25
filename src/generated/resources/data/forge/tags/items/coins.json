@@ -2,10 +2,11 @@
   "replace": false,
   "values": [
     "tolkienmobs:item_coin_bronze",
-    "tolkienmobs:item_coin_bronze",
     "tolkienmobs:item_coin_silver",
     "tolkienmobs:item_coin_gold",
     "tolkienmobs:item_coin_mithril",
-    "tolkienmobs:item_coin1"
+    "tolkienmobs:item_coin1",
+    "tolkienmobs:item_coin2",
+    "tolkienmobs:item_darksigil"
   ]
 }

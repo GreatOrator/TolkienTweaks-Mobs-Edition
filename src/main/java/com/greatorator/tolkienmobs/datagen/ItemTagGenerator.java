@@ -66,7 +66,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(TTMTags.items.FEATHER).add(TTMContent.BIRD_FEATHER.get(), TTMContent.CREBAIN_FEATHER.get());
         tag(Tags.Items.FEATHERS).addTag(TTMTags.items.FEATHER);
         tag(TTMTags.items.BOTTLE).add(TTMContent.BOTTLE_FANCY.get());
-        tag(TTMTags.items.COINS).add(TTMContent.ITEM_COIN_BRONZE.get(), TTMContent.ITEM_COIN_BRONZE.get(), TTMContent.ITEM_COIN_SILVER.get(), TTMContent.ITEM_COIN_GOLD.get(), TTMContent.ITEM_COIN_MITHRIL.get(), TTMContent.ITEM_FACTIONCOIN.get());
+        tag(TTMTags.items.COINS).add(TTMContent.ITEM_COIN_BRONZE.get(), TTMContent.ITEM_COIN_SILVER.get(), TTMContent.ITEM_COIN_GOLD.get(), TTMContent.ITEM_COIN_MITHRIL.get(), TTMContent.ITEM_FACTIONCOIN.get(), TTMContent.ITEM_FACTIONTOKEN.get(), TTMContent.ITEM_DARKSIGIL.get());
         tag(TTMTags.items.TOKENS).add(TTMContent.ITEM_FACTIONTOKEN.get(), TTMContent.ITEM_CAVECOMPLETE.get(), TTMContent.ITEM_DARKSIGIL.get(), TTMContent.ITEM_WATCHERCOMPLETE.get());
         tag(TTMTags.items.FOOD).add(TTMContent.FOOD_HONEY.get(), TTMContent.LEMBAS.get(), TTMContent.HONEY_CAKE.get(), TTMContent.CRAM.get(), TTMContent.MONSTER_FLESH.get(), TTMContent.INSECT.get(), TTMContent.GOLDEN_INSECT.get());
         tag(TTMTags.items.DRINKS).add(TTMContent.MIRUVOR.get(), TTMContent.GROG.get(), TTMContent.DRINK_ENT_DRAUGHT.get(), TTMContent.DRINK_PERSONAL_BLACKSMITH.get(), TTMContent.DRINK_ELF_FLEETFOOT.get(), TTMContent.DRINK_ELF_VITALITY.get(), TTMContent.DRINK_ERU_BLESSING.get());
