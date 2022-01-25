@@ -40,7 +40,7 @@ public class ProfessionGenerator {
    public static final RegistryObject<PointOfInterestType> COIN_TRADER = POIT.register("coin_trader", ()-> new PointOfInterestType("coin_trader", PointOfInterestType.getBlockStates(TTMContent.PIGGYBANK.get()), 1, 1));
    public static final RegistryObject<PointOfInterestType> GROCERY_STORE = POIT.register("grocery_store", ()-> new PointOfInterestType("grocery_store", PointOfInterestType.getBlockStates(TTMContent.TTMFIREPLACE.get()), 1, 1));
    public static final RegistryObject<PointOfInterestType> PET_MERCHANT = POIT.register("pet_merchant", ()-> new PointOfInterestType("pet_merchant", PointOfInterestType.getBlockStates(Blocks.HAY_BLOCK), 1, 1));
-   public static final RegistryObject<PointOfInterestType> JUNK_TRADER = POIT.register("junk_trader", ()-> new PointOfInterestType("junk_trader", PointOfInterestType.getBlockStates(Blocks.JUKEBOX), 1, 1));
+   public static final RegistryObject<PointOfInterestType> JUNK_TRADER = POIT.register("junk_trader", ()-> new PointOfInterestType("junk_trader", PointOfInterestType.getBlockStates(TTMContent.BARREL_MITHRIL.get()), 1, 1));
 
    //#################################################################
    // Profession Registry

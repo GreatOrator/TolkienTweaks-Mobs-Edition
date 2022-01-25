@@ -9,7 +9,6 @@ import com.brandon3055.brandonscore.lib.IRSSwitchable;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.BlockTTMPiggyBank;
-import com.greatorator.tolkienmobs.crafting.IFireplaceInventory;
 import com.greatorator.tolkienmobs.init.TTMTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -26,7 +25,7 @@ import javax.annotation.Nullable;
 import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_BOTH_SYNC_TILE;
 import static net.minecraft.util.Direction.UP;
 
-public class TTMPiggyBankTile extends TileBCore implements ITickableTileEntity, INamedContainerProvider, IRSSwitchable, IFireplaceInventory {
+public class TTMPiggyBankTile extends TileBCore implements ITickableTileEntity, INamedContainerProvider, IRSSwitchable {
     public static final ContainerSlotLayout.LayoutFactory<TTMPiggyBankTile> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.itemHandler);
     public TileItemStackHandler itemHandler = new TileItemStackHandler(63);
     public final ManagedBool isfull = register(new ManagedBool("is_full", false, SAVE_BOTH_SYNC_TILE));
@@ -49,21 +48,18 @@ public class TTMPiggyBankTile extends TileBCore implements ITickableTileEntity, 
     }
 
     private void inventoryChange() {
-
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-        for (int i = 0; i <= 62; i++) {
-            ItemStack stack = itemHandler.getStackInSlot(i);
-            if (!stack.isEmpty()) {
-                level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(BlockTTMPiggyBank.FULL, isfull.get()));
+        boolean hasCoin = false;
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            if (!itemHandler.getStackInSlot(i).isEmpty()) {
+                hasCoin = true;
+                break;
             }
         }
+        level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(BlockTTMPiggyBank.FULL, hasCoin));
     }
 
-    @Override
+
+
     public IItemHandler getItemHandler() {
         return itemHandler;
     }

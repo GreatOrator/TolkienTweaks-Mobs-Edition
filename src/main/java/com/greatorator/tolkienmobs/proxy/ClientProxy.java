@@ -5,6 +5,8 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.TTMClientEvents;
 import com.greatorator.tolkienmobs.client.TTMSprites;
 import com.greatorator.tolkienmobs.client.gui.GuiTTMFireplace;
+import com.greatorator.tolkienmobs.client.gui.GuiTTMMithrilBarrel;
+import com.greatorator.tolkienmobs.client.gui.GuiTTMMorgulironBarrel;
 import com.greatorator.tolkienmobs.client.gui.GuiTTMPiggyBank;
 import com.greatorator.tolkienmobs.client.render.tile.RenderTTMFireplaceTile;
 import com.greatorator.tolkienmobs.client.render.tile.RenderTTMPiggyBankTile;
@@ -134,6 +136,8 @@ public class ClientProxy extends CommonProxy {
         // GUI Rendering
         ScreenManager.register(TTMContent.TMFIREPLACE_CONTAINER, GuiTTMFireplace::new);
         ScreenManager.register(TTMContent.PIGGYBANK_CONTAINER, GuiTTMPiggyBank::new);
+        ScreenManager.register(TTMContent.BARREL_MITHRIL_CONTAINER, GuiTTMMithrilBarrel::new);
+        ScreenManager.register(TTMContent.BARREL_MORGULIRON_CONTAINER, GuiTTMMorgulironBarrel::new);
 
     }
 

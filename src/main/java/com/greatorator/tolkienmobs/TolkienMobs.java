@@ -63,7 +63,6 @@ public class TolkienMobs {
 			15. Frog - not jumping when moving
     2. Remaining blocks -
        a. custom Signs
-       b. Piggy Bank add ability to store coins and tokens
     3. Custom weapon & tool models
         a. Fire Whip - Proper rendering
         b. Wooden Club - Proper rendering
@@ -72,7 +71,7 @@ public class TolkienMobs {
 	    b. Boulder - rendering
 	    c. Galadhrim Arrow - rendering
 	5. Custom Recipe
-	    a. Fireplace - JEI Integration & Vanilla Recipes
+	    a. Fireplace - JEI Integration
 	    b. Trinket
     */
 

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MZM",
+    "M M",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:pink_concrete"
+    },
+    "Z": {
+      "item": "tolkienmobs:item_coin_gold"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:block_piggybank"
+  }
+}

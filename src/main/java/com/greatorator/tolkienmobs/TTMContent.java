@@ -8,6 +8,8 @@ import com.greatorator.tolkienmobs.client.TTMParticles;
 import com.greatorator.tolkienmobs.crafting.FireplaceRecipe;
 import com.greatorator.tolkienmobs.datagen.*;
 import com.greatorator.tolkienmobs.entity.tile.TTMFireplaceTile;
+import com.greatorator.tolkienmobs.entity.tile.TTMMithrilBarrelTile;
+import com.greatorator.tolkienmobs.entity.tile.TTMMorgulironBarrelTile;
 import com.greatorator.tolkienmobs.entity.tile.TTMPiggyBankTile;
 import com.greatorator.tolkienmobs.handler.*;
 import com.greatorator.tolkienmobs.item.armor.ArmorTTMMithril;
@@ -222,6 +224,8 @@ public class TTMContent {
     public static RegistryObject<Block> STONE_PATH = BLOCKS.register("block_stone_path", () -> new BlockTTMStonePath(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_LIGHT_GREEN).sound(SoundType.STONE).isViewBlocking(TTMContent::needsPostProcessing).isSuffocating(TTMContent::needsPostProcessing)));
     public static RegistryObject<Block> TTMFIREPLACE = BLOCKS.register("block_tmfireplace", () -> new BlockTTMFireplace(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_RED).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
     public static RegistryObject<Block> PIGGYBANK = BLOCKS.register("block_piggybank", () -> new BlockTTMPiggyBank(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_PINK).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
+    public static RegistryObject<Block> BARREL_MITHRIL = BLOCKS.register("block_barrel_mithril", () -> new BlockTTMMithrilBarrel(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
+    public static RegistryObject<Block> BARREL_MORGULIRON = BLOCKS.register("block_barrel_morguliron", () -> new BlockTTMMorgulironBarrel(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
 
     //#################################################################
     // Items
@@ -331,6 +335,8 @@ public class TTMContent {
     public static RegistryObject<Item> STONE_PATH_ITEM = ITEMS.register("block_stone_path", () -> new ItemBlockBCore(STONE_PATH.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> TTMFIREPLACE_ITEM = ITEMS.register("block_tmfireplace", () -> new ItemBlockBCore(TTMFIREPLACE.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> PIGGYBANK_ITEM = ITEMS.register("block_piggybank", () -> new ItemBlockBCore(PIGGYBANK.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> BARREL_MITHRIL_ITEM = ITEMS.register("block_barrel_mithril", () -> new ItemBlockBCore(BARREL_MITHRIL.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> BARREL_MORGULIRON_ITEM = ITEMS.register("block_barrel_morguliron", () -> new ItemBlockBCore(BARREL_MORGULIRON.get(), new Item.Properties().tab(matsGroup)));
 
     // Quest
     public static RegistryObject<Item> ITEM_BERYL = ITEMS.register("item_beryl", () -> new TTMLore(new Item.Properties().stacksTo(1).tab(questGroup)).setEffectOverride().setHasLore());
@@ -495,17 +501,23 @@ public class TTMContent {
     //#################################################################
     public static RegistryObject<TileEntityType<TTMFireplaceTile>> TMFIREPLACE_TILE = TILE.register("tmfireplace_tile", () -> TileEntityType.Builder.of(TTMFireplaceTile::new, TTMFIREPLACE.get()).build(null));
     public static RegistryObject<TileEntityType<TTMPiggyBankTile>> PIGGYBANK_TILE = TILE.register("piggybank_tile", () -> TileEntityType.Builder.of(TTMPiggyBankTile::new, PIGGYBANK.get()).build(null));
+    public static RegistryObject<TileEntityType<TTMMithrilBarrelTile>> BARREL_MITHRIL_TILE = TILE.register("barrel_mithril_tile", () -> TileEntityType.Builder.of(TTMMithrilBarrelTile::new, BARREL_MITHRIL.get()).build(null));
+    public static RegistryObject<TileEntityType<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_TILE = TILE.register("barrel_morguliron_tile", () -> TileEntityType.Builder.of(TTMMorgulironBarrelTile::new, BARREL_MORGULIRON.get()).build(null));
 
     //#################################################################
     // Containers
     //#################################################################
     public static ContainerType<ContainerBCTile<TTMFireplaceTile>> TMFIREPLACE_CONTAINER;
     public static ContainerType<ContainerBCTile<TTMPiggyBankTile>> PIGGYBANK_CONTAINER;
+    public static ContainerType<ContainerBCTile<TTMMithrilBarrelTile>> BARREL_MITHRIL_CONTAINER;
+    public static ContainerType<ContainerBCTile<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_CONTAINER;
 
     public static void registerContainers(RegistryEvent.Register<ContainerType<?>> event) {
         //noinspection unchecked
         event.getRegistry().register(TMFIREPLACE_CONTAINER = (ContainerType<ContainerBCTile<TTMFireplaceTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(TMFIREPLACE_CONTAINER, id, playerInv, extraData, TTMFireplaceTile.SLOT_LAYOUT)).setRegistryName("tmfireplace_container"));
         event.getRegistry().register(PIGGYBANK_CONTAINER = (ContainerType<ContainerBCTile<TTMPiggyBankTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(PIGGYBANK_CONTAINER, id, playerInv, extraData, TTMPiggyBankTile.SLOT_LAYOUT)).setRegistryName("piggybank_container"));
+        event.getRegistry().register(BARREL_MITHRIL_CONTAINER = (ContainerType<ContainerBCTile<TTMMithrilBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MITHRIL_CONTAINER, id, playerInv, extraData, TTMMithrilBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_mithril_container"));
+        event.getRegistry().register(BARREL_MORGULIRON_CONTAINER = (ContainerType<ContainerBCTile<TTMMorgulironBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MORGULIRON_CONTAINER, id, playerInv, extraData, TTMMorgulironBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_morguliron_container"));
     }
 
 

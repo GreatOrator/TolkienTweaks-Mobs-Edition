@@ -137,6 +137,8 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.STONE_PATH.get(), "Stone Path");
         add(TTMContent.TTMFIREPLACE.get(), "Fireplace");
         add(TTMContent.PIGGYBANK.get(), "Piggy Bank");
+        add(TTMContent.BARREL_MITHRIL.get(), "Mithril Barrel");
+        add(TTMContent.BARREL_MORGULIRON.get(), "Morgul Iron Barrel");
     }
 
     private void items() {

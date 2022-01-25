@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "tolkienmobs:block_tmfireplace"
+      "tolkienmobs:block_barrel_morguliron"
     ]
   },
   "criteria": {
-    "has_oaklog": {
+    "has_mirkwoodlog": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:bricks"
+            "item": "tolkienmobs:log_mirkwood"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tolkienmobs:block_tmfireplace"
+        "recipe": "tolkienmobs:block_barrel_morguliron"
       }
     }
   },
   "requirements": [
     [
-      "has_oaklog",
+      "has_mirkwoodlog",
       "has_the_recipe"
     ]
   ]

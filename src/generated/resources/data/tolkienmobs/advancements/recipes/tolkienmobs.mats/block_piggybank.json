@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "tolkienmobs:block_tmfireplace"
+      "tolkienmobs:block_piggybank"
     ]
   },
   "criteria": {
-    "has_oaklog": {
+    "has_goldcoin": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:bricks"
+            "item": "tolkienmobs:item_coin_gold"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tolkienmobs:block_tmfireplace"
+        "recipe": "tolkienmobs:block_piggybank"
       }
     }
   },
   "requirements": [
     [
-      "has_oaklog",
+      "has_goldcoin",
       "has_the_recipe"
     ]
   ]

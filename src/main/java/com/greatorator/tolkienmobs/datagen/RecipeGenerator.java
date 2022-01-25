@@ -163,8 +163,37 @@ public class RecipeGenerator extends RecipeProvider {
                 .pattern("A A")
                 .pattern("AMA")
                 .define('A', Blocks.BRICKS)
-                .define('M', Items.GRAY_CONCRETE)
-                .unlockedBy("has_oaklog", has(Items.OAK_LOG))
+                .define('M', Blocks.GRAY_CONCRETE)
+                .unlockedBy("has_oaklog", has(Items.BRICKS))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.PIGGYBANK.get())
+                .pattern("MZM")
+                .pattern("M M")
+                .pattern("MMM")
+                .define('M', Blocks.PINK_CONCRETE)
+                .define('Z', TTMContent.ITEM_COIN_GOLD.get())
+                .unlockedBy("has_goldcoin", has(TTMContent.ITEM_COIN_GOLD.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.BARREL_MITHRIL.get())
+                .pattern("MZM")
+                .pattern("A A")
+                .pattern("MZM")
+                .define('A', TTMContent.INGOT_MITHRIL.get())
+                .define('M', TTMContent.PLANKS_MALLORN.get())
+                .define('Z', TTMContent.SLAB_MALLORN.get())
+                .unlockedBy("has_mallornlog", has(TTMContent.LOG_MALLORN_ITEM.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.BARREL_MORGULIRON.get())
+                .pattern("MZM")
+                .pattern("A A")
+                .pattern("MZM")
+                .define('A', TTMContent.INGOT_MORGULIRON.get())
+                .define('M', TTMContent.PLANKS_MIRKWOOD.get())
+                .define('Z', TTMContent.SLAB_MIRKWOOD.get())
+                .unlockedBy("has_mirkwoodlog", has(TTMContent.LOG_MIRKWOOD_ITEM.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(TTMContent.BLOCK_HALLOWED.get(), 8)

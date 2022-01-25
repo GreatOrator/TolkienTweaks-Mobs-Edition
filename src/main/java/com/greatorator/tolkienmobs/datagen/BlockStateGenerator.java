@@ -3,6 +3,8 @@ package com.greatorator.tolkienmobs.datagen;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.BlockTTMFireplace;
+import com.greatorator.tolkienmobs.block.BlockTTMMithrilBarrel;
+import com.greatorator.tolkienmobs.block.BlockTTMMorgulironBarrel;
 import com.greatorator.tolkienmobs.block.BlockTTMPiggyBank;
 import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
@@ -130,6 +132,14 @@ public class BlockStateGenerator extends BlockStateProvider {
         // Custom
         simpleBlock(TTMContent.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
         simpleBlock(TTMContent.STONE_PATH.get(), models().getExistingFile(modLoc("block/block_stone_path")));
+
+        ModelFile barrelMithril = models().cubeBottomTop("barrel_mithril", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top"));
+        ModelFile barrelMithrilOpen = models().cubeBottomTop("barrel_mithril_open", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top_open"));
+        directionalBlock(TTMContent.BARREL_MITHRIL.get(), state -> state.getValue(BlockTTMMithrilBarrel.OPEN) ? barrelMithrilOpen : barrelMithril);
+
+        ModelFile barrelMorgulIron = models().cubeBottomTop("barrel_morguliron", modLoc("block/barrel_morguliron_side"), modLoc("block/barrel_morguliron_bottom"), modLoc("block/barrel_morguliron_top"));
+        ModelFile barrelMorgulIronOpen = models().cubeBottomTop("barrel_morguliron_open", modLoc("block/barrel_morguliron_side"), modLoc("block/barrel_morguliron_bottom"), modLoc("block/barrel_morguliron_top_open"));
+        directionalBlock(TTMContent.BARREL_MORGULIRON.get(), state -> state.getValue(BlockTTMMorgulironBarrel.OPEN) ? barrelMorgulIronOpen : barrelMorgulIron);
 
         ModelFile bankFull = models().getExistingFile(modLoc("block/block_piggybank_full"));
         ModelFile bankEmpty = models().getExistingFile(modLoc("block/block_piggybank"));
