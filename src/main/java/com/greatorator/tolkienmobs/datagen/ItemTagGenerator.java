@@ -23,6 +23,8 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(TTMTags.items.DUSTS_MITHRIL).add(TTMContent.DUST_MITHRIL.get());
         tag(TTMTags.items.DUSTS_MORGULIRON).add(TTMContent.DUST_MORGULIRON.get());
         tag(Tags.Items.DUSTS).addTags(TTMTags.items.DUSTS_MITHRIL, TTMTags.items.DUSTS_MORGULIRON);
+        tag(TTMTags.items.CROP).add(TTMContent.PIPEWEED_ITEM.get());
+        tag(Tags.Items.CROPS).addTags(TTMTags.items.CROP);
         tag(TTMTags.items.NUGGETS_MITHRIL).add(TTMContent.NUGGET_MITHRIL.get());
         tag(TTMTags.items.NUGGETS_MORGULIRON).add(TTMContent.NUGGET_MORGULIRON.get());
         tag(Tags.Items.NUGGETS).addTags(TTMTags.items.NUGGETS_MITHRIL, TTMTags.items.NUGGETS_MORGULIRON);
@@ -57,7 +59,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(ItemTags.FLOWERS).addTag(TTMTags.items.FLOWERS);
         tag(TTMTags.items.DOORS_WOODEN).add(TTMContent.DOOR_MALLORN_ITEM.get(), TTMContent.DOOR_MIRKWOOD_ITEM.get(), TTMContent.DOOR_CULUMALDA_ITEM.get(), TTMContent.DOOR_LEBETHRON_ITEM.get());
         tag(ItemTags.WOODEN_DOORS).addTag(TTMTags.items.DOORS_WOODEN);
-        tag(TTMTags.items.DOORS_IRON).add(TTMContent.DOOR_MITHRIL_ITEM.get(), TTMContent.DOOR_MORGULIRON_ITEM.get());
+        tag(TTMTags.items.DOORS_IRON).add(TTMContent.DOOR_MITHRIL_ITEM.get(), TTMContent.DOOR_MORGULIRON_ITEM.get(), TTMContent.DOOR_DURIN_ITEM.get());
         tag(ItemTags.DOORS).addTag(TTMTags.items.DOORS_IRON);
         tag(TTMTags.items.BARS_IRON).add(TTMContent.MITHRIL_BARS_ITEM.get(), TTMContent.MORGULIRON_BARS_ITEM.get());
         tag(TTMTags.items.TORCHES).add(TTMContent.TORCH_MALLORN_ITEM.get(), TTMContent.TORCH_MIRKWOOD_ITEM.get(), TTMContent.TORCH_CULUMALDA_ITEM.get(), TTMContent.TORCH_LEBETHRON_ITEM.get());

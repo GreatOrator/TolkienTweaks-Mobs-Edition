@@ -5,11 +5,15 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
+import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
+import net.minecraft.block.CropsBlock;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.loot.*;
+import net.minecraft.loot.conditions.BlockStateProperty;
 import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.loot.conditions.MatchTool;
 import net.minecraft.loot.conditions.TableBonus;
@@ -53,6 +57,7 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.DOOR_MORGULIRON.get());
         dropSelf(TTMContent.TRAPDOOR_MORGULIRON.get());
         dropSelf(TTMContent.PRESSURE_PLATE_MORGULIRON.get());
+        dropSelf(TTMContent.DOOR_DURIN.get());
 
         // Blocks - Wood & Foliage
         dropSelf(TTMContent.LOG_MALLORN.get());
@@ -133,6 +138,12 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.FLOWER_NIPHREDIL.get());
         dropSelf(TTMContent.FLOWER_SWAMPMILKWEED.get());
         dropSelf(TTMContent.FLOWER_LILLYOFTHEVALLEY.get());
+        ILootCondition.IBuilder ilootcondition$ibuilder1 = BlockStateProperty.hasBlockStateProperties(TTMContent.PIPEWEED.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 7));
+        add(TTMContent.PIPEWEED.get(), createCropDrops(TTMContent.PIPEWEED.get(), TTMContent.PIPEWEED_ITEM.get(), TTMContent.PIPEWEED_SEEDS.get(), ilootcondition$ibuilder1));
+
+        // Blocks - Signs
+//        dropSelf(TTMContent.SIGN_EMPTY.get());
+//        dropSelf(TTMContent.SIGN_WALL_EMPTY.get());
 
         // Blocks - Custom
         dropSelf(TTMContent.BLOCK_HALLOWED.get());
@@ -161,6 +172,10 @@ public class BlockLootGenerator extends BlockLootTables {
 
     protected static LootTable.Builder ChancesAndSticks(Block block, Block log, float... chances) {
         return createSilkTouchDispatchTable(block, applyExplosionCondition(block, ItemLootEntry.lootTableItem(log)).when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, chances))).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).when(NOT_SILK_TOUCH_OR_SHEARS).add(applyExplosionDecay(block, ItemLootEntry.lootTableItem(Items.STICK).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F)))).when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
+    }
+
+    protected static LootTable.Builder createCropDrops(Block block, Item item1, Item item2, ILootCondition.IBuilder builder) {
+        return applyExplosionDecay(block, LootTable.lootTable().withPool(LootPool.lootPool().add(ItemLootEntry.lootTableItem(item1).when(builder).otherwise(ItemLootEntry.lootTableItem(item2)))).withPool(LootPool.lootPool().when(builder).add(ItemLootEntry.lootTableItem(item2).apply(ApplyBonus.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3)))));
     }
 
     protected static LootTable.Builder createSingleItemTable(IItemProvider p_218463_0_, IRandomRange p_218463_1_) {

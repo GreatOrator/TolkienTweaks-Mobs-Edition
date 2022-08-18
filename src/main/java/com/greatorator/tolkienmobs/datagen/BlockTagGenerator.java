@@ -45,7 +45,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
         tag(BlockTags.LOGS_THAT_BURN).addTag(TTMTags.blocks.LOGS);
         tag(TTMTags.blocks.DOORS_WOODEN).add(TTMContent.DOOR_MALLORN.get(), TTMContent.DOOR_MIRKWOOD.get(), TTMContent.DOOR_CULUMALDA.get(), TTMContent.DOOR_LEBETHRON.get());
         tag(BlockTags.WOODEN_DOORS).addTag(TTMTags.blocks.DOORS_WOODEN);
-        tag(TTMTags.blocks.DOORS_IRON).add(TTMContent.DOOR_MITHRIL.get(), TTMContent.DOOR_MORGULIRON.get());
+        tag(TTMTags.blocks.DOORS_IRON).add(TTMContent.DOOR_MITHRIL.get(), TTMContent.DOOR_MORGULIRON.get(), TTMContent.DOOR_DURIN.get());
         tag(BlockTags.DOORS).addTag(TTMTags.blocks.DOORS_IRON);
         tag(TTMTags.blocks.BARS_IRON).add(TTMContent.MITHRIL_BARS.get(), TTMContent.MORGULIRON_BARS.get());
         tag(TTMTags.blocks.MUSHROOMS).add(TTMContent.MUSHROOM_BLOOM_DECAY.get(), TTMContent.MUSHROOM_DECAY_BLOOM.get());

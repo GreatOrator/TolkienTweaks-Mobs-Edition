@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.block;
 
+import com.greatorator.tolkienmobs.TTMContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
@@ -9,7 +10,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
-public class BlockPipeweed extends CropsBlock {
+public class BlockTTMCrops extends CropsBlock {
 
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
             Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
@@ -22,14 +23,13 @@ public class BlockPipeweed extends CropsBlock {
             Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D),
             Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
 
-    public BlockPipeweed(Properties builder) {
+    public BlockTTMCrops(Properties builder) {
         super(builder);
     }
 
     @Override
     protected IItemProvider getBaseSeedId() {
-        return null;
-//        return TTMContent.PIPEWEED_SEED.get();
+        return TTMContent.PIPEWEED_SEEDS.get();
     }
 
     @Override

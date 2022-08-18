@@ -73,6 +73,9 @@ public class TolkienMobs {
 	5. Custom Recipe
 	    a. Fireplace - JEI Integration
 	    b. Trinket
+	6. World Type
+	    a. find out how to make biomes larger when generated
+    7. Network Stuff
     */
 
     public TolkienMobs() {

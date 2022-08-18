@@ -42,6 +42,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.ORE_AMMOLITE.get());
         blockItem(TTMContent.ORE_END_AMMOLITE.get());
         blockItem(TTMContent.ORE_NETHER_AMMOLITE.get());
+        simpleItem(TTMContent.DOOR_DURIN_ITEM.get());
 
         // Block Items - Wood & Foliage
         blockItem(TTMContent.LOG_MALLORN.get());
@@ -103,8 +104,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.SAPLING_FANGORNOAK.get());
 
         // Block Items - Plants & Flowers
-//        simpleItem(TTMContent.PIPEWEED_SEED.get());
-//        blockItem(TTMContent.PIPEWEED.get());
+        simpleItem(TTMContent.PIPEWEED_SEEDS.get());
+        simpleItem(TTMContent.PIPEWEED_ITEM.get());
         blockItem(TTMContent.MUSHROOM_DECAY_BLOOM.get());
         blockItem(TTMContent.MUSHROOM_BLOOM_DECAY.get());
         blockItem(TTMContent.BLOCK_BLOOM_DECAY.get(), modLoc("block/block_decay_bloom_inventory"));

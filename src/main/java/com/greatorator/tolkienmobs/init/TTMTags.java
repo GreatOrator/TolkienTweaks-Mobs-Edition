@@ -55,6 +55,7 @@ public class TTMTags {
         public static final Tags.IOptionalNamedTag<Item> ACORNS = tag("acorns");
         public static final Tags.IOptionalNamedTag<Item> INSECTS = tag("insects");
         public static final Tags.IOptionalNamedTag<Item> SPAWNEGG = tag("spawnegg");
+        public static final Tags.IOptionalNamedTag<Item> CROP = tag("crops");
 
 
         private static Tags.IOptionalNamedTag<Item> tag(String name) {

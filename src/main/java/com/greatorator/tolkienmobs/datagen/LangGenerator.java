@@ -59,6 +59,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.ORE_AMMOLITE.get(), "Ammolite Ore");
         add(TTMContent.ORE_END_AMMOLITE.get(), "Ender Ammolite Ore");
         add(TTMContent.ORE_NETHER_AMMOLITE.get(), "Firey Ammolite Ore");
+        add(TTMContent.DOOR_DURIN.get(), "Door of Durin");
 
         // Wood & Foliage
         add(TTMContent.LOG_MALLORN.get(), "Mallorn Log");
@@ -162,6 +163,8 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.GOLEM_STONE_WATER.get(), TextFormatting.BLUE + "Water " + TextFormatting.RESET + "Golem Stone");
         add(TTMContent.GOLEM_STONE_SUMMON.get(), "Summon Legendary " + TextFormatting.AQUA + "Mithril " + TextFormatting.RESET + "Golem");
         addLore(TTMContent.GOLEM_STONE_SUMMON.get(), "Ancient artifact to summon a Legendary Golem");
+        add(TTMContent.PIPEWEED_SEEDS.get(), "Pipeweed");
+        add(TTMContent.PIPEWEED_ITEM.get(), "Pipeweed Seeds");
 
 
         add("item_info.tolkienmobs.sneak_right_click_activate", "Shift right-click to activate/deactivate effect");
