@@ -7,23 +7,17 @@ import com.greatorator.tolkienmobs.block.BlockTTMFireplace;
 import com.greatorator.tolkienmobs.block.BlockTTMMithrilBarrel;
 import com.greatorator.tolkienmobs.block.BlockTTMMorgulironBarrel;
 import com.greatorator.tolkienmobs.block.BlockTTMPiggyBank;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.*;
-import net.minecraft.data.*;
-import net.minecraft.item.Item;
-import net.minecraft.state.Property;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -32,21 +26,18 @@ import java.util.function.Supplier;
  */
 public class BlockStateGenerator extends BlockStateProvider {
     private static final Logger LOGGER = LogManager.getLogger();
-    private final Consumer<IFinishedBlockState> blockStateOutput;
-    private final BiConsumer<ResourceLocation, Supplier<JsonElement>> modelOutput;
+    private final BiConsumer<ResourceLocation, Supplier<JsonElement>> modelOutput = null;
 
 
-    public BlockStateGenerator(DataGenerator gen, ExistingFileHelper exFileHelper, Consumer<IFinishedBlockState> blockstate, BiConsumer<ResourceLocation, Supplier<JsonElement>> supplier) {
+    public BlockStateGenerator(DataGenerator gen, ExistingFileHelper exFileHelper) {
         super(gen, TolkienMobs.MODID, exFileHelper);
-        this.blockStateOutput = blockstate;
-        this.modelOutput = supplier;
     }
 
     //So this is where blockStates are generated. This is also where you generate simple block models or implement more advanced custom models.
 
     @Override
     protected void registerStatesAndModels() {
-        // Basic - Metals & Gems
+        // Metals & Gems
         simpleBlock(TTMContent.ORE_MITHRIL.get());
         simpleBlock(TTMContent.ORE_END_MITHRIL.get());
         simpleBlock(TTMContent.ORE_NETHER_MITHRIL.get());
@@ -68,7 +59,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TTMContent.ORE_NETHER_AMMOLITE.get());
         doorBlock(TTMContent.DOOR_DURIN.get(), "door_durin", modLoc("block/door_durin_bottom"), modLoc("block/door_durin_top"));
 
-        // Basic Wood & Foliage
+        // Wood & Foliage
         logBlock(TTMContent.LOG_MALLORN.get());
         logBlock(TTMContent.LOG_MIRKWOOD.get());
         logBlock(TTMContent.LOG_CULUMALDA.get());
@@ -131,7 +122,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TTMContent.SAPLING_DEADWOOD.get(), models().cross("sapling_deadwood", modLoc("block/sapling_deadwood")));
         simpleBlock(TTMContent.SAPLING_FANGORNOAK.get(), models().cross("sapling_fangornoak", modLoc("block/sapling_fangornoak")));
 
-        // Basic Plants & Flowers
+        // Plants & Flowers
         simpleBlock(TTMContent.MUSHROOM_DECAY_BLOOM.get(), models().cross("mushroom_decay_bloom", modLoc("block/mushroom_decay_bloom")));
         simpleBlock(TTMContent.MUSHROOM_BLOOM_DECAY.get(), models().cross("mushroom_bloom_decay", modLoc("block/mushroom_bloom_decay")));
         simpleBlock(TTMContent.BLOCK_BLOOM_DECAY.get(), models().getExistingFile(modLoc("block/block_bloom_decay")));
@@ -143,7 +134,6 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TTMContent.FLOWER_NIPHREDIL.get(), models().cross("flower_niphredil", modLoc("block/flower_niphredil")));
         simpleBlock(TTMContent.FLOWER_SWAMPMILKWEED.get(), models().cross("flower_swamp_milkweed", modLoc("block/flower_swamp_milkweed")));
         simpleBlock(TTMContent.FLOWER_LILLYOFTHEVALLEY.get(), models().cross("flower_valley_lilly", modLoc("block/flower_valley_lilly")));
-        cropsBlock(TTMContent.PIPEWEED.get(), BlockStateProperties.AGE_7, 0, 1, 2, 3, 4, 5, 6, 7);
 
         // Custom
         simpleBlock(TTMContent.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
@@ -339,29 +329,19 @@ public class BlockStateGenerator extends BlockStateProvider {
                 });
     }
 
-    private void cropsBlock(Block p_239876_1_, Property<Integer> p_239876_2_, int... p_239876_3_) {
-        if (p_239876_2_.getPossibleValues().size() != p_239876_3_.length) {
-            throw new IllegalArgumentException();
-        } else {
-            Int2ObjectMap<ResourceLocation> int2objectmap = new Int2ObjectOpenHashMap<>();
-            BlockStateVariantBuilder blockstatevariantbuilder = BlockStateVariantBuilder.property(p_239876_2_).generate((p_239920_4_) -> {
-                int i = p_239876_3_[p_239920_4_];
-                ResourceLocation resourcelocation = int2objectmap.computeIfAbsent(i, (p_239870_3_) -> {
-                    return this.createSuffixedVariant(p_239876_1_, "_stage" + i, StockModelShapes.CROP, ModelTextures::crop);
-                });
-                return BlockModelDefinition.variant().with(BlockModelFields.MODEL, resourcelocation);
-            });
-            this.createSimpleFlatItemModel(p_239876_1_.asItem());
-            this.blockStateOutput.accept(FinishedVariantBlockState.multiVariant(p_239876_1_).with(blockstatevariantbuilder));
+    private void cropsBlock(Block block, String name, int age) {
+        String path = block.getRegistryName().getPath();
+        //Integer cropAge = BlockTTMCrops.AGE;
+
+        for (int i = 0; i < age; i++){
+            ResourceLocation resource = new ResourceLocation(block.getRegistryName().getNamespace(), "block/" + name + "_stage" + i);
+            ModelFile model = models().crop(path + "_stage" + i, resource);
+            simpleBlock(block, models().withExistingParent(path, mcLoc("block/crop")).texture("plant", resource));
+//            getVariantBuilder(block)
+//                .partialState().with(cropAge, i)
+//                .modelForState().modelFile(path + "_stage" +  i).addModel();
         }
-    }
 
-    private ResourceLocation createSuffixedVariant(Block p_239886_1_, String p_239886_2_, ModelsUtil p_239886_3_, Function<ResourceLocation, ModelTextures> p_239886_4_) {
-        return p_239886_3_.createWithSuffix(p_239886_1_, p_239886_2_, p_239886_4_.apply(ModelTextures.getBlockTexture(p_239886_1_, p_239886_2_)), this.modelOutput);
-    }
-
-    private void createSimpleFlatItemModel(Item p_239866_1_) {
-        StockModelShapes.FLAT_ITEM.create(ModelsResourceUtil.getModelLocation(p_239866_1_), ModelTextures.layer0(p_239866_1_), this.modelOutput);
     }
 
     @Override

@@ -1,39 +1,35 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.greatorator.tolkienmobs.TTMContent;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
+import net.minecraft.block.FarmlandBlock;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.state.IntegerProperty;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.IItemProvider;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
 public class BlockTTMCrops extends CropsBlock {
-
-    private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
-
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 10.0D, 16.0D),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 14.0D, 16.0D),
-            Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
+    public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
 
     public BlockTTMCrops(Properties builder) {
         super(builder);
+        this.defaultBlockState().setValue(this.getAgeProperty(), Integer.valueOf(0));
     }
 
-    @Override
-    protected IItemProvider getBaseSeedId() {
-        return TTMContent.PIPEWEED_SEEDS.get();
+    protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        return state.getBlock() instanceof FarmlandBlock;
     }
 
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return SHAPE_BY_AGE[state.getValue(this.getAgeProperty())];
+    protected IItemProvider getSeedsItem() {
+        return this.asItem();
+    }
+
+
+    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+        items.add(new ItemStack(this));
     }
 }

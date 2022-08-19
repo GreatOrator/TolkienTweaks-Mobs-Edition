@@ -156,6 +156,8 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.MUMAKIL_LEATHER.get(), "Mumakil Hide");
         add(TTMContent.MONSTER_FUR.get(), "Monster Fur");
         add(TTMContent.BOTTLE_FANCY.get(), "Fancy Bottle");
+        add(TTMContent.PIPEWEED_SEEDS.get(), "Pipeweed");
+        add(TTMContent.PIPEWEED_ITEM.get(), "Pipeweed Seeds");
         add(TTMContent.GOLEM_STONE.get(), "Golem Stone");
         add(TTMContent.GOLEM_STONE_EARTH.get(), TextFormatting.DARK_GREEN + "Earth " + TextFormatting.RESET + "Golem Stone");
         add(TTMContent.GOLEM_STONE_AIR.get(), TextFormatting.YELLOW + "Air " + TextFormatting.RESET + "Golem Stone");
@@ -163,8 +165,6 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.GOLEM_STONE_WATER.get(), TextFormatting.BLUE + "Water " + TextFormatting.RESET + "Golem Stone");
         add(TTMContent.GOLEM_STONE_SUMMON.get(), "Summon Legendary " + TextFormatting.AQUA + "Mithril " + TextFormatting.RESET + "Golem");
         addLore(TTMContent.GOLEM_STONE_SUMMON.get(), "Ancient artifact to summon a Legendary Golem");
-        add(TTMContent.PIPEWEED_SEEDS.get(), "Pipeweed");
-        add(TTMContent.PIPEWEED_ITEM.get(), "Pipeweed Seeds");
 
 
         add("item_info.tolkienmobs.sneak_right_click_activate", "Shift right-click to activate/deactivate effect");

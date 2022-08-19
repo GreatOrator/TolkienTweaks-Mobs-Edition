@@ -505,8 +505,8 @@ public class TTMContent {
     public static RegistryObject<Item> FOOD_HONEY = ITEMS.register("food_honey", () -> new Item(new Item.Properties().tab(foodGroup).stacksTo(64).food(TTMFoods.FOOD_HONEY)));
 
     // Crops
-    public static RegistryObject<Item> PIPEWEED_ITEM = ITEMS.register("pipeweed", () -> new ItemBlockBCore(PIPEWEED.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> PIPEWEED_SEEDS = ITEMS.register("pipeweed_seeds", () -> new ItemBlockBCore(PIPEWEED.get(), new Item.Properties().food(new Food.Builder().nutrition(1).saturationMod(0.1f).fast().build()).tab(matsGroup)));
+    public static RegistryObject<Item> PIPEWEED_ITEM = ITEMS.register("pipeweed", () -> new Item(new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> PIPEWEED_SEEDS = ITEMS.register("pipeweed_seeds", () -> new ItemBlockBCore(PIPEWEED.get(), new Item.Properties().tab(matsGroup)));
 
     //#################################################################
     // Tile Entity Types

@@ -104,8 +104,6 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.SAPLING_FANGORNOAK.get());
 
         // Block Items - Plants & Flowers
-        simpleItem(TTMContent.PIPEWEED_SEEDS.get());
-        simpleItem(TTMContent.PIPEWEED_ITEM.get());
         blockItem(TTMContent.MUSHROOM_DECAY_BLOOM.get());
         blockItem(TTMContent.MUSHROOM_BLOOM_DECAY.get());
         blockItem(TTMContent.BLOCK_BLOOM_DECAY.get(), modLoc("block/block_decay_bloom_inventory"));
@@ -223,6 +221,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.TREE_ACORN.get());
         simpleItem(TTMContent.GOLDEN_TREE_ACORN.get());
         simpleItem(TTMContent.FOOD_HONEY.get());
+        simpleItem(TTMContent.PIPEWEED_SEEDS.get());
+        simpleItem(TTMContent.PIPEWEED_ITEM.get());
 
         //region Music Discs
         simpleItem(TTMContent.RECORD_RIVENDELL.get());

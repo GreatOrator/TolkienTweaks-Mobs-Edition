@@ -23,8 +23,6 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(TTMTags.items.DUSTS_MITHRIL).add(TTMContent.DUST_MITHRIL.get());
         tag(TTMTags.items.DUSTS_MORGULIRON).add(TTMContent.DUST_MORGULIRON.get());
         tag(Tags.Items.DUSTS).addTags(TTMTags.items.DUSTS_MITHRIL, TTMTags.items.DUSTS_MORGULIRON);
-        tag(TTMTags.items.CROP).add(TTMContent.PIPEWEED_ITEM.get());
-        tag(Tags.Items.CROPS).addTags(TTMTags.items.CROP);
         tag(TTMTags.items.NUGGETS_MITHRIL).add(TTMContent.NUGGET_MITHRIL.get());
         tag(TTMTags.items.NUGGETS_MORGULIRON).add(TTMContent.NUGGET_MORGULIRON.get());
         tag(Tags.Items.NUGGETS).addTags(TTMTags.items.NUGGETS_MITHRIL, TTMTags.items.NUGGETS_MORGULIRON);
