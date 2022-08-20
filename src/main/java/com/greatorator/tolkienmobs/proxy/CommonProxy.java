@@ -9,6 +9,7 @@ import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
 import com.greatorator.tolkienmobs.datagen.StructureGenerator;
 import com.greatorator.tolkienmobs.init.TTMTags;
 import com.greatorator.tolkienmobs.integration.curios.TTMEquipMgr;
+import com.greatorator.tolkienmobs.network.TTMNetwork;
 import com.greatorator.tolkienmobs.server.TTMServerEvents;
 import com.greatorator.tolkienmobs.world.gen.TTMFeature;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMStructureConfig;
@@ -53,6 +54,8 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.addListener(TTMFeature::biomeLoading);
 
         modBus.addListener(EntityGenerator::registerAttributes);
+
+        TTMNetwork.init();
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
