@@ -7,11 +7,9 @@ import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.client.TTMParticles;
 import com.greatorator.tolkienmobs.crafting.FireplaceRecipe;
 import com.greatorator.tolkienmobs.datagen.*;
-import com.greatorator.tolkienmobs.entity.tile.TTMFireplaceTile;
-import com.greatorator.tolkienmobs.entity.tile.TTMMithrilBarrelTile;
-import com.greatorator.tolkienmobs.entity.tile.TTMMorgulironBarrelTile;
-import com.greatorator.tolkienmobs.entity.tile.TTMPiggyBankTile;
+import com.greatorator.tolkienmobs.entity.tile.*;
 import com.greatorator.tolkienmobs.handler.*;
+import com.greatorator.tolkienmobs.item.TTMSignItem;
 import com.greatorator.tolkienmobs.item.armor.ArmorTTMMithril;
 import com.greatorator.tolkienmobs.item.armor.ArmorTTMMorgulIron;
 import com.greatorator.tolkienmobs.item.trinket.Trinket;
@@ -508,6 +506,25 @@ public class TTMContent {
     public static RegistryObject<Item> PIPEWEED_ITEM = ITEMS.register("pipeweed", () -> new Item(new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> PIPEWEED_SEEDS = ITEMS.register("pipeweed_seeds", () -> new ItemBlockBCore(PIPEWEED.get(), new Item.Properties().tab(matsGroup)));
 
+
+
+
+    // All relavent block and item classes for custom signs. Move these to their correct locations once you understand how it all works. Or dont. Up to you.
+
+    //You need to create one of these for type of sign you want to create.
+    public static WoodType EXAMPLE_WOOD_TYPE = WoodType.register(WoodType.create(MODID + ":example_wood"));
+
+    //You also need to create these three classes for each sign type you add.
+    public static RegistryObject<Block> EXAMPLE_SIGN_WOOD_TYPE = BLOCKS.register("example_sign_block_wood_type", () -> new TTMStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), EXAMPLE_WOOD_TYPE));
+
+    public static RegistryObject<Block> EXAMPLE_WALL_SIGN_WOOD_TYPE = BLOCKS.register("example_wall_sign_block_wood_type", () -> new TTMWallSignBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(EXAMPLE_SIGN_WOOD_TYPE.get()), EXAMPLE_WOOD_TYPE));
+
+    //You onlyg need a single item because the "wall sign" is never actually dropped as an item
+    public static RegistryObject<Item> EXAMPLE_SIGN_ITEM_WOOD_TYPE = ITEMS.register("example_sign_block_wood_type", () -> new TTMSignItem(new Item.Properties().tab(matsGroup), EXAMPLE_SIGN_WOOD_TYPE.get(), EXAMPLE_WALL_SIGN_WOOD_TYPE.get()));
+
+
+
+
     //#################################################################
     // Tile Entity Types
     //#################################################################
@@ -515,6 +532,13 @@ public class TTMContent {
     public static RegistryObject<TileEntityType<TTMPiggyBankTile>> PIGGYBANK_TILE = TILE.register("piggybank_tile", () -> TileEntityType.Builder.of(TTMPiggyBankTile::new, PIGGYBANK.get()).build(null));
     public static RegistryObject<TileEntityType<TTMMithrilBarrelTile>> BARREL_MITHRIL_TILE = TILE.register("barrel_mithril_tile", () -> TileEntityType.Builder.of(TTMMithrilBarrelTile::new, BARREL_MITHRIL.get()).build(null));
     public static RegistryObject<TileEntityType<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_TILE = TILE.register("barrel_morguliron_tile", () -> TileEntityType.Builder.of(TTMMorgulironBarrelTile::new, BARREL_MORGULIRON.get()).build(null));
+
+    //You only need a single tile entity that will cover all of your sign types. You just need to add all of your sign blocks here.                                 V                    V                     etc...
+    public static RegistryObject<TileEntityType<TTMSignBlockEntity>> SIGN_TILE = TILE.register("sign", () -> TileEntityType.Builder.of(TTMSignBlockEntity::new, EXAMPLE_SIGN_WOOD_TYPE.get(), EXAMPLE_WALL_SIGN_WOOD_TYPE.get()       ).build(null));
+
+
+
+
 
     //#################################################################
     // Containers

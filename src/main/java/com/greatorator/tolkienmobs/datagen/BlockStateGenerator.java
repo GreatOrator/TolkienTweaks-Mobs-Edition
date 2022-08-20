@@ -156,6 +156,10 @@ public class BlockStateGenerator extends BlockStateProvider {
         directionalFromNorthHoz(TTMContent.TTMFIREPLACE.get(), e -> e.getValue(BlockTTMFireplace.ACTIVE) ? fireActive : fireInactive, 180);
 
 
+        signBlock(TTMContent.EXAMPLE_SIGN_WOOD_TYPE.get(), "minecraft:block/oak_planks"); //<-- This is just the particle texture
+        signBlock(TTMContent.EXAMPLE_WALL_SIGN_WOOD_TYPE.get(), "minecraft:block/oak_planks"); //<-- This is just the particle texture
+
+
         //Bellow is some extra example stuff I left in for reference
         if (true) return;
 
@@ -290,6 +294,13 @@ public class BlockStateGenerator extends BlockStateProvider {
         ModelFile model = models()//
                 .withExistingParent("dummy", "block")//
                 .texture("particle", "minecraft:block/glass");
+        simpleBlock(block, model);
+    }
+
+    private void signBlock(Block block, String particleTexture) {
+        ModelFile model = models()
+                .withExistingParent("dummy", "block")
+                .texture("particle", particleTexture);
         simpleBlock(block, model);
     }
 

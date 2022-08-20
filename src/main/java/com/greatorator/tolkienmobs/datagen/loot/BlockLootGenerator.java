@@ -164,6 +164,10 @@ public class BlockLootGenerator extends BlockLootTables {
         add(TTMContent.ORE_END_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.GEM_AMMOLITE.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
         add(TTMContent.ORE_NETHER_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.GEM_AMMOLITE.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
 
+
+        //Signs, You will need these for every type you add
+        dropOther(TTMContent.EXAMPLE_SIGN_WOOD_TYPE.get(), TTMContent.EXAMPLE_SIGN_ITEM_WOOD_TYPE.get());
+        dropOther(TTMContent.EXAMPLE_WALL_SIGN_WOOD_TYPE.get(), TTMContent.EXAMPLE_SIGN_ITEM_WOOD_TYPE.get());
     }
 
     protected static LootTable.Builder createMushroomBlockDrop(Block p_218491_0_, IItemProvider p_218491_1_) {

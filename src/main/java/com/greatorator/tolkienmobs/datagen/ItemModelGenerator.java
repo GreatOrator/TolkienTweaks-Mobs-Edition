@@ -335,6 +335,10 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(EntityGenerator.EGG_TTMGOLLUM.get());
         eggItem(EntityGenerator.EGG_TTMNAZGUL.get());
         eggItem(EntityGenerator.EGG_TTMNAZGULSTEED.get());
+
+
+        //Signs
+        simpleItem(TTMContent.EXAMPLE_SIGN_ITEM_WOOD_TYPE.get());
     }
 
     private void simpleItem(Item item) {
