@@ -160,8 +160,8 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.MUMAKIL_LEATHER.get(), "Mumakil Hide");
         add(TTMContent.MONSTER_FUR.get(), "Monster Fur");
         add(TTMContent.BOTTLE_FANCY.get(), "Fancy Bottle");
-        add(TTMContent.PIPEWEED_SEEDS.get(), "Pipeweed");
-        add(TTMContent.PIPEWEED_ITEM.get(), "Pipeweed Seeds");
+        add(TTMContent.PIPEWEED_SEEDS.get(), "Pipeweed Seeds");
+        add(TTMContent.PIPEWEED_ITEM.get(), "Pipeweed");
         add(TTMContent.GOLEM_STONE.get(), "Golem Stone");
         add(TTMContent.GOLEM_STONE_EARTH.get(), TextFormatting.DARK_GREEN + "Earth " + TextFormatting.RESET + "Golem Stone");
         add(TTMContent.GOLEM_STONE_AIR.get(), TextFormatting.YELLOW + "Air " + TextFormatting.RESET + "Golem Stone");

@@ -218,6 +218,16 @@ public class RecipeGenerator extends RecipeProvider {
                 .define('M', Blocks.MOSSY_COBBLESTONE)
                 .unlockedBy("has_iron", has(Items.IRON_INGOT))
                 .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.DOOR_DURIN.get())
+                .pattern("MZM")
+                .pattern("AMA")
+                .pattern("MZM")
+                .define('A', TTMContent.INGOT_MORGULIRON.get())
+                .define('Z', TTMContent.GEM_AMMOLITE.get())
+                .define('M', Blocks.STONE)
+                .unlockedBy("has_ammolite", has(TTMContent.GEM_AMMOLITE.get()))
+                .save(consumer);
     }
 
     public static void potions() {
