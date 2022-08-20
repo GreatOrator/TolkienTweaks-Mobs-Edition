@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:sign_lebethron_sign_block_wood_type"
+    ]
+  },
+  "criteria": {
+    "has_planks_lebethron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tolkienmobs:planks_lebethron"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:sign_lebethron_sign_block_wood_type"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_planks_lebethron",
+      "has_the_recipe"
+    ]
+  ]
+}

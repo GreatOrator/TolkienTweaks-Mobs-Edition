@@ -166,8 +166,14 @@ public class BlockLootGenerator extends BlockLootTables {
 
 
         //Signs, You will need these for every type you add
-        dropOther(TTMContent.EXAMPLE_SIGN_WOOD_TYPE.get(), TTMContent.EXAMPLE_SIGN_ITEM_WOOD_TYPE.get());
-        dropOther(TTMContent.EXAMPLE_WALL_SIGN_WOOD_TYPE.get(), TTMContent.EXAMPLE_SIGN_ITEM_WOOD_TYPE.get());
+        dropOther(TTMContent.MALLORN_SIGN_WOOD_TYPE.get(), TTMContent.MALLORN_SIGN_ITEM_WOOD_TYPE.get());
+        dropOther(TTMContent.MALLORN_WALL_SIGN_WOOD_TYPE.get(), TTMContent.MALLORN_SIGN_ITEM_WOOD_TYPE.get());
+        dropOther(TTMContent.MIRKWOOD_SIGN_WOOD_TYPE.get(), TTMContent.MIRKWOOD_SIGN_ITEM_WOOD_TYPE.get());
+        dropOther(TTMContent.MIRKWOOD_WALL_SIGN_WOOD_TYPE.get(), TTMContent.MIRKWOOD_SIGN_ITEM_WOOD_TYPE.get());
+        dropOther(TTMContent.CULUMALDA_SIGN_WOOD_TYPE.get(), TTMContent.CULUMALDA_SIGN_ITEM_WOOD_TYPE.get());
+        dropOther(TTMContent.CULUMALDA_WALL_SIGN_WOOD_TYPE.get(), TTMContent.CULUMALDA_SIGN_ITEM_WOOD_TYPE.get());
+        dropOther(TTMContent.LEBETHRON_SIGN_WOOD_TYPE.get(), TTMContent.LEBETHRON_SIGN_ITEM_WOOD_TYPE.get());
+        dropOther(TTMContent.LEBETHRON_WALL_SIGN_WOOD_TYPE.get(), TTMContent.LEBETHRON_SIGN_ITEM_WOOD_TYPE.get());
     }
 
     protected static LootTable.Builder createMushroomBlockDrop(Block p_218491_0_, IItemProvider p_218491_1_) {

@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.gui;
 
-import com.greatorator.tolkienmobs.client.render.tile.TTMSignTileRenderer;
-import com.greatorator.tolkienmobs.entity.tile.TTMSignBlockEntity;
+import com.greatorator.tolkienmobs.client.render.tile.RenderTTMMallornSignTile;
+import com.greatorator.tolkienmobs.entity.tile.TTMMallornSignTile;
 import com.greatorator.tolkienmobs.network.TTMNetwork;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
@@ -19,7 +19,6 @@ import net.minecraft.client.renderer.model.RenderMaterial;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.network.play.client.CUpdateSignPacket;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -30,15 +29,15 @@ import java.util.stream.IntStream;
 /**
  * Created by brandon3055 on 20/08/2022
  */
-public class TTMEditSignScreen extends Screen {
-    private final TTMSignTileRenderer.SignModel signModel = new TTMSignTileRenderer.SignModel();
-    private final TTMSignBlockEntity sign;
+public class GuiTTMMallornSignScreen extends Screen {
+    private final RenderTTMMallornSignTile.SignModel signModel = new RenderTTMMallornSignTile.SignModel();
+    private final TTMMallornSignTile sign;
     private int frame;
     private int line;
     private TextInputUtil signField;
     private final String[] messages;
 
-    public TTMEditSignScreen(TTMSignBlockEntity p_i1097_1_) {
+    public GuiTTMMallornSignScreen(TTMMallornSignTile p_i1097_1_) {
         super(new TranslationTextComponent("sign.edit"));
         IntStream var10001 = IntStream.range(0, 4);
         p_i1097_1_.getClass();
@@ -138,7 +137,7 @@ public class TTMEditSignScreen extends Screen {
         p_230430_1_.scale(0.6666667F, -0.6666667F, -0.6666667F);
         IRenderTypeBuffer.Impl irendertypebuffer$impl = this.minecraft.renderBuffers().bufferSource();
         RenderMaterial rendermaterial = SignTileEntityRenderer.getMaterial(blockstate.getBlock());
-        TTMSignTileRenderer.SignModel var10002 = this.signModel;
+        RenderTTMMallornSignTile.SignModel var10002 = this.signModel;
         var10002.getClass();
         IVertexBuilder ivertexbuilder = rendermaterial.buffer(irendertypebuffer$impl, var10002::renderType);
         this.signModel.sign.render(p_230430_1_, ivertexbuilder, 15728880, OverlayTexture.NO_OVERLAY);

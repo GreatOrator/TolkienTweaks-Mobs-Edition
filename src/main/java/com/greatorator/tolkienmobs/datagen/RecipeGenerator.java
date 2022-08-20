@@ -103,6 +103,11 @@ public class RecipeGenerator extends RecipeProvider {
         torchRecipe(TTMContent.TORCH_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
         torchRecipe(TTMContent.TORCH_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), consumer);
 
+        signRecipe(TTMContent.MALLORN_SIGN_WOOD_TYPE.get(), TTMContent.PLANKS_MALLORN.get(), Items.STICK, consumer);
+        signRecipe(TTMContent.MIRKWOOD_SIGN_WOOD_TYPE.get(), TTMContent.PLANKS_MIRKWOOD.get(), Items.STICK, consumer);
+        signRecipe(TTMContent.CULUMALDA_SIGN_WOOD_TYPE.get(), TTMContent.PLANKS_CULUMALDA.get(), Items.STICK, consumer);
+        signRecipe(TTMContent.LEBETHRON_SIGN_WOOD_TYPE.get(), TTMContent.PLANKS_LEBETHRON.get(), Items.STICK, consumer);
+
         helmetRecipe(TTMContent.HELMET_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
         helmetRecipe(TTMContent.HELMET_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
 
@@ -433,6 +438,17 @@ public class RecipeGenerator extends RecipeProvider {
                 output, xp, cook)
                 .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
                 .save(consumer, "tolkienmobs:cooked_" + output.asItem().getRegistryName().getPath());
+    }
+
+    public static void signRecipe(IItemProvider output, IItemProvider input1, IItemProvider input2, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 3)
+                .pattern("###")
+                .pattern("###")
+                .pattern(" - ")
+                .define('#', input1)
+                .define('-', input2)
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
+                .save(consumer, "tolkienmobs:sign_" + output.asItem().getRegistryName().getPath());
     }
 
     public static void slabRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {

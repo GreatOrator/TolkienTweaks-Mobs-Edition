@@ -8,9 +8,7 @@ import com.greatorator.tolkienmobs.client.gui.GuiTTMFireplace;
 import com.greatorator.tolkienmobs.client.gui.GuiTTMMithrilBarrel;
 import com.greatorator.tolkienmobs.client.gui.GuiTTMMorgulironBarrel;
 import com.greatorator.tolkienmobs.client.gui.GuiTTMPiggyBank;
-import com.greatorator.tolkienmobs.client.render.tile.RenderTTMFireplaceTile;
-import com.greatorator.tolkienmobs.client.render.tile.RenderTTMPiggyBankTile;
-import com.greatorator.tolkienmobs.client.render.tile.TTMSignTileRenderer;
+import com.greatorator.tolkienmobs.client.render.tile.*;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
 import com.greatorator.tolkienmobs.entity.ambient.model.ModelTTMSwarm;
@@ -36,7 +34,6 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModList;
@@ -86,7 +83,10 @@ public class ClientProxy extends CommonProxy {
 
     private static void registerWoodTypes(FMLClientSetupEvent event) {
         //Add each of your custom wood types here. This is for textures.
-        event.enqueueWork(() -> Atlases.addWoodType(TTMContent.EXAMPLE_WOOD_TYPE));
+        event.enqueueWork(() -> Atlases.addWoodType(TTMContent.MALLORN_WOOD_TYPE));
+        event.enqueueWork(() -> Atlases.addWoodType(TTMContent.MIRKWOOD_WOOD_TYPE));
+        event.enqueueWork(() -> Atlases.addWoodType(TTMContent.CULUMALDA_WOOD_TYPE));
+        event.enqueueWork(() -> Atlases.addWoodType(TTMContent.LEBETHRON_WOOD_TYPE));
     }
 
     public static void setupRenderLayers() {
@@ -220,7 +220,10 @@ public class ClientProxy extends CommonProxy {
     private void registerTileRenderers() {
         ClientRegistry.bindTileEntityRenderer(TTMContent.TMFIREPLACE_TILE.get(), RenderTTMFireplaceTile::new);
         ClientRegistry.bindTileEntityRenderer(TTMContent.PIGGYBANK_TILE.get(), RenderTTMPiggyBankTile::new);
-        ClientRegistry.bindTileEntityRenderer(TTMContent.SIGN_TILE.get(), TTMSignTileRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(TTMContent.MALLORN_SIGN_TILE.get(), RenderTTMMallornSignTile::new);
+        ClientRegistry.bindTileEntityRenderer(TTMContent.MIRKWOOD_SIGN_TILE.get(), RenderTTMMirkwoodSignTile::new);
+        ClientRegistry.bindTileEntityRenderer(TTMContent.CULUMALDA_SIGN_TILE.get(), RenderTTMCulumaldaSignTile::new);
+        ClientRegistry.bindTileEntityRenderer(TTMContent.LEBETHRON_SIGN_TILE.get(), RenderTTMLebethronSignTile::new);
     }
 
     @Override

@@ -9,7 +9,10 @@ import com.greatorator.tolkienmobs.crafting.FireplaceRecipe;
 import com.greatorator.tolkienmobs.datagen.*;
 import com.greatorator.tolkienmobs.entity.tile.*;
 import com.greatorator.tolkienmobs.handler.*;
-import com.greatorator.tolkienmobs.item.TTMSignItem;
+import com.greatorator.tolkienmobs.item.TTMCulumaldaSignItem;
+import com.greatorator.tolkienmobs.item.TTMLebethronSignItem;
+import com.greatorator.tolkienmobs.item.TTMMallornSignItem;
+import com.greatorator.tolkienmobs.item.TTMMirkwoodSignItem;
 import com.greatorator.tolkienmobs.item.armor.ArmorTTMMithril;
 import com.greatorator.tolkienmobs.item.armor.ArmorTTMMorgulIron;
 import com.greatorator.tolkienmobs.item.trinket.Trinket;
@@ -188,6 +191,20 @@ public class TTMContent {
     public static RegistryObject<TorchBlock> WALL_TORCH_LEBETHRON = BLOCKS.register("wall_torch_lebethron", () -> new WallTorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
     }).sound(SoundType.WOOD), ParticleTypes.FLAME));
+    /** Wood Types **/
+    public static WoodType MALLORN_WOOD_TYPE = WoodType.register(WoodType.create(MODID + ":mallorn_wood"));
+    public static WoodType MIRKWOOD_WOOD_TYPE = WoodType.register(WoodType.create(MODID + ":mirkwood_wood"));
+    public static WoodType CULUMALDA_WOOD_TYPE = WoodType.register(WoodType.create(MODID + ":culumalda_wood"));
+    public static WoodType LEBETHRON_WOOD_TYPE = WoodType.register(WoodType.create(MODID + ":lebethron_wood"));
+
+    public static RegistryObject<Block> MALLORN_SIGN_WOOD_TYPE = BLOCKS.register("mallorn_sign_block_wood_type", () -> new BlockTTMMallornStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), MALLORN_WOOD_TYPE));
+    public static RegistryObject<Block> MIRKWOOD_SIGN_WOOD_TYPE = BLOCKS.register("mirkwood_sign_block_wood_type", () -> new BlockTTMMirkwoodStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), MIRKWOOD_WOOD_TYPE));
+    public static RegistryObject<Block> CULUMALDA_SIGN_WOOD_TYPE = BLOCKS.register("culumalda_sign_block_wood_type", () -> new BlockTTMCulumaldaStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), CULUMALDA_WOOD_TYPE));
+    public static RegistryObject<Block> LEBETHRON_SIGN_WOOD_TYPE = BLOCKS.register("lebethron_sign_block_wood_type", () -> new BlockTTMLebethronStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), LEBETHRON_WOOD_TYPE));
+    public static RegistryObject<Block> MALLORN_WALL_SIGN_WOOD_TYPE = BLOCKS.register("mallorn_wall_sign_block_wood_type", () -> new BlockTTMMallornSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(MALLORN_SIGN_WOOD_TYPE.get()), MALLORN_WOOD_TYPE));
+    public static RegistryObject<Block> MIRKWOOD_WALL_SIGN_WOOD_TYPE = BLOCKS.register("mirkwood_wall_sign_block_wood_type", () -> new BlockTTMMirkwoodSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(MIRKWOOD_SIGN_WOOD_TYPE.get()), MIRKWOOD_WOOD_TYPE));
+    public static RegistryObject<Block> CULUMALDA_WALL_SIGN_WOOD_TYPE = BLOCKS.register("culumalda_wall_sign_block_wood_type", () -> new BlockTTMCulumaldaSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(CULUMALDA_SIGN_WOOD_TYPE.get()), CULUMALDA_WOOD_TYPE));
+    public static RegistryObject<Block> LEBETHRON_WALL_SIGN_WOOD_TYPE = BLOCKS.register("lebethron_wall_sign_block_wood_type", () -> new BlockTTMLebethronSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(LEBETHRON_SIGN_WOOD_TYPE.get()), LEBETHRON_WOOD_TYPE));
     public static RegistryObject<LeavesBlock> LEAVES_CULUMALDA = BLOCKS.register("leaves_culumalda", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_LEBETHRON = BLOCKS.register("leaves_lebethron", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_MALLORN = BLOCKS.register("leaves_mallorn", TTMContent::createLeavesBlock);
@@ -307,6 +324,10 @@ public class TTMContent {
     public static RegistryObject<Item> TORCH_CULUMALDA_ITEM = ITEMS.register("torch_culumalda", () -> new WallOrFloorItem(TORCH_CULUMALDA.get(), WALL_TORCH_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> TORCH_LEBETHRON_ITEM = ITEMS.register("torch_lebethron", () -> new WallOrFloorItem(TORCH_LEBETHRON.get(), WALL_TORCH_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LEAVES_CULUMALDA_ITEM = ITEMS.register("leaves_culumalda", () -> new ItemBlockBCore(LEAVES_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> MALLORN_SIGN_ITEM_WOOD_TYPE = ITEMS.register("mallorn_sign_block_wood_type", () -> new TTMMallornSignItem(new Item.Properties().tab(matsGroup), MALLORN_SIGN_WOOD_TYPE.get(), MALLORN_WALL_SIGN_WOOD_TYPE.get()));
+    public static RegistryObject<Item> MIRKWOOD_SIGN_ITEM_WOOD_TYPE = ITEMS.register("mirkwood_sign_block_wood_type", () -> new TTMMirkwoodSignItem(new Item.Properties().tab(matsGroup), MIRKWOOD_SIGN_WOOD_TYPE.get(), MIRKWOOD_WALL_SIGN_WOOD_TYPE.get()));
+    public static RegistryObject<Item> CULUMALDA_SIGN_ITEM_WOOD_TYPE = ITEMS.register("culumalda_sign_block_wood_type", () -> new TTMCulumaldaSignItem(new Item.Properties().tab(matsGroup), CULUMALDA_SIGN_WOOD_TYPE.get(), CULUMALDA_WALL_SIGN_WOOD_TYPE.get()));
+    public static RegistryObject<Item> LEBETHRON_SIGN_ITEM_WOOD_TYPE = ITEMS.register("lebethron_sign_block_wood_type", () -> new TTMLebethronSignItem(new Item.Properties().tab(matsGroup), LEBETHRON_SIGN_WOOD_TYPE.get(), LEBETHRON_WALL_SIGN_WOOD_TYPE.get()));
     public static RegistryObject<Item> LEAVES_LEBETHRON_ITEM = ITEMS.register("leaves_lebethron", () -> new ItemBlockBCore(LEAVES_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LEAVES_MALLORN_ITEM = ITEMS.register("leaves_mallorn", () -> new ItemBlockBCore(LEAVES_MALLORN.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LEAVES_MIRKWOOD_ITEM = ITEMS.register("leaves_mirkwood", () -> new ItemBlockBCore(LEAVES_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
@@ -506,25 +527,6 @@ public class TTMContent {
     public static RegistryObject<Item> PIPEWEED_ITEM = ITEMS.register("pipeweed", () -> new Item(new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> PIPEWEED_SEEDS = ITEMS.register("pipeweed_seeds", () -> new ItemBlockBCore(PIPEWEED.get(), new Item.Properties().tab(matsGroup)));
 
-
-
-
-    // All relavent block and item classes for custom signs. Move these to their correct locations once you understand how it all works. Or dont. Up to you.
-
-    //You need to create one of these for type of sign you want to create.
-    public static WoodType EXAMPLE_WOOD_TYPE = WoodType.register(WoodType.create(MODID + ":example_wood"));
-
-    //You also need to create these three classes for each sign type you add.
-    public static RegistryObject<Block> EXAMPLE_SIGN_WOOD_TYPE = BLOCKS.register("example_sign_block_wood_type", () -> new TTMStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), EXAMPLE_WOOD_TYPE));
-
-    public static RegistryObject<Block> EXAMPLE_WALL_SIGN_WOOD_TYPE = BLOCKS.register("example_wall_sign_block_wood_type", () -> new TTMWallSignBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(EXAMPLE_SIGN_WOOD_TYPE.get()), EXAMPLE_WOOD_TYPE));
-
-    //You onlyg need a single item because the "wall sign" is never actually dropped as an item
-    public static RegistryObject<Item> EXAMPLE_SIGN_ITEM_WOOD_TYPE = ITEMS.register("example_sign_block_wood_type", () -> new TTMSignItem(new Item.Properties().tab(matsGroup), EXAMPLE_SIGN_WOOD_TYPE.get(), EXAMPLE_WALL_SIGN_WOOD_TYPE.get()));
-
-
-
-
     //#################################################################
     // Tile Entity Types
     //#################################################################
@@ -533,12 +535,10 @@ public class TTMContent {
     public static RegistryObject<TileEntityType<TTMMithrilBarrelTile>> BARREL_MITHRIL_TILE = TILE.register("barrel_mithril_tile", () -> TileEntityType.Builder.of(TTMMithrilBarrelTile::new, BARREL_MITHRIL.get()).build(null));
     public static RegistryObject<TileEntityType<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_TILE = TILE.register("barrel_morguliron_tile", () -> TileEntityType.Builder.of(TTMMorgulironBarrelTile::new, BARREL_MORGULIRON.get()).build(null));
 
-    //You only need a single tile entity that will cover all of your sign types. You just need to add all of your sign blocks here.                                 V                    V                     etc...
-    public static RegistryObject<TileEntityType<TTMSignBlockEntity>> SIGN_TILE = TILE.register("sign", () -> TileEntityType.Builder.of(TTMSignBlockEntity::new, EXAMPLE_SIGN_WOOD_TYPE.get(), EXAMPLE_WALL_SIGN_WOOD_TYPE.get()       ).build(null));
-
-
-
-
+    public static RegistryObject<TileEntityType<TTMMallornSignTile>> MALLORN_SIGN_TILE = TILE.register("mallorn_sign", () -> TileEntityType.Builder.of(TTMMallornSignTile::new, MALLORN_SIGN_WOOD_TYPE.get(), MALLORN_WALL_SIGN_WOOD_TYPE.get()       ).build(null));
+    public static RegistryObject<TileEntityType<TTMMirkwoodSignTile>> MIRKWOOD_SIGN_TILE = TILE.register("mirkwood_sign", () -> TileEntityType.Builder.of(TTMMirkwoodSignTile::new, MIRKWOOD_SIGN_WOOD_TYPE.get(), MIRKWOOD_WALL_SIGN_WOOD_TYPE.get()       ).build(null));
+    public static RegistryObject<TileEntityType<TTMCulumaldaSignTile>> CULUMALDA_SIGN_TILE = TILE.register("culumalda_sign", () -> TileEntityType.Builder.of(TTMCulumaldaSignTile::new, CULUMALDA_SIGN_WOOD_TYPE.get(), CULUMALDA_WALL_SIGN_WOOD_TYPE.get()       ).build(null));
+    public static RegistryObject<TileEntityType<TTMLebethronSignTile>> LEBETHRON_SIGN_TILE = TILE.register("lebethron_sign", () -> TileEntityType.Builder.of(TTMLebethronSignTile::new, LEBETHRON_SIGN_WOOD_TYPE.get(), LEBETHRON_WALL_SIGN_WOOD_TYPE.get()       ).build(null));
 
     //#################################################################
     // Containers

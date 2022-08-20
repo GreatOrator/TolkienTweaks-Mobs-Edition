@@ -156,8 +156,14 @@ public class BlockStateGenerator extends BlockStateProvider {
         directionalFromNorthHoz(TTMContent.TTMFIREPLACE.get(), e -> e.getValue(BlockTTMFireplace.ACTIVE) ? fireActive : fireInactive, 180);
 
 
-        signBlock(TTMContent.EXAMPLE_SIGN_WOOD_TYPE.get(), "minecraft:block/oak_planks"); //<-- This is just the particle texture
-        signBlock(TTMContent.EXAMPLE_WALL_SIGN_WOOD_TYPE.get(), "minecraft:block/oak_planks"); //<-- This is just the particle texture
+        signBlock(TTMContent.MALLORN_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_mallorn");
+        signBlock(TTMContent.MALLORN_WALL_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_mallorn");
+        signBlock(TTMContent.MIRKWOOD_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_mirkwood");
+        signBlock(TTMContent.MIRKWOOD_WALL_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_mirkwood");
+        signBlock(TTMContent.CULUMALDA_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_culumalda");
+        signBlock(TTMContent.CULUMALDA_WALL_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_culumalda");
+        signBlock(TTMContent.LEBETHRON_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_lebethron");
+        signBlock(TTMContent.LEBETHRON_WALL_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_lebethron");
 
 
         //Bellow is some extra example stuff I left in for reference

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "tolkienmobs:item/example_sign_block_wood_type"
+    "layer0": "tolkienmobs:item/mirkwood_sign_block_wood_type"
   }
 }

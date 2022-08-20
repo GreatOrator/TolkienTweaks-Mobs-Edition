@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.tile;
 
-import com.greatorator.tolkienmobs.entity.tile.TTMSignBlockEntity;
+import com.greatorator.tolkienmobs.entity.tile.TTMCulumaldaSignTile;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.block.*;
@@ -15,7 +15,6 @@ import net.minecraft.client.renderer.texture.NativeImage;
 import net.minecraft.client.renderer.tileentity.SignTileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
@@ -26,15 +25,15 @@ import java.util.List;
 /**
  * Created by brandon3055 on 20/08/2022
  */
-public class TTMSignTileRenderer extends TileEntityRenderer<TTMSignBlockEntity> {
+public class RenderTTMCulumaldaSignTile extends TileEntityRenderer<TTMCulumaldaSignTile> {
     private final SignTileEntityRenderer.SignModel signModel = new SignTileEntityRenderer.SignModel();
 
-    public TTMSignTileRenderer(TileEntityRendererDispatcher p_i226014_1_) {
+    public RenderTTMCulumaldaSignTile(TileEntityRendererDispatcher p_i226014_1_) {
         super(p_i226014_1_);
     }
 
     @Override
-    public void render(TTMSignBlockEntity p_225616_1_, float p_225616_2_, MatrixStack p_225616_3_, IRenderTypeBuffer p_225616_4_, int p_225616_5_, int p_225616_6_) {
+    public void render(TTMCulumaldaSignTile p_225616_1_, float p_225616_2_, MatrixStack p_225616_3_, IRenderTypeBuffer p_225616_4_, int p_225616_5_, int p_225616_6_) {
         BlockState blockstate = p_225616_1_.getBlockState();
         p_225616_3_.pushPose();
         float f = 0.6666667F;

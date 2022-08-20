@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/block",
   "textures": {
-    "particle": "minecraft:block/oak_planks"
+    "particle": "tolkienmobs:block/planks_lebethron"
   }
 }

@@ -1,16 +1,13 @@
 package com.greatorator.tolkienmobs.item;
 
-import com.greatorator.tolkienmobs.client.gui.TTMEditSignScreen;
-import com.greatorator.tolkienmobs.entity.tile.TTMSignBlockEntity;
+import com.greatorator.tolkienmobs.client.gui.GuiTTMMirkwoodSignScreen;
+import com.greatorator.tolkienmobs.entity.tile.TTMMirkwoodSignTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.EditSignScreen;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.WallOrFloorItem;
-import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -19,8 +16,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
-public class TTMSignItem extends WallOrFloorItem {
-   public TTMSignItem(Item.Properties properties, Block signBlock, Block wallSignBlock) {
+public class TTMMirkwoodSignItem extends WallOrFloorItem {
+   public TTMMirkwoodSignItem(Properties properties, Block signBlock, Block wallSignBlock) {
       super(signBlock, wallSignBlock, properties);
    }
 
@@ -29,11 +26,11 @@ public class TTMSignItem extends WallOrFloorItem {
       boolean flag = super.updateCustomBlockEntityTag(blockPos, world, player, stack, blockState);
       if (!flag && player != null) {
          if (world.isClientSide) {
-            openGui((TTMSignBlockEntity)world.getBlockEntity(blockPos));
+            openGui((TTMMirkwoodSignTile)world.getBlockEntity(blockPos));
          }else {
             TileEntity tile = world.getBlockEntity(blockPos);
-            if (tile instanceof TTMSignBlockEntity) {
-               ((TTMSignBlockEntity) tile).setAllowedPlayerEditor(player);
+            if (tile instanceof TTMMirkwoodSignTile) {
+               ((TTMMirkwoodSignTile) tile).setAllowedPlayerEditor(player);
             }
          }
       }
@@ -43,7 +40,7 @@ public class TTMSignItem extends WallOrFloorItem {
    }
 
    @OnlyIn(Dist.CLIENT)
-   private void openGui(TTMSignBlockEntity tile) {
-      Minecraft.getInstance().setScreen(new TTMEditSignScreen(tile));
+   private void openGui(TTMMirkwoodSignTile tile) {
+      Minecraft.getInstance().setScreen(new GuiTTMMirkwoodSignScreen(tile));
    }
 }

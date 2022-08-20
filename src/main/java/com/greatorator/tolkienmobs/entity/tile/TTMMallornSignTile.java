@@ -11,9 +11,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.DyeColor;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.SignTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.util.math.vector.Vector3d;
@@ -32,15 +30,15 @@ import java.util.function.Function;
 /**
  * Created by brandon3055 on 20/08/2022
  */
-public class TTMSignBlockEntity extends TileEntity {
+public class TTMMallornSignTile extends TileEntity {
     private final ITextComponent[] messages = new ITextComponent[]{StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY, StringTextComponent.EMPTY};
     private boolean isEditable = true;
     private PlayerEntity playerWhoMayEdit;
     private final IReorderingProcessor[] renderMessages = new IReorderingProcessor[4];
     private DyeColor color = DyeColor.BLACK;
 
-    public TTMSignBlockEntity() {
-        super(TTMContent.SIGN_TILE.get());
+    public TTMMallornSignTile() {
+        super(TTMContent.MALLORN_SIGN_TILE.get());
     }
 
     public CompoundNBT save(CompoundNBT p_189515_1_) {

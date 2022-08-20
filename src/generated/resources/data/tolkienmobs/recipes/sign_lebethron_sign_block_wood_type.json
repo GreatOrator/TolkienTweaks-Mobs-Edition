@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    " - "
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:planks_lebethron"
+    },
+    "-": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:lebethron_sign_block_wood_type",
+    "count": 3
+  }
+}
