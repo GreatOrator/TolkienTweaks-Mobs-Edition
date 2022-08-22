@@ -75,28 +75,31 @@ public class EntityTTMElves extends EntityTTMVillagers {
         int job = TTMRand.getRandomInteger(1, 16);
         this.setElvesType(job);
 
-        if (job == 0 || job == 4 || job == 8) {
+        if (job == 1 || job == 10) {
             this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.COIN_TRADER_PROFESSION.get()));
         }
-        if (job == 1 || job == 5 || job == 9) {
+        if (job == 2 || job == 11) {
             this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.GROCERY_STORE_PROFESSION.get()));
         }
-        if (job == 2 || job == 6 || job == 10) {
+        if (job == 3 || job == 12) {
             this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.JUNK_TRADER_PROFESSION.get()));
         }
-        if (job == 3 || job == 7 || job == 11) {
+        if (job == 4 || job == 13) {
             this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.PET_MERCHANT_PROFESSION.get()));
         }
-        if (job == 12) {
+        if (job == 5 || job == 14) {
+            this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.TRINKET_SMITH_PROFESSION.get()));
+        }
+        if (job == 6 || job == 15) {
             this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.FARMER));
         }
-        if (job == 13) {
+        if (job == 7 || job == 16) {
             this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.FISHERMAN));
         }
-        if (job == 14) {
+        if (job == 8) {
             this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.MASON));
         }
-        if (job == 15) {
+        if (job == 9) {
             this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.NONE));
         }
 

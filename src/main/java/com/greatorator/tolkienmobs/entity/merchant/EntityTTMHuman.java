@@ -28,7 +28,6 @@ public class EntityTTMHuman extends EntityTTMVillagers {
     private static final DataParameter<Integer> HUMAN_TYPE = EntityDataManager.defineId(EntityTTMHuman.class, DataSerializers.INT);
     private static final DataParameter<VillagerData> HUMAN_DATA = EntityDataManager.defineId(EntityTTMHuman.class, DataSerializers.VILLAGER_DATA);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
-        option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/human/human1.png"));
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/human/human1.png"));
         option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/human/human2.png"));
         option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/human/human3.png"));
@@ -75,28 +74,34 @@ public class EntityTTMHuman extends EntityTTMVillagers {
         int job = TTMRand.getRandomInteger(1, 16);
         this.setHumanType(job);
 
-        if (job == 0 || job == 4 || job == 8) {
+        if (job == 1 || job == 11) {
             this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.COIN_TRADER_PROFESSION.get()));
         }
-        if (job == 1 || job == 5 || job == 9) {
+        if (job == 2 || job == 12) {
             this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.GROCERY_STORE_PROFESSION.get()));
         }
-        if (job == 2 || job == 6 || job == 10) {
+        if (job == 3 || job == 13) {
             this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.JUNK_TRADER_PROFESSION.get()));
         }
-        if (job == 3 || job == 7 || job == 11) {
+        if (job == 4 || job == 14) {
             this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.PET_MERCHANT_PROFESSION.get()));
         }
-        if (job == 12) {
+        if (job == 5 || job == 15) {
+            this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.TRINKET_TAILOR_PROFESSION.get()));
+        }
+        if (job == 6 || job == 16) {
+            this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.TRINKET_SMITH_PROFESSION.get()));
+        }
+        if (job == 7) {
             this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.FARMER));
         }
-        if (job == 13) {
+        if (job == 8) {
             this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.FISHERMAN));
         }
-        if (job == 14) {
+        if (job == 9) {
             this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.MASON));
         }
-        if (job == 15) {
+        if (job == 10) {
             this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.NONE));
         }
 
@@ -106,7 +111,7 @@ public class EntityTTMHuman extends EntityTTMVillagers {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(HUMAN_TYPE, 10);
+        this.entityData.define(HUMAN_TYPE, 16);
         this.entityData.define(HUMAN_DATA, new VillagerData(VillagerType.PLAINS, ProfessionGenerator.UNEMPLOYED_PROFESSION.get(), 1));
     }
 

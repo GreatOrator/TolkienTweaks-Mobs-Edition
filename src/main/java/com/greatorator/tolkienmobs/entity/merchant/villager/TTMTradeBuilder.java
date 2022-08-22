@@ -5,8 +5,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffer;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.PotionUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -125,6 +128,20 @@ public class TTMTradeBuilder {
     public TTMTradeBuilder setForSale(Item item, int min, int max)
     {
         return this.setForSale(TTMTradeBuilder.createFunction(item, min, max));
+    }
+
+    public TTMTradeBuilder setForSaleWithPotion(Function<Random, ItemStack> forSale)
+    {
+        this.forSale = forSale;
+        return this;
+    }
+
+    public TTMTradeBuilder setForSaleWithPotion(Item item, int min, int max)
+    {
+        List<EffectInstance> effects = getEffects(item.getDefaultInstance());
+        ItemStack itemstack = PotionUtils.setCustomEffects(new ItemStack(item),effect);
+
+        return this.setForSaleWithPotion(TTMTradeBuilder.createFunction(itemstack.getItem(), min, max));
     }
 
     public TTMTradeBuilder setEmeraldPrice(int emeralds)

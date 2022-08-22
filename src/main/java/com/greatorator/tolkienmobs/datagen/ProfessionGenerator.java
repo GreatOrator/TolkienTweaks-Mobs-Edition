@@ -41,6 +41,8 @@ public class ProfessionGenerator {
    public static final RegistryObject<PointOfInterestType> GROCERY_STORE = POIT.register("grocery_store", ()-> new PointOfInterestType("grocery_store", PointOfInterestType.getBlockStates(TTMContent.TTMFIREPLACE.get()), 1, 1));
    public static final RegistryObject<PointOfInterestType> PET_MERCHANT = POIT.register("pet_merchant", ()-> new PointOfInterestType("pet_merchant", PointOfInterestType.getBlockStates(Blocks.HAY_BLOCK), 1, 1));
    public static final RegistryObject<PointOfInterestType> JUNK_TRADER = POIT.register("junk_trader", ()-> new PointOfInterestType("junk_trader", PointOfInterestType.getBlockStates(TTMContent.BARREL_MITHRIL.get()), 1, 1));
+   public static final RegistryObject<PointOfInterestType> TRINKET_SMITH = POIT.register("trinket_smith", ()-> new PointOfInterestType("trinket_smith", PointOfInterestType.getBlockStates(TTMContent.BLOCK_HALLOWED.get()), 1, 1));
+   public static final RegistryObject<PointOfInterestType> TRINKET_TAILOR = POIT.register("trinket_tailor", ()-> new PointOfInterestType("trinket_tailor", PointOfInterestType.getBlockStates(TTMContent.STONE_PATH.get()), 1, 1));
 
    //#################################################################
    // Profession Registry
@@ -51,6 +53,8 @@ public class ProfessionGenerator {
    public static final RegistryObject<VillagerProfession> GROCERY_STORE_PROFESSION = PROFESSION.register("grocery_store", () -> new VillagerProfession("grocery_store", GROCERY_STORE.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_BUTCHER));
    public static final RegistryObject<VillagerProfession> PET_MERCHANT_PROFESSION = PROFESSION.register("pet_merchant", () -> new VillagerProfession("pet_merchant", PET_MERCHANT.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_LIBRARIAN));
    public static final RegistryObject<VillagerProfession> JUNK_TRADER_PROFESSION = PROFESSION.register("junk_trader", () -> new VillagerProfession("junk_trader", JUNK_TRADER.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.WANDERING_TRADER_TRADE));
+   public static final RegistryObject<VillagerProfession> TRINKET_SMITH_PROFESSION = PROFESSION.register("trinket_smith", () -> new VillagerProfession("trinket_smith", TRINKET_SMITH.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_ARMORER));
+   public static final RegistryObject<VillagerProfession> TRINKET_TAILOR_PROFESSION = PROFESSION.register("trinket_tailor", () -> new VillagerProfession("trinket_tailor", TRINKET_TAILOR.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_LEATHERWORKER));
 
    public String getName() {
       return "Tolkien Tweaks - Mobs Edition Villager Professions";

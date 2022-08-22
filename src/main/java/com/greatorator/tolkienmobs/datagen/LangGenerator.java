@@ -293,10 +293,11 @@ public class LangGenerator extends LanguageProvider {
     private void creativeTabGroups() {
         add("itemGroup.tolkienmobs.tools", "TolkienTweaks Tools");
         add("itemGroup.tolkienmobs.mats", "TolkienTweaks Materials & World Gen");
+        add("itemGroup.tolkienmobs.deco", "TolkienTweaks Decorative");
         add("itemGroup.tolkienmobs.spawn", "TolkienTweaks Mobs");
         add("itemGroup.tolkienmobs.food", "TolkienTweaks Food");
         add("itemGroup.tolkienmobs.quest", "TolkienTweaks Quest Items");
-        add("itemGroup.tolkienmobs.signs", "TolkienTweaks Signs");
+        add("itemGroup.tolkienmobs.signs", "TolkienTweaks Placards");
     }
 
     private void potion() {
@@ -377,7 +378,7 @@ public class LangGenerator extends LanguageProvider {
         add("enchantment.tolkienmobs.elven_longevity", "Elven Longevity");
         add("enchantment.tolkienmobs.gondor_resolve", "Gondorian Resolve");
         add("enchantment.tolkienmobs.dwarven_endurance", "Dwarven Endurance");
-        add("enchantment.tolkienmobs.hobbit_plow",                "Hobbit Plowing");
+        add("enchantment.tolkienmobs.hobbit_plow", "Hobbit Plowing");
     }
 
     private void food() {
@@ -492,21 +493,43 @@ public class LangGenerator extends LanguageProvider {
         helper.add("grocery_store", "Grocery Store");
         helper.add("pet_merchant", "Pet Merchant");
         helper.add("junk_trader", "Junk Trader");
+        helper.add("trinket_smith", "Magical Armourer");
+        helper.add("trinket_tailor", "Magical Tailor");
         helper.setPrefix("entity.tolkienmobs.entityttmdwarf.tolkienmobs.");
         helper.add("coin_trader", "Coin Trader");
         helper.add("grocery_store", "Grocery Store");
         helper.add("pet_merchant", "Pet Merchant");
         helper.add("junk_trader", "Junk Trader");
+        helper.add("trinket_smith", "Magical Armourer");
+        helper.add("trinket_tailor", "Magical Tailor");
         helper.setPrefix("entity.tolkienmobs.entityttmelves.tolkienmobs.");
         helper.add("coin_trader", "Coin Trader");
         helper.add("grocery_store", "Grocery Store");
         helper.add("pet_merchant", "Pet Merchant");
         helper.add("junk_trader", "Junk Trader");
+        helper.add("trinket_smith", "Magical Armourer");
+        helper.add("trinket_tailor", "Magical Tailor");
         helper.setPrefix("entity.tolkienmobs.entityttmhobbit.tolkienmobs.");
         helper.add("coin_trader", "Coin Trader");
         helper.add("grocery_store", "Grocery Store");
         helper.add("pet_merchant", "Pet Merchant");
         helper.add("junk_trader", "Junk Trader");
+        helper.add("trinket_smith", "Magical Armourer");
+        helper.add("trinket_tailor", "Magical Tailor");
+        helper.setPrefix("entity.tolkienmobs.entityttmdesertdweller.tolkienmobs.");
+        helper.add("coin_trader", "Coin Trader");
+        helper.add("grocery_store", "Grocery Store");
+        helper.add("pet_merchant", "Pet Merchant");
+        helper.add("junk_trader", "Junk Trader");
+        helper.add("trinket_smith", "Magical Armourer");
+        helper.add("trinket_tailor", "Magical Tailor");
+        helper.setPrefix("entity.minecraft.villager.tolkienmobs.");
+        helper.add("coin_trader", "Coin Trader");
+        helper.add("grocery_store", "Grocery Store");
+        helper.add("pet_merchant", "Pet Merchant");
+        helper.add("junk_trader", "Junk Trader");
+        helper.add("trinket_smith", "Magical Armourer");
+        helper.add("trinket_tailor", "Magical Tailor");
 
     }
 

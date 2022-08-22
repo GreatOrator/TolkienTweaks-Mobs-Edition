@@ -60,6 +60,7 @@ public class TTMContent {
 
     public static ItemGroup toolsGroup = new SimpleItemGroup("tolkienmobs.tools", () -> new ItemStack(TTMContent.PICKAXE_MITHRIL.get()));
     public static ItemGroup matsGroup = new SimpleItemGroup("tolkienmobs.mats", () -> new ItemStack(TTMContent.INGOT_MITHRIL.get()));
+    public static ItemGroup decoGroup = new SimpleItemGroup("tolkienmobs.deco", () -> new ItemStack(TTMContent.PIGGYBANK_ITEM.get()));
     public static ItemGroup spawnGroup = new SimpleItemGroup("tolkienmobs.spawn", () -> new ItemStack(TTMContent.GOLEM_STONE_SUMMON.get()));
     public static ItemGroup foodGroup = new SimpleItemGroup("tolkienmobs.food", () -> new ItemStack(TTMContent.LEMBAS.get()));
     public static ItemGroup questGroup = new SimpleItemGroup("tolkienmobs.quest", () -> new ItemStack(TTMContent.ITEM_FORTRESSMAP.get()));
@@ -98,7 +99,7 @@ public class TTMContent {
     //#################################################################
     // Blocks
     //#################################################################
-    // Basic - Metals & Gems
+    // Metals & Gems
     public static RegistryObject<Block> ORE_MITHRIL = BLOCKS.register("ore_mithril", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
     public static RegistryObject<Block> ORE_END_MITHRIL = BLOCKS.register("ore_end_mithril", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
     public static RegistryObject<Block> ORE_NETHER_MITHRIL = BLOCKS.register("ore_nether_mithril", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
@@ -120,16 +121,16 @@ public class TTMContent {
     public static RegistryObject<Block> ORE_NETHER_AMMOLITE = BLOCKS.register("ore_nether_ammolite", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
     public static RegistryObject<DoorBlock> DOOR_DURIN = BLOCKS.register("door_durin", () -> new DoorBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
 
-    // Basic - Fluids
+    // Fluids
     public static final RegistryObject<FlowingFluidBlock> MOLTEN_MITHRIL = BLOCKS.register("molten_mithril_block", () -> new FlowingFluidBlock(FluidGenerator.MITHRIL, Block.Properties.of(Material.LAVA).lightLevel((state) -> {	return 15;	}).randomTicks().strength(100.0F).noDrops()));
     public static final RegistryObject<FlowingFluidBlock> MOLTEN_MORGULIRON = BLOCKS.register("molten_morguliron_block", () -> new FlowingFluidBlock(FluidGenerator.MORGULIRON, Block.Properties.of(Material.LAVA).lightLevel((state) -> {	return 15;	}).randomTicks().strength(100.0F).noDrops()));
 
-    // Basic - Signs
+    // Placards
 //    public static RegistryObject<Block> SIGN_EMPTY = BLOCKS.register("sign_empty", () -> new StandingSignBlock(AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), WoodType.OAK));
 //    public static RegistryObject<Block> SIGN_WALL_EMPTY = BLOCKS.register("sign_wall_empty", () -> new WallSignBlock(AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), WoodType.OAK));
 //    public static RegistryObject<Block> SIGN_HANGING_EMPTY = BLOCKS.register("sign_hanging_empty", () -> new HangingSignBlock(AbstractBlock.Properties.of(Material.WOOD).noCollission().strength(1.0F).sound(SoundType.WOOD), WoodType.OAK));
 
-    // Basic - Wood & Foliage
+    // Wood & Foliage
     public static RegistryObject<RotatedPillarBlock> LOG_CULUMALDA = BLOCKS.register("log_culumalda", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_GRAY));
     public static RegistryObject<RotatedPillarBlock> LOG_LEBETHRON = BLOCKS.register("log_lebethron", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_LIGHT_GRAY));
     public static RegistryObject<RotatedPillarBlock> LOG_MALLORN = BLOCKS.register("log_mallorn", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_WHITE));
@@ -222,7 +223,7 @@ public class TTMContent {
     public static RegistryObject<SaplingBlock> SAPLING_DEADWOOD = BLOCKS.register("sapling_deadwood", () -> new SaplingBlock(new TTMDeadTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
     public static RegistryObject<SaplingBlock> SAPLING_FANGORNOAK = BLOCKS.register("sapling_fangornoak", () -> new SaplingBlock(new TTMFangornOakTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
 
-    // Blocks - Plants & Flowers
+    // Plants & Flowers
     public static RegistryObject<Block> PIPEWEED = BLOCKS.register("pipeweed", () -> new BlockTTMCrops(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_GREEN).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
     public static RegistryObject<Block> MUSHROOM_DECAY_BLOOM = BLOCKS.register("mushroom_decay_bloom", () -> new BlockTTMMushrooms(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_PURPLE).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
         return 1;
@@ -251,28 +252,27 @@ public class TTMContent {
     //#################################################################
     // Items
     //#################################################################
-    // Blocks now require you to register their item separately. The item for a block should have the same registry name.
     // Blocks - Metals & Gems
     public static RegistryObject<Item> ORE_MITHRIL_ITEM = ITEMS.register("ore_mithril", () -> new ItemBlockBCore(ORE_MITHRIL.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_END_MITHRIL_ITEM = ITEMS.register("ore_end_mithril", () -> new ItemBlockBCore(ORE_END_MITHRIL.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_NETHER_MITHRIL_ITEM = ITEMS.register("ore_nether_mithril", () -> new ItemBlockBCore(ORE_NETHER_MITHRIL.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> BLOCK_MITHRIL_ITEM = ITEMS.register("block_mithril", () -> new ItemBlockBCore(BLOCK_MITHRIL.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> MITHRIL_BARS_ITEM = ITEMS.register("mithril_bars", () -> new ItemBlockBCore(MITHRIL_BARS.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> DOOR_MITHRIL_ITEM = ITEMS.register("door_mithril", () -> new ItemBlockBCore(DOOR_MITHRIL.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> TRAPDOOR_MITHRIL_ITEM = ITEMS.register("trapdoor_mithril", () -> new ItemBlockBCore(TRAPDOOR_MITHRIL.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> PRESSURE_PLATE_MITHRIL_ITEM = ITEMS.register("pressure_plate_mithril", () -> new ItemBlockBCore(PRESSURE_PLATE_MITHRIL.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> MITHRIL_BARS_ITEM = ITEMS.register("mithril_bars", () -> new ItemBlockBCore(MITHRIL_BARS.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> DOOR_MITHRIL_ITEM = ITEMS.register("door_mithril", () -> new ItemBlockBCore(DOOR_MITHRIL.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> TRAPDOOR_MITHRIL_ITEM = ITEMS.register("trapdoor_mithril", () -> new ItemBlockBCore(TRAPDOOR_MITHRIL.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> PRESSURE_PLATE_MITHRIL_ITEM = ITEMS.register("pressure_plate_mithril", () -> new ItemBlockBCore(PRESSURE_PLATE_MITHRIL.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> ORE_MORGULIRON_ITEM = ITEMS.register("ore_morguliron", () -> new ItemBlockBCore(ORE_MORGULIRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_END_MORGULIRON_ITEM = ITEMS.register("ore_end_morguliron", () -> new ItemBlockBCore(ORE_END_MORGULIRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_NETHER_MORGULIRON_ITEM = ITEMS.register("ore_nether_morguliron", () -> new ItemBlockBCore(ORE_NETHER_MORGULIRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> BLOCK_MORGULIRON_ITEM = ITEMS.register("block_morguliron", () -> new ItemBlockBCore(BLOCK_MORGULIRON.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> MORGULIRON_BARS_ITEM = ITEMS.register("morguliron_bars", () -> new ItemBlockBCore(MORGULIRON_BARS.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> DOOR_MORGULIRON_ITEM = ITEMS.register("door_morguliron", () -> new ItemBlockBCore(DOOR_MORGULIRON.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> TRAPDOOR_MORGULIRON_ITEM = ITEMS.register("trapdoor_morguliron", () -> new ItemBlockBCore(TRAPDOOR_MORGULIRON.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> PRESSURE_PLATE_MORGULIRON_ITEM = ITEMS.register("pressure_plate_morguliron", () -> new ItemBlockBCore(PRESSURE_PLATE_MORGULIRON.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> MORGULIRON_BARS_ITEM = ITEMS.register("morguliron_bars", () -> new ItemBlockBCore(MORGULIRON_BARS.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> DOOR_MORGULIRON_ITEM = ITEMS.register("door_morguliron", () -> new ItemBlockBCore(DOOR_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> TRAPDOOR_MORGULIRON_ITEM = ITEMS.register("trapdoor_morguliron", () -> new ItemBlockBCore(TRAPDOOR_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> PRESSURE_PLATE_MORGULIRON_ITEM = ITEMS.register("pressure_plate_morguliron", () -> new ItemBlockBCore(PRESSURE_PLATE_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> ORE_AMMOLITE_ITEM = ITEMS.register("ore_ammolite", () -> new ItemBlockBCore(ORE_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_END_AMMOLITE_ITEM = ITEMS.register("ore_end_ammolite", () -> new ItemBlockBCore(ORE_END_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_NETHER_AMMOLITE_ITEM = ITEMS.register("ore_nether_ammolite", () -> new ItemBlockBCore(ORE_NETHER_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> DOOR_DURIN_ITEM = ITEMS.register("door_durin", () -> new ItemBlockBCore(DOOR_DURIN.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> DOOR_DURIN_ITEM = ITEMS.register("door_durin", () -> new ItemBlockBCore(DOOR_DURIN.get(), new Item.Properties().tab(decoGroup)));
 
     // Blocks - Fluid
     public static final RegistryObject<Item> MITHRIL_BUCKET = ITEMS.register("mithril_bucket", () -> new BucketItem(FluidGenerator.MITHRIL, new BucketItem.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(matsGroup)));
@@ -291,43 +291,43 @@ public class TTMContent {
     public static RegistryObject<Item> PLANKS_LEBETHRON_ITEM = ITEMS.register("planks_lebethron", () -> new ItemBlockBCore(PLANKS_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> PLANKS_MALLORN_ITEM = ITEMS.register("planks_mallorn", () -> new ItemBlockBCore(PLANKS_MALLORN.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> PLANKS_MIRKWOOD_ITEM = ITEMS.register("planks_mirkwood", () -> new ItemBlockBCore(PLANKS_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> STAIRS_MALLORN_ITEM = ITEMS.register("stairs_mallorn", () -> new ItemBlockBCore(STAIRS_MALLORN.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> STAIRS_MIRKWOOD_ITEM = ITEMS.register("stairs_mirkwood", () -> new ItemBlockBCore(STAIRS_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> STAIRS_LEBETHRON_ITEM = ITEMS.register("stairs_lebethron", () -> new ItemBlockBCore(STAIRS_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> STAIRS_CULUMALDA_ITEM = ITEMS.register("stairs_culumalda", () -> new ItemBlockBCore(STAIRS_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> SLAB_MALLORN_ITEM = ITEMS.register("slab_mallorn", () -> new ItemBlockBCore(SLAB_MALLORN.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> SLAB_MIRKWOOD_ITEM = ITEMS.register("slab_mirkwood", () -> new ItemBlockBCore(SLAB_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> SLAB_CULUMALDA_ITEM = ITEMS.register("slab_culumalda", () -> new ItemBlockBCore(SLAB_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> SLAB_LEBETHRON_ITEM = ITEMS.register("slab_lebethron", () -> new ItemBlockBCore(SLAB_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> DOOR_MALLORN_ITEM = ITEMS.register("door_mallorn", () -> new ItemBlockBCore(DOOR_MALLORN.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> DOOR_MIRKWOOD_ITEM = ITEMS.register("door_mirkwood", () -> new ItemBlockBCore(DOOR_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> DOOR_CULUMALDA_ITEM = ITEMS.register("door_culumalda", () -> new ItemBlockBCore(DOOR_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> DOOR_LEBETHRON_ITEM = ITEMS.register("door_lebethron", () -> new ItemBlockBCore(DOOR_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> FENCE_GATE_MALLORN_ITEM = ITEMS.register("fence_gate_mallorn", () -> new ItemBlockBCore(FENCE_GATE_MALLORN.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> FENCE_GATE_MIRKWOOD_ITEM = ITEMS.register("fence_gate_mirkwood", () -> new ItemBlockBCore(FENCE_GATE_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> FENCE_GATE_CULUMALDA_ITEM = ITEMS.register("fence_gate_culumalda", () -> new ItemBlockBCore(FENCE_GATE_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> FENCE_GATE_LEBETHRON_ITEM = ITEMS.register("fence_gate_lebethron", () -> new ItemBlockBCore(FENCE_GATE_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> FENCE_MALLORN_ITEM = ITEMS.register("fence_mallorn", () -> new ItemBlockBCore(FENCE_MALLORN.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> FENCE_MIRKWOOD_ITEM = ITEMS.register("fence_mirkwood", () -> new ItemBlockBCore(FENCE_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> FENCE_CULUMALDA_ITEM = ITEMS.register("fence_culumalda", () -> new ItemBlockBCore(FENCE_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> FENCE_LEBETHRON_ITEM = ITEMS.register("fence_lebethron", () -> new ItemBlockBCore(FENCE_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> TRAPDOOR_MALLORN_ITEM = ITEMS.register("trapdoor_mallorn", () -> new ItemBlockBCore(TRAPDOOR_MALLORN.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> TRAPDOOR_MIRKWOOD_ITEM = ITEMS.register("trapdoor_mirkwood", () -> new ItemBlockBCore(TRAPDOOR_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> TRAPDOOR_CULUMALDA_ITEM = ITEMS.register("trapdoor_culumalda", () -> new ItemBlockBCore(TRAPDOOR_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> TRAPDOOR_LEBETHRON_ITEM = ITEMS.register("trapdoor_lebethron", () -> new ItemBlockBCore(TRAPDOOR_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> PRESSURE_PLATE_MALLORN_ITEM = ITEMS.register("pressure_plate_mallorn", () -> new ItemBlockBCore(PRESSURE_PLATE_MALLORN.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> PRESSURE_PLATE_MIRKWOOD_ITEM = ITEMS.register("pressure_plate_mirkwood", () -> new ItemBlockBCore(PRESSURE_PLATE_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> PRESSURE_PLATE_CULUMALDA_ITEM = ITEMS.register("pressure_plate_culumalda", () -> new ItemBlockBCore(PRESSURE_PLATE_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> PRESSURE_PLATE_LEBETHRON_ITEM = ITEMS.register("pressure_plate_lebethron", () -> new ItemBlockBCore(PRESSURE_PLATE_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> TORCH_MALLORN_ITEM = ITEMS.register("torch_mallorn", () -> new WallOrFloorItem(TORCH_MALLORN.get(), WALL_TORCH_MALLORN.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> TORCH_MIRKWOOD_ITEM = ITEMS.register("torch_mirkwood", () -> new WallOrFloorItem(TORCH_MIRKWOOD.get(), WALL_TORCH_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> TORCH_CULUMALDA_ITEM = ITEMS.register("torch_culumalda", () -> new WallOrFloorItem(TORCH_CULUMALDA.get(), WALL_TORCH_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> TORCH_LEBETHRON_ITEM = ITEMS.register("torch_lebethron", () -> new WallOrFloorItem(TORCH_LEBETHRON.get(), WALL_TORCH_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> STAIRS_MALLORN_ITEM = ITEMS.register("stairs_mallorn", () -> new ItemBlockBCore(STAIRS_MALLORN.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> STAIRS_MIRKWOOD_ITEM = ITEMS.register("stairs_mirkwood", () -> new ItemBlockBCore(STAIRS_MIRKWOOD.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> STAIRS_LEBETHRON_ITEM = ITEMS.register("stairs_lebethron", () -> new ItemBlockBCore(STAIRS_LEBETHRON.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> STAIRS_CULUMALDA_ITEM = ITEMS.register("stairs_culumalda", () -> new ItemBlockBCore(STAIRS_CULUMALDA.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> SLAB_MALLORN_ITEM = ITEMS.register("slab_mallorn", () -> new ItemBlockBCore(SLAB_MALLORN.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> SLAB_MIRKWOOD_ITEM = ITEMS.register("slab_mirkwood", () -> new ItemBlockBCore(SLAB_MIRKWOOD.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> SLAB_CULUMALDA_ITEM = ITEMS.register("slab_culumalda", () -> new ItemBlockBCore(SLAB_CULUMALDA.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> SLAB_LEBETHRON_ITEM = ITEMS.register("slab_lebethron", () -> new ItemBlockBCore(SLAB_LEBETHRON.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> DOOR_MALLORN_ITEM = ITEMS.register("door_mallorn", () -> new ItemBlockBCore(DOOR_MALLORN.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> DOOR_MIRKWOOD_ITEM = ITEMS.register("door_mirkwood", () -> new ItemBlockBCore(DOOR_MIRKWOOD.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> DOOR_CULUMALDA_ITEM = ITEMS.register("door_culumalda", () -> new ItemBlockBCore(DOOR_CULUMALDA.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> DOOR_LEBETHRON_ITEM = ITEMS.register("door_lebethron", () -> new ItemBlockBCore(DOOR_LEBETHRON.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> FENCE_GATE_MALLORN_ITEM = ITEMS.register("fence_gate_mallorn", () -> new ItemBlockBCore(FENCE_GATE_MALLORN.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> FENCE_GATE_MIRKWOOD_ITEM = ITEMS.register("fence_gate_mirkwood", () -> new ItemBlockBCore(FENCE_GATE_MIRKWOOD.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> FENCE_GATE_CULUMALDA_ITEM = ITEMS.register("fence_gate_culumalda", () -> new ItemBlockBCore(FENCE_GATE_CULUMALDA.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> FENCE_GATE_LEBETHRON_ITEM = ITEMS.register("fence_gate_lebethron", () -> new ItemBlockBCore(FENCE_GATE_LEBETHRON.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> FENCE_MALLORN_ITEM = ITEMS.register("fence_mallorn", () -> new ItemBlockBCore(FENCE_MALLORN.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> FENCE_MIRKWOOD_ITEM = ITEMS.register("fence_mirkwood", () -> new ItemBlockBCore(FENCE_MIRKWOOD.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> FENCE_CULUMALDA_ITEM = ITEMS.register("fence_culumalda", () -> new ItemBlockBCore(FENCE_CULUMALDA.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> FENCE_LEBETHRON_ITEM = ITEMS.register("fence_lebethron", () -> new ItemBlockBCore(FENCE_LEBETHRON.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> TRAPDOOR_MALLORN_ITEM = ITEMS.register("trapdoor_mallorn", () -> new ItemBlockBCore(TRAPDOOR_MALLORN.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> TRAPDOOR_MIRKWOOD_ITEM = ITEMS.register("trapdoor_mirkwood", () -> new ItemBlockBCore(TRAPDOOR_MIRKWOOD.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> TRAPDOOR_CULUMALDA_ITEM = ITEMS.register("trapdoor_culumalda", () -> new ItemBlockBCore(TRAPDOOR_CULUMALDA.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> TRAPDOOR_LEBETHRON_ITEM = ITEMS.register("trapdoor_lebethron", () -> new ItemBlockBCore(TRAPDOOR_LEBETHRON.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> PRESSURE_PLATE_MALLORN_ITEM = ITEMS.register("pressure_plate_mallorn", () -> new ItemBlockBCore(PRESSURE_PLATE_MALLORN.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> PRESSURE_PLATE_MIRKWOOD_ITEM = ITEMS.register("pressure_plate_mirkwood", () -> new ItemBlockBCore(PRESSURE_PLATE_MIRKWOOD.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> PRESSURE_PLATE_CULUMALDA_ITEM = ITEMS.register("pressure_plate_culumalda", () -> new ItemBlockBCore(PRESSURE_PLATE_CULUMALDA.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> PRESSURE_PLATE_LEBETHRON_ITEM = ITEMS.register("pressure_plate_lebethron", () -> new ItemBlockBCore(PRESSURE_PLATE_LEBETHRON.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> TORCH_MALLORN_ITEM = ITEMS.register("torch_mallorn", () -> new WallOrFloorItem(TORCH_MALLORN.get(), WALL_TORCH_MALLORN.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> TORCH_MIRKWOOD_ITEM = ITEMS.register("torch_mirkwood", () -> new WallOrFloorItem(TORCH_MIRKWOOD.get(), WALL_TORCH_MIRKWOOD.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> TORCH_CULUMALDA_ITEM = ITEMS.register("torch_culumalda", () -> new WallOrFloorItem(TORCH_CULUMALDA.get(), WALL_TORCH_CULUMALDA.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> TORCH_LEBETHRON_ITEM = ITEMS.register("torch_lebethron", () -> new WallOrFloorItem(TORCH_LEBETHRON.get(), WALL_TORCH_LEBETHRON.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> LEAVES_CULUMALDA_ITEM = ITEMS.register("leaves_culumalda", () -> new ItemBlockBCore(LEAVES_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> MALLORN_SIGN_ITEM_WOOD_TYPE = ITEMS.register("mallorn_sign_block_wood_type", () -> new TTMMallornSignItem(new Item.Properties().tab(matsGroup), MALLORN_SIGN_WOOD_TYPE.get(), MALLORN_WALL_SIGN_WOOD_TYPE.get()));
-    public static RegistryObject<Item> MIRKWOOD_SIGN_ITEM_WOOD_TYPE = ITEMS.register("mirkwood_sign_block_wood_type", () -> new TTMMirkwoodSignItem(new Item.Properties().tab(matsGroup), MIRKWOOD_SIGN_WOOD_TYPE.get(), MIRKWOOD_WALL_SIGN_WOOD_TYPE.get()));
-    public static RegistryObject<Item> CULUMALDA_SIGN_ITEM_WOOD_TYPE = ITEMS.register("culumalda_sign_block_wood_type", () -> new TTMCulumaldaSignItem(new Item.Properties().tab(matsGroup), CULUMALDA_SIGN_WOOD_TYPE.get(), CULUMALDA_WALL_SIGN_WOOD_TYPE.get()));
-    public static RegistryObject<Item> LEBETHRON_SIGN_ITEM_WOOD_TYPE = ITEMS.register("lebethron_sign_block_wood_type", () -> new TTMLebethronSignItem(new Item.Properties().tab(matsGroup), LEBETHRON_SIGN_WOOD_TYPE.get(), LEBETHRON_WALL_SIGN_WOOD_TYPE.get()));
+    public static RegistryObject<Item> MALLORN_SIGN_ITEM_WOOD_TYPE = ITEMS.register("mallorn_sign_block_wood_type", () -> new TTMMallornSignItem(new Item.Properties().tab(decoGroup), MALLORN_SIGN_WOOD_TYPE.get(), MALLORN_WALL_SIGN_WOOD_TYPE.get()));
+    public static RegistryObject<Item> MIRKWOOD_SIGN_ITEM_WOOD_TYPE = ITEMS.register("mirkwood_sign_block_wood_type", () -> new TTMMirkwoodSignItem(new Item.Properties().tab(decoGroup), MIRKWOOD_SIGN_WOOD_TYPE.get(), MIRKWOOD_WALL_SIGN_WOOD_TYPE.get()));
+    public static RegistryObject<Item> CULUMALDA_SIGN_ITEM_WOOD_TYPE = ITEMS.register("culumalda_sign_block_wood_type", () -> new TTMCulumaldaSignItem(new Item.Properties().tab(decoGroup), CULUMALDA_SIGN_WOOD_TYPE.get(), CULUMALDA_WALL_SIGN_WOOD_TYPE.get()));
+    public static RegistryObject<Item> LEBETHRON_SIGN_ITEM_WOOD_TYPE = ITEMS.register("lebethron_sign_block_wood_type", () -> new TTMLebethronSignItem(new Item.Properties().tab(decoGroup), LEBETHRON_SIGN_WOOD_TYPE.get(), LEBETHRON_WALL_SIGN_WOOD_TYPE.get()));
     public static RegistryObject<Item> LEAVES_LEBETHRON_ITEM = ITEMS.register("leaves_lebethron", () -> new ItemBlockBCore(LEAVES_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LEAVES_MALLORN_ITEM = ITEMS.register("leaves_mallorn", () -> new ItemBlockBCore(LEAVES_MALLORN.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LEAVES_MIRKWOOD_ITEM = ITEMS.register("leaves_mirkwood", () -> new ItemBlockBCore(LEAVES_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
@@ -358,12 +358,12 @@ public class TTMContent {
     public static RegistryObject<Item> FLOWER_LILLYOFTHEVALLEY_ITEM = ITEMS.register("flower_valley_lilly", () -> new ItemBlockBCore(FLOWER_LILLYOFTHEVALLEY.get(), new Item.Properties().tab(matsGroup)));
 
     // Blocks - Custom
-    public static RegistryObject<Item> BLOCK_HALLOWED_ITEM = ITEMS.register("block_hallowed", () -> new ItemBlockBCore(BLOCK_HALLOWED.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> STONE_PATH_ITEM = ITEMS.register("block_stone_path", () -> new ItemBlockBCore(STONE_PATH.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> TTMFIREPLACE_ITEM = ITEMS.register("block_tmfireplace", () -> new ItemBlockBCore(TTMFIREPLACE.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> PIGGYBANK_ITEM = ITEMS.register("block_piggybank", () -> new ItemBlockBCore(PIGGYBANK.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> BARREL_MITHRIL_ITEM = ITEMS.register("block_barrel_mithril", () -> new ItemBlockBCore(BARREL_MITHRIL.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> BARREL_MORGULIRON_ITEM = ITEMS.register("block_barrel_morguliron", () -> new ItemBlockBCore(BARREL_MORGULIRON.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> BLOCK_HALLOWED_ITEM = ITEMS.register("block_hallowed", () -> new ItemBlockBCore(BLOCK_HALLOWED.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> STONE_PATH_ITEM = ITEMS.register("block_stone_path", () -> new ItemBlockBCore(STONE_PATH.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> TTMFIREPLACE_ITEM = ITEMS.register("block_tmfireplace", () -> new ItemBlockBCore(TTMFIREPLACE.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> PIGGYBANK_ITEM = ITEMS.register("block_piggybank", () -> new ItemBlockBCore(PIGGYBANK.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> BARREL_MITHRIL_ITEM = ITEMS.register("block_barrel_mithril", () -> new ItemBlockBCore(BARREL_MITHRIL.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> BARREL_MORGULIRON_ITEM = ITEMS.register("block_barrel_morguliron", () -> new ItemBlockBCore(BARREL_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
 
     // Quest
     public static RegistryObject<Item> ITEM_BERYL = ITEMS.register("item_beryl", () -> new TTMLore(new Item.Properties().stacksTo(1).tab(questGroup)).setEffectOverride().setHasLore());
@@ -446,7 +446,7 @@ public class TTMContent {
     public static RegistryObject<SwordItem> WHIP_FIRE = ITEMS.register("whip_fire", () -> new TTM3DObj(TTMItemTier.MORGULIRON, 9, -0.5F, (new Item.Properties()).tab(toolsGroup), "whip_fire.obj", "whip_fire.png").setEffectOverride());
     public static RegistryObject<SwordItem> CLUB_WOODEN = ITEMS.register("club_wooden", () -> new TTM3DObj(TTMItemTier.MORGULIRON, 9, -0.5F, (new Item.Properties()).tab(toolsGroup), "club_wooden.obj", "club_wooden.png").setEffectOverride());
 
-    //Trinkets
+    // Trinkets
     public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
     public static RegistryObject<Item> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
     public static RegistryObject<Item> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
@@ -454,7 +454,7 @@ public class TTMContent {
     public static RegistryObject<Item> TRINKET_GLOVE = ITEMS.register("trinket_glove", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
     public static RegistryObject<Item> TRINKET_HAT = ITEMS.register("trinket_hat", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
 
-    //Projectiles
+    // Projectiles
     public static RegistryObject<ArrowItem> GALADHRIM_ARROW = ITEMS.register("ammo_galadhrim_arrow", () -> new TTMArrow((new Item.Properties()).tab(toolsGroup)));
     public static RegistryObject<Item> BOULDER = ITEMS.register("ammo_boulder", () -> new TTMAmmo((new Item.Properties()).stacksTo(16).tab(toolsGroup)));
     public static RegistryObject<Item> FELLBEAST_FIREBALL = ITEMS.register("ammo_fellbeast_fireball", () -> new TTMAmmo((new Item.Properties()).stacksTo(16).tab(toolsGroup)));
@@ -549,7 +549,6 @@ public class TTMContent {
     public static ContainerType<ContainerBCTile<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_CONTAINER;
 
     public static void registerContainers(RegistryEvent.Register<ContainerType<?>> event) {
-        //noinspection unchecked
         event.getRegistry().register(TMFIREPLACE_CONTAINER = (ContainerType<ContainerBCTile<TTMFireplaceTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(TMFIREPLACE_CONTAINER, id, playerInv, extraData, TTMFireplaceTile.SLOT_LAYOUT)).setRegistryName("tmfireplace_container"));
         event.getRegistry().register(PIGGYBANK_CONTAINER = (ContainerType<ContainerBCTile<TTMPiggyBankTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(PIGGYBANK_CONTAINER, id, playerInv, extraData, TTMPiggyBankTile.SLOT_LAYOUT)).setRegistryName("piggybank_container"));
         event.getRegistry().register(BARREL_MITHRIL_CONTAINER = (ContainerType<ContainerBCTile<TTMMithrilBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MITHRIL_CONTAINER, id, playerInv, extraData, TTMMithrilBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_mithril_container"));

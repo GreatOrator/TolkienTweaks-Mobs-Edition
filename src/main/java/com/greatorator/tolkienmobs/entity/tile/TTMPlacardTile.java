@@ -1,4 +1,4 @@
-//package com.greatorator.tolkienmobs.tile;
+//package com.greatorator.tolkienmobs.entity.tile;
 //
 //import com.brandon3055.brandonscore.blocks.TileBCBase;
 //import com.brandon3055.brandonscore.lib.ITilePlaceListener;
@@ -14,7 +14,7 @@
 ///**
 // * Created by brandon3055 on 6/12/18.
 // */
-//public class TTMSignTile extends TileBCBase implements ITilePlaceListener {
+//public class TTMPlacardTile extends TileBCBase implements ITilePlaceListener {
 //
 //    public final ManagedEnum<EnumType> TYPE = register("type", new ManagedEnum<>(EnumType.EMPTY)).saveToTile().syncViaTile().trigerUpdate().finish();
 //    public final ManagedEnum<EnumFacing> ROTATION = register("rotation", new ManagedEnum<>(EnumFacing.NORTH)).saveToTile().syncViaTile().trigerUpdate().finish();

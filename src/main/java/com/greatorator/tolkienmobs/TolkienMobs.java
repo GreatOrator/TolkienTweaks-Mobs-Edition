@@ -75,7 +75,7 @@ public class TolkienMobs {
 	    b. Trinket
 	6. World Type
 	    a. find out how to make biomes larger when generated
-    7. Network Stuff
+	7. Randomize Trinket potion effect for villager trades
     */
 
     public TolkienMobs() {

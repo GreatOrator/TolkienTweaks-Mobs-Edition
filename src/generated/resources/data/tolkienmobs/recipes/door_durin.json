@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MZM",
+    "AMA",
+    "MZM"
+  ],
+  "key": {
+    "A": {
+      "item": "tolkienmobs:ingot_morguliron"
+    },
+    "Z": {
+      "item": "tolkienmobs:gem_ammolite"
+    },
+    "M": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:door_durin"
+  }
+}
