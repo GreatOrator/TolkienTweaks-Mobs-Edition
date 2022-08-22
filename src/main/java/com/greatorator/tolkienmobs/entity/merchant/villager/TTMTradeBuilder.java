@@ -1,15 +1,15 @@
 package com.greatorator.tolkienmobs.entity.merchant.villager;
 
+import com.greatorator.tolkienmobs.TTMConfig;
+import com.greatorator.tolkienmobs.item.trinket.Trinket;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffer;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.PotionUtils;
+import net.minecraft.potion.Effect;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -136,12 +136,13 @@ public class TTMTradeBuilder {
         return this;
     }
 
-    public TTMTradeBuilder setForSaleWithPotion(Item item, int min, int max)
+    public TTMTradeBuilder setTrinketForSaleWithPotion(Item item)
     {
-        List<EffectInstance> effects = getEffects(item.getDefaultInstance());
-        ItemStack itemstack = PotionUtils.setCustomEffects(new ItemStack(item),effect);
-
-        return this.setForSaleWithPotion(TTMTradeBuilder.createFunction(itemstack.getItem(), min, max));
+        Function<Random, ItemStack> generator = (random) -> {
+            Effect randomEffect = TTMConfig.potionArray[random.nextInt(TTMConfig.potionArray.length)];
+            return  ((Trinket) item).getTrinketForEffect(randomEffect);
+        };
+        return this.setForSaleWithPotion(generator);
     }
 
     public TTMTradeBuilder setEmeraldPrice(int emeralds)

@@ -170,37 +170,41 @@ public class VillagerTTMTrades {
                             .build()));
         }
         if (event.getType() == ProfessionGenerator.TRINKET_SMITH_PROFESSION.get()){
+
             event.getTrades().get(1)
                     .add((new TTMTradeBuilder(2, 25, 0.05F)
                             .setPrice(TTMContent.ITEM_COIN_MITHRIL.get(), 1,5)
-                            .setForSaleWithPotion(TTMContent.TRINKET_AMULET.get(), 1, 1)
+                            .setTrinketForSaleWithPotion(TTMContent.TRINKET_AMULET.get())
                             .build()));
+
             event.getTrades().get(2)
                     .add((new TTMTradeBuilder(2, 25, 0.05F)
                             .setPrice(TTMContent.ITEM_COIN_MITHRIL.get(), 1,5)
-                            .setForSaleWithPotion(TTMContent.TRINKET_CHARM.get(), 1, 1)
+                            .setTrinketForSaleWithPotion(TTMContent.TRINKET_CHARM.get())
                             .build()));
+
             event.getTrades().get(3)
                     .add((new TTMTradeBuilder(2, 25, 0.05F)
                             .setPrice(TTMContent.ITEM_COIN_MITHRIL.get(), 1,5)
-                            .setForSaleWithPotion(TTMContent.TRINKET_RING.get(), 1, 1)
+                            .setTrinketForSaleWithPotion(TTMContent.TRINKET_RING.get())
                             .build()));
         }
+
         if (event.getType() == ProfessionGenerator.TRINKET_TAILOR_PROFESSION.get()){
             event.getTrades().get(1)
                     .add((new TTMTradeBuilder(2, 25, 0.05F)
                             .setPrice(TTMContent.ITEM_COIN_MITHRIL.get(), 1,5)
-                            .setForSaleWithPotion(TTMContent.TRINKET_BELT.get(), 1, 1)
+                            .setTrinketForSaleWithPotion(TTMContent.TRINKET_BELT.get())
                             .build()));
             event.getTrades().get(2)
                     .add((new TTMTradeBuilder(2, 25, 0.05F)
                             .setPrice(TTMContent.ITEM_COIN_MITHRIL.get(), 1,5)
-                            .setForSaleWithPotion(TTMContent.TRINKET_GLOVE.get(), 1, 1)
+                            .setTrinketForSaleWithPotion(TTMContent.TRINKET_GLOVE.get())
                             .build()));
             event.getTrades().get(3)
                     .add((new TTMTradeBuilder(2, 25, 0.05F)
                             .setPrice(TTMContent.ITEM_COIN_MITHRIL.get(), 1,5)
-                            .setForSaleWithPotion(TTMContent.TRINKET_HAT.get(), 1, 1)
+                            .setTrinketForSaleWithPotion(TTMContent.TRINKET_HAT.get())
                             .build()));
         }
     }
