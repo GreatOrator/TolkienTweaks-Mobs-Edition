@@ -1,4 +1,4 @@
 # Made in Blockbench 2.5.1
-newmtl club_wooden
-map_Kd tolkienmobs:item/tools/obj/club_wooden
+newmtl 2
+map_Kd tolkienmobs:textures/items/tools/obj/club_wooden.png
 newmtl none

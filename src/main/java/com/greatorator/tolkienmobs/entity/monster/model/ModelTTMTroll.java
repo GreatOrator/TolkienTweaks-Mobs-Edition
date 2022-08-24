@@ -174,6 +174,7 @@ public class ModelTTMTroll<T extends MonsterEntity> extends BipedModel<T> {
     @Override
     public void translateToHand(HandSide hand, MatrixStack mStack) {
         this.getArm(hand).translateAndRotate(mStack);
-        mStack.scale(2, 2, 2);
+        mStack.scale(1.75F, 1.75F, 1.75F);
+        mStack.translate(-0.17, -0.40, 0);
     }
 }

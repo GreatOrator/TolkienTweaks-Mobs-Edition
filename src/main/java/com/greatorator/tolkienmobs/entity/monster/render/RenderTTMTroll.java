@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderTTMTroll extends MobRenderer<EntityTTMTroll, ModelTTMTroll<EntityTTMTroll>> {
     public RenderTTMTroll(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new ModelTTMTroll<>(0.0F, true), 1.0F);
+        super(renderManagerIn, new ModelTTMTroll<>(1.0F, true), 1.0F);
         this.addLayer(new HeldItemLayer<>(this));
     }
 

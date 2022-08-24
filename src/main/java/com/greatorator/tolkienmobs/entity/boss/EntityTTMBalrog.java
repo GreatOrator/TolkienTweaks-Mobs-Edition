@@ -81,7 +81,7 @@ public class EntityTTMBalrog extends EntityTTMMonsters {
     @Override
     protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
         super.populateDefaultEquipmentSlots(p_180481_1_);
-        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TTMContent.SWORD_URUK.get()));
+        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TTMContent.WHIP_FIRE.get()));
     }
 
     @Override
@@ -196,16 +196,16 @@ public class EntityTTMBalrog extends EntityTTMMonsters {
             if (livingentity == null) return true;
 
             if (this.random.nextFloat() < 0.15F && this.isEyeInFluid(FluidTags.WATER) && !this.hasEffect(Effects.WATER_BREATHING)) {
-                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.nodrown").withStyle(TextFormatting.DARK_BLUE), Util.NIL_UUID);
+                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.nodrown.balrog").withStyle(TextFormatting.DARK_BLUE), Util.NIL_UUID);
                 this.addEffect(new EffectInstance(Effects.WATER_BREATHING, 2 * 20, 0));
             } else if (this.random.nextFloat() < 0.15F && (this.isOnFire() || this.getLastDamageSource() != null && this.getLastDamageSource().isFire()) && !this.hasEffect(Effects.FIRE_RESISTANCE)) {
-                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.onfire").withStyle(TextFormatting.DARK_RED), Util.NIL_UUID);
+                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.onfire.balrog").withStyle(TextFormatting.DARK_RED), Util.NIL_UUID);
                 this.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 2 * 20, 0));
             } else if (this.random.nextFloat() < 0.05F && this.getHealth() < this.getMaxHealth()) {
-                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.healself").withStyle(TextFormatting.LIGHT_PURPLE), Util.NIL_UUID);
+                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.healself.balrog").withStyle(TextFormatting.LIGHT_PURPLE), Util.NIL_UUID);
                 this.addEffect(new EffectInstance(Effects.REGENERATION, 2 * 20, 0));
             } else if (this.random.nextFloat() < 0.5F && this.getTarget() != null && !this.hasEffect(Effects.MOVEMENT_SPEED) && this.getTarget().distanceToSqr(this) > 121.0D) {
-                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.speedup").withStyle(TextFormatting.AQUA), Util.NIL_UUID);
+                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.speedup.balrog").withStyle(TextFormatting.AQUA), Util.NIL_UUID);
                 this.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 2 * 20, 0));
             }
         }

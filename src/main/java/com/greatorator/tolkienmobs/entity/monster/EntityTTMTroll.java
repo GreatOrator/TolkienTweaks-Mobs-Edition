@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
 import com.google.common.collect.Maps;
+import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
@@ -11,7 +12,11 @@ import net.minecraft.entity.ILivingEntityData;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.projectile.ProjectileHelper;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -37,6 +42,22 @@ public class EntityTTMTroll extends EntityTTMMonsters {
         option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/troll/cave_troll4.png"));
     });
 
+    /** Set up using weapons **/
+    private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false) {
+        @Override
+        public void stop() {
+            super.stop();
+            EntityTTMTroll.this.setAggressive(false);
+        }
+
+        @Override
+        public void start() {
+            super.start();
+            EntityTTMTroll.this.setAggressive(true);
+        }
+    };
+    /** End Region **/
+
     public EntityTTMTroll(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
     }
@@ -48,6 +69,34 @@ public class EntityTTMTroll extends EntityTTMMonsters {
                 .add(Attributes.ATTACK_DAMAGE, 11.0D)
                 .add(Attributes.ARMOR, 9.0D);
     }
+
+    /** Set up using weapons **/
+    @Override
+    protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
+        super.populateDefaultEquipmentSlots(p_180481_1_);
+        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TTMContent.CLUB_WOODEN.get()));
+    }
+
+    @Override
+    public void reassessWeaponGoal() {
+        if (this.level != null && !this.level.isClientSide) {
+            this.goalSelector.removeGoal(this.meleeGoal);
+            ItemStack itemstack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, TTMContent.CLUB_WOODEN.get()));
+            if (itemstack.getItem() == TTMContent.CLUB_WOODEN.get()) {
+                this.goalSelector.addGoal(4, this.meleeGoal);
+            }
+        }
+    }
+
+    @Override
+    public void setItemSlot(EquipmentSlotType p_184201_1_, ItemStack p_184201_2_) {
+        super.setItemSlot(p_184201_1_, p_184201_2_);
+        if (!this.level.isClientSide) {
+            this.reassessWeaponGoal();
+        }
+
+    }
+    /** End Region **/
 
     @Override
     protected SoundEvent getAmbientSound()
@@ -97,6 +146,7 @@ public class EntityTTMTroll extends EntityTTMMonsters {
         int job = TTMRand.getRandomInteger(5, 1);
         this.setTrollType(job);
         this.populateDefaultEquipmentSlots(difficultyIn);
+        this.reassessWeaponGoal();
 
         return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
@@ -110,12 +160,13 @@ public class EntityTTMTroll extends EntityTTMMonsters {
     @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
-        compound.putInt("BTrollType", this.getTrollType());
+        compound.putInt("TrollType", this.getTrollType());
     }
 
     @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setTrollType(compound.getInt("TrollType"));
+        this.reassessWeaponGoal();
     }
 }

@@ -473,6 +473,6 @@ public class ModelTTMBalrog<T extends MonsterEntity> extends BipedModel<T> {
     public void translateToHand(HandSide hand, MatrixStack mStack) {
         this.getArm(hand).translateAndRotate(mStack);
         mStack.scale(1.75F, 1.75F, 1.75F);
-        mStack.translate(-0.25, -0.75, 0);
+        mStack.translate(-0.17, -0.65, 0);
     }
 }

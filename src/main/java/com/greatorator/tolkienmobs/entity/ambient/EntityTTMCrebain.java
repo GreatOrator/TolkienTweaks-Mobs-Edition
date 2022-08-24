@@ -3,13 +3,13 @@ package com.greatorator.tolkienmobs.entity.ambient;
 import com.google.common.collect.Sets;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
+import com.greatorator.tolkienmobs.entity.ai.TTMFlyingMovementController;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -55,21 +55,10 @@ public class EntityTTMCrebain extends ParrotEntity {
 
     public EntityTTMCrebain(EntityType<? extends EntityTTMCrebain> type, World worldIn) {
         super(type, worldIn);
-        this.moveControl = new FlyingMovementController(this, 10, false);
+        this.moveControl = new TTMFlyingMovementController(this, 10, false);
         this.setPathfindingMalus(PathNodeType.DANGER_FIRE, -1.0F);
         this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, -1.0F);
         this.setPathfindingMalus(PathNodeType.COCOA, -1.0F);
-    }
-
-    @Nullable
-    @Override
-    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        this.setVariant(this.random.nextInt(5));
-        if (spawnDataIn == null) {
-            spawnDataIn = new AgeableData(false);
-        }
-
-        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
     /**
@@ -78,6 +67,12 @@ public class EntityTTMCrebain extends ParrotEntity {
     @Override
     public boolean isBaby() {
         return false;
+    }
+
+    public static AttributeModifierMap.MutableAttribute registerAttributes() {
+        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D)
+                .add(Attributes.FLYING_SPEED, (double) 0.4F)
+                .add(Attributes.MOVEMENT_SPEED, (double) 0.2F);
     }
 
     @Override
@@ -94,10 +89,15 @@ public class EntityTTMCrebain extends ParrotEntity {
         this.goalSelector.addGoal(3, new FollowMobGoal(this, 1.0D, 3.0F, 7.0F));
     }
 
-    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D)
-                .add(Attributes.FLYING_SPEED, (double) 0.4F)
-                .add(Attributes.MOVEMENT_SPEED, (double) 0.2F);
+    @Nullable
+    @Override
+    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+        this.setVariant(this.random.nextInt(5));
+        if (spawnDataIn == null) {
+            spawnDataIn = new AgeableData(false);
+        }
+
+        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
 
     /**

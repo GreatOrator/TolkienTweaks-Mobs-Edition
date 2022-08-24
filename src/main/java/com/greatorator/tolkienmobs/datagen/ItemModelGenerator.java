@@ -260,8 +260,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         handheldItem(TTMContent.SWORD_MORGULIRON.get());
         handheldItem(TTMContent.SWORD_WITCHKING.get());
         handheldItem(TTMContent.SWORD_URUK.get());
-        handheldItem(TTMContent.WHIP_FIRE.get(), modLoc("item/whip_fire"));
-        handheldItem(TTMContent.CLUB_WOODEN.get(), modLoc("item/club_wooden"));
+//        handheldItem(TTMContent.WHIP_FIRE.get(), modLoc("item/whip_fire"));
+//        handheldItem(TTMContent.CLUB_WOODEN.get(), modLoc("item/club_wooden"));
         simpleItem(TTMContent.GALADHRIM_ARROW.get());
         simpleItem(TTMContent.FELLBEAST_FIREBALL.get());
         simpleItem(TTMContent.BOULDER.get());

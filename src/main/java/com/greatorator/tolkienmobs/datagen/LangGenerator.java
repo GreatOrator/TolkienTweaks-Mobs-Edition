@@ -644,6 +644,10 @@ public class LangGenerator extends LanguageProvider {
         add("tolkienmobs.msg.onfire", "Goblin King is protecting himself from fire.");
         add("tolkienmobs.msg.healself", "Goblin King is hurt and is healing.");
         add("tolkienmobs.msg.speedup", "Goblin King is attempting to match your speed.");
+        add("tolkienmobs.msg.nodrown.balrog", "The Balrog doesn't want to drown.");
+        add("tolkienmobs.msg.onfire.balrog", "The Balrog is protecting himself from fire.");
+        add("tolkienmobs.msg.healself.balrog", "The Balrog is hurt and is healing.");
+        add("tolkienmobs.msg.speedup.balrog", "The Balrog is attempting to match your speed.");
     }
 
 

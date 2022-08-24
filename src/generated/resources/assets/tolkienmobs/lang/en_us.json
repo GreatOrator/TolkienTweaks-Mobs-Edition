@@ -529,9 +529,13 @@
   "itemGroup.tolkienmobs.tools": "TolkienTweaks Tools",
   "item_info.tolkienmobs.sneak_right_click_activate": "Shift right-click to activate/deactivate effect",
   "tolkienmobs.msg.healself": "Goblin King is hurt and is healing.",
+  "tolkienmobs.msg.healself.balrog": "The Balrog is hurt and is healing.",
   "tolkienmobs.msg.helpcomming": "Goblin King is attempting to call for help...Reinforcements have arrived!",
   "tolkienmobs.msg.nodrown": "Goblin King doesn't want to drown.",
+  "tolkienmobs.msg.nodrown.balrog": "The Balrog doesn't want to drown.",
   "tolkienmobs.msg.nohelp": "Goblin King is attempting to call for help, but no help came.",
   "tolkienmobs.msg.onfire": "Goblin King is protecting himself from fire.",
-  "tolkienmobs.msg.speedup": "Goblin King is attempting to match your speed."
+  "tolkienmobs.msg.onfire.balrog": "The Balrog is protecting himself from fire.",
+  "tolkienmobs.msg.speedup": "Goblin King is attempting to match your speed.",
+  "tolkienmobs.msg.speedup.balrog": "The Balrog is attempting to match your speed."
 }
