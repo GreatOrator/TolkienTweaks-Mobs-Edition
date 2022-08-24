@@ -53,26 +53,23 @@ public class TolkienMobs {
 			5. Deep Claw - Texture Issue (near head, extra texture layer that shouldn't be there)
 			6. Tree Ent - not "breathing"
 			7. Duergar - not "breathing", not holding weapon
-			8. Troll - Texture issue (chest area, looks to be extra texture attached to neck), not "breathing"
+			8. Troll - Texture issue (chest area, looks to be extra texture attached to neck), not "breathing", Weapon not moving in sync
 			9. Huron - not "breathing"
 			10. Mithril & Morgul Golems - not "breathing"
 			11. Witch King - Texture Issue (Noticeable on legs, "armor" skin not moving correctly)
 			12. Wandering Trader - Texture Issue (Noticeable on legs, "armor" skin not moving correctly)
-			13. Balrog - not "breathing", switching attacks based on range
+			13. Balrog - not "breathing", switching attacks based on range, Weapon not moving in sync
 			14. Nazgul - Texture issue (Noticeable on legs, "armor" skin not moving correctly)
 			15. Frog - not jumping when moving
     2. Remaining blocks -
        a. custom Signs
-    3. Custom weapon & tool models
-        a. Fire Whip - Proper rendering
-        b. Wooden Club - Proper rendering
-    4. Ammo
+    3. Ammo
         a. Fell Beast Fireball - rendering
 	    b. Boulder - rendering
 	    c. Galadhrim Arrow - rendering
-	5. Custom Recipe
+	4. Custom Recipe
 	    a. Fireplace - JEI GUI needs fixed
-	6. World Type
+	5. World Type
 	    a. find out how to make biomes larger when generated
     */
 
