@@ -63,6 +63,6 @@ public class TTMBackpackTile extends TileBCore implements ITickableTileEntity, I
     @Nullable
     @Override
     public Container createMenu(int id, PlayerInventory playerInventory, PlayerEntity player) {
-        return new ContainerBCTile<>(TTMContent.PIGGYBANK_CONTAINER, id, playerInventory, this, SLOT_LAYOUT);
+        return new ContainerBCTile<>(TTMContent.BACKPACK_CONTAINER, id, playerInventory, this, SLOT_LAYOUT);
     }
 }
