@@ -5,6 +5,7 @@ import com.brandon3055.brandonscore.capability.MultiCapabilityProvider;
 import com.brandon3055.brandonscore.lib.IEquipmentManager;
 import com.google.common.collect.ImmutableList;
 import com.greatorator.tolkienmobs.handler.interfaces.ITTMEquip;
+import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.lib.FlamingBalrog;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
@@ -12,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
@@ -29,7 +29,7 @@ public abstract class TTMEquipMgr implements IEquipmentManager {
     public static void initialize() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-        curiosLoaded = ModList.get().isLoaded("curios");
+        curiosLoaded = TTMHelper.isCuriosInstalled;
 
         if (curiosLoaded) {
             modBus.addListener(TTMCurios::sendIMC);

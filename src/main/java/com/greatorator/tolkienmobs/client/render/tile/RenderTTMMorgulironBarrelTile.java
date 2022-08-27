@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.tile;
 
-import com.greatorator.tolkienmobs.block.BlockTTMPiggyBank;
+import com.greatorator.tolkienmobs.block.BlockTTMMorgulironBarrel;
 import com.greatorator.tolkienmobs.entity.tile.TTMMorgulironBarrelTile;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.block.BlockState;
@@ -18,7 +18,7 @@ public class RenderTTMMorgulironBarrelTile extends TileEntityRenderer<TTMMorguli
     @Override
     public void render(TTMMorgulironBarrelTile te, float partialTicks, MatrixStack mStack, IRenderTypeBuffer getter, int packedLight, int packedOverlay) {
         BlockState state = te.getBlockState();
-        Direction facing = state.getValue(BlockTTMPiggyBank.FACING);
+        Direction facing = state.getValue(BlockTTMMorgulironBarrel.FACING);
 
         mStack.pushPose();
         mStack.translate(0.5, 0.5, 0.5);

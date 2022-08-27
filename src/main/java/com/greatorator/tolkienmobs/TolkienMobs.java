@@ -5,6 +5,7 @@ import com.greatorator.tolkienmobs.common.MobModify;
 import com.greatorator.tolkienmobs.common.network.AirPacket;
 import com.greatorator.tolkienmobs.common.network.NetworkHelper;
 import com.greatorator.tolkienmobs.handler.interfaces.IFireplaceRecipe;
+import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.proxy.ClientProxy;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
 import net.minecraft.entity.Entity;
@@ -16,7 +17,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -46,9 +46,9 @@ public class TolkienMobs {
     /*TODO List
     1. Entities
 	    a. Remaining Entities
-	        1. Fell Beast
-			2. Gwaihir
-			3. Great Eagle
+	        1. Fell Beast - Needs AI and implementation
+			2. Gwaihir - Needs AI and implementation
+			3. Great Eagle - Needs AI and implementation
 			4. Watcher - Does not want to move around
 			5. Deep Claw - Texture Issue (near head, extra texture layer that shouldn't be there)
 			6. Tree Ent - not "breathing"
@@ -61,12 +61,12 @@ public class TolkienMobs {
 			13. Balrog - not "breathing", switching attacks based on range, Weapon not moving in sync
 			14. Nazgul - Texture issue (Noticeable on legs, "armor" skin not moving correctly)
 			15. Frog - not jumping when moving
-    2. Remaining blocks -
+		b. Ammo
+            a. Fell Beast Fireball - rendering
+	        b. Boulder - rendering
+	        c. Galadhrim Arrow - rendering
+    3. Remaining blocks -
        a. custom Signs
-    3. Ammo
-        a. Fell Beast Fireball - rendering
-	    b. Boulder - rendering
-	    c. Galadhrim Arrow - rendering
 	4. Custom Recipe
 	    a. Fireplace - JEI GUI needs fixed
 	5. World Type
@@ -82,7 +82,7 @@ public class TolkienMobs {
             Logger ttLog = LogManager.getLogger("tolkientweaks");
             Logger bcLog = LogManager.getLogger("brandonscore");
             LOGGER.info("Meeting of the Fellowship started! Waiting for the rest of the party to arrive...");
-            if (ModList.get().isLoaded("tolkientweaks")) {
+            if (TTMHelper.isTTInstalled) {
                 ttLog.log(Level.INFO, "You shall have my axe!");
                 bcLog.log(Level.INFO, "...and you shall have my bow!");
                 LOGGER.info("Together we shall be the Fellowship of the Mods!");
@@ -96,7 +96,9 @@ public class TolkienMobs {
         proxy.construct();
 
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
-        TolkienMobs.FIREPLACE_RECIPE_TYPE = IRecipeType.register(MODID + ":tmfireplace");
+        if (TTMHelper.isJEIInstalled) {
+            TolkienMobs.FIREPLACE_RECIPE_TYPE = IRecipeType.register(MODID + ":tmfireplace");
+        }
     }
 
     public static TolkienMobs instance() {

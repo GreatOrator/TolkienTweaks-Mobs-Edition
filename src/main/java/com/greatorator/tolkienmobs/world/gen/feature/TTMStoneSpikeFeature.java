@@ -13,8 +13,6 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 
 import java.util.Random;
 
-import static slimeknights.tconstruct.TConstruct.random;
-
 public class TTMStoneSpikeFeature extends Feature<NoFeatureConfig> {
    public TTMStoneSpikeFeature(Codec<NoFeatureConfig> p_i231962_1_) {
       super(p_i231962_1_);
@@ -29,12 +27,12 @@ public class TTMStoneSpikeFeature extends Feature<NoFeatureConfig> {
       if (world.getBlockState(pos).getBlock() != Blocks.GRASS) {
          return false;
       } else {
-         pos = pos.above(random.nextInt(4));
-         int i = random.nextInt(4) + 7;
-         int j = i / 4 + random.nextInt(2);
+         pos = pos.above(rand.nextInt(4));
+         int i = rand.nextInt(4) + 7;
+         int j = i / 4 + rand.nextInt(2);
 
-         if (j > 1 && random.nextInt(60) == 0) {
-            pos = pos.above(10 + random.nextInt(30));
+         if (j > 1 && rand.nextInt(60) == 0) {
+            pos = pos.above(10 + rand.nextInt(30));
          }
 
          for (int k = 0; k < i; ++k) {
@@ -47,7 +45,7 @@ public class TTMStoneSpikeFeature extends Feature<NoFeatureConfig> {
                for (int j1 = -l; j1 <= l; ++j1) {
                   float f2 = (float) MathHelper.abs(j1) - 0.25F;
 
-                  if ((i1 == 0 && j1 == 0 || f1 * f1 + f2 * f2 <= f * f) && (i1 != -l && i1 != l && j1 != -l && j1 != l || random.nextFloat() <= 0.75F)) {
+                  if ((i1 == 0 && j1 == 0 || f1 * f1 + f2 * f2 <= f * f) && (i1 != -l && i1 != l && j1 != -l && j1 != l || rand.nextFloat() <= 0.75F)) {
                      BlockState blockstate = world.getBlockState(pos.offset(i1, k, j1));
                      Block block = blockstate.getBlock();
 
@@ -82,7 +80,7 @@ public class TTMStoneSpikeFeature extends Feature<NoFeatureConfig> {
                int j2 = 50;
 
                if (Math.abs(l1) == 1 && Math.abs(i2) == 1) {
-                  j2 = random.nextInt(5);
+                  j2 = rand.nextInt(5);
                }
 
                while (blockpos.getY() > 50) {
@@ -98,8 +96,8 @@ public class TTMStoneSpikeFeature extends Feature<NoFeatureConfig> {
                   --j2;
 
                   if (j2 <= 0) {
-                     blockpos = blockpos.below(random.nextInt(5) + 1);
-                     j2 = random.nextInt(5);
+                     blockpos = blockpos.below(rand.nextInt(5) + 1);
+                     j2 = rand.nextInt(5);
                   }
                }
             }

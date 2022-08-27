@@ -87,8 +87,6 @@ dependencies {
     compile "codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:deobf"
     compile "com.brandon3055.brandonscore:BrandonsCore:${config.mc_version}-${config.bcore_version}:deobf"
     compile fg.deobf("top.theillusivec4.curios:curios-forge:${config.mc_version}-${config.curios_version}")
-    compile fg.deobf("slimeknights.mantle:Mantle:${config.mc_version}-${config.mantle_version}")
-    compile fg.deobf("slimeknights.tconstruct:TConstruct:${config.mc_version}-${config.tic_version}")
 
     compile fg.deobf("mezz.jei:jei-${config.mc_version}:${config.jei_version}")
 }
@@ -165,7 +163,7 @@ publishing {
             pom {
                 name = archivesBaseName
                 description = archivesBaseName
-                //The publish plugin doesnt like GString's here apparently..
+                //The publish plugin doesn't like GString's here apparently..
                 url = "https://github.com/GreatOrator/TolkienTweaks-Mobs".toString()
                 scm {
                     url = "https://github.com/GreatOrator/TolkienTweaks-Mobs".toString()

@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.render.tile;
 
-import com.greatorator.tolkienmobs.block.BlockTTMMithrilBarrel;
-import com.greatorator.tolkienmobs.entity.tile.TTMMithrilBarrelTile;
+import com.greatorator.tolkienmobs.block.BlockTTMBackpack;
+import com.greatorator.tolkienmobs.entity.tile.TTMBackpackTile;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -10,15 +10,15 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Quaternion;
 
-public class RenderTTMMithrilBarrelTile extends TileEntityRenderer<TTMMithrilBarrelTile> {
-    public RenderTTMMithrilBarrelTile(TileEntityRendererDispatcher rendererDispatcherIn) {
+public class RenderTTMBackpackTile extends TileEntityRenderer<TTMBackpackTile> {
+    public RenderTTMBackpackTile(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
     }
 
     @Override
-    public void render(TTMMithrilBarrelTile te, float partialTicks, MatrixStack mStack, IRenderTypeBuffer getter, int packedLight, int packedOverlay) {
+    public void render(TTMBackpackTile te, float partialTicks, MatrixStack mStack, IRenderTypeBuffer getter, int packedLight, int packedOverlay) {
         BlockState state = te.getBlockState();
-        Direction facing = state.getValue(BlockTTMMithrilBarrel.FACING);
+        Direction facing = state.getValue(BlockTTMBackpack.FACING);
 
         mStack.pushPose();
         mStack.translate(0.5, 0.5, 0.5);

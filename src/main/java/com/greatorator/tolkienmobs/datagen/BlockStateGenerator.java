@@ -3,10 +3,7 @@ package com.greatorator.tolkienmobs.datagen;
 import com.google.gson.JsonElement;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.block.BlockTTMFireplace;
-import com.greatorator.tolkienmobs.block.BlockTTMMithrilBarrel;
-import com.greatorator.tolkienmobs.block.BlockTTMMorgulironBarrel;
-import com.greatorator.tolkienmobs.block.BlockTTMPiggyBank;
+import com.greatorator.tolkienmobs.block.*;
 import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -138,6 +135,13 @@ public class BlockStateGenerator extends BlockStateProvider {
         // Custom
         simpleBlock(TTMContent.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
         simpleBlock(TTMContent.STONE_PATH.get(), models().getExistingFile(modLoc("block/block_stone_path")));
+
+        ModelFile backpack = models().getExistingFile(modLoc("block/container_backpack"));
+        ModelFile backpackUpgrade1 = models().getExistingFile(modLoc("block/container_backpack_upgrade1"));
+        ModelFile backpackUpgrade2 = models().getExistingFile(modLoc("block/container_backpack_upgrade2"));
+        directionalFromNorthHoz(TTMContent.BACKPACK.get(), e -> e.getValue(BlockTTMBackpack.UPGRADE1) ? backpackUpgrade1 : backpack, 0);
+        //directionalFromNorthHoz(TTMContent.BACKPACK.get(), e -> e.getValue(BlockTTMBackpack.UPGRADE2) ? backpackUpgrade2 : backpackUpgrade1, 180);
+
 
         ModelFile barrelMithril = models().cubeBottomTop("barrel_mithril", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top"));
         ModelFile barrelMithrilOpen = models().cubeBottomTop("barrel_mithril_open", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top_open"));

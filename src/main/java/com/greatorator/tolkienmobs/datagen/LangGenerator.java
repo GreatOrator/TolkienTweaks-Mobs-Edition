@@ -144,6 +144,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.PIGGYBANK.get(), "Piggy Bank");
         add(TTMContent.BARREL_MITHRIL.get(), "Mithril Barrel");
         add(TTMContent.BARREL_MORGULIRON.get(), "Morgul Iron Barrel");
+        add(TTMContent.BACKPACK.get(), "Traveller's Backpack");
     }
 
     private void items() {
@@ -174,6 +175,7 @@ public class LangGenerator extends LanguageProvider {
         add("item_info.tolkienmobs.sneak_right_click_activate", "Shift right-click to activate/deactivate effect");
         add("container.tolkienmobs.ttmfireplace", "Fireplace");
         add("container.tolkienmobs.piggybank", "Piggy Bank");
+        add("container.tolkienmobs.backpack", "Traveller's Backpack");
     }
 
     private void quest() {

@@ -4,10 +4,7 @@ import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.TTMClientEvents;
 import com.greatorator.tolkienmobs.client.TTMSprites;
-import com.greatorator.tolkienmobs.client.gui.GuiTTMFireplace;
-import com.greatorator.tolkienmobs.client.gui.GuiTTMMithrilBarrel;
-import com.greatorator.tolkienmobs.client.gui.GuiTTMMorgulironBarrel;
-import com.greatorator.tolkienmobs.client.gui.GuiTTMPiggyBank;
+import com.greatorator.tolkienmobs.client.gui.*;
 import com.greatorator.tolkienmobs.client.render.tile.*;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
@@ -29,6 +26,7 @@ import com.greatorator.tolkienmobs.entity.special.render.RenderTTMNazgulSteed;
 import com.greatorator.tolkienmobs.entity.special.render.RenderTTMShadowfax;
 import com.greatorator.tolkienmobs.handler.TTMHearts;
 import com.greatorator.tolkienmobs.init.TTMColor;
+import com.greatorator.tolkienmobs.integration.TTMHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.Atlases;
@@ -36,7 +34,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -62,7 +59,7 @@ public class ClientProxy extends CommonProxy {
     public void commonSetup(FMLCommonSetupEvent event) {
         super.commonSetup(event);
 
-        if (!ModList.get().isLoaded("mantle")) {
+        if (!TTMHelper.isMantleInstalled) {
             MinecraftForge.EVENT_BUS.register(new TTMHearts());
         }
 
@@ -147,6 +144,7 @@ public class ClientProxy extends CommonProxy {
         ScreenManager.register(TTMContent.PIGGYBANK_CONTAINER, GuiTTMPiggyBank::new);
         ScreenManager.register(TTMContent.BARREL_MITHRIL_CONTAINER, GuiTTMMithrilBarrel::new);
         ScreenManager.register(TTMContent.BARREL_MORGULIRON_CONTAINER, GuiTTMMorgulironBarrel::new);
+        ScreenManager.register(TTMContent.BACKPACK_CONTAINER, GuiTTMBackpack::new);
 
     }
 
@@ -220,6 +218,7 @@ public class ClientProxy extends CommonProxy {
     private void registerTileRenderers() {
         ClientRegistry.bindTileEntityRenderer(TTMContent.TMFIREPLACE_TILE.get(), RenderTTMFireplaceTile::new);
         ClientRegistry.bindTileEntityRenderer(TTMContent.PIGGYBANK_TILE.get(), RenderTTMPiggyBankTile::new);
+        ClientRegistry.bindTileEntityRenderer(TTMContent.BACKPACK_TILE.get(), RenderTTMBackpackTile::new);
         ClientRegistry.bindTileEntityRenderer(TTMContent.MALLORN_SIGN_TILE.get(), RenderTTMMallornSignTile::new);
         ClientRegistry.bindTileEntityRenderer(TTMContent.MIRKWOOD_SIGN_TILE.get(), RenderTTMMirkwoodSignTile::new);
         ClientRegistry.bindTileEntityRenderer(TTMContent.CULUMALDA_SIGN_TILE.get(), RenderTTMCulumaldaSignTile::new);

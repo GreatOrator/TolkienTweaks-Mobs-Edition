@@ -8,6 +8,7 @@ import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
 import com.greatorator.tolkienmobs.datagen.StructureGenerator;
 import com.greatorator.tolkienmobs.init.TTMTags;
+import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.integration.curios.TTMEquipMgr;
 import com.greatorator.tolkienmobs.network.TTMNetwork;
 import com.greatorator.tolkienmobs.server.TTMServerEvents;
@@ -42,6 +43,7 @@ public class CommonProxy {
         TTMContent.init();
         TTMEquipMgr.initialize();
         TTMTags.init();
+        TTMHelper.init();
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::balrogMark);
         MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::hobbitPlow);

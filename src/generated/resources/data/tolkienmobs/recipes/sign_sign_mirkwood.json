@@ -7,14 +7,14 @@
   ],
   "key": {
     "#": {
-      "item": "tolkienmobs:planks_lebethron"
+      "item": "tolkienmobs:planks_mirkwood"
     },
     "-": {
       "item": "minecraft:stick"
     }
   },
   "result": {
-    "item": "tolkienmobs:lebethron_sign_block_wood_type",
+    "item": "tolkienmobs:sign_mirkwood",
     "count": 3
   }
 }

@@ -7,14 +7,14 @@
   ],
   "key": {
     "#": {
-      "item": "tolkienmobs:planks_mirkwood"
+      "item": "tolkienmobs:planks_culumalda"
     },
     "-": {
       "item": "minecraft:stick"
     }
   },
   "result": {
-    "item": "tolkienmobs:mirkwood_sign_block_wood_type",
+    "item": "tolkienmobs:sign_culumalda",
     "count": 3
   }
 }

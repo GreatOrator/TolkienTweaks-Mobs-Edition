@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tolkienmobs:culumalda_sign_block_wood_type"
+          "name": "tolkienmobs:sign_culumalda"
         }
       ],
       "conditions": [

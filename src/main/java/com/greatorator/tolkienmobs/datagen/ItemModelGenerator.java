@@ -123,6 +123,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.PIGGYBANK.get(), modLoc("block/block_piggybank"));
         blockItem(TTMContent.BARREL_MITHRIL.get(), modLoc("block/barrel_mithril"));
         blockItem(TTMContent.BARREL_MORGULIRON.get(), modLoc("block/barrel_morguliron"));
+        blockItem(TTMContent.BACKPACK.get(), modLoc("block/container_backpack"));
 
         // Metals & Gems Items
         simpleItem(TTMContent.DUST_MITHRIL.get());

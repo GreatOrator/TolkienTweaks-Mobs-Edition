@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.item;
+package com.greatorator.tolkienmobs.item.signs;
 
 import com.greatorator.tolkienmobs.client.gui.GuiTTMMallornSignScreen;
 import com.greatorator.tolkienmobs.entity.tile.TTMMallornSignTile;

@@ -1,7 +1,7 @@
-package com.greatorator.tolkienmobs.item;
+package com.greatorator.tolkienmobs.item.signs;
 
-import com.greatorator.tolkienmobs.client.gui.GuiTTMMirkwoodSignScreen;
-import com.greatorator.tolkienmobs.entity.tile.TTMMirkwoodSignTile;
+import com.greatorator.tolkienmobs.client.gui.GuiTTMLebethronSignScreen;
+import com.greatorator.tolkienmobs.entity.tile.TTMLebethronSignTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -16,8 +16,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 
-public class TTMMirkwoodSignItem extends WallOrFloorItem {
-   public TTMMirkwoodSignItem(Properties properties, Block signBlock, Block wallSignBlock) {
+public class TTMLebethronSignItem extends WallOrFloorItem {
+   public TTMLebethronSignItem(Properties properties, Block signBlock, Block wallSignBlock) {
       super(signBlock, wallSignBlock, properties);
    }
 
@@ -26,11 +26,11 @@ public class TTMMirkwoodSignItem extends WallOrFloorItem {
       boolean flag = super.updateCustomBlockEntityTag(blockPos, world, player, stack, blockState);
       if (!flag && player != null) {
          if (world.isClientSide) {
-            openGui((TTMMirkwoodSignTile)world.getBlockEntity(blockPos));
+            openGui((TTMLebethronSignTile)world.getBlockEntity(blockPos));
          }else {
             TileEntity tile = world.getBlockEntity(blockPos);
-            if (tile instanceof TTMMirkwoodSignTile) {
-               ((TTMMirkwoodSignTile) tile).setAllowedPlayerEditor(player);
+            if (tile instanceof TTMLebethronSignTile) {
+               ((TTMLebethronSignTile) tile).setAllowedPlayerEditor(player);
             }
          }
       }
@@ -40,7 +40,7 @@ public class TTMMirkwoodSignItem extends WallOrFloorItem {
    }
 
    @OnlyIn(Dist.CLIENT)
-   private void openGui(TTMMirkwoodSignTile tile) {
-      Minecraft.getInstance().setScreen(new GuiTTMMirkwoodSignScreen(tile));
+   private void openGui(TTMLebethronSignTile tile) {
+      Minecraft.getInstance().setScreen(new GuiTTMLebethronSignScreen(tile));
    }
 }

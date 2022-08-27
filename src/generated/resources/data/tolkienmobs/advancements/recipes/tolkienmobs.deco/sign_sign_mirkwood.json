@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "tolkienmobs:sign_culumalda_sign_block_wood_type"
+      "tolkienmobs:sign_sign_mirkwood"
     ]
   },
   "criteria": {
-    "has_planks_culumalda": {
+    "has_planks_mirkwood": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "tolkienmobs:planks_culumalda"
+            "item": "tolkienmobs:planks_mirkwood"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tolkienmobs:sign_culumalda_sign_block_wood_type"
+        "recipe": "tolkienmobs:sign_sign_mirkwood"
       }
     }
   },
   "requirements": [
     [
-      "has_planks_culumalda",
+      "has_planks_mirkwood",
       "has_the_recipe"
     ]
   ]

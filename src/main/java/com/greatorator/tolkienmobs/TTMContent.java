@@ -9,12 +9,12 @@ import com.greatorator.tolkienmobs.crafting.FireplaceRecipe;
 import com.greatorator.tolkienmobs.datagen.*;
 import com.greatorator.tolkienmobs.entity.tile.*;
 import com.greatorator.tolkienmobs.handler.*;
-import com.greatorator.tolkienmobs.item.TTMCulumaldaSignItem;
-import com.greatorator.tolkienmobs.item.TTMLebethronSignItem;
-import com.greatorator.tolkienmobs.item.TTMMallornSignItem;
-import com.greatorator.tolkienmobs.item.TTMMirkwoodSignItem;
 import com.greatorator.tolkienmobs.item.armor.ArmorTTMMithril;
 import com.greatorator.tolkienmobs.item.armor.ArmorTTMMorgulIron;
+import com.greatorator.tolkienmobs.item.signs.TTMCulumaldaSignItem;
+import com.greatorator.tolkienmobs.item.signs.TTMLebethronSignItem;
+import com.greatorator.tolkienmobs.item.signs.TTMMallornSignItem;
+import com.greatorator.tolkienmobs.item.signs.TTMMirkwoodSignItem;
 import com.greatorator.tolkienmobs.item.trinket.Trinket;
 import com.greatorator.tolkienmobs.world.trees.*;
 import net.minecraft.block.*;
@@ -198,14 +198,14 @@ public class TTMContent {
     public static WoodType CULUMALDA_WOOD_TYPE = WoodType.register(WoodType.create(MODID + ":culumalda_wood"));
     public static WoodType LEBETHRON_WOOD_TYPE = WoodType.register(WoodType.create(MODID + ":lebethron_wood"));
 
-    public static RegistryObject<Block> MALLORN_SIGN_WOOD_TYPE = BLOCKS.register("mallorn_sign_block_wood_type", () -> new BlockTTMMallornStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), MALLORN_WOOD_TYPE));
-    public static RegistryObject<Block> MIRKWOOD_SIGN_WOOD_TYPE = BLOCKS.register("mirkwood_sign_block_wood_type", () -> new BlockTTMMirkwoodStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), MIRKWOOD_WOOD_TYPE));
-    public static RegistryObject<Block> CULUMALDA_SIGN_WOOD_TYPE = BLOCKS.register("culumalda_sign_block_wood_type", () -> new BlockTTMCulumaldaStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), CULUMALDA_WOOD_TYPE));
-    public static RegistryObject<Block> LEBETHRON_SIGN_WOOD_TYPE = BLOCKS.register("lebethron_sign_block_wood_type", () -> new BlockTTMLebethronStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), LEBETHRON_WOOD_TYPE));
-    public static RegistryObject<Block> MALLORN_WALL_SIGN_WOOD_TYPE = BLOCKS.register("mallorn_wall_sign_block_wood_type", () -> new BlockTTMMallornSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(MALLORN_SIGN_WOOD_TYPE.get()), MALLORN_WOOD_TYPE));
-    public static RegistryObject<Block> MIRKWOOD_WALL_SIGN_WOOD_TYPE = BLOCKS.register("mirkwood_wall_sign_block_wood_type", () -> new BlockTTMMirkwoodSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(MIRKWOOD_SIGN_WOOD_TYPE.get()), MIRKWOOD_WOOD_TYPE));
-    public static RegistryObject<Block> CULUMALDA_WALL_SIGN_WOOD_TYPE = BLOCKS.register("culumalda_wall_sign_block_wood_type", () -> new BlockTTMCulumaldaSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(CULUMALDA_SIGN_WOOD_TYPE.get()), CULUMALDA_WOOD_TYPE));
-    public static RegistryObject<Block> LEBETHRON_WALL_SIGN_WOOD_TYPE = BLOCKS.register("lebethron_wall_sign_block_wood_type", () -> new BlockTTMLebethronSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(LEBETHRON_SIGN_WOOD_TYPE.get()), LEBETHRON_WOOD_TYPE));
+    public static RegistryObject<Block> MALLORN_SIGN_WOOD_TYPE = BLOCKS.register("sign_mallorn", () -> new BlockTTMMallornStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), MALLORN_WOOD_TYPE));
+    public static RegistryObject<Block> MIRKWOOD_SIGN_WOOD_TYPE = BLOCKS.register("sign_mirkwood", () -> new BlockTTMMirkwoodStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), MIRKWOOD_WOOD_TYPE));
+    public static RegistryObject<Block> CULUMALDA_SIGN_WOOD_TYPE = BLOCKS.register("sign_culumalda", () -> new BlockTTMCulumaldaStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), CULUMALDA_WOOD_TYPE));
+    public static RegistryObject<Block> LEBETHRON_SIGN_WOOD_TYPE = BLOCKS.register("sign_lebethron", () -> new BlockTTMLebethronStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), LEBETHRON_WOOD_TYPE));
+    public static RegistryObject<Block> MALLORN_WALL_SIGN_WOOD_TYPE = BLOCKS.register("wall_sign_mallorn", () -> new BlockTTMMallornSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(MALLORN_SIGN_WOOD_TYPE.get()), MALLORN_WOOD_TYPE));
+    public static RegistryObject<Block> MIRKWOOD_WALL_SIGN_WOOD_TYPE = BLOCKS.register("wall_sign_mirkwood", () -> new BlockTTMMirkwoodSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(MIRKWOOD_SIGN_WOOD_TYPE.get()), MIRKWOOD_WOOD_TYPE));
+    public static RegistryObject<Block> CULUMALDA_WALL_SIGN_WOOD_TYPE = BLOCKS.register("wall_sign_culumalda", () -> new BlockTTMCulumaldaSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(CULUMALDA_SIGN_WOOD_TYPE.get()), CULUMALDA_WOOD_TYPE));
+    public static RegistryObject<Block> LEBETHRON_WALL_SIGN_WOOD_TYPE = BLOCKS.register("wall_sign_lebethron", () -> new BlockTTMLebethronSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(LEBETHRON_SIGN_WOOD_TYPE.get()), LEBETHRON_WOOD_TYPE));
     public static RegistryObject<LeavesBlock> LEAVES_CULUMALDA = BLOCKS.register("leaves_culumalda", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_LEBETHRON = BLOCKS.register("leaves_lebethron", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_MALLORN = BLOCKS.register("leaves_mallorn", TTMContent::createLeavesBlock);
@@ -248,6 +248,7 @@ public class TTMContent {
     public static RegistryObject<Block> PIGGYBANK = BLOCKS.register("block_piggybank", () -> new BlockTTMPiggyBank(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_PINK).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
     public static RegistryObject<Block> BARREL_MITHRIL = BLOCKS.register("block_barrel_mithril", () -> new BlockTTMMithrilBarrel(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
     public static RegistryObject<Block> BARREL_MORGULIRON = BLOCKS.register("block_barrel_morguliron", () -> new BlockTTMMorgulironBarrel(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
+    public static RegistryObject<Block> BACKPACK = BLOCKS.register("backpack", () -> new BlockTTMBackpack(AbstractBlock.Properties.of(Material.WOOL, MaterialColor.COLOR_LIGHT_GRAY).harvestTool(ToolType.AXE).noOcclusion().harvestLevel(1).strength(1f, 1f)));
 
     //#################################################################
     // Items
@@ -324,10 +325,10 @@ public class TTMContent {
     public static RegistryObject<Item> TORCH_CULUMALDA_ITEM = ITEMS.register("torch_culumalda", () -> new WallOrFloorItem(TORCH_CULUMALDA.get(), WALL_TORCH_CULUMALDA.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> TORCH_LEBETHRON_ITEM = ITEMS.register("torch_lebethron", () -> new WallOrFloorItem(TORCH_LEBETHRON.get(), WALL_TORCH_LEBETHRON.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> LEAVES_CULUMALDA_ITEM = ITEMS.register("leaves_culumalda", () -> new ItemBlockBCore(LEAVES_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> MALLORN_SIGN_ITEM_WOOD_TYPE = ITEMS.register("mallorn_sign_block_wood_type", () -> new TTMMallornSignItem(new Item.Properties().tab(decoGroup), MALLORN_SIGN_WOOD_TYPE.get(), MALLORN_WALL_SIGN_WOOD_TYPE.get()));
-    public static RegistryObject<Item> MIRKWOOD_SIGN_ITEM_WOOD_TYPE = ITEMS.register("mirkwood_sign_block_wood_type", () -> new TTMMirkwoodSignItem(new Item.Properties().tab(decoGroup), MIRKWOOD_SIGN_WOOD_TYPE.get(), MIRKWOOD_WALL_SIGN_WOOD_TYPE.get()));
-    public static RegistryObject<Item> CULUMALDA_SIGN_ITEM_WOOD_TYPE = ITEMS.register("culumalda_sign_block_wood_type", () -> new TTMCulumaldaSignItem(new Item.Properties().tab(decoGroup), CULUMALDA_SIGN_WOOD_TYPE.get(), CULUMALDA_WALL_SIGN_WOOD_TYPE.get()));
-    public static RegistryObject<Item> LEBETHRON_SIGN_ITEM_WOOD_TYPE = ITEMS.register("lebethron_sign_block_wood_type", () -> new TTMLebethronSignItem(new Item.Properties().tab(decoGroup), LEBETHRON_SIGN_WOOD_TYPE.get(), LEBETHRON_WALL_SIGN_WOOD_TYPE.get()));
+    public static RegistryObject<Item> MALLORN_SIGN_ITEM_WOOD_TYPE = ITEMS.register("sign_mallorn", () -> new TTMMallornSignItem(new Item.Properties().tab(decoGroup), MALLORN_SIGN_WOOD_TYPE.get(), MALLORN_WALL_SIGN_WOOD_TYPE.get()));
+    public static RegistryObject<Item> MIRKWOOD_SIGN_ITEM_WOOD_TYPE = ITEMS.register("sign_mirkwood", () -> new TTMMirkwoodSignItem(new Item.Properties().tab(decoGroup), MIRKWOOD_SIGN_WOOD_TYPE.get(), MIRKWOOD_WALL_SIGN_WOOD_TYPE.get()));
+    public static RegistryObject<Item> CULUMALDA_SIGN_ITEM_WOOD_TYPE = ITEMS.register("sign_culumalda", () -> new TTMCulumaldaSignItem(new Item.Properties().tab(decoGroup), CULUMALDA_SIGN_WOOD_TYPE.get(), CULUMALDA_WALL_SIGN_WOOD_TYPE.get()));
+    public static RegistryObject<Item> LEBETHRON_SIGN_ITEM_WOOD_TYPE = ITEMS.register("sign_lebethron", () -> new TTMLebethronSignItem(new Item.Properties().tab(decoGroup), LEBETHRON_SIGN_WOOD_TYPE.get(), LEBETHRON_WALL_SIGN_WOOD_TYPE.get()));
     public static RegistryObject<Item> LEAVES_LEBETHRON_ITEM = ITEMS.register("leaves_lebethron", () -> new ItemBlockBCore(LEAVES_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LEAVES_MALLORN_ITEM = ITEMS.register("leaves_mallorn", () -> new ItemBlockBCore(LEAVES_MALLORN.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LEAVES_MIRKWOOD_ITEM = ITEMS.register("leaves_mirkwood", () -> new ItemBlockBCore(LEAVES_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
@@ -364,6 +365,7 @@ public class TTMContent {
     public static RegistryObject<Item> PIGGYBANK_ITEM = ITEMS.register("block_piggybank", () -> new ItemBlockBCore(PIGGYBANK.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> BARREL_MITHRIL_ITEM = ITEMS.register("block_barrel_mithril", () -> new ItemBlockBCore(BARREL_MITHRIL.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> BARREL_MORGULIRON_ITEM = ITEMS.register("block_barrel_morguliron", () -> new ItemBlockBCore(BARREL_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> BACKPACK_ITEM = ITEMS.register("backpack", () -> new ItemBlockBCore(BACKPACK.get(), new Item.Properties().tab(decoGroup)));
 
     // Quest
     public static RegistryObject<Item> ITEM_BERYL = ITEMS.register("item_beryl", () -> new TTMLore(new Item.Properties().stacksTo(1).tab(questGroup)).setEffectOverride().setHasLore());
@@ -534,6 +536,7 @@ public class TTMContent {
     public static RegistryObject<TileEntityType<TTMPiggyBankTile>> PIGGYBANK_TILE = TILE.register("piggybank_tile", () -> TileEntityType.Builder.of(TTMPiggyBankTile::new, PIGGYBANK.get()).build(null));
     public static RegistryObject<TileEntityType<TTMMithrilBarrelTile>> BARREL_MITHRIL_TILE = TILE.register("barrel_mithril_tile", () -> TileEntityType.Builder.of(TTMMithrilBarrelTile::new, BARREL_MITHRIL.get()).build(null));
     public static RegistryObject<TileEntityType<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_TILE = TILE.register("barrel_morguliron_tile", () -> TileEntityType.Builder.of(TTMMorgulironBarrelTile::new, BARREL_MORGULIRON.get()).build(null));
+    public static RegistryObject<TileEntityType<TTMBackpackTile>> BACKPACK_TILE = TILE.register("backpack_tile", () -> TileEntityType.Builder.of(TTMBackpackTile::new, BACKPACK.get()).build(null));
 
     public static RegistryObject<TileEntityType<TTMMallornSignTile>> MALLORN_SIGN_TILE = TILE.register("mallorn_sign", () -> TileEntityType.Builder.of(TTMMallornSignTile::new, MALLORN_SIGN_WOOD_TYPE.get(), MALLORN_WALL_SIGN_WOOD_TYPE.get()       ).build(null));
     public static RegistryObject<TileEntityType<TTMMirkwoodSignTile>> MIRKWOOD_SIGN_TILE = TILE.register("mirkwood_sign", () -> TileEntityType.Builder.of(TTMMirkwoodSignTile::new, MIRKWOOD_SIGN_WOOD_TYPE.get(), MIRKWOOD_WALL_SIGN_WOOD_TYPE.get()       ).build(null));
@@ -547,12 +550,14 @@ public class TTMContent {
     public static ContainerType<ContainerBCTile<TTMPiggyBankTile>> PIGGYBANK_CONTAINER;
     public static ContainerType<ContainerBCTile<TTMMithrilBarrelTile>> BARREL_MITHRIL_CONTAINER;
     public static ContainerType<ContainerBCTile<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_CONTAINER;
+    public static ContainerType<ContainerBCTile<TTMBackpackTile>> BACKPACK_CONTAINER;
 
     public static void registerContainers(RegistryEvent.Register<ContainerType<?>> event) {
         event.getRegistry().register(TMFIREPLACE_CONTAINER = (ContainerType<ContainerBCTile<TTMFireplaceTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(TMFIREPLACE_CONTAINER, id, playerInv, extraData, TTMFireplaceTile.SLOT_LAYOUT)).setRegistryName("tmfireplace_container"));
         event.getRegistry().register(PIGGYBANK_CONTAINER = (ContainerType<ContainerBCTile<TTMPiggyBankTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(PIGGYBANK_CONTAINER, id, playerInv, extraData, TTMPiggyBankTile.SLOT_LAYOUT)).setRegistryName("piggybank_container"));
         event.getRegistry().register(BARREL_MITHRIL_CONTAINER = (ContainerType<ContainerBCTile<TTMMithrilBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MITHRIL_CONTAINER, id, playerInv, extraData, TTMMithrilBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_mithril_container"));
         event.getRegistry().register(BARREL_MORGULIRON_CONTAINER = (ContainerType<ContainerBCTile<TTMMorgulironBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MORGULIRON_CONTAINER, id, playerInv, extraData, TTMMorgulironBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_morguliron_container"));
+        event.getRegistry().register(BACKPACK_CONTAINER = (ContainerType<ContainerBCTile<TTMBackpackTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BACKPACK_CONTAINER, id, playerInv, extraData, TTMBackpackTile.SLOT_LAYOUT)).setRegistryName("backpack_container"));
     }
 
 
