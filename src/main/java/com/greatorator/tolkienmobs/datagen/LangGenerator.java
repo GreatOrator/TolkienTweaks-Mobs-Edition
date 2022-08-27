@@ -145,6 +145,8 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.BARREL_MITHRIL.get(), "Mithril Barrel");
         add(TTMContent.BARREL_MORGULIRON.get(), "Morgul Iron Barrel");
         add(TTMContent.BACKPACK.get(), "Traveller's Backpack");
+        add(TTMContent.SLEEPING_BAG_RED.get(), "Red Sleeping Bag");
+        add(TTMContent.SLEEPING_BAG_BLUE.get(), "Blue Sleeping Bag");
     }
 
     private void items() {
@@ -269,6 +271,16 @@ public class LangGenerator extends LanguageProvider {
         addLore(TTMContent.ITEM_FANCYPICK.get(), "");
         add(TTMContent.ITEM_FANCYSHIELD.get(), "Fancy Shield");
         addLore(TTMContent.ITEM_FANCYSHIELD.get(), "");
+        add(TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get(), "Backpack Upgrade - Base");
+        addLore(TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get(), "Used to create backpack upgrades");
+        add(TTMContent.ITEM_BACKPACK_UPGRADE_SIZE.get(), "Backpack Upgrade - Size");
+        addLore(TTMContent.ITEM_BACKPACK_UPGRADE_SIZE.get(), "Increase the storage capacity of your backpack (Max-2)");
+        add(TTMContent.ITEM_BACKPACK_UPGRADE_FLUID.get(), "Backpack Upgrade - Fluids");
+        addLore(TTMContent.ITEM_BACKPACK_UPGRADE_FLUID.get(), "Allows the carrying of 2 buckets of water (Max-1)");
+        add(TTMContent.ITEM_BACKPACK_UPGRADE_CRAFTING.get(), "Backpack Upgrade - Crafting");
+        addLore(TTMContent.ITEM_BACKPACK_UPGRADE_CRAFTING.get(), "Allows crating anywhere (Max-1)");
+        add(TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get(), "Backpack Upgrade - Sleeping Bag");
+        addLore(TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get(), "Carry around a sleeping bag (Max-1)");
     }
 
     private void coinToken() {

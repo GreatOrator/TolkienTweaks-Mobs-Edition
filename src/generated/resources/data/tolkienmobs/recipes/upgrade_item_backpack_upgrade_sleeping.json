@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "---",
+    "   "
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:upgrade_item_backpack_upgrade_base"
+    },
+    "-": {
+      "item": "minecraft:white_wool"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:item_backpack_upgrade_sleeping"
+  }
+}

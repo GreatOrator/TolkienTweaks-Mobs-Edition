@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.item.armor;
 
 import com.google.common.collect.ImmutableMap;
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.client.model.tools.ModelTTMMorgulIronArmor;
+import com.greatorator.tolkienmobs.client.model.armor.ModelTTMMorgulIronArmor;
 import com.greatorator.tolkienmobs.handler.TTMArmorTier;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;

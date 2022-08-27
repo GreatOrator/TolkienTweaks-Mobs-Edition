@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.merchant.villager;
 
 import com.greatorator.tolkienmobs.TTMConfig;
-import com.greatorator.tolkienmobs.item.trinket.Trinket;
+import com.greatorator.tolkienmobs.item.tools.ItemTTMTrinket;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -140,7 +140,7 @@ public class TTMTradeBuilder {
     {
         Function<Random, ItemStack> generator = (random) -> {
             Effect randomEffect = TTMConfig.potionArray[random.nextInt(TTMConfig.potionArray.length)];
-            return  ((Trinket) item).getTrinketForEffect(randomEffect);
+            return  ((ItemTTMTrinket) item).getTrinketForEffect(randomEffect);
         };
         return this.setForSaleWithPotion(generator);
     }

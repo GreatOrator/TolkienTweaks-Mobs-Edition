@@ -21,6 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.network.simple.SimpleChannel;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,6 +38,7 @@ public class TolkienMobs {
     public static final String VERSION = "${mod_version}"; //This will now be set automatically by the build.gradle when the jar is built.
     private static TolkienMobs instance;
     public NetworkHelper networkHelper;
+    public static SimpleChannel NETWORK;
     private HashMap<String, Long> modifiedPlayerTimes;
 
     public static CommonProxy proxy;

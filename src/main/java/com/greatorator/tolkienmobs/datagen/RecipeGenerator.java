@@ -135,6 +135,17 @@ public class RecipeGenerator extends RecipeProvider {
         pickaxeRecipe(TTMContent.PICKAXE_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), consumer);
         pickaxeRecipe(TTMContent.PICKAXE_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
 
+        // Backpack Upgrades
+        upgradeRecipe(TTMContent.ITEM_BACKPACK_UPGRADE_SIZE.get(), TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
+        upgradeRecipe(TTMContent.ITEM_BACKPACK_UPGRADE_FLUID.get(), TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get(), TTMContent.BOTTLE_FANCY.get(), consumer);
+        upgradeRecipe(TTMContent.ITEM_BACKPACK_UPGRADE_CRAFTING.get(), TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get(), Blocks.CRAFTING_TABLE, consumer);
+        upgradeRecipe(TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get(), TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get(), Blocks.WHITE_WOOL, consumer);
+        upgradeRecipe2(TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get(), TTMContent.SLEEPING_BAG_RED.get(), consumer);
+
+        // Sleeping Bags
+        sleepingRecipe(TTMContent.SLEEPING_BAG_RED_ITEM.get(), Blocks.RED_CARPET, Blocks.WHITE_CARPET, consumer);
+        sleepingRecipe(TTMContent.SLEEPING_BAG_BLUE_ITEM.get(), Blocks.BLUE_CARPET, Blocks.WHITE_CARPET, consumer);
+
         // Shapeless Recipes
         unstorageRecipe(TTMContent.INGOT_MITHRIL.get(), TTMContent.BLOCK_MITHRIL.get(), consumer);
         unstorageRecipe(TTMContent.INGOT_MORGULIRON.get(), TTMContent.BLOCK_MORGULIRON.get(), consumer);
@@ -223,10 +234,20 @@ public class RecipeGenerator extends RecipeProvider {
                 .pattern("MZM")
                 .pattern("AMA")
                 .pattern("MZM")
-                .define('A', TTMContent.INGOT_MORGULIRON.get())
+                .define('A', TTMContent.INGOT_MITHRIL.get())
                 .define('Z', TTMContent.GEM_AMMOLITE.get())
                 .define('M', Blocks.STONE)
                 .unlockedBy("has_ammolite", has(TTMContent.GEM_AMMOLITE.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get())
+                .pattern("MZM")
+                .pattern("ZAZ")
+                .pattern("MZM")
+                .define('M', TTMContent.MUMAKIL_LEATHER.get())
+                .define('Z', TTMContent.GEM_AMMOLITE.get())
+                .define('A', Items.LEATHER)
+                .unlockedBy("has_mumakil_leather", has(TTMContent.MUMAKIL_LEATHER.get()))
                 .save(consumer);
     }
 
@@ -317,6 +338,40 @@ public class RecipeGenerator extends RecipeProvider {
     }
 
     // Helper Methods
+
+    public static void upgradeRecipe(IItemProvider output, IItemProvider input1, IItemProvider input2, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("#  ")
+                .pattern("---")
+                .pattern("   ")
+                .define('#', input1)
+                .define('-', input2)
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
+                .save(consumer, "tolkienmobs:upgrade_" + output.asItem().getRegistryName().getPath());
+    }
+
+    public static void upgradeRecipe2(IItemProvider output, IItemProvider input1, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("#  ")
+                .pattern("-  ")
+                .pattern("   ")
+                .define('-', Ingredient.of(input1))
+                .define('#', TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get())
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
+                .save(consumer, "tolkienmobs:upgrade2_" + output.asItem().getRegistryName().getPath());
+    }
+
+    public static void sleepingRecipe(IItemProvider output, IItemProvider input1, IItemProvider input2, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("AAB")
+                .pattern("CCC")
+                .define('A', input1)
+                .define('B', input2)
+                .define('C', Items.LEATHER)
+                .unlockedBy("has_wool", has(input1))
+                .save(consumer, "tolkienmobs:sleepingbag_" + output.asItem().getRegistryName().getPath());
+    }
+
     public static void fireplaceRecipe1(IItemProvider output, int experience, int cookTime, IItemProvider input1, Consumer<IFinishedRecipe> consumer){
         FireplaceRecipeBuilder.fireplaceRecipe(output, experience, cookTime)
                 .ingredient(input1)

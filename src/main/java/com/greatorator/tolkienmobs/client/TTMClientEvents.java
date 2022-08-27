@@ -1,10 +1,13 @@
 package com.greatorator.tolkienmobs.client;
 
 import com.brandon3055.brandonscore.api.render.GuiHelper;
+import com.greatorator.tolkienmobs.block.BlockTTMSleepingBag;
 import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
 import com.greatorator.tolkienmobs.datagen.PotionGenerator;
 import com.mojang.blaze3d.matrix.MatrixStack;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.RemoteClientPlayerEntity;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -16,7 +19,9 @@ import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -156,6 +161,21 @@ public class TTMClientEvents {
                 GuiHelper.drawRect(getter, matrixStack, 0, 0, screenWidth, screenHeight, effectColour | darkHex << 24);
                 getter.endBatch();
             }
+        }
+    }
+
+    @SubscribeEvent
+    public void onPlayerRenderPost(RenderPlayerEvent.Post evt) {
+        final PlayerEntity player = evt.getPlayer();
+
+        if (player instanceof RemoteClientPlayerEntity && player.getPose() == Pose.SLEEPING) {
+            player.getSleepingPos().ifPresent(bedPos -> {
+                MatrixStack matrixStack = evt.getMatrixStack();
+                Block bed = player.level.getBlockState(bedPos).getBlock();
+                if (bed instanceof BlockTTMSleepingBag) {
+                    matrixStack.translate(0.0f, 0.375F, 0.0f);
+                }
+            });
         }
     }
 }

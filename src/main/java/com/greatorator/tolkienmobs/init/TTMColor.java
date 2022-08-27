@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.init;
 
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.item.trinket.Trinket;
+import com.greatorator.tolkienmobs.item.tools.ItemTTMTrinket;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
@@ -21,7 +21,7 @@ public class TTMColor {
     private static class TrinketColour implements IItemColor {
         @Override
         public int getColor(ItemStack stack, int layer) {
-            List<EffectInstance> effects = Trinket.getEffects(stack);
+            List<EffectInstance> effects = ItemTTMTrinket.getEffects(stack);
             if (!effects.isEmpty() && layer == 1) {
                 return effects.get(0).getEffect().getColor();
             }

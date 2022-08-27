@@ -103,5 +103,4 @@ public abstract class TTMEquipMgr implements IEquipmentManager {
     public static List<ItemStack> getAllItems(LivingEntity entity) {
         return findItems(stack -> !stack.isEmpty(), entity);
     }
-
 }

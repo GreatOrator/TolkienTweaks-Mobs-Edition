@@ -5,7 +5,7 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.monster.EntityTTMGoblin;
-import com.greatorator.tolkienmobs.event.TTMEventFactory;
+import com.greatorator.tolkienmobs.event.TTMServerEvents;
 import com.greatorator.tolkienmobs.event.entity.living.TTMGoblinEvent;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.*;
@@ -126,7 +126,7 @@ public class EntityTTMGoblinKing extends EntityTTMGoblin implements IRangedAttac
             int yPos = MathHelper.floor(this.getY());
             int zPos = MathHelper.floor(this.getZ());
 
-            TTMGoblinEvent.SummonAidEvent event = TTMEventFactory.fireGoblinSummonAid(this, level, xPos, yPos, zPos, livingentity, this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).getValue());
+            TTMGoblinEvent.SummonAidEvent event = TTMServerEvents.fireGoblinSummonAid(this, level, xPos, yPos, zPos, livingentity, this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).getValue());
 
             if (event.getResult() == Event.Result.DENY) {
 

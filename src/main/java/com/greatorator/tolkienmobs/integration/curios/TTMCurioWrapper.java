@@ -6,14 +6,16 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.world.GameRules;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 /** Borrowed from Draconic Evolution */
 public class TTMCurioWrapper implements ICurio {
-    private ITTMEquip item;
-    private ItemStack stack;
+    private final ITTMEquip item;
+    private final ItemStack stack;
 
     public TTMCurioWrapper(ItemStack stack) {
         this.item = (ITTMEquip) stack.getItem();
@@ -25,6 +27,17 @@ public class TTMCurioWrapper implements ICurio {
         item.equipmentTick(stack, livingEntity);
     }
 
+    public ItemStack getStack()
+    {
+        return this.stack;
+    }
+
+    @Nonnull
+    @Override
+    public ICurio.DropRule getDropRule(LivingEntity livingEntity)
+    {
+        return livingEntity.level.getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY) ? DropRule.ALWAYS_KEEP : DropRule.DESTROY;
+    }
 
     @Override
     public boolean canEquip(String identifier, LivingEntity livingEntity) {

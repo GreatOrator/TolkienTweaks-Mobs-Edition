@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.item.trinket;
+package com.greatorator.tolkienmobs.item.tools;
 
 import com.brandon3055.brandonscore.api.TimeKeeper;
 import com.brandon3055.brandonscore.utils.ItemNBTHelper;
@@ -30,9 +30,9 @@ import java.util.List;
 /**
  * Created by brandon3055 on 13/10/2021
  */
-public class Trinket extends Item {
+public class ItemTTMTrinket extends Item {
 
-    public Trinket(Properties properties) {
+    public ItemTTMTrinket(Properties properties) {
         super(properties);
     }
 

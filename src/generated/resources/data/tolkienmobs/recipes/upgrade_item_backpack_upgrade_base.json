@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MZM",
+    "ZAZ",
+    "MZM"
+  ],
+  "key": {
+    "M": {
+      "item": "tolkienmobs:leather_mumakil"
+    },
+    "Z": {
+      "item": "tolkienmobs:gem_ammolite"
+    },
+    "A": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:upgrade_item_backpack_upgrade_base"
+  }
+}

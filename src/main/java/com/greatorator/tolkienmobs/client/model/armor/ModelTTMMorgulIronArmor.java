@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.client.model.tools;//package com.greatorator.tolkienmobs.client.render.model.items;
+package com.greatorator.tolkienmobs.client.model.armor;//package com.greatorator.tolkienmobs.client.render.model.items;
 
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;

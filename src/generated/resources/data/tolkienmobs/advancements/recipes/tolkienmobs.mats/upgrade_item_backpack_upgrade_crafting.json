@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:upgrade_item_backpack_upgrade_crafting"
+    ]
+  },
+  "criteria": {
+    "has_upgrade_item_backpack_upgrade_base": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tolkienmobs:upgrade_item_backpack_upgrade_base"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:upgrade_item_backpack_upgrade_crafting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_upgrade_item_backpack_upgrade_base",
+      "has_the_recipe"
+    ]
+  ]
+}

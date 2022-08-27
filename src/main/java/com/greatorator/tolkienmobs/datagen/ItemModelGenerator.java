@@ -6,9 +6,13 @@ import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -125,6 +129,14 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.BARREL_MORGULIRON.get(), modLoc("block/barrel_morguliron"));
         blockItem(TTMContent.BACKPACK.get(), modLoc("block/container_backpack"));
 
+        // Sleeping Bags
+        ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
+
+        List<String> sleepingBags = Arrays.asList("blue", "red");
+        for (String color : sleepingBags) {
+            simpleMod(itemGenerated, "item/sleeping_bag_"+color);
+        }
+
         // Metals & Gems Items
         simpleItem(TTMContent.DUST_MITHRIL.get());
         simpleItem(TTMContent.NUGGET_MITHRIL.get());
@@ -193,6 +205,13 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.ITEM_MITHRILNUGGET.get());
         simpleItem(TTMContent.ITEM_REMAINS.get());
         simpleItem(TTMContent.ITEM_RUNE_STONE.get());
+
+        //region Backpack Upgrades
+        simpleItem(TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get());
+        simpleItem(TTMContent.ITEM_BACKPACK_UPGRADE_SIZE.get());
+        simpleItem(TTMContent.ITEM_BACKPACK_UPGRADE_FLUID.get());
+        simpleItem(TTMContent.ITEM_BACKPACK_UPGRADE_CRAFTING.get());
+        simpleItem(TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get());
 
         //region Coin & Token Items
         simpleItem(TTMContent.ITEM_COIN_BRONZE.get());
@@ -342,6 +361,10 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.MIRKWOOD_SIGN_ITEM_WOOD_TYPE.get());
         simpleItem(TTMContent.CULUMALDA_SIGN_ITEM_WOOD_TYPE.get());
         simpleItem(TTMContent.LEBETHRON_SIGN_ITEM_WOOD_TYPE.get());
+    }
+
+    private ItemModelBuilder simpleMod(ModelFile itemGenerated, String name) {
+        return getBuilder(name).parent(itemGenerated).texture("layer0", modLoc(name));
     }
 
     private void simpleItem(Item item) {

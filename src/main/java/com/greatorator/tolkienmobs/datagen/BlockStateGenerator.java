@@ -6,14 +6,18 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.*;
 import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.state.properties.BedPart;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -138,9 +142,7 @@ public class BlockStateGenerator extends BlockStateProvider {
 
         ModelFile backpack = models().getExistingFile(modLoc("block/container_backpack"));
         ModelFile backpackUpgrade1 = models().getExistingFile(modLoc("block/container_backpack_upgrade1"));
-        ModelFile backpackUpgrade2 = models().getExistingFile(modLoc("block/container_backpack_upgrade2"));
         directionalFromNorthHoz(TTMContent.BACKPACK.get(), e -> e.getValue(BlockTTMBackpack.UPGRADE1) ? backpackUpgrade1 : backpack, 0);
-        //directionalFromNorthHoz(TTMContent.BACKPACK.get(), e -> e.getValue(BlockTTMBackpack.UPGRADE2) ? backpackUpgrade2 : backpackUpgrade1, 180);
 
 
         ModelFile barrelMithril = models().cubeBottomTop("barrel_mithril", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top"));
@@ -169,6 +171,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         signBlock(TTMContent.LEBETHRON_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_lebethron");
         signBlock(TTMContent.LEBETHRON_WALL_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_lebethron");
 
+        sleepingBagModels();
 
         //Bellow is some extra example stuff I left in for reference
         if (true) return;
@@ -306,6 +309,48 @@ public class BlockStateGenerator extends BlockStateProvider {
                 .texture("particle", "minecraft:block/glass");
         simpleBlock(block, model);
     }
+
+    public void sleepingBag(String color, ResourceLocation head, ResourceLocation foot) {
+        ModelFile headModel = models().getExistingFile(head);
+        ModelFile footModel = models().getExistingFile(foot);
+        Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(TolkienMobs.MODID, "sleeping_bag_"+color));
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            int yRot = ((int) state.getValue(BlockTTMSleepingBag.FACING).toYRot());
+            return ConfiguredModel.builder().modelFile(state.getValue(BlockTTMSleepingBag.PART) == BedPart.FOOT ? footModel : headModel)
+                    .rotationY(yRot)
+                    .build();
+        });
+    }
+
+    public void sleepingBagModels() {
+        new ConfiguredModel(models().withExistingParent("block/sleeping_bag_foot", mcLoc("block/thin_block"))
+                .element()
+                .from(0,0,0).to(16, 2, 16)
+                .face(Direction.EAST).uvs(8,1,12,1.5f).texture("#sleeping_bag").cullface(Direction.EAST).end()
+                .face(Direction.NORTH).uvs(10, 0.5f, 14, 1).texture("#sleeping_bag").cullface(Direction.NORTH).end()
+                .face(Direction.WEST).uvs(8, 1.5f, 12, 2).texture("#sleeping_bag").cullface(Direction.WEST).end()
+                .face(Direction.UP).uvs(0, 4, 4, 8).texture("#sleeping_bag").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
+                .face(Direction.DOWN).uvs(4, 4, 8, 8).texture("#sleeping_bag").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
+                .end());
+
+        new ConfiguredModel(models().withExistingParent("block/sleeping_bag_head", mcLoc("block/thin_block"))
+                .element()
+                .from(0,0,0).to(16, 2, 16)
+                .face(Direction.EAST).uvs(12,1.5f,16,2).texture("#sleeping_bag").cullface(Direction.EAST).end()
+                .face(Direction.SOUTH).uvs(10, 0.5f, 14, 1).texture("#sleeping_bag").cullface(Direction.SOUTH).end()
+                .face(Direction.WEST).uvs(12, 1, 16, 1.5f).texture("#sleeping_bag").cullface(Direction.WEST).end()
+                .face(Direction.UP).uvs(0, 0, 4, 4).texture("#sleeping_bag").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
+                .face(Direction.DOWN).uvs(4, 0, 8, 4).texture("#sleeping_bag").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
+                .end());
+
+        List<String> sleepingBags = Arrays.asList("red", "blue");
+        for (String color : sleepingBags) {
+            sleepingBag(color, modLoc("block/sleeping_bag_"+color+"_head"), modLoc("block/sleeping_bag_"+color+"_foot"));
+            new ConfiguredModel(models().withExistingParent("block/sleeping_bag_"+color+"_head", modLoc("block/sleeping_bag_head")).texture("sleeping_bag", modLoc("block/sleeping_bag_"+color)).texture("particle", modLoc("block/sleeping_bag_"+color)));
+            new ConfiguredModel(models().withExistingParent("block/sleeping_bag_"+color+"_foot", modLoc("block/sleeping_bag_foot")).texture("sleeping_bag", modLoc("block/sleeping_bag_"+color)).texture("particle", modLoc("block/sleeping_bag_"+color)));
+        }
+    }
+
 
     private void signBlock(Block block, String particleTexture) {
         ModelFile model = models()

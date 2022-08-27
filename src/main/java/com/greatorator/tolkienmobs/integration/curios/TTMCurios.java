@@ -2,9 +2,11 @@ package com.greatorator.tolkienmobs.integration.curios;
 
 import com.brandon3055.brandonscore.capability.MultiCapabilityProvider;
 import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.item.tools.ItemTTMBackpack;
 import com.greatorator.tolkienmobs.lib.FlamingBalrog;
 import net.minecraft.data.TagsProvider;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tags.ItemTags;
@@ -26,6 +28,7 @@ import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -40,6 +43,7 @@ public class TTMCurios extends TTMEquipMgr {
     public static final Tags.IOptionalNamedTag<Item> HAND_TAG = ItemTags.createOptional(new ResourceLocation("curios", "hands"));
     public static final Tags.IOptionalNamedTag<Item> HEAD_TAG = ItemTags.createOptional(new ResourceLocation("curios", "head"));
     public static final Tags.IOptionalNamedTag<Item> BODY_TAG = ItemTags.createOptional(new ResourceLocation("curios", "body"));
+    public static final Tags.IOptionalNamedTag<Item> BACK_TAG = ItemTags.createOptional(new ResourceLocation("curios", "back"));
 
     @CapabilityInject(ICurio.class)
     public static Capability<ICurio> CURIO_CAP = null;
@@ -99,6 +103,26 @@ public class TTMCurios extends TTMEquipMgr {
         return Collections.emptyList();
     }
 
+    public static ICurio createBackpackProvider()
+    {
+        return new TTMCurioWrapper(ItemStack.EMPTY);
+    }
+
+    public static Optional<ImmutableTriple<String, Integer, ItemStack>> getCurioBackpack(LivingEntity livingEntity)
+    {
+        Predicate<ItemStack> backpack = stack -> stack.getItem() instanceof ItemTTMBackpack;
+        return CuriosApi.getCuriosHelper().findEquippedCurio(backpack, livingEntity);
+    }
+
+    public static ItemStack getCurioBackpackStack(PlayerEntity player)
+    {
+        if(getCurioBackpack(player).isPresent())
+        {
+            return getCurioBackpack(player).get().getRight();
+        }
+        return ItemStack.EMPTY;
+    }
+
     /**
      * Data Gen
      */
@@ -115,5 +139,7 @@ public class TTMCurios extends TTMEquipMgr {
                 TTMContent.TRINKET_GLOVE.get());
         builder.apply(HEAD_TAG).add(
                 TTMContent.TRINKET_HAT.get());
+        builder.apply(BACK_TAG).add(
+                TTMContent.BACKPACK_ITEM.get());
     }
 }

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "---",
+    "   "
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:upgrade_item_backpack_upgrade_base"
+    },
+    "-": {
+      "item": "tolkienmobs:bottle_fancy"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:item_backpack_upgrade_fluid"
+  }
+}

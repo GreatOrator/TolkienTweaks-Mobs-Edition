@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs;
 import codechicken.lib.gui.SimpleItemGroup;
 import com.brandon3055.brandonscore.blocks.ItemBlockBCore;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
+import com.google.common.collect.Sets;
 import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.client.TTMParticles;
 import com.greatorator.tolkienmobs.crafting.FireplaceRecipe;
@@ -15,7 +16,7 @@ import com.greatorator.tolkienmobs.item.signs.TTMCulumaldaSignItem;
 import com.greatorator.tolkienmobs.item.signs.TTMLebethronSignItem;
 import com.greatorator.tolkienmobs.item.signs.TTMMallornSignItem;
 import com.greatorator.tolkienmobs.item.signs.TTMMirkwoodSignItem;
-import com.greatorator.tolkienmobs.item.trinket.Trinket;
+import com.greatorator.tolkienmobs.item.tools.ItemTTMTrinket;
 import com.greatorator.tolkienmobs.world.trees.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -27,6 +28,7 @@ import net.minecraft.item.*;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
+import net.minecraft.state.properties.BedPart;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
@@ -249,6 +251,12 @@ public class TTMContent {
     public static RegistryObject<Block> BARREL_MITHRIL = BLOCKS.register("block_barrel_mithril", () -> new BlockTTMMithrilBarrel(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
     public static RegistryObject<Block> BARREL_MORGULIRON = BLOCKS.register("block_barrel_morguliron", () -> new BlockTTMMorgulironBarrel(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
     public static RegistryObject<Block> BACKPACK = BLOCKS.register("backpack", () -> new BlockTTMBackpack(AbstractBlock.Properties.of(Material.WOOL, MaterialColor.COLOR_LIGHT_GRAY).harvestTool(ToolType.AXE).noOcclusion().harvestLevel(1).strength(1f, 1f)));
+    public static RegistryObject<Block> SLEEPING_BAG_BLUE = BLOCKS.register("sleeping_bag_blue", () -> new BlockTTMSleepingBag(DyeColor.BLUE, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+        return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_BLUE : MaterialColor.WOOL;
+    }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
+    public static RegistryObject<Block> SLEEPING_BAG_RED = BLOCKS.register("sleeping_bag_red", () -> new BlockTTMSleepingBag(DyeColor.RED, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+        return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_RED : MaterialColor.WOOL;
+    }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
 
     //#################################################################
     // Items
@@ -366,6 +374,8 @@ public class TTMContent {
     public static RegistryObject<Item> BARREL_MITHRIL_ITEM = ITEMS.register("block_barrel_mithril", () -> new ItemBlockBCore(BARREL_MITHRIL.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> BARREL_MORGULIRON_ITEM = ITEMS.register("block_barrel_morguliron", () -> new ItemBlockBCore(BARREL_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> BACKPACK_ITEM = ITEMS.register("backpack", () -> new ItemBlockBCore(BACKPACK.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> SLEEPING_BAG_BLUE_ITEM = ITEMS.register("sleeping_bag_blue", () -> new ItemBlockBCore(SLEEPING_BAG_BLUE.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> SLEEPING_BAG_RED_ITEM = ITEMS.register("sleeping_bag_red", () -> new ItemBlockBCore(SLEEPING_BAG_RED.get(), new Item.Properties().tab(decoGroup)));
 
     // Quest
     public static RegistryObject<Item> ITEM_BERYL = ITEMS.register("item_beryl", () -> new TTMLore(new Item.Properties().stacksTo(1).tab(questGroup)).setEffectOverride().setHasLore());
@@ -414,6 +424,13 @@ public class TTMContent {
     public static RegistryObject<Item> ITEM_REMAINS = ITEMS.register("item_remains", () -> new TTMLore(new Item.Properties().stacksTo(16).tab(questGroup)).setHasLore());
     public static RegistryObject<Item> ITEM_RUNE_STONE = ITEMS.register("item_rune_stone", () -> new TTMLore(new Item.Properties().stacksTo(8).tab(questGroup)).setEffectOverride().setHasLore());
 
+    // Backpack Upgrades
+    public static RegistryObject<Item> ITEM_BACKPACK_UPGRADE_BASE = ITEMS.register("upgrade_item_backpack_upgrade_base", () -> new TTMLore(new Item.Properties().stacksTo(5).tab(matsGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_BACKPACK_UPGRADE_SIZE = ITEMS.register("item_backpack_upgrade_size", () -> new TTMLore(new Item.Properties().stacksTo(2).tab(matsGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_BACKPACK_UPGRADE_FLUID = ITEMS.register("item_backpack_upgrade_fluid", () -> new TTMLore(new Item.Properties().stacksTo(1).tab(matsGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_BACKPACK_UPGRADE_CRAFTING = ITEMS.register("item_backpack_upgrade_crafting", () -> new TTMLore(new Item.Properties().stacksTo(1).tab(matsGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_BACKPACK_UPGRADE_SLEEPING = ITEMS.register("item_backpack_upgrade_sleeping", () -> new TTMLore(new Item.Properties().stacksTo(1).tab(matsGroup)).setHasLore());
+
     // Metals & Gems
     public static RegistryObject<Item> DUST_MITHRIL = ITEMS.register("dust_mithril", () -> new Item(new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> NUGGET_MITHRIL = ITEMS.register("nugget_mithril", () -> new Item(new Item.Properties().tab(matsGroup)));
@@ -449,12 +466,12 @@ public class TTMContent {
     public static RegistryObject<SwordItem> CLUB_WOODEN = ITEMS.register("club_wooden", () -> new TTM3DObj(TTMItemTier.MORGULIRON, 9, -0.5F, (new Item.Properties()).tab(toolsGroup), "club_wooden.obj", "club_wooden.png").setEffectOverride());
 
     // Trinkets
-    public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<Item> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<Item> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<Item> TRINKET_RING = ITEMS.register("trinket_ring", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<Item> TRINKET_GLOVE = ITEMS.register("trinket_glove", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<Item> TRINKET_HAT = ITEMS.register("trinket_hat", () -> new Trinket(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new ItemTTMTrinket(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new ItemTTMTrinket(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new ItemTTMTrinket(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_RING = ITEMS.register("trinket_ring", () -> new ItemTTMTrinket(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_GLOVE = ITEMS.register("trinket_glove", () -> new ItemTTMTrinket(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_HAT = ITEMS.register("trinket_hat", () -> new ItemTTMTrinket(new Item.Properties().tab(toolsGroup)));
 
     // Projectiles
     public static RegistryObject<ArrowItem> GALADHRIM_ARROW = ITEMS.register("ammo_galadhrim_arrow", () -> new TTMArrow((new Item.Properties()).tab(toolsGroup)));
@@ -532,16 +549,19 @@ public class TTMContent {
     //#################################################################
     // Tile Entity Types
     //#################################################################
+    // Custom
     public static RegistryObject<TileEntityType<TTMFireplaceTile>> TMFIREPLACE_TILE = TILE.register("tmfireplace_tile", () -> TileEntityType.Builder.of(TTMFireplaceTile::new, TTMFIREPLACE.get()).build(null));
     public static RegistryObject<TileEntityType<TTMPiggyBankTile>> PIGGYBANK_TILE = TILE.register("piggybank_tile", () -> TileEntityType.Builder.of(TTMPiggyBankTile::new, PIGGYBANK.get()).build(null));
     public static RegistryObject<TileEntityType<TTMMithrilBarrelTile>> BARREL_MITHRIL_TILE = TILE.register("barrel_mithril_tile", () -> TileEntityType.Builder.of(TTMMithrilBarrelTile::new, BARREL_MITHRIL.get()).build(null));
     public static RegistryObject<TileEntityType<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_TILE = TILE.register("barrel_morguliron_tile", () -> TileEntityType.Builder.of(TTMMorgulironBarrelTile::new, BARREL_MORGULIRON.get()).build(null));
     public static RegistryObject<TileEntityType<TTMBackpackTile>> BACKPACK_TILE = TILE.register("backpack_tile", () -> TileEntityType.Builder.of(TTMBackpackTile::new, BACKPACK.get()).build(null));
+    public static RegistryObject<TileEntityType<TTMSleepingBagTile>> SLEEPING_BAG_TILE = TILE.register("sleeping_bag", () -> new TileEntityType<>(TTMSleepingBagTile::new, Sets.newHashSet(TTMContent.SLEEPING_BAG_RED.get(), TTMContent.SLEEPING_BAG_BLUE.get()), null));
 
-    public static RegistryObject<TileEntityType<TTMMallornSignTile>> MALLORN_SIGN_TILE = TILE.register("mallorn_sign", () -> TileEntityType.Builder.of(TTMMallornSignTile::new, MALLORN_SIGN_WOOD_TYPE.get(), MALLORN_WALL_SIGN_WOOD_TYPE.get()       ).build(null));
-    public static RegistryObject<TileEntityType<TTMMirkwoodSignTile>> MIRKWOOD_SIGN_TILE = TILE.register("mirkwood_sign", () -> TileEntityType.Builder.of(TTMMirkwoodSignTile::new, MIRKWOOD_SIGN_WOOD_TYPE.get(), MIRKWOOD_WALL_SIGN_WOOD_TYPE.get()       ).build(null));
-    public static RegistryObject<TileEntityType<TTMCulumaldaSignTile>> CULUMALDA_SIGN_TILE = TILE.register("culumalda_sign", () -> TileEntityType.Builder.of(TTMCulumaldaSignTile::new, CULUMALDA_SIGN_WOOD_TYPE.get(), CULUMALDA_WALL_SIGN_WOOD_TYPE.get()       ).build(null));
-    public static RegistryObject<TileEntityType<TTMLebethronSignTile>> LEBETHRON_SIGN_TILE = TILE.register("lebethron_sign", () -> TileEntityType.Builder.of(TTMLebethronSignTile::new, LEBETHRON_SIGN_WOOD_TYPE.get(), LEBETHRON_WALL_SIGN_WOOD_TYPE.get()       ).build(null));
+    // Signs
+    public static RegistryObject<TileEntityType<TTMMallornSignTile>> MALLORN_SIGN_TILE = TILE.register("mallorn_sign", () -> TileEntityType.Builder.of(TTMMallornSignTile::new, MALLORN_SIGN_WOOD_TYPE.get(), MALLORN_WALL_SIGN_WOOD_TYPE.get()).build(null));
+    public static RegistryObject<TileEntityType<TTMMirkwoodSignTile>> MIRKWOOD_SIGN_TILE = TILE.register("mirkwood_sign", () -> TileEntityType.Builder.of(TTMMirkwoodSignTile::new, MIRKWOOD_SIGN_WOOD_TYPE.get(), MIRKWOOD_WALL_SIGN_WOOD_TYPE.get()).build(null));
+    public static RegistryObject<TileEntityType<TTMCulumaldaSignTile>> CULUMALDA_SIGN_TILE = TILE.register("culumalda_sign", () -> TileEntityType.Builder.of(TTMCulumaldaSignTile::new, CULUMALDA_SIGN_WOOD_TYPE.get(), CULUMALDA_WALL_SIGN_WOOD_TYPE.get()).build(null));
+    public static RegistryObject<TileEntityType<TTMLebethronSignTile>> LEBETHRON_SIGN_TILE = TILE.register("lebethron_sign", () -> TileEntityType.Builder.of(TTMLebethronSignTile::new, LEBETHRON_SIGN_WOOD_TYPE.get(), LEBETHRON_WALL_SIGN_WOOD_TYPE.get()).build(null));
 
     //#################################################################
     // Containers
