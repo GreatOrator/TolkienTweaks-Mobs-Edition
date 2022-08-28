@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.entity.tile.inventory;
 import com.brandon3055.brandonscore.blocks.TileBCore;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.inventory.ContainerSlotLayout;
+import com.brandon3055.brandonscore.inventory.ContainerSlotLayout.LayoutFactory;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.entity.tile.TTMBackpackTile;
 import com.greatorator.tolkienmobs.handler.TTMCapabilities;
@@ -24,13 +25,14 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TTMBackpackInventory extends TileBCore implements ITTMBackpackInventory, INamedContainerProvider {
-    public static final ContainerSlotLayout.LayoutFactory<TTMBackpackTile> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.itemHandler);
+	public static final LayoutFactory<TTMBackpackInventory> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.inventory);
     private final ItemStackHandler inventory = createHandler(TTMReference.INVENTORY_SIZE);
     private final ItemStackHandler craftingInventory = createHandler(TTMReference.CRAFTING_GRID_SIZE);
     private final FluidTank waterTank = createFluidHandler(TTMReference.BASIC_TANK_CAPACITY);
@@ -314,7 +316,7 @@ public class TTMBackpackInventory extends TileBCore implements ITTMBackpackInven
     @Nullable
     @Override
     public Container createMenu(int id, PlayerInventory playerInventory, PlayerEntity player) {
-        return new ContainerBCTile<>(TTMContent.BACKPACK_ITEM_CONTAINER, id, playerInventory, this, SLOT_LAYOUT);
+    	return new ContainerBCTile<TTMBackpackInventory>(TTMContent.BACKPACK_ITEM_CONTAINER, id, playerInventory, this, SLOT_LAYOUT);
     }
 
     private ItemStackHandler createHandler(int size)
