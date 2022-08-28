@@ -145,6 +145,7 @@ public class ClientProxy extends CommonProxy {
         ScreenManager.register(TTMContent.BARREL_MITHRIL_CONTAINER, GuiTTMMithrilBarrel::new);
         ScreenManager.register(TTMContent.BARREL_MORGULIRON_CONTAINER, GuiTTMMorgulironBarrel::new);
         ScreenManager.register(TTMContent.BACKPACK_CONTAINER, GuiTTMBackpack::new);
+        ScreenManager.register(TTMContent.BACKPACK_ITEM_CONTAINER, GuiTTMBackpack::new);
 
     }
 

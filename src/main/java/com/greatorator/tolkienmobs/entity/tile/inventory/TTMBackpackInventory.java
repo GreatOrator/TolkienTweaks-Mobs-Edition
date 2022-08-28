@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.entity.tile.inventory;
 
 import com.brandon3055.brandonscore.blocks.TileBCore;
+import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.inventory.ContainerSlotLayout;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.entity.tile.TTMBackpackTile;
@@ -310,11 +311,11 @@ public class TTMBackpackInventory extends TileBCore implements ITTMBackpackInven
         }
     }
 
-//    @Nullable
-//    @Override
-//    public Container createMenu(int id, PlayerInventory playerInventory, PlayerEntity player) {
-//        return new ContainerBCTile<>(TTMContent.BACKPACK_CONTAINER, id, playerInventory, this, SLOT_LAYOUT);
-//    }
+    @Nullable
+    @Override
+    public Container createMenu(int id, PlayerInventory playerInventory, PlayerEntity player) {
+        return new ContainerBCTile<>(TTMContent.BACKPACK_ITEM_CONTAINER, id, playerInventory, this, SLOT_LAYOUT);
+    }
 
     private ItemStackHandler createHandler(int size)
     {
@@ -346,9 +347,9 @@ public class TTMBackpackInventory extends TileBCore implements ITTMBackpackInven
         };
     }
 
-    @Nullable
-    @Override
-    public Container createMenu(int p_createMenu_1_, PlayerInventory p_createMenu_2_, PlayerEntity p_createMenu_3_) {
-        return null;
-    }
+//    @Nullable
+//    @Override
+//    public Container createMenu(int p_createMenu_1_, PlayerInventory p_createMenu_2_, PlayerEntity p_createMenu_3_) {
+//        return null;
+//    }
 }

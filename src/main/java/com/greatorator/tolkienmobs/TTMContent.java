@@ -16,6 +16,7 @@ import com.greatorator.tolkienmobs.item.signs.TTMCulumaldaSignItem;
 import com.greatorator.tolkienmobs.item.signs.TTMLebethronSignItem;
 import com.greatorator.tolkienmobs.item.signs.TTMMallornSignItem;
 import com.greatorator.tolkienmobs.item.signs.TTMMirkwoodSignItem;
+import com.greatorator.tolkienmobs.item.tools.ItemTTMBackpack;
 import com.greatorator.tolkienmobs.item.tools.ItemTTMTrinket;
 import com.greatorator.tolkienmobs.world.trees.*;
 import net.minecraft.block.*;
@@ -373,7 +374,8 @@ public class TTMContent {
     public static RegistryObject<Item> PIGGYBANK_ITEM = ITEMS.register("block_piggybank", () -> new ItemBlockBCore(PIGGYBANK.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> BARREL_MITHRIL_ITEM = ITEMS.register("block_barrel_mithril", () -> new ItemBlockBCore(BARREL_MITHRIL.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> BARREL_MORGULIRON_ITEM = ITEMS.register("block_barrel_morguliron", () -> new ItemBlockBCore(BARREL_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
-    public static RegistryObject<Item> BACKPACK_ITEM = ITEMS.register("backpack", () -> new ItemBlockBCore(BACKPACK.get(), new Item.Properties().tab(decoGroup)));
+//    public static RegistryObject<Item> BACKPACK_ITEM = ITEMS.register("backpack", () -> new ItemBlockBCore(BACKPACK.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> BACKPACK_ITEM = ITEMS.register("backpack", () -> new ItemTTMBackpack(BACKPACK.get()));
     public static RegistryObject<Item> SLEEPING_BAG_BLUE_ITEM = ITEMS.register("sleeping_bag_blue", () -> new ItemBlockBCore(SLEEPING_BAG_BLUE.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> SLEEPING_BAG_RED_ITEM = ITEMS.register("sleeping_bag_red", () -> new ItemBlockBCore(SLEEPING_BAG_RED.get(), new Item.Properties().tab(decoGroup)));
 
@@ -571,6 +573,7 @@ public class TTMContent {
     public static ContainerType<ContainerBCTile<TTMMithrilBarrelTile>> BARREL_MITHRIL_CONTAINER;
     public static ContainerType<ContainerBCTile<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_CONTAINER;
     public static ContainerType<ContainerBCTile<TTMBackpackTile>> BACKPACK_CONTAINER;
+    public static ContainerType<ContainerBCTile<TTMBackpackTile>> BACKPACK_ITEM_CONTAINER;
 
     public static void registerContainers(RegistryEvent.Register<ContainerType<?>> event) {
         event.getRegistry().register(TMFIREPLACE_CONTAINER = (ContainerType<ContainerBCTile<TTMFireplaceTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(TMFIREPLACE_CONTAINER, id, playerInv, extraData, TTMFireplaceTile.SLOT_LAYOUT)).setRegistryName("tmfireplace_container"));
@@ -578,6 +581,7 @@ public class TTMContent {
         event.getRegistry().register(BARREL_MITHRIL_CONTAINER = (ContainerType<ContainerBCTile<TTMMithrilBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MITHRIL_CONTAINER, id, playerInv, extraData, TTMMithrilBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_mithril_container"));
         event.getRegistry().register(BARREL_MORGULIRON_CONTAINER = (ContainerType<ContainerBCTile<TTMMorgulironBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MORGULIRON_CONTAINER, id, playerInv, extraData, TTMMorgulironBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_morguliron_container"));
         event.getRegistry().register(BACKPACK_CONTAINER = (ContainerType<ContainerBCTile<TTMBackpackTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BACKPACK_CONTAINER, id, playerInv, extraData, TTMBackpackTile.SLOT_LAYOUT)).setRegistryName("backpack_container"));
+        event.getRegistry().register(BACKPACK_ITEM_CONTAINER = (ContainerType<ContainerBCTile<TTMBackpackTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BACKPACK_ITEM_CONTAINER, id, playerInv, extraData, TTMBackpackTile.SLOT_LAYOUT)).setRegistryName("backpack_container"));
     }
 
 
