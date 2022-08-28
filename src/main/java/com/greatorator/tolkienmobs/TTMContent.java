@@ -573,7 +573,7 @@ public class TTMContent {
     public static ContainerType<ContainerBCTile<TTMMithrilBarrelTile>> BARREL_MITHRIL_CONTAINER;
     public static ContainerType<ContainerBCTile<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_CONTAINER;
     public static ContainerType<ContainerBCTile<TTMBackpackTile>> BACKPACK_CONTAINER;
-    public static ContainerType<ContainerBCTile<TTMBackpackTile>> BACKPACK_ITEM_CONTAINER;
+//    public static ContainerType<ContainerBCTile<TTMBackpackTile>> BACKPACK_ITEM_CONTAINER;
 
     public static void registerContainers(RegistryEvent.Register<ContainerType<?>> event) {
         event.getRegistry().register(TMFIREPLACE_CONTAINER = (ContainerType<ContainerBCTile<TTMFireplaceTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(TMFIREPLACE_CONTAINER, id, playerInv, extraData, TTMFireplaceTile.SLOT_LAYOUT)).setRegistryName("tmfireplace_container"));
@@ -581,9 +581,8 @@ public class TTMContent {
         event.getRegistry().register(BARREL_MITHRIL_CONTAINER = (ContainerType<ContainerBCTile<TTMMithrilBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MITHRIL_CONTAINER, id, playerInv, extraData, TTMMithrilBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_mithril_container"));
         event.getRegistry().register(BARREL_MORGULIRON_CONTAINER = (ContainerType<ContainerBCTile<TTMMorgulironBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MORGULIRON_CONTAINER, id, playerInv, extraData, TTMMorgulironBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_morguliron_container"));
         event.getRegistry().register(BACKPACK_CONTAINER = (ContainerType<ContainerBCTile<TTMBackpackTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BACKPACK_CONTAINER, id, playerInv, extraData, TTMBackpackTile.SLOT_LAYOUT)).setRegistryName("backpack_container"));
-        event.getRegistry().register(BACKPACK_ITEM_CONTAINER = (ContainerType<ContainerBCTile<TTMBackpackTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BACKPACK_ITEM_CONTAINER, id, playerInv, extraData, TTMBackpackTile.SLOT_LAYOUT)).setRegistryName("backpack_container"));
+//        event.getRegistry().register(BACKPACK_ITEM_CONTAINER = (ContainerType<ContainerBCTile<TTMBackpackTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BACKPACK_ITEM_CONTAINER, id, playerInv, extraData, TTMBackpackTile.SLOT_LAYOUT)).setRegistryName("backpack_container"));
     }
-
 
     //#################################################################
     // Recipe Serializers

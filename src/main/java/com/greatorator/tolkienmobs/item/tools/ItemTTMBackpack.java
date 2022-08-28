@@ -139,7 +139,7 @@ public class ItemTTMBackpack extends BlockItem {
     @OnlyIn(Dist.CLIENT)
     public ITextComponent getName(ItemStack stack)
     {
-        return new TranslationTextComponent(this.getDescriptionId(stack)).append(" ").append(new TranslationTextComponent("block.travelersbackpack.travelers_backpack"));
+        return new TranslationTextComponent("block.tolkienmobs.backpack");
     }
 
     @Nullable

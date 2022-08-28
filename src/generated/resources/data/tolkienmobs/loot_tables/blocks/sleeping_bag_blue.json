@@ -6,7 +6,16 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "tolkienmobs:sleeping_bag_blue",
+              "properties": {
+                "part": "head"
+              }
+            }
+          ],
+          "name": "tolkienmobs:sleeping_bag_blue"
         }
       ],
       "conditions": [

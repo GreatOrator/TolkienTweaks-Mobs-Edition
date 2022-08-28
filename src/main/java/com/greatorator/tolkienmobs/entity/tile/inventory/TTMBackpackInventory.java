@@ -5,7 +5,6 @@ import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.inventory.ContainerSlotLayout;
 import com.brandon3055.brandonscore.inventory.ContainerSlotLayout.LayoutFactory;
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.entity.tile.TTMBackpackTile;
 import com.greatorator.tolkienmobs.handler.TTMCapabilities;
 import com.greatorator.tolkienmobs.handler.TTMISUtils;
 import com.greatorator.tolkienmobs.handler.TTMInventoryActions;
@@ -25,7 +24,6 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.fml.network.NetworkHooks;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
@@ -294,29 +292,21 @@ public class TTMBackpackInventory extends TileBCore implements ITTMBackpackInven
     @Override
     public ITextComponent getDisplayName()
     {
-        return new TranslationTextComponent("screen.travelersbackpack.item");
+        return new TranslationTextComponent("screen.tolkienmobs.item");
     }
 
     public static void openGUI(ServerPlayerEntity serverPlayerEntity, ItemStack stack, byte screenID)
     {
         if(!serverPlayerEntity.level.isClientSide)
         {
-            if(screenID == TTMReference.ITEM_SCREEN_ID)
-            {
                 NetworkHooks.openGui(serverPlayerEntity, new TTMBackpackInventory(stack, serverPlayerEntity, screenID), packetBuffer -> packetBuffer.writeByte(screenID));
-            }
-
-            if(screenID == TTMReference.WEARABLE_SCREEN_ID)
-            {
-                NetworkHooks.openGui(serverPlayerEntity, (INamedContainerProvider) TTMCapabilities.getBackpackInv(serverPlayerEntity), packetBuffer -> packetBuffer.writeByte(screenID));
-            }
         }
     }
 
     @Nullable
     @Override
     public Container createMenu(int id, PlayerInventory playerInventory, PlayerEntity player) {
-    	return new ContainerBCTile<TTMBackpackInventory>(TTMContent.BACKPACK_ITEM_CONTAINER, id, playerInventory, this, SLOT_LAYOUT);
+    	return new ContainerBCTile<TTMBackpackInventory>(TTMContent.BACKPACK_CONTAINER, id, playerInventory, this, SLOT_LAYOUT);
     }
 
     private ItemStackHandler createHandler(int size)

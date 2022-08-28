@@ -14,16 +14,16 @@ import java.util.List;
 
 /** Borrowed from Draconic Evolution */
 public class TTMCurioWrapper implements ICurio {
-    private final ITTMEquip item;
     private final ItemStack stack;
+    private ITTMEquip item;
 
     public TTMCurioWrapper(ItemStack stack) {
-        this.item = (ITTMEquip) stack.getItem();
         this.stack = stack;
     }
 
     @Override
     public void curioTick(String identifier, int index, LivingEntity livingEntity) {
+        this.item = (ITTMEquip) stack.getItem();
         item.equipmentTick(stack, livingEntity);
     }
 

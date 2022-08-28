@@ -6,6 +6,7 @@ import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
 import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
+import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.CropsBlock;
 import net.minecraft.data.loot.BlockLootTables;
@@ -20,6 +21,7 @@ import net.minecraft.loot.conditions.TableBonus;
 import net.minecraft.loot.functions.ApplyBonus;
 import net.minecraft.loot.functions.LimitCount;
 import net.minecraft.loot.functions.SetCount;
+import net.minecraft.state.properties.BedPart;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.registry.Registry;
 
@@ -153,8 +155,8 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.BARREL_MORGULIRON.get());
         dropSelf(TTMContent.BARREL_MITHRIL.get());
         dropSelf(TTMContent.BACKPACK.get());
-        dropSelf(TTMContent.SLEEPING_BAG_RED.get());
-        dropSelf(TTMContent.SLEEPING_BAG_BLUE.get());
+        add(TTMContent.SLEEPING_BAG_RED.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TTMContent.SLEEPING_BAG_BLUE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
 
         //Fortune
         add(TTMContent.ORE_MITHRIL.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.DUST_MITHRIL.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
