@@ -140,6 +140,7 @@ public class RecipeGenerator extends RecipeProvider {
         upgradeRecipe(TTMContent.ITEM_BACKPACK_UPGRADE_FLUID.get(), TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get(), TTMContent.BOTTLE_FANCY.get(), consumer);
         upgradeRecipe(TTMContent.ITEM_BACKPACK_UPGRADE_CRAFTING.get(), TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get(), Blocks.CRAFTING_TABLE, consumer);
         upgradeRecipe(TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get(), TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get(), Blocks.WHITE_WOOL, consumer);
+        upgradeRecipe(TTMContent.ITEM_BACKPACK_UPGRADE_CAMPFIRE.get(), TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get(), Blocks.CAMPFIRE, consumer);
         upgradeRecipe2(TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get(), TTMContent.SLEEPING_BAG_RED.get(), consumer);
 
         // Sleeping Bags
@@ -240,13 +241,23 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy("has_ammolite", has(TTMContent.GEM_AMMOLITE.get()))
                 .save(consumer);
 
+        ShapedRecipeBuilder.shaped(TTMContent.BACKPACK.get())
+                .pattern("MAM")
+                .pattern("AZA")
+                .pattern("MAM")
+                .define('A', Blocks.WHITE_WOOL)
+                .define('M', Items.LEATHER)
+                .define('Z', TTMContent.GEM_AMMOLITE.get())
+                .unlockedBy("has_ammolite", has(TTMContent.GEM_AMMOLITE.get()))
+                .save(consumer);
+
         ShapedRecipeBuilder.shaped(TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get())
                 .pattern("MZM")
                 .pattern("ZAZ")
                 .pattern("MZM")
                 .define('M', TTMContent.MUMAKIL_LEATHER.get())
-                .define('Z', TTMContent.GEM_AMMOLITE.get())
-                .define('A', Items.LEATHER)
+                .define('A', TTMContent.GEM_AMMOLITE.get())
+                .define('Z', Items.LEATHER)
                 .unlockedBy("has_mumakil_leather", has(TTMContent.MUMAKIL_LEATHER.get()))
                 .save(consumer);
     }

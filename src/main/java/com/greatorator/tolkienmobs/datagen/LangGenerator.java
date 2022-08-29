@@ -281,6 +281,8 @@ public class LangGenerator extends LanguageProvider {
         addLore(TTMContent.ITEM_BACKPACK_UPGRADE_CRAFTING.get(), "Allows crating anywhere (Max-1)");
         add(TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get(), "Backpack Upgrade - Sleeping Bag");
         addLore(TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get(), "Carry around a sleeping bag (Max-1)");
+        add(TTMContent.ITEM_BACKPACK_UPGRADE_CAMPFIRE.get(), "Backpack Upgrade - Campfire");
+        addLore(TTMContent.ITEM_BACKPACK_UPGRADE_CAMPFIRE.get(), "Quick use campfire (Max-1)");
     }
 
     private void coinToken() {

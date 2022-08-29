@@ -140,6 +140,6 @@ public class TTMCurios extends TTMEquipMgr {
         builder.apply(HEAD_TAG).add(
                 TTMContent.TRINKET_HAT.get());
         builder.apply(BACK_TAG).add(
-                TTMContent.BACKPACK_ITEM.get());
+                TTMContent.ITEM_BACKPACK.get());
     }
 }

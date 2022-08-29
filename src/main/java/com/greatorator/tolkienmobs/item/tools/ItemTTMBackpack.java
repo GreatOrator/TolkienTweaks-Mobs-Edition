@@ -1,41 +1,28 @@
 package com.greatorator.tolkienmobs.item.tools;
 
-import com.greatorator.tolkienmobs.entity.item.render.ISRenderTTMBackpackTileEntity;
 import com.greatorator.tolkienmobs.entity.tile.TTMBackpackTile;
-import com.greatorator.tolkienmobs.entity.tile.inventory.TTMBackpackInventory;
-import com.greatorator.tolkienmobs.integration.TTMHelper;
-import com.greatorator.tolkienmobs.integration.curios.TTMCurios;
-import com.greatorator.tolkienmobs.utils.TTMReference;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.*;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.*;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUseContext;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.LazyOptional;
-import top.theillusivec4.curios.api.CuriosCapability;
-import top.theillusivec4.curios.api.type.capability.ICurio;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-import static com.greatorator.tolkienmobs.TTMContent.decoGroup;
 
 public class ItemTTMBackpack extends BlockItem {
-    public ItemTTMBackpack(Block block)
-    {
-        super(block, new Item.Properties().tab(decoGroup).stacksTo(1).setISTER(() -> ISRenderTTMBackpackTileEntity::new));
+    public ItemTTMBackpack(Block block, Properties properties) {
+        super(block, properties);
     }
 
     @Override
@@ -49,11 +36,15 @@ public class ItemTTMBackpack extends BlockItem {
             {
                 if(itemstack.getItem() == this && !playerIn.isCrouching())
                 {
-                    TTMBackpackInventory.openGUI((ServerPlayerEntity)playerIn, playerIn.inventory.getSelected(), TTMReference.ITEM_SCREEN_ID);
+
                 }
             }
         }
         return ActionResult.pass(itemstack);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    private void openGui(ItemStack stack, PlayerEntity player) {
     }
 
     @Override
@@ -62,7 +53,6 @@ public class ItemTTMBackpack extends BlockItem {
         ActionResultType actionresulttype = this.place(new BlockItemUseContext(context));
         return !actionresulttype.consumesAction() ? this.use(context.getLevel(), context.getPlayer(), context.getHand()).getResult() : actionresulttype;
     }
-
     @Override
     public ActionResultType place(BlockItemUseContext context)
     {
@@ -133,33 +123,5 @@ public class ItemTTMBackpack extends BlockItem {
                 }
             }
         }
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public ITextComponent getName(ItemStack stack)
-    {
-        return new TranslationTextComponent("block.tolkienmobs.backpack");
-    }
-
-    @Nullable
-    @Override
-    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt)
-    {
-        if(TTMHelper.isCuriosInstalled)
-        {
-            return new ICapabilityProvider()
-            {
-                final LazyOptional<ICurio> curio = LazyOptional.of(TTMCurios::createBackpackProvider);
-
-                @Nonnull
-                @Override
-                public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side)
-                {
-                    return CuriosCapability.ITEM.orEmpty(cap, curio);
-                }
-            };
-        }
-        return null;
     }
 }

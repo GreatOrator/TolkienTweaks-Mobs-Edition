@@ -30,8 +30,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.greatorator.tolkienmobs.TTMConfig.disableVanilla;
-
 public class CommonProxy {
     private Minecraft mc;
     private World lastWorld;
@@ -62,7 +60,9 @@ public class CommonProxy {
 
     public void commonSetup(FMLCommonSetupEvent event) {
         RecipeGenerator.potions();
-        TTMConfig.loadPotionList(); //Construction was too early. Your potions were not registered yet.
+        TTMConfig.loadPotionList();
+        TTMConfig.loadItemList();
+        TTMConfig.loadBlacklist();
         event.enqueueWork(() -> {
             StructureGenerator.setupStructures();
             TTMStructureConfig.registerConfiguredStructures();
@@ -101,9 +101,6 @@ public class CommonProxy {
     }
 
     public void registerEventListeners() {
-        if (disableVanilla) {
-//            MinecraftForge.EVENT_BUS.register(new TTMSpawnEvent());
-        }
 
     }
 

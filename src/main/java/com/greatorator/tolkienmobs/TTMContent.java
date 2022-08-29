@@ -374,8 +374,6 @@ public class TTMContent {
     public static RegistryObject<Item> PIGGYBANK_ITEM = ITEMS.register("block_piggybank", () -> new ItemBlockBCore(PIGGYBANK.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> BARREL_MITHRIL_ITEM = ITEMS.register("block_barrel_mithril", () -> new ItemBlockBCore(BARREL_MITHRIL.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> BARREL_MORGULIRON_ITEM = ITEMS.register("block_barrel_morguliron", () -> new ItemBlockBCore(BARREL_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
-//    public static RegistryObject<Item> BACKPACK_ITEM = ITEMS.register("backpack", () -> new ItemBlockBCore(BACKPACK.get(), new Item.Properties().tab(decoGroup)));
-    public static RegistryObject<Item> BACKPACK_ITEM = ITEMS.register("backpack", () -> new ItemTTMBackpack(BACKPACK.get()));
     public static RegistryObject<Item> SLEEPING_BAG_BLUE_ITEM = ITEMS.register("sleeping_bag_blue", () -> new ItemBlockBCore(SLEEPING_BAG_BLUE.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> SLEEPING_BAG_RED_ITEM = ITEMS.register("sleeping_bag_red", () -> new ItemBlockBCore(SLEEPING_BAG_RED.get(), new Item.Properties().tab(decoGroup)));
 
@@ -432,6 +430,7 @@ public class TTMContent {
     public static RegistryObject<Item> ITEM_BACKPACK_UPGRADE_FLUID = ITEMS.register("item_backpack_upgrade_fluid", () -> new TTMLore(new Item.Properties().stacksTo(1).tab(matsGroup)).setHasLore());
     public static RegistryObject<Item> ITEM_BACKPACK_UPGRADE_CRAFTING = ITEMS.register("item_backpack_upgrade_crafting", () -> new TTMLore(new Item.Properties().stacksTo(1).tab(matsGroup)).setHasLore());
     public static RegistryObject<Item> ITEM_BACKPACK_UPGRADE_SLEEPING = ITEMS.register("item_backpack_upgrade_sleeping", () -> new TTMLore(new Item.Properties().stacksTo(1).tab(matsGroup)).setHasLore());
+    public static RegistryObject<Item> ITEM_BACKPACK_UPGRADE_CAMPFIRE = ITEMS.register("item_backpack_upgrade_campfire", () -> new TTMLore(new Item.Properties().stacksTo(1).tab(matsGroup)).setHasLore());
 
     // Metals & Gems
     public static RegistryObject<Item> DUST_MITHRIL = ITEMS.register("dust_mithril", () -> new Item(new Item.Properties().tab(matsGroup)));
@@ -466,6 +465,7 @@ public class TTMContent {
     public static RegistryObject<SwordItem> SWORD_URUK = ITEMS.register("sword_uruk", () -> new TTMSword(TTMItemTier.MORGULIRON, 11, -0.5F, (new Item.Properties()).tab(toolsGroup)).setEffectOverride());
     public static RegistryObject<SwordItem> WHIP_FIRE = ITEMS.register("whip_fire", () -> new TTM3DObj(TTMItemTier.MORGULIRON, 15, -0.5F, (new Item.Properties()).tab(toolsGroup), "whip_fire.obj", "whip_fire.png").setEffectOverride());
     public static RegistryObject<SwordItem> CLUB_WOODEN = ITEMS.register("club_wooden", () -> new TTM3DObj(TTMItemTier.MORGULIRON, 9, -0.5F, (new Item.Properties()).tab(toolsGroup), "club_wooden.obj", "club_wooden.png").setEffectOverride());
+    public static RegistryObject<BlockItem> ITEM_BACKPACK = ITEMS.register("item_backpack", () -> new ItemTTMBackpack(TTMContent.BACKPACK.get(), (new Item.Properties()).stacksTo(1).tab(toolsGroup)));
 
     // Trinkets
     public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new ItemTTMTrinket(new Item.Properties().tab(toolsGroup)));
@@ -580,7 +580,6 @@ public class TTMContent {
         event.getRegistry().register(BARREL_MITHRIL_CONTAINER = (ContainerType<ContainerBCTile<TTMMithrilBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MITHRIL_CONTAINER, id, playerInv, extraData, TTMMithrilBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_mithril_container"));
         event.getRegistry().register(BARREL_MORGULIRON_CONTAINER = (ContainerType<ContainerBCTile<TTMMorgulironBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MORGULIRON_CONTAINER, id, playerInv, extraData, TTMMorgulironBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_morguliron_container"));
         event.getRegistry().register(BACKPACK_CONTAINER = (ContainerType<ContainerBCTile<TTMBackpackTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BACKPACK_CONTAINER, id, playerInv, extraData, TTMBackpackTile.SLOT_LAYOUT)).setRegistryName("backpack_container"));
-//        event.getRegistry().register(BACKPACK_ITEM_CONTAINER = (ContainerType<ContainerBCTile<TTMBackpackTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BACKPACK_ITEM_CONTAINER, id, playerInv, extraData, TTMBackpackTile.SLOT_LAYOUT)).setRegistryName("backpack_container"));
     }
 
     //#################################################################

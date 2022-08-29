@@ -212,6 +212,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.ITEM_BACKPACK_UPGRADE_FLUID.get());
         simpleItem(TTMContent.ITEM_BACKPACK_UPGRADE_CRAFTING.get());
         simpleItem(TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get());
+        simpleItem(TTMContent.ITEM_BACKPACK_UPGRADE_CAMPFIRE.get());
 
         //region Coin & Token Items
         simpleItem(TTMContent.ITEM_COIN_BRONZE.get());

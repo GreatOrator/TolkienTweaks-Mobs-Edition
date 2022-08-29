@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.handler;
+package com.greatorator.tolkienmobs.handler.interfaces;
 
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraftforge.fluids.capability.templates.FluidTank;

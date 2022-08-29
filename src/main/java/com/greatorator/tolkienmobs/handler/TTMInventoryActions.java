@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.handler;
 
-import com.greatorator.tolkienmobs.entity.tile.inventory.ITTMBackpackInventory;
+import com.greatorator.tolkienmobs.handler.interfaces.ITTMBackpackInventory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;

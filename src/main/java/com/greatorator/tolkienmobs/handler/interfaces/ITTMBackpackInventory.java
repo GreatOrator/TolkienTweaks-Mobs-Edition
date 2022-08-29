@@ -1,6 +1,5 @@
-package com.greatorator.tolkienmobs.entity.tile.inventory;
+package com.greatorator.tolkienmobs.handler.interfaces;
 
-import com.greatorator.tolkienmobs.handler.ITTMTanks;
 import com.greatorator.tolkienmobs.handler.TTMSlotManager;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

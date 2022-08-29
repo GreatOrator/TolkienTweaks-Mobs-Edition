@@ -360,6 +360,8 @@
   "item.tolkienmobs.ingot_morguliron": "Morgul Iron Ingot",
   "item.tolkienmobs.item_artifact": "\u00A76Lost Artifact",
   "item.tolkienmobs.item_artifact.lore": "This objects emits a dark aura",
+  "item.tolkienmobs.item_backpack_upgrade_campfire": "Backpack Upgrade - Campfire",
+  "item.tolkienmobs.item_backpack_upgrade_campfire.lore": "Quick use campfire (Max-1)",
   "item.tolkienmobs.item_backpack_upgrade_crafting": "Backpack Upgrade - Crafting",
   "item.tolkienmobs.item_backpack_upgrade_crafting.lore": "Allows crating anywhere (Max-1)",
   "item.tolkienmobs.item_backpack_upgrade_fluid": "Backpack Upgrade - Fluids",

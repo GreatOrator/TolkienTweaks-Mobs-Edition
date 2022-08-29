@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tolkienmobs:backpack"
+          "name": "tolkienmobs:item_backpack"
         }
       ],
       "conditions": [

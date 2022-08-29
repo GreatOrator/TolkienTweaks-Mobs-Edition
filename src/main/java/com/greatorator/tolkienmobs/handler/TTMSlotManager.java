@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.handler;
 
-import com.greatorator.tolkienmobs.entity.tile.inventory.ITTMBackpackInventory;
+import com.greatorator.tolkienmobs.handler.interfaces.ITTMBackpackInventory;
 import com.greatorator.tolkienmobs.utils.TTMReference;
 import net.minecraft.nbt.CompoundNBT;
 
@@ -98,5 +98,4 @@ public class TTMSlotManager {
     {
         this.unsortableSlots = Arrays.stream(compound.getIntArray(UNSORTABLE_SLOTS)).boxed().collect(Collectors.toList());
     }
-
 }
