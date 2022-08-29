@@ -6,7 +6,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -27,8 +26,6 @@ import javax.annotation.Nullable;
 
 public class BlockTTMBackpack extends Block {
    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-   public static final BooleanProperty UPGRADE1 = BooleanProperty.create("upgrade1");
-   public static final BooleanProperty UPGRADE2 = BooleanProperty.create("upgrade2");
 
    protected static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 0.0D, 8.0D, 15.0, 16.0, 16.0D);
    protected static final VoxelShape SHAPE_SOUTH = Block.box(1.0, 0.0D, 1.0, 15.0, 16.0, 9.0);
@@ -38,7 +35,7 @@ public class BlockTTMBackpack extends Block {
 
    public BlockTTMBackpack(Properties properties) {
       super(properties);
-      this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(UPGRADE1, false).setValue(UPGRADE2, false));
+      this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
    }
 
    @SuppressWarnings("deprecation")
@@ -79,7 +76,7 @@ public class BlockTTMBackpack extends Block {
 
    @Override
    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-      builder.add(FACING, UPGRADE1, UPGRADE2);
+      builder.add(FACING);
       super.createBlockStateDefinition(builder);
    }
 
