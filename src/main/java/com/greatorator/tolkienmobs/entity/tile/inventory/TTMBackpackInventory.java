@@ -30,7 +30,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TTMBackpackInventory extends TileBCore implements ITTMBackpackInventory, INamedContainerProvider {
-	public static final LayoutFactory<TTMBackpackInventory> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.inventory);
+    public static final LayoutFactory<TTMBackpackInventory> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.inventory);
     private final ItemStackHandler inventory = createHandler(TTMReference.INVENTORY_SIZE);
     private final ItemStackHandler craftingInventory = createHandler(TTMReference.CRAFTING_GRID_SIZE);
     private final FluidTank waterTank = createFluidHandler(TTMReference.BASIC_TANK_CAPACITY);
@@ -299,14 +299,14 @@ public class TTMBackpackInventory extends TileBCore implements ITTMBackpackInven
     {
         if(!serverPlayerEntity.level.isClientSide)
         {
-                NetworkHooks.openGui(serverPlayerEntity, new TTMBackpackInventory(stack, serverPlayerEntity, screenID), packetBuffer -> packetBuffer.writeByte(screenID));
+            NetworkHooks.openGui(serverPlayerEntity, new TTMBackpackInventory(stack, serverPlayerEntity, screenID), packetBuffer -> packetBuffer.writeByte(screenID));
         }
     }
 
     @Nullable
     @Override
     public Container createMenu(int id, PlayerInventory playerInventory, PlayerEntity player) {
-    	return new ContainerBCTile<TTMBackpackInventory>(TTMContent.BACKPACK_CONTAINER, id, playerInventory, this, SLOT_LAYOUT);
+        return new ContainerBCTile<TTMBackpackInventory>(TTMContent.BACKPACK_CONTAINER, id, playerInventory, this, SLOT_LAYOUT);
     }
 
     private ItemStackHandler createHandler(int size)

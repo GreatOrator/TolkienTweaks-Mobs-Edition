@@ -50,7 +50,7 @@ public class GuiTTMFireplace extends ModularGuiContainer<ContainerBCTile<TTMFire
         GuiElement<?> outSlot = toolkit.createSlots(template.background, 1, 1, 0, (x, y) -> container.getSlotLayout().getSlotData(TILE_INV, 3), null);
         toolkit.placeInside(outSlot, template.background, TOP_LEFT, 117, 36);
 
-        GuiProgressIcon fireIcon = template.background.addChild(new GuiProgressIcon(TTMSprites.get("fire_empty"), TTMSprites.get("fire_full"), UP));//.setMargins(0, 1).setProgressSupplier(() -> (TimeKeeper.getClientTick() % 100) / 100D).setPos(20, 0).setSize(18, 18));
+        GuiProgressIcon fireIcon = template.background.addChild(new GuiProgressIcon(TTMSprites.get("fireplace/fire_empty"), TTMSprites.get("fireplace/fire_full"), UP));//.setMargins(0, 1).setProgressSupplier(() -> (TimeKeeper.getClientTick() % 100) / 100D).setPos(20, 0).setSize(18, 18));
         fireIcon.setSize(18, 18);
         fireIcon.setMargins(0, 1);
         fireIcon.setProgressSupplier(() -> tile.fuelRemaining.get() / (double)Math.max(1, tile.fuelValue.get()));

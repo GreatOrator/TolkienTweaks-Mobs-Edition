@@ -22,8 +22,8 @@ import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 public class TTMSprites {
 
     public static void initialize(ColorHandlerEvent.Block event) {
-        register(MODID, "fire_empty");
-        register(MODID, "fire_full");
+        register(MODID, "fireplace/fire_empty");
+        register(MODID, "fireplace/fire_full");
         register(MODID, "item_coin");
         register(MODID, "fireplace/craft_empty");
         register(MODID, "fireplace/craft_full");

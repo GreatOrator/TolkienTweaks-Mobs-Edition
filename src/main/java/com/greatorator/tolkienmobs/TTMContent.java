@@ -573,7 +573,6 @@ public class TTMContent {
     public static ContainerType<ContainerBCTile<TTMMithrilBarrelTile>> BARREL_MITHRIL_CONTAINER;
     public static ContainerType<ContainerBCTile<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_CONTAINER;
     public static ContainerType<ContainerBCTile<TTMBackpackTile>> BACKPACK_CONTAINER;
-//    public static ContainerType<ContainerBCTile<TTMBackpackTile>> BACKPACK_ITEM_CONTAINER;
 
     public static void registerContainers(RegistryEvent.Register<ContainerType<?>> event) {
         event.getRegistry().register(TMFIREPLACE_CONTAINER = (ContainerType<ContainerBCTile<TTMFireplaceTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(TMFIREPLACE_CONTAINER, id, playerInv, extraData, TTMFireplaceTile.SLOT_LAYOUT)).setRegistryName("tmfireplace_container"));
