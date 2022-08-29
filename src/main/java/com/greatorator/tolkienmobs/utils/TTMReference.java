@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.utils;
 
 public class TTMReference {
     //Constants
-    public static final int INVENTORY_SIZE = 45;
+    public static final int INVENTORY_SIZE = 54;
     public static final int CRAFTING_GRID_SIZE = 9;
     public static final int COMBINED_INVENTORY_SIZE = INVENTORY_SIZE + CRAFTING_GRID_SIZE;
     public static final int BUCKET = 1000;
