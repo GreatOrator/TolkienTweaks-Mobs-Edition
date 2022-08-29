@@ -46,7 +46,13 @@ public class TTMCurioWrapper implements ICurio {
 
     @Override
     public List<ITextComponent> getTagsTooltip(List<ITextComponent> tagTooltips) {
-        return item.getTagsTooltip(stack, tagTooltips);
+    	if (item != null && stack != null) {
+    		return item.getTagsTooltip(stack, tagTooltips);
+    	}
+    	else if (tagTooltips != null) {
+    		return tagTooltips;
+    	}
+    	return null;
     }
 
     @Override
