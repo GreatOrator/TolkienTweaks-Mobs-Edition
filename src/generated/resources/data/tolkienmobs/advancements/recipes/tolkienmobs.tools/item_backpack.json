@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:item_backpack"
+    ]
+  },
+  "criteria": {
+    "has_ammolite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tolkienmobs:gem_ammolite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:item_backpack"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ammolite",
+      "has_the_recipe"
+    ]
+  ]
+}

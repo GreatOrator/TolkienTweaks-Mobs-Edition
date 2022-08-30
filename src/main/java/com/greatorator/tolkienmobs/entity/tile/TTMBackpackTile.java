@@ -1,13 +1,13 @@
 package com.greatorator.tolkienmobs.entity.tile;
 
 import com.brandon3055.brandonscore.blocks.TileBCore;
-import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.inventory.ContainerSlotLayout;
 import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.BlockTTMBackpack;
 import com.greatorator.tolkienmobs.block.BlockTTMSleepingBag;
+import com.greatorator.tolkienmobs.client.gui.container.ContainerTTMBackpack;
 import com.greatorator.tolkienmobs.handler.TTMISUtils;
 import com.greatorator.tolkienmobs.handler.TTMInventoryActions;
 import com.greatorator.tolkienmobs.handler.TTMSlotManager;
@@ -53,6 +53,7 @@ import javax.annotation.Nullable;
 
 public class TTMBackpackTile extends TileBCore implements ITTMBackpackInventory, INamedContainerProvider, INameable, ITickableTileEntity {
     public static final ContainerSlotLayout.LayoutFactory<TTMBackpackTile> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.itemHandler);
+    public static int slots = 53;
     private final ItemStackHandler inventory = createHandler(TTMReference.INVENTORY_SIZE);
     private final ItemStackHandler craftingInventory = createHandler(TTMReference.CRAFTING_GRID_SIZE);
     public TileItemStackHandler itemHandler = new TileItemStackHandler(TTMReference.INVENTORY_SIZE);
@@ -524,7 +525,8 @@ public class TTMBackpackTile extends TileBCore implements ITTMBackpackInventory,
     @Override
     public Container createMenu(int id, PlayerInventory inventory, PlayerEntity playerEntity)
     {
-        return new ContainerBCTile<>(TTMContent.BACKPACK_CONTAINER, id, inventory, this, SLOT_LAYOUT);
+        return new ContainerTTMBackpack(id, inventory, this);
+//        return new ContainerBCTile<>(TTMContent.BACKPACK_CONTAINER, id, inventory, this, SLOT_LAYOUT);
     }
 
     private ItemStackHandler createHandler(int size)
