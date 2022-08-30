@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
 
 public class TTMBackpackTile extends TileBCore implements ITTMBackpackInventory, INamedContainerProvider, INameable, ITickableTileEntity {
     public static final ContainerSlotLayout.LayoutFactory<TTMBackpackTile> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.itemHandler);
-    public static int slots = 53;
+    public static int slots = 54;
     private final ItemStackHandler inventory = createHandler(TTMReference.INVENTORY_SIZE);
     private final ItemStackHandler craftingInventory = createHandler(TTMReference.CRAFTING_GRID_SIZE);
     public TileItemStackHandler itemHandler = new TileItemStackHandler(TTMReference.INVENTORY_SIZE);

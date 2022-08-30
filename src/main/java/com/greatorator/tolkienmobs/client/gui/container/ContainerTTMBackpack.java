@@ -28,7 +28,7 @@ public class ContainerTTMBackpack extends Container {
         // Tile Entity
         for (int row = 0; row < 6; row++) {
             for (int col = 0; col < 9; col++) {
-                this.addSlot(new SlotItemHandler(te.getInventory(), col + row * 9 + 9, 75, 6));
+                this.addSlot(new SlotItemHandler(te.getInventory(), col * row, 75, 6));
             }
         }
     }
