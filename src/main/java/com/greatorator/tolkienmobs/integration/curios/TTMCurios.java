@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.integration.curios;
 
 import com.brandon3055.brandonscore.capability.MultiCapabilityProvider;
 import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.item.tools.ItemTTMBackpack;
 import com.greatorator.tolkienmobs.lib.FlamingBalrog;
 import net.minecraft.data.TagsProvider;
@@ -36,29 +37,28 @@ import java.util.function.Predicate;
 public class TTMCurios extends TTMEquipMgr {
 
     public static final Tags.IOptionalNamedTag<Item> CURIO_TAG = ItemTags.createOptional(new ResourceLocation("curios", "curio"));
+    public static final Tags.IOptionalNamedTag<Item> HEAD_TAG = ItemTags.createOptional(new ResourceLocation("curios", "head"));
     public static final Tags.IOptionalNamedTag<Item> NECK_TAG = ItemTags.createOptional(new ResourceLocation("curios", "necklace"));
+    public static final Tags.IOptionalNamedTag<Item> BACK_TAG = ItemTags.createOptional(new ResourceLocation("curios", "back"));
+    public static final Tags.IOptionalNamedTag<Item> BODY_TAG = ItemTags.createOptional(new ResourceLocation("curios", "body"));
+    public static final Tags.IOptionalNamedTag<Item> HAND_TAG = ItemTags.createOptional(new ResourceLocation("curios", "hands"));
+    public static final Tags.IOptionalNamedTag<Item> RING_TAG = ItemTags.createOptional(new ResourceLocation("curios", "ring"));
     public static final Tags.IOptionalNamedTag<Item> BELT_TAG = ItemTags.createOptional(new ResourceLocation("curios", "belt"));
     public static final Tags.IOptionalNamedTag<Item> CHARM_TAG = ItemTags.createOptional(new ResourceLocation("curios", "charm"));
-    public static final Tags.IOptionalNamedTag<Item> RING_TAG = ItemTags.createOptional(new ResourceLocation("curios", "ring"));
-    public static final Tags.IOptionalNamedTag<Item> HAND_TAG = ItemTags.createOptional(new ResourceLocation("curios", "hands"));
-    public static final Tags.IOptionalNamedTag<Item> HEAD_TAG = ItemTags.createOptional(new ResourceLocation("curios", "head"));
-    public static final Tags.IOptionalNamedTag<Item> BODY_TAG = ItemTags.createOptional(new ResourceLocation("curios", "body"));
-    public static final Tags.IOptionalNamedTag<Item> BACK_TAG = ItemTags.createOptional(new ResourceLocation("curios", "back"));
 
     @CapabilityInject(ICurio.class)
     public static Capability<ICurio> CURIO_CAP = null;
 
     public static void sendIMC(InterModEnqueueEvent event) {
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.HEAD.getMessageBuilder().build());
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.NECKLACE.getMessageBuilder().build());
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BACK.getMessageBuilder().build());
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BODY.getMessageBuilder().build());
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BRACELET.getMessageBuilder().build());
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.HANDS.getMessageBuilder().build());
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.RING.getMessageBuilder().build());
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BELT.getMessageBuilder().build());
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.CHARM.getMessageBuilder().build());
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.CURIO.getMessageBuilder().build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.CURIO.getMessageBuilder().size(1).build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.HEAD.getMessageBuilder().size(1).build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.NECKLACE.getMessageBuilder().size(1).build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BACK.getMessageBuilder().size(1).build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BODY.getMessageBuilder().size(1).build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.HANDS.getMessageBuilder().size(2).build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.RING.getMessageBuilder().size(3).build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BELT.getMessageBuilder().size(1).build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.CHARM.getMessageBuilder().size(1).build());
     }
 
     @Override
