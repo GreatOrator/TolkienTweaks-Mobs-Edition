@@ -39,9 +39,9 @@ public class CommonProxy {
         registerEventListeners();
         TTMConfig.load();
         TTMContent.init();
+        TTMHelper.init();
         TTMEquipMgr.initialize();
         TTMTags.init();
-        TTMHelper.init();
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::balrogMark);
         MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::hobbitPlow);
