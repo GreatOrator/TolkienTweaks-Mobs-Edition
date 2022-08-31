@@ -4,7 +4,6 @@ import com.brandon3055.brandonscore.blocks.TileBCore;
 import com.brandon3055.brandonscore.inventory.ContainerSlotLayout;
 import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.BlockTTMBackpack;
 import com.greatorator.tolkienmobs.block.BlockTTMSleepingBag;
 import com.greatorator.tolkienmobs.client.gui.container.ContainerTTMBackpack;
@@ -12,7 +11,6 @@ import com.greatorator.tolkienmobs.handler.TTMISUtils;
 import com.greatorator.tolkienmobs.handler.TTMInventoryActions;
 import com.greatorator.tolkienmobs.handler.TTMSlotManager;
 import com.greatorator.tolkienmobs.handler.interfaces.ITTMBackpackInventory;
-import com.greatorator.tolkienmobs.item.tools.ItemTTMBackpack;
 import com.greatorator.tolkienmobs.utils.TTMReference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -29,10 +27,12 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.state.properties.BedPart;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.Direction;
+import net.minecraft.util.INameable;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -53,10 +53,9 @@ import javax.annotation.Nullable;
 
 public class TTMBackpackTile extends TileBCore implements ITTMBackpackInventory, INamedContainerProvider, INameable, ITickableTileEntity {
     public static final ContainerSlotLayout.LayoutFactory<TTMBackpackTile> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.itemHandler);
-    public static int slots = 54;
     private final ItemStackHandler inventory = createHandler(TTMReference.INVENTORY_SIZE);
     private final ItemStackHandler craftingInventory = createHandler(TTMReference.CRAFTING_GRID_SIZE);
-    public TileItemStackHandler itemHandler = new TileItemStackHandler(TTMReference.INVENTORY_SIZE);
+    public TileItemStackHandler itemHandler = new TileItemStackHandler(TTMReference.COMBINED_INVENTORY_SIZE);
     private final FluidTank waterTank = createFluidHandler(TTMReference.BASIC_TANK_CAPACITY);
     private PlayerEntity player = null;
     private boolean isSleepingBagDeployed = false;
@@ -320,16 +319,6 @@ public class TTMBackpackTile extends TileBCore implements ITTMBackpackInventory,
     @Override
     public void setDataChanged(byte... dataIds) {}
 
-    @Override
-    public void setChanged()
-    {
-        if(!level.isClientSide)
-        {
-            super.setChanged();
-            notifyBlockUpdate();
-        }
-    }
-
     private void notifyBlockUpdate()
     {
         BlockState blockstate = getLevel().getBlockState(getBlockPos());
@@ -542,9 +531,7 @@ public class TTMBackpackTile extends TileBCore implements ITTMBackpackInventory,
             @Override
             public boolean isItemValid(int slot, @Nonnull ItemStack stack)
             {
-                ResourceLocation blacklistedItems = new ResourceLocation(TolkienMobs.MODID, "blacklisted_items");
-
-                return !(stack.getItem() instanceof ItemTTMBackpack) && !stack.getItem().is(ItemTags.getAllTags().getTag(blacklistedItems));
+                return true;
             }
         };
     }

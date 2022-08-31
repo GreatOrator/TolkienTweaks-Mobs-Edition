@@ -19,20 +19,23 @@ public class ScreenTTMBackpack extends ContainerScreen<ContainerTTMBackpack> {
 
         this.leftPos = 0;
         this.topPos = 0;
-        this.height = 256;
-        this.width = 207;
+        this.imageHeight = 207;
+        this.imageWidth = 256;
     }
 
     @Override
     protected void renderBg(@Nonnull MatrixStack matrixStack, float partialTicks, int x, int y) {
         RenderSystem.color4f(1.0f, 1.0f, 1.0f ,1.0f);
         this.getMinecraft().textureManager.bind(BACKPACK_GUI);
-        blit(matrixStack, leftPos, topPos, 0,0, width, height, width, height);
+        int i = this.leftPos;
+        int j = this.topPos;
+
+        this.blit(matrixStack, i, j, 0,0, this.imageWidth, this.imageHeight);
     }
 
     @Override
     protected void renderLabels(@Nonnull MatrixStack matrixStack, int x, int y) {
-        this.font.draw(matrixStack, this.title.getString(), 7,6,0x404040);
+        this.font.draw(matrixStack, this.title.getString(), 96,116,0x404040);
     }
 
     @Override

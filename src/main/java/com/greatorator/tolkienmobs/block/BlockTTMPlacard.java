@@ -1,41 +1,13 @@
 //package com.greatorator.tolkienmobs.block;
 //
-//import com.brandon3055.brandonscore.blocks.BlockBCore;
-//import com.brandon3055.brandonscore.registry.Feature;
-//import com.brandon3055.brandonscore.registry.IRenderOverride;
-//import com.greatorator.tolkienmobs.tile.TileSign;
-//import net.minecraft.block.ITileEntityProvider;
-//import net.minecraft.block.material.Material;
-//import net.minecraft.block.properties.PropertyBool;
-//import net.minecraft.block.properties.PropertyDirection;
-//import net.minecraft.block.properties.PropertyEnum;
-//import net.minecraft.block.state.BlockStateContainer;
-//import net.minecraft.block.state.IBlockState;
-//import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-//import net.minecraft.creativetab.CreativeTabs;
-//import net.minecraft.entity.player.PlayerEntity;
-//import net.minecraft.item.Item;
+//import net.minecraft.block.WallSignBlock;
 //import net.minecraft.item.ItemStack;
-//import net.minecraft.tileentity.TileEntity;
-//import net.minecraft.util.BlockRenderLayer;
-//import net.minecraft.util.EnumFacing;
-//import net.minecraft.util.IStringSerializable;
 //import net.minecraft.util.NonNullList;
 //import net.minecraft.util.math.AxisAlignedBB;
-//import net.minecraft.util.math.BlockPos;
-//import net.minecraft.util.math.RayTraceResult;
-//import net.minecraft.world.IBlockAccess;
-//import net.minecraft.world.World;
-//import net.minecraftforge.client.model.ModelLoader;
-//import net.minecraftforge.fml.relauncher.Side;
-//import net.minecraftforge.fml.relauncher.SideOnly;
 //
-//import javax.annotation.Nullable;
 //import java.util.Arrays;
-//import java.util.LinkedHashMap;
-//import java.util.Map;
 //
-//public class BlockTTMPlacard extends BlockBCore implements IRenderOverride, ITileEntityProvider {
+//public class BlockTTMPlacard extends WallSignBlock {
 //    public static final AxisAlignedBB BLOCK_SIGN_Z = new AxisAlignedBB(0.45D, 0.0D, 0D, 0.55D, 0.5D, 1D);
 //    public static final AxisAlignedBB BLOCK_SIGN_X = new AxisAlignedBB(0D, 0.0D, 0.45D, 1D, 0.5D, 0.55D);
 //    public static final AxisAlignedBB SIGN_EAST_AABB = new AxisAlignedBB(0.0D, 0.28125D, 0.0D, 0.125D, 0.78125D, 1.0D);
@@ -47,8 +19,8 @@
 //    public static final PropertyDirection FACING = PropertyDirection.create("facing", Arrays.asList(EnumFacing.HORIZONTALS));
 //    public static final PropertyBool WALL = PropertyBool.create("wall");
 //
-//    public BlockSigns() {
-//        super(Material.WOOD);
+//    public BlockTTMPlacard(Properties properties) {
+//        super(properties);
 //        this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.EMPTY).withProperty(FACING, EnumFacing.NORTH).withProperty(WALL, false));
 //        this.setHarvestLevel("axe", 1);
 //        this.setHasSubItemTypes(true);

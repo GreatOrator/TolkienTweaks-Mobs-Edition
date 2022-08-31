@@ -1,8 +1,10 @@
 package com.greatorator.tolkienmobs.handler;
 
+import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.handler.interfaces.ITTMBackpackInventory;
 import com.greatorator.tolkienmobs.utils.TTMReference;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,6 +15,10 @@ public class TTMSlotManager {
     protected final ITTMBackpackInventory inventory;
     protected List<Integer> unsortableSlots = new ArrayList<>();
     protected boolean isActive = false;
+    public static final ResourceLocation FLUID_TANK_PATH = new ResourceLocation(TolkienMobs.MODID,"textures/water_tank_layer1.png");
+    public static final int FLUID_TANK_WIDTH = 23;
+    public static final int FLUID_TANK_HEIGHT = 67;
+
 
     private final String UNSORTABLE_SLOTS = "UnsortableSlots";
 
