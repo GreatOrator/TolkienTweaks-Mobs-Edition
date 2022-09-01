@@ -97,11 +97,11 @@ public class ItemTTMBackpack extends BlockItem {
 
                         if(itemstack.getTag() != null && world.getBlockEntity(blockpos) instanceof TTMBackpackTile)
                         {
-                            ((TTMBackpackTile)world.getBlockEntity(blockpos)).loadAllData(itemstack.getTag());
+//                            ((TTMBackpackTile)world.getBlockEntity(blockpos)).loadAllData(itemstack.getTag());
 
                             if(itemstack.hasCustomHoverName())
                             {
-                                ((TTMBackpackTile) world.getBlockEntity(blockpos)).setCustomName(itemstack.getDisplayName());
+//                                ((TTMBackpackTile) world.getBlockEntity(blockpos)).setCustomName(itemstack.getDisplayName());
                             }
                         }
 
