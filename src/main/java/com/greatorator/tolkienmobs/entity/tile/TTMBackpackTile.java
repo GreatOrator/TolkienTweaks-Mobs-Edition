@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.entity.tile;
 
+import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.gui.container.ContainerTTMBackpack;
@@ -31,6 +32,7 @@ import javax.annotation.Nullable;
 public class TTMBackpackTile extends TileEntity implements INamedContainerProvider, ITickableTileEntity {
     public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
     private final PlayerEntity player = null;
+    public TileItemStackHandler craftingItems = new TileItemStackHandler(9);
     public static final int INV_SLOTS_COUNT = 54;
     public static final int CRAFT_SLOTS_COUNT = 9;
     public static final int CRAFT_OUTPUT_SLOTS_COUNT = 1;

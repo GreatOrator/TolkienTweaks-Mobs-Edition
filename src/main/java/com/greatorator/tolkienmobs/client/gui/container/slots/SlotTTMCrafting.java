@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.client.gui.container.slots;
 
-import com.greatorator.tolkienmobs.client.gui.container.ContainerTTMBackpack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.IInventory;
@@ -11,13 +10,13 @@ import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.ForgeHooks;
 
-public class SlotTTMCraftingOutput extends Slot {
+public class SlotTTMCrafting extends Slot {
     private final CraftingInventory craftSlots;
     private final PlayerEntity player;
     private int removeCount;
 
-    public SlotTTMCraftingOutput(PlayerEntity player, CraftingInventory input, IInventory inventory, int index, int x, int y) {
-        super(inventory, ContainerTTMBackpack.craftOutputSlot(), x, y);
+    public SlotTTMCrafting(PlayerEntity player, CraftingInventory input, IInventory inventory, int index, int x, int y) {
+        super(inventory, index, x, y);
         this.player = player;
         this.craftSlots = input;
     }
