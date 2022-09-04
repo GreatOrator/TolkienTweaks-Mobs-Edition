@@ -11,7 +11,9 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.potion.Potions;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.IItemProvider;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.common.brewing.IBrewingRecipe;
 
@@ -29,7 +31,6 @@ public class RecipeGenerator extends RecipeProvider {
 
     @Override
     protected void buildShapelessRecipes(Consumer<IFinishedRecipe> consumer) {
-
         //Left in a couple of my builders so you can see how the recipe builders work
         components(consumer);
         specialty(consumer);
@@ -141,11 +142,25 @@ public class RecipeGenerator extends RecipeProvider {
         upgradeRecipe(TTMContent.ITEM_BACKPACK_UPGRADE_CRAFTING.get(), TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get(), Blocks.CRAFTING_TABLE, consumer);
         upgradeRecipe(TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get(), TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get(), Blocks.WHITE_WOOL, consumer);
         upgradeRecipe(TTMContent.ITEM_BACKPACK_UPGRADE_CAMPFIRE.get(), TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get(), Blocks.CAMPFIRE, consumer);
-        upgradeRecipe2(TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get(), TTMContent.SLEEPING_BAG_RED.get(), consumer);
+        upgradeRecipe2(TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get(), consumer);
 
         // Sleeping Bags
         sleepingRecipe(TTMContent.SLEEPING_BAG_RED_ITEM.get(), Blocks.RED_CARPET, Blocks.WHITE_CARPET, consumer);
         sleepingRecipe(TTMContent.SLEEPING_BAG_BLUE_ITEM.get(), Blocks.BLUE_CARPET, Blocks.WHITE_CARPET, consumer);
+        sleepingRecipe(TTMContent.SLEEPING_BAG_BLACK_ITEM.get(), Blocks.BLACK_CARPET, Blocks.WHITE_CARPET, consumer);
+        sleepingRecipe(TTMContent.SLEEPING_BAG_BROWN_ITEM.get(), Blocks.BROWN_CARPET, Blocks.WHITE_CARPET, consumer);
+        sleepingRecipe(TTMContent.SLEEPING_BAG_CYAN_ITEM.get(), Blocks.CYAN_CARPET, Blocks.WHITE_CARPET, consumer);
+        sleepingRecipe(TTMContent.SLEEPING_BAG_GRAY_ITEM.get(), Blocks.GRAY_CARPET, Blocks.WHITE_CARPET, consumer);
+        sleepingRecipe(TTMContent.SLEEPING_BAG_GREEN_ITEM.get(), Blocks.GREEN_CARPET, Blocks.WHITE_CARPET, consumer);
+        sleepingRecipe(TTMContent.SLEEPING_BAG_LIGHT_BLUE_ITEM.get(), Blocks.LIGHT_BLUE_CARPET, Blocks.WHITE_CARPET, consumer);
+        sleepingRecipe(TTMContent.SLEEPING_BAG_LIGHT_GRAY_ITEM.get(), Blocks.LIGHT_GRAY_CARPET, Blocks.WHITE_CARPET, consumer);
+        sleepingRecipe(TTMContent.SLEEPING_BAG_LIME_ITEM.get(), Blocks.LIME_CARPET, Blocks.WHITE_CARPET, consumer);
+        sleepingRecipe(TTMContent.SLEEPING_BAG_MAGENTA_ITEM.get(), Blocks.MAGENTA_CARPET, Blocks.WHITE_CARPET, consumer);
+        sleepingRecipe(TTMContent.SLEEPING_BAG_ORANGE_ITEM.get(), Blocks.ORANGE_CARPET, Blocks.WHITE_CARPET, consumer);
+        sleepingRecipe(TTMContent.SLEEPING_BAG_PINK_ITEM.get(), Blocks.PINK_CARPET, Blocks.WHITE_CARPET, consumer);
+        sleepingRecipe(TTMContent.SLEEPING_BAG_PURPLE_ITEM.get(), Blocks.PURPLE_CARPET, Blocks.WHITE_CARPET, consumer);
+        sleepingRecipe(TTMContent.SLEEPING_BAG_WHITE_ITEM.get(), Blocks.WHITE_CARPET, Blocks.WHITE_CARPET, consumer);
+        sleepingRecipe(TTMContent.SLEEPING_BAG_YELLOW_ITEM.get(), Blocks.YELLOW_CARPET, Blocks.WHITE_CARPET, consumer);
 
         // Shapeless Recipes
         unstorageRecipe(TTMContent.INGOT_MITHRIL.get(), TTMContent.BLOCK_MITHRIL.get(), consumer);
@@ -361,14 +376,14 @@ public class RecipeGenerator extends RecipeProvider {
                 .save(consumer, "tolkienmobs:upgrade_" + output.asItem().getRegistryName().getPath());
     }
 
-    public static void upgradeRecipe2(IItemProvider output, IItemProvider input1, Consumer<IFinishedRecipe> consumer) {
+    public static void upgradeRecipe2(IItemProvider output, Consumer<IFinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(output, 1)
                 .pattern("#  ")
                 .pattern("-  ")
                 .pattern("   ")
-                .define('-', Ingredient.of(input1))
+                .define('-', ItemTags.createOptional(new ResourceLocation("forge", "sleeping_bags")))
                 .define('#', TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get())
-                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
+                .unlockedBy("has_" + TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get().asItem().getRegistryName().getPath(), has(TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get()))
                 .save(consumer, "tolkienmobs:upgrade2_" + output.asItem().getRegistryName().getPath());
     }
 

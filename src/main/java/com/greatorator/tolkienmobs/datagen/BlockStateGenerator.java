@@ -339,11 +339,11 @@ public class BlockStateGenerator extends BlockStateProvider {
                 .face(Direction.DOWN).uvs(4, 0, 8, 4).texture("#sleeping_bag").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
                 .end());
 
-        List<String> sleepingBags = Arrays.asList("red", "blue");
+        List<String> sleepingBags = Arrays.asList("black", "blue", "brown", "cyan", "gray", "green", "light_blue", "light_gray", "lime", "magenta", "orange", "pink", "purple", "red", "white", "yellow");
         for (String color : sleepingBags) {
             sleepingBag(color, modLoc("block/sleeping_bag_"+color+"_head"), modLoc("block/sleeping_bag_"+color+"_foot"));
-            new ConfiguredModel(models().withExistingParent("block/sleeping_bag_"+color+"_head", modLoc("block/sleeping_bag_head")).texture("sleeping_bag", modLoc("block/sleeping_bag_"+color)).texture("particle", modLoc("block/sleeping_bag_"+color)));
-            new ConfiguredModel(models().withExistingParent("block/sleeping_bag_"+color+"_foot", modLoc("block/sleeping_bag_foot")).texture("sleeping_bag", modLoc("block/sleeping_bag_"+color)).texture("particle", modLoc("block/sleeping_bag_"+color)));
+            new ConfiguredModel(models().withExistingParent("block/sleeping_bag_"+color+"_head", modLoc("block/sleeping_bag_head")).texture("sleeping_bag", modLoc("block/sleepingbag/sleeping_bag_"+color)).texture("particle", modLoc("block/sleepingbag/sleeping_bag_"+color)));
+            new ConfiguredModel(models().withExistingParent("block/sleeping_bag_"+color+"_foot", modLoc("block/sleeping_bag_foot")).texture("sleeping_bag", modLoc("block/sleepingbag/sleeping_bag_"+color)).texture("particle", modLoc("block/sleepingbag/sleeping_bag_"+color)));
         }
     }
 

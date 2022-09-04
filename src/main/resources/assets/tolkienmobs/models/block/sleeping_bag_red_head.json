@@ -1,7 +1,7 @@
 {
-  "parent": "explorercraft:block/sleeping_bag/sleeping_bag_head",
+  "parent": "tolkienmobs:block/sleepingbag/sleeping_bag_head",
   "textures": {
-    "sleeping_bag": "explorercraft:block/sleeping_bag/sleeping_bag_red",
-    "particle": "explorercraft:block/sleeping_bag/sleeping_bag_red"
+    "sleeping_bag": "tolkienmobs:block/sleepingbag/sleeping_bag_red",
+    "particle": "tolkienmobs:block/sleepingbag/sleeping_bag_red"
   }
 }

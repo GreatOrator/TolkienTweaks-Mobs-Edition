@@ -52,6 +52,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
         tag(TTMTags.blocks.FLOWERS).add(TTMContent.FLOWER_ALFIRIN.get(), TTMContent.FLOWER_ATHELAS.get(), TTMContent.FLOWER_MIRKWOOD.get(), TTMContent.FLOWER_NIPHREDIL.get(), TTMContent.FLOWER_SIMBELMYNE.get(), TTMContent.FLOWER_LILLYOFTHEVALLEY.get(), TTMContent.FLOWER_SWAMPMILKWEED.get());
         tag(BlockTags.FLOWERS).addTag(TTMTags.blocks.FLOWERS);
         tag(TTMTags.blocks.DECAY_GROW_BLOCK).add(Blocks.COBBLESTONE).add(Blocks.STONE).add(Blocks.MYCELIUM).add(Blocks.PODZOL).add(Blocks.CRIMSON_NYLIUM).add(Blocks.WARPED_NYLIUM);
+        tag(TTMTags.blocks.SLEEPING_BAGS).add(TTMContent.SLEEPING_BAG_RED.get(), TTMContent.SLEEPING_BAG_BLUE.get(), TTMContent.SLEEPING_BAG_BLACK.get(), TTMContent.SLEEPING_BAG_BROWN.get(), TTMContent.SLEEPING_BAG_CYAN.get(), TTMContent.SLEEPING_BAG_GRAY.get(), TTMContent.SLEEPING_BAG_GREEN.get(), TTMContent.SLEEPING_BAG_LIGHT_BLUE.get(), TTMContent.SLEEPING_BAG_LIGHT_GRAY.get(), TTMContent.SLEEPING_BAG_LIME.get(), TTMContent.SLEEPING_BAG_MAGENTA.get(), TTMContent.SLEEPING_BAG_ORANGE.get(), TTMContent.SLEEPING_BAG_PINK.get(), TTMContent.SLEEPING_BAG_PURPLE.get(), TTMContent.SLEEPING_BAG_WHITE.get(), TTMContent.SLEEPING_BAG_YELLOW.get());
     }
     @Override
     public String getName() {

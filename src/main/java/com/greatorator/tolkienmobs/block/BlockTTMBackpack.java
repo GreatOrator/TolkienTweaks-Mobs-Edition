@@ -4,7 +4,6 @@ import com.greatorator.tolkienmobs.entity.tile.TTMBackpackTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -20,7 +19,6 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
@@ -60,9 +58,10 @@ public class BlockTTMBackpack extends Block {
    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult trace) {
       if (!world.isClientSide) {
          TileEntity tileEntity = world.getBlockEntity(pos);
+         TTMBackpackTile te = (TTMBackpackTile)world.getBlockEntity(pos);
 
          if (tileEntity instanceof TTMBackpackTile) {
-            NetworkHooks.openGui((ServerPlayerEntity) player, (TTMBackpackTile) tileEntity, pos);
+            te.openGUI(player, te, pos);
          }
          return ActionResultType.CONSUME;
       }

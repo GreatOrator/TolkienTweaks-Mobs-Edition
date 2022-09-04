@@ -36,11 +36,14 @@ public class ItemTTMBackpack extends BlockItem {
             {
                 if(itemstack.getItem() == this && !playerIn.isCrouching())
                 {
+//                    BlockPos pos = new BlockPos(playerIn.getX(), playerIn.getY(), playerIn.getZ());
+//                    TileEntity tileEntity = worldIn.getBlockEntity(pos);
+//                    NetworkHooks.openGui((ServerPlayerEntity) playerIn, (TTMBackpackTile) tileEntity, pos);
 
                 }
             }
         }
-        return ActionResult.pass(itemstack);
+        return ActionResult.success(itemstack);
     }
 
     @OnlyIn(Dist.CLIENT)

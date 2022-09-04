@@ -11,6 +11,7 @@ public class TTMTags {
     public static void init(){
         items.init();
         blocks.init();
+        tagkeys.init();
     }
 
     public static class items{
@@ -56,6 +57,7 @@ public class TTMTags {
         public static final Tags.IOptionalNamedTag<Item> INSECTS = tag("insects");
         public static final Tags.IOptionalNamedTag<Item> SPAWNEGG = tag("spawnegg");
         public static final Tags.IOptionalNamedTag<Item> CROP = tag("crops");
+        public static final Tags.IOptionalNamedTag<Item> SLEEPING_BAGS = tag("sleeping_bags");
 
 
         private static Tags.IOptionalNamedTag<Item> tag(String name) {
@@ -87,9 +89,20 @@ public class TTMTags {
         public static final Tags.IOptionalNamedTag<Block> BARS_IRON = tag("bars/iron");
         public static final Tags.IOptionalNamedTag<Block> FLOWERS = tag("flowers");
         public static final Tags.IOptionalNamedTag<Block> DECAY_GROW_BLOCK = tag("decay_grow_block");
+        public static final Tags.IOptionalNamedTag<Block> SLEEPING_BAGS = tag("sleeping_bags");
 
         private static Tags.IOptionalNamedTag<Block> tag(String name) {
             return BlockTags.createOptional(new ResourceLocation("forge", name));
+        }
+    }
+    public static class tagkeys{
+        private static void init(){}
+
+        public static final Tags.IOptionalNamedTag<Item> BLACKLISTED_ITEMS = tag("blacklisted_items");
+        public static final Tags.IOptionalNamedTag<Item> ALLOWED_FLUIDS = tag("allowed_fluids");
+
+        private static Tags.IOptionalNamedTag<Item> tag(String name) {
+            return ItemTags.createOptional(new ResourceLocation("forge", name));
         }
     }
 }

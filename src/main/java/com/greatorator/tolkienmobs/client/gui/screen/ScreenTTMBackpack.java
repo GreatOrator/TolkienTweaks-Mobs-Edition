@@ -13,6 +13,7 @@ import javax.annotation.Nonnull;
 
 public class ScreenTTMBackpack extends ContainerScreen<ContainerTTMBackpack> {
     private static final ResourceLocation BACKPACK_GUI = new ResourceLocation(TolkienMobs.MODID, "textures/gui/backpack/backpack.png");
+    private static final ResourceLocation BACKPACK_SPRITES = new ResourceLocation(TolkienMobs.MODID, "textures/gui/backpack/backpack_sprites.png");
 
     public ScreenTTMBackpack(ContainerTTMBackpack screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);

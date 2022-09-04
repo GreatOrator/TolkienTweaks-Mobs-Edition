@@ -155,8 +155,24 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.BARREL_MORGULIRON.get());
         dropSelf(TTMContent.BARREL_MITHRIL.get());
         dropSelf(TTMContent.BACKPACK.get());
+
+        // Blocks - Sleeping Bags
         add(TTMContent.SLEEPING_BAG_RED.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
         add(TTMContent.SLEEPING_BAG_BLUE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TTMContent.SLEEPING_BAG_BLACK.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TTMContent.SLEEPING_BAG_BROWN.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TTMContent.SLEEPING_BAG_CYAN.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TTMContent.SLEEPING_BAG_GRAY.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TTMContent.SLEEPING_BAG_GREEN.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TTMContent.SLEEPING_BAG_LIGHT_BLUE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TTMContent.SLEEPING_BAG_LIGHT_GRAY.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TTMContent.SLEEPING_BAG_LIME.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TTMContent.SLEEPING_BAG_MAGENTA.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TTMContent.SLEEPING_BAG_ORANGE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TTMContent.SLEEPING_BAG_PINK.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TTMContent.SLEEPING_BAG_PURPLE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TTMContent.SLEEPING_BAG_WHITE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TTMContent.SLEEPING_BAG_YELLOW.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
 
         //Fortune
         add(TTMContent.ORE_MITHRIL.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.DUST_MITHRIL.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));

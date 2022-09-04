@@ -132,7 +132,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         // Sleeping Bags
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
 
-        List<String> sleepingBags = Arrays.asList("blue", "red");
+        List<String> sleepingBags = Arrays.asList("black", "blue", "brown", "cyan", "gray", "green", "light_blue", "light_gray", "lime", "magenta", "orange", "pink", "purple", "red", "white", "yellow");
         for (String color : sleepingBags) {
             simpleMod(itemGenerated, "item/sleeping_bag_"+color);
         }

@@ -6,12 +6,12 @@
     ]
   },
   "criteria": {
-    "has_sleeping_bag_red": {
+    "has_upgrade_item_backpack_upgrade_base": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "tolkienmobs:sleeping_bag_red"
+            "item": "tolkienmobs:upgrade_item_backpack_upgrade_base"
           }
         ]
       }
@@ -25,7 +25,7 @@
   },
   "requirements": [
     [
-      "has_sleeping_bag_red",
+      "has_upgrade_item_backpack_upgrade_base",
       "has_the_recipe"
     ]
   ]

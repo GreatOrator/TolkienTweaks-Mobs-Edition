@@ -7,7 +7,7 @@
   ],
   "key": {
     "-": {
-      "item": "tolkienmobs:sleeping_bag_red"
+      "tag": "forge:sleeping_bags"
     },
     "#": {
       "item": "tolkienmobs:upgrade_item_backpack_upgrade_base"

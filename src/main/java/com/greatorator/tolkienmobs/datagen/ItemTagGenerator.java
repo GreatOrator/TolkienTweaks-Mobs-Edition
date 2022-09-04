@@ -6,6 +6,7 @@ import com.greatorator.tolkienmobs.integration.curios.TTMCurios;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
+import net.minecraft.item.Items;
 import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -76,6 +77,9 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(TTMTags.items.ARROW).add(TTMContent.GALADHRIM_ARROW.get());
         tag(ItemTags.ARROWS).addTag(TTMTags.items.ARROW);
         tag(TTMTags.items.SPAWNEGG).add(EntityGenerator.EGG_TTMELVES.get(), EntityGenerator.EGG_TTMDWARF.get(), EntityGenerator.EGG_TTMHUMAN.get(), EntityGenerator.EGG_TTMTHRUSH.get(), EntityGenerator.EGG_TTMFROG.get(), EntityGenerator.EGG_TTMSWARM.get(), EntityGenerator.EGG_TTMSQUIRREL.get(), EntityGenerator.EGG_TTMRAT.get(), EntityGenerator.EGG_TTMAUROCH.get(), EntityGenerator.EGG_TTMMUMAKIL.get(), EntityGenerator.EGG_TTMGOAT.get(), EntityGenerator.EGG_TTMGOBLIN.get(), EntityGenerator.EGG_TTMGOBLINKING.get(), EntityGenerator.EGG_TTMBARROW.get(), EntityGenerator.EGG_TTMBRIGAND.get(), EntityGenerator.EGG_TTMDEEPCLAW.get(), EntityGenerator.EGG_TTMTREEENT.get(), EntityGenerator.EGG_TTMDUERGAR.get(), EntityGenerator.EGG_TTMFELLSPIRIT.get(), EntityGenerator.EGG_TTMSWAMPHAG.get(), EntityGenerator.EGG_TTMMIRKWOODSPIDER.get(), EntityGenerator.EGG_TTMHARADRIM.get(), EntityGenerator.EGG_TTMTROLL.get(), EntityGenerator.EGG_TTMWARG.get(), EntityGenerator.EGG_TTMMORDORORC.get(), EntityGenerator.EGG_TTMHURON.get(), EntityGenerator.EGG_TTMOATHBREAKER.get(), EntityGenerator.EGG_TTMROMIEWALKER.get(), EntityGenerator.EGG_TTMURUKHAI.get(), EntityGenerator.EGG_TTMELEMENTALGOLEM.get(), EntityGenerator.EGG_TTMMINOTAUR.get(), EntityGenerator.EGG_TTMMIMICCHEST.get(), EntityGenerator.EGG_TTMCREBAIN.get(), EntityGenerator.EGG_TTMSHADOWFAX.get(), EntityGenerator.EGG_TTMGOLLUM.get(), EntityGenerator.EGG_TTMNAZGUL.get(), EntityGenerator.EGG_TTMNAZGULSTEED.get(), EntityGenerator.EGG_TTMMITHRILGOLEM.get(), EntityGenerator.EGG_TTMMORGULIRONGOLEM.get(), EntityGenerator.EGG_TTMDESERTDWELLER.get(), EntityGenerator.EGG_TTMWITCHKING.get(), EntityGenerator.EGG_TTMSHELOB.get(), EntityGenerator.EGG_TTMBALROG.get(), EntityGenerator.EGG_TTMWATCHER.get());
+        tag(TTMTags.tagkeys.BLACKLISTED_ITEMS).add(TTMContent.ITEM_FANCYSHIELD.get());
+        tag(TTMTags.tagkeys.ALLOWED_FLUIDS).add(Items.WATER_BUCKET);
+        tag(TTMTags.items.SLEEPING_BAGS).add(TTMContent.SLEEPING_BAG_RED_ITEM.get(), TTMContent.SLEEPING_BAG_BLUE_ITEM.get(), TTMContent.SLEEPING_BAG_BLACK_ITEM.get(), TTMContent.SLEEPING_BAG_BROWN_ITEM.get(), TTMContent.SLEEPING_BAG_CYAN_ITEM.get(), TTMContent.SLEEPING_BAG_GRAY_ITEM.get(), TTMContent.SLEEPING_BAG_GREEN_ITEM.get(), TTMContent.SLEEPING_BAG_LIGHT_BLUE_ITEM.get(), TTMContent.SLEEPING_BAG_LIGHT_GRAY_ITEM.get(), TTMContent.SLEEPING_BAG_LIME_ITEM.get(), TTMContent.SLEEPING_BAG_MAGENTA_ITEM.get(), TTMContent.SLEEPING_BAG_ORANGE_ITEM.get(), TTMContent.SLEEPING_BAG_PINK_ITEM.get(), TTMContent.SLEEPING_BAG_PURPLE_ITEM.get(), TTMContent.SLEEPING_BAG_WHITE_ITEM.get(), TTMContent.SLEEPING_BAG_YELLOW_ITEM.get());
 
         if (ModList.get().isLoaded("curios")) {
             TTMCurios.generateTags(this::tag);

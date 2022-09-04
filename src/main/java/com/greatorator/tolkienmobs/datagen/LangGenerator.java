@@ -144,9 +144,23 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.PIGGYBANK.get(), "Piggy Bank");
         add(TTMContent.BARREL_MITHRIL.get(), "Mithril Barrel");
         add(TTMContent.BARREL_MORGULIRON.get(), "Morgul Iron Barrel");
-        add(TTMContent.BACKPACK.get(), "Traveller's Backpack");
-        add(TTMContent.SLEEPING_BAG_RED.get(), "Red Sleeping Bag");
+        add(TTMContent.BACKPACK.get(), "Adventurer's Backpack");
+        add(TTMContent.SLEEPING_BAG_BLACK.get(), "Black Sleeping Bag");
         add(TTMContent.SLEEPING_BAG_BLUE.get(), "Blue Sleeping Bag");
+        add(TTMContent.SLEEPING_BAG_BROWN.get(), "Brown Sleeping Bag");
+        add(TTMContent.SLEEPING_BAG_CYAN.get(), "Cyan Sleeping Bag");
+        add(TTMContent.SLEEPING_BAG_GRAY.get(), "Gray Sleeping Bag");
+        add(TTMContent.SLEEPING_BAG_GREEN.get(), "Green Sleeping Bag");
+        add(TTMContent.SLEEPING_BAG_LIGHT_BLUE.get(), "Light Blue Sleeping Bag");
+        add(TTMContent.SLEEPING_BAG_LIGHT_GRAY.get(), "Light Gray Sleeping Bag");
+        add(TTMContent.SLEEPING_BAG_LIME.get(), "Lime Sleeping Bag");
+        add(TTMContent.SLEEPING_BAG_MAGENTA.get(), "Magenta Sleeping Bag");
+        add(TTMContent.SLEEPING_BAG_ORANGE.get(), "Orange Sleeping Bag");
+        add(TTMContent.SLEEPING_BAG_PINK.get(), "Pink Sleeping Bag");
+        add(TTMContent.SLEEPING_BAG_PURPLE.get(), "Purple Sleeping Bag");
+        add(TTMContent.SLEEPING_BAG_RED.get(), "Red Sleeping Bag");
+        add(TTMContent.SLEEPING_BAG_WHITE.get(), "White Sleeping Bag");
+        add(TTMContent.SLEEPING_BAG_YELLOW.get(), "Yellow Sleeping Bag");
     }
 
     private void items() {

@@ -1,29 +1,36 @@
 package com.greatorator.tolkienmobs.entity.tile;
 
 import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.gui.container.ContainerTTMBackpack;
 import com.greatorator.tolkienmobs.entity.tile.tiledata.DataTTMInventoryStateData;
 import com.greatorator.tolkienmobs.entity.tile.tilezone.ZoneTTMInventoryContents;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.IItemHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 
 public class TTMBackpackTile extends TileEntity implements INamedContainerProvider, ITickableTileEntity {
+    public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
+    private final PlayerEntity player = null;
     public static final int INV_SLOTS_COUNT = 54;
     public static final int CRAFT_SLOTS_COUNT = 9;
     public static final int CRAFT_OUTPUT_SLOTS_COUNT = 1;
@@ -96,11 +103,12 @@ public class TTMBackpackTile extends TileEntity implements INamedContainerProvid
     }
 
     static public boolean isItemValidForInputSlot(ItemStack itemStack) {
-        Item item = itemStack.getItem();
-        if (item == Items.WATER_BUCKET) {
-            return true;
-        }
-        return false;
+        ResourceLocation allowedItems = new ResourceLocation(TolkienMobs.MODID, "allowed_fluids");
+        LOGGER.info("Valid items are:" + allowedItems);
+//        if (!itemStack.getItem().is(ItemTags.getAllTags().getTag(allowedItems))) {
+            return false;
+//        }
+//        return itemStack.getItem().is(ItemTags.getAllTags().getTag(allowedItems));
     }
 
     static public boolean isItemValidForOutputSlot(ItemStack itemStack) {
@@ -194,6 +202,14 @@ public class TTMBackpackTile extends TileEntity implements INamedContainerProvid
     public Container createMenu(int windowID, PlayerInventory playerInventory, PlayerEntity playerEntity) {
         return ContainerTTMBackpack.createContainerServerSide(windowID, playerInventory,
                 invZoneContents, craftZoneContents, craftOutputZoneContents, fluidZoneContents, fluidInputZoneContents, fluidOutputZoneContents, invStateData);
+    }
+
+    public void openGUI(PlayerEntity player, INamedContainerProvider containerSupplier, BlockPos pos)
+    {
+        if(!player.level.isClientSide)
+        {
+            NetworkHooks.openGui((ServerPlayerEntity)player, containerSupplier, pos);
+        }
     }
 
     public IItemHandler getInventory() {
