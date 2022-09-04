@@ -36,10 +36,10 @@ public class TTMBackpackTile extends TileEntity implements INamedContainerProvid
     public static final int INV_SLOTS_COUNT = 54;
     public static final int CRAFT_SLOTS_COUNT = 9;
     public static final int CRAFT_OUTPUT_SLOTS_COUNT = 1;
-    public static final int WATER_INPUT_SLOTS_COUNT = 1;
-    public static final int WATER_OUTPUT_SLOTS_COUNT = 1;
-    public static final int WATER_TANK_SLOTS_COUNT = 1;
-    public static final int TOTAL_SLOTS_COUNT = INV_SLOTS_COUNT + CRAFT_SLOTS_COUNT + CRAFT_OUTPUT_SLOTS_COUNT + WATER_TANK_SLOTS_COUNT + WATER_INPUT_SLOTS_COUNT + WATER_OUTPUT_SLOTS_COUNT;
+    public static final int TANK_INPUT_SLOTS_COUNT = 1;
+    public static final int TANK_OUTPUT_SLOTS_COUNT = 1;
+    public static final int TANK_SLOTS_COUNT = 1;
+    public static final int TOTAL_SLOTS_COUNT = INV_SLOTS_COUNT + CRAFT_SLOTS_COUNT + CRAFT_OUTPUT_SLOTS_COUNT + TANK_SLOTS_COUNT + TANK_INPUT_SLOTS_COUNT + TANK_OUTPUT_SLOTS_COUNT;
 
     private final ZoneTTMInventoryContents invZoneContents;
 
@@ -60,9 +60,9 @@ public class TTMBackpackTile extends TileEntity implements INamedContainerProvid
         craftZoneContents = ZoneTTMInventoryContents.createForTileEntity(CRAFT_SLOTS_COUNT, this::canPlayerAccessInventory, this::setChanged);
         craftOutputZoneContents = ZoneTTMInventoryContents.createForTileEntity(CRAFT_OUTPUT_SLOTS_COUNT, this::canPlayerAccessInventory, this::setChanged);
 
-        fluidZoneContents = ZoneTTMInventoryContents.createForTileEntity(WATER_TANK_SLOTS_COUNT, this::canPlayerAccessInventory, this::setChanged);
-        fluidInputZoneContents = ZoneTTMInventoryContents.createForTileEntity(WATER_INPUT_SLOTS_COUNT, this::canPlayerAccessInventory, this::setChanged);
-        fluidOutputZoneContents = ZoneTTMInventoryContents.createForTileEntity(WATER_OUTPUT_SLOTS_COUNT, this::canPlayerAccessInventory, this::setChanged);
+        fluidZoneContents = ZoneTTMInventoryContents.createForTileEntity(TANK_SLOTS_COUNT, this::canPlayerAccessInventory, this::setChanged);
+        fluidInputZoneContents = ZoneTTMInventoryContents.createForTileEntity(TANK_INPUT_SLOTS_COUNT, this::canPlayerAccessInventory, this::setChanged);
+        fluidOutputZoneContents = ZoneTTMInventoryContents.createForTileEntity(TANK_OUTPUT_SLOTS_COUNT, this::canPlayerAccessInventory, this::setChanged);
     }
 
     public boolean canPlayerAccessInventory(PlayerEntity player) {
@@ -120,9 +120,9 @@ public class TTMBackpackTile extends TileEntity implements INamedContainerProvid
     private final String INV_SLOTS_NBT = "invSlots";
     private final String CRAFT_SLOTS_NBT = "craftSlots";
     private final String CRAFT_OUTPUT_SLOTS_NBT = "craftOutputSlots";
-    private final String WATER_TANK_SLOTS_NBT = "waterSlots";
-    private final String WATER_INPUT_SLOTS_NBT = "waterInputSlots";
-    private final String WATER_OUTPUT_SLOTS_NBT = "waterOutputSlots";
+    private final String TANK_SLOTS_NBT = "tankSlots";
+    private final String TANK_INPUT_SLOTS_NBT = "tankInputSlots";
+    private final String TANK_OUTPUT_SLOTS_NBT = "tankOutputSlots";
     private final String SLEEPINGBAG_NBT = "sleepingBag";
     private final String CAMPFIRE_NBT = "campFire";
 
@@ -135,9 +135,9 @@ public class TTMBackpackTile extends TileEntity implements INamedContainerProvid
         parentNBTTagCompound.put(INV_SLOTS_NBT, invZoneContents.serializeNBT());
         parentNBTTagCompound.put(CRAFT_SLOTS_NBT, craftZoneContents.serializeNBT());
         parentNBTTagCompound.put(CRAFT_OUTPUT_SLOTS_NBT, craftOutputZoneContents.serializeNBT());
-        parentNBTTagCompound.put(WATER_TANK_SLOTS_NBT, fluidZoneContents.serializeNBT());
-        parentNBTTagCompound.put(WATER_INPUT_SLOTS_NBT, fluidInputZoneContents.serializeNBT());
-        parentNBTTagCompound.put(WATER_OUTPUT_SLOTS_NBT, fluidOutputZoneContents.serializeNBT());
+        parentNBTTagCompound.put(TANK_SLOTS_NBT, fluidZoneContents.serializeNBT());
+        parentNBTTagCompound.put(TANK_INPUT_SLOTS_NBT, fluidInputZoneContents.serializeNBT());
+        parentNBTTagCompound.put(TANK_OUTPUT_SLOTS_NBT, fluidOutputZoneContents.serializeNBT());
         return parentNBTTagCompound;
     }
 
@@ -156,18 +156,18 @@ public class TTMBackpackTile extends TileEntity implements INamedContainerProvid
         inventoryNBT = nbtTagCompound.getCompound(CRAFT_OUTPUT_SLOTS_NBT);
         craftOutputZoneContents.deserializeNBT(inventoryNBT);
 
-        CompoundNBT fluidNBT = nbtTagCompound.getCompound(WATER_TANK_SLOTS_NBT);
+        CompoundNBT fluidNBT = nbtTagCompound.getCompound(TANK_SLOTS_NBT);
         fluidZoneContents.deserializeNBT(fluidNBT);
-        inventoryNBT = nbtTagCompound.getCompound(WATER_INPUT_SLOTS_NBT);
+        inventoryNBT = nbtTagCompound.getCompound(TANK_INPUT_SLOTS_NBT);
         fluidInputZoneContents.deserializeNBT(inventoryNBT);
-        inventoryNBT = nbtTagCompound.getCompound(WATER_OUTPUT_SLOTS_NBT);
+        inventoryNBT = nbtTagCompound.getCompound(TANK_OUTPUT_SLOTS_NBT);
         fluidOutputZoneContents.deserializeNBT(inventoryNBT);
 
 
         if (invZoneContents.getContainerSize() != INV_SLOTS_COUNT
                 || craftZoneContents.getContainerSize() != CRAFT_SLOTS_COUNT
-                || fluidZoneContents.getContainerSize() != WATER_TANK_SLOTS_COUNT
-                || fluidZoneContents.getContainerSize() != WATER_INPUT_SLOTS_COUNT
+                || fluidZoneContents.getContainerSize() != TANK_SLOTS_COUNT
+                || fluidZoneContents.getContainerSize() != TANK_INPUT_SLOTS_COUNT
         )
             throw new IllegalArgumentException("Corrupted NBT: Number of inventory slots did not match expected.");
     }

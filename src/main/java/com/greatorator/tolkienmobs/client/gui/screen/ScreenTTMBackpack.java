@@ -45,6 +45,4 @@ public class ScreenTTMBackpack extends ContainerScreen<ContainerTTMBackpack> {
         super.render(matrixStack,p_render_1_, p_render_2_, p_render_3_);
         this.renderTooltip(matrixStack, p_render_1_, p_render_2_);
     }
-
-
 }

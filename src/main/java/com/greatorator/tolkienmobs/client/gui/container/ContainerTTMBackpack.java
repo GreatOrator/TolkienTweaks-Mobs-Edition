@@ -2,11 +2,9 @@ package com.greatorator.tolkienmobs.client.gui.container;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.client.gui.container.slots.SlotTTMCrafting;
-import com.greatorator.tolkienmobs.client.gui.container.slots.SlotTTMFluid;
 import com.greatorator.tolkienmobs.entity.tile.TTMBackpackTile;
 import com.greatorator.tolkienmobs.entity.tile.tiledata.DataTTMInventoryStateData;
 import com.greatorator.tolkienmobs.entity.tile.tilezone.ZoneTTMInventoryContents;
-import com.greatorator.tolkienmobs.handler.interfaces.ITTMBackpackInventory;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,6 +26,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCraftingInventory> {
@@ -38,7 +37,7 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
     public static final ResourceLocation EMPTY_ARMOR_SLOT_BOOTS = new ResourceLocation("item/empty_armor_slot_boots");
     private static final ResourceLocation[] TEXTURE_EMPTY_SLOTS = new ResourceLocation[]{EMPTY_ARMOR_SLOT_BOOTS, EMPTY_ARMOR_SLOT_LEGGINGS, EMPTY_ARMOR_SLOT_CHESTPLATE, EMPTY_ARMOR_SLOT_HELMET};
     private final PlayerEntity owner;
-    private WrapperTTMCraftingInventory craftSlots;
+    private final WrapperTTMCraftingInventory craftSlots;
     public static Slot craftResultSlot;
     public List<Slot> craftInputSlots = new ArrayList<>();
     CraftResultInventory craftResult = new CraftResultInventory();
@@ -52,9 +51,9 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
         ZoneTTMInventoryContents invZoneContents = ZoneTTMInventoryContents.createForClientSideContainer(INV_SLOTS_COUNT);
         ZoneTTMInventoryContents craftZoneContents = ZoneTTMInventoryContents.createForClientSideContainer(CRAFT_SLOTS_COUNT);
         ZoneTTMInventoryContents craftOutputZoneContents = ZoneTTMInventoryContents.createForClientSideContainer(CRAFT_OUTPUT_SLOTS_COUNT);
-        ZoneTTMInventoryContents fluidZoneContents = ZoneTTMInventoryContents.createForClientSideContainer(WATER_TANK_SLOTS_COUNT);
-        ZoneTTMInventoryContents fluidInputZoneContents = ZoneTTMInventoryContents.createForClientSideContainer(WATER_INPUT_SLOTS_COUNT);
-        ZoneTTMInventoryContents fluidOutputZoneContents = ZoneTTMInventoryContents.createForClientSideContainer(WATER_OUTPUT_SLOTS_COUNT);
+        ZoneTTMInventoryContents fluidZoneContents = ZoneTTMInventoryContents.createForClientSideContainer(TANK_SLOTS_COUNT);
+        ZoneTTMInventoryContents fluidInputZoneContents = ZoneTTMInventoryContents.createForClientSideContainer(TANK_INPUT_SLOTS_COUNT);
+        ZoneTTMInventoryContents fluidOutputZoneContents = ZoneTTMInventoryContents.createForClientSideContainer(TANK_OUTPUT_SLOTS_COUNT);
         DataTTMInventoryStateData invStateData = new DataTTMInventoryStateData();
 
         return new ContainerTTMBackpack(windowID, playerInventory, invZoneContents, craftZoneContents, craftOutputZoneContents, fluidZoneContents, fluidInputZoneContents, fluidOutputZoneContents, invStateData);
@@ -66,15 +65,13 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
     private static final int COLUMN_COUNT = 9;
     private static final int SHIELD_INVENTORY_SLOT_COUNT = 1;
     private static final int PLAYER_INVENTORY_SLOT_COUNT = COLUMN_COUNT * PLAYER_ROW_COUNT;
-    private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
 
     public static final int INV_SLOTS_COUNT = TTMBackpackTile.INV_SLOTS_COUNT;
     public static final int CRAFT_SLOTS_COUNT = TTMBackpackTile.CRAFT_SLOTS_COUNT;
     public static final int CRAFT_OUTPUT_SLOTS_COUNT = TTMBackpackTile.CRAFT_OUTPUT_SLOTS_COUNT;
-    public static final int WATER_TANK_SLOTS_COUNT = TTMBackpackTile.WATER_OUTPUT_SLOTS_COUNT;
-    public static final int WATER_INPUT_SLOTS_COUNT = TTMBackpackTile.WATER_TANK_SLOTS_COUNT;
-    public static final int WATER_OUTPUT_SLOTS_COUNT = TTMBackpackTile.WATER_INPUT_SLOTS_COUNT;
-    public static final int TOTAL_SLOTS_COUNT = INV_SLOTS_COUNT + CRAFT_SLOTS_COUNT + CRAFT_OUTPUT_SLOTS_COUNT + WATER_TANK_SLOTS_COUNT + WATER_INPUT_SLOTS_COUNT + WATER_OUTPUT_SLOTS_COUNT;
+    public static final int TANK_SLOTS_COUNT = TTMBackpackTile.TANK_SLOTS_COUNT;
+    public static final int TANK_INPUT_SLOTS_COUNT = TTMBackpackTile.TANK_INPUT_SLOTS_COUNT;
+    public static final int TANK_OUTPUT_SLOTS_COUNT = TTMBackpackTile.TANK_OUTPUT_SLOTS_COUNT;
 
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int HOTBAR_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX;
@@ -84,9 +81,9 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
     private static final int FIRST_INV_SLOT_INDEX = PLAYER_INVENTORY_FIRST_SLOT_INDEX + PLAYER_INVENTORY_SLOT_COUNT;
     private static final int FIRST_CRAFT_SLOT_INDEX = FIRST_INV_SLOT_INDEX + INV_SLOTS_COUNT;
     private static final int FIRST_CRAFT_OUTPUT_SLOT_INDEX = FIRST_CRAFT_SLOT_INDEX + CRAFT_SLOTS_COUNT;
-    private static final int FIRST_WATER_SLOT_INDEX = FIRST_CRAFT_OUTPUT_SLOT_INDEX + CRAFT_OUTPUT_SLOTS_COUNT;
-    private static final int FIRST_WATER_INPUT_SLOT_INDEX = FIRST_WATER_SLOT_INDEX + WATER_TANK_SLOTS_COUNT;
-    private static final int FIRST_WATER_OUTPUT_SLOT_INDEX = FIRST_WATER_INPUT_SLOT_INDEX + WATER_INPUT_SLOTS_COUNT;
+    private static final int FIRST_TANK_SLOT_INDEX = FIRST_CRAFT_OUTPUT_SLOT_INDEX + CRAFT_OUTPUT_SLOTS_COUNT;
+    private static final int FIRST_TANK_INPUT_SLOT_INDEX = FIRST_TANK_SLOT_INDEX + TANK_SLOTS_COUNT;
+    private static final int FIRST_TANK_OUTPUT_SLOT_INDEX = FIRST_TANK_INPUT_SLOT_INDEX + TANK_INPUT_SLOTS_COUNT;
 
     public static final int PLAYER_INVENTORY_XPOS = 90;
     public static final int PLAYER_INVENTORY_YPOS = 127;
@@ -124,7 +121,6 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
         this.fluidZoneContents = fluidZoneContents;
         this.fluidInputZoneContents = fluidInputZoneContents;
         this.fluidOutputZoneContents = fluidOutputZoneContents;
-        this.invStateData = invStateData;
         this.owner = invPlayer.player;
 
         addDataSlots(invStateData);
@@ -132,8 +128,6 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
         int row;
         int col;
         int slot = 0;
-
-        this.world = invPlayer.player.level;
 
         // Add the players hotbar to the gui - the [xpos, ypos] location of each item
         for (col = 0; col < HOTBAR_SLOT_COUNT; col++) {
@@ -158,13 +152,15 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
                     return 1;
                 }
 
-                public boolean mayPlace(ItemStack p_75214_1_) {
-                    return p_75214_1_.canEquip(equipmentslottype, ContainerTTMBackpack.this.owner);
+                @SuppressWarnings("NullableProblems")
+                public boolean mayPlace(ItemStack stack) {
+                    return stack.canEquip(equipmentslottype, ContainerTTMBackpack.this.owner);
                 }
 
-                public boolean mayPickup(PlayerEntity p_82869_1_) {
+                @SuppressWarnings("NullableProblems")
+                public boolean mayPickup(PlayerEntity playerIn) {
                     ItemStack itemstack = this.getItem();
-                    return (itemstack.isEmpty() || p_82869_1_.isCreative() || !EnchantmentHelper.hasBindingCurse(itemstack)) && super.mayPickup(p_82869_1_);
+                    return (itemstack.isEmpty() || playerIn.isCreative() || !EnchantmentHelper.hasBindingCurse(itemstack)) && super.mayPickup(playerIn);
                 }
 
                 @OnlyIn(Dist.CLIENT)
@@ -202,28 +198,30 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
         }
 
         // Water Tank
-        this.addSlot(new Slot(fluidZoneContents, WATER_TANK_SLOTS_COUNT - 1, TANK_SLOTS_XPOS, TANK_SLOTS_YPOS));
+        this.addSlot(new Slot(fluidZoneContents, TANK_SLOTS_COUNT - 1, TANK_SLOTS_XPOS, TANK_SLOTS_YPOS));
 
-        // Water Input
-        this.addSlot(new SlotTTMFluid((ITTMBackpackInventory) fluidInputZoneContents, WATER_INPUT_SLOTS_COUNT - 1, TANK_INPUT_SLOTS_XPOS, TANK_INPUT_SLOTS_YPOS));
-
-        // Water Output
-        this.addSlot(new SlotTTMFluid((ITTMBackpackInventory) fluidOutputZoneContents, WATER_OUTPUT_SLOTS_COUNT - 1, TANK_OUTPUT_SLOTS_XPOS, TANK_OUTPUT_SLOTS_YPOS));
+//        // Water Input
+//        this.addSlot(new SlotTTMFluid(fluidInputZoneContents, WATER_INPUT_SLOTS_COUNT - 1, TANK_INPUT_SLOTS_XPOS, TANK_INPUT_SLOTS_YPOS));
+//
+//        // Water Output
+//        this.addSlot(new SlotTTMFluid(fluidOutputZoneContents, WATER_OUTPUT_SLOTS_COUNT - 1, TANK_OUTPUT_SLOTS_XPOS, TANK_OUTPUT_SLOTS_YPOS));
     }
 
+    @SuppressWarnings("NullableProblems")
     @Override
     public boolean stillValid(PlayerEntity player)
     {
         return invZoneContents.stillValid(player) && craftZoneContents.stillValid(player) && craftOutputZoneContents.stillValid(player) && fluidZoneContents.stillValid(player) && fluidInputZoneContents.stillValid(player) && fluidOutputZoneContents.stillValid(player);
     }
 
+    @SuppressWarnings("NullableProblems")
     @Override
     public ItemStack quickMoveStack (PlayerEntity player,int sourceSlotIndex) {
         Slot sourceSlot = this.slots.get(sourceSlotIndex);
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;
         ItemStack sourceItemStack = sourceSlot.getItem();
         ItemStack sourceStackBeforeMerge = sourceItemStack.copy();
-        boolean successfulTransfer = false;
+        boolean successfulTransfer;
 
         SlotZone sourceZone = SlotZone.getZoneFromIndex(sourceSlotIndex);
 
@@ -304,29 +302,16 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
     private final ZoneTTMInventoryContents fluidZoneContents;
     private final ZoneTTMInventoryContents fluidInputZoneContents;
     private final ZoneTTMInventoryContents fluidOutputZoneContents;
-    private final DataTTMInventoryStateData invStateData;
-
-    private final World world;
 
     public static class SlotInput extends Slot {
         public SlotInput(IInventory inventoryIn, int index, int xPosition, int yPosition) {
             super(inventoryIn, index, xPosition, yPosition);
         }
 
+        @SuppressWarnings("NullableProblems")
         @Override
         public boolean mayPlace(ItemStack stack) {
             return TTMBackpackTile.isItemValidForInputSlot(stack);
-        }
-    }
-
-    public static class SlotOutput extends Slot {
-        public SlotOutput(IInventory inventoryIn, int index, int xPosition, int yPosition) {
-            super(inventoryIn, index, xPosition, yPosition);
-        }
-
-        @Override
-        public boolean mayPlace(ItemStack stack) {
-            return TTMBackpackTile.isItemValidForOutputSlot(stack);
         }
     }
 
@@ -338,9 +323,9 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
     SHIELD_ZONE(SHIELD_FIRST_SLOT_INDEX, 1),
     CRAFT_ZONE(FIRST_CRAFT_SLOT_INDEX, CRAFT_SLOTS_COUNT),
     CRAFT_OUTPUT_ZONE(FIRST_CRAFT_OUTPUT_SLOT_INDEX, CRAFT_OUTPUT_SLOTS_COUNT),
-    FLUID_ZONE(FIRST_WATER_SLOT_INDEX, WATER_TANK_SLOTS_COUNT),
-    FLUID_INPUT_ZONE(FIRST_WATER_INPUT_SLOT_INDEX, WATER_INPUT_SLOTS_COUNT),
-    FLUID_OUTPUT_ZONE(FIRST_WATER_OUTPUT_SLOT_INDEX, WATER_OUTPUT_SLOTS_COUNT);
+    FLUID_ZONE(FIRST_TANK_SLOT_INDEX, TANK_SLOTS_COUNT),
+    FLUID_INPUT_ZONE(FIRST_TANK_INPUT_SLOT_INDEX, TANK_INPUT_SLOTS_COUNT),
+    FLUID_OUTPUT_ZONE(FIRST_TANK_OUTPUT_SLOT_INDEX, TANK_OUTPUT_SLOTS_COUNT);
 
         SlotZone(int firstIndex, int numberOfSlots) {
             this.firstIndex = firstIndex;
@@ -360,6 +345,7 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
         }
     }
 
+    @SuppressWarnings("NullableProblems")
     @Override
     public void fillCraftSlotsStackedContents(RecipeItemHelper itemHelper) {
         this.craftSlots.fillStackedContents(itemHelper);
@@ -380,7 +366,7 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
         if (!worldIn.isClientSide) {
             ServerPlayerEntity serverplayerentity = (ServerPlayerEntity)playerIn;
             ItemStack itemstack = ItemStack.EMPTY;
-            Optional<ICraftingRecipe> optional = worldIn.getServer().getRecipeManager().getRecipeFor(IRecipeType.CRAFTING, craftInv, worldIn);
+            Optional<ICraftingRecipe> optional = Objects.requireNonNull(worldIn.getServer()).getRecipeManager().getRecipeFor(IRecipeType.CRAFTING, craftInv, worldIn);
             if (optional.isPresent()) {
                 ICraftingRecipe icraftingrecipe = optional.get();
                 if (craftResultInv.setRecipeUsed(worldIn, serverplayerentity, icraftingrecipe)) {
@@ -393,10 +379,12 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
         }
     }
 
+    @SuppressWarnings("NullableProblems")
     public void slotsChanged(IInventory inv) {
         slotChangedCraftingGrid(this.containerId, this.owner.level, this.owner, this.craftSlots, this.craftResult);
     }
 
+    @SuppressWarnings("NullableProblems")
     public void removed(PlayerEntity playerIn) {
         super.removed(playerIn);
         this.craftResult.clearContent();
@@ -425,16 +413,13 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
         return 10;
     }
 
+    @SuppressWarnings("NullableProblems")
     @Override
     public RecipeBookCategory getRecipeBookType() {
         return RecipeBookCategory.CRAFTING;
     }
 
-    public static int getCraftOutput() {
-        return FIRST_CRAFT_SLOT_INDEX;
-    }
-
     public static int getFluidOutput() {
-        return FIRST_WATER_OUTPUT_SLOT_INDEX;
+        return FIRST_TANK_SLOT_INDEX;
     }
 }
