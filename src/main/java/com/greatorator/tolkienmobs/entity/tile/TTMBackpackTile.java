@@ -49,7 +49,7 @@ public class TTMBackpackTile extends TileEntity implements INamedContainerProvid
     private final ZoneTTMInventoryContents fluidZoneContents;
     private final ZoneTTMInventoryContents fluidInputZoneContents;
     private final ZoneTTMInventoryContents fluidOutputZoneContents;
-	
+
     private final DataTTMInventoryStateData invStateData = new DataTTMInventoryStateData();
 
     public TTMBackpackTile() {
@@ -108,7 +108,7 @@ public class TTMBackpackTile extends TileEntity implements INamedContainerProvid
         ResourceLocation allowedItems = new ResourceLocation(TolkienMobs.MODID, "allowed_fluids");
         LOGGER.info("Valid items are:" + allowedItems);
 //        if (!itemStack.getItem().is(ItemTags.getAllTags().getTag(allowedItems))) {
-            return false;
+        return false;
 //        }
 //        return itemStack.getItem().is(ItemTags.getAllTags().getTag(allowedItems));
     }

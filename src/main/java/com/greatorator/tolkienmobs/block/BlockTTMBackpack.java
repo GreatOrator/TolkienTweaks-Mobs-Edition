@@ -30,6 +30,7 @@ public class BlockTTMBackpack extends Block {
    protected static final VoxelShape SHAPE_EAST = Block.box(0.0D, 0.0D, 0.0D, 9.0, 16.0, 15.0);
    protected static final VoxelShape SHAPE_WEST = Block.box(8.0D, 0.0D, 0.0D, 16.0D, 16.0, 15.0);
    protected static final VoxelShape SHAPE_COMMON = Block.box(1.0, 0.0D, 1.0, 15.0, 16.0, 9.0);
+   private TTMBackpackTile tile;
 
    public BlockTTMBackpack(Properties properties) {
       super(properties);

@@ -145,7 +145,7 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
         }
 
         // Add players armor inventory
-        for(int k = 0; k < 4; ++k) {
+        for (int k = 0; k < 4; ++k) {
             final EquipmentSlotType equipmentslottype = SLOT_IDS[k];
             this.addSlot(new Slot(invPlayer, ARMOR_FIRST_SLOT_INDEX - k, ARMOR_SLOTS_XPOS, ARMOR_SLOTS_YPOS + k * SLOT_SPACING) {
                 public int getMaxStackSize() {
@@ -188,7 +188,7 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
         // Add the tile Crafting slots
         TTMBackpackTile tile = new TTMBackpackTile();
         craftSlots = new WrapperTTMCraftingInventory(this, 3, 3, tile.craftingItems);
-        this.addSlot(craftResultSlot = new SlotTTMCrafting(invPlayer.player , this.craftSlots, this.craftResult, CRAFT_OUTPUT_SLOTS_COUNT - 1, CRAFT_OUTPUT_SLOTS_XPOS, CRAFT_OUTPUT_SLOTS_YPOS));
+        this.addSlot(craftResultSlot = new SlotTTMCrafting(invPlayer.player, this.craftSlots, this.craftResult, CRAFT_OUTPUT_SLOTS_COUNT - 1, CRAFT_OUTPUT_SLOTS_XPOS, CRAFT_OUTPUT_SLOTS_YPOS));
 
         for (row = 0; row < PLAYER_ROW_COUNT; ++row) {
             for (col = 0; col < PLAYER_ROW_COUNT; ++col) {
@@ -197,9 +197,9 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
             }
         }
 
-        // Water Tank
-        this.addSlot(new Slot(fluidZoneContents, TANK_SLOTS_COUNT - 1, TANK_SLOTS_XPOS, TANK_SLOTS_YPOS));
-
+//        // Water Tank
+//        this.addSlot(new Slot(fluidZoneContents, TANK_SLOTS_COUNT - 1, TANK_SLOTS_XPOS, TANK_SLOTS_YPOS));
+//
 //        // Water Input
 //        this.addSlot(new SlotTTMFluid(fluidInputZoneContents, WATER_INPUT_SLOTS_COUNT - 1, TANK_INPUT_SLOTS_XPOS, TANK_INPUT_SLOTS_YPOS));
 //
@@ -209,14 +209,13 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public boolean stillValid(PlayerEntity player)
-    {
+    public boolean stillValid(PlayerEntity player) {
         return invZoneContents.stillValid(player) && craftZoneContents.stillValid(player) && craftOutputZoneContents.stillValid(player) && fluidZoneContents.stillValid(player) && fluidInputZoneContents.stillValid(player) && fluidOutputZoneContents.stillValid(player);
     }
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public ItemStack quickMoveStack (PlayerEntity player,int sourceSlotIndex) {
+    public ItemStack quickMoveStack(PlayerEntity player, int sourceSlotIndex) {
         Slot sourceSlot = this.slots.get(sourceSlotIndex);
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;
         ItemStack sourceItemStack = sourceSlot.getItem();
@@ -261,11 +260,11 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
                 }
                 break;
 
-            case CRAFT_OUTPUT_ZONE:
-
             case FLUID_ZONE:
 
             case FLUID_INPUT_ZONE:
+
+            case CRAFT_OUTPUT_ZONE:
 
             case FLUID_OUTPUT_ZONE:
                 successfulTransfer = mergeInto(SlotZone.PLAYER_MAIN_INVENTORY, sourceItemStack, false);
@@ -291,7 +290,7 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
         return sourceStackBeforeMerge;
     }
 
-    private boolean mergeInto (SlotZone destinationZone, ItemStack sourceItemStack, boolean fillFromEnd){
+    private boolean mergeInto(SlotZone destinationZone, ItemStack sourceItemStack, boolean fillFromEnd) {
         return moveItemStackTo(sourceItemStack, destinationZone.firstIndex, destinationZone.lastIndexPlus1, fillFromEnd);
     }
 
@@ -316,16 +315,16 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
     }
 
     private enum SlotZone {
-    PLAYER_HOTBAR(HOTBAR_FIRST_SLOT_INDEX, HOTBAR_SLOT_COUNT),
-    PLAYER_MAIN_INVENTORY(PLAYER_INVENTORY_FIRST_SLOT_INDEX, PLAYER_INVENTORY_SLOT_COUNT),
-    INV_ZONE(FIRST_INV_SLOT_INDEX, INV_SLOTS_COUNT),
-    ARMOR_ZONE(ARMOR_FIRST_SLOT_INDEX, 4),
-    SHIELD_ZONE(SHIELD_FIRST_SLOT_INDEX, 1),
-    CRAFT_ZONE(FIRST_CRAFT_SLOT_INDEX, CRAFT_SLOTS_COUNT),
-    CRAFT_OUTPUT_ZONE(FIRST_CRAFT_OUTPUT_SLOT_INDEX, CRAFT_OUTPUT_SLOTS_COUNT),
-    FLUID_ZONE(FIRST_TANK_SLOT_INDEX, TANK_SLOTS_COUNT),
-    FLUID_INPUT_ZONE(FIRST_TANK_INPUT_SLOT_INDEX, TANK_INPUT_SLOTS_COUNT),
-    FLUID_OUTPUT_ZONE(FIRST_TANK_OUTPUT_SLOT_INDEX, TANK_OUTPUT_SLOTS_COUNT);
+        PLAYER_HOTBAR(HOTBAR_FIRST_SLOT_INDEX, HOTBAR_SLOT_COUNT),
+        PLAYER_MAIN_INVENTORY(PLAYER_INVENTORY_FIRST_SLOT_INDEX, PLAYER_INVENTORY_SLOT_COUNT),
+        INV_ZONE(FIRST_INV_SLOT_INDEX, INV_SLOTS_COUNT),
+        ARMOR_ZONE(ARMOR_FIRST_SLOT_INDEX, 4),
+        SHIELD_ZONE(SHIELD_FIRST_SLOT_INDEX, 1),
+        CRAFT_ZONE(FIRST_CRAFT_SLOT_INDEX, CRAFT_SLOTS_COUNT),
+        CRAFT_OUTPUT_ZONE(FIRST_CRAFT_OUTPUT_SLOT_INDEX, CRAFT_OUTPUT_SLOTS_COUNT),
+        FLUID_ZONE(FIRST_TANK_SLOT_INDEX, TANK_SLOTS_COUNT),
+        FLUID_INPUT_ZONE(FIRST_TANK_INPUT_SLOT_INDEX, TANK_INPUT_SLOTS_COUNT),
+        FLUID_OUTPUT_ZONE(FIRST_TANK_OUTPUT_SLOT_INDEX, TANK_OUTPUT_SLOTS_COUNT);
 
         SlotZone(int firstIndex, int numberOfSlots) {
             this.firstIndex = firstIndex;
@@ -364,7 +363,7 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
 
     protected static void slotChangedCraftingGrid(int containerID, World worldIn, PlayerEntity playerIn, WrapperTTMCraftingInventory craftInv, CraftResultInventory craftResultInv) {
         if (!worldIn.isClientSide) {
-            ServerPlayerEntity serverplayerentity = (ServerPlayerEntity)playerIn;
+            ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) playerIn;
             ItemStack itemstack = ItemStack.EMPTY;
             Optional<ICraftingRecipe> optional = Objects.requireNonNull(worldIn.getServer()).getRecipeManager().getRecipeFor(IRecipeType.CRAFTING, craftInv, worldIn);
             if (optional.isPresent()) {
