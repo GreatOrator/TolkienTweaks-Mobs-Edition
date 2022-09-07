@@ -10,18 +10,28 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidAttributes;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.IItemHandler;
 import org.apache.logging.log4j.LogManager;
@@ -52,6 +62,11 @@ public class TTMBackpackTile extends TileEntity implements INamedContainerProvid
 
     private final DataTTMInventoryStateData invStateData = new DataTTMInventoryStateData();
 
+    private TTMBackpackTile tile;
+    private int fluidCapacity = 3000;
+    private final LazyOptional<IFluidHandler> fluidTankLazy;
+    private final FluidTank fluidTank;
+
     public TTMBackpackTile() {
         super(TTMContent.BACKPACK_TILE.get());
 
@@ -63,6 +78,27 @@ public class TTMBackpackTile extends TileEntity implements INamedContainerProvid
         fluidZoneContents = ZoneTTMInventoryContents.createForTileEntity(TANK_SLOTS_COUNT, this::canPlayerAccessInventory, this::setChanged);
         fluidInputZoneContents = ZoneTTMInventoryContents.createForTileEntity(TANK_INPUT_SLOTS_COUNT, this::canPlayerAccessInventory, this::setChanged);
         fluidOutputZoneContents = ZoneTTMInventoryContents.createForTileEntity(TANK_OUTPUT_SLOTS_COUNT, this::canPlayerAccessInventory, this::setChanged);
+
+        this.fluidTank = new FluidTank(FluidAttributes.BUCKET_VOLUME * 16);
+        this.fluidTankLazy = LazyOptional.of(() -> fluidTank);
+    }
+
+    public void onRightClick(PlayerEntity playerEntity, Hand hand) {
+        if (!playerEntity.level.isClientSide()) {
+            ItemStack itemStack = playerEntity.getItemInHand(hand);
+            if (itemStack.getItem() instanceof BucketItem) {
+                Fluid fluid = ((BucketItem) itemStack.getItem()).getFluid();
+                if (fluidTank.getFluidAmount() < 3000) {
+                    fluidTank.fill(new FluidStack(fluid, FluidAttributes.BUCKET_VOLUME), IFluidHandler.FluidAction.EXECUTE);
+                }else {
+                    playerEntity.sendMessage(new StringTextComponent("Tank is full: " + fluidTank.getFluidAmount()), Util.NIL_UUID);
+                }
+            } else {
+                playerEntity.sendMessage(new StringTextComponent("Fluid Level: " + fluidTank.getFluidAmount()), Util.NIL_UUID);
+                playerEntity.sendMessage(new StringTextComponent("Fluid Name: " + fluidTank.getFluid()
+                        .getDisplayName().getString()), Util.NIL_UUID);
+            }
+        }
     }
 
     public boolean canPlayerAccessInventory(PlayerEntity player) {

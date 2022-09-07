@@ -7,8 +7,8 @@ import net.minecraft.item.crafting.RecipeItemHelper;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
 public class WrapperTTMCraftingInventory extends CraftingInventory {
-    private IItemHandlerModifiable wrapped;
-    private Container container;
+    private final IItemHandlerModifiable wrapped;
+    private final Container container;
 
     public WrapperTTMCraftingInventory(Container container, int width, int height, IItemHandlerModifiable wrapped) {
         super(container, width, height);

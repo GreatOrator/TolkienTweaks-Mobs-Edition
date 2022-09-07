@@ -37,10 +37,11 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
     public static final ResourceLocation EMPTY_ARMOR_SLOT_BOOTS = new ResourceLocation("item/empty_armor_slot_boots");
     private static final ResourceLocation[] TEXTURE_EMPTY_SLOTS = new ResourceLocation[]{EMPTY_ARMOR_SLOT_BOOTS, EMPTY_ARMOR_SLOT_LEGGINGS, EMPTY_ARMOR_SLOT_CHESTPLATE, EMPTY_ARMOR_SLOT_HELMET};
     private final PlayerEntity owner;
-    private final WrapperTTMCraftingInventory craftSlots;
+    TTMBackpackTile tile = new TTMBackpackTile();
+    private WrapperTTMCraftingInventory craftInventory;
+    CraftResultInventory craftResult = new CraftResultInventory();
     public static Slot craftResultSlot;
     public List<Slot> craftInputSlots = new ArrayList<>();
-    CraftResultInventory craftResult = new CraftResultInventory();
 
     public static ContainerTTMBackpack createContainerServerSide(int windowID, PlayerInventory playerInventory, ZoneTTMInventoryContents invZoneContents, ZoneTTMInventoryContents craftZoneContents, ZoneTTMInventoryContents craftOutputZoneContents, ZoneTTMInventoryContents fluidZoneContents, ZoneTTMInventoryContents fluidInputZoneContents, ZoneTTMInventoryContents fluidOutputZoneContents, DataTTMInventoryStateData invStateData) {
         return new ContainerTTMBackpack(windowID, playerInventory,
@@ -93,12 +94,12 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
     final int HOTBAR_YPOS = 185;
 
     final int INV_SLOTS_XPOS = 90;
-    final int INV_SLOTS_YPOS = 6;
+    final int INV_SLOTS_YPOS = 16;
 
-    final int ARMOR_SLOTS_XPOS = 70;
-    final int ARMOR_SLOTS_YPOS = 6;
-    final int SHIELD_SLOT_XPOS = 70;
-    final int SHIELD_SLOTS_YPOS = 96;
+    final int ARMOR_SLOTS_XPOS = 52;
+    final int ARMOR_SLOTS_YPOS = 127;
+    final int SHIELD_SLOT_XPOS = 61;
+    final int SHIELD_SLOTS_YPOS = 163;
 
     final int CRAFT_SLOTS_XPOS = 6;
     final int CRAFT_SLOTS_YPOS = 6;
@@ -128,6 +129,7 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
         int row;
         int col;
         int slot = 0;
+        int id = 0;
 
         // Add the players hotbar to the gui - the [xpos, ypos] location of each item
         for (col = 0; col < HOTBAR_SLOT_COUNT; col++) {
@@ -145,33 +147,41 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
         }
 
         // Add players armor inventory
-        for (int k = 0; k < 4; ++k) {
-            final EquipmentSlotType equipmentslottype = SLOT_IDS[k];
-            this.addSlot(new Slot(invPlayer, ARMOR_FIRST_SLOT_INDEX - k, ARMOR_SLOTS_XPOS, ARMOR_SLOTS_YPOS + k * SLOT_SPACING) {
-                public int getMaxStackSize() {
-                    return 1;
-                }
+        for (row = 0; row < 2; row++) {
+            for (col = 0; col < 2; col++) {
+                int slot_id = ++id;
+                final EquipmentSlotType equipmentslottype = SLOT_IDS[slot_id - 1];
+                this.addSlot(new Slot(invPlayer, ARMOR_FIRST_SLOT_INDEX - (slot_id - 1), ARMOR_SLOTS_XPOS + row * SLOT_SPACING, ARMOR_SLOTS_YPOS + col * SLOT_SPACING) {
+                    @Override
+                    public int getMaxStackSize() {
+                        return 1;
+                    }
 
-                @SuppressWarnings("NullableProblems")
-                public boolean mayPlace(ItemStack stack) {
-                    return stack.canEquip(equipmentslottype, ContainerTTMBackpack.this.owner);
-                }
+                    @SuppressWarnings("NullableProblems")
+                    @Override
+                    public boolean mayPlace(ItemStack stack) {
+                        return stack.canEquip(equipmentslottype, ContainerTTMBackpack.this.owner);
+                    }
 
-                @SuppressWarnings("NullableProblems")
-                public boolean mayPickup(PlayerEntity playerIn) {
-                    ItemStack itemstack = this.getItem();
-                    return (itemstack.isEmpty() || playerIn.isCreative() || !EnchantmentHelper.hasBindingCurse(itemstack)) && super.mayPickup(playerIn);
-                }
+                    @SuppressWarnings("NullableProblems")
+                    @Override
+                    public boolean mayPickup(PlayerEntity playerIn) {
+                        ItemStack itemstack = this.getItem();
+                        return (itemstack.isEmpty() || playerIn.isCreative() || !EnchantmentHelper.hasBindingCurse(itemstack)) && super.mayPickup(playerIn);
+                    }
 
-                @OnlyIn(Dist.CLIENT)
-                public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
-                    return Pair.of(PlayerContainer.BLOCK_ATLAS, TEXTURE_EMPTY_SLOTS[equipmentslottype.getIndex()]);
-                }
-            });
+                    @OnlyIn(Dist.CLIENT)
+                    @Override
+                    public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
+                        return Pair.of(PlayerContainer.BLOCK_ATLAS, TEXTURE_EMPTY_SLOTS[equipmentslottype.getIndex()]);
+                    }
+                });
+            }
         }
 
         this.addSlot(new Slot(invPlayer, SHIELD_FIRST_SLOT_INDEX, SHIELD_SLOT_XPOS, SHIELD_SLOTS_YPOS) {
             @OnlyIn(Dist.CLIENT)
+            @Override
             public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
                 return Pair.of(PlayerContainer.BLOCK_ATLAS, PlayerContainer.EMPTY_ARMOR_SLOT_SHIELD);
             }
@@ -186,14 +196,13 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
         }
 
         // Add the tile Crafting slots
-        TTMBackpackTile tile = new TTMBackpackTile();
-        craftSlots = new WrapperTTMCraftingInventory(this, 3, 3, tile.craftingItems);
-        this.addSlot(craftResultSlot = new SlotTTMCrafting(invPlayer.player, this.craftSlots, this.craftResult, CRAFT_OUTPUT_SLOTS_COUNT - 1, CRAFT_OUTPUT_SLOTS_XPOS, CRAFT_OUTPUT_SLOTS_YPOS));
+        craftInventory = new WrapperTTMCraftingInventory(this, 3, 3, tile.craftingItems);
+        this.addSlot(craftResultSlot = new SlotTTMCrafting(invPlayer.player, craftInventory, craftResult, CRAFT_OUTPUT_SLOTS_COUNT - 1, CRAFT_OUTPUT_SLOTS_XPOS, CRAFT_OUTPUT_SLOTS_YPOS));
 
         for (row = 0; row < PLAYER_ROW_COUNT; ++row) {
             for (col = 0; col < PLAYER_ROW_COUNT; ++col) {
                 int slotNumber = (row + col * PLAYER_ROW_COUNT);
-                craftInputSlots.add(addSlot(new Slot(this.craftSlots, slotNumber, CRAFT_SLOTS_XPOS + col * SLOT_SPACING, CRAFT_SLOTS_YPOS + row * SLOT_SPACING)));
+                craftInputSlots.add(addSlot(new Slot(craftInventory, slotNumber, CRAFT_SLOTS_XPOS + col * SLOT_SPACING, CRAFT_SLOTS_YPOS + row * SLOT_SPACING)));
             }
         }
 
@@ -205,6 +214,7 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
 //
 //        // Water Output
 //        this.addSlot(new SlotTTMFluid(fluidOutputZoneContents, WATER_OUTPUT_SLOTS_COUNT - 1, TANK_OUTPUT_SLOTS_XPOS, TANK_OUTPUT_SLOTS_YPOS));
+        slotsChanged(invPlayer);
     }
 
     @SuppressWarnings("NullableProblems")
@@ -347,18 +357,18 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
     @SuppressWarnings("NullableProblems")
     @Override
     public void fillCraftSlotsStackedContents(RecipeItemHelper itemHelper) {
-        this.craftSlots.fillStackedContents(itemHelper);
+        craftInventory.fillStackedContents(itemHelper);
     }
 
     @Override
     public void clearCraftingContent() {
         this.craftResult.clearContent();
-        this.craftSlots.clearContent();
+        craftInventory.clearContent();
     }
 
     @Override
     public boolean recipeMatches(IRecipe<? super WrapperTTMCraftingInventory> recipe) {
-        return recipe.matches(this.craftSlots, this.owner.level);
+        return recipe.matches(craftInventory, this.owner.level);
     }
 
     protected static void slotChangedCraftingGrid(int containerID, World worldIn, PlayerEntity playerIn, WrapperTTMCraftingInventory craftInv, CraftResultInventory craftResultInv) {
@@ -380,7 +390,7 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
 
     @SuppressWarnings("NullableProblems")
     public void slotsChanged(IInventory inv) {
-        slotChangedCraftingGrid(this.containerId, this.owner.level, this.owner, this.craftSlots, this.craftResult);
+        slotChangedCraftingGrid(this.containerId, this.owner.level, this.owner, craftInventory, this.craftResult);
     }
 
     @SuppressWarnings("NullableProblems")
@@ -388,7 +398,7 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
         super.removed(playerIn);
         this.craftResult.clearContent();
         if (!playerIn.level.isClientSide) {
-            this.clearContainer(playerIn, playerIn.level, this.craftSlots);
+            this.clearContainer(playerIn, playerIn.level, craftInventory);
         }
     }
 
@@ -399,12 +409,12 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
 
     @Override
     public int getGridWidth() {
-        return this.craftSlots.getWidth();
+        return craftInventory.getWidth();
     }
 
     @Override
     public int getGridHeight() {
-        return this.craftSlots.getHeight();
+        return craftInventory.getHeight();
     }
 
     @Override
@@ -416,9 +426,5 @@ public class ContainerTTMBackpack extends RecipeBookContainer<WrapperTTMCrafting
     @Override
     public RecipeBookCategory getRecipeBookType() {
         return RecipeBookCategory.CRAFTING;
-    }
-
-    public static int getFluidOutput() {
-        return FIRST_TANK_SLOT_INDEX;
     }
 }

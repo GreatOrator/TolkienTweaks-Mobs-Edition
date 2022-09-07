@@ -36,7 +36,7 @@ public class ScreenTTMBackpack extends ContainerScreen<ContainerTTMBackpack> {
 
     @Override
     protected void renderLabels(@Nonnull MatrixStack matrixStack, int x, int y) {
-        this.font.draw(matrixStack, this.title.getString(), 96,116,0x404040);
+        this.font.draw(matrixStack, this.title.getString(), 90,4,0x404040);
     }
 
     @Override
