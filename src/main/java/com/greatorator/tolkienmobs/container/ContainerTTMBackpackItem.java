@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.client.gui.container;
+package com.greatorator.tolkienmobs.container;
 
 //public class ContainerTTMBackpackItem extends ContainerTTMBackpack {
 //    public ContainerTTMBackpackItem(int windowID, PlayerInventory playerInventory, PacketBuffer data) {
