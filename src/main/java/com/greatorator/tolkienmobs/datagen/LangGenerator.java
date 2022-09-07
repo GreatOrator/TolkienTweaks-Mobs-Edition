@@ -34,6 +34,7 @@ public class LangGenerator extends LanguageProvider {
         biomes(helper);
         chatMessages(helper);
         creativeTabGroups();
+        gui(helper);
     }
 
     private void blocks() {
@@ -680,6 +681,12 @@ public class LangGenerator extends LanguageProvider {
         add("tolkienmobs.msg.speedup.balrog", "The Balrog is attempting to match your speed.");
     }
 
+
+    private void gui(PrefixHelper helper) {
+        helper.setPrefix("gui.tolkienmobs.backback.");
+        helper.add("fluid_storage",             "Fluid Storage");
+        helper.add("fluid",                     "Fluid:");
+    }
 
 
         //region Helpers

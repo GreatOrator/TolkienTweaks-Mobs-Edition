@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.client.gui.container;
+package com.greatorator.tolkienmobs.lib;
 
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.container.Container;
@@ -6,11 +6,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.RecipeItemHelper;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
-public class WrapperTTMCraftingInventory extends CraftingInventory {
-    private final IItemHandlerModifiable wrapped;
-    private final Container container;
+/**
+ * Created by Brandon on 29/10/2014.
+ */
+@Deprecated //Will be in BCore at some point
+public class CraftingInventoryWrapper extends CraftingInventory {
+    private IItemHandlerModifiable wrapped;
+    private Container container;
 
-    public WrapperTTMCraftingInventory(Container container, int width, int height, IItemHandlerModifiable wrapped) {
+    public CraftingInventoryWrapper(Container container, int width, int height, IItemHandlerModifiable wrapped) {
         super(container, width, height);
         this.container = container;
         this.wrapped = wrapped;

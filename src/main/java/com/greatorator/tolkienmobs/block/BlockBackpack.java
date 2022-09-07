@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.block;
 
+import com.brandon3055.brandonscore.blocks.BlockBCore;
 import com.greatorator.tolkienmobs.entity.tile.BackpackTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -22,7 +23,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class BlockBackpack extends Block {
+public class BlockBackpack extends BlockBCore {
    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
    protected static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 0.0D, 8.0D, 15.0, 16.0, 16.0D);
@@ -57,12 +58,9 @@ public class BlockBackpack extends Block {
    @Override
    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult trace) {
       if (!world.isClientSide) {
-         TileEntity tileEntity = world.getBlockEntity(pos);
-         BackpackTile te = (BackpackTile)world.getBlockEntity(pos);
-
-         if (tileEntity instanceof BackpackTile) {
-            te.openGUI(player, te, pos);
-            te.onRightClick(player, hand);
+         TileEntity tile = world.getBlockEntity(pos);
+         if (tile instanceof BackpackTile) {
+            ((BackpackTile) tile).onRightClick(player, hand);
          }
          return ActionResultType.CONSUME;
       }

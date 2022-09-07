@@ -27,6 +27,16 @@ public class TTMSprites {
         register(MODID, "item_coin");
         register(MODID, "fireplace/craft_empty");
         register(MODID, "fireplace/craft_full");
+
+        register(MODID, "backpack/crafting_table");
+        register(MODID, "backpack/craft_arrow");
+        register(MODID, "backpack/tank_slots");
+        register(MODID, "backpack/tank_arrows");
+
+        register(MODID, "backpack/bed");
+        register(MODID, "backpack/campfire");
+        register(MODID, "backpack/tank");
+        register(MODID, "backpack/tank_overlay");
     }
 
     //region register
