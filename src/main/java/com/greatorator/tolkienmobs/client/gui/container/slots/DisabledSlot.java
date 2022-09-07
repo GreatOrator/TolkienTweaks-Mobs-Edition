@@ -4,8 +4,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 
-public class SlotTTMDisabled extends Slot {
-    public SlotTTMDisabled(IInventory inventoryIn, int index, int xPosition, int yPosition)
+public class DisabledSlot extends Slot {
+    public DisabledSlot(IInventory inventoryIn, int index, int xPosition, int yPosition)
     {
         super(inventoryIn, index, xPosition, yPosition);
     }

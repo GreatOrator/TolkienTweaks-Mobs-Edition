@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.handler;
 
-import com.greatorator.tolkienmobs.item.tools.ItemTTMBackpack;
+import com.greatorator.tolkienmobs.item.tools.BackpackItem;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
@@ -16,7 +16,7 @@ public class TTMISUtils {
 
     @Nonnull
     public static Optional<UUID> getUUID(@Nonnull ItemStack stack) {
-        if (stack.getItem() instanceof ItemTTMBackpack && stack.hasTag() && stack.getTag().contains("UUID"))
+        if (stack.getItem() instanceof BackpackItem && stack.hasTag() && stack.getTag().contains("UUID"))
             return Optional.of(stack.getTag().getUUID("UUID"));
         else
             return Optional.empty();

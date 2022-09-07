@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client.gui.screen;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.gui.container.ContainerTTMBackpack;
+import com.greatorator.tolkienmobs.client.gui.container.BackpackContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
@@ -11,11 +11,11 @@ import net.minecraft.util.text.ITextComponent;
 
 import javax.annotation.Nonnull;
 
-public class ScreenTTMBackpack extends ContainerScreen<ContainerTTMBackpack> {
+public class BackpackScreen extends ContainerScreen<BackpackContainer> {
     private static final ResourceLocation BACKPACK_GUI = new ResourceLocation(TolkienMobs.MODID, "textures/gui/backpack/backpack.png");
     private static final ResourceLocation BACKPACK_SPRITES = new ResourceLocation(TolkienMobs.MODID, "textures/gui/backpack/backpack_sprites.png");
 
-    public ScreenTTMBackpack(ContainerTTMBackpack screenContainer, PlayerInventory inv, ITextComponent titleIn) {
+    public BackpackScreen(BackpackContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
 
         this.leftPos = 0;

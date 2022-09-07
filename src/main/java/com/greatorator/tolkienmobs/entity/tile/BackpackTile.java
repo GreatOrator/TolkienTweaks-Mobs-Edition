@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.tile;
 import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.gui.container.ContainerTTMBackpack;
+import com.greatorator.tolkienmobs.client.gui.container.BackpackContainer;
 import com.greatorator.tolkienmobs.entity.tile.tiledata.DataTTMInventoryStateData;
 import com.greatorator.tolkienmobs.entity.tile.tilezone.ZoneTTMInventoryContents;
 import net.minecraft.block.BlockState;
@@ -39,7 +39,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 
-public class TTMBackpackTile extends TileEntity implements INamedContainerProvider, ITickableTileEntity {
+public class BackpackTile extends TileEntity implements INamedContainerProvider, ITickableTileEntity {
     public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
     private final PlayerEntity player = null;
     public TileItemStackHandler craftingItems = new TileItemStackHandler(9);
@@ -62,12 +62,12 @@ public class TTMBackpackTile extends TileEntity implements INamedContainerProvid
 
     private final DataTTMInventoryStateData invStateData = new DataTTMInventoryStateData();
 
-    private TTMBackpackTile tile;
+    private BackpackTile tile;
     private int fluidCapacity = 3000;
     private final LazyOptional<IFluidHandler> fluidTankLazy;
     private final FluidTank fluidTank;
 
-    public TTMBackpackTile() {
+    public BackpackTile() {
         super(TTMContent.BACKPACK_TILE.get());
 
         invZoneContents = ZoneTTMInventoryContents.createForTileEntity(INV_SLOTS_COUNT, this::canPlayerAccessInventory, this::setChanged);
@@ -238,7 +238,7 @@ public class TTMBackpackTile extends TileEntity implements INamedContainerProvid
     @Nullable
     @Override
     public Container createMenu(int windowID, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return ContainerTTMBackpack.createContainerServerSide(windowID, playerInventory,
+        return BackpackContainer.createContainerServerSide(windowID, playerInventory,
                 invZoneContents, craftZoneContents, craftOutputZoneContents, fluidZoneContents, fluidInputZoneContents, fluidOutputZoneContents, invStateData);
     }
 

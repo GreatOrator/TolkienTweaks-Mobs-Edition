@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.item.tools;
 
-import com.greatorator.tolkienmobs.entity.tile.TTMBackpackTile;
+import com.greatorator.tolkienmobs.entity.tile.BackpackTile;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -20,8 +20,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ItemTTMBackpack extends BlockItem {
-    public ItemTTMBackpack(Block block, Properties properties) {
+public class BackpackItem extends BlockItem {
+    public BackpackItem(Block block, Properties properties) {
         super(block, properties);
     }
 
@@ -98,7 +98,7 @@ public class ItemTTMBackpack extends BlockItem {
                         this.updateCustomBlockEntityTag(blockpos, world, player, itemstack, blockstate1);
                         block.setPlacedBy(world, blockpos, blockstate1, player, itemstack);
 
-                        if(itemstack.getTag() != null && world.getBlockEntity(blockpos) instanceof TTMBackpackTile)
+                        if(itemstack.getTag() != null && world.getBlockEntity(blockpos) instanceof BackpackTile)
                         {
 //                            ((TTMBackpackTile)world.getBlockEntity(blockpos)).loadAllData(itemstack.getTag());
 

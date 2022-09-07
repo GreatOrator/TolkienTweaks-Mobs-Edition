@@ -10,12 +10,12 @@ import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.ForgeHooks;
 
-public class SlotTTMCrafting extends Slot {
+public class CraftingSlot extends Slot {
     private final CraftingInventory craftSlots;
     private final PlayerEntity player;
     private int removeCount;
 
-    public SlotTTMCrafting(PlayerEntity player, CraftingInventory input, IInventory inventory, int index, int x, int y) {
+    public CraftingSlot(PlayerEntity player, CraftingInventory input, IInventory inventory, int index, int x, int y) {
         super(inventory, index, x, y);
         this.player = player;
         this.craftSlots = input;

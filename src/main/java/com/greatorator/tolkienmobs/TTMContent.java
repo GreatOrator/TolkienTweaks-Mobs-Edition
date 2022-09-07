@@ -6,7 +6,7 @@ import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.google.common.collect.Sets;
 import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.client.TTMParticles;
-import com.greatorator.tolkienmobs.client.gui.container.ContainerTTMBackpack;
+import com.greatorator.tolkienmobs.client.gui.container.BackpackContainer;
 import com.greatorator.tolkienmobs.crafting.FireplaceRecipe;
 import com.greatorator.tolkienmobs.datagen.*;
 import com.greatorator.tolkienmobs.entity.tile.*;
@@ -17,7 +17,7 @@ import com.greatorator.tolkienmobs.item.signs.TTMCulumaldaSignItem;
 import com.greatorator.tolkienmobs.item.signs.TTMLebethronSignItem;
 import com.greatorator.tolkienmobs.item.signs.TTMMallornSignItem;
 import com.greatorator.tolkienmobs.item.signs.TTMMirkwoodSignItem;
-import com.greatorator.tolkienmobs.item.tools.ItemTTMBackpack;
+import com.greatorator.tolkienmobs.item.tools.BackpackItem;
 import com.greatorator.tolkienmobs.item.tools.ItemTTMTrinket;
 import com.greatorator.tolkienmobs.world.trees.*;
 import net.minecraft.block.*;
@@ -70,7 +70,7 @@ public class TTMContent {
     public static ItemGroup questGroup = new SimpleItemGroup("tolkienmobs.quest", () -> new ItemStack(TTMContent.ITEM_FORTRESSMAP.get()));
     public static ItemGroup signsGroup = new SimpleItemGroup("tolkienmobs.signs", () -> new ItemStack(TTMContent.BLOCK_MITHRIL.get()));
 
-    public static ContainerType<ContainerTTMBackpack> containerTypeContainerTTMBackpack;
+    public static ContainerType<BackpackContainer> containerTypeContainerTTMBackpack;
 
     public static void init() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -254,7 +254,7 @@ public class TTMContent {
     public static RegistryObject<Block> PIGGYBANK = BLOCKS.register("block_piggybank", () -> new BlockTTMPiggyBank(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_PINK).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
     public static RegistryObject<Block> BARREL_MITHRIL = BLOCKS.register("block_barrel_mithril", () -> new BlockTTMMithrilBarrel(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
     public static RegistryObject<Block> BARREL_MORGULIRON = BLOCKS.register("block_barrel_morguliron", () -> new BlockTTMMorgulironBarrel(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
-    public static RegistryObject<Block> BACKPACK = BLOCKS.register("backpack", () -> new BlockTTMBackpack(AbstractBlock.Properties.of(Material.WOOL, MaterialColor.COLOR_LIGHT_GRAY).harvestTool(ToolType.AXE).noOcclusion().harvestLevel(1).strength(1f, 1f)));
+    public static RegistryObject<Block> BACKPACK = BLOCKS.register("backpack", () -> new BlockBackpack(AbstractBlock.Properties.of(Material.WOOL, MaterialColor.COLOR_LIGHT_GRAY).harvestTool(ToolType.AXE).noOcclusion().harvestLevel(1).strength(1f, 1f)));
 
     // Custom - Sleeping Bags
     public static RegistryObject<Block> SLEEPING_BAG_BLUE = BLOCKS.register("sleeping_bag_blue", () -> new BlockTTMSleepingBag(DyeColor.BLUE, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
@@ -528,7 +528,7 @@ public class TTMContent {
     public static RegistryObject<SwordItem> SWORD_URUK = ITEMS.register("sword_uruk", () -> new TTMSword(TTMItemTier.MORGULIRON, 11, -0.5F, (new Item.Properties()).tab(toolsGroup)).setEffectOverride());
     public static RegistryObject<SwordItem> WHIP_FIRE = ITEMS.register("whip_fire", () -> new TTM3DObj(TTMItemTier.MORGULIRON, 15, -0.5F, (new Item.Properties()).tab(toolsGroup), "whip_fire.obj", "whip_fire.png").setEffectOverride());
     public static RegistryObject<SwordItem> CLUB_WOODEN = ITEMS.register("club_wooden", () -> new TTM3DObj(TTMItemTier.MORGULIRON, 9, -0.5F, (new Item.Properties()).tab(toolsGroup), "club_wooden.obj", "club_wooden.png").setEffectOverride());
-    public static RegistryObject<BlockItem> ITEM_BACKPACK = ITEMS.register("item_backpack", () -> new ItemTTMBackpack(TTMContent.BACKPACK.get(), (new Item.Properties()).stacksTo(1).tab(toolsGroup)));
+    public static RegistryObject<BlockItem> ITEM_BACKPACK = ITEMS.register("item_backpack", () -> new BackpackItem(TTMContent.BACKPACK.get(), (new Item.Properties()).stacksTo(1).tab(toolsGroup)));
 
     // Trinkets
     public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new ItemTTMTrinket(new Item.Properties().tab(toolsGroup)));
@@ -619,7 +619,7 @@ public class TTMContent {
     public static RegistryObject<TileEntityType<TTMPiggyBankTile>> PIGGYBANK_TILE = TILE.register("piggybank_tile", () -> TileEntityType.Builder.of(TTMPiggyBankTile::new, PIGGYBANK.get()).build(null));
     public static RegistryObject<TileEntityType<TTMMithrilBarrelTile>> BARREL_MITHRIL_TILE = TILE.register("barrel_mithril_tile", () -> TileEntityType.Builder.of(TTMMithrilBarrelTile::new, BARREL_MITHRIL.get()).build(null));
     public static RegistryObject<TileEntityType<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_TILE = TILE.register("barrel_morguliron_tile", () -> TileEntityType.Builder.of(TTMMorgulironBarrelTile::new, BARREL_MORGULIRON.get()).build(null));
-    public static RegistryObject<TileEntityType<TTMBackpackTile>> BACKPACK_TILE = TILE.register("backpack_tile", () -> TileEntityType.Builder.of(TTMBackpackTile::new, BACKPACK.get()).build(null));
+    public static RegistryObject<TileEntityType<BackpackTile>> BACKPACK_TILE = TILE.register("backpack_tile", () -> TileEntityType.Builder.of(BackpackTile::new, BACKPACK.get()).build(null));
     public static RegistryObject<TileEntityType<TTMSleepingBagTile>> SLEEPING_BAG_TILE = TILE.register("sleeping_bag", () -> new TileEntityType<>(TTMSleepingBagTile::new, Sets.newHashSet(TTMContent.SLEEPING_BAG_RED.get(), TTMContent.SLEEPING_BAG_BLUE.get(), TTMContent.SLEEPING_BAG_BLACK.get(), TTMContent.SLEEPING_BAG_BROWN.get(), TTMContent.SLEEPING_BAG_CYAN.get(), TTMContent.SLEEPING_BAG_GRAY.get(), TTMContent.SLEEPING_BAG_GREEN.get(), TTMContent.SLEEPING_BAG_LIGHT_BLUE.get(), TTMContent.SLEEPING_BAG_LIGHT_GRAY.get(), TTMContent.SLEEPING_BAG_LIME.get(), TTMContent.SLEEPING_BAG_MAGENTA.get(), TTMContent.SLEEPING_BAG_ORANGE.get(), TTMContent.SLEEPING_BAG_PINK.get(), TTMContent.SLEEPING_BAG_PURPLE.get(), TTMContent.SLEEPING_BAG_WHITE.get(), TTMContent.SLEEPING_BAG_YELLOW.get()), null));
 
     // Signs
@@ -635,7 +635,7 @@ public class TTMContent {
     public static ContainerType<ContainerBCTile<TTMPiggyBankTile>> PIGGYBANK_CONTAINER;
     public static ContainerType<ContainerBCTile<TTMMithrilBarrelTile>> BARREL_MITHRIL_CONTAINER;
     public static ContainerType<ContainerBCTile<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_CONTAINER;
-    public static RegistryObject<ContainerType<ContainerTTMBackpack>> BACKPACK_CONTAINER = CONTAINER.register("backpack", () -> IForgeContainerType.create(ContainerTTMBackpack::createContainerClientSide));
+    public static RegistryObject<ContainerType<BackpackContainer>> BACKPACK_CONTAINER = CONTAINER.register("backpack", () -> IForgeContainerType.create(BackpackContainer::createContainerClientSide));
 
     public static void registerContainers(RegistryEvent.Register<ContainerType<?>> event) {
         event.getRegistry().register(TMFIREPLACE_CONTAINER = (ContainerType<ContainerBCTile<TTMFireplaceTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(TMFIREPLACE_CONTAINER, id, playerInv, extraData, TTMFireplaceTile.SLOT_LAYOUT)).setRegistryName("tmfireplace_container"));

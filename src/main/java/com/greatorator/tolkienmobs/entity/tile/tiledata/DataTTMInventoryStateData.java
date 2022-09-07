@@ -1,11 +1,11 @@
 package com.greatorator.tolkienmobs.entity.tile.tiledata;
 
-import com.greatorator.tolkienmobs.entity.tile.TTMBackpackTile;
+import com.greatorator.tolkienmobs.entity.tile.BackpackTile;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.IIntArray;
 
 public class DataTTMInventoryStateData implements IIntArray {
-    public static final int INV_SLOTS_COUNT = TTMBackpackTile.INV_SLOTS_COUNT;
+    public static final int INV_SLOTS_COUNT = BackpackTile.INV_SLOTS_COUNT;
 
     public void putIntoNBT(CompoundNBT nbtTagCompound) {
     }

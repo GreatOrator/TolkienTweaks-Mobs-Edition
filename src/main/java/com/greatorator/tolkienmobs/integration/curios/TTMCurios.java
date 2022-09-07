@@ -2,8 +2,7 @@ package com.greatorator.tolkienmobs.integration.curios;
 
 import com.brandon3055.brandonscore.capability.MultiCapabilityProvider;
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.item.tools.ItemTTMBackpack;
+import com.greatorator.tolkienmobs.item.tools.BackpackItem;
 import com.greatorator.tolkienmobs.lib.FlamingBalrog;
 import net.minecraft.data.TagsProvider;
 import net.minecraft.entity.LivingEntity;
@@ -110,7 +109,7 @@ public class TTMCurios extends TTMEquipMgr {
 
     public static Optional<ImmutableTriple<String, Integer, ItemStack>> getCurioBackpack(LivingEntity livingEntity)
     {
-        Predicate<ItemStack> backpack = stack -> stack.getItem() instanceof ItemTTMBackpack;
+        Predicate<ItemStack> backpack = stack -> stack.getItem() instanceof BackpackItem;
         return CuriosApi.getCuriosHelper().findEquippedCurio(backpack, livingEntity);
     }
 

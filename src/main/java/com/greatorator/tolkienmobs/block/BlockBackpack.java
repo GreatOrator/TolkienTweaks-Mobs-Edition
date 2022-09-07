@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.greatorator.tolkienmobs.entity.tile.TTMBackpackTile;
+import com.greatorator.tolkienmobs.entity.tile.BackpackTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class BlockTTMBackpack extends Block {
+public class BlockBackpack extends Block {
    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
    protected static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 0.0D, 8.0D, 15.0, 16.0, 16.0D);
@@ -31,7 +31,7 @@ public class BlockTTMBackpack extends Block {
    protected static final VoxelShape SHAPE_WEST = Block.box(8.0D, 0.0D, 0.0D, 16.0D, 16.0, 15.0);
    protected static final VoxelShape SHAPE_COMMON = Block.box(1.0, 0.0D, 1.0, 15.0, 16.0, 9.0);
 
-   public BlockTTMBackpack(Properties properties) {
+   public BlockBackpack(Properties properties) {
       super(properties);
       this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
    }
@@ -58,9 +58,9 @@ public class BlockTTMBackpack extends Block {
    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult trace) {
       if (!world.isClientSide) {
          TileEntity tileEntity = world.getBlockEntity(pos);
-         TTMBackpackTile te = (TTMBackpackTile)world.getBlockEntity(pos);
+         BackpackTile te = (BackpackTile)world.getBlockEntity(pos);
 
-         if (tileEntity instanceof TTMBackpackTile) {
+         if (tileEntity instanceof BackpackTile) {
             te.openGUI(player, te, pos);
             te.onRightClick(player, hand);
          }
@@ -94,6 +94,6 @@ public class BlockTTMBackpack extends Block {
    @Nullable
    @Override
    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-      return new TTMBackpackTile();
+      return new BackpackTile();
    }
 }
