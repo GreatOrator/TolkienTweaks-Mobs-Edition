@@ -20,6 +20,7 @@ import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SSetSlotPacket;
 import net.minecraft.world.World;
+import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -100,5 +101,40 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
     @Override
     public void slotsChanged(IInventory inventory) {
         slotChangedCraftingGrid(this.containerId, tile.getLevel(), this.player, this.craftInventory, this.resultInventory);
+    }
+
+    @Override
+    public ItemStack quickMoveStack(PlayerEntity player, int i) {
+        int playerSlots = 36 + 5;
+        IItemHandler handler = tile.mainInventory;
+        Slot slot = getSlot(i);
+
+        if (slot != null && slot.hasItem()) {
+            ItemStack stack = slot.getItem();
+            ItemStack result = stack.copy();
+
+            //Transferring from tile to player
+            if (i >= playerSlots) {
+                if (!moveItemStackTo(stack, 0, playerSlots, false)) {
+                    return ItemStack.EMPTY; //Return if failed to merge
+                }
+            } else {
+                //Transferring from player to tile
+                if (!moveItemStackTo(stack, playerSlots, playerSlots + handler.getSlots(), false)) {
+                    return ItemStack.EMPTY;  //Return if failed to merge
+                }
+            }
+
+            if (stack.getCount() == 0) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
+
+            slot.onTake(player, stack);
+
+            return result;
+        }
+        return ItemStack.EMPTY;
     }
 }
