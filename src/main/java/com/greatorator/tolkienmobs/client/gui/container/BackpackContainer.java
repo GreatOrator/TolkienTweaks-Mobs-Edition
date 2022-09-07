@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.client.gui.container;
 
 import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.client.gui.container.slots.ButtonSlot;
 import com.greatorator.tolkienmobs.client.gui.container.slots.CraftingSlot;
 import com.greatorator.tolkienmobs.entity.tile.BackpackTile;
 import com.greatorator.tolkienmobs.entity.tile.tiledata.DataTTMInventoryStateData;
@@ -38,6 +39,7 @@ public class BackpackContainer extends RecipeBookContainer<WrapperTTMCraftingInv
     private static final ResourceLocation[] TEXTURE_EMPTY_SLOTS = new ResourceLocation[]{EMPTY_ARMOR_SLOT_BOOTS, EMPTY_ARMOR_SLOT_LEGGINGS, EMPTY_ARMOR_SLOT_CHESTPLATE, EMPTY_ARMOR_SLOT_HELMET};
     private final PlayerEntity owner;
     BackpackTile tile = new BackpackTile();
+    private ButtonSlot deploySleepingbagButton;
     private WrapperTTMCraftingInventory craftInventory;
     CraftResultInventory craftResult = new CraftResultInventory();
     public static Slot craftResultSlot;
