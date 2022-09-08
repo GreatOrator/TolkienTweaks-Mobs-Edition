@@ -6,7 +6,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
@@ -18,14 +20,16 @@ import net.minecraft.world.IBlockReader;
 
 import javax.annotation.Nullable;
 
+import static net.minecraft.state.properties.AttachFace.*;
+
 public class BlockTTMPlacard extends BlockBCore {
+    public static final EnumProperty<AttachFace> ATTACH_FACE =  EnumProperty.create("facing", AttachFace.class);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public static final VoxelShape SHAPE_HANGING_NS = Block.box(0.0D, 5.0D, 14.0D, 16.0D, 13.0D, 16.0D);
     public static final VoxelShape SHAPE_HANGING_EW = Block.box(0.0D, 5.0D, 0.0D, 2.0D, 13.0D, 16.0D);
     public static final VoxelShape SHAPE_STANDING_NS = Block.box(0.0D, 5.0D, 14.0D, 16.0D, 13.0D, 16.0D);
     public static final VoxelShape SHAPE_STANDING_EW = Block.box(0.0D, 5.0D, 0.0D, 2.0D, 13.0D, 16.0D);
-    protected static final VoxelShape SHAPE_COMMON = Block.box(0.0D, 5.0D, 14.0D, 16.0D, 13.0D, 16.0D);
     protected static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 5.0D, 14.0D, 16.0D, 13.0D, 16.0D);
     protected static final VoxelShape SHAPE_SOUTH = Block.box(0.0D, 5.0D, 2.0D, 16.0D, 13.0D, 0.0D);
     protected static final VoxelShape SHAPE_EAST = Block.box(0.0D, 5.0D, 0.0D, 2.0D, 13.0D, 16.0D);
@@ -33,30 +37,26 @@ public class BlockTTMPlacard extends BlockBCore {
 
     public BlockTTMPlacard(Properties properties) {
         super(properties);
-        this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ATTACH_FACE, AttachFace.FLOOR));
     }
 
     @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
-        switch((Direction)state.getValue(FACING)) {
-            Direction facing = ;
-        boolean flag = facing == Direction.NORTH;
+        Direction facing = state.getValue(FACING);
+        AttachFace face = state.getValue(ATTACH_FACE);
 
+        switch(facing) {
             case NORTH:
-                return SHAPE_NORTH;
+                return face == FLOOR ? SHAPE_STANDING_NS : face == CEILING ? SHAPE_HANGING_NS : SHAPE_NORTH;
             case SOUTH:
-                return SHAPE_SOUTH;
+                return face == FLOOR ? SHAPE_STANDING_NS : face == CEILING ? SHAPE_HANGING_NS : SHAPE_SOUTH;
             case EAST:
-                return SHAPE_EAST;
+                return face == FLOOR ? SHAPE_STANDING_EW : face == CEILING ? SHAPE_HANGING_EW : SHAPE_EAST;
             case WEST:
-                return SHAPE_WEST;
-            case UP:
-                return flag ? SHAPE_HANGING_NS : SHAPE_HANGING_EW;
-            case DOWN:
-                return flag ? SHAPE_STANDING_NS : SHAPE_STANDING_EW;
+                return face == FLOOR ? SHAPE_STANDING_EW : face == CEILING ? SHAPE_HANGING_EW : SHAPE_WEST;
             default:
-                return SHAPE_COMMON;
+                return SHAPE_NORTH; //This should never be reached, so it does not matter what is returned.
         }
     }
 
@@ -67,13 +67,14 @@ public class BlockTTMPlacard extends BlockBCore {
 
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
-        super.createBlockStateDefinition(builder);
+        builder.add(FACING).add(ATTACH_FACE);
     }
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        Direction facing = context.getHorizontalDirection().getOpposite();
+        Direction clicked = context.getClickedFace();
+        return defaultBlockState().setValue(FACING, facing).setValue(ATTACH_FACE, clicked == Direction.UP ? FLOOR : clicked == Direction.DOWN ? CEILING : WALL);
     }
 
     @SuppressWarnings("deprecation")
