@@ -35,6 +35,7 @@ public class TTMSprites {
 
         register(MODID, "backpack/bed");
         register(MODID, "backpack/campfire");
+        register(MODID, "backpack/upgrade");
         register(MODID, "backpack/tank");
         register(MODID, "backpack/tank_overlay");
     }

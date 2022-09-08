@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.client;
 
 import com.brandon3055.brandonscore.api.render.GuiHelper;
-import com.greatorator.tolkienmobs.block.BlockTTMSleepingBag;
+import com.greatorator.tolkienmobs.block.SleepingBagBlock;
 import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
 import com.greatorator.tolkienmobs.datagen.PotionGenerator;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -172,7 +172,7 @@ public class TTMClientEvents {
             player.getSleepingPos().ifPresent(bedPos -> {
                 MatrixStack matrixStack = evt.getMatrixStack();
                 Block bed = player.level.getBlockState(bedPos).getBlock();
-                if (bed instanceof BlockTTMSleepingBag) {
+                if (bed instanceof SleepingBagBlock) {
                     matrixStack.translate(0.0f, 0.375F, 0.0f);
                 }
             });

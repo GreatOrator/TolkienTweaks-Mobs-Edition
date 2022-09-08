@@ -1,11 +1,9 @@
-package com.greatorator.tolkienmobs.client.gui.screen;
+package com.greatorator.tolkienmobs.client.gui;
 
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.RenderUtils;
 import codechicken.lib.vec.Vector3;
 import codechicken.lib.vec.Vertex5;
-import codechicken.lib.vec.uv.UV;
-import com.brandon3055.brandonscore.api.power.IOInfo;
 import com.brandon3055.brandonscore.client.BCSprites;
 import com.brandon3055.brandonscore.client.gui.GuiToolkit;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElement;
@@ -15,48 +13,38 @@ import com.brandon3055.brandonscore.client.gui.modulargui.baseelements.GuiButton
 import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiTexture;
 import com.brandon3055.brandonscore.client.gui.modulargui.lib.GuiAlign;
 import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
-import com.brandon3055.brandonscore.inventory.ContainerSlotLayout;
 import com.brandon3055.brandonscore.inventory.SlotMover;
 import com.brandon3055.brandonscore.utils.MathUtils;
 import com.brandon3055.brandonscore.utils.Utils;
-import com.google.common.collect.Lists;
 import com.greatorator.tolkienmobs.client.TTMSprites;
 import com.greatorator.tolkienmobs.container.BackpackContainer;
 import com.greatorator.tolkienmobs.entity.tile.BackpackTile;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.model.RenderMaterial;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
 
-import static net.minecraft.util.text.TextFormatting.*;
+import static net.minecraft.util.text.TextFormatting.DARK_AQUA;
+import static net.minecraft.util.text.TextFormatting.GRAY;
 
 /**
  * Overhauled by brandon3055 on 07/09/2022
  */
 public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
     public static RenderType FLUID_RENDER_TYPE = RenderUtils.getFluidRenderType();
-    protected GuiToolkit<BackpackScreen> toolkit = new GuiToolkit<>(this, 257, 207).setTranslationPrefix("gui.tolkienmobs.backback");
+    protected GuiToolkit<BackpackScreen> toolkit = new GuiToolkit<>(this, 257, 207).setTranslationPrefix("gui.tolkienmobs.backpack");
     private final BackpackTile tile;
 
     public BackpackScreen(BackpackContainer container, PlayerInventory inv, ITextComponent titleIn) {
@@ -164,12 +152,12 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
 
         // ### Example Buttons! ###
         //These are examples to show you how to implement buttons.
-        //These also show you how to use the built in message system to send a message to the server side tile when a button is pressed.
+        //These also show you how to use the built-in message system to send a message to the server side tile when a button is pressed.
         //Useful if you want these buttons to do things like place beds.
         GuiButton bedButton = toolkit.createIconButton(template.background, 16, 16, TTMSprites.getter("backpack/bed"));
         toolkit.placeInside(bedButton, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 4, -4);
         //When button is pressed send a message to the server tile with id 0
-        //You can optionally write additional data to the mcDataOutput but thats a little more advanced. Ask me if you need help with that
+        //You can optionally write additional data to the mcDataOutput but that's a little more advanced. Ask me if you need help with that
         bedButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {}, 0));
 
         GuiButton campfireButton = toolkit.createIconButton(template.background, 16, 16, TTMSprites.getter("backpack/campfire"));
@@ -177,18 +165,22 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
         //When button is pressed send a message to the server tile with id 1
         campfireButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {}, 1));
 
+        GuiButton upgradeButton = toolkit.createIconButton(template.background, 16, 16, TTMSprites.getter("backpack/upgrade"));
+        toolkit.placeOutside(upgradeButton, campfireButton, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
+        //When button is pressed send a message to the server tile with id 1
+        upgradeButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {}, 2));
 
     }
 
     //###############################################################################################################################################################################
     //###############################################################################################################################################################################
     //
-    // You can Ignore everything bellow this point. These are just some additional functions that will eventually be integrated into BCore so you dont need to deal with them
+    // You can Ignore everything bellow this point. These are just some additional functions that will eventually be integrated into BCore, so you don't need to deal with them
     //
     //###############################################################################################################################################################################
     //###############################################################################################################################################################################
 
-    //Ignore this i just needed a little hack to do the custom backgrounds for the crafting table amd the bucket slots
+    //Ignore this I just needed a little hack to do the custom backgrounds for the crafting table amd the bucket slots
     public GuiElement<?> createSlotsNoBG(GuiElement<?> parent, int columns, int rows, int spacing, BiFunction<Integer, Integer, SlotMover> slotMapper) {
         GuiElement<?> element = new GuiElement() {
             @Override

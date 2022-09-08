@@ -1,24 +1,34 @@
-package com.greatorator.tolkienmobs.event;
+package com.greatorator.tolkienmobs.event.entity.living;
 
+import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.SleepingBagBlock;
-import com.greatorator.tolkienmobs.entity.monster.EntityTTMGoblin;
-import com.greatorator.tolkienmobs.event.entity.living.TTMGoblinEvent;
+import com.greatorator.tolkienmobs.event.TTMEventTriggers;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerSetSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerSleepInBedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-public class TTMServerEvents {
+@Mod.EventBusSubscriber(modid = TolkienMobs.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
+public class TTMSleepingEvent {
+    @SubscribeEvent
+    public void onPlayerSetSpawn(PlayerSetSpawnEvent evt) {
+        PlayerEntity player = evt.getPlayer();
+        World world = player.getCommandSenderWorld();
+        BlockPos pos = evt.getNewSpawn();
 
-    public static TTMGoblinEvent.SummonAidEvent fireGoblinSummonAid(EntityTTMGoblin goblin, World world, int x, int y, int z, LivingEntity attacker, double summonChance)
-    {
-        TTMGoblinEvent.SummonAidEvent summonEvent = new TTMGoblinEvent.SummonAidEvent(goblin, world, x, y, z, attacker, summonChance);
-        MinecraftForge.EVENT_BUS.post(summonEvent);
-        return summonEvent;
+        if (pos != null && !world.isClientSide()) {
+            Block block = world.getBlockState(pos).getBlock();
+
+            if (block instanceof SleepingBagBlock) {
+                evt.setCanceled(true);
+            }
+        }
     }
 
     @SubscribeEvent

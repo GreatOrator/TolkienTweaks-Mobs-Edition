@@ -4,11 +4,7 @@ import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.TTMClientEvents;
 import com.greatorator.tolkienmobs.client.TTMSprites;
-import com.greatorator.tolkienmobs.client.gui.GuiTTMFireplace;
-import com.greatorator.tolkienmobs.client.gui.GuiTTMMithrilBarrel;
-import com.greatorator.tolkienmobs.client.gui.GuiTTMMorgulironBarrel;
-import com.greatorator.tolkienmobs.client.gui.GuiTTMPiggyBank;
-import com.greatorator.tolkienmobs.client.gui.screen.BackpackScreen;
+import com.greatorator.tolkienmobs.client.gui.*;
 import com.greatorator.tolkienmobs.client.render.tile.*;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
@@ -222,7 +218,8 @@ public class ClientProxy extends CommonProxy {
     private void registerTileRenderers() {
         ClientRegistry.bindTileEntityRenderer(TTMContent.TMFIREPLACE_TILE.get(), RenderTTMFireplaceTile::new);
         ClientRegistry.bindTileEntityRenderer(TTMContent.PIGGYBANK_TILE.get(), RenderTTMPiggyBankTile::new);
-        ClientRegistry.bindTileEntityRenderer(TTMContent.BACKPACK_TILE.get(), RenderTTMBackpackTile::new);
+        ClientRegistry.bindTileEntityRenderer(TTMContent.BACKPACK_TILE.get(), RenderBackpackTile::new);
+        ClientRegistry.bindTileEntityRenderer(TTMContent.PLACARD_TILE.get(), RenderPlacardTile::new);
         ClientRegistry.bindTileEntityRenderer(TTMContent.MALLORN_SIGN_TILE.get(), RenderTTMMallornSignTile::new);
         ClientRegistry.bindTileEntityRenderer(TTMContent.MIRKWOOD_SIGN_TILE.get(), RenderTTMMirkwoodSignTile::new);
         ClientRegistry.bindTileEntityRenderer(TTMContent.CULUMALDA_SIGN_TILE.get(), RenderTTMCulumaldaSignTile::new);

@@ -683,7 +683,7 @@ public class LangGenerator extends LanguageProvider {
 
 
     private void gui(PrefixHelper helper) {
-        helper.setPrefix("gui.tolkienmobs.backback.");
+        helper.setPrefix("gui.tolkienmobs.backpack.");
         helper.add("fluid_storage",             "Fluid Storage");
         helper.add("fluid",                     "Fluid:");
     }

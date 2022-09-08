@@ -4,6 +4,7 @@ import codechicken.lib.data.MCDataInput;
 import com.brandon3055.brandonscore.blocks.TileBCore;
 import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
 import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.block.BackpackBlock;
 import com.greatorator.tolkienmobs.container.BackpackContainer;
 import com.greatorator.tolkienmobs.lib.TileFluidHandler;
 import net.minecraft.block.BedBlock;
@@ -16,6 +17,7 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.BedPart;
 import net.minecraft.tileentity.ITickableTileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.FluidActionResult;
@@ -83,18 +85,21 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
 
     @Override
     public void tick() {
-        //What you had here is what most people would refer to as a 'lag machine' Its not needed.
+        //What you had here is what most people would refer to as a 'lag machine' It's not needed.
     }
 
     //This is the method that gets called when you call "tile.sendPacketToServer(mcDataOutput -> {}, id)" from the GUI
     @Override
     public void receivePacketFromClient(MCDataInput data, ServerPlayerEntity client, int id) {
-        if (id == 0) { //Bed button was pressed
-            level.setBlock(worldPosition.above(), Blocks.RED_BED.defaultBlockState(), 26);
-            level.setBlock(worldPosition.above().north(), Blocks.RED_BED.defaultBlockState().setValue(BedBlock.PART, BedPart.HEAD), 26);
+        Direction facing = level.getBlockState(worldPosition).getValue(BackpackBlock.FACING);
 
+        if (id == 0) { //Bed button was pressed
+            level.setBlock(worldPosition.relative(facing), TTMContent.SLEEPING_BAG_BLUE.get().defaultBlockState(), 26);
+            level.setBlock(worldPosition.relative(facing).north(), TTMContent.SLEEPING_BAG_BLUE.get().defaultBlockState().setValue(BedBlock.PART, BedPart.HEAD), 26);
         } else if (id == 1) { //Campfire button was pressed
-            level.setBlockAndUpdate(worldPosition.above(), Blocks.CAMPFIRE.defaultBlockState());
+            level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.CAMPFIRE.defaultBlockState());
+        } else if (id == 2) { //Upgrade button was pressed
+            level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.STONE.defaultBlockState());
         }
     }
 

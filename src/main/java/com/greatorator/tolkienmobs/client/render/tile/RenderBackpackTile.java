@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.client.render.tile;
 
-import com.greatorator.tolkienmobs.block.BlockBackpack;
+import com.greatorator.tolkienmobs.block.BackpackBlock;
 import com.greatorator.tolkienmobs.entity.tile.BackpackTile;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.block.BlockState;
@@ -10,15 +10,15 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Quaternion;
 
-public class RenderTTMBackpackTile extends TileEntityRenderer<BackpackTile> {
-    public RenderTTMBackpackTile(TileEntityRendererDispatcher rendererDispatcherIn) {
+public class RenderBackpackTile extends TileEntityRenderer<BackpackTile> {
+    public RenderBackpackTile(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
     }
 
     @Override
     public void render(BackpackTile te, float partialTicks, MatrixStack mStack, IRenderTypeBuffer getter, int packedLight, int packedOverlay) {
         BlockState state = te.getBlockState();
-        Direction facing = state.getValue(BlockBackpack.FACING);
+        Direction facing = state.getValue(BackpackBlock.FACING);
 
         mStack.pushPose();
         mStack.translate(0.5, 0.5, 0.5);

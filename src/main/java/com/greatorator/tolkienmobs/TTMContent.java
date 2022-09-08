@@ -68,7 +68,7 @@ public class TTMContent {
     public static ItemGroup spawnGroup = new SimpleItemGroup("tolkienmobs.spawn", () -> new ItemStack(TTMContent.GOLEM_STONE_SUMMON.get()));
     public static ItemGroup foodGroup = new SimpleItemGroup("tolkienmobs.food", () -> new ItemStack(TTMContent.LEMBAS.get()));
     public static ItemGroup questGroup = new SimpleItemGroup("tolkienmobs.quest", () -> new ItemStack(TTMContent.ITEM_FORTRESSMAP.get()));
-    public static ItemGroup signsGroup = new SimpleItemGroup("tolkienmobs.signs", () -> new ItemStack(TTMContent.BLOCK_MITHRIL.get()));
+    public static ItemGroup signsGroup = new SimpleItemGroup("tolkienmobs.signs", () -> new ItemStack(TTMContent.PLACARD_EMPTY.get()));
 
     public static void init() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -252,55 +252,56 @@ public class TTMContent {
     public static RegistryObject<Block> PIGGYBANK = BLOCKS.register("block_piggybank", () -> new BlockTTMPiggyBank(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_PINK).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
     public static RegistryObject<Block> BARREL_MITHRIL = BLOCKS.register("block_barrel_mithril", () -> new BlockTTMMithrilBarrel(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
     public static RegistryObject<Block> BARREL_MORGULIRON = BLOCKS.register("block_barrel_morguliron", () -> new BlockTTMMorgulironBarrel(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
-    public static RegistryObject<Block> BACKPACK = BLOCKS.register("backpack", () -> new BlockBackpack(AbstractBlock.Properties.of(Material.WOOL, MaterialColor.COLOR_LIGHT_GRAY).harvestTool(ToolType.AXE).noOcclusion().harvestLevel(1).strength(1f, 1f)));
+    public static RegistryObject<Block> BACKPACK = BLOCKS.register("backpack", () -> new BackpackBlock(AbstractBlock.Properties.of(Material.WOOL, MaterialColor.COLOR_LIGHT_GRAY).harvestTool(ToolType.AXE).noOcclusion().harvestLevel(1).strength(1f, 1f)));
+    public static RegistryObject<Block> PLACARD_EMPTY = BLOCKS.register("placard_empty", () -> new BlockTTMPlacard(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).harvestTool(ToolType.AXE).noOcclusion().harvestLevel(1).strength(1f, 1f)));
 
     // Custom - Sleeping Bags
-    public static RegistryObject<Block> SLEEPING_BAG_BLUE = BLOCKS.register("sleeping_bag_blue", () -> new BlockTTMSleepingBag(DyeColor.BLUE, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_BLUE = BLOCKS.register("sleeping_bag_blue", () -> new SleepingBagBlock(DyeColor.BLUE, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_BLUE : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
-    public static RegistryObject<Block> SLEEPING_BAG_RED = BLOCKS.register("sleeping_bag_red", () -> new BlockTTMSleepingBag(DyeColor.RED, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_RED = BLOCKS.register("sleeping_bag_red", () -> new SleepingBagBlock(DyeColor.RED, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_RED : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
-    public static RegistryObject<Block> SLEEPING_BAG_BLACK = BLOCKS.register("sleeping_bag_black", () -> new BlockTTMSleepingBag(DyeColor.BLACK, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_BLACK = BLOCKS.register("sleeping_bag_black", () -> new SleepingBagBlock(DyeColor.BLACK, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_BLACK : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
-    public static RegistryObject<Block> SLEEPING_BAG_BROWN = BLOCKS.register("sleeping_bag_brown", () -> new BlockTTMSleepingBag(DyeColor.BROWN, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_BROWN = BLOCKS.register("sleeping_bag_brown", () -> new SleepingBagBlock(DyeColor.BROWN, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_BROWN : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
-    public static RegistryObject<Block> SLEEPING_BAG_CYAN = BLOCKS.register("sleeping_bag_cyan", () -> new BlockTTMSleepingBag(DyeColor.CYAN, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_CYAN = BLOCKS.register("sleeping_bag_cyan", () -> new SleepingBagBlock(DyeColor.CYAN, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_CYAN : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
-    public static RegistryObject<Block> SLEEPING_BAG_GRAY = BLOCKS.register("sleeping_bag_gray", () -> new BlockTTMSleepingBag(DyeColor.GRAY, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_GRAY = BLOCKS.register("sleeping_bag_gray", () -> new SleepingBagBlock(DyeColor.GRAY, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_GRAY : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
-    public static RegistryObject<Block> SLEEPING_BAG_GREEN = BLOCKS.register("sleeping_bag_green", () -> new BlockTTMSleepingBag(DyeColor.GREEN, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_GREEN = BLOCKS.register("sleeping_bag_green", () -> new SleepingBagBlock(DyeColor.GREEN, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_GREEN : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
-    public static RegistryObject<Block> SLEEPING_BAG_LIGHT_BLUE = BLOCKS.register("sleeping_bag_light_blue", () -> new BlockTTMSleepingBag(DyeColor.LIGHT_BLUE, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_LIGHT_BLUE = BLOCKS.register("sleeping_bag_light_blue", () -> new SleepingBagBlock(DyeColor.LIGHT_BLUE, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_LIGHT_BLUE : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
-    public static RegistryObject<Block> SLEEPING_BAG_LIGHT_GRAY = BLOCKS.register("sleeping_bag_light_gray", () -> new BlockTTMSleepingBag(DyeColor.LIGHT_GRAY, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_LIGHT_GRAY = BLOCKS.register("sleeping_bag_light_gray", () -> new SleepingBagBlock(DyeColor.LIGHT_GRAY, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_LIGHT_GRAY : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
-    public static RegistryObject<Block> SLEEPING_BAG_LIME = BLOCKS.register("sleeping_bag_lime", () -> new BlockTTMSleepingBag(DyeColor.LIME, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_LIME = BLOCKS.register("sleeping_bag_lime", () -> new SleepingBagBlock(DyeColor.LIME, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_LIGHT_GREEN : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
-    public static RegistryObject<Block> SLEEPING_BAG_MAGENTA = BLOCKS.register("sleeping_bag_magenta", () -> new BlockTTMSleepingBag(DyeColor.MAGENTA, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_MAGENTA = BLOCKS.register("sleeping_bag_magenta", () -> new SleepingBagBlock(DyeColor.MAGENTA, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_MAGENTA : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
-    public static RegistryObject<Block> SLEEPING_BAG_ORANGE = BLOCKS.register("sleeping_bag_orange", () -> new BlockTTMSleepingBag(DyeColor.ORANGE, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_ORANGE = BLOCKS.register("sleeping_bag_orange", () -> new SleepingBagBlock(DyeColor.ORANGE, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_ORANGE : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
-    public static RegistryObject<Block> SLEEPING_BAG_PINK = BLOCKS.register("sleeping_bag_pink", () -> new BlockTTMSleepingBag(DyeColor.PINK, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_PINK = BLOCKS.register("sleeping_bag_pink", () -> new SleepingBagBlock(DyeColor.PINK, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_PINK : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
-    public static RegistryObject<Block> SLEEPING_BAG_PURPLE = BLOCKS.register("sleeping_bag_purple", () -> new BlockTTMSleepingBag(DyeColor.PURPLE, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_PURPLE = BLOCKS.register("sleeping_bag_purple", () -> new SleepingBagBlock(DyeColor.PURPLE, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_PURPLE : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
-    public static RegistryObject<Block> SLEEPING_BAG_WHITE = BLOCKS.register("sleeping_bag_white", () -> new BlockTTMSleepingBag(DyeColor.WHITE, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_WHITE = BLOCKS.register("sleeping_bag_white", () -> new SleepingBagBlock(DyeColor.WHITE, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.SNOW : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
-    public static RegistryObject<Block> SLEEPING_BAG_YELLOW = BLOCKS.register("sleeping_bag_yellow", () -> new BlockTTMSleepingBag(DyeColor.YELLOW, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
+    public static RegistryObject<Block> SLEEPING_BAG_YELLOW = BLOCKS.register("sleeping_bag_yellow", () -> new SleepingBagBlock(DyeColor.YELLOW, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
         return state.getValue(BedBlock.PART) == BedPart.FOOT ? MaterialColor.COLOR_RED : MaterialColor.WOOL;
     }).sound(SoundType.WOOL).strength(0.2F, 0.3F).noCollission()));
 
@@ -419,6 +420,7 @@ public class TTMContent {
     public static RegistryObject<Item> PIGGYBANK_ITEM = ITEMS.register("block_piggybank", () -> new ItemBlockBCore(PIGGYBANK.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> BARREL_MITHRIL_ITEM = ITEMS.register("block_barrel_mithril", () -> new ItemBlockBCore(BARREL_MITHRIL.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> BARREL_MORGULIRON_ITEM = ITEMS.register("block_barrel_morguliron", () -> new ItemBlockBCore(BARREL_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> ITEM_PLACARD_EMPTY = ITEMS.register("item_placard_empty", () -> new ItemBlockBCore(TTMContent.PLACARD_EMPTY.get(), (new Item.Properties()).stacksTo(1).tab(signsGroup)));
 
     // Blocks - Sleeping Bags
     public static RegistryObject<Item> SLEEPING_BAG_BLUE_ITEM = ITEMS.register("sleeping_bag_blue", () -> new ItemBlockBCore(SLEEPING_BAG_BLUE.get(), new Item.Properties().tab(decoGroup)));
@@ -618,7 +620,8 @@ public class TTMContent {
     public static RegistryObject<TileEntityType<TTMMithrilBarrelTile>> BARREL_MITHRIL_TILE = TILE.register("barrel_mithril_tile", () -> TileEntityType.Builder.of(TTMMithrilBarrelTile::new, BARREL_MITHRIL.get()).build(null));
     public static RegistryObject<TileEntityType<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_TILE = TILE.register("barrel_morguliron_tile", () -> TileEntityType.Builder.of(TTMMorgulironBarrelTile::new, BARREL_MORGULIRON.get()).build(null));
     public static RegistryObject<TileEntityType<BackpackTile>> BACKPACK_TILE = TILE.register("backpack_tile", () -> TileEntityType.Builder.of(BackpackTile::new, BACKPACK.get()).build(null));
-    public static RegistryObject<TileEntityType<TTMSleepingBagTile>> SLEEPING_BAG_TILE = TILE.register("sleeping_bag", () -> new TileEntityType<>(TTMSleepingBagTile::new, Sets.newHashSet(TTMContent.SLEEPING_BAG_RED.get(), TTMContent.SLEEPING_BAG_BLUE.get(), TTMContent.SLEEPING_BAG_BLACK.get(), TTMContent.SLEEPING_BAG_BROWN.get(), TTMContent.SLEEPING_BAG_CYAN.get(), TTMContent.SLEEPING_BAG_GRAY.get(), TTMContent.SLEEPING_BAG_GREEN.get(), TTMContent.SLEEPING_BAG_LIGHT_BLUE.get(), TTMContent.SLEEPING_BAG_LIGHT_GRAY.get(), TTMContent.SLEEPING_BAG_LIME.get(), TTMContent.SLEEPING_BAG_MAGENTA.get(), TTMContent.SLEEPING_BAG_ORANGE.get(), TTMContent.SLEEPING_BAG_PINK.get(), TTMContent.SLEEPING_BAG_PURPLE.get(), TTMContent.SLEEPING_BAG_WHITE.get(), TTMContent.SLEEPING_BAG_YELLOW.get()), null));
+    public static RegistryObject<TileEntityType<SleepingBagTile>> SLEEPING_BAG_TILE = TILE.register("sleeping_bag", () -> new TileEntityType<>(SleepingBagTile::new, Sets.newHashSet(TTMContent.SLEEPING_BAG_RED.get(), TTMContent.SLEEPING_BAG_BLUE.get(), TTMContent.SLEEPING_BAG_BLACK.get(), TTMContent.SLEEPING_BAG_BROWN.get(), TTMContent.SLEEPING_BAG_CYAN.get(), TTMContent.SLEEPING_BAG_GRAY.get(), TTMContent.SLEEPING_BAG_GREEN.get(), TTMContent.SLEEPING_BAG_LIGHT_BLUE.get(), TTMContent.SLEEPING_BAG_LIGHT_GRAY.get(), TTMContent.SLEEPING_BAG_LIME.get(), TTMContent.SLEEPING_BAG_MAGENTA.get(), TTMContent.SLEEPING_BAG_ORANGE.get(), TTMContent.SLEEPING_BAG_PINK.get(), TTMContent.SLEEPING_BAG_PURPLE.get(), TTMContent.SLEEPING_BAG_WHITE.get(), TTMContent.SLEEPING_BAG_YELLOW.get()), null));
+    public static RegistryObject<TileEntityType<PlacardTile>> PLACARD_TILE = TILE.register("placard_tile", () -> TileEntityType.Builder.of(PlacardTile::new, PLACARD_EMPTY.get()).build(null));
 
     // Signs
     public static RegistryObject<TileEntityType<TTMMallornSignTile>> MALLORN_SIGN_TILE = TILE.register("mallorn_sign", () -> TileEntityType.Builder.of(TTMMallornSignTile::new, MALLORN_SIGN_WOOD_TYPE.get(), MALLORN_WALL_SIGN_WOOD_TYPE.get()).build(null));
@@ -640,7 +643,7 @@ public class TTMContent {
         event.getRegistry().register(PIGGYBANK_CONTAINER = (ContainerType<ContainerBCTile<TTMPiggyBankTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(PIGGYBANK_CONTAINER, id, playerInv, extraData, TTMPiggyBankTile.SLOT_LAYOUT)).setRegistryName("piggybank_container"));
         event.getRegistry().register(BARREL_MITHRIL_CONTAINER = (ContainerType<ContainerBCTile<TTMMithrilBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MITHRIL_CONTAINER, id, playerInv, extraData, TTMMithrilBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_mithril_container"));
         event.getRegistry().register(BARREL_MORGULIRON_CONTAINER = (ContainerType<ContainerBCTile<TTMMorgulironBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MORGULIRON_CONTAINER, id, playerInv, extraData, TTMMorgulironBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_morguliron_container"));
-        event.getRegistry().register(BACKPACK_CONTAINER = (ContainerType<BackpackContainer>) IForgeContainerType.create(BackpackContainer::new).setRegistryName("backback_container"));
+        event.getRegistry().register(BACKPACK_CONTAINER = (ContainerType<BackpackContainer>) IForgeContainerType.create(BackpackContainer::new).setRegistryName("backpack_container"));
     }
 
     //#################################################################

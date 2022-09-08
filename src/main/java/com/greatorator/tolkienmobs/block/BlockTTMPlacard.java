@@ -1,120 +1,93 @@
-//package com.greatorator.tolkienmobs.block;
-//
-//import net.minecraft.block.WallSignBlock;
-//import net.minecraft.item.ItemStack;
-//import net.minecraft.util.NonNullList;
-//import net.minecraft.util.math.AxisAlignedBB;
-//
-//import java.util.Arrays;
-//
-//public class BlockTTMPlacard extends WallSignBlock {
-//    public static final AxisAlignedBB BLOCK_SIGN_Z = new AxisAlignedBB(0.45D, 0.0D, 0D, 0.55D, 0.5D, 1D);
-//    public static final AxisAlignedBB BLOCK_SIGN_X = new AxisAlignedBB(0D, 0.0D, 0.45D, 1D, 0.5D, 0.55D);
-//    public static final AxisAlignedBB SIGN_EAST_AABB = new AxisAlignedBB(0.0D, 0.28125D, 0.0D, 0.125D, 0.78125D, 1.0D);
-//    public static final AxisAlignedBB SIGN_WEST_AABB = new AxisAlignedBB(0.875D, 0.28125D, 0.0D, 1.0D, 0.78125D, 1.0D);
-//    public static final AxisAlignedBB SIGN_SOUTH_AABB = new AxisAlignedBB(0.0D, 0.28125D, 0.0D, 1.0D, 0.78125D, 0.125D);
-//    public static final AxisAlignedBB SIGN_NORTH_AABB = new AxisAlignedBB(0.0D, 0.28125D, 0.875D, 1.0D, 0.78125D, 1.0D);
-//
-//    public static final PropertyEnum<EnumType> VARIANT = PropertyEnum.<EnumType>create("type", EnumType.class);
-//    public static final PropertyDirection FACING = PropertyDirection.create("facing", Arrays.asList(EnumFacing.HORIZONTALS));
-//    public static final PropertyBool WALL = PropertyBool.create("wall");
-//
-//    public BlockTTMPlacard(Properties properties) {
-//        super(properties);
-//        this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, EnumType.EMPTY).withProperty(FACING, EnumFacing.NORTH).withProperty(WALL, false));
-//        this.setHarvestLevel("axe", 1);
-//        this.setHasSubItemTypes(true);
-//    }
-//
-//    @Override
-//    public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items) {
-//        for (EnumType type : EnumType.values()) {
-//            items.add(new ItemStack(this, 1, type.meta));
-//        }
-//    }
-//
-//    //region BlockState
-//
-//    @Override
-//    public IBlockState getStateFromMeta(int meta) {
-//        return getDefaultState();
-//    }
-//
-//    @Override
-//    public int getMetaFromState(IBlockState state) {
-//        return 0;
-//    }
-//
-//    @Override
-//    protected BlockStateContainer createBlockState() {
-//        return new BlockStateContainer(this, VARIANT, FACING, WALL);
-//    }
-//
-//    @Override
-//    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
-//        TileEntity tile = world.getTileEntity(pos);
-//        if (tile instanceof TileSign) {
-//            return state.withProperty(WALL, ((TileSign) tile).WALL.value).withProperty(FACING, ((TileSign) tile).ROTATION.value).withProperty(VARIANT, ((TileSign) tile).TYPE.value);
-//        }
-//        return super.getActualState(state, world, pos);
-//    }
-//
-//    //endregion
-//
-//    //region render
-//
-//    @SideOnly(Side.CLIENT)
-//    @Override
-//    public void registerRenderer(Feature feature) {
-//        for (EnumType type : EnumType.values()) {
-//            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(this), type.meta, new ModelResourceLocation(feature.getRegistryName(), "type=" + type.name));
-//        }
-//    }
-//
-//    @Override
-//    public boolean registerNormal(Feature feature) {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean uberIsBlockFullCube() {
-//        return false;
-//    }
-//
-//    @SideOnly(Side.CLIENT)
-//    public BlockRenderLayer getBlockLayer() {
-//        return BlockRenderLayer.CUTOUT_MIPPED;
-//    }
-//
-//    //endregion
-//
-//    @Nullable
-//    @Override
-//    public TileEntity createNewTileEntity(World worldIn, int meta) {
-//        return new TileSign();
-//    }
-//
-//    public void harvestBlock(World world, PlayerEntity player, BlockPos pos, IBlockState state, TileEntity te, ItemStack heldStack) {
-//        if (te instanceof TileSign) {
-//            ItemStack stack = new ItemStack(this, 1, ((TileSign) te).TYPE.value.getMeta());
-//            spawnAsEntity(world, pos, stack);
-//            world.removeTileEntity(pos);
-//        }
-//        else {
-//            super.harvestBlock(world, player, pos, state, te, heldStack);
-//        }
-//    }
-//
-//    @Override
-//    public boolean hasSubItemTypes() {
-//        return true;
-//    }
-//
-//    @Override
-//    public Map<Integer, String> getNameOverrides() {
-//        return EnumType.SIGN_TYPE_LOOKUP;
-//    }
-//
+package com.greatorator.tolkienmobs.block;
+
+import com.brandon3055.brandonscore.blocks.BlockBCore;
+import com.greatorator.tolkienmobs.entity.tile.PlacardTile;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Rotation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
+
+import javax.annotation.Nullable;
+
+public class BlockTTMPlacard extends BlockBCore {
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+
+    public static final VoxelShape SHAPE_HANGING_NS = Block.box(0.0D, 5.0D, 14.0D, 16.0D, 13.0D, 16.0D);
+    public static final VoxelShape SHAPE_HANGING_EW = Block.box(0.0D, 5.0D, 0.0D, 2.0D, 13.0D, 16.0D);
+    public static final VoxelShape SHAPE_STANDING_NS = Block.box(0.0D, 5.0D, 14.0D, 16.0D, 13.0D, 16.0D);
+    public static final VoxelShape SHAPE_STANDING_EW = Block.box(0.0D, 5.0D, 0.0D, 2.0D, 13.0D, 16.0D);
+    protected static final VoxelShape SHAPE_COMMON = Block.box(0.0D, 5.0D, 14.0D, 16.0D, 13.0D, 16.0D);
+    protected static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 5.0D, 14.0D, 16.0D, 13.0D, 16.0D);
+    protected static final VoxelShape SHAPE_SOUTH = Block.box(0.0D, 5.0D, 2.0D, 16.0D, 13.0D, 0.0D);
+    protected static final VoxelShape SHAPE_EAST = Block.box(0.0D, 5.0D, 0.0D, 2.0D, 13.0D, 16.0D);
+    protected static final VoxelShape SHAPE_WEST = Block.box(16.0D, 5.0D, 0.0D, 14.0D, 13.0D, 16.0D);
+
+    public BlockTTMPlacard(Properties properties) {
+        super(properties);
+        this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
+        switch((Direction)state.getValue(FACING)) {
+            Direction facing = ;
+        boolean flag = facing == Direction.NORTH;
+
+            case NORTH:
+                return SHAPE_NORTH;
+            case SOUTH:
+                return SHAPE_SOUTH;
+            case EAST:
+                return SHAPE_EAST;
+            case WEST:
+                return SHAPE_WEST;
+            case UP:
+                return flag ? SHAPE_HANGING_NS : SHAPE_HANGING_EW;
+            case DOWN:
+                return flag ? SHAPE_STANDING_NS : SHAPE_STANDING_EW;
+            default:
+                return SHAPE_COMMON;
+        }
+    }
+
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(FACING);
+        super.createBlockStateDefinition(builder);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public BlockState rotate(BlockState state, Rotation direction) {
+        return state.setValue(FACING, direction.rotate(state.getValue(FACING)));
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return new PlacardTile();
+    }
+
 //    public enum EnumType implements IStringSerializable {
 //        EMPTY(0, "empty"),
 //        ARCANE1(1, "arcane1"),
@@ -173,43 +146,4 @@
 //            }
 //        }
 //    }
-//
-//    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-//        TileEntity te = source.getTileEntity(pos);
-//        if (te instanceof TileSign) {
-//            if (!((TileSign) te).WALL.value) {
-//                return ((TileSign) te).ROTATION.value.getAxis() != EnumFacing.Axis.X ? BLOCK_SIGN_X : BLOCK_SIGN_Z;
-//            }
-//
-//            switch (((TileSign) te).ROTATION.value.getOpposite()) {
-//                case NORTH:
-//                default:
-//                    return SIGN_NORTH_AABB;
-//                case SOUTH:
-//                    return SIGN_SOUTH_AABB;
-//                case WEST:
-//                    return SIGN_WEST_AABB;
-//                case EAST:
-//                    return SIGN_EAST_AABB;
-//            }
-//        }
-//        return FULL_BLOCK_AABB;
-//    }
-//
-//    @Nullable
-//    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-//        return NULL_AABB;
-//    }
-//
-//    @Override
-//    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, PlayerEntity player) {
-//        TileEntity te = world.getTileEntity(pos);
-//        if (te instanceof TileSign) {
-//            return new ItemStack(this, 1, ((TileSign) te).TYPE.value.getMeta());
-//        }
-//        else {
-//            return super.getPickBlock(state, target, world, pos, player);
-//        }
-//    }
-//
-//}
+}

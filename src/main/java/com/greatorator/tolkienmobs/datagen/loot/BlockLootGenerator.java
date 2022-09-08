@@ -143,8 +143,8 @@ public class BlockLootGenerator extends BlockLootTables {
         ILootCondition.IBuilder ilootcondition$ibuilder1 = BlockStateProperty.hasBlockStateProperties(TTMContent.PIPEWEED.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 7));
         add(TTMContent.PIPEWEED.get(), createCropDrops(TTMContent.PIPEWEED.get(), TTMContent.PIPEWEED_ITEM.get(), TTMContent.PIPEWEED_SEEDS.get(), ilootcondition$ibuilder1));
 
-        // Blocks - Signs
-//        dropSelf(TTMContent.SIGN_EMPTY.get());
+        // Blocks - Placards
+        dropSelf(TTMContent.PLACARD_EMPTY.get());
 //        dropSelf(TTMContent.SIGN_WALL_EMPTY.get());
 
         // Blocks - Custom

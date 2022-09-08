@@ -140,6 +140,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TTMContent.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
         simpleBlock(TTMContent.STONE_PATH.get(), models().getExistingFile(modLoc("block/block_stone_path")));
         horizontalBlock(TTMContent.BACKPACK.get(), models().getExistingFile(modLoc("block/container_backpack")),  0);
+        horizontalBlock(TTMContent.PLACARD_EMPTY.get(), models().getExistingFile(modLoc("block/placard_wall_empty")),  0);
 
         ModelFile barrelMithril = models().cubeBottomTop("barrel_mithril", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top"));
         ModelFile barrelMithrilOpen = models().cubeBottomTop("barrel_mithril_open", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top_open"));
@@ -311,8 +312,8 @@ public class BlockStateGenerator extends BlockStateProvider {
         ModelFile footModel = models().getExistingFile(foot);
         Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(TolkienMobs.MODID, "sleeping_bag_"+color));
         getVariantBuilder(block).forAllStatesExcept(state -> {
-            int yRot = ((int) state.getValue(BlockTTMSleepingBag.FACING).toYRot());
-            return ConfiguredModel.builder().modelFile(state.getValue(BlockTTMSleepingBag.PART) == BedPart.FOOT ? footModel : headModel)
+            int yRot = ((int) state.getValue(SleepingBagBlock.FACING).toYRot());
+            return ConfiguredModel.builder().modelFile(state.getValue(SleepingBagBlock.PART) == BedPart.FOOT ? footModel : headModel)
                     .rotationY(yRot)
                     .build();
         });

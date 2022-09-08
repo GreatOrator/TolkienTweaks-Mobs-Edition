@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class BlockBackpack extends BlockBCore {
+public class BackpackBlock extends BlockBCore {
    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
    protected static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 0.0D, 8.0D, 15.0, 16.0, 16.0D);
@@ -32,7 +32,7 @@ public class BlockBackpack extends BlockBCore {
    protected static final VoxelShape SHAPE_WEST = Block.box(8.0D, 0.0D, 0.0D, 16.0D, 16.0, 15.0);
    protected static final VoxelShape SHAPE_COMMON = Block.box(1.0, 0.0D, 1.0, 15.0, 16.0, 9.0);
 
-   public BlockBackpack(Properties properties) {
+   public BackpackBlock(Properties properties) {
       super(properties);
       this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
    }

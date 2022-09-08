@@ -7,6 +7,7 @@ import com.greatorator.tolkienmobs.common.MobModify;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
 import com.greatorator.tolkienmobs.datagen.StructureGenerator;
+import com.greatorator.tolkienmobs.event.entity.living.TTMSleepingEvent;
 import com.greatorator.tolkienmobs.init.TTMTags;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.integration.curios.TTMEquipMgr;
@@ -71,6 +72,7 @@ public class CommonProxy {
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
+        MinecraftForge.EVENT_BUS.register(new TTMSleepingEvent());
     }
 
     public void serverSetup(FMLDedicatedServerSetupEvent event) {

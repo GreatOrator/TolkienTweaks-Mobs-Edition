@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.greatorator.tolkienmobs.entity.tile.TTMSleepingBagTile;
+import com.greatorator.tolkienmobs.entity.tile.SleepingBagTile;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
@@ -21,13 +21,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class BlockTTMSleepingBag extends BedBlock {
+public class SleepingBagBlock extends BedBlock {
     public static final EnumProperty<BedPart> PART = BlockStateProperties.BED_PART;
     public static final BooleanProperty OCCUPIED = BlockStateProperties.OCCUPIED;
     protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D);
     private final DyeColor color;
 
-    public BlockTTMSleepingBag(DyeColor colorIn, Properties builder) {
+    public SleepingBagBlock(DyeColor colorIn, Properties builder) {
         super(colorIn, builder);
         this.color = colorIn;
         this.registerDefaultState(this.stateDefinition.any().setValue(PART, BedPart.FOOT).setValue(OCCUPIED, Boolean.valueOf(false)));
@@ -45,7 +45,7 @@ public class BlockTTMSleepingBag extends BedBlock {
 
     @Override
     public TileEntity newBlockEntity(IBlockReader worldIn) {
-        return new TTMSleepingBagTile(this.color);
+        return new SleepingBagTile(this.color);
     }
 
     @Override

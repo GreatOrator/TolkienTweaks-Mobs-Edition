@@ -1,21 +1,21 @@
 package com.greatorator.tolkienmobs.entity.tile;
 
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.block.BlockTTMSleepingBag;
+import com.greatorator.tolkienmobs.block.SleepingBagBlock;
 import net.minecraft.item.DyeColor;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class TTMSleepingBagTile extends TileEntity {
+public class SleepingBagTile extends TileEntity {
     private DyeColor color;
 
-    public TTMSleepingBagTile() {
+    public SleepingBagTile() {
         super(TTMContent.SLEEPING_BAG_TILE.get());
     }
 
-    public TTMSleepingBagTile(DyeColor colorIn) {
+    public SleepingBagTile(DyeColor colorIn) {
         this();
         this.setColor(colorIn);
     }
@@ -28,7 +28,7 @@ public class TTMSleepingBagTile extends TileEntity {
     @OnlyIn(Dist.CLIENT)
     public DyeColor getColor() {
         if (this.color == null) {
-            this.color = ((BlockTTMSleepingBag) this.getBlockState().getBlock()).getColor();
+            this.color = ((SleepingBagBlock) this.getBlockState().getBlock()).getColor();
         }
         return this.color;
     }

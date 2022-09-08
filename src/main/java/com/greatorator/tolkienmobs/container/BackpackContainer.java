@@ -42,7 +42,7 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
 
     public BackpackContainer(int windowId, PlayerInventory playerInv, PacketBuffer extraData) {
         this(TTMContent.BACKPACK_CONTAINER, windowId, playerInv, getClientTile(extraData));
-        //^^ Dont forget this!
+        //^^ Don't forget this!
     }
 
     public BackpackContainer(@Nullable ContainerType<?> type, int windowId, PlayerInventory playerInv, BackpackTile tile) {

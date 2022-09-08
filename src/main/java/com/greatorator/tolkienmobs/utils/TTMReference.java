@@ -15,10 +15,5 @@ public class TTMReference {
     public static final int BUCKET_IN_LEFT = TOOL_LOWER + 1;		//50
     public static final int BUCKET_OUT_LEFT = BUCKET_IN_LEFT + 1;	//51
 
-    //Screen IDs
-    public static final byte NO_SCREEN_ID = 0;
-    public static final byte ITEM_SCREEN_ID = 1;
-    public static final byte WEARABLE_SCREEN_ID = 2;
-    public static final byte TILE_SCREEN_ID = 3;
 
 }

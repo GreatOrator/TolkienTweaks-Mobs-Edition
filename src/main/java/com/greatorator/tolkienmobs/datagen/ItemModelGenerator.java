@@ -128,6 +128,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.BARREL_MITHRIL.get(), modLoc("block/barrel_mithril"));
         blockItem(TTMContent.BARREL_MORGULIRON.get(), modLoc("block/barrel_morguliron"));
         blockItem(TTMContent.BACKPACK.get(), modLoc("block/container_backpack"));
+        blockItem(TTMContent.PLACARD_EMPTY.get(), modLoc("block/placard_wall_empty"));
 
         // Sleeping Bags
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
