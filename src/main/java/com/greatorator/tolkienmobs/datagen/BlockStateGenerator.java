@@ -6,6 +6,7 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.*;
 import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.BedPart;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
@@ -18,6 +19,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -139,8 +141,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         // Custom
         simpleBlock(TTMContent.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
         simpleBlock(TTMContent.STONE_PATH.get(), models().getExistingFile(modLoc("block/block_stone_path")));
-        horizontalBlock(TTMContent.BACKPACK.get(), models().getExistingFile(modLoc("block/container_backpack")),  0);
-        horizontalBlock(TTMContent.PLACARD_EMPTY.get(), models().getExistingFile(modLoc("block/placard_wall_empty")),  0);
+        horizontalBlock(TTMContent.BACKPACK.get(), models().getExistingFile(modLoc("block/container_backpack")), 0);
 
         ModelFile barrelMithril = models().cubeBottomTop("barrel_mithril", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top"));
         ModelFile barrelMithrilOpen = models().cubeBottomTop("barrel_mithril_open", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top_open"));
@@ -169,6 +170,35 @@ public class BlockStateGenerator extends BlockStateProvider {
         signBlock(TTMContent.LEBETHRON_WALL_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_lebethron");
 
         sleepingBagModels();
+
+
+        //Placards
+        ModelFile placardWallModel = models().getExistingFile(modLoc("block/placard_wall"));
+        ModelFile placardStandingModel = models().getExistingFile(modLoc("block/placard_standing"));
+        ModelFile placardHangingModel = models().getExistingFile(modLoc("block/placard_hanging"));
+
+        VariantBlockStateBuilder placardBuilder = getVariantBuilder(TTMContent.PLACARD.get());
+        for (AttachFace face : BlockTTMPlacard.ATTACH_FACE.getPossibleValues()) {
+            for (BlockTTMPlacard.PlacardType type : BlockTTMPlacard.PlacardType.values()) {
+                ModelFile baseModel = face == AttachFace.FLOOR ? placardStandingModel : face == AttachFace.CEILING ? placardHangingModel : placardWallModel;
+                ModelFile model = models().getBuilder("placard_" + face.getSerializedName() + "_" + type.getName()).parent(baseModel).texture("tex", "tolkienmobs:block/signs/placard_" + type.getName());
+                for (Direction dir : BlockTTMPlacard.FACING.getPossibleValues()) {
+
+                    int angle = (int) dir.toYRot();
+                    placardBuilder.partialState()
+                            .with(BlockTTMPlacard.FACING, dir)
+                            .with(BlockTTMPlacard.ATTACH_FACE, face)
+                            .with(BlockTTMPlacard.PLACARD_TYPE, type)
+                            .modelForState()
+                            .modelFile(model)
+                            .rotationY(angle)
+                            .addModel();
+                }
+            }
+        }
+
+
+//            horizontalBlock(TTMContent.PLACARD.get(), models().getExistingFile(modLoc("block/placard_wall")),  0);
 
         //Bellow is some extra example stuff I left in for reference
         if (true) return;
@@ -310,7 +340,7 @@ public class BlockStateGenerator extends BlockStateProvider {
     public void sleepingBag(String color, ResourceLocation head, ResourceLocation foot) {
         ModelFile headModel = models().getExistingFile(head);
         ModelFile footModel = models().getExistingFile(foot);
-        Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(TolkienMobs.MODID, "sleeping_bag_"+color));
+        Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(TolkienMobs.MODID, "sleeping_bag_" + color));
         getVariantBuilder(block).forAllStatesExcept(state -> {
             int yRot = ((int) state.getValue(SleepingBagBlock.FACING).toYRot());
             return ConfiguredModel.builder().modelFile(state.getValue(SleepingBagBlock.PART) == BedPart.FOOT ? footModel : headModel)
@@ -322,8 +352,8 @@ public class BlockStateGenerator extends BlockStateProvider {
     public void sleepingBagModels() {
         new ConfiguredModel(models().withExistingParent("block/sleeping_bag_foot", mcLoc("block/thin_block"))
                 .element()
-                .from(0,0,0).to(16, 2, 16)
-                .face(Direction.EAST).uvs(8,1,12,1.5f).texture("#sleeping_bag").cullface(Direction.EAST).end()
+                .from(0, 0, 0).to(16, 2, 16)
+                .face(Direction.EAST).uvs(8, 1, 12, 1.5f).texture("#sleeping_bag").cullface(Direction.EAST).end()
                 .face(Direction.NORTH).uvs(10, 0.5f, 14, 1).texture("#sleeping_bag").cullface(Direction.NORTH).end()
                 .face(Direction.WEST).uvs(8, 1.5f, 12, 2).texture("#sleeping_bag").cullface(Direction.WEST).end()
                 .face(Direction.UP).uvs(0, 4, 4, 8).texture("#sleeping_bag").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
@@ -332,8 +362,8 @@ public class BlockStateGenerator extends BlockStateProvider {
 
         new ConfiguredModel(models().withExistingParent("block/sleeping_bag_head", mcLoc("block/thin_block"))
                 .element()
-                .from(0,0,0).to(16, 2, 16)
-                .face(Direction.EAST).uvs(12,1.5f,16,2).texture("#sleeping_bag").cullface(Direction.EAST).end()
+                .from(0, 0, 0).to(16, 2, 16)
+                .face(Direction.EAST).uvs(12, 1.5f, 16, 2).texture("#sleeping_bag").cullface(Direction.EAST).end()
                 .face(Direction.SOUTH).uvs(10, 0.5f, 14, 1).texture("#sleeping_bag").cullface(Direction.SOUTH).end()
                 .face(Direction.WEST).uvs(12, 1, 16, 1.5f).texture("#sleeping_bag").cullface(Direction.WEST).end()
                 .face(Direction.UP).uvs(0, 0, 4, 4).texture("#sleeping_bag").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
@@ -342,9 +372,9 @@ public class BlockStateGenerator extends BlockStateProvider {
 
         List<String> sleepingBags = Arrays.asList("black", "blue", "brown", "cyan", "gray", "green", "light_blue", "light_gray", "lime", "magenta", "orange", "pink", "purple", "red", "white", "yellow");
         for (String color : sleepingBags) {
-            sleepingBag(color, modLoc("block/sleeping_bag_"+color+"_head"), modLoc("block/sleeping_bag_"+color+"_foot"));
-            new ConfiguredModel(models().withExistingParent("block/sleeping_bag_"+color+"_head", modLoc("block/sleeping_bag_head")).texture("sleeping_bag", modLoc("block/sleepingbag/sleeping_bag_"+color)).texture("particle", modLoc("block/sleepingbag/sleeping_bag_"+color)));
-            new ConfiguredModel(models().withExistingParent("block/sleeping_bag_"+color+"_foot", modLoc("block/sleeping_bag_foot")).texture("sleeping_bag", modLoc("block/sleepingbag/sleeping_bag_"+color)).texture("particle", modLoc("block/sleepingbag/sleeping_bag_"+color)));
+            sleepingBag(color, modLoc("block/sleeping_bag_" + color + "_head"), modLoc("block/sleeping_bag_" + color + "_foot"));
+            new ConfiguredModel(models().withExistingParent("block/sleeping_bag_" + color + "_head", modLoc("block/sleeping_bag_head")).texture("sleeping_bag", modLoc("block/sleepingbag/sleeping_bag_" + color)).texture("particle", modLoc("block/sleepingbag/sleeping_bag_" + color)));
+            new ConfiguredModel(models().withExistingParent("block/sleeping_bag_" + color + "_foot", modLoc("block/sleeping_bag_foot")).texture("sleeping_bag", modLoc("block/sleepingbag/sleeping_bag_" + color)).texture("particle", modLoc("block/sleepingbag/sleeping_bag_" + color)));
         }
     }
 
@@ -396,7 +426,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         String path = block.getRegistryName().getPath();
         //Integer cropAge = BlockTTMCrops.AGE;
 
-        for (int i = 0; i < age; i++){
+        for (int i = 0; i < age; i++) {
             ResourceLocation resource = new ResourceLocation(block.getRegistryName().getNamespace(), "block/" + name + "_stage" + i);
             ModelFile model = models().crop(path + "_stage" + i, resource);
             simpleBlock(block, models().withExistingParent(path, mcLoc("block/crop")).texture("plant", resource));

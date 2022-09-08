@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tolkienmobs:item_placard_empty"
+          "name": "tolkienmobs:item_placard"
         }
       ],
       "conditions": [

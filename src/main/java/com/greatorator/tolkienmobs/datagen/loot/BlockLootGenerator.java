@@ -144,7 +144,7 @@ public class BlockLootGenerator extends BlockLootTables {
         add(TTMContent.PIPEWEED.get(), createCropDrops(TTMContent.PIPEWEED.get(), TTMContent.PIPEWEED_ITEM.get(), TTMContent.PIPEWEED_SEEDS.get(), ilootcondition$ibuilder1));
 
         // Blocks - Placards
-        dropSelf(TTMContent.PLACARD_EMPTY.get());
+        dropSelf(TTMContent.PLACARD.get());
 //        dropSelf(TTMContent.SIGN_WALL_EMPTY.get());
 
         // Blocks - Custom

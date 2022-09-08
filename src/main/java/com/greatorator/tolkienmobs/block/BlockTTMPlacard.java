@@ -4,6 +4,7 @@ import com.brandon3055.brandonscore.blocks.BlockBCore;
 import com.greatorator.tolkienmobs.entity.tile.PlacardTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
@@ -11,19 +12,21 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
 import static net.minecraft.state.properties.AttachFace.*;
 
 public class BlockTTMPlacard extends BlockBCore {
-    public static final EnumProperty<AttachFace> ATTACH_FACE =  EnumProperty.create("facing", AttachFace.class);
+    public static final EnumProperty<AttachFace> ATTACH_FACE = EnumProperty.create("attach_face", AttachFace.class);
+    public static final EnumProperty<PlacardType> PLACARD_TYPE = EnumProperty.create("placard_type", PlacardType.class);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public static final VoxelShape SHAPE_HANGING_NS = Block.box(0.0D, 5.0D, 14.0D, 16.0D, 13.0D, 16.0D);
@@ -37,7 +40,7 @@ public class BlockTTMPlacard extends BlockBCore {
 
     public BlockTTMPlacard(Properties properties) {
         super(properties);
-        this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ATTACH_FACE, AttachFace.FLOOR));
+        this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ATTACH_FACE, AttachFace.FLOOR).setValue(PLACARD_TYPE, PlacardType.EMPTY));
     }
 
     @SuppressWarnings("deprecation")
@@ -46,7 +49,7 @@ public class BlockTTMPlacard extends BlockBCore {
         Direction facing = state.getValue(FACING);
         AttachFace face = state.getValue(ATTACH_FACE);
 
-        switch(facing) {
+        switch (facing) {
             case NORTH:
                 return face == FLOOR ? SHAPE_STANDING_NS : face == CEILING ? SHAPE_HANGING_NS : SHAPE_NORTH;
             case SOUTH:
@@ -61,13 +64,11 @@ public class BlockTTMPlacard extends BlockBCore {
     }
 
     @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(FACING).add(ATTACH_FACE);
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+        if (!world.isClientSide() && player.isShiftKeyDown()) {
+            world.setBlockAndUpdate(pos, state.setValue(PLACARD_TYPE, state.getValue(PLACARD_TYPE).next()));
+        }
+        return ActionResultType.SUCCESS;
     }
 
     @Override
@@ -75,6 +76,16 @@ public class BlockTTMPlacard extends BlockBCore {
         Direction facing = context.getHorizontalDirection().getOpposite();
         Direction clicked = context.getClickedFace();
         return defaultBlockState().setValue(FACING, facing).setValue(ATTACH_FACE, clicked == Direction.UP ? FLOOR : clicked == Direction.DOWN ? CEILING : WALL);
+    }
+
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(FACING).add(ATTACH_FACE).add(PLACARD_TYPE);
     }
 
     @SuppressWarnings("deprecation")
@@ -89,62 +100,52 @@ public class BlockTTMPlacard extends BlockBCore {
         return new PlacardTile();
     }
 
-//    public enum EnumType implements IStringSerializable {
-//        EMPTY(0, "empty"),
-//        ARCANE1(1, "arcane1"),
-//        ARCANE2(2, "arcane2"),
-//        ARCANE3(3, "arcane3"),
-//        ARMORY(4, "armory"),
-//        BANK(5, "bank"),
-//        BARRACKS1(6, "barracks1"),
-//        BARRACKS2(7, "barracks2"),
-//        BLACKSMITH(8, "blacksmith"),
-//        BOOKS(9, "books"),
-//        BUTCHER1(10, "butcher1"),
-//        FARMING(11, "farming"),
-//        GARDEN(12, "garden"),
-//        GROCER(13, "grocer"),
-//        INN(14, "inn"),
-//        MAGICAL(15, "magical_plants"),
-//        POTIONS(16, "potions"),
-//        PUB(17, "pub"),
-//        STABLE(18, "stable"),
-//        LUMBER(19, "lumberjack"),
-//        POSTMAN(20, "postman");
-//
-//        private static final EnumType[] META_LOOKUP = new EnumType[values().length];
-//        public static final Map<Integer, String> SIGN_TYPE_LOOKUP = new LinkedHashMap<>();
-//
-//        EnumType(int meta, String name) {
-//            this.meta = meta;
-//            this.name = name;
-//        }
-//
-//        public final int meta;
-//        public final String name;
-//
-//        public int getMeta() {
-//            return meta;
-//        }
-//
-//        public static EnumType byMetadata(int meta) {
-//            if (meta < 0 || meta >= META_LOOKUP.length) {
-//                meta = 0;
-//            }
-//
-//            return META_LOOKUP[meta];
-//        }
-//
-//        @Override
-//        public String getName() {
-//            return this.name;
-//        }
-//
-//        static {
-//            for (EnumType type : values()) {
-//                META_LOOKUP[type.getMeta()] = type;
-//                SIGN_TYPE_LOOKUP.put(type.meta, "sign_" + type.name);
-//            }
-//        }
-//    }
+    public enum PlacardType implements IStringSerializable {
+        EMPTY(0, "empty"),
+        ARCANE1(1, "arcane1"),
+        ARCANE2(2, "arcane2"),
+        ARCANE3(3, "arcane3"),
+        ARMORY(4, "armory"),
+        BANK(5, "bank"),
+        BARRACKS1(6, "barracks1"),
+        BARRACKS2(7, "barracks2"),
+        BLACKSMITH(8, "blacksmith"),
+        BOOKS(9, "books"),
+        BUTCHER1(10, "butcher1"),
+        FARMING(11, "farming"),
+        GARDEN(12, "garden"),
+        GROCER(13, "grocer"),
+        INN(14, "inn"),
+        MAGICAL(15, "magical_plants"),
+        POTIONS(16, "potions"),
+        PUB(17, "pub"),
+        STABLE(18, "stable"),
+        LUMBER(19, "lumberjack"),
+        POSTMAN(20, "postman");
+
+        private final String name;
+        private final int index;
+
+        PlacardType(int index, String name) {
+            this.name = name;
+            this.index = index;
+        }
+
+        @Override
+        public String getSerializedName() {
+            return name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getIndex() {
+            return index;
+        }
+
+        public PlacardType next() {
+            return values()[(index + 1) % values().length];
+        }
+    }
 }
