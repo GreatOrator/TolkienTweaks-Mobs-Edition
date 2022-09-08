@@ -138,6 +138,7 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(TTMContent.TTMFIREPLACE.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(TTMContent.PIGGYBANK.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(TTMContent.PIPEWEED.get(), cutout);
+        RenderTypeLookup.setRenderLayer(TTMContent.PLACARD.get(), cutout);
 
         // GUI Rendering
         ScreenManager.register(TTMContent.TMFIREPLACE_CONTAINER, GuiTTMFireplace::new);

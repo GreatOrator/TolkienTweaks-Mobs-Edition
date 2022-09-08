@@ -146,22 +146,40 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.BARREL_MITHRIL.get(), "Mithril Barrel");
         add(TTMContent.BARREL_MORGULIRON.get(), "Morgul Iron Barrel");
         add(TTMContent.BACKPACK.get(), "Adventurer's Backpack");
+        add(TTMContent.PLACARD.get(), "Country Signs");
+        addLore(Item.byBlock(TTMContent.PLACARD.get()), "Shift right-click on sign to cycle types");
         add(TTMContent.SLEEPING_BAG_BLACK.get(), "Black Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_BLACK.get()), TextFormatting.RED + "Does not reset spawn point.");
         add(TTMContent.SLEEPING_BAG_BLUE.get(), "Blue Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_BLUE.get()), TextFormatting.RED + "Does not reset spawn point.");
         add(TTMContent.SLEEPING_BAG_BROWN.get(), "Brown Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_BROWN.get()), TextFormatting.RED + "Does not reset spawn point.");
         add(TTMContent.SLEEPING_BAG_CYAN.get(), "Cyan Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_CYAN.get()), TextFormatting.RED + "Does not reset spawn point.");
         add(TTMContent.SLEEPING_BAG_GRAY.get(), "Gray Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_GRAY.get()), TextFormatting.RED + "Does not reset spawn point.");
         add(TTMContent.SLEEPING_BAG_GREEN.get(), "Green Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_GREEN.get()), TextFormatting.RED + "Does not reset spawn point.");
         add(TTMContent.SLEEPING_BAG_LIGHT_BLUE.get(), "Light Blue Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_LIGHT_BLUE.get()), TextFormatting.RED + "Does not reset spawn point.");
         add(TTMContent.SLEEPING_BAG_LIGHT_GRAY.get(), "Light Gray Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_LIGHT_GRAY.get()), TextFormatting.RED + "Does not reset spawn point.");
         add(TTMContent.SLEEPING_BAG_LIME.get(), "Lime Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_LIME.get()), TextFormatting.RED + "Does not reset spawn point.");
         add(TTMContent.SLEEPING_BAG_MAGENTA.get(), "Magenta Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_MAGENTA.get()), TextFormatting.RED + "Does not reset spawn point.");
         add(TTMContent.SLEEPING_BAG_ORANGE.get(), "Orange Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_ORANGE.get()), TextFormatting.RED + "Does not reset spawn point.");
         add(TTMContent.SLEEPING_BAG_PINK.get(), "Pink Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_PINK.get()), TextFormatting.RED + "Does not reset spawn point.");
         add(TTMContent.SLEEPING_BAG_PURPLE.get(), "Purple Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_PURPLE.get()), TextFormatting.RED + "Does not reset spawn point.");
         add(TTMContent.SLEEPING_BAG_RED.get(), "Red Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_RED.get()), TextFormatting.RED + "Does not reset spawn point.");
         add(TTMContent.SLEEPING_BAG_WHITE.get(), "White Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_WHITE.get()), TextFormatting.RED + "Does not reset spawn point.");
         add(TTMContent.SLEEPING_BAG_YELLOW.get(), "Yellow Sleeping Bag");
+        addLore(Item.byBlock(TTMContent.SLEEPING_BAG_YELLOW.get()), TextFormatting.RED + "Does not reset spawn point.");
     }
 
     private void items() {
@@ -291,7 +309,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.ITEM_BACKPACK_UPGRADE_SIZE.get(), "Backpack Upgrade - Size");
         addLore(TTMContent.ITEM_BACKPACK_UPGRADE_SIZE.get(), "Increase the storage capacity of your backpack (Max-2)");
         add(TTMContent.ITEM_BACKPACK_UPGRADE_FLUID.get(), "Backpack Upgrade - Fluids");
-        addLore(TTMContent.ITEM_BACKPACK_UPGRADE_FLUID.get(), "Allows the carrying of 2 buckets of water (Max-1)");
+        addLore(TTMContent.ITEM_BACKPACK_UPGRADE_FLUID.get(), "Allows the carrying of 16 buckets of fluid (Max-1)");
         add(TTMContent.ITEM_BACKPACK_UPGRADE_CRAFTING.get(), "Backpack Upgrade - Crafting");
         addLore(TTMContent.ITEM_BACKPACK_UPGRADE_CRAFTING.get(), "Allows crating anywhere (Max-1)");
         add(TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get(), "Backpack Upgrade - Sleeping Bag");
@@ -497,6 +515,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.TRINKET_RING.get(), "Magical Ring of ");
         add(TTMContent.TRINKET_GLOVE.get(), "Magical Glove of ");
         add(TTMContent.TRINKET_HAT.get(), "Magical Hat of ");
+        add(TTMContent.TRINKET_CLOAK.get(), "Magical Cloak of ");
     }
 
     private void biomes(PrefixHelper helper) {

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AMA",
+    "AMA",
+    "- -"
+  ],
+  "key": {
+    "M": {
+      "tag": "forge:planks"
+    },
+    "A": {
+      "item": "tolkienmobs:ingot_mithril"
+    },
+    "-": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:item_placard"
+  }
+}

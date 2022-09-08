@@ -24,7 +24,6 @@ public class TTMSprites {
     public static void initialize(ColorHandlerEvent.Block event) {
         register(MODID, "fireplace/fire_empty");
         register(MODID, "fireplace/fire_full");
-        register(MODID, "item_coin");
         register(MODID, "fireplace/craft_empty");
         register(MODID, "fireplace/craft_full");
 

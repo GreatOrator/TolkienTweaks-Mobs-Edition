@@ -19,7 +19,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -178,17 +177,17 @@ public class BlockStateGenerator extends BlockStateProvider {
         ModelFile placardHangingModel = models().getExistingFile(modLoc("block/placard_hanging"));
 
         VariantBlockStateBuilder placardBuilder = getVariantBuilder(TTMContent.PLACARD.get());
-        for (AttachFace face : BlockTTMPlacard.ATTACH_FACE.getPossibleValues()) {
-            for (BlockTTMPlacard.PlacardType type : BlockTTMPlacard.PlacardType.values()) {
+        for (AttachFace face : PlacardBlock.ATTACH_FACE.getPossibleValues()) {
+            for (PlacardBlock.PlacardType type : PlacardBlock.PlacardType.values()) {
                 ModelFile baseModel = face == AttachFace.FLOOR ? placardStandingModel : face == AttachFace.CEILING ? placardHangingModel : placardWallModel;
                 ModelFile model = models().getBuilder("placard_" + face.getSerializedName() + "_" + type.getName()).parent(baseModel).texture("tex", "tolkienmobs:block/signs/placard_" + type.getName());
-                for (Direction dir : BlockTTMPlacard.FACING.getPossibleValues()) {
+                for (Direction dir : PlacardBlock.FACING.getPossibleValues()) {
 
                     int angle = (int) dir.toYRot();
                     placardBuilder.partialState()
-                            .with(BlockTTMPlacard.FACING, dir)
-                            .with(BlockTTMPlacard.ATTACH_FACE, face)
-                            .with(BlockTTMPlacard.PLACARD_TYPE, type)
+                            .with(PlacardBlock.FACING, dir)
+                            .with(PlacardBlock.ATTACH_FACE, face)
+                            .with(PlacardBlock.PLACARD_TYPE, type)
                             .modelForState()
                             .modelFile(model)
                             .rotationY(angle)

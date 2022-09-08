@@ -282,8 +282,6 @@ public class ItemModelGenerator extends ItemModelProvider {
         handheldItem(TTMContent.SWORD_MORGULIRON.get());
         handheldItem(TTMContent.SWORD_WITCHKING.get());
         handheldItem(TTMContent.SWORD_URUK.get());
-//        handheldItem(TTMContent.WHIP_FIRE.get(), modLoc("item/whip_fire"));
-//        handheldItem(TTMContent.CLUB_WOODEN.get(), modLoc("item/club_wooden"));
         simpleItem(TTMContent.GALADHRIM_ARROW.get());
         simpleItem(TTMContent.FELLBEAST_FIREBALL.get());
         simpleItem(TTMContent.BOULDER.get());
@@ -295,6 +293,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         trinketItem(TTMContent.TRINKET_RING.get(), modLoc("item/trinket_ring"), modLoc("item/trinket_ring"));
         trinketItem(TTMContent.TRINKET_GLOVE.get(), modLoc("item/trinket_glove"), modLoc("item/trinket_glove"));
         trinketItem(TTMContent.TRINKET_HAT.get(), modLoc("item/trinket_hat"), modLoc("item/trinket_hat"));
+        trinketItem(TTMContent.TRINKET_CLOAK.get(), modLoc("item/trinket_cloak"), modLoc("item/trinket_cloak"));
 
         //region Fluids
         simpleItem(TTMContent.MITHRIL_BUCKET.get(), modLoc("item/mithril_bucket"));

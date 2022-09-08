@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 
 import static net.minecraft.state.properties.AttachFace.*;
 
-public class BlockTTMPlacard extends BlockBCore {
+public class PlacardBlock extends BlockBCore {
     public static final EnumProperty<AttachFace> ATTACH_FACE = EnumProperty.create("attach_face", AttachFace.class);
     public static final EnumProperty<PlacardType> PLACARD_TYPE = EnumProperty.create("placard_type", PlacardType.class);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -38,7 +38,7 @@ public class BlockTTMPlacard extends BlockBCore {
     protected static final VoxelShape SHAPE_EAST = Block.box(0.0D, 5.0D, 0.0D, 2.0D, 13.0D, 16.0D);
     protected static final VoxelShape SHAPE_WEST = Block.box(16.0D, 5.0D, 0.0D, 14.0D, 13.0D, 16.0D);
 
-    public BlockTTMPlacard(Properties properties) {
+    public PlacardBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ATTACH_FACE, AttachFace.FLOOR).setValue(PLACARD_TYPE, PlacardType.EMPTY));
     }

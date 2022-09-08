@@ -13,13 +13,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class TTMLore extends Item {
+public class TTMLoreItem extends Item {
     public boolean hasEffectOverride = false;
     private boolean canSpawnEntity = false;
     private boolean itemHasUse = false;
     private boolean hasLore = false;
 
-    public TTMLore(Item.Properties props) {
+    public TTMLoreItem(Item.Properties props) {
         super(props);
 
     }
@@ -33,22 +33,22 @@ public class TTMLore extends Item {
         }
     }
 
-    public TTMLore setEffectOverride() {
+    public TTMLoreItem setEffectOverride() {
         this.hasEffectOverride = true;
         return this;
     }
 
-    public TTMLore setHasLore() {
+    public TTMLoreItem setHasLore() {
         this.hasLore = true;
         return this;
     }
 
-    public TTMLore setItemHasUse() {
+    public TTMLoreItem setItemHasUse() {
         this.itemHasUse = true;
         return this;
     }
 
-    public TTMLore setSpawnInfo() {
+    public TTMLoreItem setSpawnInfo() {
         this.canSpawnEntity = true;
         return this;
     }

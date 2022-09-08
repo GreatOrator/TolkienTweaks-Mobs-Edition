@@ -275,6 +275,16 @@ public class RecipeGenerator extends RecipeProvider {
                 .define('Z', Items.LEATHER)
                 .unlockedBy("has_mumakil_leather", has(TTMContent.MUMAKIL_LEATHER.get()))
                 .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.PLACARD.get())
+                .pattern("AMA")
+                .pattern("AMA")
+                .pattern("- -")
+                .define('M', ItemTags.createOptional(new ResourceLocation("forge", "planks")))
+                .define('A', TTMContent.INGOT_MITHRIL.get())
+                .define('-', Items.STICK)
+                .unlockedBy("has_mithril", has(TTMContent.INGOT_MITHRIL.get()))
+                .save(consumer);
     }
 
     public static void potions() {
@@ -340,6 +350,16 @@ public class RecipeGenerator extends RecipeProvider {
                 .pattern("AAA")
                 .pattern("MGM")
                 .pattern("   ")
+                .define('G', TTMContent.GEM_AMMOLITE.get())
+                .define('A', TTMContent.INGOT_MITHRIL.get())
+                .define('M', TTMContent.MUMAKIL_LEATHER.get())
+                .unlockedBy("has_mithril", has(TTMContent.INGOT_MITHRIL.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.TRINKET_CLOAK.get())
+                .pattern("M M")
+                .pattern("AGA")
+                .pattern("MMM")
                 .define('G', TTMContent.GEM_AMMOLITE.get())
                 .define('A', TTMContent.INGOT_MITHRIL.get())
                 .define('M', TTMContent.MUMAKIL_LEATHER.get())
