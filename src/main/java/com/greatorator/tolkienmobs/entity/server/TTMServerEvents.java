@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.server;
+package com.greatorator.tolkienmobs.entity.server;
 
 import com.brandon3055.brandonscore.api.TimeKeeper;
 import com.greatorator.tolkienmobs.datagen.BiomeGenerator;

@@ -6,8 +6,10 @@ import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.BackpackBlock;
 import com.greatorator.tolkienmobs.container.BackpackContainer;
+import com.greatorator.tolkienmobs.container.UpgradeContainer;
 import com.greatorator.tolkienmobs.lib.TileFluidHandler;
 import net.minecraft.block.BedBlock;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -15,6 +17,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.properties.BedPart;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.Direction;
@@ -30,6 +33,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 
 /**
  * Overhauled by brandon3055 on 07/09/2022
@@ -39,14 +43,18 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
 
     public TileFluidHandler fluidTank = new TileFluidHandler(FluidAttributes.BUCKET_VOLUME * 16);
     public TileItemStackHandler mainInventory = new TileItemStackHandler(54);
+    public TileItemStackHandler upgradeInventory = new TileItemStackHandler(6);
     public TileItemStackHandler craftingItems = new TileItemStackHandler(9);
     public TileItemStackHandler fluidItems = new TileItemStackHandler(2).setSlotLimit(1);
+    private boolean getUpgradeGui = false;
+    public ArrayList<ItemStack> list = new ArrayList<ItemStack>();
 
     public BackpackTile() {
         super(TTMContent.BACKPACK_TILE.get());
         capManager.setManaged("fluid_tank", CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, fluidTank).saveBoth().syncContainer();
 //        capManager.setManaged("main_inv", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, invZoneContents).saveBoth(); //You would use this to make the inventory accessible to automation.
         capManager.setInternalManaged("main_inv", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, mainInventory).saveBoth();
+        capManager.setInternalManaged("upgrade_inv", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, upgradeInventory).saveBoth();
         capManager.setInternalManaged("crafting_inv", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, craftingItems).saveBoth();
         capManager.setInternalManaged("fluid_inv", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, fluidItems).saveBoth();
 
@@ -99,13 +107,25 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
         } else if (id == 1) { //Campfire button was pressed
             level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.CAMPFIRE.defaultBlockState());
         } else if (id == 2) { //Upgrade button was pressed
-            level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.STONE.defaultBlockState());
+            setOpenUpgradeGui();
+            openGUI(client, this, worldPosition);
+        } else if (id == 3) { //Upgrade button was pressed
+            getUpgradeGui = false;
+            openGUI(client, this, worldPosition);
         }
+    }
+
+    public void setOpenUpgradeGui() {
+        this.getUpgradeGui = true;
     }
 
     @Nullable
     @Override
     public Container createMenu(int windowID, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+        if (getUpgradeGui) {
+            return new UpgradeContainer(TTMContent.UPGRADE_CONTAINER, windowID, playerInventory, this);
+        }
+        LOGGER.info("List of items in upgrade inventory: " + list);
         return new BackpackContainer(TTMContent.BACKPACK_CONTAINER, windowID, playerInventory, this);
     }
 
@@ -114,6 +134,14 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
         if(!player.level.isClientSide)
         {
             NetworkHooks.openGui((ServerPlayerEntity)player, containerSupplier, pos);
+        }
+    }
+
+    public final void load(BlockState state, CompoundNBT nbt) {
+        super.load(state, nbt);
+        int i;
+        for (i = 0; i < nbt.size(); i++) {
+            list.add(ItemStack.of(nbt.getCompound("upgrade_inv")));
         }
     }
 }

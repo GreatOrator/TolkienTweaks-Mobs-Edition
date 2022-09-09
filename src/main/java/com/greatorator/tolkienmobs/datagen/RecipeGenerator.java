@@ -266,7 +266,7 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy("has_ammolite", has(TTMContent.GEM_AMMOLITE.get()))
                 .save(consumer);
 
-        ShapedRecipeBuilder.shaped(TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get())
+        ShapedRecipeBuilder.shaped(TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get(), 6)
                 .pattern("MZM")
                 .pattern("ZAZ")
                 .pattern("MZM")

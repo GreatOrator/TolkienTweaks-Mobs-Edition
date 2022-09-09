@@ -72,8 +72,6 @@ public class TolkienMobs {
        b. Improved sleeping bag and campfire deployment
 	4. Custom Recipe
 	    a. Fireplace - JEI GUI needs fixed
-	5. World Type
-	    a. find out how to make biomes larger when generated
     */
 
     public TolkienMobs() {

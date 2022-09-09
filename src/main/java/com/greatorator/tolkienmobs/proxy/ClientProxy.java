@@ -5,6 +5,7 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.TTMClientEvents;
 import com.greatorator.tolkienmobs.client.TTMSprites;
 import com.greatorator.tolkienmobs.client.gui.*;
+import com.greatorator.tolkienmobs.client.gui.upgrade.UpgradeScreen;
 import com.greatorator.tolkienmobs.client.render.tile.*;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
@@ -146,6 +147,7 @@ public class ClientProxy extends CommonProxy {
         ScreenManager.register(TTMContent.BARREL_MITHRIL_CONTAINER, GuiTTMMithrilBarrel::new);
         ScreenManager.register(TTMContent.BARREL_MORGULIRON_CONTAINER, GuiTTMMorgulironBarrel::new);
         ScreenManager.register(TTMContent.BACKPACK_CONTAINER, BackpackScreen::new);
+        ScreenManager.register(TTMContent.UPGRADE_CONTAINER, UpgradeScreen::new);
 
     }
 
