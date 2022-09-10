@@ -179,6 +179,14 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
         upgradeButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {}, 2));
 
         upgradeButton.onPressed(() -> {
+            deploySleepingbag = !deploySleepingbag;
+        });
+
+        upgradeButton.onPressed(() -> {
+            deployCampfire = !deployCampfire;
+        });
+
+        upgradeButton.onPressed(() -> {
             displayUpgrades = !displayUpgrades;
             if (displayUpgrades) {
                 mainSlots.setPos(-9000, -9000);
