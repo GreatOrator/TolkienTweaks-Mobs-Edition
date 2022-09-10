@@ -31,6 +31,8 @@ import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,18 +45,18 @@ import static net.minecraft.util.text.TextFormatting.GRAY;
  * Overhauled by brandon3055 on 07/09/2022
  */
 public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
+    public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
     public static RenderType FLUID_RENDER_TYPE = RenderUtils.getFluidRenderType();
     protected GuiToolkit<BackpackScreen> toolkit = new GuiToolkit<>(this, 257, 207).setTranslationPrefix("gui.tolkienmobs.backpack");
     private final BackpackTile tile;
     private static boolean displayUpgrades = false;
-    private static boolean deploySleepingbag = false;
-    private static boolean deployCampfire = false;
 
     public BackpackScreen(BackpackContainer container, PlayerInventory inv, ITextComponent titleIn) {
         super(container, inv, titleIn);
         this.tile = container.tile;
     }
 
+    @SuppressWarnings("Convert2MethodRef")
     @Override
     public void addElements(GuiElementManager manager) {
         // Get ourselves the basic gui template.
@@ -162,13 +164,13 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
         //These are examples to show you how to implement buttons.
         //These also show you how to use the built-in message system to send a message to the server side tile when a button is pressed.
         //Useful if you want these buttons to do things like place beds.
-        GuiButton bedButton = toolkit.createIconButton(template.background, 16, 16, () -> deploySleepingbag ? TTMSprites.get("backpack/bed_deployed") : TTMSprites.get("backpack/bed"));
+        GuiButton bedButton = toolkit.createIconButton(template.background, 16, 16, () -> tile.isSleepingbagDeployed.get() ? TTMSprites.get("backpack/bed_deployed") : TTMSprites.get("backpack/bed"));
         toolkit.placeInside(bedButton, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 4, -4);
         //When button is pressed send a message to the server tile with id 0
         //You can optionally write additional data to the mcDataOutput but that's a little more advanced. Ask me if you need help with that
         bedButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {}, 0));
 
-        GuiButton campfireButton = toolkit.createIconButton(template.background, 16, 16, () -> deployCampfire ? TTMSprites.get("backpack/campfire_deployed") : TTMSprites.get("backpack/campfire"));
+        GuiButton campfireButton = toolkit.createIconButton(template.background, 16, 16, () -> tile.isCampfireDeployed.get() ? TTMSprites.get("backpack/campfire_deployed") : TTMSprites.get("backpack/campfire"));
         toolkit.placeOutside(campfireButton, bedButton, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
         //When button is pressed send a message to the server tile with id 1
         campfireButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {}, 1));
@@ -178,12 +180,14 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
         //When button is pressed send a message to the server tile with id 2
         upgradeButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {}, 2));
 
-        upgradeButton.onPressed(() -> {
-            deploySleepingbag = !deploySleepingbag;
+        bedButton.onPressed(() -> {
+//            tile.sleepingbagChanged();
+            tile.isSleepingbagDeployed.get();
         });
+        campfireButton.onPressed(() -> {
+//            tile.campfireChanged();
 
-        upgradeButton.onPressed(() -> {
-            deployCampfire = !deployCampfire;
+            tile.isCampfireDeployed.get();
         });
 
         upgradeButton.onPressed(() -> {

@@ -3,6 +3,8 @@ package com.greatorator.tolkienmobs.entity.tile;
 import codechicken.lib.data.MCDataInput;
 import com.brandon3055.brandonscore.blocks.TileBCore;
 import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
+import com.brandon3055.brandonscore.lib.datamanager.DataFlags;
+import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.BackpackBlock;
 import com.greatorator.tolkienmobs.block.SleepingBagBlock;
@@ -18,10 +20,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.BedPart;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidUtil;
@@ -39,17 +39,28 @@ import java.util.ArrayList;
  */
 public class BackpackTile extends TileBCore implements INamedContainerProvider, ITickableTileEntity {
     public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
+    public final ManagedBool isSleepingbagDeployed = register(new ManagedBool("sleepingbag_is_deployed", DataFlags.SAVE_NBT_SYNC_TILE, DataFlags.TRIGGER_UPDATE));
+    public final ManagedBool isCampfireDeployed = register(new ManagedBool("campfire_is_deployed", DataFlags.SAVE_NBT_SYNC_TILE, DataFlags.TRIGGER_UPDATE));
 
     public TileFluidHandler fluidTank = new TileFluidHandler(FluidAttributes.BUCKET_VOLUME * 16);
     public TileItemStackHandler mainInventory = new TileItemStackHandler(54);
     public TileItemStackHandler upgradeInventory = new TileItemStackHandler(5);
     public TileItemStackHandler craftingItems = new TileItemStackHandler(9);
     public TileItemStackHandler fluidItems = new TileItemStackHandler(2).setSlotLimit(1);
-    private boolean isSleepingBagDeployed = false;
     public ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+    private boolean isSBDeployed = false;
+    private boolean isCFDeployed = false;
 
     public BackpackTile() {
         super(TTMContent.BACKPACK_TILE.get());
+
+        isSleepingbagDeployed.addValueListener(isSleepingbagDeployed-> {
+            if (level != null) sleepingbagChanged(isSBDeployed);
+        });
+        isCampfireDeployed.addValueListener(isCampfireDeployed-> {
+            if (level != null) campfireChanged(isCFDeployed);
+        });
+
         capManager.setManaged("fluid_tank", CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, fluidTank).saveBoth().syncContainer();
 //        capManager.setManaged("main_inv", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, invZoneContents).saveBoth(); //You would use this to make the inventory accessible to automation.
         capManager.setInternalManaged("main_inv", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, mainInventory).saveBoth();
@@ -81,16 +92,13 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
             return;
         }
 
-        if (slot == 0) { //Input Slot
-//            FluidActionResult result = FluidUtil.tryEmptyContainer(stack, fluidTank, fluidTank.getSpace(), null, true);
-//            if (result.isSuccess()) {
-//                fluidItems.setStackInSlot(slot, result.getResult());
-//            }
-        } else { //Output Slot
-//            FluidActionResult result = FluidUtil.tryFillContainer(stack, fluidTank, fluidTank.getFluidAmount(), null, true);
-//            if (result.isSuccess()) {
-//                fluidItems.setStackInSlot(slot, result.getResult());
-//            }
+        if (slot <= 5) { // Upgrade Inventory
+            for (int i = 0; i < upgradeInventory.getSlots(); i++) {
+                LOGGER.info("List of items in upgrade inventory: " + upgradeInventory.getStackInSlot(i));
+            }
+        } else {
+            LOGGER.info("Sleepingbag deployed? " + isSleepingbagDeployed.get());
+            LOGGER.info("Campfire deployed? " + isCampfireDeployed.get());
         }
     }
 
@@ -113,80 +121,110 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
         }
     }
 
+    //This is the method that gets called when you call "tile.sendPacketToServer(mcDataOutput -> {}, id)" from the GUI
+    @Override
+    public void receivePacketFromClient(MCDataInput data, ServerPlayerEntity client, int id) {
+
+        if (id == 0) {//Bed button was pressed
+            if (!level.isClientSide && !isSleepingbagDeployed.get()) {
+                deploySleepingbag();
+            } else {
+                removeSleepingbag();
+            }
+        } else if (id == 1) {//Campfire button was pressed
+            if (!level.isClientSide && !isCampfireDeployed.get()) {
+                deployCampfire();
+            } else {
+                removeCampfire();
+            }
+        }
+    }
+
     @Override
     public void tick() {
         //What you had here is what most people would refer to as a 'lag machine' It's not needed.
     }
 
-    //This is the method that gets called when you call "tile.sendPacketToServer(mcDataOutput -> {}, id)" from the GUI
-    @Override
-    public void receivePacketFromClient(MCDataInput data, ServerPlayerEntity client, int id) {
+    private void sleepingbagChanged(boolean deployed) {
+        this.isSBDeployed = deployed;
+        this.isSleepingbagDeployed.set(deployed);
+    }
+
+    private void campfireChanged(boolean deployed) {
+        this.isCFDeployed = deployed;
+        this.isCampfireDeployed.set(deployed);
+    }
+
+    private void deploySleepingbag() {
         Direction facing = level.getBlockState(worldPosition).getValue(BackpackBlock.FACING);
         BlockPos sleepingBagPos1 = worldPosition.relative(facing);
         BlockPos sleepingBagPos2 = sleepingBagPos1.relative(facing);
 
-        if (id == 0) { //Bed button was pressed
-            level.setBlockAndUpdate(sleepingBagPos1, TTMContent.SLEEPING_BAG_BLUE.get().defaultBlockState().setValue(SleepingBagBlock.FACING, facing).setValue(SleepingBagBlock.PART, BedPart.FOOT));
-            level.setBlockAndUpdate(sleepingBagPos2, TTMContent.SLEEPING_BAG_BLUE.get().defaultBlockState().setValue(SleepingBagBlock.FACING, facing).setValue(SleepingBagBlock.PART, BedPart.HEAD));
-
-            level.updateNeighborsAt(worldPosition, TTMContent.SLEEPING_BAG_BLUE.get());
-            level.updateNeighborsAt(sleepingBagPos2, TTMContent.SLEEPING_BAG_BLUE.get());
-        } else if (id == 1) { //Campfire button was pressed
-            level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.CAMPFIRE.defaultBlockState());
+        if (!level.isClientSide && isCampfireDeployed.get()) {
+            // Make sure nothing in the way, especially the campfire
+            this.campfireChanged(false);
+            level.playSound(null, worldPosition.relative(facing), SoundEvents.WOOD_BREAK, SoundCategory.BLOCKS, 0.5F, 1.0F);
+            level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.AIR.defaultBlockState());
+            setChanged();
         }
+
+        this.sleepingbagChanged(true);
+
+        level.setBlockAndUpdate(sleepingBagPos1, TTMContent.SLEEPING_BAG_BLUE.get().defaultBlockState().setValue(SleepingBagBlock.FACING, facing).setValue(SleepingBagBlock.PART, BedPart.FOOT));
+        level.setBlockAndUpdate(sleepingBagPos2, TTMContent.SLEEPING_BAG_BLUE.get().defaultBlockState().setValue(SleepingBagBlock.FACING, facing).setValue(SleepingBagBlock.PART, BedPart.HEAD));
+
+        level.updateNeighborsAt(worldPosition, TTMContent.SLEEPING_BAG_BLUE.get());
+        level.updateNeighborsAt(sleepingBagPos2, TTMContent.SLEEPING_BAG_BLUE.get());
+        setChanged();
     }
 
-    public boolean isSleepingBagDeployed()
-    {
-        return this.isSleepingBagDeployed;
+    private void removeSleepingbag() {
+        Direction facing = level.getBlockState(worldPosition).getValue(BackpackBlock.FACING);
+        BlockPos sleepingBagPos1 = worldPosition.relative(facing);
+        BlockPos sleepingBagPos2 = sleepingBagPos1.relative(facing);
+
+        this.sleepingbagChanged(false);
+
+        level.playSound(null, sleepingBagPos2, SoundEvents.WOOL_PLACE, SoundCategory.BLOCKS, 0.5F, 1.0F);
+        level.setBlockAndUpdate(sleepingBagPos2, Blocks.AIR.defaultBlockState());
+        level.setBlockAndUpdate(sleepingBagPos1, Blocks.AIR.defaultBlockState());
+
+        setChanged();
     }
 
-    public void setSleepingBagDeployed(boolean isSleepingBagDeployed)
-    {
-        this.isSleepingBagDeployed = isSleepingBagDeployed;
+    private void deployCampfire() {
+        Direction facing = level.getBlockState(worldPosition).getValue(BackpackBlock.FACING);
+
+        if (!level.isClientSide && isSleepingbagDeployed.get()) {
+            BlockPos sleepingBagPos1 = worldPosition.relative(facing);
+            BlockPos sleepingBagPos2 = sleepingBagPos1.relative(facing);
+
+            // Make sure nothing in the way, especially the sleepingbag
+            this.sleepingbagChanged(false);
+
+            level.playSound(null, sleepingBagPos2, SoundEvents.WOOL_PLACE, SoundCategory.BLOCKS, 0.5F, 1.0F);
+            level.setBlockAndUpdate(sleepingBagPos2, Blocks.AIR.defaultBlockState());
+            level.setBlockAndUpdate(sleepingBagPos1, Blocks.AIR.defaultBlockState());
+
+            setChanged();
+        }
+
+        this.campfireChanged(true);
+
+        level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.CAMPFIRE.defaultBlockState());
+
+        setChanged();
     }
 
-    public boolean removeSleepingBag(World world)
-    {
-        Direction blockFacing = this.getBlockDirection(world.getBlockEntity(getBlockPos()));
+    private void removeCampfire() {
+        Direction facing = level.getBlockState(worldPosition).getValue(BackpackBlock.FACING);
 
-        this.isThereSleepingBag(blockFacing);
+        this.campfireChanged(false);
 
-        if(this.isSleepingBagDeployed)
-        {
-            BlockPos sleepingBagPos1 = getBlockPos().relative(blockFacing);
-            BlockPos sleepingBagPos2 = sleepingBagPos1.relative(blockFacing);
+        level.playSound(null, worldPosition.relative(facing), SoundEvents.WOOD_BREAK, SoundCategory.BLOCKS, 0.5F, 1.0F);
+        level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.AIR.defaultBlockState());
 
-            if(world.getBlockState(sleepingBagPos1).getBlock() == TTMContent.SLEEPING_BAG_BLUE.get() && world.getBlockState(sleepingBagPos2).getBlock() == TTMContent.SLEEPING_BAG_BLUE.get())
-            {
-                world.playSound(null, sleepingBagPos2, SoundEvents.WOOL_PLACE, SoundCategory.BLOCKS, 0.5F, 1.0F);
-                world.setBlockAndUpdate(sleepingBagPos2, Blocks.AIR.defaultBlockState());
-                world.setBlockAndUpdate(sleepingBagPos1, Blocks.AIR.defaultBlockState());
-                this.isSleepingBagDeployed = false;
-                this.setChanged();
-                return true;
-            }
-        }
-        else
-        {
-            this.isSleepingBagDeployed = false;
-            this.setChanged();
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isThereSleepingBag(Direction direction)
-    {
-        if(level.getBlockState(getBlockPos().relative(direction)).getBlock() == TTMContent.SLEEPING_BAG_BLUE.get() && level.getBlockState(getBlockPos().relative(direction).relative(direction)).getBlock() == TTMContent.SLEEPING_BAG_BLUE.get())
-        {
-            return true;
-        }
-        else
-        {
-            this.isSleepingBagDeployed = false;
-            return false;
-        }
+        setChanged();
     }
 
     @Nullable
@@ -199,24 +237,8 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
     {
         if(!player.level.isClientSide)
         {
-            for (int i = 0; i < upgradeInventory.getSlots(); i++) {
-                LOGGER.info("List of items in upgrade inventory: " + upgradeInventory.getStackInSlot(i));
-            }
             NetworkHooks.openGui((ServerPlayerEntity)player, containerSupplier, pos);
         }
-    }
-
-    public Direction getBlockDirection(TileEntity tile)
-    {
-        if(tile instanceof BackpackTile)
-        {
-            if(level == null || !(level.getBlockState(getBlockPos()).getBlock() instanceof BackpackBlock))
-            {
-                return Direction.NORTH;
-            }
-            return level.getBlockState(getBlockPos()).getValue(BackpackBlock.FACING);
-        }
-        return Direction.NORTH;
     }
 
     public boolean isItemValidForSlot(int index, ItemStack stack) {
