@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:trapdoor_mallorn",
+    "tolkienmobs:trapdoor_mirkwood",
+    "tolkienmobs:trapdoor_culumalda",
+    "tolkienmobs:trapdoor_lebethron"
+  ]
+}

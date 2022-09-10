@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.merchant;
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMVillagers;
+import com.greatorator.tolkienmobs.entity.VillagerEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class EntityTTMDesertDweller extends EntityTTMVillagers {
+public class EntityTTMDesertDweller extends VillagerEntity {
     private static final DataParameter<Integer> DWELLER_TYPE = EntityDataManager.defineId(EntityTTMDesertDweller.class, DataSerializers.INT);
     private static final DataParameter<VillagerData> DWELLER_DATA = EntityDataManager.defineId(EntityTTMDesertDweller.class, DataSerializers.VILLAGER_DATA);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
@@ -40,7 +40,7 @@ public class EntityTTMDesertDweller extends EntityTTMVillagers {
         option.put(10, new ResourceLocation(TolkienMobs.MODID, "textures/entity/desertdweller/haradmerchant10.png"));
     });
 
-    public EntityTTMDesertDweller(EntityType<? extends EntityTTMVillagers> type, World worldIn) {
+    public EntityTTMDesertDweller(EntityType<? extends VillagerEntity> type, World worldIn) {
         super(type, worldIn);
         this.setRndMinMax(1,16);
     }

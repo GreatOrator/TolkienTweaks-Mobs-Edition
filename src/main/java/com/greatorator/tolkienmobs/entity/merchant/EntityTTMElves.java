@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.merchant;
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMVillagers;
+import com.greatorator.tolkienmobs.entity.VillagerEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class EntityTTMElves extends EntityTTMVillagers {
+public class EntityTTMElves extends VillagerEntity {
     private static final DataParameter<Integer> ELVES_TYPE = EntityDataManager.defineId(EntityTTMElves.class, DataSerializers.INT);
     private static final DataParameter<VillagerData> ELVES_DATA = EntityDataManager.defineId(EntityTTMElves.class, DataSerializers.VILLAGER_DATA);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
@@ -47,7 +47,7 @@ public class EntityTTMElves extends EntityTTMVillagers {
         option.put(16, new ResourceLocation(TolkienMobs.MODID, "textures/entity/elves/elves16.png"));
     });
 
-    public EntityTTMElves(EntityType<? extends EntityTTMVillagers> type, World worldIn) {
+    public EntityTTMElves(EntityType<? extends VillagerEntity> type, World worldIn) {
         super(type, worldIn);
         this.setRndMinMax(1,16);
     }

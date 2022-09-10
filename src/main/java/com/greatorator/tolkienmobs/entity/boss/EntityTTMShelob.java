@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.boss;
 
 import com.greatorator.tolkienmobs.datagen.PotionGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -9,7 +9,6 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.SkeletonEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -42,13 +41,13 @@ import java.util.Random;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class EntityTTMShelob extends EntityTTMMonsters {
+public class EntityTTMShelob extends MonsterEntity {
     private final ServerBossInfo bossInfo = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_20)).setDarkenScreen(true);
     private static final DataParameter<Byte> DATA_FLAGS_ID = EntityDataManager.defineId(EntityTTMShelob.class, DataSerializers.BYTE);
     private long nextAbilityUse = 0L;
     private final static long coolDown = 15000L;
 
-    public EntityTTMShelob(EntityType<? extends MonsterEntity> type, World worldIn) {
+    public EntityTTMShelob(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
@@ -85,7 +84,7 @@ public class EntityTTMShelob extends EntityTTMMonsters {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.createMonsterAttributes()
+        return net.minecraft.entity.monster.MonsterEntity.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 240.0D)
                 .add(Attributes.MOVEMENT_SPEED, (double)0.3F)
                 .add(Attributes.ATTACK_DAMAGE, 15.0D)

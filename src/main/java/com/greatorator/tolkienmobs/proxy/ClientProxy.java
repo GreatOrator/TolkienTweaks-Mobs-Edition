@@ -5,7 +5,6 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.client.TTMClientEvents;
 import com.greatorator.tolkienmobs.client.TTMSprites;
 import com.greatorator.tolkienmobs.client.gui.*;
-import com.greatorator.tolkienmobs.client.gui.upgrade.UpgradeScreen;
 import com.greatorator.tolkienmobs.client.render.tile.*;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
@@ -16,7 +15,7 @@ import com.greatorator.tolkienmobs.entity.ammo.render.RenderFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderGaladhrimArrow;
 import com.greatorator.tolkienmobs.entity.boss.render.*;
 import com.greatorator.tolkienmobs.entity.merchant.render.*;
-import com.greatorator.tolkienmobs.entity.merchant.villager.VillagerTTMTrades;
+import com.greatorator.tolkienmobs.entity.merchant.villager.TTMVillagerTrades;
 import com.greatorator.tolkienmobs.entity.monster.render.*;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMAuroch;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMGoat;
@@ -42,7 +41,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import static com.greatorator.tolkienmobs.entity.merchant.villager.VillagerTTMUtility.fixPOITypeBlockStates;
+import static com.greatorator.tolkienmobs.entity.merchant.villager.TTMVillagerUtility.fixPOITypeBlockStates;
 
 public class ClientProxy extends CommonProxy {
 
@@ -51,7 +50,7 @@ public class ClientProxy extends CommonProxy {
         super.construct();
         MinecraftForge.EVENT_BUS.addListener(TTMClientEvents::livingUpdate);
         MinecraftForge.EVENT_BUS.addListener(TTMClientEvents::renderOverlayEvent);
-        MinecraftForge.EVENT_BUS.addListener(VillagerTTMTrades::onVillagerTradesEvent);
+        MinecraftForge.EVENT_BUS.addListener(TTMVillagerTrades::onVillagerTradesEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(TTMColor::itemColourEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(TTMSprites::initialize);
     }
@@ -142,13 +141,11 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(TTMContent.PLACARD.get(), cutout);
 
         // GUI Rendering
-        ScreenManager.register(TTMContent.TMFIREPLACE_CONTAINER, GuiTTMFireplace::new);
-        ScreenManager.register(TTMContent.PIGGYBANK_CONTAINER, GuiTTMPiggyBank::new);
-        ScreenManager.register(TTMContent.BARREL_MITHRIL_CONTAINER, GuiTTMMithrilBarrel::new);
-        ScreenManager.register(TTMContent.BARREL_MORGULIRON_CONTAINER, GuiTTMMorgulironBarrel::new);
+        ScreenManager.register(TTMContent.TMFIREPLACE_CONTAINER, FireplaceScreen::new);
+        ScreenManager.register(TTMContent.PIGGYBANK_CONTAINER, PiggyBankScreen::new);
+        ScreenManager.register(TTMContent.BARREL_MITHRIL_CONTAINER, MithrilBarrelScreen::new);
+        ScreenManager.register(TTMContent.BARREL_MORGULIRON_CONTAINER, MorgulironBarrelScreen::new);
         ScreenManager.register(TTMContent.BACKPACK_CONTAINER, BackpackScreen::new);
-        ScreenManager.register(TTMContent.UPGRADE_CONTAINER, UpgradeScreen::new);
-
     }
 
     //#################################################################
@@ -219,14 +216,14 @@ public class ClientProxy extends CommonProxy {
     }
 
     private void registerTileRenderers() {
-        ClientRegistry.bindTileEntityRenderer(TTMContent.TMFIREPLACE_TILE.get(), RenderTTMFireplaceTile::new);
-        ClientRegistry.bindTileEntityRenderer(TTMContent.PIGGYBANK_TILE.get(), RenderTTMPiggyBankTile::new);
+        ClientRegistry.bindTileEntityRenderer(TTMContent.TMFIREPLACE_TILE.get(), RenderFireplaceTile::new);
+        ClientRegistry.bindTileEntityRenderer(TTMContent.PIGGYBANK_TILE.get(), RenderPiggyBankTile::new);
         ClientRegistry.bindTileEntityRenderer(TTMContent.BACKPACK_TILE.get(), RenderBackpackTile::new);
         ClientRegistry.bindTileEntityRenderer(TTMContent.PLACARD_TILE.get(), RenderPlacardTile::new);
-        ClientRegistry.bindTileEntityRenderer(TTMContent.MALLORN_SIGN_TILE.get(), RenderTTMMallornSignTile::new);
-        ClientRegistry.bindTileEntityRenderer(TTMContent.MIRKWOOD_SIGN_TILE.get(), RenderTTMMirkwoodSignTile::new);
-        ClientRegistry.bindTileEntityRenderer(TTMContent.CULUMALDA_SIGN_TILE.get(), RenderTTMCulumaldaSignTile::new);
-        ClientRegistry.bindTileEntityRenderer(TTMContent.LEBETHRON_SIGN_TILE.get(), RenderTTMLebethronSignTile::new);
+        ClientRegistry.bindTileEntityRenderer(TTMContent.MALLORN_SIGN_TILE.get(), RenderMallornSignTile::new);
+        ClientRegistry.bindTileEntityRenderer(TTMContent.MIRKWOOD_SIGN_TILE.get(), RenderMirkwoodSignTile::new);
+        ClientRegistry.bindTileEntityRenderer(TTMContent.CULUMALDA_SIGN_TILE.get(), RenderCulumaldaSignTile::new);
+        ClientRegistry.bindTileEntityRenderer(TTMContent.LEBETHRON_SIGN_TILE.get(), RenderLebethronSignTile::new);
     }
 
     @Override

@@ -36,7 +36,6 @@ public class TTMTags {
         public static final Tags.IOptionalNamedTag<Item> PLANKS = tag("planks");
         public static final Tags.IOptionalNamedTag<Item> TORCHES = tag("torches");
         public static final Tags.IOptionalNamedTag<Item> STAIRS = tag("stairs");
-        public static final Tags.IOptionalNamedTag<Item> PRESSURE_PLATE = tag("pressure_plates");
         public static final Tags.IOptionalNamedTag<Item> SLABS = tag("slabs");
         public static final Tags.IOptionalNamedTag<Item> LOGS = tag("logs");
         public static final Tags.IOptionalNamedTag<Item> FLOWERS = tag("flowers");
@@ -57,7 +56,17 @@ public class TTMTags {
         public static final Tags.IOptionalNamedTag<Item> INSECTS = tag("insects");
         public static final Tags.IOptionalNamedTag<Item> SPAWNEGG = tag("spawnegg");
         public static final Tags.IOptionalNamedTag<Item> CROP = tag("crops");
+        public static final Tags.IOptionalNamedTag<Item> SEEDS = tag("seeds");
         public static final Tags.IOptionalNamedTag<Item> SLEEPING_BAGS = tag("sleeping_bags");
+        public static final Tags.IOptionalNamedTag<Item> UPGRADES = tag("upgrades");
+        public static final Tags.IOptionalNamedTag<Item> MUSIC_DISCS = tag("music_discs");
+        public static final Tags.IOptionalNamedTag<Item> SIGNS = tag("signs");
+        public static final Tags.IOptionalNamedTag<Item> TRAPDOORS = tag("trapdoors");
+        public static final Tags.IOptionalNamedTag<Item> WOODEN_TRAPDOORS = tag("wooden_trapdoors");
+        public static final Tags.IOptionalNamedTag<Item> WOODEN_PRESSURE_PLATES = tag("wooden_pressure_plates");
+        public static final Tags.IOptionalNamedTag<Item> WOODEN_STAIRS = tag("wooden_stairs");
+        public static final Tags.IOptionalNamedTag<Item> WOODEN_SLABS = tag("wooden_slabs");
+        public static final Tags.IOptionalNamedTag<Item> BARRELS_WOODEN = tag("barrels/wooden");
 
 
         private static Tags.IOptionalNamedTag<Item> tag(String name) {
@@ -73,23 +82,29 @@ public class TTMTags {
         public static final Tags.IOptionalNamedTag<Block> ORES_MITHRIL = tag("ores/mithril");
         public static final Tags.IOptionalNamedTag<Block> ORES_MORGULIRON = tag("ores/morguliron");
         public static final Tags.IOptionalNamedTag<Block> ORES_AMMOLITE = tag("ores/ammolite");
-        public static final Tags.IOptionalNamedTag<Block> FENCES_WOODEN = tag("fences/wooden");
         public static final Tags.IOptionalNamedTag<Block> FENCE_GATES_WOODEN = tag("fence_gates/wooden");
-        public static final Tags.IOptionalNamedTag<Block> MUSHROOMS = tag("mushrooms");
         public static final Tags.IOptionalNamedTag<Block> SAPLINGS = tag("saplings");
         public static final Tags.IOptionalNamedTag<Block> LEAVES = tag("leaves");
         public static final Tags.IOptionalNamedTag<Block> PLANKS = tag("planks");
         public static final Tags.IOptionalNamedTag<Block> TORCHES = tag("torches");
-        public static final Tags.IOptionalNamedTag<Block> STAIRS = tag("stairs");
-        public static final Tags.IOptionalNamedTag<Block> SLABS = tag("slabs");
-        public static final Tags.IOptionalNamedTag<Block> PRESSURE_PLATE = tag("pressure_plates");
         public static final Tags.IOptionalNamedTag<Block> LOGS = tag("logs");
-        public static final Tags.IOptionalNamedTag<Block> DOORS_WOODEN = tag("doors/wooden");
-        public static final Tags.IOptionalNamedTag<Block> DOORS_IRON = tag("doors/iron");
         public static final Tags.IOptionalNamedTag<Block> BARS_IRON = tag("bars/iron");
         public static final Tags.IOptionalNamedTag<Block> FLOWERS = tag("flowers");
         public static final Tags.IOptionalNamedTag<Block> DECAY_GROW_BLOCK = tag("decay_grow_block");
         public static final Tags.IOptionalNamedTag<Block> SLEEPING_BAGS = tag("sleeping_bags");
+        public static final Tags.IOptionalNamedTag<Block> BARRELS_WOODEN = tag("barrels/wooden");
+        public static final Tags.IOptionalNamedTag<Block> WOODEN_DOORS = tag("wooden_doors");
+        public static final Tags.IOptionalNamedTag<Block> WOODEN_STAIRS = tag("wooden_stairs");
+        public static final Tags.IOptionalNamedTag<Block> WOODEN_SLABS = tag("wooden_slabs");
+        public static final Tags.IOptionalNamedTag<Block> WOODEN_FENCES = tag("wooden_fences");
+        public static final Tags.IOptionalNamedTag<Block> PRESSURE_PLATES = tag("pressure_plates");
+        public static final Tags.IOptionalNamedTag<Block> WOODEN_PRESSURE_PLATES = tag("wooden_pressure_plates");
+        public static final Tags.IOptionalNamedTag<Block> WOODEN_TRAPDOORS = tag("wooden_trapdoors");
+        public static final Tags.IOptionalNamedTag<Block> DOORS = tag("doors");
+        public static final Tags.IOptionalNamedTag<Block> TRAPDOORS = tag("trapdoors");
+        public static final Tags.IOptionalNamedTag<Block> SIGNS = tag("signs");
+        public static final Tags.IOptionalNamedTag<Block> CROPS = tag("crops");
+        public static final Tags.IOptionalNamedTag<Block> MUSHROOM_GROW_BLOCK = tag("mushroom_grow_block");
 
         private static Tags.IOptionalNamedTag<Block> tag(String name) {
             return BlockTags.createOptional(new ResourceLocation("forge", name));

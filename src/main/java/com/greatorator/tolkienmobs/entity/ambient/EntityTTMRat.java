@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.ambient;
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMAmbients;
+import com.greatorator.tolkienmobs.entity.AmbientEntity;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -26,7 +26,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class EntityTTMRat extends EntityTTMAmbients {
+public class EntityTTMRat extends AmbientEntity {
     private static final DataParameter<Integer> RAT_TYPE = EntityDataManager.defineId(EntityTTMRat.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/entityttmrat/entityttmrat0.png"));

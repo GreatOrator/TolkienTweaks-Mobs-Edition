@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.boss.EntityTTMGoblinKing;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.Block;
@@ -14,7 +14,6 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -37,7 +36,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.Random;
 
-public class EntityTTMMinotaur extends EntityTTMMonsters {
+public class EntityTTMMinotaur extends MonsterEntity {
     private static final DataParameter<Integer> MINOTAUR_TYPE = EntityDataManager.defineId(EntityTTMMinotaur.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/minotaur.png"));
@@ -62,12 +61,12 @@ public class EntityTTMMinotaur extends EntityTTMMonsters {
     };
     /** End Region **/
 
-    public EntityTTMMinotaur(EntityType<? extends MonsterEntity> type, World worldIn) {
+    public EntityTTMMinotaur(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.createMonsterAttributes()
+        return net.minecraft.entity.monster.MonsterEntity.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 25.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.23D)
                 .add(Attributes.ATTACK_DAMAGE, 3.0D)

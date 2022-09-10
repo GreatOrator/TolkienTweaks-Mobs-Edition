@@ -5,7 +5,7 @@ import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMAmbients;
+import com.greatorator.tolkienmobs.entity.AmbientEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -44,7 +44,7 @@ import java.util.Map;
 import java.util.Random;
 
 //
-public class EntityTTMFrog extends EntityTTMAmbients {
+public class EntityTTMFrog extends AmbientEntity {
     private static final DataParameter<Integer> FROG_TYPE = EntityDataManager.defineId(EntityTTMFrog.class, DataSerializers.INT);
     private static final ResourceLocation KILLER_FROG = new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/murderfrog");
     private int jumpTicks;

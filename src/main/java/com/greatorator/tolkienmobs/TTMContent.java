@@ -4,10 +4,10 @@ import codechicken.lib.gui.SimpleItemGroup;
 import com.brandon3055.brandonscore.blocks.ItemBlockBCore;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.google.common.collect.Sets;
+import com.greatorator.tolkienmobs.block.CropsBlock;
 import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.client.TTMParticles;
 import com.greatorator.tolkienmobs.container.BackpackContainer;
-import com.greatorator.tolkienmobs.container.UpgradeContainer;
 import com.greatorator.tolkienmobs.crafting.FireplaceRecipe;
 import com.greatorator.tolkienmobs.datagen.*;
 import com.greatorator.tolkienmobs.entity.tile.*;
@@ -80,7 +80,6 @@ public class TTMContent {
         LOGGER.info("Asking the Ainur to sing the music of Eru Iluvatar...");
         SoundGenerator.SOUND_EVENTS.register(modBus);
         LOGGER.info("Preparing the Dwarves...");
-        FluidGenerator.FLUIDS.register(modBus);
         BLOCKS.register(modBus);
         LOGGER.info("Stocking the markets...");
         ITEMS.register(modBus);
@@ -124,10 +123,6 @@ public class TTMContent {
     public static RegistryObject<Block> ORE_END_AMMOLITE = BLOCKS.register("ore_end_ammolite", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
     public static RegistryObject<Block> ORE_NETHER_AMMOLITE = BLOCKS.register("ore_nether_ammolite", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
     public static RegistryObject<DoorBlock> DOOR_DURIN = BLOCKS.register("door_durin", () -> new DoorBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
-
-    // Fluids
-    public static final RegistryObject<FlowingFluidBlock> MOLTEN_MITHRIL = BLOCKS.register("molten_mithril_block", () -> new FlowingFluidBlock(FluidGenerator.MITHRIL, Block.Properties.of(Material.LAVA).lightLevel((state) -> {	return 15;	}).randomTicks().strength(100.0F).noDrops()));
-    public static final RegistryObject<FlowingFluidBlock> MOLTEN_MORGULIRON = BLOCKS.register("molten_morguliron_block", () -> new FlowingFluidBlock(FluidGenerator.MORGULIRON, Block.Properties.of(Material.LAVA).lightLevel((state) -> {	return 15;	}).randomTicks().strength(100.0F).noDrops()));
 
     // Wood & Foliage
     public static RegistryObject<RotatedPillarBlock> LOG_CULUMALDA = BLOCKS.register("log_culumalda", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_GRAY));
@@ -197,24 +192,24 @@ public class TTMContent {
     public static WoodType CULUMALDA_WOOD_TYPE = WoodType.register(WoodType.create(MODID + ":culumalda_wood"));
     public static WoodType LEBETHRON_WOOD_TYPE = WoodType.register(WoodType.create(MODID + ":lebethron_wood"));
 
-    public static RegistryObject<Block> MALLORN_SIGN_WOOD_TYPE = BLOCKS.register("sign_mallorn", () -> new BlockTTMMallornStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), MALLORN_WOOD_TYPE));
-    public static RegistryObject<Block> MIRKWOOD_SIGN_WOOD_TYPE = BLOCKS.register("sign_mirkwood", () -> new BlockTTMMirkwoodStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), MIRKWOOD_WOOD_TYPE));
-    public static RegistryObject<Block> CULUMALDA_SIGN_WOOD_TYPE = BLOCKS.register("sign_culumalda", () -> new BlockTTMCulumaldaStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), CULUMALDA_WOOD_TYPE));
-    public static RegistryObject<Block> LEBETHRON_SIGN_WOOD_TYPE = BLOCKS.register("sign_lebethron", () -> new BlockTTMLebethronStandingSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), LEBETHRON_WOOD_TYPE));
-    public static RegistryObject<Block> MALLORN_WALL_SIGN_WOOD_TYPE = BLOCKS.register("wall_sign_mallorn", () -> new BlockTTMMallornSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(MALLORN_SIGN_WOOD_TYPE.get()), MALLORN_WOOD_TYPE));
-    public static RegistryObject<Block> MIRKWOOD_WALL_SIGN_WOOD_TYPE = BLOCKS.register("wall_sign_mirkwood", () -> new BlockTTMMirkwoodSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(MIRKWOOD_SIGN_WOOD_TYPE.get()), MIRKWOOD_WOOD_TYPE));
-    public static RegistryObject<Block> CULUMALDA_WALL_SIGN_WOOD_TYPE = BLOCKS.register("wall_sign_culumalda", () -> new BlockTTMCulumaldaSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(CULUMALDA_SIGN_WOOD_TYPE.get()), CULUMALDA_WOOD_TYPE));
-    public static RegistryObject<Block> LEBETHRON_WALL_SIGN_WOOD_TYPE = BLOCKS.register("wall_sign_lebethron", () -> new BlockTTMLebethronSign(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(LEBETHRON_SIGN_WOOD_TYPE.get()), LEBETHRON_WOOD_TYPE));
+    public static RegistryObject<Block> MALLORN_SIGN_WOOD_TYPE = BLOCKS.register("sign_mallorn", () -> new MallornStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), MALLORN_WOOD_TYPE));
+    public static RegistryObject<Block> MIRKWOOD_SIGN_WOOD_TYPE = BLOCKS.register("sign_mirkwood", () -> new MirkwoodStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), MIRKWOOD_WOOD_TYPE));
+    public static RegistryObject<Block> CULUMALDA_SIGN_WOOD_TYPE = BLOCKS.register("sign_culumalda", () -> new CulumaldaStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), CULUMALDA_WOOD_TYPE));
+    public static RegistryObject<Block> LEBETHRON_SIGN_WOOD_TYPE = BLOCKS.register("sign_lebethron", () -> new LebethronStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), LEBETHRON_WOOD_TYPE));
+    public static RegistryObject<Block> MALLORN_WALL_SIGN_WOOD_TYPE = BLOCKS.register("wall_sign_mallorn", () -> new MallornSignBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(MALLORN_SIGN_WOOD_TYPE.get()), MALLORN_WOOD_TYPE));
+    public static RegistryObject<Block> MIRKWOOD_WALL_SIGN_WOOD_TYPE = BLOCKS.register("wall_sign_mirkwood", () -> new MirkwoodSignBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(MIRKWOOD_SIGN_WOOD_TYPE.get()), MIRKWOOD_WOOD_TYPE));
+    public static RegistryObject<Block> CULUMALDA_WALL_SIGN_WOOD_TYPE = BLOCKS.register("wall_sign_culumalda", () -> new CulumaldaSignBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(CULUMALDA_SIGN_WOOD_TYPE.get()), CULUMALDA_WOOD_TYPE));
+    public static RegistryObject<Block> LEBETHRON_WALL_SIGN_WOOD_TYPE = BLOCKS.register("wall_sign_lebethron", () -> new LebethronSignBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(LEBETHRON_SIGN_WOOD_TYPE.get()), LEBETHRON_WOOD_TYPE));
     public static RegistryObject<LeavesBlock> LEAVES_CULUMALDA = BLOCKS.register("leaves_culumalda", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_LEBETHRON = BLOCKS.register("leaves_lebethron", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_MALLORN = BLOCKS.register("leaves_mallorn", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_MIRKWOOD = BLOCKS.register("leaves_mirkwood", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_FANGORNOAK = BLOCKS.register("leaves_fangornoak", TTMContent::createLeavesBlock);
-    public static RegistryObject<Block> LEAFPILE_MALLORN = BLOCKS.register("leafpile_mallorn", () -> new BlockTTMLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_YELLOW).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAFPILE_MIRKWOOD = BLOCKS.register("leafpile_mirkwood", () -> new BlockTTMLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAFPILE_CULUMALDA = BLOCKS.register("leafpile_culumalda", () -> new BlockTTMLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_PINK).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAFPILE_LEBETHRON = BLOCKS.register("leafpile_lebethron", () -> new BlockTTMLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_LIGHT_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAFPILE_FANGORNOAK = BLOCKS.register("leafpile_fangornoak", () -> new BlockTTMLeafPile(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_MALLORN = BLOCKS.register("leafpile_mallorn", () -> new LeafPileBlock(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_YELLOW).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_MIRKWOOD = BLOCKS.register("leafpile_mirkwood", () -> new LeafPileBlock(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_CULUMALDA = BLOCKS.register("leafpile_culumalda", () -> new LeafPileBlock(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_PINK).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_LEBETHRON = BLOCKS.register("leafpile_lebethron", () -> new LeafPileBlock(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_LIGHT_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_FANGORNOAK = BLOCKS.register("leafpile_fangornoak", () -> new LeafPileBlock(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
     public static RegistryObject<SaplingBlock> SAPLING_MALLORN = BLOCKS.register("sapling_mallorn", () -> new SaplingBlock(new TTMMallornTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
     public static RegistryObject<SaplingBlock> SAPLING_MIRKWOOD = BLOCKS.register("sapling_mirkwood", () -> new SaplingBlock(new TTMMirkwoodTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
     public static RegistryObject<SaplingBlock> SAPLING_CULUMALDA = BLOCKS.register("sapling_culumalda", () -> new SaplingBlock(new TTMCulumaldaTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
@@ -223,11 +218,11 @@ public class TTMContent {
     public static RegistryObject<SaplingBlock> SAPLING_FANGORNOAK = BLOCKS.register("sapling_fangornoak", () -> new SaplingBlock(new TTMFangornOakTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
 
     // Plants & Flowers
-    public static RegistryObject<Block> PIPEWEED = BLOCKS.register("pipeweed", () -> new BlockTTMCrops(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_GREEN).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
-    public static RegistryObject<Block> MUSHROOM_DECAY_BLOOM = BLOCKS.register("mushroom_decay_bloom", () -> new BlockTTMMushrooms(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_PURPLE).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
+    public static RegistryObject<Block> PIPEWEED = BLOCKS.register("pipeweed", () -> new CropsBlock(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_GREEN).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
+    public static RegistryObject<Block> MUSHROOM_DECAY_BLOOM = BLOCKS.register("mushroom_decay_bloom", () -> new MushroomsBlock(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_PURPLE).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
         return 1;
     }).hasPostProcess(TTMContent::needsPostProcessing)));
-    public static RegistryObject<Block> MUSHROOM_BLOOM_DECAY = BLOCKS.register("mushroom_bloom_decay", () -> new BlockTTMMushrooms(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_PURPLE).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
+    public static RegistryObject<Block> MUSHROOM_BLOOM_DECAY = BLOCKS.register("mushroom_bloom_decay", () -> new MushroomsBlock(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_PURPLE).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
         return 1;
     }).hasPostProcess(TTMContent::needsPostProcessing)));
     public static RegistryObject<Block> BLOCK_DECAY_BLOOM = BLOCKS.register("block_decay_bloom", () -> new HugeMushroomBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_MAGENTA).strength(0.2F).sound(SoundType.WOOD)));
@@ -241,12 +236,12 @@ public class TTMContent {
     public static RegistryObject<Block> FLOWER_LILLYOFTHEVALLEY = BLOCKS.register("flower_valley_lilly", () -> new FlowerBlock(Effects.HEAL, 7, AbstractBlock.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
 
     // Custom
-    public static RegistryObject<Block> BLOCK_HALLOWED = BLOCKS.register("block_hallowed", () -> new BlockTTMHallowed(AbstractBlock.Properties.of(Material.DIRT, MaterialColor.TERRACOTTA_WHITE).sound(SoundType.GRAVEL).randomTicks()));
-    public static RegistryObject<Block> STONE_PATH = BLOCKS.register("block_stone_path", () -> new BlockTTMStonePath(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_LIGHT_GREEN).sound(SoundType.STONE).isViewBlocking(TTMContent::needsPostProcessing).isSuffocating(TTMContent::needsPostProcessing)));
-    public static RegistryObject<Block> TTMFIREPLACE = BLOCKS.register("block_tmfireplace", () -> new BlockTTMFireplace(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_RED).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
-    public static RegistryObject<Block> PIGGYBANK = BLOCKS.register("block_piggybank", () -> new BlockTTMPiggyBank(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_PINK).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
-    public static RegistryObject<Block> BARREL_MITHRIL = BLOCKS.register("block_barrel_mithril", () -> new BlockTTMMithrilBarrel(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
-    public static RegistryObject<Block> BARREL_MORGULIRON = BLOCKS.register("block_barrel_morguliron", () -> new BlockTTMMorgulironBarrel(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
+    public static RegistryObject<Block> BLOCK_HALLOWED = BLOCKS.register("block_hallowed", () -> new HallowedBlock(AbstractBlock.Properties.of(Material.DIRT, MaterialColor.TERRACOTTA_WHITE).sound(SoundType.GRAVEL).randomTicks()));
+    public static RegistryObject<Block> STONE_PATH = BLOCKS.register("block_stone_path", () -> new StonePathBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_LIGHT_GREEN).sound(SoundType.STONE).isViewBlocking(TTMContent::needsPostProcessing).isSuffocating(TTMContent::needsPostProcessing)));
+    public static RegistryObject<Block> TTMFIREPLACE = BLOCKS.register("block_tmfireplace", () -> new FireplaceBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_RED).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
+    public static RegistryObject<Block> PIGGYBANK = BLOCKS.register("block_piggybank", () -> new PiggyBankBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_PINK).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
+    public static RegistryObject<Block> BARREL_MITHRIL = BLOCKS.register("block_barrel_mithril", () -> new MithrilBarrelBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
+    public static RegistryObject<Block> BARREL_MORGULIRON = BLOCKS.register("block_barrel_morguliron", () -> new MorgulironBarrelBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
     public static RegistryObject<Block> BACKPACK = BLOCKS.register("backpack", () -> new BackpackBlock(AbstractBlock.Properties.of(Material.WOOL, MaterialColor.COLOR_LIGHT_GRAY).harvestTool(ToolType.AXE).noOcclusion().harvestLevel(1).strength(1f, 1f)));
     public static RegistryObject<Block> PLACARD = BLOCKS.register("placard", () -> new PlacardBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).harvestTool(ToolType.AXE).noOcclusion().harvestLevel(1).strength(1f, 1f)));
 
@@ -324,10 +319,6 @@ public class TTMContent {
     public static RegistryObject<Item> ORE_END_AMMOLITE_ITEM = ITEMS.register("ore_end_ammolite", () -> new ItemBlockBCore(ORE_END_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_NETHER_AMMOLITE_ITEM = ITEMS.register("ore_nether_ammolite", () -> new ItemBlockBCore(ORE_NETHER_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> DOOR_DURIN_ITEM = ITEMS.register("door_durin", () -> new ItemBlockBCore(DOOR_DURIN.get(), new Item.Properties().tab(decoGroup)));
-
-    // Blocks - Fluid
-    public static final RegistryObject<Item> MITHRIL_BUCKET = ITEMS.register("mithril_bucket", () -> new BucketItem(FluidGenerator.MITHRIL, new BucketItem.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(matsGroup)));
-    public static final RegistryObject<Item> MORGULIRON_BUCKET = ITEMS.register("morguliron_bucket", () -> new BucketItem(FluidGenerator.MORGULIRON, new BucketItem.Properties().craftRemainder(Items.BUCKET).stacksTo(1).tab(matsGroup)));
 
     // Blocks - Wood & Foliage
     public static RegistryObject<Item> LOG_CULUMALDA_ITEM = ITEMS.register("log_culumalda", () -> new ItemBlockBCore(LOG_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
@@ -608,37 +599,35 @@ public class TTMContent {
     // Tile Entity Types
     //#################################################################
     // Custom
-    public static RegistryObject<TileEntityType<TTMFireplaceTile>> TMFIREPLACE_TILE = TILE.register("tmfireplace_tile", () -> TileEntityType.Builder.of(TTMFireplaceTile::new, TTMFIREPLACE.get()).build(null));
-    public static RegistryObject<TileEntityType<TTMPiggyBankTile>> PIGGYBANK_TILE = TILE.register("piggybank_tile", () -> TileEntityType.Builder.of(TTMPiggyBankTile::new, PIGGYBANK.get()).build(null));
-    public static RegistryObject<TileEntityType<TTMMithrilBarrelTile>> BARREL_MITHRIL_TILE = TILE.register("barrel_mithril_tile", () -> TileEntityType.Builder.of(TTMMithrilBarrelTile::new, BARREL_MITHRIL.get()).build(null));
-    public static RegistryObject<TileEntityType<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_TILE = TILE.register("barrel_morguliron_tile", () -> TileEntityType.Builder.of(TTMMorgulironBarrelTile::new, BARREL_MORGULIRON.get()).build(null));
+    public static RegistryObject<TileEntityType<FireplaceTile>> TMFIREPLACE_TILE = TILE.register("tmfireplace_tile", () -> TileEntityType.Builder.of(FireplaceTile::new, TTMFIREPLACE.get()).build(null));
+    public static RegistryObject<TileEntityType<PiggyBankTile>> PIGGYBANK_TILE = TILE.register("piggybank_tile", () -> TileEntityType.Builder.of(PiggyBankTile::new, PIGGYBANK.get()).build(null));
+    public static RegistryObject<TileEntityType<MithrilBarrelTile>> BARREL_MITHRIL_TILE = TILE.register("barrel_mithril_tile", () -> TileEntityType.Builder.of(MithrilBarrelTile::new, BARREL_MITHRIL.get()).build(null));
+    public static RegistryObject<TileEntityType<MorgulironBarrelTile>> BARREL_MORGULIRON_TILE = TILE.register("barrel_morguliron_tile", () -> TileEntityType.Builder.of(MorgulironBarrelTile::new, BARREL_MORGULIRON.get()).build(null));
     public static RegistryObject<TileEntityType<BackpackTile>> BACKPACK_TILE = TILE.register("backpack_tile", () -> TileEntityType.Builder.of(BackpackTile::new, BACKPACK.get()).build(null));
     public static RegistryObject<TileEntityType<SleepingBagTile>> SLEEPING_BAG_TILE = TILE.register("sleeping_bag", () -> new TileEntityType<>(SleepingBagTile::new, Sets.newHashSet(TTMContent.SLEEPING_BAG_RED.get(), TTMContent.SLEEPING_BAG_BLUE.get(), TTMContent.SLEEPING_BAG_BLACK.get(), TTMContent.SLEEPING_BAG_BROWN.get(), TTMContent.SLEEPING_BAG_CYAN.get(), TTMContent.SLEEPING_BAG_GRAY.get(), TTMContent.SLEEPING_BAG_GREEN.get(), TTMContent.SLEEPING_BAG_LIGHT_BLUE.get(), TTMContent.SLEEPING_BAG_LIGHT_GRAY.get(), TTMContent.SLEEPING_BAG_LIME.get(), TTMContent.SLEEPING_BAG_MAGENTA.get(), TTMContent.SLEEPING_BAG_ORANGE.get(), TTMContent.SLEEPING_BAG_PINK.get(), TTMContent.SLEEPING_BAG_PURPLE.get(), TTMContent.SLEEPING_BAG_WHITE.get(), TTMContent.SLEEPING_BAG_YELLOW.get()), null));
     public static RegistryObject<TileEntityType<PlacardTile>> PLACARD_TILE = TILE.register("placard_tile", () -> TileEntityType.Builder.of(PlacardTile::new, PLACARD.get()).build(null));
 
     // Signs
-    public static RegistryObject<TileEntityType<TTMMallornSignTile>> MALLORN_SIGN_TILE = TILE.register("mallorn_sign", () -> TileEntityType.Builder.of(TTMMallornSignTile::new, MALLORN_SIGN_WOOD_TYPE.get(), MALLORN_WALL_SIGN_WOOD_TYPE.get()).build(null));
-    public static RegistryObject<TileEntityType<TTMMirkwoodSignTile>> MIRKWOOD_SIGN_TILE = TILE.register("mirkwood_sign", () -> TileEntityType.Builder.of(TTMMirkwoodSignTile::new, MIRKWOOD_SIGN_WOOD_TYPE.get(), MIRKWOOD_WALL_SIGN_WOOD_TYPE.get()).build(null));
-    public static RegistryObject<TileEntityType<TTMCulumaldaSignTile>> CULUMALDA_SIGN_TILE = TILE.register("culumalda_sign", () -> TileEntityType.Builder.of(TTMCulumaldaSignTile::new, CULUMALDA_SIGN_WOOD_TYPE.get(), CULUMALDA_WALL_SIGN_WOOD_TYPE.get()).build(null));
-    public static RegistryObject<TileEntityType<TTMLebethronSignTile>> LEBETHRON_SIGN_TILE = TILE.register("lebethron_sign", () -> TileEntityType.Builder.of(TTMLebethronSignTile::new, LEBETHRON_SIGN_WOOD_TYPE.get(), LEBETHRON_WALL_SIGN_WOOD_TYPE.get()).build(null));
+    public static RegistryObject<TileEntityType<MallornSignTile>> MALLORN_SIGN_TILE = TILE.register("mallorn_sign", () -> TileEntityType.Builder.of(MallornSignTile::new, MALLORN_SIGN_WOOD_TYPE.get(), MALLORN_WALL_SIGN_WOOD_TYPE.get()).build(null));
+    public static RegistryObject<TileEntityType<MirkwoodSignTile>> MIRKWOOD_SIGN_TILE = TILE.register("mirkwood_sign", () -> TileEntityType.Builder.of(MirkwoodSignTile::new, MIRKWOOD_SIGN_WOOD_TYPE.get(), MIRKWOOD_WALL_SIGN_WOOD_TYPE.get()).build(null));
+    public static RegistryObject<TileEntityType<CulumaldaSignTile>> CULUMALDA_SIGN_TILE = TILE.register("culumalda_sign", () -> TileEntityType.Builder.of(CulumaldaSignTile::new, CULUMALDA_SIGN_WOOD_TYPE.get(), CULUMALDA_WALL_SIGN_WOOD_TYPE.get()).build(null));
+    public static RegistryObject<TileEntityType<LebethronSignTile>> LEBETHRON_SIGN_TILE = TILE.register("lebethron_sign", () -> TileEntityType.Builder.of(LebethronSignTile::new, LEBETHRON_SIGN_WOOD_TYPE.get(), LEBETHRON_WALL_SIGN_WOOD_TYPE.get()).build(null));
 
     //#################################################################
     // Containers
     //#################################################################
-    public static ContainerType<ContainerBCTile<TTMFireplaceTile>> TMFIREPLACE_CONTAINER;
-    public static ContainerType<ContainerBCTile<TTMPiggyBankTile>> PIGGYBANK_CONTAINER;
-    public static ContainerType<ContainerBCTile<TTMMithrilBarrelTile>> BARREL_MITHRIL_CONTAINER;
-    public static ContainerType<ContainerBCTile<TTMMorgulironBarrelTile>> BARREL_MORGULIRON_CONTAINER;
+    public static ContainerType<ContainerBCTile<FireplaceTile>> TMFIREPLACE_CONTAINER;
+    public static ContainerType<ContainerBCTile<PiggyBankTile>> PIGGYBANK_CONTAINER;
+    public static ContainerType<ContainerBCTile<MithrilBarrelTile>> BARREL_MITHRIL_CONTAINER;
+    public static ContainerType<ContainerBCTile<MorgulironBarrelTile>> BARREL_MORGULIRON_CONTAINER;
     public static ContainerType<BackpackContainer> BACKPACK_CONTAINER;
-    public static ContainerType<UpgradeContainer> UPGRADE_CONTAINER;
 
     public static void registerContainers(RegistryEvent.Register<ContainerType<?>> event) {
-        event.getRegistry().register(TMFIREPLACE_CONTAINER = (ContainerType<ContainerBCTile<TTMFireplaceTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(TMFIREPLACE_CONTAINER, id, playerInv, extraData, TTMFireplaceTile.SLOT_LAYOUT)).setRegistryName("tmfireplace_container"));
-        event.getRegistry().register(PIGGYBANK_CONTAINER = (ContainerType<ContainerBCTile<TTMPiggyBankTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(PIGGYBANK_CONTAINER, id, playerInv, extraData, TTMPiggyBankTile.SLOT_LAYOUT)).setRegistryName("piggybank_container"));
-        event.getRegistry().register(BARREL_MITHRIL_CONTAINER = (ContainerType<ContainerBCTile<TTMMithrilBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MITHRIL_CONTAINER, id, playerInv, extraData, TTMMithrilBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_mithril_container"));
-        event.getRegistry().register(BARREL_MORGULIRON_CONTAINER = (ContainerType<ContainerBCTile<TTMMorgulironBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MORGULIRON_CONTAINER, id, playerInv, extraData, TTMMorgulironBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_morguliron_container"));
+        event.getRegistry().register(TMFIREPLACE_CONTAINER = (ContainerType<ContainerBCTile<FireplaceTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(TMFIREPLACE_CONTAINER, id, playerInv, extraData, FireplaceTile.SLOT_LAYOUT)).setRegistryName("tmfireplace_container"));
+        event.getRegistry().register(PIGGYBANK_CONTAINER = (ContainerType<ContainerBCTile<PiggyBankTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(PIGGYBANK_CONTAINER, id, playerInv, extraData, PiggyBankTile.SLOT_LAYOUT)).setRegistryName("piggybank_container"));
+        event.getRegistry().register(BARREL_MITHRIL_CONTAINER = (ContainerType<ContainerBCTile<MithrilBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MITHRIL_CONTAINER, id, playerInv, extraData, MithrilBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_mithril_container"));
+        event.getRegistry().register(BARREL_MORGULIRON_CONTAINER = (ContainerType<ContainerBCTile<MorgulironBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MORGULIRON_CONTAINER, id, playerInv, extraData, MorgulironBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_morguliron_container"));
         event.getRegistry().register(BACKPACK_CONTAINER = (ContainerType<BackpackContainer>) IForgeContainerType.create(BackpackContainer::new).setRegistryName("backpack_container"));
-        event.getRegistry().register(UPGRADE_CONTAINER = (ContainerType<UpgradeContainer>) IForgeContainerType.create(UpgradeContainer::new).setRegistryName("upgrade_container"));
     }
 
     //#################################################################

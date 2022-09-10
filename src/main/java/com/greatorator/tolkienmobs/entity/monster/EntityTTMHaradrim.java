@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMSwitchCombat;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMThrowandAttack;
 import com.greatorator.tolkienmobs.utils.TTMRand;
@@ -12,7 +12,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
@@ -38,7 +37,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class EntityTTMHaradrim extends EntityTTMMonsters {
+public class EntityTTMHaradrim extends MonsterEntity {
     private final RangedBowAttackGoal<EntityTTMHaradrim> bowGoal = new RangedBowAttackGoal<>(this, 1.0D, 20, 15.0F);
     private final MeleeAttackGoal meleeGoal = new EntityTTMHaradrim.HaradrimAttackGoal(this, 1.0D, 20, 15.0F, false);
     private boolean scheduleWeaponGoalUpdate = true;
@@ -60,7 +59,7 @@ public class EntityTTMHaradrim extends EntityTTMMonsters {
     private long nextAbilityUse = 0L;
     private final static long coolDown = 15000L;
 
-    public EntityTTMHaradrim(EntityType<? extends MonsterEntity> type, World worldIn) {
+    public EntityTTMHaradrim(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
         super(type, worldIn);
         reassessWeaponGoal();
     }
@@ -78,7 +77,7 @@ public class EntityTTMHaradrim extends EntityTTMMonsters {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.createMonsterAttributes()
+        return net.minecraft.entity.monster.MonsterEntity.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 26.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.23D)
                 .add(Attributes.ATTACK_DAMAGE, 3.0D)

@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:block_barrel_mithril",
+    "tolkienmobs:block_barrel_morguliron"
+  ]
+}

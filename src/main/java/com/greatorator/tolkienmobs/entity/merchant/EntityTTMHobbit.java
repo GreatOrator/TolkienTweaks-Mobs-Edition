@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.merchant;
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMVillagers;
+import com.greatorator.tolkienmobs.entity.VillagerEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class EntityTTMHobbit extends EntityTTMVillagers {
+public class EntityTTMHobbit extends VillagerEntity {
 
     private static final DataParameter<Integer> HOBBIT_TYPE = EntityDataManager.defineId(EntityTTMHobbit.class, DataSerializers.INT);
     private static final DataParameter<VillagerData> HOBBIT_DATA = EntityDataManager.defineId(EntityTTMHobbit.class, DataSerializers.VILLAGER_DATA);
@@ -47,7 +47,7 @@ public class EntityTTMHobbit extends EntityTTMVillagers {
         option.put(16, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit16.png"));
     });
 
-    public EntityTTMHobbit(EntityType<? extends EntityTTMVillagers> type, World worldIn) {
+    public EntityTTMHobbit(EntityType<? extends VillagerEntity> type, World worldIn) {
         super(type, worldIn);
         this.setRndMinMax(1,16);
     }

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:slabs"
+    "#forge:slabs",
+    "#forge:wooden_slabs"
   ]
 }

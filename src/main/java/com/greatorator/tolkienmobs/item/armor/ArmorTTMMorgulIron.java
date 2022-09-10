@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.item.armor;
 
 import com.google.common.collect.ImmutableMap;
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.client.model.armor.ModelTTMMorgulIronArmor;
+import com.greatorator.tolkienmobs.client.model.armor.MorgulIronArmorModel;
 import com.greatorator.tolkienmobs.handler.TTMArmorTier;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
@@ -62,7 +62,7 @@ public class ArmorTTMMorgulIron extends ArmorItem {
     @Override
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack,
                                                      EquipmentSlotType armorSlot, A _default) {
-        ModelTTMMorgulIronArmor model = new ModelTTMMorgulIronArmor(1.0F);
+        MorgulIronArmorModel model = new MorgulIronArmorModel(1.0F);
 
         model.HelmMorgulIron.visible = armorSlot == EquipmentSlotType.HEAD;
         model.ChestMorgulIron.visible = armorSlot == EquipmentSlotType.CHEST;

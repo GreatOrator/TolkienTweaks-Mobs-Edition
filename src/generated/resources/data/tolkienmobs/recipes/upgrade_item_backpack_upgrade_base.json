@@ -17,6 +17,7 @@
     }
   },
   "result": {
-    "item": "tolkienmobs:upgrade_item_backpack_upgrade_base"
+    "item": "tolkienmobs:upgrade_item_backpack_upgrade_base",
+    "count": 6
   }
 }

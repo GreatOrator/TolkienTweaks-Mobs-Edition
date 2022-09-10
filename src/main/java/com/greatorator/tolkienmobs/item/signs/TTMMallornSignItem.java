@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.item.signs;
 
-import com.greatorator.tolkienmobs.client.gui.GuiTTMMallornSignScreen;
-import com.greatorator.tolkienmobs.entity.tile.TTMMallornSignTile;
+import com.greatorator.tolkienmobs.client.gui.MallornSignScreen;
+import com.greatorator.tolkienmobs.entity.tile.MallornSignTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -27,11 +27,11 @@ public class TTMMallornSignItem extends WallOrFloorItem {
       boolean flag = super.updateCustomBlockEntityTag(blockPos, world, player, stack, blockState);
       if (!flag && player != null) {
          if (world.isClientSide) {
-            openGui((TTMMallornSignTile)world.getBlockEntity(blockPos));
+            openGui((MallornSignTile)world.getBlockEntity(blockPos));
          }else {
             TileEntity tile = world.getBlockEntity(blockPos);
-            if (tile instanceof TTMMallornSignTile) {
-               ((TTMMallornSignTile) tile).setAllowedPlayerEditor(player);
+            if (tile instanceof MallornSignTile) {
+               ((MallornSignTile) tile).setAllowedPlayerEditor(player);
             }
          }
       }
@@ -41,7 +41,7 @@ public class TTMMallornSignItem extends WallOrFloorItem {
    }
 
    @OnlyIn(Dist.CLIENT)
-   private void openGui(TTMMallornSignTile tile) {
-      Minecraft.getInstance().setScreen(new GuiTTMMallornSignScreen(tile));
+   private void openGui(MallornSignTile tile) {
+      Minecraft.getInstance().setScreen(new MallornSignScreen(tile));
    }
 }

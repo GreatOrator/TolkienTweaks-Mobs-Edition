@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.EntityType;
@@ -13,7 +13,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -32,7 +31,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class EntityTTMOathbreaker extends EntityTTMMonsters {
+public class EntityTTMOathbreaker extends MonsterEntity {
     private static final DataParameter<Integer> OATHBREAKER_TYPE = EntityDataManager.defineId(EntityTTMOathbreaker.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/oathbreaker/oathbreaker1.png"));
@@ -41,7 +40,7 @@ public class EntityTTMOathbreaker extends EntityTTMMonsters {
         option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/oathbreaker/oathbreaker4.png"));
     });
 
-    public EntityTTMOathbreaker(EntityType<? extends MonsterEntity> type, World worldIn) {
+    public EntityTTMOathbreaker(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
@@ -58,7 +57,7 @@ public class EntityTTMOathbreaker extends EntityTTMMonsters {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.createMonsterAttributes()
+        return net.minecraft.entity.monster.MonsterEntity.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 16.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.23D)
                 .add(Attributes.ATTACK_DAMAGE, 3.0D)

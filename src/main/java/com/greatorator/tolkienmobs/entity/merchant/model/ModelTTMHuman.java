@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.entity.merchant.model;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
-import com.greatorator.tolkienmobs.entity.EntityTTMVillagers;
+import com.greatorator.tolkienmobs.entity.VillagerEntity;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
@@ -10,7 +10,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * Human - GreatOrator
  */
-public class ModelTTMHuman<T extends EntityTTMVillagers> extends BipedModel<T> {
+public class ModelTTMHuman<T extends VillagerEntity> extends BipedModel<T> {
     public ModelRenderer leftSleeve;
     public ModelRenderer rightPants;
     public ModelRenderer rightSleeve;

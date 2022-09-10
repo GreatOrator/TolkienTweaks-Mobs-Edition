@@ -5,11 +5,9 @@ import com.brandon3055.brandonscore.blocks.TileBCore;
 import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.BackpackBlock;
+import com.greatorator.tolkienmobs.block.SleepingBagBlock;
 import com.greatorator.tolkienmobs.container.BackpackContainer;
-import com.greatorator.tolkienmobs.container.UpgradeContainer;
 import com.greatorator.tolkienmobs.lib.TileFluidHandler;
-import net.minecraft.block.BedBlock;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -17,12 +15,13 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.properties.BedPart;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidUtil;
@@ -43,10 +42,10 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
 
     public TileFluidHandler fluidTank = new TileFluidHandler(FluidAttributes.BUCKET_VOLUME * 16);
     public TileItemStackHandler mainInventory = new TileItemStackHandler(54);
-    public TileItemStackHandler upgradeInventory = new TileItemStackHandler(6);
+    public TileItemStackHandler upgradeInventory = new TileItemStackHandler(5);
     public TileItemStackHandler craftingItems = new TileItemStackHandler(9);
     public TileItemStackHandler fluidItems = new TileItemStackHandler(2).setSlotLimit(1);
-    private boolean getUpgradeGui = false;
+    private boolean isSleepingBagDeployed = false;
     public ArrayList<ItemStack> list = new ArrayList<ItemStack>();
 
     public BackpackTile() {
@@ -61,6 +60,10 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
         //Ensure fluidItems only accepts fluid storage items.
         fluidItems.setStackValidator(stack -> stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).isPresent());
         fluidItems.setContentsChangeListener(this::fluiditemSlotChange); //<-- call fluiditemSlotChange if the fluid item inventory is modified
+
+        //Ensure upgradeInventory only accepts upgrade items.
+        upgradeInventory.setStackValidator(this::isItemValidForSlot);
+        upgradeInventory.setContentsChangeListener(this::upgradeSlotChange); //<-- call upgradeSlotChange if the item inventory is modified
     }
 
     public void onRightClick(PlayerEntity playerEntity, Hand hand) {
@@ -69,6 +72,25 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
                 //Open the gui if no bucket interaction occurs.
                 openGUI(playerEntity, this, worldPosition);
             }
+        }
+    }
+
+    private void upgradeSlotChange(int slot) {
+        ItemStack stack = upgradeInventory.getStackInSlot(slot);
+        if (stack.isEmpty()) {
+            return;
+        }
+
+        if (slot == 0) { //Input Slot
+//            FluidActionResult result = FluidUtil.tryEmptyContainer(stack, fluidTank, fluidTank.getSpace(), null, true);
+//            if (result.isSuccess()) {
+//                fluidItems.setStackInSlot(slot, result.getResult());
+//            }
+        } else { //Output Slot
+//            FluidActionResult result = FluidUtil.tryFillContainer(stack, fluidTank, fluidTank.getFluidAmount(), null, true);
+//            if (result.isSuccess()) {
+//                fluidItems.setStackInSlot(slot, result.getResult());
+//            }
         }
     }
 
@@ -100,32 +122,76 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
     @Override
     public void receivePacketFromClient(MCDataInput data, ServerPlayerEntity client, int id) {
         Direction facing = level.getBlockState(worldPosition).getValue(BackpackBlock.FACING);
+        BlockPos sleepingBagPos1 = worldPosition.relative(facing);
+        BlockPos sleepingBagPos2 = sleepingBagPos1.relative(facing);
 
         if (id == 0) { //Bed button was pressed
-            level.setBlock(worldPosition.relative(facing), TTMContent.SLEEPING_BAG_BLUE.get().defaultBlockState(), 26);
-            level.setBlock(worldPosition.relative(facing).north(), TTMContent.SLEEPING_BAG_BLUE.get().defaultBlockState().setValue(BedBlock.PART, BedPart.HEAD), 26);
+            level.setBlockAndUpdate(sleepingBagPos1, TTMContent.SLEEPING_BAG_BLUE.get().defaultBlockState().setValue(SleepingBagBlock.FACING, facing).setValue(SleepingBagBlock.PART, BedPart.FOOT));
+            level.setBlockAndUpdate(sleepingBagPos2, TTMContent.SLEEPING_BAG_BLUE.get().defaultBlockState().setValue(SleepingBagBlock.FACING, facing).setValue(SleepingBagBlock.PART, BedPart.HEAD));
+
+            level.updateNeighborsAt(worldPosition, TTMContent.SLEEPING_BAG_BLUE.get());
+            level.updateNeighborsAt(sleepingBagPos2, TTMContent.SLEEPING_BAG_BLUE.get());
         } else if (id == 1) { //Campfire button was pressed
             level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.CAMPFIRE.defaultBlockState());
-        } else if (id == 2) { //Upgrade button was pressed
-            setOpenUpgradeGui();
-            openGUI(client, this, worldPosition);
-        } else if (id == 3) { //Upgrade button was pressed
-            getUpgradeGui = false;
-            openGUI(client, this, worldPosition);
         }
     }
 
-    public void setOpenUpgradeGui() {
-        this.getUpgradeGui = true;
+    public boolean isSleepingBagDeployed()
+    {
+        return this.isSleepingBagDeployed;
+    }
+
+    public void setSleepingBagDeployed(boolean isSleepingBagDeployed)
+    {
+        this.isSleepingBagDeployed = isSleepingBagDeployed;
+    }
+
+    public boolean removeSleepingBag(World world)
+    {
+        Direction blockFacing = this.getBlockDirection(world.getBlockEntity(getBlockPos()));
+
+        this.isThereSleepingBag(blockFacing);
+
+        if(this.isSleepingBagDeployed)
+        {
+            BlockPos sleepingBagPos1 = getBlockPos().relative(blockFacing);
+            BlockPos sleepingBagPos2 = sleepingBagPos1.relative(blockFacing);
+
+            if(world.getBlockState(sleepingBagPos1).getBlock() == TTMContent.SLEEPING_BAG_BLUE.get() && world.getBlockState(sleepingBagPos2).getBlock() == TTMContent.SLEEPING_BAG_BLUE.get())
+            {
+                world.playSound(null, sleepingBagPos2, SoundEvents.WOOL_PLACE, SoundCategory.BLOCKS, 0.5F, 1.0F);
+                world.setBlockAndUpdate(sleepingBagPos2, Blocks.AIR.defaultBlockState());
+                world.setBlockAndUpdate(sleepingBagPos1, Blocks.AIR.defaultBlockState());
+                this.isSleepingBagDeployed = false;
+                this.setChanged();
+                return true;
+            }
+        }
+        else
+        {
+            this.isSleepingBagDeployed = false;
+            this.setChanged();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isThereSleepingBag(Direction direction)
+    {
+        if(level.getBlockState(getBlockPos().relative(direction)).getBlock() == TTMContent.SLEEPING_BAG_BLUE.get() && level.getBlockState(getBlockPos().relative(direction).relative(direction)).getBlock() == TTMContent.SLEEPING_BAG_BLUE.get())
+        {
+            return true;
+        }
+        else
+        {
+            this.isSleepingBagDeployed = false;
+            return false;
+        }
     }
 
     @Nullable
     @Override
     public Container createMenu(int windowID, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        if (getUpgradeGui) {
-            return new UpgradeContainer(TTMContent.UPGRADE_CONTAINER, windowID, playerInventory, this);
-        }
-        LOGGER.info("List of items in upgrade inventory: " + list);
         return new BackpackContainer(TTMContent.BACKPACK_CONTAINER, windowID, playerInventory, this);
     }
 
@@ -133,15 +199,31 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
     {
         if(!player.level.isClientSide)
         {
+            for (int i = 0; i < upgradeInventory.getSlots(); i++) {
+                LOGGER.info("List of items in upgrade inventory: " + upgradeInventory.getStackInSlot(i));
+            }
             NetworkHooks.openGui((ServerPlayerEntity)player, containerSupplier, pos);
         }
     }
 
-    public final void load(BlockState state, CompoundNBT nbt) {
-        super.load(state, nbt);
-        int i;
-        for (i = 0; i < nbt.size(); i++) {
-            list.add(ItemStack.of(nbt.getCompound("upgrade_inv")));
+    public Direction getBlockDirection(TileEntity tile)
+    {
+        if(tile instanceof BackpackTile)
+        {
+            if(level == null || !(level.getBlockState(getBlockPos()).getBlock() instanceof BackpackBlock))
+            {
+                return Direction.NORTH;
+            }
+            return level.getBlockState(getBlockPos()).getValue(BackpackBlock.FACING);
         }
+        return Direction.NORTH;
     }
+
+    public boolean isItemValidForSlot(int index, ItemStack stack) {
+        if (index <= 5) {
+            return ItemTags.createOptional(new ResourceLocation("forge", "upgrades")).contains(stack.getItem());
+        }
+        else return false;
+    }
+
 }

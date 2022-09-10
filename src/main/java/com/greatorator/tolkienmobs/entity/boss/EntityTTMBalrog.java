@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.entity.boss;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMSwitchCombat;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMThrowandAttack;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
@@ -17,7 +17,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -50,7 +49,7 @@ import javax.annotation.Nullable;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class EntityTTMBalrog extends EntityTTMMonsters {
+public class EntityTTMBalrog extends MonsterEntity {
     private final ServerBossInfo bossInfo = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(), BossInfo.Color.YELLOW, BossInfo.Overlay.NOTCHED_20)).setDarkenScreen(true);
     private static final DataParameter<Byte> DATA_FLAGS_ID;
     private final RangedBowAttackGoal<EntityTTMBalrog> bowGoal = new RangedBowAttackGoal<>(this, 1.0D, 20, 15.0F);
@@ -59,7 +58,7 @@ public class EntityTTMBalrog extends EntityTTMMonsters {
     private long nextAbilityUse = 0L;
     private final static long coolDown = 15000L;
 
-    public EntityTTMBalrog(EntityType<? extends MonsterEntity> type, World worldIn) {
+    public EntityTTMBalrog(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
         super(type, worldIn);
         this.setPathfindingMalus(PathNodeType.DANGER_FIRE, 0.0F);
         this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, 0.0F);
@@ -74,7 +73,7 @@ public class EntityTTMBalrog extends EntityTTMMonsters {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, MonsterEntity.class, 10, true, false, TurtleEntity.BABY_ON_LAND_SELECTOR));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, net.minecraft.entity.monster.MonsterEntity.class, 10, true, false, TurtleEntity.BABY_ON_LAND_SELECTOR));
     }
 
     /** Set up using weapons **/
@@ -173,7 +172,7 @@ public class EntityTTMBalrog extends EntityTTMMonsters {
     /** End Region **/
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.createMonsterAttributes()
+        return net.minecraft.entity.monster.MonsterEntity.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 300.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.40D)
                 .add(Attributes.ATTACK_DAMAGE, 17.0D)

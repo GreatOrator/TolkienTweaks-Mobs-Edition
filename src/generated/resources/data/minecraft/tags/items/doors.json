@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:doors/iron"
+    "#forge:doors/iron",
+    "#forge:doors/wooden"
   ]
 }

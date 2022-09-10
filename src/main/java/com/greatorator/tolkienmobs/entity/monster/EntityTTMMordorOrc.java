@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMSwitchCombat;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMThrowandAttack;
 import com.greatorator.tolkienmobs.utils.TTMRand;
@@ -16,7 +16,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.VillagerEntity;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
@@ -41,7 +40,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class EntityTTMMordorOrc extends EntityTTMMonsters {
+public class EntityTTMMordorOrc extends MonsterEntity {
     private final RangedBowAttackGoal<EntityTTMMordorOrc> bowGoal = new RangedBowAttackGoal<>(this, 1.0D, 20, 15.0F);
     private final MeleeAttackGoal meleeGoal = new MordorOrcAttackGoal(this, 1.0D, 20, 15.0F, false);
     private boolean scheduleWeaponGoalUpdate = true;
@@ -54,7 +53,7 @@ public class EntityTTMMordorOrc extends EntityTTMMonsters {
         option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/orc/mordororc4.png"));
     });
 
-    public EntityTTMMordorOrc(EntityType<? extends MonsterEntity> type, World worldIn) {
+    public EntityTTMMordorOrc(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
         super(type, worldIn);
         reassessWeaponGoal();
     }
@@ -139,7 +138,7 @@ public class EntityTTMMordorOrc extends EntityTTMMonsters {
     /** End Region **/
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.createMonsterAttributes()
+        return net.minecraft.entity.monster.MonsterEntity.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 25.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.23D)
                 .add(Attributes.ATTACK_DAMAGE, 3.0D)

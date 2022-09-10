@@ -71,7 +71,7 @@ public class TolkienMobs {
        a. Upgrade system
        b. Improved sleeping bag and campfire deployment
 	4. Custom Recipe
-	    a. Fireplace - JEI GUI needs fixed
+	   a. Fireplace - JEI GUI needs fixed
     */
 
     public TolkienMobs() {

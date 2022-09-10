@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMHerds;
+import com.greatorator.tolkienmobs.entity.HerdEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.Random;
 
 /** Borrowed from Jabelar https://github.com/jabelar */
-public class EntityTTMMumakil extends EntityTTMHerds {
+public class EntityTTMMumakil extends HerdEntity {
     private static final DataParameter<Integer> MUMAKIL_TYPE = EntityDataManager.defineId(EntityTTMMumakil.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mumakil/mumakil1.png"));

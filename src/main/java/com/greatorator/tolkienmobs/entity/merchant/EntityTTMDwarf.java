@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMVillagers;
+import com.greatorator.tolkienmobs.entity.VillagerEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class EntityTTMDwarf extends EntityTTMVillagers {
+public class EntityTTMDwarf extends VillagerEntity {
     private static final DataParameter<Integer> DWARF_TYPE = EntityDataManager.defineId(EntityTTMDwarf.class, DataSerializers.INT);
     private static final DataParameter<VillagerData> DWARF_DATA = EntityDataManager.defineId(EntityTTMDwarf.class, DataSerializers.VILLAGER_DATA);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
@@ -43,7 +43,7 @@ public class EntityTTMDwarf extends EntityTTMVillagers {
         option.put(10, new ResourceLocation(TolkienMobs.MODID, "textures/entity/dwarf/dwarf10.png"));
     });
 
-    public EntityTTMDwarf(EntityType<? extends EntityTTMVillagers> type, World worldIn) {
+    public EntityTTMDwarf(EntityType<? extends VillagerEntity> type, World worldIn) {
         super(type, worldIn);
         this.setRndMinMax(1, 10);
     }

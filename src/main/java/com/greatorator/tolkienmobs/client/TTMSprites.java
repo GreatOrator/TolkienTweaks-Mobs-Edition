@@ -33,7 +33,9 @@ public class TTMSprites {
         register(MODID, "backpack/tank_arrows");
 
         register(MODID, "backpack/bed");
+        register(MODID, "backpack/bed_deployed");
         register(MODID, "backpack/campfire");
+        register(MODID, "backpack/campfire_deployed");
         register(MODID, "backpack/upgrade");
         register(MODID, "backpack/close_upgrade");
         register(MODID, "backpack/tank");

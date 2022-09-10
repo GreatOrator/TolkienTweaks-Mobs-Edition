@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.item.signs;
 
-import com.greatorator.tolkienmobs.client.gui.GuiTTMLebethronSignScreen;
-import com.greatorator.tolkienmobs.entity.tile.TTMLebethronSignTile;
+import com.greatorator.tolkienmobs.client.gui.LebethronSignScreen;
+import com.greatorator.tolkienmobs.entity.tile.LebethronSignTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -26,11 +26,11 @@ public class TTMLebethronSignItem extends WallOrFloorItem {
       boolean flag = super.updateCustomBlockEntityTag(blockPos, world, player, stack, blockState);
       if (!flag && player != null) {
          if (world.isClientSide) {
-            openGui((TTMLebethronSignTile)world.getBlockEntity(blockPos));
+            openGui((LebethronSignTile)world.getBlockEntity(blockPos));
          }else {
             TileEntity tile = world.getBlockEntity(blockPos);
-            if (tile instanceof TTMLebethronSignTile) {
-               ((TTMLebethronSignTile) tile).setAllowedPlayerEditor(player);
+            if (tile instanceof LebethronSignTile) {
+               ((LebethronSignTile) tile).setAllowedPlayerEditor(player);
             }
          }
       }
@@ -40,7 +40,7 @@ public class TTMLebethronSignItem extends WallOrFloorItem {
    }
 
    @OnlyIn(Dist.CLIENT)
-   private void openGui(TTMLebethronSignTile tile) {
-      Minecraft.getInstance().setScreen(new GuiTTMLebethronSignScreen(tile));
+   private void openGui(LebethronSignTile tile) {
+      Minecraft.getInstance().setScreen(new LebethronSignScreen(tile));
    }
 }

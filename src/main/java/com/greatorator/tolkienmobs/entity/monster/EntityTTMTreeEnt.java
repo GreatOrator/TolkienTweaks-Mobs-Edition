@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.boss.EntityTTMGoblinKing;
 import com.greatorator.tolkienmobs.utils.TTMRand;
@@ -14,7 +14,6 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -33,7 +32,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.Random;
 
-public class EntityTTMTreeEnt extends EntityTTMMonsters {
+public class EntityTTMTreeEnt extends MonsterEntity {
     private static final DataParameter<Integer> TREEENT_TYPE = EntityDataManager.defineId(EntityTTMTreeEnt.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/treeent/treeent1.png"));
@@ -42,12 +41,12 @@ public class EntityTTMTreeEnt extends EntityTTMMonsters {
         option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/treeent/treeent4.png"));
     });
 
-    public EntityTTMTreeEnt(EntityType<? extends MonsterEntity> type, World worldIn) {
+    public EntityTTMTreeEnt(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.createMonsterAttributes()
+        return net.minecraft.entity.monster.MonsterEntity.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 45.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.23D)
                 .add(Attributes.ATTACK_DAMAGE, 10.0D)

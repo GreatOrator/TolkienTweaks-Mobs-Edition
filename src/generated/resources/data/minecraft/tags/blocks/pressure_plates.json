@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "#forge:pressure_plates",
+    "#forge:wooden_pressure_plates",
     "#forge:pressure_plates"
   ]
 }

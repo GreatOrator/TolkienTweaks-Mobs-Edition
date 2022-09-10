@@ -46,6 +46,7 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
     public static RenderType FLUID_RENDER_TYPE = RenderUtils.getFluidRenderType();
     protected GuiToolkit<BackpackScreen> toolkit = new GuiToolkit<>(this, 257, 207).setTranslationPrefix("gui.tolkienmobs.backpack");
     private final BackpackTile tile;
+    private static boolean displayUpgrades = false;
 
     public BackpackScreen(BackpackContainer container, PlayerInventory inv, ITextComponent titleIn) {
         super(container, inv, titleIn);
@@ -73,8 +74,13 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
         int slotColumns = 9;
         int slotRows = 6;
         GuiElement<?> mainSlots = toolkit.createSlots(template.background, slotColumns, slotRows, 0, (x, y) -> new SlotMover(container.mainSlots.get(x + (y * slotColumns))), null);
-        //Place directly above the player slots with a 3 pixel gap.
         toolkit.placeOutside(mainSlots, template.playerSlots, GuiToolkit.LayoutPos.TOP_CENTER, 0, -3);
+
+        // ### Main Upgrade Inventory
+        int slotColumns1 = 5;
+        int slotRows1 = 1;
+        GuiElement<?> upgradeSlots = toolkit.createSlots(template.background, slotColumns1, slotRows1, 0, (x, y) -> new SlotMover(container.upgradeSlots.get(x + (y * slotColumns1))), null);
+        upgradeSlots.setPos(-9000, -9000);
 
         // ### Update title position ###
         //Set title alignment mode to left
@@ -165,11 +171,21 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
         //When button is pressed send a message to the server tile with id 1
         campfireButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {}, 1));
 
-        GuiButton upgradeButton = toolkit.createIconButton(template.background, 16, 16, TTMSprites.getter("backpack/upgrade"));
-        toolkit.placeOutside(upgradeButton, campfireButton, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
-        //When button is pressed send a message to the server tile with id 1
+        GuiButton upgradeButton = toolkit.createIconButton(template.background, 16, 16, () -> displayUpgrades ? TTMSprites.get("backpack/close_upgrade") : TTMSprites.get("backpack/upgrade"));
+        toolkit.placeOutside(upgradeButton, campfireButton, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 35, 0);
+        //When button is pressed send a message to the server tile with id 2
         upgradeButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {}, 2));
 
+        upgradeButton.onPressed(() -> {
+            displayUpgrades = !displayUpgrades;
+            if (displayUpgrades) {
+                mainSlots.setPos(-9000, -9000);
+                toolkit.placeOutside(upgradeSlots, template.playerSlots, GuiToolkit.LayoutPos.TOP_CENTER, 0, -3);
+            } else {
+                upgradeSlots.setPos(-9000, -9000);
+                toolkit.placeOutside(mainSlots, template.playerSlots, GuiToolkit.LayoutPos.TOP_CENTER, 0, -3);
+            }
+        });
     }
 
     //###############################################################################################################################################################################

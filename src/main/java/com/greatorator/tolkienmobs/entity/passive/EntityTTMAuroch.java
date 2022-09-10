@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.passive;
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMHerds;
+import com.greatorator.tolkienmobs.entity.HerdEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.Block;
 import net.minecraft.entity.AgeableEntity;
@@ -27,7 +27,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class EntityTTMAuroch extends EntityTTMHerds {
+public class EntityTTMAuroch extends HerdEntity {
     private static final DataParameter<Integer> AUROCH_TYPE = EntityDataManager.defineId(EntityTTMAuroch.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
         option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/auroch/auroch1.png"));

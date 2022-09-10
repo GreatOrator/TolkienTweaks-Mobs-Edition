@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:placard",
+    "tolkienmobs:sign_mallorn",
+    "tolkienmobs:sign_mirkwood",
+    "tolkienmobs:sign_culumalda",
+    "tolkienmobs:sign_lebethron"
+  ]
+}

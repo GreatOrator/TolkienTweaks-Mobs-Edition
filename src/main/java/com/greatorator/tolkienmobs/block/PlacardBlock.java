@@ -29,10 +29,10 @@ public class PlacardBlock extends BlockBCore {
     public static final EnumProperty<PlacardType> PLACARD_TYPE = EnumProperty.create("placard_type", PlacardType.class);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public static final VoxelShape SHAPE_HANGING_NS = Block.box(0.0D, 5.0D, 14.0D, 16.0D, 13.0D, 16.0D);
-    public static final VoxelShape SHAPE_HANGING_EW = Block.box(0.0D, 5.0D, 0.0D, 2.0D, 13.0D, 16.0D);
-    public static final VoxelShape SHAPE_STANDING_NS = Block.box(0.0D, 5.0D, 14.0D, 16.0D, 13.0D, 16.0D);
-    public static final VoxelShape SHAPE_STANDING_EW = Block.box(0.0D, 5.0D, 0.0D, 2.0D, 13.0D, 16.0D);
+    public static final VoxelShape SHAPE_HANGING_NS = Block.box(0.0D, 0.0D, 7.0D, 16.0D, 8.0D, 9.0D);
+    public static final VoxelShape SHAPE_HANGING_EW = Block.box(7.0D, 0.0D, 0.0D, 9.0D, 8.0D, 16.0D);
+    public static final VoxelShape SHAPE_STANDING_NS = Block.box(0.0D, 6.0D, 7.0D, 16.0D, 14.0D, 9.0D);
+    public static final VoxelShape SHAPE_STANDING_EW = Block.box(7.0D, 6.0D, 0.0D, 9.0D, 14.0D, 16.0D);
     protected static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 5.0D, 14.0D, 16.0D, 13.0D, 16.0D);
     protected static final VoxelShape SHAPE_SOUTH = Block.box(0.0D, 5.0D, 2.0D, 16.0D, 13.0D, 0.0D);
     protected static final VoxelShape SHAPE_EAST = Block.box(0.0D, 5.0D, 0.0D, 2.0D, 13.0D, 16.0D);

@@ -2,10 +2,10 @@
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/cube",
 	"textures": {
-		"0":"tolkienmobs:block/fireplace/fire_out",
-		"1":"tolkienmobs:block/fireplace/block_fireplace",
-		"2":"tolkienmobs:block/fireplace/block_fireplace_concrete",
-		"particle":"tolkienmobs:block/fireplace/block_fireplace"
+		"0": "tolkienmobs:block/fireplace/fire_out",
+		"1": "tolkienmobs:block/fireplace/block_fireplace",
+		"2": "tolkienmobs:block/fireplace/block_fireplace_concrete",
+		"particle": "tolkienmobs:block/fireplace/block_fireplace"
 	},
 	"elements": [
 		{
@@ -793,5 +793,16 @@
 				"north": {"uv": [0.125, 0.125, 15.875, 15.875], "texture": "#0"}
 			}
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [179.98, 0.33, 179.28],
+			"translation": [0, 0.5, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"gui": {
+			"rotation": [179.73, 0.5, 179.57],
+			"scale": [0.9, 0.9, 0.9]
+		}
+	}
 }

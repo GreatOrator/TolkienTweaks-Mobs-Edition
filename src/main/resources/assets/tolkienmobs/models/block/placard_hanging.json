@@ -8,8 +8,8 @@
 	"elements": [
 		{
 			"name": "SignBase",
-			"from": [1, 1, 0.5],
-			"to": [15, 7, 1.5],
+			"from": [1, 1, 7.5],
+			"to": [15, 7, 8.5],
 			"faces": {
 				"north": {"uv": [1, 1, 16, 9], "texture": "#tex"},
 				"south": {"uv": [1, 1, 16, 9], "texture": "#tex"}
@@ -17,8 +17,8 @@
 		},
 		{
 			"name": "SignFrameBottom",
-			"from": [0, 0, 0],
-			"to": [16, 1, 2],
+			"from": [0, 0, 7],
+			"to": [16, 1, 9],
 			"faces": {
 				"north": {"uv": [0, 12, 16, 13], "texture": "#tex"},
 				"east": {"uv": [14, 9, 16, 10], "texture": "#tex"},
@@ -30,8 +30,8 @@
 		},
 		{
 			"name": "SignFrameRight",
-			"from": [0, 1, 0],
-			"to": [1, 7, 2],
+			"from": [0, 1, 7],
+			"to": [1, 7, 9],
 			"faces": {
 				"north": {"uv": [6, 9, 13, 11], "rotation": 90, "texture": "#tex"},
 				"east": {"uv": [9, 9, 16, 11], "rotation": 90, "texture": "#tex"},
@@ -41,8 +41,8 @@
 		},
 		{
 			"name": "SignFrameTop",
-			"from": [0, 7, 0],
-			"to": [16, 8, 2],
+			"from": [0, 7, 7],
+			"to": [16, 8, 9],
 			"faces": {
 				"north": {"uv": [0, 12, 16, 13], "texture": "#tex"},
 				"east": {"uv": [14, 9, 16, 10], "texture": "#tex"},
@@ -54,8 +54,8 @@
 		},
 		{
 			"name": "SignFrameLeft",
-			"from": [15, 1, 0],
-			"to": [16, 7, 2],
+			"from": [15, 1, 7],
+			"to": [16, 7, 9],
 			"faces": {
 				"north": {"uv": [7, 11, 16, 9], "rotation": 90, "texture": "#tex"},
 				"east": {"uv": [7, 9, 16, 11], "rotation": 90, "texture": "#tex"},
@@ -65,8 +65,8 @@
 		},
 		{
 			"name": "ChainRight1",
-			"from": [1, 8, 1],
-			"to": [2, 16, 1],
+			"from": [1, 8, 8],
+			"to": [2, 16, 8],
 			"faces": {
 				"north": {"uv": [0, 15, 7, 16], "rotation": 90, "texture": "#tex"},
 				"south": {"uv": [0, 15, 7, 16], "rotation": 90, "texture": "#tex"}
@@ -74,8 +74,8 @@
 		},
 		{
 			"name": "ChainLeft1",
-			"from": [14, 8, 1],
-			"to": [15, 16, 1],
+			"from": [14, 8, 8],
+			"to": [15, 16, 8],
 			"faces": {
 				"north": {"uv": [0, 16, 7, 15], "rotation": 90, "texture": "#tex"},
 				"south": {"uv": [0, 16, 7, 15], "rotation": 90, "texture": "#tex"}
@@ -83,8 +83,8 @@
 		},
 		{
 			"name": "ChainRight2",
-			"from": [1.5, 8, 0.5],
-			"to": [1.5, 16, 1.5],
+			"from": [1.5, 8, 7.5],
+			"to": [1.5, 16, 8.5],
 			"faces": {
 				"east": {"uv": [0, 16, 7, 15], "rotation": 90, "texture": "#tex"},
 				"west": {"uv": [0, 16, 7, 15], "rotation": 90, "texture": "#tex"}
@@ -92,13 +92,12 @@
 		},
 		{
 			"name": "ChainLeft2",
-			"from": [14.5, 8, 0.5],
-			"to": [14.5, 16, 1.5],
+			"from": [14.5, 8, 7.5],
+			"to": [14.5, 16, 8.5],
 			"faces": {
 				"east": {"uv": [0, 16, 7, 15], "rotation": 90, "texture": "#tex"},
 				"west": {"uv": [0, 16, 7, 15], "rotation": 90, "texture": "#tex"}
 			}
 		}
-	],
-	"display": {}
+	]
 }

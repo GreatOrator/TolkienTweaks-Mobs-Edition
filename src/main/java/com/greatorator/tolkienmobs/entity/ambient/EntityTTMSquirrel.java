@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMAmbients;
+import com.greatorator.tolkienmobs.entity.AmbientEntity;
 import com.greatorator.tolkienmobs.init.TTMTags;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.*;
@@ -32,7 +32,7 @@ import net.minecraft.world.server.ServerWorld;
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class EntityTTMSquirrel extends EntityTTMAmbients {
+public class EntityTTMSquirrel extends AmbientEntity {
     private static final DataParameter<Integer> SQUIRREL_TYPE = EntityDataManager.defineId(EntityTTMSquirrel.class, DataSerializers.INT);
     private static final ResourceLocation KILLER_SQUIRREL = new ResourceLocation(TolkienMobs.MODID, "textures/entity/sosquirrel/killer_squirrel");
 

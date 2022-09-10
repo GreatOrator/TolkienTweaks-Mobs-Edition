@@ -2,10 +2,10 @@ package com.greatorator.tolkienmobs.network;
 
 import codechicken.lib.packet.ICustomPacketHandler;
 import codechicken.lib.packet.PacketCustom;
-import com.greatorator.tolkienmobs.entity.tile.TTMCulumaldaSignTile;
-import com.greatorator.tolkienmobs.entity.tile.TTMLebethronSignTile;
-import com.greatorator.tolkienmobs.entity.tile.TTMMallornSignTile;
-import com.greatorator.tolkienmobs.entity.tile.TTMMirkwoodSignTile;
+import com.greatorator.tolkienmobs.entity.tile.CulumaldaSignTile;
+import com.greatorator.tolkienmobs.entity.tile.LebethronSignTile;
+import com.greatorator.tolkienmobs.entity.tile.MallornSignTile;
+import com.greatorator.tolkienmobs.entity.tile.MirkwoodSignTile;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.play.IServerPlayNetHandler;
@@ -42,14 +42,14 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
         if (serverworld.hasChunkAt(blockpos)) {
             BlockState blockstate = serverworld.getBlockState(blockpos);
             TileEntity tileentity = serverworld.getBlockEntity(blockpos);
-            if (!(tileentity instanceof TTMMallornSignTile) || !(tileentity instanceof TTMMirkwoodSignTile) || !(tileentity instanceof TTMCulumaldaSignTile) || !(tileentity instanceof TTMLebethronSignTile)) {
+            if (!(tileentity instanceof MallornSignTile) || !(tileentity instanceof MirkwoodSignTile) || !(tileentity instanceof CulumaldaSignTile) || !(tileentity instanceof LebethronSignTile)) {
                 return;
             }
 
-            TTMMallornSignTile signtileentity1 = (TTMMallornSignTile)tileentity;
-            TTMMirkwoodSignTile signtileentity2 = (TTMMirkwoodSignTile)tileentity;
-            TTMCulumaldaSignTile signtileentity3 = (TTMCulumaldaSignTile)tileentity;
-            TTMLebethronSignTile signtileentity4 = (TTMLebethronSignTile)tileentity;
+            MallornSignTile signtileentity1 = (MallornSignTile)tileentity;
+            MirkwoodSignTile signtileentity2 = (MirkwoodSignTile)tileentity;
+            CulumaldaSignTile signtileentity3 = (CulumaldaSignTile)tileentity;
+            LebethronSignTile signtileentity4 = (LebethronSignTile)tileentity;
             if (!signtileentity1.isEditable() || signtileentity1.getPlayerWhoMayEdit() != sender || !signtileentity2.isEditable() || signtileentity2.getPlayerWhoMayEdit() != sender || !signtileentity3.isEditable() || signtileentity3.getPlayerWhoMayEdit() != sender || !signtileentity4.isEditable() || signtileentity4.getPlayerWhoMayEdit() != sender) {
                 LOGGER.warn("Player {} just tried to change non-editable sign", (Object)sender.getName().getString());
                 return;
@@ -84,6 +84,5 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
             signtileentity4.setChanged();
             serverworld.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
         }
-
     }
 }

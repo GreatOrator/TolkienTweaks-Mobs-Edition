@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -10,7 +10,6 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.monster.SkeletonEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -35,7 +34,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.Random;
 
-public class EntityTTMMirkwoodSpider extends EntityTTMMonsters {
+public class EntityTTMMirkwoodSpider extends MonsterEntity {
     private static final DataParameter<Integer> MIRKWOODSPIDER_TYPE = EntityDataManager.defineId(EntityTTMMirkwoodSpider.class, DataSerializers.INT);
     private static final DataParameter<Byte> DATA_FLAGS_ID = EntityDataManager.defineId(EntityTTMMirkwoodSpider.class, DataSerializers.BYTE);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
@@ -45,7 +44,7 @@ public class EntityTTMMirkwoodSpider extends EntityTTMMonsters {
         option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mirkwoodspider.png"));
     });
 
-    public EntityTTMMirkwoodSpider(EntityType<? extends MonsterEntity> type, World worldIn) {
+    public EntityTTMMirkwoodSpider(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
@@ -82,7 +81,7 @@ public class EntityTTMMirkwoodSpider extends EntityTTMMonsters {
     }
 
     public static AttributeModifierMap.MutableAttribute registerAttributes() {
-        return MonsterEntity.createMonsterAttributes()
+        return net.minecraft.entity.monster.MonsterEntity.createMonsterAttributes()
                 .add(Attributes.MAX_HEALTH, 26.0D)
                 .add(Attributes.MOVEMENT_SPEED, (double)0.3F)
                 .add(Attributes.ATTACK_DAMAGE, 3.0D)

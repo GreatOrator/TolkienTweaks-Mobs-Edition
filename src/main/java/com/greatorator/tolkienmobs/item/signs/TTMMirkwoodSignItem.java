@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.item.signs;
 
-import com.greatorator.tolkienmobs.client.gui.GuiTTMMirkwoodSignScreen;
-import com.greatorator.tolkienmobs.entity.tile.TTMMirkwoodSignTile;
+import com.greatorator.tolkienmobs.client.gui.MirkwoodSignScreen;
+import com.greatorator.tolkienmobs.entity.tile.MirkwoodSignTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -26,11 +26,11 @@ public class TTMMirkwoodSignItem extends WallOrFloorItem {
       boolean flag = super.updateCustomBlockEntityTag(blockPos, world, player, stack, blockState);
       if (!flag && player != null) {
          if (world.isClientSide) {
-            openGui((TTMMirkwoodSignTile)world.getBlockEntity(blockPos));
+            openGui((MirkwoodSignTile)world.getBlockEntity(blockPos));
          }else {
             TileEntity tile = world.getBlockEntity(blockPos);
-            if (tile instanceof TTMMirkwoodSignTile) {
-               ((TTMMirkwoodSignTile) tile).setAllowedPlayerEditor(player);
+            if (tile instanceof MirkwoodSignTile) {
+               ((MirkwoodSignTile) tile).setAllowedPlayerEditor(player);
             }
          }
       }
@@ -40,7 +40,7 @@ public class TTMMirkwoodSignItem extends WallOrFloorItem {
    }
 
    @OnlyIn(Dist.CLIENT)
-   private void openGui(TTMMirkwoodSignTile tile) {
-      Minecraft.getInstance().setScreen(new GuiTTMMirkwoodSignScreen(tile));
+   private void openGui(MirkwoodSignTile tile) {
+      Minecraft.getInstance().setScreen(new MirkwoodSignScreen(tile));
    }
 }

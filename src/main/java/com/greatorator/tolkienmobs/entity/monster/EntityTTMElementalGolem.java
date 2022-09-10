@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.PotionGenerator;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.EntityTTMMonsters;
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -13,7 +13,6 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -37,7 +36,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.UUID;
 
-public class EntityTTMElementalGolem extends EntityTTMMonsters implements IAngerable {
+public class EntityTTMElementalGolem extends MonsterEntity implements IAngerable {
     private static final DataParameter<Integer> ELEMENT_TYPE = EntityDataManager.defineId(EntityTTMElementalGolem.class, DataSerializers.INT);
     private static final DataParameter<Integer> GOLEM_TYPE = EntityDataManager.defineId(EntityTTMElementalGolem.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
@@ -54,7 +53,7 @@ public class EntityTTMElementalGolem extends EntityTTMMonsters implements IAnger
     private long nextAbilityUse = 0L;
     private final static long coolDown = 15000L;
 
-    public EntityTTMElementalGolem(EntityType<? extends MonsterEntity> type, World worldIn) {
+    public EntityTTMElementalGolem(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
         super(type, worldIn);
     }
 

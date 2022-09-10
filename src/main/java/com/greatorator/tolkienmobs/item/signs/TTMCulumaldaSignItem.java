@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.item.signs;
 
-import com.greatorator.tolkienmobs.client.gui.GuiTTMCulumaldaSignScreen;
-import com.greatorator.tolkienmobs.entity.tile.TTMCulumaldaSignTile;
+import com.greatorator.tolkienmobs.client.gui.CulumaldaSignScreen;
+import com.greatorator.tolkienmobs.entity.tile.CulumaldaSignTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -26,11 +26,11 @@ public class TTMCulumaldaSignItem extends WallOrFloorItem {
       boolean flag = super.updateCustomBlockEntityTag(blockPos, world, player, stack, blockState);
       if (!flag && player != null) {
          if (world.isClientSide) {
-            openGui((TTMCulumaldaSignTile)world.getBlockEntity(blockPos));
+            openGui((CulumaldaSignTile)world.getBlockEntity(blockPos));
          }else {
             TileEntity tile = world.getBlockEntity(blockPos);
-            if (tile instanceof TTMCulumaldaSignTile) {
-               ((TTMCulumaldaSignTile) tile).setAllowedPlayerEditor(player);
+            if (tile instanceof CulumaldaSignTile) {
+               ((CulumaldaSignTile) tile).setAllowedPlayerEditor(player);
             }
          }
       }
@@ -40,7 +40,7 @@ public class TTMCulumaldaSignItem extends WallOrFloorItem {
    }
 
    @OnlyIn(Dist.CLIENT)
-   private void openGui(TTMCulumaldaSignTile tile) {
-      Minecraft.getInstance().setScreen(new GuiTTMCulumaldaSignScreen(tile));
+   private void openGui(CulumaldaSignTile tile) {
+      Minecraft.getInstance().setScreen(new CulumaldaSignScreen(tile));
    }
 }

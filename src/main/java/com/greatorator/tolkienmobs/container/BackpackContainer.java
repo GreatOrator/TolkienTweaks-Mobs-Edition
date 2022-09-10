@@ -34,6 +34,7 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
     public List<Slot> playerSlots = new ArrayList<>();
     public List<Slot> playerEquipment = new ArrayList<>();
     public List<Slot> mainSlots = new ArrayList<>();
+    public List<Slot> upgradeSlots = new ArrayList<>();
     public List<Slot> craftInputSlots = new ArrayList<>();
     public List<Slot> fluidItemSlots = new ArrayList<>();
     public Slot craftResultSlot;
@@ -64,6 +65,11 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
         //Main Inventory
         for (int i = 0; i < tile.mainInventory.getSlots(); i++) {
             mainSlots.add(addSlot(new SlotCheckValid(tile.mainInventory, i, 0, 0)));
+        }
+
+        //Upgrade Inventory
+        for (int i = 0; i < tile.upgradeInventory.getSlots(); i++) {
+            upgradeSlots.add(addSlot(new SlotCheckValid(tile.upgradeInventory, i, 0, 0)));
         }
 
         //Crafting Inventory

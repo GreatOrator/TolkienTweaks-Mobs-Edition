@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.item.armor;
 
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.client.model.armor.ModelTTMMithrilArmor;
+import com.greatorator.tolkienmobs.client.model.armor.MithrilArmorModel;
 import com.greatorator.tolkienmobs.datagen.PotionGenerator;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
@@ -55,7 +55,7 @@ public class ArmorTTMMithril extends ArmorItem {
     @Override
     public <A extends BipedModel<?>> A getArmorModel(LivingEntity entityLiving, ItemStack itemStack,
                                                      EquipmentSlotType armorSlot, A _default) {
-        ModelTTMMithrilArmor model = new ModelTTMMithrilArmor(1.0F);
+        MithrilArmorModel model = new MithrilArmorModel(1.0F);
 
         model.HelmMithril.visible = armorSlot == EquipmentSlotType.HEAD;
         model.ChestMithril.visible = armorSlot == EquipmentSlotType.CHEST;

@@ -295,10 +295,6 @@ public class ItemModelGenerator extends ItemModelProvider {
         trinketItem(TTMContent.TRINKET_HAT.get(), modLoc("item/trinket_hat"), modLoc("item/trinket_hat"));
         trinketItem(TTMContent.TRINKET_CLOAK.get(), modLoc("item/trinket_cloak"), modLoc("item/trinket_cloak"));
 
-        //region Fluids
-        simpleItem(TTMContent.MITHRIL_BUCKET.get(), modLoc("item/mithril_bucket"));
-        simpleItem(TTMContent.MORGULIRON_BUCKET.get(), modLoc("item/morguliron_bucket"));
-
         //region Spawn Eggs
             // Ambient
         eggItem(EntityGenerator.EGG_TTMRAT.get());

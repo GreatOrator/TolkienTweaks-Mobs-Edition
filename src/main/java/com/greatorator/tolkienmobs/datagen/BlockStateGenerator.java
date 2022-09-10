@@ -144,19 +144,19 @@ public class BlockStateGenerator extends BlockStateProvider {
 
         ModelFile barrelMithril = models().cubeBottomTop("barrel_mithril", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top"));
         ModelFile barrelMithrilOpen = models().cubeBottomTop("barrel_mithril_open", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top_open"));
-        directionalBlock(TTMContent.BARREL_MITHRIL.get(), state -> state.getValue(BlockTTMMithrilBarrel.OPEN) ? barrelMithrilOpen : barrelMithril);
+        directionalBlock(TTMContent.BARREL_MITHRIL.get(), state -> state.getValue(MithrilBarrelBlock.OPEN) ? barrelMithrilOpen : barrelMithril);
 
         ModelFile barrelMorgulIron = models().cubeBottomTop("barrel_morguliron", modLoc("block/barrel_morguliron_side"), modLoc("block/barrel_morguliron_bottom"), modLoc("block/barrel_morguliron_top"));
         ModelFile barrelMorgulIronOpen = models().cubeBottomTop("barrel_morguliron_open", modLoc("block/barrel_morguliron_side"), modLoc("block/barrel_morguliron_bottom"), modLoc("block/barrel_morguliron_top_open"));
-        directionalBlock(TTMContent.BARREL_MORGULIRON.get(), state -> state.getValue(BlockTTMMorgulironBarrel.OPEN) ? barrelMorgulIronOpen : barrelMorgulIron);
+        directionalBlock(TTMContent.BARREL_MORGULIRON.get(), state -> state.getValue(MorgulironBarrelBlock.OPEN) ? barrelMorgulIronOpen : barrelMorgulIron);
 
         ModelFile bankFull = models().getExistingFile(modLoc("block/block_piggybank_full"));
         ModelFile bankEmpty = models().getExistingFile(modLoc("block/block_piggybank"));
-        directionalFromNorthHoz(TTMContent.PIGGYBANK.get(), e -> e.getValue(BlockTTMPiggyBank.FULL) ? bankFull : bankEmpty, 180);
+        directionalFromNorthHoz(TTMContent.PIGGYBANK.get(), e -> e.getValue(PiggyBankBlock.FULL) ? bankFull : bankEmpty, 180);
 
         ModelFile fireActive = models().getExistingFile(modLoc("block/fireplace_active"));
         ModelFile fireInactive = models().getExistingFile(modLoc("block/fireplace_inactive"));
-        directionalFromNorthHoz(TTMContent.TTMFIREPLACE.get(), e -> e.getValue(BlockTTMFireplace.ACTIVE) ? fireActive : fireInactive, 180);
+        directionalFromNorthHoz(TTMContent.TTMFIREPLACE.get(), e -> e.getValue(FireplaceBlock.ACTIVE) ? fireActive : fireInactive, 180);
 
 
         signBlock(TTMContent.MALLORN_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_mallorn");

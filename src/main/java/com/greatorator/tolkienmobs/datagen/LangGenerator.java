@@ -47,7 +47,6 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.DOOR_MITHRIL.get(), "Mithril Door");
         add(TTMContent.TRAPDOOR_MITHRIL.get(), "Mithril Trap Door");
         add(TTMContent.PRESSURE_PLATE_MITHRIL.get(), "Mithril Pressure Plate");
-        add(TTMContent.MITHRIL_BUCKET.get(), "Molten Mithril Bucket");
         add(TTMContent.ORE_MORGULIRON.get(), "Morgul Iron Ore");
         add(TTMContent.ORE_END_MORGULIRON.get(), "Ender Morgul Iron Ore");
         add(TTMContent.ORE_NETHER_MORGULIRON.get(), "Fiery Morgul Iron Ore");
@@ -56,7 +55,6 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.DOOR_MORGULIRON.get(), "Morgul Iron Door");
         add(TTMContent.TRAPDOOR_MORGULIRON.get(), "Morgul Iron Trap Door");
         add(TTMContent.PRESSURE_PLATE_MORGULIRON.get(), "Morgul Iron Pressure Plate");
-        add(TTMContent.MORGULIRON_BUCKET.get(), "Molten Morguliron Bucket");
         add(TTMContent.ORE_AMMOLITE.get(), "Ammolite Ore");
         add(TTMContent.ORE_END_AMMOLITE.get(), "Ender Ammolite Ore");
         add(TTMContent.ORE_NETHER_AMMOLITE.get(), "Firey Ammolite Ore");
@@ -699,6 +697,8 @@ public class LangGenerator extends LanguageProvider {
         add("tolkienmobs.msg.onfire.balrog", "The Balrog is protecting himself from fire.");
         add("tolkienmobs.msg.healself.balrog", "The Balrog is hurt and is healing.");
         add("tolkienmobs.msg.speedup.balrog", "The Balrog is attempting to match your speed.");
+        add("tolkienmobs.msg.deploy_sleeping_bag", "Something is blocking the Sleepingbag.");
+        add("tolkienmobs.msg.deploy_campfire", "Something is blocking the Campfire.");
     }
 
 
