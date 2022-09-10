@@ -47,6 +47,8 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
     protected GuiToolkit<BackpackScreen> toolkit = new GuiToolkit<>(this, 257, 207).setTranslationPrefix("gui.tolkienmobs.backpack");
     private final BackpackTile tile;
     private static boolean displayUpgrades = false;
+    private static boolean deploySleepingbag = false;
+    private static boolean deployCampfire = false;
 
     public BackpackScreen(BackpackContainer container, PlayerInventory inv, ITextComponent titleIn) {
         super(container, inv, titleIn);
@@ -160,13 +162,13 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
         //These are examples to show you how to implement buttons.
         //These also show you how to use the built-in message system to send a message to the server side tile when a button is pressed.
         //Useful if you want these buttons to do things like place beds.
-        GuiButton bedButton = toolkit.createIconButton(template.background, 16, 16, TTMSprites.getter("backpack/bed"));
+        GuiButton bedButton = toolkit.createIconButton(template.background, 16, 16, () -> deploySleepingbag ? TTMSprites.get("backpack/bed_deployed") : TTMSprites.get("backpack/bed"));
         toolkit.placeInside(bedButton, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 4, -4);
         //When button is pressed send a message to the server tile with id 0
         //You can optionally write additional data to the mcDataOutput but that's a little more advanced. Ask me if you need help with that
         bedButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {}, 0));
 
-        GuiButton campfireButton = toolkit.createIconButton(template.background, 16, 16, TTMSprites.getter("backpack/campfire"));
+        GuiButton campfireButton = toolkit.createIconButton(template.background, 16, 16, () -> deployCampfire ? TTMSprites.get("backpack/campfire_deployed") : TTMSprites.get("backpack/campfire"));
         toolkit.placeOutside(campfireButton, bedButton, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
         //When button is pressed send a message to the server tile with id 1
         campfireButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {}, 1));
