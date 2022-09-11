@@ -97,15 +97,15 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
         for (int i = 0; i < upgradeInventory.getSlots(); i++) {
             ItemStack stack = upgradeInventory.getStackInSlot(i);
             if (stack.getItem() == TTMContent.ITEM_BACKPACK_UPGRADE_SIZE.get()) {
-                size++;
+                size += stack.getCount();
             } else if (stack.getItem() == TTMContent.ITEM_BACKPACK_UPGRADE_CRAFTING.get()) {
-                craft++;
+                craft += stack.getCount();
             } else if (stack.getItem() == TTMContent.ITEM_BACKPACK_UPGRADE_FLUID.get()) {
-                tank++;
+                tank += stack.getCount();
             } else if (stack.getItem() == TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get()) {
-                bed++;
+                bed += stack.getCount();
             } else if (stack.getItem() == TTMContent.ITEM_BACKPACK_UPGRADE_CAMPFIRE.get()) {
-                fire++;
+                fire += stack.getCount();
             }
         }
 

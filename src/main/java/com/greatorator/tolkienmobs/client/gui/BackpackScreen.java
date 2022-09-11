@@ -118,7 +118,6 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
         toolkit.createSlot(template.background, new SlotMover(container.playerEquipment.get(4)), () -> BCSprites.get("slots/armor_shield"), false)
                 .setRelPos(headSlot, 18 / 2, 18 * 2);
 
-        if (tile.craftUpgrade.get()==1) {
         // ### Crafting Slots ###
         GuiTexture craftTexture = template.background.addChild(new GuiTexture(56, 56, TTMSprites.get("backpack/crafting_table")));
         //Place the texture relative to the top left of the background.
@@ -135,44 +134,38 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
         //Add the crafting arrow
         GuiTexture craftArrow = template.background.addChild(new GuiTexture(16, 16, TTMSprites.get("backpack/craft_arrow")));
         toolkit.placeOutside(craftArrow, craftOutputSlot, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 4, -1);
-        }
 
-        if (tile.tankUpgrade.get()==1) {
-            // ### Tank ###
-            GuiTexture tankSlotsTex = template.background.addChild(new GuiTexture(20, 75, TTMSprites.get("backpack/tank_slots")));
-            toolkit.placeOutside(tankSlotsTex, craftOutputSlot, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 8);
-            //Tank Slots
-            GuiElement<?> tankInputSlot = createSlotsNoBG(template.background, 1, 1, 0, (x, y) -> new SlotMover(container.fluidItemSlots.get(0)));
-            toolkit.placeInside(tankInputSlot, tankSlotsTex, GuiToolkit.LayoutPos.TOP_CENTER, 0, 5);
-            GuiElement<?> tankOutputSlot = createSlotsNoBG(template.background, 1, 1, 0, (x, y) -> new SlotMover(container.fluidItemSlots.get(1)));
-            toolkit.placeInside(tankOutputSlot, tankSlotsTex, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, -5);
+        // ### Tank ###
+        GuiTexture tankSlotsTex = template.background.addChild(new GuiTexture(20, 75, TTMSprites.get("backpack/tank_slots")));
+        toolkit.placeOutside(tankSlotsTex, craftOutputSlot, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 8);
+        //Tank Slots
+        GuiElement<?> tankInputSlot = createSlotsNoBG(template.background, 1, 1, 0, (x, y) -> new SlotMover(container.fluidItemSlots.get(0)));
+        toolkit.placeInside(tankInputSlot, tankSlotsTex, GuiToolkit.LayoutPos.TOP_CENTER, 0, 5);
+        GuiElement<?> tankOutputSlot = createSlotsNoBG(template.background, 1, 1, 0, (x, y) -> new SlotMover(container.fluidItemSlots.get(1)));
+        toolkit.placeInside(tankOutputSlot, tankSlotsTex, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, -5);
 
-            GuiTexture tankArrows = template.background.addChild(new GuiTexture(12, 12, TTMSprites.get("backpack/tank_arrows")));
-            toolkit.placeOutside(tankArrows, tankSlotsTex, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
+        GuiTexture tankArrows = template.background.addChild(new GuiTexture(12, 12, TTMSprites.get("backpack/tank_arrows")));
+        toolkit.placeOutside(tankArrows, tankSlotsTex, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
 
-            GuiTexture tankBG = template.background.addChild(new GuiTexture(12, 75, TTMSprites.get("backpack/tank")));
-            toolkit.placeOutside(tankBG, tankArrows, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
-            GuiElement<?> fluidRenderer = createFluidLevelRenderer(tankBG, tile.fluidTank, 10, 73);
-            toolkit.placeOutside(fluidRenderer, tankArrows, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 2, -1);
-            GuiTexture tankOverlay = fluidRenderer.addChild(new GuiTexture(12, 75, TTMSprites.get("backpack/tank_overlay")));
-            toolkit.placeOutside(tankOverlay, tankArrows, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
-        }
+        GuiTexture tankBG = template.background.addChild(new GuiTexture(12, 75, TTMSprites.get("backpack/tank")));
+        toolkit.placeOutside(tankBG, tankArrows, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
+        GuiElement<?> fluidRenderer = createFluidLevelRenderer(tankBG, tile.fluidTank, 10, 73);
+        toolkit.placeOutside(fluidRenderer, tankArrows, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 2, -1);
+        GuiTexture tankOverlay = fluidRenderer.addChild(new GuiTexture(12, 75, TTMSprites.get("backpack/tank_overlay")));
+        toolkit.placeOutside(tankOverlay, tankArrows, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
 
-        if (tile.bedUpgrade.get()==1) {
-            GuiButton bedButton = toolkit.createIconButton(template.background, 16, 16, () -> tile.isSleepingbagDeployed.get() ? TTMSprites.get("backpack/bed_deployed") : TTMSprites.get("backpack/bed"));
-            toolkit.placeInside(bedButton, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 4, -4);
-            bedButton.setHoverText(e -> tile.isSleepingbagDeployed.get() ? toolkit.i18n("bed.remove") : toolkit.i18n("bed.deployed"));
-            bedButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {
-            }, 0));
-        }
+        GuiButton bedButton = toolkit.createIconButton(template.background, 16, 16, () -> tile.isSleepingbagDeployed.get() ? TTMSprites.get("backpack/bed_deployed") : TTMSprites.get("backpack/bed"));
+        toolkit.placeInside(bedButton, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 4, -4);
+        bedButton.setHoverText(e -> tile.isSleepingbagDeployed.get() ? toolkit.i18n("bed.remove") : toolkit.i18n("bed.deployed"));
+        bedButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {
+        }, 0));
 
-        if (tile.fireUpgrade.get()==1) {
-            GuiButton campfireButton = toolkit.createIconButton(template.background, 16, 16, () -> tile.isCampfireDeployed.get() ? TTMSprites.get("backpack/campfire_deployed") : TTMSprites.get("backpack/campfire"));
-            toolkit.placeOutside(campfireButton, bedButton, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
-            campfireButton.setHoverText(e -> tile.isCampfireDeployed.get() ? toolkit.i18n("campfire.remove") : toolkit.i18n("campfire.deployed"));
-            campfireButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {
-            }, 1));
-        }
+        GuiButton campfireButton = toolkit.createIconButton(template.background, 16, 16, () -> tile.isCampfireDeployed.get() ? TTMSprites.get("backpack/campfire_deployed") : TTMSprites.get("backpack/campfire"));
+        toolkit.placeOutside(campfireButton, bedButton, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
+        campfireButton.setHoverText(e -> tile.isCampfireDeployed.get() ? toolkit.i18n("campfire.remove") : toolkit.i18n("campfire.deployed"));
+        campfireButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {
+        }, 1));
+
         GuiButton upgradeButton = toolkit.createIconButton(template.background, 16, 16, () -> displayUpgrades ? TTMSprites.get("backpack/close_upgrade") : TTMSprites.get("backpack/upgrade"));
         toolkit.placeOutside(upgradeButton, campfireButton, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 35, 0);
         upgradeButton.setHoverText(e -> displayUpgrades ? toolkit.i18n("close.upgrade") : toolkit.i18n("open.upgrade"));
@@ -187,6 +180,22 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
             }
             tile.sendPacketToServer(mcDataOutput -> {}, 2);
         });
+        container.craftInputSlots.forEach(slot -> slot.setIsActive(() -> tile.craftUpgrade.get() > 0));
+        container.craftResultSlot.setIsActive(() -> tile.craftUpgrade.get() > 0);
+        container.fluidItemSlots.forEach(slot -> slot.setIsActive(() -> tile.tankUpgrade.get() > 0));
+
+        craftTexture.setEnabledCallback(() -> tile.craftUpgrade.get() > 0);
+        craftArrow.setEnabledCallback(() -> tile.craftUpgrade.get() > 0);
+        craftOutputSlot.setEnabledCallback(() -> tile.craftUpgrade.get() > 0);
+
+        tankSlotsTex.setEnabledCallback(() -> tile.tankUpgrade.get() > 0);
+        tankArrows.setEnabledCallback(() -> tile.tankUpgrade.get() > 0);
+        tankBG.setEnabledCallback(() -> tile.tankUpgrade.get() > 0);
+        tankOverlay.setEnabledCallback(() -> tile.tankUpgrade.get() > 0);
+
+        bedButton.setEnabledCallback(() -> tile.bedUpgrade.get() > 0);
+        campfireButton.setEnabledCallback(() -> tile.fireUpgrade.get() > 0);
+
     }
 
     //###############################################################################################################################################################################

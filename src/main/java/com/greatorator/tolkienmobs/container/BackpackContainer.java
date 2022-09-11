@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.container;
 
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
-import com.brandon3055.brandonscore.inventory.SlotCheckValid;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.entity.tile.BackpackTile;
 import com.greatorator.tolkienmobs.lib.CraftingInventoryWrapper;
@@ -12,7 +11,6 @@ import net.minecraft.inventory.CraftResultInventory;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.inventory.container.CraftingResultSlot;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ICraftingRecipe;
@@ -51,44 +49,44 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
 
         //Player Inventory
         for (int i = 0; i < playerInv.items.size(); i++) {
-            playerSlots.add(addSlot(new SlotCheckValid.IInv(playerInv, i, 0, 0)));
+            playerSlots.add(addSlot(new SlotCheckValid2.IInv(playerInv, i, 0, 0)));
         }
 
         //Player Armor
         for (int i = 0; i < playerInv.armor.size(); i++) {
-            playerEquipment.add(addSlot(new SlotCheckValid.IInv(playerInv, i + 36, 0, 0)));
+            playerEquipment.add(addSlot(new SlotCheckValid2.IInv(playerInv, i + 36, 0, 0)));
         }
 
         //Player Off-hand
-        playerEquipment.add(addSlot(new SlotCheckValid.IInv(playerInv, 36 + 4, 0, 0)));
+        playerEquipment.add(addSlot(new SlotCheckValid2.IInv(playerInv, 36 + 4, 0, 0)));
 
         //Main Inventory
         for (int i = 0; i < tile.mainInventory.getSlots(); i++) {
-            mainSlots.add(addSlot(new SlotCheckValid(tile.mainInventory, i, 0, 0)));
+            mainSlots.add(addSlot(new SlotCheckValid2(tile.mainInventory, i, 0, 0)));
         }
 
         //Upgrade Inventory
         for (int i = 0; i < tile.upgradeInventory.getSlots(); i++) {
-            upgradeSlots.add(addSlot(new SlotCheckValid(tile.upgradeInventory, i, 0, 0)));
+            upgradeSlots.add(addSlot(new SlotCheckValid2(tile.upgradeInventory, i, 0, 0)));
         }
 
         //Crafting Inventory
         craftInventory = new CraftingInventoryWrapper(this, 3, 3, tile.craftingItems);
-        this.addSlot(craftResultSlot = new CraftingResultSlot(playerInv.player, craftInventory, resultInventory, 0, 0, 0));
+        this.addSlot(craftResultSlot = new CraftingResultSlot2(playerInv.player, craftInventory, resultInventory, 0, 0, 0));
         for (int i = 0; i < 9; ++i) {
-            craftInputSlots.add(addSlot(new Slot(craftInventory, i, 0, 0)));
+            craftInputSlots.add(addSlot(new SlotCheckValid2.IInv(craftInventory, i, 0, 0)));
         }
 
         //Fluid Item Inventory
         for (int i = 0; i < tile.fluidItems.getSlots(); i++) {
-            fluidItemSlots.add(addSlot(new SlotCheckValid(tile.fluidItems, i, 0, 0)));
+            fluidItemSlots.add(addSlot(new SlotCheckValid2(tile.fluidItems, i, 0, 0)));
         }
 
         slotsChanged(playerInv); //<-- Ensures the craft result is updated when you open the gui
     }
 
     protected void slotChangedCraftingGrid(int containerID, World world, PlayerEntity player, CraftingInventory craftingInventory, CraftResultInventory resultInventory) {
-        if (!world.isClientSide) {
+        if (!world.isClientSide && tile.craftUpgrade.get() > 0) {
             ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) player;
             ItemStack itemstack = ItemStack.EMPTY;
             Optional<ICraftingRecipe> optional = world.getServer().getRecipeManager().getRecipeFor(IRecipeType.CRAFTING, craftingInventory, world);
@@ -101,6 +99,10 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
 
             resultInventory.setItem(0, itemstack);
             serverplayerentity.connection.send(new SSetSlotPacket(containerID, craftResultSlot.index, itemstack));
+        } else if (!world.isClientSide && tile.craftUpgrade.get() == 0) {
+            ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) player;
+            resultInventory.setItem(0, ItemStack.EMPTY);
+            serverplayerentity.connection.send(new SSetSlotPacket(containerID, craftResultSlot.index, ItemStack.EMPTY));
         }
     }
 
