@@ -706,6 +706,12 @@ public class LangGenerator extends LanguageProvider {
         helper.setPrefix("gui.tolkienmobs.backpack.");
         helper.add("fluid_storage",             "Fluid Storage");
         helper.add("fluid",                     "Fluid:");
+        helper.add("bed.remove",                     "Pick up Sleepingbag");
+        helper.add("bed.deployed",                     "Lay out Sleepingbag");
+        helper.add("campfire.remove",                     "Pick up Campfire");
+        helper.add("campfire.deployed",                     "Set up Campfire");
+        helper.add("close.upgrade",                     "Close upgrade window");
+        helper.add("open.upgrade",                     "Open upgrade window");
     }
 
 

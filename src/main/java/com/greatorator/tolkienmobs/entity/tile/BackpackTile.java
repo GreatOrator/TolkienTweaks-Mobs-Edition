@@ -5,10 +5,12 @@ import com.brandon3055.brandonscore.blocks.TileBCore;
 import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
 import com.brandon3055.brandonscore.lib.datamanager.DataFlags;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
+import com.brandon3055.brandonscore.lib.datamanager.ManagedByte;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.BackpackBlock;
 import com.greatorator.tolkienmobs.block.SleepingBagBlock;
 import com.greatorator.tolkienmobs.container.BackpackContainer;
+import com.greatorator.tolkienmobs.init.TTMTags;
 import com.greatorator.tolkienmobs.lib.TileFluidHandler;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,9 +20,11 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.properties.BedPart;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidAttributes;
@@ -39,8 +43,13 @@ import java.util.ArrayList;
  */
 public class BackpackTile extends TileBCore implements INamedContainerProvider, ITickableTileEntity {
     public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
-    public final ManagedBool isSleepingbagDeployed = register(new ManagedBool("sleepingbag_is_deployed", DataFlags.SAVE_NBT_SYNC_TILE, DataFlags.CLIENT_CONTROL));
-    public final ManagedBool isCampfireDeployed = register(new ManagedBool("campfire_is_deployed", DataFlags.SAVE_NBT_SYNC_TILE, DataFlags.CLIENT_CONTROL));
+    public final ManagedBool isSleepingbagDeployed = register(new ManagedBool("sleepingbag_is_deployed", DataFlags.SAVE_NBT_SYNC_TILE));
+    public final ManagedBool isCampfireDeployed = register(new ManagedBool("campfire_is_deployed", DataFlags.SAVE_NBT_SYNC_TILE));
+    public final ManagedByte sizeUpgrade = register(new ManagedByte("size_upgrade_installed", DataFlags.SAVE_NBT_SYNC_TILE));
+    public final ManagedByte craftUpgrade = register(new ManagedByte("crafting_upgrade_installed", DataFlags.SAVE_NBT_SYNC_TILE));
+    public final ManagedByte tankUpgrade = register(new ManagedByte("tank_upgrade_installed", DataFlags.SAVE_NBT_SYNC_TILE));
+    public final ManagedByte bedUpgrade = register(new ManagedByte("bed_upgrade_installed", DataFlags.SAVE_NBT_SYNC_TILE));
+    public final ManagedByte fireUpgrade = register(new ManagedByte("campfire_upgrade_installed", DataFlags.SAVE_NBT_SYNC_TILE));
 
     public TileFluidHandler fluidTank = new TileFluidHandler(FluidAttributes.BUCKET_VOLUME * 16);
     public TileItemStackHandler mainInventory = new TileItemStackHandler(54);
@@ -78,18 +87,47 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
     }
 
     private void upgradeSlotChange(int slot) {
-        ItemStack stack = upgradeInventory.getStackInSlot(slot);
-        if (stack.isEmpty()) {
-            return;
+        //Easier to just ignore the slot and update all flags.
+        //This only happens when the inventory changes so we dont need maximum efficiency.
+        byte size = 0;
+        byte craft = 0;
+        byte tank = 0;
+        byte bed = 0;
+        byte fire = 0;
+        for (int i = 0; i < upgradeInventory.getSlots(); i++) {
+            ItemStack stack = upgradeInventory.getStackInSlot(i);
+            if (stack.getItem() == TTMContent.ITEM_BACKPACK_UPGRADE_SIZE.get()) {
+                size++;
+            } else if (stack.getItem() == TTMContent.ITEM_BACKPACK_UPGRADE_CRAFTING.get()) {
+                craft++;
+            } else if (stack.getItem() == TTMContent.ITEM_BACKPACK_UPGRADE_FLUID.get()) {
+                tank++;
+            } else if (stack.getItem() == TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get()) {
+                bed++;
+            } else if (stack.getItem() == TTMContent.ITEM_BACKPACK_UPGRADE_CAMPFIRE.get()) {
+                fire++;
+            }
         }
 
-        if (slot <= 5) { // Upgrade Inventory
-            for (int i = 0; i < upgradeInventory.getSlots(); i++) {
-                LOGGER.info("List of items in upgrade inventory: " + upgradeInventory.getStackInSlot(i));
-            }
-        } else {
-            LOGGER.info("Sleepingbag deployed? " + isSleepingbagDeployed.get());
-            LOGGER.info("Campfire deployed? " + isCampfireDeployed.get());
+        if (size != sizeUpgrade.get()) {
+            LOGGER.info("sizeUpgrade Changed? " + size);
+            sizeUpgrade.set(size);
+        }
+        if (craft != craftUpgrade.get()) {
+            LOGGER.info("craftUpgrade Changed? " + craft);
+            craftUpgrade.set(craft);
+        }
+        if (tank != tankUpgrade.get()) {
+            LOGGER.info("tankUpgrade Changed? " + tank);
+            tankUpgrade.set(tank);
+        }
+        if (bed != bedUpgrade.get()) {
+            LOGGER.info("bedUpgrade Changed? " + bed);
+            bedUpgrade.set(bed);
+        }
+        if (fire != fireUpgrade.get()) {
+            LOGGER.info("fireUpgrade Changed? " + fire);
+            fireUpgrade.set(fire);
         }
     }
 
@@ -130,14 +168,6 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
         }
     }
 
-    private void sleepingbagChanged(boolean deployed) {
-        this.isSleepingbagDeployed.set(deployed);
-    }
-
-    private void campfireChanged(boolean deployed) {
-        this.isCampfireDeployed.set(deployed);
-    }
-
     private void deploySleepingbag() {
         Direction facing = level.getBlockState(worldPosition).getValue(BackpackBlock.FACING);
         BlockPos sleepingBagPos1 = worldPosition.relative(facing);
@@ -145,11 +175,11 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
 
         if (!level.isClientSide && isCampfireDeployed.get()) {
             // Make sure nothing in the way, especially the campfire
-            this.campfireChanged(false);
+            this.isCampfireDeployed.set(false);
             level.playSound(null, worldPosition.relative(facing), SoundEvents.WOOD_BREAK, SoundCategory.BLOCKS, 0.5F, 1.0F);
             level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.AIR.defaultBlockState());
         }
-        this.sleepingbagChanged(true);
+        this.isSleepingbagDeployed.set(true);
 
         level.setBlockAndUpdate(sleepingBagPos1, TTMContent.SLEEPING_BAG_BLUE.get().defaultBlockState().setValue(SleepingBagBlock.FACING, facing).setValue(SleepingBagBlock.PART, BedPart.FOOT));
         level.setBlockAndUpdate(sleepingBagPos2, TTMContent.SLEEPING_BAG_BLUE.get().defaultBlockState().setValue(SleepingBagBlock.FACING, facing).setValue(SleepingBagBlock.PART, BedPart.HEAD));
@@ -163,7 +193,7 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
         BlockPos sleepingBagPos1 = worldPosition.relative(facing);
         BlockPos sleepingBagPos2 = sleepingBagPos1.relative(facing);
 
-        this.sleepingbagChanged(false);
+        this.isSleepingbagDeployed.set(false);
 
         level.playSound(null, sleepingBagPos2, SoundEvents.WOOL_PLACE, SoundCategory.BLOCKS, 0.5F, 1.0F);
         level.setBlockAndUpdate(sleepingBagPos2, Blocks.AIR.defaultBlockState());
@@ -178,13 +208,13 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
             BlockPos sleepingBagPos2 = sleepingBagPos1.relative(facing);
 
             // Make sure nothing in the way, especially the sleepingbag
-            this.sleepingbagChanged(false);
+            this.isSleepingbagDeployed.set(false);
 
             level.playSound(null, sleepingBagPos2, SoundEvents.WOOL_PLACE, SoundCategory.BLOCKS, 0.5F, 1.0F);
             level.setBlockAndUpdate(sleepingBagPos2, Blocks.AIR.defaultBlockState());
             level.setBlockAndUpdate(sleepingBagPos1, Blocks.AIR.defaultBlockState());
         }
-        this.campfireChanged(true);
+        this.isCampfireDeployed.set(true);
 
         level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.CAMPFIRE.defaultBlockState());
     }
@@ -192,7 +222,7 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
     private void removeCampfire() {
         Direction facing = level.getBlockState(worldPosition).getValue(BackpackBlock.FACING);
 
-        this.campfireChanged(false);
+        this.isCampfireDeployed.set(false);
 
         level.playSound(null, worldPosition.relative(facing), SoundEvents.WOOD_BREAK, SoundCategory.BLOCKS, 0.5F, 1.0F);
         level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.AIR.defaultBlockState());
@@ -213,10 +243,7 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
     }
 
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-        if (index <= 5) {
-            return ItemTags.createOptional(new ResourceLocation("forge", "upgrades")).contains(stack.getItem());
-        }
-        else return false;
+            return stack.getItem().is(TTMTags.items.UPGRADES);
     }
 
     @Override
