@@ -48,8 +48,6 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
     public TileItemStackHandler craftingItems = new TileItemStackHandler(9);
     public TileItemStackHandler fluidItems = new TileItemStackHandler(2).setSlotLimit(1);
     public ArrayList<ItemStack> list = new ArrayList<ItemStack>();
-    private boolean isSBDeployed = false;
-    private boolean isCFDeployed = false;
 
     public BackpackTile() {
         super(TTMContent.BACKPACK_TILE.get());
@@ -133,12 +131,10 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
     }
 
     private void sleepingbagChanged(boolean deployed) {
-        this.isSBDeployed = deployed;
         this.isSleepingbagDeployed.set(deployed);
     }
 
     private void campfireChanged(boolean deployed) {
-        this.isCFDeployed = deployed;
         this.isCampfireDeployed.set(deployed);
     }
 
