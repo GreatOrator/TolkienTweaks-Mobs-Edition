@@ -177,19 +177,8 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
 
         GuiButton upgradeButton = toolkit.createIconButton(template.background, 16, 16, () -> displayUpgrades ? TTMSprites.get("backpack/close_upgrade") : TTMSprites.get("backpack/upgrade"));
         toolkit.placeOutside(upgradeButton, campfireButton, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 35, 0);
+
         //When button is pressed send a message to the server tile with id 2
-        upgradeButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {}, 2));
-
-        bedButton.onPressed(() -> {
-//            tile.sleepingbagChanged();
-            tile.isSleepingbagDeployed.get();
-        });
-        campfireButton.onPressed(() -> {
-//            tile.campfireChanged();
-
-            tile.isCampfireDeployed.get();
-        });
-
         upgradeButton.onPressed(() -> {
             displayUpgrades = !displayUpgrades;
             if (displayUpgrades) {
@@ -199,6 +188,7 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
                 upgradeSlots.setPos(-9000, -9000);
                 toolkit.placeOutside(mainSlots, template.playerSlots, GuiToolkit.LayoutPos.TOP_CENTER, 0, -3);
             }
+            tile.sendPacketToServer(mcDataOutput -> {}, 2);
         });
     }
 

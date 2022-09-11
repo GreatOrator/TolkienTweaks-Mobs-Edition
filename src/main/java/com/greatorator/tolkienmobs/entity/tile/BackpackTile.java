@@ -39,8 +39,8 @@ import java.util.ArrayList;
  */
 public class BackpackTile extends TileBCore implements INamedContainerProvider, ITickableTileEntity {
     public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
-    public final ManagedBool isSleepingbagDeployed = register(new ManagedBool("sleepingbag_is_deployed", DataFlags.SAVE_NBT_SYNC_TILE, DataFlags.TRIGGER_UPDATE));
-    public final ManagedBool isCampfireDeployed = register(new ManagedBool("campfire_is_deployed", DataFlags.SAVE_NBT_SYNC_TILE, DataFlags.TRIGGER_UPDATE));
+    public final ManagedBool isSleepingbagDeployed = register(new ManagedBool("sleepingbag_is_deployed", DataFlags.SAVE_NBT_SYNC_TILE, DataFlags.CLIENT_CONTROL));
+    public final ManagedBool isCampfireDeployed = register(new ManagedBool("campfire_is_deployed", DataFlags.SAVE_NBT_SYNC_TILE, DataFlags.CLIENT_CONTROL));
 
     public TileFluidHandler fluidTank = new TileFluidHandler(FluidAttributes.BUCKET_VOLUME * 16);
     public TileItemStackHandler mainInventory = new TileItemStackHandler(54);
@@ -53,13 +53,6 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
 
     public BackpackTile() {
         super(TTMContent.BACKPACK_TILE.get());
-
-        isSleepingbagDeployed.addValueListener(isSleepingbagDeployed-> {
-            if (level != null) sleepingbagChanged(isSBDeployed);
-        });
-        isCampfireDeployed.addValueListener(isCampfireDeployed-> {
-            if (level != null) campfireChanged(isCFDeployed);
-        });
 
         capManager.setManaged("fluid_tank", CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, fluidTank).saveBoth().syncContainer();
 //        capManager.setManaged("main_inv", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, invZoneContents).saveBoth(); //You would use this to make the inventory accessible to automation.
@@ -124,25 +117,19 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
     //This is the method that gets called when you call "tile.sendPacketToServer(mcDataOutput -> {}, id)" from the GUI
     @Override
     public void receivePacketFromClient(MCDataInput data, ServerPlayerEntity client, int id) {
-
         if (id == 0) {//Bed button was pressed
-            if (!level.isClientSide && !isSleepingbagDeployed.get()) {
+            if (!isSleepingbagDeployed.get()) {
                 deploySleepingbag();
             } else {
                 removeSleepingbag();
             }
         } else if (id == 1) {//Campfire button was pressed
-            if (!level.isClientSide && !isCampfireDeployed.get()) {
+            if (!isCampfireDeployed.get()) {
                 deployCampfire();
             } else {
                 removeCampfire();
             }
         }
-    }
-
-    @Override
-    public void tick() {
-        //What you had here is what most people would refer to as a 'lag machine' It's not needed.
     }
 
     private void sleepingbagChanged(boolean deployed) {
@@ -165,9 +152,7 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
             this.campfireChanged(false);
             level.playSound(null, worldPosition.relative(facing), SoundEvents.WOOD_BREAK, SoundCategory.BLOCKS, 0.5F, 1.0F);
             level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.AIR.defaultBlockState());
-            setChanged();
         }
-
         this.sleepingbagChanged(true);
 
         level.setBlockAndUpdate(sleepingBagPos1, TTMContent.SLEEPING_BAG_BLUE.get().defaultBlockState().setValue(SleepingBagBlock.FACING, facing).setValue(SleepingBagBlock.PART, BedPart.FOOT));
@@ -175,7 +160,6 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
 
         level.updateNeighborsAt(worldPosition, TTMContent.SLEEPING_BAG_BLUE.get());
         level.updateNeighborsAt(sleepingBagPos2, TTMContent.SLEEPING_BAG_BLUE.get());
-        setChanged();
     }
 
     private void removeSleepingbag() {
@@ -188,8 +172,6 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
         level.playSound(null, sleepingBagPos2, SoundEvents.WOOL_PLACE, SoundCategory.BLOCKS, 0.5F, 1.0F);
         level.setBlockAndUpdate(sleepingBagPos2, Blocks.AIR.defaultBlockState());
         level.setBlockAndUpdate(sleepingBagPos1, Blocks.AIR.defaultBlockState());
-
-        setChanged();
     }
 
     private void deployCampfire() {
@@ -205,15 +187,10 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
             level.playSound(null, sleepingBagPos2, SoundEvents.WOOL_PLACE, SoundCategory.BLOCKS, 0.5F, 1.0F);
             level.setBlockAndUpdate(sleepingBagPos2, Blocks.AIR.defaultBlockState());
             level.setBlockAndUpdate(sleepingBagPos1, Blocks.AIR.defaultBlockState());
-
-            setChanged();
         }
-
         this.campfireChanged(true);
 
         level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.CAMPFIRE.defaultBlockState());
-
-        setChanged();
     }
 
     private void removeCampfire() {
@@ -223,8 +200,6 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
 
         level.playSound(null, worldPosition.relative(facing), SoundEvents.WOOD_BREAK, SoundCategory.BLOCKS, 0.5F, 1.0F);
         level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.AIR.defaultBlockState());
-
-        setChanged();
     }
 
     @Nullable
@@ -248,4 +223,7 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
         else return false;
     }
 
+    @Override
+    public void tick() {
+    }
 }
