@@ -130,7 +130,8 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
                 }
             } else {
                 //Transferring from player to tile
-                if (!moveItemStackTo(stack, playerSlots, playerSlots + handler.getSlots(), false)) {
+                int slotsPerUpgrade = mainSlots.size() / 3;
+                if (!moveItemStackTo(stack, playerSlots, playerSlots + slotsPerUpgrade + (slotsPerUpgrade * tile.sizeUpgrade.get()), false)) {
                     return ItemStack.EMPTY;  //Return if failed to merge
                 }
             }

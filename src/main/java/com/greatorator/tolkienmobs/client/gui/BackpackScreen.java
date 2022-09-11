@@ -76,15 +76,26 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
 
         // ### Main Backpack Inventory ###
         int slotColumns = 9;
-        int slotRows = 6;
+        int slotRows = 2;
+        int slotsCount = slotColumns * slotRows;
         GuiElement<?> mainSlots = toolkit.createSlots(template.background, slotColumns, slotRows, 0, (x, y) -> new SlotMover(container.mainSlots.get(x + (y * slotColumns))), null);
-        toolkit.placeOutside(mainSlots, template.playerSlots, GuiToolkit.LayoutPos.TOP_CENTER, 0, -3);
+        toolkit.placeInside(mainSlots, template.background, GuiToolkit.LayoutPos.TOP_RIGHT, -5, 16);
+        mainSlots.setEnabledCallback(() -> !displayUpgrades);
+
+        GuiElement<?> extraSlots1 = toolkit.createSlots(template.background, slotColumns, slotRows, 0, (x, y) -> new SlotMover(container.mainSlots.get(slotsCount + (x + (y * slotColumns)))), null);
+        toolkit.placeOutside(extraSlots1, mainSlots, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 0);
+        extraSlots1.setEnabledCallback(() -> tile.sizeUpgrade.get() > 0 && !displayUpgrades);
+
+        GuiElement<?> extraSlots2 = toolkit.createSlots(template.background, slotColumns, slotRows, 0, (x, y) -> new SlotMover(container.mainSlots.get((slotsCount * 2) + (x + (y * slotColumns)))), null);
+        toolkit.placeOutside(extraSlots2, extraSlots1, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 0);
+        extraSlots2.setEnabledCallback(() -> tile.sizeUpgrade.get() > 1 && !displayUpgrades);
 
         // ### Main Upgrade Inventory
         int slotColumns1 = 5;
         int slotRows1 = 1;
         GuiElement<?> upgradeSlots = toolkit.createSlots(template.background, slotColumns1, slotRows1, 0, (x, y) -> new SlotMover(container.upgradeSlots.get(x + (y * slotColumns1))), null);
-        upgradeSlots.setPos(-9000, -9000);
+        toolkit.placeOutside(upgradeSlots, template.playerSlots, GuiToolkit.LayoutPos.TOP_CENTER, 0, -3);
+        upgradeSlots.setEnabledCallback(() -> displayUpgrades);
 
         // ### Update title position ###
         //Set title alignment mode to left
@@ -171,18 +182,20 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
         upgradeButton.setHoverText(e -> displayUpgrades ? toolkit.i18n("close.upgrade") : toolkit.i18n("open.upgrade"));
         upgradeButton.onPressed(() -> {
             displayUpgrades = !displayUpgrades;
-            if (displayUpgrades) {
-                mainSlots.setPos(-9000, -9000);
-                toolkit.placeOutside(upgradeSlots, template.playerSlots, GuiToolkit.LayoutPos.TOP_CENTER, 0, -3);
-            } else {
-                upgradeSlots.setPos(-9000, -9000);
-                toolkit.placeOutside(mainSlots, template.playerSlots, GuiToolkit.LayoutPos.TOP_CENTER, 0, -3);
-            }
             tile.sendPacketToServer(mcDataOutput -> {}, 2);
         });
+
         container.craftInputSlots.forEach(slot -> slot.setIsActive(() -> tile.craftUpgrade.get() > 0));
         container.craftResultSlot.setIsActive(() -> tile.craftUpgrade.get() > 0);
         container.fluidItemSlots.forEach(slot -> slot.setIsActive(() -> tile.tankUpgrade.get() > 0));
+        container.mainSlots.forEach(slot -> slot.setIsActive(() -> {
+            if (displayUpgrades) {
+                return false;
+            } else {
+                return slot.getSlotIndex() < slotsCount + (slotsCount * tile.sizeUpgrade.get());
+            }
+        }));
+        container.upgradeSlots.forEach(slot -> slot.setIsActive(() -> displayUpgrades));
 
         craftTexture.setEnabledCallback(() -> tile.craftUpgrade.get() > 0);
         craftArrow.setEnabledCallback(() -> tile.craftUpgrade.get() > 0);
@@ -255,7 +268,7 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
                 if (attributes.isGaseous(stack)) {
                     alpha = (int) (Math.pow(capacity, 0.4) * 255);
                 } else {
-                    y = yPos() + (1D-capacity) * ySize();
+                    y = yPos() + (1D - capacity) * ySize();
                     height = capacity * ySize();
                 }
 
