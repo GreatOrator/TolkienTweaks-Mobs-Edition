@@ -11,6 +11,7 @@ import net.minecraft.inventory.CraftResultInventory;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.inventory.container.CraftingResultSlot;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ICraftingRecipe;
@@ -24,6 +25,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 /**
  * Overhauled by brandon3055 on 07/09/2022
@@ -31,11 +33,11 @@ import java.util.Optional;
 public class BackpackContainer extends ContainerBCTile<BackpackTile> {
     public List<Slot> playerSlots = new ArrayList<>();
     public List<Slot> playerEquipment = new ArrayList<>();
-    public List<Slot> mainSlots = new ArrayList<>();
-    public List<Slot> upgradeSlots = new ArrayList<>();
-    public List<Slot> craftInputSlots = new ArrayList<>();
-    public List<Slot> fluidItemSlots = new ArrayList<>();
-    public Slot craftResultSlot;
+    public List<SlotCheckValid2> mainSlots = new ArrayList<>();
+    public List<SlotCheckValid2> upgradeSlots = new ArrayList<>();
+    public List<SlotCheckValid2.IInv> craftInputSlots = new ArrayList<>();
+    public List<SlotCheckValid2> fluidItemSlots = new ArrayList<>();
+    public CraftingResultSlot2 craftResultSlot;
     private CraftingInventoryWrapper craftInventory;
     private final CraftResultInventory resultInventory = new CraftResultInventory();
 
@@ -62,24 +64,24 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
 
         //Main Inventory
         for (int i = 0; i < tile.mainInventory.getSlots(); i++) {
-            mainSlots.add(addSlot(new SlotCheckValid2(tile.mainInventory, i, 0, 0)));
+            mainSlots.add((SlotCheckValid2) addSlot(new SlotCheckValid2(tile.mainInventory, i, 0, 0)));
         }
 
         //Upgrade Inventory
         for (int i = 0; i < tile.upgradeInventory.getSlots(); i++) {
-            upgradeSlots.add(addSlot(new SlotCheckValid2(tile.upgradeInventory, i, 0, 0)));
+            upgradeSlots.add((SlotCheckValid2) addSlot(new SlotCheckValid2(tile.upgradeInventory, i, 0, 0)));
         }
 
         //Crafting Inventory
         craftInventory = new CraftingInventoryWrapper(this, 3, 3, tile.craftingItems);
         this.addSlot(craftResultSlot = new CraftingResultSlot2(playerInv.player, craftInventory, resultInventory, 0, 0, 0));
         for (int i = 0; i < 9; ++i) {
-            craftInputSlots.add(addSlot(new SlotCheckValid2.IInv(craftInventory, i, 0, 0)));
+            craftInputSlots.add((SlotCheckValid2.IInv) addSlot(new SlotCheckValid2.IInv(craftInventory, i, 0, 0)));
         }
 
         //Fluid Item Inventory
         for (int i = 0; i < tile.fluidItems.getSlots(); i++) {
-            fluidItemSlots.add(addSlot(new SlotCheckValid2(tile.fluidItems, i, 0, 0)));
+            fluidItemSlots.add((SlotCheckValid2) addSlot(new SlotCheckValid2(tile.fluidItems, i, 0, 0)));
         }
 
         slotsChanged(playerInv); //<-- Ensures the craft result is updated when you open the gui
@@ -144,5 +146,23 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
             return result;
         }
         return ItemStack.EMPTY;
+    }
+
+    public static class CraftingResultSlot2 extends CraftingResultSlot {
+        public Supplier<Boolean> isActive = null;
+
+        public CraftingResultSlot2(PlayerEntity p_i45790_1_, CraftingInventory p_i45790_2_, IInventory p_i45790_3_, int p_i45790_4_, int p_i45790_5_, int p_i45790_6_) {
+            super(p_i45790_1_, p_i45790_2_, p_i45790_3_, p_i45790_4_, p_i45790_5_, p_i45790_6_);
+        }
+
+        public CraftingResultSlot2 setIsActive(Supplier<Boolean> isActive) {
+            this.isActive = isActive;
+            return this;
+        }
+
+        @Override
+        public boolean isActive() {
+            return isActive == null || isActive.get();
+        }
     }
 }
