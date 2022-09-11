@@ -225,5 +225,6 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
 
     @Override
     public void tick() {
+        super.tick();
     }
 }
