@@ -1,9 +1,8 @@
 buildscript {
     repositories {
         mavenLocal()
-        jcenter()
+        mavenCentral()
         maven { url = "https://maven.minecraftforge.net/" }
-        maven { url = "https://repo.spongepowered.org/maven" }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:5.1.+'
@@ -16,15 +15,14 @@ plugins {
     id "net.covers1624.signing" version '1.1.4'
 }
 
-
 apply plugin: 'net.minecraftforge.gradle'
-apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remapper/main/classremapper.gradle'
-
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 group = "com.greatorator.tolkienmobs"
 archivesBaseName = "TolkienMobs"
 
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+//Add generated resources to main resources.
 sourceSets.main.resources.srcDirs += "src/generated/resources"
 
 file('build.properties').withReader {
@@ -52,10 +50,10 @@ if (System.getenv("KEY_STORE")) {
     println 'No signing secrets found, build will not be signed.'
 }
 
-config.mod_version = "${config.mod_version}." + (System.getenv("BUILD_NUMBER") ?: "9999")
+config.mod_version = "${config.mod_version}." + (System.getenv("BUILD_NUMBER") ?: "1")
 version = "${config.mc_version}-${config.mod_version}"
 println "Starting build of ${archivesBaseName}, Version: ${config.mod_version}"
-println "Using Forge: ${config.forge_version}, for Minecraft: ${config.mc_version}, with Mappings: 'official'"
+println "Using Forge: ${config.forge_version}, for Minecraft: ${config.mc_version}, with Mappings: ${config.mappings}"
 
 minecraft {
     mappings channel: 'official', version: config.mc_version
@@ -63,57 +61,41 @@ minecraft {
     runs {
         client {
             workingDirectory file('run')
-            mods { draconicevolution { source sourceSets.main } }
+            mods { tolkienmobs { source sourceSets.main } }
         }
         server {
             workingDirectory file('run')
-            mods { draconicevolution { source sourceSets.main } }
+            mods { tolkienmobs { source sourceSets.main } }
         }
         data {
             workingDirectory file('run')
             args '--mod', 'tolkienmobs', '--all', '--output', file("src/generated/resources"), '--existing', file("src/main/resources")
-            mods { draconicevolution { source sourceSets.main } }
+            mods { tolkienmobs { source sourceSets.main } }
         }
-    }
-}
-
-processResources {
-    inputs.property 'mod_version', config.mod_version
-    inputs.property 'mc_version', config.mc_version
-    inputs.property 'ccl_version', config.ccl_version
-    inputs.property 'bcore_version', config.bcore_version
-
-    filesMatching('META-INF/mods.toml') {
-        expand 'file': ['jarVersion': config.mod_version],
-                'mc_version': config.mc_version,
-                'forge_version': config.forge_version,
-                'lang_version': config.forge_version.split('\\.')[0],
-                'bcore_version': config.bcore_version,
-                'ccl_version': "[${config.ccl_version.replace(".+", "")},${config.ccl_version_max})"
     }
 }
 
 repositories {
     mavenLocal()
     maven { url = "https://maven.covers1624.net/" }
-    maven { url = "https://dvs1.progwml6.com/files/maven" }
     maven { url = "https://maven.theillusivec4.top/" }
+    maven { url = "https://dvs1.progwml6.com/files/maven" }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${config.mc_version}-${config.forge_version}"
-    implementation fg.deobf("com.brandon3055.brandonscore:BrandonsCore:${config.mc_version}-${config.bcore_version}:universal")
     implementation fg.deobf("codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:universal")
     implementation fg.deobf("mezz.jei:jei-${config.mc_version}:${config.jei_version}")
-
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${config.mc_version}-${config.curios_version}")
+
+//    implementation fg.deobf("com.brandon3055.brandonscore:BrandonsCore:${config.mc_version}-${config.bcore_version}:universal")
 }
 
 signing {
     if (!signProps.isEmpty()) {
         jars {
             sign jar
-            after 'reobfJar'
+            after reobfJar
 
             keyStore = signProps.keyStore
             alias = signProps.alias
@@ -123,12 +105,24 @@ signing {
     }
 }
 
+processResources { task ->
+    inputs.property 'mod_version', config.mod_version
+    inputs.property 'mc_version', config.mc_version
 
+    from(sourceSets.main.resources.srcDirs) { spec ->
+        spec.include 'META-INF/mods.toml'
+        task.doFirst {
+            spec.expand 'version': config.mod_version,
+                    'mc_version': config.mc_version,
+                    'ccl_version': "[${config.ccl_version.replace('.+', '')},${config.ccl_version_max})",
+                    'bcore_version': resolve("BrandonsCore")
+        }
+    }
+}
 
 jar {
     finalizedBy 'reobfJar'
     classifier = 'universal'
-    from file("LICENSE")
     manifest {
         attributes 'Specification-Title': archivesBaseName
         attributes 'Specification-Vendor': 'GreatOrator'
@@ -144,14 +138,13 @@ task srcJar(type: Jar) {
     build.dependsOn it
     from sourceSets.main.allSource
     classifier = 'sources'
-    from file("LICENSE")
 }
 
 publishing {
     repositories {
         if (System.getenv('MAVEN_PASS')) {
             maven {
-                url "https://nexus.covers1624.net/repository/maven-releases/"
+                url "https://maven-upload.covers1624.net/"
                 credentials {
                     username 'covers1624'
                     password System.getenv('MAVEN_PASS')
@@ -184,7 +177,7 @@ publishing {
                 }
                 licenses {
                     license {
-                        name = "CoFH \"Don't Be a Jerk\" License"
+                        name = "MIT License"
                         url = "https://github.com/GreatOrator/TolkienTweaks-Mobs/blob/master/LICENSE"
                         distribution = 'Repo'
                     }
