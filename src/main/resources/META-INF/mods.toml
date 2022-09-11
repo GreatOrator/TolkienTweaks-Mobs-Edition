@@ -1,19 +1,17 @@
 modLoader="javafml"
-loaderVersion="[36,)"
+loaderVersion="[${lang_version},)"
 license="MIT License"
 
 [[mods]]
 	modId="tolkienmobs"
 	displayName="Tolkien Tweaks (Mobs Edition)"
-    version="${version}"
+    version="${file.jarVersion}"
 	authors="GreatOrator"
 	description=''''''
-    updateJSONURL=""
-
 [[dependencies.tolkienmobs]]
     modId="forge"
     mandatory=true
-    versionRange="[36.2,)"
+    versionRange="[${forge_version},)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.tolkienmobs]]
@@ -26,5 +24,11 @@ license="MIT License"
     modId="codechickenlib"
     mandatory=true
     versionRange="${ccl_version}"
+    ordering="AFTER"
+    side="BOTH"
+[[dependencies.tolkienmobs]]
+    modId="brandonscore"
+    mandatory=true
+    versionRange="[${bcore_version},)"
     ordering="AFTER"
     side="BOTH"

@@ -123,7 +123,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         // Block Items - Custom Blocks
         blockItem(TTMContent.BLOCK_HALLOWED.get());
         blockItem(TTMContent.STONE_PATH.get());
-        blockItem(TTMContent.TTMFIREPLACE.get(), modLoc("block/fireplace_inactive"));
+        blockItem(TTMContent.TTMFIREPLACE.get(), modLoc("block/fireplace_active"));
         blockItem(TTMContent.PIGGYBANK.get(), modLoc("block/block_piggybank"));
         blockItem(TTMContent.BARREL_MITHRIL.get(), modLoc("block/barrel_mithril"));
         blockItem(TTMContent.BARREL_MORGULIRON.get(), modLoc("block/barrel_morguliron"));
