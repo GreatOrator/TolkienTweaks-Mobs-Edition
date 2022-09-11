@@ -67,11 +67,6 @@ public class TolkienMobs {
             a. Fell Beast Fireball - rendering
 	        b. Boulder - rendering
 	        c. Galadhrim Arrow - rendering
-    3. Backpack -
-       a. Upgrade system
-       b. Improved sleeping bag and campfire deployment
-	4. Custom Recipe
-	   a. Fireplace - JEI GUI needs fixed
     */
 
     public TolkienMobs() {

@@ -45,7 +45,7 @@ public class FireplaceRecipeCategory implements IRecipeCategory<IFireplaceRecipe
 
     @Override
     public String getTitle() {
-        return TTMContent.TTMFIREPLACE.get().getRegistryName().toString();
+        return "Fireplace";
     }
 
     @Override
