@@ -68,16 +68,16 @@ public class FireplaceRecipeCategory implements IRecipeCategory<IFireplaceRecipe
 
     @Override
     public void setRecipe(IRecipeLayout iRecipeLayout, IFireplaceRecipe iFireplaceRecipe, IIngredients iIngredients) {
-        iRecipeLayout.getItemStacks().init(0, true, 39, 16);
-        iRecipeLayout.getItemStacks().init(1, true, 61, 16);
+        iRecipeLayout.getItemStacks().init(0, true, 38, 15);
+        iRecipeLayout.getItemStacks().init(1, true, 60, 15);
         iRecipeLayout.getItemStacks().init(3, true, 117, 36);
 
-        iRecipeLayout.getItemStacks().init(3, false, 50, 56);
+        iRecipeLayout.getItemStacks().init(2, false, 116, 35);
         iRecipeLayout.getItemStacks().set(iIngredients);
     }
 
     @Override
     public void draw(IFireplaceRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
-            this.campFire.draw(matrixStack, 80, 34);
+            this.campFire.draw(matrixStack, 52, 36);
     }
 }
