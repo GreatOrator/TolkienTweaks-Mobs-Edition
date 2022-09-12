@@ -584,6 +584,8 @@
   "itemGroup.tolkienmobs.spawn": "TolkienTweaks Mobs",
   "itemGroup.tolkienmobs.tools": "TolkienTweaks Tools",
   "item_info.tolkienmobs.sneak_right_click_activate": "Shift right-click to activate/deactivate effect",
+  "key.category.tolkienmobs": "TolkienTweaks Mobs",
+  "key.tolkienmobs.backpack_key": "Open Backpack",
   "tolkienmobs.msg.deploy_campfire": "Something is blocking the Campfire.",
   "tolkienmobs.msg.deploy_sleeping_bag": "Something is blocking the Sleepingbag.",
   "tolkienmobs.msg.healself": "Goblin King is hurt and is healing.",

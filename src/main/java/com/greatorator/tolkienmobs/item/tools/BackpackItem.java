@@ -17,8 +17,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class BackpackItem extends BlockItem {
     public BackpackItem(Block block, Properties properties) {
@@ -36,18 +34,11 @@ public class BackpackItem extends BlockItem {
             {
                 if(itemstack.getItem() == this && !playerIn.isCrouching())
                 {
-//                    BlockPos pos = new BlockPos(playerIn.getX(), playerIn.getY(), playerIn.getZ());
-//                    TileEntity tileEntity = worldIn.getBlockEntity(pos);
-//                    NetworkHooks.openGui((ServerPlayerEntity) playerIn, (TTMBackpackTile) tileEntity, pos);
-
+//                    NetworkHooks.openGui((ServerPlayerEntity) playerIn, this);
                 }
             }
         }
         return ActionResult.success(itemstack);
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    private void openGui(ItemStack stack, PlayerEntity player) {
     }
 
     @Override

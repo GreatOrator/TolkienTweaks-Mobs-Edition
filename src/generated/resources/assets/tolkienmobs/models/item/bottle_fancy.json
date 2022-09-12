@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "tolkienmobs:item/bottle_fancy"
-  }
+  "parent": "tolkienmobs:item/bottle_empty"
 }

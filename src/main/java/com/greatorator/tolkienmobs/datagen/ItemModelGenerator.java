@@ -152,7 +152,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.BIRD_FEATHER.get());
         simpleItem(TTMContent.MUMAKIL_LEATHER.get());
         simpleItem(TTMContent.MONSTER_FUR.get());
-        simpleItem(TTMContent.BOTTLE_FANCY.get());
+        getBuilder(TTMContent.BOTTLE_FANCY.get().getRegistryName().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/bottle_empty")));
         simpleItem(TTMContent.GOLEM_STONE.get());
         simpleItem(TTMContent.GOLEM_STONE_EARTH.get());
         simpleItem(TTMContent.GOLEM_STONE_AIR.get());
@@ -227,13 +227,13 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.ITEM_WATCHERCOMPLETE.get());
 
         //region Potions & Food
-        simpleItem(TTMContent.DRINK_ENT_DRAUGHT.get());
-        simpleItem(TTMContent.DRINK_PERSONAL_BLACKSMITH.get());
-        simpleItem(TTMContent.DRINK_ELF_FLEETFOOT.get());
-        simpleItem(TTMContent.DRINK_ELF_VITALITY.get());
-        simpleItem(TTMContent.DRINK_ERU_BLESSING.get());
-        simpleItem(TTMContent.MIRUVOR.get());
-        simpleItem(TTMContent.GROG.get());
+        getBuilder(TTMContent.DRINK_ENT_DRAUGHT.get().getRegistryName().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/bottle_ent_draught")));
+        getBuilder(TTMContent.DRINK_PERSONAL_BLACKSMITH.get().getRegistryName().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/bottle_personal_blacksmith")));
+        getBuilder(TTMContent.DRINK_ELF_FLEETFOOT.get().getRegistryName().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/bottle_elf_blessing")));
+        getBuilder(TTMContent.DRINK_ELF_VITALITY.get().getRegistryName().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/bottle_elf_vitality")));
+        getBuilder(TTMContent.DRINK_ERU_BLESSING.get().getRegistryName().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/bottle_eru_blessing")));
+        getBuilder(TTMContent.MIRUVOR.get().getRegistryName().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/bottle_miruvor")));
+        getBuilder(TTMContent.GROG.get().getRegistryName().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("item/bottle_grog")));
         simpleItem(TTMContent.LEMBAS.get());
         simpleItem(TTMContent.HONEY_CAKE.get());
         simpleItem(TTMContent.CRAM.get());
