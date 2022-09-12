@@ -35,6 +35,7 @@ public class LangGenerator extends LanguageProvider {
         chatMessages(helper);
         creativeTabGroups();
         gui(helper);
+        keyCommand();
     }
 
     private void blocks() {
@@ -701,7 +702,6 @@ public class LangGenerator extends LanguageProvider {
         add("tolkienmobs.msg.deploy_campfire", "Something is blocking the Campfire.");
     }
 
-
     private void gui(PrefixHelper helper) {
         helper.setPrefix("gui.tolkienmobs.backpack.");
         helper.add("fluid_storage",             "Fluid Storage");
@@ -712,6 +712,11 @@ public class LangGenerator extends LanguageProvider {
         helper.add("campfire.deployed",                     "Set up Campfire");
         helper.add("close.upgrade",                     "Close upgrade window");
         helper.add("open.upgrade",                     "Open upgrade window");
+    }
+
+    private void keyCommand() {
+        add("key.category.tolkienmobs", "TolkienTweaks Mobs");
+        add("key.tolkienmobs.backpack_key", "Open Backpack");
     }
 
 

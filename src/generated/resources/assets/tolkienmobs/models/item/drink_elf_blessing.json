@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "tolkienmobs:item/drink_elf_blessing"
-  }
+  "parent": "tolkienmobs:item/bottle_elf_blessing"
 }

@@ -1,6 +1,3 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "tolkienmobs:item/drink_personal_blacksmith"
-  }
+  "parent": "tolkienmobs:item/bottle_personal_blacksmith"
 }

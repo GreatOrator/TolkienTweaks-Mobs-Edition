@@ -3,7 +3,6 @@ package com.greatorator.tolkienmobs.network;
 import codechicken.lib.packet.PacketCustom;
 import codechicken.lib.packet.PacketCustomChannelBuilder;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.event.EventNetworkChannel;
@@ -12,7 +11,6 @@ import net.minecraftforge.fml.network.event.EventNetworkChannel;
  * Created by brandon3055 on 20/08/22.
  */
 public class TTMNetwork {
-
     public static final ResourceLocation CHANNEL = new ResourceLocation(TolkienMobs.MODID + ":network");
     public static EventNetworkChannel netChannel;
 
