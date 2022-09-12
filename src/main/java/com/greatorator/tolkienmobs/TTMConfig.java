@@ -19,7 +19,7 @@ import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 /**
  * Created by brandon3055 on 31/1/21
  * <p>
- * So this config system is based on 'ConfigTag's A ConfigTag can ether be a container/category that contains child tags, or it can be an actual data tag that handles a config value.
+ * So this config system is based on ConfigTag's A ConfigTag can ether be a container/category that contains child tags, or it can be an actual data tag that handles a config value.
  * <p>
  * Each of these can be thought of as a separate "config category" where 'config' is the root / parent category that contains
  * the client and server categories.

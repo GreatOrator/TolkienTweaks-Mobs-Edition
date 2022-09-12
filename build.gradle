@@ -5,7 +5,7 @@ buildscript {
         maven { url = "https://maven.minecraftforge.net/" }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:4.1.+'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:5.1.+'
     }
 }
 
@@ -20,7 +20,7 @@ apply plugin: 'net.minecraftforge.gradle'
 group = "com.greatorator.tolkienmobs"
 archivesBaseName = "TolkienMobs"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 //Add generated resources to main resources.
 sourceSets.main.resources.srcDirs += "src/generated/resources"
@@ -84,11 +84,11 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${config.mc_version}-${config.forge_version}"
-    compile "codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:deobf"
-    compile "com.brandon3055.brandonscore:BrandonsCore:${config.mc_version}-${config.bcore_version}:deobf"
-    compile fg.deobf("top.theillusivec4.curios:curios-forge:${config.mc_version}-${config.curios_version}")
+    implementation fg.deobf("codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:universal")
+    implementation fg.deobf("mezz.jei:jei-${config.mc_version}:${config.jei_version}")
+    implementation fg.deobf("top.theillusivec4.curios:curios-forge:${config.mc_version}-${config.curios_version}")
 
-    compile fg.deobf("mezz.jei:jei-${config.mc_version}:${config.jei_version}")
+//    implementation fg.deobf("com.brandon3055.brandonscore:BrandonsCore:${config.mc_version}-${config.bcore_version}:universal")
 }
 
 signing {

@@ -37,7 +37,7 @@ public class EnchantmentBalrogMark extends Enchantment {
     }
 
     /**
-     * Determines if the enchantment passed can be applyied together with this enchantment.
+     * Determines if the enchantment passed can be applied together with this enchantment.
      */
     @Override
     public boolean checkCompatibility(Enchantment ench) {

@@ -88,7 +88,7 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
 
     private void upgradeSlotChange(int slot) {
         //Easier to just ignore the slot and update all flags.
-        //This only happens when the inventory changes so we dont need maximum efficiency.
+        //This only happens when the inventory changes, so we don't need maximum efficiency.
         byte size = 0;
         byte craft = 0;
         byte tank = 0;
