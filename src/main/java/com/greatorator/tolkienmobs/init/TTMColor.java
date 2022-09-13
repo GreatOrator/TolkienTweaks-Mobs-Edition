@@ -15,7 +15,7 @@ import java.util.List;
 public class TTMColor {
 
     public static void itemColourEvent(ColorHandlerEvent.Item event) {
-        event.getItemColors().register(new TrinketColour(), TTMContent.TRINKET_CHARM.get(), TTMContent.TRINKET_AMULET.get(), TTMContent.TRINKET_BELT.get(), TTMContent.TRINKET_RING.get(), TTMContent.TRINKET_GLOVE.get(), TTMContent.TRINKET_HAT.get());
+        event.getItemColors().register(new TrinketColour(), TTMContent.TRINKET_CHARM.get(), TTMContent.TRINKET_AMULET.get(), TTMContent.TRINKET_BELT.get(), TTMContent.TRINKET_RING.get(), TTMContent.TRINKET_GLOVE.get(), TTMContent.TRINKET_HAT.get(), TTMContent.TRINKET_CLOAK.get());
     }
 
     private static class TrinketColour implements IItemColor {
