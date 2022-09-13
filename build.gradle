@@ -164,21 +164,21 @@ publishing {
                 name = archivesBaseName
                 description = archivesBaseName
                 //The publish plugin doesn't like GString's here apparently..
-                url = "https://github.com/GreatOrator/TolkienTweaks-Mobs".toString()
+                url = "https://github.com/GreatOrator/TolkienTweaks-Mobs-Edition".toString()
                 scm {
-                    url = "https://github.com/GreatOrator/TolkienTweaks-Mobs".toString()
-                    connection = "scm:git:git://github.com/GreatOrator/TolkienTweaks-Mobs.git".toString()
-                    connection = "scm:git:git@github.com:GreatOrator/TolkienTweaks-Mobs.git".toString()
+                    url = "https://github.com/GreatOrator/TolkienTweaks-Mobs-Edition".toString()
+                    connection = "scm:git:git://github.com/GreatOrator/TolkienTweaks-Mobs-Edition.git".toString()
+                    connection = "scm:git:git@github.com:GreatOrator/TolkienTweaks-Mobs-Edition.git".toString()
                 }
 
                 issueManagement {
                     system = 'github'
-                    url = "https://github.com/GreatOrator/TolkienTweaks-Mobs/issues".toString()
+                    url = "https://github.com/GreatOrator/TolkienTweaks-Mobs-Edition/issues".toString()
                 }
                 licenses {
                     license {
                         name = "MIT License"
-                        url = "https://github.com/GreatOrator/TolkienTweaks-Mobs/blob/master/LICENSE"
+                        url = "https://github.com/GreatOrator/TolkienTweaks-Mobs-Edition/blob/master/LICENSE"
                         distribution = 'Repo'
                     }
                 }
