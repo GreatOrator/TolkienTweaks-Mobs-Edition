@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "tolkienmobs:item/coin_pouch_0"
+  },
+  "__comment": "we use the fullness property override to choose which bag icon to render",
+  "overrides": [
+    { "predicate": { "fullness": 0 }, "model": "tolkienmobs:item/coin_pouch" },
+    { "predicate": { "fullness": 0.01 }, "model": "tolkienmobs:item/coin_pouch_almost_empty" },
+    { "predicate": { "fullness": 0.33 }, "model": "tolkienmobs:item/coin_pouch_moderately_full" },
+    { "predicate": { "fullness": 0.66 }, "model": "tolkienmobs:item/coin_pouch_mostly_full" },
+    { "predicate": { "fullness": 0.99 }, "model": "tolkienmobs:item/coin_pouch_full" }
+  ]
+}
+

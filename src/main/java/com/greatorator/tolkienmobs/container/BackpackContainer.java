@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.container;
 
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.container.slots.SlotCheckValid2;
 import com.greatorator.tolkienmobs.entity.tile.BackpackTile;
 import com.greatorator.tolkienmobs.lib.CraftingInventoryWrapper;
 import net.minecraft.entity.player.PlayerEntity;

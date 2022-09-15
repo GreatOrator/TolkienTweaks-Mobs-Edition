@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.container;
+package com.greatorator.tolkienmobs.container.slots;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;

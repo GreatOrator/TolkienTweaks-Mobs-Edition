@@ -8,6 +8,7 @@ import com.greatorator.tolkienmobs.block.CropsBlock;
 import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.client.TTMParticles;
 import com.greatorator.tolkienmobs.container.BackpackContainer;
+import com.greatorator.tolkienmobs.container.CoinPouchContainer;
 import com.greatorator.tolkienmobs.crafting.FireplaceRecipe;
 import com.greatorator.tolkienmobs.datagen.*;
 import com.greatorator.tolkienmobs.entity.tile.*;
@@ -19,7 +20,8 @@ import com.greatorator.tolkienmobs.item.signs.TTMLebethronSignItem;
 import com.greatorator.tolkienmobs.item.signs.TTMMallornSignItem;
 import com.greatorator.tolkienmobs.item.signs.TTMMirkwoodSignItem;
 import com.greatorator.tolkienmobs.item.tools.BackpackItem;
-import com.greatorator.tolkienmobs.item.tools.ItemTTMTrinket;
+import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
+import com.greatorator.tolkienmobs.item.tools.TrinketItem;
 import com.greatorator.tolkienmobs.world.trees.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -512,15 +514,16 @@ public class TTMContent {
     public static RegistryObject<SwordItem> WHIP_FIRE = ITEMS.register("whip_fire", () -> new TTMSword(TTMItemTier.MORGULIRON, 15, -0.5F, (new Item.Properties()).tab(toolsGroup)).setEffectOverride());
     public static RegistryObject<SwordItem> CLUB_WOODEN = ITEMS.register("club_wooden", () -> new TTMSword(TTMItemTier.MORGULIRON, 9, -0.5F, (new Item.Properties()).tab(toolsGroup)).setEffectOverride());
     public static RegistryObject<BlockItem> ITEM_BACKPACK = ITEMS.register("item_backpack", () -> new BackpackItem(TTMContent.BACKPACK.get(), (new Item.Properties()).stacksTo(1).tab(toolsGroup)));
+    public static RegistryObject<Item> COIN_POUCH = ITEMS.register("coin_pouch", () -> new CoinPouchItem(new Item.Properties().stacksTo(1).tab(toolsGroup)).setItemHasUse().setHasLore());
 
     // Trinkets
-    public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new ItemTTMTrinket(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<Item> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new ItemTTMTrinket(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<Item> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new ItemTTMTrinket(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<Item> TRINKET_RING = ITEMS.register("trinket_ring", () -> new ItemTTMTrinket(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<Item> TRINKET_GLOVE = ITEMS.register("trinket_glove", () -> new ItemTTMTrinket(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<Item> TRINKET_HAT = ITEMS.register("trinket_hat", () -> new ItemTTMTrinket(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<Item> TRINKET_CLOAK = ITEMS.register("trinket_cloak", () -> new ItemTTMTrinket(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_RING = ITEMS.register("trinket_ring", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_GLOVE = ITEMS.register("trinket_glove", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_HAT = ITEMS.register("trinket_hat", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<Item> TRINKET_CLOAK = ITEMS.register("trinket_cloak", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
 
     // Projectiles
     public static RegistryObject<ArrowItem> GALADHRIM_ARROW = ITEMS.register("ammo_galadhrim_arrow", () -> new TTMArrow((new Item.Properties()).tab(toolsGroup)));
@@ -621,6 +624,7 @@ public class TTMContent {
     public static ContainerType<ContainerBCTile<MithrilBarrelTile>> BARREL_MITHRIL_CONTAINER;
     public static ContainerType<ContainerBCTile<MorgulironBarrelTile>> BARREL_MORGULIRON_CONTAINER;
     public static ContainerType<BackpackContainer> BACKPACK_CONTAINER;
+    public static ContainerType<CoinPouchContainer> COIN_POUCH_CONTAINER;
 
     public static void registerContainers(RegistryEvent.Register<ContainerType<?>> event) {
         event.getRegistry().register(TMFIREPLACE_CONTAINER = (ContainerType<ContainerBCTile<FireplaceTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(TMFIREPLACE_CONTAINER, id, playerInv, extraData, FireplaceTile.SLOT_LAYOUT)).setRegistryName("tmfireplace_container"));
@@ -628,6 +632,7 @@ public class TTMContent {
         event.getRegistry().register(BARREL_MITHRIL_CONTAINER = (ContainerType<ContainerBCTile<MithrilBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MITHRIL_CONTAINER, id, playerInv, extraData, MithrilBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_mithril_container"));
         event.getRegistry().register(BARREL_MORGULIRON_CONTAINER = (ContainerType<ContainerBCTile<MorgulironBarrelTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MORGULIRON_CONTAINER, id, playerInv, extraData, MorgulironBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_morguliron_container"));
         event.getRegistry().register(BACKPACK_CONTAINER = (ContainerType<BackpackContainer>) IForgeContainerType.create(BackpackContainer::new).setRegistryName("backpack_container"));
+        event.getRegistry().register(COIN_POUCH_CONTAINER = (ContainerType<CoinPouchContainer>) IForgeContainerType.create(CoinPouchContainer::new).setRegistryName("coin_pouch_container"));
     }
 
     //#################################################################
