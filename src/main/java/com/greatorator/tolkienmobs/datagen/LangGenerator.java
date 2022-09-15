@@ -211,6 +211,7 @@ public class LangGenerator extends LanguageProvider {
         add("container.tolkienmobs.piggybank", "Piggy Bank");
         add("container.tolkienmobs.backpack", "Adventurer's Backpack");
         add("container.tolkienmobs.upgrade", "Backpack Upgrades");
+        add("container.tolkienmobs.coin_pouch", "Coin Pouch");
     }
 
     private void quest() {
@@ -337,6 +338,8 @@ public class LangGenerator extends LanguageProvider {
         addLore(TTMContent.ITEM_CAVECOMPLETE.get(), "Proof of killing the troll");
         add(TTMContent.ITEM_WATCHERCOMPLETE.get(), TextFormatting.DARK_AQUA + "Watcher Token");
         addLore(TTMContent.ITEM_WATCHERCOMPLETE.get(), "Proof of defeating the Watcher");
+        add(TTMContent.COIN_POUCH.get(), "Coin Pouch");
+        addLore(TTMContent.COIN_POUCH.get(), TextFormatting.GOLD + "Store your excess coins");
     }
 
     private void creativeTabGroups() {
@@ -712,6 +715,8 @@ public class LangGenerator extends LanguageProvider {
         helper.add("campfire.deployed",                     "Set up Campfire");
         helper.add("close.upgrade",                     "Close upgrade window");
         helper.add("open.upgrade",                     "Open upgrade window");
+        helper.setPrefix("gui.tolkienmobs.coin_pouch.");
+        helper.add("title",             "- store coins");
     }
 
     private void keyCommand() {

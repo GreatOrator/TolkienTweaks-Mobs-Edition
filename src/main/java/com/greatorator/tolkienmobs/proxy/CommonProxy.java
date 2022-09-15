@@ -12,6 +12,7 @@ import com.greatorator.tolkienmobs.event.entity.living.TTMSleepingEvent;
 import com.greatorator.tolkienmobs.init.TTMTags;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.integration.curios.TTMEquipMgr;
+import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
 import com.greatorator.tolkienmobs.network.TTMNetwork;
 import com.greatorator.tolkienmobs.world.gen.TTMFeature;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMStructureConfig;
@@ -103,7 +104,7 @@ public class CommonProxy {
     }
 
     public void registerEventListeners() {
-
+        MinecraftForge.EVENT_BUS.addListener(CoinPouchItem::onItemPickup);
     }
 
     public PlayerEntity getPlayer() {

@@ -27,12 +27,15 @@ import com.greatorator.tolkienmobs.entity.special.render.RenderTTMShadowfax;
 import com.greatorator.tolkienmobs.handler.TTMHearts;
 import com.greatorator.tolkienmobs.init.TTMColor;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
+import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.Atlases;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemModelsProperties;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -41,6 +44,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+import static com.greatorator.tolkienmobs.TTMContent.COIN_POUCH;
+import static com.greatorator.tolkienmobs.TTMContent.COIN_POUCH_CONTAINER;
 import static com.greatorator.tolkienmobs.entity.merchant.villager.TTMVillagerUtility.fixPOITypeBlockStates;
 
 public class ClientProxy extends CommonProxy {
@@ -73,6 +78,7 @@ public class ClientProxy extends CommonProxy {
     public void clientSetup(FMLClientSetupEvent event) {
         super.clientSetup(event);
         setupRenderLayers();
+        registerPropertyOverride();
         registerEntityRenderer();
         registerTileRenderers();
         registerWoodTypes(event);
@@ -146,6 +152,7 @@ public class ClientProxy extends CommonProxy {
         ScreenManager.register(TTMContent.BARREL_MITHRIL_CONTAINER, MithrilBarrelScreen::new);
         ScreenManager.register(TTMContent.BARREL_MORGULIRON_CONTAINER, MorgulironBarrelScreen::new);
         ScreenManager.register(TTMContent.BACKPACK_CONTAINER, BackpackScreen::new);
+        ScreenManager.register(COIN_POUCH_CONTAINER, CoinPouchScreen::new);
     }
 
     //#################################################################
@@ -213,6 +220,10 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_ARROW_GALADHRIM.get(), new RenderGaladhrimArrow.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_FELLBEAST_FIREBALL.get(), new RenderFellBeastFireball.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_BOULDER.get(), new RenderBoulder.RenderFactory());
+    }
+
+    public static void registerPropertyOverride() {
+        ItemModelsProperties.register(COIN_POUCH.get(), new ResourceLocation("fullness"), CoinPouchItem::getFullnessPropertyOverride);
     }
 
     private void registerTileRenderers() {

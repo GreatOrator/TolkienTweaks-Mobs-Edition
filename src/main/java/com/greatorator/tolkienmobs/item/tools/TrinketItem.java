@@ -30,9 +30,9 @@ import java.util.List;
 /**
  * Created by brandon3055 on 13/10/2021
  */
-public class ItemTTMTrinket extends Item {
+public class TrinketItem extends Item {
 
-    public ItemTTMTrinket(Properties properties) {
+    public TrinketItem(Properties properties) {
         super(properties);
     }
 
