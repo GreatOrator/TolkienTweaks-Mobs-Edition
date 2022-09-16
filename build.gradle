@@ -5,7 +5,7 @@ buildscript {
         maven { url = "https://maven.minecraftforge.net/" }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:5.1.+'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:4.1.+'
     }
 }
 
@@ -20,7 +20,7 @@ apply plugin: 'net.minecraftforge.gradle'
 group = "com.greatorator.tolkienmobs"
 archivesBaseName = "TolkienMobs"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
 //Add generated resources to main resources.
 sourceSets.main.resources.srcDirs += "src/generated/resources"
@@ -84,11 +84,11 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${config.mc_version}-${config.forge_version}"
-    implementation fg.deobf("codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:universal")
-    implementation fg.deobf("mezz.jei:jei-${config.mc_version}:${config.jei_version}")
-    implementation fg.deobf("top.theillusivec4.curios:curios-forge:${config.mc_version}-${config.curios_version}")
+    compile "codechicken:CodeChickenLib:${config.mc_version}-${config.ccl_version}:deobf"
+    compile "com.brandon3055.brandonscore:BrandonsCore:${config.mc_version}-${config.bcore_version}:deobf"
+    compile fg.deobf("top.theillusivec4.curios:curios-forge:${config.mc_version}-${config.curios_version}")
 
-//    implementation fg.deobf("com.brandon3055.brandonscore:BrandonsCore:${config.mc_version}-${config.bcore_version}:universal")
+    compile fg.deobf("mezz.jei:jei-${config.mc_version}:${config.jei_version}")
 }
 
 signing {
@@ -164,21 +164,21 @@ publishing {
                 name = archivesBaseName
                 description = archivesBaseName
                 //The publish plugin doesn't like GString's here apparently..
-                url = "https://github.com/GreatOrator/TolkienTweaks-Mobs-Edition".toString()
+                url = "https://github.com/GreatOrator/TolkienTweaks-Mobs".toString()
                 scm {
-                    url = "https://github.com/GreatOrator/TolkienTweaks-Mobs-Edition".toString()
-                    connection = "scm:git:git://github.com/GreatOrator/TolkienTweaks-Mobs-Edition.git".toString()
-                    connection = "scm:git:git@github.com:GreatOrator/TolkienTweaks-Mobs-Edition.git".toString()
+                    url = "https://github.com/GreatOrator/TolkienTweaks-Mobs".toString()
+                    connection = "scm:git:git://github.com/GreatOrator/TolkienTweaks-Mobs.git".toString()
+                    connection = "scm:git:git@github.com:GreatOrator/TolkienTweaks-Mobs.git".toString()
                 }
 
                 issueManagement {
                     system = 'github'
-                    url = "https://github.com/GreatOrator/TolkienTweaks-Mobs-Edition/issues".toString()
+                    url = "https://github.com/GreatOrator/TolkienTweaks-Mobs/issues".toString()
                 }
                 licenses {
                     license {
                         name = "MIT License"
-                        url = "https://github.com/GreatOrator/TolkienTweaks-Mobs-Edition/blob/master/LICENSE"
+                        url = "https://github.com/GreatOrator/TolkienTweaks-Mobs/blob/master/LICENSE"
                         distribution = 'Repo'
                     }
                 }

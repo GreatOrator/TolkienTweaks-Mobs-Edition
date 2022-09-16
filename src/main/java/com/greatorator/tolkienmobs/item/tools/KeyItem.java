@@ -1,29 +1,35 @@
 package com.greatorator.tolkienmobs.item.tools;
 
 import com.brandon3055.brandonscore.items.ItemBCore;
+import com.greatorator.tolkienmobs.client.gui.BronzeKeyAccessScreen;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.world.World;
 
 public class KeyItem extends ItemBCore {
     public KeyItem(Properties properties) {
         super(properties);
     }
 
-//    @Override
-//    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-//        ItemStack stack = player.getItemInHand(hand);
-//        if (player.isCreative() && world.isClientSide && !player.isCrouching()) {
-//            openGUI(player);
-//        }
-//        else if (!world.isClientSide && player.isCreative() && player.isCrouching()) {
-//            stack.getTagCompound().removeTag("playerUUID");
-//        }
-//
-//        return super.use(world, player, hand);
-//    }
-//
-//    @OnlyIn(Dist.CLIENT)
-//    private void openGUI(PlayerEntity player) {
-//        Minecraft.getInstance().displayGuiScreen(new BronzeKeyAccessScreen(player, null));
-//    }
+    @Override
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        if (player.isCreative() && player.isShiftKeyDown() && world.isClientSide) {
+            openGui(stack, player);
+        }
+        else if (!world.isClientSide && player.isCreative() && player.isCrouching()) {
+            stack.getTag().remove("playerUUID");
+        }
+
+        return super.use(world, player, hand);
+    }
+
+    private void openGui(ItemStack stack, PlayerEntity player) {
+        Minecraft.getInstance().setScreen(new BronzeKeyAccessScreen(stack.getHoverName(), player));
+    }
 //
 //    @OnlyIn(Dist.CLIENT)
 //    @Override
