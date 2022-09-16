@@ -89,7 +89,8 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(TTMTags.items.BARRELS_WOODEN).add(TTMContent.BARREL_MITHRIL_ITEM.get(), TTMContent.BARREL_MORGULIRON_ITEM.get());
         tag(TTMTags.items.BOTTLE).add(TTMContent.BOTTLE_FANCY.get());
         tag(TTMTags.items.COINS).add(TTMContent.ITEM_COIN_BRONZE.get(), TTMContent.ITEM_COIN_SILVER.get(), TTMContent.ITEM_COIN_GOLD.get(), TTMContent.ITEM_COIN_MITHRIL.get(), TTMContent.ITEM_FACTIONCOIN.get(), TTMContent.ITEM_FACTIONTOKEN.get(), TTMContent.ITEM_DARKSIGIL.get());
-        tag(TTMTags.items.TOKENS).add(TTMContent.ITEM_FACTIONTOKEN.get(), TTMContent.ITEM_CAVECOMPLETE.get(), TTMContent.ITEM_DARKSIGIL.get(), TTMContent.ITEM_WATCHERCOMPLETE.get());
+        tag(TTMTags.items.TOKENS).add(TTMContent.ITEM_FACTIONTOKEN.get(), TTMContent.ITEM_CAVECOMPLETE.get(), TTMContent.ITEM_DARKSIGIL.get(), TTMContent.ITEM_WATCHERCOMPLETE.get(), TTMContent.ITEM_TOKEN_EASTERN_ALLIANCE.get(), TTMContent.ITEM_TOKEN_WESTERN_ALLIANCE.get());
+        tag(TTMTags.items.KEYS).add(TTMContent.BRONZE_KEY.get(), TTMContent.SILVER_KEY.get(), TTMContent.GOLD_KEY.get(), TTMContent.MITHRIL_KEY.get(), TTMContent.MASTER_KEY.get());
         tag(TTMTags.items.FOOD).add(TTMContent.FOOD_HONEY.get(), TTMContent.LEMBAS.get(), TTMContent.HONEY_CAKE.get(), TTMContent.CRAM.get(), TTMContent.MONSTER_FLESH.get(), TTMContent.INSECT.get(), TTMContent.GOLDEN_INSECT.get());
         tag(TTMTags.items.DRINKS).add(TTMContent.MIRUVOR.get(), TTMContent.GROG.get(), TTMContent.DRINK_ENT_DRAUGHT.get(), TTMContent.DRINK_PERSONAL_BLACKSMITH.get(), TTMContent.DRINK_ELF_FLEETFOOT.get(), TTMContent.DRINK_ELF_VITALITY.get(), TTMContent.DRINK_ERU_BLESSING.get());
         tag(TTMTags.items.ACORNS).add(TTMContent.TREE_ACORN.get(), TTMContent.GOLDEN_TREE_ACORN.get());

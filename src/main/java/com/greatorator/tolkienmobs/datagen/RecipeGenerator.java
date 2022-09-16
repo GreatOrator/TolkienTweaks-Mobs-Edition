@@ -276,6 +276,23 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy("has_mumakil_leather", has(TTMContent.MUMAKIL_LEATHER.get()))
                 .save(consumer);
 
+        ShapedRecipeBuilder.shaped(TTMContent.COIN_POUCH.get(), 1)
+                .pattern("ZAZ")
+                .pattern("MZM")
+                .define('M', TTMContent.MUMAKIL_LEATHER.get())
+                .define('A', TTMContent.GEM_AMMOLITE.get())
+                .define('Z', Items.LEATHER)
+                .unlockedBy("has_mumakil_leather", has(TTMContent.MUMAKIL_LEATHER.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.KEY_RING.get())
+                .pattern("AMA")
+                .pattern("AMA")
+                .define('M', Items.IRON_INGOT)
+                .define('A', TTMContent.INGOT_MITHRIL.get())
+                .unlockedBy("has_mithril", has(TTMContent.INGOT_MITHRIL.get()))
+                .save(consumer);
+
         ShapedRecipeBuilder.shaped(TTMContent.PLACARD.get())
                 .pattern("AMA")
                 .pattern("AMA")

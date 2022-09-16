@@ -28,6 +28,7 @@ import com.greatorator.tolkienmobs.handler.TTMHearts;
 import com.greatorator.tolkienmobs.init.TTMColor;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
+import com.greatorator.tolkienmobs.item.tools.KeyRingItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.Atlases;
@@ -44,8 +45,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import static com.greatorator.tolkienmobs.TTMContent.COIN_POUCH;
-import static com.greatorator.tolkienmobs.TTMContent.COIN_POUCH_CONTAINER;
+import static com.greatorator.tolkienmobs.TTMContent.*;
 import static com.greatorator.tolkienmobs.entity.merchant.villager.TTMVillagerUtility.fixPOITypeBlockStates;
 
 public class ClientProxy extends CommonProxy {
@@ -94,6 +94,7 @@ public class ClientProxy extends CommonProxy {
 
     public static void setupRenderLayers() {
         RenderType cutout = RenderType.cutout();
+        RenderType solid = RenderType.solid();
         RenderType cutoutMipped = RenderType.cutoutMipped();
         RenderType translucent = RenderType.translucent();
 
@@ -145,6 +146,7 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(TTMContent.PIGGYBANK.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(TTMContent.PIPEWEED.get(), cutout);
         RenderTypeLookup.setRenderLayer(TTMContent.PLACARD.get(), cutout);
+        RenderTypeLookup.setRenderLayer(TTMContent.CHAMELEON_BLOCK.get(), solid);
 
         // GUI Rendering
         ScreenManager.register(TTMContent.TMFIREPLACE_CONTAINER, FireplaceScreen::new);
@@ -153,6 +155,12 @@ public class ClientProxy extends CommonProxy {
         ScreenManager.register(TTMContent.BARREL_MORGULIRON_CONTAINER, MorgulironBarrelScreen::new);
         ScreenManager.register(TTMContent.BACKPACK_CONTAINER, BackpackScreen::new);
         ScreenManager.register(COIN_POUCH_CONTAINER, CoinPouchScreen::new);
+        ScreenManager.register(KEY_RING_CONTAINER, KeyRingScreen::new);
+//        ScreenManager.register(BRONZE_KEY_CONTAINER, BronzeKeyAccessScreen::new);
+//        ScreenManager.register(SILVER_KEY_CONTAINER, KeyRingScreen::new);
+//        ScreenManager.register(GOLD_KEY_CONTAINER, KeyRingScreen::new);
+//        ScreenManager.register(MITHRIL_KEY_CONTAINER, KeyRingScreen::new);
+//        ScreenManager.register(MASTER_KEY_CONTAINER, KeyRingScreen::new);
     }
 
     //#################################################################
@@ -224,6 +232,7 @@ public class ClientProxy extends CommonProxy {
 
     public static void registerPropertyOverride() {
         ItemModelsProperties.register(COIN_POUCH.get(), new ResourceLocation("fullness"), CoinPouchItem::getFullnessPropertyOverride);
+        ItemModelsProperties.register(KEY_RING.get(), new ResourceLocation("fullness"), KeyRingItem::getFullnessPropertyOverride);
     }
 
     private void registerTileRenderers() {

@@ -20,7 +20,7 @@
   },
   "mob.elementalgolem.death":
   {
-    "category": "neutral",
+    "category": "hostile",
     "sounds":
     [
       "tolkienmobs:mob/elementalgolem/elementalgolem_death"
@@ -28,7 +28,7 @@
   },
   "mob.crebain.call":
   {
-    "category": "neutral",
+    "category": "hostile",
     "sounds":
     [
       "tolkienmobs:mob/crebain/crebain_cry0",
@@ -101,7 +101,7 @@
   },
   "mob.crebain.death":
   {
-    "category": "neutral",
+    "category": "hostile",
     "sounds":
     [
       "tolkienmobs:mob/crebain/crebain_death"
@@ -109,7 +109,7 @@
   },
   "mob.crebain.flapping":
   {
-    "category": "neutral",
+    "category": "hostile",
     "sounds":
     [
       "tolkienmobs:mob/crebain/crebain_flapping"
@@ -117,7 +117,7 @@
   },
   "mob.crebain.hurt":
   {
-    "category": "neutral",
+    "category": "hostile",
     "sounds":
     [
       "tolkienmobs:mob/crebain/crebain_hurt"
@@ -125,7 +125,7 @@
   },
   "mob.troll.hurt":
   {
-    "category": "neutral",
+    "category": "hostile",
     "sounds":
     [
       "tolkienmobs:mob/troll/troll_hurt"
@@ -133,7 +133,7 @@
   },
   "mob.troll.angry":
   {
-    "category": "neutral",
+    "category": "hostile",
     "sounds":
     [
       "tolkienmobs:mob/troll/troll_angry"
@@ -141,7 +141,7 @@
   },
   "mob.troll.death":
   {
-    "category": "neutral",
+    "category": "hostile",
     "sounds":
     [
       "tolkienmobs:mob/troll/troll_death"
@@ -149,7 +149,7 @@
   },
   "mob.troll.idle":
   {
-    "category": "neutral",
+    "category": "hostile",
     "sounds":
     [
       "tolkienmobs:mob/troll/troll_say1",
@@ -906,6 +906,15 @@
     "sounds":
     [
       "tolkienmobs:mob/tmthrush/tmthrush_death"
+    ]
+  },
+  "hype_horn": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "tolkienmobs:player/hype_horn",
+        "stream": false
+      }
     ]
   }
 }

@@ -67,6 +67,7 @@ public class TTMTags {
         public static final Tags.IOptionalNamedTag<Item> WOODEN_STAIRS = tag("wooden_stairs");
         public static final Tags.IOptionalNamedTag<Item> WOODEN_SLABS = tag("wooden_slabs");
         public static final Tags.IOptionalNamedTag<Item> BARRELS_WOODEN = tag("barrels/wooden");
+        public static final Tags.IOptionalNamedTag<Item> KEYS = tag("keys");
 
 
         private static Tags.IOptionalNamedTag<Item> tag(String name) {

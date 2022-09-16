@@ -42,6 +42,7 @@ public class SoundGenerator {
     public static final RegistryObject<SoundEvent> medieval_city_seaport = addSound("ambient.medievalseaport");
     public static final RegistryObject<SoundEvent> paths_of_the_dead = addSound("ambient.pathsofthedead");
     public static final RegistryObject<SoundEvent> underworld = addSound("ambient.underworld");
+    public static final RegistryObject<SoundEvent> hype_horn = addSound("hype_horn");
 
     //Sounds - Mumakil
     public static final RegistryObject<SoundEvent> soundAmbientMumakil = addSound("mob.mumakil.say");
