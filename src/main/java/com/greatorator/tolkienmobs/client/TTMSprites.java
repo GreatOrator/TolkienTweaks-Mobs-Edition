@@ -31,7 +31,6 @@ public class TTMSprites {
         register(MODID, "backpack/craft_arrow");
         register(MODID, "backpack/tank_slots");
         register(MODID, "backpack/tank_arrows");
-
         register(MODID, "backpack/bed");
         register(MODID, "backpack/bed_deployed");
         register(MODID, "backpack/campfire");
@@ -40,6 +39,10 @@ public class TTMSprites {
         register(MODID, "backpack/close_upgrade");
         register(MODID, "backpack/tank");
         register(MODID, "backpack/tank_overlay");
+
+        register(MODID, "keys/slot");
+        register(MODID, "keys/slot_selected");
+
     }
 
     //region register

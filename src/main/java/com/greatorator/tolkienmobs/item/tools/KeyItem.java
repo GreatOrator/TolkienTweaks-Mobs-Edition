@@ -21,14 +21,14 @@ public class KeyItem extends ItemBCore {
             openGui(stack, player);
         }
         else if (!world.isClientSide && player.isCreative() && player.isCrouching()) {
-            stack.getTag().remove("playerUUID");
+//            stack.getTag().remove("playerUUID");
         }
 
         return super.use(world, player, hand);
     }
 
     private void openGui(ItemStack stack, PlayerEntity player) {
-        Minecraft.getInstance().setScreen(new BronzeKeyAccessScreen(stack.getHoverName(), player));
+        Minecraft.getInstance().setScreen(new BronzeKeyAccessScreen(player, stack.getHoverName(), null));
     }
 //
 //    @OnlyIn(Dist.CLIENT)

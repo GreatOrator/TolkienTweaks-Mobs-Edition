@@ -23,7 +23,7 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
     @Override
     public void handlePacket(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
         switch (packet.getType()) {
-            case TTMNetwork.S_UPDATE_SIGN:
+            case TolkienNetwork.S_UPDATE_SIGN:
                 handleSignUpdate(packet, sender, handler);
                 break;
         }
