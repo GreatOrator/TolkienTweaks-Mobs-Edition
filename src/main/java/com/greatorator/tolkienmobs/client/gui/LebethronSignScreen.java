@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.client.gui;
 
 import com.greatorator.tolkienmobs.client.render.tile.RenderLebethronSignTile;
 import com.greatorator.tolkienmobs.entity.tile.LebethronSignTile;
-import com.greatorator.tolkienmobs.network.TTMNetwork;
+import com.greatorator.tolkienmobs.network.TolkienNetwork;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -69,7 +69,7 @@ public class LebethronSignScreen extends Screen {
         this.minecraft.keyboardHandler.setSendRepeatsToGui(false);
         ClientPlayNetHandler clientplaynethandler = this.minecraft.getConnection();
         if (clientplaynethandler != null) {
-            TTMNetwork.sendSignUpdate(this.sign.getBlockPos(), this.messages[0], this.messages[1], this.messages[2], this.messages[3]);
+            TolkienNetwork.sendSignUpdate(this.sign.getBlockPos(), this.messages[0], this.messages[1], this.messages[2], this.messages[3]);
         }
 
         this.sign.setEditable(true);

@@ -734,6 +734,11 @@ public class LangGenerator extends LanguageProvider {
         helper.add("title",             "- store coins");
         helper.setPrefix("gui.tolkienmobs.key_ring.");
         helper.add("title",             "- store keys");
+        helper.setPrefix("screen.tolkienmobs.bronze_key.");
+        helper.add("instructions",             "Set the code for this key. The code can be anything as long as it matches the block.");
+        helper.add("keycode",             "Key Code Field");
+        helper.add("saved",             "Code saved automatically");
+
     }
 
     private void keyCommand() {

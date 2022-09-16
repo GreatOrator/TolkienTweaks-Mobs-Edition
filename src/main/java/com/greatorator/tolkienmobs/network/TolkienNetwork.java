@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.network;
 
+import codechicken.lib.data.MCDataOutput;
 import codechicken.lib.packet.PacketCustom;
 import codechicken.lib.packet.PacketCustomChannelBuilder;
 import com.greatorator.tolkienmobs.TolkienMobs;
@@ -7,17 +8,20 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.event.EventNetworkChannel;
 
+import java.util.function.Consumer;
+
 /**
  * Created by brandon3055 on 20/08/22.
  */
-public class TTMNetwork {
+public class TolkienNetwork {
     public static final ResourceLocation CHANNEL = new ResourceLocation(TolkienMobs.MODID + ":network");
     public static EventNetworkChannel netChannel;
 
     //Server to client
 
     //Client to server
-    public static final int S_UPDATE_SIGN = 1;
+    public static final int S_UPDATE_SIGN =             1;
+    public static final int S_KEYACCESS_MESSAGE =       2;
 
     public static void sendSignUpdate(BlockPos blockPos, String line1, String line2, String line3, String line4) {
         PacketCustom packet = new PacketCustom(CHANNEL, S_UPDATE_SIGN);
@@ -28,6 +32,13 @@ public class TTMNetwork {
         packet.writeString(line4);
         packet.sendToServer();
 
+    }
+
+    public static void sendKeyAccessMessage(int id, Consumer<MCDataOutput> callback) {
+        PacketCustom packet = new PacketCustom(CHANNEL, S_KEYACCESS_MESSAGE);
+        packet.writeByte(id);
+        callback.accept(packet);
+        packet.sendToServer();
     }
 
     public static void init() {

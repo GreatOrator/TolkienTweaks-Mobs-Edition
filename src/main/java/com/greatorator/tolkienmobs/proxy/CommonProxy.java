@@ -13,7 +13,7 @@ import com.greatorator.tolkienmobs.init.TTMTags;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.integration.curios.TTMEquipMgr;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
-import com.greatorator.tolkienmobs.network.TTMNetwork;
+import com.greatorator.tolkienmobs.network.TolkienNetwork;
 import com.greatorator.tolkienmobs.world.gen.TTMFeature;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMStructureConfig;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMTreeFeatureConfig;
@@ -57,7 +57,7 @@ public class CommonProxy {
 
         modBus.addListener(EntityGenerator::registerAttributes);
 
-        TTMNetwork.init();
+        TolkienNetwork.init();
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
