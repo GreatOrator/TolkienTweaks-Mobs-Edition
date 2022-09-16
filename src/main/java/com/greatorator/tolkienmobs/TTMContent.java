@@ -8,7 +8,6 @@ import com.greatorator.tolkienmobs.block.CropsBlock;
 import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.client.TTMParticles;
 import com.greatorator.tolkienmobs.container.BackpackContainer;
-import com.greatorator.tolkienmobs.container.BronzeKeyAccessContainer;
 import com.greatorator.tolkienmobs.container.CoinPouchContainer;
 import com.greatorator.tolkienmobs.container.KeyRingContainer;
 import com.greatorator.tolkienmobs.crafting.FireplaceRecipe;
@@ -637,7 +636,7 @@ public class TTMContent {
     public static ContainerType<BackpackContainer> BACKPACK_CONTAINER;
     public static ContainerType<CoinPouchContainer> COIN_POUCH_CONTAINER;
     public static ContainerType<KeyRingContainer> KEY_RING_CONTAINER;
-    public static ContainerType<BronzeKeyAccessContainer> BRONZE_KEY_CONTAINER;
+//    public static ContainerType<BronzeKeyAccessContainer> BRONZE_KEY_CONTAINER;
 //    public static ContainerType<BronzeKeyAccessContainer> SILVER_KEY_CONTAINER;
 //    public static ContainerType<BronzeKeyAccessContainer> GOLD_KEY_CONTAINER;
 //    public static ContainerType<BronzeKeyAccessContainer> MITHRIL_KEY_CONTAINER;
@@ -651,7 +650,7 @@ public class TTMContent {
         event.getRegistry().register(BACKPACK_CONTAINER = (ContainerType<BackpackContainer>) IForgeContainerType.create(BackpackContainer::new).setRegistryName("backpack_container"));
         event.getRegistry().register(COIN_POUCH_CONTAINER = (ContainerType<CoinPouchContainer>) IForgeContainerType.create(CoinPouchContainer::new).setRegistryName("coin_pouch_container"));
         event.getRegistry().register(KEY_RING_CONTAINER = (ContainerType<KeyRingContainer>) IForgeContainerType.create(KeyRingContainer::new).setRegistryName("key_ring_container"));
-        event.getRegistry().register(BRONZE_KEY_CONTAINER = (ContainerType<BronzeKeyAccessContainer>) IForgeContainerType.create(BronzeKeyAccessContainer::new).setRegistryName("bronze_key_container"));
+//        event.getRegistry().register(BRONZE_KEY_CONTAINER = (ContainerType<BronzeKeyAccessContainer>) IForgeContainerType.create(BronzeKeyAccessContainer::new).setRegistryName("bronze_key_container"));
 //        event.getRegistry().register(SILVER_KEY_CONTAINER = (ContainerType<BronzeKeyAccessContainer>) IForgeContainerType.create(BronzeKeyAccessContainer::new).setRegistryName("silver_key_container"));
 //        event.getRegistry().register(GOLD_KEY_CONTAINER = (ContainerType<BronzeKeyAccessContainer>) IForgeContainerType.create(BronzeKeyAccessContainer::new).setRegistryName("gold_key_container"));
 //        event.getRegistry().register(MITHRIL_KEY_CONTAINER = (ContainerType<BronzeKeyAccessContainer>) IForgeContainerType.create(BronzeKeyAccessContainer::new).setRegistryName("mithril_key_container"));

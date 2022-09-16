@@ -222,6 +222,7 @@ public class LangGenerator extends LanguageProvider {
         add("container.tolkienmobs.upgrade", "Backpack Upgrades");
         add("container.tolkienmobs.coin_pouch", "Coin Pouch");
         add("container.tolkienmobs.key_ring", "Key Ring");
+        add("screen.tolkienmobs.bronze_key", "Key Setup");
     }
 
     private void quest() {
@@ -362,7 +363,7 @@ public class LangGenerator extends LanguageProvider {
         add("itemGroup.tolkienmobs.deco", "TolkienTweaks Decorative");
         add("itemGroup.tolkienmobs.spawn", "TolkienTweaks Mobs");
         add("itemGroup.tolkienmobs.food", "TolkienTweaks Food");
-        add("itemGroup.tolkienmobs.quest", "TolkienTweaks Quest Items");
+        add("itemGroup.tolkienmobs.quest", "TolkienTweaks Creative Items");
         add("itemGroup.tolkienmobs.signs", "TolkienTweaks Placards");
     }
 
