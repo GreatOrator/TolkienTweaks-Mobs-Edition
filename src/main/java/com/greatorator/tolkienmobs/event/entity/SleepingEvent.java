@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.event.entity.living;
+package com.greatorator.tolkienmobs.event.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.SleepingBagBlock;
@@ -15,7 +15,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = TolkienMobs.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class TTMSleepingEvent {
+public class SleepingEvent {
     @SubscribeEvent
     public void onPlayerSetSpawn(PlayerSetSpawnEvent evt) {
         PlayerEntity player = evt.getPlayer();

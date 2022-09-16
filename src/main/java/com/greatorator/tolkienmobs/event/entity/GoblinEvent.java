@@ -1,13 +1,13 @@
-package com.greatorator.tolkienmobs.event.entity.living;
+package com.greatorator.tolkienmobs.event.entity;
 
 import com.greatorator.tolkienmobs.entity.monster.EntityTTMGoblin;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityEvent;
 
-public class TTMGoblinEvent extends EntityEvent {
+public class GoblinEvent extends EntityEvent {
 
-    public TTMGoblinEvent(EntityTTMGoblin entity)
+    public GoblinEvent(EntityTTMGoblin entity)
     {
         super(entity);
     }
@@ -18,7 +18,7 @@ public class TTMGoblinEvent extends EntityEvent {
     }
 
     @HasResult
-    public static class SummonAidEvent extends TTMGoblinEvent {
+    public static class SummonAidEvent extends GoblinEvent {
         private EntityTTMGoblin customSummonedAid;
         
         private final World world;

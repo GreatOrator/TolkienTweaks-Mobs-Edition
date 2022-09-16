@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AMA",
+    "AMA"
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:iron_ingot"
+    },
+    "A": {
+      "item": "tolkienmobs:ingot_mithril"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:key_ring"
+  }
+}

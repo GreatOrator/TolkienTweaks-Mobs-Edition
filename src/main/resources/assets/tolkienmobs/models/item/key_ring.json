@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "tolkienmobs:item/key_ring_0"
+  },
+  "__comment": "we use the fullness property override to choose which bag icon to render",
+  "overrides": [
+    { "predicate": { "fullness": 0 }, "model": "tolkienmobs:item/key_ring" },
+    { "predicate": { "fullness": 0.01 }, "model": "tolkienmobs:item/key_ring_almost_empty" },
+    { "predicate": { "fullness": 0.33 }, "model": "tolkienmobs:item/key_ring_moderately_full" },
+    { "predicate": { "fullness": 0.66 }, "model": "tolkienmobs:item/key_ring_mostly_full" },
+    { "predicate": { "fullness": 0.99 }, "model": "tolkienmobs:item/key_ring_full" }
+  ]
+}
+

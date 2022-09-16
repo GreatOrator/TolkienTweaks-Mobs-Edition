@@ -145,6 +145,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.BARREL_MITHRIL.get(), "Mithril Barrel");
         add(TTMContent.BARREL_MORGULIRON.get(), "Morgul Iron Barrel");
         add(TTMContent.BACKPACK.get(), "Adventurer's Backpack");
+        add(TTMContent.CHAMELEON_BLOCK.get(), "Chameleon Block");
         add(TTMContent.PLACARD.get(), "Country Signs");
         addLore(Item.byBlock(TTMContent.PLACARD.get()), "Shift right-click on sign to cycle types");
         add(TTMContent.SLEEPING_BAG_BLACK.get(), "Black Sleeping Bag");
@@ -204,6 +205,14 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.GOLEM_STONE_WATER.get(), TextFormatting.BLUE + "Water " + TextFormatting.RESET + "Golem Stone");
         add(TTMContent.GOLEM_STONE_SUMMON.get(), "Summon Legendary " + TextFormatting.AQUA + "Mithril " + TextFormatting.RESET + "Golem");
         addLore(TTMContent.GOLEM_STONE_SUMMON.get(), "Ancient artifact to summon a Legendary Golem");
+        add(TTMContent.KEY_RING.get(), "Key Ring");
+        addLore(TTMContent.KEY_RING.get(), "Store your excess keys");
+        add(TTMContent.BRONZE_KEY.get(), "Bronze Key");
+        add(TTMContent.SILVER_KEY.get(), "Silver Key");
+        add(TTMContent.GOLD_KEY.get(), "Gold Key");
+        add(TTMContent.MITHRIL_KEY.get(), "Mithril Key");
+        add(TTMContent.MASTER_KEY.get(), "Master Key");
+        add(TTMContent.HYPE_HORN.get(), "All the HYPE!!");
 
 
         add("item_info.tolkienmobs.sneak_right_click_activate", "Shift right-click to activate/deactivate effect");
@@ -212,6 +221,7 @@ public class LangGenerator extends LanguageProvider {
         add("container.tolkienmobs.backpack", "Adventurer's Backpack");
         add("container.tolkienmobs.upgrade", "Backpack Upgrades");
         add("container.tolkienmobs.coin_pouch", "Coin Pouch");
+        add("container.tolkienmobs.key_ring", "Key Ring");
     }
 
     private void quest() {
@@ -338,6 +348,10 @@ public class LangGenerator extends LanguageProvider {
         addLore(TTMContent.ITEM_CAVECOMPLETE.get(), "Proof of killing the troll");
         add(TTMContent.ITEM_WATCHERCOMPLETE.get(), TextFormatting.DARK_AQUA + "Watcher Token");
         addLore(TTMContent.ITEM_WATCHERCOMPLETE.get(), "Proof of defeating the Watcher");
+        add(TTMContent.ITEM_TOKEN_EASTERN_ALLIANCE.get(), TextFormatting.DARK_RED + "Eastern Alliance Token");
+        addLore(TTMContent.ITEM_TOKEN_EASTERN_ALLIANCE.get(), "Proof of your decision of who you chose to align with");
+        add(TTMContent.ITEM_TOKEN_WESTERN_ALLIANCE.get(), TextFormatting.DARK_BLUE + "Western Alliance Token");
+        addLore(TTMContent.ITEM_TOKEN_WESTERN_ALLIANCE.get(), "Proof of your decision of who you chose to align with");
         add(TTMContent.COIN_POUCH.get(), "Coin Pouch");
         addLore(TTMContent.COIN_POUCH.get(), TextFormatting.GOLD + "Store your excess coins");
     }
@@ -717,6 +731,8 @@ public class LangGenerator extends LanguageProvider {
         helper.add("open.upgrade",                     "Open upgrade window");
         helper.setPrefix("gui.tolkienmobs.coin_pouch.");
         helper.add("title",             "- store coins");
+        helper.setPrefix("gui.tolkienmobs.key_ring.");
+        helper.add("title",             "- store keys");
     }
 
     private void keyCommand() {
