@@ -13,13 +13,18 @@ import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiTexture
 import com.brandon3055.brandonscore.client.gui.modulargui.lib.GuiAlign;
 import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
 import com.greatorator.tolkienmobs.handler.interfaces.IKeyAccessTile;
+import com.greatorator.tolkienmobs.network.TolkienNetwork;
 import net.minecraft.client.gui.IGuiEventListener;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
+import java.util.regex.Pattern;
+
 public class BronzeKeyAccessScreen extends ModularGuiScreen implements IGuiEventListener {
     protected GuiToolkit<BronzeKeyAccessScreen> toolkit = new GuiToolkit<>(this, 200, 78).setTranslationPrefix("screen.tolkienmobs.bronze_key");
+    private static Pattern invalidCharacters = Pattern.compile("[^a-zA-Z-_\\d:]");
+
     private GuiButton consumeKey;
     private GuiButton toggleMode;
     private GuiButton permanent;
@@ -30,6 +35,7 @@ public class BronzeKeyAccessScreen extends ModularGuiScreen implements IGuiEvent
 
     private final PlayerEntity player;
     private boolean keymode;
+    private String currentCode;
     private IKeyAccessTile lockable;
     private int index;
     private int selectedIndex = 0;
@@ -37,11 +43,12 @@ public class BronzeKeyAccessScreen extends ModularGuiScreen implements IGuiEvent
     private int lastAdded = -1;
     private boolean editAdded = false;
 
-    public BronzeKeyAccessScreen(PlayerEntity playerIn, ITextComponent title, IKeyAccessTile lockable) {
+    public BronzeKeyAccessScreen(PlayerEntity playerIn, ITextComponent title, IKeyAccessTile lockable, String currentCode) {
         super(title);
         this.player = playerIn;
         this.lockable = lockable;
         keymode = lockable == null;
+        this.currentCode = currentCode;
     }
 
     @Override
@@ -74,11 +81,13 @@ public class BronzeKeyAccessScreen extends ModularGuiScreen implements IGuiEvent
                     .setTextColGetter(GuiToolkit.Palette.Slot::text)
                     .setMaxXPos(codeBG.maxXPos() - 1, true);
             GuiTextField keyCode = toolkit.createTextField(temp.background)
+                    .setText(currentCode)
                     .setFieldEnabled(true)
                     .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("instructions"))
-                    .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
+                    .setValidator(toolkit.catchyValidator(s -> s.equals("") || !invalidCharacters.matcher(s).find()))
                     .setPos(codeBG.xPos() + 2, codeBG.maxYPos() - 11)
-                    .setSize(145,10);
+                    .setSize(145,10)
+                    .setChangeListener(TolkienNetwork::sendKeyCodeUpdate);
         }else {
 
         }

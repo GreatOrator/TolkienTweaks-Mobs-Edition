@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.item.tools;
 
 import com.brandon3055.brandonscore.items.ItemBCore;
+import com.brandon3055.brandonscore.utils.ItemNBTHelper;
 import com.greatorator.tolkienmobs.client.gui.BronzeKeyAccessScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,6 +20,7 @@ public class KeyItem extends ItemBCore {
         ItemStack stack = player.getItemInHand(hand);
         if (player.isCreative() && player.isShiftKeyDown() && world.isClientSide) {
             openGui(stack, player);
+            return ActionResult.consume(stack);
         }
         else if (!world.isClientSide && player.isCreative() && player.isCrouching()) {
 //            stack.getTag().remove("playerUUID");
@@ -28,7 +30,7 @@ public class KeyItem extends ItemBCore {
     }
 
     private void openGui(ItemStack stack, PlayerEntity player) {
-        Minecraft.getInstance().setScreen(new BronzeKeyAccessScreen(player, stack.getHoverName(), null));
+        Minecraft.getInstance().setScreen(new BronzeKeyAccessScreen(player, stack.getHoverName(), null, getKey(stack)));
     }
 //
 //    @OnlyIn(Dist.CLIENT)
@@ -58,19 +60,19 @@ public class KeyItem extends ItemBCore {
 //        super.addInformation(stack, worldIn, tooltip, flagIn);
 //    }
 //
-//    public void setKey(ItemStack stack, String key) {
-//        ItemNBTUtils.setString(stack, "KeyCode", key);
-//    }
-//
-//    public String getKey(ItemStack stack) {
-//        return ItemNBTUtils.getString(stack, "KeyCode");
-//    }
-//
-//    public void setShown(ItemStack stack, boolean show) {
-//        ItemNBTUtils.setBoolean(stack, "ShowCode", show);
-//    }
-//
-//    public boolean getShown(ItemStack stack) {
-//        return ItemNBTUtils.getBoolean(stack, "ShowCode");
-//    }
+    public void setKey(ItemStack stack, String key) {
+        ItemNBTHelper.setString(stack, "KeyCode", key);
+    }
+
+    public String getKey(ItemStack stack) {
+        return ItemNBTHelper.getString(stack, "KeyCode", "");
+    }
+
+    public void setShown(ItemStack stack, boolean show) {
+        ItemNBTHelper.setBoolean(stack, "ShowCode", show);
+    }
+
+    public boolean getShown(ItemStack stack) {
+        return ItemNBTHelper.getBoolean(stack, "ShowCode", false);
+    }
 }
