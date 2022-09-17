@@ -39,10 +39,6 @@ public class TTMSprites {
         register(MODID, "backpack/close_upgrade");
         register(MODID, "backpack/tank");
         register(MODID, "backpack/tank_overlay");
-
-        register(MODID, "keys/slot");
-        register(MODID, "keys/slot_selected");
-
     }
 
     //region register

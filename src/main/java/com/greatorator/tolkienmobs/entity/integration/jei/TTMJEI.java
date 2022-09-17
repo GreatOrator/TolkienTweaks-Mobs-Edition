@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.integration.jei;
+package com.greatorator.tolkienmobs.entity.integration.jei;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import mezz.jei.api.IModPlugin;

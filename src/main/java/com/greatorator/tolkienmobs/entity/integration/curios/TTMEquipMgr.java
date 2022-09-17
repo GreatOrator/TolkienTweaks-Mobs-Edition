@@ -1,11 +1,11 @@
-package com.greatorator.tolkienmobs.integration.curios;
+package com.greatorator.tolkienmobs.entity.integration.curios;
 
 import com.brandon3055.brandonscore.BrandonsCore;
 import com.brandon3055.brandonscore.capability.MultiCapabilityProvider;
 import com.brandon3055.brandonscore.lib.IEquipmentManager;
 import com.google.common.collect.ImmutableList;
+import com.greatorator.tolkienmobs.entity.integration.TTMHelper;
 import com.greatorator.tolkienmobs.handler.interfaces.ITTMEquip;
-import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.lib.FlamingBalrog;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;

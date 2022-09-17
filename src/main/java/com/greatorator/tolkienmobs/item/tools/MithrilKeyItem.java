@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.item.tools;
 
 import com.brandon3055.brandonscore.items.ItemBCore;
 import com.brandon3055.brandonscore.utils.ItemNBTHelper;
-import com.greatorator.tolkienmobs.client.gui.BronzeKeyAccessScreen;
+import com.greatorator.tolkienmobs.client.gui.MithrilKeyAccessScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -10,8 +10,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public class KeyItem extends ItemBCore {
-    public KeyItem(Properties properties) {
+public class MithrilKeyItem extends ItemBCore {
+    public MithrilKeyItem(Properties properties) {
         super(properties);
     }
 
@@ -30,7 +30,7 @@ public class KeyItem extends ItemBCore {
     }
 
     private void openGui(ItemStack stack, PlayerEntity player) {
-        Minecraft.getInstance().setScreen(new BronzeKeyAccessScreen(player, stack.getHoverName(), null, getKey(stack)));
+        Minecraft.getInstance().setScreen(new MithrilKeyAccessScreen(player, stack.getHoverName(), null, getKey(stack)));
     }
 //
 //    @OnlyIn(Dist.CLIENT)

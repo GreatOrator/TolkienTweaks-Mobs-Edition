@@ -25,10 +25,14 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.MOD;
 public class TTMParticles {
 
     public static BasicParticleType mirkwood_flame = new BasicParticleType(false);
+    public static BasicParticleType culumalda_flame = new BasicParticleType(false);
+    public static BasicParticleType lebethron_flame = new BasicParticleType(false);
 
     @SubscribeEvent
     public static void registerParticles(RegistryEvent.Register<ParticleType<?>> event) {
         event.getRegistry().register(mirkwood_flame.setRegistryName("mirkwood_flame"));
+        event.getRegistry().register(culumalda_flame.setRegistryName("culumalda_flame"));
+        event.getRegistry().register(lebethron_flame.setRegistryName("lebethron_flame"));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -36,5 +40,7 @@ public class TTMParticles {
     public static void registerFactories(ParticleFactoryRegisterEvent event) {
         ParticleManager manager = Minecraft.getInstance().particleEngine;
         manager.register(mirkwood_flame, FlameParticle.Factory::new);
+        manager.register(culumalda_flame, FlameParticle.Factory::new);
+        manager.register(lebethron_flame, FlameParticle.Factory::new);
     }
 }

@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.integration.curios;
+package com.greatorator.tolkienmobs.entity.integration.curios;
 
 import com.greatorator.tolkienmobs.handler.interfaces.ITTMEquip;
 import com.mojang.blaze3d.matrix.MatrixStack;

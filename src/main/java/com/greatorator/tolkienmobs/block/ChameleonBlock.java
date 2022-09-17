@@ -1,23 +1,29 @@
 package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.TTMContent;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.block.*;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockDisplayReader;
+import net.minecraft.world.IBlockReader;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 import java.util.*;
 
-public class ChameleonBlock extends Block {
+public class ChameleonBlock extends Block implements IWaterLoggable {
     public ChameleonBlock(Properties properties) {
         super(properties);
     }
 
-    public BlockRenderType getRenderType(BlockState iBlockState) {
+    @Nonnull
+    @SuppressWarnings("deprecated")
+    @Override
+    public BlockRenderType getRenderShape(BlockState iBlockState) {
         return BlockRenderType.MODEL;
     }
 
@@ -32,8 +38,7 @@ public class ChameleonBlock extends Block {
                     facing.getStepZ());
             BlockState adjacentBS = world.getBlockState(adjacentPosition);
             Block adjacentBlock = adjacentBS.getBlock();
-            if (!adjacentBlock.isAir(adjacentBS, world, adjacentPosition)
-                    && adjacentBS.isCollisionShapeFullBlock(world, adjacentPosition)) {
+            if (!adjacentBlock.isAir(adjacentBS, world, adjacentPosition)) {
                 adjacentSolidBlocks.put(facing, adjacentBS);
                 if (adjacentBlockCount.containsKey(adjacentBS)) {
                     adjacentBlockCount.put(adjacentBS, 1 + adjacentBlockCount.get(adjacentBS));
@@ -115,5 +120,18 @@ public class ChameleonBlock extends Block {
             }
         }
         throw new AssertionError("unreachable code");
+    }
+
+    public VoxelShape getVisualShape(BlockState p_230322_1_, IBlockReader p_230322_2_, BlockPos p_230322_3_, ISelectionContext p_230322_4_) {
+        return VoxelShapes.empty();
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public float getShadeBrightness(BlockState p_220080_1_, IBlockReader p_220080_2_, BlockPos p_220080_3_) {
+        return 1.0F;
+    }
+
+    public boolean propagatesSkylightDown(BlockState p_200123_1_, IBlockReader p_200123_2_, BlockPos p_200123_3_) {
+        return true;
     }
 }

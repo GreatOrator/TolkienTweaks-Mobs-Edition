@@ -14,6 +14,7 @@ import com.greatorator.tolkienmobs.entity.ammo.render.RenderBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderGaladhrimArrow;
 import com.greatorator.tolkienmobs.entity.boss.render.*;
+import com.greatorator.tolkienmobs.entity.integration.TTMHelper;
 import com.greatorator.tolkienmobs.entity.merchant.render.*;
 import com.greatorator.tolkienmobs.entity.merchant.villager.TTMVillagerTrades;
 import com.greatorator.tolkienmobs.entity.monster.render.*;
@@ -27,7 +28,6 @@ import com.greatorator.tolkienmobs.entity.special.render.RenderTTMShadowfax;
 import com.greatorator.tolkienmobs.event.client.ClientEvents;
 import com.greatorator.tolkienmobs.handler.TTMHearts;
 import com.greatorator.tolkienmobs.init.TTMColor;
-import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
 import com.greatorator.tolkienmobs.item.tools.KeyRingItem;
 import net.minecraft.client.Minecraft;
@@ -148,7 +148,7 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(TTMContent.PIGGYBANK.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(TTMContent.PIPEWEED.get(), cutout);
         RenderTypeLookup.setRenderLayer(TTMContent.PLACARD.get(), cutout);
-        RenderTypeLookup.setRenderLayer(TTMContent.CHAMELEON_BLOCK.get(), solid);
+        RenderTypeLookup.setRenderLayer(TTMContent.CHAMELEON_BLOCK.get(), cutout);
 
         // GUI Rendering
         ScreenManager.register(TTMContent.TMFIREPLACE_CONTAINER, FireplaceScreen::new);
@@ -158,11 +158,6 @@ public class ClientProxy extends CommonProxy {
         ScreenManager.register(TTMContent.BACKPACK_CONTAINER, BackpackScreen::new);
         ScreenManager.register(COIN_POUCH_CONTAINER, CoinPouchScreen::new);
         ScreenManager.register(KEY_RING_CONTAINER, KeyRingScreen::new);
-//        ScreenManager.register(BRONZE_KEY_CONTAINER, BronzeKeyAccessScreen::new);
-//        ScreenManager.register(SILVER_KEY_CONTAINER, KeyRingScreen::new);
-//        ScreenManager.register(GOLD_KEY_CONTAINER, KeyRingScreen::new);
-//        ScreenManager.register(MITHRIL_KEY_CONTAINER, KeyRingScreen::new);
-//        ScreenManager.register(MASTER_KEY_CONTAINER, KeyRingScreen::new);
     }
 
     //#################################################################

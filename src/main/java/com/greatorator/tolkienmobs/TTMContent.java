@@ -171,10 +171,10 @@ public class TTMContent {
     }).sound(SoundType.WOOD), TTMParticles.mirkwood_flame));
     public static RegistryObject<TorchBlock> TORCH_CULUMALDA = BLOCKS.register("torch_culumalda", () -> new TorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
-    }).sound(SoundType.WOOD), ParticleTypes.FLAME));
+    }).sound(SoundType.WOOD), TTMParticles.culumalda_flame));
     public static RegistryObject<TorchBlock> TORCH_LEBETHRON = BLOCKS.register("torch_lebethron", () -> new TorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
-    }).sound(SoundType.WOOD), ParticleTypes.FLAME));
+    }).sound(SoundType.WOOD), TTMParticles.lebethron_flame));
     public static RegistryObject<TorchBlock> WALL_TORCH_MALLORN = BLOCKS.register("wall_torch_mallorn", () -> new WallTorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
     }).sound(SoundType.WOOD), ParticleTypes.SOUL_FIRE_FLAME));
@@ -183,10 +183,10 @@ public class TTMContent {
     }).sound(SoundType.WOOD), TTMParticles.mirkwood_flame));
     public static RegistryObject<TorchBlock> WALL_TORCH_CULUMALDA = BLOCKS.register("wall_torch_culumalda", () -> new WallTorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
-    }).sound(SoundType.WOOD), ParticleTypes.FLAME));
+    }).sound(SoundType.WOOD), TTMParticles.culumalda_flame));
     public static RegistryObject<TorchBlock> WALL_TORCH_LEBETHRON = BLOCKS.register("wall_torch_lebethron", () -> new WallTorchBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
-    }).sound(SoundType.WOOD), ParticleTypes.FLAME));
+    }).sound(SoundType.WOOD), TTMParticles.lebethron_flame));
     /** Wood Types **/
     public static WoodType MALLORN_WOOD_TYPE = WoodType.register(WoodType.create(MODID + ":mallorn_wood"));
     public static WoodType MIRKWOOD_WOOD_TYPE = WoodType.register(WoodType.create(MODID + ":mirkwood_wood"));
@@ -245,7 +245,8 @@ public class TTMContent {
     public static RegistryObject<Block> BARREL_MORGULIRON = BLOCKS.register("block_barrel_morguliron", () -> new MorgulironBarrelBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).harvestTool(ToolType.PICKAXE).noOcclusion().harvestLevel(2).strength(5f, 6f)));
     public static RegistryObject<Block> BACKPACK = BLOCKS.register("backpack", () -> new BackpackBlock(AbstractBlock.Properties.of(Material.WOOL, MaterialColor.COLOR_LIGHT_GRAY).harvestTool(ToolType.AXE).noOcclusion().harvestLevel(1).strength(1f, 1f)));
     public static RegistryObject<Block> PLACARD = BLOCKS.register("placard", () -> new PlacardBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).harvestTool(ToolType.AXE).noOcclusion().harvestLevel(1).strength(1f, 1f)));
-    public static RegistryObject<Block> CHAMELEON_BLOCK = BLOCKS.register("chameleon_block", () -> new ChameleonBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission()));
+    public static RegistryObject<Block> CHAMELEON_BLOCK = BLOCKS.register("chameleon_block", () -> new ChameleonBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().noOcclusion()));
+    public static RegistryObject<Block> KEY_STONE_BLOCK = BLOCKS.register("block_key_stone", () -> new KeyStoneBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
 
     // Custom - Sleeping Bags
     public static RegistryObject<Block> SLEEPING_BAG_BLUE = BLOCKS.register("sleeping_bag_blue", () -> new SleepingBagBlock(DyeColor.BLUE, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
@@ -407,6 +408,7 @@ public class TTMContent {
     public static RegistryObject<Item> BARREL_MORGULIRON_ITEM = ITEMS.register("block_barrel_morguliron", () -> new ItemBlockBCore(BARREL_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> ITEM_PLACARD = ITEMS.register("item_placard", () -> new TTMLoreBlock(TTMContent.PLACARD.get(), (new Item.Properties()).stacksTo(1).tab(decoGroup)).setHasLore());
     public static RegistryObject<Item> CHAMELEON_BLOCK_ITEM = ITEMS.register("chameleon_block", () -> new ItemBlockBCore(CHAMELEON_BLOCK.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> KEY_STONE_BLOCK_ITEM = ITEMS.register("block_key_stone", () -> new ItemBlockBCore(KEY_STONE_BLOCK.get(), new Item.Properties().tab(decoGroup)));
 
     // Blocks - Sleeping Bags
     public static RegistryObject<Item> SLEEPING_BAG_BLUE_ITEM = ITEMS.register("sleeping_bag_blue", () -> new TTMLoreBlock(SLEEPING_BAG_BLUE.get(), new Item.Properties().tab(decoGroup)).setHasLore());
@@ -473,6 +475,9 @@ public class TTMContent {
     public static RegistryObject<Item> ITEM_REMAINS = ITEMS.register("item_remains", () -> new TTMLoreItem(new Item.Properties().stacksTo(16).tab(questGroup)).setHasLore());
     public static RegistryObject<Item> ITEM_RUNE_STONE = ITEMS.register("item_rune_stone", () -> new TTMLoreItem(new Item.Properties().stacksTo(8).tab(questGroup)).setEffectOverride().setHasLore());
 
+    // Dev Tools
+    public static RegistryObject<Item> ITEM_DEV_TOOL = ITEMS.register("item_dev_tool", () -> new TTMLoreItem(new Item.Properties().stacksTo(8).tab(questGroup)).setEffectOverride().setHasLore());
+
     // Backpack Upgrades
     public static RegistryObject<Item> ITEM_BACKPACK_UPGRADE_BASE = ITEMS.register("upgrade_item_backpack_upgrade_base", () -> new TTMLoreItem(new Item.Properties().stacksTo(5).tab(matsGroup)).setHasLore());
     public static RegistryObject<Item> ITEM_BACKPACK_UPGRADE_SIZE = ITEMS.register("item_backpack_upgrade_size", () -> new TTMLoreItem(new Item.Properties().stacksTo(2).tab(matsGroup)).setHasLore());
@@ -518,11 +523,11 @@ public class TTMContent {
     public static RegistryObject<Item> COIN_POUCH = ITEMS.register("coin_pouch", () -> new CoinPouchItem(new Item.Properties().stacksTo(1).tab(toolsGroup)).setItemHasUse().setHasLore());
     public static RegistryObject<Item> KEY_RING = ITEMS.register("key_ring", () -> new KeyRingItem(new Item.Properties().stacksTo(1).tab(toolsGroup)).setItemHasUse().setHasLore());
     public static RegistryObject<Item> HYPE_HORN = ITEMS.register("hype_horn", () -> new HypeHornItem(new Item.Properties().stacksTo(1).tab(questGroup)));
-    public static RegistryObject<Item> BRONZE_KEY = ITEMS.register("bronze_key", () -> new KeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
-    public static RegistryObject<Item> SILVER_KEY = ITEMS.register("silver_key", () -> new KeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
-    public static RegistryObject<Item> GOLD_KEY = ITEMS.register("gold_key", () -> new KeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
-    public static RegistryObject<Item> MITHRIL_KEY = ITEMS.register("mithril_key", () -> new KeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
-    public static RegistryObject<Item> MASTER_KEY = ITEMS.register("master_key", () -> new KeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
+    public static RegistryObject<Item> BRONZE_KEY = ITEMS.register("bronze_key", () -> new BronzeKeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
+    public static RegistryObject<Item> SILVER_KEY = ITEMS.register("silver_key", () -> new BronzeKeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
+    public static RegistryObject<Item> GOLD_KEY = ITEMS.register("gold_key", () -> new BronzeKeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
+    public static RegistryObject<Item> MITHRIL_KEY = ITEMS.register("mithril_key", () -> new BronzeKeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
+    public static RegistryObject<Item> MASTER_KEY = ITEMS.register("master_key", () -> new BronzeKeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
 
     // Trinkets
     public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
@@ -619,6 +624,7 @@ public class TTMContent {
     public static RegistryObject<TileEntityType<BackpackTile>> BACKPACK_TILE = TILE.register("backpack_tile", () -> TileEntityType.Builder.of(BackpackTile::new, BACKPACK.get()).build(null));
     public static RegistryObject<TileEntityType<SleepingBagTile>> SLEEPING_BAG_TILE = TILE.register("sleeping_bag", () -> new TileEntityType<>(SleepingBagTile::new, Sets.newHashSet(TTMContent.SLEEPING_BAG_RED.get(), TTMContent.SLEEPING_BAG_BLUE.get(), TTMContent.SLEEPING_BAG_BLACK.get(), TTMContent.SLEEPING_BAG_BROWN.get(), TTMContent.SLEEPING_BAG_CYAN.get(), TTMContent.SLEEPING_BAG_GRAY.get(), TTMContent.SLEEPING_BAG_GREEN.get(), TTMContent.SLEEPING_BAG_LIGHT_BLUE.get(), TTMContent.SLEEPING_BAG_LIGHT_GRAY.get(), TTMContent.SLEEPING_BAG_LIME.get(), TTMContent.SLEEPING_BAG_MAGENTA.get(), TTMContent.SLEEPING_BAG_ORANGE.get(), TTMContent.SLEEPING_BAG_PINK.get(), TTMContent.SLEEPING_BAG_PURPLE.get(), TTMContent.SLEEPING_BAG_WHITE.get(), TTMContent.SLEEPING_BAG_YELLOW.get()), null));
     public static RegistryObject<TileEntityType<PlacardTile>> PLACARD_TILE = TILE.register("placard_tile", () -> TileEntityType.Builder.of(PlacardTile::new, PLACARD.get()).build(null));
+    public static RegistryObject<TileEntityType<KeyStoneTile>> KEY_STONE_TILE = TILE.register("key_stone_tile", () -> TileEntityType.Builder.of(KeyStoneTile::new, KEY_STONE_BLOCK.get()).build(null));
 
     // Signs
     public static RegistryObject<TileEntityType<MallornSignTile>> MALLORN_SIGN_TILE = TILE.register("mallorn_sign", () -> TileEntityType.Builder.of(MallornSignTile::new, MALLORN_SIGN_WOOD_TYPE.get(), MALLORN_WALL_SIGN_WOOD_TYPE.get()).build(null));
