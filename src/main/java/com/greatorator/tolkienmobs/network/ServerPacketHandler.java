@@ -2,14 +2,11 @@ package com.greatorator.tolkienmobs.network;
 
 import codechicken.lib.packet.ICustomPacketHandler;
 import codechicken.lib.packet.PacketCustom;
-import com.brandon3055.brandonscore.handlers.HandHelper;
-import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.tile.CulumaldaSignTile;
 import com.greatorator.tolkienmobs.entity.tile.LebethronSignTile;
 import com.greatorator.tolkienmobs.entity.tile.MallornSignTile;
 import com.greatorator.tolkienmobs.entity.tile.MirkwoodSignTile;
-import com.greatorator.tolkienmobs.item.tools.KeyItem;
+import com.greatorator.tolkienmobs.item.tools.BronzeKeyItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -100,8 +97,8 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
 
     private void handleKeyCodeUpdate(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
         String newCode = packet.readString();
-        ItemStack keyStack = getItem(sender, item -> item instanceof KeyItem);
-        ((KeyItem) keyStack.getItem()).setKey(keyStack, newCode);
+        ItemStack keyStack = getItem(sender, item -> item instanceof BronzeKeyItem);
+        ((BronzeKeyItem) keyStack.getItem()).setKey(keyStack, newCode);
     }
 
     public static ItemStack getItem(PlayerEntity player, Predicate<Item> matcher) {

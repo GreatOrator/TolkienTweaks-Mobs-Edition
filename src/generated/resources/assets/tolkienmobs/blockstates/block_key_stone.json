@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "active=false,facing=north": {
+      "model": "tolkienmobs:block/block_key_stone"
+    },
+    "active=true,facing=north": {
+      "model": "tolkienmobs:block/block_key_stone_active"
+    },
+    "active=false,facing=south": {
+      "model": "tolkienmobs:block/block_key_stone",
+      "y": 180
+    },
+    "active=true,facing=south": {
+      "model": "tolkienmobs:block/block_key_stone_active",
+      "y": 180
+    },
+    "active=false,facing=west": {
+      "model": "tolkienmobs:block/block_key_stone",
+      "y": 270
+    },
+    "active=true,facing=west": {
+      "model": "tolkienmobs:block/block_key_stone_active",
+      "y": 270
+    },
+    "active=false,facing=east": {
+      "model": "tolkienmobs:block/block_key_stone",
+      "y": 90
+    },
+    "active=true,facing=east": {
+      "model": "tolkienmobs:block/block_key_stone_active",
+      "y": 90
+    }
+  }
+}

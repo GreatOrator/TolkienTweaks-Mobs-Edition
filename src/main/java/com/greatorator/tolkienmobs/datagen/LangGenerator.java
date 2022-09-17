@@ -146,6 +146,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.BARREL_MORGULIRON.get(), "Morgul Iron Barrel");
         add(TTMContent.BACKPACK.get(), "Adventurer's Backpack");
         add(TTMContent.CHAMELEON_BLOCK.get(), "Chameleon Block");
+        add(TTMContent.KEY_STONE_BLOCK.get(), "Key Stone");
         add(TTMContent.PLACARD.get(), "Country Signs");
         addLore(Item.byBlock(TTMContent.PLACARD.get()), "Shift right-click on sign to cycle types");
         add(TTMContent.SLEEPING_BAG_BLACK.get(), "Black Sleeping Bag");
@@ -223,6 +224,10 @@ public class LangGenerator extends LanguageProvider {
         add("container.tolkienmobs.coin_pouch", "Coin Pouch");
         add("container.tolkienmobs.key_ring", "Key Ring");
         add("screen.tolkienmobs.bronze_key", "Key Setup");
+        add("screen.tolkienmobs.silver_key", "Key Setup");
+        add("screen.tolkienmobs.gold_key", "Key Setup");
+        add("screen.tolkienmobs.mithril_key", "Key Setup");
+        add("screen.tolkienmobs.master_key", "Key Setup");
     }
 
     private void quest() {
@@ -735,6 +740,22 @@ public class LangGenerator extends LanguageProvider {
         helper.setPrefix("gui.tolkienmobs.key_ring.");
         helper.add("title",             "- store keys");
         helper.setPrefix("screen.tolkienmobs.bronze_key.");
+        helper.add("instructions",             "Set the code for this key. The code can be anything as long as it matches the block.");
+        helper.add("keycode",             "Key Code Field");
+        helper.add("saved",             "Code saved automatically");
+        helper.setPrefix("screen.tolkienmobs.silver_key.");
+        helper.add("instructions",             "Set the code for this key. The code can be anything as long as it matches the block.");
+        helper.add("keycode",             "Key Code Field");
+        helper.add("saved",             "Code saved automatically");
+        helper.setPrefix("screen.tolkienmobs.gold_key.");
+        helper.add("instructions",             "Set the code for this key. The code can be anything as long as it matches the block.");
+        helper.add("keycode",             "Key Code Field");
+        helper.add("saved",             "Code saved automatically");
+        helper.setPrefix("screen.tolkienmobs.mithril_key.");
+        helper.add("instructions",             "Set the code for this key. The code can be anything as long as it matches the block.");
+        helper.add("keycode",             "Key Code Field");
+        helper.add("saved",             "Code saved automatically");
+        helper.setPrefix("screen.tolkienmobs.master_key.");
         helper.add("instructions",             "Set the code for this key. The code can be anything as long as it matches the block.");
         helper.add("keycode",             "Key Code Field");
         helper.add("saved",             "Code saved automatically");

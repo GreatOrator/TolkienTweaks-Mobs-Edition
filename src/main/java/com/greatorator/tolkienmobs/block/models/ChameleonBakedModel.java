@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.block.models;
 
+import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.ChameleonBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -45,7 +46,11 @@ public class ChameleonBakedModel implements IBakedModel {
     @Nonnull
     public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @Nonnull Random rand, @Nonnull IModelData extraData)
     {
-        return getActualBakedModelFromIModelData(extraData).getQuads(state, side, rand);
+        try {
+            return getActualBakedModelFromIModelData(extraData).getQuads(state, side, rand);
+        } catch (IllegalArgumentException e) {
+            return modelWhenNotCamouflaged.getQuads(state, side, rand);
+        }
     }
 
     @Override
@@ -66,19 +71,22 @@ public class ChameleonBakedModel implements IBakedModel {
 
     private IBakedModel getActualBakedModelFromIModelData(@Nonnull IModelData data) {
         IBakedModel retval = modelWhenNotCamouflaged;  // default
-        if (!data.hasProperty(COPIED_BLOCK)) {
+
+        if (Minecraft.getInstance().player != null && Minecraft.getInstance().player.getMainHandItem().getItem() == TTMContent.ITEM_DEV_TOOL.get()) {
+            return retval;
+        } else if (!data.hasProperty(COPIED_BLOCK)) {
             if (!loggedError) {
                 LOGGER.error("IModelData did not have expected property COPIED_BLOCK");
                 loggedError = true;
             }
             return retval;
+        } else {
+            Optional<BlockState> copiedBlock = data.getData(COPIED_BLOCK);
+            if (!copiedBlock.isPresent()) return retval;
+            Minecraft mc = Minecraft.getInstance();
+            BlockRendererDispatcher blockRendererDispatcher = mc.getBlockRenderer();
+            retval = blockRendererDispatcher.getBlockModel(copiedBlock.get());
         }
-        Optional<BlockState> copiedBlock = data.getData(COPIED_BLOCK);
-        if (!copiedBlock.isPresent()) return retval;
-
-        Minecraft mc = Minecraft.getInstance();
-        BlockRendererDispatcher blockRendererDispatcher = mc.getBlockRenderer();
-        retval = blockRendererDispatcher.getBlockModel(copiedBlock.get());
         return retval;
     }
 

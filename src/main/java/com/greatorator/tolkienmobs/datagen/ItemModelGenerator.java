@@ -130,6 +130,10 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.BACKPACK.get(), modLoc("block/container_backpack"));
         getBuilder(TTMContent.ITEM_PLACARD.get().getRegistryName().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("block/placard_wall_empty")));
         blockItem(TTMContent.CHAMELEON_BLOCK.get());
+        blockItem(TTMContent.KEY_STONE_BLOCK.get());
+
+        // Dev Tools
+        simpleItem(TTMContent.ITEM_DEV_TOOL.get());
 
         // Sleeping Bags
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));

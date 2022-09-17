@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.integration;
+package com.greatorator.tolkienmobs.entity.integration;
 
 import net.minecraftforge.fml.ModList;
 

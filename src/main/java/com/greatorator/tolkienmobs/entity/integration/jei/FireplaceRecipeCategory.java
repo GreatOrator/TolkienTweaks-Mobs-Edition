@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.integration.jei;
+package com.greatorator.tolkienmobs.entity.integration.jei;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.handler.interfaces.IFireplaceRecipe;

@@ -1,0 +1,13 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "all": "tolkienmobs:block/block_key_stone_active",
+    "particle": "tolkienmobs:block/block_key_stone_active",
+    "up": "tolkienmobs:block/block_key_stone_active",
+    "down": "tolkienmobs:block/block_key_stone_active",
+    "north": "tolkienmobs:block/block_key_stone_active",
+    "south": "tolkienmobs:block/block_key_stone_active",
+    "east": "tolkienmobs:block/block_key_stone_active",
+    "west": "tolkienmobs:block/block_key_stone_active"
+  }
+}

@@ -159,6 +159,9 @@ public class BlockStateGenerator extends BlockStateProvider {
         ModelFile fireInactive = models().getExistingFile(modLoc("block/fireplace_inactive"));
         directionalFromNorthHoz(TTMContent.TTMFIREPLACE.get(), e -> e.getValue(FireplaceBlock.ACTIVE) ? fireActive : fireInactive, 180);
 
+        ModelFile keyActive = models().getExistingFile(modLoc("block/block_key_stone_active"));
+        ModelFile keyInactive = models().getExistingFile(modLoc("block/block_key_stone"));
+        horizontalBlock(TTMContent.KEY_STONE_BLOCK.get(), e -> e.getValue(KeyStoneBlock.ACTIVE) ? keyActive : keyInactive, 180);
 
         signBlock(TTMContent.MALLORN_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_mallorn");
         signBlock(TTMContent.MALLORN_WALL_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_mallorn");

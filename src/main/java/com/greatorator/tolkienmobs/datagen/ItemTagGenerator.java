@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.entity.integration.TTMHelper;
+import com.greatorator.tolkienmobs.entity.integration.curios.TTMCurios;
 import com.greatorator.tolkienmobs.init.TTMTags;
-import com.greatorator.tolkienmobs.integration.TTMHelper;
-import com.greatorator.tolkienmobs.integration.curios.TTMCurios;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
