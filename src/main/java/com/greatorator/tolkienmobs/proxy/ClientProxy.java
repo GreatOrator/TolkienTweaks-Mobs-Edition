@@ -24,6 +24,7 @@ import com.greatorator.tolkienmobs.entity.special.render.RenderTTMGollum;
 import com.greatorator.tolkienmobs.entity.special.render.RenderTTMNazgul;
 import com.greatorator.tolkienmobs.entity.special.render.RenderTTMNazgulSteed;
 import com.greatorator.tolkienmobs.entity.special.render.RenderTTMShadowfax;
+import com.greatorator.tolkienmobs.event.client.ClientEvents;
 import com.greatorator.tolkienmobs.handler.TTMHearts;
 import com.greatorator.tolkienmobs.init.TTMColor;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
@@ -58,6 +59,7 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.addListener(TTMVillagerTrades::onVillagerTradesEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(TTMColor::itemColourEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(TTMSprites::initialize);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientEvents::onModelBakeEvent);
     }
 
     @Override
