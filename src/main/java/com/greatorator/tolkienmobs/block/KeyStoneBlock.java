@@ -62,5 +62,4 @@ public class KeyStoneBlock extends ChameleonBlock{
         builder.add(FACING, ACTIVE);
         super.createBlockStateDefinition(builder);
     }
-
 }
