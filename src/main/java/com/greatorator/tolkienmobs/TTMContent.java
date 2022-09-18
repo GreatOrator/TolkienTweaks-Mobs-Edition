@@ -246,7 +246,11 @@ public class TTMContent {
     public static RegistryObject<Block> BACKPACK = BLOCKS.register("backpack", () -> new BackpackBlock(AbstractBlock.Properties.of(Material.WOOL, MaterialColor.COLOR_LIGHT_GRAY).harvestTool(ToolType.AXE).noOcclusion().harvestLevel(1).strength(1f, 1f)));
     public static RegistryObject<Block> PLACARD = BLOCKS.register("placard", () -> new PlacardBlock(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).harvestTool(ToolType.AXE).noOcclusion().harvestLevel(1).strength(1f, 1f)));
     public static RegistryObject<Block> CHAMELEON_BLOCK = BLOCKS.register("chameleon_block", () -> new ChameleonBlock(AbstractBlock.Properties.of(Material.DECORATION).noCollission().noOcclusion()));
-    public static RegistryObject<Block> KEY_STONE_BLOCK = BLOCKS.register("block_key_stone", () -> new KeyStoneBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
+    public static RegistryObject<Block> KEY_STONE_BLOCK = BLOCKS.register("block_key_stone", () -> new CamoKeyStoneBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
+    public static RegistryObject<Block> CAMO_GLOWSTONE_BLOCK = BLOCKS.register("block_camo_glowstone", () -> new CamoGlowstoneBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().lightLevel((p_235464_0_) -> {
+        return 15;
+    })));
+    public static RegistryObject<Block> CAMO_SMOKER_BLOCK = BLOCKS.register("block_camo_smoker", () -> new CamoSmokerBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
 
     // Custom - Sleeping Bags
     public static RegistryObject<Block> SLEEPING_BAG_BLUE = BLOCKS.register("sleeping_bag_blue", () -> new SleepingBagBlock(DyeColor.BLUE, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
@@ -409,6 +413,8 @@ public class TTMContent {
     public static RegistryObject<Item> ITEM_PLACARD = ITEMS.register("item_placard", () -> new TTMLoreBlock(TTMContent.PLACARD.get(), (new Item.Properties()).stacksTo(1).tab(decoGroup)).setHasLore());
     public static RegistryObject<Item> CHAMELEON_BLOCK_ITEM = ITEMS.register("chameleon_block", () -> new ItemBlockBCore(CHAMELEON_BLOCK.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> KEY_STONE_BLOCK_ITEM = ITEMS.register("block_key_stone", () -> new ItemBlockBCore(KEY_STONE_BLOCK.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> CAMO_GLOWSTONE_BLOCK_ITEM = ITEMS.register("block_camo_glowstone", () -> new ItemBlockBCore(CAMO_GLOWSTONE_BLOCK.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> CAMO_SMOKER_BLOCK_ITEM = ITEMS.register("block_camo_smoker", () -> new ItemBlockBCore(CAMO_SMOKER_BLOCK.get(), new Item.Properties().tab(decoGroup)));
 
     // Blocks - Sleeping Bags
     public static RegistryObject<Item> SLEEPING_BAG_BLUE_ITEM = ITEMS.register("sleeping_bag_blue", () -> new TTMLoreBlock(SLEEPING_BAG_BLUE.get(), new Item.Properties().tab(decoGroup)).setHasLore());
