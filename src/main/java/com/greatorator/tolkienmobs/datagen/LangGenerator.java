@@ -146,7 +146,9 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.BARREL_MORGULIRON.get(), "Morgul Iron Barrel");
         add(TTMContent.BACKPACK.get(), "Adventurer's Backpack");
         add(TTMContent.CHAMELEON_BLOCK.get(), "Chameleon Block");
-        add(TTMContent.KEY_STONE_BLOCK.get(), "Key Stone");
+        add(TTMContent.KEY_STONE_BLOCK.get(), "Camouflage Key Stone");
+        add(TTMContent.CAMO_GLOWSTONE_BLOCK.get(), "Camouflage Glowstone");
+        add(TTMContent.CAMO_SMOKER_BLOCK.get(), "Camouflage Smoker");
         add(TTMContent.PLACARD.get(), "Country Signs");
         addLore(Item.byBlock(TTMContent.PLACARD.get()), "Shift right-click on sign to cycle types");
         add(TTMContent.SLEEPING_BAG_BLACK.get(), "Black Sleeping Bag");

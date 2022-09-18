@@ -141,6 +141,8 @@ public class BlockStateGenerator extends BlockStateProvider {
         // Custom
         simpleBlock(TTMContent.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
         simpleBlock(TTMContent.STONE_PATH.get(), models().getExistingFile(modLoc("block/block_stone_path")));
+        simpleBlock(TTMContent.CAMO_GLOWSTONE_BLOCK.get());
+        simpleBlock(TTMContent.CAMO_SMOKER_BLOCK.get());
         horizontalBlock(TTMContent.BACKPACK.get(), models().getExistingFile(modLoc("block/container_backpack")), 0);
 
         ModelFile barrelMithril = models().cubeBottomTop("barrel_mithril", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top"));
@@ -161,7 +163,7 @@ public class BlockStateGenerator extends BlockStateProvider {
 
         ModelFile keyActive = models().getExistingFile(modLoc("block/block_key_stone_active"));
         ModelFile keyInactive = models().getExistingFile(modLoc("block/block_key_stone"));
-        horizontalBlock(TTMContent.KEY_STONE_BLOCK.get(), e -> e.getValue(KeyStoneBlock.ACTIVE) ? keyActive : keyInactive, 180);
+        horizontalBlock(TTMContent.KEY_STONE_BLOCK.get(), e -> e.getValue(CamoKeyStoneBlock.ACTIVE) ? keyActive : keyInactive, 180);
 
         signBlock(TTMContent.MALLORN_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_mallorn");
         signBlock(TTMContent.MALLORN_WALL_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_mallorn");

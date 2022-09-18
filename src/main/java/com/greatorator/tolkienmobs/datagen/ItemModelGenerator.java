@@ -131,6 +131,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         getBuilder(TTMContent.ITEM_PLACARD.get().getRegistryName().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("block/placard_wall_empty")));
         blockItem(TTMContent.CHAMELEON_BLOCK.get());
         blockItem(TTMContent.KEY_STONE_BLOCK.get());
+        blockItem(TTMContent.CAMO_GLOWSTONE_BLOCK.get());
+        blockItem(TTMContent.CAMO_SMOKER_BLOCK.get());
 
         // Dev Tools
         simpleItem(TTMContent.ITEM_DEV_TOOL.get());
