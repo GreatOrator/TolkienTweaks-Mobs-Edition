@@ -50,10 +50,12 @@ public class MilestoneBlock extends BlockBCore implements IWaterLoggable {
 
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState state, World worldIn, BlockPos pos, Random random) {
-        double d0 = (double)pos.getX() + 0.5;
-        double d1 = (double)pos.getY();
-        double d2 = (double)pos.getZ() + 0.5;
-        worldIn.addParticle(ParticleTypes.PORTAL, d0, d1 + (random.nextDouble() * 2), d2, (random.nextDouble() - 0.5D) * 3.0D, -random.nextDouble(), (random.nextDouble() - 0.5D) * 3.0D);
+        if (worldIn.getBlockState(pos).getValue(ACTIVE)) {
+            double d0 = (double) pos.getX() + 0.5;
+            double d1 = (double) pos.getY();
+            double d2 = (double) pos.getZ() + 0.5;
+            worldIn.addParticle(ParticleTypes.PORTAL, d0, d1 + (random.nextDouble() * 2), d2, (random.nextDouble() - 0.5D) * 3.0D, -random.nextDouble(), (random.nextDouble() - 0.5D) * 3.0D);
+        }
     }
 
     @SuppressWarnings("deprecation")
