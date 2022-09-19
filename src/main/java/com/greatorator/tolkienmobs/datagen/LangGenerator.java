@@ -776,7 +776,7 @@ public class LangGenerator extends LanguageProvider {
         helper.setPrefix("screen.tolkienmobs.milestone.");
         helper.add("instructions",             "Set the name for this Milestone.");
         helper.add("milestonename",             "Milestone Name");
-        helper.add("saved",             "Name saved automatically");
+        helper.add("saved",             "Save Name");
     }
 
     private void keyCommand() {

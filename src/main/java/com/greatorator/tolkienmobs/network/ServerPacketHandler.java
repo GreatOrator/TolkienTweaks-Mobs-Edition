@@ -2,10 +2,7 @@ package com.greatorator.tolkienmobs.network;
 
 import codechicken.lib.packet.ICustomPacketHandler;
 import codechicken.lib.packet.PacketCustom;
-import com.greatorator.tolkienmobs.entity.tile.CulumaldaSignTile;
-import com.greatorator.tolkienmobs.entity.tile.LebethronSignTile;
-import com.greatorator.tolkienmobs.entity.tile.MallornSignTile;
-import com.greatorator.tolkienmobs.entity.tile.MirkwoodSignTile;
+import com.greatorator.tolkienmobs.entity.tile.*;
 import com.greatorator.tolkienmobs.item.tools.BronzeKeyItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,6 +31,9 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
                 break;
             case TolkienNetwork.S_UPDATE_KEY_CODE:
                 handleKeyCodeUpdate(packet, sender, handler);
+                break;
+            case TolkienNetwork.S_UPDATE_MILESTONE_NAME:
+                handleMilestoneUpdate(packet, sender, handler);
                 break;
         }
     }
@@ -99,6 +99,23 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
         String newCode = packet.readString();
         ItemStack keyStack = getItem(sender, item -> item instanceof BronzeKeyItem);
         ((BronzeKeyItem) keyStack.getItem()).setKey(keyStack, newCode);
+    }
+
+    private void handleMilestoneUpdate(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
+        BlockPos blockpos = packet.readPos();
+        String newName = packet.readString();
+        sender.resetLastActionTime();
+        ServerWorld serverworld = sender.getLevel();
+        if (serverworld.hasChunkAt(blockpos)) {
+            BlockState blockstate = serverworld.getBlockState(blockpos);
+            TileEntity tileentity = serverworld.getBlockEntity(blockpos);
+            MilestoneTile milestoneTile = (MilestoneTile)tileentity;
+
+            milestoneTile.setMilestoneName(newName);
+
+            milestoneTile.setChanged();
+            serverworld.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
+        }
     }
 
     public static ItemStack getItem(PlayerEntity player, Predicate<Item> matcher) {

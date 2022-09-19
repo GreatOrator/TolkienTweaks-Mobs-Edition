@@ -633,7 +633,7 @@
   "screen.tolkienmobs.milestone": "Pick your destination",
   "screen.tolkienmobs.milestone.instructions": "Set the name for this Milestone.",
   "screen.tolkienmobs.milestone.milestonename": "Milestone Name",
-  "screen.tolkienmobs.milestone.saved": "Name saved automatically",
+  "screen.tolkienmobs.milestone.saved": "Save Name",
   "screen.tolkienmobs.mithril_key": "Key Setup",
   "screen.tolkienmobs.mithril_key.instructions": "Set the code for this key. The code can be anything as long as it matches the block.",
   "screen.tolkienmobs.mithril_key.keycode": "Key Code Field",
