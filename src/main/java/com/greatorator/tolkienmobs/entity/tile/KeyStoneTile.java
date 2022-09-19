@@ -1,10 +1,10 @@
 package com.greatorator.tolkienmobs.entity.tile;
 
+import com.brandon3055.brandonscore.blocks.TileBCore;
 import com.greatorator.tolkienmobs.TTMContent;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 
-public class KeyStoneTile extends TileEntity {
+public class KeyStoneTile extends TileBCore {
     public KeyStoneTile(TileEntityType<?> tileEntityType) {
         super(tileEntityType);
     }

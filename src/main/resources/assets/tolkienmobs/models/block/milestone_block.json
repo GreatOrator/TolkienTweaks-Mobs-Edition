@@ -1,0 +1,126 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 32],
+	"textures": {
+		"0": "tolkienmobs:block/milestone/milestone_block",
+		"1": "tolkienmobs:block/milestone/milestone_block_text",
+		"particle": "tolkienmobs:block/milestone/milestone_block"
+	},
+	"elements": [
+		{
+			"name": "base",
+			"from": [2, 0, 2],
+			"to": [14, 6, 14],
+			"faces": {
+				"north": {"uv": [13, 11.5, 16, 16], "texture": "#0"},
+				"east": {"uv": [13, 11.5, 16, 16], "texture": "#0"},
+				"south": {"uv": [13, 11.5, 16, 16], "texture": "#0"},
+				"west": {"uv": [13, 11.5, 16, 16], "texture": "#0"},
+				"up": {"uv": [13, 5.5, 16, 11.5], "texture": "#0"},
+				"down": {"uv": [13, 5.5, 16, 11.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "cap",
+			"from": [2, 29, 2],
+			"to": [14, 32, 14],
+			"faces": {
+				"north": {"uv": [13, 11.5, 16, 16], "texture": "#0"},
+				"east": {"uv": [13, 11.5, 16, 16], "texture": "#0"},
+				"south": {"uv": [13, 11.5, 16, 16], "texture": "#0"},
+				"west": {"uv": [13, 11.5, 16, 16], "texture": "#0"},
+				"up": {"uv": [13, 5.5, 16, 11.5], "texture": "#0"},
+				"down": {"uv": [13, 5.5, 16, 11.5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "pillar",
+			"from": [6, 6, 3],
+			"to": [10, 29, 9],
+			"faces": {
+				"north": {"uv": [0, 1.5, 16, 14.5], "rotation": 270, "texture": "#1"},
+				"east": {"uv": [11.5, 4.5, 13, 16], "texture": "#0"},
+				"south": {"uv": [11.5, 4.5, 13, 16], "texture": "#0"},
+				"west": {"uv": [11.5, 4.5, 13, 16], "texture": "#0"},
+				"up": {"uv": [13, 11.5, 16, 16], "texture": "#0"},
+				"down": {"uv": [13, 11.5, 16, 16], "texture": "#0"}
+			}
+		},
+		{
+			"name": "pillar",
+			"from": [3, 6, 6],
+			"to": [9, 29, 10],
+			"faces": {
+				"north": {"uv": [11.5, 4.5, 13, 16], "texture": "#0"},
+				"east": {"uv": [11.5, 4.5, 13, 16], "texture": "#0"},
+				"south": {"uv": [11.5, 4.5, 13, 16], "texture": "#0"},
+				"west": {"uv": [0, 1.5, 16, 14.5], "rotation": 270, "texture": "#1"},
+				"up": {"uv": [13, 11.5, 16, 16], "rotation": 270, "texture": "#0"},
+				"down": {"uv": [13, 11.5, 16, 16], "rotation": 90, "texture": "#0"}
+			}
+		},
+		{
+			"name": "pillar",
+			"from": [6, 6, 7],
+			"to": [10, 29, 13],
+			"faces": {
+				"north": {"uv": [11.5, 4.5, 13, 16], "texture": "#0"},
+				"east": {"uv": [11.5, 4.5, 13, 16], "texture": "#0"},
+				"south": {"uv": [0, 1.5, 16, 14.5], "rotation": 270, "texture": "#1"},
+				"west": {"uv": [11.5, 4.5, 13, 16], "texture": "#0"},
+				"up": {"uv": [13, 11.5, 16, 16], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [13, 11.5, 16, 16], "rotation": 180, "texture": "#0"}
+			}
+		},
+		{
+			"name": "pillar",
+			"from": [7, 6, 6],
+			"to": [13, 29, 10],
+			"faces": {
+				"north": {"uv": [11.5, 4.5, 13, 16], "texture": "#0"},
+				"east": {"uv": [0, 1.5, 16, 14.5], "rotation": 270, "texture": "#1"},
+				"south": {"uv": [11.5, 4.5, 13, 16], "texture": "#0"},
+				"west": {"uv": [11.5, 4.5, 13, 16], "texture": "#0"},
+				"up": {"uv": [13, 11.5, 16, 16], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [13, 11.5, 16, 16], "rotation": 270, "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"thirdperson_lefthand": {
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"firstperson_righthand": {
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"firstperson_lefthand": {
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"ground": {
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"translation": [0, -4, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"head": {
+			"translation": [0, 7.5, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"fixed": {
+			"translation": [0, -3.75, 0],
+			"scale": [0.5, 0.5, 0.5]
+		}
+	},
+	"groups": [
+		{
+			"name": "milestone",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5]
+		}
+	]
+}

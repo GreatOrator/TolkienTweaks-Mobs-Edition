@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import java.util.*;
 
-public class ChameleonBlock extends Block implements IWaterLoggable {
+public class ChameleonBlock<C> extends Block implements IWaterLoggable {
     public ChameleonBlock(Properties properties) {
         super(properties);
     }

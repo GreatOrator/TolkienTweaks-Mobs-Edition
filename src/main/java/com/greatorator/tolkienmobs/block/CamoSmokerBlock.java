@@ -9,7 +9,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Random;
 
-public class CamoSmokerBlock extends ChameleonBlock{
+public class CamoSmokerBlock extends ChameleonBlock {
     public CamoSmokerBlock(Properties properties) {
         super(properties);
     }

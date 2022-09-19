@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "tolkienmobs:block/lockable_chest_block"
+    }
+  }
+}
