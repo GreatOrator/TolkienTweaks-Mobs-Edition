@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.capability;
+package com.greatorator.tolkienmobs.container.capability;
 
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;

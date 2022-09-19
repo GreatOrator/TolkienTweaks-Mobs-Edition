@@ -2,8 +2,8 @@ package com.greatorator.tolkienmobs.item.tools;
 
 import codechicken.lib.inventory.InventoryUtils;
 import com.brandon3055.brandonscore.inventory.PlayerSlot;
-import com.greatorator.tolkienmobs.capability.ItemStackInventory;
 import com.greatorator.tolkienmobs.container.CoinPouchContainer;
+import com.greatorator.tolkienmobs.container.capability.ItemStackInventory;
 import com.greatorator.tolkienmobs.handler.TTMLoreItem;
 import com.greatorator.tolkienmobs.init.TTMTags;
 import net.minecraft.entity.LivingEntity;

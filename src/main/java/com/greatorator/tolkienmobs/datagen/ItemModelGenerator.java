@@ -133,9 +133,15 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.KEY_STONE_BLOCK.get());
         blockItem(TTMContent.CAMO_GLOWSTONE_BLOCK.get());
         blockItem(TTMContent.CAMO_SMOKER_BLOCK.get());
+        blockItem(TTMContent.CAMO_FLUID_BLOCK.get());
+        blockItem(TTMContent.CAMO_CHEST_BLOCK.get());
+        blockItem(TTMContent.CAMO_SPAWNER_BLOCK.get());
+        blockItem(TTMContent.MILESTONE_BLOCK.get());
+        blockItem(TTMContent.LOCKABLE_CHEST_BLOCK.get());
 
         // Dev Tools
         simpleItem(TTMContent.ITEM_DEV_TOOL.get());
+        simpleItem(TTMContent.ITEM_DEV_DEBUG_TOOL.get());
 
         // Sleeping Bags
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));

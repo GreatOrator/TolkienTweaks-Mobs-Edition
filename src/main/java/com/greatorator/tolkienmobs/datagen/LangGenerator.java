@@ -149,6 +149,12 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.KEY_STONE_BLOCK.get(), "Camouflage Key Stone");
         add(TTMContent.CAMO_GLOWSTONE_BLOCK.get(), "Camouflage Glowstone");
         add(TTMContent.CAMO_SMOKER_BLOCK.get(), "Camouflage Smoker");
+        add(TTMContent.CAMO_FLUID_BLOCK.get(), "Camouflage Fluid Source");
+        addLore(Item.byBlock(TTMContent.CAMO_FLUID_BLOCK.get()), "Right-click with bucket to set fluid");
+        add(TTMContent.CAMO_CHEST_BLOCK.get(), "Camouflage Chest");
+        add(TTMContent.CAMO_SPAWNER_BLOCK.get(), "Camouflage Spawner");
+        add(TTMContent.MILESTONE_BLOCK.get(), "Fast-travel Milestone");
+        add(TTMContent.LOCKABLE_CHEST_BLOCK.get(), "Lockable Chest");
         add(TTMContent.PLACARD.get(), "Country Signs");
         addLore(Item.byBlock(TTMContent.PLACARD.get()), "Shift right-click on sign to cycle types");
         add(TTMContent.SLEEPING_BAG_BLACK.get(), "Black Sleeping Bag");
@@ -230,6 +236,7 @@ public class LangGenerator extends LanguageProvider {
         add("screen.tolkienmobs.gold_key", "Key Setup");
         add("screen.tolkienmobs.mithril_key", "Key Setup");
         add("screen.tolkienmobs.master_key", "Key Setup");
+        add("screen.tolkienmobs.milestone", "Pick your destination");
     }
 
     private void quest() {
@@ -335,6 +342,11 @@ public class LangGenerator extends LanguageProvider {
         addLore(TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get(), "Carry around a sleeping bag (Max-1)");
         add(TTMContent.ITEM_BACKPACK_UPGRADE_CAMPFIRE.get(), "Backpack Upgrade - Campfire");
         addLore(TTMContent.ITEM_BACKPACK_UPGRADE_CAMPFIRE.get(), "Quick use campfire (Max-1)");
+
+        add(TTMContent.ITEM_DEV_TOOL.get(), "Dev Tool");
+        addLore(TTMContent.ITEM_DEV_TOOL.get(), "Use to temporarily reset camo blocks to default texture");
+        add(TTMContent.ITEM_DEV_DEBUG_TOOL.get(), "Dev Tool - Debug");
+        addLore(TTMContent.ITEM_DEV_DEBUG_TOOL.get(), "Used to reset certain blocks");
     }
 
     private void coinToken() {
@@ -761,7 +773,10 @@ public class LangGenerator extends LanguageProvider {
         helper.add("instructions",             "Set the code for this key. The code can be anything as long as it matches the block.");
         helper.add("keycode",             "Key Code Field");
         helper.add("saved",             "Code saved automatically");
-
+        helper.setPrefix("screen.tolkienmobs.milestone.");
+        helper.add("instructions",             "Set the name for this Milestone.");
+        helper.add("milestonename",             "Milestone Name");
+        helper.add("saved",             "Name saved automatically");
     }
 
     private void keyCommand() {
