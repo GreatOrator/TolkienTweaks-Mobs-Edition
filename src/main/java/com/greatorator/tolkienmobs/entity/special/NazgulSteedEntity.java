@@ -18,8 +18,8 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class EntityTTMNazgulSteed extends HorseEntity {
-    public EntityTTMNazgulSteed(EntityType<? extends HorseEntity> type, World worldIn) {
+public class NazgulSteedEntity extends HorseEntity {
+    public NazgulSteedEntity(EntityType<? extends HorseEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
@@ -34,7 +34,7 @@ public class EntityTTMNazgulSteed extends HorseEntity {
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         if (TTMRand.getRandomInteger(15, 1) == 2) {
-            EntityTTMNazgul entitynazgul = EntityGenerator.ENTITY_TTM_NAZGUL.get().create(this.level);
+            NazgulEntity entitynazgul = EntityGenerator.ENTITY_TTM_NAZGUL.get().create(this.level);
             entitynazgul.moveTo(this.getX(), this.getY(), this.getZ(), this.yRot, 0.0F);
             entitynazgul.finalizeSpawn(worldIn, difficultyIn, reason, (ILivingEntityData)null, (CompoundNBT)null);
             entitynazgul.startRiding(this);

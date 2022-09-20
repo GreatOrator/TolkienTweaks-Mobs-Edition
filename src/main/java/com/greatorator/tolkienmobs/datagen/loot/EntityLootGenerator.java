@@ -79,12 +79,6 @@ public class EntityLootGenerator extends EntityLootTables {
                                         .apply(SetCount.setCount(RandomValueRange.between(0.0F, 1.0F)))
                                         .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
                                 .when(KilledByPlayer.killedByPlayer())));
-        // Merchant
-//        add(EntityGenerator.ENTITY_TTM_HUMAN.get(), LootTable.lootTable());
-//        add(EntityGenerator.ENTITY_TTM_DWARF.get(), LootTable.lootTable());
-//        add(EntityGenerator.ENTITY_TTM_ELVES.get(), LootTable.lootTable());
-//        add(EntityGenerator.ENTITY_TTM_HOBBIT.get(), LootTable.lootTable());
-//        add(EntityGenerator.ENTITY_TTM_DESERTDWELLER.get(), LootTable.lootTable());
 
         // Passive
         add(EntityGenerator.ENTITY_TTM_AUROCH.get(),

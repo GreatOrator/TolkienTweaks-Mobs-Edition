@@ -30,7 +30,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class EntityTTMNazgul extends MonsterEntity {
+public class NazgulEntity extends MonsterEntity {
     private final ServerBossInfo bossInfo = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenScreen(true);
 
     /** Set up using weapons **/
@@ -38,13 +38,13 @@ public class EntityTTMNazgul extends MonsterEntity {
         @Override
         public void stop() {
             super.stop();
-            EntityTTMNazgul.this.setAggressive(false);
+            NazgulEntity.this.setAggressive(false);
         }
 
         @Override
         public void start() {
             super.start();
-            EntityTTMNazgul.this.setAggressive(true);
+            NazgulEntity.this.setAggressive(true);
         }
     };
     /** End Region **/
@@ -52,7 +52,7 @@ public class EntityTTMNazgul extends MonsterEntity {
     private long nextAbilityUse = 0L;
     private final static long coolDown = 15000L;
 
-    public EntityTTMNazgul(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
+    public NazgulEntity(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
@@ -204,7 +204,7 @@ public class EntityTTMNazgul extends MonsterEntity {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    public static boolean checkNazgulSpawn(EntityType<EntityTTMNazgul> type, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
+    public static boolean checkNazgulSpawn(EntityType<NazgulEntity> type, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
         int chance = 200; //1 in x
         return random.nextInt(chance) == 0 && checkMobSpawnRules(type, world, reason, pos, random);
     }

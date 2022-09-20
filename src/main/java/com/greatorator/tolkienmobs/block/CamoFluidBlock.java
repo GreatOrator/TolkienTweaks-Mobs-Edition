@@ -1,12 +1,15 @@
 package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.entity.tile.CamoFluidTile;
-import net.minecraftforge.fluids.FluidStack;
+import net.minecraft.block.BlockState;
 
-public class CamoFluidBlock extends ChameleonBlock<CamoFluidTile>{
-    private FluidStack fluidStack = null;
-
+public class CamoFluidBlock extends ChameleonBlock<CamoFluidTile> {
     public CamoFluidBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
     }
 }
