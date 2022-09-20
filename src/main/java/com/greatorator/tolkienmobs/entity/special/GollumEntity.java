@@ -20,8 +20,8 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class EntityTTMGollum extends MonsterEntity {
-    public EntityTTMGollum(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
+public class GollumEntity extends MonsterEntity {
+    public GollumEntity(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
         super(type, worldIn);
     }
 
@@ -80,7 +80,7 @@ public class EntityTTMGollum extends MonsterEntity {
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
     }
 
-    public static boolean checkGollumSpawn(EntityType<EntityTTMGollum> type, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
+    public static boolean checkGollumSpawn(EntityType<GollumEntity> type, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
         int chance = 200; //1 in x
         return random.nextInt(chance) == 0 && checkMobSpawnRules(type, world, reason, pos, random);
     }

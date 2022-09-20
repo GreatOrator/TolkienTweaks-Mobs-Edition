@@ -54,10 +54,10 @@ public class MilestoneTile extends TileBCore implements INamedContainerProvider,
     }
 
     public void onRightClick(PlayerEntity playerEntity, Hand hand) {
-        if (!playerEntity.level.isClientSide()) {
-            setMilestoneLocation();
-
+        if (!playerEntity.level.isClientSide() && playerEntity.isCreative()) {
             openGUI(playerEntity, this, worldPosition);
+        }else {
+            setMilestoneLocation();
         }
     }
 

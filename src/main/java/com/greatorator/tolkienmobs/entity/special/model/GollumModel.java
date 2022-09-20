@@ -9,7 +9,7 @@ import net.minecraft.util.math.MathHelper;
 /**
  * ModelGollum - GreatOrator
  */
-public class ModelTTMGollum<T extends MonsterEntity> extends BipedModel<T> {
+public class GollumModel<T extends MonsterEntity> extends BipedModel<T> {
     public ModelRenderer GollumLegL;
     public ModelRenderer GollumHead;
     public ModelRenderer GollumBody;
@@ -30,7 +30,7 @@ public class ModelTTMGollum<T extends MonsterEntity> extends BipedModel<T> {
     public ModelRenderer bipedRightArm;
     private boolean ghostModel;
 
-    public ModelTTMGollum(float modelSize, boolean p_i46303_2_) {
+    public GollumModel(float modelSize, boolean p_i46303_2_) {
         super(modelSize);
         this.ghostModel = p_i46303_2_;
         this.texWidth = 64;

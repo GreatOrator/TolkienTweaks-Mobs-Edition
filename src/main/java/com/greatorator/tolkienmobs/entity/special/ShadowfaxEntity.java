@@ -9,8 +9,8 @@ import net.minecraft.entity.passive.horse.HorseEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class EntityTTMShadowfax extends HorseEntity {
-    public EntityTTMShadowfax(EntityType<? extends HorseEntity> type, World worldIn) {
+public class ShadowfaxEntity extends HorseEntity {
+    public ShadowfaxEntity(EntityType<? extends HorseEntity> type, World worldIn) {
         super(type, worldIn);
     }
 

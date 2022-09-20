@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.entity.server;
+package com.greatorator.tolkienmobs.event.entity;
 
 import com.brandon3055.brandonscore.api.TimeKeeper;
 import com.greatorator.tolkienmobs.datagen.BiomeGenerator;
@@ -45,7 +45,7 @@ import java.util.Map;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 
-public class TTMServerEvents {
+public class ServerEntityEvents {
 
     public static void balrogMark (LivingEvent.LivingUpdateEvent living){
         LivingEntity entity = living.getEntityLiving();

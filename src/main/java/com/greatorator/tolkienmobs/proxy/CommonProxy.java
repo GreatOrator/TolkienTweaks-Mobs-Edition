@@ -9,7 +9,7 @@ import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
 import com.greatorator.tolkienmobs.datagen.StructureGenerator;
 import com.greatorator.tolkienmobs.entity.integration.TTMHelper;
 import com.greatorator.tolkienmobs.entity.integration.curios.TTMEquipMgr;
-import com.greatorator.tolkienmobs.entity.server.TTMServerEvents;
+import com.greatorator.tolkienmobs.event.entity.ServerEntityEvents;
 import com.greatorator.tolkienmobs.event.entity.SleepingEvent;
 import com.greatorator.tolkienmobs.init.TTMTags;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
@@ -45,11 +45,11 @@ public class CommonProxy {
         TTMEquipMgr.initialize();
         TTMTags.init();
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-        MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::balrogMark);
-        MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::hobbitPlow);
-        MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::onPlayerUpdate);
-        MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::addDimensionalSpacing);
-        MinecraftForge.EVENT_BUS.addListener(TTMServerEvents::biomeModification);
+        MinecraftForge.EVENT_BUS.addListener(ServerEntityEvents::balrogMark);
+        MinecraftForge.EVENT_BUS.addListener(ServerEntityEvents::hobbitPlow);
+        MinecraftForge.EVENT_BUS.addListener(ServerEntityEvents::onPlayerUpdate);
+        MinecraftForge.EVENT_BUS.addListener(ServerEntityEvents::addDimensionalSpacing);
+        MinecraftForge.EVENT_BUS.addListener(ServerEntityEvents::biomeModification);
 
         TTMTreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
 
