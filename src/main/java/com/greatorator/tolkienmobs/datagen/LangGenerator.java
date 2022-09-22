@@ -753,23 +753,7 @@ public class LangGenerator extends LanguageProvider {
         helper.add("title",             "- store coins");
         helper.setPrefix("gui.tolkienmobs.key_ring.");
         helper.add("title",             "- store keys");
-        helper.setPrefix("screen.tolkienmobs.bronze_key.");
-        helper.add("instructions",             "Set the code for this key. The code can be anything as long as it matches the block.");
-        helper.add("keycode",             "Key Code Field");
-        helper.add("saved",             "Code saved automatically");
-        helper.setPrefix("screen.tolkienmobs.silver_key.");
-        helper.add("instructions",             "Set the code for this key. The code can be anything as long as it matches the block.");
-        helper.add("keycode",             "Key Code Field");
-        helper.add("saved",             "Code saved automatically");
-        helper.setPrefix("screen.tolkienmobs.gold_key.");
-        helper.add("instructions",             "Set the code for this key. The code can be anything as long as it matches the block.");
-        helper.add("keycode",             "Key Code Field");
-        helper.add("saved",             "Code saved automatically");
-        helper.setPrefix("screen.tolkienmobs.mithril_key.");
-        helper.add("instructions",             "Set the code for this key. The code can be anything as long as it matches the block.");
-        helper.add("keycode",             "Key Code Field");
-        helper.add("saved",             "Code saved automatically");
-        helper.setPrefix("screen.tolkienmobs.master_key.");
+        helper.setPrefix("screen.tolkienmobs.base_key.");
         helper.add("instructions",             "Set the code for this key. The code can be anything as long as it matches the block.");
         helper.add("keycode",             "Key Code Field");
         helper.add("saved",             "Code saved automatically");
@@ -777,6 +761,21 @@ public class LangGenerator extends LanguageProvider {
         helper.add("instructions",             "Set the name for this Milestone.");
         helper.add("milestonename",             "Milestone Name");
         helper.add("saved",             "Save Name");
+        helper.setPrefix("screen.tolkienmobs.keystone.");
+        helper.add("instructions",             "Code to set, must match any keys.");
+        helper.add("keystonecode",             "Key Stone Code");
+        helper.add("saved",             "Save Code");
+        helper.add("redstone.always",             "Redstone activated with key");
+        helper.add("redstone.always.active",             "Redstone activated with key");
+        helper.add("redstone.delay",             "Redstone stays on for x ticks");
+        helper.add("redstone.delay.active",             "Redstone stays on for x ticks");
+        helper.add("redstone.pulse",             "Redstone acts like button when key used");
+        helper.add("redstone.pulse.active",             "Redstone acts like button when key used");
+        helper.add("key.keep",             "Player keeps key");
+        helper.add("key.consume",             "Key taken when used");
+        helper.add("delaytitle",             "Tick Delay");
+        helper.add("tickdelay",             "Set the amount of delay to keep redstone on");
+        helper.add("savedelay",             "Set Delay");
     }
 
     private void keyCommand() {

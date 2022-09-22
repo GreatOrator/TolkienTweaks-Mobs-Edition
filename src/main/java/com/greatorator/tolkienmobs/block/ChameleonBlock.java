@@ -28,6 +28,7 @@ import java.util.*;
 public class ChameleonBlock<C> extends Block implements IWaterLoggable {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
 
     protected static final VoxelShape SHAPE_NORTH = Block.box(0.0, 0.0D, 0.0, 16.0, 16.0, 16.0);
@@ -39,6 +40,7 @@ public class ChameleonBlock<C> extends Block implements IWaterLoggable {
     public ChameleonBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.FALSE));
+
     }
 
     @SuppressWarnings("deprecation")
@@ -59,11 +61,22 @@ public class ChameleonBlock<C> extends Block implements IWaterLoggable {
     }
 
     @Override
+    public boolean isSignalSource(BlockState iBlockState)
+    {
+        return true;
+    }
+
+    @Override
+    public int getSignal(BlockState blockState, IBlockReader blockAccess, BlockPos pos, Direction directionFromNeighborToThis) {
+        return blockState.getValue(POWERED) ? 15 : 0;
+    }
+
+
+    @Override
     public BlockState updateShape(BlockState state, Direction facing, BlockState neighbor, IWorld world, BlockPos pos, BlockPos offset) {
         if (state.getValue(WATERLOGGED)) {
             world.getLiquidTicks().scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
-
         return state;
     }
 

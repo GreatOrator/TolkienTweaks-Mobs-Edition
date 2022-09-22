@@ -541,10 +541,10 @@ public class TTMContent {
     public static RegistryObject<Item> KEY_RING = ITEMS.register("key_ring", () -> new KeyRingItem(new Item.Properties().stacksTo(1).tab(toolsGroup)).setItemHasUse().setHasLore());
     public static RegistryObject<Item> HYPE_HORN = ITEMS.register("hype_horn", () -> new HypeHornItem(new Item.Properties().stacksTo(1).tab(questGroup)));
     public static RegistryObject<Item> BRONZE_KEY = ITEMS.register("bronze_key", () -> new BronzeKeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
-    public static RegistryObject<Item> SILVER_KEY = ITEMS.register("silver_key", () -> new BronzeKeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
-    public static RegistryObject<Item> GOLD_KEY = ITEMS.register("gold_key", () -> new BronzeKeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
-    public static RegistryObject<Item> MITHRIL_KEY = ITEMS.register("mithril_key", () -> new BronzeKeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
-    public static RegistryObject<Item> MASTER_KEY = ITEMS.register("master_key", () -> new BronzeKeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
+    public static RegistryObject<Item> SILVER_KEY = ITEMS.register("silver_key", () -> new SilverKeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
+    public static RegistryObject<Item> GOLD_KEY = ITEMS.register("gold_key", () -> new GoldKeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
+    public static RegistryObject<Item> MITHRIL_KEY = ITEMS.register("mithril_key", () -> new MithrilKeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
+    public static RegistryObject<Item> MASTER_KEY = ITEMS.register("master_key", () -> new MasterKeyItem(new Item.Properties().stacksTo(1).tab(questGroup)));
 
     // Trinkets
     public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
@@ -641,7 +641,7 @@ public class TTMContent {
     public static RegistryObject<TileEntityType<BackpackTile>> BACKPACK_TILE = TILE.register("backpack_tile", () -> TileEntityType.Builder.of(BackpackTile::new, BACKPACK.get()).build(null));
     public static RegistryObject<TileEntityType<SleepingBagTile>> SLEEPING_BAG_TILE = TILE.register("sleeping_bag", () -> new TileEntityType<>(SleepingBagTile::new, Sets.newHashSet(TTMContent.SLEEPING_BAG_RED.get(), TTMContent.SLEEPING_BAG_BLUE.get(), TTMContent.SLEEPING_BAG_BLACK.get(), TTMContent.SLEEPING_BAG_BROWN.get(), TTMContent.SLEEPING_BAG_CYAN.get(), TTMContent.SLEEPING_BAG_GRAY.get(), TTMContent.SLEEPING_BAG_GREEN.get(), TTMContent.SLEEPING_BAG_LIGHT_BLUE.get(), TTMContent.SLEEPING_BAG_LIGHT_GRAY.get(), TTMContent.SLEEPING_BAG_LIME.get(), TTMContent.SLEEPING_BAG_MAGENTA.get(), TTMContent.SLEEPING_BAG_ORANGE.get(), TTMContent.SLEEPING_BAG_PINK.get(), TTMContent.SLEEPING_BAG_PURPLE.get(), TTMContent.SLEEPING_BAG_WHITE.get(), TTMContent.SLEEPING_BAG_YELLOW.get()), null));
     public static RegistryObject<TileEntityType<PlacardTile>> PLACARD_TILE = TILE.register("placard_tile", () -> TileEntityType.Builder.of(PlacardTile::new, PLACARD.get()).build(null));
-    public static RegistryObject<TileEntityType<KeyStoneTile>> KEY_STONE_TILE = TILE.register("key_stone_tile", () -> TileEntityType.Builder.of(KeyStoneTile::new, KEY_STONE_BLOCK.get()).build(null));
+    public static RegistryObject<TileEntityType<CamoKeyStoneTile>> KEY_STONE_TILE = TILE.register("key_stone_tile", () -> TileEntityType.Builder.of(CamoKeyStoneTile::new, KEY_STONE_BLOCK.get()).build(null));
     public static RegistryObject<TileEntityType<CamoFluidTile>> CAMO_FLUID_TILE = TILE.register("camo_fluid_tile", () -> TileEntityType.Builder.of(CamoFluidTile::new, CAMO_FLUID_BLOCK.get()).build(null));
     public static RegistryObject<TileEntityType<CamoChestTile>> CAMO_CHEST_TILE = TILE.register("camo_chest_tile", () -> TileEntityType.Builder.of(CamoChestTile::new, CAMO_CHEST_BLOCK.get()).build(null));
     public static RegistryObject<TileEntityType<CamoSpawnerTile>> CAMO_SPAWNER_TILE = TILE.register("camo_spawner_tile", () -> TileEntityType.Builder.of(CamoSpawnerTile::new, CAMO_SPAWNER_BLOCK.get()).build(null));
@@ -665,11 +665,7 @@ public class TTMContent {
     public static ContainerType<CoinPouchContainer> COIN_POUCH_CONTAINER;
     public static ContainerType<KeyRingContainer> KEY_RING_CONTAINER;
     public static ContainerType<ContainerBCTile<MilestoneTile>> MILESTONE_CONTAINER;
-//    public static ContainerType<BronzeKeyAccessContainer> BRONZE_KEY_CONTAINER;
-//    public static ContainerType<BronzeKeyAccessContainer> SILVER_KEY_CONTAINER;
-//    public static ContainerType<BronzeKeyAccessContainer> GOLD_KEY_CONTAINER;
-//    public static ContainerType<BronzeKeyAccessContainer> MITHRIL_KEY_CONTAINER;
-//    public static ContainerType<BronzeKeyAccessContainer> MASTER_KEY_CONTAINER;
+    public static ContainerType<ContainerBCTile<CamoKeyStoneTile>> KEY_STONE_CONTAINER;
 
     public static void registerContainers(RegistryEvent.Register<ContainerType<?>> event) {
         event.getRegistry().register(TMFIREPLACE_CONTAINER = (ContainerType<ContainerBCTile<FireplaceTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(TMFIREPLACE_CONTAINER, id, playerInv, extraData, FireplaceTile.SLOT_LAYOUT)).setRegistryName("tmfireplace_container"));
@@ -680,11 +676,7 @@ public class TTMContent {
         event.getRegistry().register(COIN_POUCH_CONTAINER = (ContainerType<CoinPouchContainer>) IForgeContainerType.create(CoinPouchContainer::new).setRegistryName("coin_pouch_container"));
         event.getRegistry().register(KEY_RING_CONTAINER = (ContainerType<KeyRingContainer>) IForgeContainerType.create(KeyRingContainer::new).setRegistryName("key_ring_container"));
         event.getRegistry().register(MILESTONE_CONTAINER = ((ContainerType<ContainerBCTile<MilestoneTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(MILESTONE_CONTAINER, id, playerInv, extraData)).setRegistryName("milestone_container")));
-//        event.getRegistry().register(BRONZE_KEY_CONTAINER = (ContainerType<BronzeKeyAccessContainer>) IForgeContainerType.create(BronzeKeyAccessContainer::new).setRegistryName("bronze_key_container"));
-//        event.getRegistry().register(SILVER_KEY_CONTAINER = (ContainerType<BronzeKeyAccessContainer>) IForgeContainerType.create(BronzeKeyAccessContainer::new).setRegistryName("silver_key_container"));
-//        event.getRegistry().register(GOLD_KEY_CONTAINER = (ContainerType<BronzeKeyAccessContainer>) IForgeContainerType.create(BronzeKeyAccessContainer::new).setRegistryName("gold_key_container"));
-//        event.getRegistry().register(MITHRIL_KEY_CONTAINER = (ContainerType<BronzeKeyAccessContainer>) IForgeContainerType.create(BronzeKeyAccessContainer::new).setRegistryName("mithril_key_container"));
-//        event.getRegistry().register(MASTER_KEY_CONTAINER = (ContainerType<BronzeKeyAccessContainer>) IForgeContainerType.create(BronzeKeyAccessContainer::new).setRegistryName("master_key_container"));
+        event.getRegistry().register(KEY_STONE_CONTAINER = ((ContainerType<ContainerBCTile<CamoKeyStoneTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(KEY_STONE_CONTAINER, id, playerInv, extraData)).setRegistryName("key_stone_container")));
     }
 
     //#################################################################

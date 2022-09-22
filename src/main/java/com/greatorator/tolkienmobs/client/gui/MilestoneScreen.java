@@ -58,16 +58,17 @@ public class MilestoneScreen extends ModularGuiContainer<ContainerBCTile<Milesto
                     .setMaxXPos(codeBG.maxXPos() - 1, true);
             temp.background.addChild(codeBG);
             GuiTextField milestoneName = toolkit.createTextField(temp.background)
-                        .setFieldEnabled(true)
-                        .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("instructions"))
-                        .setValidator(toolkit.catchyValidator(s -> s.equals("") || !invalidCharacters.matcher(s).find()))
-                        .setPos(codeBG.xPos() + 2, codeBG.maxYPos() - 11)
-                        .setSize(186, 10);
+                    .setText(tile.milestoneName.get())
+                    .setFieldEnabled(true)
+                    .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("instructions"))
+                    .setValidator(toolkit.catchyValidator(s -> s.equals("") || !invalidCharacters.matcher(s).find()))
+                    .setPos(codeBG.xPos() + 2, codeBG.maxYPos() - 11)
+                    .setSize(186, 10);
             toolkit.createButton(toolkit.i18n("saved"), temp.background)
                     .setPos(codeBG.xPos() + 5, codeBG.maxYPos() + 2)
                     .setYSize(15)
                     .setMaxXPos(codeBG.maxXPos() - 1, true)
-                    .onPressed(() -> tile.setMilestoneName(milestoneName.getText()));
+                    .onPressed(() -> tile.milestoneName.set(milestoneName.getText()));
         } else {
             GuiBorderedRect locList = new GuiBorderedRect()
                     .set3DGetters(GuiToolkit.Palette.Slot::fill, GuiToolkit.Palette.Slot::accentDark, GuiToolkit.Palette.Slot::accentLight)
@@ -76,7 +77,7 @@ public class MilestoneScreen extends ModularGuiContainer<ContainerBCTile<Milesto
                     .setXPos(temp.background.xPos() + bgPad + 1)
                     .setMaxYPos(temp.background.ySize() + bgPad + 167, false);
             temp.background.addChild(locList);
-            GuiLabel milestoneName = locList.addChild(new GuiLabel("Unnamed...").setAlignment(GuiAlign.CENTER).setShadowStateSupplier(() -> BCConfig.darkMode))
+            GuiLabel milestoneName = locList.addChild(new GuiLabel(tile.milestoneName.get()).setAlignment(GuiAlign.CENTER).setShadowStateSupplier(() -> BCConfig.darkMode))
                     .setPos(locList.xPos() + 5, locList.yPos() - 11)
                     .setYSize(8)
                     .setTextColGetter(GuiToolkit.Palette.Slot::text)
@@ -95,4 +96,5 @@ public class MilestoneScreen extends ModularGuiContainer<ContainerBCTile<Milesto
                     .setStandardScrollBehavior();
         }
     }
+
 }
