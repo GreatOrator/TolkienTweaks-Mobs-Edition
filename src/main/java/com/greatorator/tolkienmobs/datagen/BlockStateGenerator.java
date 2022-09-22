@@ -144,7 +144,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TTMContent.CAMO_GLOWSTONE_BLOCK.get());
         simpleBlock(TTMContent.CAMO_SMOKER_BLOCK.get());
         simpleBlock(TTMContent.CAMO_FLUID_BLOCK.get());
-        simpleBlock(TTMContent.CAMO_CHEST_BLOCK.get());
+        simpleBlock(TTMContent.CAMO_CHEST_BLOCK.get(), models().getExistingFile(modLoc("block/block_camo_chest")));
         simpleBlock(TTMContent.CAMO_SPAWNER_BLOCK.get());
         simpleBlock(TTMContent.LOCKABLE_CHEST_BLOCK.get());
         horizontalBlock(TTMContent.BACKPACK.get(), models().getExistingFile(modLoc("block/container_backpack")), 0);

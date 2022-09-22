@@ -152,6 +152,7 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(KEY_STONE_BLOCK.get(), cutout);
         RenderTypeLookup.setRenderLayer(CAMO_GLOWSTONE_BLOCK.get(), cutout);
         RenderTypeLookup.setRenderLayer(CAMO_SMOKER_BLOCK.get(), cutout);
+        RenderTypeLookup.setRenderLayer(CAMO_FLUID_BLOCK.get(), cutout);
 
         // GUI Rendering
         ScreenManager.register(TTMContent.TMFIREPLACE_CONTAINER, FireplaceScreen::new);
@@ -163,6 +164,7 @@ public class ClientProxy extends CommonProxy {
         ScreenManager.register(TTMContent.KEY_RING_CONTAINER, KeyRingScreen::new);
         ScreenManager.register(TTMContent.MILESTONE_CONTAINER, MilestoneScreen::new);
         ScreenManager.register(TTMContent.KEY_STONE_CONTAINER, CamoKeyStoneScreen::new);
+        ScreenManager.register(TTMContent.CAMO_CHEST_CONTAINER, CamoChestScreen::new);
     }
 
     //#################################################################
@@ -248,6 +250,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntityRenderer(TTMContent.LEBETHRON_SIGN_TILE.get(), RenderLebethronSignTile::new);
         ClientRegistry.bindTileEntityRenderer(MILESTONE_TILE.get(), RenderMilestoneTile::new);
         ClientRegistry.bindTileEntityRenderer(KEY_STONE_TILE.get(), RenderCamoKeyStoneTile::new);
+        ClientRegistry.bindTileEntityRenderer(CAMO_CHEST_TILE.get(), RenderCamoChestTile::new);
     }
 
     @Override
