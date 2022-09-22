@@ -8,6 +8,7 @@ import com.greatorator.tolkienmobs.block.CropsBlock;
 import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.client.TTMParticles;
 import com.greatorator.tolkienmobs.container.BackpackContainer;
+import com.greatorator.tolkienmobs.container.CamoChestContainer;
 import com.greatorator.tolkienmobs.container.CoinPouchContainer;
 import com.greatorator.tolkienmobs.container.KeyRingContainer;
 import com.greatorator.tolkienmobs.crafting.FireplaceRecipe;
@@ -666,6 +667,7 @@ public class TTMContent {
     public static ContainerType<KeyRingContainer> KEY_RING_CONTAINER;
     public static ContainerType<ContainerBCTile<MilestoneTile>> MILESTONE_CONTAINER;
     public static ContainerType<ContainerBCTile<CamoKeyStoneTile>> KEY_STONE_CONTAINER;
+    public static ContainerType<CamoChestContainer> CAMO_CHEST_CONTAINER;
 
     public static void registerContainers(RegistryEvent.Register<ContainerType<?>> event) {
         event.getRegistry().register(TMFIREPLACE_CONTAINER = (ContainerType<ContainerBCTile<FireplaceTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(TMFIREPLACE_CONTAINER, id, playerInv, extraData, FireplaceTile.SLOT_LAYOUT)).setRegistryName("tmfireplace_container"));
@@ -677,6 +679,7 @@ public class TTMContent {
         event.getRegistry().register(KEY_RING_CONTAINER = (ContainerType<KeyRingContainer>) IForgeContainerType.create(KeyRingContainer::new).setRegistryName("key_ring_container"));
         event.getRegistry().register(MILESTONE_CONTAINER = ((ContainerType<ContainerBCTile<MilestoneTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(MILESTONE_CONTAINER, id, playerInv, extraData)).setRegistryName("milestone_container")));
         event.getRegistry().register(KEY_STONE_CONTAINER = ((ContainerType<ContainerBCTile<CamoKeyStoneTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(KEY_STONE_CONTAINER, id, playerInv, extraData)).setRegistryName("key_stone_container")));
+        event.getRegistry().register(CAMO_CHEST_CONTAINER = (ContainerType<CamoChestContainer>) IForgeContainerType.create(CamoChestContainer::new).setRegistryName("camo_chest_container"));
     }
 
     //#################################################################

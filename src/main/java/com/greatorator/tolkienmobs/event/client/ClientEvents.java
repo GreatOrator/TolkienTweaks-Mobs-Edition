@@ -78,5 +78,18 @@ public class ClientEvents {
                 event.getModelRegistry().put(variantMRL, customModel);
             }
         }
+
+        for (BlockState blockState : TTMContent.CAMO_CHEST_BLOCK.get().getStateDefinition().getPossibleStates()) {
+            ModelResourceLocation variantMRL = BlockModelShapes.stateToModelLocation(blockState);
+            IBakedModel existingModel = event.getModelRegistry().get(variantMRL);
+            if (existingModel == null) {
+                LOGGER.warn("Did not find the expected vanilla baked model(s) for blockCamouflage in registry");
+            } else if (existingModel instanceof ChameleonBakedModel) {
+                LOGGER.warn("Tried to replace CamouflagedBakedModel twice");
+            } else {
+                ChameleonBakedModel customModel = new ChameleonBakedModel(existingModel);
+                event.getModelRegistry().put(variantMRL, customModel);
+            }
+        }
     }
 }
