@@ -39,6 +39,15 @@ public class TTMSprites {
         register(MODID, "backpack/close_upgrade");
         register(MODID, "backpack/tank");
         register(MODID, "backpack/tank_overlay");
+
+        register(MODID, "keys/key_consume");
+        register(MODID, "keys/key_keep");
+        register(MODID, "keys/redstone_always");
+        register(MODID, "keys/redstone_pulse");
+        register(MODID, "keys/redstone_delay");
+        register(MODID, "keys/redstone_always_active");
+        register(MODID, "keys/redstone_pulse_active");
+        register(MODID, "keys/redstone_delay_active");
     }
 
     //region register

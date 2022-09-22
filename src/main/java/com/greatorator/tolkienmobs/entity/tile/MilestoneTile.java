@@ -75,10 +75,6 @@ public class MilestoneTile extends TileBCore implements INamedContainerProvider,
         }
     }
 
-    public void setMilestoneName() {
-
-    }
-
     public void setMilestoneLocation() {
         if (Objects.equals(milestoneUUID.get(), "")) {
             milestoneUUID.set(String.valueOf(UUID.randomUUID()));

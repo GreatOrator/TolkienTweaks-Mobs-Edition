@@ -4,6 +4,7 @@ import codechicken.lib.packet.ICustomPacketHandler;
 import codechicken.lib.packet.PacketCustom;
 import com.greatorator.tolkienmobs.entity.tile.*;
 import com.greatorator.tolkienmobs.item.tools.BronzeKeyItem;
+import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -97,8 +98,8 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
 
     private void handleKeyCodeUpdate(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
         String newCode = packet.readString();
-        ItemStack keyStack = getItem(sender, item -> item instanceof BronzeKeyItem);
-        ((BronzeKeyItem) keyStack.getItem()).setKey(keyStack, newCode);
+        ItemStack keyStack = getItem(sender, item -> item instanceof KeyBaseItem);
+        ((KeyBaseItem) keyStack.getItem()).setKey(keyStack, newCode);
     }
 
     private void handleMilestoneUpdate(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
@@ -116,6 +117,18 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
             milestoneTile.setChanged();
             serverworld.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
         }
+    }
+
+    private void handleKeyStoneCode(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
+        String newCode = packet.readString();
+        ItemStack keyStack = getItem(sender, item -> item instanceof BronzeKeyItem);
+        ((BronzeKeyItem) keyStack.getItem()).setKey(keyStack, newCode);
+    }
+
+    private void handleKeyStoneDelay(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
+        String newCode = packet.readString();
+        ItemStack keyStack = getItem(sender, item -> item instanceof BronzeKeyItem);
+        ((BronzeKeyItem) keyStack.getItem()).setKey(keyStack, newCode);
     }
 
     public static ItemStack getItem(PlayerEntity player, Predicate<Item> matcher) {

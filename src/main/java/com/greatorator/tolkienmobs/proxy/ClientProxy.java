@@ -162,6 +162,7 @@ public class ClientProxy extends CommonProxy {
         ScreenManager.register(TTMContent.COIN_POUCH_CONTAINER, CoinPouchScreen::new);
         ScreenManager.register(TTMContent.KEY_RING_CONTAINER, KeyRingScreen::new);
         ScreenManager.register(TTMContent.MILESTONE_CONTAINER, MilestoneScreen::new);
+        ScreenManager.register(TTMContent.KEY_STONE_CONTAINER, CamoKeyStoneScreen::new);
     }
 
     //#################################################################
@@ -246,6 +247,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntityRenderer(TTMContent.CULUMALDA_SIGN_TILE.get(), RenderCulumaldaSignTile::new);
         ClientRegistry.bindTileEntityRenderer(TTMContent.LEBETHRON_SIGN_TILE.get(), RenderLebethronSignTile::new);
         ClientRegistry.bindTileEntityRenderer(MILESTONE_TILE.get(), RenderMilestoneTile::new);
+        ClientRegistry.bindTileEntityRenderer(KEY_STONE_TILE.get(), RenderCamoKeyStoneTile::new);
     }
 
     @Override
