@@ -7,11 +7,13 @@ import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.handler.TTMArea;
 import com.greatorator.tolkienmobs.handler.interfaces.IFluidHelper;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -34,8 +36,8 @@ public class CamoFluidTile extends TileBCore implements IChangeListener, IIntera
 
     public CamoFluidTile() {
         super(TTMContent.CAMO_FLUID_TILE.get());
-        helper.addBlockRange("waterRange", new TTMArea.Rectangle(new BlockPos(0, 1, 0), 1));
-        helper.addBlockRange("waterTank", new TTMArea.Rectangle(new BlockPos(0, 1, 0), 1));
+        helper.addBlockRange("fluidRange", new TTMArea.Rectangle(new BlockPos(0, 1, 0), 1));
+        helper.addBlockRange("fluidTank", new TTMArea.Rectangle(new BlockPos(0, 1, 0), 1));
 
     }
 
@@ -51,20 +53,52 @@ public class CamoFluidTile extends TileBCore implements IChangeListener, IIntera
         if (capability.isPresent()) {
             IFluidHandler handler = capability.resolve().get();
             handler.fill(new FluidStack(fluidStack.getFluid(), 1000), IFluidHandler.FluidAction.EXECUTE);
-
         }
-        TTMArea waterRange = this.getBlockRange("waterRange");
+        TTMArea fluidRange = this.getBlockRange("fluidRange");
 
-        for (BlockPos newPos : waterRange.getContainedPositions(this.getBlockPos()))
+        for (BlockPos newPos : fluidRange.getContainedPositions(this.getBlockPos()))
         {
             if (level.canSeeSky(newPos))
             {
-                level.setBlockAndUpdate(newPos, Blocks.WATER.defaultBlockState());
+                onNeighborChange(newPos);
             }
         }
 
 
         return onBlockActivated(state, player, hand, hit) ? ActionResultType.SUCCESS : ActionResultType.FAIL;
+    }
+
+    @Override
+    public void writeExtraNBT(CompoundNBT compound) {
+        super.writeExtraNBT(compound);
+        if (fluidStack != null) {
+            CompoundNBT tag = new CompoundNBT();
+            fluidStack.writeToNBT(tag);
+            compound.put("Fluid", tag);
+        }
+    }
+
+    @Override
+    public void readExtraNBT(CompoundNBT compound) {
+        super.readExtraNBT(compound);
+        if (compound.contains("Fluid")) {
+            fluidStack = FluidStack.loadFluidStackFromNBT(compound.getCompound("Fluid"));
+        }
+    }
+
+    @Override
+    public void onNeighborChange(BlockPos neighbor) {
+        if (fluidStack == null || fluidStack.getFluid() == null) {
+            return;
+        }
+        Fluid fluid = fluidStack.getFluid();
+        for (Direction facing : Direction.values()) {
+            BlockPos side = neighbor.relative(facing);
+            if (level.canSeeSky(side)) {
+                level.setBlockAndUpdate(side, fluid.defaultFluidState().createLegacyBlock());
+                level.neighborChanged(side, fluid.defaultFluidState().createLegacyBlock().getBlock(), neighbor);
+            }
+        }
     }
 
     public TTMArea getBlockRange(String range)
