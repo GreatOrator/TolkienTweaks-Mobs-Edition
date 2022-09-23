@@ -4,7 +4,10 @@ import com.brandon3055.brandonscore.blocks.TileBCore;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.lib.IInteractTile;
 import com.brandon3055.brandonscore.lib.IRSSwitchable;
-import com.brandon3055.brandonscore.lib.datamanager.*;
+import com.brandon3055.brandonscore.lib.datamanager.DataFlags;
+import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
+import com.brandon3055.brandonscore.lib.datamanager.ManagedLong;
+import com.brandon3055.brandonscore.lib.datamanager.ManagedString;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,14 +33,12 @@ import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_BOTH_S
 
 public class CamoKeyStoneTile extends TileBCore implements IRSSwitchable, IInteractTile, INamedContainerProvider, ITickableTileEntity {
     public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
-    public final ManagedString keyCode = register(new ManagedString("KeyCode", "Set Code...", SAVE_BOTH_SYNC_TILE));
+    public final ManagedString keyCode = register(new ManagedString("KeyCode", SAVE_BOTH_SYNC_TILE));
     public final ManagedBool keyConsume = register(new ManagedBool("consume_key", DataFlags.SAVE_NBT_SYNC_TILE));
-    public final ManagedBool rsAlways = register(new ManagedBool("consume_key", DataFlags.SAVE_NBT_SYNC_TILE));
-    public final ManagedBool rsPulse = register(new ManagedBool("consume_key", DataFlags.SAVE_NBT_SYNC_TILE));
-    public final ManagedBool rsDelay = register(new ManagedBool("consume_key", DataFlags.SAVE_NBT_SYNC_TILE));
-    public final ManagedLong tickDelay = register(new ManagedLong("tick_delay", 100, SAVE_BOTH_SYNC_TILE ));
-    public final ManagedInt powerLevel = register(new ManagedInt("power_level", 0, SAVE_BOTH_SYNC_TILE ));
-    public final ManagedEnum<Mode> keyMode = register(new ManagedEnum<>("mode", Mode.NORMAL, SAVE_BOTH_SYNC_TILE));
+    public final ManagedBool rsAlways = register(new ManagedBool("redstone_toggle", DataFlags.SAVE_NBT_SYNC_TILE));
+    public final ManagedBool rsPulse = register(new ManagedBool("redstone_pulse", DataFlags.SAVE_NBT_SYNC_TILE));
+    public final ManagedBool rsDelay = register(new ManagedBool("redstone_delay", DataFlags.SAVE_NBT_SYNC_TILE));
+    public final ManagedLong tickDelay = register(new ManagedLong("tick_delay", SAVE_BOTH_SYNC_TILE ));
 
     public CamoKeyStoneTile(TileEntityType<?> tileEntityType) {
         super(tileEntityType);
@@ -49,10 +50,9 @@ public class CamoKeyStoneTile extends TileBCore implements IRSSwitchable, IInter
 
     public void onRightClick(PlayerEntity playerEntity, Hand hand) {
         ItemStack stack = playerEntity.getItemInHand(hand);
+        openGUI(playerEntity, this, worldPosition);
 
-        if (!playerEntity.level.isClientSide()) {
-            openGUI(playerEntity, this, worldPosition);
-        } else if (stack.getItem() instanceof KeyBaseItem && (((KeyBaseItem) stack.getItem()).getKey(stack).equals(keyCode.get()))) {
+        if (stack.getItem() instanceof KeyBaseItem && (((KeyBaseItem) stack.getItem()).getKey(stack).equals(keyCode.get()))) {
             LOGGER.info("You have the right key!");
         } else {
             LOGGER.info("Something broke");

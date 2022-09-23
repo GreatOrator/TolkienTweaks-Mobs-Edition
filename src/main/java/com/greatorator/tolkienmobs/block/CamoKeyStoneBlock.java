@@ -24,15 +24,21 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
 public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
+    public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
+
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
+
+    public CamoKeyStoneTile keyTile;
 
     public CamoKeyStoneBlock(Properties properties) {
         super(properties);
@@ -50,13 +56,25 @@ public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
                 return ActionResultType.SUCCESS;
             } else if (stack.getItem() instanceof KeyBaseItem) {
                 BlockState blockstate = this.activate(state, world, pos);
-                world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(CamoKeyStoneBlock.ACTIVE, true));
+                world.setBlockAndUpdate(pos, world.getBlockState(pos).cycle(ACTIVE));
                 float f = blockstate.getValue(POWERED) ? 0.6F : 0.5F;
-                world.playSound((PlayerEntity)null, pos, SoundEvents.STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.3F, f);
+                world.playSound((PlayerEntity)null, pos, SoundEvents.LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, f);
+
                 return ActionResultType.CONSUME;
             }
         }
+
         return ActionResultType.SUCCESS;
+    }
+
+    @Override
+    public int getSignal(BlockState blockState, IBlockReader iBlockReader, BlockPos blockPos, Direction direction) {
+        return blockState.getValue(ACTIVE) ? 15 : 0;
+    }
+
+    @Override
+    public boolean isSignalSource(BlockState blockState) {
+        return true;
     }
 
     @Nullable

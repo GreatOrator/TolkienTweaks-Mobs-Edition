@@ -98,11 +98,6 @@ public class MilestoneBlock extends BlockBCore implements IWaterLoggable {
     }
 
     @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
-    }
-
-    @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(FACING, ACTIVE, WATERLOGGED);
         super.createBlockStateDefinition(builder);
@@ -120,6 +115,11 @@ public class MilestoneBlock extends BlockBCore implements IWaterLoggable {
     @Override
     public BlockState rotate(BlockState state, Rotation direction) {
         return state.setValue(FACING, direction.rotate(state.getValue(FACING)));
+    }
+
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
     }
 
     @Nullable

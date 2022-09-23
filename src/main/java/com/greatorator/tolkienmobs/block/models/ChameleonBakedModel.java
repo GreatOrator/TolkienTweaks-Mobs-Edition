@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.block.models;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.ChameleonBlock;
+import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
@@ -73,6 +74,8 @@ public class ChameleonBakedModel implements IBakedModel {
         IBakedModel retval = modelWhenNotCamouflaged;  // default
 
         if (Minecraft.getInstance().player != null && Minecraft.getInstance().player.getMainHandItem().getItem() == TTMContent.ITEM_DEV_TOOL.get()) {
+            return retval;
+        } else if (Minecraft.getInstance().player != null && Minecraft.getInstance().player.getMainHandItem().getItem() instanceof KeyBaseItem){
             return retval;
         } else if (!data.hasProperty(COPIED_BLOCK)) {
             if (!loggedError) {

@@ -69,7 +69,7 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
             template.background.addChild(codeBG);
             GuiTextField KeyStoneCode = toolkit.createTextField(template.background)
                     .setFieldEnabled(true)
-                    .setText(tile.keyCode.get())
+                    .setText("")
                     .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("instructions"))
                     .setValidator(toolkit.catchyValidator(s -> s.equals("") || !invalidCharacters.matcher(s).find()))
                     .setPos(codeBG.xPos() + 2, codeBG.maxYPos() - 11)
@@ -96,7 +96,7 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
                     .setEnabledCallback(() -> !rsPulse);
             GuiTextField delayCode = delayBG.addChild(toolkit.createTextField(template.background))
                     .setFieldEnabled(true)
-                    .setText(String.valueOf(tile.tickDelay.get()))
+                    .setText("")
                     .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("tickdelay"))
                     .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
                     .setPos(delayBG.xPos() + 2, delayBG.maxYPos() - 11)
@@ -119,6 +119,8 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
                     LOGGER.info("Redstone Always: " + tile.rsAlways.get());
                     LOGGER.info("Redstone Delay: " + tile.rsDelay.get());
                     LOGGER.info("Redstone Pulse: " + tile.rsPulse.get());
+                    LOGGER.info("Tick Delay: " + tile.tickDelay.get());
+                    LOGGER.info("Tick Delay: " + tile.keyCode.get());
 
                     tile.sendPacketToServer(mcDataOutput -> {
                     }, 0);
