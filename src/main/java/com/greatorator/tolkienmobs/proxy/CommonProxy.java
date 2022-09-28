@@ -20,6 +20,8 @@ import com.greatorator.tolkienmobs.world.gen.feature.config.TTMTreeFeatureConfig
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
@@ -63,8 +65,6 @@ public class CommonProxy {
     public void commonSetup(FMLCommonSetupEvent event) {
         RecipeGenerator.potions();
         TTMConfig.loadPotionList();
-        TTMConfig.loadItemList();
-        TTMConfig.loadBlacklist();
         event.enqueueWork(() -> {
             StructureGenerator.setupStructures();
             TTMStructureConfig.registerConfiguredStructures();
@@ -78,6 +78,9 @@ public class CommonProxy {
 
     public void serverSetup(FMLDedicatedServerSetupEvent event) {
 
+    }
+
+    public void playSound(SoundEvent soundEvent, BlockPos pos, float pitch) {
     }
 
     public void onAirPacket(int air) {

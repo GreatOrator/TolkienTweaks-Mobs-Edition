@@ -12,4 +12,5 @@ public class CamoFluidBlock extends ChameleonBlock<CamoFluidTile> {
     public boolean hasTileEntity(BlockState state) {
         return true;
     }
+
 }

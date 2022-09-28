@@ -15,12 +15,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.stream.Stream;
 
 import static net.minecraft.state.properties.AttachFace.*;
 
@@ -29,10 +32,30 @@ public class PlacardBlock extends BlockBCore {
     public static final EnumProperty<PlacardType> PLACARD_TYPE = EnumProperty.create("placard_type", PlacardType.class);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
+    public static final VoxelShape SHAPE_STANDING_NS = Stream.of(
+            Block.box(12.8, -0.1, 7.3, 14.2, 0.9, 8.7),
+            Block.box(1, 7, 7.5, 15, 13, 8.5),
+            Block.box(0, 6, 7, 16, 7, 9),
+            Block.box(0, 7, 7, 1, 13, 9),
+            Block.box(0, 13, 7, 16, 14, 9),
+            Block.box(15, 7, 7, 16, 13, 9),
+            Block.box(2, 0.4, 7.5, 3, 7.4, 8.5),
+            Block.box(13, 0.4, 7.5, 14, 7.4, 8.5),
+            Block.box(1.8, -0.1, 7.3, 3.2, 0.9, 8.7)
+    ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
+    public static final VoxelShape SHAPE_STANDING_EW = Stream.of(
+            Block.box(7.300000000000001, -0.1, 12.8, 8.7, 0.9, 14.2),
+            Block.box(7.5, 7, 1, 8.5, 13, 15),
+            Block.box(7, 6, 0, 9, 7, 16),
+            Block.box(7, 7, 0, 9, 13, 1),
+            Block.box(7, 13, 0, 9, 14, 16),
+            Block.box(7, 7, 15, 9, 13, 16),
+            Block.box(7.5, 0.4, 2, 8.5, 7.4, 3),
+            Block.box(7.5, 0.4, 13, 8.5, 7.4, 14),
+            Block.box(7.300000000000001, -0.1, 1.8, 8.7, 0.9, 3.2)
+    ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
     public static final VoxelShape SHAPE_HANGING_NS = Block.box(0.0D, 0.0D, 7.0D, 16.0D, 8.0D, 9.0D);
     public static final VoxelShape SHAPE_HANGING_EW = Block.box(7.0D, 0.0D, 0.0D, 9.0D, 8.0D, 16.0D);
-    public static final VoxelShape SHAPE_STANDING_NS = Block.box(0.0D, 6.0D, 7.0D, 16.0D, 14.0D, 9.0D);
-    public static final VoxelShape SHAPE_STANDING_EW = Block.box(7.0D, 6.0D, 0.0D, 9.0D, 14.0D, 16.0D);
     protected static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 5.0D, 14.0D, 16.0D, 13.0D, 16.0D);
     protected static final VoxelShape SHAPE_SOUTH = Block.box(0.0D, 5.0D, 2.0D, 16.0D, 13.0D, 0.0D);
     protected static final VoxelShape SHAPE_EAST = Block.box(0.0D, 5.0D, 0.0D, 2.0D, 13.0D, 16.0D);

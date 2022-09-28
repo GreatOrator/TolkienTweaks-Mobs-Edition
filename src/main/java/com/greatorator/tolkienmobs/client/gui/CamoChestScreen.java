@@ -15,7 +15,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 
 public class CamoChestScreen extends ModularGuiContainer<CamoChestContainer> {
-    protected GuiToolkit<CamoChestScreen> toolkit = new GuiToolkit<>(this, 171, 166).setTranslationPrefix("gui.tolkientweaks.camo_chest");
+    protected GuiToolkit<CamoChestScreen> toolkit = new GuiToolkit<>(this, 171, 166).setTranslationPrefix("gui.tolkienmobs.camo_chest");
     private CamoChestTile tile;
 
     public CamoChestScreen(CamoChestContainer container, PlayerInventory inv, ITextComponent titleIn) {
