@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.entity.tile.CamoSpawnerTile;
 import net.minecraft.block.BlockState;
 
 public class CamoSpawnerBlock extends ChameleonBlock<CamoSpawnerTile> {
+
     public CamoSpawnerBlock(Properties properties) {
         super(properties);
     }

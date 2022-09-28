@@ -39,7 +39,6 @@ public class CamoChestTile extends TileBCore implements INamedContainerProvider,
 
     public void onRightClick(PlayerEntity playerEntity, Hand hand) {
         if (!playerEntity.level.isClientSide()) {
-                //Open the gui if no bucket interaction occurs.
                 openGUI(playerEntity, this, worldPosition);
         }
     }

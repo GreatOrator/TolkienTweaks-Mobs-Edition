@@ -3,18 +3,13 @@ package com.greatorator.tolkienmobs;
 import codechicken.lib.config.ConfigTag;
 import codechicken.lib.config.StandardConfigFile;
 import com.google.common.collect.Lists;
-import net.minecraft.item.Item;
 import net.minecraft.potion.Effect;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 
 /**
  * Created by brandon3055 on 31/1/21
@@ -48,16 +43,15 @@ public class TTMConfig {
     }
 
     //Server properties
-    public static List<String> potionList;
-    public static List<String> stackUpgrade;
-    public static List<String> itemBlacklist;
-    public static int spawnChance;
-    public static boolean disableTolkienMobs;
+    public static int dimensionalWarpCoinCost;
+    public static int blocksPerCoin;
+    public static double milestoneCoinCostMultiplier;
+    public static double minimumCoinCost;
+    public static double maximumCoinCost;
+    public static boolean dimensionalWarp;
     public static boolean disableFakePlayer;
     public static String exampleString;
-    public static double exampleDouble;
-
-    private static Set<Item> disallowedItemsSet = null;
+    public static List<String> potionList;
 
     private static void loadServer() {
         serverTag = config.getTag("Server");
@@ -69,44 +63,46 @@ public class TTMConfig {
                 .setSyncToClient()
                 .setSyncCallback((tag, type) -> potionList = tag.getStringList());
 
-        serverTag.getTag("stackUpgrade")
-                .setComment("List of items that should not stack in Backpack")
-                .setDefaultStringList(Lists.newArrayList(stackUpgradeArray))
-                .setSyncToClient()
-                .setSyncCallback((tag, type) -> stackUpgrade = tag.getStringList());
+        serverTag.getTag("blocksPerCoin")
+                .setComment("Number of blocks (Default 1000)")
+                .setDefaultInt(1000)
+                .setSyncCallback((tag, type) -> blocksPerCoin = tag.getInt());
 
-        serverTag.getTag("itemBlacklist")
-                .setComment("List of items that can't be placed in backpack")
-                .setDefaultStringList(Lists.newArrayList(blacklistArray))
-                .setSyncToClient()
-                .setSyncCallback((tag, type) -> itemBlacklist = tag.getStringList());
+        serverTag.getTag("dimensionalWarpCoinCost")
+                .setComment("Multiplier for dimensional teleport (Default 3)")
+                .setDefaultInt(3)
+                .setSyncCallback((tag, type) -> dimensionalWarpCoinCost = tag.getInt());
 
-        serverTag.getTag("spawnChance")
-                .setComment("Chance to spawn mob out of 100 (Default 10)")
-                .setDefaultInt(10)
-                .setSyncCallback((tag, type) -> spawnChance = tag.getInt());
+        serverTag.getTag("milestoneCoinCostMultiplier")
+                .setComment("Multiplier for regular teleport (Default 1)")
+                .setDefaultDouble(1)
+                .setSyncCallback((tag, type) -> milestoneCoinCostMultiplier = tag.getDouble());
+
+        serverTag.getTag("minimumCoinCost")
+                .setComment("Minimum coin cost to teleport per (Default 1000) blocks (Default 5)")
+                .setDefaultDouble(5)
+                .setSyncCallback((tag, type) -> minimumCoinCost = tag.getDouble());
+
+        serverTag.getTag("maximumCoinCost")
+                .setComment("Maximum coin cost to teleport per (Default 1000) blocks (Default 50)")
+                .setDefaultDouble(50)
+                .setSyncCallback((tag, type) -> maximumCoinCost = tag.getDouble());
+
+        serverTag.getTag("dimensionalWarp")
+                .setComment("Enable Cross-dimensional Teleport between Milestones (Default true)")
+                .setDefaultBoolean(true)
+                .setSyncCallback((tag, type) -> dimensionalWarp = tag.getBoolean());
+
+        serverTag.getTag("disableFakePlayer")
+                .setComment("Disable fake player in TolkienMobs (Default false)")
+                .setDefaultBoolean(false)
+                .setSyncToClient()
+                .setSyncCallback((tag, type) -> disableFakePlayer = tag.getBoolean());
 
         serverTag.getTag("exampleString")
                 .setComment("This is an example string")
                 .setDefaultString("Default Example String")
                 .setSyncCallback((tag, type) -> exampleString = tag.getString());
-
-        serverTag.getTag("exampleDouble")
-                .setComment("This is an example double")
-                .setDefaultDouble(99)
-                .setSyncCallback((tag, type) -> exampleDouble = tag.getDouble());
-//
-//        serverTag.getTag("disableTolkienMobs")
-//                .setComment("Disable Spawning of vanilla hostile mobs (Default True)")
-//                .setDefaultBoolean(true)
-//                .setSyncToClient()
-//                .setSyncCallback((tag, type) -> disableTolkienMobs = tag.getBoolean());
-//
-//        serverTag.getTag("disableFakePlayer")
-//                .setComment("Disable fake player in TolkienMobs (Default True)")
-//                .setDefaultBoolean(false)
-//                .setSyncToClient()
-//                .setSyncCallback((tag, type) -> disableFakePlayer = tag.getBoolean());
     }
 
     //Client properties
@@ -123,12 +119,9 @@ public class TTMConfig {
     }
 
     public static String[] potionTypeArray = new String[]{"tolkienmobs:blessing_of_eru", "tolkienmobs:elven_nimbleness", "tolkienmobs:ent_draught", "tolkienmobs:personal_blacksmith", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:fire_resistance"};
-    public static String[] stackUpgradeArray = new String[]{"tolkienmobs:item_fancyshield"};
-    public static String[] blacklistArray = new String[]{"tolkienmobs:item_fancyshield2"};
+
 
     public static Effect[] potionArray = new Effect[0];
-    public static Item[] upgradeArray = new Item[0];
-    public static Item[] itemArray = new Item[0];
 
     public static void loadPotionList() {
         List<Effect> potions = new ArrayList<>();
@@ -139,45 +132,5 @@ public class TTMConfig {
             }
         }
         potionArray = potions.toArray(new Effect[0]);
-    }
-
-    public static void loadItemList() {
-        List<Item> itemBlackList = new ArrayList<>();
-        for (String name : stackUpgradeArray) {
-            Item items = ForgeRegistries.ITEMS.getValue(new ResourceLocation(name));
-            if (items != null) {
-                itemBlackList.add(items);
-            } else {
-                LOGGER.error("Item {} is set to be disabled in config, but it does not exist in item registry", name);
-            }
-        }
-        upgradeArray = itemBlackList.toArray(new Item[0]);
-    }
-
-    public static void loadBlacklist() {
-        List<Item> itemBlackList = new ArrayList<>();
-        for (String name : blacklistArray) {
-            Item items = ForgeRegistries.ITEMS.getValue(new ResourceLocation(name));
-            if (items != null) {
-                itemBlackList.add(items);
-            }
-        }
-        itemArray = itemBlackList.toArray(new Item[0]);
-    }
-
-    public static boolean isItemDisallowed(Item item) {
-            loadDisallowedSet();
-        return disallowedItemsSet.contains(item);
-    }
-
-    private static void loadDisallowedSet() {
-        disallowedItemsSet = new HashSet<>();
-
-        for (String disallowedItemName : blacklistArray) {
-            ResourceLocation registryName = new ResourceLocation(disallowedItemName);
-            if (ForgeRegistries.ITEMS.containsKey(registryName)) {
-                disallowedItemsSet.add(ForgeRegistries.ITEMS.getValue(registryName));
-            }
-        }
     }
 }

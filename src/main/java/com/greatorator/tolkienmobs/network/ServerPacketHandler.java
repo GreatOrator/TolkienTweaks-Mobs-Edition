@@ -33,7 +33,7 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
             case TolkienNetwork.S_UPDATE_KEY_CODE:
                 handleKeyCodeUpdate(packet, sender, handler);
                 break;
-            case TolkienNetwork.S_UPDATE_MILESTONE_NAME:
+            case TolkienNetwork.S_UPDATE_MILESTONE:
                 handleMilestoneUpdate(packet, sender, handler);
                 break;
         }
@@ -103,20 +103,20 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
     }
 
     private void handleMilestoneUpdate(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
-        BlockPos blockpos = packet.readPos();
-        String newName = packet.readString();
-        sender.resetLastActionTime();
         ServerWorld serverworld = sender.getLevel();
-        if (serverworld.hasChunkAt(blockpos)) {
-            BlockState blockstate = serverworld.getBlockState(blockpos);
-            TileEntity tileentity = serverworld.getBlockEntity(blockpos);
-            MilestoneTile milestoneTile = (MilestoneTile)tileentity;
+        sender.resetLastActionTime();
 
-            milestoneTile.setMilestoneName(newName);
+        BlockPos blockpos = packet.readPos();
+        String msName = packet.readString();
+        BlockState blockstate = serverworld.getBlockState(blockpos);
+        TileEntity tileentity = serverworld.getBlockEntity(blockpos);
+        MilestoneTile milestone = (MilestoneTile)tileentity;
 
-            milestoneTile.setChanged();
-            serverworld.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
-        }
+        milestone.milestonePos.set(blockpos);
+        milestone.milestoneName.set(msName);
+
+        milestone.setChanged();
+        serverworld.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
     }
 
     private void handleKeyStoneCode(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
