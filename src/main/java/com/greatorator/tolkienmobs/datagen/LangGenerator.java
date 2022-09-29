@@ -155,6 +155,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.CAMO_SPAWNER_BLOCK.get(), "Camouflage Spawner");
         add(TTMContent.MILESTONE_BLOCK.get(), "Fast-travel Milestone");
         add(TTMContent.LOCKABLE_CHEST_BLOCK.get(), "Lockable Chest");
+        add(TTMContent.LOCKABLE_TREASURE_CHEST_BLOCK.get(), "Lockable Treasure Chest");
         add(TTMContent.PLACARD.get(), "Country Signs");
         addLore(Item.byBlock(TTMContent.PLACARD.get()), "Shift right-click on sign to cycle types");
         add(TTMContent.SLEEPING_BAG_BLACK.get(), "Black Sleeping Bag");
