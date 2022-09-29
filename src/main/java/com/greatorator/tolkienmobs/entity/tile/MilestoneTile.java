@@ -35,7 +35,7 @@ import static com.greatorator.tolkienmobs.block.MilestoneBlock.ACTIVE;
 
 public class MilestoneTile extends TileBCore implements INamedContainerProvider, ITickableTileEntity {
     public final ManagedBool isactive = register(new ManagedBool("is_active", false, SAVE_BOTH_SYNC_TILE));
-    public final ManagedString milestoneName = register(new ManagedString("milestone_name", SAVE_BOTH_SYNC_TILE));
+    public final ManagedString milestoneName = register(new ManagedString("milestone_name", "Unnamed_Milestone", SAVE_BOTH_SYNC_TILE));
     public final ManagedString milestoneUUID = register(new ManagedString("milestone_uuid", SAVE_BOTH_SYNC_TILE));
     public final ManagedString playerUUID = register(new ManagedString("player_uuid", SAVE_BOTH_SYNC_TILE));
     public final ManagedString milestoneDim = register(new ManagedString("dim_key", SAVE_BOTH_SYNC_TILE));
