@@ -167,6 +167,7 @@ public class ClientProxy extends CommonProxy {
         ScreenManager.register(TTMContent.KEY_STONE_CONTAINER, CamoKeyStoneScreen::new);
         ScreenManager.register(TTMContent.CAMO_CHEST_CONTAINER, CamoChestScreen::new);
         ScreenManager.register(TTMContent.LOCKABLE_CHEST_CONTAINER, LockableChestScreen::new);
+        ScreenManager.register(TTMContent.LOCKABLE_TREASURE_CHEST_CONTAINER, LockableChestScreen::new);
     }
 
     //#################################################################
@@ -254,6 +255,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntityRenderer(KEY_STONE_TILE.get(), RenderCamoKeyStoneTile::new);
         ClientRegistry.bindTileEntityRenderer(CAMO_CHEST_TILE.get(), RenderCamoChestTile::new);
         ClientRegistry.bindTileEntityRenderer(LOCKABLE_CHEST_TILE.get(), RenderLockableChestTile::new);
+        ClientRegistry.bindTileEntityRenderer(LOCKABLE_TREASURE_CHEST_TILE.get(), RenderLockableChestTile::new);
     }
 
     @Override
