@@ -19,6 +19,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -29,6 +31,8 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.Random;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
     public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
@@ -50,17 +54,62 @@ public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult trace) {
         ItemStack stack = player.getItemInHand(hand);
         TileEntity tile = world.getBlockEntity(pos);
+        CamoKeyStoneTile keyStone = (CamoKeyStoneTile) tile;
         if (!world.isClientSide) {
-            if (tile instanceof CamoKeyStoneTile && player.isCreative() && player.isCrouching()) {
+
+            LOGGER.info("Consume Key: " + keyStone.keyConsume.get());
+            LOGGER.info("Redstone Always: " + keyStone.rsAlways.get());
+            LOGGER.info("Redstone Delay: " + keyStone.rsDelay.get());
+            LOGGER.info("Redstone Pulse: " + keyStone.rsPulse.get());
+            LOGGER.info("Tick Delay: " + keyStone.tickDelay.get());
+            LOGGER.info("Key Code: " + keyStone.keyCode.get());
+            LOGGER.info("Active: " + world.getBlockState(pos).getValue(ACTIVE));
+            LOGGER.info("Powered: " + world.getBlockState(pos).getValue(POWERED));
+
+            if (tile != null && player.isCreative() && player.isCrouching()) {
                 ((CamoKeyStoneTile) tile).onRightClick(player, hand);
                 return ActionResultType.SUCCESS;
-            } else if (stack.getItem() instanceof KeyBaseItem) {
-                BlockState blockstate = this.activate(state, world, pos);
-                world.setBlockAndUpdate(pos, world.getBlockState(pos).cycle(ACTIVE));
-                float f = blockstate.getValue(POWERED) ? 0.6F : 0.5F;
-                world.playSound((PlayerEntity)null, pos, SoundEvents.LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, f);
+            } else if (stack.getItem() instanceof KeyBaseItem && (KeyBaseItem.getKey(stack).equals(keyStone.keyCode.get()))) {
+                LOGGER.info("KeyCode matches!");
+
+                if (keyStone.rsAlways.get()){
+                    LOGGER.info("Toggle Mode!");
+
+                    this.activate(state, world, pos);
+                    world.setBlockAndUpdate(pos, world.getBlockState(pos).cycle(CamoKeyStoneBlock.ACTIVE));
+
+                    world.playSound((PlayerEntity)null, pos, SoundEvents.LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.6F);
+                    return ActionResultType.CONSUME;
+
+                }else if (keyStone.rsPulse.get()){
+                    LOGGER.info("Button Mode!");
+
+                    world.playSound((PlayerEntity)null, pos, SoundEvents.STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.3F, 0.6F);
+                    world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(ACTIVE, Boolean.TRUE));
+
+                    this.press(state, world, pos);
+
+                    world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(ACTIVE, Boolean.FALSE).setValue(POWERED, Boolean.FALSE));
+                    world.playSound((PlayerEntity)null, pos, SoundEvents.STONE_BUTTON_CLICK_OFF, SoundCategory.BLOCKS, 0.3F, 0.5F);
+//                    world.setBlock(pos, state.setValue(POWERED, Boolean.FALSE).setValue(ACTIVE, Boolean.FALSE), 3);
+                    this.updateNeighbours(state, world, pos);
+                    LOGGER.info("Countdown ended. " + world.getBlockState(pos).getValue(POWERED) + ", " + world.getBlockState(pos).getValue(ACTIVE));
+                    return ActionResultType.CONSUME;
+
+                }else if (keyStone.rsDelay.get() && keyStone.tickDelay.get() > 0){
+                    LOGGER.info("Delay Mode!");
+
+                    return ActionResultType.CONSUME;
+
+                }
+
+                if (keyStone.keyConsume.get() && !player.isCreative()) {
+                    stack.shrink(1);
+                }
 
                 return ActionResultType.CONSUME;
+            }else {
+                player.sendMessage(new TranslationTextComponent(MODID + ".msg.wrong_key").withStyle(TextFormatting.RED), Util.NIL_UUID);
             }
         }
 
@@ -145,6 +194,19 @@ public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
         blockState = blockState.cycle(POWERED);
         world.setBlock(blockPos, blockState, 3);
         this.updateNeighbours(blockState, world, blockPos);
+        return blockState;
+    }
+
+    public BlockState press(BlockState blockState, World world, BlockPos blockPos) {
+        TileEntity tile = world.getBlockEntity(blockPos);
+        CamoKeyStoneTile keyStone = (CamoKeyStoneTile) tile;
+        for (int i = 0; i <= keyStone.timeActive.get(); i++) {
+            LOGGER.info("Countdown begins: " + i);
+
+            world.setBlock(blockPos, blockState.setValue(POWERED, Boolean.TRUE), 3);
+            this.updateNeighbours(blockState, world, blockPos);
+        }
+
         return blockState;
     }
 

@@ -61,7 +61,7 @@ public class LockableChestScreen extends ModularGuiContainer<LockableChestContai
             template.background.addChild(codeBG);
             GuiTextField KeyStoneCode = toolkit.createTextField(template.background)
                     .setFieldEnabled(true)
-                    .setText("")
+                    .setText(tile.keyCode.get())
                     .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("instructions"))
                     .setValidator(toolkit.catchyValidator(s -> s.equals("") || !invalidCharacters.matcher(s).find()))
                     .setPos(codeBG.xPos() + 2, codeBG.maxYPos() - 11)

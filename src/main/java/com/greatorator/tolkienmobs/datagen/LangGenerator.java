@@ -738,6 +738,7 @@ public class LangGenerator extends LanguageProvider {
         add("tolkienmobs.msg.speedup.balrog", "The Balrog is attempting to match your speed.");
         add("tolkienmobs.msg.deploy_sleeping_bag", "Something is blocking the Sleepingbag.");
         add("tolkienmobs.msg.deploy_campfire", "Something is blocking the Campfire.");
+        add("tolkienmobs.msg.wrong_key", "You have the wrong key.");
     }
 
     private void gui(PrefixHelper helper) {
@@ -777,6 +778,10 @@ public class LangGenerator extends LanguageProvider {
         helper.add("delaytitle",             "Tick Delay");
         helper.add("tickdelay",             "Set the amount of delay to keep redstone on");
         helper.add("savedelay",             "Set Delay");
+        helper.setPrefix("screen.tolkienmobs.lockable_chest.");
+        helper.add("instructions",             "Code to set, must match any keys.");
+        helper.add("keystonecode",             "Key Stone Code");
+        helper.add("saved",             "Save Code");
     }
 
     private void keyCommand() {

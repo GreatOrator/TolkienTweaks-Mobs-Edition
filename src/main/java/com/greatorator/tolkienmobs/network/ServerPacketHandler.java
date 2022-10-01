@@ -2,7 +2,10 @@ package com.greatorator.tolkienmobs.network;
 
 import codechicken.lib.packet.ICustomPacketHandler;
 import codechicken.lib.packet.PacketCustom;
-import com.greatorator.tolkienmobs.entity.tile.*;
+import com.greatorator.tolkienmobs.entity.tile.CulumaldaSignTile;
+import com.greatorator.tolkienmobs.entity.tile.LebethronSignTile;
+import com.greatorator.tolkienmobs.entity.tile.MallornSignTile;
+import com.greatorator.tolkienmobs.entity.tile.MirkwoodSignTile;
 import com.greatorator.tolkienmobs.item.tools.BronzeKeyItem;
 import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
 import net.minecraft.block.BlockState;
@@ -33,9 +36,9 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
             case TolkienNetwork.S_UPDATE_KEY_CODE:
                 handleKeyCodeUpdate(packet, sender, handler);
                 break;
-            case TolkienNetwork.S_UPDATE_MILESTONE:
-                handleMilestoneUpdate(packet, sender, handler);
-                break;
+//            case TolkienNetwork.S_UPDATE_MILESTONE:
+//                handleMilestoneUpdate(packet, sender, handler);
+//                break;
         }
     }
 
@@ -103,20 +106,6 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
     }
 
     private void handleMilestoneUpdate(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
-        ServerWorld serverworld = sender.getLevel();
-        sender.resetLastActionTime();
-
-        BlockPos blockpos = packet.readPos();
-        String msName = packet.readString();
-        BlockState blockstate = serverworld.getBlockState(blockpos);
-        TileEntity tileentity = serverworld.getBlockEntity(blockpos);
-        MilestoneTile milestone = (MilestoneTile)tileentity;
-
-        milestone.milestonePos.set(blockpos);
-        milestone.milestoneName.set(msName);
-
-        milestone.setChanged();
-        serverworld.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
     }
 
     private void handleKeyStoneCode(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {

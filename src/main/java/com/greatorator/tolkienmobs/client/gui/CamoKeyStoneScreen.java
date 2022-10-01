@@ -26,14 +26,13 @@ import java.util.regex.Pattern;
 
 public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<CamoKeyStoneTile>> {
     public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
-    private boolean keymode;
-    protected GuiToolkit<CamoKeyStoneScreen> toolkit = new GuiToolkit<>(this, 200, (keymode ? 70 : 128)).setTranslationPrefix("screen.tolkienmobs.keystone");
+    protected GuiToolkit<CamoKeyStoneScreen> toolkit = new GuiToolkit<>(this, 200, 128).setTranslationPrefix("screen.tolkienmobs.keystone");
     private static final Pattern invalidCharacters = Pattern.compile("[^a-zA-Z-_\\d:]");
 
     private final PlayerEntity player;
     private final CamoKeyStoneTile tile;
     private static boolean keepKey = false;
-    private static boolean rsAlways = true;
+    private static boolean rsAlways = false;
     private static boolean rsDelay = false;
     private static boolean rsPulse = false;
 
@@ -69,7 +68,7 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
             template.background.addChild(codeBG);
             GuiTextField KeyStoneCode = toolkit.createTextField(template.background)
                     .setFieldEnabled(true)
-                    .setText("")
+                    .setText(tile.keyCode.get())
                     .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("instructions"))
                     .setValidator(toolkit.catchyValidator(s -> s.equals("") || !invalidCharacters.matcher(s).find()))
                     .setPos(codeBG.xPos() + 2, codeBG.maxYPos() - 11)
@@ -96,7 +95,7 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
                     .setEnabledCallback(() -> !rsPulse);
             GuiTextField delayCode = delayBG.addChild(toolkit.createTextField(template.background))
                     .setFieldEnabled(true)
-                    .setText("")
+                    .setText(String.valueOf(tile.tickDelay.get()))
                     .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("tickdelay"))
                     .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
                     .setPos(delayBG.xPos() + 2, delayBG.maxYPos() - 11)
@@ -105,34 +104,26 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
             GuiButton saveTick = delayBG.addChild(toolkit.createButton(toolkit.i18n("savedelay"), template.background).setAlignment(GuiAlign.CENTER))
                     .setPos(-9000, -9000)
                     .setSize(78, 12)
-                    .onPressed(() -> tile.tickDelay.set(Long.parseLong(delayCode.getText())))
+                    .onPressed(() -> tile.tickDelay.set(Integer.parseInt((delayCode.getText()))))
                     .setEnabledCallback(() -> !rsPulse);
 
             // Key and Redstone Modes
-            GuiButton keyButton = toolkit.createIconButton(template.background, 18, 18, () -> keepKey ? TTMSprites.get("keys/key_consume") : TTMSprites.get("keys/key_keep"));
+            GuiButton keyButton = toolkit.createIconButton(template.background, 18, 18, () -> tile.keyConsume.get() ? TTMSprites.get("keys/key_consume") : TTMSprites.get("keys/key_keep"));
                 toolkit.placeInside(keyButton, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 60, -42);
-                keyButton.setHoverText(e -> keepKey ? toolkit.i18n("key.consume") : toolkit.i18n("key.keep"));
+                keyButton.setHoverText(e -> tile.keyConsume.get() ? toolkit.i18n("key.consume") : toolkit.i18n("key.keep"));
                 keyButton.onPressed(() -> {
                     tile.keyConsume.set(keepKey = !keepKey);
-
-                    LOGGER.info("Consume Key: " + tile.keyConsume.get());
-                    LOGGER.info("Redstone Always: " + tile.rsAlways.get());
-                    LOGGER.info("Redstone Delay: " + tile.rsDelay.get());
-                    LOGGER.info("Redstone Pulse: " + tile.rsPulse.get());
-                    LOGGER.info("Tick Delay: " + tile.tickDelay.get());
-                    LOGGER.info("Tick Delay: " + tile.keyCode.get());
-
                     tile.sendPacketToServer(mcDataOutput -> {
                     }, 0);
                 });
-            GuiButton redstoneDelay = toolkit.createIconButton(template.background, 18, 18, () -> rsDelay ? TTMSprites.get("keys/redstone_delay_active") : TTMSprites.get("keys/redstone_delay"));
+            GuiButton redstoneDelay = toolkit.createIconButton(template.background, 18, 18, () -> tile.rsDelay.get() ? TTMSprites.get("keys/redstone_delay_active") : TTMSprites.get("keys/redstone_delay"));
             toolkit.placeInside(redstoneDelay, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 100, -42);
-            redstoneDelay.setHoverText(e -> rsDelay ? toolkit.i18n("redstone.delay.active") : toolkit.i18n("redstone.delay"));
+            redstoneDelay.setHoverText(e -> tile.rsDelay.get() ? toolkit.i18n("redstone.delay.active") : toolkit.i18n("redstone.delay"));
             redstoneDelay.onPressed(() -> {
                 rsAlways = false;
                 rsPulse = false;
-                tile.rsPulse.set(false);
                 tile.rsAlways.set(false);
+                tile.rsPulse.set(false);
                 tile.rsDelay.set(rsDelay = !rsDelay);
 
                     delayBG.setPos(template.background.maxXPos() + bgPad + 1, delayBG.maxYPos() - 21);
@@ -144,12 +135,14 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
                 tile.sendPacketToServer(mcDataOutput -> {
                 }, 2);
             });
-            GuiButton redstoneAlways = toolkit.createIconButton(template.background, 18, 18, () -> rsAlways ? TTMSprites.get("keys/redstone_always_active") : TTMSprites.get("keys/redstone_always"));
+            GuiButton redstoneAlways = toolkit.createIconButton(template.background, 18, 18, () -> tile.rsAlways.get() ? TTMSprites.get("keys/redstone_always_active") : TTMSprites.get("keys/redstone_always"));
                 toolkit.placeInside(redstoneAlways, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 80, -42);
-                redstoneAlways.setHoverText(e -> rsAlways ? toolkit.i18n("redstone.always.active") : toolkit.i18n("redstone.always"));
+                redstoneAlways.setHoverText(e -> tile.rsAlways.get() ? toolkit.i18n("redstone.always.active") : toolkit.i18n("redstone.always"));
                 redstoneAlways.onPressed(() -> {
+                        keepKey = false;
                         rsPulse = false;
                         rsDelay = false;
+                    tile.keyConsume.set(false);
                     tile.rsPulse.set(false);
                     tile.rsDelay.set(false);
                     tile.rsAlways.set(rsAlways = !rsAlways);
@@ -160,13 +153,13 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
                     tile.sendPacketToServer(mcDataOutput -> {
                     }, 1);
                 });
-            GuiButton redstonePulse = toolkit.createIconButton(template.background, 18, 18, () -> rsPulse ? TTMSprites.get("keys/redstone_pulse_active") : TTMSprites.get("keys/redstone_pulse"));
+            GuiButton redstonePulse = toolkit.createIconButton(template.background, 18, 18, () -> tile.rsPulse.get() ? TTMSprites.get("keys/redstone_pulse_active") : TTMSprites.get("keys/redstone_pulse"));
                 toolkit.placeInside(redstonePulse, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 120, -42);
-                redstonePulse.setHoverText(e -> rsPulse ? toolkit.i18n("redstone.pulse.active") : toolkit.i18n("redstone.pulse"));
+                redstonePulse.setHoverText(e -> tile.rsPulse.get() ? toolkit.i18n("redstone.pulse.active") : toolkit.i18n("redstone.pulse"));
                 redstonePulse.onPressed(() -> {
                         rsAlways = false;
                         rsDelay = false;
-                    tile.rsPulse.set(false);
+                    tile.rsAlways.set(false);
                     tile.rsDelay.set(false);
                     tile.rsPulse.set(rsPulse = !rsPulse);
 
