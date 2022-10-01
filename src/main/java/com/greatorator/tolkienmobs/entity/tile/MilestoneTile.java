@@ -28,18 +28,17 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nullable;
 import java.util.*;
 
-import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_BOTH_SYNC_TILE;
-import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_NBT_SYNC_TILE;
+import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.*;
 import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 import static com.greatorator.tolkienmobs.block.MilestoneBlock.ACTIVE;
 
 public class MilestoneTile extends TileBCore implements INamedContainerProvider, ITickableTileEntity {
-    public final ManagedBool isactive = register(new ManagedBool("is_active", false, SAVE_BOTH_SYNC_TILE));
-    public final ManagedString milestoneName = register(new ManagedString("milestone_name", "Unnamed_Milestone", SAVE_BOTH_SYNC_TILE));
-    public final ManagedString milestoneUUID = register(new ManagedString("milestone_uuid", SAVE_BOTH_SYNC_TILE));
-    public final ManagedString playerUUID = register(new ManagedString("player_uuid", SAVE_BOTH_SYNC_TILE));
-    public final ManagedString milestoneDim = register(new ManagedString("dim_key", SAVE_BOTH_SYNC_TILE));
-    public final ManagedPos milestonePos = register(new ManagedPos("milestone_pos", SAVE_NBT_SYNC_TILE));
+    public final ManagedBool isactive = register(new ManagedBool("is_active", false, SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
+    public final ManagedString milestoneName = register(new ManagedString("milestone_name", "Unnamed_Milestone", SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
+    public final ManagedString milestoneUUID = register(new ManagedString("milestone_uuid", SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
+    public final ManagedString playerUUID = register(new ManagedString("player_uuid", SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
+    public final ManagedString milestoneDim = register(new ManagedString("dim_key", SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
+    public final ManagedPos milestonePos = register(new ManagedPos("milestone_pos", SAVE_NBT_SYNC_TILE, CLIENT_CONTROL));
 
     public Set<UUID> owners = new HashSet<>();
     public static List<TileEntity> milestones = new ArrayList<>();

@@ -11,14 +11,10 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Objects;
 
 public class KeyBaseItem extends ItemBCore {
-    public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
-
     public KeyBaseItem(Properties properties) {
         super(properties);
     }
@@ -35,9 +31,6 @@ public class KeyBaseItem extends ItemBCore {
         }
         else if (!world.isClientSide && (!Objects.equals(getKey(stack), "")) || (!Objects.equals(getKey(stack), null))) {
             world.sendBlockUpdated(blockpos, blockstate, blockstate, 3);
-
-            LOGGER.info("Your Key is Programmed! " + getKey(stack));
-            LOGGER.info("Shiny key! " + isEnabled(stack));
         }
 
         return super.use(world, player, hand);
@@ -59,11 +52,9 @@ public class KeyBaseItem extends ItemBCore {
         if (!Objects.equals(getKey(stack), "") || getKey(stack) != null) {
             toggleEnabled(stack);
         }
-        LOGGER.info("Your Key is Programmed! Code =  " + getKey(stack));
-        LOGGER.info("Your Key is Programmed! Effect = " + isEnabled(stack));
     }
 
-    public String getKey(ItemStack stack) {
+    public static String getKey(ItemStack stack) {
         return ItemNBTHelper.getString(stack, "KeyCode", "");
     }
 

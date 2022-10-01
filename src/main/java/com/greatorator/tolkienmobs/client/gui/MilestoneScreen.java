@@ -21,7 +21,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class MilestoneScreen extends ModularGuiContainer<ContainerBCTile<MilestoneTile>> {
@@ -60,7 +59,7 @@ public class MilestoneScreen extends ModularGuiContainer<ContainerBCTile<Milesto
                     .setMaxXPos(codeBG.maxXPos() - 1, true);
             template.background.addChild(codeBG);
             GuiTextField milestoneName = toolkit.createTextField(template.background)
-                    .setText(Objects.equals(tile.milestoneName.get(), "") ? "" : tile.milestoneName.get())
+                    .setText(tile.milestoneName.get())
                     .setFieldEnabled(true)
                     .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("instructions"))
                     .setValidator(toolkit.catchyValidator(s -> s.equals("") || !invalidCharacters.matcher(s).find()))

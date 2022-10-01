@@ -21,13 +21,14 @@ import net.minecraftforge.items.CapabilityItemHandler;
 
 import javax.annotation.Nullable;
 
+import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.CLIENT_CONTROL;
 import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_BOTH_SYNC_TILE;
 import static net.minecraft.util.Direction.UP;
 
 public class LockableChestTile extends TileBCore implements INamedContainerProvider, ITickableTileEntity {
     public static final ContainerSlotLayout.LayoutFactory<LockableChestTile> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.mainInventory);
     public TileItemStackHandler mainInventory = new TileItemStackHandler(27);
-    public final ManagedString keyCode = register(new ManagedString("KeyCode", SAVE_BOTH_SYNC_TILE));
+    public final ManagedString keyCode = register(new ManagedString("KeyCode", SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
 
     public LockableChestTile(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);

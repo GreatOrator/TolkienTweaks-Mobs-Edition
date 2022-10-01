@@ -638,6 +638,9 @@
   "screen.tolkienmobs.keystone.saved": "Save Code",
   "screen.tolkienmobs.keystone.savedelay": "Set Delay",
   "screen.tolkienmobs.keystone.tickdelay": "Set the amount of delay to keep redstone on",
+  "screen.tolkienmobs.lockable_chest.instructions": "Code to set, must match any keys.",
+  "screen.tolkienmobs.lockable_chest.keystonecode": "Key Stone Code",
+  "screen.tolkienmobs.lockable_chest.saved": "Save Code",
   "screen.tolkienmobs.master_key": "Key Setup",
   "screen.tolkienmobs.milestone": "Pick your destination",
   "screen.tolkienmobs.milestone.instructions": "Set the name for this Milestone.",
@@ -656,5 +659,6 @@
   "tolkienmobs.msg.onfire": "Goblin King is protecting himself from fire.",
   "tolkienmobs.msg.onfire.balrog": "The Balrog is protecting himself from fire.",
   "tolkienmobs.msg.speedup": "Goblin King is attempting to match your speed.",
-  "tolkienmobs.msg.speedup.balrog": "The Balrog is attempting to match your speed."
+  "tolkienmobs.msg.speedup.balrog": "The Balrog is attempting to match your speed.",
+  "tolkienmobs.msg.wrong_key": "You have the wrong key."
 }
