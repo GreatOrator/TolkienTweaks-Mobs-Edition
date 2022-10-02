@@ -200,7 +200,7 @@ public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
     public BlockState press(BlockState blockState, World world, BlockPos blockPos) {
         TileEntity tile = world.getBlockEntity(blockPos);
         CamoKeyStoneTile keyStone = (CamoKeyStoneTile) tile;
-        for (int i = 0; i <= keyStone.timeActive.get(); i++) {
+        for (int i = 0; i <= (keyStone.timeActive.get() * 50); i++) {
             LOGGER.info("Countdown begins: " + i);
 
             world.setBlock(blockPos, blockState.setValue(POWERED, Boolean.TRUE), 3);
