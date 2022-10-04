@@ -36,9 +36,9 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
             case TolkienNetwork.S_UPDATE_KEY_CODE:
                 handleKeyCodeUpdate(packet, sender, handler);
                 break;
-//            case TolkienNetwork.S_UPDATE_MILESTONE:
-//                handleMilestoneUpdate(packet, sender, handler);
-//                break;
+            case TolkienNetwork.S_UPDATE_KEY_USES:
+                handleKeyUsesUpdate(packet, sender, handler);
+                break;
         }
     }
 
@@ -103,6 +103,12 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
         String newCode = packet.readString();
         ItemStack keyStack = getItem(sender, item -> item instanceof KeyBaseItem);
         ((KeyBaseItem) keyStack.getItem()).setKey(keyStack, newCode);
+    }
+
+    private void handleKeyUsesUpdate(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
+        String newUses = packet.readString();
+        ItemStack keyStack = getItem(sender, item -> item instanceof KeyBaseItem);
+        ((KeyBaseItem) keyStack.getItem()).setUses(keyStack, newUses);
     }
 
     private void handleMilestoneUpdate(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {

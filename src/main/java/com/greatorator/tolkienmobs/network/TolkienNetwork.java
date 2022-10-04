@@ -19,7 +19,7 @@ public class TolkienNetwork {
     //Client to server
     public static final int S_UPDATE_SIGN =             1;
     public static final int S_UPDATE_KEY_CODE =         2;
-    public static final int S_UPDATE_MILESTONE =        3;
+    public static final int S_UPDATE_KEY_USES =        3;
     public static final int S_UPDATE_KEYSTONE_CODE =    4;
     public static final int S_UPDATE_KEYSTONE_DELAY =   5;
 
@@ -40,8 +40,8 @@ public class TolkienNetwork {
         packet.sendToServer();
     }
 
-    public static void sendMilestoneUpdate(String key) {
-        PacketCustom packet = new PacketCustom(CHANNEL, S_UPDATE_MILESTONE);
+    public static void sendKeyUsesUpdate(String key) {
+        PacketCustom packet = new PacketCustom(CHANNEL, S_UPDATE_KEY_USES);
         packet.writeString(key);
         packet.sendToServer();
     }

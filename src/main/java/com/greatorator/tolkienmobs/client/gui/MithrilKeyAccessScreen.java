@@ -6,9 +6,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.text.ITextComponent;
 
 public class MithrilKeyAccessScreen extends KeyBaseAccessScreen {
-    protected GuiToolkit<MithrilKeyAccessScreen> toolkit = new GuiToolkit<>(this, 200, 78).setTranslationPrefix("screen.tolkienmobs.mithril_key");
+    protected GuiToolkit<MithrilKeyAccessScreen> toolkit = new GuiToolkit<>(this, 200, 90).setTranslationPrefix("screen.tolkienmobs.mithril_key");
 
-    public MithrilKeyAccessScreen(PlayerEntity playerIn, ITextComponent title, IKeyAccessTile lockable, String currentCode) {
-        super(playerIn, title, lockable, currentCode);
+    public MithrilKeyAccessScreen(PlayerEntity playerIn, ITextComponent title, IKeyAccessTile lockable, String currentCode, String uses) {
+        super(playerIn, title, lockable, currentCode, uses);
     }
 }
