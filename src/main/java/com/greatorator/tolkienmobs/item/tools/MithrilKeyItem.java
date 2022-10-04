@@ -11,6 +11,6 @@ public class MithrilKeyItem extends KeyBaseItem {
     }
 
     public void openGui(ItemStack stack, PlayerEntity player) {
-        Minecraft.getInstance().setScreen(new MithrilKeyAccessScreen(player, stack.getHoverName(), null, getKey(stack)));
+        Minecraft.getInstance().setScreen(new MithrilKeyAccessScreen(player, stack.getHoverName(), null, getKey(stack), getUses(stack)));
     }
 }

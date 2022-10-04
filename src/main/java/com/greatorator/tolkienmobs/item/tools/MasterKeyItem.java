@@ -11,6 +11,6 @@ public class MasterKeyItem extends KeyBaseItem {
     }
 
     public void openGui(ItemStack stack, PlayerEntity player) {
-        Minecraft.getInstance().setScreen(new MasterKeyAccessScreen(player, stack.getHoverName(), null, getKey(stack)));
+        Minecraft.getInstance().setScreen(new MasterKeyAccessScreen(player, stack.getHoverName(), null, getKey(stack), getUses(stack)));
     }
 }

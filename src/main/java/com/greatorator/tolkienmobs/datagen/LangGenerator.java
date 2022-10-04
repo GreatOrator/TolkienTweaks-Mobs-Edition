@@ -218,10 +218,15 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.KEY_RING.get(), "Key Ring");
         addLore(TTMContent.KEY_RING.get(), "Store your excess keys");
         add(TTMContent.BRONZE_KEY.get(), "Bronze Key");
+        addLore(TTMContent.BRONZE_KEY.get(), "Uses left: ");
         add(TTMContent.SILVER_KEY.get(), "Silver Key");
+        addLore(TTMContent.SILVER_KEY.get(), "Uses left: ");
         add(TTMContent.GOLD_KEY.get(), "Gold Key");
+        addLore(TTMContent.GOLD_KEY.get(), "Uses left: ");
         add(TTMContent.MITHRIL_KEY.get(), "Mithril Key");
+        addLore(TTMContent.MITHRIL_KEY.get(), "Uses left: ");
         add(TTMContent.MASTER_KEY.get(), "Master Key");
+        addLore(TTMContent.MASTER_KEY.get(), "Uses left: ");
         add(TTMContent.HYPE_HORN.get(), "All the HYPE!!");
 
 
@@ -739,6 +744,7 @@ public class LangGenerator extends LanguageProvider {
         add("tolkienmobs.msg.deploy_sleeping_bag", "Something is blocking the Sleepingbag.");
         add("tolkienmobs.msg.deploy_campfire", "Something is blocking the Campfire.");
         add("tolkienmobs.msg.wrong_key", "You have the wrong key.");
+        add("tolkienmobs.msg.key_used", "Key has no remaining uses.");
     }
 
     private void gui(PrefixHelper helper) {
@@ -759,6 +765,9 @@ public class LangGenerator extends LanguageProvider {
         helper.add("instructions",             "Set the code for this key. The code can be anything as long as it matches the block.");
         helper.add("keycode",             "Key Code Field");
         helper.add("saved",             "Code saved automatically");
+        helper.add("instructions2",             "Set the number of uses for this key. Leave blank for infinite or if you want to use the KeyStone consume mode.");
+        helper.add("keycode2",             "Number of uses");
+        helper.add("saved2",             "Uses saved automatically");
         helper.setPrefix("screen.tolkienmobs.milestone.");
         helper.add("instructions",             "Set the name for this Milestone.");
         helper.add("milestonename",             "Milestone Name");

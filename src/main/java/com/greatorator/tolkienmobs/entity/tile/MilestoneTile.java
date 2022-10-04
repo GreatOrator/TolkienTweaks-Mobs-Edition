@@ -8,7 +8,6 @@ import com.brandon3055.brandonscore.lib.datamanager.ManagedPos;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedString;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.MilestoneBlock;
-import com.greatorator.tolkienmobs.network.TolkienNetwork;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -20,8 +19,6 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.living.EntityTeleportEvent;
 import net.minecraftforge.fml.network.NetworkHooks;
 
@@ -128,12 +125,5 @@ public class MilestoneTile extends TileBCore implements INamedContainerProvider,
 //                milestones.add(tileentity);
 //            }
 //        }
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public void setMilestone(String key) {
-//        sendPacketToServer(output -> output.writeString(key), 0);
-        TolkienNetwork.sendMilestoneUpdate(key);
-        LOGGER.info("Milestone setMilestoneName: " + milestoneName.get());
     }
 }
