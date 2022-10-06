@@ -56,6 +56,14 @@
       "tolkienmobs:mob/tmgreateagle/tmgreateagle_death"
     ]
   },
+  "mob.tmgreateagle.attack":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/tmgreateagle/tmgreateagle_attack"
+    ]
+  },
   "mob.tmgreateagle.flapping":
   {
     "category": "neutral",
