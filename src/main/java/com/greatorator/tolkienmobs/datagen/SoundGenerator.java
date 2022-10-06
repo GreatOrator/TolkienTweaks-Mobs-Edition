@@ -95,6 +95,7 @@ public class SoundGenerator {
     public static final RegistryObject<SoundEvent> soundCallTMGreatEagle = addSound("mob.tmgreateagle.call");
     public static final RegistryObject<SoundEvent> soundFlappingTMGreatEagle = addSound("mob.tmgreateagle.flapping");
     public static final RegistryObject<SoundEvent> soundHurtTMGreatEagle = addSound("mob.tmgreateagle.hurt");
+    public static final RegistryObject<SoundEvent> soundAttackTMGreatEagle = addSound("mob.tmgreateagle.attack");
 
     //Sounds - Troll
     public static final RegistryObject<SoundEvent> soundHurtTroll = addSound("mob.troll.hurt");

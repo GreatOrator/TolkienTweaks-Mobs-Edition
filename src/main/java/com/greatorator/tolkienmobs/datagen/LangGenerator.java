@@ -710,6 +710,8 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMBALROG.get(), "Balrog Spawn Egg");
         add(EntityGenerator.ENTITY_TTM_WATCHER.get(), "Watcher of the Water");
         add(EntityGenerator.EGG_TTMWATCHER.get(), "Watcher Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_GWAHIR.get(), "Gwahir, Lord of the Eagles");
+        add(EntityGenerator.EGG_TTMGWAHIR.get(), "Gwahir Spawn Egg");
 
         // Passive
         add(EntityGenerator.ENTITY_TTM_AUROCH.get(), "Auroch");
@@ -728,6 +730,8 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMNAZGUL.get(), "Nazgul Spawn Egg");
         add(EntityGenerator.ENTITY_TTM_NAZGULSTEED.get(), "Nazgul Steed");
         add(EntityGenerator.EGG_TTMNAZGULSTEED.get(), "Nazgul Steed Spawn Egg");
+        add(EntityGenerator.ENTITY_TTM_GREAT_EAGLE.get(), "Great Eagle");
+        add(EntityGenerator.EGG_TTMGREATEAGLE.get(), "Great Eagle Spawn Egg");
     }
 
     private void chatMessages(PrefixHelper helper) {
@@ -741,6 +745,18 @@ public class LangGenerator extends LanguageProvider {
         add("tolkienmobs.msg.onfire.balrog", "The Balrog is protecting himself from fire.");
         add("tolkienmobs.msg.healself.balrog", "The Balrog is hurt and is healing.");
         add("tolkienmobs.msg.speedup.balrog", "The Balrog is attempting to match your speed.");
+        add("tolkienmobs.msg.nodrown.gwahir", "Gwahir doesn't want to drown.");
+        add("tolkienmobs.msg.onfire.gwahir", "Gwahir is protecting himself from fire.");
+        add("tolkienmobs.msg.healself.gwahir", "Gwahir is hurt and is healing.");
+        add("tolkienmobs.msg.speedup.gwahir", "Gwahir is attempting to match your speed.");
+        add("tolkienmobs.msg.helpcomming.shelob", "Shelob is attempting to call for help...Reinforcements have arrived!");
+        add("tolkienmobs.msg.nohelp.shelob", "Shelob is attempting to call for help, but no help came.");
+        add("tolkienmobs.msg.nodrown.shelob", "Shelob doesn't want to drown.");
+        add("tolkienmobs.msg.onfire.shelob", "Shelob is protecting herself from fire.");
+        add("tolkienmobs.msg.healself.shelob", "Shelob is hurt and is healing.");
+        add("tolkienmobs.msg.speedup.shelob", "Shelob is attempting to match your speed.");
+        add("tolkienmobs.msg.healself.watcher", "The Watcher is hurt and is healing.");
+        add("tolkienmobs.msg.speedup.watcher", "The Watcher is attempting to match your speed.");
         add("tolkienmobs.msg.deploy_sleeping_bag", "Something is blocking the Sleepingbag.");
         add("tolkienmobs.msg.deploy_campfire", "Something is blocking the Campfire.");
         add("tolkienmobs.msg.wrong_key", "You have the wrong key.");

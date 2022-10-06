@@ -5,7 +5,7 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
-import com.greatorator.tolkienmobs.entity.boss.EntityTTMGoblinKing;
+import com.greatorator.tolkienmobs.entity.boss.GoblinKingEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -61,7 +61,7 @@ public class EntityTTMTreeEnt extends MonsterEntity {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, EntityTTMGoblin.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, EntityTTMMordorOrc.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, EntityTTMGoblinKing.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, GoblinKingEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, EntityTTMUrukHai.class, true));
     }
 

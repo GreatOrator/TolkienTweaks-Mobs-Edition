@@ -974,6 +974,20 @@ public class EntityLootGenerator extends EntityLootTables {
                                         .apply(SetCount.setCount(RandomValueRange.between(0.0F, 4.0F)))
                                         .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
                                         .when(KilledByPlayer.killedByPlayer())));
+        add(EntityGenerator.ENTITY_TTM_GREAT_EAGLE.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.BIRD_FEATHER.get())
+                                        .apply(SetCount.setCount(RandomValueRange.between(1.0F, 5.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer()))
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(Items.BONE)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer())));
 
         // Boss
         add(EntityGenerator.ENTITY_TTM_GOBLINKING.get(),
@@ -1199,6 +1213,20 @@ public class EntityLootGenerator extends EntityLootTables {
                                         .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F)))
                                         .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))
                                         .when(KilledByPlayer.killedByPlayer()))));
+        add(EntityGenerator.ENTITY_TTM_GWAHIR.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(TTMContent.BIRD_FEATHER.get())
+                                        .apply(SetCount.setCount(RandomValueRange.between(1.0F, 5.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer()))
+                        .withPool(LootPool.lootPool()
+                                .setRolls(ConstantRange.exactly(1))
+                                .add(ItemLootEntry.lootTableItem(Items.BONE)
+                                        .apply(SetCount.setCount(RandomValueRange.between(1.0F, 4.0F)))
+                                        .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F))))
+                                .when(KilledByPlayer.killedByPlayer())));
     }
 
     public LootTable.Builder noLoot() {

@@ -8,7 +8,7 @@ import com.greatorator.tolkienmobs.client.gui.*;
 import com.greatorator.tolkienmobs.client.render.tile.*;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
-import com.greatorator.tolkienmobs.entity.ambient.model.ModelTTMSwarm;
+import com.greatorator.tolkienmobs.entity.ambient.model.SwarmModel;
 import com.greatorator.tolkienmobs.entity.ambient.render.*;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderFellBeastFireball;
@@ -21,10 +21,7 @@ import com.greatorator.tolkienmobs.entity.monster.render.*;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMAuroch;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMGoat;
 import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMMumakil;
-import com.greatorator.tolkienmobs.entity.special.render.GollumRender;
-import com.greatorator.tolkienmobs.entity.special.render.NazgulRender;
-import com.greatorator.tolkienmobs.entity.special.render.NazgulSteedRender;
-import com.greatorator.tolkienmobs.entity.special.render.ShadowfaxRender;
+import com.greatorator.tolkienmobs.entity.special.render.*;
 import com.greatorator.tolkienmobs.event.client.ClientEvents;
 import com.greatorator.tolkienmobs.handler.TTMHearts;
 import com.greatorator.tolkienmobs.init.TTMColor;
@@ -175,12 +172,12 @@ public class ClientProxy extends CommonProxy {
     //#################################################################
     public static void registerEntityRenderer() {
         // Ambient
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_RAT.get(), RenderTTMRat::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_SQUIRREL.get(), RenderTTMSquirrel::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_FROG.get(), RenderTTMFrog::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_SWARM.get(), m -> new RenderTTMSwarm<>(m, new ModelTTMSwarm(), 0.5F, TolkienMobs.MODID + ":textures/entity/midgeflies.png"));
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_THRUSH.get(), RenderTTMThrush::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_CREBAIN.get(), RenderTTMCrebain::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_RAT.get(), RatRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_SQUIRREL.get(), SquirrelRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_FROG.get(), FrogRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_SWARM.get(), m -> new SwarmRender<>(m, new SwarmModel(), 0.5F, TolkienMobs.MODID + ":textures/entity/midgeflies.png"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_THRUSH.get(), ThrushRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_CREBAIN.get(), CrebainRender::new);
 
         // Merchants
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_HUMAN.get(), RenderTTMHuman::new);
@@ -212,13 +209,14 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MIMICCHEST.get(), RenderTTMMimicChest::new);
 
         // Boss
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOBLINKING.get(), RenderTTMGoblinKing::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MITHRILGOLEM.get(), RenderTTMMithrilGolem::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MORGULIRONGOLEM.get(), RenderTTMMorgulIronGolem::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_WITCHKING.get(), RenderTTMWitchKing::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_SHELOB.get(), RenderTTMShelob::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_BALROG.get(), RenderTTMBalrog::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_WATCHER.get(), RenderTTMWatcher::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOBLINKING.get(), GoblinKingRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MITHRILGOLEM.get(), MithrilGolemRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MORGULIRONGOLEM.get(), MorgulIronGolemRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_WITCHKING.get(), WitchKingRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_SHELOB.get(), ShelobRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_BALROG.get(), BalrogRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_WATCHER.get(), WatcherRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GWAHIR.get(), GwahirRender::new);
 
         // Passive
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_AUROCH.get(), RenderTTMAuroch::new);
@@ -230,6 +228,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOLLUM.get(), GollumRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_NAZGUL.get(), NazgulRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_NAZGULSTEED.get(), NazgulSteedRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GREAT_EAGLE.get(), GreatEagleRender::new);
 
         // Ammo
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_ARROW_GALADHRIM.get(), new RenderGaladhrimArrow.RenderFactory());

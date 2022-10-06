@@ -6,7 +6,7 @@ import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMFlockToSameKind;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMPanicOnFlockDeath;
-import com.greatorator.tolkienmobs.entity.boss.EntityTTMGoblinKing;
+import com.greatorator.tolkienmobs.entity.boss.GoblinKingEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -59,7 +59,7 @@ public class EntityTTMGoblin extends MonsterEntity {
         this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(TTMRand.getRandomInteger(1, 10) > 10 ? EntityTTMGoblin.class : EntityTTMGoblinKing.class));
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(TTMRand.getRandomInteger(1, 10) > 10 ? EntityTTMGoblin.class : GoblinKingEntity.class));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
     }

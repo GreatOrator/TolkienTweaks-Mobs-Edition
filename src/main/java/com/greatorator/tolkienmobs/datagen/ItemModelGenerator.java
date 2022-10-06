@@ -365,6 +365,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(EntityGenerator.EGG_TTMSHELOB.get());
         eggItem(EntityGenerator.EGG_TTMBALROG.get());
         eggItem(EntityGenerator.EGG_TTMWATCHER.get());
+        eggItem(EntityGenerator.EGG_TTMGWAHIR.get());
 
             // Passive
         eggItem(EntityGenerator.EGG_TTMAUROCH.get());
@@ -376,6 +377,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(EntityGenerator.EGG_TTMGOLLUM.get());
         eggItem(EntityGenerator.EGG_TTMNAZGUL.get());
         eggItem(EntityGenerator.EGG_TTMNAZGULSTEED.get());
+        eggItem(EntityGenerator.EGG_TTMGREATEAGLE.get());
 
             //Signs
         simpleItem(TTMContent.MALLORN_SIGN_ITEM_WOOD_TYPE.get());

@@ -11,10 +11,7 @@ import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.entity.passive.EntityTTMAuroch;
 import com.greatorator.tolkienmobs.entity.passive.EntityTTMGoat;
 import com.greatorator.tolkienmobs.entity.passive.EntityTTMMumakil;
-import com.greatorator.tolkienmobs.entity.special.GollumEntity;
-import com.greatorator.tolkienmobs.entity.special.NazgulEntity;
-import com.greatorator.tolkienmobs.entity.special.NazgulSteedEntity;
-import com.greatorator.tolkienmobs.entity.special.ShadowfaxEntity;
+import com.greatorator.tolkienmobs.entity.special.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
@@ -41,18 +38,18 @@ public class EntityGenerator {
     // Entity Registry
     //#################################################################
     // Ambient
-    private static final EntityType<EntityTTMRat> entityTTMRat = buildEntity("entityttmrat", EntityTTMRat::new, EntityClassification.CREATURE, 0.75F, 0.5F);
-    public static final RegistryObject<EntityType<EntityTTMRat>> ENTITY_TTM_RAT = ENTITY.register("entityttmrat", () -> entityTTMRat);
-    private static final EntityType<EntityTTMSquirrel> entityTTMSquirrel = buildEntity("entityttmsquirrel", EntityTTMSquirrel::new, EntityClassification.CREATURE, 0.5F, 0.5F);
-    public static final RegistryObject<EntityType<EntityTTMSquirrel>> ENTITY_TTM_SQUIRREL = ENTITY.register("entityttmsquirrel", () -> entityTTMSquirrel);
-    private static final EntityType<EntityTTMFrog> entityTTMFrog = buildEntity("entityttmfrog", EntityTTMFrog::new, EntityClassification.CREATURE, 0.5F, 0.5F);
-    public static final RegistryObject<EntityType<EntityTTMFrog>> ENTITY_TTM_FROG = ENTITY.register("entityttmfrog", () -> entityTTMFrog);
-    private static final EntityType<EntityTTMSwarm> entityTTMSwarm = buildEntity("entityttmswarm", EntityTTMSwarm::new, EntityClassification.CREATURE, 0.7F, 1.9F);
-    public static final RegistryObject<EntityType<EntityTTMSwarm>> ENTITY_TTM_SWARM = ENTITY.register("entityttmswarm", () -> entityTTMSwarm);
-    private static final EntityType<EntityTTMThrush> entityTTMThrush = buildEntity("entityttmthrush", EntityTTMThrush::new, EntityClassification.CREATURE, 0.5F, 0.5F);
-    public static final RegistryObject<EntityType<EntityTTMThrush>> ENTITY_TTM_THRUSH = ENTITY.register("entityttmthrush", () -> entityTTMThrush);
-    private static final EntityType<EntityTTMCrebain> entityTTMCrebain = buildEntity("entityttmcrebain", EntityTTMCrebain::new, EntityClassification.CREATURE, 0.5F, 0.5F);
-    public static final RegistryObject<EntityType<EntityTTMCrebain>> ENTITY_TTM_CREBAIN = ENTITY.register("entityttmcrebain", () -> entityTTMCrebain);
+    private static final EntityType<RatEntity> entityTTMRat = buildEntity("entityttmrat", RatEntity::new, EntityClassification.CREATURE, 0.75F, 0.5F);
+    public static final RegistryObject<EntityType<RatEntity>> ENTITY_TTM_RAT = ENTITY.register("entityttmrat", () -> entityTTMRat);
+    private static final EntityType<SquirrelEntity> entityTTMSquirrel = buildEntity("entityttmsquirrel", SquirrelEntity::new, EntityClassification.CREATURE, 0.5F, 0.5F);
+    public static final RegistryObject<EntityType<SquirrelEntity>> ENTITY_TTM_SQUIRREL = ENTITY.register("entityttmsquirrel", () -> entityTTMSquirrel);
+    private static final EntityType<FrogEntity> entityTTMFrog = buildEntity("entityttmfrog", FrogEntity::new, EntityClassification.CREATURE, 0.5F, 0.5F);
+    public static final RegistryObject<EntityType<FrogEntity>> ENTITY_TTM_FROG = ENTITY.register("entityttmfrog", () -> entityTTMFrog);
+    private static final EntityType<SwarmEntity> entityTTMSwarm = buildEntity("entityttmswarm", SwarmEntity::new, EntityClassification.CREATURE, 0.7F, 1.9F);
+    public static final RegistryObject<EntityType<SwarmEntity>> ENTITY_TTM_SWARM = ENTITY.register("entityttmswarm", () -> entityTTMSwarm);
+    private static final EntityType<ThrushEntity> entityTTMThrush = buildEntity("entityttmthrush", ThrushEntity::new, EntityClassification.CREATURE, 0.5F, 0.5F);
+    public static final RegistryObject<EntityType<ThrushEntity>> ENTITY_TTM_THRUSH = ENTITY.register("entityttmthrush", () -> entityTTMThrush);
+    private static final EntityType<CrebainEntity> entityTTMCrebain = buildEntity("entityttmcrebain", CrebainEntity::new, EntityClassification.CREATURE, 0.5F, 0.5F);
+    public static final RegistryObject<EntityType<CrebainEntity>> ENTITY_TTM_CREBAIN = ENTITY.register("entityttmcrebain", () -> entityTTMCrebain);
 
     // Merchants
     private static final EntityType<EntityTTMHuman> entityTTMHuman = buildEntity("entityttmhuman", EntityTTMHuman::new, EntityClassification.MISC, 0.7F, 1.85F);
@@ -109,20 +106,22 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<EntityTTMMimicChest>> ENTITY_TTM_MIMICCHEST = ENTITY.register("entityttmmimicchest", () -> entityTTMMimicChest);
 
     // Boss
-    private static final EntityType<EntityTTMGoblinKing> entityTTMGoblinKing = buildEntity("entityttmgoblinking", EntityTTMGoblinKing::new, EntityClassification.MONSTER, 0.9F, 1.0F);
-    public static final RegistryObject<EntityType<EntityTTMGoblinKing>> ENTITY_TTM_GOBLINKING = ENTITY.register("entityttmgoblinking", () -> entityTTMGoblinKing);
-    private static final EntityType<EntityTTMMithrilGolem> entityTTMMithrilGolem = buildEntity("entityttmmithrilgolem", EntityTTMMithrilGolem::new, EntityClassification.MONSTER, 1.8F, 3.1F);
-    public static final RegistryObject<EntityType<EntityTTMMithrilGolem>> ENTITY_TTM_MITHRILGOLEM = ENTITY.register("entityttmmithrilgolem", () -> entityTTMMithrilGolem);
-    private static final EntityType<EntityTTMMorgulIronGolem> entityTTMMorgulIronGolem = buildEntity("entityttmmorgulirongolem", EntityTTMMorgulIronGolem::new, EntityClassification.MONSTER, 1.8F, 3.1F);
-    public static final RegistryObject<EntityType<EntityTTMMorgulIronGolem>> ENTITY_TTM_MORGULIRONGOLEM = ENTITY.register("entityttmmorgulirongolem", () -> entityTTMMorgulIronGolem);
-    private static final EntityType<EntityTTMWitchKing> entityTTMWitchKing = buildEntity("entityttmwitchking", EntityTTMWitchKing::new, EntityClassification.MONSTER, 1.3F, 2.2F);
-    public static final RegistryObject<EntityType<EntityTTMWitchKing>> ENTITY_TTM_WITCHKING = ENTITY.register("entityttmwitchking", () -> entityTTMWitchKing);
-    private static final EntityType<EntityTTMShelob> entityTTMShelob = buildEntity("entityttmshelob", EntityTTMShelob::new, EntityClassification.MONSTER, 2.3F, 1.1F);
-    public static final RegistryObject<EntityType<EntityTTMShelob>> ENTITY_TTM_SHELOB = ENTITY.register("entityttmshelob", () -> entityTTMShelob);
-    private static final EntityType<EntityTTMBalrog> entityTTMBalrog = buildFireEntity("entityttmbalrog", EntityTTMBalrog::new, EntityClassification.MONSTER, 2.3F, 3.5F);
-    public static final RegistryObject<EntityType<EntityTTMBalrog>> ENTITY_TTM_BALROG = ENTITY.register("entityttmbalrog", () -> entityTTMBalrog);
-    private static final EntityType<EntityTTMWatcher> entityTTMWatcher = buildEntity("entityttmwatcher", EntityTTMWatcher::new, EntityClassification.WATER_CREATURE, 2.3F, 3.5F);
-    public static final RegistryObject<EntityType<EntityTTMWatcher>> ENTITY_TTM_WATCHER = ENTITY.register("entityttmwatcher", () -> entityTTMWatcher);
+    private static final EntityType<GoblinKingEntity> entityTTMGoblinKing = buildEntity("entityttmgoblinking", GoblinKingEntity::new, EntityClassification.MONSTER, 0.9F, 1.0F);
+    public static final RegistryObject<EntityType<GoblinKingEntity>> ENTITY_TTM_GOBLINKING = ENTITY.register("entityttmgoblinking", () -> entityTTMGoblinKing);
+    private static final EntityType<MithrilGolemEntity> entityTTMMithrilGolem = buildEntity("entityttmmithrilgolem", MithrilGolemEntity::new, EntityClassification.MONSTER, 1.8F, 3.1F);
+    public static final RegistryObject<EntityType<MithrilGolemEntity>> ENTITY_TTM_MITHRILGOLEM = ENTITY.register("entityttmmithrilgolem", () -> entityTTMMithrilGolem);
+    private static final EntityType<MorgulIronGolemEntity> entityTTMMorgulIronGolem = buildEntity("entityttmmorgulirongolem", MorgulIronGolemEntity::new, EntityClassification.MONSTER, 1.8F, 3.1F);
+    public static final RegistryObject<EntityType<MorgulIronGolemEntity>> ENTITY_TTM_MORGULIRONGOLEM = ENTITY.register("entityttmmorgulirongolem", () -> entityTTMMorgulIronGolem);
+    private static final EntityType<WitchKingEntity> entityTTMWitchKing = buildEntity("entityttmwitchking", WitchKingEntity::new, EntityClassification.MONSTER, 1.3F, 2.2F);
+    public static final RegistryObject<EntityType<WitchKingEntity>> ENTITY_TTM_WITCHKING = ENTITY.register("entityttmwitchking", () -> entityTTMWitchKing);
+    private static final EntityType<ShelobEntity> entityTTMShelob = buildEntity("entityttmshelob", ShelobEntity::new, EntityClassification.MONSTER, 2.3F, 1.1F);
+    public static final RegistryObject<EntityType<ShelobEntity>> ENTITY_TTM_SHELOB = ENTITY.register("entityttmshelob", () -> entityTTMShelob);
+    private static final EntityType<BalrogEntity> entityTTMBalrog = buildFireEntity("entityttmbalrog", BalrogEntity::new, EntityClassification.MONSTER, 2.3F, 3.5F);
+    public static final RegistryObject<EntityType<BalrogEntity>> ENTITY_TTM_BALROG = ENTITY.register("entityttmbalrog", () -> entityTTMBalrog);
+    private static final EntityType<WatcherEntity> entityTTMWatcher = buildEntity("entityttmwatcher", WatcherEntity::new, EntityClassification.WATER_CREATURE, 2.3F, 3.5F);
+    public static final RegistryObject<EntityType<WatcherEntity>> ENTITY_TTM_WATCHER = ENTITY.register("entityttmwatcher", () -> entityTTMWatcher);
+    private static final EntityType<GwahirEntity> entityTTMGwahir = buildEntity("entityttmgwahir", GwahirEntity::new, EntityClassification.CREATURE, 1.3964844F, 1.6F);
+    public static final RegistryObject<EntityType<GwahirEntity>> ENTITY_TTM_GWAHIR = ENTITY.register("entityttmgwahir", () -> entityTTMGwahir);
 
     // Passive
     private static final EntityType<EntityTTMAuroch> entityTTMAuroch = buildEntity("entityttmauroch", EntityTTMAuroch::new, EntityClassification.CREATURE, 1.9F, 1.4F);
@@ -141,6 +140,8 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<NazgulEntity>> ENTITY_TTM_NAZGUL = ENTITY.register("entityttmnazgul", () -> entityTTMNazgul);
     private static final EntityType<NazgulSteedEntity> entityTTMNazgulSteed = buildEntity("entityttmnazgulsteed", NazgulSteedEntity::new, EntityClassification.CREATURE, 1.3964844F, 1.6F);
     public static final RegistryObject<EntityType<NazgulSteedEntity>> ENTITY_TTM_NAZGULSTEED = ENTITY.register("entityttmnazgulsteed", () -> entityTTMNazgulSteed);
+    private static final EntityType<GreatEagleEntity> entityTTMGreatEagle = buildEntity("entityttmgreateagle", GreatEagleEntity::new, EntityClassification.CREATURE, 1.3964844F, 1.6F);
+    public static final RegistryObject<EntityType<GreatEagleEntity>> ENTITY_TTM_GREAT_EAGLE = ENTITY.register("entityttmgreateagle", () -> entityTTMGreatEagle);
 
     // Ammo
     public static final RegistryObject<EntityType<?>> AMMO_ARROW_GALADHRIM = ENTITY.register("ammo_arrow_galadhrim", () -> EntityType.Builder.of(EntityGaladhrimArrow::new, EntityClassification.MISC).sized(0.5F, 0.5F).setCustomClientFactory(EntityGaladhrimArrow::new).build(MODID + ":ammo_arrow_galadhrim"));
@@ -151,11 +152,11 @@ public class EntityGenerator {
         //Look in EntitySpawnPlacementRegistry for examples
         // Ambient
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_SQUIRREL.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AmbientEntity::checkTTMAmbientSpawn);
-        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_FROG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMFrog::checkFrogSpawn);
-        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_THRUSH.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMThrush::checkThrushSpawn);
-        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_SWARM.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMSwarm::checkSwarmSpawn);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_FROG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FrogEntity::checkFrogSpawn);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_THRUSH.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ThrushEntity::checkThrushSpawn);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_SWARM.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SwarmEntity::checkSwarmSpawn);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_RAT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AmbientEntity::checkTTMAmbientSpawn);
-        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_CREBAIN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMCrebain::checkCrebainSpawn);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_CREBAIN.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, CrebainEntity::checkCrebainSpawn);
 
         // Merchants
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_ELVES.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
@@ -208,12 +209,12 @@ public class EntityGenerator {
 
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         // Ambient
-        event.put(ENTITY_TTM_RAT.get(), EntityTTMRat.registerAttributes().build());
-        event.put(ENTITY_TTM_SQUIRREL.get(), EntityTTMSquirrel.registerAttributes().build());
-        event.put(ENTITY_TTM_FROG.get(), EntityTTMSquirrel.registerAttributes().build());
-        event.put(ENTITY_TTM_SWARM.get(), EntityTTMSwarm.registerAttributes().build());
-        event.put(ENTITY_TTM_THRUSH.get(), EntityTTMThrush.registerAttributes().build());
-        event.put(ENTITY_TTM_CREBAIN.get(), EntityTTMCrebain.registerAttributes().build());
+        event.put(ENTITY_TTM_RAT.get(), RatEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_SQUIRREL.get(), SquirrelEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_FROG.get(), SquirrelEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_SWARM.get(), SwarmEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_THRUSH.get(), ThrushEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_CREBAIN.get(), CrebainEntity.registerAttributes().build());
 
         // Merchants
         event.put(ENTITY_TTM_HUMAN.get(), EntityTTMHuman.registerAttributes().build());
@@ -245,13 +246,14 @@ public class EntityGenerator {
         event.put(ENTITY_TTM_MIMICCHEST.get(), EntityTTMMimicChest.registerAttributes().build());
 
         // Boss
-        event.put(ENTITY_TTM_GOBLINKING.get(), EntityTTMGoblinKing.registerAttributes().build());
-        event.put(ENTITY_TTM_MITHRILGOLEM.get(), EntityTTMMithrilGolem.registerAttributes().build());
-        event.put(ENTITY_TTM_MORGULIRONGOLEM.get(), EntityTTMMorgulIronGolem.registerAttributes().build());
-        event.put(ENTITY_TTM_WITCHKING.get(), EntityTTMWitchKing.registerAttributes().build());
-        event.put(ENTITY_TTM_SHELOB.get(), EntityTTMShelob.registerAttributes().build());
-        event.put(ENTITY_TTM_BALROG.get(), EntityTTMBalrog.registerAttributes().build());
-        event.put(ENTITY_TTM_WATCHER.get(), EntityTTMWatcher.registerAttributes().build());
+        event.put(ENTITY_TTM_GOBLINKING.get(), GoblinKingEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_MITHRILGOLEM.get(), MithrilGolemEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_MORGULIRONGOLEM.get(), MorgulIronGolemEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_WITCHKING.get(), WitchKingEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_SHELOB.get(), ShelobEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_BALROG.get(), BalrogEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_WATCHER.get(), WatcherEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_GWAHIR.get(), GwahirEntity.registerAttributes().build());
 
         // Passive
         event.put(ENTITY_TTM_AUROCH.get(), EntityTTMAuroch.registerAttributes().build());
@@ -263,67 +265,70 @@ public class EntityGenerator {
         event.put(ENTITY_TTM_GOLLUM.get(), GollumEntity.registerAttributes().build());
         event.put(ENTITY_TTM_NAZGUL.get(), NazgulEntity.registerAttributes().build());
         event.put(ENTITY_TTM_NAZGULSTEED.get(), NazgulSteedEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_GREAT_EAGLE.get(), GreatEagleEntity.registerAttributes().build());
     }
 
     //#################################################################
     // Spawn Eggs
     //#################################################################
     // Ambient
-    public static final RegistryObject<Item> EGG_TTMRAT = createSpawnEgg("entityttmrat", entityTTMRat, 13354786, 2301661);
-    public static final RegistryObject<Item> EGG_TTMSQUIRREL = createSpawnEgg("entityttmsquirrel", entityTTMSquirrel, 13354786, 5600397);
-    public static final RegistryObject<Item> EGG_TTMFROG = createSpawnEgg("entityttmfrog", entityTTMFrog, 13354786, 14289362);
-    public static final RegistryObject<Item> EGG_TTMSWARM = createSpawnEgg("entityttmswarm", entityTTMSwarm, 13354786, 14088652);
-    public static final RegistryObject<Item> EGG_TTMTHRUSH = createSpawnEgg("entityttmthrush", entityTTMThrush, 13354786, 9467561);
-    public static final RegistryObject<Item> EGG_TTMCREBAIN = createSpawnEgg("entityttmcrebain", entityTTMCrebain, 13354786, 9226665);
+    public static final RegistryObject<Item> EGG_TTMRAT = createSpawnEgg("entityttmrat", entityTTMRat, 9482106, 2301661);
+    public static final RegistryObject<Item> EGG_TTMSQUIRREL = createSpawnEgg("entityttmsquirrel", entityTTMSquirrel, 9482106, 5600397);
+    public static final RegistryObject<Item> EGG_TTMFROG = createSpawnEgg("entityttmfrog", entityTTMFrog, 9482106, 14289362);
+    public static final RegistryObject<Item> EGG_TTMSWARM = createSpawnEgg("entityttmswarm", entityTTMSwarm, 9482106, 14088652);
+    public static final RegistryObject<Item> EGG_TTMTHRUSH = createSpawnEgg("entityttmthrush", entityTTMThrush, 9482106, 9467561);
+    public static final RegistryObject<Item> EGG_TTMCREBAIN = createSpawnEgg("entityttmcrebain", entityTTMCrebain, 9482106, 9226665);
 
     // Merchants
-    public static final RegistryObject<Item> EGG_TTMHUMAN = createSpawnEgg("entityttmhuman", entityTTMHuman, 16426382, 2301661);
-    public static final RegistryObject<Item> EGG_TTMDWARF = createSpawnEgg("entityttmdwarf", entityTTMDwarf, 16426382, 5600397);
-    public static final RegistryObject<Item> EGG_TTMELVES = createSpawnEgg("entityttmelves", entityTTMElves, 16426382, 14289362);
-    public static final RegistryObject<Item> EGG_TTMHOBBIT = createSpawnEgg("entityttmhobbit", entityTTMHobbit, 16426382, 14088652);
-    public static final RegistryObject<Item> EGG_TTMDESERTDWELLER = createSpawnEgg("entityttmdesertdweller", entityTTMDesertDweller, 16426382, 9467561);
+    public static final RegistryObject<Item> EGG_TTMHUMAN = createSpawnEgg("entityttmhuman", entityTTMHuman, 15186506, 2301661);
+    public static final RegistryObject<Item> EGG_TTMDWARF = createSpawnEgg("entityttmdwarf", entityTTMDwarf, 15186506, 5600397);
+    public static final RegistryObject<Item> EGG_TTMELVES = createSpawnEgg("entityttmelves", entityTTMElves, 15186506, 14289362);
+    public static final RegistryObject<Item> EGG_TTMHOBBIT = createSpawnEgg("entityttmhobbit", entityTTMHobbit, 15186506, 14088652);
+    public static final RegistryObject<Item> EGG_TTMDESERTDWELLER = createSpawnEgg("entityttmdesertdweller", entityTTMDesertDweller, 15186506, 9467561);
 
     // Monster
-    public static final RegistryObject<Item> EGG_TTMGOBLIN = createSpawnEgg("entityttmgoblin", entityTTMGoblin, 14705521, 2301661);
-    public static final RegistryObject<Item> EGG_TTMBARROW = createSpawnEgg("entityttmbarrow", entityTTMBarrow, 14705521, 5600397);
-    public static final RegistryObject<Item> EGG_TTMBRIGAND = createSpawnEgg("entityttmbrigand", entityTTMBrigand, 14705521, 14289362);
-    public static final RegistryObject<Item> EGG_TTMDEEPCLAW = createSpawnEgg("entityttmdeepclaw", entityTTMDeepclaw, 14705521, 14088652);
-    public static final RegistryObject<Item> EGG_TTMTREEENT = createSpawnEgg("entityttmtreeent", entityTTMTreeEnt, 14705521, 9467561);
-    public static final RegistryObject<Item> EGG_TTMDUERGAR = createSpawnEgg("entityttmduergar", entityTTMDuergar, 14705521, 9226665);
-    public static final RegistryObject<Item> EGG_TTMFELLSPIRIT = createSpawnEgg("entityttmfellspirit", entityTTMFellSpirit, 14705521, 7405383);
-    public static final RegistryObject<Item> EGG_TTMSWAMPHAG = createSpawnEgg("entityttmswamphag", entityTTMSwampHag, 14705521, 12659887);
-    public static final RegistryObject<Item> EGG_TTMMIRKWOODSPIDER = createSpawnEgg("entityttmmirkwoodspider", entityTTMMirkwoodSpider, 14705521, 16211457);
-    public static final RegistryObject<Item> EGG_TTMHARADRIM = createSpawnEgg("entityttmharadrim", entityTTMHaradrim, 14705521, 12198412);
-    public static final RegistryObject<Item> EGG_TTMTROLL = createSpawnEgg("entityttmtroll", entityTTMTroll, 14705521, 13146148);
-    public static final RegistryObject<Item> EGG_TTMWARG = createSpawnEgg("entityttmwarg", entityTTMWarg, 14705521, 2703752);
-    public static final RegistryObject<Item> EGG_TTMMORDORORC = createSpawnEgg("entityttmmordororc", entityTTMMordorOrc, 14705521, 8755748);
-    public static final RegistryObject<Item> EGG_TTMHURON = createSpawnEgg("entityttmhuron", entityTTMHuron, 14705521, 10600204);
-    public static final RegistryObject<Item> EGG_TTMOATHBREAKER = createSpawnEgg("entityttmoathbreaker", entityTTMOathbreaker, 14705521, 16121867);
-    public static final RegistryObject<Item> EGG_TTMROMIEWALKER = createSpawnEgg("entityttmromiewalker", entityTTMRomieWalker, 14705521, 16739362);
-    public static final RegistryObject<Item> EGG_TTMURUKHAI = createSpawnEgg("entityttmurukhai", entityTTMUrukHai, 14705521, 698898);
-    public static final RegistryObject<Item> EGG_TTMELEMENTALGOLEM = createSpawnEgg("entityttmelementalgolem", entityTTMElementalGolem, 14705521, 1380646);
-    public static final RegistryObject<Item> EGG_TTMMINOTAUR = createSpawnEgg("entityttmminotaur", entityTTMMinotaur, 14705521, 2973229);
-    public static final RegistryObject<Item> EGG_TTMMIMICCHEST = createSpawnEgg("entityttmmimicchest", entityTTMMimicChest, 14705521, 8807990);
+    public static final RegistryObject<Item> EGG_TTMGOBLIN = createSpawnEgg("entityttmgoblin", entityTTMGoblin, 585619, 2301661);
+    public static final RegistryObject<Item> EGG_TTMBARROW = createSpawnEgg("entityttmbarrow", entityTTMBarrow, 585619, 5600397);
+    public static final RegistryObject<Item> EGG_TTMBRIGAND = createSpawnEgg("entityttmbrigand", entityTTMBrigand, 585619, 14289362);
+    public static final RegistryObject<Item> EGG_TTMDEEPCLAW = createSpawnEgg("entityttmdeepclaw", entityTTMDeepclaw, 585619, 14088652);
+    public static final RegistryObject<Item> EGG_TTMTREEENT = createSpawnEgg("entityttmtreeent", entityTTMTreeEnt, 585619, 9467561);
+    public static final RegistryObject<Item> EGG_TTMDUERGAR = createSpawnEgg("entityttmduergar", entityTTMDuergar, 585619, 9226665);
+    public static final RegistryObject<Item> EGG_TTMFELLSPIRIT = createSpawnEgg("entityttmfellspirit", entityTTMFellSpirit, 585619, 7405383);
+    public static final RegistryObject<Item> EGG_TTMSWAMPHAG = createSpawnEgg("entityttmswamphag", entityTTMSwampHag, 585619, 12659887);
+    public static final RegistryObject<Item> EGG_TTMMIRKWOODSPIDER = createSpawnEgg("entityttmmirkwoodspider", entityTTMMirkwoodSpider, 585619, 16211457);
+    public static final RegistryObject<Item> EGG_TTMHARADRIM = createSpawnEgg("entityttmharadrim", entityTTMHaradrim, 585619, 12198412);
+    public static final RegistryObject<Item> EGG_TTMTROLL = createSpawnEgg("entityttmtroll", entityTTMTroll, 585619, 13146148);
+    public static final RegistryObject<Item> EGG_TTMWARG = createSpawnEgg("entityttmwarg", entityTTMWarg, 585619, 2703752);
+    public static final RegistryObject<Item> EGG_TTMMORDORORC = createSpawnEgg("entityttmmordororc", entityTTMMordorOrc, 585619, 8755748);
+    public static final RegistryObject<Item> EGG_TTMHURON = createSpawnEgg("entityttmhuron", entityTTMHuron, 585619, 10600204);
+    public static final RegistryObject<Item> EGG_TTMOATHBREAKER = createSpawnEgg("entityttmoathbreaker", entityTTMOathbreaker, 585619, 16121867);
+    public static final RegistryObject<Item> EGG_TTMROMIEWALKER = createSpawnEgg("entityttmromiewalker", entityTTMRomieWalker, 585619, 16739362);
+    public static final RegistryObject<Item> EGG_TTMURUKHAI = createSpawnEgg("entityttmurukhai", entityTTMUrukHai, 585619, 698898);
+    public static final RegistryObject<Item> EGG_TTMELEMENTALGOLEM = createSpawnEgg("entityttmelementalgolem", entityTTMElementalGolem, 585619, 1380646);
+    public static final RegistryObject<Item> EGG_TTMMINOTAUR = createSpawnEgg("entityttmminotaur", entityTTMMinotaur, 585619, 2973229);
+    public static final RegistryObject<Item> EGG_TTMMIMICCHEST = createSpawnEgg("entityttmmimicchest", entityTTMMimicChest, 585619, 8807990);
 
     // Boss
-    public static final RegistryObject<Item> EGG_TTMGOBLINKING = createSpawnEgg("entityttmgoblinking", entityTTMGoblinKing, 11025577, 2301661);
-    public static final RegistryObject<Item> EGG_TTMMITHRILGOLEM = createSpawnEgg("entityttmmithrilgolem", entityTTMMithrilGolem, 11025577, 5600397);
-    public static final RegistryObject<Item> EGG_TTMMORGULIRONGOLEM = createSpawnEgg("entityttmmorgulirongolem", entityTTMMorgulIronGolem, 11025577, 14289362);
-    public static final RegistryObject<Item> EGG_TTMWITCHKING = createSpawnEgg("entityttmwitchking", entityTTMWitchKing, 11025577, 14088652);
-    public static final RegistryObject<Item> EGG_TTMSHELOB = createSpawnEgg("entityttmshelob", entityTTMShelob, 11025577, 9467561);
-    public static final RegistryObject<Item> EGG_TTMBALROG = createSpawnEgg("entityttmbalrog", entityTTMBalrog, 11025577, 9226665);
-    public static final RegistryObject<Item> EGG_TTMWATCHER = createSpawnEgg("entityttmwatcher", entityTTMWatcher, 11025577, 7405383);
+    public static final RegistryObject<Item> EGG_TTMGOBLINKING = createSpawnEgg("entityttmgoblinking", entityTTMGoblinKing, 15673963, 2301661);
+    public static final RegistryObject<Item> EGG_TTMMITHRILGOLEM = createSpawnEgg("entityttmmithrilgolem", entityTTMMithrilGolem, 15673963, 5600397);
+    public static final RegistryObject<Item> EGG_TTMMORGULIRONGOLEM = createSpawnEgg("entityttmmorgulirongolem", entityTTMMorgulIronGolem, 15673963, 14289362);
+    public static final RegistryObject<Item> EGG_TTMWITCHKING = createSpawnEgg("entityttmwitchking", entityTTMWitchKing, 15673963, 14088652);
+    public static final RegistryObject<Item> EGG_TTMSHELOB = createSpawnEgg("entityttmshelob", entityTTMShelob, 15673963, 9467561);
+    public static final RegistryObject<Item> EGG_TTMBALROG = createSpawnEgg("entityttmbalrog", entityTTMBalrog, 15673963, 9226665);
+    public static final RegistryObject<Item> EGG_TTMWATCHER = createSpawnEgg("entityttmwatcher", entityTTMWatcher, 15673963, 7405383);
+    public static final RegistryObject<Item> EGG_TTMGWAHIR = createSpawnEgg("entityttmgwahir", entityTTMGwahir, 15673963, 12659887);
 
     // Passive
-    public static final RegistryObject<Item> EGG_TTMAUROCH = createSpawnEgg("entityttmauroch", entityTTMAuroch, 4751910, 2301661);
-    public static final RegistryObject<Item> EGG_TTMMUMAKIL = createSpawnEgg("entityttmmumakil", entityTTMMumakil, 4751910, 5600397);
-    public static final RegistryObject<Item> EGG_TTMGOAT = createSpawnEgg("entityttmgoat", entityTTMGoat, 4751910, 14289362);
+    public static final RegistryObject<Item> EGG_TTMAUROCH = createSpawnEgg("entityttmauroch", entityTTMAuroch, 7668978, 2301661);
+    public static final RegistryObject<Item> EGG_TTMMUMAKIL = createSpawnEgg("entityttmmumakil", entityTTMMumakil, 7668978, 5600397);
+    public static final RegistryObject<Item> EGG_TTMGOAT = createSpawnEgg("entityttmgoat", entityTTMGoat, 7668978, 14289362);
 
     // Special
-    public static final RegistryObject<Item> EGG_TTMSHADOWFAX = createSpawnEgg("entityttmshadowfax", entityTTMShadowfax, 12710443, 2301661);
-    public static final RegistryObject<Item> EGG_TTMGOLLUM = createSpawnEgg("entityttmgollum", entityTTMGollum, 12710443, 5600397);
-    public static final RegistryObject<Item> EGG_TTMNAZGUL = createSpawnEgg("entityttmnazgul", entityTTMNazgul, 12710443, 14289362);
-    public static final RegistryObject<Item> EGG_TTMNAZGULSTEED = createSpawnEgg("entityttmnazgulsteed", entityTTMNazgulSteed, 12710443, 14088652);
+    public static final RegistryObject<Item> EGG_TTMSHADOWFAX = createSpawnEgg("entityttmshadowfax", entityTTMShadowfax, 2576351, 2301661);
+    public static final RegistryObject<Item> EGG_TTMGOLLUM = createSpawnEgg("entityttmgollum", entityTTMGollum, 2576351, 5600397);
+    public static final RegistryObject<Item> EGG_TTMNAZGUL = createSpawnEgg("entityttmnazgul", entityTTMNazgul, 2576351, 14289362);
+    public static final RegistryObject<Item> EGG_TTMNAZGULSTEED = createSpawnEgg("entityttmnazgulsteed", entityTTMNazgulSteed, 2576351, 14088652);
+    public static final RegistryObject<Item> EGG_TTMGREATEAGLE = createSpawnEgg("entityttmgreateagle", entityTTMGreatEagle, 2576351, 9467561);
 
     // Helper Methods
     public static RegistryObject<Item> createSpawnEgg(String name, EntityType< ? > entityType, int primaryColor, int secondaryColor ) {
