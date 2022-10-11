@@ -5,9 +5,12 @@ import com.greatorator.tolkienmobs.entity.ai.TTMFlyingMovementController;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMHurtByTargetGoal;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMSitGoal;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMWaterAvoidingRandomFlyingGoal;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.CatEntity;
+import net.minecraft.entity.passive.IFlyingAnimal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -23,14 +26,16 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Random;
 
-public class BirdEntity extends FlyingEntity {
+public class BirdEntity extends AnimalEntity implements IFlyingAnimal {
     protected static final DataParameter<Byte> DATA_FLAGS_ID = EntityDataManager.defineId(BirdEntity.class, DataSerializers.BYTE);
     private BirdEntity.AttackPhase attackPhase = BirdEntity.AttackPhase.CIRCLE;
 
@@ -43,17 +48,28 @@ public class BirdEntity extends FlyingEntity {
     private BlockPos anchorPoint = BlockPos.ZERO;
     private boolean orderedToSit;
 
-    protected BirdEntity(EntityType<? extends FlyingEntity> p_i48578_1_, World p_i48578_2_) {
+    protected BirdEntity(EntityType<? extends AnimalEntity> p_i48578_1_, World p_i48578_2_) {
         super(p_i48578_1_, p_i48578_2_);
-        this.moveControl = new TTMFlyingMovementController(this, 10, true);
+        this.moveControl = new TTMFlyingMovementController(this, 60, true);
         this.setPathfindingMalus(PathNodeType.DANGER_FIRE, -1.0F);
         this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, -1.0F);
     }
 
+    @Override
+    public boolean causeFallDamage(float p_225503_1_, float p_225503_2_) {
+        return false;
+    }
+
+    @Override
+    protected void checkFallDamage(double p_184231_1_, boolean p_184231_3_, BlockState p_184231_4_, BlockPos p_184231_5_) {
+    }
+
+    @Override
     public float getWalkTargetValue(BlockPos p_180484_1_) {
         return this.getWalkTargetValue(p_180484_1_, this.level);
     }
 
+    @Override
     public float getWalkTargetValue(BlockPos p_205022_1_, IWorldReader p_205022_2_) {
         return 0.0F;
     }
@@ -68,9 +84,9 @@ public class BirdEntity extends FlyingEntity {
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(1, new BirdEntity.PickAttackGoal());
-        this.goalSelector.addGoal(2, new BirdEntity.SweepAttackGoal());
         this.goalSelector.addGoal(2, new TTMSitGoal(this));
         this.goalSelector.addGoal(2, new TTMWaterAvoidingRandomFlyingGoal(this, 1.0D));
+        this.goalSelector.addGoal(2, new BirdEntity.SweepAttackGoal());
         this.goalSelector.addGoal(3, new FollowMobGoal(this, 1.0D, 3.0F, 7.0F));
         this.goalSelector.addGoal(3, new BirdEntity.OrbitPointGoal());
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
@@ -119,6 +135,15 @@ public class BirdEntity extends FlyingEntity {
     }
 
     @Override
+    protected float getVoicePitch() {
+        return getPitch(this.random);
+    }
+
+    public static float getPitch(Random p_192000_0_) {
+        return (p_192000_0_.nextFloat() - p_192000_0_.nextFloat()) * 0.2F + 1.0F;
+    }
+
+    @Override
     protected float playFlySound(float p_191954_1_) {
         this.playSound(SoundGenerator.soundFlappingTMGreatEagle.get(), 0.15F, 1.0F);
         return p_191954_1_ + this.flapSpeed / 2.0F;
@@ -159,7 +184,8 @@ public class BirdEntity extends FlyingEntity {
         }
     }
 
-    static enum AttackPhase {
+    // Attack AI region
+    enum AttackPhase {
         CIRCLE,
         SWOOP;
     }
@@ -183,10 +209,12 @@ public class BirdEntity extends FlyingEntity {
         private OrbitPointGoal() {
         }
 
+        @Override
         public boolean canUse() {
             return BirdEntity.this.getTarget() == null || BirdEntity.this.attackPhase == BirdEntity.AttackPhase.CIRCLE;
         }
 
+        @Override
         public void start() {
             this.distance = 5.0F + BirdEntity.this.random.nextFloat() * 10.0F;
             this.height = -4.0F + BirdEntity.this.random.nextFloat() * 9.0F;
@@ -194,6 +222,7 @@ public class BirdEntity extends FlyingEntity {
             this.selectNext();
         }
 
+        @Override
         public void tick() {
             if (BirdEntity.this.random.nextInt(350) == 0) {
                 this.height = -4.0F + BirdEntity.this.random.nextFloat() * 9.0F;
@@ -242,10 +271,12 @@ public class BirdEntity extends FlyingEntity {
         private SweepAttackGoal() {
         }
 
+        @Override
         public boolean canUse() {
             return BirdEntity.this.getTarget() != null && BirdEntity.this.attackPhase == BirdEntity.AttackPhase.SWOOP;
         }
 
+        @Override
         public boolean canContinueToUse() {
             LivingEntity livingentity = BirdEntity.this.getTarget();
             if (livingentity == null) {
@@ -274,14 +305,17 @@ public class BirdEntity extends FlyingEntity {
             }
         }
 
+        @Override
         public void start() {
         }
 
+        @Override
         public void stop() {
             BirdEntity.this.setTarget((LivingEntity)null);
             BirdEntity.this.attackPhase = BirdEntity.AttackPhase.CIRCLE;
         }
 
+        @Override
         public void tick() {
             LivingEntity livingentity = BirdEntity.this.getTarget();
             BirdEntity.this.moveTargetPoint = new Vector3d(livingentity.getX(), livingentity.getY(0.5D), livingentity.getZ());
@@ -303,21 +337,25 @@ public class BirdEntity extends FlyingEntity {
         private PickAttackGoal() {
         }
 
+        @Override
         public boolean canUse() {
             LivingEntity livingentity = BirdEntity.this.getTarget();
             return livingentity != null ? BirdEntity.this.canAttack(BirdEntity.this.getTarget(), EntityPredicate.DEFAULT) : false;
         }
 
+        @Override
         public void start() {
             this.nextSweepTick = 10;
             BirdEntity.this.attackPhase = BirdEntity.AttackPhase.CIRCLE;
             this.setAnchorAboveTarget();
         }
 
+        @Override
         public void stop() {
             BirdEntity.this.anchorPoint = BirdEntity.this.level.getHeightmapPos(Heightmap.Type.MOTION_BLOCKING, BirdEntity.this.anchorPoint).above(10 + BirdEntity.this.random.nextInt(20));
         }
 
+        @Override
         public void tick() {
             if (BirdEntity.this.attackPhase == BirdEntity.AttackPhase.CIRCLE) {
                 --this.nextSweepTick;
@@ -344,6 +382,7 @@ public class BirdEntity extends FlyingEntity {
         private AttackMonsterGoal() {
         }
 
+        @Override
         public boolean canUse() {
             if (this.nextScanTick > 0) {
                 --this.nextScanTick;
@@ -366,9 +405,17 @@ public class BirdEntity extends FlyingEntity {
             }
         }
 
+        @Override
         public boolean canContinueToUse() {
             LivingEntity livingentity = BirdEntity.this.getTarget();
             return livingentity != null ? BirdEntity.this.canAttack(livingentity, EntityPredicate.DEFAULT) : false;
         }
+    }
+    // End region
+
+    @Nullable
+    @Override
+    public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
+        return null;
     }
 }

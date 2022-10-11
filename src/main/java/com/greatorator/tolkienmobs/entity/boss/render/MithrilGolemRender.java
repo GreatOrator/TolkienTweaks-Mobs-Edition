@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.boss.render;
 
 import com.greatorator.tolkienmobs.entity.boss.MithrilGolemEntity;
-import com.greatorator.tolkienmobs.entity.monster.model.ModelTTMElementalGolem;
+import com.greatorator.tolkienmobs.entity.monster.model.ElementalGolemModel;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -10,11 +10,11 @@ import net.minecraft.util.math.vector.Vector3f;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class MithrilGolemRender extends MobRenderer<MithrilGolemEntity, ModelTTMElementalGolem<MithrilGolemEntity>> {
+public class MithrilGolemRender extends MobRenderer<MithrilGolemEntity, ElementalGolemModel<MithrilGolemEntity>> {
     private final ResourceLocation mobTexture = new ResourceLocation(MODID + ":textures/entity/elementalgolem/elemental_golem_mithril.png");
 
     public MithrilGolemRender(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new ModelTTMElementalGolem<>(), 1.0F);
+        super(renderManagerIn, new ElementalGolemModel<>(), 1.0F);
     }
 
     @Override

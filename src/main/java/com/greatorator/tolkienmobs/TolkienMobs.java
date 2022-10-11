@@ -4,8 +4,8 @@ package com.greatorator.tolkienmobs;
 import com.greatorator.tolkienmobs.common.MobModify;
 import com.greatorator.tolkienmobs.common.network.AirPacket;
 import com.greatorator.tolkienmobs.common.network.NetworkHelper;
-import com.greatorator.tolkienmobs.entity.integration.TTMHelper;
 import com.greatorator.tolkienmobs.handler.interfaces.IFireplaceRecipe;
+import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.proxy.ClientProxy;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
 import net.minecraft.entity.Entity;
@@ -48,30 +48,18 @@ public class TolkienMobs {
     /*TODO List
     1. Entities
 	    a. Remaining Entities
-	        1. Fell Beast - Needs AI and implementation
-			2. Gwaihir - Needs AI and implementation
-			3. Great Eagle - Needs AI and implementation
-			4. Watcher - Does not want to move around
-			5. Deep Claw - Texture Issue (near head, extra texture layer that shouldn't be there)
-			6. Tree Ent - not "breathing"
-			7. Duergar - not "breathing", not holding weapon
-			8. Troll - Texture issue (chest area, looks to be extra texture attached to neck), not "breathing", Weapon not moving in sync
-			9. Huron - not "breathing"
-			10. Mithril & Morgul Golems - not "breathing"
-			11. Witch King - Texture Issue (Noticeable on legs, "armor" skin not moving correctly)
-			12. Wandering Trader - Texture Issue (Noticeable on legs, "armor" skin not moving correctly)
-			13. Balrog - not "breathing", switching attacks based on range, Weapon not moving in sync
-			14. Nazgul - Texture issue (Noticeable on legs, "armor" skin not moving correctly)
-			15. Frog - not jumping when moving
+	        1. Fell Beast - Needs AI and Implementation
+			2. Gwaihir - Needs AI
+			3. Great Eagle - Needs AI
 		b. Ammo
             a. Fell Beast Fireball - rendering
 	        b. Boulder - rendering
 	        c. Galadhrim Arrow - rendering
-    3. Backpack -
-       a. Upgrade system
-       b. Improved sleeping bag and campfire deployment
-	4. Custom Recipe
-	   a. Fireplace - JEI GUI needs fixed
+	    c. Blocks
+	        1. Camo Spawner - Implementation
+	        2. Key Stone - Active state weirdness
+	        3. Milestone - Unique to player, Dynamically generated teleport buttons, Cost for teleport
+	        4. Fluid Block - "Flood" area (3x3) with fluid
     */
 
     public TolkienMobs() {

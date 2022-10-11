@@ -1,13 +1,13 @@
 package com.greatorator.tolkienmobs.entity.ai.goal;
 
-import com.greatorator.tolkienmobs.entity.monster.EntityTTMRomieWalker;
+import com.greatorator.tolkienmobs.entity.monster.RomieWalkerEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 
 public class TTMRomieWalkerAttackGoal extends MeleeAttackGoal {
-    private final EntityTTMRomieWalker walker;
+    private final RomieWalkerEntity walker;
     private int raiseArmTicks;
 
-    public TTMRomieWalkerAttackGoal(EntityTTMRomieWalker p_i46803_1_, double p_i46803_2_, boolean p_i46803_4_) {
+    public TTMRomieWalkerAttackGoal(RomieWalkerEntity p_i46803_1_, double p_i46803_2_, boolean p_i46803_4_) {
         super(p_i46803_1_, p_i46803_2_, p_i46803_4_);
         this.walker = p_i46803_1_;
     }

@@ -13,18 +13,22 @@ import com.greatorator.tolkienmobs.entity.ambient.render.*;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderGaladhrimArrow;
+import com.greatorator.tolkienmobs.entity.boss.model.WitchKingModel;
 import com.greatorator.tolkienmobs.entity.boss.render.*;
-import com.greatorator.tolkienmobs.entity.integration.TTMHelper;
+import com.greatorator.tolkienmobs.entity.merchant.model.DwarfModel;
+import com.greatorator.tolkienmobs.entity.merchant.model.HumanModel;
 import com.greatorator.tolkienmobs.entity.merchant.render.*;
 import com.greatorator.tolkienmobs.entity.merchant.villager.TTMVillagerTrades;
+import com.greatorator.tolkienmobs.entity.monster.model.*;
 import com.greatorator.tolkienmobs.entity.monster.render.*;
-import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMAuroch;
-import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMGoat;
-import com.greatorator.tolkienmobs.entity.passive.render.RenderTTMMumakil;
+import com.greatorator.tolkienmobs.entity.passive.render.AurochRender;
+import com.greatorator.tolkienmobs.entity.passive.render.GoatRender;
+import com.greatorator.tolkienmobs.entity.passive.render.MumakilRender;
 import com.greatorator.tolkienmobs.entity.special.render.*;
 import com.greatorator.tolkienmobs.event.client.ClientEvents;
 import com.greatorator.tolkienmobs.handler.TTMHearts;
 import com.greatorator.tolkienmobs.init.TTMColor;
+import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
 import com.greatorator.tolkienmobs.item.tools.KeyRingItem;
 import net.minecraft.client.Minecraft;
@@ -180,48 +184,48 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_CREBAIN.get(), CrebainRender::new);
 
         // Merchants
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_HUMAN.get(), RenderTTMHuman::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_DWARF.get(), RenderTTMDwarf::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_ELVES.get(), RenderTTMElves::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_HUMAN.get(), m -> new HumanRender(m, new HumanModel<>(1.0F), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_DWARF.get(), m -> new DwarfRender(m, new DwarfModel<>(1.0F), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_ELVES.get(), ElvesRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_HOBBIT.get(), RenderTTMHobbit::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_DESERTDWELLER.get(), RenderTTMDesertDweller::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_DESERTDWELLER.get(), m -> new DesertDwellerRender(m, new HumanModel<>(1.0F), 0.5F));
 
         // Monster
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOBLIN.get(), RenderTTMGoblin::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_BARROW.get(), RenderTTMBarrowWight::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_BRIGAND.get(), RenderTTMBrigand::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_DEEPCLAW.get(), RenderTTMDeepClaw::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_TREEENT.get(), RenderTTMTreeEnt::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_DUERGAR.get(), RenderTTMDuergar::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_FELLSPIRIT.get(), RenderTTMFellSpirit::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_SWAMPHAG.get(), RenderTTMSwampHag::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MIRKWOODSPIDER.get(), RenderTTMMirkwoodSpider::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_HARADRIM.get(), RenderTTMHaradrim::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_TROLL.get(), RenderTTMTroll::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_WARG.get(), RenderTTMWarg::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MORDORORC.get(), RenderTTMMordorOrc::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_HURON.get(), RenderTTMHuron::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_OATHBREAKER.get(), RenderTTMOathbreaker::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_ROMIEWALKER.get(), RenderTTMRomieWalker::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_URUKHAI.get(), RenderTTMUrukHai::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_ELEMENTALGOLEM.get(), RenderTTMElementalGolem::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MINOTAUR.get(), RenderTTMMinotaur::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MIMICCHEST.get(), RenderTTMMimicChest::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOBLIN.get(), GoblinRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_BARROW.get(), m -> new BarrowWightRender(m, new BarrowWightModel<>(1.0F, false), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_BRIGAND.get(), m -> new BrigandRender(m, new BrigandModel<>(1.0F), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_DEEPCLAW.get(), DeepClawRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_TREEENT.get(), m -> new TreeEntRender(m, new TreeEntModel<>(), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_DUERGAR.get(), m -> new DuergarRender(m, new DuergarModel<>(1.0F), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_FELLSPIRIT.get(), m -> new FellSpiritRender(m, new BarrowWightModel<>(1.0F, false), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_SWAMPHAG.get(), SwampHagRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MIRKWOODSPIDER.get(), MirkwoodSpiderRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_HARADRIM.get(), m -> new HaradrimRender(m, new HaradrimModel<>(1.0F), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_TROLL.get(), m -> new TrollRender(m, new TrollModel<>(1.0F), 1.0F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_WARG.get(), WargRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MORDORORC.get(), MordorOrcRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_HURON.get(), HuronRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_OATHBREAKER.get(), m -> new OathbreakerRender(m, new BarrowWightModel<>(1.0F, false), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_ROMIEWALKER.get(), m -> new RomieWalkerRender(m, new BrigandModel<>(1.0F), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_URUKHAI.get(), UrukHaiRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_ELEMENTALGOLEM.get(), ElementalGolemRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MINOTAUR.get(), MinotaurRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MIMICCHEST.get(), MimicChestRender::new);
 
         // Boss
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOBLINKING.get(), GoblinKingRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MITHRILGOLEM.get(), MithrilGolemRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MORGULIRONGOLEM.get(), MorgulIronGolemRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_WITCHKING.get(), WitchKingRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_WITCHKING.get(), m -> new WitchKingRender(m, new WitchKingModel<>(1.0F), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_SHELOB.get(), ShelobRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_BALROG.get(), BalrogRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_WATCHER.get(), WatcherRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GWAHIR.get(), GwahirRender::new);
 
         // Passive
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_AUROCH.get(), RenderTTMAuroch::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MUMAKIL.get(), RenderTTMMumakil::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOAT.get(), RenderTTMGoat::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_AUROCH.get(), AurochRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_MUMAKIL.get(), MumakilRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GOAT.get(), GoatRender::new);
 
         // Special
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_SHADOWFAX.get(), ShadowfaxRender::new);

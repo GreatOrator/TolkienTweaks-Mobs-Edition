@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.ai.goal;
 
-import com.greatorator.tolkienmobs.entity.monster.EntityTTMGoblin;
+import com.greatorator.tolkienmobs.entity.monster.GoblinEntity;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.RandomPositionGenerator;
@@ -65,8 +65,8 @@ public class TTMPanicOnFlockDeath extends Goal {
         this.flockCreature.getNavigation().moveTo(this.fleeX, this.fleeY, this.fleeZ, this.speed);
 
         // panic flag for kobold animations
-        if (flockCreature instanceof EntityTTMGoblin) {
-            ((EntityTTMGoblin) flockCreature).setPanicked(true);
+        if (flockCreature instanceof GoblinEntity) {
+            ((GoblinEntity) flockCreature).setPanicked(true);
         }
     }
 
@@ -94,8 +94,8 @@ public class TTMPanicOnFlockDeath extends Goal {
         fleeTimer -= 20;
 
         // panic flag for kobold animations
-        if (flockCreature instanceof EntityTTMGoblin) {
-            ((EntityTTMGoblin) flockCreature).setPanicked(false);
+        if (flockCreature instanceof GoblinEntity) {
+            ((GoblinEntity) flockCreature).setPanicked(false);
         }
     }
 }

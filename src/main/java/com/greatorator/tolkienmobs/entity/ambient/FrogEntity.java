@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.entity.ambient;
 
-import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
@@ -40,7 +39,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
-import java.util.Map;
 import java.util.Random;
 
 //
@@ -49,36 +47,26 @@ public class FrogEntity extends AmbientEntity {
     private static final ResourceLocation KILLER_FROG = new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/murderfrog");
     private int jumpTicks;
     private int jumpDuration;
-    protected boolean onGround;
     private boolean wasOnGround;
-    private int currentMoveTypeDuration;
+    private int jumpDelayTicks;
     private int insectTicks;
-
-    public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
-        option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/toaddle_green.png"));
-        option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/toaddle_red.png"));
-        option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/toaddle_black.png"));
-        option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/toaddle_rainbow.png"));
-        option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/toaddle_yellow.png"));
-        option.put(5, new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/toaddle_white.png"));
-    });
 
     public FrogEntity(EntityType<? extends FrogEntity> type, World worldIn) {
         super(type, worldIn);
         this.jumpControl = new JumpHelperController(this);
-        this.moveControl = new FrogEntity.MoveHelperController(this);
-        this.setMovementSpeed(0.0D);
+        this.moveControl = new MoveHelperController(this);
+        this.setSpeedModifier(0.0D);
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new FrogEntity.PanicGoal(this, 2.2D));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 2.2D));
         this.goalSelector.addGoal(2, new BreedGoal(this, 0.8D));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, Ingredient.of(TTMContent.INSECT.get(), TTMContent.GOLDEN_INSECT.get()), true));
-        this.goalSelector.addGoal(4, new FrogEntity.AvoidEntityGoal<>(this, PlayerEntity.class, 8.0F, 2.2D, 2.2D));
-        this.goalSelector.addGoal(4, new FrogEntity.AvoidEntityGoal<>(this, WolfEntity.class, 10.0F, 2.2D, 2.2D));
-        this.goalSelector.addGoal(4, new FrogEntity.AvoidEntityGoal<>(this, MonsterEntity.class, 4.0F, 2.2D, 2.2D));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, PlayerEntity.class, 8.0F, 2.2D, 2.2D));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, WolfEntity.class, 10.0F, 2.2D, 2.2D));
+        this.goalSelector.addGoal(4, new AvoidEntityGoal<>(this, MonsterEntity.class, 4.0F, 2.2D, 2.2D));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 0.6D));
         this.goalSelector.addGoal(11, new LookAtGoal(this, PlayerEntity.class, 10.0F));
     }
@@ -100,9 +88,6 @@ public class FrogEntity extends AmbientEntity {
         }
     }
 
-    /**
-     * Causes this entity to do an upwards motion (jumping).
-     */
     @Override
     protected void jumpFromGround() {
         super.jumpFromGround();
@@ -115,25 +100,24 @@ public class FrogEntity extends AmbientEntity {
         }
 
         if (!this.level.isClientSide) {
-            this.level.broadcastEntityEvent(this, (byte) 1);
+            this.level.broadcastEntityEvent(this, (byte)1);
         }
-
     }
 
     @OnlyIn(Dist.CLIENT)
     public float getJumpCompletion(float p_175521_1_) {
-        return this.jumpDuration == 0 ? 0.0F : ((float) this.jumpTicks + p_175521_1_) / (float) this.jumpDuration;
+        return this.jumpDuration == 0 ? 0.0F : ((float)this.jumpTicks + p_175521_1_) / (float)this.jumpDuration;
     }
 
-    public void setMovementSpeed(double newSpeed) {
-        this.getNavigation().setSpeedModifier(newSpeed);
-        this.moveControl.setWantedPosition(this.moveControl.getWantedX(), this.moveControl.getWantedY(), this.moveControl.getWantedZ(), newSpeed);
+    public void setSpeedModifier(double p_175515_1_) {
+        this.getNavigation().setSpeedModifier(p_175515_1_);
+        this.moveControl.setWantedPosition(this.moveControl.getWantedX(), this.moveControl.getWantedY(), this.moveControl.getWantedZ(), p_175515_1_);
     }
 
     @Override
-    public void setJumping(boolean jumping) {
-        super.setJumping(jumping);
-        if (jumping) {
+    public void setJumping(boolean p_70637_1_) {
+        super.setJumping(p_70637_1_);
+        if (p_70637_1_) {
             this.playSound(this.getJumpSound(), this.getSoundVolume(), ((this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F) * 0.8F);
         }
 
@@ -153,8 +137,8 @@ public class FrogEntity extends AmbientEntity {
 
     @Override
     public void customServerAiStep() {
-        if (this.currentMoveTypeDuration > 0) {
-            --this.currentMoveTypeDuration;
+        if (this.jumpDelayTicks > 0) {
+            --this.jumpDelayTicks;
         }
 
         if (this.insectTicks > 0) {
@@ -170,26 +154,26 @@ public class FrogEntity extends AmbientEntity {
                 this.checkLandingDelay();
             }
 
-            if (this.getFrogType() == 99 && this.currentMoveTypeDuration == 0) {
+            if (this.getFrogType() == 99 && this.jumpDelayTicks == 0) {
                 LivingEntity livingentity = this.getTarget();
                 if (livingentity != null && this.distanceToSqr(livingentity) < 16.0D) {
-                    this.calculateRotationYaw(livingentity.getX(), livingentity.getZ());
+                    this.facePoint(livingentity.getX(), livingentity.getZ());
                     this.moveControl.setWantedPosition(livingentity.getX(), livingentity.getY(), livingentity.getZ(), this.moveControl.getSpeedModifier());
                     this.startJumping();
                     this.wasOnGround = true;
                 }
             }
 
-            FrogEntity.JumpHelperController frogentity$jumphelpercontroller = (FrogEntity.JumpHelperController) this.jumpControl;
-            if (!frogentity$jumphelpercontroller.getIsJumping()) {
-                if (this.moveControl.hasWanted() && this.currentMoveTypeDuration == 0) {
+            FrogEntity.JumpHelperController frogentity$jumphelpercontroller = (FrogEntity.JumpHelperController)this.jumpControl;
+            if (!frogentity$jumphelpercontroller.wantJump()) {
+                if (this.moveControl.hasWanted() && this.jumpDelayTicks == 0) {
                     Path path = this.navigation.getPath();
                     Vector3d vector3d = new Vector3d(this.moveControl.getWantedX(), this.moveControl.getWantedY(), this.moveControl.getWantedZ());
                     if (path != null && !path.isDone()) {
                         vector3d = path.getNextEntityPos(this);
                     }
 
-                    this.calculateRotationYaw(vector3d.x, vector3d.z);
+                    this.facePoint(vector3d.x, vector3d.z);
                     this.startJumping();
                 }
             } else if (!frogentity$jumphelpercontroller.canJump()) {
@@ -205,36 +189,32 @@ public class FrogEntity extends AmbientEntity {
         return false;
     }
 
-    private void calculateRotationYaw(double x, double z) {
-        this.yRot = (float) (MathHelper.atan2(z - this.getZ(), x - this.getX()) * (double) (180F / (float) Math.PI)) - 90.0F;
+    private void facePoint(double p_175533_1_, double p_175533_3_) {
+        this.yRot = (float)(MathHelper.atan2(p_175533_3_ - this.getZ(), p_175533_1_ - this.getX()) * (double)(180F / (float)Math.PI)) - 90.0F;
     }
 
     private void enableJumpControl() {
-        ((FrogEntity.JumpHelperController) this.jumpControl).setCanJump(true);
+        ((FrogEntity.JumpHelperController)this.jumpControl).setCanJump(true);
     }
 
     private void disableJumpControl() {
-        ((FrogEntity.JumpHelperController) this.jumpControl).setCanJump(false);
+        ((FrogEntity.JumpHelperController)this.jumpControl).setCanJump(false);
     }
 
-    private void updateMoveTypeDuration() {
+    private void setLandingDelay() {
         if (this.moveControl.getSpeedModifier() < 2.2D) {
-            this.currentMoveTypeDuration = 10;
+            this.jumpDelayTicks = 10;
         } else {
-            this.currentMoveTypeDuration = 1;
+            this.jumpDelayTicks = 1;
         }
 
     }
 
     private void checkLandingDelay() {
-        this.updateMoveTypeDuration();
+        this.setLandingDelay();
         this.disableJumpControl();
     }
 
-    /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
-     */
     @Override
     public void aiStep() {
         super.aiStep();
@@ -256,17 +236,14 @@ public class FrogEntity extends AmbientEntity {
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("FrogType", this.getFrogType());
-        compound.putInt("MoreInsectTicks", this.insectTicks);
+        compound.putInt("InsectTicks", this.insectTicks);
     }
 
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
     @Override
     public void readAdditionalSaveData(CompoundNBT compound) {
         super.readAdditionalSaveData(compound);
         this.setFrogType(compound.getInt("FrogType"));
-        this.insectTicks = compound.getInt("MoreInsectTicks");
+        this.insectTicks = compound.getInt("InsectTicks");
     }
 
     protected SoundEvent getJumpSound() {
@@ -311,7 +288,7 @@ public class FrogEntity extends AmbientEntity {
         return this.isInvulnerableTo(source) ? false : super.hurt(source, amount);
     }
 
-    private boolean isFrogBreedingItem(Item itemIn) {
+    private boolean isTemptingItem(Item itemIn) {
         return itemIn == TTMContent.INSECT.get() || itemIn == TTMContent.GOLDEN_INSECT.get();
     }
 
@@ -331,20 +308,9 @@ public class FrogEntity extends AmbientEntity {
         return frogentity;
     }
 
-    /**
-     * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
-     * the animal type)
-     */
     @Override
     public boolean isFood(ItemStack stack) {
-        return this.isFrogBreedingItem(stack.getItem());
-    }
-
-    /**
-     * Region for determining random skin
-     */
-    public ResourceLocation getFrogTypeName() {
-        return TEXTURE_BY_ID.getOrDefault(this.getFrogType(), TEXTURE_BY_ID.get(0));
+        return this.isTemptingItem(stack.getItem());
     }
 
     public int getFrogType() {
@@ -362,7 +328,6 @@ public class FrogEntity extends AmbientEntity {
                 this.setCustomName(new TranslationTextComponent(Util.makeDescriptionId("entity", KILLER_FROG)));
             }
         }
-
         this.entityData.set(FROG_TYPE, frogTypeId);
     }
 
@@ -392,35 +357,25 @@ public class FrogEntity extends AmbientEntity {
         }
     }
 
-    public static boolean checkRabbitSpawnRules(EntityType<FrogEntity> p_223321_0_, IWorld p_223321_1_, SpawnReason reason, BlockPos p_223321_3_, Random p_223321_4_) {
-        BlockState blockstate = p_223321_1_.getBlockState(p_223321_3_.below());
-        return (blockstate.is(Blocks.GRASS_BLOCK) || blockstate.is(Blocks.SNOW) || blockstate.is(Blocks.SAND)) && p_223321_1_.getRawBrightness(p_223321_3_, 0) > 8;
+    public static boolean checkFrogSpawnRules(EntityType<FrogEntity> entityIn, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
+        BlockState blockstate = worldIn.getBlockState(pos.below());
+        return (blockstate.is(Blocks.GRASS_BLOCK) || blockstate.is(Blocks.SNOW) || blockstate.is(Blocks.SAND)) && pos.getY() < worldIn.getSeaLevel() + 4 && worldIn.getRawBrightness(pos, 0) > 8;
     }
 
-    private boolean isInsectEaten() {
+    private boolean wantsMoreFood() {
         return this.insectTicks == 0;
-    }
-
-    public static boolean checkFrogSpawn(EntityType<FrogEntity> type, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
-//        int chance = 2; //1 in 2
-        //This if is a little nasty but its more efficient than iterating over a cubic area.
-        if (world.isWaterAt(pos.offset(2, 0, 2)) || world.isWaterAt(pos.offset(-2, 0, -2)) || world.isWaterAt(pos.offset(-2, 0, 2)) || world.isWaterAt(pos.offset(2, 0, -2)) || world.isWaterAt(pos.offset(2, -1, 2)) || world.isWaterAt(pos.offset(-2, -1, -2)) || world.isWaterAt(pos.offset(-2, -1, 2)) || world.isWaterAt(pos.offset(2, -1, -2))) {
-            return true;//random.nextInt(chance) == 0;// && checkMobSpawnRules(type, world, reason, pos, random);
-        }
-        return false;
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void handleEntityEvent(byte id) {
-        if (id == 1) {
+    public void handleEntityEvent(byte p_70103_1_) {
+        if (p_70103_1_ == 1) {
             this.spawnSprintParticle();
             this.jumpDuration = 10;
             this.jumpTicks = 0;
         } else {
-            super.handleEntityEvent(id);
+            super.handleEntityEvent(p_70103_1_);
         }
-
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -437,10 +392,6 @@ public class FrogEntity extends AmbientEntity {
             this.ttmfrog = ttmfrog;
         }
 
-        /**
-         * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-         * method as well.
-         */
         @Override
         public boolean canUse() {
             return this.ttmfrog.getFrogType() != 99 && super.canUse();
@@ -467,7 +418,7 @@ public class FrogEntity extends AmbientEntity {
             this.ttmfrog = ttmfrog;
         }
 
-        public boolean getIsJumping() {
+        public boolean wantJump() {
             return this.jump;
         }
 
@@ -479,16 +430,12 @@ public class FrogEntity extends AmbientEntity {
             this.canJump = canJumpIn;
         }
 
-        /**
-         * Called to actually make the entity jump if isJumping is true.
-         */
         @Override
         public void tick() {
             if (this.jump) {
                 this.ttmfrog.startJumping();
                 this.jump = false;
             }
-
         }
     }
 
@@ -503,18 +450,14 @@ public class FrogEntity extends AmbientEntity {
 
         @Override
         public void tick() {
-            if (this.ttmfrog.onGround && !this.ttmfrog.jumping && !((FrogEntity.JumpHelperController) this.ttmfrog.jumpControl).getIsJumping()) {
-                this.ttmfrog.setMovementSpeed(0.0D);
+            if (this.ttmfrog.onGround && !this.ttmfrog.jumping && !((FrogEntity.JumpHelperController) this.ttmfrog.jumpControl).wantJump()) {
+                this.ttmfrog.setSpeedModifier(0.0D);
             } else if (this.hasWanted()) {
-                this.ttmfrog.setMovementSpeed(this.nextJumpSpeed);
+                this.ttmfrog.setSpeedModifier(this.nextJumpSpeed);
             }
-
             super.tick();
         }
 
-        /**
-         * Sets the speed and location to move to
-         */
         @Override
         public void setWantedPosition(double x, double y, double z, double speedIn) {
             if (this.ttmfrog.isInWater()) {
@@ -525,7 +468,6 @@ public class FrogEntity extends AmbientEntity {
             if (speedIn > 0.0D) {
                 this.nextJumpSpeed = speedIn;
             }
-
         }
     }
 
@@ -537,13 +479,10 @@ public class FrogEntity extends AmbientEntity {
             this.ttmfrog = ttmfrog;
         }
 
-        /**
-         * Keep ticking a continuous task that has already been started
-         */
         @Override
         public void tick() {
             super.tick();
-            this.ttmfrog.setMovementSpeed(this.speedModifier);
+            this.ttmfrog.setSpeedModifier(this.speedModifier);
         }
     }
 

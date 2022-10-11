@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.monster.EntityTTMGoblin;
+import com.greatorator.tolkienmobs.entity.monster.GoblinEntity;
 import com.greatorator.tolkienmobs.event.entity.GoblinEvent;
 import com.greatorator.tolkienmobs.event.server.ServerEvents;
 import com.greatorator.tolkienmobs.utils.TTMRand;
@@ -49,7 +49,7 @@ import java.util.Map;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class GoblinKingEntity extends EntityTTMGoblin implements IRangedAttackMob {
+public class GoblinKingEntity extends GoblinEntity implements IRangedAttackMob {
     private final ServerBossInfo bossInfo = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(), BossInfo.Color.GREEN, BossInfo.Overlay.PROGRESS)).setDarkenScreen(true);
     private static final DataParameter<Integer> GOBLINKING_TYPE = EntityDataManager.defineId(GoblinKingEntity.class, DataSerializers.INT);
     public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
@@ -63,7 +63,7 @@ public class GoblinKingEntity extends EntityTTMGoblin implements IRangedAttackMo
 
     @Override
     protected void registerGoals() {
-        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(EntityTTMGoblin.class));
+        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers(GoblinEntity.class));
         this.goalSelector.addGoal(2, new RangedAttackGoal(this, 1.0D, 40, 20.0F));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
@@ -148,7 +148,7 @@ public class GoblinKingEntity extends EntityTTMGoblin implements IRangedAttackMo
                     livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.helpcomming").withStyle(TextFormatting.DARK_GREEN), Util.NIL_UUID);
                 }
 
-                EntityTTMGoblin goblinentity = event.getCustomSummonedAid() != null && event.getResult() == Event.Result.ALLOW ? event.getCustomSummonedAid() : EntityGenerator.ENTITY_TTM_GOBLIN.get().create(this.level);
+                GoblinEntity goblinentity = event.getCustomSummonedAid() != null && event.getResult() == Event.Result.ALLOW ? event.getCustomSummonedAid() : EntityGenerator.ENTITY_TTM_GOBLIN.get().create(this.level);
 
                 for(int l = 0; l < 50; ++l) {
                     int spawnX = xPos + MathHelper.nextInt(this.random, 7, 10) * MathHelper.nextInt(this.random, -1, 1);
