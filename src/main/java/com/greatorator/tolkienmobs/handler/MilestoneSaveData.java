@@ -1,11 +1,17 @@
 package com.greatorator.tolkienmobs.handler;
 
+import codechicken.lib.data.MCDataInput;
+import codechicken.lib.data.MCDataOutput;
 import com.greatorator.tolkienmobs.entity.tile.MilestoneTile;
+import com.greatorator.tolkienmobs.event.entity.ServerEntityEvents;
+import com.greatorator.tolkienmobs.network.TolkienNetwork;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.StringNBT;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -13,6 +19,8 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.WorldSavedData;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -22,11 +30,27 @@ import java.util.*;
  */
 public class MilestoneSaveData extends WorldSavedData {
     private static final String SAVE_DATA_NAME = "ttm_milestone_data";
+    private static MilestoneSaveData CLIENT_INSTANCE = new MilestoneSaveData("");
 
     private Map<UUID, MilestoneData> dataMap = new HashMap<>();
 
     public MilestoneSaveData(String name) {
         super(name);
+    }
+
+    public static void init() {
+        MinecraftForge.EVENT_BUS.addListener(MilestoneSaveData::onPlayerLogin);
+    }
+
+    public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
+        if (!(event.getPlayer() instanceof ServerPlayerEntity)) {
+            return;
+        }
+        ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
+        MilestoneSaveData saveData = getInstance(player.level);
+        if (saveData != null) {
+            TolkienNetwork.sendMilestonesToClients(saveData, player);
+        }
     }
 
     // These are the methods you will use
@@ -44,10 +68,8 @@ public class MilestoneSaveData extends WorldSavedData {
         }
     }
 
-    //TODO add some cleanup code to remove any milestones that no longer exist.
     public static List<MilestoneData> getKnownByPlayer(PlayerEntity player) {
-        if (player.level.isClientSide) return Collections.emptyList();
-        MilestoneSaveData saveData = getInstance(player.level);
+        MilestoneSaveData saveData = player.level.isClientSide ? CLIENT_INSTANCE : getInstance(player.level);
         List<MilestoneData> known = new ArrayList<>();
         if (saveData != null) {
             for (MilestoneData data : saveData.dataMap.values()) {
@@ -59,6 +81,14 @@ public class MilestoneSaveData extends WorldSavedData {
         return known;
     }
 
+    public static void removeMilestone(MilestoneTile tile) {
+        MilestoneSaveData saveData = getInstance(tile.getLevel());
+        UUID id = UUID.fromString(tile.milestoneUUID.get());
+        if (saveData != null && saveData.dataMap.containsKey(id)) {
+            saveData.dataMap.remove(id);
+            saveData.setDirty();
+        }
+    }
 
     // Internal Methods
 
@@ -91,6 +121,22 @@ public class MilestoneSaveData extends WorldSavedData {
         }
         nbt.put("data", list);
         return nbt;
+    }
+
+    public void serialize(MCDataOutput output) {
+        output.writeVarInt(dataMap.size());
+        for (MilestoneData data : dataMap.values()) {
+            data.serialize(output);
+        }
+    }
+
+    public static void deserialize(MCDataInput input) {
+        CLIENT_INSTANCE.dataMap.clear();
+        int count = input.readVarInt();
+        for (int i = 0; i < count; i++) {
+            MilestoneData data = MilestoneData.deserialize(input);
+            CLIENT_INSTANCE.dataMap.put(data.uuid, data);
+        }
     }
 
     public static class MilestoneData {
@@ -139,6 +185,28 @@ public class MilestoneSaveData extends WorldSavedData {
             MilestoneData data = new MilestoneData(key, pos, uuid);
             ListNBT list = nbt.getList("players", 8);
             list.forEach(e -> data.players.add(UUID.fromString(e.getAsString())));
+            return data;
+        }
+
+        private void serialize(MCDataOutput output) {
+            output.writePos(pos);
+            output.writeUUID(uuid);
+            output.writeResourceLocation(worldKey.getRegistryName());
+            output.writeVarInt(players.size());
+            for (UUID player : players) {
+                output.writeUUID(player);
+            }
+        }
+
+        public static MilestoneData deserialize(MCDataInput input) {
+            BlockPos pos = input.readPos();
+            UUID uuid = input.readUUID();
+            RegistryKey<World> key = RegistryKey.create(Registry.DIMENSION_REGISTRY, input.readResourceLocation());
+            MilestoneData data = new MilestoneData(key, pos, uuid);
+            int count = input.readVarInt();
+            for (int i = 0; i < count; i++) {
+                data.players.add(input.readUUID());
+            }
             return data;
         }
     }
