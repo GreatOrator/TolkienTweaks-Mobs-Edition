@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.boss.render;
 
 import com.greatorator.tolkienmobs.entity.boss.ShelobEntity;
-import com.greatorator.tolkienmobs.entity.monster.model.ModelTTMMirkwoodSpider;
+import com.greatorator.tolkienmobs.entity.monster.model.MirkwoodSpiderModel;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -9,10 +9,10 @@ import net.minecraft.util.ResourceLocation;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class ShelobRender extends MobRenderer<ShelobEntity, ModelTTMMirkwoodSpider<ShelobEntity>> {
+public class ShelobRender extends MobRenderer<ShelobEntity, MirkwoodSpiderModel<ShelobEntity>> {
     private final ResourceLocation mobTexture = new ResourceLocation(MODID + ":textures/entity/tmshelob.png");
     public ShelobRender(EntityRendererManager renderManagerIn) {
-        super(renderManagerIn, new ModelTTMMirkwoodSpider<>(), 1.0F);
+        super(renderManagerIn, new MirkwoodSpiderModel<>(), 1.0F);
     }
 
     @Override

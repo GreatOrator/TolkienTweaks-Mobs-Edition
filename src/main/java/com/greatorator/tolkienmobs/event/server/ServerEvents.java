@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.event.server;
 
 import com.greatorator.tolkienmobs.block.SleepingBagBlock;
 import com.greatorator.tolkienmobs.entity.boss.ShelobEntity;
-import com.greatorator.tolkienmobs.entity.monster.EntityTTMGoblin;
+import com.greatorator.tolkienmobs.entity.monster.GoblinEntity;
 import com.greatorator.tolkienmobs.event.TTMEventTriggers;
 import com.greatorator.tolkienmobs.event.entity.GoblinEvent;
 import com.greatorator.tolkienmobs.event.entity.SpiderEvent;
@@ -17,7 +17,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class ServerEvents {
 
-    public static GoblinEvent.SummonAidEvent fireGoblinSummonAid(EntityTTMGoblin goblin, World world, int x, int y, int z, LivingEntity attacker, double summonChance)
+    public static GoblinEvent.SummonAidEvent fireGoblinSummonAid(GoblinEntity goblin, World world, int x, int y, int z, LivingEntity attacker, double summonChance)
     {
         GoblinEvent.SummonAidEvent summonEvent = new GoblinEvent.SummonAidEvent(goblin, world, x, y, z, attacker, summonChance);
         MinecraftForge.EVENT_BUS.post(summonEvent);

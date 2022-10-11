@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.entity.boss.model;//package com.greatorator.
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.model.BipedModel;
+import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.item.ItemStack;
@@ -406,12 +407,6 @@ public class BalrogModel<T extends MonsterEntity> extends BipedModel<T> {
         this.rightArm.addChild(this.bipedRightArmLower);
     }
 
-    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
-        modelRenderer.zRot = z;
-    }
-
     @Override
     protected Iterable<ModelRenderer> headParts() {
         return ImmutableList.of(this.BalrogNeck);
@@ -440,19 +435,116 @@ public class BalrogModel<T extends MonsterEntity> extends BipedModel<T> {
 
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        super.setupAnim(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-        float baseLegRotation = -0.6544984694978736F; // needs to be the original value of arm.rotateAngleX
-        float baseNeckRotation = 0.17453292519943295F; // needs to be the original value of leg.rotateAngleX
+        boolean flag = entityIn.getFallFlyingTicks() > 4;
+        boolean flag1 = entityIn.isVisuallySwimming();
         float anim = (entityIn.tickCount + headPitch) / 20F;
+        this.head.yRot = netHeadYaw * ((float)Math.PI / 180F);
 
-        this.BalrogLegL.xRot = baseLegRotation + (MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount);
-        this.BalrogLegR.xRot = baseLegRotation + (MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount);
-        this.rightArm.xRot = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
-        this.leftArm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+        if (flag) {
+            this.head.xRot = (-(float)Math.PI / 4F);
+        } else if (this.swimAmount > 0.0F) {
+            if (flag1) {
+                this.head.xRot = this.rotlerpRad(this.swimAmount, this.head.xRot, (-(float)Math.PI / 4F));
+            } else {
+                this.head.xRot = this.rotlerpRad(this.swimAmount, this.head.xRot, headPitch * ((float)Math.PI / 180F));
+            }
+        } else {
+            this.head.xRot = headPitch * ((float)Math.PI / 180F);
+        }
 
-        this.BalrogNeck.yRot = baseNeckRotation + (netHeadYaw * 0.017453292F);
-        this.BalrogNeck.xRot = baseNeckRotation + (headPitch * 0.017453292F);
+        this.body.yRot = 0.0F;
+        float f = 1.0F;
+        if (flag) {
+            f = (float)entityIn.getDeltaMovement().lengthSqr();
+            f = f / 0.2F;
+            f = f * f * f;
+        }
 
+        if (f < 1.0F) {
+            f = 1.0F;
+        }
+
+        this.rightArm.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 2.0F * limbSwingAmount * 0.5F / f;
+        this.leftArm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 2.0F * limbSwingAmount * 0.5F / f;
+        this.rightArm.zRot = 0.0F;
+        this.leftArm.zRot = 0.0F;
+        this.rightLeg.xRot = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount / f;
+        this.leftLeg.xRot = MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount / f;
+        this.rightLeg.yRot = 0.0F;
+        this.leftLeg.yRot = 0.0F;
+        this.rightLeg.zRot = 0.0F;
+        this.leftLeg.zRot = 0.0F;
+        if (this.riding) {
+            this.rightArm.xRot += (-(float)Math.PI / 5F);
+            this.leftArm.xRot += (-(float)Math.PI / 5F);
+            this.rightLeg.xRot = -1.4137167F;
+            this.rightLeg.yRot = ((float)Math.PI / 10F);
+            this.rightLeg.zRot = 0.07853982F;
+            this.leftLeg.xRot = -1.4137167F;
+            this.leftLeg.yRot = (-(float)Math.PI / 10F);
+            this.leftLeg.zRot = -0.07853982F;
+        }
+
+        this.rightArm.yRot = 0.0F;
+        this.leftArm.yRot = 0.0F;
+        boolean flag2 = entityIn.getMainArm() == HandSide.RIGHT;
+        boolean flag3 = flag2 ? this.leftArmPose.isTwoHanded() : this.rightArmPose.isTwoHanded();
+        if (flag2 != flag3) {
+            this.poseLeftArm(entityIn);
+            this.poseRightArm(entityIn);
+        } else {
+            this.poseRightArm(entityIn);
+            this.poseLeftArm(entityIn);
+        }
+
+        this.setupAttackAnimation(entityIn, ageInTicks);
+        if (this.crouching) {
+            this.body.xRot = 0.5F;
+            this.rightArm.xRot += 0.4F;
+            this.leftArm.xRot += 0.4F;
+        } else {
+            this.body.xRot = 0.0F;
+        }
+
+        ModelHelper.bobArms(this.rightArm, this.leftArm, ageInTicks);
+        if (this.swimAmount > 0.0F) {
+            float f1 = limbSwing % 26.0F;
+            HandSide handside = this.getAttackArm(entityIn);
+            float f2 = handside == HandSide.RIGHT && this.attackTime > 0.0F ? 0.0F : this.swimAmount;
+            float f3 = handside == HandSide.LEFT && this.attackTime > 0.0F ? 0.0F : this.swimAmount;
+            if (f1 < 14.0F) {
+                this.leftArm.xRot = this.rotlerpRad(f3, this.leftArm.xRot, 0.0F);
+                this.rightArm.xRot = MathHelper.lerp(f2, this.rightArm.xRot, 0.0F);
+                this.leftArm.yRot = this.rotlerpRad(f3, this.leftArm.yRot, (float)Math.PI);
+                this.rightArm.yRot = MathHelper.lerp(f2, this.rightArm.yRot, (float)Math.PI);
+                this.leftArm.zRot = this.rotlerpRad(f3, this.leftArm.zRot, (float)Math.PI + 1.8707964F * this.quadraticArmUpdate(f1) / this.quadraticArmUpdate(14.0F));
+                this.rightArm.zRot = MathHelper.lerp(f2, this.rightArm.zRot, (float)Math.PI - 1.8707964F * this.quadraticArmUpdate(f1) / this.quadraticArmUpdate(14.0F));
+            } else if (f1 >= 14.0F && f1 < 22.0F) {
+                float f6 = (f1 - 14.0F) / 8.0F;
+                this.leftArm.xRot = this.rotlerpRad(f3, this.leftArm.xRot, ((float)Math.PI / 2F) * f6);
+                this.rightArm.xRot = MathHelper.lerp(f2, this.rightArm.xRot, ((float)Math.PI / 2F) * f6);
+                this.leftArm.yRot = this.rotlerpRad(f3, this.leftArm.yRot, (float)Math.PI);
+                this.rightArm.yRot = MathHelper.lerp(f2, this.rightArm.yRot, (float)Math.PI);
+                this.leftArm.zRot = this.rotlerpRad(f3, this.leftArm.zRot, 5.012389F - 1.8707964F * f6);
+                this.rightArm.zRot = MathHelper.lerp(f2, this.rightArm.zRot, 1.2707963F + 1.8707964F * f6);
+            } else if (f1 >= 22.0F && f1 < 26.0F) {
+                float f4 = (f1 - 22.0F) / 4.0F;
+                this.leftArm.xRot = this.rotlerpRad(f3, this.leftArm.xRot, ((float)Math.PI / 2F) - ((float)Math.PI / 2F) * f4);
+                this.rightArm.xRot = MathHelper.lerp(f2, this.rightArm.xRot, ((float)Math.PI / 2F) - ((float)Math.PI / 2F) * f4);
+                this.leftArm.yRot = this.rotlerpRad(f3, this.leftArm.yRot, (float)Math.PI);
+                this.rightArm.yRot = MathHelper.lerp(f2, this.rightArm.yRot, (float)Math.PI);
+                this.leftArm.zRot = this.rotlerpRad(f3, this.leftArm.zRot, (float)Math.PI);
+                this.rightArm.zRot = MathHelper.lerp(f2, this.rightArm.zRot, (float)Math.PI);
+            }
+
+            float f7 = 0.3F;
+            float f5 = 0.33333334F;
+            this.leftLeg.xRot = MathHelper.lerp(this.swimAmount, this.leftLeg.xRot, 0.3F * MathHelper.cos(limbSwing * 0.33333334F + (float)Math.PI));
+            this.rightLeg.xRot = MathHelper.lerp(this.swimAmount, this.rightLeg.xRot, 0.3F * MathHelper.cos(limbSwing * 0.33333334F));
+        }
+        this.hat.copyFrom(this.head);
+
+        // Wing and Tail animations
         BalrogTail1.yRot = MathHelper.sin(degToRad(entityIn.tickCount*7)) * degToRad(5);
         BalrogTail2.yRot = BalrogTail1.yRot * 3;
         BalrogTail3.yRot = BalrogTail2.yRot * 1;
@@ -464,15 +556,135 @@ public class BalrogModel<T extends MonsterEntity> extends BipedModel<T> {
 
         BalrogWingR.xRot = -(float) (Math.cos(anim) / 4D);
         BalrogWingR.yRot = (-2.8561945f) - (float) (Math.sin(anim) / 4D);
+    }
 
-        this.leftArm.x = 8.5F;
-        this.rightArm.x = -8.0F;
+    private void poseRightArm(T entityIn) {
+        switch(this.rightArmPose) {
+            case EMPTY:
+                this.rightArm.yRot = 0.0F;
+                break;
+            case BLOCK:
+                this.rightArm.xRot = this.rightArm.xRot * 0.5F - 0.9424779F;
+                this.rightArm.yRot = (-(float)Math.PI / 6F);
+                break;
+            case ITEM:
+                this.rightArm.xRot = this.rightArm.xRot * 0.5F - ((float)Math.PI / 10F);
+                this.rightArm.yRot = 0.0F;
+                break;
+            case THROW_SPEAR:
+                this.rightArm.xRot = this.rightArm.xRot * 0.5F - (float)Math.PI;
+                this.rightArm.yRot = 0.0F;
+                break;
+            case BOW_AND_ARROW:
+                this.rightArm.yRot = -0.1F + this.head.yRot;
+                this.leftArm.yRot = 0.1F + this.head.yRot + 0.4F;
+                this.rightArm.xRot = (-(float)Math.PI / 2F) + this.head.xRot;
+                this.leftArm.xRot = (-(float)Math.PI / 2F) + this.head.xRot;
+                break;
+            case CROSSBOW_CHARGE:
+                ModelHelper.animateCrossbowCharge(this.rightArm, this.leftArm, entityIn, true);
+                break;
+            case CROSSBOW_HOLD:
+                ModelHelper.animateCrossbowHold(this.rightArm, this.leftArm, this.head, true);
+        }
+    }
+
+    private void poseLeftArm(T entityIn) {
+        switch(this.leftArmPose) {
+            case EMPTY:
+                this.leftArm.yRot = 0.0F;
+                break;
+            case BLOCK:
+                this.leftArm.xRot = this.leftArm.xRot * 0.5F - 0.9424779F;
+                this.leftArm.yRot = ((float)Math.PI / 6F);
+                break;
+            case ITEM:
+                this.leftArm.xRot = this.leftArm.xRot * 0.5F - ((float)Math.PI / 10F);
+                this.leftArm.yRot = 0.0F;
+                break;
+            case THROW_SPEAR:
+                this.leftArm.xRot = this.leftArm.xRot * 0.5F - (float)Math.PI;
+                this.leftArm.yRot = 0.0F;
+                break;
+            case BOW_AND_ARROW:
+                this.rightArm.yRot = -0.1F + this.head.yRot - 0.4F;
+                this.leftArm.yRot = 0.1F + this.head.yRot;
+                this.rightArm.xRot = (-(float)Math.PI / 2F) + this.head.xRot;
+                this.leftArm.xRot = (-(float)Math.PI / 2F) + this.head.xRot;
+                break;
+            case CROSSBOW_CHARGE:
+                ModelHelper.animateCrossbowCharge(this.rightArm, this.leftArm, entityIn, false);
+                break;
+            case CROSSBOW_HOLD:
+                ModelHelper.animateCrossbowHold(this.rightArm, this.leftArm, this.head, false);
+        }
+    }
+
+    @Override
+    protected void setupAttackAnimation(T entityIn, float p_230486_2_) {
+        if (!(this.attackTime <= 0.0F)) {
+            HandSide handside = this.getAttackArm(entityIn);
+            ModelRenderer modelrenderer = this.getArm(handside);
+            float f = this.attackTime;
+            this.body.yRot = MathHelper.sin(MathHelper.sqrt(f) * ((float)Math.PI * 2F)) * 0.2F;
+            if (handside == HandSide.LEFT) {
+                this.body.yRot *= -1.0F;
+            }
+
+            this.rightArm.yRot += this.body.yRot;
+            this.leftArm.yRot += this.body.yRot;
+            this.leftArm.xRot += this.body.yRot;
+            f = 1.0F - this.attackTime;
+            f = f * f;
+            f = f * f;
+            f = 1.0F - f;
+            float f1 = MathHelper.sin(f * (float)Math.PI);
+            float f2 = MathHelper.sin(this.attackTime * (float)Math.PI) * -(this.head.xRot - 0.7F) * 0.75F;
+            modelrenderer.xRot = (float)((double)modelrenderer.xRot - ((double)f1 * 1.2D + (double)f2));
+            modelrenderer.yRot += this.body.yRot * 2.0F;
+            modelrenderer.zRot += MathHelper.sin(this.attackTime * (float)Math.PI) * -0.4F;
+        }
+    }
+
+    @Override
+    protected float rotlerpRad(float p_205060_1_, float p_205060_2_, float p_205060_3_) {
+        float f = (p_205060_3_ - p_205060_2_) % ((float)Math.PI * 2F);
+        if (f < -(float)Math.PI) {
+            f += ((float)Math.PI * 2F);
+        }
+
+        if (f >= (float)Math.PI) {
+            f -= ((float)Math.PI * 2F);
+        }
+
+        return p_205060_2_ + p_205060_1_ * f;
+    }
+
+    private float quadraticArmUpdate(float p_203068_1_) {
+        return -65.0F * p_203068_1_ + p_203068_1_ * p_203068_1_;
     }
 
     @Override
     public void translateToHand(HandSide hand, MatrixStack mStack) {
         this.getArm(hand).translateAndRotate(mStack);
         mStack.scale(1.75F, 1.75F, 1.75F);
-        mStack.translate(-0.17, -0.65, 0);
+        mStack.translate(0, 0.125, 0);
+    }
+
+    @Override
+    protected ModelRenderer getArm(HandSide hand) {
+        return hand == HandSide.LEFT ? this.leftArm : this.rightArm;
+    }
+
+    @Override
+    protected HandSide getAttackArm(T entityIn) {
+        HandSide handside = entityIn.getMainArm();
+        return entityIn.swingingArm == Hand.MAIN_HAND ? handside : handside.getOpposite();
+    }
+
+    public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+        modelRenderer.xRot = x;
+        modelRenderer.yRot = y;
+        modelRenderer.zRot = z;
     }
 }

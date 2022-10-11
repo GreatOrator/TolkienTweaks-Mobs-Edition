@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.entity.boss;
 
 import com.greatorator.tolkienmobs.datagen.PotionGenerator;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.monster.EntityTTMElementalGolem;
+import com.greatorator.tolkienmobs.entity.monster.ElementalGolemEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -36,7 +36,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class MithrilGolemEntity extends EntityTTMElementalGolem {
+public class MithrilGolemEntity extends ElementalGolemEntity {
     private final ServerBossInfo bossInfo = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(), BossInfo.Color.WHITE, BossInfo.Overlay.NOTCHED_10)).setDarkenScreen(true);
     private static final RangedInteger PERSISTENT_ANGER_TIME = TickRangeConverter.rangeOfSeconds(20, 39);
     private static int attackAnimationTick;

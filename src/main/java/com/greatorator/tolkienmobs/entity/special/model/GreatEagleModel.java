@@ -821,14 +821,14 @@ public class GreatEagleModel extends SegmentedModel<GreatEagleEntity> {
 		switch(p_217162_1_) {
 			case SITTING:
 				break;
-			case STANDING:
-				this.left_leg.xRot += MathHelper.cos(p_217162_3_ * 0.6662F) * 1.4F * p_217162_4_;
-				this.right_leg.xRot += MathHelper.cos(p_217162_3_ * 0.6662F + (float)Math.PI) * 1.4F * p_217162_4_;
 			case FLYING:
-			default:
 				this.tail.xRot = -(5.0F + MathHelper.cos(f * 2.0F) * 5.0F) * ((float)Math.PI / 180F);
 				this.left_wing.zRot = MathHelper.cos(f) * f1 * ((float)Math.PI / 180F);
 				this.right_wing.zRot = -this.left_wing.zRot;
+			case STANDING:
+			default:
+				this.left_leg.xRot += MathHelper.cos(p_217162_3_ * 0.6662F) * 1.4F * p_217162_4_;
+				this.right_leg.xRot += MathHelper.cos(p_217162_3_ * 0.6662F + (float)Math.PI) * 1.4F * p_217162_4_;
 		}
 	}
 

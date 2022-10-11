@@ -8,9 +8,9 @@ import com.greatorator.tolkienmobs.entity.ammo.EntityGaladhrimArrow;
 import com.greatorator.tolkienmobs.entity.boss.*;
 import com.greatorator.tolkienmobs.entity.merchant.*;
 import com.greatorator.tolkienmobs.entity.monster.*;
-import com.greatorator.tolkienmobs.entity.passive.EntityTTMAuroch;
-import com.greatorator.tolkienmobs.entity.passive.EntityTTMGoat;
-import com.greatorator.tolkienmobs.entity.passive.EntityTTMMumakil;
+import com.greatorator.tolkienmobs.entity.passive.AurochEntity;
+import com.greatorator.tolkienmobs.entity.passive.GoatEntity;
+import com.greatorator.tolkienmobs.entity.passive.MumakilEntity;
 import com.greatorator.tolkienmobs.entity.special.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -52,58 +52,58 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<CrebainEntity>> ENTITY_TTM_CREBAIN = ENTITY.register("entityttmcrebain", () -> entityTTMCrebain);
 
     // Merchants
-    private static final EntityType<EntityTTMHuman> entityTTMHuman = buildEntity("entityttmhuman", EntityTTMHuman::new, EntityClassification.MISC, 0.7F, 1.85F);
-    public static final RegistryObject<EntityType<EntityTTMHuman>> ENTITY_TTM_HUMAN = ENTITY.register("entityttmhuman", () -> entityTTMHuman);
-    private static final EntityType<EntityTTMDwarf> entityTTMDwarf = buildEntity("entityttmdwarf", EntityTTMDwarf::new, EntityClassification.MISC, 0.7F, 1.6F);
-    public static final RegistryObject<EntityType<EntityTTMDwarf>> ENTITY_TTM_DWARF = ENTITY.register("entityttmdwarf", () -> entityTTMDwarf);
-    private static final EntityType<EntityTTMElves> entityTTMElves = buildEntity("entityttmelves", EntityTTMElves::new, EntityClassification.MISC, 0.9F, 2.0F);
-    public static final RegistryObject<EntityType<EntityTTMElves>> ENTITY_TTM_ELVES = ENTITY.register("entityttmelves", () -> entityTTMElves);
-    private static final EntityType<EntityTTMHobbit> entityTTMHobbit = buildEntity("entityttmhobbit", EntityTTMHobbit::new, EntityClassification.MISC, 0.6F, 1.4F);
-    public static final RegistryObject<EntityType<EntityTTMHobbit>> ENTITY_TTM_HOBBIT = ENTITY.register("entityttmhobbit", () -> entityTTMHobbit);
-    private static final EntityType<EntityTTMDesertDweller> entityTTMDesertDweller = buildEntity("entityttmdesertdweller", EntityTTMDesertDweller::new, EntityClassification.MISC, 0.7F, 1.85F);
-    public static final RegistryObject<EntityType<EntityTTMDesertDweller>> ENTITY_TTM_DESERTDWELLER = ENTITY.register("entityttmdesertdweller", () -> entityTTMDesertDweller);
+    private static final EntityType<HumanEntity> entityTTMHuman = buildEntity("entityttmhuman", HumanEntity::new, EntityClassification.MISC, 0.7F, 1.85F);
+    public static final RegistryObject<EntityType<HumanEntity>> ENTITY_TTM_HUMAN = ENTITY.register("entityttmhuman", () -> entityTTMHuman);
+    private static final EntityType<DwarfEntity> entityTTMDwarf = buildEntity("entityttmdwarf", DwarfEntity::new, EntityClassification.MISC, 0.7F, 1.6F);
+    public static final RegistryObject<EntityType<DwarfEntity>> ENTITY_TTM_DWARF = ENTITY.register("entityttmdwarf", () -> entityTTMDwarf);
+    private static final EntityType<ElvesEntity> entityTTMElves = buildEntity("entityttmelves", ElvesEntity::new, EntityClassification.MISC, 0.9F, 2.0F);
+    public static final RegistryObject<EntityType<ElvesEntity>> ENTITY_TTM_ELVES = ENTITY.register("entityttmelves", () -> entityTTMElves);
+    private static final EntityType<HobbitEntity> entityTTMHobbit = buildEntity("entityttmhobbit", HobbitEntity::new, EntityClassification.MISC, 0.6F, 1.4F);
+    public static final RegistryObject<EntityType<HobbitEntity>> ENTITY_TTM_HOBBIT = ENTITY.register("entityttmhobbit", () -> entityTTMHobbit);
+    private static final EntityType<DesertDwellerEntity> entityTTMDesertDweller = buildEntity("entityttmdesertdweller", DesertDwellerEntity::new, EntityClassification.MISC, 0.7F, 1.85F);
+    public static final RegistryObject<EntityType<DesertDwellerEntity>> ENTITY_TTM_DESERTDWELLER = ENTITY.register("entityttmdesertdweller", () -> entityTTMDesertDweller);
 
     // Monster
-    private static final EntityType<EntityTTMGoblin> entityTTMGoblin = buildEntity("entityttmgoblin", EntityTTMGoblin::new, EntityClassification.MONSTER, 0.9F, 1.0F);
-    public static final RegistryObject<EntityType<EntityTTMGoblin>> ENTITY_TTM_GOBLIN = ENTITY.register("entityttmgoblin", () -> entityTTMGoblin);
-    private static final EntityType<EntityTTMBarrowWight> entityTTMBarrow = buildEntity("entityttmbarrow", EntityTTMBarrowWight::new, EntityClassification.MONSTER, 0.7F, 1.85F);
-    public static final RegistryObject<EntityType<EntityTTMBarrowWight>> ENTITY_TTM_BARROW = ENTITY.register("entityttmbarrow", () -> entityTTMBarrow);
-    private static final EntityType<EntityTTMBrigand> entityTTMBrigand = buildEntity("entityttmbrigand", EntityTTMBrigand::new, EntityClassification.MONSTER, 0.7F, 1.6F);
-    public static final RegistryObject<EntityType<EntityTTMBrigand>> ENTITY_TTM_BRIGAND = ENTITY.register("entityttmbrigand", () -> entityTTMBrigand);
-    private static final EntityType<EntityTTMDeepClaw> entityTTMDeepclaw = buildEntity("entityttmdeepclaw", EntityTTMDeepClaw::new, EntityClassification.MONSTER, 0.7F, 1.1F);
-    public static final RegistryObject<EntityType<EntityTTMDeepClaw>> ENTITY_TTM_DEEPCLAW = ENTITY.register("entityttmdeepclaw", () -> entityTTMDeepclaw);
-    private static final EntityType<EntityTTMTreeEnt> entityTTMTreeEnt = buildEntity("entityttmtreeent", EntityTTMTreeEnt::new, EntityClassification.MONSTER, 1.35F, 5.5F);
-    public static final RegistryObject<EntityType<EntityTTMTreeEnt>> ENTITY_TTM_TREEENT = ENTITY.register("entityttmtreeent", () -> entityTTMTreeEnt);
-    private static final EntityType<EntityTTMDuergar> entityTTMDuergar = buildEntity("entityttmduergar", EntityTTMDuergar::new, EntityClassification.MONSTER, 0.7F, 1.6F);
-    public static final RegistryObject<EntityType<EntityTTMDuergar>> ENTITY_TTM_DUERGAR = ENTITY.register("entityttmduergar", () -> entityTTMDuergar);
-    private static final EntityType<EntityTTMFellSpirit> entityTTMFellSpirit = buildEntity("entityttmfellspirit", EntityTTMFellSpirit::new, EntityClassification.MONSTER, 0.7F, 1.85F);
-    public static final RegistryObject<EntityType<EntityTTMFellSpirit>> ENTITY_TTM_FELLSPIRIT = ENTITY.register("entityttmfellspirit", () -> entityTTMFellSpirit);
-    private static final EntityType<EntityTTMSwampHag> entityTTMSwampHag = buildEntity("entityttmswamphag", EntityTTMSwampHag::new, EntityClassification.MONSTER, 0.7F, 1.85F);
-    public static final RegistryObject<EntityType<EntityTTMSwampHag>> ENTITY_TTM_SWAMPHAG = ENTITY.register("entityttmswamphag", () -> entityTTMSwampHag);
-    private static final EntityType<EntityTTMMirkwoodSpider> entityTTMMirkwoodSpider = buildEntity("entityttmmirkwoodspider", EntityTTMMirkwoodSpider::new, EntityClassification.MONSTER, 1.4F, 0.9F);
-    public static final RegistryObject<EntityType<EntityTTMMirkwoodSpider>> ENTITY_TTM_MIRKWOODSPIDER = ENTITY.register("entityttmmirkwoodspider", () -> entityTTMMirkwoodSpider);
-    private static final EntityType<EntityTTMHaradrim> entityTTMHaradrim = buildEntity("entityttmharadrim", EntityTTMHaradrim::new, EntityClassification.MONSTER, 0.7F, 1.6F);
-    public static final RegistryObject<EntityType<EntityTTMHaradrim>> ENTITY_TTM_HARADRIM = ENTITY.register("entityttmharadrim", () -> entityTTMHaradrim);
-    private static final EntityType<EntityTTMTroll> entityTTMTroll = buildEntity("entityttmtroll", EntityTTMTroll::new, EntityClassification.MONSTER, 3.4F, 4.6F);
-    public static final RegistryObject<EntityType<EntityTTMTroll>> ENTITY_TTM_TROLL = ENTITY.register("entityttmtroll", () -> entityTTMTroll);
-    private static final EntityType<EntityTTMWarg> entityTTMWarg = buildEntity("entityttmwarg", EntityTTMWarg::new, EntityClassification.MONSTER, 1.5F, 1.4F);
-    public static final RegistryObject<EntityType<EntityTTMWarg>> ENTITY_TTM_WARG = ENTITY.register("entityttmwarg", () -> entityTTMWarg);
-    private static final EntityType<EntityTTMMordorOrc> entityTTMMordorOrc = buildEntity("entityttmmordororc", EntityTTMMordorOrc::new, EntityClassification.MONSTER, 1.5F, 1.4F);
-    public static final RegistryObject<EntityType<EntityTTMMordorOrc>> ENTITY_TTM_MORDORORC = ENTITY.register("entityttmmordororc", () -> entityTTMMordorOrc);
-    private static final EntityType<EntityTTMHuron> entityTTMHuron = buildEntity("entityttmhuron", EntityTTMHuron::new, EntityClassification.MONSTER, 1.5F, 1.4F);
-    public static final RegistryObject<EntityType<EntityTTMHuron>> ENTITY_TTM_HURON = ENTITY.register("entityttmhuron", () -> entityTTMHuron);
-    private static final EntityType<EntityTTMOathbreaker> entityTTMOathbreaker = buildEntity("entityttmoathbreaker", EntityTTMOathbreaker::new, EntityClassification.MONSTER, 0.7F, 1.85F);
-    public static final RegistryObject<EntityType<EntityTTMOathbreaker>> ENTITY_TTM_OATHBREAKER = ENTITY.register("entityttmoathbreaker", () -> entityTTMOathbreaker);
-    private static final EntityType<EntityTTMRomieWalker> entityTTMRomieWalker = buildEntity("entityttmromiewalker", EntityTTMRomieWalker::new, EntityClassification.MONSTER, 0.7F, 1.85F);
-    public static final RegistryObject<EntityType<EntityTTMRomieWalker>> ENTITY_TTM_ROMIEWALKER = ENTITY.register("entityttmromiewalker", () -> entityTTMRomieWalker);
-    private static final EntityType<EntityTTMUrukHai> entityTTMUrukHai = buildEntity("entityttmurukhai", EntityTTMUrukHai::new, EntityClassification.MONSTER, 1.0F, 2.6F);
-    public static final RegistryObject<EntityType<EntityTTMUrukHai>> ENTITY_TTM_URUKHAI = ENTITY.register("entityttmurukhai", () -> entityTTMUrukHai);
-    private static final EntityType<EntityTTMElementalGolem> entityTTMElementalGolem = buildEntity("entityttmelementalgolem", EntityTTMElementalGolem::new, EntityClassification.MONSTER, 1.8F, 3.1F);
-    public static final RegistryObject<EntityType<EntityTTMElementalGolem>> ENTITY_TTM_ELEMENTALGOLEM = ENTITY.register("entityttmelementalgolem", () -> entityTTMElementalGolem);
-    private static final EntityType<EntityTTMMinotaur> entityTTMMinotaur = buildEntity("entityttmminotaur", EntityTTMMinotaur::new, EntityClassification.MONSTER, 1.8F, 4.0F);
-    public static final RegistryObject<EntityType<EntityTTMMinotaur>> ENTITY_TTM_MINOTAUR = ENTITY.register("entityttmminotaur", () -> entityTTMMinotaur);
-    private static final EntityType<EntityTTMMimicChest> entityTTMMimicChest = buildEntity("entityttmmimicchest", EntityTTMMimicChest::new, EntityClassification.MONSTER, 1.0F, 1.7F);
-    public static final RegistryObject<EntityType<EntityTTMMimicChest>> ENTITY_TTM_MIMICCHEST = ENTITY.register("entityttmmimicchest", () -> entityTTMMimicChest);
+    private static final EntityType<GoblinEntity> entityTTMGoblin = buildEntity("entityttmgoblin", GoblinEntity::new, EntityClassification.MONSTER, 0.9F, 1.0F);
+    public static final RegistryObject<EntityType<GoblinEntity>> ENTITY_TTM_GOBLIN = ENTITY.register("entityttmgoblin", () -> entityTTMGoblin);
+    private static final EntityType<BarrowWightEntity> entityTTMBarrow = buildEntity("entityttmbarrow", BarrowWightEntity::new, EntityClassification.MONSTER, 0.7F, 1.85F);
+    public static final RegistryObject<EntityType<BarrowWightEntity>> ENTITY_TTM_BARROW = ENTITY.register("entityttmbarrow", () -> entityTTMBarrow);
+    private static final EntityType<BrigandEntity> entityTTMBrigand = buildEntity("entityttmbrigand", BrigandEntity::new, EntityClassification.MONSTER, 0.7F, 1.6F);
+    public static final RegistryObject<EntityType<BrigandEntity>> ENTITY_TTM_BRIGAND = ENTITY.register("entityttmbrigand", () -> entityTTMBrigand);
+    private static final EntityType<DeepClawEntity> entityTTMDeepclaw = buildEntity("entityttmdeepclaw", DeepClawEntity::new, EntityClassification.MONSTER, 0.7F, 0.7F);
+    public static final RegistryObject<EntityType<DeepClawEntity>> ENTITY_TTM_DEEPCLAW = ENTITY.register("entityttmdeepclaw", () -> entityTTMDeepclaw);
+    private static final EntityType<TreeEntEntity> entityTTMTreeEnt = buildEntity("entityttmtreeent", TreeEntEntity::new, EntityClassification.MONSTER, 1.35F, 5.5F);
+    public static final RegistryObject<EntityType<TreeEntEntity>> ENTITY_TTM_TREEENT = ENTITY.register("entityttmtreeent", () -> entityTTMTreeEnt);
+    private static final EntityType<DuergarEntity> entityTTMDuergar = buildEntity("entityttmduergar", DuergarEntity::new, EntityClassification.MONSTER, 0.7F, 1.6F);
+    public static final RegistryObject<EntityType<DuergarEntity>> ENTITY_TTM_DUERGAR = ENTITY.register("entityttmduergar", () -> entityTTMDuergar);
+    private static final EntityType<FellSpiritEntity> entityTTMFellSpirit = buildEntity("entityttmfellspirit", FellSpiritEntity::new, EntityClassification.MONSTER, 0.7F, 1.85F);
+    public static final RegistryObject<EntityType<FellSpiritEntity>> ENTITY_TTM_FELLSPIRIT = ENTITY.register("entityttmfellspirit", () -> entityTTMFellSpirit);
+    private static final EntityType<SwampHagEntity> entityTTMSwampHag = buildEntity("entityttmswamphag", SwampHagEntity::new, EntityClassification.MONSTER, 0.7F, 1.85F);
+    public static final RegistryObject<EntityType<SwampHagEntity>> ENTITY_TTM_SWAMPHAG = ENTITY.register("entityttmswamphag", () -> entityTTMSwampHag);
+    private static final EntityType<MirkwoodSpiderEntity> entityTTMMirkwoodSpider = buildEntity("entityttmmirkwoodspider", MirkwoodSpiderEntity::new, EntityClassification.MONSTER, 1.4F, 0.9F);
+    public static final RegistryObject<EntityType<MirkwoodSpiderEntity>> ENTITY_TTM_MIRKWOODSPIDER = ENTITY.register("entityttmmirkwoodspider", () -> entityTTMMirkwoodSpider);
+    private static final EntityType<HaradrimEntity> entityTTMHaradrim = buildEntity("entityttmharadrim", HaradrimEntity::new, EntityClassification.MONSTER, 0.7F, 1.6F);
+    public static final RegistryObject<EntityType<HaradrimEntity>> ENTITY_TTM_HARADRIM = ENTITY.register("entityttmharadrim", () -> entityTTMHaradrim);
+    private static final EntityType<TrollEntity> entityTTMTroll = buildEntity("entityttmtroll", TrollEntity::new, EntityClassification.MONSTER, 2.2F, 2.6F);
+    public static final RegistryObject<EntityType<TrollEntity>> ENTITY_TTM_TROLL = ENTITY.register("entityttmtroll", () -> entityTTMTroll);
+    private static final EntityType<WargEntity> entityTTMWarg = buildEntity("entityttmwarg", WargEntity::new, EntityClassification.MONSTER, 1.5F, 1.4F);
+    public static final RegistryObject<EntityType<WargEntity>> ENTITY_TTM_WARG = ENTITY.register("entityttmwarg", () -> entityTTMWarg);
+    private static final EntityType<MordorOrcEntity> entityTTMMordorOrc = buildEntity("entityttmmordororc", MordorOrcEntity::new, EntityClassification.MONSTER, 1.5F, 1.4F);
+    public static final RegistryObject<EntityType<MordorOrcEntity>> ENTITY_TTM_MORDORORC = ENTITY.register("entityttmmordororc", () -> entityTTMMordorOrc);
+    private static final EntityType<HuronEntity> entityTTMHuron = buildEntity("entityttmhuron", HuronEntity::new, EntityClassification.MONSTER, 1.5F, 1.4F);
+    public static final RegistryObject<EntityType<HuronEntity>> ENTITY_TTM_HURON = ENTITY.register("entityttmhuron", () -> entityTTMHuron);
+    private static final EntityType<OathbreakerEntity> entityTTMOathbreaker = buildEntity("entityttmoathbreaker", OathbreakerEntity::new, EntityClassification.MONSTER, 0.7F, 1.85F);
+    public static final RegistryObject<EntityType<OathbreakerEntity>> ENTITY_TTM_OATHBREAKER = ENTITY.register("entityttmoathbreaker", () -> entityTTMOathbreaker);
+    private static final EntityType<RomieWalkerEntity> entityTTMRomieWalker = buildEntity("entityttmromiewalker", RomieWalkerEntity::new, EntityClassification.MONSTER, 0.7F, 1.85F);
+    public static final RegistryObject<EntityType<RomieWalkerEntity>> ENTITY_TTM_ROMIEWALKER = ENTITY.register("entityttmromiewalker", () -> entityTTMRomieWalker);
+    private static final EntityType<UrukHaiEntity> entityTTMUrukHai = buildEntity("entityttmurukhai", UrukHaiEntity::new, EntityClassification.MONSTER, 1.0F, 2.6F);
+    public static final RegistryObject<EntityType<UrukHaiEntity>> ENTITY_TTM_URUKHAI = ENTITY.register("entityttmurukhai", () -> entityTTMUrukHai);
+    private static final EntityType<ElementalGolemEntity> entityTTMElementalGolem = buildEntity("entityttmelementalgolem", ElementalGolemEntity::new, EntityClassification.MONSTER, 1.8F, 3.1F);
+    public static final RegistryObject<EntityType<ElementalGolemEntity>> ENTITY_TTM_ELEMENTALGOLEM = ENTITY.register("entityttmelementalgolem", () -> entityTTMElementalGolem);
+    private static final EntityType<MinotaurEntity> entityTTMMinotaur = buildEntity("entityttmminotaur", MinotaurEntity::new, EntityClassification.MONSTER, 1.8F, 4.0F);
+    public static final RegistryObject<EntityType<MinotaurEntity>> ENTITY_TTM_MINOTAUR = ENTITY.register("entityttmminotaur", () -> entityTTMMinotaur);
+    private static final EntityType<MimicChestEntity> entityTTMMimicChest = buildEntity("entityttmmimicchest", MimicChestEntity::new, EntityClassification.MONSTER, 1.0F, 1.7F);
+    public static final RegistryObject<EntityType<MimicChestEntity>> ENTITY_TTM_MIMICCHEST = ENTITY.register("entityttmmimicchest", () -> entityTTMMimicChest);
 
     // Boss
     private static final EntityType<GoblinKingEntity> entityTTMGoblinKing = buildEntity("entityttmgoblinking", GoblinKingEntity::new, EntityClassification.MONSTER, 0.9F, 1.0F);
@@ -124,12 +124,12 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<GwahirEntity>> ENTITY_TTM_GWAHIR = ENTITY.register("entityttmgwahir", () -> entityTTMGwahir);
 
     // Passive
-    private static final EntityType<EntityTTMAuroch> entityTTMAuroch = buildEntity("entityttmauroch", EntityTTMAuroch::new, EntityClassification.CREATURE, 1.9F, 1.4F);
-    public static final RegistryObject<EntityType<EntityTTMAuroch>> ENTITY_TTM_AUROCH = ENTITY.register("entityttmauroch", () -> entityTTMAuroch);
-    private static final EntityType<EntityTTMMumakil> entityTTMMumakil = buildEntity("entityttmmumakil", EntityTTMMumakil::new, EntityClassification.CREATURE, 3.0F, 3.0F);
-    public static final RegistryObject<EntityType<EntityTTMMumakil>> ENTITY_TTM_MUMAKIL = ENTITY.register("entityttmmumakil", () -> entityTTMMumakil);
-    private static final EntityType<EntityTTMGoat> entityTTMGoat = buildEntity("entityttmgoat", EntityTTMGoat::new, EntityClassification.CREATURE, 1.3964844F, 1.6F);
-    public static final RegistryObject<EntityType<EntityTTMGoat>> ENTITY_TTM_GOAT = ENTITY.register("entityttmgoat", () -> entityTTMGoat);
+    private static final EntityType<AurochEntity> entityTTMAuroch = buildEntity("entityttmauroch", AurochEntity::new, EntityClassification.CREATURE, 1.9F, 1.4F);
+    public static final RegistryObject<EntityType<AurochEntity>> ENTITY_TTM_AUROCH = ENTITY.register("entityttmauroch", () -> entityTTMAuroch);
+    private static final EntityType<MumakilEntity> entityTTMMumakil = buildEntity("entityttmmumakil", MumakilEntity::new, EntityClassification.CREATURE, 3.0F, 3.0F);
+    public static final RegistryObject<EntityType<MumakilEntity>> ENTITY_TTM_MUMAKIL = ENTITY.register("entityttmmumakil", () -> entityTTMMumakil);
+    private static final EntityType<GoatEntity> entityTTMGoat = buildEntity("entityttmgoat", GoatEntity::new, EntityClassification.CREATURE, 1.3964844F, 1.6F);
+    public static final RegistryObject<EntityType<GoatEntity>> ENTITY_TTM_GOAT = ENTITY.register("entityttmgoat", () -> entityTTMGoat);
 
     // Special
     private static final EntityType<ShadowfaxEntity> entityTTMShadowfax = buildEntity("entityttmshadowfax", ShadowfaxEntity::new, EntityClassification.CREATURE, 1.3964844F, 1.6F);
@@ -152,7 +152,7 @@ public class EntityGenerator {
         //Look in EntitySpawnPlacementRegistry for examples
         // Ambient
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_SQUIRREL.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AmbientEntity::checkTTMAmbientSpawn);
-        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_FROG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FrogEntity::checkFrogSpawn);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_FROG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, FrogEntity::checkFrogSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_THRUSH.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ThrushEntity::checkThrushSpawn);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_SWARM.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SwarmEntity::checkSwarmSpawn);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_RAT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AmbientEntity::checkTTMAmbientSpawn);
@@ -170,7 +170,7 @@ public class EntityGenerator {
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_BARROW.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_BRIGAND.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_DEEPCLAW.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
-        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_TREEENT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMTreeEnt::checkTreeEntSpawn);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_TREEENT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TreeEntEntity::checkTreeEntSpawn);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_DUERGAR.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_FELLSPIRIT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_SWAMPHAG.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
@@ -184,13 +184,13 @@ public class EntityGenerator {
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_ROMIEWALKER.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_URUKHAI.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_ELEMENTALGOLEM.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
-        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_MINOTAUR.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMMinotaur::checkMinotaurSpawn);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_MINOTAUR.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MinotaurEntity::checkMinotaurSpawn);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_MIMICCHEST.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
 
         // Boss
 
         //Passive
-        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_MUMAKIL.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, EntityTTMMumakil::checkMumakilSpawn);
+        EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_MUMAKIL.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MumakilEntity::checkMumakilSpawn);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_AUROCH.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::checkAnimalSpawnRules);
         EntitySpawnPlacementRegistry.register(EntityGenerator.ENTITY_TTM_GOAT.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::checkAnimalSpawnRules);
 
@@ -217,33 +217,33 @@ public class EntityGenerator {
         event.put(ENTITY_TTM_CREBAIN.get(), CrebainEntity.registerAttributes().build());
 
         // Merchants
-        event.put(ENTITY_TTM_HUMAN.get(), EntityTTMHuman.registerAttributes().build());
-        event.put(ENTITY_TTM_DWARF.get(), EntityTTMDwarf.registerAttributes().build());
-        event.put(ENTITY_TTM_ELVES.get(), EntityTTMElves.registerAttributes().build());
-        event.put(ENTITY_TTM_HOBBIT.get(), EntityTTMHobbit.registerAttributes().build());
-        event.put(ENTITY_TTM_DESERTDWELLER.get(), EntityTTMDesertDweller.registerAttributes().build());
+        event.put(ENTITY_TTM_HUMAN.get(), HumanEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_DWARF.get(), DwarfEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_ELVES.get(), ElvesEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_HOBBIT.get(), HobbitEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_DESERTDWELLER.get(), DesertDwellerEntity.registerAttributes().build());
 
         // Monster
-        event.put(ENTITY_TTM_GOBLIN.get(), EntityTTMGoblin.registerAttributes().build());
-        event.put(ENTITY_TTM_BARROW.get(), EntityTTMBarrowWight.registerAttributes().build());
-        event.put(ENTITY_TTM_BRIGAND.get(), EntityTTMBrigand.registerAttributes().build());
-        event.put(ENTITY_TTM_DEEPCLAW.get(), EntityTTMDeepClaw.registerAttributes().build());
-        event.put(ENTITY_TTM_TREEENT.get(), EntityTTMTreeEnt.registerAttributes().build());
-        event.put(ENTITY_TTM_DUERGAR.get(), EntityTTMDuergar.registerAttributes().build());
-        event.put(ENTITY_TTM_FELLSPIRIT.get(), EntityTTMFellSpirit.registerAttributes().build());
-        event.put(ENTITY_TTM_SWAMPHAG.get(), EntityTTMSwampHag.registerAttributes().build());
-        event.put(ENTITY_TTM_MIRKWOODSPIDER.get(), EntityTTMMirkwoodSpider.registerAttributes().build());
-        event.put(ENTITY_TTM_HARADRIM.get(), EntityTTMHaradrim.registerAttributes().build());
-        event.put(ENTITY_TTM_TROLL.get(), EntityTTMTroll.registerAttributes().build());
-        event.put(ENTITY_TTM_WARG.get(), EntityTTMWarg.registerAttributes().build());
-        event.put(ENTITY_TTM_MORDORORC.get(), EntityTTMMordorOrc.registerAttributes().build());
-        event.put(ENTITY_TTM_HURON.get(), EntityTTMHuron.registerAttributes().build());
-        event.put(ENTITY_TTM_OATHBREAKER.get(), EntityTTMOathbreaker.registerAttributes().build());
-        event.put(ENTITY_TTM_ROMIEWALKER.get(), EntityTTMRomieWalker.registerAttributes().build());
-        event.put(ENTITY_TTM_URUKHAI.get(), EntityTTMUrukHai.registerAttributes().build());
-        event.put(ENTITY_TTM_ELEMENTALGOLEM.get(), EntityTTMElementalGolem.registerAttributes().build());
-        event.put(ENTITY_TTM_MINOTAUR.get(), EntityTTMMinotaur.registerAttributes().build());
-        event.put(ENTITY_TTM_MIMICCHEST.get(), EntityTTMMimicChest.registerAttributes().build());
+        event.put(ENTITY_TTM_GOBLIN.get(), GoblinEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_BARROW.get(), BarrowWightEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_BRIGAND.get(), BrigandEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_DEEPCLAW.get(), DeepClawEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_TREEENT.get(), TreeEntEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_DUERGAR.get(), DuergarEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_FELLSPIRIT.get(), FellSpiritEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_SWAMPHAG.get(), SwampHagEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_MIRKWOODSPIDER.get(), MirkwoodSpiderEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_HARADRIM.get(), HaradrimEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_TROLL.get(), TrollEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_WARG.get(), WargEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_MORDORORC.get(), MordorOrcEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_HURON.get(), HuronEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_OATHBREAKER.get(), OathbreakerEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_ROMIEWALKER.get(), RomieWalkerEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_URUKHAI.get(), UrukHaiEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_ELEMENTALGOLEM.get(), ElementalGolemEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_MINOTAUR.get(), MinotaurEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_MIMICCHEST.get(), MimicChestEntity.registerAttributes().build());
 
         // Boss
         event.put(ENTITY_TTM_GOBLINKING.get(), GoblinKingEntity.registerAttributes().build());
@@ -256,9 +256,9 @@ public class EntityGenerator {
         event.put(ENTITY_TTM_GWAHIR.get(), GwahirEntity.registerAttributes().build());
 
         // Passive
-        event.put(ENTITY_TTM_AUROCH.get(), EntityTTMAuroch.registerAttributes().build());
-        event.put(ENTITY_TTM_MUMAKIL.get(), EntityTTMMumakil.registerAttributes().build());
-        event.put(ENTITY_TTM_GOAT.get(), EntityTTMGoat.registerAttributes().build());
+        event.put(ENTITY_TTM_AUROCH.get(), AurochEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_MUMAKIL.get(), MumakilEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_GOAT.get(), GoatEntity.registerAttributes().build());
 
         // Special
         event.put(ENTITY_TTM_SHADOWFAX.get(), ShadowfaxEntity.registerAttributes().build());
