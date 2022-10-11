@@ -52,9 +52,9 @@ public class TolkienMobs {
 			2. Gwaihir - Needs AI
 			3. Great Eagle - Needs AI
 		b. Ammo
-            a. Fell Beast Fireball - rendering
-	        b. Boulder - rendering
-	        c. Galadhrim Arrow - rendering
+            1. Fell Beast Fireball - rendering
+	        2. Boulder - rendering
+	        3. Galadhrim Arrow - rendering
 	    c. Blocks
 	        1. Camo Spawner - Implementation
 	        2. Key Stone - Active state weirdness
