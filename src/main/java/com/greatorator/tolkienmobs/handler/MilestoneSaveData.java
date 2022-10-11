@@ -44,6 +44,7 @@ public class MilestoneSaveData extends WorldSavedData {
         }
     }
 
+    //TODO add some cleanup code to remove any milestones that no longer exist.
     public static List<MilestoneData> getKnownByPlayer(PlayerEntity player) {
         if (player.level.isClientSide) return Collections.emptyList();
         MilestoneSaveData saveData = getInstance(player.level);
