@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.block;
 
 import com.brandon3055.brandonscore.blocks.BlockBCore;
 import com.greatorator.tolkienmobs.entity.tile.MilestoneTile;
+import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
@@ -59,19 +60,6 @@ public class MilestoneBlock extends BlockBCore implements IWaterLoggable {
                 }
             }
         }
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult trace) {
-        if (!world.isClientSide) {
-            TileEntity tile = world.getBlockEntity(pos);
-            if (tile instanceof MilestoneTile) {
-                ((MilestoneTile) tile).onRightClick(player, hand);
-            }
-            return ActionResultType.CONSUME;
-        }
-        return ActionResultType.SUCCESS;
     }
 
     @SuppressWarnings("deprecation")
@@ -138,5 +126,14 @@ public class MilestoneBlock extends BlockBCore implements IWaterLoggable {
     @Override
     public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
         return state.getValue(ACTIVE) ? 4 : 0;
+    }
+
+    @Override
+    public void onRemove(BlockState state, World world, BlockPos pos, BlockState state1, boolean b) {
+        TileEntity tile = world.getBlockEntity(pos);
+        if (tile instanceof MilestoneTile) {
+            MilestoneSaveData.removeMilestone((MilestoneTile) tile);
+        }
+        super.onRemove(state, world, pos, state1, b);
     }
 }

@@ -1,44 +1,53 @@
 package com.greatorator.tolkienmobs.entity.tile;
 
 import codechicken.lib.data.MCDataInput;
+import codechicken.lib.vec.Vector3;
+import com.brandon3055.brandonscore.api.TimeKeeper;
 import com.brandon3055.brandonscore.blocks.TileBCore;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
-import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
-import com.brandon3055.brandonscore.lib.datamanager.ManagedPos;
+import com.brandon3055.brandonscore.lib.IInteractTile;
+import com.brandon3055.brandonscore.lib.TeleportUtils;
+import com.brandon3055.brandonscore.lib.datamanager.ManagedInt;
+import com.brandon3055.brandonscore.lib.datamanager.ManagedStack;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedString;
+import com.brandon3055.brandonscore.network.BCoreNetwork;
+import com.brandon3055.brandonscore.utils.InventoryUtils;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.MilestoneBlock;
+import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
+import net.minecraft.block.BlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.living.EntityTeleportEvent;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.UUID;
 
 import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.*;
-import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
-import static com.greatorator.tolkienmobs.block.MilestoneBlock.ACTIVE;
 
-public class MilestoneTile extends TileBCore implements INamedContainerProvider, ITickableTileEntity {
-    public final ManagedBool isactive = register(new ManagedBool("is_active", false, SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
-    public final ManagedString milestoneName = register(new ManagedString("milestone_name", "Unnamed_Milestone", SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
-    public final ManagedString milestoneUUID = register(new ManagedString("milestone_uuid", SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
-    public final ManagedString playerUUID = register(new ManagedString("player_uuid", SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
-    public final ManagedString milestoneDim = register(new ManagedString("dim_key", SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
-    public final ManagedPos milestonePos = register(new ManagedPos("milestone_pos", SAVE_NBT_SYNC_TILE, CLIENT_CONTROL));
+public class MilestoneTile extends TileBCore implements INamedContainerProvider, ITickableTileEntity, IInteractTile {
+    public final ManagedString milestoneName = register(new ManagedString("milestone_name", "Unnamed_Milestone", SAVE_NBT_SYNC_TILE, CLIENT_CONTROL));
+    public final ManagedStack paymentItem = register(new ManagedStack("payment_item", SAVE_NBT_SYNC_TILE));
+    //The distance a single item will allow you to travel
+    public final ManagedInt distanceCost = register(new ManagedInt("distance_cost", SAVE_NBT_SYNC_TILE));
+    //The cost for an interdimensional trip
+    public final ManagedInt dimensionCost = register(new ManagedInt("dimension_cost", SAVE_NBT_SYNC_TILE));
+    private final ManagedString milestoneUUID = register(new ManagedString("milestone_uuid", SAVE_NBT_SYNC_TILE));
 
-    public Set<UUID> owners = new HashSet<>();
-    public static List<TileEntity> milestones = new ArrayList<>();
 
     public MilestoneTile(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
@@ -48,13 +57,37 @@ public class MilestoneTile extends TileBCore implements INamedContainerProvider,
         super(TTMContent.MILESTONE_TILE.get());
     }
 
-    public void onRightClick(PlayerEntity playerEntity, Hand hand) {
-        if (!playerEntity.level.isClientSide() && playerEntity.isCreative()) {
-            openGUI(playerEntity, this, worldPosition);
-        }else {
-            setMilestoneLocation();
-            openGUI(playerEntity, this, worldPosition);
+    @Override
+    public void tick() {
+        super.tick();
+        if (level.isClientSide && TimeKeeper.getClientTick() % 20 == 0) {
+            updateClientState();
         }
+    }
+
+    //This is a terrible hack but it's the simplest way to set the block to active for specific players
+    @OnlyIn(Dist.CLIENT)
+    public void updateClientState() {
+        if (MilestoneSaveData.isKnownByClient(getUUID(), Minecraft.getInstance().player.getUUID())) {
+            BlockState state = level.getBlockState(worldPosition);
+            if (state.getBlock() == TTMContent.MILESTONE_BLOCK.get() && !state.getValue(MilestoneBlock.ACTIVE)) {
+                level.setBlock(worldPosition, state.setValue(MilestoneBlock.ACTIVE, true), 0);
+            }
+        }
+    }
+
+    @Override
+    public ActionResultType onBlockUse(BlockState state, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+        if (!level.isClientSide) {
+            if (!player.isCreative()) {
+                MilestoneSaveData.addPlayerToMilestone(this, player);
+            }
+
+            openGUI(player, this, worldPosition);
+            return ActionResultType.SUCCESS;
+        }
+
+        return ActionResultType.SUCCESS;
     }
 
     @Nullable
@@ -63,55 +96,140 @@ public class MilestoneTile extends TileBCore implements INamedContainerProvider,
         return new ContainerBCTile<>(TTMContent.MILESTONE_CONTAINER, windowID, playerInventory, this);
     }
 
-    public void openGUI(PlayerEntity player, INamedContainerProvider containerSupplier, BlockPos pos)
-    {
-        if(!player.level.isClientSide)
-        {
-            NetworkHooks.openGui((ServerPlayerEntity)player, containerSupplier, pos);
+    public void openGUI(PlayerEntity player, INamedContainerProvider containerSupplier, BlockPos pos) {
+        if (!player.level.isClientSide) {
+            NetworkHooks.openGui((ServerPlayerEntity) player, containerSupplier, pos);
         }
     }
 
-    public void setMilestoneLocation() {
-        if (Objects.equals(milestoneUUID.get(), "")) {
-            milestoneUUID.set(String.valueOf(UUID.randomUUID()));
+    private UUID uuidCache = null;
+    public UUID getUUID() {
+        if (uuidCache == null) {
+            if (milestoneUUID.get().isEmpty()) {
+                if (level.isClientSide) {
+                    return UUID.randomUUID();
+                }
+                milestoneUUID.set(UUID.randomUUID().toString());
+            }
+            uuidCache = UUID.fromString(milestoneUUID.get());
         }
-        //            playerUUID.set(String.valueOf(player.getUUID()));
-        Direction facing = level.getBlockState(worldPosition).getValue(MilestoneBlock.FACING);
+        return uuidCache;
+    }
 
-        isactive.set(true);
-        milestonePos.set(worldPosition.relative(facing));
-        milestoneDim.set(String.valueOf(this.level.dimension()));
+    public ItemStack getTravelCost(MilestoneSaveData.MilestoneData dest) {
+        if (dest.getPaymentItem() == Items.AIR) return ItemStack.EMPTY;
+        ItemStack stack = new ItemStack(dest.getPaymentItem());
 
+        if (!dest.getWorldKey().getRegistryName().equals(level.dimension().getRegistryName())) {
+            stack.setCount(dest.getDimensionCost());
+        } else {
+            double dist = Math.sqrt(dest.getPos().distSqr(getBlockPos()));
+            stack.setCount(Math.max(1, (int) (dist / dest.getDistanceCost())));
+        }
 
-        LOGGER.info("Is Milestone Active? " + isactive.get());
-        LOGGER.info("Milestone name: " + milestoneName.get());
-        LOGGER.info("Position of Milestone: " + milestonePos.get());
-        LOGGER.info("Milestone Dimension: " + milestoneDim.get());
-        LOGGER.info("UUID of Milestone: " + milestoneUUID.get());
-        LOGGER.info("UUID of Player: " + playerUUID.get());
-        getMilestones();
-        LOGGER.info("Milestones list: " + milestones);
-
-        level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(ACTIVE, isactive.get()));
-        setChanged();
+        return stack;
     }
 
     @Override
-    public void receivePacketFromClient(MCDataInput data, ServerPlayerEntity client, int id) {
-        BlockPos blockPos = milestonePos.get();
-        EntityTeleportEvent.TeleportCommand event = net.minecraftforge.event.ForgeEventFactory.onEntityTeleportCommand(client, blockPos.getX(), blockPos.getY(), blockPos.getZ());
-        if (id == 0) {
-            if (isactive.get()) {// Milestone Activated
-                RegistryKey<World> key = World.OVERWORLD;
-//                client.changeDimension(level.getServer().getLevel(key), new WarpMode(level.getServer().getLevel(key)));
-                level.playSound((PlayerEntity)null, blockPos, SoundEvents.ENDERMAN_TELEPORT, SoundCategory.BLOCKS, 0.3F, 0.5F);
-                client.teleportTo(event.getTargetX() + 1, event.getTargetY(), event.getTargetZ() + 1);
+    public void receivePacketFromClient(MCDataInput input, ServerPlayerEntity client, int id) {
+        super.receivePacketFromClient(input, client, id);
 
-            }
+        if (id <= 2 && !client.isCreative()) return;
+
+        switch (id) {
+            case 0:
+                ItemStack stack = client.getItemInHand(Hand.MAIN_HAND).copy();
+                stack.setCount(1);
+                client.sendMessage(new StringTextComponent("Payment item set to " + stack.getItem()), Util.NIL_UUID);
+                paymentItem.set(stack);
+                MilestoneSaveData.updateMilestone(this);
+                break;
+            case 1:
+                distanceCost.set(input.readVarInt());
+                MilestoneSaveData.updateMilestone(this);
+                break;
+            case 2:
+                dimensionCost.set(input.readVarInt());
+                MilestoneSaveData.updateMilestone(this);
+                break;
+            case 3:
+                MilestoneSaveData.MilestoneData data = MilestoneSaveData.getMilestoneData(level, input.readUUID());
+                if (data == null) {
+                    client.sendMessage(new StringTextComponent("Destination not found"), Util.NIL_UUID);
+                    break;
+                }
+
+                ItemStack cost = getTravelCost(data);
+                if (!cost.isEmpty()) {
+                    int found = 0;
+                    for (ItemStack item : client.inventory.items) {
+                        if (item.sameItem(cost)) found += item.getCount();
+                    }
+                    if (found < cost.getCount()) {
+                        client.sendMessage(new StringTextComponent("Insufficient payment!"), Util.NIL_UUID);
+                        break;
+                    }
+                    int needed = cost.getCount();
+                    for (ItemStack item : client.inventory.items) {
+                        if (item.sameItem(cost)) {
+                            int count = item.getCount();
+                            item.shrink(Math.min(count, needed));
+                            needed -= count;
+                            if (needed <= 0) break;
+                        }
+                    }
+                }
+
+                BCoreNetwork.sendSound(client.level, client.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 0.3F, 0.5F, false);
+                TeleportUtils.teleportEntity(client, data.getWorldKey(), Vector3.fromBlockPosCenter(data.getPos()).add(0, 1, 0));
+                BCoreNetwork.sendSound(client.level, client.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 0.3F, 0.5F, false);
+
+                break;
         }
+
     }
 
-    public static void getMilestones () {
+    //    public void setMilestoneLocation() {
+//        if (Objects.equals(milestoneUUID.get(), "")) {
+//            milestoneUUID.set(String.valueOf(UUID.randomUUID()));
+//        }
+//        //            playerUUID.set(String.valueOf(player.getUUID()));
+//        Direction facing = level.getBlockState(worldPosition).getValue(MilestoneBlock.FACING);
+//
+//        isactive.set(true);
+//        milestonePos.set(worldPosition.relative(facing));
+//        milestoneDim.set(String.valueOf(this.level.dimension()));
+//
+//
+//        LOGGER.info("Is Milestone Active? " + isactive.get());
+//        LOGGER.info("Milestone name: " + milestoneName.get());
+//        LOGGER.info("Position of Milestone: " + milestonePos.get());
+//        LOGGER.info("Milestone Dimension: " + milestoneDim.get());
+//        LOGGER.info("UUID of Milestone: " + milestoneUUID.get());
+//        LOGGER.info("UUID of Player: " + playerUUID.get());
+//        getMilestones();
+//        LOGGER.info("Milestones list: " + milestones);
+//
+//        level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(ACTIVE, isactive.get()));
+//        setChanged();
+//    }
+
+//    @Override
+//    public void receivePacketFromClient(MCDataInput data, ServerPlayerEntity client, int id) {
+//        BlockPos blockPos = milestonePos.get();
+//        EntityTeleportEvent.TeleportCommand event = net.minecraftforge.event.ForgeEventFactory.onEntityTeleportCommand(client, blockPos.getX(), blockPos.getY(), blockPos.getZ());
+//        if (id == 0) {
+//            if (isactive.get()) {// Milestone Activated
+//                RegistryKey<World> key = World.OVERWORLD;
+////                client.changeDimension(level.getServer().getLevel(key), new WarpMode(level.getServer().getLevel(key)));
+//                level.playSound((PlayerEntity)null, blockPos, SoundEvents.ENDERMAN_TELEPORT, SoundCategory.BLOCKS, 0.3F, 0.5F);
+//                client.teleportTo(event.getTargetX() + 1, event.getTargetY(), event.getTargetZ() + 1);
+//
+//            }
+//        }
+//    }
+
+//    public static void getMilestones () {
 //        CompoundNBT compound = new CompoundNBT();
 //        IChunk ichunk;
 //
@@ -125,5 +243,5 @@ public class MilestoneTile extends TileBCore implements INamedContainerProvider,
 //                milestones.add(tileentity);
 //            }
 //        }
-    }
+//    }
 }
