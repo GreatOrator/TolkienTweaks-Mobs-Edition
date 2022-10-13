@@ -310,6 +310,9 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.FELLBEAST_FIREBALL.get());
         simpleItem(TTMContent.BOULDER.get());
 
+        //region Fluids
+        simpleItem(TTMContent.MITHRIL_FLUID_BUCKET.get());
+        simpleItem(TTMContent.MORGULIRON_FLUID_BUCKET.get());
         //region Trinkets
         trinketItem(TTMContent.TRINKET_AMULET.get(), modLoc("item/trinket_amulet"), modLoc("item/trinket_amulet"));
         trinketItem(TTMContent.TRINKET_BELT.get(), modLoc("item/trinket_belt"), modLoc("item/trinket_belt"));

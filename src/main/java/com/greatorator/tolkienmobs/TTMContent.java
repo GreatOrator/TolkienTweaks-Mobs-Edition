@@ -24,6 +24,8 @@ import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.EntityType;
+import net.minecraft.fluid.FlowingFluid;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.*;
@@ -34,12 +36,16 @@ import net.minecraft.state.properties.BedPart;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fluids.FluidAttributes;
+import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -55,9 +61,14 @@ import static com.greatorator.tolkienmobs.datagen.SoundGenerator.*;
  * Created by brandon3055 on 31/1/21
  */
 public class TTMContent {
+    public static final ResourceLocation FLUID_STILL_RL = new ResourceLocation(MODID, "block/fluid_still");
+    public static final ResourceLocation FLUID_FLOWING_RL = new ResourceLocation(MODID, "block/fluid_flow");
+    public static final ResourceLocation FLUID_OVERLAY_RL = new ResourceLocation(MODID, "block/fluid_overlay");
+
 
     private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
+    public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, MODID);
     private static final DeferredRegister<TileEntityType<?>> TILE = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MODID);
     private static final DeferredRegister<ContainerType<?>> CONTAINER = DeferredRegister.create(ForgeRegistries.CONTAINERS, MODID);
     public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZER = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, MODID);
@@ -82,6 +93,7 @@ public class TTMContent {
         BLOCKS.register(modBus);
         LOGGER.info("Stocking the markets...");
         ITEMS.register(modBus);
+        FLUIDS.register(modBus);
         TILE.register(modBus);
         CONTAINER.register(modBus);
         RECIPE_SERIALIZER.register(modBus);
@@ -631,9 +643,31 @@ public class TTMContent {
     public static RegistryObject<Item> PIPEWEED_SEEDS = ITEMS.register("pipeweed_seeds", () -> new ItemBlockBCore(PIPEWEED.get(), new Item.Properties().tab(matsGroup)));
 
     //#################################################################
+    // Fluids
+    //#################################################################
+    public static RegistryObject<FlowingFluid> MITHRIL_FLUID = FLUIDS.register("mithril_fluid", () -> new ForgeFlowingFluid.Source(TTMContent.MITHRIL_PROPERTIES));
+    public static RegistryObject<FlowingFluid> MITHRIL_FLOWING = FLUIDS.register("mithril_flowing", () -> new ForgeFlowingFluid.Flowing(TTMContent.MITHRIL_PROPERTIES));
+    public static final RegistryObject<FlowingFluidBlock> MITHRIL_FLUID_BLOCK = BLOCKS.register("mithril_fluid_source", () -> new FlowingFluidBlock(() -> MITHRIL_FLUID.get(), AbstractBlock.Properties.of(Material.LAVA).noOcclusion().strength(100f).noDrops()));
+    public static RegistryObject<Item> MITHRIL_FLUID_BUCKET = ITEMS.register("mithril_fluid_bucket", () -> new BucketItem(() -> MITHRIL_FLUID.get(), new Item.Properties().stacksTo(1).tab(matsGroup)));
+    public static final ForgeFlowingFluid.Properties MITHRIL_PROPERTIES = new ForgeFlowingFluid.Properties(
+            () -> MITHRIL_FLUID.get(), () -> MITHRIL_FLOWING.get(), FluidAttributes.builder(FLUID_STILL_RL, FLUID_FLOWING_RL)
+            .density(15).luminosity(2).viscosity(5).sound(SoundEvents.LAVA_AMBIENT).overlay(FLUID_OVERLAY_RL)
+            .color(0xAAA9ADD0)).slopeFindDistance(2).levelDecreasePerBlock(2)
+            .block(() -> TTMContent.MITHRIL_FLUID_BLOCK.get()).bucket(() -> TTMContent.MITHRIL_FLUID_BUCKET.get());
+
+    public static RegistryObject<FlowingFluid> MORGULIRON_FLUID = FLUIDS.register("morguliron_fluid", () -> new ForgeFlowingFluid.Source(TTMContent.MORGULIRON_PROPERTIES));
+    public static RegistryObject<FlowingFluid> MORGULIRON_FLOWING = FLUIDS.register("morguliron_flowing", () -> new ForgeFlowingFluid.Flowing(TTMContent.MORGULIRON_PROPERTIES));
+    public static final RegistryObject<FlowingFluidBlock> MORGULIRON_FLUID_BLOCK = BLOCKS.register("morguliron_fluid_source", () -> new FlowingFluidBlock(() -> MITHRIL_FLUID.get(), AbstractBlock.Properties.of(Material.LAVA).noOcclusion().strength(100f).noDrops()));
+    public static RegistryObject<Item> MORGULIRON_FLUID_BUCKET = ITEMS.register("morguliron_fluid_bucket", () -> new BucketItem(() -> MITHRIL_FLUID.get(), new Item.Properties().stacksTo(1).tab(matsGroup)));
+    public static final ForgeFlowingFluid.Properties MORGULIRON_PROPERTIES = new ForgeFlowingFluid.Properties(
+            () -> MORGULIRON_FLUID.get(), () -> MORGULIRON_FLOWING.get(), FluidAttributes.builder(FLUID_STILL_RL, FLUID_FLOWING_RL)
+            .density(15).luminosity(2).viscosity(5).sound(SoundEvents.LAVA_AMBIENT).overlay(FLUID_OVERLAY_RL)
+            .color(0x353F2AD0)).slopeFindDistance(2).levelDecreasePerBlock(2)
+            .block(() -> TTMContent.MORGULIRON_FLUID_BLOCK.get()).bucket(() -> TTMContent.MORGULIRON_FLUID_BUCKET.get());
+
+    //#################################################################
     // Tile Entity Types
     //#################################################################
-    // Custom
     public static RegistryObject<TileEntityType<FireplaceTile>> TMFIREPLACE_TILE = TILE.register("tmfireplace_tile", () -> TileEntityType.Builder.of(FireplaceTile::new, TTMFIREPLACE.get()).build(null));
     public static RegistryObject<TileEntityType<PiggyBankTile>> PIGGYBANK_TILE = TILE.register("piggybank_tile", () -> TileEntityType.Builder.of(PiggyBankTile::new, PIGGYBANK.get()).build(null));
     public static RegistryObject<TileEntityType<MithrilBarrelTile>> BARREL_MITHRIL_TILE = TILE.register("barrel_mithril_tile", () -> TileEntityType.Builder.of(MithrilBarrelTile::new, BARREL_MITHRIL.get()).build(null));
@@ -648,8 +682,6 @@ public class TTMContent {
     public static RegistryObject<TileEntityType<MilestoneTile>> MILESTONE_TILE = TILE.register("milestone_tile", () -> TileEntityType.Builder.of(MilestoneTile::new, MILESTONE_BLOCK.get()).build(null));
     public static RegistryObject<TileEntityType<LockableChestTile>> LOCKABLE_CHEST_TILE = TILE.register("lockable_chest_tile", () -> TileEntityType.Builder.of(LockableChestTile::new, LOCKABLE_CHEST_BLOCK.get()).build(null));
     public static RegistryObject<TileEntityType<LockableChestTile>> LOCKABLE_TREASURE_CHEST_TILE = TILE.register("lockable_treasure_chest_tile", () -> TileEntityType.Builder.of(LockableChestTile::new, LOCKABLE_TREASURE_CHEST_BLOCK.get()).build(null));
-
-    // Signs
     public static RegistryObject<TileEntityType<MallornSignTile>> MALLORN_SIGN_TILE = TILE.register("mallorn_sign", () -> TileEntityType.Builder.of(MallornSignTile::new, MALLORN_SIGN_WOOD_TYPE.get(), MALLORN_WALL_SIGN_WOOD_TYPE.get()).build(null));
     public static RegistryObject<TileEntityType<MirkwoodSignTile>> MIRKWOOD_SIGN_TILE = TILE.register("mirkwood_sign", () -> TileEntityType.Builder.of(MirkwoodSignTile::new, MIRKWOOD_SIGN_WOOD_TYPE.get(), MIRKWOOD_WALL_SIGN_WOOD_TYPE.get()).build(null));
     public static RegistryObject<TileEntityType<CulumaldaSignTile>> CULUMALDA_SIGN_TILE = TILE.register("culumalda_sign", () -> TileEntityType.Builder.of(CulumaldaSignTile::new, CULUMALDA_SIGN_WOOD_TYPE.get(), CULUMALDA_WALL_SIGN_WOOD_TYPE.get()).build(null));
@@ -668,6 +700,7 @@ public class TTMContent {
     public static ContainerType<ContainerBCTile<MilestoneTile>> MILESTONE_CONTAINER;
     public static ContainerType<ContainerBCTile<CamoKeyStoneTile>> KEY_STONE_CONTAINER;
     public static ContainerType<CamoChestContainer> CAMO_CHEST_CONTAINER;
+    public static ContainerType<CamoFluidContainer> CAMO_FLUID_CONTAINER;
     public static ContainerType<LockableChestContainer> LOCKABLE_CHEST_CONTAINER;
     public static ContainerType<LockableChestContainer> LOCKABLE_TREASURE_CHEST_CONTAINER;
 
@@ -682,6 +715,7 @@ public class TTMContent {
         event.getRegistry().register(MILESTONE_CONTAINER = ((ContainerType<ContainerBCTile<MilestoneTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(MILESTONE_CONTAINER, id, playerInv, extraData)).setRegistryName("milestone_container")));
         event.getRegistry().register(KEY_STONE_CONTAINER = ((ContainerType<ContainerBCTile<CamoKeyStoneTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(KEY_STONE_CONTAINER, id, playerInv, extraData)).setRegistryName("key_stone_container")));
         event.getRegistry().register(CAMO_CHEST_CONTAINER = (ContainerType<CamoChestContainer>) IForgeContainerType.create(CamoChestContainer::new).setRegistryName("camo_chest_container"));
+        event.getRegistry().register(CAMO_FLUID_CONTAINER = (ContainerType<CamoFluidContainer>) IForgeContainerType.create(CamoFluidContainer::new).setRegistryName("camo_fluid_container"));
         event.getRegistry().register(LOCKABLE_CHEST_CONTAINER = (ContainerType<LockableChestContainer>) IForgeContainerType.create(LockableChestContainer::new).setRegistryName("lockable_chest_container"));
         event.getRegistry().register(LOCKABLE_TREASURE_CHEST_CONTAINER = (ContainerType<LockableChestContainer>) IForgeContainerType.create(LockableChestContainer::new).setRegistryName("lockable_treasure_chest_container"));
     }

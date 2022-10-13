@@ -68,47 +68,6 @@ public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
                 ((CamoKeyStoneTile) tile).onRightClick(state, player, hand);
                 return ActionResultType.SUCCESS;
             }
-//            else if (stack.getItem() instanceof KeyBaseItem && (KeyBaseItem.getKey(stack).equals(keyStone.keyCode.get()))) {
-//                LOGGER.info("KeyCode matches!");
-//
-//                if (keyStone.rsAlways.get()){
-//                    LOGGER.info("Toggle Mode!");
-//
-//                    this.activate(state, world, pos);
-//                    world.setBlockAndUpdate(pos, world.getBlockState(pos).cycle(ACTIVE));
-//
-//                    world.playSound((PlayerEntity)null, pos, SoundEvents.LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.6F);
-//                    return ActionResultType.CONSUME;
-//
-//                }else if (keyStone.rsPulse.get()){
-//                    LOGGER.info("Button Mode!");
-//
-//                    this.press(state, world, pos);
-//                    world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(ACTIVE, true));
-//                    world.playSound((PlayerEntity)null, pos, SoundEvents.STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.3F, 0.6F);
-//
-//
-//
-//                    this.pressOff(state, world, pos);
-//                    world.setBlockAndUpdate(pos, world.getBlockState(pos).setValue(ACTIVE, false));
-//                    world.playSound((PlayerEntity)null, pos, SoundEvents.STONE_BUTTON_CLICK_OFF, SoundCategory.BLOCKS, 0.3F, 0.5F);
-//                    return ActionResultType.CONSUME;
-//
-//                }else if (keyStone.rsDelay.get() && keyStone.tickDelay.get() > 0){
-//                    LOGGER.info("Delay Mode!");
-//
-//                    return ActionResultType.CONSUME;
-//
-//                }
-//
-//                if (keyStone.keyConsume.get() && !player.isCreative()) {
-//                    stack.shrink(1);
-//                }
-//
-//                return ActionResultType.CONSUME;
-//            }else {
-//                player.sendMessage(new TranslationTextComponent(MODID + ".msg.wrong_key").withStyle(TextFormatting.RED), Util.NIL_UUID);
-//            }
         }
 
         return ActionResultType.SUCCESS;
@@ -187,33 +146,6 @@ public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
             blockState.setValue(ACTIVE, true);
         }
     }
-//
-//    public BlockState activate(BlockState blockState, World world, BlockPos blockPos) {
-//        blockState = blockState.cycle(POWERED);
-//        world.setBlock(blockPos, blockState, 3);
-//        this.updateNeighbours(blockState, world, blockPos);
-//        return blockState;
-//    }
-//
-//    public BlockState press(BlockState blockState, World world, BlockPos blockPos) {
-//        blockState = blockState.setValue(POWERED, true);
-//        world.setBlock(blockPos, blockState, 3);
-//        this.updateNeighbours(blockState, world, blockPos);
-//        return blockState;
-//    }
-//
-//    public BlockState pressOff(BlockState blockState, World world, BlockPos blockPos) {
-//        blockState = blockState.setValue(POWERED, false);
-//        world.setBlock(blockPos, blockState, 3);
-//        this.updateNeighbours(blockState, world, blockPos);
-//        return blockState;
-//    }
-//
-//    private void updateNeighbours(BlockState blockState, World world, BlockPos blockPos) {
-//        Direction facing = world.getBlockState(blockPos).getValue(CamoKeyStoneBlock.FACING);
-//        world.updateNeighborsAt(blockPos, this);
-//        world.updateNeighborsAt(blockPos.relative(facing.getOpposite()), this);
-//    }
 
     @Override
     public boolean hasTileEntity(BlockState state) {

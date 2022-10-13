@@ -58,8 +58,7 @@ public class TolkienMobs {
 	    c. Blocks
 	        1. Camo Spawner - Implementation
 	        2. Key Stone - Active state weirdness
-	        3. Milestone - Unique to player, Dynamically generated teleport buttons, Cost for teleport
-	        4. Fluid Block - "Flood" area (3x3) with fluid
+	        3. Fluid Block - "Flood" area (3x3) with fluid
     */
 
     public TolkienMobs() {

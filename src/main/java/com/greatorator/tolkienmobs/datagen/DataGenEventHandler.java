@@ -29,7 +29,9 @@ public class DataGenEventHandler {
 
             //TODO
             BlockTagGenerator blockGenerator = new BlockTagGenerator(gen, TolkienMobs.MODID, event.getExistingFileHelper());
+            FluidTagGenerator fluidGenerator = new FluidTagGenerator(gen, TolkienMobs.MODID, event.getExistingFileHelper());
             gen.addProvider(blockGenerator);
+            gen.addProvider(fluidGenerator);
             gen.addProvider(new ItemTagGenerator(gen, blockGenerator, TolkienMobs.MODID, event.getExistingFileHelper()));
         }
     }

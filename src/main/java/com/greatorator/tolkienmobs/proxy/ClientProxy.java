@@ -156,6 +156,14 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(CAMO_FLUID_BLOCK.get(), cutout);
         RenderTypeLookup.setRenderLayer(MILESTONE_BLOCK.get(), cutout);
 
+        // Fluids
+        RenderTypeLookup.setRenderLayer(MITHRIL_FLUID.get(), translucent);
+        RenderTypeLookup.setRenderLayer(MITHRIL_FLUID_BLOCK.get(), translucent);
+        RenderTypeLookup.setRenderLayer(MITHRIL_FLOWING.get(), translucent);
+        RenderTypeLookup.setRenderLayer(MORGULIRON_FLUID.get(), translucent);
+        RenderTypeLookup.setRenderLayer(MORGULIRON_FLUID_BLOCK.get(), translucent);
+        RenderTypeLookup.setRenderLayer(MORGULIRON_FLOWING.get(), translucent);
+
         // GUI Rendering
         ScreenManager.register(TTMContent.TMFIREPLACE_CONTAINER, FireplaceScreen::new);
         ScreenManager.register(TTMContent.PIGGYBANK_CONTAINER, PiggyBankScreen::new);
@@ -167,6 +175,7 @@ public class ClientProxy extends CommonProxy {
         ScreenManager.register(TTMContent.MILESTONE_CONTAINER, MilestoneScreen::new);
         ScreenManager.register(TTMContent.KEY_STONE_CONTAINER, CamoKeyStoneScreen::new);
         ScreenManager.register(TTMContent.CAMO_CHEST_CONTAINER, CamoChestScreen::new);
+        ScreenManager.register(TTMContent.CAMO_FLUID_CONTAINER, CamoFluidScreen::new);
         ScreenManager.register(TTMContent.LOCKABLE_CHEST_CONTAINER, LockableChestScreen::new);
         ScreenManager.register(TTMContent.LOCKABLE_TREASURE_CHEST_CONTAINER, LockableChestScreen::new);
     }

@@ -18,16 +18,12 @@ import com.greatorator.tolkienmobs.entity.tile.MilestoneTile;
 import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.regex.Pattern;
-
 public class MilestoneScreen extends ModularGuiContainer<ContainerBCTile<MilestoneTile>> {
     protected GuiToolkit<MilestoneScreen> toolkit = new GuiToolkit<>(this, 200, 150).setTranslationPrefix("screen.tolkienmobs.milestone");
-    //    private static final Pattern invalidCharacters = Pattern.compile("[^a-zA-Z-_\\d:]");
     private final PlayerEntity player;
     private final MilestoneTile tile;
 
@@ -44,7 +40,7 @@ public class MilestoneScreen extends ModularGuiContainer<ContainerBCTile<Milesto
         temp.background.onReload(guiTex -> guiTex.setPos(guiLeft(), guiTop()));
         toolkit.loadTemplate(temp);
 
-        GuiLabel nameLabel = toolkit.createHeading(TextFormatting.DARK_BLUE + tile.milestoneName.get()/*.replace("_", " ")*/, temp.background)
+        GuiLabel nameLabel = toolkit.createHeading(TextFormatting.DARK_BLUE + tile.milestoneName.get(), temp.background)
                 .setAlignment(GuiAlign.CENTER)
                 .setSize(temp.background.xSize() - 10, 8)
                 .setShadowStateSupplier(() -> BCConfig.darkMode)
@@ -56,7 +52,6 @@ public class MilestoneScreen extends ModularGuiContainer<ContainerBCTile<Milesto
                 .setText(tile.milestoneName.get())
                 .setChangeListener(tile.milestoneName::set)
                 .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("instructions"))
-//                .setValidator(toolkit.catchyValidator(s -> s.equals("") || !invalidCharacters.matcher(s).find()))
                 .setSize(temp.background.xSize() - 10, 10)
                 .setEnabledCallback(player::isCreative);
         toolkit.placeOutside(nameField, temp.title, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 2);

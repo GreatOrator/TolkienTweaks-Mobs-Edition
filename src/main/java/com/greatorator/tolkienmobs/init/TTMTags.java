@@ -1,8 +1,10 @@
 package com.greatorator.tolkienmobs.init;
 
 import net.minecraft.block.Block;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
@@ -11,6 +13,7 @@ public class TTMTags {
     public static void init(){
         items.init();
         blocks.init();
+        fluids.init();
         tagkeys.init();
     }
 
@@ -111,6 +114,18 @@ public class TTMTags {
             return BlockTags.createOptional(new ResourceLocation("forge", name));
         }
     }
+
+    public static class fluids {
+        private static void init() {
+        }
+
+        public static final Tags.IOptionalNamedTag<Fluid> FLUIDS = tag("lava");
+
+        private static Tags.IOptionalNamedTag<Fluid> tag(String name) {
+            return FluidTags.createOptional(new ResourceLocation("forge", name));
+        }
+    }
+
     public static class tagkeys{
         private static void init(){}
 

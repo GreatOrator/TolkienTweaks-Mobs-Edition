@@ -157,6 +157,8 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.LOCKABLE_CHEST_BLOCK.get(), "Lockable Chest");
         add(TTMContent.LOCKABLE_TREASURE_CHEST_BLOCK.get(), "Lockable Treasure Chest");
         add(TTMContent.PLACARD.get(), "Country Signs");
+        add(TTMContent.MITHRIL_FLUID_BLOCK.get(), "Molten Mithril");
+        add(TTMContent.MORGULIRON_FLUID_BLOCK.get(), "Molten Morguliron");
         addLore(Item.byBlock(TTMContent.PLACARD.get()), "Shift right-click on sign to cycle types");
         add(TTMContent.SLEEPING_BAG_BLACK.get(), "Black Sleeping Bag");
         addLore(Item.byBlock(TTMContent.SLEEPING_BAG_BLACK.get()), TextFormatting.RED + "Does not reset spawn point.");
@@ -209,6 +211,8 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.PIPEWEED_SEEDS.get(), "Pipeweed Seeds");
         add(TTMContent.PIPEWEED_ITEM.get(), "Pipeweed");
         add(TTMContent.GOLEM_STONE.get(), "Golem Stone");
+        add(TTMContent.MITHRIL_FLUID_BUCKET.get(), "Molten Mithril Bucket");
+        add(TTMContent.MORGULIRON_FLUID_BUCKET.get(), "Molten Morguliron Bucket");
         add(TTMContent.GOLEM_STONE_EARTH.get(), TextFormatting.DARK_GREEN + "Earth " + TextFormatting.RESET + "Golem Stone");
         add(TTMContent.GOLEM_STONE_AIR.get(), TextFormatting.YELLOW + "Air " + TextFormatting.RESET + "Golem Stone");
         add(TTMContent.GOLEM_STONE_FIRE.get(), TextFormatting.DARK_RED + "Fire " + TextFormatting.RESET + "Golem Stone");
@@ -777,6 +781,8 @@ public class LangGenerator extends LanguageProvider {
         helper.add("title",             "- store coins");
         helper.setPrefix("gui.tolkienmobs.key_ring.");
         helper.add("title",             "- store keys");
+        helper.setPrefix("gui.tolkienmobs.camo_fluid.");
+        helper.add("fluid.instructions",             "Place fluid bucket in slot");
         helper.setPrefix("screen.tolkienmobs.base_key.");
         helper.add("instructions",             "Set the code for this key. The code can be anything as long as it matches the block.");
         helper.add("keycode",             "Key Code Field");

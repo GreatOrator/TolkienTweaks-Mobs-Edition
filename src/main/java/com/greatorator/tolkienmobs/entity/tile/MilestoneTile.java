@@ -11,7 +11,6 @@ import com.brandon3055.brandonscore.lib.datamanager.ManagedInt;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedStack;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedString;
 import com.brandon3055.brandonscore.network.BCoreNetwork;
-import com.brandon3055.brandonscore.utils.InventoryUtils;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.MilestoneBlock;
 import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
@@ -37,7 +36,8 @@ import net.minecraftforge.fml.network.NetworkHooks;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.*;
+import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.CLIENT_CONTROL;
+import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_NBT_SYNC_TILE;
 
 public class MilestoneTile extends TileBCore implements INamedContainerProvider, ITickableTileEntity, IInteractTile {
     public final ManagedString milestoneName = register(new ManagedString("milestone_name", "Unnamed_Milestone", SAVE_NBT_SYNC_TILE, CLIENT_CONTROL));
@@ -65,7 +65,7 @@ public class MilestoneTile extends TileBCore implements INamedContainerProvider,
         }
     }
 
-    //This is a terrible hack but it's the simplest way to set the block to active for specific players
+    //This is a terrible hack, but it's the simplest way to set the block to active for specific players
     @OnlyIn(Dist.CLIENT)
     public void updateClientState() {
         if (MilestoneSaveData.isKnownByClient(getUUID(), Minecraft.getInstance().player.getUUID())) {
@@ -186,62 +186,5 @@ public class MilestoneTile extends TileBCore implements INamedContainerProvider,
 
                 break;
         }
-
     }
-
-    //    public void setMilestoneLocation() {
-//        if (Objects.equals(milestoneUUID.get(), "")) {
-//            milestoneUUID.set(String.valueOf(UUID.randomUUID()));
-//        }
-//        //            playerUUID.set(String.valueOf(player.getUUID()));
-//        Direction facing = level.getBlockState(worldPosition).getValue(MilestoneBlock.FACING);
-//
-//        isactive.set(true);
-//        milestonePos.set(worldPosition.relative(facing));
-//        milestoneDim.set(String.valueOf(this.level.dimension()));
-//
-//
-//        LOGGER.info("Is Milestone Active? " + isactive.get());
-//        LOGGER.info("Milestone name: " + milestoneName.get());
-//        LOGGER.info("Position of Milestone: " + milestonePos.get());
-//        LOGGER.info("Milestone Dimension: " + milestoneDim.get());
-//        LOGGER.info("UUID of Milestone: " + milestoneUUID.get());
-//        LOGGER.info("UUID of Player: " + playerUUID.get());
-//        getMilestones();
-//        LOGGER.info("Milestones list: " + milestones);
-//
-//        level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(ACTIVE, isactive.get()));
-//        setChanged();
-//    }
-
-//    @Override
-//    public void receivePacketFromClient(MCDataInput data, ServerPlayerEntity client, int id) {
-//        BlockPos blockPos = milestonePos.get();
-//        EntityTeleportEvent.TeleportCommand event = net.minecraftforge.event.ForgeEventFactory.onEntityTeleportCommand(client, blockPos.getX(), blockPos.getY(), blockPos.getZ());
-//        if (id == 0) {
-//            if (isactive.get()) {// Milestone Activated
-//                RegistryKey<World> key = World.OVERWORLD;
-////                client.changeDimension(level.getServer().getLevel(key), new WarpMode(level.getServer().getLevel(key)));
-//                level.playSound((PlayerEntity)null, blockPos, SoundEvents.ENDERMAN_TELEPORT, SoundCategory.BLOCKS, 0.3F, 0.5F);
-//                client.teleportTo(event.getTargetX() + 1, event.getTargetY(), event.getTargetZ() + 1);
-//
-//            }
-//        }
-//    }
-
-//    public static void getMilestones () {
-//        CompoundNBT compound = new CompoundNBT();
-//        IChunk ichunk;
-//
-//        ListNBT listnbt = compound.getList("TileEntities", 10);
-//
-//        for(int j = 0; j < listnbt.size(); ++j) {
-//            CompoundNBT compoundnbt = listnbt.getCompound(j);
-//                BlockPos blockpos = new BlockPos(compoundnbt.getInt("x"), compoundnbt.getInt("y"), compoundnbt.getInt("z"));
-//                TileEntity tileentity = TileEntity.loadStatic(ichunk.getBlockState(blockpos), compoundnbt);
-//            if (tileentity instanceof MilestoneTile) {
-//                milestones.add(tileentity);
-//            }
-//        }
-//    }
 }
