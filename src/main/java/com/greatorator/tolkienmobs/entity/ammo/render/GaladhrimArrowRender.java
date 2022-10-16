@@ -1,14 +1,13 @@
 package com.greatorator.tolkienmobs.entity.ammo.render;
 
-import com.greatorator.tolkienmobs.entity.ammo.EntityGaladhrimArrow;
+import com.greatorator.tolkienmobs.entity.ammo.GaladhrimArrowEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Matrix3f;
@@ -16,25 +15,23 @@ import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 @OnlyIn(Dist.CLIENT)
-public class RenderGaladhrimArrow<T extends EntityGaladhrimArrow> extends EntityRenderer<T> {
+public class GaladhrimArrowRender extends ArrowRenderer<GaladhrimArrowEntity> {
     private static final ResourceLocation GALADHRIM_ARROW_TEXTURES = new ResourceLocation(MODID,"textures/entity/ammo_galadhrim_arrow.png");
 
-    protected RenderGaladhrimArrow(EntityRendererManager renderManager) {
+    public GaladhrimArrowRender(EntityRendererManager renderManager) {
         super(renderManager);
     }
 
-
     @Override
-    public ResourceLocation getTextureLocation(T entity) {
+    public ResourceLocation getTextureLocation(GaladhrimArrowEntity entityIn) {
         return GALADHRIM_ARROW_TEXTURES;
     }
 
     @Override
-    public void render(T entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
+    public void render(GaladhrimArrowEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn) {
         matrixStackIn.pushPose();
         matrixStackIn.mulPose(Vector3f.YP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.yRotO, entityIn.yRot) - 90.0F));
         matrixStackIn.mulPose(Vector3f.ZP.rotationDegrees(MathHelper.lerp(partialTicks, entityIn.xRotO, entityIn.xRot)));
@@ -84,16 +81,5 @@ public class RenderGaladhrimArrow<T extends EntityGaladhrimArrow> extends Entity
 
     public void drawVertex(Matrix4f matrix, Matrix3f normals, IVertexBuilder vertexBuilder, int offsetX, int offsetY, int offsetZ, float textureX, float textureY, int p_229039_9_, int p_229039_10_, int p_229039_11_, int packedLightIn) {
         vertexBuilder.vertex(matrix, (float)offsetX, (float)offsetY, (float)offsetZ).color(255, 255, 255, 255).uv(textureX, textureY).overlayCoords(OverlayTexture.NO_OVERLAY).uv2(packedLightIn).normal(normals, (float)p_229039_9_, (float)p_229039_11_, (float)p_229039_10_).endVertex();
-    }
-
-
-    public static class RenderFactory implements IRenderFactory<Entity> {
-
-        @Override
-        public EntityRenderer<? super Entity> createRenderFor(EntityRendererManager manager) {
-
-            final RenderGaladhrimArrow renderGaladhrimArrow = new RenderGaladhrimArrow(manager);
-            return renderGaladhrimArrow;
-        }
     }
 }
