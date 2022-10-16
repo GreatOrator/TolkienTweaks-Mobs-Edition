@@ -56,7 +56,7 @@ public class TolkienMobs {
 	        2. Boulder - rendering
 	        3. Galadhrim Arrow - rendering
 	    c. Blocks
-	        1. Camo Spawner - Implementation
+	        1. Camo Spawner - Entity list creation
 	        2. Key Stone - Active state weirdness
 	        3. Fluid Block - "Flood" area (3x3) with fluid
     */
