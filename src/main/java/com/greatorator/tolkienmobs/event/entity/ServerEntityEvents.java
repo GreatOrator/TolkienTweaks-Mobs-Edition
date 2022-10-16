@@ -13,6 +13,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -37,15 +38,17 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 
 public class ServerEntityEvents {
+    public static int serverTicks = 0;
+    private static WeakHashMap<MobEntity, Long> ttSpawnedMobs = new WeakHashMap<>();
 
     public static void balrogMark (LivingEvent.LivingUpdateEvent living){
         LivingEntity entity = living.getEntityLiving();
@@ -117,6 +120,31 @@ public class ServerEntityEvents {
                 player.addEffect(new EffectInstance(PotionGenerator.SLEEPNESIA.get(), 1200, 8));
             }
         }
+    }
+
+    @SubscribeEvent
+    public void serverTick(TickEvent.ServerTickEvent event) {
+        if (event.phase == TickEvent.Phase.END) {
+            serverTicks++;
+
+            if (!ttSpawnedMobs.isEmpty()) {
+                List<LivingEntity> toRemove = new ArrayList<>();
+                long time = System.currentTimeMillis();
+
+                ttSpawnedMobs.forEach((entity, aLong) -> {
+                    if (time - aLong > 30000) {
+                        entity.persistenceRequired = false;
+                        toRemove.add(entity);
+                    }
+                });
+
+                toRemove.forEach(entity -> ttSpawnedMobs.remove(entity));
+            }
+        }
+    }
+
+    public static void onMobSpawnedBySpawner(MobEntity entity) {
+        ttSpawnedMobs.put(entity, System.currentTimeMillis());
     }
 
     private static Method GETCODEC_METHOD;

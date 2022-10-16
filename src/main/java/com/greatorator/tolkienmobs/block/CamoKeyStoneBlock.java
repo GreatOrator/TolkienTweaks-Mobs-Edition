@@ -65,7 +65,7 @@ public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
             LOGGER.info("Powered: " + state.getValue(POWERED));
 
             if (tile != null) {
-                ((CamoKeyStoneTile) tile).onRightClick(state, player, hand);
+                keyStone.onRightClick(state, player, hand);
                 return ActionResultType.SUCCESS;
             }
         }

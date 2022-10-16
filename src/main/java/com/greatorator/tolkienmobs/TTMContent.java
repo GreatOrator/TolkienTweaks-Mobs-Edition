@@ -701,6 +701,7 @@ public class TTMContent {
     public static ContainerType<ContainerBCTile<CamoKeyStoneTile>> KEY_STONE_CONTAINER;
     public static ContainerType<CamoChestContainer> CAMO_CHEST_CONTAINER;
     public static ContainerType<CamoFluidContainer> CAMO_FLUID_CONTAINER;
+    public static ContainerType<ContainerBCTile<CamoSpawnerTile>> CAMO_SPAWNER_CONTAINER;
     public static ContainerType<LockableChestContainer> LOCKABLE_CHEST_CONTAINER;
     public static ContainerType<LockableChestContainer> LOCKABLE_TREASURE_CHEST_CONTAINER;
 
@@ -714,6 +715,7 @@ public class TTMContent {
         event.getRegistry().register(KEY_RING_CONTAINER = (ContainerType<KeyRingContainer>) IForgeContainerType.create(KeyRingContainer::new).setRegistryName("key_ring_container"));
         event.getRegistry().register(MILESTONE_CONTAINER = ((ContainerType<ContainerBCTile<MilestoneTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(MILESTONE_CONTAINER, id, playerInv, extraData)).setRegistryName("milestone_container")));
         event.getRegistry().register(KEY_STONE_CONTAINER = ((ContainerType<ContainerBCTile<CamoKeyStoneTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(KEY_STONE_CONTAINER, id, playerInv, extraData)).setRegistryName("key_stone_container")));
+        event.getRegistry().register(CAMO_SPAWNER_CONTAINER = ((ContainerType<ContainerBCTile<CamoSpawnerTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(CAMO_SPAWNER_CONTAINER, id, playerInv, extraData)).setRegistryName("camo_spawner_container")));
         event.getRegistry().register(CAMO_CHEST_CONTAINER = (ContainerType<CamoChestContainer>) IForgeContainerType.create(CamoChestContainer::new).setRegistryName("camo_chest_container"));
         event.getRegistry().register(CAMO_FLUID_CONTAINER = (ContainerType<CamoFluidContainer>) IForgeContainerType.create(CamoFluidContainer::new).setRegistryName("camo_fluid_container"));
         event.getRegistry().register(LOCKABLE_CHEST_CONTAINER = (ContainerType<LockableChestContainer>) IForgeContainerType.create(LockableChestContainer::new).setRegistryName("lockable_chest_container"));

@@ -48,6 +48,14 @@ public class TTMSprites {
         register(MODID, "keys/redstone_always_active");
         register(MODID, "keys/redstone_pulse_active");
         register(MODID, "keys/redstone_delay_active");
+
+        register(MODID, "spawner/spawn_requirements");
+        register(MODID, "spawner/player");
+        register(MODID, "spawner/particles");
+        register(MODID, "spawner/ignore_spawn_requirements");
+        register(MODID, "spawner/ignore_player");
+        register(MODID, "spawner/ignore_particles");
+
     }
 
     //region register

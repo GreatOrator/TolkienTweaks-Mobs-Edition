@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.block;
 
+import com.brandon3055.brandonscore.blocks.BlockBCore;
 import com.greatorator.tolkienmobs.TTMContent;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
@@ -25,7 +26,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import java.util.*;
 
-public class ChameleonBlock<C> extends Block implements IWaterLoggable {
+public class ChameleonBlock<C> extends BlockBCore implements IWaterLoggable {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;

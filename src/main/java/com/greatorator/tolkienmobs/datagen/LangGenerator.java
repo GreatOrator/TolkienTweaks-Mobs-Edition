@@ -247,6 +247,7 @@ public class LangGenerator extends LanguageProvider {
         add("screen.tolkienmobs.mithril_key", "Key Setup");
         add("screen.tolkienmobs.master_key", "Key Setup");
         add("screen.tolkienmobs.milestone", "Pick your destination");
+        add("screen.tolkienmobs.camo_spawner", "Spawner Setup");
     }
 
     private void quest() {
@@ -765,59 +766,83 @@ public class LangGenerator extends LanguageProvider {
         add("tolkienmobs.msg.deploy_campfire", "Something is blocking the Campfire.");
         add("tolkienmobs.msg.wrong_key", "You have the wrong key.");
         add("tolkienmobs.msg.key_used", "Key has no remaining uses.");
+        add("tolkienmobs.msg.cleared.entities", "All existing entities cleared...");
+        add("tolkienmobs.msg.added.entities", "Entity added...");
     }
 
     private void gui(PrefixHelper helper) {
         helper.setPrefix("gui.tolkienmobs.backpack.");
-        helper.add("fluid_storage",             "Fluid Storage");
-        helper.add("fluid",                     "Fluid:");
-        helper.add("bed.remove",                     "Pick up Sleepingbag");
-        helper.add("bed.deployed",                     "Lay out Sleepingbag");
-        helper.add("campfire.remove",                     "Pick up Campfire");
-        helper.add("campfire.deployed",                     "Set up Campfire");
+        helper.add("fluid_storage",                     "Fluid Storage");
+        helper.add("fluid",                             "Fluid:");
+        helper.add("bed.remove",                        "Pick up Sleepingbag");
+        helper.add("bed.deployed",                      "Lay out Sleepingbag");
+        helper.add("campfire.remove",                   "Pick up Campfire");
+        helper.add("campfire.deployed",                 "Set up Campfire");
         helper.add("close.upgrade",                     "Close upgrade window");
-        helper.add("open.upgrade",                     "Open upgrade window");
+        helper.add("open.upgrade",                      "Open upgrade window");
         helper.setPrefix("gui.tolkienmobs.coin_pouch.");
-        helper.add("title",             "- store coins");
+        helper.add("title",                             "- store coins");
         helper.setPrefix("gui.tolkienmobs.key_ring.");
-        helper.add("title",             "- store keys");
+        helper.add("title",                             "- store keys");
         helper.setPrefix("gui.tolkienmobs.camo_fluid.");
-        helper.add("fluid.instructions",             "Place fluid bucket in slot");
+        helper.add("fluid.instructions",                "Place fluid bucket in slot");
         helper.setPrefix("screen.tolkienmobs.base_key.");
-        helper.add("instructions",             "Set the code for this key. The code can be anything as long as it matches the block.");
-        helper.add("keycode",             "Key Code Field");
-        helper.add("saved",             "Code saved automatically");
-        helper.add("instructions2",             "Set the number of uses for this key. Leave blank for infinite or if you want to use the KeyStone consume mode.");
-        helper.add("keycode2",             "Number of uses");
-        helper.add("saved2",             "Uses saved automatically");
+        helper.add("instructions",                      "Set the code for this key. The code can be anything as long as it matches the block.");
+        helper.add("keycode",                           "Key Code Field");
+        helper.add("saved",                             "Code saved automatically");
+        helper.add("instructions2",                     "Set the number of uses for this key. Leave blank for infinite or if you want to use the KeyStone consume mode.");
+        helper.add("keycode2",                          "Number of uses");
+        helper.add("saved2",                            "Uses saved automatically");
         helper.setPrefix("screen.tolkienmobs.milestone.");
-        helper.add("instructions",             "Set the name for this Milestone.");
-        helper.add("milestonename",             "Milestone Name");
-        helper.add("saved",             "Save Name");
+        helper.add("instructions",                      "Set the name for this Milestone.");
+        helper.add("milestonename",                     "Milestone Name");
+        helper.add("saved",                             "Save Name");
         helper.setPrefix("screen.tolkienmobs.keystone.");
-        helper.add("instructions",             "Code to set, must match any keys.");
-        helper.add("keystonecode",             "Key Stone Code");
-        helper.add("saved",             "Save Code");
-        helper.add("redstone.always",             "Redstone activated with key");
-        helper.add("redstone.always.active",             "Redstone activated with key");
-        helper.add("redstone.delay",             "Redstone stays on for x ticks");
+        helper.add("instructions",                      "Code to set, must match any keys.");
+        helper.add("keystonecode",                      "Key Stone Code");
+        helper.add("saved",                             "Save Code");
+        helper.add("redstone.always",                   "Redstone activated with key");
+        helper.add("redstone.always.active",            "Redstone activated with key");
+        helper.add("redstone.delay",                    "Redstone stays on for x ticks");
         helper.add("redstone.delay.active",             "Redstone stays on for x ticks");
-        helper.add("redstone.pulse",             "Redstone acts like button when key used");
+        helper.add("redstone.pulse",                    "Redstone acts like button when key used");
         helper.add("redstone.pulse.active",             "Redstone acts like button when key used");
-        helper.add("key.keep",             "Player keeps key");
-        helper.add("key.consume",             "Key taken when used");
-        helper.add("delaytitle",             "Tick Delay");
-        helper.add("tickdelay",             "Set the amount of delay to keep redstone on");
-        helper.add("savedelay",             "Set Delay");
+        helper.add("key.keep",                          "Player keeps key");
+        helper.add("key.consume",                       "Key taken when used");
+        helper.add("delaytitle",                        "Tick Delay");
+        helper.add("tickdelay",                         "Set the amount of delay for redstone");
+        helper.add("savedelay",                         "Set Delay");
         helper.setPrefix("screen.tolkienmobs.lockable_chest.");
-        helper.add("instructions",             "Code to set, must match any keys.");
-        helper.add("keystonecode",             "Key Stone Code");
-        helper.add("saved",             "Save Code");
+        helper.add("instructions",                      "Code to set, must match any keys.");
+        helper.add("keystonecode",                      "Key Stone Code");
+        helper.add("saved",                             "Save Code");
+        helper.setPrefix("screen.tolkienmobs.camo_spawner.");
+        helper.add("title",                             "Camo Spawner");
+        helper.add("minSpawnDelay",                     "Delay-Min");
+        helper.add("maxSpawnDelay",                     "Delay-Max");
+        helper.add("activationRange",                   "Activate Range");
+        helper.add("spawnRange",                        "Spawn Range");
+        helper.add("spawnCount",                        "Spawn Count");
+        helper.add("maxCluster",                        "Spawn-Max");
+        helper.add("clusterRange",                      "Search Range");
+        helper.add("requirePlayer",                     "Disable player required");
+        helper.add("ignoreSpawnReq",                    "Ignore Spawn Requirements");
+        helper.add("spawnerParticles",                  "Disable spawner particles");
+        helper.add("entityTags",                        "Entity List");
+        helper.add("saveValue",                         "Save Value");
+        helper.add("minDelayValue",                     "Minimum start value for spawn countdown");
+        helper.add("maxDelayValue",                     "Maximum start value for spawn countdown");
+        helper.add("actRngeValue",                      "How far away player is before becoming active");
+        helper.add("spwnRngeValue",                     "Max distance mobs will spawn from spawner");
+        helper.add("spwnCountValue",                    "Maximum number of mobs to spawn");
+        helper.add("maxClusterValue",                   "Number of mobs allowed before no more will spawn nearby");
+        helper.add("clusterRangeValue",                 "Range to search for mobs to decide if anymore will spawn");
+
     }
 
     private void keyCommand() {
-        add("key.category.tolkienmobs", "TolkienTweaks Mobs");
-        add("key.tolkienmobs.backpack_key", "Open Backpack");
+        add("key.category.tolkienmobs",                 "TolkienTweaks Mobs");
+        add("key.tolkienmobs.backpack_key",             "Open Backpack");
     }
 
 
