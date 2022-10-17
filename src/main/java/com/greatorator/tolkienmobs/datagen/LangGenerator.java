@@ -544,6 +544,8 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.HOE_MORGULIRON.get(), "Morgul Iron Hoe");
         add(TTMContent.SHOVEL_MORGULIRON.get(), "Morgul Iron Shovel");
         add(TTMContent.PICKAXE_MORGULIRON.get(), "Morgul Iron Pickaxe");
+        add(TTMContent.ELVEN_BOW.get(), "Elven Bow");
+        add(TTMContent.URUK_BOW.get(), "Uruk Bow");
         add(TTMContent.SWORD_WITCHKING.get(), TextFormatting.DARK_RED + "Sword of the Witch-king");
         addLore(TTMContent.SWORD_WITCHKING.get(), "Forged in fear, the powerful weapon of the Witch-king");
         add(TTMContent.SWORD_URUK.get(), "Uruk Sword");
@@ -552,6 +554,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.CLUB_WOODEN.get(), "Troll Club");
         addLore(TTMContent.CLUB_WOODEN.get(), "Deadly weapon favoured by Trolls");
         add(TTMContent.GALADHRIM_ARROW.get(), "Galadhrim Arrows");
+        add(TTMContent.UTUMNO_ARROW.get(), "Utumno Arrows");
         add(TTMContent.FELLBEAST_FIREBALL.get(), "Fell Beast Fireball");
         add(TTMContent.BOULDER.get(), "Boulder");
     }

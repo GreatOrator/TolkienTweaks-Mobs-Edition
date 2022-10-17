@@ -1,8 +1,0 @@
-{
-    "parent": "block/door_top",
-    "textures":
-    {
-        "bottom": "tolkienmobs:block/door_lebethron_bottom",
-        "top": "tolkienmobs:block/door_lebethron_top"
-    }
-}

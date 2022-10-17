@@ -1,0 +1,7 @@
+
+{
+  "parent": "tolkienmobs:item/uruk_bow",
+  "textures": {
+    "layer0": "tolkienmobs:item/uruk_bow_pulling_0"
+  }
+}

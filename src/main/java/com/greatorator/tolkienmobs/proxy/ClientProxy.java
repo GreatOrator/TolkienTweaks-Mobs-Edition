@@ -13,6 +13,7 @@ import com.greatorator.tolkienmobs.entity.ambient.render.*;
 import com.greatorator.tolkienmobs.entity.ammo.render.GaladhrimArrowRender;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.render.RenderFellBeastFireball;
+import com.greatorator.tolkienmobs.entity.ammo.render.UtumnoArrowRender;
 import com.greatorator.tolkienmobs.entity.boss.model.WitchKingModel;
 import com.greatorator.tolkienmobs.entity.boss.render.*;
 import com.greatorator.tolkienmobs.entity.merchant.model.DwarfModel;
@@ -26,6 +27,7 @@ import com.greatorator.tolkienmobs.entity.passive.render.GoatRender;
 import com.greatorator.tolkienmobs.entity.passive.render.MumakilRender;
 import com.greatorator.tolkienmobs.entity.special.render.*;
 import com.greatorator.tolkienmobs.event.client.ClientEvents;
+import com.greatorator.tolkienmobs.handler.BowItemModelProperties;
 import com.greatorator.tolkienmobs.handler.TTMHearts;
 import com.greatorator.tolkienmobs.init.TTMColor;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
@@ -165,6 +167,10 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(MORGULIRON_FLUID_BLOCK.get(), translucent);
         RenderTypeLookup.setRenderLayer(MORGULIRON_FLOWING.get(), translucent);
 
+        // Bow Rendering
+        BowItemModelProperties.makeBow(TTMContent.ELVEN_BOW.get());
+        BowItemModelProperties.makeBow(URUK_BOW.get());
+
         // GUI Rendering
         ScreenManager.register(TTMContent.TMFIREPLACE_CONTAINER, FireplaceScreen::new);
         ScreenManager.register(TTMContent.PIGGYBANK_CONTAINER, PiggyBankScreen::new);
@@ -247,6 +253,7 @@ public class ClientProxy extends CommonProxy {
 
         // Ammo
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_ARROW_GALADHRIM.get(), GaladhrimArrowRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_ARROW_UTUMNO.get(), UtumnoArrowRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_FELLBEAST_FIREBALL.get(), new RenderFellBeastFireball.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_BOULDER.get(), new RenderBoulder.RenderFactory());
     }

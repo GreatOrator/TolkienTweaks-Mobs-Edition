@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.item.tools;
 
-import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.entity.ammo.GaladhrimArrowEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArrowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -13,13 +13,15 @@ public class GaladhrimArrowItem extends ArrowItem {
     }
 
     @Override
-    public GaladhrimArrowEntity createArrow(World world, ItemStack ammoStack, LivingEntity shooter) {
-        return new GaladhrimArrowEntity(EntityGenerator.AMMO_ARROW_GALADHRIM.get(), shooter, world);
+    public GaladhrimArrowEntity createArrow(World world, ItemStack stack, LivingEntity entity) {
+        GaladhrimArrowEntity gladhrimarrowentity = new GaladhrimArrowEntity(world, entity);
+        gladhrimarrowentity.setEffectsFromItem(stack);
+        return gladhrimarrowentity;
     }
 
     @Override
-    public boolean isInfinite(ItemStack stack, ItemStack bow, net.minecraft.entity.player.PlayerEntity player) {
+    public boolean isInfinite(ItemStack stack, ItemStack bow, PlayerEntity player) {
         int enchant = net.minecraft.enchantment.EnchantmentHelper.getItemEnchantmentLevel(net.minecraft.enchantment.Enchantments.INFINITY_ARROWS, bow);
-        return enchant > 0 && this.getClass() == GaladhrimArrowItem.class;
+        return enchant <= 0 ? false : this.getClass() == GaladhrimArrowItem.class;
     }
 }

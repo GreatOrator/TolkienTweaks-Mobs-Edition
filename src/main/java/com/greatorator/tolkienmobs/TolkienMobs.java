@@ -54,7 +54,6 @@ public class TolkienMobs {
 		b. Ammo
             1. Fell Beast Fireball - rendering
 	        2. Boulder - rendering
-	        3. Galadhrim Arrow - rendering
 	    c. Blocks
 	        1. Camo Spawner - Entity list creation
 	        2. Key Stone - Active state weirdness

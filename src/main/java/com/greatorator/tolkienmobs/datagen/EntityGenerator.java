@@ -5,6 +5,7 @@ import com.greatorator.tolkienmobs.entity.ambient.*;
 import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
 import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
 import com.greatorator.tolkienmobs.entity.ammo.GaladhrimArrowEntity;
+import com.greatorator.tolkienmobs.entity.ammo.UtumnoArrowEntity;
 import com.greatorator.tolkienmobs.entity.boss.*;
 import com.greatorator.tolkienmobs.entity.merchant.*;
 import com.greatorator.tolkienmobs.entity.monster.*;
@@ -145,6 +146,7 @@ public class EntityGenerator {
 
     // Ammo
     public static final RegistryObject<EntityType<GaladhrimArrowEntity>> AMMO_ARROW_GALADHRIM = ENTITY.register("ammo_arrow_galadhrim", () -> EntityType.Builder.of((EntityType.IFactory<GaladhrimArrowEntity>) GaladhrimArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(MODID + ":ammo_arrow_galadhrim"));
+    public static final RegistryObject<EntityType<UtumnoArrowEntity>> AMMO_ARROW_UTUMNO = ENTITY.register("ammo_utumno_arrow", () -> EntityType.Builder.of((EntityType.IFactory<UtumnoArrowEntity>) UtumnoArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(MODID + ":ammo_utumno_arrow"));
     public static final RegistryObject<EntityType<?>> AMMO_FELLBEAST_FIREBALL = ENTITY.register("ammo_fellbeast_fireball", () -> EntityType.Builder.of(EntityFellBeastFireball::new, EntityClassification.MISC).sized(0.5F, 0.5F).setCustomClientFactory(EntityFellBeastFireball::new).build(MODID + ":ammo_fellbeast_fireball"));
     public static final RegistryObject<EntityType<?>> AMMO_BOULDER = ENTITY.register("ammo_boulder", () -> EntityType.Builder.of(EntityBoulder::new, EntityClassification.MISC).sized(0.5F, 0.5F).setCustomClientFactory(EntityBoulder::new).build(MODID + ":ammo_boulder"));
 

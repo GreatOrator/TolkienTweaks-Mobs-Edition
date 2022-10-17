@@ -13,24 +13,24 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nonnull;
 
-public class GaladhrimArrowEntity extends ArrowEntity {
-    private double baseDamage = 8.0D;
+public class UtumnoArrowEntity extends ArrowEntity {
+    private double baseDamage = 5.0D;
 
-    public GaladhrimArrowEntity(World world, double x, double y, double z) {
+    public UtumnoArrowEntity(World world, double x, double y, double z) {
         super(world, x, y, z);
     }
 
-    public GaladhrimArrowEntity(EntityType<GaladhrimArrowEntity> entityType, World world) {
+    public UtumnoArrowEntity(EntityType<UtumnoArrowEntity> entityType, World world) {
         super(entityType, world);
-        this.setPierceLevel((byte) 10);
+        this.setPierceLevel((byte) 5);
     }
 
-    public GaladhrimArrowEntity(World world, LivingEntity entity) {
+    public UtumnoArrowEntity(World world, LivingEntity entity) {
         super(world, entity);
-        this.setPierceLevel((byte) 10);
+        this.setPierceLevel((byte) 5);
     }
 
-    public GaladhrimArrowEntity(FMLPlayMessages.SpawnEntity spawnPacket, World world) {
+    public UtumnoArrowEntity(FMLPlayMessages.SpawnEntity spawnPacket, World world) {
         super(world, 0, 0, 0);
     }
 
@@ -47,7 +47,7 @@ public class GaladhrimArrowEntity extends ArrowEntity {
     @Override
     @Nonnull
     public EntityType<?> getType() {
-        return EntityGenerator.AMMO_ARROW_GALADHRIM.get();
+        return EntityGenerator.AMMO_ARROW_UTUMNO.get();
     }
 
     @Override
@@ -62,6 +62,6 @@ public class GaladhrimArrowEntity extends ArrowEntity {
 
     @Override
     protected ItemStack getPickupItem() {
-        return new ItemStack(TTMContent.GALADHRIM_ARROW.get());
+        return new ItemStack(TTMContent.UTUMNO_ARROW.get());
     }
 }

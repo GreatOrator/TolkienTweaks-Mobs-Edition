@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "-"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:gem_ammolite"
+    },
+    "-": {
+      "item": "minecraft:bow"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:elven_bow",
+    "count": 3
+  }
+}

@@ -549,6 +549,8 @@ public class TTMContent {
     public static RegistryObject<SwordItem> WHIP_FIRE = ITEMS.register("whip_fire", () -> new TTMSword(TTMItemTier.MORGULIRON, 15, -0.5F, (new Item.Properties()).tab(toolsGroup)).setEffectOverride());
     public static RegistryObject<SwordItem> CLUB_WOODEN = ITEMS.register("club_wooden", () -> new TTMSword(TTMItemTier.MORGULIRON, 9, -0.5F, (new Item.Properties()).tab(toolsGroup)).setEffectOverride());
     public static RegistryObject<BlockItem> ITEM_BACKPACK = ITEMS.register("item_backpack", () -> new BackpackItem(TTMContent.BACKPACK.get(), (new Item.Properties()).stacksTo(1).tab(toolsGroup)));
+    public static RegistryObject<BowItem> ELVEN_BOW = ITEMS.register("elven_bow", () -> new BowItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
+    public static RegistryObject<BowItem> URUK_BOW = ITEMS.register("uruk_bow", () -> new BowItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
     public static RegistryObject<Item> COIN_POUCH = ITEMS.register("coin_pouch", () -> new CoinPouchItem(new Item.Properties().stacksTo(1).tab(toolsGroup)).setItemHasUse().setHasLore());
     public static RegistryObject<Item> KEY_RING = ITEMS.register("key_ring", () -> new KeyRingItem(new Item.Properties().stacksTo(1).tab(toolsGroup)).setItemHasUse().setHasLore());
     public static RegistryObject<Item> HYPE_HORN = ITEMS.register("hype_horn", () -> new HypeHornItem(new Item.Properties().stacksTo(1).tab(questGroup)));
@@ -569,6 +571,7 @@ public class TTMContent {
 
     // Projectiles
     public static RegistryObject<ArrowItem> GALADHRIM_ARROW = ITEMS.register("ammo_galadhrim_arrow", () -> new GaladhrimArrowItem((new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<ArrowItem> UTUMNO_ARROW = ITEMS.register("ammo_utumno_arrow", () -> new UtumnoArrowItem((new Item.Properties()).tab(toolsGroup)));
     public static RegistryObject<Item> BOULDER = ITEMS.register("ammo_boulder", () -> new TTMAmmo((new Item.Properties()).stacksTo(16).tab(toolsGroup)));
     public static RegistryObject<Item> FELLBEAST_FIREBALL = ITEMS.register("ammo_fellbeast_fireball", () -> new TTMAmmo((new Item.Properties()).stacksTo(16).tab(toolsGroup)));
 

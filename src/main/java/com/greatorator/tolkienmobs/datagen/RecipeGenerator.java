@@ -166,6 +166,10 @@ public class RecipeGenerator extends RecipeProvider {
         unstorageRecipe(TTMContent.INGOT_MITHRIL.get(), TTMContent.BLOCK_MITHRIL.get(), consumer);
         unstorageRecipe(TTMContent.INGOT_MORGULIRON.get(), TTMContent.BLOCK_MORGULIRON.get(), consumer);
 
+        // Bow Recipes
+        bowRecipe(TTMContent.ELVEN_BOW.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
+        bowRecipe(TTMContent.URUK_BOW.get(), TTMContent.BLOCK_MORGULIRON.get(), consumer);
+
         dyeRecipe(Items.LIGHT_GRAY_DYE, TTMContent.FLOWER_SIMBELMYNE.get(), consumer);
         dyeRecipe(Items.RED_DYE, TTMContent.FLOWER_MIRKWOOD.get(), consumer);
         dyeRecipe(Items.ORANGE_DYE, TTMContent.FLOWER_ALFIRIN.get(), consumer);
@@ -244,6 +248,23 @@ public class RecipeGenerator extends RecipeProvider {
                 .define('A', Items.IRON_PICKAXE)
                 .define('M', Blocks.MOSSY_COBBLESTONE)
                 .unlockedBy("has_iron", has(Items.IRON_INGOT))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TTMContent.GALADHRIM_ARROW.get(), 8)
+                .pattern("MMM")
+                .pattern("MAM")
+                .pattern("MMM")
+                .define('M', Items.ARROW)
+                .define('A', TTMContent.GEM_AMMOLITE.get())
+                .unlockedBy("has_ammolite", has(TTMContent.GEM_AMMOLITE.get()))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(TTMContent.UTUMNO_ARROW.get(), 8)
+                .pattern("MMM")
+                .pattern("MAM")
+                .pattern("MMM")
+                .define('M', Items.ARROW)
+                .define('A', TTMContent.INGOT_MORGULIRON.get())
+                .unlockedBy("has_morguliron", has(TTMContent.INGOT_MORGULIRON.get()))
                 .save(consumer);
 
         ShapedRecipeBuilder.shaped(TTMContent.DOOR_DURIN.get())
@@ -577,6 +598,16 @@ public class RecipeGenerator extends RecipeProvider {
                 .define('-', input2)
                 .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
                 .save(consumer, "tolkienmobs:sign_" + output.asItem().getRegistryName().getPath());
+    }
+
+    public static void bowRecipe(IItemProvider output, IItemProvider input1, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 3)
+                .pattern("#")
+                .pattern("-")
+                .define('#', input1)
+                .define('-', Items.BOW)
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
+                .save(consumer, "tolkienmobs:bow_" + output.asItem().getRegistryName().getPath());
     }
 
     public static void slabRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {

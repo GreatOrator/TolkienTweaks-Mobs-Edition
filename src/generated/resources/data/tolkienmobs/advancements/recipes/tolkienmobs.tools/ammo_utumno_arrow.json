@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:ammo_utumno_arrow"
+    ]
+  },
+  "criteria": {
+    "has_morguliron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tolkienmobs:ingot_morguliron"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:ammo_utumno_arrow"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_morguliron",
+      "has_the_recipe"
+    ]
+  ]
+}
