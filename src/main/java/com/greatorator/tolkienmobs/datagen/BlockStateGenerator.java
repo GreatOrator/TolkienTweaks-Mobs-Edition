@@ -174,17 +174,16 @@ public class BlockStateGenerator extends BlockStateProvider {
         ModelFile mileInactive = models().getExistingFile(modLoc("block/milestone_block"));
         horizontalBlock(TTMContent.MILESTONE_BLOCK.get(), e -> e.getValue(MilestoneBlock.ACTIVE) ? mileActive : mileInactive, 180);
 
-        signBlock(TTMContent.MALLORN_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_mallorn");
-        signBlock(TTMContent.MALLORN_WALL_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_mallorn");
-        signBlock(TTMContent.MIRKWOOD_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_mirkwood");
-        signBlock(TTMContent.MIRKWOOD_WALL_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_mirkwood");
-        signBlock(TTMContent.CULUMALDA_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_culumalda");
-        signBlock(TTMContent.CULUMALDA_WALL_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_culumalda");
-        signBlock(TTMContent.LEBETHRON_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_lebethron");
-        signBlock(TTMContent.LEBETHRON_WALL_SIGN_WOOD_TYPE.get(), TolkienMobs.MODID + ":block/planks_lebethron");
+        signBlock(TTMContent.MALLORN_SIGN.get(), TolkienMobs.MODID + ":block/planks_mallorn");
+        signBlock(TTMContent.MALLORN_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_mallorn");
+        signBlock(TTMContent.MIRKWOOD_SIGN.get(), TolkienMobs.MODID + ":block/planks_mirkwood");
+        signBlock(TTMContent.MIRKWOOD_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_mirkwood");
+        signBlock(TTMContent.CULUMALDA_SIGN.get(), TolkienMobs.MODID + ":block/planks_culumalda");
+        signBlock(TTMContent.CULUMALDA_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_culumalda");
+        signBlock(TTMContent.LEBETHRON_SIGN.get(), TolkienMobs.MODID + ":block/planks_lebethron");
+        signBlock(TTMContent.LEBETHRON_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_lebethron");
 
         sleepingBagModels();
-
 
         //Placards
         ModelFile placardWallModel = models().getExistingFile(modLoc("block/placard_wall"));

@@ -2,11 +2,8 @@ package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.entity.AmbientEntity;
 import com.greatorator.tolkienmobs.entity.ambient.*;
-import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
-import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
-import com.greatorator.tolkienmobs.entity.ammo.GaladhrimArrowEntity;
-import com.greatorator.tolkienmobs.entity.ammo.UtumnoArrowEntity;
 import com.greatorator.tolkienmobs.entity.boss.*;
+import com.greatorator.tolkienmobs.entity.item.*;
 import com.greatorator.tolkienmobs.entity.merchant.*;
 import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.entity.passive.AurochEntity;
@@ -22,6 +19,7 @@ import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.fml.RegistryObject;
@@ -149,6 +147,12 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<UtumnoArrowEntity>> AMMO_ARROW_UTUMNO = ENTITY.register("ammo_utumno_arrow", () -> EntityType.Builder.of((EntityType.IFactory<UtumnoArrowEntity>) UtumnoArrowEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(MODID + ":ammo_utumno_arrow"));
     public static final RegistryObject<EntityType<?>> AMMO_FELLBEAST_FIREBALL = ENTITY.register("ammo_fellbeast_fireball", () -> EntityType.Builder.of(EntityFellBeastFireball::new, EntityClassification.MISC).sized(0.5F, 0.5F).setCustomClientFactory(EntityFellBeastFireball::new).build(MODID + ":ammo_fellbeast_fireball"));
     public static final RegistryObject<EntityType<?>> AMMO_BOULDER = ENTITY.register("ammo_boulder", () -> EntityType.Builder.of(EntityBoulder::new, EntityClassification.MISC).sized(0.5F, 0.5F).setCustomClientFactory(EntityBoulder::new).build(MODID + ":ammo_boulder"));
+
+    // Boats
+    public static final RegistryObject<EntityType<TolkienBoatEntity>> MALLORN_BOAT = ENTITY.register("boat_mallorn", () -> EntityType.Builder.<TolkienBoatEntity>of(TolkienBoatEntity::new, EntityClassification.MISC).sized(1.375F, 0.5625F).build(new ResourceLocation(MODID, "boat_mallorn").toString()));
+    public static final RegistryObject<EntityType<TolkienBoatEntity>> MIRKWOOD_BOAT = ENTITY.register("boat_mirkwood", () -> EntityType.Builder.<TolkienBoatEntity>of(TolkienBoatEntity::new, EntityClassification.MISC).sized(1.375F, 0.5625F).build(new ResourceLocation(MODID, "boat_mirkwood").toString()));
+    public static final RegistryObject<EntityType<TolkienBoatEntity>> CULUMALDA_BOAT = ENTITY.register("boat_culumalda", () -> EntityType.Builder.<TolkienBoatEntity>of(TolkienBoatEntity::new, EntityClassification.MISC).sized(1.375F, 0.5625F).build(new ResourceLocation(MODID, "boat_culumalda").toString()));
+    public static final RegistryObject<EntityType<TolkienBoatEntity>> LEBETHRON_BOAT = ENTITY.register("boat_lebethron", () -> EntityType.Builder.<TolkienBoatEntity>of(TolkienBoatEntity::new, EntityClassification.MISC).sized(1.375F, 0.5625F).build(new ResourceLocation(MODID, "boat_lebethron").toString()));
 
     public static void registerSpawnPlacement() {
         //Look in EntitySpawnPlacementRegistry for examples

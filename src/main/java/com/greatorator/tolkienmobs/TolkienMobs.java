@@ -51,6 +51,7 @@ public class TolkienMobs {
 	        1. Fell Beast - Needs AI and Implementation
 			2. Gwaihir - Needs AI
 			3. Great Eagle - Needs AI
+			4. Boat - always spawns as oak
 		b. Ammo
             1. Fell Beast Fireball - rendering
 	        2. Boulder - rendering

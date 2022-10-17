@@ -384,10 +384,17 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(EntityGenerator.EGG_TTMGREATEAGLE.get());
 
             //Signs
-        simpleItem(TTMContent.MALLORN_SIGN_ITEM_WOOD_TYPE.get());
-        simpleItem(TTMContent.MIRKWOOD_SIGN_ITEM_WOOD_TYPE.get());
-        simpleItem(TTMContent.CULUMALDA_SIGN_ITEM_WOOD_TYPE.get());
-        simpleItem(TTMContent.LEBETHRON_SIGN_ITEM_WOOD_TYPE.get());
+        simpleItem(TTMContent.MALLORN_SIGN_ITEM.get());
+        simpleItem(TTMContent.MIRKWOOD_SIGN_ITEM.get());
+        simpleItem(TTMContent.CULUMALDA_SIGN_ITEM.get());
+        simpleItem(TTMContent.LEBETHRON_SIGN_ITEM.get());
+
+            // Boats
+        simpleItem(TTMContent.MALLORN_BOAT.get());
+        simpleItem(TTMContent.MIRKWOOD_BOAT.get());
+        simpleItem(TTMContent.CULUMALDA_BOAT.get());
+        simpleItem(TTMContent.LEBETHRON_BOAT.get());
+
     }
 
     private ItemModelBuilder simpleMod(ModelFile itemGenerated, String name) {

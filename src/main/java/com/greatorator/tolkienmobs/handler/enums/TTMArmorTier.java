@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.handler;
+package com.greatorator.tolkienmobs.handler.enums;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import net.minecraft.inventory.EquipmentSlotType;

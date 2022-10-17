@@ -10,12 +10,9 @@ import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
 import com.greatorator.tolkienmobs.entity.ambient.model.SwarmModel;
 import com.greatorator.tolkienmobs.entity.ambient.render.*;
-import com.greatorator.tolkienmobs.entity.ammo.render.GaladhrimArrowRender;
-import com.greatorator.tolkienmobs.entity.ammo.render.RenderBoulder;
-import com.greatorator.tolkienmobs.entity.ammo.render.RenderFellBeastFireball;
-import com.greatorator.tolkienmobs.entity.ammo.render.UtumnoArrowRender;
 import com.greatorator.tolkienmobs.entity.boss.model.WitchKingModel;
 import com.greatorator.tolkienmobs.entity.boss.render.*;
+import com.greatorator.tolkienmobs.entity.item.render.*;
 import com.greatorator.tolkienmobs.entity.merchant.model.DwarfModel;
 import com.greatorator.tolkienmobs.entity.merchant.model.HumanModel;
 import com.greatorator.tolkienmobs.entity.merchant.render.*;
@@ -29,6 +26,7 @@ import com.greatorator.tolkienmobs.entity.special.render.*;
 import com.greatorator.tolkienmobs.event.client.ClientEvents;
 import com.greatorator.tolkienmobs.handler.BowItemModelProperties;
 import com.greatorator.tolkienmobs.handler.TTMHearts;
+import com.greatorator.tolkienmobs.handler.enums.TTMWoodTypes;
 import com.greatorator.tolkienmobs.init.TTMColor;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
@@ -91,10 +89,10 @@ public class ClientProxy extends CommonProxy {
 
     private static void registerWoodTypes(FMLClientSetupEvent event) {
         //Add each of your custom wood types here. This is for textures.
-        event.enqueueWork(() -> Atlases.addWoodType(TTMContent.MALLORN_WOOD_TYPE));
-        event.enqueueWork(() -> Atlases.addWoodType(TTMContent.MIRKWOOD_WOOD_TYPE));
-        event.enqueueWork(() -> Atlases.addWoodType(TTMContent.CULUMALDA_WOOD_TYPE));
-        event.enqueueWork(() -> Atlases.addWoodType(TTMContent.LEBETHRON_WOOD_TYPE));
+        event.enqueueWork(() -> Atlases.addWoodType(TTMWoodTypes.MALLORN));
+        event.enqueueWork(() -> Atlases.addWoodType(TTMWoodTypes.MIRKWOOD));
+        event.enqueueWork(() -> Atlases.addWoodType(TTMWoodTypes.CULUMALDA));
+        event.enqueueWork(() -> Atlases.addWoodType(TTMWoodTypes.LEBETHRON));
     }
 
     public static void setupRenderLayers() {
@@ -256,6 +254,13 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_ARROW_UTUMNO.get(), UtumnoArrowRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_FELLBEAST_FIREBALL.get(), new RenderFellBeastFireball.RenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_BOULDER.get(), new RenderBoulder.RenderFactory());
+
+        // Boats
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.MALLORN_BOAT.get(), TolkienBoatRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.MIRKWOOD_BOAT.get(), TolkienBoatRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.CULUMALDA_BOAT.get(), TolkienBoatRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.LEBETHRON_BOAT.get(), TolkienBoatRender::new);
+
     }
 
     public static void registerPropertyOverride() {

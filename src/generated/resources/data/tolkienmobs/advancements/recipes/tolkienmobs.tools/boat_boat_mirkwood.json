@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:boat_boat_mirkwood"
+    ]
+  },
+  "criteria": {
+    "has_planks_mirkwood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tolkienmobs:planks_mirkwood"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:boat_boat_mirkwood"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_planks_mirkwood",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -5,7 +5,7 @@ import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMSwitchCombat;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMThrowandAttack;
-import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
+import com.greatorator.tolkienmobs.entity.item.EntityFellBeastFireball;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

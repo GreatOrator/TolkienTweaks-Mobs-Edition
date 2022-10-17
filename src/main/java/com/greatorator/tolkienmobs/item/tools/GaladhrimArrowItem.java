@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.item.tools;
 
-import com.greatorator.tolkienmobs.entity.ammo.GaladhrimArrowEntity;
+import com.greatorator.tolkienmobs.entity.item.GaladhrimArrowEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArrowItem;

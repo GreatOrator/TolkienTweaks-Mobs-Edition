@@ -2,8 +2,8 @@ package com.greatorator.tolkienmobs.handler;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
-import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
-import com.greatorator.tolkienmobs.entity.ammo.EntityFellBeastFireball;
+import com.greatorator.tolkienmobs.entity.item.EntityBoulder;
+import com.greatorator.tolkienmobs.entity.item.EntityFellBeastFireball;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

@@ -66,7 +66,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
             tag(BlockTags.MUSHROOM_GROW_BLOCK).addTag(TTMTags.blocks.MUSHROOM_GROW_BLOCK);
         tag(TTMTags.blocks.FLOWERS).add(TTMContent.FLOWER_ALFIRIN.get(), TTMContent.FLOWER_ATHELAS.get(), TTMContent.FLOWER_MIRKWOOD.get(), TTMContent.FLOWER_NIPHREDIL.get(), TTMContent.FLOWER_SIMBELMYNE.get(), TTMContent.FLOWER_LILLYOFTHEVALLEY.get(), TTMContent.FLOWER_SWAMPMILKWEED.get());
             tag(BlockTags.FLOWERS).addTag(TTMTags.blocks.FLOWERS);
-        tag(TTMTags.blocks.SIGNS).add(TTMContent.PLACARD.get(), TTMContent.MALLORN_SIGN_WOOD_TYPE.get(), TTMContent.MIRKWOOD_SIGN_WOOD_TYPE.get(), TTMContent.CULUMALDA_SIGN_WOOD_TYPE.get(), TTMContent.LEBETHRON_SIGN_WOOD_TYPE.get());
+        tag(TTMTags.blocks.SIGNS).add(TTMContent.PLACARD.get(), TTMContent.MALLORN_SIGN.get(), TTMContent.MIRKWOOD_SIGN.get(), TTMContent.CULUMALDA_SIGN.get(), TTMContent.LEBETHRON_SIGN.get());
             tag(BlockTags.STANDING_SIGNS).addTag(TTMTags.blocks.SIGNS);
             tag(BlockTags.WALL_SIGNS).addTag(TTMTags.blocks.SIGNS);
             tag(BlockTags.SIGNS).addTag(TTMTags.blocks.SIGNS);

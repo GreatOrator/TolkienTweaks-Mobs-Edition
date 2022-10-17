@@ -1,6 +1,6 @@
-package com.greatorator.tolkienmobs.entity.ammo.render;
+package com.greatorator.tolkienmobs.entity.item.render;
 
-import com.greatorator.tolkienmobs.entity.ammo.EntityBoulder;
+import com.greatorator.tolkienmobs.entity.item.EntityFellBeastFireball;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -20,17 +20,17 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class RenderBoulder<T extends EntityBoulder> extends EntityRenderer<T> {
-    private static final ResourceLocation BOULDER_TEXTURES = new ResourceLocation(MODID,"textures/entity/ammo_boulder.png");
+public class RenderFellBeastFireball<T extends EntityFellBeastFireball> extends EntityRenderer<T> {
+    private static final ResourceLocation FELLBEAST_FIREBALL_TEXTURES = new ResourceLocation(MODID,"textures/entity/ammo_fellbeast_fireball.png");
 
-    protected RenderBoulder(EntityRendererManager renderManager) {
+    protected RenderFellBeastFireball(EntityRendererManager renderManager) {
         super(renderManager);
     }
 
 
     @Override
     public ResourceLocation getTextureLocation(T entity) {
-        return BOULDER_TEXTURES;
+        return FELLBEAST_FIREBALL_TEXTURES;
     }
 
 
@@ -100,8 +100,8 @@ public class RenderBoulder<T extends EntityBoulder> extends EntityRenderer<T> {
         @Override
         public EntityRenderer<? super Entity> createRenderFor(EntityRendererManager manager) {
 
-            final RenderBoulder boulderRenderer = new RenderBoulder(manager);
-            return boulderRenderer;
+            final RenderFellBeastFireball fellBeastFireballRenderer = new RenderFellBeastFireball(manager);
+            return fellBeastFireballRenderer;
         }
     }
 }

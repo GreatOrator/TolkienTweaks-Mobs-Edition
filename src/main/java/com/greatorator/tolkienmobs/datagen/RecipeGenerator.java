@@ -63,6 +63,11 @@ public class RecipeGenerator extends RecipeProvider {
         slabRecipe(TTMContent.SLAB_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
         slabRecipe(TTMContent.SLAB_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), consumer);
 
+        buttonRecipe(TTMContent.MALLORN_BUTTON.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
+        buttonRecipe(TTMContent.MIRKWOOD_BUTTON.get(), TTMContent.PLANKS_MIRKWOOD.get(), consumer);
+        buttonRecipe(TTMContent.CULUMALDA_BUTTON.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
+        buttonRecipe(TTMContent.LEBETHRON_BUTTON.get(), TTMContent.PLANKS_LEBETHRON.get(), consumer);
+
         plankRecipe(TTMContent.PLANKS_MALLORN.get(), TTMContent.LOG_MALLORN.get(), consumer);
         plankRecipe(TTMContent.PLANKS_MIRKWOOD.get(), TTMContent.LOG_MIRKWOOD.get(), consumer);
         plankRecipe(TTMContent.PLANKS_CULUMALDA.get(), TTMContent.LOG_CULUMALDA.get(), consumer);
@@ -104,10 +109,10 @@ public class RecipeGenerator extends RecipeProvider {
         torchRecipe(TTMContent.TORCH_CULUMALDA.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
         torchRecipe(TTMContent.TORCH_LEBETHRON.get(), TTMContent.PLANKS_LEBETHRON.get(), consumer);
 
-        signRecipe(TTMContent.MALLORN_SIGN_WOOD_TYPE.get(), TTMContent.PLANKS_MALLORN.get(), Items.STICK, consumer);
-        signRecipe(TTMContent.MIRKWOOD_SIGN_WOOD_TYPE.get(), TTMContent.PLANKS_MIRKWOOD.get(), Items.STICK, consumer);
-        signRecipe(TTMContent.CULUMALDA_SIGN_WOOD_TYPE.get(), TTMContent.PLANKS_CULUMALDA.get(), Items.STICK, consumer);
-        signRecipe(TTMContent.LEBETHRON_SIGN_WOOD_TYPE.get(), TTMContent.PLANKS_LEBETHRON.get(), Items.STICK, consumer);
+        signRecipe(TTMContent.MALLORN_SIGN.get(), TTMContent.PLANKS_MALLORN.get(), Items.STICK, consumer);
+        signRecipe(TTMContent.MIRKWOOD_SIGN.get(), TTMContent.PLANKS_MIRKWOOD.get(), Items.STICK, consumer);
+        signRecipe(TTMContent.CULUMALDA_SIGN.get(), TTMContent.PLANKS_CULUMALDA.get(), Items.STICK, consumer);
+        signRecipe(TTMContent.LEBETHRON_SIGN.get(), TTMContent.PLANKS_LEBETHRON.get(), Items.STICK, consumer);
 
         helmetRecipe(TTMContent.HELMET_MITHRIL.get(), TTMContent.INGOT_MITHRIL.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
         helmetRecipe(TTMContent.HELMET_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
@@ -170,6 +175,7 @@ public class RecipeGenerator extends RecipeProvider {
         bowRecipe(TTMContent.ELVEN_BOW.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
         bowRecipe(TTMContent.URUK_BOW.get(), TTMContent.BLOCK_MORGULIRON.get(), consumer);
 
+        // Dye Recipes
         dyeRecipe(Items.LIGHT_GRAY_DYE, TTMContent.FLOWER_SIMBELMYNE.get(), consumer);
         dyeRecipe(Items.RED_DYE, TTMContent.FLOWER_MIRKWOOD.get(), consumer);
         dyeRecipe(Items.ORANGE_DYE, TTMContent.FLOWER_ALFIRIN.get(), consumer);
@@ -177,6 +183,12 @@ public class RecipeGenerator extends RecipeProvider {
         dyeRecipe(Items.WHITE_DYE, TTMContent.FLOWER_NIPHREDIL.get(), consumer);
         dyeRecipe(Items.CYAN_DYE, TTMContent.FLOWER_SWAMPMILKWEED.get(), consumer);
         dyeRecipe(Items.PINK_DYE, TTMContent.FLOWER_LILLYOFTHEVALLEY.get(), consumer);
+
+        // Boat Recipes
+        boatRecipe(TTMContent.MALLORN_BOAT.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
+        boatRecipe(TTMContent.MIRKWOOD_BOAT.get(), TTMContent.PLANKS_MIRKWOOD.get(), consumer);
+        boatRecipe(TTMContent.CULUMALDA_BOAT.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
+        boatRecipe(TTMContent.LEBETHRON_BOAT.get(), TTMContent.PLANKS_LEBETHRON.get(), consumer);
     }
 
     private static void specialty(Consumer<IFinishedRecipe> consumer) {
@@ -600,8 +612,17 @@ public class RecipeGenerator extends RecipeProvider {
                 .save(consumer, "tolkienmobs:sign_" + output.asItem().getRegistryName().getPath());
     }
 
+    public static void boatRecipe(IItemProvider output, IItemProvider input1, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("# #")
+                .pattern("###")
+                .define('#', input1)
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
+                .save(consumer, "tolkienmobs:boat_" + output.asItem().getRegistryName().getPath());
+    }
+
     public static void bowRecipe(IItemProvider output, IItemProvider input1, Consumer<IFinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shaped(output, 3)
+        ShapedRecipeBuilder.shaped(output, 1)
                 .pattern("#")
                 .pattern("-")
                 .define('#', input1)
@@ -701,6 +722,14 @@ public class RecipeGenerator extends RecipeProvider {
                 .define('#', input2)
                 .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
                 .save(consumer);
+    }
+
+    public static void buttonRecipe(IItemProvider output, IItemProvider input1, Consumer<IFinishedRecipe> consumer) {
+        ShapelessRecipeBuilder
+                .shapeless(output, 1)
+                .requires(input1)
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
+                .save(consumer, "tolkienmobs:button_" + output.asItem().getRegistryName().getPath());
     }
 
     public static void unstorageRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {

@@ -1,0 +1,6 @@
+{
+  "parent": "block/button_inventory",
+  "textures": {
+    "texture": "tolkienmobs:block/planks_mirkwood"
+  }
+}

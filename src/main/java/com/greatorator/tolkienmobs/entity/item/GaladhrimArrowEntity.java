@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.entity.ammo;
+package com.greatorator.tolkienmobs.entity.item;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;

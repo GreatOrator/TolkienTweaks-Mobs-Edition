@@ -67,6 +67,10 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.LOG_CULUMALDA.get());
         dropSelf(TTMContent.LOG_LEBETHRON.get());
         add(TTMContent.LOG_DEADWOOD.get(), createSingleItemTable(Items.STICK, RandomValueRange.between(0.0F, 4.0F)));
+        dropOther(TTMContent.MALLORN_BUTTON.get(), TTMContent.MALLORN_BUTTON_ITEM.get());
+        dropOther(TTMContent.MIRKWOOD_BUTTON.get(), TTMContent.MIRKWOOD_BUTTON_ITEM.get());
+        dropOther(TTMContent.CULUMALDA_BUTTON.get(), TTMContent.CULUMALDA_BUTTON_ITEM.get());
+        dropOther(TTMContent.LEBETHRON_BUTTON.get(), TTMContent.LEBETHRON_BUTTON_ITEM.get());
         dropSelf(TTMContent.PLANKS_MALLORN.get());
         dropSelf(TTMContent.PLANKS_MIRKWOOD.get());
         dropSelf(TTMContent.PLANKS_CULUMALDA.get());
@@ -188,14 +192,14 @@ public class BlockLootGenerator extends BlockLootTables {
 
 
         //Signs, You will need these for every type you add
-        dropOther(TTMContent.MALLORN_SIGN_WOOD_TYPE.get(), TTMContent.MALLORN_SIGN_ITEM_WOOD_TYPE.get());
-        dropOther(TTMContent.MALLORN_WALL_SIGN_WOOD_TYPE.get(), TTMContent.MALLORN_SIGN_ITEM_WOOD_TYPE.get());
-        dropOther(TTMContent.MIRKWOOD_SIGN_WOOD_TYPE.get(), TTMContent.MIRKWOOD_SIGN_ITEM_WOOD_TYPE.get());
-        dropOther(TTMContent.MIRKWOOD_WALL_SIGN_WOOD_TYPE.get(), TTMContent.MIRKWOOD_SIGN_ITEM_WOOD_TYPE.get());
-        dropOther(TTMContent.CULUMALDA_SIGN_WOOD_TYPE.get(), TTMContent.CULUMALDA_SIGN_ITEM_WOOD_TYPE.get());
-        dropOther(TTMContent.CULUMALDA_WALL_SIGN_WOOD_TYPE.get(), TTMContent.CULUMALDA_SIGN_ITEM_WOOD_TYPE.get());
-        dropOther(TTMContent.LEBETHRON_SIGN_WOOD_TYPE.get(), TTMContent.LEBETHRON_SIGN_ITEM_WOOD_TYPE.get());
-        dropOther(TTMContent.LEBETHRON_WALL_SIGN_WOOD_TYPE.get(), TTMContent.LEBETHRON_SIGN_ITEM_WOOD_TYPE.get());
+        dropOther(TTMContent.MALLORN_SIGN.get(), TTMContent.MALLORN_SIGN_ITEM.get());
+        dropOther(TTMContent.MALLORN_WALL_SIGN.get(), TTMContent.MALLORN_SIGN_ITEM.get());
+        dropOther(TTMContent.MIRKWOOD_SIGN.get(), TTMContent.MIRKWOOD_SIGN_ITEM.get());
+        dropOther(TTMContent.MIRKWOOD_WALL_SIGN.get(), TTMContent.MIRKWOOD_SIGN_ITEM.get());
+        dropOther(TTMContent.CULUMALDA_SIGN.get(), TTMContent.CULUMALDA_SIGN_ITEM.get());
+        dropOther(TTMContent.CULUMALDA_WALL_SIGN.get(), TTMContent.CULUMALDA_SIGN_ITEM.get());
+        dropOther(TTMContent.LEBETHRON_SIGN.get(), TTMContent.LEBETHRON_SIGN_ITEM.get());
+        dropOther(TTMContent.LEBETHRON_WALL_SIGN.get(), TTMContent.LEBETHRON_SIGN_ITEM.get());
     }
 
     protected static LootTable.Builder createMushroomBlockDrop(Block p_218491_0_, IItemProvider p_218491_1_) {

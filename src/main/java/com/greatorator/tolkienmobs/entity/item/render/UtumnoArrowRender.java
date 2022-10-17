@@ -1,6 +1,6 @@
-package com.greatorator.tolkienmobs.entity.ammo.render;
+package com.greatorator.tolkienmobs.entity.item.render;
 
-import com.greatorator.tolkienmobs.entity.ammo.UtumnoArrowEntity;
+import com.greatorator.tolkienmobs.entity.item.UtumnoArrowEntity;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
