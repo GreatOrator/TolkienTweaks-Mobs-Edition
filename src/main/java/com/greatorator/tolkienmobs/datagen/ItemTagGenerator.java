@@ -68,7 +68,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(TTMTags.items.LEATHER).add(TTMContent.MUMAKIL_LEATHER.get());
         tag(TTMTags.items.FEATHER).add(TTMContent.BIRD_FEATHER.get(), TTMContent.CREBAIN_FEATHER.get());
             tag(Tags.Items.FEATHERS).addTag(TTMTags.items.FEATHER);
-        tag(TTMTags.items.ARROW).add(TTMContent.GALADHRIM_ARROW.get());
+        tag(TTMTags.items.ARROW).add(TTMContent.GALADHRIM_ARROW.get(), TTMContent.UTUMNO_ARROW.get());
             tag(ItemTags.ARROWS).addTag(TTMTags.items.ARROW);
         tag(TTMTags.items.MUSIC_DISCS).add(TTMContent.RECORD_BOMBADIL.get(), TTMContent.RECORD_EDORAS.get(), TTMContent.RECORD_EREBOR.get(), TTMContent.RECORD_FUMBLE.get(), TTMContent.RECORD_HOBBITS.get(), TTMContent.RECORD_LOTHLORIEN.get(), TTMContent.RECORD_EDORAS.get(), TTMContent.RECORD_MINASTIRITH.get(), TTMContent.RECORD_MURDERFROG.get(), TTMContent.RECORD_REDER.get(), TTMContent.RECORD_RIVENDELL.get(), TTMContent.RECORD_WBATTLE.get(), TTMContent.RECORD_WILLOW.get());
             tag(ItemTags.MUSIC_DISCS).addTag(TTMTags.items.MUSIC_DISCS);

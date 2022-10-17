@@ -751,7 +751,7 @@ c83fada78695933dd9fa874d93a49e04615d8746 data/forge/tags/blocks/wooden_stairs.js
 cc510a6e73a9c56ccb51c3d289d10f6010c03fc2 data/forge/tags/fluids/lava.json
 96bd0f4b24387ab82c6f0403e3c166c6a3338d67 data/forge/tags/items/acorns.json
 f16042a50704b5f6a4c23287d75daf622e2cc856 data/forge/tags/items/allowed_fluids.json
-8cb2eddc4d859b12754795370bb1a15ed515d94a data/forge/tags/items/arrow.json
+71a898b10cacf8cfa6d031b27c7fbbdeb8d0e787 data/forge/tags/items/arrow.json
 06d081b835869f6d61f61af506f2f6755a16f0d2 data/forge/tags/items/barrels/wooden.json
 1234bae62420dcd68c1febfc7d21827c65d89a67 data/forge/tags/items/bars/iron.json
 8dd679dab0449860ce8b1e3fac0f3e4211f81fa2 data/forge/tags/items/blacklisted_items.json
