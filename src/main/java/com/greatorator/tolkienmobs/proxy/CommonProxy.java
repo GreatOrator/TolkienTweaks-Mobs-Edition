@@ -3,15 +3,15 @@ package com.greatorator.tolkienmobs.proxy;
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.common.MobModify;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
 import com.greatorator.tolkienmobs.datagen.StructureGenerator;
-import com.greatorator.tolkienmobs.event.entity.ServerEntityEvents;
+import com.greatorator.tolkienmobs.event.entity.EntityEvents;
 import com.greatorator.tolkienmobs.event.entity.SleepingEvent;
 import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
+import com.greatorator.tolkienmobs.handler.MobModify;
+import com.greatorator.tolkienmobs.handler.TTMTags;
 import com.greatorator.tolkienmobs.handler.interfaces.IFluidHelper;
-import com.greatorator.tolkienmobs.init.TTMTags;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.integration.curios.TTMEquipMgr;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
@@ -50,11 +50,11 @@ public class CommonProxy {
         TTMTags.init();
         MilestoneSaveData.init();
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-        MinecraftForge.EVENT_BUS.addListener(ServerEntityEvents::balrogMark);
-        MinecraftForge.EVENT_BUS.addListener(ServerEntityEvents::hobbitPlow);
-        MinecraftForge.EVENT_BUS.addListener(ServerEntityEvents::onPlayerUpdate);
-        MinecraftForge.EVENT_BUS.addListener(ServerEntityEvents::addDimensionalSpacing);
-        MinecraftForge.EVENT_BUS.addListener(ServerEntityEvents::biomeModification);
+        MinecraftForge.EVENT_BUS.addListener(EntityEvents::balrogMark);
+        MinecraftForge.EVENT_BUS.addListener(EntityEvents::hobbitPlow);
+        MinecraftForge.EVENT_BUS.addListener(EntityEvents::onPlayerUpdate);
+        MinecraftForge.EVENT_BUS.addListener(EntityEvents::addDimensionalSpacing);
+        MinecraftForge.EVENT_BUS.addListener(EntityEvents::biomeModification);
 
         TTMTreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
 

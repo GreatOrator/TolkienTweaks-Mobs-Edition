@@ -2,10 +2,7 @@ package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.client.TTMClientEvents;
-import com.greatorator.tolkienmobs.client.TTMSprites;
-import com.greatorator.tolkienmobs.client.gui.*;
-import com.greatorator.tolkienmobs.client.render.tile.*;
+import com.greatorator.tolkienmobs.container.gui.*;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
 import com.greatorator.tolkienmobs.entity.ambient.model.SwarmModel;
@@ -23,11 +20,13 @@ import com.greatorator.tolkienmobs.entity.passive.render.AurochRender;
 import com.greatorator.tolkienmobs.entity.passive.render.GoatRender;
 import com.greatorator.tolkienmobs.entity.passive.render.MumakilRender;
 import com.greatorator.tolkienmobs.entity.special.render.*;
+import com.greatorator.tolkienmobs.entity.tile.render.*;
 import com.greatorator.tolkienmobs.event.client.ClientEvents;
 import com.greatorator.tolkienmobs.handler.BowItemModelProperties;
+import com.greatorator.tolkienmobs.handler.TTMColor;
 import com.greatorator.tolkienmobs.handler.TTMHearts;
+import com.greatorator.tolkienmobs.handler.TTMSprites;
 import com.greatorator.tolkienmobs.handler.enums.TTMWoodTypes;
-import com.greatorator.tolkienmobs.init.TTMColor;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
 import com.greatorator.tolkienmobs.item.tools.KeyRingItem;
@@ -55,8 +54,8 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void construct() {
         super.construct();
-        MinecraftForge.EVENT_BUS.addListener(TTMClientEvents::livingUpdate);
-        MinecraftForge.EVENT_BUS.addListener(TTMClientEvents::renderOverlayEvent);
+        MinecraftForge.EVENT_BUS.addListener(ClientEvents::livingUpdate);
+        MinecraftForge.EVENT_BUS.addListener(ClientEvents::renderOverlayEvent);
         MinecraftForge.EVENT_BUS.addListener(TTMVillagerTrades::onVillagerTradesEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(TTMColor::itemColourEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(TTMSprites::initialize);

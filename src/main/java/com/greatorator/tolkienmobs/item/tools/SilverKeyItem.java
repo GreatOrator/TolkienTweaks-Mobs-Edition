@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.item.tools;
 
-import com.greatorator.tolkienmobs.client.gui.SilverKeyAccessScreen;
+import com.greatorator.tolkienmobs.container.gui.SilverKeyAccessScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

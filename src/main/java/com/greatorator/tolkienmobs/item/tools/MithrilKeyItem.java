@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.item.tools;
 
-import com.greatorator.tolkienmobs.client.gui.MithrilKeyAccessScreen;
+import com.greatorator.tolkienmobs.container.gui.MithrilKeyAccessScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

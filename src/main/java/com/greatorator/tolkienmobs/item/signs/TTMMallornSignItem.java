@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.item.signs;
 
-import com.greatorator.tolkienmobs.client.gui.MallornSignScreen;
+import com.greatorator.tolkienmobs.container.gui.MallornSignScreen;
 import com.greatorator.tolkienmobs.entity.tile.MallornSignTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

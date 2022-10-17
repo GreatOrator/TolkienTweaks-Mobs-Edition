@@ -5,7 +5,7 @@ import com.brandon3055.brandonscore.inventory.PlayerSlot;
 import com.greatorator.tolkienmobs.container.KeyRingContainer;
 import com.greatorator.tolkienmobs.container.capability.ItemStackInventory;
 import com.greatorator.tolkienmobs.handler.TTMLoreItem;
-import com.greatorator.tolkienmobs.init.TTMTags;
+import com.greatorator.tolkienmobs.handler.TTMTags;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;

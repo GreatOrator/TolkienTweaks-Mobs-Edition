@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.event.entity;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.SleepingBagBlock;
-import com.greatorator.tolkienmobs.event.TTMEventTriggers;
+import com.greatorator.tolkienmobs.event.EventTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -39,7 +39,7 @@ public class SleepingEvent {
             if (player instanceof ServerPlayerEntity && player.isAlive()) {
                 ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
                 if (!player.getCommandSenderWorld().isClientSide()) {
-                    TTMEventTriggers.SLEEP_IN_BAG.trigger(serverPlayer);
+                    EventTriggers.SLEEP_IN_BAG.trigger(serverPlayer);
                 }
             }
         }

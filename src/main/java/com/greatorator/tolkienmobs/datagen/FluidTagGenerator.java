@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.init.TTMTags;
+import com.greatorator.tolkienmobs.handler.TTMTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.FluidTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;

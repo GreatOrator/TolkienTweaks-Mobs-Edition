@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.item.armor;
 
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.client.model.armor.MithrilArmorModel;
 import com.greatorator.tolkienmobs.datagen.PotionGenerator;
+import com.greatorator.tolkienmobs.item.armor.model.MithrilArmorModel;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;

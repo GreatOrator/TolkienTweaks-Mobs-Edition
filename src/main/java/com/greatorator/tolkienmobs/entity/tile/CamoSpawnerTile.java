@@ -7,7 +7,7 @@ import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedByte;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedShort;
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.client.capabilities.CamoSpawnerLogic;
+import com.greatorator.tolkienmobs.container.capability.CamoSpawnerLogic;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

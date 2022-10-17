@@ -9,7 +9,7 @@ import com.brandon3055.brandonscore.lib.IRSSwitchable;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.PiggyBankBlock;
-import com.greatorator.tolkienmobs.init.TTMTags;
+import com.greatorator.tolkienmobs.handler.TTMTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;

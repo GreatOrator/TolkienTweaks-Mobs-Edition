@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.item.signs;
 
-import com.greatorator.tolkienmobs.client.gui.CulumaldaSignScreen;
+import com.greatorator.tolkienmobs.container.gui.CulumaldaSignScreen;
 import com.greatorator.tolkienmobs.entity.tile.CulumaldaSignTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

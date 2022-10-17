@@ -1,11 +1,11 @@
 package com.greatorator.tolkienmobs;
 
 
-import com.greatorator.tolkienmobs.common.MobModify;
-import com.greatorator.tolkienmobs.common.network.AirPacket;
-import com.greatorator.tolkienmobs.common.network.NetworkHelper;
+import com.greatorator.tolkienmobs.handler.MobModify;
 import com.greatorator.tolkienmobs.handler.interfaces.IFireplaceRecipe;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
+import com.greatorator.tolkienmobs.network.AirPacket;
+import com.greatorator.tolkienmobs.network.NetworkHelper;
 import com.greatorator.tolkienmobs.proxy.ClientProxy;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
 import net.minecraft.entity.Entity;

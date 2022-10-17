@@ -13,7 +13,7 @@ import com.google.common.collect.Lists;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.FireplaceBlock;
-import com.greatorator.tolkienmobs.crafting.IFireplaceInventory;
+import com.greatorator.tolkienmobs.handler.interfaces.IFireplaceInventory;
 import com.greatorator.tolkienmobs.handler.interfaces.IFireplaceRecipe;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;

@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.entity.boss.render;
 
-import com.greatorator.tolkienmobs.client.render.HeldItemLayerMainOnly;
 import com.greatorator.tolkienmobs.entity.boss.BalrogEntity;
 import com.greatorator.tolkienmobs.entity.boss.model.BalrogModel;
+import com.greatorator.tolkienmobs.entity.layers.HeldItemLayerMainOnly;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;

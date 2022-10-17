@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.monster.render;
 
-import com.greatorator.tolkienmobs.client.render.HeldItemLayerMainOnly;
+import com.greatorator.tolkienmobs.entity.layers.HeldItemLayerMainOnly;
 import com.greatorator.tolkienmobs.entity.monster.MordorOrcEntity;
 import com.greatorator.tolkienmobs.entity.monster.model.MordorOrcModel;
 import com.mojang.blaze3d.matrix.MatrixStack;

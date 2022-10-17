@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.init.TTMTags;
+import com.greatorator.tolkienmobs.handler.TTMTags;
 import com.greatorator.tolkienmobs.world.gen.TTMFeatures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.MushroomBlock;

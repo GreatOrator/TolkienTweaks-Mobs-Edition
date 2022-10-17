@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.item.tools;
 
 import com.brandon3055.brandonscore.items.ItemBCore;
 import com.brandon3055.brandonscore.utils.ItemNBTHelper;
-import com.greatorator.tolkienmobs.client.gui.KeyBaseAccessScreen;
+import com.greatorator.tolkienmobs.container.gui.KeyBaseAccessScreen;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;

@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.item.signs;
 
-import com.greatorator.tolkienmobs.client.gui.MirkwoodSignScreen;
+import com.greatorator.tolkienmobs.container.gui.MirkwoodSignScreen;
 import com.greatorator.tolkienmobs.entity.tile.MirkwoodSignTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
