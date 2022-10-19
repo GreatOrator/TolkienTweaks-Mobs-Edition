@@ -480,10 +480,17 @@ public class LangGenerator extends LanguageProvider {
 
     private void enchants() {
         add("enchantment.tolkienmobs.balrogs_mark", "Balrog's Mark");
+        add("enchantment.tolkienmobs.balrogs_mark.desc", "Works similar to frost walker but changes the ground to magma blocks.");
         add("enchantment.tolkienmobs.elven_longevity", "Elven Longevity");
+        add("enchantment.tolkienmobs.elven_longevity.desc", "Live like the elves! Adds additional hearts to the player.");
         add("enchantment.tolkienmobs.gondor_resolve", "Gondorian Resolve");
+        add("enchantment.tolkienmobs.gondor_resolve.desc", "Stand your ground! Prevents knockback.");
         add("enchantment.tolkienmobs.dwarven_endurance", "Dwarven Endurance");
+        add("enchantment.tolkienmobs.dwarven_endurance.desc", "Provides sustenance to journey long from home.");
         add("enchantment.tolkienmobs.hobbit_plow", "Hobbit Plowing");
+        add("enchantment.tolkienmobs.hobbit_plow.desc", "Farm like the experts.  Will plow an area up to 9x9.");
+        add("enchantment.tolkienmobs.hobbit_harvest", "Hobbit Harvest");
+        add("enchantment.tolkienmobs.hobbit_harvest.desc", "Harvest and replant seeds from your bountiful farms. up to 9x9");
     }
 
     private void food() {

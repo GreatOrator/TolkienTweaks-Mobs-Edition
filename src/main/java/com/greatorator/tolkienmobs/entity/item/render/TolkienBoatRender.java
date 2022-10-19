@@ -30,5 +30,4 @@ public class TolkienBoatRender extends BoatRenderer {
                 return LEBETHRON_LOCATION;
         }
     }
-
 }

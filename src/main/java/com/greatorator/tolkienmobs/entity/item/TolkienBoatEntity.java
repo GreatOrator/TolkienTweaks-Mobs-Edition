@@ -66,6 +66,7 @@ public class TolkienBoatEntity extends BoatEntity {
         this.entityData.set(WOOD_TYPE, wood);
     }
 
+    @Nonnull
     @Override
     public Item getDropItem() {
         switch(this.getWoodType()) {

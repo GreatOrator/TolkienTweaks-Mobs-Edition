@@ -50,8 +50,6 @@ public class CommonProxy {
         TTMTags.init();
         MilestoneSaveData.init();
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-        MinecraftForge.EVENT_BUS.addListener(EntityEvents::balrogMark);
-        MinecraftForge.EVENT_BUS.addListener(EntityEvents::hobbitPlow);
         MinecraftForge.EVENT_BUS.addListener(EntityEvents::onPlayerUpdate);
         MinecraftForge.EVENT_BUS.addListener(EntityEvents::addDimensionalSpacing);
         MinecraftForge.EVENT_BUS.addListener(EntityEvents::biomeModification);
