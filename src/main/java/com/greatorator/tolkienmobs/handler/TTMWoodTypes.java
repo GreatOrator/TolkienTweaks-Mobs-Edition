@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.handler.enums;
+package com.greatorator.tolkienmobs.handler;
 
 import net.minecraft.block.WoodType;
 

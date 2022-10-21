@@ -9,7 +9,11 @@ import com.greatorator.tolkienmobs.entity.ambient.model.SwarmModel;
 import com.greatorator.tolkienmobs.entity.ambient.render.*;
 import com.greatorator.tolkienmobs.entity.boss.model.WitchKingModel;
 import com.greatorator.tolkienmobs.entity.boss.render.*;
-import com.greatorator.tolkienmobs.entity.item.render.*;
+import com.greatorator.tolkienmobs.entity.item.BoulderEntity;
+import com.greatorator.tolkienmobs.entity.item.FellBeastFireballEntity;
+import com.greatorator.tolkienmobs.entity.item.render.GaladhrimArrowRender;
+import com.greatorator.tolkienmobs.entity.item.render.TolkienBoatRender;
+import com.greatorator.tolkienmobs.entity.item.render.UtumnoArrowRender;
 import com.greatorator.tolkienmobs.entity.merchant.model.DwarfModel;
 import com.greatorator.tolkienmobs.entity.merchant.model.HumanModel;
 import com.greatorator.tolkienmobs.entity.merchant.render.*;
@@ -22,24 +26,25 @@ import com.greatorator.tolkienmobs.entity.passive.render.MumakilRender;
 import com.greatorator.tolkienmobs.entity.special.render.*;
 import com.greatorator.tolkienmobs.entity.tile.render.*;
 import com.greatorator.tolkienmobs.event.client.ClientEvents;
-import com.greatorator.tolkienmobs.handler.BowItemModelProperties;
-import com.greatorator.tolkienmobs.handler.TTMColor;
-import com.greatorator.tolkienmobs.handler.TTMHearts;
-import com.greatorator.tolkienmobs.handler.TTMSprites;
-import com.greatorator.tolkienmobs.handler.enums.TTMWoodTypes;
+import com.greatorator.tolkienmobs.handler.*;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
 import com.greatorator.tolkienmobs.item.tools.KeyRingItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.Atlases;
+import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.SpriteRenderer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemModelsProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -251,8 +256,8 @@ public class ClientProxy extends CommonProxy {
         // Ammo
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_ARROW_GALADHRIM.get(), GaladhrimArrowRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_ARROW_UTUMNO.get(), UtumnoArrowRender::new);
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_FELLBEAST_FIREBALL.get(), new RenderFellBeastFireball.RenderFactory());
-        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_BOULDER.get(), new RenderBoulder.RenderFactory());
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_FELLBEAST_FIREBALL.get(), new fellBeastFireballRenderFactory());
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_BOULDER.get(), new boulderRenderFactory());
 
         // Boats
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.MALLORN_BOAT.get(), TolkienBoatRender::new);
@@ -260,6 +265,22 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.CULUMALDA_BOAT.get(), TolkienBoatRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.LEBETHRON_BOAT.get(), TolkienBoatRender::new);
 
+    }
+
+    private static class boulderRenderFactory implements IRenderFactory<BoulderEntity> {
+        @Override
+        public EntityRenderer<? super BoulderEntity> createRenderFor(EntityRendererManager manager) {
+            ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+            return new SpriteRenderer<>(manager, itemRenderer);
+        }
+    }
+
+    private static class fellBeastFireballRenderFactory implements IRenderFactory<FellBeastFireballEntity> {
+        @Override
+        public EntityRenderer<? super FellBeastFireballEntity> createRenderFor(EntityRendererManager manager) {
+            ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+            return new SpriteRenderer<>(manager, itemRenderer);
+        }
     }
 
     public static void registerPropertyOverride() {

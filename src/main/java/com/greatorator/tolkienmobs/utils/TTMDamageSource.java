@@ -13,4 +13,8 @@ public class TTMDamageSource extends DamageSource {
         return (new EntityDamageSource("hallowed", source)).setThorns().setMagic();
     }
 
+    public static DamageSource causeFellBeastDamage(Entity source) {
+        return (new EntityDamageSource("fellbeast", source)).setIsFire().setProjectile().setMagic();
+    }
+
 }

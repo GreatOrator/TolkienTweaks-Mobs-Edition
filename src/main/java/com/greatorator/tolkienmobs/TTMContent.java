@@ -8,6 +8,7 @@ import com.greatorator.tolkienmobs.block.CropsBlock;
 import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.container.*;
 import com.greatorator.tolkienmobs.datagen.*;
+import com.greatorator.tolkienmobs.entity.item.TolkienBoatEntity;
 import com.greatorator.tolkienmobs.entity.tile.*;
 import com.greatorator.tolkienmobs.handler.*;
 import com.greatorator.tolkienmobs.handler.enums.TTMArmorTier;
@@ -55,7 +56,7 @@ import java.util.function.ToIntFunction;
 import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 import static com.greatorator.tolkienmobs.datagen.SoundGenerator.*;
-import static com.greatorator.tolkienmobs.handler.enums.TTMWoodTypes.*;
+import static com.greatorator.tolkienmobs.handler.TTMWoodTypes.*;
 
 /**
  * Created by brandon3055 on 31/1/21
@@ -575,14 +576,14 @@ public class TTMContent {
     // Projectiles
     public static RegistryObject<ArrowItem> GALADHRIM_ARROW = ITEMS.register("ammo_galadhrim_arrow", () -> new GaladhrimArrowItem((new Item.Properties()).tab(toolsGroup)));
     public static RegistryObject<ArrowItem> UTUMNO_ARROW = ITEMS.register("ammo_utumno_arrow", () -> new UtumnoArrowItem((new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<Item> BOULDER = ITEMS.register("ammo_boulder", () -> new TTMAmmo((new Item.Properties()).stacksTo(16).tab(toolsGroup)));
-    public static RegistryObject<Item> FELLBEAST_FIREBALL = ITEMS.register("ammo_fellbeast_fireball", () -> new TTMAmmo((new Item.Properties()).stacksTo(16).tab(toolsGroup)));
+    public static RegistryObject<Item> BOULDER = ITEMS.register("ammo_boulder", () -> new BoulderItem((new Item.Properties()).stacksTo(16).tab(toolsGroup)));
+    public static RegistryObject<Item> FELLBEAST_FIREBALL = ITEMS.register("ammo_fellbeast_fireball", () -> new FellBeastFireballItem((new Item.Properties()).stacksTo(16).tab(toolsGroup)));
 
     // Boats
-    public static RegistryObject<Item> MALLORN_BOAT = ITEMS.register("boat_mallorn", () -> new TolkienBoatItem((new Item.Properties()).tab(toolsGroup), "mallorn"));
-    public static RegistryObject<Item> MIRKWOOD_BOAT = ITEMS.register("boat_mirkwood", () -> new TolkienBoatItem((new Item.Properties()).tab(toolsGroup), "mirkwood"));
-    public static RegistryObject<Item> CULUMALDA_BOAT = ITEMS.register("boat_culumalda", () -> new TolkienBoatItem((new Item.Properties()).tab(toolsGroup), "culumalda"));
-    public static RegistryObject<Item> LEBETHRON_BOAT = ITEMS.register("boat_lebethron", () -> new TolkienBoatItem((new Item.Properties()).tab(toolsGroup), "lebetron"));
+    public static RegistryObject<Item> MALLORN_BOAT = ITEMS.register("boat_mallorn", () -> new TolkienBoatItem(TolkienBoatEntity.Type.MALLORN, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<Item> MIRKWOOD_BOAT = ITEMS.register("boat_mirkwood", () -> new TolkienBoatItem(TolkienBoatEntity.Type.MIRKWOOD, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<Item> CULUMALDA_BOAT = ITEMS.register("boat_culumalda", () -> new TolkienBoatItem(TolkienBoatEntity.Type.CULUMALDA, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<Item> LEBETHRON_BOAT = ITEMS.register("boat_lebethron", () -> new TolkienBoatItem(TolkienBoatEntity.Type.LEBETHRON, (new Item.Properties()).tab(toolsGroup)));
 
     // Coins & Tokens
     public static RegistryObject<Item> ITEM_COIN_BRONZE = ITEMS.register("item_coin_bronze", () -> new TTMLoreItem(new Item.Properties().tab(questGroup)).setHasLore());

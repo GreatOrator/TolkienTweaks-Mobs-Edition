@@ -5,7 +5,7 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.boss.GoblinKingEntity;
-import com.greatorator.tolkienmobs.entity.item.EntityBoulder;
+import com.greatorator.tolkienmobs.entity.item.BoulderEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -84,7 +84,7 @@ public class TreeEntEntity extends MonsterEntity implements IAngerable{
 
     @Override
     public void performRangedAttack(LivingEntity target, float distanceFactor) {
-        EntityBoulder entityboulder = new EntityBoulder(this.level, this);
+        BoulderEntity entityboulder = new BoulderEntity(this.level, this);
         if (!this.isSilent()) {
             this.level.levelEvent((PlayerEntity)null, 1024, this.blockPosition(), 0);
         }

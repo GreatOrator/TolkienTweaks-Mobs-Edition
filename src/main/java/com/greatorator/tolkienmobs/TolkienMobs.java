@@ -51,15 +51,11 @@ public class TolkienMobs {
 	        1. Fell Beast - Needs AI and Implementation
 			2. Gwaihir - Needs AI
 			3. Great Eagle - Needs AI
-			4. Boat - always spawns as oak
-		b. Ammo
-            1. Fell Beast Fireball - rendering
-	        2. Boulder - rendering
-	    c. Blocks
-	        1. Camo Spawner - Entity list creation
-	        2. Key Stone - Active state weirdness
+	    b. Blocks
+	        1. Key Stone - Active state weirdness
+	        2. Camo Spawner - Entity list creation
 	        3. Fluid Block - "Flood" area (3x3) with fluid
-	    d. Enchants
+	    c. Enchants
 	        1. Hobbit Plow - Not rendering block changes client side
     */
 

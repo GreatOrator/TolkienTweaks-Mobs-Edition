@@ -20,13 +20,14 @@ import java.util.function.Predicate;
 
 public class TolkienBoatItem extends BoatItem {
     private static final Predicate<Entity> ENTITY_PREDICATE = EntityPredicates.NO_SPECTATORS.and(Entity::canBeCollidedWith);
-    private final String woodType;
+    private final TolkienBoatEntity.Type woodType;
 
-    public TolkienBoatItem(Properties p_i48526_2_, String woodType) {
-        super(null, p_i48526_2_);
+    public TolkienBoatItem(TolkienBoatEntity.Type woodType, Properties properties) {
+        super(null, properties);
         this.woodType = woodType;
     }
 
+    @Override
     public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
         ItemStack itemstack = playerIn.getItemInHand(handIn);
         RayTraceResult raytraceresult = getPlayerPOVHitResult(worldIn, playerIn, RayTraceContext.FluidMode.ANY);
@@ -35,8 +36,7 @@ public class TolkienBoatItem extends BoatItem {
         } else {
             Vector3d vector3d = playerIn.getEyePosition(1.0F);
             double d0 = 5.0D;
-            List<Entity> list = worldIn.getEntities(playerIn,
-                    playerIn.getBoundingBox().expandTowards(vector3d.scale(5.0D)).inflate(1.0D), ENTITY_PREDICATE);
+            List<Entity> list = worldIn.getEntities(playerIn, playerIn.getBoundingBox().expandTowards(vector3d.scale(5.0D)).inflate(1.0D), ENTITY_PREDICATE);
             if (!list.isEmpty()) {
                 Vector3d vector3d1 = playerIn.getEyePosition(1.0F);
 
@@ -49,15 +49,14 @@ public class TolkienBoatItem extends BoatItem {
             }
 
             if (raytraceresult.getType() == RayTraceResult.Type.BLOCK) {
-                TolkienBoatEntity boatentity = new TolkienBoatEntity(worldIn, raytraceresult.getLocation().x,
-                        raytraceresult.getLocation().y, raytraceresult.getLocation().z);
-                boatentity.setWoodType(woodType);
-                boatentity.yRot = playerIn.yRot;
-                if (!worldIn.noCollision(boatentity, boatentity.getBoundingBox().inflate(-0.1D))) {
+                TolkienBoatEntity tolkienboatentity = new TolkienBoatEntity(worldIn, raytraceresult.getLocation().x, raytraceresult.getLocation().y, raytraceresult.getLocation().z);
+                tolkienboatentity.setWoodType(this.woodType);
+                tolkienboatentity.yRot = playerIn.yRot;
+                if (!worldIn.noCollision(tolkienboatentity, tolkienboatentity.getBoundingBox().inflate(-0.1D))) {
                     return ActionResult.fail(itemstack);
                 } else {
                     if (!worldIn.isClientSide) {
-                        worldIn.addFreshEntity(boatentity);
+                        worldIn.addFreshEntity(tolkienboatentity);
                         if (!playerIn.isCreative()) {
                             itemstack.shrink(1);
                         }

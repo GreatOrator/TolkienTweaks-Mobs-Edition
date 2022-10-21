@@ -5,7 +5,7 @@ import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMSwitchCombat;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMThrowandAttack;
-import com.greatorator.tolkienmobs.entity.item.EntityFellBeastFireball;
+import com.greatorator.tolkienmobs.entity.item.FellBeastFireballEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -89,12 +89,12 @@ public class BalrogEntity extends MonsterEntity {
     }
 
     @Override
-    public void performRangedAttack(LivingEntity p_82196_1_, float p_82196_2_) {
-        EntityFellBeastFireball fireballentity = new EntityFellBeastFireball(this.level, this);
-        double d0 = p_82196_1_.getEyeY() - (double)1.1F;
-        double d1 = p_82196_1_.getX() - this.getX();
+    public void performRangedAttack(LivingEntity entity, float x) {
+        double d0 = entity.getEyeY() - (double)1.1F;
+        double d1 = entity.getX() - this.getX();
+        double d3 = entity.getZ() - this.getZ();
+        FellBeastFireballEntity fireballentity = new FellBeastFireballEntity(this.level, this, d1, d0, d3);
         double d2 = d0 - fireballentity.getY();
-        double d3 = p_82196_1_.getZ() - this.getZ();
         float f = MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.2F;
         fireballentity.shoot(d1, d2 + (double)f, d3, 1.6F, 12.0F);
         this.playSound(SoundEvents.FIRECHARGE_USE, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
