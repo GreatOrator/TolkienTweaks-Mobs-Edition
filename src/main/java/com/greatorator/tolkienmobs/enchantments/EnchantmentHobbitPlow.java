@@ -22,8 +22,6 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
-
 @Mod.EventBusSubscriber(modid = TolkienMobs.MODID)
 public class EnchantmentHobbitPlow extends Enchantment {
     public EnchantmentHobbitPlow(Rarity rarityIn, EquipmentSlotType... slots) {
@@ -101,9 +99,7 @@ public class EnchantmentHobbitPlow extends Enchantment {
                 for (int x = -enchantmentLevel; x <= enchantmentLevel; x++) {
                     for (int z = -enchantmentLevel; z <= enchantmentLevel; z++) {
                         BlockPos targetPos = new BlockPos(blockPos.getX() + x, blockPos.getY(), blockPos.getZ() + z);
-                        Block block = event.getWorld().getBlockState(targetPos).getBlock();
                         if (world.isEmptyBlock(targetPos.above()) && world.getBlockState(targetPos).getMaterial().blocksMotion()) {
-                        LOGGER.info("Checking " + block + " with blockstate of " + world.getBlockState(targetPos).getMaterial().blocksMotion() + " at " + targetPos);
                         world.setBlock(targetPos, Blocks.FARMLAND.defaultBlockState(), 3);
                         world.playSound(player, blockPos, SoundEvents.HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
                         }

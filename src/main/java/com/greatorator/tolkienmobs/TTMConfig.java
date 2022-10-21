@@ -50,6 +50,7 @@ public class TTMConfig {
     public static double maximumCoinCost;
     public static boolean dimensionalWarp;
     public static boolean disableFakePlayer;
+    public static boolean replant;
     public static String exampleString;
     public static List<String> potionList;
 
@@ -92,6 +93,11 @@ public class TTMConfig {
                 .setComment("Enable Cross-dimensional Teleport between Milestones (Default true)")
                 .setDefaultBoolean(true)
                 .setSyncCallback((tag, type) -> dimensionalWarp = tag.getBoolean());
+
+        serverTag.getTag("replant")
+                .setComment("Crops will be replanted when harvested via right click. This requires a seed to drop, and is removed from the drop list. (Default true)")
+                .setDefaultBoolean(true)
+                .setSyncCallback((tag, type) -> replant = tag.getBoolean());
 
         serverTag.getTag("disableFakePlayer")
                 .setComment("Disable fake player in TolkienMobs (Default false)")

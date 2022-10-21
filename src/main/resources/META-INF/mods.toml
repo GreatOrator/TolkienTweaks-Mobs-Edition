@@ -1,13 +1,18 @@
 modLoader="javafml"
 loaderVersion="[36,)"
+issueTrackerURL = "https://github.com/GreatOrator/TolkienTweaks-Mobs-Edition/issues"
 license="MIT License"
 
 [[mods]]
 	modId="tolkienmobs"
 	displayName="Tolkien Tweaks (Mobs Edition)"
     version="${version}"
-	authors="GreatOrator"
-	description=''''''
+    credits = "Brandon3055 for all of his help on the more difficult stuff"
+    logoFile = "logo.png"
+    authors="GreatOrator"
+	description='''
+	Collection of items, blocks, mobs, etc for both increased play and map making
+	'''
     updateJSONURL=""
 [[dependencies.tolkienmobs]]
     modId="forge"
@@ -28,8 +33,8 @@ license="MIT License"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.tolkienmobs]]
-modId="brandonscore"
-mandatory=true
-versionRange="[${bcore_version},)"
-ordering="AFTER"
-side="BOTH"
+    modId="brandonscore"
+    mandatory=true
+    versionRange="[${bcore_version},)"
+    ordering="AFTER"
+    side="BOTH"

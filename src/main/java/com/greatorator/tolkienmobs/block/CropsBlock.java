@@ -1,7 +1,8 @@
 package com.greatorator.tolkienmobs.block;
 
+import com.greatorator.tolkienmobs.TTMContent;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.FarmlandBlock;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.IntegerProperty;
@@ -16,19 +17,26 @@ public class CropsBlock extends net.minecraft.block.CropsBlock {
 
     public CropsBlock(Properties builder) {
         super(builder);
-        this.defaultBlockState().setValue(this.getAgeProperty(), Integer.valueOf(0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(this.getAgeProperty(), Integer.valueOf(0)));
     }
 
-    protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return state.getBlock() instanceof FarmlandBlock;
+    @Override
+    public IntegerProperty getAgeProperty() {
+        return AGE;
     }
 
-    protected IItemProvider getSeedsItem() {
-        return this.asItem();
+    @Override
+    protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
+        return state.is(Blocks.FARMLAND);
     }
 
+    @Override
+    protected IItemProvider getBaseSeedId() {
+        return TTMContent.PIPEWEED_SEEDS.get();
+    }
 
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+    @Override
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
         items.add(new ItemStack(this));
     }
 }
