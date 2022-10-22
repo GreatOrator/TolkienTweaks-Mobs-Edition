@@ -22,6 +22,7 @@ public class BiomeIronHills {
         BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder())
                 .surfaceBuilder(ConfiguredSurfaceBuilders.GRAVELLY_MOUNTAIN);
         TTMDefaultBiomeFeatures.addMithrilOres(biomegenerationsettings$builder);
+        TTMDefaultBiomeFeatures.addRockPiles(biomegenerationsettings$builder);
 
         DefaultBiomeFeatures.addDefaultCarvers(biomegenerationsettings$builder);
         DefaultBiomeFeatures.addDefaultLakes(biomegenerationsettings$builder);

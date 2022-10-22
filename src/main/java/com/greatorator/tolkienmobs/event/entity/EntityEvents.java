@@ -45,7 +45,7 @@ public class EntityEvents {
 
         if(player.isInWater() && TimeKeeper.getServerTick() % 20 == 0) {
 
-            if(biome.getRegistryName().equals(BiomeGenerator.BIOME_MIRKWOOD.get().getRegistryName())) {
+            if(biome.getRegistryName().equals(BiomeGenerator.BIOME_MIRKWOOD.getRegistryName())) {
                 player.addEffect(new EffectInstance(PotionGenerator.SLEEPNESIA.get(), 1200, 8));
             }
         }
@@ -120,22 +120,22 @@ public class EntityEvents {
 
     public static void biomeModification(final BiomeLoadingEvent event) {
 
-        if (event.getName().equals(BiomeGenerator.BIOME_LORINAND.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_LORINAND)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOUSE_ELVEN);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_BARROWDOWNS.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_BARROWDOWNS)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMBARROW);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_MARSHES.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_MARSHES)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMSWAMP_HAG_HUT);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_SHIRE.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_SHIRE)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOUSE_HOBBIT);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_MIRKWOOD.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_MIRKWOOD)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMSPIDER_TREE);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_MORDOR.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_MORDOR)) {
             int i = TTMRand.getRandomInteger(100, 1);
 
             if(i<=25){
@@ -147,19 +147,19 @@ public class EntityEvents {
                 event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMWARG_PIT);
             }
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_IRONHILLS.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_IRONHILLS)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOUSE_DWARF);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_GLADDEN.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_GLADDEN)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOUSE_HUMAN);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_OLDFOREST.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_OLDFOREST)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMMINOTAUR_MAZE);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_HITHAEGLIR.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_HITHAEGLIR)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMGOLLUM_CAVE);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_HARADWAITH.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_HARADWAITH)) {
             int i = TTMRand.getRandomInteger(100, 1);
 
             if(i<=50){
@@ -168,7 +168,7 @@ public class EntityEvents {
                 event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMINN_DESERT);
             }
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_DAGORLAD.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_DAGORLAD)) {
             int i = TTMRand.getRandomInteger(100, 1);
 
             if(i<=25){

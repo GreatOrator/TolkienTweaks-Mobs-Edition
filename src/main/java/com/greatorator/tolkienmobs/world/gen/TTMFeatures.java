@@ -58,6 +58,7 @@ public final class TTMFeatures {
     public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_CULUMALDA_LEAFPILES_SPARSE = register("patch_culumalda_leafpiles_sparse", PATCH_CULUMALDA_LEAFPILES.decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE));
     public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_LEBETHRON_LEAFPILES_SPARSE = register("patch_lebethron_leafpiles_sparse", PATCH_LEBETHRON_LEAFPILES.decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE));
     public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_FANGORNOAK_LEAFPILES_SPARSE = register("patch_fangornoak_leafpiles_sparse", PATCH_FANGORNOAK_LEAFPILES.decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE));
+    public static final ConfiguredFeature<?, ? extends Feature<?>> ROCKPILES = register("patch_rockpiles", Feature.RANDOM_PATCH.configured(TTMConfigs.ROCKPILES_CONFIG).decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE));
 
     private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> feature) {
         return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, TolkienMobs.MODID + ":" + name, feature);
@@ -75,6 +76,7 @@ public final class TTMFeatures {
         public static final BlockClusterFeatureConfig CULUMALDA_LEAFPILES_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(States.LEAFPILE_CULUMALDA), SimpleBlockPlacer.INSTANCE)).tries(64).whitelist(ImmutableSet.of(States.GRASS_BLOCK.getBlock())).noProjection().build();
         public static final BlockClusterFeatureConfig LEBETHRON_LEAFPILES_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(States.LEAFPILE_LEBETHRON), SimpleBlockPlacer.INSTANCE)).tries(64).whitelist(ImmutableSet.of(States.GRASS_BLOCK.getBlock())).noProjection().build();
         public static final BlockClusterFeatureConfig FANGORNOAK_LEAFPILES_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(States.LEAFPILE_FANGORNOAK), SimpleBlockPlacer.INSTANCE)).tries(64).whitelist(ImmutableSet.of(States.GRASS_BLOCK.getBlock())).noProjection().build();
+        public static final BlockClusterFeatureConfig ROCKPILES_CONFIG = (new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().add(States.ROCKPILE, 2), SimpleBlockPlacer.INSTANCE)).tries(64).build();
     }
 
     public static final class States {
@@ -110,5 +112,6 @@ public final class TTMFeatures {
         public static final BlockState DARK_OAK_LOGS = Blocks.DARK_OAK_LOG.defaultBlockState();
         public static final BlockState DARK_OAK_LEAVES = Blocks.DARK_OAK_LEAVES.defaultBlockState();
         public static final BlockState STONE = Blocks.STONE.defaultBlockState();
+        public static final BlockState ROCKPILE = TTMContent.ROCKPILE.get().defaultBlockState();
     }
 }

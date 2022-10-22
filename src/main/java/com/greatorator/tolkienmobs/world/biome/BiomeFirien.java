@@ -28,6 +28,7 @@ public class BiomeFirien {
         TTMDefaultBiomeFeatures.addFirienTrees(biomegenerationsettings$builder);
         TTMDefaultBiomeFeatures.addCulumaldaLeafPiles(biomegenerationsettings$builder);
         TTMDefaultBiomeFeatures.addLebethronLeafPiles(biomegenerationsettings$builder);
+        TTMDefaultBiomeFeatures.addRockPiles(biomegenerationsettings$builder);
 
         DefaultBiomeFeatures.addFossilDecoration(biomegenerationsettings$builder);
         DefaultBiomeFeatures.addDefaultUndergroundVariety(biomegenerationsettings$builder);

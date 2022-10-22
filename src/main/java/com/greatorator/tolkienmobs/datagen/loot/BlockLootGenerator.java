@@ -160,6 +160,7 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.BARREL_MITHRIL.get());
         dropSelf(TTMContent.BACKPACK.get());
         dropSelf(TTMContent.CHAMELEON_BLOCK.get());
+        dropSelf(TTMContent.ROCKPILE.get());
 
         // Blocks - Sleeping Bags
         add(TTMContent.SLEEPING_BAG_RED.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));

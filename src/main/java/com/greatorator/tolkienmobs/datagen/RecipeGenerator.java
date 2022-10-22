@@ -189,6 +189,13 @@ public class RecipeGenerator extends RecipeProvider {
         boatRecipe(TTMContent.MIRKWOOD_BOAT.get(), TTMContent.PLANKS_MIRKWOOD.get(), consumer);
         boatRecipe(TTMContent.CULUMALDA_BOAT.get(), TTMContent.PLANKS_CULUMALDA.get(), consumer);
         boatRecipe(TTMContent.LEBETHRON_BOAT.get(), TTMContent.PLANKS_LEBETHRON.get(), consumer);
+
+        // Leafpile Recipes
+        leafPileRecipe(TTMContent.LEAFPILE_MALLORN.get(), TTMContent.LEAVES_MALLORN.get(), consumer);
+        leafPileRecipe(TTMContent.LEAFPILE_MIRKWOOD.get(), TTMContent.LEAVES_MIRKWOOD.get(), consumer);
+        leafPileRecipe(TTMContent.LEAFPILE_CULUMALDA.get(), TTMContent.LEAVES_CULUMALDA.get(), consumer);
+        leafPileRecipe(TTMContent.LEAFPILE_LEBETHRON.get(), TTMContent.LEAVES_LEBETHRON.get(), consumer);
+        leafPileRecipe(TTMContent.LEAFPILE_FANGORNOAK.get(), TTMContent.LEAVES_FANGORNOAK.get(), consumer);
     }
 
     private static void specialty(Consumer<IFinishedRecipe> consumer) {
@@ -752,6 +759,14 @@ public class RecipeGenerator extends RecipeProvider {
         ShapelessRecipeBuilder
                 .shapeless(output, 4)
                 .requires(input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer);
+    }
+
+    public static void leafPileRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 3)
+                .pattern("##")
+                .define('#', input)
                 .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
                 .save(consumer);
     }

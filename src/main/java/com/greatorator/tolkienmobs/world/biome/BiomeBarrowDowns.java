@@ -23,6 +23,7 @@ public class BiomeBarrowDowns {
         // Biome Settings
         BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder())
                 .surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
+        TTMDefaultBiomeFeatures.addRockPiles(builder);
         DefaultBiomeFeatures.addDefaultUndergroundVariety(builder);
         DefaultBiomeFeatures.addDefaultOres(builder);
         DefaultBiomeFeatures.addDefaultSoftDisks(builder);

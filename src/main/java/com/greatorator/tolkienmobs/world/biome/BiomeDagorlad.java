@@ -37,6 +37,7 @@ public class BiomeDagorlad {
         DefaultBiomeFeatures.addSurfaceFreezing(biomegenerationsettings$builder);
 
         TTMDefaultBiomeFeatures.addDesolation(biomegenerationsettings$builder);
+        TTMDefaultBiomeFeatures.addRockPiles(biomegenerationsettings$builder);
         LOGGER.info("Where have the Entwives gone...");
         return (new Biome.Builder())
                 .precipitation(Biome.RainType.RAIN)

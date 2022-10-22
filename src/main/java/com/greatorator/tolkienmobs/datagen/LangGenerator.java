@@ -157,6 +157,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.KEY_STONE_BLOCK.get(), "Camouflage Key Stone");
         add(TTMContent.CAMO_GLOWSTONE_BLOCK.get(), "Camouflage Glowstone");
         add(TTMContent.CAMO_SMOKER_BLOCK.get(), "Camouflage Smoker");
+        add(TTMContent.ROCKPILE.get(), "Rockpile");
         add(TTMContent.CAMO_FLUID_BLOCK.get(), "Camouflage Fluid Source");
         addLore(Item.byBlock(TTMContent.CAMO_FLUID_BLOCK.get()), "Right-click with bucket to set fluid");
         add(TTMContent.CAMO_CHEST_BLOCK.get(), "Camouflage Chest");

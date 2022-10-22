@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.proxy;
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.datagen.BiomeGenerator;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
 import com.greatorator.tolkienmobs.datagen.StructureGenerator;
@@ -71,6 +72,8 @@ public class CommonProxy {
             TTMStructureConfig.registerConfiguredStructures();
         });
         EntityGenerator.registerSpawnPlacement();
+        BiomeGenerator.addBiomesToOverworld();
+        BiomeGenerator.addTypes();
     }
 
     public void clientSetup(FMLClientSetupEvent event) {

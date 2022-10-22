@@ -100,7 +100,7 @@ public class EnchantmentHobbitPlow extends Enchantment {
                     for (int z = -enchantmentLevel; z <= enchantmentLevel; z++) {
                         BlockPos targetPos = new BlockPos(blockPos.getX() + x, blockPos.getY(), blockPos.getZ() + z);
                         if (world.isEmptyBlock(targetPos.above()) && world.getBlockState(targetPos).getMaterial().blocksMotion()) {
-                        world.setBlock(targetPos, Blocks.FARMLAND.defaultBlockState(), 3);
+                        world.setBlockAndUpdate(targetPos, Blocks.FARMLAND.defaultBlockState());
                         world.playSound(player, blockPos, SoundEvents.HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
                         }
                     }

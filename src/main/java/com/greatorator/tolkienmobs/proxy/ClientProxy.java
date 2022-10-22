@@ -101,7 +101,6 @@ public class ClientProxy extends CommonProxy {
 
     public static void setupRenderLayers() {
         RenderType cutout = RenderType.cutout();
-        RenderType solid = RenderType.solid();
         RenderType cutoutMipped = RenderType.cutoutMipped();
         RenderType translucent = RenderType.translucent();
 
@@ -144,11 +143,11 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(TTMContent.WALL_TORCH_MIRKWOOD.get(), cutout);
         RenderTypeLookup.setRenderLayer(TTMContent.WALL_TORCH_CULUMALDA.get(), cutout);
         RenderTypeLookup.setRenderLayer(TTMContent.WALL_TORCH_LEBETHRON.get(), cutout);
-        RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_MALLORN.get(), cutout);
-        RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_MIRKWOOD.get(), cutout);
-        RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_CULUMALDA.get(), cutout);
-        RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_LEBETHRON.get(), cutout);
-        RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_FANGORNOAK.get(), cutout);
+        RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_MALLORN.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_MIRKWOOD.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_CULUMALDA.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_LEBETHRON.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(TTMContent.LEAFPILE_FANGORNOAK.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(TTMContent.TTMFIREPLACE.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(TTMContent.PIGGYBANK.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(TTMContent.PIPEWEED.get(), cutout);
@@ -159,7 +158,7 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(CAMO_SMOKER_BLOCK.get(), cutout);
         RenderTypeLookup.setRenderLayer(CAMO_FLUID_BLOCK.get(), cutout);
         RenderTypeLookup.setRenderLayer(CAMO_SPAWNER_BLOCK.get(), cutout);
-        RenderTypeLookup.setRenderLayer(MILESTONE_BLOCK.get(), cutout);
+        RenderTypeLookup.setRenderLayer(ROCKPILE.get(), cutoutMipped);
 
         // Fluids
         RenderTypeLookup.setRenderLayer(MITHRIL_FLUID.get(), translucent);

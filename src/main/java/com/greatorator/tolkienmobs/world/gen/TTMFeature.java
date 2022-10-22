@@ -50,21 +50,22 @@ public class TTMFeature {
     }
 
     public static void biomeLoading(BiomeLoadingEvent event) {
-        if (event.getName().equals(BiomeGenerator.BIOME_FANGORN.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_FANGORN)) {
             event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, SMALL_LOG_CONFIG);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_OLDFOREST.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_OLDFOREST)) {
             event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, BLEAK_LAND_CONFIG);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_DAGORLAD.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_DAGORLAD)) {
             event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, RANDOM_RUBBLE_CONFIG);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_BARROWDOWNS.getId())) {
+        if (event.getName().equals(BiomeGenerator.BIOME_BARROWDOWNS)) {
             event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, STONE_SPIKE_CONFIG);
         }
 
         /* Used to test for feature generation */
         if (event.getCategory() == Biome.Category.PLAINS) {
+//            event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.ROCKPILES);
         }
     }
 

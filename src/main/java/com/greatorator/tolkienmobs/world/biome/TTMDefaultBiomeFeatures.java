@@ -36,6 +36,7 @@ public class TTMDefaultBiomeFeatures {
     }
 
     public static void addDesolation(BiomeGenerationSettings.Builder p_243763_0_) {
+        p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.ROCKPILES);
         p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.OAK_BADLANDS);
         p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.FOREST_ROCK);
         p_243763_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.GENERAL_ROCK);
@@ -93,6 +94,10 @@ public class TTMDefaultBiomeFeatures {
 
     public static void addLebethronLeafPiles(BiomeGenerationSettings.Builder p_243758_0_) {
         p_243758_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.PATCH_LEBETHRON_LEAFPILES_SPARSE);
+    }
+
+    public static void addRockPiles(BiomeGenerationSettings.Builder p_243758_0_) {
+        p_243758_0_.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.ROCKPILES);
     }
 
     public static void addMarshVegetation(BiomeGenerationSettings.Builder p_243702_0_) {

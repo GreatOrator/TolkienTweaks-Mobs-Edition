@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "tolkienmobs:block/rockpile"
+      },
+      {
+        "model": "tolkienmobs:block/rockpile1"
+      },
+      {
+        "model": "tolkienmobs:block/rockpile2"
+      },
+      {
+        "model": "tolkienmobs:block/rockpile3"
+      }
+      ]
+  }
+}

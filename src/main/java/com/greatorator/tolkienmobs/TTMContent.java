@@ -216,11 +216,11 @@ public class TTMContent {
     public static RegistryObject<LeavesBlock> LEAVES_MALLORN = BLOCKS.register("leaves_mallorn", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_MIRKWOOD = BLOCKS.register("leaves_mirkwood", TTMContent::createLeavesBlock);
     public static RegistryObject<LeavesBlock> LEAVES_FANGORNOAK = BLOCKS.register("leaves_fangornoak", TTMContent::createLeavesBlock);
-    public static RegistryObject<Block> LEAFPILE_MALLORN = BLOCKS.register("leafpile_mallorn", () -> new LeafPileBlock(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_YELLOW).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAFPILE_MIRKWOOD = BLOCKS.register("leafpile_mirkwood", () -> new LeafPileBlock(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAFPILE_CULUMALDA = BLOCKS.register("leafpile_culumalda", () -> new LeafPileBlock(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_PINK).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAFPILE_LEBETHRON = BLOCKS.register("leafpile_lebethron", () -> new LeafPileBlock(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_LIGHT_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAFPILE_FANGORNOAK = BLOCKS.register("leafpile_fangornoak", () -> new LeafPileBlock(AbstractBlock.Properties.of(Material.GRASS, MaterialColor.TERRACOTTA_GREEN).strength(2.0F, 3.0F).sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_MALLORN = BLOCKS.register("leafpile_mallorn", () -> new LeafPileBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.TERRACOTTA_YELLOW).strength(2.0F, 3.0F).noOcclusion().sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_MIRKWOOD = BLOCKS.register("leafpile_mirkwood", () -> new LeafPileBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.TERRACOTTA_GREEN).strength(2.0F, 3.0F).noOcclusion().sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_CULUMALDA = BLOCKS.register("leafpile_culumalda", () -> new LeafPileBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.TERRACOTTA_PINK).strength(2.0F, 3.0F).noOcclusion().sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_LEBETHRON = BLOCKS.register("leafpile_lebethron", () -> new LeafPileBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.TERRACOTTA_LIGHT_GREEN).strength(2.0F, 3.0F).noOcclusion().sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAFPILE_FANGORNOAK = BLOCKS.register("leafpile_fangornoak", () -> new LeafPileBlock(AbstractBlock.Properties.of(Material.LEAVES, MaterialColor.TERRACOTTA_GREEN).strength(2.0F, 3.0F).noOcclusion().sound(SoundType.GRASS)));
     public static RegistryObject<SaplingBlock> SAPLING_MALLORN = BLOCKS.register("sapling_mallorn", () -> new SaplingBlock(new TTMMallornTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
     public static RegistryObject<SaplingBlock> SAPLING_MIRKWOOD = BLOCKS.register("sapling_mirkwood", () -> new SaplingBlock(new TTMMirkwoodTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
     public static RegistryObject<SaplingBlock> SAPLING_CULUMALDA = BLOCKS.register("sapling_culumalda", () -> new SaplingBlock(new TTMCulumaldaTree(), AbstractBlock.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
@@ -267,6 +267,7 @@ public class TTMContent {
     public static RegistryObject<Block> MILESTONE_BLOCK = BLOCKS.register("milestone_block", () -> new MilestoneBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
     public static RegistryObject<Block> LOCKABLE_CHEST_BLOCK = BLOCKS.register("lockable_chest_block", () -> new LockableChestBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
     public static RegistryObject<Block> LOCKABLE_TREASURE_CHEST_BLOCK = BLOCKS.register("lockable_treasure_chest_block", () -> new LockableChestBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
+    public static RegistryObject<Block> ROCKPILE = BLOCKS.register("rockpile", () -> new RockPileBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_GRAY).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).harvestLevel(2).strength(5f, 6f)));
 
     // Custom - Sleeping Bags
     public static RegistryObject<Block> SLEEPING_BAG_BLUE = BLOCKS.register("sleeping_bag_blue", () -> new SleepingBagBlock(DyeColor.BLUE, AbstractBlock.Properties.of(Material.WOOL, (state) -> {
@@ -441,6 +442,7 @@ public class TTMContent {
     public static RegistryObject<Item> MILESTONE_BLOCK_ITEM = ITEMS.register("milestone_block", () -> new ItemBlockBCore(MILESTONE_BLOCK.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> LOCKABLE_CHEST_BLOCK_ITEM = ITEMS.register("lockable_chest_block", () -> new ItemBlockBCore(LOCKABLE_CHEST_BLOCK.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> LOCKABLE_TREASURE_CHEST_BLOCK_ITEM = ITEMS.register("lockable_treasure_chest_block", () -> new ItemBlockBCore(LOCKABLE_TREASURE_CHEST_BLOCK.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> ROCKPILE_ITEM = ITEMS.register("rockpile", () -> new ItemBlockBCore(ROCKPILE.get(), new Item.Properties().tab(decoGroup)));
 
     // Blocks - Sleeping Bags
     public static RegistryObject<Item> SLEEPING_BAG_BLUE_ITEM = ITEMS.register("sleeping_bag_blue", () -> new TTMLoreBlock(SLEEPING_BAG_BLUE.get(), new Item.Properties().tab(decoGroup)).setHasLore());

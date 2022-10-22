@@ -29,6 +29,7 @@ public class BiomeMordor {
         TTMDefaultBiomeFeatures.addMorgulironOres(builder);
         TTMDefaultBiomeFeatures.addDeadTrees(builder);
         TTMDefaultBiomeFeatures.addLavaLakes(builder);
+        TTMDefaultBiomeFeatures.addRockPiles(builder);
 
         LOGGER.info("Beware the all-seeing eye...");
         return (new Biome.Builder())

@@ -87,6 +87,12 @@ public class WargEntity extends WolfEntity {
         this.entityData.set(WARG_TYPE, type);
     }
 
+    @Override
+    public double getPassengersRidingOffset()
+    {
+        return super.getPassengersRidingOffset() - 0.025D;
+    }
+
     @Nullable
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
