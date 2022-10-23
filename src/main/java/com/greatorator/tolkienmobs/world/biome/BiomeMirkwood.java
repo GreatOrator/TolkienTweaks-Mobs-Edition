@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.biome;
 
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
@@ -49,7 +50,7 @@ public class BiomeMirkwood {
                         .fogColor(5988193)
                         .foliageColorOverride(738353)
                         .skyColor(getSkyColorWithTemperatureModifier(0.6F))
-                        .ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS)
+                        .ambientLoopSound(SoundEvents.AMBIENT_WARPED_FOREST_LOOP)
                         .build())
                 .mobSpawnSettings(spawnInf.build())
                 .generationSettings(builder.build())

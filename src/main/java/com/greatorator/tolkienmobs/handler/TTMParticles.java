@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.handler;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.lib.LeafParticle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.ParticleManager;
@@ -27,12 +28,14 @@ public class TTMParticles {
     public static BasicParticleType mirkwood_flame = new BasicParticleType(false);
     public static BasicParticleType culumalda_flame = new BasicParticleType(false);
     public static BasicParticleType lebethron_flame = new BasicParticleType(false);
+    public static BasicParticleType falling_leaves = new BasicParticleType(false);
 
     @SubscribeEvent
     public static void registerParticles(RegistryEvent.Register<ParticleType<?>> event) {
         event.getRegistry().register(mirkwood_flame.setRegistryName("mirkwood_flame"));
         event.getRegistry().register(culumalda_flame.setRegistryName("culumalda_flame"));
         event.getRegistry().register(lebethron_flame.setRegistryName("lebethron_flame"));
+        event.getRegistry().register(falling_leaves.setRegistryName("falling_leaves"));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -42,5 +45,6 @@ public class TTMParticles {
         manager.register(mirkwood_flame, FlameParticle.Factory::new);
         manager.register(culumalda_flame, FlameParticle.Factory::new);
         manager.register(lebethron_flame, FlameParticle.Factory::new);
+        manager.register(falling_leaves, LeafParticle.DefaultFactory::new);
     }
 }

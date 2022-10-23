@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.biome;
 
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
@@ -57,7 +58,7 @@ public class BiomeFirien {
                         .grassColorOverride(2292007)
                         .skyColor(getSkyColorWithTemperatureModifier(0.7F))
                         .foliageColorOverride(2292007)
-                        .ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS)
+                        .ambientLoopSound(SoundEvents.AMBIENT_CRIMSON_FOREST_MOOD)
                         .build())
                 .mobSpawnSettings(spawnInf.build())
                 .generationSettings(biomegenerationsettings$builder.build())

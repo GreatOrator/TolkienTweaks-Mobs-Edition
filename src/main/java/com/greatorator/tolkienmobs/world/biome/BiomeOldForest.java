@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.biome;
 
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
@@ -54,7 +55,7 @@ public class BiomeOldForest {
                         .fogColor(5988193)
                         .foliageColorOverride(5163086)
                         .skyColor(getSkyColorWithTemperatureModifier(0.8F))
-                        .ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS)
+                        .ambientLoopSound(SoundEvents.AMBIENT_CRIMSON_FOREST_LOOP)
                         .build())
                 .mobSpawnSettings(spawnInf.build())
                 .generationSettings(builder.build())

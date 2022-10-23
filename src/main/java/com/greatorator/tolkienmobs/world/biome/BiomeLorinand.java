@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.world.biome;
 
 import com.greatorator.tolkienmobs.datagen.SoundGenerator;
+import com.greatorator.tolkienmobs.handler.TTMParticles;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
@@ -51,8 +52,9 @@ public class BiomeLorinand {
                         .grassColorOverride(7006317)
                         .waterFogColor(5541815)
                         .fogColor(14412287)
-                        .foliageColorOverride(8640564)
+                        .foliageColorOverride(15591305)
                         .skyColor(getSkyColorWithTemperatureModifier(0.6F))
+                        .ambientParticle(new ParticleEffectAmbience(TTMParticles.falling_leaves, 0.00625F))
                         .ambientLoopSound(SoundGenerator.thelightoflothlorien.get())
                         .build())
                 .mobSpawnSettings(spawnInf.build())

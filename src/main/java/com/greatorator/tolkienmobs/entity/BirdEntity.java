@@ -48,8 +48,8 @@ public class BirdEntity extends AnimalEntity implements IFlyingAnimal {
     private BlockPos anchorPoint = BlockPos.ZERO;
     private boolean orderedToSit;
 
-    protected BirdEntity(EntityType<? extends AnimalEntity> p_i48578_1_, World p_i48578_2_) {
-        super(p_i48578_1_, p_i48578_2_);
+    protected BirdEntity(EntityType<? extends AnimalEntity> entityType, World world) {
+        super(entityType, world);
         this.moveControl = new TTMFlyingMovementController(this, 60, true);
         this.setPathfindingMalus(PathNodeType.DANGER_FIRE, -1.0F);
         this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, -1.0F);

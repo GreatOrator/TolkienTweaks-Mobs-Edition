@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.world.biome;
 
+import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
@@ -56,7 +57,7 @@ public class BiomeIronHills {
                         .grassColorOverride(2292007)
                         .skyColor(getSkyColorWithTemperatureModifier(0.2F))
                         .foliageColorOverride(2292007)
-                        .ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS)
+                        .ambientLoopSound(SoundGenerator.allthatglittersinerebor.get())
                         .build())
                 .mobSpawnSettings(spawnInf.build())
                 .generationSettings(biomegenerationsettings$builder.build())

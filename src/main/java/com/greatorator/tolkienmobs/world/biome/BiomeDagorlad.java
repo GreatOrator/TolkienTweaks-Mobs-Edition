@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.world.biome;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
@@ -53,7 +54,7 @@ public class BiomeDagorlad {
                         .grassColorOverride(14596231)
                         .skyColor(getSkyColorWithTemperatureModifier(0.8F))
                         .foliageColorOverride(14596231)
-                        .ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS)
+                        .ambientLoopSound(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD)
                         .build())
                 .mobSpawnSettings(spawnInf.build())
                 .generationSettings(biomegenerationsettings$builder.build())

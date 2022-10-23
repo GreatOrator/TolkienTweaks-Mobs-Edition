@@ -1,5 +1,7 @@
 package com.greatorator.tolkienmobs.world.biome;
 
+import com.greatorator.tolkienmobs.datagen.SoundGenerator;
+import com.greatorator.tolkienmobs.handler.TTMParticles;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
@@ -56,7 +58,8 @@ public class BiomeGladden {
                         .grassColorOverride(14596231)
                         .skyColor(getSkyColorWithTemperatureModifier(0.8F))
                         .foliageColorOverride(14596231)
-                        .ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS)
+                        .ambientParticle(new ParticleEffectAmbience(TTMParticles.falling_leaves, 0.00625F))
+                        .ambientLoopSound(SoundGenerator.medieval_city.get())
                         .build())
                 .mobSpawnSettings(spawnInf.build())
                 .generationSettings(biomegenerationsettings$builder.build())

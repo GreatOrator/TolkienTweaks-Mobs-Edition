@@ -67,6 +67,7 @@ public class CommonProxy {
     public void commonSetup(FMLCommonSetupEvent event) {
         RecipeGenerator.potions();
         TTMConfig.loadPotionList();
+        TTMConfig.loadDimensionList();
         event.enqueueWork(() -> {
             StructureGenerator.setupStructures();
             TTMStructureConfig.registerConfiguredStructures();

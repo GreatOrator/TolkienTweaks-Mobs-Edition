@@ -1,5 +1,7 @@
 package com.greatorator.tolkienmobs.world.biome;
 
+import com.greatorator.tolkienmobs.datagen.SoundGenerator;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
@@ -49,7 +51,8 @@ public class BiomeBarrowDowns {
                         .fogColor(11119017)
                         .foliageColorOverride(14481884)
                         .skyColor(getSkyColorWithTemperatureModifier(0.6F))
-                        .ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS)
+                        .ambientParticle(new ParticleEffectAmbience(ParticleTypes.WHITE_ASH, 0.118093334F))
+                        .ambientLoopSound(SoundGenerator.paths_of_the_dead.get())
                         .build())
                 .mobSpawnSettings(spawnInf.build())
                 .generationSettings(builder.build())

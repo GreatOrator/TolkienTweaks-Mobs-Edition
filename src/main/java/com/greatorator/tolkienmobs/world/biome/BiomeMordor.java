@@ -1,5 +1,7 @@
 package com.greatorator.tolkienmobs.world.biome;
 
+import com.greatorator.tolkienmobs.datagen.SoundGenerator;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
@@ -46,7 +48,8 @@ public class BiomeMordor {
                         .waterColor(0)
                         .waterFogColor(329011)
                         .fogColor(12638463)
-                        .ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS)
+                        .ambientLoopSound(SoundGenerator.khazaddum.get())
+                        .ambientParticle(new ParticleEffectAmbience(ParticleTypes.ASH, 0.00625F))
                         .build())
                 .mobSpawnSettings(spawnInf.build())
                 .generationSettings(builder.build())

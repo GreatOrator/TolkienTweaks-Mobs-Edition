@@ -12,11 +12,11 @@ import net.minecraft.util.ResourceLocation;
 
 import java.util.*;
 
-public class TTMBaseTrigger implements ICriterionTrigger<TTMBaseTrigger.Instance>{
+public class BaseTrigger implements ICriterionTrigger<BaseTrigger.Instance>{
     private final Map<PlayerAdvancements, Listeners> listeners = Maps.newHashMap();
     private final ResourceLocation id;
 
-    public TTMBaseTrigger(ResourceLocation id) {
+    public BaseTrigger(ResourceLocation id) {
         this.id = id;
     }
 

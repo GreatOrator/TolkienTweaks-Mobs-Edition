@@ -5,6 +5,7 @@ import codechicken.lib.config.StandardConfigFile;
 import com.google.common.collect.Lists;
 import net.minecraft.potion.Effect;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.DimensionType;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.nio.file.Paths;
@@ -113,6 +114,7 @@ public class TTMConfig {
 
     //Client properties
     public static boolean HeartOverlay;
+    public static List<String> dimensionList;
 
     private static void loadClient() {
         clientTag = config.getTag("Client");
@@ -122,12 +124,19 @@ public class TTMConfig {
                 .setComment("Enable Heart Overlay Feature - Default True")
                 .setDefaultBoolean(true)
                 .setSyncCallback((tag, type) -> HeartOverlay = tag.getBoolean());
+        clientTag.getTag("noWind")
+                .setComment("Add or remove effect types for trinkets")
+                .setDefaultStringList(Lists.newArrayList(dimensionTypeArray))
+                .setSyncToClient()
+                .setSyncCallback((tag, type) -> dimensionList = tag.getStringList());
     }
 
     public static String[] potionTypeArray = new String[]{"tolkienmobs:blessing_of_eru", "tolkienmobs:elven_nimbleness", "tolkienmobs:ent_draught", "tolkienmobs:personal_blacksmith", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:fire_resistance"};
+    public static String[] dimensionTypeArray = new String[]{DimensionType.NETHER_LOCATION.location().toString(), DimensionType.END_LOCATION.location().toString()};
 
 
     public static Effect[] potionArray = new Effect[0];
+    public static String[] dimensionArray = new String[0];
 
     public static void loadPotionList() {
         List<Effect> potions = new ArrayList<>();
@@ -138,5 +147,15 @@ public class TTMConfig {
             }
         }
         potionArray = potions.toArray(new Effect[0]);
+    }
+
+    public static void loadDimensionList() {
+        List<String> dimensions = new ArrayList<>();
+        for (String name : dimensionTypeArray) {
+            if (name != null) {
+                dimensions.add(name);
+            }
+        }
+        dimensionArray = dimensions.toArray(new String[0]);
     }
 }
