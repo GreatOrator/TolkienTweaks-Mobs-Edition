@@ -8,7 +8,6 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
@@ -18,7 +17,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -27,6 +26,7 @@ public class EnchantmentHobbitPlow extends Enchantment {
     public EnchantmentHobbitPlow(Rarity rarityIn, EquipmentSlotType... slots) {
         super(rarityIn, EnchantmentType.DIGGER, slots);
     }
+
     @Override
     public int getMinCost(int enchantmentLevel) {
         return 10 * (enchantmentLevel - 1);
@@ -49,8 +49,7 @@ public class EnchantmentHobbitPlow extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        if(stack.getItem() instanceof HoeItem || stack.getToolTypes().contains(ToolType.HOE))
-        {
+        if (stack.getItem() instanceof HoeItem || stack.getToolTypes().contains(ToolType.HOE)) {
             return (stack.getItem() instanceof HoeItem || stack.getToolTypes().contains(ToolType.HOE));
         }
 
@@ -59,8 +58,7 @@ public class EnchantmentHobbitPlow extends Enchantment {
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if(stack.getItem() instanceof HoeItem || stack.getToolTypes().contains(ToolType.HOE))
-        {
+        if (stack.getItem() instanceof HoeItem || stack.getToolTypes().contains(ToolType.HOE)) {
             return (stack.getItem() instanceof HoeItem || stack.getToolTypes().contains(ToolType.HOE));
         }
 
@@ -78,19 +76,21 @@ public class EnchantmentHobbitPlow extends Enchantment {
     }
 
     @SubscribeEvent
-    public static void hobbitPlow(BlockEvent.BlockToolInteractEvent event) {
+    public static void hobbitPlow(PlayerInteractEvent.RightClickBlock event) {
+        ItemStack holding = event.getItemStack();
         PlayerEntity player = event.getPlayer();
-        World world = (World) event.getWorld();
+        if (holding.isEmpty() || event.getWorld().isClientSide()) return;
+
+        World world = event.getWorld();
         BlockPos blockPos = event.getPos();
-        ItemStack holding = event.getHeldItemStack();
+
         int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentGenerator.HOBBIT_PLOW.get(), holding);
 
-        if (holding.isEnchanted() && EnchantmentHelper.getItemEnchantmentLevel(EnchantmentGenerator.HOBBIT_PLOW.get(), holding) > 0 && !world.isClientSide()) {
+        if (enchantmentLevel > 0 && !world.isClientSide()) {
             Block targetBlock = event.getWorld().getBlockState(blockPos).getBlock();
             if (targetBlock == Blocks.GRASS_BLOCK || targetBlock == Blocks.DIRT || targetBlock == Blocks.PODZOL) {
                 event.setCanceled(true);
-                world.setBlockAndUpdate(blockPos, Blocks.AIR.defaultBlockState());
-                world.setBlockAndUpdate(blockPos, Fluids.WATER.defaultFluidState().createLegacyBlock());
+                world.setBlockAndUpdate(blockPos, Blocks.WATER.defaultBlockState());
 
                 if (!player.isCreative()) {
                     player.getItemInHand(Hand.MAIN_HAND).hurtAndBreak((enchantmentLevel * 2) + 1, player, entity -> entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
@@ -100,8 +100,8 @@ public class EnchantmentHobbitPlow extends Enchantment {
                     for (int z = -enchantmentLevel; z <= enchantmentLevel; z++) {
                         BlockPos targetPos = new BlockPos(blockPos.getX() + x, blockPos.getY(), blockPos.getZ() + z);
                         if (world.isEmptyBlock(targetPos.above()) && world.getBlockState(targetPos).getMaterial().blocksMotion()) {
-                        world.setBlockAndUpdate(targetPos, Blocks.FARMLAND.defaultBlockState());
-                        world.playSound(player, blockPos, SoundEvents.HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                            world.setBlockAndUpdate(targetPos, Blocks.FARMLAND.defaultBlockState());
+                            world.playSound(player, blockPos, SoundEvents.HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
                         }
                     }
                 }
