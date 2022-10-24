@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "tolkienmobs:planks_planks_lebethron"
+      "tolkienmobs:stripped_wood_mirkwood"
     ]
   },
   "criteria": {
-    "has_log_lebethron": {
+    "has_stripped_log_mirkwood": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "tolkienmobs:log_lebethron"
+            "item": "tolkienmobs:stripped_log_mirkwood"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tolkienmobs:planks_planks_lebethron"
+        "recipe": "tolkienmobs:stripped_wood_mirkwood"
       }
     }
   },
   "requirements": [
     [
-      "has_log_lebethron",
+      "has_stripped_log_mirkwood",
       "has_the_recipe"
     ]
   ]

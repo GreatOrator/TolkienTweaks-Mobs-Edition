@@ -50,6 +50,8 @@ public class RecipeGenerator extends RecipeProvider {
         storageRecipe(TTMContent.BLOCK_MORGULIRON.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
         storageRecipe(TTMContent.INGOT_MORGULIRON.get(), TTMContent.NUGGET_MORGULIRON.get(), consumer);
 
+        smallStorageRecipe(TTMContent.BLOCK_AMMOLITE.get(), TTMContent.GEM_AMMOLITE.get(), consumer);
+
         barsRecipe(TTMContent.MITHRIL_BARS.get(), TTMContent.INGOT_MITHRIL.get(), consumer);
         barsRecipe(TTMContent.MORGULIRON_BARS.get(), TTMContent.INGOT_MORGULIRON.get(), consumer);
 
@@ -84,6 +86,15 @@ public class RecipeGenerator extends RecipeProvider {
         plankWoodStrippedRecipe(TTMContent.PLANKS_MIRKWOOD.get(), TTMContent.STRIPPED_MIRKWOOD_WOOD.get(), consumer);
         plankWoodStrippedRecipe(TTMContent.PLANKS_CULUMALDA.get(), TTMContent.STRIPPED_CULUMALDA_WOOD.get(), consumer);
         plankWoodStrippedRecipe(TTMContent.PLANKS_LEBETHRON.get(), TTMContent.STRIPPED_LEBETHRON_WOOD.get(), consumer);
+
+        fullBarkRecipe(TTMContent.STRIPPED_MALLORN_WOOD.get(), TTMContent.STRIPPED_MALLORN_LOG.get(), consumer);
+        fullBarkRecipe(TTMContent.STRIPPED_MIRKWOOD_WOOD.get(), TTMContent.STRIPPED_MIRKWOOD_LOG.get(), consumer);
+        fullBarkRecipe(TTMContent.STRIPPED_CULUMALDA_WOOD.get(), TTMContent.STRIPPED_CULUMALDA_LOG.get(), consumer);
+        fullBarkRecipe(TTMContent.STRIPPED_LEBETHRON_WOOD.get(), TTMContent.STRIPPED_LEBETHRON_LOG.get(), consumer);
+        fullBarkRecipe(TTMContent.WOOD_MALLORN.get(), TTMContent.LOG_MALLORN.get(), consumer);
+        fullBarkRecipe(TTMContent.WOOD_MIRKWOOD.get(), TTMContent.LOG_MIRKWOOD.get(), consumer);
+        fullBarkRecipe(TTMContent.WOOD_CULUMALDA.get(), TTMContent.LOG_CULUMALDA.get(), consumer);
+        fullBarkRecipe(TTMContent.WOOD_LEBETHRON.get(), TTMContent.LOG_LEBETHRON.get(), consumer);
 
         doorRecipe(TTMContent.DOOR_MALLORN.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
         doorRecipe(TTMContent.DOOR_MIRKWOOD.get(), TTMContent.PLANKS_MIRKWOOD.get(), consumer);
@@ -796,7 +807,25 @@ public class RecipeGenerator extends RecipeProvider {
                 .shapeless(output, 4)
                 .requires(input)
                 .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
-                .save(consumer, "tolkienmobs:planks_" + output.asItem().getRegistryName().getPath());
+                .save(consumer);
+    }
+
+    public static void smallStorageRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("##")
+                .pattern("##")
+                .define('#', input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer);
+    }
+
+    public static void fullBarkRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 3)
+                .pattern("##")
+                .pattern("##")
+                .define('#', input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer);
     }
 
     public static void leafPileRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:stripped_log_mallorn"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:stripped_wood_mallorn",
+    "count": 3
+  }
+}

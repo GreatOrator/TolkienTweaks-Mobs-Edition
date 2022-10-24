@@ -59,6 +59,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.ORE_AMMOLITE.get(), "Ammolite Ore");
         add(TTMContent.ORE_END_AMMOLITE.get(), "Ender Ammolite Ore");
         add(TTMContent.ORE_NETHER_AMMOLITE.get(), "Firey Ammolite Ore");
+        add(TTMContent.BLOCK_AMMOLITE.get(), "Ammolite Block");
         add(TTMContent.DOOR_DURIN.get(), "Door of Durin");
 
         // Wood & Foliage

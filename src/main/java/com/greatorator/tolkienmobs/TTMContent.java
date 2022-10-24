@@ -117,26 +117,27 @@ public class TTMContent {
     // Blocks
     //#################################################################
     // Metals & Gems
-    public static RegistryObject<Block> ORE_MITHRIL = BLOCKS.register("ore_mithril", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
-    public static RegistryObject<Block> ORE_END_MITHRIL = BLOCKS.register("ore_end_mithril", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
-    public static RegistryObject<Block> ORE_NETHER_MITHRIL = BLOCKS.register("ore_nether_mithril", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
-    public static RegistryObject<Block> BLOCK_MITHRIL = BLOCKS.register("block_mithril", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
+    public static RegistryObject<Block> ORE_MITHRIL = BLOCKS.register("ore_mithril", () -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.STONE)));
+    public static RegistryObject<Block> ORE_END_MITHRIL = BLOCKS.register("ore_end_mithril", () -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.STONE)));
+    public static RegistryObject<Block> ORE_NETHER_MITHRIL = BLOCKS.register("ore_nether_mithril", () -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.STONE)));
+    public static RegistryObject<Block> BLOCK_MITHRIL = BLOCKS.register("block_mithril", () -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
     public static RegistryObject<PaneBlock> MITHRIL_BARS = BLOCKS.register("mithril_bars", () -> new PaneBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
     public static RegistryObject<DoorBlock> DOOR_MITHRIL = BLOCKS.register("door_mithril", () -> new DoorBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
     public static RegistryObject<TrapDoorBlock> TRAPDOOR_MITHRIL = BLOCKS.register("trapdoor_mithril", () -> new TrapDoorBlock(AbstractBlock.Properties.of(Material.METAL).strength(5.0F).sound(SoundType.METAL).noOcclusion().isValidSpawn(TTMContent::never)));
     public static RegistryObject<Block> PRESSURE_PLATE_MITHRIL = BLOCKS.register("pressure_plate_mithril", () -> new WeightedPressurePlateBlock(15, AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_LIGHT_GRAY).requiresCorrectToolForDrops().noCollission().strength(0.5F).sound(SoundType.WOOD)));
-    public static RegistryObject<Block> ORE_MORGULIRON = BLOCKS.register("ore_morguliron", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
-    public static RegistryObject<Block> ORE_END_MORGULIRON = BLOCKS.register("ore_end_morguliron", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
-    public static RegistryObject<Block> ORE_NETHER_MORGULIRON = BLOCKS.register("ore_nether_morguliron", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
-    public static RegistryObject<Block> BLOCK_MORGULIRON = BLOCKS.register("block_morguliron", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
-    public static RegistryObject<PaneBlock> MORGULIRON_BARS = BLOCKS.register("morguliron_bars", () -> new PaneBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.NONE).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
+    public static RegistryObject<Block> ORE_MORGULIRON = BLOCKS.register("ore_morguliron", () -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.STONE)));
+    public static RegistryObject<Block> ORE_END_MORGULIRON = BLOCKS.register("ore_end_morguliron", () -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.STONE)));
+    public static RegistryObject<Block> ORE_NETHER_MORGULIRON = BLOCKS.register("ore_nether_morguliron", () -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.STONE)));
+    public static RegistryObject<Block> BLOCK_MORGULIRON = BLOCKS.register("block_morguliron", () -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
+    public static RegistryObject<PaneBlock> MORGULIRON_BARS = BLOCKS.register("morguliron_bars", () -> new PaneBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
     public static RegistryObject<DoorBlock> DOOR_MORGULIRON = BLOCKS.register("door_morguliron", () -> new DoorBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
     public static RegistryObject<TrapDoorBlock> TRAPDOOR_MORGULIRON = BLOCKS.register("trapdoor_morguliron", () -> new TrapDoorBlock(AbstractBlock.Properties.of(Material.METAL).strength(5.0F).sound(SoundType.METAL).noOcclusion().isValidSpawn(TTMContent::never)));
     public static RegistryObject<Block> PRESSURE_PLATE_MORGULIRON = BLOCKS.register("pressure_plate_morguliron", () -> new WeightedPressurePlateBlock(150, AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().noCollission().strength(0.5F).sound(SoundType.WOOD)));
     public static RegistryObject<Block> ORE_AMMOLITE = BLOCKS.register("ore_ammolite", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
     public static RegistryObject<Block> ORE_END_AMMOLITE = BLOCKS.register("ore_end_ammolite", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
     public static RegistryObject<Block> ORE_NETHER_AMMOLITE = BLOCKS.register("ore_nether_ammolite", () -> new Block(AbstractBlock.Properties.of(Material.METAL)));
-    public static RegistryObject<DoorBlock> DOOR_DURIN = BLOCKS.register("door_durin", () -> new DoorBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
+    public static RegistryObject<Block> BLOCK_AMMOLITE = BLOCKS.register("block_ammolite", () -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.GLASS)));
+    public static RegistryObject<DoorBlock> DOOR_DURIN = BLOCKS.register("door_durin", () -> new DoorBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
 
     // Wood & Foliage
     public static RegistryObject<RotatedPillarBlock> LOG_MALLORN = BLOCKS.register("log_mallorn", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_WHITE));
@@ -356,6 +357,7 @@ public class TTMContent {
     public static RegistryObject<Item> ORE_AMMOLITE_ITEM = ITEMS.register("ore_ammolite", () -> new ItemBlockBCore(ORE_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_END_AMMOLITE_ITEM = ITEMS.register("ore_end_ammolite", () -> new ItemBlockBCore(ORE_END_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_NETHER_AMMOLITE_ITEM = ITEMS.register("ore_nether_ammolite", () -> new ItemBlockBCore(ORE_NETHER_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> BLOCK_AMMOLITE_ITEM = ITEMS.register("block_ammolite", () -> new ItemBlockBCore(BLOCK_AMMOLITE.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> DOOR_DURIN_ITEM = ITEMS.register("door_durin", () -> new ItemBlockBCore(DOOR_DURIN.get(), new Item.Properties().tab(decoGroup)));
 
     // Blocks - Wood & Foliage

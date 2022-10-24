@@ -160,6 +160,7 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(CAMO_SPAWNER_BLOCK.get(), cutout);
         RenderTypeLookup.setRenderLayer(ROCKPILE.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(MILESTONE_BLOCK.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(BLOCK_AMMOLITE.get(), translucent);
 
         // Fluids
         RenderTypeLookup.setRenderLayer(MITHRIL_FLUID.get(), translucent);

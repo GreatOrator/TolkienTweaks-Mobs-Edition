@@ -39,6 +39,7 @@ public class BlockLootGenerator extends BlockLootTables {
     private static final ILootCondition.IBuilder SHEARS = MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS));
     private static final ILootCondition.IBuilder SILK_TOUCH_OR_SHEARS = SHEARS.or(SILK_TOUCH);
     private static final ILootCondition.IBuilder NOT_SILK_TOUCH_OR_SHEARS = SILK_TOUCH_OR_SHEARS.invert();
+    private static final ILootCondition.IBuilder CROP_DROP = BlockStateProperty.hasBlockStateProperties(TTMContent.PIPEWEED.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 7));
 
     @Override
     protected void add(Block block, LootTable.Builder builder) {
@@ -78,7 +79,7 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.STRIPPED_MIRKWOOD_WOOD.get());
         dropSelf(TTMContent.STRIPPED_CULUMALDA_WOOD.get());
         dropSelf(TTMContent.STRIPPED_LEBETHRON_WOOD.get());
-        add(TTMContent.LOG_DEADWOOD.get(), createSingleItemTable(Items.STICK, RandomValueRange.between(0.0F, 4.0F)));
+        add(TTMContent.LOG_DEADWOOD.get(), createSingleItemTable(Items.STICK, RandomValueRange.between(1.0F, 4.0F)));
         dropOther(TTMContent.MALLORN_BUTTON.get(), TTMContent.MALLORN_BUTTON_ITEM.get());
         dropOther(TTMContent.MIRKWOOD_BUTTON.get(), TTMContent.MIRKWOOD_BUTTON_ITEM.get());
         dropOther(TTMContent.CULUMALDA_BUTTON.get(), TTMContent.CULUMALDA_BUTTON_ITEM.get());
@@ -156,12 +157,10 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.FLOWER_NIPHREDIL.get());
         dropSelf(TTMContent.FLOWER_SWAMPMILKWEED.get());
         dropSelf(TTMContent.FLOWER_LILLYOFTHEVALLEY.get());
-        ILootCondition.IBuilder ilootcondition$ibuilder1 = BlockStateProperty.hasBlockStateProperties(TTMContent.PIPEWEED.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 7));
-        add(TTMContent.PIPEWEED.get(), createCropDrops(TTMContent.PIPEWEED.get(), TTMContent.PIPEWEED_ITEM.get(), TTMContent.PIPEWEED_SEEDS.get(), ilootcondition$ibuilder1));
+        add(TTMContent.PIPEWEED.get(), createCropDrops(TTMContent.PIPEWEED.get(), TTMContent.PIPEWEED_ITEM.get(), TTMContent.PIPEWEED_SEEDS.get(), CROP_DROP));
 
         // Blocks - Placards
         dropSelf(TTMContent.PLACARD.get());
-//        dropSelf(TTMContent.SIGN_WALL_EMPTY.get());
 
         // Blocks - Custom
         dropSelf(TTMContent.BLOCK_HALLOWED.get());
@@ -202,6 +201,7 @@ public class BlockLootGenerator extends BlockLootTables {
         add(TTMContent.ORE_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.GEM_AMMOLITE.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
         add(TTMContent.ORE_END_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.GEM_AMMOLITE.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
         add(TTMContent.ORE_NETHER_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.GEM_AMMOLITE.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
+        add(TTMContent.BLOCK_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.GEM_AMMOLITE.get()).apply(SetCount.setCount(RandomValueRange.between(2.0F, 4.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(LimitCount.limitCount(IntClamper.clamp(1, 4))))));
 
 
         //Signs, You will need these for every type you add

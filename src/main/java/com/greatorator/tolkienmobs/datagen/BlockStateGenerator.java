@@ -60,6 +60,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TTMContent.ORE_END_AMMOLITE.get());
         simpleBlock(TTMContent.ORE_NETHER_AMMOLITE.get());
         simpleBlock(TTMContent.CHAMELEON_BLOCK.get());
+        simpleBlock(TTMContent.BLOCK_AMMOLITE.get());
         doorBlock(TTMContent.DOOR_DURIN.get(), "door_durin", modLoc("block/door_durin_bottom"), modLoc("block/door_durin_top"));
 
         // Wood & Foliage

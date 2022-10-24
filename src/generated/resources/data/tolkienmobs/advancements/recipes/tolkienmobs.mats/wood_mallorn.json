@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:wood_mallorn"
+    ]
+  },
+  "criteria": {
+    "has_log_mallorn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tolkienmobs:log_mallorn"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:wood_mallorn"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_log_mallorn",
+      "has_the_recipe"
+    ]
+  ]
+}

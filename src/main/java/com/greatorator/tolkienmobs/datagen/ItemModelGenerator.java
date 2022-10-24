@@ -46,6 +46,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.ORE_AMMOLITE.get());
         blockItem(TTMContent.ORE_END_AMMOLITE.get());
         blockItem(TTMContent.ORE_NETHER_AMMOLITE.get());
+        blockItem(TTMContent.BLOCK_AMMOLITE.get());
         simpleItem(TTMContent.DOOR_DURIN_ITEM.get());
 
         // Block Items - Wood & Foliage

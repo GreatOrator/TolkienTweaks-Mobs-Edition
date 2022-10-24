@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "tolkienmobs:planks_planks_mallorn"
+      "tolkienmobs:planks_lebethron"
     ]
   },
   "criteria": {
-    "has_log_mallorn": {
+    "has_log_lebethron": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "tolkienmobs:log_mallorn"
+            "item": "tolkienmobs:log_lebethron"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tolkienmobs:planks_planks_mallorn"
+        "recipe": "tolkienmobs:planks_lebethron"
       }
     }
   },
   "requirements": [
     [
-      "has_log_mallorn",
+      "has_log_lebethron",
       "has_the_recipe"
     ]
   ]

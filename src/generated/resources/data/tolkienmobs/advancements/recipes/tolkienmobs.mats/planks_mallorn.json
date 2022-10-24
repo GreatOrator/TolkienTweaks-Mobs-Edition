@@ -2,16 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "tolkienmobs:planks_planks_culumalda"
+      "tolkienmobs:planks_mallorn"
     ]
   },
   "criteria": {
-    "has_log_culumalda": {
+    "has_log_mallorn": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "tolkienmobs:log_culumalda"
+            "item": "tolkienmobs:log_mallorn"
           }
         ]
       }
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tolkienmobs:planks_planks_culumalda"
+        "recipe": "tolkienmobs:planks_mallorn"
       }
     }
   },
   "requirements": [
     [
-      "has_log_culumalda",
+      "has_log_mallorn",
       "has_the_recipe"
     ]
   ]
