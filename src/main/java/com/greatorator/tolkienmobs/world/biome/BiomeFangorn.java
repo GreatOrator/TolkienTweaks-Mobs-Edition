@@ -3,19 +3,18 @@ package com.greatorator.tolkienmobs.world.biome;
 import com.greatorator.tolkienmobs.handler.TTMParticles;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
-import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 
 public class BiomeFangorn {
-    private static int getSkyColorWithTemperatureModifier(float p_244206_0_) {
-        float lvt_1_1_ = p_244206_0_ / 3.0F;
+    private static int getSkyColorWithTemperatureModifier(float temp) {
+        float lvt_1_1_ = temp / 3.0F;
         lvt_1_1_ = MathHelper.clamp(lvt_1_1_, -1.0F, 1.0F);
         return MathHelper.hsvToRgb(0.62222224F - lvt_1_1_ * 0.05F, 0.5F + lvt_1_1_ * 0.1F, 1.0F);
     }
 
 
-    public static Biome makeBiomeFangorn(float depth, float scale) {
+    public static Biome makeBiomeFangorn(float depth, float scale, float temp, float rain, Biome.RainType rainType, Biome.Category category) {
         // Spawn Settings
         MobSpawnInfo.Builder spawnInf = new MobSpawnInfo.Builder();
         TTMDefaultBiomeFeatures.fangornSpawns(spawnInf);
@@ -23,7 +22,7 @@ public class BiomeFangorn {
 
         // Biome Settings
         BiomeGenerationSettings.Builder builder = (new BiomeGenerationSettings.Builder())
-                .surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
+                .surfaceBuilder(TTMConfiguredSurfaceBuilder.FANGORN_SURFACE);
 
         DefaultBiomeFeatures.addFossilDecoration(builder);
         DefaultBiomeFeatures.addDefaultUndergroundVariety(builder);
@@ -42,12 +41,12 @@ public class BiomeFangorn {
         LOGGER.info("Last remnant of the great forests of Eriador...");
         // Let's set the mood
         return (new Biome.Builder())
-                .precipitation(Biome.RainType.RAIN)
-                .biomeCategory(Biome.Category.FOREST)
-                .depth(0.125F)
-                .scale(0.05F)
-                .temperature(0.7F)
-                .downfall(0.8F)
+                .precipitation(rainType)
+                .biomeCategory(category)
+                .depth(depth)
+                .scale(scale)
+                .temperature(temp)
+                .downfall(rain)
                 .specialEffects((new BiomeAmbience.Builder())
                         .waterColor(54011)
                         .grassColorOverride(5156174)

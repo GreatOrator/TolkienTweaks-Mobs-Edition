@@ -12,12 +12,14 @@ import com.greatorator.tolkienmobs.entity.item.TolkienBoatEntity;
 import com.greatorator.tolkienmobs.entity.tile.*;
 import com.greatorator.tolkienmobs.handler.*;
 import com.greatorator.tolkienmobs.handler.enums.TTMArmorTier;
-import com.greatorator.tolkienmobs.item.armor.ArmorTTMMithril;
-import com.greatorator.tolkienmobs.item.armor.ArmorTTMMorgulIron;
-import com.greatorator.tolkienmobs.item.signs.TTMCulumaldaSignItem;
-import com.greatorator.tolkienmobs.item.signs.TTMLebethronSignItem;
-import com.greatorator.tolkienmobs.item.signs.TTMMallornSignItem;
-import com.greatorator.tolkienmobs.item.signs.TTMMirkwoodSignItem;
+import com.greatorator.tolkienmobs.item.armor.MithrilArmor;
+import com.greatorator.tolkienmobs.item.armor.MithrilHorseArmor;
+import com.greatorator.tolkienmobs.item.armor.MorgulironArmor;
+import com.greatorator.tolkienmobs.item.armor.MorgulironHorseArmor;
+import com.greatorator.tolkienmobs.item.signs.CulumaldaSignItem;
+import com.greatorator.tolkienmobs.item.signs.LebethronSignItem;
+import com.greatorator.tolkienmobs.item.signs.MallornSignItem;
+import com.greatorator.tolkienmobs.item.signs.MirkwoodSignItem;
 import com.greatorator.tolkienmobs.item.tools.*;
 import com.greatorator.tolkienmobs.world.trees.*;
 import net.minecraft.block.*;
@@ -137,11 +139,23 @@ public class TTMContent {
     public static RegistryObject<DoorBlock> DOOR_DURIN = BLOCKS.register("door_durin", () -> new DoorBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
 
     // Wood & Foliage
-    public static RegistryObject<RotatedPillarBlock> LOG_CULUMALDA = BLOCKS.register("log_culumalda", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_GRAY));
-    public static RegistryObject<RotatedPillarBlock> LOG_LEBETHRON = BLOCKS.register("log_lebethron", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_LIGHT_GRAY));
     public static RegistryObject<RotatedPillarBlock> LOG_MALLORN = BLOCKS.register("log_mallorn", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_WHITE));
     public static RegistryObject<RotatedPillarBlock> LOG_MIRKWOOD = BLOCKS.register("log_mirkwood", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_BLACK));
+    public static RegistryObject<RotatedPillarBlock> LOG_CULUMALDA = BLOCKS.register("log_culumalda", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_GRAY));
+    public static RegistryObject<RotatedPillarBlock> LOG_LEBETHRON = BLOCKS.register("log_lebethron", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_LIGHT_GRAY));
     public static RegistryObject<RotatedPillarBlock> LOG_DEADWOOD = BLOCKS.register("log_deadwood", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.COLOR_ORANGE));
+    public static RegistryObject<RotatedPillarBlock> WOOD_MALLORN = BLOCKS.register("wood_mallorn", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_WHITE));
+    public static RegistryObject<RotatedPillarBlock> WOOD_MIRKWOOD = BLOCKS.register("wood_mirkwood", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_BLACK));
+    public static RegistryObject<RotatedPillarBlock> WOOD_CULUMALDA = BLOCKS.register("wood_culumalda", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_GRAY));
+    public static RegistryObject<RotatedPillarBlock> WOOD_LEBETHRON = BLOCKS.register("wood_lebethron", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_LIGHT_GRAY));
+    public static RegistryObject<RotatedPillarBlock> STRIPPED_MALLORN_LOG = BLOCKS.register("stripped_log_mallorn", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_WHITE));
+    public static RegistryObject<RotatedPillarBlock> STRIPPED_MIRKWOOD_LOG = BLOCKS.register("stripped_log_mirkwood", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_BLACK));
+    public static RegistryObject<RotatedPillarBlock> STRIPPED_CULUMALDA_LOG = BLOCKS.register("stripped_log_culumalda", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_GRAY));
+    public static RegistryObject<RotatedPillarBlock> STRIPPED_LEBETHRON_LOG = BLOCKS.register("stripped_log_lebethron", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_LIGHT_GRAY));
+    public static RegistryObject<RotatedPillarBlock> STRIPPED_MALLORN_WOOD = BLOCKS.register("stripped_wood_mallorn", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_WHITE));
+    public static RegistryObject<RotatedPillarBlock> STRIPPED_MIRKWOOD_WOOD = BLOCKS.register("stripped_wood_mirkwood", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_BLACK));
+    public static RegistryObject<RotatedPillarBlock> STRIPPED_CULUMALDA_WOOD = BLOCKS.register("stripped_wood_culumalda", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_GRAY));
+    public static RegistryObject<RotatedPillarBlock> STRIPPED_LEBETHRON_WOOD = BLOCKS.register("stripped_wood_lebethron", () -> createLogBlock(MaterialColor.WOOD, MaterialColor.TERRACOTTA_LIGHT_GRAY));
     public static RegistryObject<Block> PLANKS_CULUMALDA = BLOCKS.register("planks_culumalda", () -> new Block(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.TERRACOTTA_GRAY).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static RegistryObject<Block> PLANKS_LEBETHRON = BLOCKS.register("planks_lebethron", () -> new Block(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.TERRACOTTA_LIGHT_GRAY).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static RegistryObject<Block> PLANKS_MALLORN = BLOCKS.register("planks_mallorn", () -> new Block(AbstractBlock.Properties.of(Material.WOOD, MaterialColor.TERRACOTTA_WHITE).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
@@ -345,11 +359,23 @@ public class TTMContent {
     public static RegistryObject<Item> DOOR_DURIN_ITEM = ITEMS.register("door_durin", () -> new ItemBlockBCore(DOOR_DURIN.get(), new Item.Properties().tab(decoGroup)));
 
     // Blocks - Wood & Foliage
-    public static RegistryObject<Item> LOG_CULUMALDA_ITEM = ITEMS.register("log_culumalda", () -> new ItemBlockBCore(LOG_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> LOG_LEBETHRON_ITEM = ITEMS.register("log_lebethron", () -> new ItemBlockBCore(LOG_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LOG_MALLORN_ITEM = ITEMS.register("log_mallorn", () -> new ItemBlockBCore(LOG_MALLORN.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LOG_MIRKWOOD_ITEM = ITEMS.register("log_mirkwood", () -> new ItemBlockBCore(LOG_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> LOG_CULUMALDA_ITEM = ITEMS.register("log_culumalda", () -> new ItemBlockBCore(LOG_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> LOG_LEBETHRON_ITEM = ITEMS.register("log_lebethron", () -> new ItemBlockBCore(LOG_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LOG_DEADWOOD_ITEM = ITEMS.register("log_deadwood", () -> new ItemBlockBCore(LOG_DEADWOOD.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> WOOD_MALLORN_ITEM = ITEMS.register("wood_mallorn", () -> new ItemBlockBCore(WOOD_MALLORN.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> WOOD_MIRKWOOD_ITEM = ITEMS.register("wood_mirkwood", () -> new ItemBlockBCore(WOOD_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> WOOD_CULUMALDA_ITEM = ITEMS.register("wood_culumalda", () -> new ItemBlockBCore(WOOD_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> WOOD_LEBETHRON_ITEM = ITEMS.register("wood_lebethron", () -> new ItemBlockBCore(WOOD_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> STRIPPED_MALLORN_LOG_ITEM = ITEMS.register("stripped_log_mallorn", () -> new ItemBlockBCore(STRIPPED_MALLORN_LOG.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> STRIPPED_MIRKWOOD_LOG_ITEM = ITEMS.register("stripped_log_mirkwood", () -> new ItemBlockBCore(STRIPPED_MIRKWOOD_LOG.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> STRIPPED_CULUMALDA_LOG_ITEM = ITEMS.register("stripped_log_culumalda", () -> new ItemBlockBCore(STRIPPED_CULUMALDA_LOG.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> STRIPPED_LEBETHRON_LOG_ITEM = ITEMS.register("stripped_log_lebethron", () -> new ItemBlockBCore(STRIPPED_LEBETHRON_LOG.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> STRIPPED_MALLORN_WOOD_ITEM = ITEMS.register("stripped_wood_mallorn", () -> new ItemBlockBCore(STRIPPED_MALLORN_WOOD.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> STRIPPED_MIRKWOOD_WOOD_ITEM = ITEMS.register("stripped_wood_mirkwood", () -> new ItemBlockBCore(STRIPPED_MIRKWOOD_WOOD.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> STRIPPED_CULUMALDA_WOOD_ITEM = ITEMS.register("stripped_wood_culumalda", () -> new ItemBlockBCore(STRIPPED_CULUMALDA_WOOD.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> STRIPPED_LEBETHRON_WOOD_ITEM = ITEMS.register("stripped_wood_lebethron", () -> new ItemBlockBCore(STRIPPED_LEBETHRON_WOOD.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> MALLORN_BUTTON_ITEM = ITEMS.register("mallorn_button", () -> new ItemBlockBCore(MALLORN_BUTTON.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> MIRKWOOD_BUTTON_ITEM = ITEMS.register("mirkwood_button", () -> new ItemBlockBCore(MIRKWOOD_BUTTON.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> CULUMALDA_BUTTON_ITEM = ITEMS.register("culumalda_button", () -> new ItemBlockBCore(CULUMALDA_BUTTON.get(), new Item.Properties().tab(decoGroup)));
@@ -391,10 +417,10 @@ public class TTMContent {
     public static RegistryObject<Item> TORCH_CULUMALDA_ITEM = ITEMS.register("torch_culumalda", () -> new WallOrFloorItem(TORCH_CULUMALDA.get(), WALL_TORCH_CULUMALDA.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> TORCH_LEBETHRON_ITEM = ITEMS.register("torch_lebethron", () -> new WallOrFloorItem(TORCH_LEBETHRON.get(), WALL_TORCH_LEBETHRON.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> LEAVES_CULUMALDA_ITEM = ITEMS.register("leaves_culumalda", () -> new ItemBlockBCore(LEAVES_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> MALLORN_SIGN_ITEM = ITEMS.register("sign_mallorn", () -> new TTMMallornSignItem(new Item.Properties().tab(decoGroup), MALLORN_SIGN.get(), MALLORN_WALL_SIGN.get()));
-    public static RegistryObject<Item> MIRKWOOD_SIGN_ITEM = ITEMS.register("sign_mirkwood", () -> new TTMMirkwoodSignItem(new Item.Properties().tab(decoGroup), MIRKWOOD_SIGN.get(), MIRKWOOD_WALL_SIGN.get()));
-    public static RegistryObject<Item> CULUMALDA_SIGN_ITEM = ITEMS.register("sign_culumalda", () -> new TTMCulumaldaSignItem(new Item.Properties().tab(decoGroup), CULUMALDA_SIGN.get(), CULUMALDA_WALL_SIGN.get()));
-    public static RegistryObject<Item> LEBETHRON_SIGN_ITEM = ITEMS.register("sign_lebethron", () -> new TTMLebethronSignItem(new Item.Properties().tab(decoGroup), LEBETHRON_SIGN.get(), LEBETHRON_WALL_SIGN.get()));
+    public static RegistryObject<Item> MALLORN_SIGN_ITEM = ITEMS.register("sign_mallorn", () -> new MallornSignItem(new Item.Properties().tab(decoGroup), MALLORN_SIGN.get(), MALLORN_WALL_SIGN.get()));
+    public static RegistryObject<Item> MIRKWOOD_SIGN_ITEM = ITEMS.register("sign_mirkwood", () -> new MirkwoodSignItem(new Item.Properties().tab(decoGroup), MIRKWOOD_SIGN.get(), MIRKWOOD_WALL_SIGN.get()));
+    public static RegistryObject<Item> CULUMALDA_SIGN_ITEM = ITEMS.register("sign_culumalda", () -> new CulumaldaSignItem(new Item.Properties().tab(decoGroup), CULUMALDA_SIGN.get(), CULUMALDA_WALL_SIGN.get()));
+    public static RegistryObject<Item> LEBETHRON_SIGN_ITEM = ITEMS.register("sign_lebethron", () -> new LebethronSignItem(new Item.Properties().tab(decoGroup), LEBETHRON_SIGN.get(), LEBETHRON_WALL_SIGN.get()));
     public static RegistryObject<Item> LEAVES_LEBETHRON_ITEM = ITEMS.register("leaves_lebethron", () -> new ItemBlockBCore(LEAVES_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LEAVES_MALLORN_ITEM = ITEMS.register("leaves_mallorn", () -> new ItemBlockBCore(LEAVES_MALLORN.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LEAVES_MIRKWOOD_ITEM = ITEMS.register("leaves_mirkwood", () -> new ItemBlockBCore(LEAVES_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
@@ -531,14 +557,16 @@ public class TTMContent {
     public static RegistryObject<Item> GEM_AMMOLITE = ITEMS.register("gem_ammolite", () -> new TTMLoreItem(new Item.Properties().stacksTo(16).tab(matsGroup)).setEffectOverride());
 
     // Equipment & Armor
-    public static RegistryObject<ArmorItem> HELMET_MITHRIL = ITEMS.register("helmet_mithril", () -> new ArmorTTMMithril(TTMArmorTier.MITHRIL, EquipmentSlotType.HEAD, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<ArmorItem> CHESTPLATE_MITHRIL = ITEMS.register("chestplate_mithril", () -> new ArmorTTMMithril(TTMArmorTier.MITHRIL, EquipmentSlotType.CHEST, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<ArmorItem> LEGGINGS_MITHRIL = ITEMS.register("leggings_mithril", () -> new ArmorTTMMithril(TTMArmorTier.MITHRIL, EquipmentSlotType.LEGS, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<ArmorItem> BOOTS_MITHRIL = ITEMS.register("boots_mithril", () -> new ArmorTTMMithril(TTMArmorTier.MITHRIL, EquipmentSlotType.FEET, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<ArmorItem> HELMET_MORGULIRON = ITEMS.register("helmet_morguliron", () -> new ArmorTTMMorgulIron(TTMArmorTier.MORGULIRON, EquipmentSlotType.HEAD, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<ArmorItem> CHESTPLATE_MORGULIRON = ITEMS.register("chestplate_morguliron", () -> new ArmorTTMMorgulIron(TTMArmorTier.MORGULIRON, EquipmentSlotType.CHEST, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<ArmorItem> LEGGINGS_MORGULIRON = ITEMS.register("leggings_morguliron", () -> new ArmorTTMMorgulIron(TTMArmorTier.MORGULIRON, EquipmentSlotType.LEGS, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<ArmorItem> BOOTS_MORGULIRON = ITEMS.register("boots_morguliron", () -> new ArmorTTMMorgulIron(TTMArmorTier.MORGULIRON, EquipmentSlotType.FEET, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> HELMET_MITHRIL = ITEMS.register("helmet_mithril", () -> new MithrilArmor(TTMArmorTier.MITHRIL, EquipmentSlotType.HEAD, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> CHESTPLATE_MITHRIL = ITEMS.register("chestplate_mithril", () -> new MithrilArmor(TTMArmorTier.MITHRIL, EquipmentSlotType.CHEST, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> LEGGINGS_MITHRIL = ITEMS.register("leggings_mithril", () -> new MithrilArmor(TTMArmorTier.MITHRIL, EquipmentSlotType.LEGS, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> BOOTS_MITHRIL = ITEMS.register("boots_mithril", () -> new MithrilArmor(TTMArmorTier.MITHRIL, EquipmentSlotType.FEET, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<Item> MITHRIL_HORSE_ARMOR = ITEMS.register("mithril_horse_armor", () -> new MithrilHorseArmor(15, "mithril", (new Item.Properties()).stacksTo(1).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> HELMET_MORGULIRON = ITEMS.register("helmet_morguliron", () -> new MorgulironArmor(TTMArmorTier.MORGULIRON, EquipmentSlotType.HEAD, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> CHESTPLATE_MORGULIRON = ITEMS.register("chestplate_morguliron", () -> new MorgulironArmor(TTMArmorTier.MORGULIRON, EquipmentSlotType.CHEST, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> LEGGINGS_MORGULIRON = ITEMS.register("leggings_morguliron", () -> new MorgulironArmor(TTMArmorTier.MORGULIRON, EquipmentSlotType.LEGS, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> BOOTS_MORGULIRON = ITEMS.register("boots_morguliron", () -> new MorgulironArmor(TTMArmorTier.MORGULIRON, EquipmentSlotType.FEET, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<Item> MORGULIRON_HORSE_ARMOR = ITEMS.register("morguliron_horse_armor", () -> new MorgulironHorseArmor(13, "morguliron", (new Item.Properties()).stacksTo(1).tab(toolsGroup)));
 
     public static RegistryObject<AxeItem> AXE_MITHRIL = ITEMS.register("axe_mithril", () -> new AxeItem(TTMItemTier.MITHRIL, 8.0F, -1.5F, (new Item.Properties()).tab(toolsGroup)));
     public static RegistryObject<HoeItem> HOE_MITHRIL = ITEMS.register("hoe_mithril", () -> new HoeItem(TTMItemTier.MITHRIL, 1, 0.8F, (new Item.Properties()).tab(toolsGroup)));

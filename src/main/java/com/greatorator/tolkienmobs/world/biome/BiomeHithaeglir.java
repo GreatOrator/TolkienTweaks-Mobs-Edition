@@ -8,13 +8,13 @@ import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
 import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 
 public class BiomeHithaeglir {
-    private static int getSkyColorWithTemperatureModifier(float p_244206_0_) {
-        float lvt_1_1_ = p_244206_0_ / 3.0F;
+    private static int getSkyColorWithTemperatureModifier(float temp) {
+        float lvt_1_1_ = temp / 3.0F;
         lvt_1_1_ = MathHelper.clamp(lvt_1_1_, -1.0F, 1.0F);
         return MathHelper.hsvToRgb(0.62222224F - lvt_1_1_ * 0.05F, 0.5F + lvt_1_1_ * 0.1F, 1.0F);
     }
 
-    public static Biome makeBiomeHithaeglir(float depth, float scale) {
+    public static Biome makeBiomeHithaeglir(float depth, float scale, float temp, float rain, Biome.RainType rainType, Biome.Category category) {
         // Spawn Settings
         MobSpawnInfo.Builder spawnInf = new MobSpawnInfo.Builder();
         spawnInf.setPlayerCanSpawn();
@@ -43,12 +43,12 @@ public class BiomeHithaeglir {
 
         LOGGER.info("Far over the misty mountains cold...");
         return (new Biome.Builder())
-                .precipitation(Biome.RainType.SNOW)
-                .biomeCategory(Biome.Category.EXTREME_HILLS)
-                .depth(3.0F)
-                .scale(0.75F)
-                .temperature(0.2F)
-                .downfall(0.3F)
+                .precipitation(rainType)
+                .biomeCategory(category)
+                .depth(depth)
+                .scale(scale)
+                .temperature(temp)
+                .downfall(rain)
                 .specialEffects((new BiomeAmbience.Builder())
                         .waterColor(4159204)
                         .waterFogColor(329011)

@@ -55,8 +55,6 @@ public class TolkienMobs {
 	        1. Key Stone - Active state weirdness
 	        2. Camo Spawner - Entity list creation
 	        3. Fluid Block - "Flood" area (3x3) with fluid
-	    c. Enchants
-	        1. Hobbit Plow - Not rendering block changes client side
     */
 
     public TolkienMobs() {

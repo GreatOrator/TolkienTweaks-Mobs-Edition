@@ -54,7 +54,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
             tag(ItemTags.STAIRS).addTag(TTMTags.items.STAIRS);
         tag(TTMTags.items.SLABS).add(TTMContent.SLAB_MALLORN_ITEM.get(), TTMContent.SLAB_MIRKWOOD_ITEM.get(), TTMContent.SLAB_CULUMALDA_ITEM.get(), TTMContent.SLAB_LEBETHRON_ITEM.get());
             tag(ItemTags.WOODEN_SLABS).addTag(TTMTags.items.SLABS);
-        tag(TTMTags.items.LOGS).add(TTMContent.LOG_MALLORN_ITEM.get(), TTMContent.LOG_MIRKWOOD_ITEM.get(), TTMContent.LOG_CULUMALDA_ITEM.get(), TTMContent.LOG_LEBETHRON_ITEM.get());
+        tag(TTMTags.items.LOGS).add(TTMContent.LOG_MALLORN_ITEM.get(), TTMContent.LOG_MIRKWOOD_ITEM.get(), TTMContent.LOG_CULUMALDA_ITEM.get(), TTMContent.LOG_LEBETHRON_ITEM.get(), TTMContent.STRIPPED_MALLORN_LOG_ITEM.get(), TTMContent.STRIPPED_MIRKWOOD_LOG_ITEM.get(), TTMContent.STRIPPED_CULUMALDA_LOG_ITEM.get(), TTMContent.STRIPPED_LEBETHRON_LOG_ITEM.get(), TTMContent.STRIPPED_MALLORN_WOOD_ITEM.get(), TTMContent.STRIPPED_MIRKWOOD_WOOD_ITEM.get(), TTMContent.STRIPPED_CULUMALDA_WOOD_ITEM.get(), TTMContent.STRIPPED_LEBETHRON_WOOD_ITEM.get(), TTMContent.WOOD_MALLORN_ITEM.get(), TTMContent.WOOD_MIRKWOOD_ITEM.get(), TTMContent.WOOD_CULUMALDA_ITEM.get(), TTMContent.WOOD_LEBETHRON_ITEM.get());
             tag(ItemTags.LOGS_THAT_BURN).addTag(TTMTags.items.LOGS);
             tag(ItemTags.LOGS).addTag(TTMTags.items.LOGS);
         tag(TTMTags.items.FLOWERS).add(TTMContent.FLOWER_ALFIRIN_ITEM.get(), TTMContent.FLOWER_ATHELAS_ITEM.get(), TTMContent.FLOWER_MIRKWOOD_ITEM.get(), TTMContent.FLOWER_NIPHREDIL_ITEM.get(), TTMContent.FLOWER_SIMBELMYNE_ITEM.get(), TTMContent.FLOWER_LILLYOFTHEVALLEY_ITEM.get(), TTMContent.FLOWER_SWAMPMILKWEED_ITEM.get());

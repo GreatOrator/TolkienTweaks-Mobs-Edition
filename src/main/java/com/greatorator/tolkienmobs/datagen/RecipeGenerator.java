@@ -72,6 +72,18 @@ public class RecipeGenerator extends RecipeProvider {
         plankRecipe(TTMContent.PLANKS_MIRKWOOD.get(), TTMContent.LOG_MIRKWOOD.get(), consumer);
         plankRecipe(TTMContent.PLANKS_CULUMALDA.get(), TTMContent.LOG_CULUMALDA.get(), consumer);
         plankRecipe(TTMContent.PLANKS_LEBETHRON.get(), TTMContent.LOG_LEBETHRON.get(), consumer);
+        plankWoodRecipe(TTMContent.PLANKS_MALLORN.get(), TTMContent.WOOD_MALLORN.get(), consumer);
+        plankWoodRecipe(TTMContent.PLANKS_MIRKWOOD.get(), TTMContent.WOOD_MIRKWOOD.get(), consumer);
+        plankWoodRecipe(TTMContent.PLANKS_CULUMALDA.get(), TTMContent.WOOD_CULUMALDA.get(), consumer);
+        plankWoodRecipe(TTMContent.PLANKS_LEBETHRON.get(), TTMContent.WOOD_LEBETHRON.get(), consumer);
+        plankStrippedRecipe(TTMContent.PLANKS_MALLORN.get(), TTMContent.STRIPPED_MALLORN_LOG.get(), consumer);
+        plankStrippedRecipe(TTMContent.PLANKS_MIRKWOOD.get(), TTMContent.STRIPPED_MIRKWOOD_LOG.get(), consumer);
+        plankStrippedRecipe(TTMContent.PLANKS_CULUMALDA.get(), TTMContent.STRIPPED_CULUMALDA_LOG.get(), consumer);
+        plankStrippedRecipe(TTMContent.PLANKS_LEBETHRON.get(), TTMContent.STRIPPED_LEBETHRON_LOG.get(), consumer);
+        plankWoodStrippedRecipe(TTMContent.PLANKS_MALLORN.get(), TTMContent.STRIPPED_MALLORN_WOOD.get(), consumer);
+        plankWoodStrippedRecipe(TTMContent.PLANKS_MIRKWOOD.get(), TTMContent.STRIPPED_MIRKWOOD_WOOD.get(), consumer);
+        plankWoodStrippedRecipe(TTMContent.PLANKS_CULUMALDA.get(), TTMContent.STRIPPED_CULUMALDA_WOOD.get(), consumer);
+        plankWoodStrippedRecipe(TTMContent.PLANKS_LEBETHRON.get(), TTMContent.STRIPPED_LEBETHRON_WOOD.get(), consumer);
 
         doorRecipe(TTMContent.DOOR_MALLORN.get(), TTMContent.PLANKS_MALLORN.get(), consumer);
         doorRecipe(TTMContent.DOOR_MIRKWOOD.get(), TTMContent.PLANKS_MIRKWOOD.get(), consumer);
@@ -755,12 +767,36 @@ public class RecipeGenerator extends RecipeProvider {
                 .save(consumer, "tolkienmobs:dye_" + output.asItem().getRegistryName().getPath());
     }
 
+    public static void plankWoodStrippedRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapelessRecipeBuilder
+                .shapeless(output, 4)
+                .requires(input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer, "tolkienmobs:stripped_wood_" + output.asItem().getRegistryName().getPath());
+    }
+
+    public static void plankStrippedRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapelessRecipeBuilder
+                .shapeless(output, 4)
+                .requires(input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer, "tolkienmobs:stripped_" + output.asItem().getRegistryName().getPath());
+    }
+
+    public static void plankWoodRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
+        ShapelessRecipeBuilder
+                .shapeless(output, 4)
+                .requires(input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer, "tolkienmobs:wood_" + output.asItem().getRegistryName().getPath());
+    }
+
     public static void plankRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {
         ShapelessRecipeBuilder
                 .shapeless(output, 4)
                 .requires(input)
                 .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
-                .save(consumer);
+                .save(consumer, "tolkienmobs:planks_" + output.asItem().getRegistryName().getPath());
     }
 
     public static void leafPileRecipe(IItemProvider output, IItemProvider input, Consumer<IFinishedRecipe> consumer) {

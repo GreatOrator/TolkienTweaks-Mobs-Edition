@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.container.capability;
 
 import com.greatorator.tolkienmobs.entity.tile.CamoSpawnerTile;
-import com.greatorator.tolkienmobs.event.entity.EntityEvents;
+import com.greatorator.tolkienmobs.event.entity.WorldEvents;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -98,7 +98,7 @@ public class CamoSpawnerLogic extends AbstractSpawner {
                                 if (!tile.requirePlayer.get() && entity instanceof MobEntity) {
                                     ((MobEntity) entity).setPersistenceRequired();
                                     entity.getPersistentData().putLong("TTMSpawnedMob", System.currentTimeMillis());
-                                    EntityEvents.onMobSpawnedBySpawner((MobEntity) entity);
+                                    WorldEvents.onMobSpawnedBySpawner((MobEntity) entity);
                                 }
 
                                 if (!((ServerWorld) world).tryAddFreshEntityWithPassengers(entity)) {

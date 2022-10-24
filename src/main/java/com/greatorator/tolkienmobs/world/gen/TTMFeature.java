@@ -2,19 +2,15 @@ package com.greatorator.tolkienmobs.world.gen;
 
 import com.google.common.collect.ImmutableList;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.datagen.BiomeGenerator;
 import com.greatorator.tolkienmobs.world.gen.feature.TTMFallenLogFeature;
 import com.greatorator.tolkienmobs.world.gen.feature.TTMRubbleFeature;
 import com.greatorator.tolkienmobs.world.gen.feature.TTMStoneSpikeFeature;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -47,26 +43,6 @@ public class TTMFeature {
         RANDOM_RUBBLE_CONFIG = register("random_rubble", RANDOM_RUBBLE.configured(IFeatureConfig.NONE).range(128).squared().count(10));
         BLEAK_LAND_CONFIG = register("bleak_land", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(RANDOM_RUBBLE_CONFIG.weighted(0.4F), SMALL_LOG_CONFIG.weighted(0.05F)), SMALL_LOG_CONFIG)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(50, 0.1F, 1))));
 
-    }
-
-    public static void biomeLoading(BiomeLoadingEvent event) {
-        if (event.getName().equals(BiomeGenerator.BIOME_FANGORN)) {
-            event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, SMALL_LOG_CONFIG);
-        }
-        if (event.getName().equals(BiomeGenerator.BIOME_OLDFOREST)) {
-            event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, BLEAK_LAND_CONFIG);
-        }
-        if (event.getName().equals(BiomeGenerator.BIOME_DAGORLAD)) {
-            event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, RANDOM_RUBBLE_CONFIG);
-        }
-        if (event.getName().equals(BiomeGenerator.BIOME_BARROWDOWNS)) {
-            event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, STONE_SPIKE_CONFIG);
-        }
-
-        /* Used to test for feature generation */
-        if (event.getCategory() == Biome.Category.PLAINS) {
-//            event.getGeneration().addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, TTMFeatures.ROCKPILES);
-        }
     }
 
     private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> feature) {

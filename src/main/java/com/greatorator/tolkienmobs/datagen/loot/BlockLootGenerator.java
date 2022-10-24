@@ -66,6 +66,18 @@ public class BlockLootGenerator extends BlockLootTables {
         dropSelf(TTMContent.LOG_MIRKWOOD.get());
         dropSelf(TTMContent.LOG_CULUMALDA.get());
         dropSelf(TTMContent.LOG_LEBETHRON.get());
+        dropSelf(TTMContent.STRIPPED_MALLORN_LOG.get());
+        dropSelf(TTMContent.STRIPPED_MIRKWOOD_LOG.get());
+        dropSelf(TTMContent.STRIPPED_CULUMALDA_LOG.get());
+        dropSelf(TTMContent.STRIPPED_LEBETHRON_LOG.get());
+        dropSelf(TTMContent.WOOD_MALLORN.get());
+        dropSelf(TTMContent.WOOD_MIRKWOOD.get());
+        dropSelf(TTMContent.WOOD_CULUMALDA.get());
+        dropSelf(TTMContent.WOOD_LEBETHRON.get());
+        dropSelf(TTMContent.STRIPPED_MALLORN_WOOD.get());
+        dropSelf(TTMContent.STRIPPED_MIRKWOOD_WOOD.get());
+        dropSelf(TTMContent.STRIPPED_CULUMALDA_WOOD.get());
+        dropSelf(TTMContent.STRIPPED_LEBETHRON_WOOD.get());
         add(TTMContent.LOG_DEADWOOD.get(), createSingleItemTable(Items.STICK, RandomValueRange.between(0.0F, 4.0F)));
         dropOther(TTMContent.MALLORN_BUTTON.get(), TTMContent.MALLORN_BUTTON_ITEM.get());
         dropOther(TTMContent.MIRKWOOD_BUTTON.get(), TTMContent.MIRKWOOD_BUTTON_ITEM.get());

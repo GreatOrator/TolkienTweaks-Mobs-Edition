@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:wood_planks_culumalda"
+    ]
+  },
+  "criteria": {
+    "has_wood_culumalda": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tolkienmobs:wood_culumalda"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:wood_planks_culumalda"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_wood_culumalda",
+      "has_the_recipe"
+    ]
+  ]
+}

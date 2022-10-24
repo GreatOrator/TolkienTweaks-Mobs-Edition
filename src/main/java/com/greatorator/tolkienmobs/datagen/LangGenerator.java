@@ -67,6 +67,18 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.LOG_CULUMALDA.get(), "Culumalda Log");
         add(TTMContent.LOG_LEBETHRON.get(), "Lebethron Log");
         add(TTMContent.LOG_DEADWOOD.get(), "Deadwood Log");
+        add(TTMContent.STRIPPED_MALLORN_LOG.get(), "Stripped Mallorn Log");
+        add(TTMContent.STRIPPED_MIRKWOOD_LOG.get(), "Stripped Mirkwood Log");
+        add(TTMContent.STRIPPED_CULUMALDA_LOG.get(), "Stripped Culumalda Log");
+        add(TTMContent.STRIPPED_LEBETHRON_LOG.get(), "Stripped Lebethron Log");
+        add(TTMContent.WOOD_MALLORN.get(), "Mallorn Wood");
+        add(TTMContent.WOOD_MIRKWOOD.get(), "Mirkwood Wood");
+        add(TTMContent.WOOD_CULUMALDA.get(), "Culumalda Wood");
+        add(TTMContent.WOOD_LEBETHRON.get(), "Lebethron Wood");
+        add(TTMContent.STRIPPED_MALLORN_WOOD.get(), "Stripped Mallorn Wood");
+        add(TTMContent.STRIPPED_MIRKWOOD_WOOD.get(), "Stripped Mirkwood Wood");
+        add(TTMContent.STRIPPED_CULUMALDA_WOOD.get(), "Stripped Culumalda Wood");
+        add(TTMContent.STRIPPED_LEBETHRON_WOOD.get(), "Stripped Lebethron Wood");
         add(TTMContent.MALLORN_BUTTON.get(), "Mallorn Button");
         add(TTMContent.MIRKWOOD_BUTTON.get(), "Mirkwood Button");
         add(TTMContent.CULUMALDA_BUTTON.get(), "Culumalda Button");
@@ -545,10 +557,12 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.CHESTPLATE_MITHRIL.get(), "Mithril Chestplate");
         add(TTMContent.LEGGINGS_MITHRIL.get(), "Mithril Leggings");
         add(TTMContent.BOOTS_MITHRIL.get(), "Mithril Boots");
+        add(TTMContent.MITHRIL_HORSE_ARMOR.get(), "Mithril Horse Armor");
         add(TTMContent.HELMET_MORGULIRON.get(), "Morgul Iron Helmet");
         add(TTMContent.CHESTPLATE_MORGULIRON.get(), "Morgul Iron Chestplate");
         add(TTMContent.LEGGINGS_MORGULIRON.get(), "Morgul Iron Leggings");
         add(TTMContent.BOOTS_MORGULIRON.get(), "Morgul Iron Boots");
+        add(TTMContent.MORGULIRON_HORSE_ARMOR.get(), "Morguliron Horse Armor");
 
         add(TTMContent.AXE_MITHRIL.get(), "Mithril Axe");
         add(TTMContent.SWORD_MITHRIL.get(), "Mithril Sword");

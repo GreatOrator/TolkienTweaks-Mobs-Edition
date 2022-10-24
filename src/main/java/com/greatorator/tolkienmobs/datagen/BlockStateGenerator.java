@@ -68,6 +68,18 @@ public class BlockStateGenerator extends BlockStateProvider {
         logBlock(TTMContent.LOG_CULUMALDA.get());
         logBlock(TTMContent.LOG_LEBETHRON.get());
         logBlock(TTMContent.LOG_DEADWOOD.get());
+        logBlock(TTMContent.STRIPPED_MALLORN_LOG.get());
+        logBlock(TTMContent.STRIPPED_MIRKWOOD_LOG.get());
+        logBlock(TTMContent.STRIPPED_CULUMALDA_LOG.get());
+        logBlock(TTMContent.STRIPPED_LEBETHRON_LOG.get());
+        simpleBlock(TTMContent.WOOD_MALLORN.get());
+        simpleBlock(TTMContent.WOOD_MIRKWOOD.get());
+        simpleBlock(TTMContent.WOOD_CULUMALDA.get());
+        simpleBlock(TTMContent.WOOD_LEBETHRON.get());
+        simpleBlock(TTMContent.STRIPPED_MALLORN_WOOD.get());
+        simpleBlock(TTMContent.STRIPPED_MIRKWOOD_WOOD.get());
+        simpleBlock(TTMContent.STRIPPED_CULUMALDA_WOOD.get());
+        simpleBlock(TTMContent.STRIPPED_LEBETHRON_WOOD.get());
         simpleBlock(TTMContent.PLANKS_MALLORN.get());
         simpleBlock(TTMContent.PLANKS_MIRKWOOD.get());
         simpleBlock(TTMContent.PLANKS_CULUMALDA.get());

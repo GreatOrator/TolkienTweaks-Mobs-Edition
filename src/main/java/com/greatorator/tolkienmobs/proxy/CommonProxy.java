@@ -7,8 +7,8 @@ import com.greatorator.tolkienmobs.datagen.BiomeGenerator;
 import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
 import com.greatorator.tolkienmobs.datagen.StructureGenerator;
-import com.greatorator.tolkienmobs.event.entity.EntityEvents;
 import com.greatorator.tolkienmobs.event.entity.SleepingEvent;
+import com.greatorator.tolkienmobs.event.entity.WorldEvents;
 import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
 import com.greatorator.tolkienmobs.handler.MobModify;
 import com.greatorator.tolkienmobs.handler.TTMTags;
@@ -17,7 +17,6 @@ import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.integration.curios.TTMEquipMgr;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
 import com.greatorator.tolkienmobs.network.TolkienNetwork;
-import com.greatorator.tolkienmobs.world.gen.TTMFeature;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMStructureConfig;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMTreeFeatureConfig;
 import net.minecraft.client.Minecraft;
@@ -51,13 +50,11 @@ public class CommonProxy {
         TTMTags.init();
         MilestoneSaveData.init();
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
-        MinecraftForge.EVENT_BUS.addListener(EntityEvents::onPlayerUpdate);
-        MinecraftForge.EVENT_BUS.addListener(EntityEvents::addDimensionalSpacing);
-        MinecraftForge.EVENT_BUS.addListener(EntityEvents::biomeModification);
+        MinecraftForge.EVENT_BUS.addListener(WorldEvents::onPlayerUpdate);
+        MinecraftForge.EVENT_BUS.addListener(WorldEvents::addDimensionalSpacing);
+        MinecraftForge.EVENT_BUS.addListener(WorldEvents::biomeModification);
 
         TTMTreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
-
-        MinecraftForge.EVENT_BUS.addListener(TTMFeature::biomeLoading);
 
         modBus.addListener(EntityGenerator::registerAttributes);
         IFluidHelper.bootStrap();

@@ -8,13 +8,13 @@ import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
 import static com.greatorator.tolkienmobs.TolkienMobs.LOGGER;
 
 public class BiomeHaradwaith {
-    private static int getSkyColorWithTemperatureModifier(float p_244206_0_) {
-        float lvt_1_1_ = p_244206_0_ / 3.0F;
+    private static int getSkyColorWithTemperatureModifier(float temp) {
+        float lvt_1_1_ = temp / 3.0F;
         lvt_1_1_ = MathHelper.clamp(lvt_1_1_, -1.0F, 1.0F);
         return MathHelper.hsvToRgb(0.62222224F - lvt_1_1_ * 0.05F, 0.5F + lvt_1_1_ * 0.1F, 1.0F);
     }
 
-    public static Biome makeBiomeHaradwaith(float depth, float scale) {
+    public static Biome makeBiomeHaradwaith(float depth, float scale, float temp, float rain, Biome.RainType rainType, Biome.Category category) {
         // Spawn Settings
         MobSpawnInfo.Builder spawnInf = new MobSpawnInfo.Builder();
         spawnInf.setPlayerCanSpawn();
@@ -42,12 +42,12 @@ public class BiomeHaradwaith {
 
         LOGGER.info("In the land where the stars are strange...");
         return (new Biome.Builder())
-                .precipitation(Biome.RainType.NONE)
-                .biomeCategory(Biome.Category.DESERT)
-                .depth(0.125F)
-                .scale(0.05F)
-                .temperature(2.0F)
-                .downfall(0.0F)
+                .precipitation(rainType)
+                .biomeCategory(category)
+                .depth(depth)
+                .scale(scale)
+                .temperature(temp)
+                .downfall(rain)
                 .specialEffects((new BiomeAmbience.Builder())
                         .waterColor(4159204)
                         .waterFogColor(329011)

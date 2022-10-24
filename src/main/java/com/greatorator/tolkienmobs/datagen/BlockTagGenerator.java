@@ -49,7 +49,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
         tag(TTMTags.blocks.WOODEN_SLABS).add(TTMContent.SLAB_MALLORN.get(), TTMContent.SLAB_MIRKWOOD.get(), TTMContent.SLAB_CULUMALDA.get(), TTMContent.SLAB_LEBETHRON.get());
             tag(BlockTags.WOODEN_SLABS).addTag(TTMTags.blocks.WOODEN_SLABS);
             tag(BlockTags.SLABS).addTag(TTMTags.blocks.WOODEN_SLABS);
-        tag(TTMTags.blocks.LOGS).add(TTMContent.LOG_MALLORN.get(), TTMContent.LOG_MIRKWOOD.get(), TTMContent.LOG_CULUMALDA.get(), TTMContent.LOG_LEBETHRON.get(), TTMContent.LOG_DEADWOOD.get());
+        tag(TTMTags.blocks.LOGS).add(TTMContent.LOG_MALLORN.get(), TTMContent.LOG_MIRKWOOD.get(), TTMContent.LOG_CULUMALDA.get(), TTMContent.LOG_LEBETHRON.get(), TTMContent.LOG_DEADWOOD.get(), TTMContent.STRIPPED_MALLORN_LOG.get(), TTMContent.STRIPPED_MIRKWOOD_LOG.get(), TTMContent.STRIPPED_CULUMALDA_LOG.get(), TTMContent.STRIPPED_LEBETHRON_LOG.get(), TTMContent.STRIPPED_MALLORN_WOOD.get(), TTMContent.STRIPPED_MIRKWOOD_WOOD.get(), TTMContent.STRIPPED_CULUMALDA_WOOD.get(), TTMContent.STRIPPED_LEBETHRON_WOOD.get(), TTMContent.WOOD_MALLORN.get(), TTMContent.WOOD_MIRKWOOD.get(), TTMContent.WOOD_CULUMALDA.get(), TTMContent.WOOD_LEBETHRON.get());
             tag(BlockTags.LOGS_THAT_BURN).addTag(TTMTags.blocks.LOGS);
             tag(BlockTags.LOGS).addTag(TTMTags.blocks.LOGS);
         tag(TTMTags.blocks.WOODEN_DOORS).add(TTMContent.DOOR_MALLORN.get(), TTMContent.DOOR_MIRKWOOD.get(), TTMContent.DOOR_CULUMALDA.get(), TTMContent.DOOR_LEBETHRON.get());

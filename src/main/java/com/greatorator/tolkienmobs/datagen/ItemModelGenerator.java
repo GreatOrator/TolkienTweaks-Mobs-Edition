@@ -54,6 +54,19 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.LOG_CULUMALDA.get());
         blockItem(TTMContent.LOG_LEBETHRON.get());
         blockItem(TTMContent.LOG_DEADWOOD.get());
+        blockItem(TTMContent.STRIPPED_MALLORN_LOG.get());
+        blockItem(TTMContent.STRIPPED_MIRKWOOD_LOG.get());
+        blockItem(TTMContent.STRIPPED_CULUMALDA_LOG.get());
+        blockItem(TTMContent.STRIPPED_LEBETHRON_LOG.get());
+        blockItem(TTMContent.WOOD_MALLORN.get());
+        blockItem(TTMContent.WOOD_MIRKWOOD.get());
+        blockItem(TTMContent.WOOD_CULUMALDA.get());
+        blockItem(TTMContent.WOOD_LEBETHRON.get());
+        blockItem(TTMContent.STRIPPED_MALLORN_WOOD.get());
+        blockItem(TTMContent.STRIPPED_MIRKWOOD_WOOD.get());
+        blockItem(TTMContent.STRIPPED_CULUMALDA_WOOD.get());
+        blockItem(TTMContent.STRIPPED_LEBETHRON_WOOD.get());
+        blockItem(TTMContent.LOG_DEADWOOD.get());
         blockItem(TTMContent.PLANKS_MALLORN.get());
         blockItem(TTMContent.PLANKS_MIRKWOOD.get());
         blockItem(TTMContent.PLANKS_CULUMALDA.get());
@@ -290,10 +303,12 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.CHESTPLATE_MITHRIL.get());
         simpleItem(TTMContent.LEGGINGS_MITHRIL.get());
         simpleItem(TTMContent.BOOTS_MITHRIL.get());
+        simpleItem(TTMContent.MITHRIL_HORSE_ARMOR.get());
         simpleItem(TTMContent.HELMET_MORGULIRON.get());
         simpleItem(TTMContent.CHESTPLATE_MORGULIRON.get());
         simpleItem(TTMContent.LEGGINGS_MORGULIRON.get());
         simpleItem(TTMContent.BOOTS_MORGULIRON.get());
+        simpleItem(TTMContent.MORGULIRON_HORSE_ARMOR.get());
 
         handheldItem(TTMContent.AXE_MITHRIL.get());
         handheldItem(TTMContent.HOE_MITHRIL.get());

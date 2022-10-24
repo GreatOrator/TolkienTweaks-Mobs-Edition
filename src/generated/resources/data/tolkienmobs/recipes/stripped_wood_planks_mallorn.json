@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tolkienmobs:stripped_wood_mallorn"
+    }
+  ],
+  "result": {
+    "item": "tolkienmobs:planks_mallorn",
+    "count": 4
+  }
+}

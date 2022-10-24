@@ -37,9 +37,9 @@ public class LeafParticle extends SpriteTexturedParticle {
         this.hasPhysics = true;
         this.lifetime = TTMRand.getRandomInteger(200, 100);
 
-        this.rCol = (float) r;
-        this.gCol = (float) g;
-        this.bCol = (float) b;
+        this.rCol = (float) 0;
+        this.gCol = (float) 93;
+        this.bCol = (float) 0;
         // accelerate over 3-7 seconds to at most 2.5 rotations per second
         this.maxRotateTime = (3 + random.nextInt(4 + 1)) * 20;
         this.maxRotateSpeed = (random.nextBoolean() ? -1 : 1) * (0.1f + 2.4f * random.nextFloat()) * TAU / 20f;

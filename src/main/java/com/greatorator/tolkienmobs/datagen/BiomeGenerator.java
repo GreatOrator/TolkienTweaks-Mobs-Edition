@@ -45,41 +45,42 @@ public class BiomeGenerator {
 
     // Creating the Biomes
     static {
-        BIOMES.register("biome_lorinand", () -> BiomeLorinand.makeBiomeLorinand(0.4f, 0.6f));
-        BIOMES.register("biome_mirkwood", () -> BiomeMirkwood.makeBiomeMirkwood(0.2F, 0.2F));
-        BIOMES.register("biome_marshes", () -> BiomeMarshes.makeBiomeMarshes(-0.2F, 0.1F));
-        BIOMES.register("biome_mordor", () -> BiomeMordor.makeBiomeMordor(0.125F, 0.5F));
-        BIOMES.register("biome_barrowdowns", () -> BiomeBarrowDowns.makeBiomeBarrowDowns(0.2F, 0.2F));
-        BIOMES.register("biome_dagorlad", () -> BiomeDagorlad.makeBiomeDagorlad(0.2F, 0.2F));
-        BIOMES.register("biome_shire", () -> BiomeShire.makeBiomeShire(0.125F, 0.5F));
-        BIOMES.register("biome_fangorn", () -> BiomeFangorn.makeBiomeFangorn(0.125F, 0.5F));
-        BIOMES.register("biome_haradwaith", () -> BiomeHaradwaith.makeBiomeHaradwaith(0.125F, 0.05F));
-        BIOMES.register("biome_oldforest", () -> BiomeOldForest.makeBiomeOldForest(0.125F, 0.05F));
-        BIOMES.register("biome_gladden", () -> BiomeGladden.makeBiomeGladden(0.125F, 0.05F));
-        BIOMES.register("biome_firien", () -> BiomeFirien.makeBiomeFirien(-0.5F, 0.25F));
-        BIOMES.register("biome_hithaeglir", () -> BiomeHithaeglir.makeBiomeHithaeglir(3.0F, 0.75F));
-        BIOMES.register("biome_ironhills", () -> BiomeIronHills.makeBiomeIronHills(3.0F, 0.75F));
+        BIOMES.register("biome_barrowdowns", () -> BiomeBarrowDowns.makeBiomeBarrowDowns(0.2F, 0.2F, 0.25F, 0.8F, Biome.RainType.RAIN, Biome.Category.NONE));
+        BIOMES.register("biome_hithaeglir", () -> BiomeHithaeglir.makeBiomeHithaeglir(3.0F, 0.75F, 0.2F, 0.3F, Biome.RainType.SNOW, Biome.Category.NONE));
+        BIOMES.register("biome_ironhills", () -> BiomeIronHills.makeBiomeIronHills(3.0F, 0.75F, 0.2F, 0.3F, Biome.RainType.SNOW, Biome.Category.NONE));
+        BIOMES.register("biome_firien", () -> BiomeFirien.makeBiomeFirien(-0.5F, 0.25F, 0.7F, 0.8F, Biome.RainType.RAIN, Biome.Category.NONE));
+        BIOMES.register("biome_oldforest", () -> BiomeOldForest.makeBiomeOldForest(0.125F, 0.05F, 0.7F, 0.8F, Biome.RainType.RAIN, Biome.Category.NONE));
+        BIOMES.register("biome_dagorlad", () -> BiomeDagorlad.makeBiomeDagorlad(0.125F, 0.05F, 0.8F, 0.4F, Biome.RainType.RAIN, Biome.Category.NONE));
+        BIOMES.register("biome_gladden", () -> BiomeGladden.makeBiomeGladden(0.125F, 0.05F, 0.8F, 0.4F, Biome.RainType.RAIN, Biome.Category.NONE));
+        BIOMES.register("biome_shire", () -> BiomeShire.makeBiomeShire(0.125F, 0.05F, 0.8F, 0.4F, Biome.RainType.RAIN, Biome.Category.NONE));
+        BIOMES.register("biome_lorinand", () -> BiomeLorinand.makeBiomeLorinand(0.125F, 0.05F, 0.8F, 0.4F, Biome.RainType.RAIN, Biome.Category.NONE));
+        BIOMES.register("biome_mirkwood", () -> BiomeMirkwood.makeBiomeMirkwood(0.2F, 0.2F, 0.25F, 0.8F, Biome.RainType.RAIN, Biome.Category.NONE));
+        BIOMES.register("biome_fangorn", () -> BiomeFangorn.makeBiomeFangorn(0.125F, 0.05F, 0.7F, 0.8F, Biome.RainType.RAIN, Biome.Category.NONE));
+        BIOMES.register("biome_mordor", () -> BiomeMordor.makeBiomeMordor(0.125F, 0.5F, 2.0F, 0.0F, Biome.RainType.NONE, Biome.Category.NONE));
+        BIOMES.register("biome_haradwaith", () -> BiomeHaradwaith.makeBiomeHaradwaith(0.125F, 0.05F, 2.0F, 0.0F, Biome.RainType.NONE, Biome.Category.NONE));
+        BIOMES.register("biome_marshes", () -> BiomeMarshes.makeBiomeMarshes(-0.2F, 0.1F, 0.8F, 0.9F, Biome.RainType.RAIN, Biome.Category.NONE));
     }
     // World Types
     public static RegistryObject<ForgeWorldType> ARDA = FORGE_WORLD_TYPES.register("arda", ArdaWorldType::new);
 
     // Register the Biomes
     public static void addBiomesToOverworld() {
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_BARROWDOWNS, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.ICY, new BiomeManager.BiomeEntry(BIOME_HITHAEGLIR, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_IRONHILLS, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_FIRIEN, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_OLDFOREST, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(BIOME_DAGORLAD, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(BIOME_GLADDEN, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(BIOME_SHIRE, 1));
         BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(BIOME_LORINAND, 1));
         BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_MIRKWOOD, 1));
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(BIOME_MARSHES, 1));
-        BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(BIOME_MORDOR, 1));
-        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_BARROWDOWNS, 1));
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(BIOME_DAGORLAD, 1));
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(BIOME_SHIRE, 1));
         BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_FANGORN, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(BIOME_MORDOR, 1));
         BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(BIOME_HARADWAITH, 1));
-        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_OLDFOREST, 1));
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(BIOME_GLADDEN, 1));
-        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(BIOME_FIRIEN, 1));
-        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_HITHAEGLIR, 1));
-        BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(BIOME_IRONHILLS, 1));
+        BiomeManager.addBiome(BiomeManager.BiomeType.WARM, new BiomeManager.BiomeEntry(BIOME_MARSHES, 1));
     }
+
 
     public static void addTypes() {
         BiomeDictionary.addTypes(BIOME_LORINAND, Type.FOREST, Type.MAGICAL, Type.LUSH, Type.OVERWORLD);
