@@ -14,8 +14,8 @@ import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiTexture
 import com.brandon3055.brandonscore.client.gui.modulargui.lib.GuiAlign;
 import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
 import com.brandon3055.brandonscore.inventory.SlotMover;
-import com.greatorator.tolkienmobs.container.LockableChestContainer;
-import com.greatorator.tolkienmobs.entity.tile.LockableChestTile;
+import com.greatorator.tolkienmobs.container.LockableDoubleChestContainer;
+import com.greatorator.tolkienmobs.entity.tile.LockableDoubleChestTile;
 import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -30,13 +30,13 @@ import java.util.regex.Pattern;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class LockableChestScreen extends ModularGuiContainer<LockableChestContainer> {
-    protected GuiToolkit<LockableChestScreen> toolkit = new GuiToolkit<>(this, 171, 166).setTranslationPrefix("gui.tolkienmobs.lockable_chest");
+public class LockableDoubleChestScreen extends ModularGuiContainer<LockableDoubleChestContainer> {
+    protected GuiToolkit<LockableDoubleChestScreen> toolkit = new GuiToolkit<>(this, 171, 215).setTranslationPrefix("gui.tolkienmobs.lockable_double_chest");
     private static final Pattern invalidCharacters = Pattern.compile("[^a-zA-Z-_\\d:]");
-    private LockableChestTile tile;
+    private LockableDoubleChestTile tile;
     private final PlayerEntity player;
 
-    public LockableChestScreen(LockableChestContainer container, PlayerInventory inv, ITextComponent titleIn) {
+    public LockableDoubleChestScreen(LockableDoubleChestContainer container, PlayerInventory inv, ITextComponent titleIn) {
         super(container, inv, titleIn);
         this.tile = container.tile;
         this.player = inv.player;
@@ -85,7 +85,7 @@ public class LockableChestScreen extends ModularGuiContainer<LockableChestContai
 
             // ### Main Inventory ###
             int slotColumns = 9;
-            int slotRows = 3;
+            int slotRows = 6;
             int slotsCount = slotColumns * slotRows;
             GuiElement<?> mainSlots = toolkit.createSlots(template.background, slotColumns, slotRows, 0, (x, y) -> new SlotMover(container.mainSlots.get(x + (y * slotColumns))), null);
             toolkit.placeInside(mainSlots, template.background, GuiToolkit.LayoutPos.TOP_RIGHT, -5, 16);

@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.tile.render;
 
-import com.greatorator.tolkienmobs.block.LockableChestBlock;
-import com.greatorator.tolkienmobs.entity.tile.LockableChestTile;
+import com.greatorator.tolkienmobs.block.LockableDoubleTreasureChestBlock;
+import com.greatorator.tolkienmobs.entity.tile.LockableDoubleTreasureChestTile;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -10,15 +10,15 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Quaternion;
 
-public class RenderLockableChestTile extends TileEntityRenderer<LockableChestTile> {
-    public RenderLockableChestTile(TileEntityRendererDispatcher rendererDispatcherIn) {
+public class RenderLockableDoubleTreasureChestTile extends TileEntityRenderer<LockableDoubleTreasureChestTile> {
+    public RenderLockableDoubleTreasureChestTile(TileEntityRendererDispatcher rendererDispatcherIn) {
         super(rendererDispatcherIn);
     }
 
     @Override
-    public void render(LockableChestTile te, float partialTicks, MatrixStack mStack, IRenderTypeBuffer getter, int packedLight, int packedOverlay) {
+    public void render(LockableDoubleTreasureChestTile te, float partialTicks, MatrixStack mStack, IRenderTypeBuffer getter, int packedLight, int packedOverlay) {
         BlockState state = te.getBlockState();
-        Direction facing = state.getValue(LockableChestBlock.FACING);
+        Direction facing = state.getValue(LockableDoubleTreasureChestBlock.FACING);
 
         mStack.pushPose();
         mStack.translate(0.5, 0.5, 0.5);

@@ -153,6 +153,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TTMContent.MILESTONE_BLOCK.get());
         blockItem(TTMContent.LOCKABLE_CHEST_BLOCK.get());
         blockItem(TTMContent.LOCKABLE_TREASURE_CHEST_BLOCK.get());
+        blockItem(TTMContent.LOCKABLE_DOUBLE_CHEST_BLOCK.get());
+        blockItem(TTMContent.LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK.get());
         blockItem(TTMContent.ROCKPILE.get());
 
         // Dev Tools

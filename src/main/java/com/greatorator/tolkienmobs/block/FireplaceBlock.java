@@ -54,7 +54,8 @@ public class FireplaceBlock extends Block {
                 return SHAPE_WEST;
             default:
                 return SHAPE_COMMON;
-        }    }
+        }
+    }
 
     @SuppressWarnings("deprecation")
     @Override

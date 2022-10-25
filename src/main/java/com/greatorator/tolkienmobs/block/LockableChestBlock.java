@@ -2,12 +2,14 @@ package com.greatorator.tolkienmobs.block;
 
 import com.brandon3055.brandonscore.blocks.BlockBCore;
 import com.greatorator.tolkienmobs.entity.tile.LockableChestTile;
+import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
@@ -18,11 +20,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 public class LockableChestBlock extends BlockBCore {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -38,11 +44,20 @@ public class LockableChestBlock extends BlockBCore {
     @SuppressWarnings("deprecation")
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult trace) {
+        ItemStack stack = player.getItemInHand(hand);
+        TileEntity tile = world.getBlockEntity(pos);
+
         if (!world.isClientSide) {
-            TileEntity tile = world.getBlockEntity(pos);
             if (tile instanceof LockableChestTile) {
-                ((LockableChestTile) tile).onRightClick(player, hand);
-                world.playSound((PlayerEntity)null, pos, SoundEvents.CHEST_OPEN, SoundCategory.BLOCKS, 0.3F, 0.5F);
+                if (player.isCreative()) {
+                    ((LockableChestTile) tile).onRightClick(player, hand);
+                } else if (stack.getItem() instanceof KeyBaseItem && (KeyBaseItem.getKey(stack).equals(((LockableChestTile) tile).keyCode.get()))) {
+                    ((LockableChestTile) tile).onRightClick(player, hand);
+                    world.playSound((PlayerEntity) null, pos, SoundEvents.CHEST_OPEN, SoundCategory.BLOCKS, 0.3F, 0.5F);
+                } else {
+                    player.sendMessage(new TranslationTextComponent(MODID + ".msg.wrong_key").withStyle(TextFormatting.RED), Util.NIL_UUID);
+                    world.playSound((PlayerEntity) null, pos, SoundEvents.CHAIN_PLACE, SoundCategory.BLOCKS, 0.3F, 0.5F);
+                }
             }
             return ActionResultType.CONSUME;
         }

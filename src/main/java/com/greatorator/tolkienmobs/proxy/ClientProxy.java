@@ -188,7 +188,9 @@ public class ClientProxy extends CommonProxy {
         ScreenManager.register(TTMContent.CAMO_CHEST_CONTAINER, CamoChestScreen::new);
         ScreenManager.register(TTMContent.CAMO_FLUID_CONTAINER, CamoFluidScreen::new);
         ScreenManager.register(TTMContent.LOCKABLE_CHEST_CONTAINER, LockableChestScreen::new);
-        ScreenManager.register(TTMContent.LOCKABLE_TREASURE_CHEST_CONTAINER, LockableChestScreen::new);
+        ScreenManager.register(TTMContent.LOCKABLE_TREASURE_CHEST_CONTAINER, LockableTreasureChestScreen::new);
+        ScreenManager.register(TTMContent.LOCKABLE_DOUBLE_CHEST_CONTAINER, LockableDoubleChestScreen::new);
+        ScreenManager.register(TTMContent.LOCKABLE_DOUBLE_TREASURE_CHEST_CONTAINER, LockableDoubleTreasureChestScreen::new);
     }
 
     //#################################################################
@@ -303,7 +305,9 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntityRenderer(CAMO_SPAWNER_TILE.get(), RenderCamoSpawnerTile::new);
         ClientRegistry.bindTileEntityRenderer(CAMO_CHEST_TILE.get(), RenderCamoChestTile::new);
         ClientRegistry.bindTileEntityRenderer(LOCKABLE_CHEST_TILE.get(), RenderLockableChestTile::new);
-        ClientRegistry.bindTileEntityRenderer(LOCKABLE_TREASURE_CHEST_TILE.get(), RenderLockableChestTile::new);
+        ClientRegistry.bindTileEntityRenderer(LOCKABLE_TREASURE_CHEST_TILE.get(), RenderLockableTreasureChestTile::new);
+        ClientRegistry.bindTileEntityRenderer(LOCKABLE_DOUBLE_CHEST_TILE.get(), RenderLockableDoubleChestTile::new);
+        ClientRegistry.bindTileEntityRenderer(LOCKABLE_DOUBLE_TREASURE_CHEST_TILE.get(), RenderLockableDoubleTreasureChestTile::new);
     }
 
     @Override

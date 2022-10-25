@@ -281,7 +281,9 @@ public class TTMContent {
     public static RegistryObject<Block> CAMO_SPAWNER_BLOCK = BLOCKS.register("block_camo_spawner", () -> new CamoSpawnerBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
     public static RegistryObject<Block> MILESTONE_BLOCK = BLOCKS.register("milestone_block", () -> new MilestoneBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
     public static RegistryObject<Block> LOCKABLE_CHEST_BLOCK = BLOCKS.register("lockable_chest_block", () -> new LockableChestBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
-    public static RegistryObject<Block> LOCKABLE_TREASURE_CHEST_BLOCK = BLOCKS.register("lockable_treasure_chest_block", () -> new LockableChestBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
+    public static RegistryObject<Block> LOCKABLE_TREASURE_CHEST_BLOCK = BLOCKS.register("lockable_treasure_chest_block", () -> new LockableTreasureChestBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
+    public static RegistryObject<Block> LOCKABLE_DOUBLE_CHEST_BLOCK = BLOCKS.register("lockable_double_chest_block", () -> new LockableDoubleChestBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
+    public static RegistryObject<Block> LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK = BLOCKS.register("lockable_double_treasure_chest_block", () -> new LockableDoubleTreasureChestBlock(AbstractBlock.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
     public static RegistryObject<Block> ROCKPILE = BLOCKS.register("rockpile", () -> new RockPileBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_GRAY).sound(SoundType.STONE).harvestTool(ToolType.PICKAXE).harvestLevel(2).strength(5f, 6f)));
 
     // Custom - Sleeping Bags
@@ -470,6 +472,8 @@ public class TTMContent {
     public static RegistryObject<Item> MILESTONE_BLOCK_ITEM = ITEMS.register("milestone_block", () -> new ItemBlockBCore(MILESTONE_BLOCK.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> LOCKABLE_CHEST_BLOCK_ITEM = ITEMS.register("lockable_chest_block", () -> new ItemBlockBCore(LOCKABLE_CHEST_BLOCK.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> LOCKABLE_TREASURE_CHEST_BLOCK_ITEM = ITEMS.register("lockable_treasure_chest_block", () -> new ItemBlockBCore(LOCKABLE_TREASURE_CHEST_BLOCK.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> LOCKABLE_DOUBLE_CHEST_BLOCK_ITEM = ITEMS.register("lockable_double_chest_block", () -> new ItemBlockBCore(LOCKABLE_DOUBLE_CHEST_BLOCK.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK_ITEM = ITEMS.register("lockable_double_treasure_chest_block", () -> new ItemBlockBCore(LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> ROCKPILE_ITEM = ITEMS.register("rockpile", () -> new ItemBlockBCore(ROCKPILE.get(), new Item.Properties().tab(decoGroup)));
 
     // Blocks - Sleeping Bags
@@ -726,7 +730,9 @@ public class TTMContent {
     public static RegistryObject<TileEntityType<CamoSpawnerTile>> CAMO_SPAWNER_TILE = TILE.register("camo_spawner_tile", () -> TileEntityType.Builder.of(CamoSpawnerTile::new, CAMO_SPAWNER_BLOCK.get()).build(null));
     public static RegistryObject<TileEntityType<MilestoneTile>> MILESTONE_TILE = TILE.register("milestone_tile", () -> TileEntityType.Builder.of(MilestoneTile::new, MILESTONE_BLOCK.get()).build(null));
     public static RegistryObject<TileEntityType<LockableChestTile>> LOCKABLE_CHEST_TILE = TILE.register("lockable_chest_tile", () -> TileEntityType.Builder.of(LockableChestTile::new, LOCKABLE_CHEST_BLOCK.get()).build(null));
-    public static RegistryObject<TileEntityType<LockableChestTile>> LOCKABLE_TREASURE_CHEST_TILE = TILE.register("lockable_treasure_chest_tile", () -> TileEntityType.Builder.of(LockableChestTile::new, LOCKABLE_TREASURE_CHEST_BLOCK.get()).build(null));
+    public static RegistryObject<TileEntityType<LockableTreasureChestTile>> LOCKABLE_TREASURE_CHEST_TILE = TILE.register("lockable_treasure_chest_tile", () -> TileEntityType.Builder.of(LockableTreasureChestTile::new, LOCKABLE_TREASURE_CHEST_BLOCK.get()).build(null));
+    public static RegistryObject<TileEntityType<LockableDoubleChestTile>> LOCKABLE_DOUBLE_CHEST_TILE = TILE.register("lockable_double_chest_tile", () -> TileEntityType.Builder.of(LockableDoubleChestTile::new, LOCKABLE_DOUBLE_CHEST_BLOCK.get()).build(null));
+    public static RegistryObject<TileEntityType<LockableDoubleTreasureChestTile>> LOCKABLE_DOUBLE_TREASURE_CHEST_TILE = TILE.register("lockable_double_treasure_chest_tile", () -> TileEntityType.Builder.of(LockableDoubleTreasureChestTile::new, LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK.get()).build(null));
     public static RegistryObject<TileEntityType<MallornSignTile>> MALLORN_SIGN_TILE = TILE.register("mallorn_sign", () -> TileEntityType.Builder.of(MallornSignTile::new, MALLORN_SIGN.get(), MALLORN_WALL_SIGN.get()).build(null));
     public static RegistryObject<TileEntityType<MirkwoodSignTile>> MIRKWOOD_SIGN_TILE = TILE.register("mirkwood_sign", () -> TileEntityType.Builder.of(MirkwoodSignTile::new, MIRKWOOD_SIGN.get(), MIRKWOOD_WALL_SIGN.get()).build(null));
     public static RegistryObject<TileEntityType<CulumaldaSignTile>> CULUMALDA_SIGN_TILE = TILE.register("culumalda_sign", () -> TileEntityType.Builder.of(CulumaldaSignTile::new, CULUMALDA_SIGN.get(), CULUMALDA_WALL_SIGN.get()).build(null));
@@ -748,7 +754,9 @@ public class TTMContent {
     public static ContainerType<CamoFluidContainer> CAMO_FLUID_CONTAINER;
     public static ContainerType<ContainerBCTile<CamoSpawnerTile>> CAMO_SPAWNER_CONTAINER;
     public static ContainerType<LockableChestContainer> LOCKABLE_CHEST_CONTAINER;
-    public static ContainerType<LockableChestContainer> LOCKABLE_TREASURE_CHEST_CONTAINER;
+    public static ContainerType<LockableTreasureChestContainer> LOCKABLE_TREASURE_CHEST_CONTAINER;
+    public static ContainerType<LockableDoubleChestContainer> LOCKABLE_DOUBLE_CHEST_CONTAINER;
+    public static ContainerType<LockableDoubleTreasureChestContainer> LOCKABLE_DOUBLE_TREASURE_CHEST_CONTAINER;
 
     public static void registerContainers(RegistryEvent.Register<ContainerType<?>> event) {
         event.getRegistry().register(TMFIREPLACE_CONTAINER = (ContainerType<ContainerBCTile<FireplaceTile>>) IForgeContainerType.create((id, playerInv, extraData) -> new ContainerBCTile<>(TMFIREPLACE_CONTAINER, id, playerInv, extraData, FireplaceTile.SLOT_LAYOUT)).setRegistryName("tmfireplace_container"));
@@ -764,7 +772,9 @@ public class TTMContent {
         event.getRegistry().register(CAMO_CHEST_CONTAINER = (ContainerType<CamoChestContainer>) IForgeContainerType.create(CamoChestContainer::new).setRegistryName("camo_chest_container"));
         event.getRegistry().register(CAMO_FLUID_CONTAINER = (ContainerType<CamoFluidContainer>) IForgeContainerType.create(CamoFluidContainer::new).setRegistryName("camo_fluid_container"));
         event.getRegistry().register(LOCKABLE_CHEST_CONTAINER = (ContainerType<LockableChestContainer>) IForgeContainerType.create(LockableChestContainer::new).setRegistryName("lockable_chest_container"));
-        event.getRegistry().register(LOCKABLE_TREASURE_CHEST_CONTAINER = (ContainerType<LockableChestContainer>) IForgeContainerType.create(LockableChestContainer::new).setRegistryName("lockable_treasure_chest_container"));
+        event.getRegistry().register(LOCKABLE_TREASURE_CHEST_CONTAINER = (ContainerType<LockableTreasureChestContainer>) IForgeContainerType.create(LockableTreasureChestContainer::new).setRegistryName("lockable_treasure_chest_container"));
+        event.getRegistry().register(LOCKABLE_DOUBLE_CHEST_CONTAINER = (ContainerType<LockableDoubleChestContainer>) IForgeContainerType.create(LockableDoubleChestContainer::new).setRegistryName("lockable_double_chest_container"));
+        event.getRegistry().register(LOCKABLE_DOUBLE_TREASURE_CHEST_CONTAINER = (ContainerType<LockableDoubleTreasureChestContainer>) IForgeContainerType.create(LockableDoubleTreasureChestContainer::new).setRegistryName("lockable_double_treasure_chest_container"));
     }
 
     //#################################################################

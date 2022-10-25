@@ -1,6 +1,8 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.greatorator.tolkienmobs.entity.tile.CamoKeyStoneTile;
+import com.brandon3055.brandonscore.blocks.BlockBCore;
+import com.greatorator.tolkienmobs.entity.tile.LockableDoubleChestTile;
+import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,38 +15,33 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
-public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
-    public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
+public class LockableDoubleChestBlock extends BlockBCore {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-    public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
 
-    long countup = 0;
+    protected static final VoxelShape LOCKABLE_SHAPE_N = Block.box(-15.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D);
+    protected static final VoxelShape LOCKABLE_SHAPE_S = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 31.0D);
+    protected static final VoxelShape LOCKABLE_SHAPE_E = Block.box(1.0D, 0.0D, -15.0D, 15.0D, 15.0D, 15.0D);
+    protected static final VoxelShape LOCKABLE_SHAPE_W = Block.box(1.0D, 0.0D, 1.0D, 31.0D, 15.0D, 15.0D);
 
-    public CamoKeyStoneBlock(Properties properties) {
+    public LockableDoubleChestBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ACTIVE, false).setValue(WATERLOGGED, Boolean.FALSE).setValue(POWERED, Boolean.FALSE));
+        this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
     @SuppressWarnings("deprecation")
@@ -52,48 +49,55 @@ public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult trace) {
         ItemStack stack = player.getItemInHand(hand);
         TileEntity tile = world.getBlockEntity(pos);
-        CamoKeyStoneTile keyStone = (CamoKeyStoneTile) tile;
-        if (!world.isClientSide) {
-            if (tile != null) {
-                keyStone.onRightClick(state, player, hand);
-                return ActionResultType.SUCCESS;
-            }
-        }
 
+        if (!world.isClientSide) {
+            if (tile instanceof LockableDoubleChestTile) {
+                if (player.isCreative()) {
+                    ((LockableDoubleChestTile) tile).onRightClick(player, hand);
+                } else if (stack.getItem() instanceof KeyBaseItem && (KeyBaseItem.getKey(stack).equals(((LockableDoubleChestTile) tile).keyCode.get()))) {
+                    ((LockableDoubleChestTile) tile).onRightClick(player, hand);
+                    world.playSound((PlayerEntity) null, pos, SoundEvents.CHEST_OPEN, SoundCategory.BLOCKS, 0.3F, 0.5F);
+                } else {
+                    player.sendMessage(new TranslationTextComponent(MODID + ".msg.wrong_key").withStyle(TextFormatting.RED), Util.NIL_UUID);
+                    world.playSound((PlayerEntity) null, pos, SoundEvents.CHAIN_PLACE, SoundCategory.BLOCKS, 0.3F, 0.5F);
+                }
+            }
+            return ActionResultType.CONSUME;
+        }
         return ActionResultType.SUCCESS;
     }
 
     @Override
-    public int getSignal(BlockState blockState, IBlockReader iBlockReader, BlockPos blockPos, Direction direction) {
-        return blockState.getValue(ACTIVE) ? 15 : 0;
-    }
-
-    @Override
-    public boolean isSignalSource(BlockState blockState) {
+    public boolean hasTileEntity(BlockState state) {
         return true;
     }
 
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new CamoKeyStoneTile();
+        return new LockableDoubleChestTile();
     }
 
     @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
         switch((Direction)state.getValue(FACING)) {
-            case NORTH:
-                return SHAPE_NORTH;
-            case SOUTH:
-                return SHAPE_SOUTH;
-            case EAST:
-                return SHAPE_EAST;
-            case WEST:
-                return SHAPE_WEST;
             default:
-                return SHAPE_COMMON;
+            case NORTH:
+                return LOCKABLE_SHAPE_N;
+            case SOUTH:
+                return LOCKABLE_SHAPE_W;
+            case EAST:
+                return LOCKABLE_SHAPE_E;
+            case WEST:
+                return LOCKABLE_SHAPE_S;
         }
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(FACING, WATERLOGGED);
+        super.createBlockStateDefinition(builder);
     }
 
     @Override
@@ -101,13 +105,8 @@ public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
         if (state.getValue(WATERLOGGED)) {
             world.getLiquidTicks().scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
-        return state;
-    }
 
-    @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(ACTIVE, POWERED);
-        super.createBlockStateDefinition(builder);
+        return state;
     }
 
     @SuppressWarnings("deprecation")
@@ -127,18 +126,5 @@ public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
     @Override
     public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
-    }
-
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState blockState, World worldIn, BlockPos pos, Random random) {
-        if (blockState.getValue(POWERED) && random.nextFloat() < 0.25F) {
-            blockState.setValue(ACTIVE, true);
-        }
-    }
-
-    @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
     }
 }

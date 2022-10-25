@@ -161,6 +161,8 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TTMContent.CAMO_SPAWNER_BLOCK.get());
         horizontalBlock(TTMContent.LOCKABLE_CHEST_BLOCK.get(), models().getExistingFile(modLoc("block/lockable_chest_block")), 180);
         horizontalBlock(TTMContent.LOCKABLE_TREASURE_CHEST_BLOCK.get(), models().getExistingFile(modLoc("block/lockable_treasure_chest_block")), 180);
+        horizontalBlock(TTMContent.LOCKABLE_DOUBLE_CHEST_BLOCK.get(), models().getExistingFile(modLoc("block/lockable_double_chest_block")), 180);
+        horizontalBlock(TTMContent.LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK.get(), models().getExistingFile(modLoc("block/lockable_double_treasure_chest_block")), 180);
         horizontalBlock(TTMContent.BACKPACK.get(), models().getExistingFile(modLoc("block/container_backpack")), 0);
 
         ModelFile barrelMithril = models().cubeBottomTop("barrel_mithril", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top"));

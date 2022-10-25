@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.container;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.container.slots.SlotCheckValid2;
-import com.greatorator.tolkienmobs.entity.tile.LockableChestTile;
+import com.greatorator.tolkienmobs.entity.tile.LockableTreasureChestTile;
 import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -18,16 +18,16 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LockableChestContainer extends ContainerBCTile<LockableChestTile> {
+public class LockableTreasureChestContainer extends ContainerBCTile<LockableTreasureChestTile> {
     public List<Slot> playerSlots = new ArrayList<>();
     public List<SlotCheckValid2> mainSlots = new ArrayList<>();
 
-    public LockableChestContainer(int windowId, PlayerInventory playerInv, PacketBuffer extraData) {
-        this(TTMContent.LOCKABLE_CHEST_CONTAINER, windowId, playerInv, getClientTile(extraData));
+    public LockableTreasureChestContainer(int windowId, PlayerInventory playerInv, PacketBuffer extraData) {
+        this(TTMContent.LOCKABLE_TREASURE_CHEST_CONTAINER, windowId, playerInv, getClientTile(extraData));
         //^^ Don't forget this!
     }
 
-    public LockableChestContainer(@Nullable ContainerType<?> type, int windowId, PlayerInventory playerInv, LockableChestTile tile) {
+    public LockableTreasureChestContainer(@Nullable ContainerType<?> type, int windowId, PlayerInventory playerInv, LockableTreasureChestTile tile) {
         super(type, windowId, playerInv, tile);
         ItemStack stack = player.getItemInHand(Hand.MAIN_HAND);
 
