@@ -182,7 +182,9 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK.get(), "Lockable Double Treasure Chest");
         add(TTMContent.PLACARD.get(), "Country Signs");
         add(TTMContent.MITHRIL_FLUID_BLOCK.get(), "Molten Mithril");
+        add("fluid.tolkienmobs.mithril_fluid", "Molten Mithril");
         add(TTMContent.MORGULIRON_FLUID_BLOCK.get(), "Molten Morguliron");
+        add("fluid.tolkienmobs.morguliron_fluid", "Molten Morguliron");
         addLore(Item.byBlock(TTMContent.PLACARD.get()), "Shift right-click on sign to cycle types");
         add(TTMContent.SLEEPING_BAG_BLACK.get(), "Black Sleeping Bag");
         addLore(Item.byBlock(TTMContent.SLEEPING_BAG_BLACK.get()), TextFormatting.RED + "Does not reset spawn point.");
