@@ -51,7 +51,20 @@ public class LockableTreasureChestBlock extends BlockBCore {
             if (tile instanceof LockableTreasureChestTile) {
                 if (player.isCreative()) {
                     ((LockableTreasureChestTile) tile).onRightClick(player, hand);
-                } else if (stack.getItem() instanceof KeyBaseItem && (KeyBaseItem.getKey(stack).equals(((LockableTreasureChestTile) tile).keyCode.get()))) {
+                } else if (stack.getItem() instanceof KeyBaseItem && (KeyBaseItem.getCode(stack).equals(((LockableTreasureChestTile) tile).keyCode.get()))) {
+                    int uses = KeyBaseItem.getUses(stack);
+
+                    if (KeyBaseItem.getUses(stack) >= 0) {
+                        world.sendBlockUpdated(pos, state, state, 3);
+
+                        if (uses == 0) {
+                            stack.shrink(1);
+                            world.playSound((PlayerEntity) null, pos, SoundEvents.ITEM_BREAK, SoundCategory.BLOCKS, 0.3F, 0.6F);
+                            player.sendMessage(new TranslationTextComponent(MODID + ".msg.key_used").withStyle(TextFormatting.RED), Util.NIL_UUID);
+                        }
+                        uses--;
+                        KeyBaseItem.setUses(stack, uses);
+                    }
                     ((LockableTreasureChestTile) tile).onRightClick(player, hand);
                     world.playSound((PlayerEntity) null, pos, SoundEvents.CHEST_OPEN, SoundCategory.BLOCKS, 0.3F, 0.5F);
                 } else {

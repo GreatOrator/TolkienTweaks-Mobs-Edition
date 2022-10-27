@@ -31,7 +31,7 @@ public class LockableDoubleChestContainer extends ContainerBCTile<LockableDouble
         super(type, windowId, playerInv, tile);
         ItemStack stack = player.getItemInHand(Hand.MAIN_HAND);
 
-        if (stack.getItem() instanceof KeyBaseItem && (KeyBaseItem.getKey(stack).equals(tile.keyCode.get()))) {
+        if (stack.getItem() instanceof KeyBaseItem && (KeyBaseItem.getCode(stack).equals(tile.keyCode.get()))) {
             //Player Inventory
             for (int i = 0; i < playerInv.items.size(); i++) {
                 playerSlots.add(addSlot(new SlotCheckValid2.IInv(playerInv, i, 0, 0)));

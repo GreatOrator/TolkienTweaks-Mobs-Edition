@@ -4,7 +4,6 @@ import codechicken.lib.packet.PacketCustom;
 import codechicken.lib.packet.PacketCustomChannelBuilder;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -26,8 +25,6 @@ public class TolkienNetwork {
     public static final int S_UPDATE_SIGN =             1;
     public static final int S_UPDATE_KEY_CODE =         2;
     public static final int S_UPDATE_KEY_USES =         3;
-    public static final int S_UPDATE_KEYSTONE_CODE =    4;
-    public static final int S_UPDATE_KEYSTONE_DELAY =   5;
 
     public static void sendSignUpdate(BlockPos blockPos, String line1, String line2, String line3, String line4) {
         PacketCustom packet = new PacketCustom(CHANNEL, S_UPDATE_SIGN);
@@ -46,21 +43,9 @@ public class TolkienNetwork {
         packet.sendToServer();
     }
 
-    public static void sendKeyUsesUpdate(String key) {
+    public static void sendKeyUsesUpdate(String uses) {
         PacketCustom packet = new PacketCustom(CHANNEL, S_UPDATE_KEY_USES);
-        packet.writeString(key);
-        packet.sendToServer();
-    }
-
-    public static void sendKeyStoneCode(String key) {
-        PacketCustom packet = new PacketCustom(CHANNEL, S_UPDATE_KEYSTONE_CODE);
-        packet.writeString(key);
-        packet.sendToServer();
-    }
-
-    public static void sendKeyStoneDelay(String key) {
-        PacketCustom packet = new PacketCustom(CHANNEL, S_UPDATE_KEYSTONE_DELAY);
-        packet.writeString(key);
+        packet.writeString(uses);
         packet.sendToServer();
     }
 

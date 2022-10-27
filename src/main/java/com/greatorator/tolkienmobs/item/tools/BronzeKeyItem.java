@@ -6,12 +6,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
 public class BronzeKeyItem extends KeyBaseItem {
-    public BronzeKeyItem(Properties properties) {
-        super(properties);
+    public BronzeKeyItem(Properties properties, int uses) {
+        super(properties, uses);
     }
 
     @Override
     public void openGui(ItemStack stack, PlayerEntity player) {
-        Minecraft.getInstance().setScreen(new BronzeKeyAccessScreen(player, stack.getHoverName(), null, getKey(stack), getUses(stack)));
+        Minecraft.getInstance().setScreen(new BronzeKeyAccessScreen(player, stack.getHoverName(), null, getCode(stack), getUses(stack)));
     }
 }

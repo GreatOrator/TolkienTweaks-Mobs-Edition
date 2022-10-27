@@ -11,7 +11,7 @@ import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiTextFie
 import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiTexture;
 import com.brandon3055.brandonscore.client.gui.modulargui.lib.GuiAlign;
 import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
-import com.greatorator.tolkienmobs.handler.interfaces.IKeyAccessTile;
+import com.greatorator.tolkienmobs.handler.interfaces.IKeyBase;
 import com.greatorator.tolkienmobs.network.TolkienNetwork;
 import net.minecraft.client.gui.IGuiEventListener;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,16 +25,12 @@ public class KeyBaseAccessScreen extends ModularGuiScreen implements IGuiEventLi
     private static Pattern invalidCharacters = Pattern.compile("[^a-zA-Z-_\\d:]");
 
     private final PlayerEntity player;
-    private boolean keymode;
-    private String currentCode;
-    private String uses;
-    private IKeyAccessTile lockable;
+    private final String currentCode;
+    private final int uses;
 
-    public KeyBaseAccessScreen(PlayerEntity playerIn, ITextComponent title, IKeyAccessTile lockable, String currentCode, String uses) {
+    public KeyBaseAccessScreen(PlayerEntity playerIn, ITextComponent title, IKeyBase lockable, String currentCode, int uses) {
         super(title);
         this.player = playerIn;
-        this.lockable = lockable;
-        keymode = lockable == null;
         this.currentCode = currentCode;
         this.uses = uses;
     }
@@ -97,7 +93,7 @@ public class KeyBaseAccessScreen extends ModularGuiScreen implements IGuiEventLi
                     .setTextColGetter(GuiToolkit.Palette.Slot::text)
                     .setMaxXPos(codeBG2.maxXPos() - 1, true);
             GuiTextField keyCode2 = toolkit.createTextField(temp.background)
-                    .setText(uses)
+                    .setText(String.valueOf(uses))
                     .setFieldEnabled(true)
                     .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("instructions2"))
                     .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))

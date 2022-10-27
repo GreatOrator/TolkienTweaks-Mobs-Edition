@@ -828,7 +828,7 @@ public class LangGenerator extends LanguageProvider {
         helper.add("instructions",                      "Set the code for this key. The code can be anything as long as it matches the block.");
         helper.add("keycode",                           "Key Code Field");
         helper.add("saved",                             "Code saved automatically");
-        helper.add("instructions2",                     "Set the number of uses for this key. Leave blank for infinite or if you want to use the KeyStone consume mode.");
+        helper.add("instructions2",                     "Set the number of uses for this key. -1 for infinite or if you want to use the KeyStone consume mode.");
         helper.add("keycode2",                          "Number of uses");
         helper.add("saved2",                            "Uses saved automatically");
         helper.setPrefix("screen.tolkienmobs.milestone.");

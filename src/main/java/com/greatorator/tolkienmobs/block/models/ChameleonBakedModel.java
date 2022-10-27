@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.model.BakedQuad;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.item.Item;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockDisplayReader;
@@ -71,11 +72,12 @@ public class ChameleonBakedModel implements IBakedModel {
     }
 
     private IBakedModel getActualBakedModelFromIModelData(@Nonnull IModelData data) {
-        IBakedModel retval = modelWhenNotCamouflaged;  // default
+        IBakedModel retval = modelWhenNotCamouflaged;
+        Item item = Minecraft.getInstance().player.getMainHandItem().getItem();
 
-        if (Minecraft.getInstance().player != null && Minecraft.getInstance().player.getMainHandItem().getItem() == TTMContent.ITEM_DEV_TOOL.get()) {
+        if (Minecraft.getInstance().player != null && item == TTMContent.ITEM_DEV_TOOL.get()) {
             return retval;
-        } else if (Minecraft.getInstance().player != null && Minecraft.getInstance().player.getMainHandItem().getItem() instanceof KeyBaseItem){
+        } else if (Minecraft.getInstance().player != null && item instanceof KeyBaseItem) {
             return retval;
         } else if (!data.hasProperty(COPIED_BLOCK)) {
             if (!loggedError) {

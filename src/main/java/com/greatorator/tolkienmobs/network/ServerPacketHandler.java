@@ -6,7 +6,6 @@ import com.greatorator.tolkienmobs.entity.tile.CulumaldaSignTile;
 import com.greatorator.tolkienmobs.entity.tile.LebethronSignTile;
 import com.greatorator.tolkienmobs.entity.tile.MallornSignTile;
 import com.greatorator.tolkienmobs.entity.tile.MirkwoodSignTile;
-import com.greatorator.tolkienmobs.item.tools.BronzeKeyItem;
 import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,18 +30,18 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
     public void handlePacket(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
         switch (packet.getType()) {
             case TolkienNetwork.S_UPDATE_SIGN:
-                handleSignUpdate(packet, sender, handler);
+                handleSignUpdate(packet, sender);
                 break;
             case TolkienNetwork.S_UPDATE_KEY_CODE:
-                handleKeyCodeUpdate(packet, sender, handler);
+                handleKeyCodeUpdate(packet, sender);
                 break;
             case TolkienNetwork.S_UPDATE_KEY_USES:
-                handleKeyUsesUpdate(packet, sender, handler);
+                handleKeyUsesUpdate(packet, sender);
                 break;
         }
     }
 
-    private void handleSignUpdate(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
+    private void handleSignUpdate(PacketCustom packet, ServerPlayerEntity sender) {
         BlockPos blockpos = packet.readPos();
         String line1 = packet.readString();
         String line2 = packet.readString();
@@ -99,31 +98,20 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
         }
     }
 
-    private void handleKeyCodeUpdate(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
+    private void handleKeyCodeUpdate(PacketCustom packet, ServerPlayerEntity sender) {
         String newCode = packet.readString();
         ItemStack keyStack = getItem(sender, item -> item instanceof KeyBaseItem);
-        ((KeyBaseItem) keyStack.getItem()).setKey(keyStack, newCode);
+        KeyBaseItem.setCode(keyStack, newCode);
     }
 
-    private void handleKeyUsesUpdate(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
+    private void handleKeyUsesUpdate(PacketCustom packet, ServerPlayerEntity sender) {
         String newUses = packet.readString();
         ItemStack keyStack = getItem(sender, item -> item instanceof KeyBaseItem);
-        ((KeyBaseItem) keyStack.getItem()).setUses(keyStack, newUses);
-    }
-
-    private void handleMilestoneUpdate(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
-    }
-
-    private void handleKeyStoneCode(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
-        String newCode = packet.readString();
-        ItemStack keyStack = getItem(sender, item -> item instanceof BronzeKeyItem);
-        ((BronzeKeyItem) keyStack.getItem()).setKey(keyStack, newCode);
-    }
-
-    private void handleKeyStoneDelay(PacketCustom packet, ServerPlayerEntity sender, IServerPlayNetHandler handler) {
-        String newCode = packet.readString();
-        ItemStack keyStack = getItem(sender, item -> item instanceof BronzeKeyItem);
-        ((BronzeKeyItem) keyStack.getItem()).setKey(keyStack, newCode);
+        try {
+            KeyBaseItem.setUses(keyStack, Integer.parseInt(newUses));
+        } catch (NumberFormatException e){
+            LOGGER.error("Key uses has to be either -1 or a number and cannot be blank");
+        }
     }
 
     public static ItemStack getItem(PlayerEntity player, Predicate<Item> matcher) {

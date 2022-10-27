@@ -6,11 +6,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 
 public class GoldKeyItem extends KeyBaseItem {
-    public GoldKeyItem(Properties properties) {
-        super(properties);
+    public GoldKeyItem(Properties properties, int uses) {
+        super(properties, uses);
     }
 
     public void openGui(ItemStack stack, PlayerEntity player) {
-        Minecraft.getInstance().setScreen(new GoldKeyAccessScreen(player, stack.getHoverName(), null, getKey(stack), getUses(stack)));
+        Minecraft.getInstance().setScreen(new GoldKeyAccessScreen(player, stack.getHoverName(), null, getCode(stack), getUses(stack)));
     }
 }

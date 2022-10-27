@@ -79,7 +79,7 @@ public class LockableDoubleChestScreen extends ModularGuiContainer<LockableDoubl
                     .setSize(78, 12)
                     .onPressed(() -> tile.keyCode.set(KeyStoneCode.getText()));
 
-        } else if (stack.getItem() instanceof KeyBaseItem && (KeyBaseItem.getKey(stack).equals(tile.keyCode.get()))){
+        } else if (stack.getItem() instanceof KeyBaseItem && (KeyBaseItem.getCode(stack).equals(tile.keyCode.get()))){
             template.playerSlots = toolkit.createPlayerSlotsManualMovers(template.background, false, index -> new SlotMover(container.slots.get(index)));
             toolkit.placeInside(template.playerSlots, template.background, GuiToolkit.LayoutPos.BOTTOM_RIGHT, -5, -5);
 
