@@ -117,6 +117,9 @@ public class CamoKeyStoneTile extends TileBCore implements IRSSwitchable, IInter
 
     @Override
     public void tick() {
+        super.tick();
+        if (level.isClientSide()) return;
+
         if (rsPulse.get() && blockPowered.get() && blockActive.get()) {
             if (activeTime == timeActive.get()) {
                 level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(ACTIVE, false).setValue(POWERED, false));
@@ -138,6 +141,5 @@ public class CamoKeyStoneTile extends TileBCore implements IRSSwitchable, IInter
             }
             activeTime++;
         }
-        super.tick();
     }
 }
