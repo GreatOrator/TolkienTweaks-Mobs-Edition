@@ -3,10 +3,7 @@ package com.greatorator.tolkienmobs.container.capability;
 import com.greatorator.tolkienmobs.entity.tile.CamoSpawnerTile;
 import com.greatorator.tolkienmobs.event.entity.WorldEvents;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.particles.ParticleTypes;
@@ -27,8 +24,6 @@ import java.util.UUID;
 import java.util.WeakHashMap;
 import java.util.function.Function;
 
-import static net.minecraftforge.event.ForgeEventFactory.canEntitySpawnSpawner;
-
 public class CamoSpawnerLogic extends AbstractSpawner {
     private final CamoSpawnerTile tile;
     private double mobRotation;
@@ -46,20 +41,26 @@ public class CamoSpawnerLogic extends AbstractSpawner {
         } else {
             BlockPos blockpos = this.getPos();
             World world = this.getLevel();
-            if (world.isClientSide && tile.spawnerParticles.get()) {
-                double d3 = (float) blockpos.getX() + world.random.nextFloat();
-                double d4 = (float) blockpos.getY() + world.random.nextFloat();
-                double d5 = (float) blockpos.getZ() + world.random.nextFloat();
-                world.addParticle(ParticleTypes.SMOKE, d3, d4, d5, 0.0D, 0.0D, 0.0D);
-                world.addParticle(ParticleTypes.FLAME, d3, d4, d5, 0.0D, 0.0D, 0.0D);
+            if (world.isClientSide) {
+                if (tile.spawnerParticles.get()) {
+                    double d3 = (float) blockpos.getX() + world.random.nextFloat();
+                    double d4 = (float) blockpos.getY() + world.random.nextFloat();
+                    double d5 = (float) blockpos.getZ() + world.random.nextFloat();
+                    world.addParticle(ParticleTypes.SMOKE, d3, d4, d5, 0.0D, 0.0D, 0.0D);
+                    world.addParticle(ParticleTypes.FLAME, d3, d4, d5, 0.0D, 0.0D, 0.0D);
 
-                if (tile.spawnDelay.get() > 0) {
-                    tile.spawnDelay.dec();
+                    if (tile.spawnDelay.get() > 0) {
+                        tile.spawnDelay.dec();
+                    }
+
+                    this.prevMobRotation = this.mobRotation;
+                    this.mobRotation = (this.mobRotation + (double) (1000.0F / ((float) tile.spawnDelay.get() + 200.0F))) % 360.0D;
+                }
+            } else {
+                if (tile.entityTags.isEmpty()) {
+                    return;
                 }
 
-                this.prevMobRotation = this.mobRotation;
-                this.mobRotation = (this.mobRotation + (double) (1000.0F / ((float) tile.spawnDelay.get() + 200.0F))) % 360.0D;
-            } else {
                 if (tile.spawnDelay.get() == -1) {
                     this.resetTimer();
                 }
@@ -68,59 +69,59 @@ public class CamoSpawnerLogic extends AbstractSpawner {
                     tile.spawnDelay.dec();
                     return;
                 }
+
                 boolean flag = false;
                 int successCount = 0;
-                for (int i = 0; i < tile.spawnCount.get(); ++i) {
-                    double spawnX = (double) blockpos.getX() + (world.random.nextDouble() - world.random.nextDouble()) * (double) tile.spawnRange.get() + 0.5D;
-                    double spawnY = blockpos.getY() + world.random.nextInt(3) - 1;
-                    double spawnZ = (double) blockpos.getZ() + (world.random.nextDouble() - world.random.nextDouble()) * (double) tile.spawnRange.get() + 0.5D;
-                    if(!tile.entityTags.isEmpty()) {
-                        String randTag = tile.entityTags.get(world.random.nextInt(tile.entityTags.size()));
-                        Entity entity = createEntity(world, randTag);
-                        entity.moveTo(spawnX, spawnY, spawnZ, 0, 0);
+                for (int i = 0; i < tile.spawnCount.get() + 3; ++i) {
+                    CompoundNBT randTag = tile.entityTags.get(world.random.nextInt(tile.entityTags.size()));
+                    Entity entity = createEntity(world, randTag);
+                    if (entity == null) {
+                        continue;
+                    }
 
-                        int nearbyCount = world.getEntitiesOfClass(entity.getClass(), (new AxisAlignedBB(blockpos.getX(), blockpos.getY(), blockpos.getZ(), blockpos.getX() + 1, blockpos.getY() + 1, blockpos.getZ() + 1)).inflate(tile.clusterRange.get())).size();
-                        if (nearbyCount >= tile.maxCluster.get()) {
+                    do {
+                        double spawnX = (double) blockpos.getX() + (world.random.nextDouble() - world.random.nextDouble()) * (double) this.spawnRange + 0.5D;
+                        double spawnY = blockpos.getY() + world.random.nextInt(3) - 1;
+                        double spawnZ = (double) blockpos.getZ() + (world.random.nextDouble() - world.random.nextDouble()) * (double) this.spawnRange + 0.5D;
+                        entity.absMoveTo(spawnX, spawnY, spawnZ, 0, 0);
+                    } while (entity.blockPosition().getX() == tile.getBlockPos().getX() && entity.blockPosition().getZ() == tile.getBlockPos().getZ());
+
+                    if (!world.noCollision(entity.getBoundingBox())) {
+                        continue;
+                    }
+
+                    int nearbyCount = world.getEntitiesOfClass(entity.getClass(), (new AxisAlignedBB(blockpos.getX(), blockpos.getY(), blockpos.getZ(), blockpos.getX() + 1, blockpos.getY() + 1, blockpos.getZ() + 1)).inflate(tile.clusterRange.get())).size();
+                    if (nearbyCount >= tile.maxCluster.get()) {
+                        this.resetTimer();
+                        return;
+                    }
+
+                    MobEntity mobEntity = entity instanceof MobEntity ? (MobEntity) entity : null;
+                    entity.moveTo(entity.getX(), entity.getY(), entity.getZ(), world.random.nextFloat() * 360.0F, 0.0F);
+
+                    if (mobEntity == null || canEntitySpawnSpawner(mobEntity, getLevel(), (float) entity.getX(), (float) entity.getY(), (float) entity.getZ(), this)) {
+                        if (!tile.requirePlayer.get() && entity instanceof MobEntity) {
+                            ((MobEntity) entity).setPersistenceRequired();
+                            entity.getPersistentData().putLong("TTMSpawnedMob", System.currentTimeMillis());
+                            WorldEvents.onMobSpawnedBySpawner((MobEntity) entity);
+                        }
+
+                        if (!((ServerWorld) world).tryAddFreshEntityWithPassengers(entity)) {
                             this.resetTimer();
                             return;
                         }
-                        MobEntity entityliving = entity instanceof MobEntity ? (MobEntity) entity : null;
-                        entity.moveTo(entity.getX(), entity.getY(), entity.getZ(), world.random.nextFloat() * 360.0F, 0.0F);
-                        boolean canSpawn;
-                        if (tile.ignoreSpawnReq.get()) {
-                            Event.Result result = ForgeEventFactory.canEntitySpawn(entityliving, world, (float) entity.getX(), (float) entity.getY(), (float) entity.getZ(), this, SpawnReason.SPAWNER);
-                            canSpawn = isNotColliding(entity) && (result == Event.Result.DEFAULT || result == Event.Result.ALLOW);
-                        }else {
-                            canSpawn = canEntitySpawnSpawner(entityliving, world, (float) entity.getX(), (float) entity.getY(), (float) entity.getZ(), this);
+
+                        world.levelEvent(2004, blockpos, 0);
+
+                        if (mobEntity != null) {
+                            mobEntity.spawnAnim();
                         }
-                        if (canSpawn) {
-                            if (entityliving == null || canEntitySpawnSpawner((MobEntity) entityliving, getLevel(), (float) entity.getX(), (float) entity.getY(), (float) entity.getZ(), this)) {
-                                if (!tile.requirePlayer.get() && entity instanceof MobEntity) {
-                                    ((MobEntity) entity).setPersistenceRequired();
-                                    entity.getPersistentData().putLong("TTMSpawnedMob", System.currentTimeMillis());
-                                    WorldEvents.onMobSpawnedBySpawner((MobEntity) entity);
-                                }
 
-                                if (!((ServerWorld) world).tryAddFreshEntityWithPassengers(entity)) {
-                                    this.resetTimer();
-                                    return;
-                                }
-
-                                world.levelEvent(2004, blockpos, 0);
-
-                                if (entityliving != null) {
-                                    if (entity instanceof MobEntity) {
-                                        ((MobEntity) entity).spawnAnim();
-                                    }
-                                }
-
-                                flag = true;
-                                successCount++;
-                            }
-                        }
+                        flag = true;
+                        successCount++;
                     }
 
-                    if (successCount >= tile.maxCluster.get()) {
+                    if (successCount >= tile.spawnCount.get()) {
                         break;
                     }
                 }
@@ -132,25 +133,18 @@ public class CamoSpawnerLogic extends AbstractSpawner {
         }
     }
 
-    public boolean isNotColliding(Entity entity) {
-        World world = this.getLevel();
-        return !world.containsAnyLiquid(entity.getBoundingBox()) && world.noCollision(entity, entity.getBoundingBox());
-    }
-
-    public static Entity createEntity(World world, String entityTag) {
+    public static Entity createEntity(World world, CompoundNBT entityData) {
         try {
-            CompoundNBT entityData = JsonToNBT.parseTag(entityTag);
             if (!entityData.contains("id")) return null;
 
             Entity entity = EntityType.create(entityData, world).get();
             if (entity == null) {
                 entity = EntityType.PIG.create(world);
-            }
-            else {
+            } else {
                 MobEntity entityliving = (MobEntity) entity;
                 entityliving.yHeadRot = entityliving.yBodyRot;
                 entityliving.yHeadRotO = entityliving.yBodyRot;
-                entityliving.finalizeSpawn((ServerWorld)world, world.getCurrentDifficultyAt(new BlockPos(0,0,0)), SpawnReason.SPAWNER, null, null);
+                entityliving.finalizeSpawn((ServerWorld) world, world.getCurrentDifficultyAt(new BlockPos(0, 0, 0)), SpawnReason.SPAWNER, null, null);
 
                 CompoundNBT nbttagcompound1 = entity.saveWithoutId(new CompoundNBT());
                 UUID uuid = entity.getUUID();
@@ -159,9 +153,17 @@ public class CamoSpawnerLogic extends AbstractSpawner {
                 entity.setUUID(uuid);
             }
             return entity;
-        }
-        catch (Throwable e) {
+        } catch (Throwable e) {
             return EntityType.PIG.create(world);
+        }
+    }
+
+    public boolean canEntitySpawnSpawner(MobEntity entity, World world, float x, float y, float z, AbstractSpawner spawner) {
+        Event.Result result = ForgeEventFactory.canEntitySpawn(entity, world, x, y, z, spawner, SpawnReason.SPAWNER);
+        if (result == Event.Result.DEFAULT) {
+            return (tile.ignoreSpawnReq.get() || entity.checkSpawnRules(world, SpawnReason.SPAWNER));
+        } else {
+            return result == Event.Result.ALLOW;
         }
     }
 
@@ -178,7 +180,7 @@ public class CamoSpawnerLogic extends AbstractSpawner {
 
     public boolean isNearPlayer() {
         BlockPos blockpos = this.getPos();
-        return this.getLevel().hasNearbyAlivePlayer((double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.5D, (double)blockpos.getZ() + 0.5D, (double)tile.activationRange.get()) && tile.requirePlayer.get();
+        return !tile.requirePlayer.get() || this.getLevel().hasNearbyAlivePlayer((double) blockpos.getX() + 0.5D, (double) blockpos.getY() + 0.5D, (double) blockpos.getZ() + 0.5D, (double) tile.activationRange.get());
     }
 
     @Override

@@ -3,27 +3,33 @@ package com.greatorator.tolkienmobs.container.gui;
 import com.brandon3055.brandonscore.BCConfig;
 import com.brandon3055.brandonscore.client.BCSprites;
 import com.brandon3055.brandonscore.client.gui.GuiToolkit;
+import com.brandon3055.brandonscore.client.gui.modulargui.GuiElement;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElementManager;
 import com.brandon3055.brandonscore.client.gui.modulargui.ModularGuiContainer;
 import com.brandon3055.brandonscore.client.gui.modulargui.baseelements.GuiButton;
-import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiBorderedRect;
-import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiLabel;
-import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiTextField;
-import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiTexture;
+import com.brandon3055.brandonscore.client.gui.modulargui.baseelements.GuiScrollElement;
+import com.brandon3055.brandonscore.client.gui.modulargui.baseelements.GuiSlideControl;
+import com.brandon3055.brandonscore.client.gui.modulargui.guielements.*;
 import com.brandon3055.brandonscore.client.gui.modulargui.lib.GuiAlign;
 import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
+import com.brandon3055.brandonscore.lib.datamanager.ManagedByte;
+import com.brandon3055.brandonscore.lib.datamanager.ManagedFloat;
+import com.brandon3055.brandonscore.lib.datamanager.ManagedShort;
 import com.greatorator.tolkienmobs.entity.tile.CamoSpawnerTile;
 import com.greatorator.tolkienmobs.handler.TTMSprites;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 public class CamoSpawnerScreen extends ModularGuiContainer<ContainerBCTile<CamoSpawnerTile>> {
-    protected GuiToolkit<CamoSpawnerScreen> toolkit = new GuiToolkit<>(this, 185, 185).setTranslationPrefix("screen.tolkienmobs.camo_spawner");
+    protected GuiToolkit<CamoSpawnerScreen> toolkit = new GuiToolkit<>(this, 185 + 50, 200).setTranslationPrefix("screen.tolkienmobs.camo_spawner");
     private final PlayerEntity player;
     private final CamoSpawnerTile tile;
+    private GuiScrollElement listElement;
 
     public CamoSpawnerScreen(ContainerBCTile<CamoSpawnerTile> container, PlayerInventory playerInventory, ITextComponent titleIn) {
         super(container, playerInventory, titleIn);
@@ -33,208 +39,158 @@ public class CamoSpawnerScreen extends ModularGuiContainer<ContainerBCTile<CamoS
 
     @Override
     public void addElements(GuiElementManager manager) {
-        TGuiBase template = new TGuiBase(this);
-        template.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCSprites.getThemed("background_dynamic"));
-        template.background.onReload(guiTex -> guiTex.setPos(guiLeft(), guiTop()));
-        toolkit.loadTemplate(template);
-        int bgPad = 5;
+        TGuiBase temp = new TGuiBase(this);
+        temp.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCSprites.getThemed("background_dynamic"));
+        temp.background.onReload(guiTex -> guiTex.setPos(guiLeft(), guiTop()));
+        toolkit.loadTemplate(temp);
 
         // ### Update title position ###
-        GuiLabel nameLabel = toolkit.createHeading(TextFormatting.DARK_AQUA + toolkit.i18n("title"), template.background)
+        GuiLabel nameLabel = toolkit.createHeading(TextFormatting.DARK_AQUA + toolkit.i18n("title"), temp.background)
                 .setAlignment(GuiAlign.CENTER)
-                .setSize(template.background.xSize() - 10, 8)
+                .setSize(temp.background.xSize() - 10, 8)
                 .setShadowStateSupplier(() -> BCConfig.darkMode)
                 .setTextColGetter(GuiToolkit.Palette.Slot::text)
                 .setEnabledCallback(() -> !player.isCreative());
-        toolkit.placeOutside(nameLabel, template.title, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 2);
+        toolkit.placeOutside(nameLabel, temp.title, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 2);
 
         // General Settings
-        GuiBorderedRect minDelay = new GuiBorderedRect()
-                .set3DGetters(GuiToolkit.Palette.Slot::fill, GuiToolkit.Palette.Slot::accentDark, GuiToolkit.Palette.Slot::accentLight)
-                .setBorderColourL(GuiToolkit.Palette.Slot::border3D)
-                .setSize(84, 12)
-                .setPos(template.background.xPos() + bgPad + 1, template.background.yPos() + 30);
-        GuiLabel minDelayTitle = minDelay.addChild(new GuiLabel().setAlignment(GuiAlign.CENTER).setShadowStateSupplier(() -> BCConfig.darkMode))
-                .setDisplaySupplier(() -> toolkit.i18n("minSpawnDelay"))
-                .setPos(minDelay.xPos(), minDelay.maxYPos() - 21)
-                .setYSize(8)
-                .setTextColGetter(GuiToolkit.Palette.Slot::text)
-                .setMaxXPos(minDelay.maxXPos() - 1, true);
-        template.background.addChild(minDelay);
-        GuiTextField minDelayValue = minDelay.addChild(toolkit.createTextField(template.background))
-                .setFieldEnabled(true)
-                .setText(String.valueOf(tile.minSpawnDelay.get()))
-                .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("minDelayValue"))
-                .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
-                .setPos(minDelay.xPos() + 2, minDelay.maxYPos() - 11)
-                .setSize(82, 10);
-        GuiButton minDelaySave = minDelay.addChild(toolkit.createButton(toolkit.i18n("saveValue"), template.background).setAlignment(GuiAlign.CENTER))
-                .setPos(minDelay.xPos(), minDelay.maxYPos() + 2)
-                .setSize(84, 12)
-                .onPressed(() -> tile.minSpawnDelay.set((short) Integer.parseInt((minDelayValue.getText()))));
-        GuiBorderedRect maxDelay = new GuiBorderedRect()
-                .set3DGetters(GuiToolkit.Palette.Slot::fill, GuiToolkit.Palette.Slot::accentDark, GuiToolkit.Palette.Slot::accentLight)
-                .setBorderColourL(GuiToolkit.Palette.Slot::border3D)
-                .setSize(84, 12)
-                .setPos(template.background.xPos() + bgPad + 89, template.background.yPos() + 30);
-        GuiLabel maxDelayTitle = maxDelay.addChild(new GuiLabel().setAlignment(GuiAlign.CENTER).setShadowStateSupplier(() -> BCConfig.darkMode))
-                .setDisplaySupplier(() -> toolkit.i18n("maxSpawnDelay"))
-                .setPos(maxDelay.xPos(), maxDelay.maxYPos() - 21)
-                .setYSize(8)
-                .setTextColGetter(GuiToolkit.Palette.Slot::text)
-                .setMaxXPos(maxDelay.maxXPos() - 1, true);
-        template.background.addChild(maxDelay);
-        GuiTextField maxDelayValue = maxDelay.addChild(toolkit.createTextField(template.background))
-                .setFieldEnabled(true)
-                .setText(String.valueOf(tile.maxSpawnDelay.get()))
-                .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("maxDelayValue"))
-                .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
-                .setPos(maxDelay.xPos() + 2, maxDelay.maxYPos() - 11)
-                .setSize(82, 10);
-        GuiButton maxDelaySave = maxDelay.addChild(toolkit.createButton(toolkit.i18n("saveValue"), template.background).setAlignment(GuiAlign.CENTER))
-                .setPos(maxDelay.xPos(), maxDelay.maxYPos() + 2)
-                .setSize(84, 12)
-                .onPressed(() -> tile.maxSpawnDelay.set((short) Integer.parseInt((maxDelayValue.getText()))));
-        GuiBorderedRect actRnge = new GuiBorderedRect()
-                .set3DGetters(GuiToolkit.Palette.Slot::fill, GuiToolkit.Palette.Slot::accentDark, GuiToolkit.Palette.Slot::accentLight)
-                .setBorderColourL(GuiToolkit.Palette.Slot::border3D)
-                .setSize(84, 12)
-                .setPos(template.background.xPos() + bgPad + 1, template.background.yPos() + 70);
-        GuiLabel actRngeTitle = actRnge.addChild(new GuiLabel().setAlignment(GuiAlign.CENTER).setShadowStateSupplier(() -> BCConfig.darkMode))
-                .setDisplaySupplier(() -> toolkit.i18n("activationRange"))
-                .setPos(actRnge.xPos(), actRnge.maxYPos() - 21)
-                .setYSize(8)
-                .setTextColGetter(GuiToolkit.Palette.Slot::text)
-                .setMaxXPos(actRnge.maxXPos() - 1, true);
-        template.background.addChild(actRnge);
-        GuiTextField actRngeValue = actRnge.addChild(toolkit.createTextField(template.background))
-                .setFieldEnabled(true)
-                .setText(String.valueOf(tile.activationRange.get()))
-                .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("actRngeValue"))
-                .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
-                .setPos(actRnge.xPos() + 2, actRnge.maxYPos() - 11)
-                .setSize(82, 10);
-        GuiButton actRngeSave = actRnge.addChild(toolkit.createButton(toolkit.i18n("saveValue"), template.background).setAlignment(GuiAlign.CENTER))
-                .setPos(actRnge.xPos(), actRnge.maxYPos() + 2)
-                .setSize(84, 12)
-                .onPressed(() -> tile.activationRange.set((short) Integer.parseInt((actRngeValue.getText()))));
-        GuiBorderedRect spwnRnge = new GuiBorderedRect()
-                .set3DGetters(GuiToolkit.Palette.Slot::fill, GuiToolkit.Palette.Slot::accentDark, GuiToolkit.Palette.Slot::accentLight)
-                .setBorderColourL(GuiToolkit.Palette.Slot::border3D)
-                .setSize(84, 12)
-                .setPos(template.background.xPos() + bgPad + 89, template.background.yPos() + 70);
-        GuiLabel spwnRngeTitle = spwnRnge.addChild(new GuiLabel().setAlignment(GuiAlign.CENTER).setShadowStateSupplier(() -> BCConfig.darkMode))
-                .setDisplaySupplier(() -> toolkit.i18n("spawnRange"))
-                .setPos(spwnRnge.xPos(), spwnRnge.maxYPos() - 21)
-                .setYSize(8)
-                .setTextColGetter(GuiToolkit.Palette.Slot::text)
-                .setMaxXPos(spwnRnge.maxXPos() - 1, true);
-        template.background.addChild(spwnRnge);
-        GuiTextField spwnRngeValue = spwnRnge.addChild(toolkit.createTextField(template.background))
-                .setFieldEnabled(true)
-                .setText(String.valueOf(tile.spawnRange.get()))
-                .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("spwnRngeValue"))
-                .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
-                .setPos(spwnRnge.xPos() + 2, spwnRnge.maxYPos() - 11)
-                .setSize(82, 10);
-        GuiButton spwnRngeSave = spwnRnge.addChild(toolkit.createButton(toolkit.i18n("saveValue"), template.background).setAlignment(GuiAlign.CENTER))
-                .setPos(spwnRnge.xPos(), spwnRnge.maxYPos() + 2)
-                .setSize(84, 12)
-                .onPressed(() -> tile.spawnRange.set((short) Integer.parseInt((spwnRngeValue.getText()))));
-        GuiBorderedRect spwnCount = new GuiBorderedRect()
-                .set3DGetters(GuiToolkit.Palette.Slot::fill, GuiToolkit.Palette.Slot::accentDark, GuiToolkit.Palette.Slot::accentLight)
-                .setBorderColourL(GuiToolkit.Palette.Slot::border3D)
-                .setSize(84, 12)
-                .setPos(template.background.xPos() + bgPad + 1, template.background.yPos() + 110);
-        GuiLabel spwnCountTitle = spwnCount.addChild(new GuiLabel().setAlignment(GuiAlign.CENTER).setShadowStateSupplier(() -> BCConfig.darkMode))
-                .setDisplaySupplier(() -> toolkit.i18n("spawnCount"))
-                .setPos(spwnCount.xPos(), spwnCount.maxYPos() - 21)
-                .setYSize(8)
-                .setTextColGetter(GuiToolkit.Palette.Slot::text)
-                .setMaxXPos(spwnCount.maxXPos() - 1, true);
-        template.background.addChild(spwnCount);
-        GuiTextField spwnCountValue = spwnCount.addChild(toolkit.createTextField(template.background))
-                .setFieldEnabled(true)
-                .setText(String.valueOf(tile.spawnCount.get()))
-                .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("spwnCountValue"))
-                .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
-                .setPos(spwnCount.xPos() + 2, spwnCount.maxYPos() - 11)
-                .setSize(82, 10);
-        GuiButton spwnCountSave = spwnCount.addChild(toolkit.createButton(toolkit.i18n("saveValue"), template.background).setAlignment(GuiAlign.CENTER))
-                .setPos(spwnCount.xPos(), spwnCount.maxYPos() + 2)
-                .setSize(84, 12)
-                .onPressed(() -> tile.spawnCount.set((byte) Integer.parseInt((spwnCountValue.getText()))));
-        GuiBorderedRect maxCluster = new GuiBorderedRect()
-                .set3DGetters(GuiToolkit.Palette.Slot::fill, GuiToolkit.Palette.Slot::accentDark, GuiToolkit.Palette.Slot::accentLight)
-                .setBorderColourL(GuiToolkit.Palette.Slot::border3D)
-                .setSize(84, 12)
-                .setPos(template.background.xPos() + bgPad + 89, template.background.yPos() + 110);
-        GuiLabel maxClusterTitle = maxCluster.addChild(new GuiLabel().setAlignment(GuiAlign.CENTER).setShadowStateSupplier(() -> BCConfig.darkMode))
-                .setDisplaySupplier(() -> toolkit.i18n("maxCluster"))
-                .setPos(maxCluster.xPos(), maxCluster.maxYPos() - 21)
-                .setYSize(8)
-                .setTextColGetter(GuiToolkit.Palette.Slot::text)
-                .setMaxXPos(maxCluster.maxXPos() - 1, true);
-        template.background.addChild(maxCluster);
-        GuiTextField maxClusterValue = maxCluster.addChild(toolkit.createTextField(template.background))
-                .setFieldEnabled(true)
-                .setText(String.valueOf(tile.maxCluster.get()))
-                .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("maxClusterValue"))
-                .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
-                .setPos(maxCluster.xPos() + 2, maxCluster.maxYPos() - 11)
-                .setSize(82, 10);
-        GuiButton maxClusterSave = maxCluster.addChild(toolkit.createButton(toolkit.i18n("saveValue"), template.background).setAlignment(GuiAlign.CENTER))
-                .setPos(maxCluster.xPos(), maxCluster.maxYPos() + 2)
-                .setSize(84, 12)
-                .onPressed(() -> tile.maxCluster.set((short) Integer.parseInt((maxClusterValue.getText()))));
-        GuiBorderedRect clustRnge = new GuiBorderedRect()
-                .set3DGetters(GuiToolkit.Palette.Slot::fill, GuiToolkit.Palette.Slot::accentDark, GuiToolkit.Palette.Slot::accentLight)
-                .setBorderColourL(GuiToolkit.Palette.Slot::border3D)
-                .setSize(84, 12)
-                .setPos(template.background.xPos() + bgPad + 1, template.background.yPos() + 150);
-        GuiLabel clustRngeTitle = clustRnge.addChild(new GuiLabel().setAlignment(GuiAlign.CENTER).setShadowStateSupplier(() -> BCConfig.darkMode))
-                .setDisplaySupplier(() -> toolkit.i18n("clusterRange"))
-                .setPos(clustRnge.xPos(), clustRnge.maxYPos() - 21)
-                .setYSize(8)
-                .setTextColGetter(GuiToolkit.Palette.Slot::text)
-                .setMaxXPos(clustRnge.maxXPos() - 1, true);
-        template.background.addChild(clustRnge);
-        GuiTextField clustRngeValue = clustRnge.addChild(toolkit.createTextField(template.background))
-                .setFieldEnabled(true)
-                .setText(String.valueOf(tile.clusterRange.get()))
-                .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("clusterRangeValue"))
-                .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
-                .setPos(clustRnge.xPos() + 2, clustRnge.maxYPos() - 11)
-                .setSize(82, 10);
-        GuiButton clustRngeSave = clustRnge.addChild(toolkit.createButton(toolkit.i18n("saveValue"), template.background).setAlignment(GuiAlign.CENTER))
-                .setPos(clustRnge.xPos(), clustRnge.maxYPos() + 2)
-                .setSize(84, 12)
-                .onPressed(() -> tile.clusterRange.set((short) Integer.parseInt((clustRngeValue.getText()))));
+        GuiLabel minDelayLabel = createLabel(temp.background, "minSpawnDelay");
+        minDelayLabel.setPos(temp.background.xPos() + 6, temp.title.maxYPos() + 3);
+        GuiTextField minDelay = createField(temp.background, "minDelayValue", tile.minSpawnDelay);
+        toolkit.placeOutside(minDelay, minDelayLabel, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 3);
 
-        GuiButton ignorePlayer = toolkit.createIconButton(template.background, 16, 16, () -> tile.requirePlayer.get() ? TTMSprites.get("spawner/player") : TTMSprites.get("spawner/ignore_player"));
-        toolkit.placeInside(ignorePlayer, template.background, GuiToolkit.LayoutPos.BOTTOM_RIGHT, -71, -26);
-        ignorePlayer.setHoverText(e -> toolkit.i18n("requirePlayer"));
-        ignorePlayer.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {
-        }, 0));
+        GuiLabel maxDelayLabel = createLabel(temp.background, "maxSpawnDelay");
+        toolkit.placeOutside(maxDelayLabel, minDelay, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 3);
+        GuiTextField maxDelay = createField(temp.background, "maxDelayValue", tile.maxSpawnDelay);
+        toolkit.placeOutside(maxDelay, maxDelayLabel, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 3);
 
-        GuiButton spawnRequirement = toolkit.createIconButton(template.background, 16, 16, () -> tile.ignoreSpawnReq.get() ? TTMSprites.get("spawner/spawn_requirements") : TTMSprites.get("spawner/ignore_spawn_requirements"));
-        toolkit.placeInside(spawnRequirement, template.background, GuiToolkit.LayoutPos.BOTTOM_RIGHT, -41, -26);
-        spawnRequirement.setHoverText(e -> toolkit.i18n("ignoreSpawnReq"));
-        spawnRequirement.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {
-        }, 1));
+        GuiLabel actRngeLabel = createLabel(temp.background, "activationRange");
+        toolkit.placeOutside(actRngeLabel, maxDelay, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 3);
+        GuiTextField actRnge = createField(temp.background, "actRngeValue", tile.activationRange);
+        toolkit.placeOutside(actRnge, actRngeLabel, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 3);
 
-        GuiButton spawnerParticles = toolkit.createIconButton(template.background, 16, 16, () -> tile.spawnerParticles.get() ? TTMSprites.get("spawner/particles") : TTMSprites.get("spawner/ignore_particles"));
-        toolkit.placeInside(spawnerParticles, template.background, GuiToolkit.LayoutPos.BOTTOM_RIGHT, -11, -26);
-        spawnerParticles.setHoverText(e -> toolkit.i18n("spawnerParticles"));
-        spawnerParticles.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {
-        }, 2));
+        GuiLabel spwnRngeLabel = createLabel(temp.background, "spawnRange");
+        toolkit.placeOutside(spwnRngeLabel, actRnge, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 3);
+        GuiTextField spwnRnge = createField(temp.background, "spwnRngeValue", tile.spawnRange);
+        toolkit.placeOutside(spwnRnge, spwnRngeLabel, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 3);
+
+        GuiLabel spwnCountLabel = createLabel(temp.background, "spawnCount");
+        toolkit.placeOutside(spwnCountLabel, spwnRnge, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 3);
+        GuiTextField spwnCount = createField(temp.background, "spwnCountValue", tile.spawnCount);
+        toolkit.placeOutside(spwnCount, spwnCountLabel, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 3);
+
+        GuiLabel maxClusterLabel = createLabel(temp.background, "maxCluster");
+        toolkit.placeOutside(maxClusterLabel, spwnCount, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 3);
+        GuiTextField maxCluster = createField(temp.background, "maxClusterValue", tile.maxCluster);
+        toolkit.placeOutside(maxCluster, maxClusterLabel, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 3);
+
+        GuiLabel clustRngeLabel = createLabel(temp.background, "clusterRange");
+        toolkit.placeOutside(clustRngeLabel, maxCluster, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 3);
+        GuiTextField clustRnge = createField(temp.background, "clusterRangeValue", tile.clusterRange);
+        toolkit.placeOutside(clustRnge, clustRngeLabel, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 3);
 
         // Entity List
-        GuiButton listButton = toolkit.createButton(toolkit.i18n("entityTags"), template.background).setAlignment(GuiAlign.CENTER);
-        toolkit.placeInside(listButton, template.background, GuiToolkit.LayoutPos.BOTTOM_RIGHT, 9, -1);
-        listButton.setSize(84, 12);
-//        listButton.setListener(() -> openEntitySelector(container)); container.addChild(listButton);
-        spawnerParticles.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {
-        }, 3));
+
+        GuiSlideControl scrollBar = toolkit.createVanillaScrollBar()
+                .setPos(temp.background.maxXPos() - 16, temp.title.maxYPos() + 5)
+                .setMaxYPos(temp.background.maxYPos() - 26, true)
+                .setXSize(10);
+
+        GuiElement<?> listBG = temp.background.addChild(new GuiBorderedRect())
+                .set3DGetters(GuiToolkit.Palette.Slot::fill, GuiToolkit.Palette.Slot::accentDark, GuiToolkit.Palette.Slot::accentLight)
+                .setBorderColourL(GuiToolkit.Palette.Slot::border3D)
+                .setPos(minDelay.maxXPos() + 3, temp.title.maxYPos() + 5)
+                .setMaxPos(scrollBar.xPos() - 1, scrollBar.maxYPos(), true);
+
+        listElement = new GuiScrollElement().setListMode(GuiScrollElement.ListMode.VERT_LOCK_POS_WIDTH)
+                .setListSpacing(1)
+                .setInsets(1, 1, 2, 1);
+        listBG.addChild(listElement)
+                .setPos(listBG)
+                .setSize(listBG.getInsetRect()).bindSize(listBG, true)
+                .setVerticalScrollBar(scrollBar)
+                .setStandardScrollBehavior();
+
+        updateEntityList();
+
+        // Other Settings
+
+        GuiButton spawnerParticles = toolkit.createIconButton(temp.background, 16, 16, () -> tile.spawnerParticles.get() ? TTMSprites.get("spawner/particles") : TTMSprites.get("spawner/ignore_particles"))
+                .setHoverText(e -> toolkit.i18n("spawnerParticles") + "\n" + (tile.spawnerParticles.get() ? "Enabled" : "Disabled"))
+                .onPressed(tile.spawnerParticles::invert);
+        toolkit.placeInside(spawnerParticles, temp.background, GuiToolkit.LayoutPos.BOTTOM_RIGHT, -6, -6);
+
+        GuiButton spawnRequirement = toolkit.createIconButton(temp.background, 16, 16, () -> tile.ignoreSpawnReq.get() ? TTMSprites.get("spawner/spawn_requirements") : TTMSprites.get("spawner/ignore_spawn_requirements"))
+                .setHoverText(e -> toolkit.i18n("ignoreSpawnReq") + "\n" + (tile.ignoreSpawnReq.get() ? "Ignored" : "Not Ignored"))
+                .onPressed(tile.ignoreSpawnReq::invert);
+        toolkit.placeOutside(spawnRequirement, spawnerParticles, GuiToolkit.LayoutPos.MIDDLE_LEFT, -10, 0);
+
+        GuiButton ignorePlayer = toolkit.createIconButton(temp.background, 16, 16, () -> tile.requirePlayer.get() ? TTMSprites.get("spawner/player") : TTMSprites.get("spawner/ignore_player"))
+                .setHoverText(e -> toolkit.i18n("requirePlayer") + "\n" + (tile.requirePlayer.get() ? "Required" : "Not Required"))
+                .onPressed(tile.requirePlayer::invert);
+        toolkit.placeOutside(ignorePlayer, spawnRequirement, GuiToolkit.LayoutPos.MIDDLE_LEFT, -10, 0);
+    }
+
+    private void updateEntityList() {
+        listElement.clearElements();
+        listElement.resetScrollPositions();
+        for (CompoundNBT tag : tile.entityTags) {
+            GuiElement<?> container = new GuiElement<>()
+                    .setYSize(32);
+
+            String name = "minecraft:pig";
+            if (tag.contains("id")) name = tag.getString("id");
+
+            GuiEntityRenderer renderer = new GuiEntityRenderer()
+                    .setEntity(new ResourceLocation(name))
+                    .setSize(16, 16)
+                    .setPos(16, 8)
+                    .setHoverText(tag.toString());
+            container.addChild(renderer);
+
+            GuiButton delete = toolkit.createButton("Delete", container)
+                    .setSize(50, 14)
+                    .setPos(76, 8)
+                    .onPressed(() -> tile.sendPacketToServer(output -> output.writeCompoundNBT(tag), 1));
+
+
+            listElement.addElement(container);
+        }
+    }
+
+    private GuiLabel createLabel(GuiElement<?> parent, String unlocalised) {
+        return parent.addChild(new GuiLabel(toolkit.i18n(unlocalised))
+                .setAlignment(GuiAlign.CENTER)
+                .setShadowStateSupplier(() -> BCConfig.darkMode)
+                .setTextColGetter(GuiToolkit.Palette.Slot::text)
+                .setSize(80, 8));
+    }
+
+    private GuiTextField createField(GuiElement<?> parent, String unlocalised, ManagedByte field) {
+        return toolkit.createTextField(parent)
+                .setText(String.valueOf(field.get()))
+                .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n(unlocalised))
+                .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
+                .setChangeListener(s -> field.set((byte) Integer.parseInt(s)))
+                .setSize(80, 12);
+    }
+
+    private GuiTextField createField(GuiElement<?> parent, String unlocalised, ManagedShort field) {
+        return toolkit.createTextField(parent)
+                .setText(String.valueOf(field.get()))
+                .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n(unlocalised))
+                .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
+                .setChangeListener(s -> field.set((short) Integer.parseInt(s)))
+                .setSize(80, 12);
+    }
+
+    private int lastListSize = -1;
+    @Override
+    public void tick() {
+        super.tick();
+        if (tile.entityTags.size() != lastListSize) {
+            lastListSize = tile.entityTags.size();
+            updateEntityList();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.entity.tile;
 
+import codechicken.lib.data.MCDataInput;
 import com.brandon3055.brandonscore.blocks.TileBCore;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.lib.datamanager.DataFlags;
@@ -9,6 +10,7 @@ import com.brandon3055.brandonscore.lib.datamanager.ManagedShort;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.container.capability.CamoSpawnerLogic;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -17,6 +19,7 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Hand;
@@ -42,15 +45,15 @@ public class CamoSpawnerTile extends TileBCore implements INamedContainerProvide
     public final ManagedShort maxSpawnDelay = register(new ManagedShort("max_spawn_delay", (short) 800, SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
     public final ManagedShort activationRange = register(new ManagedShort("activation_range", (short) 16, SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
     public final ManagedShort spawnRange = register(new ManagedShort("spawn_range", (short) 4, SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
-    public final ManagedByte  spawnCount = register(new ManagedByte ("spawn_count", 4, SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
+    public final ManagedByte spawnCount = register(new ManagedByte("spawn_count", 4, SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
     public final ManagedShort spawnDelay = register(new ManagedShort("spawn_delay", (short) 20, SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
-    public final ManagedByte  maxCluster = register(new ManagedByte ("max_cluster", 6, SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
-    public final ManagedByte  clusterRange = register(new ManagedByte("cluster_range", 5, SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
+    public final ManagedByte maxCluster = register(new ManagedByte("max_cluster", 6, SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
+    public final ManagedByte clusterRange = register(new ManagedByte("cluster_range", 5, SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
     public final ManagedBool requirePlayer = register(new ManagedBool("require_player", true, DataFlags.SAVE_NBT_SYNC_TILE, CLIENT_CONTROL));
     public final ManagedBool ignoreSpawnReq = register(new ManagedBool("ignore_spawn", false, DataFlags.SAVE_NBT_SYNC_TILE, CLIENT_CONTROL));
     public final ManagedBool spawnerParticles = register(new ManagedBool("spawner_particles", true, DataFlags.SAVE_NBT_SYNC_TILE, CLIENT_CONTROL));
 
-    public List<String> entityTags = new ArrayList<>();
+    public List<CompoundNBT> entityTags = new ArrayList<>();
     public CamoSpawnerLogic spawnerLogic = new CamoSpawnerLogic(this);
 
     public CamoSpawnerTile(TileEntityType<?> tileEntityTypeIn) {
@@ -82,23 +85,56 @@ public class CamoSpawnerTile extends TileBCore implements INamedContainerProvide
 
         if (playerEntity.isCreative()) {
             if (stack.getItem() instanceof SpawnEggItem) {
-                CompoundNBT compound = stack.getTagElement("EntityTag");
+                CompoundNBT entityTag;
+                if (stack.hasTag() && stack.getOrCreateTag().contains("EntityTag")) {
+                    entityTag = stack.getOrCreateTag().getCompound("EntityTag");
+                } else {
+                    EntityType<?> type = ((SpawnEggItem) stack.getItem()).getType(stack.getTag());
+                    String name = type.getRegistryName().toString();
+                    entityTag = new CompoundNBT();
+                    entityTag.putString("id", name);
+                }
 
-                if (compound != null && compound.contains("id")) {
-                    entityTags.add(compound.toString());
-                    if (level.isClientSide) {
-                        playerEntity.sendMessage(new TranslationTextComponent(MODID + ".msg.added.entities").withStyle(TextFormatting.DARK_GREEN), Util.NIL_UUID);
-                    }
+                if (!entityTags.contains(entityTag)) {
+                    entityTags.add(entityTag);
+                    playerEntity.sendMessage(new TranslationTextComponent(MODID + ".msg.added.entities").append(" " + entityTag).withStyle(TextFormatting.DARK_GREEN), Util.NIL_UUID);
                 }
             }
         }
     }
 
-    public void openGUI(PlayerEntity player, INamedContainerProvider containerSupplier, BlockPos pos)
-    {
-        if(!player.level.isClientSide)
-        {
-            NetworkHooks.openGui((ServerPlayerEntity)player, containerSupplier, pos);
+    @Override
+    public void receivePacketFromServer(MCDataInput data, int id) {
+        super.receivePacketFromServer(data, id);
+        if (id == 0) {
+            int c = data.readVarInt();
+            entityTags.clear();
+            for (int i = 0; i < c; i++) {
+                entityTags.add(data.readCompoundNBT());
+            }
+        }
+    }
+
+    @Override
+    public void receivePacketFromClient(MCDataInput data, ServerPlayerEntity client, int id) {
+        super.receivePacketFromClient(data, client, id);
+        if (id == 1) {
+            CompoundNBT s = data.readCompoundNBT();
+            entityTags.remove(s);
+            sendPacketToClient(client, output -> {
+                output.writeVarInt(entityTags.size());
+                entityTags.forEach(output::writeCompoundNBT);
+            }, 0);
+        }
+    }
+
+    public void openGUI(PlayerEntity player, INamedContainerProvider containerSupplier, BlockPos pos) {
+        if (player instanceof ServerPlayerEntity) {
+            sendPacketToClient((ServerPlayerEntity) player, output -> {
+                output.writeVarInt(entityTags.size());
+                entityTags.forEach(output::writeCompoundNBT);
+            }, 0);
+            NetworkHooks.openGui((ServerPlayerEntity) player, containerSupplier, pos);
         }
     }
 
@@ -106,5 +142,21 @@ public class CamoSpawnerTile extends TileBCore implements INamedContainerProvide
     @Override
     public Container createMenu(int windowID, PlayerInventory playerInventory, PlayerEntity playerEntity) {
         return new ContainerBCTile<>(TTMContent.CAMO_SPAWNER_CONTAINER, windowID, playerInventory, this);
+    }
+
+    @Override
+    public void writeExtraNBT(CompoundNBT compound) {
+        super.writeExtraNBT(compound);
+        ListNBT list = new ListNBT();
+        entityTags.forEach(list::add);
+        compound.put("entity_list", list);
+    }
+
+    @Override
+    public void readExtraNBT(CompoundNBT compound) {
+        super.readExtraNBT(compound);
+        entityTags.clear();
+        ListNBT list = compound.getList("entity_list", 10);
+        list.forEach(inbt -> entityTags.add((CompoundNBT) inbt));
     }
 }
