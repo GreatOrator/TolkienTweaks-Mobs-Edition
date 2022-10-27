@@ -67,8 +67,6 @@ public class CamoKeyStoneTile extends TileBCore implements IRSSwitchable, IInter
         if (playerEntity.isCreative() && playerEntity.isCrouching()) {
             openGUI(playerEntity, this, worldPosition);
         } else if (stack.getItem() instanceof KeyBaseItem && (KeyBaseItem.getKey(stack).equals(keyCode.get()))) {
-            LOGGER.info("KeyCode matches!");
-
             redstoneMode(state, level, worldPosition, playerEntity, hand);
         } else {
             playerEntity.sendMessage(new TranslationTextComponent(MODID + ".msg.wrong_key").withStyle(TextFormatting.RED), Util.NIL_UUID);
@@ -99,8 +97,6 @@ public class CamoKeyStoneTile extends TileBCore implements IRSSwitchable, IInter
             blockActive.set(true);
             world.playSound((PlayerEntity)null, blockPos, SoundEvents.STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.3F, 0.6F);
         } else if (rsDelay.get() && tickDelay.get() > 0) {
-            LOGGER.info("Delay Mode!");
-
             world.setBlockAndUpdate(blockPos, world.getBlockState(blockPos).setValue(ACTIVE, true));
             world.setBlock(blockPos, world.getBlockState(blockPos).setValue(POWERED, true), 3);
             blockPowered.set(true);

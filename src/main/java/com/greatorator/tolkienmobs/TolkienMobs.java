@@ -51,10 +51,6 @@ public class TolkienMobs {
 	        1. Fell Beast - Needs AI and Implementation
 			2. Gwaihir - Needs AI
 			3. Great Eagle - Needs AI
-	    b. Blocks
-	        1. Key Stone - Active state weirdness
-	        2. Camo Spawner - Entity list creation
-	        3. Fluid Block - "Flood" area (3x3) with fluid
     */
 
     public TolkienMobs() {

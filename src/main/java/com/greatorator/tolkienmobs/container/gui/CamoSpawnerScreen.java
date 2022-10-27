@@ -14,7 +14,6 @@ import com.brandon3055.brandonscore.client.gui.modulargui.lib.GuiAlign;
 import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedByte;
-import com.brandon3055.brandonscore.lib.datamanager.ManagedFloat;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedShort;
 import com.greatorator.tolkienmobs.entity.tile.CamoSpawnerTile;
 import com.greatorator.tolkienmobs.handler.TTMSprites;
@@ -121,7 +120,7 @@ public class CamoSpawnerScreen extends ModularGuiContainer<ContainerBCTile<CamoS
         toolkit.placeInside(spawnerParticles, temp.background, GuiToolkit.LayoutPos.BOTTOM_RIGHT, -6, -6);
 
         GuiButton spawnRequirement = toolkit.createIconButton(temp.background, 16, 16, () -> tile.ignoreSpawnReq.get() ? TTMSprites.get("spawner/spawn_requirements") : TTMSprites.get("spawner/ignore_spawn_requirements"))
-                .setHoverText(e -> toolkit.i18n("ignoreSpawnReq") + "\n" + (tile.ignoreSpawnReq.get() ? "Ignored" : "Not Ignored"))
+                .setHoverText(e -> toolkit.i18n("ignoreSpawnReq") + "\n" + (tile.ignoreSpawnReq.get() ? "Not Ignored" : "Ignored"))
                 .onPressed(tile.ignoreSpawnReq::invert);
         toolkit.placeOutside(spawnRequirement, spawnerParticles, GuiToolkit.LayoutPos.MIDDLE_LEFT, -10, 0);
 

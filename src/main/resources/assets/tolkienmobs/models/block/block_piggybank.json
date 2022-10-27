@@ -3,7 +3,7 @@
 	"parent": "minecraft:block/block",
 	"ambientocclusion": false,
 	"textures": {
-		"particle": "tolkienmobs:block/piggybank"
+		"particle": "tolkienmobs:block/custom/piggybank"
 	},
 	"elements": [
 		{
