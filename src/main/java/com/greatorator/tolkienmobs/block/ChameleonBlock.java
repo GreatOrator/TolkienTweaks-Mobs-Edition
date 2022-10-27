@@ -113,7 +113,7 @@ public class ChameleonBlock<C> extends BlockBCore implements IWaterLoggable {
         return BlockRenderType.MODEL;
     }
 
-    public static Optional<BlockState> selectBestAdjacentBlock(@Nonnull IBlockDisplayReader world, @Nonnull BlockPos blockPos)
+    public Optional<BlockState> selectBestAdjacentBlock(@Nonnull IBlockDisplayReader world, @Nonnull BlockPos blockPos)
     {
         TreeMap<Direction, BlockState> adjacentSolidBlocks = new TreeMap<Direction, BlockState>();
 

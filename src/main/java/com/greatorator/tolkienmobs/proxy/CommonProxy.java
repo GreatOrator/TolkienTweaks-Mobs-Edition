@@ -12,7 +12,6 @@ import com.greatorator.tolkienmobs.event.entity.WorldEvents;
 import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
 import com.greatorator.tolkienmobs.handler.MobModify;
 import com.greatorator.tolkienmobs.handler.TTMTags;
-import com.greatorator.tolkienmobs.handler.interfaces.IFluidHelper;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.integration.curios.TTMEquipMgr;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
@@ -57,7 +56,6 @@ public class CommonProxy {
         TTMTreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
 
         modBus.addListener(EntityGenerator::registerAttributes);
-        IFluidHelper.bootStrap();
         TolkienNetwork.init();
     }
 

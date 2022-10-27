@@ -58,7 +58,7 @@ public class ChameleonBakedModel implements IBakedModel {
     @Nonnull
     public IModelData getModelData(@Nonnull IBlockDisplayReader world, @Nonnull BlockPos pos, @Nonnull BlockState state, @Nonnull IModelData tileData)
     {
-        Optional<BlockState> bestAdjacentBlock = ChameleonBlock.selectBestAdjacentBlock(world, pos);
+        Optional<BlockState> bestAdjacentBlock = ((ChameleonBlock)state.getBlock()).selectBestAdjacentBlock(world, pos);
         ModelDataMap modelDataMap = getEmptyIModelData();
         modelDataMap.setData(COPIED_BLOCK, bestAdjacentBlock);
         return modelDataMap;
