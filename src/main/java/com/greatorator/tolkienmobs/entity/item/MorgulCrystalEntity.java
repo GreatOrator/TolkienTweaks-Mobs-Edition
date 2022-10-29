@@ -17,7 +17,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -56,7 +55,7 @@ public class MorgulCrystalEntity extends Entity {
    @Override
    public void tick() {
       ++this.time;
-      if (this.level instanceof ServerWorld) {
+      if (this.level instanceof TTMServerWorld) {
          BlockPos blockpos = this.blockPosition();
          if (((TTMServerWorld)this.level).fellbeastFight() != null && this.level.getBlockState(blockpos).isAir()) {
             this.level.setBlockAndUpdate(blockpos, AbstractFireBlock.getState(this.level, blockpos));
@@ -118,7 +117,7 @@ public class MorgulCrystalEntity extends Entity {
    }
 
    private void onDestroyedBy(DamageSource p_184519_1_) {
-      if (this.level instanceof ServerWorld) {
+      if (this.level instanceof TTMServerWorld) {
          FellBeastFightManager fellbeastfightmanager = ((TTMServerWorld)this.level).fellbeastFight();
          if (fellbeastfightmanager != null) {
             fellbeastfightmanager.onCrystalDestroyed(this, p_184519_1_);

@@ -8,7 +8,6 @@ import com.greatorator.tolkienmobs.entity.AmbientEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.JumpController;
 import net.minecraft.entity.ai.controller.MovementController;
@@ -228,10 +227,6 @@ public class FrogEntity extends AmbientEntity {
 
     }
 
-    public static AttributeModifierMap.MutableAttribute createAttributes() {
-        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 3.0D).add(Attributes.MOVEMENT_SPEED, (double) 0.3F);
-    }
-
     @Override
     public void addAdditionalSaveData(CompoundNBT compound) {
         super.addAdditionalSaveData(compound);
@@ -359,7 +354,8 @@ public class FrogEntity extends AmbientEntity {
 
     public static boolean checkFrogSpawnRules(EntityType<FrogEntity> entityIn, IWorld worldIn, SpawnReason reason, BlockPos pos, Random random) {
         BlockState blockstate = worldIn.getBlockState(pos.below());
-        return (blockstate.is(Blocks.GRASS_BLOCK) || blockstate.is(Blocks.SNOW) || blockstate.is(Blocks.SAND)) && pos.getY() < worldIn.getSeaLevel() + 4 && worldIn.getRawBrightness(pos, 0) > 8;
+        int chance = 50; //1 in x
+        return random.nextInt(chance) == 0 && (blockstate.is(Blocks.GRASS_BLOCK) || blockstate.is(Blocks.SNOW) || blockstate.is(Blocks.SAND)) && pos.getY() < worldIn.getSeaLevel() + 4 && worldIn.getRawBrightness(pos, 0) > 8;
     }
 
     private boolean wantsMoreFood() {
