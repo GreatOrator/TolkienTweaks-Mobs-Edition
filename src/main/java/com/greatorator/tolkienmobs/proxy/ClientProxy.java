@@ -7,11 +7,13 @@ import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
 import com.greatorator.tolkienmobs.entity.ambient.model.SwarmModel;
 import com.greatorator.tolkienmobs.entity.ambient.render.*;
+import com.greatorator.tolkienmobs.entity.boss.fellbeast.render.FellBeastRender;
 import com.greatorator.tolkienmobs.entity.boss.model.WitchKingModel;
 import com.greatorator.tolkienmobs.entity.boss.render.*;
 import com.greatorator.tolkienmobs.entity.item.BoulderEntity;
 import com.greatorator.tolkienmobs.entity.item.FellBeastFireballEntity;
 import com.greatorator.tolkienmobs.entity.item.render.GaladhrimArrowRender;
+import com.greatorator.tolkienmobs.entity.item.render.MorgulCrystalRenderer;
 import com.greatorator.tolkienmobs.entity.item.render.TolkienBoatRender;
 import com.greatorator.tolkienmobs.entity.item.render.UtumnoArrowRender;
 import com.greatorator.tolkienmobs.entity.merchant.model.DwarfModel;
@@ -243,6 +245,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_BALROG.get(), BalrogRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_WATCHER.get(), WatcherRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_GWAHIR.get(), GwahirRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_FELL_BEAST.get(), FellBeastRender::new);
 
         // Passive
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.ENTITY_TTM_AUROCH.get(), AurochRender::new);
@@ -262,11 +265,12 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_FELLBEAST_FIREBALL.get(), new fellBeastFireballRenderFactory());
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.AMMO_BOULDER.get(), new boulderRenderFactory());
 
-        // Boats
+        // Items
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.MALLORN_BOAT.get(), TolkienBoatRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.MIRKWOOD_BOAT.get(), TolkienBoatRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.CULUMALDA_BOAT.get(), TolkienBoatRender::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.LEBETHRON_BOAT.get(), TolkienBoatRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityGenerator.MORGUL_CRYSTAL.get(), MorgulCrystalRenderer::new);
 
     }
 

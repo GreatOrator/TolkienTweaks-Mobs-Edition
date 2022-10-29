@@ -599,6 +599,7 @@ public class TTMContent {
     public static RegistryObject<Item> GOLD_KEY = ITEMS.register("gold_key", () -> new GoldKeyItem(new Item.Properties().stacksTo(1).tab(questGroup), -1));
     public static RegistryObject<Item> MITHRIL_KEY = ITEMS.register("mithril_key", () -> new MithrilKeyItem(new Item.Properties().stacksTo(1).tab(questGroup), -1));
     public static RegistryObject<Item> MASTER_KEY = ITEMS.register("master_key", () -> new MasterKeyItem(new Item.Properties().stacksTo(1).tab(questGroup), -1));
+    public static RegistryObject<Item> MORGUL_CRYSTAL = ITEMS.register("morgul_crystal", () -> new MorgulCrystalItem(new Item.Properties().stacksTo(1).tab(decoGroup)));
 
     // Trinkets
     public static RegistryObject<Item> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));

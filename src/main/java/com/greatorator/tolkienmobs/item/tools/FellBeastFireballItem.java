@@ -1,15 +1,15 @@
 package com.greatorator.tolkienmobs.item.tools;
 
-import net.minecraft.block.AbstractFireBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CampfireBlock;
+import com.greatorator.tolkienmobs.entity.item.FellBeastFireballEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
+import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Stats;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
 public class FellBeastFireballItem extends Item {
@@ -18,34 +18,22 @@ public class FellBeastFireballItem extends Item {
    }
 
    @Override
-   public ActionResultType useOn(ItemUseContext useContext) {
-      World world = useContext.getLevel();
-      BlockPos blockpos = useContext.getClickedPos();
-      BlockState blockstate = world.getBlockState(blockpos);
-      boolean flag = false;
-      if (CampfireBlock.canLight(blockstate)) {
-         this.playSound(world, blockpos);
-         world.setBlockAndUpdate(blockpos, blockstate.setValue(CampfireBlock.LIT, Boolean.valueOf(true)));
-         flag = true;
-      } else {
-         blockpos = blockpos.relative(useContext.getClickedFace());
-         if (AbstractFireBlock.canBePlacedAt(world, blockpos, useContext.getHorizontalDirection())) {
-            this.playSound(world, blockpos);
-            world.setBlockAndUpdate(blockpos, AbstractFireBlock.getState(world, blockpos));
-            flag = true;
-         }
+   public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
+      ItemStack itemstack = playerEntity.getItemInHand(hand);
+      Vector3d pos = playerEntity.getLookAngle();
+      world.playSound((PlayerEntity)null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.FIREWORK_ROCKET_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+      if (!world.isClientSide) {
+         FellBeastFireballEntity fellBeastFireballEntity = new FellBeastFireballEntity(world, playerEntity, pos.x, pos.y, pos.z);
+         fellBeastFireballEntity.setItem(itemstack);
+         fellBeastFireballEntity.shootFromRotation(playerEntity, playerEntity.xRot, playerEntity.yRot, 0.0F, 1.5F, 1.0F);
+         world.addFreshEntity(fellBeastFireballEntity);
       }
 
-      if (flag) {
-         useContext.getItemInHand().shrink(1);
-         return ActionResultType.sidedSuccess(world.isClientSide);
-      } else {
-         return ActionResultType.FAIL;
+      playerEntity.awardStat(Stats.ITEM_USED.get(this));
+      if (!playerEntity.abilities.instabuild) {
+         itemstack.shrink(1);
       }
 
-   }
-
-   private void playSound(World p_219995_1_, BlockPos p_219995_2_) {
-      p_219995_1_.playSound((PlayerEntity)null, p_219995_2_, SoundEvents.FIREWORK_ROCKET_SHOOT, SoundCategory.BLOCKS, 1.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
+      return ActionResult.sidedSuccess(itemstack, world.isClientSide());
    }
 }

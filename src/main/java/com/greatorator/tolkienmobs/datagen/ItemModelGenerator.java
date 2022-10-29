@@ -245,6 +245,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TTMContent.ITEM_REMAINS.get());
         simpleItem(TTMContent.ITEM_RUNE_STONE.get());
         simpleItem(TTMContent.HYPE_HORN.get());
+        simpleItem(TTMContent.MORGUL_CRYSTAL.get());
 
         //region Backpack Upgrades
         simpleItem(TTMContent.ITEM_BACKPACK_UPGRADE_BASE.get());
@@ -331,6 +332,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         //region Fluids
         simpleItem(TTMContent.MITHRIL_FLUID_BUCKET.get());
         simpleItem(TTMContent.MORGULIRON_FLUID_BUCKET.get());
+
         //region Trinkets
         trinketItem(TTMContent.TRINKET_AMULET.get(), modLoc("item/trinket_amulet"), modLoc("item/trinket_amulet"));
         trinketItem(TTMContent.TRINKET_BELT.get(), modLoc("item/trinket_belt"), modLoc("item/trinket_belt"));
@@ -387,6 +389,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(EntityGenerator.EGG_TTMBALROG.get());
         eggItem(EntityGenerator.EGG_TTMWATCHER.get());
         eggItem(EntityGenerator.EGG_TTMGWAHIR.get());
+        eggItem(EntityGenerator.EGG_TTMFELLBEAST.get());
 
             // Passive
         eggItem(EntityGenerator.EGG_TTMAUROCH.get());

@@ -44,6 +44,9 @@
     "tolkienmobs:entityttmwitchking_spawn_egg",
     "tolkienmobs:entityttmshelob_spawn_egg",
     "tolkienmobs:entityttmbalrog_spawn_egg",
-    "tolkienmobs:entityttmwatcher_spawn_egg"
+    "tolkienmobs:entityttmwatcher_spawn_egg",
+    "tolkienmobs:entityttmgreateagle_spawn_egg",
+    "tolkienmobs:entityttmgwahir_spawn_egg",
+    "tolkienmobs:entityttmfellbeast_spawn_egg"
   ]
 }

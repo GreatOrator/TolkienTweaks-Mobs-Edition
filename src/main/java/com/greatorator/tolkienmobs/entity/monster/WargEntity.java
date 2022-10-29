@@ -90,7 +90,7 @@ public class WargEntity extends WolfEntity {
     @Override
     public double getPassengersRidingOffset()
     {
-        return super.getPassengersRidingOffset() - 0.025D;
+        return super.getPassengersRidingOffset() - 1.50D;
     }
 
     @Nullable

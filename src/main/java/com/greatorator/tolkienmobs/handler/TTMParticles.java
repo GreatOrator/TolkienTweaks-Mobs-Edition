@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.handler;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.lib.FellBeastBreathParticle;
 import com.greatorator.tolkienmobs.lib.LeafParticle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.FlameParticle;
@@ -29,6 +30,7 @@ public class TTMParticles {
     public static BasicParticleType culumalda_flame = new BasicParticleType(false);
     public static BasicParticleType lebethron_flame = new BasicParticleType(false);
     public static BasicParticleType falling_leaves = new BasicParticleType(false);
+    public static BasicParticleType fell_beast_breath = new BasicParticleType(false);
 
     @SubscribeEvent
     public static void registerParticles(RegistryEvent.Register<ParticleType<?>> event) {
@@ -36,6 +38,7 @@ public class TTMParticles {
         event.getRegistry().register(culumalda_flame.setRegistryName("culumalda_flame"));
         event.getRegistry().register(lebethron_flame.setRegistryName("lebethron_flame"));
         event.getRegistry().register(falling_leaves.setRegistryName("falling_leaves"));
+        event.getRegistry().register(fell_beast_breath.setRegistryName("fell_beast_breath"));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -45,6 +48,7 @@ public class TTMParticles {
         manager.register(mirkwood_flame, FlameParticle.Factory::new);
         manager.register(culumalda_flame, FlameParticle.Factory::new);
         manager.register(lebethron_flame, FlameParticle.Factory::new);
-        manager.register(falling_leaves, LeafParticle.DefaultFactory::new);
+        manager.register(falling_leaves, LeafParticle.Factory::new);
+        manager.register(fell_beast_breath, FellBeastBreathParticle.Factory::new);
     }
 }

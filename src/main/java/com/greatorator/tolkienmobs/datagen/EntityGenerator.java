@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.datagen;
 import com.greatorator.tolkienmobs.entity.AmbientEntity;
 import com.greatorator.tolkienmobs.entity.ambient.*;
 import com.greatorator.tolkienmobs.entity.boss.*;
+import com.greatorator.tolkienmobs.entity.boss.fellbeast.FellBeastEntity;
 import com.greatorator.tolkienmobs.entity.item.*;
 import com.greatorator.tolkienmobs.entity.merchant.*;
 import com.greatorator.tolkienmobs.entity.monster.*;
@@ -107,6 +108,8 @@ public class EntityGenerator {
     // Boss
     private static final EntityType<GoblinKingEntity> entityTTMGoblinKing = buildEntity("entityttmgoblinking", GoblinKingEntity::new, EntityClassification.MONSTER, 0.9F, 1.0F);
     public static final RegistryObject<EntityType<GoblinKingEntity>> ENTITY_TTM_GOBLINKING = ENTITY.register("entityttmgoblinking", () -> entityTTMGoblinKing);
+    private static final EntityType<FellBeastEntity> entityFellBeast = buildEntity("entityttmfellbeast", FellBeastEntity::new, EntityClassification.MONSTER, 16.0F, 8.0F);
+    public static final RegistryObject<EntityType<FellBeastEntity>> ENTITY_FELL_BEAST = ENTITY.register("entityttmfellbeast", () -> entityFellBeast);
     private static final EntityType<MithrilGolemEntity> entityTTMMithrilGolem = buildEntity("entityttmmithrilgolem", MithrilGolemEntity::new, EntityClassification.MONSTER, 1.8F, 3.1F);
     public static final RegistryObject<EntityType<MithrilGolemEntity>> ENTITY_TTM_MITHRILGOLEM = ENTITY.register("entityttmmithrilgolem", () -> entityTTMMithrilGolem);
     private static final EntityType<MorgulIronGolemEntity> entityTTMMorgulIronGolem = buildEntity("entityttmmorgulirongolem", MorgulIronGolemEntity::new, EntityClassification.MONSTER, 1.8F, 3.1F);
@@ -153,6 +156,9 @@ public class EntityGenerator {
     public static final RegistryObject<EntityType<TolkienBoatEntity>> MIRKWOOD_BOAT = ENTITY.register("boat_mirkwood", () -> EntityType.Builder.<TolkienBoatEntity>of(TolkienBoatEntity::new, EntityClassification.MISC).sized(1.375F, 0.5625F).build(new ResourceLocation(MODID, "boat_mirkwood").toString()));
     public static final RegistryObject<EntityType<TolkienBoatEntity>> CULUMALDA_BOAT = ENTITY.register("boat_culumalda", () -> EntityType.Builder.<TolkienBoatEntity>of(TolkienBoatEntity::new, EntityClassification.MISC).sized(1.375F, 0.5625F).build(new ResourceLocation(MODID, "boat_culumalda").toString()));
     public static final RegistryObject<EntityType<TolkienBoatEntity>> LEBETHRON_BOAT = ENTITY.register("boat_lebethron", () -> EntityType.Builder.<TolkienBoatEntity>of(TolkienBoatEntity::new, EntityClassification.MISC).sized(1.375F, 0.5625F).build(new ResourceLocation(MODID, "boat_lebethron").toString()));
+
+    // Items
+    public static final RegistryObject<EntityType<MorgulCrystalEntity>> MORGUL_CRYSTAL = ENTITY.register("morgul_crystal", () -> EntityType.Builder.<MorgulCrystalEntity>of(MorgulCrystalEntity::new, EntityClassification.MISC).sized(2.0F, 2.0F).clientTrackingRange(16).updateInterval(Integer.MAX_VALUE).build(MODID + ":morgul_crystal"));
 
     public static void registerSpawnPlacement() {
         //Look in EntitySpawnPlacementRegistry for examples
@@ -253,6 +259,7 @@ public class EntityGenerator {
 
         // Boss
         event.put(ENTITY_TTM_GOBLINKING.get(), GoblinKingEntity.registerAttributes().build());
+        event.put(ENTITY_FELL_BEAST.get(), FellBeastEntity.registerAttributes().build());
         event.put(ENTITY_TTM_MITHRILGOLEM.get(), MithrilGolemEntity.registerAttributes().build());
         event.put(ENTITY_TTM_MORGULIRONGOLEM.get(), MorgulIronGolemEntity.registerAttributes().build());
         event.put(ENTITY_TTM_WITCHKING.get(), WitchKingEntity.registerAttributes().build());
@@ -323,6 +330,7 @@ public class EntityGenerator {
     public static final RegistryObject<Item> EGG_TTMBALROG = createSpawnEgg("entityttmbalrog", entityTTMBalrog, 15673963, 9226665);
     public static final RegistryObject<Item> EGG_TTMWATCHER = createSpawnEgg("entityttmwatcher", entityTTMWatcher, 15673963, 7405383);
     public static final RegistryObject<Item> EGG_TTMGWAHIR = createSpawnEgg("entityttmgwahir", entityTTMGwahir, 15673963, 12659887);
+    public static final RegistryObject<Item> EGG_TTMFELLBEAST = createSpawnEgg("entityttmfellbeast", entityFellBeast, 15673963, 16211457);
 
     // Passive
     public static final RegistryObject<Item> EGG_TTMAUROCH = createSpawnEgg("entityttmauroch", entityTTMAuroch, 7668978, 2301661);

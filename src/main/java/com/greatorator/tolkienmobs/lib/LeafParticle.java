@@ -6,6 +6,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -37,9 +38,9 @@ public class LeafParticle extends SpriteTexturedParticle {
         this.hasPhysics = true;
         this.lifetime = TTMRand.getRandomInteger(200, 100);
 
-        this.rCol = (float) 0;
-        this.gCol = (float) 93;
-        this.bCol = (float) 0;
+        this.rCol = MathHelper.nextFloat(this.random, 0.1529411F, 0.7490196F);
+        this.gCol = MathHelper.nextFloat(this.random, 0.6431372F, 0.8627450F);
+        this.bCol = MathHelper.nextFloat(this.random, 0.2196078F, 0.2823529F);
         // accelerate over 3-7 seconds to at most 2.5 rotations per second
         this.maxRotateTime = (3 + random.nextInt(4 + 1)) * 20;
         this.maxRotateSpeed = (random.nextBoolean() ? -1 : 1) * (0.1f + 2.4f * random.nextFloat()) * TAU / 20f;
@@ -108,10 +109,10 @@ public class LeafParticle extends SpriteTexturedParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class DefaultFactory implements IParticleFactory<BasicParticleType> {
+    public static class Factory implements IParticleFactory<BasicParticleType> {
         private final IAnimatedSprite provider;
 
-        public DefaultFactory(IAnimatedSprite provider) {
+        public Factory(IAnimatedSprite provider) {
             this.provider = provider;
         }
 

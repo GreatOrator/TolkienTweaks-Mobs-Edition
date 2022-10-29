@@ -592,6 +592,7 @@ public class LangGenerator extends LanguageProvider {
         add(TTMContent.UTUMNO_ARROW.get(), "Utumno Arrows");
         add(TTMContent.FELLBEAST_FIREBALL.get(), "Fell Beast Fireball");
         add(TTMContent.BOULDER.get(), "Boulder");
+        add(TTMContent.MORGUL_CRYSTAL.get(), "Morgul Crystal");
     }
 
     private void trinket(PrefixHelper helper) {
@@ -755,6 +756,8 @@ public class LangGenerator extends LanguageProvider {
         add(EntityGenerator.EGG_TTMWATCHER.get(), "Watcher Spawn Egg");
         add(EntityGenerator.ENTITY_TTM_GWAHIR.get(), "Gwahir, Lord of the Eagles");
         add(EntityGenerator.EGG_TTMGWAHIR.get(), "Gwahir Spawn Egg");
+        add(EntityGenerator.ENTITY_FELL_BEAST.get(), "Fell Beast");
+        add(EntityGenerator.EGG_TTMFELLBEAST.get(), "Fell Beast Spawn Egg");
 
         // Passive
         add(EntityGenerator.ENTITY_TTM_AUROCH.get(), "Auroch");

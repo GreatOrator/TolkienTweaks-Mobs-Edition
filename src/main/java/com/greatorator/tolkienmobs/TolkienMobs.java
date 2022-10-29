@@ -48,9 +48,9 @@ public class TolkienMobs {
     /*TODO List
     1. Entities
 	    a. Remaining Entities
-	        1. Fell Beast - Needs AI and Implementation
-			2. Gwaihir - Needs AI
-			3. Great Eagle - Needs AI
+	        1. Fell Beast - Needs AI adjustments
+			2. Gwaihir - Needs AI adjustments
+			3. Great Eagle - Needs AI adjustments
     */
 
     public TolkienMobs() {
