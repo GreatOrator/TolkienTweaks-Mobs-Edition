@@ -6,7 +6,7 @@ license="MIT License"
 [[mods]]
 	modId="tolkienmobs"
 	displayName="Tolkien Tweaks (Mobs Edition)"
-    version="${version}"
+    version="${file.jarVersion}"
     credits = "Brandon3055 for all of his help on the more difficult stuff"
     logoFile = "logo.png"
     authors="GreatOrator"
@@ -17,13 +17,13 @@ license="MIT License"
 [[dependencies.tolkienmobs]]
     modId="forge"
     mandatory=true
-    versionRange="[36.2,)"
+    versionRange = "[40.1.76,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.tolkienmobs]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16,)"
+    versionRange = "[1.18.2,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.tolkienmobs]]

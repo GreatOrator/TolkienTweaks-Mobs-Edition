@@ -8,11 +8,11 @@ import com.greatorator.tolkienmobs.network.AirPacket;
 import com.greatorator.tolkienmobs.network.NetworkHelper;
 import com.greatorator.tolkienmobs.proxy.ClientProxy;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.minecraftforge.network.simple.SimpleChannel;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,7 +43,7 @@ public class TolkienMobs {
 
     public static CommonProxy proxy;
 
-    public static IRecipeType<IFireplaceRecipe> FIREPLACE_RECIPE_TYPE;
+    public static RecipeType<IFireplaceRecipe> FIREPLACE_RECIPE_TYPE;
 
     /*TODO List
     1. Entities
@@ -77,7 +77,7 @@ public class TolkienMobs {
 
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
         if (TTMHelper.isJEIInstalled) {
-            TolkienMobs.FIREPLACE_RECIPE_TYPE = IRecipeType.register(MODID + ":tmfireplace");
+            TolkienMobs.FIREPLACE_RECIPE_TYPE = RecipeType.register(MODID + ":tmfireplace");
         }
     }
 
@@ -99,7 +99,7 @@ public class TolkienMobs {
         return new ResourceLocation(MODID, name.toLowerCase(Locale.ROOT));
     }
 
-    public void sendAirPacket(ServerPlayerEntity target, int lastAir) {
+    public void sendAirPacket(Player target, int lastAir) {
         if (getIsEntityAllowedTarget(target)) {
             networkHelper.sendPacketToPlayer(new AirPacket(lastAir), target);
         }

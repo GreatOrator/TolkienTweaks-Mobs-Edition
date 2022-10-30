@@ -3,18 +3,17 @@ package com.greatorator.tolkienmobs.handler.interfaces;
 import com.google.common.collect.Lists;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.world.World;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 
 import java.util.List;
 
-public interface IFireplaceRecipe extends IRecipe<IFireplaceInventory> {
+public interface IFireplaceRecipe extends Recipe<IFireplaceInventory> {
 
     @Override
-    default IRecipeType<?> getType(){
+    default Recipe<?> getType(){
         return TolkienMobs.FIREPLACE_RECIPE_TYPE;
     }
 

@@ -1,10 +1,10 @@
 package com.greatorator.tolkienmobs.network;
 
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
@@ -46,7 +46,7 @@ public class NetworkHelper {
         packetChannel.sendToServer(packet);
     }
 
-    public void sendPacketToPlayer(IPacket packet, ServerPlayerEntity player) {
+    public void sendPacketToPlayer(IPacket packet, Player player) {
         checkClass(packet.getClass());
         packetChannel.send(PacketDistributor.PLAYER.with(() -> player), packet);
     }

@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.handler.interfaces;
 
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
 /**
@@ -20,7 +20,7 @@ public interface IFireplaceInventory extends IInventory {
     @Override default ItemStack removeItemNoUpdate(int index) { return ItemStack.EMPTY; }
     @Override default void setItem(int index, ItemStack stack) { }
     @Override default void setChanged() { }
-    @Override default boolean stillValid(PlayerEntity player) { return false; }
+    @Override default boolean stillValid(Player player) { return false; }
     @Override default void clearContent() { }
     //@formatter:on
 }
