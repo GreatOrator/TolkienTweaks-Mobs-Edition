@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.entity.special;
 
-import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

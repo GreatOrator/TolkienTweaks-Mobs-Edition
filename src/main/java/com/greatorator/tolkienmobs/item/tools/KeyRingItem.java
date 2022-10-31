@@ -4,7 +4,7 @@ import codechicken.lib.inventory.InventoryUtils;
 import com.brandon3055.brandonscore.inventory.PlayerSlot;
 import com.greatorator.tolkienmobs.container.KeyRingContainer;
 import com.greatorator.tolkienmobs.container.capability.ItemStackInventory;
-import com.greatorator.tolkienmobs.handler.TTMLoreItem;
+import com.greatorator.tolkienmobs.handler.LoreItem;
 import com.greatorator.tolkienmobs.handler.TTMTags;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -33,7 +32,7 @@ import javax.annotation.Nullable;
 
 import static com.greatorator.tolkienmobs.TTMContent.KEY_RING;
 
-public class KeyRingItem extends TTMLoreItem {
+public class KeyRingItem extends LoreItem {
 
     public KeyRingItem(Item.Properties properties) {
         super(properties);

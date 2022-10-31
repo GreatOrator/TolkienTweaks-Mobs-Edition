@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.block;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -15,7 +15,7 @@ public class CamoSmokerBlock extends ChameleonBlock {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void animateTick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void animateTick(BlockState state, Level worldIn, BlockPos pos, Random random) {
         double d0 = (double)pos.getX() + 0.5D;
         double d1 = (double)pos.getY();
         double d2 = (double)pos.getZ() + 0.5D;

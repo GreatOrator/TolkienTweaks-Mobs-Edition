@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.entity.boss;
 
-import com.greatorator.tolkienmobs.datagen.PotionGenerator;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.event.entity.SpiderEvent;
 import com.greatorator.tolkienmobs.event.server.ServerEvents;
@@ -37,7 +36,8 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.*;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.spawner.WorldEntitySpawner;

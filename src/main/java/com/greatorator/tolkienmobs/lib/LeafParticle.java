@@ -1,16 +1,16 @@
 package com.greatorator.tolkienmobs.lib;
 
 import com.greatorator.tolkienmobs.utils.TTMRand;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class LeafParticle extends SpriteTexturedParticle {
+public class LeafParticle extends TextureSheetParticle {
     protected static final float TAU = (float) (2 * Math.PI); // 1 rotation
 
     protected static final int FADE_DURATION = 16; // ticks
@@ -22,7 +22,7 @@ public class LeafParticle extends SpriteTexturedParticle {
     protected final int maxRotateTime;
     protected int rotateTime = 0;
 
-    protected LeafParticle(ClientWorld clientWorld, double x, double y, double z, double r, double g, double b, IAnimatedSprite provider) {
+    protected LeafParticle(ClientLevel clientWorld, double x, double y, double z, double r, double g, double b, SpriteSet provider) {
         super(clientWorld, x, y, z, 0, 0, 0);
         this.pickSprite(provider);
 
@@ -38,9 +38,9 @@ public class LeafParticle extends SpriteTexturedParticle {
         this.hasPhysics = true;
         this.lifetime = TTMRand.getRandomInteger(200, 100);
 
-        this.rCol = MathHelper.nextFloat(this.random, 0.1529411F, 0.7490196F);
-        this.gCol = MathHelper.nextFloat(this.random, 0.6431372F, 0.8627450F);
-        this.bCol = MathHelper.nextFloat(this.random, 0.2196078F, 0.2823529F);
+        this.rCol = Mth.nextFloat(this.random, 0.1529411F, 0.7490196F);
+        this.gCol = Mth.nextFloat(this.random, 0.6431372F, 0.8627450F);
+        this.bCol = Mth.nextFloat(this.random, 0.2196078F, 0.2823529F);
         // accelerate over 3-7 seconds to at most 2.5 rotations per second
         this.maxRotateTime = (3 + random.nextInt(4 + 1)) * 20;
         this.maxRotateSpeed = (random.nextBoolean() ? -1 : 1) * (0.1f + 2.4f * random.nextFloat()) * TAU / 20f;
@@ -104,20 +104,20 @@ public class LeafParticle extends SpriteTexturedParticle {
     }
 
     @Override
-    public IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+    public ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Factory implements IParticleFactory<BasicParticleType> {
-        private final IAnimatedSprite provider;
+    public static class Provider implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet provider;
 
-        public Factory(IAnimatedSprite provider) {
+        public Provider(SpriteSet provider) {
             this.provider = provider;
         }
 
         @Override
-        public Particle createParticle(BasicParticleType parameters, ClientWorld world, double x, double y, double z, double r, double g, double b) {
+        public Particle createParticle(SimpleParticleType parameters, ClientLevel world, double x, double y, double z, double r, double g, double b) {
             return new LeafParticle(world, x, y, z, r, g, b, this.provider);
         }
     }

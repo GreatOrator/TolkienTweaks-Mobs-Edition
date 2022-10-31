@@ -7,66 +7,54 @@ import com.brandon3055.brandonscore.inventory.ItemHandlerIOControl;
 import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
 import com.brandon3055.brandonscore.lib.IChangeListener;
 import com.brandon3055.brandonscore.lib.IInteractTile;
-import com.greatorator.tolkienmobs.TTMContent;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
+import com.greatorator.tolkienmobs.init.TolkienContainers;
+import com.greatorator.tolkienmobs.init.TolkienTiles;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
-import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
-import static net.minecraft.util.Direction.UP;
+import static net.minecraft.core.Direction.UP;
 
-public class CamoFluidTile extends TileBCore implements IChangeListener, IInteractTile, INamedContainerProvider {
+public class CamoFluidTile extends TileBCore implements IChangeListener, MenuProvider, IInteractTile {
     public static final ContainerSlotLayout.LayoutFactory<CamoFluidTile> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.mainInventory);
     public TileItemStackHandler mainInventory = new TileItemStackHandler(1);
 
-    public CamoFluidTile(TileEntityType<?> tileEntityTypeIn) {
-        super(tileEntityTypeIn);
-    }
-
-    public CamoFluidTile() {
-        super(TTMContent.CAMO_FLUID_TILE.get());
+    public CamoFluidTile(BlockPos pos, BlockState state) {
+        super(TolkienTiles.CAMO_FLUID_TILE.get(), pos, state);
         capManager.set(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, new ItemHandlerIOControl(mainInventory).setInsertCheck((slot, stack) -> slot > 0), UP, null);
         capManager.setInternalManaged("inventory", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, mainInventory).saveBoth().syncTile();
     }
 
     @Override
-    public ActionResultType onBlockUse(BlockState state, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+    public InteractionResult onBlockUse(BlockState state, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!player.level.isClientSide()) {
-            openGUI(player, this, worldPosition);
+            NetworkHooks.openGui((ServerPlayer) player, this, worldPosition);
         }
-        return ActionResultType.SUCCESS;
-    }
-
-    public void openGUI(PlayerEntity player, INamedContainerProvider containerSupplier, BlockPos pos)
-    {
-        if(!player.level.isClientSide)
-        {
-            NetworkHooks.openGui((ServerPlayerEntity)player, containerSupplier, pos);
-        }
+        return InteractionResult.SUCCESS;
     }
 
     @Nullable
     @Override
-    public Container createMenu(int windowID, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new ContainerBCTile<>(TTMContent.CAMO_FLUID_CONTAINER, windowID, playerInventory, this, SLOT_LAYOUT);
+    public AbstractContainerMenu createMenu(int windowID, Inventory playerInventory, Player playerEntity) {
+        return new ContainerBCTile<>(TolkienContainers.CAMO_FLUID_CONTAINER, windowID, playerInventory, this, SLOT_LAYOUT);
     }
 
     @Override

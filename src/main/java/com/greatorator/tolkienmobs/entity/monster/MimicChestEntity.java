@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.entity.monster;
 
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.datagen.PotionGenerator;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.Entity;

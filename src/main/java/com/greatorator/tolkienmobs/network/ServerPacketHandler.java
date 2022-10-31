@@ -2,10 +2,7 @@ package com.greatorator.tolkienmobs.network;
 
 import codechicken.lib.packet.ICustomPacketHandler;
 import codechicken.lib.packet.PacketCustom;
-import com.greatorator.tolkienmobs.entity.tile.CulumaldaSignTile;
-import com.greatorator.tolkienmobs.entity.tile.LebethronSignTile;
-import com.greatorator.tolkienmobs.entity.tile.MallornSignTile;
-import com.greatorator.tolkienmobs.entity.tile.MirkwoodSignTile;
+import com.greatorator.tolkienmobs.entity.tile.TolkienSignTile;
 import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -54,13 +51,13 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
         if (serverworld.hasChunkAt(blockpos)) {
             BlockState blockstate = serverworld.getBlockState(blockpos);
             TileEntity tileentity = serverworld.getBlockEntity(blockpos);
-            if (!(tileentity instanceof MallornSignTile) || !(tileentity instanceof MirkwoodSignTile) || !(tileentity instanceof CulumaldaSignTile) || !(tileentity instanceof LebethronSignTile)) {
+            if (!(tileentity instanceof MallornSignTile) || !(tileentity instanceof MirkwoodSignTile) || !(tileentity instanceof TolkienSignTile) || !(tileentity instanceof LebethronSignTile)) {
                 return;
             }
 
             MallornSignTile signtileentity1 = (MallornSignTile)tileentity;
             MirkwoodSignTile signtileentity2 = (MirkwoodSignTile)tileentity;
-            CulumaldaSignTile signtileentity3 = (CulumaldaSignTile)tileentity;
+            TolkienSignTile signtileentity3 = (TolkienSignTile)tileentity;
             LebethronSignTile signtileentity4 = (LebethronSignTile)tileentity;
             if (!signtileentity1.isEditable() || signtileentity1.getPlayerWhoMayEdit() != sender || !signtileentity2.isEditable() || signtileentity2.getPlayerWhoMayEdit() != sender || !signtileentity3.isEditable() || signtileentity3.getPlayerWhoMayEdit() != sender || !signtileentity4.isEditable() || signtileentity4.getPlayerWhoMayEdit() != sender) {
                 LOGGER.warn("Player {} just tried to change non-editable sign", (Object)sender.getName().getString());

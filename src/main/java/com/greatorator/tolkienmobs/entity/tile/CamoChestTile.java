@@ -5,55 +5,44 @@ import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.inventory.ContainerSlotLayout;
 import com.brandon3055.brandonscore.inventory.ItemHandlerIOControl;
 import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
-import com.greatorator.tolkienmobs.TTMContent;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.network.NetworkHooks;
+import com.brandon3055.brandonscore.lib.IInteractTile;
+import com.greatorator.tolkienmobs.init.TolkienContainers;
+import com.greatorator.tolkienmobs.init.TolkienTiles;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
-import static net.minecraft.util.Direction.UP;
+import static net.minecraft.core.Direction.UP;
 
-public class CamoChestTile extends TileBCore implements INamedContainerProvider, ITickableTileEntity {
+public class CamoChestTile extends TileBCore implements MenuProvider, IInteractTile {
     public static final ContainerSlotLayout.LayoutFactory<CamoChestTile> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.mainInventory);
     public TileItemStackHandler mainInventory = new TileItemStackHandler(27);
 
-    public CamoChestTile(TileEntityType<?> tileEntityTypeIn) {
-        super(tileEntityTypeIn);
-    }
-
-    public CamoChestTile() {
-        super(TTMContent.CAMO_CHEST_TILE.get());
+    public CamoChestTile(BlockPos pos, BlockState state) {
+        super(TolkienTiles.CAMO_CHEST_TILE.get(), pos, state);
 
         capManager.set(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, new ItemHandlerIOControl(mainInventory).setInsertCheck((slot, stack) -> slot > 0), UP, null);
         capManager.setInternalManaged("inventory", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, mainInventory).saveBoth().syncTile();
     }
 
-    public void onRightClick(PlayerEntity playerEntity, Hand hand) {
+    public void onRightClick(Player playerEntity, InteractionHand hand) {
         if (!playerEntity.level.isClientSide()) {
-                openGUI(playerEntity, this, worldPosition);
-        }
-    }
-
-    public void openGUI(PlayerEntity player, INamedContainerProvider containerSupplier, BlockPos pos)
-    {
-        if(!player.level.isClientSide)
-        {
-            NetworkHooks.openGui((ServerPlayerEntity)player, containerSupplier, pos);
+            NetworkHooks.openGui((ServerPlayer) playerEntity, this, worldPosition);
         }
     }
 
     @Nullable
     @Override
-    public Container createMenu(int windowID, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new ContainerBCTile<>(TTMContent.CAMO_CHEST_CONTAINER, windowID, playerInventory, this, SLOT_LAYOUT);
+    public AbstractContainerMenu createMenu(int windowID, Inventory playerInventory, Player playerEntity) {
+        return new ContainerBCTile<>(TolkienContainers.CAMO_CHEST_CONTAINER, windowID, playerInventory, this, SLOT_LAYOUT);
     }
 }

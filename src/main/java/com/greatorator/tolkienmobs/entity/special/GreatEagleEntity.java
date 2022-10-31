@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.entity.special;
 
-import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.BirdEntity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;

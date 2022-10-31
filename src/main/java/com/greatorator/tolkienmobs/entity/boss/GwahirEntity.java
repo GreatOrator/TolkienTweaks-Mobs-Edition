@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.entity.boss;
 
-import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.BirdEntity;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;

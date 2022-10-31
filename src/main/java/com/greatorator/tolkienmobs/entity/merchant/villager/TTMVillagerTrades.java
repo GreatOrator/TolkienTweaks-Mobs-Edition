@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.entity.merchant.villager;
 
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.MerchantOffer;
 import net.minecraftforge.event.village.VillagerTradesEvent;

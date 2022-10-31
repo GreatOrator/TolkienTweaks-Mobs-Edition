@@ -1,38 +1,38 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.brandon3055.brandonscore.blocks.BlockBCore;
 import com.greatorator.tolkienmobs.entity.tile.PlacardTile;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.AttachFace;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.AttachFace;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
-import javax.annotation.Nullable;
-import java.util.stream.Stream;
+import static net.minecraft.world.level.block.state.properties.AttachFace.*;
 
-import static net.minecraft.state.properties.AttachFace.*;
-
-public class PlacardBlock extends BlockBCore {
+public class PlacardBlock extends Block implements EntityBlock {
     public static final EnumProperty<AttachFace> ATTACH_FACE = EnumProperty.create("attach_face", AttachFace.class);
     public static final EnumProperty<PlacardType> PLACARD_TYPE = EnumProperty.create("placard_type", PlacardType.class);
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public static final VoxelShape SHAPE_STANDING_NS = Stream.of(
+    public static final VoxelShape SHAPE_STANDING_NS = Shapes.or(
             Block.box(12.8, -0.1, 7.3, 14.2, 0.9, 8.7),
             Block.box(1, 7, 7.5, 15, 13, 8.5),
             Block.box(0, 6, 7, 16, 7, 9),
@@ -42,8 +42,8 @@ public class PlacardBlock extends BlockBCore {
             Block.box(2, 0.4, 7.5, 3, 7.4, 8.5),
             Block.box(13, 0.4, 7.5, 14, 7.4, 8.5),
             Block.box(1.8, -0.1, 7.3, 3.2, 0.9, 8.7)
-    ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
-    public static final VoxelShape SHAPE_STANDING_EW = Stream.of(
+    );
+    public static final VoxelShape SHAPE_STANDING_EW = Shapes.or(
             Block.box(7.300000000000001, -0.1, 12.8, 8.7, 0.9, 14.2),
             Block.box(7.5, 7, 1, 8.5, 13, 15),
             Block.box(7, 6, 0, 9, 7, 16),
@@ -53,7 +53,7 @@ public class PlacardBlock extends BlockBCore {
             Block.box(7.5, 0.4, 2, 8.5, 7.4, 3),
             Block.box(7.5, 0.4, 13, 8.5, 7.4, 14),
             Block.box(7.300000000000001, -0.1, 1.8, 8.7, 0.9, 3.2)
-    ).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
+    );
     public static final VoxelShape SHAPE_HANGING_NS = Block.box(0.0D, 0.0D, 7.0D, 16.0D, 8.0D, 9.0D);
     public static final VoxelShape SHAPE_HANGING_EW = Block.box(7.0D, 0.0D, 0.0D, 9.0D, 8.0D, 16.0D);
     protected static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 5.0D, 14.0D, 16.0D, 13.0D, 16.0D);
@@ -63,12 +63,12 @@ public class PlacardBlock extends BlockBCore {
 
     public PlacardBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ATTACH_FACE, AttachFace.FLOOR).setValue(PLACARD_TYPE, PlacardType.EMPTY));
+        this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ATTACH_FACE, FLOOR).setValue(PLACARD_TYPE, PlacardType.EMPTY));
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context) {
         Direction facing = state.getValue(FACING);
         AttachFace face = state.getValue(ATTACH_FACE);
 
@@ -87,27 +87,22 @@ public class PlacardBlock extends BlockBCore {
     }
 
     @Override
-    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!world.isClientSide() && player.isShiftKeyDown()) {
             world.setBlockAndUpdate(pos, state.setValue(PLACARD_TYPE, state.getValue(PLACARD_TYPE).next()));
         }
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction facing = context.getHorizontalDirection().getOpposite();
         Direction clicked = context.getClickedFace();
         return defaultBlockState().setValue(FACING, facing).setValue(ATTACH_FACE, clicked == Direction.UP ? FLOOR : clicked == Direction.DOWN ? CEILING : WALL);
     }
 
     @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING).add(ATTACH_FACE).add(PLACARD_TYPE);
     }
 
@@ -117,13 +112,12 @@ public class PlacardBlock extends BlockBCore {
         return state.setValue(FACING, direction.rotate(state.getValue(FACING)));
     }
 
-    @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new PlacardTile();
+    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new PlacardTile(blockPos, blockState);
     }
 
-    public enum PlacardType implements IStringSerializable {
+    public enum PlacardType implements StringRepresentable {
         EMPTY(0, "empty"),
         ARCANE1(1, "arcane1"),
         ARCANE2(2, "arcane2"),

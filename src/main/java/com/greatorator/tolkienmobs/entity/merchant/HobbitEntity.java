@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.entity.merchant;
 
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.datagen.ProfessionGenerator;
 import com.greatorator.tolkienmobs.entity.VillagerEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.EntityType;

@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.container.gui;
 
 import com.brandon3055.brandonscore.BCConfig;
-import com.brandon3055.brandonscore.client.BCSprites;
+import com.brandon3055.brandonscore.client.BCGuiSprites;
 import com.brandon3055.brandonscore.client.gui.GuiToolkit;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElement;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElementManager;
@@ -17,20 +17,20 @@ import com.brandon3055.brandonscore.lib.datamanager.ManagedByte;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedShort;
 import com.greatorator.tolkienmobs.entity.tile.CamoSpawnerTile;
 import com.greatorator.tolkienmobs.handler.TTMSprites;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 
 public class CamoSpawnerScreen extends ModularGuiContainer<ContainerBCTile<CamoSpawnerTile>> {
     protected GuiToolkit<CamoSpawnerScreen> toolkit = new GuiToolkit<>(this, 185 + 50, 200).setTranslationPrefix("screen.tolkienmobs.camo_spawner");
-    private final PlayerEntity player;
+    private final Player player;
     private final CamoSpawnerTile tile;
     private GuiScrollElement listElement;
 
-    public CamoSpawnerScreen(ContainerBCTile<CamoSpawnerTile> container, PlayerInventory playerInventory, ITextComponent titleIn) {
+    public CamoSpawnerScreen(ContainerBCTile<CamoSpawnerTile> container, Inventory playerInventory, Component titleIn) {
         super(container, playerInventory, titleIn);
         this.tile = container.tile;
         this.player = playerInventory.player;
@@ -39,12 +39,12 @@ public class CamoSpawnerScreen extends ModularGuiContainer<ContainerBCTile<CamoS
     @Override
     public void addElements(GuiElementManager manager) {
         TGuiBase temp = new TGuiBase(this);
-        temp.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCSprites.getThemed("background_dynamic"));
+        temp.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCGuiSprites.getThemed("background_dynamic"));
         temp.background.onReload(guiTex -> guiTex.setPos(guiLeft(), guiTop()));
         toolkit.loadTemplate(temp);
 
         // ### Update title position ###
-        GuiLabel nameLabel = toolkit.createHeading(TextFormatting.DARK_AQUA + toolkit.i18n("title"), temp.background)
+        GuiLabel nameLabel = toolkit.createHeading(ChatFormatting.DARK_AQUA + toolkit.i18n("title"), temp.background)
                 .setAlignment(GuiAlign.CENTER)
                 .setSize(temp.background.xSize() - 10, 8)
                 .setShadowStateSupplier(() -> BCConfig.darkMode)
@@ -133,7 +133,7 @@ public class CamoSpawnerScreen extends ModularGuiContainer<ContainerBCTile<CamoS
     private void updateEntityList() {
         listElement.clearElements();
         listElement.resetScrollPositions();
-        for (CompoundNBT tag : tile.entityTags) {
+        for (CompoundTag tag : tile.entityTags) {
             GuiElement<?> container = new GuiElement<>()
                     .setYSize(32);
 
@@ -167,23 +167,24 @@ public class CamoSpawnerScreen extends ModularGuiContainer<ContainerBCTile<CamoS
 
     private GuiTextField createField(GuiElement<?> parent, String unlocalised, ManagedByte field) {
         return toolkit.createTextField(parent)
-                .setText(String.valueOf(field.get()))
-                .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n(unlocalised))
-                .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
-                .setChangeListener(s -> field.set((byte) Integer.parseInt(s)))
+                .setValue(String.valueOf(field.get()))
+                .setHoverText(ChatFormatting.DARK_AQUA + toolkit.i18n(unlocalised))
+                .setFilter(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
+                .onValueChanged(s -> field.set((byte) Integer.parseInt(s)))
                 .setSize(80, 12);
     }
 
     private GuiTextField createField(GuiElement<?> parent, String unlocalised, ManagedShort field) {
         return toolkit.createTextField(parent)
-                .setText(String.valueOf(field.get()))
-                .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n(unlocalised))
-                .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
-                .setChangeListener(s -> field.set((short) Integer.parseInt(s)))
+                .setValue(String.valueOf(field.get()))
+                .setHoverText(ChatFormatting.DARK_AQUA + toolkit.i18n(unlocalised))
+                .setFilter(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
+                .onValueChanged(s -> field.set((short) Integer.parseInt(s)))
                 .setSize(80, 12);
     }
 
     private int lastListSize = -1;
+
     @Override
     public void tick() {
         super.tick();

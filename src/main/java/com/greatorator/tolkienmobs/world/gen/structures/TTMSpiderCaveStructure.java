@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.world.gen.structures;
 
 import com.google.common.collect.ImmutableList;
-import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;

@@ -1,25 +1,22 @@
 package com.greatorator.tolkienmobs.container;
 
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
-import com.greatorator.tolkienmobs.TTMContent;
+import com.brandon3055.brandonscore.inventory.SlotCheckValid;
 import com.greatorator.tolkienmobs.container.slots.SlotCheckValid2;
 import com.greatorator.tolkienmobs.entity.tile.BackpackTile;
+import com.greatorator.tolkienmobs.init.TolkienContainers;
 import com.greatorator.tolkienmobs.lib.CraftingInventoryWrapper;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.CraftResultInventory;
-import net.minecraft.inventory.CraftingInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.inventory.container.CraftingResultSlot;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.ICraftingRecipe;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.network.play.server.SSetSlotPacket;
-import net.minecraft.world.World;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
@@ -40,24 +37,24 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
     public List<SlotCheckValid2> fluidItemSlots = new ArrayList<>();
     public CraftingResultSlot2 craftResultSlot;
     private CraftingInventoryWrapper craftInventory;
-    private final CraftResultInventory resultInventory = new CraftResultInventory();
+    private final ResultContainer resultInventory = new ResultContainer();
 
-    public BackpackContainer(int windowId, PlayerInventory playerInv, PacketBuffer extraData) {
-        this(TTMContent.BACKPACK_CONTAINER, windowId, playerInv, getClientTile(extraData));
+    public BackpackContainer(int windowId, Inventory playerInv, FriendlyByteBuf extraData) {
+        this(TolkienContainers.BACKPACK_CONTAINER, windowId, playerInv, getClientTile(extraData));
         //^^ Don't forget this!
     }
 
-    public BackpackContainer(@Nullable ContainerType<?> type, int windowId, PlayerInventory playerInv, BackpackTile tile) {
+    public BackpackContainer(@Nullable MenuType<?> type, int windowId, Inventory playerInv, BackpackTile tile) {
         super(type, windowId, playerInv, tile);
 
         //Player Inventory
         for (int i = 0; i < playerInv.items.size(); i++) {
-            playerSlots.add(addSlot(new SlotCheckValid2.IInv(playerInv, i, 0, 0)));
+            playerSlots.add(addSlot(new SlotCheckValid.IInv(playerInv, i, 0, 0)));
         }
 
         //Player Armor
         for (int i = 0; i < playerInv.armor.size(); i++) {
-            playerEquipment.add(addSlot(new SlotCheckValid2.IInv(playerInv, i + 36, 0, 0)));
+            playerEquipment.add(addSlot(new SlotCheckValid.IInv(playerInv, i + 36, 0, 0)));
         }
 
         //Player Off-hand
@@ -88,34 +85,34 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
         slotsChanged(playerInv); //<-- Ensures the craft result is updated when you open the gui
     }
 
-    protected void slotChangedCraftingGrid(int containerID, World world, PlayerEntity player, CraftingInventory craftingInventory, CraftResultInventory resultInventory) {
+    protected void slotChangedCraftingGrid(int containerID, Level world, Player player, CraftingContainer craftingInventory, ResultContainer resultInventory) {
         if (!world.isClientSide && tile.craftUpgrade.get() > 0) {
-            ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) player;
+            ServerPlayer serverplayerentity = (ServerPlayer) player;
             ItemStack itemstack = ItemStack.EMPTY;
-            Optional<ICraftingRecipe> optional = world.getServer().getRecipeManager().getRecipeFor(IRecipeType.CRAFTING, craftingInventory, world);
+            Optional<CraftingRecipe> optional = world.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, craftingInventory, world);
             if (optional.isPresent()) {
-                ICraftingRecipe icraftingrecipe = optional.get();
+                CraftingRecipe icraftingrecipe = optional.get();
                 if (resultInventory.setRecipeUsed(world, serverplayerentity, icraftingrecipe)) {
                     itemstack = icraftingrecipe.assemble(craftingInventory);
                 }
             }
 
             resultInventory.setItem(0, itemstack);
-            serverplayerentity.connection.send(new SSetSlotPacket(containerID, craftResultSlot.index, itemstack));
+            serverplayerentity.connection.send(new ClientboundContainerSetSlotPacket(containerID, stateId, craftResultSlot.index, itemstack));
         } else if (!world.isClientSide && tile.craftUpgrade.get() == 0) {
-            ServerPlayerEntity serverplayerentity = (ServerPlayerEntity) player;
+            ServerPlayer serverplayerentity = (ServerPlayer) player;
             resultInventory.setItem(0, ItemStack.EMPTY);
-            serverplayerentity.connection.send(new SSetSlotPacket(containerID, craftResultSlot.index, ItemStack.EMPTY));
+            serverplayerentity.connection.send(new ClientboundContainerSetSlotPacket(containerID, stateId, craftResultSlot.index, ItemStack.EMPTY));
         }
     }
 
     @Override
-    public void slotsChanged(IInventory inventory) {
+    public void slotsChanged(Container inventory) {
         slotChangedCraftingGrid(this.containerId, tile.getLevel(), this.player, this.craftInventory, this.resultInventory);
     }
 
     @Override
-    public ItemStack quickMoveStack(PlayerEntity player, int i) {
+    public ItemStack quickMoveStack(Player player, int i) {
         int playerSlots = 36 + 5;
         IItemHandler handler = tile.mainInventory;
         Slot slot = getSlot(i);
@@ -150,10 +147,10 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
         return ItemStack.EMPTY;
     }
 
-    public static class CraftingResultSlot2 extends CraftingResultSlot {
+    public static class CraftingResultSlot2 extends ResultSlot {
         public Supplier<Boolean> isActive = null;
 
-        public CraftingResultSlot2(PlayerEntity p_i45790_1_, CraftingInventory p_i45790_2_, IInventory p_i45790_3_, int p_i45790_4_, int p_i45790_5_, int p_i45790_6_) {
+        public CraftingResultSlot2(Player p_i45790_1_, CraftingContainer p_i45790_2_, Container p_i45790_3_, int p_i45790_4_, int p_i45790_5_, int p_i45790_6_) {
             super(p_i45790_1_, p_i45790_2_, p_i45790_3_, p_i45790_4_, p_i45790_5_, p_i45790_6_);
         }
 

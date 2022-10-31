@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.entity.ambient;
 
-import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;

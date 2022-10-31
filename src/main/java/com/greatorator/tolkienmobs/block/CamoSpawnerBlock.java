@@ -1,16 +1,16 @@
 package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.entity.tile.CamoSpawnerTile;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
 
@@ -22,41 +22,31 @@ public class CamoSpawnerBlock extends ChameleonBlock<CamoSpawnerTile> {
 
     @SuppressWarnings("deprecation")
     @Override
-    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult trace) {
-        TileEntity tile = world.getBlockEntity(pos);
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult trace) {
+        BlockEntity tile = world.getBlockEntity(pos);
         CamoSpawnerTile camoSpawner = (CamoSpawnerTile) tile;
         if (!world.isClientSide) {
             if (tile != null) {
                 camoSpawner.onRightClick(state, player, hand);
-                return ActionResultType.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
         }
-        return ActionResultType.SUCCESS;
-    }
-
-    @Override
-    public boolean isBlockFullCube() {
-        return false;
-    }
-
-    @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
+        return InteractionResult.SUCCESS;
     }
 
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new CamoSpawnerTile();
+    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new CamoSpawnerTile(blockPos, blockState);
     }
 
     @Override
-    public void onRemove(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
+    public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         super.onRemove(state, worldIn, pos, newState, isMoving);
     }
 
     @Override
-    public boolean canConnectRedstone(BlockState state, IBlockReader world, BlockPos pos, @Nullable Direction side) {
+    public boolean canConnectRedstone(BlockState state, BlockGetter world, BlockPos pos, @Nullable Direction side) {
         return true;
     }
 }

@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.world.biome;
 
-import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;

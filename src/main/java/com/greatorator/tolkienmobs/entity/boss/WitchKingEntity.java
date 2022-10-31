@@ -1,8 +1,6 @@
 package com.greatorator.tolkienmobs.entity.boss;
 
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.datagen.PotionGenerator;
-import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import net.minecraft.block.Block;
 import net.minecraft.entity.*;
@@ -23,7 +21,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.*;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraftforge.fml.network.NetworkHooks;
 

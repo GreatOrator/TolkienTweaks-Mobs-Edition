@@ -1,30 +1,30 @@
 package com.greatorator.tolkienmobs.lib;
 
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class FellBeastBreathParticle extends SpriteTexturedParticle {
+public class FellBeastBreathParticle extends TextureSheetParticle {
     private boolean hasHitGround;
-    private final IAnimatedSprite sprites;
+    private final SpriteSet sprites;
 
-    private FellBeastBreathParticle(ClientWorld p_i232359_1_, double p_i232359_2_, double p_i232359_4_, double p_i232359_6_, double p_i232359_8_, double p_i232359_10_, double p_i232359_12_, IAnimatedSprite p_i232359_14_) {
-        super(p_i232359_1_, p_i232359_2_, p_i232359_4_, p_i232359_6_);
-        this.xd = p_i232359_8_;
-        this.yd = p_i232359_10_;
-        this.zd = p_i232359_12_;
-        this.rCol = MathHelper.nextFloat(this.random, 0.1176470F, 0.4078431F);
-        this.gCol = MathHelper.nextFloat(this.random, 0.6196078F, 0.7686274F);
-        this.bCol = MathHelper.nextFloat(this.random, 0.3019607F, 0.3803921F);
+    private FellBeastBreathParticle(ClientLevel clientWorld, double x, double y, double z, double r, double g, double b, SpriteSet provider) {
+        super(clientWorld, x, y, z);
+        this.xd = r;
+        this.yd = g;
+        this.zd = b;
+        this.rCol = Mth.nextFloat(this.random, 0.1176470F, 0.4078431F);
+        this.gCol = Mth.nextFloat(this.random, 0.6196078F, 0.7686274F);
+        this.bCol = Mth.nextFloat(this.random, 0.3019607F, 0.3803921F);
         this.quadSize *= 0.75F;
         this.lifetime = (int)(20.0D / ((double)this.random.nextFloat() * 0.8D + 0.2D));
         this.hasHitGround = false;
         this.hasPhysics = false;
-        this.sprites = p_i232359_14_;
-        this.setSpriteFromAge(p_i232359_14_);
+        this.sprites = provider;
+        this.setSpriteFromAge(provider);
     }
 
     public void tick() {
@@ -59,23 +59,23 @@ public class FellBeastBreathParticle extends SpriteTexturedParticle {
         }
     }
 
-    public IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    public ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
     public float getQuadSize(float p_217561_1_) {
-        return this.quadSize * MathHelper.clamp(((float)this.age + p_217561_1_) / (float)this.lifetime * 32.0F, 0.0F, 1.0F);
+        return this.quadSize * Mth.clamp(((float)this.age + p_217561_1_) / (float)this.lifetime * 32.0F, 0.0F, 1.0F);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Factory implements IParticleFactory<BasicParticleType> {
-        private final IAnimatedSprite sprites;
+    public static class Provider implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet sprites;
 
-        public Factory(IAnimatedSprite p_i50559_1_) {
+        public Provider(SpriteSet p_i50559_1_) {
             this.sprites = p_i50559_1_;
         }
 
-        public Particle createParticle(BasicParticleType p_199234_1_, ClientWorld p_199234_2_, double p_199234_3_, double p_199234_5_, double p_199234_7_, double p_199234_9_, double p_199234_11_, double p_199234_13_) {
+        public Particle createParticle(SimpleParticleType p_199234_1_, ClientLevel p_199234_2_, double p_199234_3_, double p_199234_5_, double p_199234_7_, double p_199234_9_, double p_199234_11_, double p_199234_13_) {
             return new FellBeastBreathParticle(p_199234_2_, p_199234_3_, p_199234_5_, p_199234_7_, p_199234_9_, p_199234_11_, p_199234_13_, this.sprites);
         }
     }

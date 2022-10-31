@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.entity.boss.fellbeast.phase;
 
-import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.boss.fellbeast.FellBeastEntity;
 
 public class FellBeastAttackingSittingPhase extends FellBeastSittingPhase {

@@ -1,8 +1,6 @@
 package com.greatorator.tolkienmobs.entity.boss.fellbeast;
 
 import com.google.common.collect.Lists;
-import com.greatorator.tolkienmobs.datagen.EntityGenerator;
-import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.boss.WitchKingEntity;
 import com.greatorator.tolkienmobs.entity.boss.fellbeast.phase.FellBeastFightManager;
 import com.greatorator.tolkienmobs.entity.boss.fellbeast.phase.FellBeastPhaseManager;
@@ -26,13 +24,12 @@ import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathHeap;
 import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.*;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.EndPodiumFeature;
 import net.minecraft.world.server.ServerBossInfo;

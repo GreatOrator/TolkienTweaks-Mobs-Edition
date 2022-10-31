@@ -1,18 +1,19 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.greatorator.tolkienmobs.TTMContent;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
+import com.greatorator.tolkienmobs.init.TolkienItems;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
-public class CropsBlock extends net.minecraft.block.CropsBlock {
+public class CropsBlock extends CropBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
 
     public CropsBlock(Properties builder) {
@@ -26,17 +27,17 @@ public class CropsBlock extends net.minecraft.block.CropsBlock {
     }
 
     @Override
-    protected boolean mayPlaceOn(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState state, BlockGetter worldIn, BlockPos pos) {
         return state.is(Blocks.FARMLAND);
     }
 
     @Override
-    protected IItemProvider getBaseSeedId() {
-        return TTMContent.PIPEWEED_SEEDS.get();
+    protected ItemLike getBaseSeedId() {
+        return TolkienItems.PIPEWEED_SEEDS.get();
     }
 
     @Override
-    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
+    public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
         items.add(new ItemStack(this));
     }
 }

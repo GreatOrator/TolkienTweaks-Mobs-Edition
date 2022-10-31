@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.item.potion;
 
-import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.EffectType;

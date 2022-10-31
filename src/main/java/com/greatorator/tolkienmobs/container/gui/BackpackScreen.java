@@ -4,7 +4,7 @@ import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.RenderUtils;
 import codechicken.lib.vec.Vector3;
 import codechicken.lib.vec.Vertex5;
-import com.brandon3055.brandonscore.client.BCSprites;
+import com.brandon3055.brandonscore.client.BCGuiSprites;
 import com.brandon3055.brandonscore.client.gui.GuiToolkit;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElement;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElementManager;
@@ -19,14 +19,14 @@ import com.brandon3055.brandonscore.utils.Utils;
 import com.greatorator.tolkienmobs.container.BackpackContainer;
 import com.greatorator.tolkienmobs.entity.tile.BackpackTile;
 import com.greatorator.tolkienmobs.handler.TTMSprites;
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.model.RenderMaterial;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
@@ -38,8 +38,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
 
-import static net.minecraft.util.text.TextFormatting.DARK_AQUA;
-import static net.minecraft.util.text.TextFormatting.GRAY;
+import static net.minecraft.ChatFormatting.DARK_AQUA;
+import static net.minecraft.ChatFormatting.GRAY;
 
 /**
  * Overhauled by brandon3055 on 07/09/2022
@@ -51,7 +51,7 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
     private final BackpackTile tile;
     private static boolean displayUpgrades = false;
 
-    public BackpackScreen(BackpackContainer container, PlayerInventory inv, ITextComponent titleIn) {
+    public BackpackScreen(BackpackContainer container, Inventory inv, Component titleIn) {
         super(container, inv, titleIn);
         this.tile = container.tile;
     }
@@ -62,7 +62,7 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
         // Get ourselves the basic gui template.
         TGuiBase template = new TGuiBase(this);
         // Do a little hack to switch the templates background to a custom dynamic background
-        template.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCSprites.getThemed("background_dynamic"));
+        template.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCGuiSprites.getThemed("background_dynamic"));
         template.background.onReload(guiTex -> guiTex.setPos(guiLeft(), guiTop()));
         //Load the template.
         toolkit.loadTemplate(template);
@@ -114,23 +114,23 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
 
         //But for now we have to do each armor slot individually.
         //So we set the position of the head slot, Then position all other slots relative to that.
-        GuiElement<?> headSlot = toolkit.createSlots(template.background, 1, 1, 0, (x, y) -> new SlotMover(container.playerEquipment.get(3)), BCSprites.getArmorSlot(3));
+        GuiElement<?> headSlot = toolkit.createSlots(template.background, 1, 1, 0, (x, y) -> new SlotMover(container.playerEquipment.get(3)), BCGuiSprites.getArmorSlot(3));
         toolkit.placeOutside(headSlot, template.playerSlots, GuiToolkit.LayoutPos.TOP_LEFT, -20, 18);
         //Chest
-        toolkit.createSlot(template.background, new SlotMover(container.playerEquipment.get(2)), () -> BCSprites.getArmorSlot(2), false)
+        toolkit.createSlot(template.background, new SlotMover(container.playerEquipment.get(2)), () -> BCGuiSprites.getArmorSlot(2), false)
                 .setRelPos(headSlot, 0, 18);
         //Legs
-        toolkit.createSlot(template.background, new SlotMover(container.playerEquipment.get(1)), () -> BCSprites.getArmorSlot(1), false)
+        toolkit.createSlot(template.background, new SlotMover(container.playerEquipment.get(1)), () -> BCGuiSprites.getArmorSlot(1), false)
                 .setRelPos(headSlot, 18, 0);
         //Boots
-        toolkit.createSlot(template.background, new SlotMover(container.playerEquipment.get(0)), () -> BCSprites.getArmorSlot(0), false)
+        toolkit.createSlot(template.background, new SlotMover(container.playerEquipment.get(0)), () -> BCGuiSprites.getArmorSlot(0), false)
                 .setRelPos(headSlot, 18, 18);
         //Off-Hand
-        toolkit.createSlot(template.background, new SlotMover(container.playerEquipment.get(4)), () -> BCSprites.get("slots/armor_shield"), false)
+        toolkit.createSlot(template.background, new SlotMover(container.playerEquipment.get(4)), () -> BCGuiSprites.get("slots/armor_shield"), false)
                 .setRelPos(headSlot, 18 / 2, 18 * 2);
 
         // ### Crafting Slots ###
-        GuiTexture craftTexture = template.background.addChild(new GuiTexture(56, 56, TTMSprites.get("backpack/crafting_table")));
+        GuiTexture craftTexture = template.background.addChild(new GuiTexture(imageWidth, imageHeight, 56, 56, TTMSprites.get("backpack/crafting_table")));
         //Place the texture relative to the top left of the background.
         toolkit.placeInside(craftTexture, template.background, GuiToolkit.LayoutPos.TOP_LEFT, 4, 4);
         //Create the 3/3 grid of output slots
@@ -272,10 +272,10 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
                     height = capacity * ySize();
                 }
 
-                RenderMaterial material = ForgeHooksClient.getBlockMaterial(attributes.getStillTexture(stack));
+                Material material = ForgeHooksClient.getBlockMaterial(attributes.getStillTexture(stack));
                 if (material == null || material.sprite() == null) return;
 
-                IRenderTypeBuffer.Impl getter = IRenderTypeBuffer.immediate(Tessellator.getInstance().getBuilder());
+                MultiBufferSource.BufferSource getter = Minecraft.getInstance().renderBuffers().bufferSource();
 
                 CCRenderState ccrs = CCRenderState.instance();
                 ccrs.reset();
@@ -299,6 +299,9 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
 
             @Override
             public boolean renderOverlayLayer(Minecraft minecraft, int mouseX, int mouseY, float partialTicks) {
+                PoseStack poseStack = new PoseStack();
+                poseStack.translate(0, 0, getRenderZLevel());
+
                 if (isMouseOver(mouseX, mouseY)) {
                     int maxFluid = tank.getCapacity();
                     int amount = tank.getFluidAmount();
@@ -306,12 +309,12 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
                     String title = toolkit.i18n("fluid_storage");
                     String percent = " (" + MathUtils.round(((double) amount / (double) maxFluid) * 100D, 100) + "%)";
 
-                    List<ITextComponent> textList = new ArrayList<>();
-                    textList.add(new StringTextComponent(title).withStyle(DARK_AQUA));
+                    List<Component> textList = new ArrayList<>();
+                    textList.add(new TranslatableComponent(title).withStyle(DARK_AQUA));
                     textList.add(tank.getFluid().getDisplayName());
-                    textList.add(new StringTextComponent(Utils.addCommas(amount) + " / " + Utils.addCommas(maxFluid) + "mb" + percent).withStyle(GRAY));
+                    textList.add(new TranslatableComponent(Utils.addCommas(amount) + " / " + Utils.addCommas(maxFluid) + "mb" + percent).withStyle(GRAY));
 
-                    drawHoveringText(textList, mouseX, mouseY, fontRenderer);
+                    renderTooltip(poseStack, textList, mouseX, mouseY);
                     return true;
                 }
                 return super.renderOverlayLayer(minecraft, mouseX, mouseY, partialTicks);

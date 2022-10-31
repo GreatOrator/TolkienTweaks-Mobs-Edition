@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.boss.fellbeast.phase;
 
 import com.greatorator.tolkienmobs.entity.boss.fellbeast.FellBeastEntity;
-import com.greatorator.tolkienmobs.handler.TTMParticles;
+import com.greatorator.tolkienmobs.init.TolkienParticles;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -33,7 +33,7 @@ public class FellBeastFlamingSittingPhase extends FellBeastSittingPhase {
             double d5 = d2 + this.fellbeast.getRandom().nextGaussian() / 2.0D;
 
             for(int j = 0; j < 6; ++j) {
-               this.fellbeast.level.addParticle(TTMParticles.fell_beast_breath, d3, d4, d5, -vector3d.x * (double)0.08F * (double)j, -vector3d.y * (double)0.6F, -vector3d.z * (double)0.08F * (double)j);
+               this.fellbeast.level.addParticle(TolkienParticles.fell_beast_breath, d3, d4, d5, -vector3d.x * (double)0.08F * (double)j, -vector3d.y * (double)0.6F, -vector3d.z * (double)0.08F * (double)j);
             }
 
             vector3d.yRot(0.19634955F);
@@ -74,7 +74,7 @@ public class FellBeastFlamingSittingPhase extends FellBeastSittingPhase {
          this.flame.setOwner(this.fellbeast);
          this.flame.setRadius(5.0F);
          this.flame.setDuration(200);
-         this.flame.setParticle(TTMParticles.fell_beast_breath);
+         this.flame.setParticle(TolkienParticles.fell_beast_breath);
          this.flame.addEffect(new EffectInstance(Effects.HARM));
          this.fellbeast.level.addFreshEntity(this.flame);
       }

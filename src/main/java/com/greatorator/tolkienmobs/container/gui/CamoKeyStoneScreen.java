@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.container.gui;
 
 import com.brandon3055.brandonscore.BCConfig;
-import com.brandon3055.brandonscore.client.BCSprites;
+import com.brandon3055.brandonscore.client.BCGuiSprites;
 import com.brandon3055.brandonscore.client.gui.GuiToolkit;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElementManager;
 import com.brandon3055.brandonscore.client.gui.modulargui.ModularGuiContainer;
@@ -15,10 +15,10 @@ import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.greatorator.tolkienmobs.entity.tile.CamoKeyStoneTile;
 import com.greatorator.tolkienmobs.handler.TTMSprites;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,14 +29,14 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
     protected GuiToolkit<CamoKeyStoneScreen> toolkit = new GuiToolkit<>(this, 200, 128).setTranslationPrefix("screen.tolkienmobs.keystone");
     private static final Pattern invalidCharacters = Pattern.compile("[^a-zA-Z-_\\d:]");
 
-    private final PlayerEntity player;
+    private final Player player;
     private final CamoKeyStoneTile tile;
     private static boolean keepKey = false;
     private static boolean rsAlways = false;
     private static boolean rsDelay = false;
     private static boolean rsPulse = false;
 
-    public CamoKeyStoneScreen(ContainerBCTile<CamoKeyStoneTile> container, PlayerInventory playerInventory, ITextComponent titleIn) {
+    public CamoKeyStoneScreen(ContainerBCTile<CamoKeyStoneTile> container, Inventory playerInventory, Component titleIn) {
         super(container, playerInventory, titleIn);
         this.tile = container.tile;
         this.player = playerInventory.player;
@@ -45,7 +45,7 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
     @Override
     public void addElements(GuiElementManager manager) {
         TGuiBase template = new TGuiBase(this);
-        template.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCSprites.getThemed("background_dynamic"));
+        template.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCGuiSprites.getThemed("background_dynamic"));
         template.background.onReload(guiTex -> guiTex.setPos(guiLeft(), guiTop()));
         toolkit.loadTemplate(template);
         int bgPad = 5;
@@ -67,16 +67,15 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
                     .setMaxXPos(codeBG.maxXPos() - 1, true);
             template.background.addChild(codeBG);
             GuiTextField KeyStoneCode = toolkit.createTextField(template.background)
-                    .setFieldEnabled(true)
-                    .setText(tile.keyCode.get())
-                    .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("instructions"))
-                    .setValidator(toolkit.catchyValidator(s -> s.equals("") || !invalidCharacters.matcher(s).find()))
+                    .setValue(tile.keyCode.get())
+                    .setHoverText(ChatFormatting.DARK_AQUA + toolkit.i18n("instructions"))
+                    .setFilter(toolkit.catchyValidator(s -> s.equals("") || !invalidCharacters.matcher(s).find()))
                     .setPos(codeBG.xPos() + 2, codeBG.maxYPos() - 11)
                     .setSize(186, 10);
             GuiButton saveCode = codeBG.addChild(toolkit.createButton(toolkit.i18n("saved"), template.background).setAlignment(GuiAlign.CENTER))
                     .setPos(codeBG.xPos() + 55, codeBG.maxYPos() + 2)
                     .setSize(78, 12)
-                    .onPressed(() -> tile.keyCode.set(KeyStoneCode.getText()));
+                    .onPressed(() -> tile.keyCode.set(KeyStoneCode.getValue()));
 
             // Tick Delay
             GuiBorderedRect delayBG = new GuiBorderedRect();
@@ -94,17 +93,16 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
                     .setMaxXPos(delayBG.maxXPos() - 1, true)
                     .setEnabledCallback(() -> !rsPulse);
             GuiTextField delayCode = delayBG.addChild(toolkit.createTextField(template.background))
-                    .setFieldEnabled(true)
-                    .setText(String.valueOf(tile.tickDelay.get()))
-                    .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("tickdelay"))
-                    .setValidator(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
+                    .setValue(String.valueOf(tile.tickDelay.get()))
+                    .setHoverText(ChatFormatting.DARK_AQUA + toolkit.i18n("tickdelay"))
+                    .setFilter(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
                     .setPos(delayBG.xPos() + 2, delayBG.maxYPos() - 11)
                     .setSize(76, 10)
                     .setEnabledCallback(() -> !rsPulse);
             GuiButton saveTick = delayBG.addChild(toolkit.createButton(toolkit.i18n("savedelay"), template.background).setAlignment(GuiAlign.CENTER))
                     .setPos(-9000, -9000)
                     .setSize(78, 12)
-                    .onPressed(() -> tile.tickDelay.set(Integer.parseInt((delayCode.getText()))))
+                    .onPressed(() -> tile.tickDelay.set(Integer.parseInt((delayCode.getValue()))))
                     .setEnabledCallback(() -> !rsPulse);
 
             // Key and Redstone Modes

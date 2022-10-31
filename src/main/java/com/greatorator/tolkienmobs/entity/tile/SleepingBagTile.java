@@ -1,28 +1,31 @@
 package com.greatorator.tolkienmobs.entity.tile;
 
-import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.SleepingBagBlock;
-import net.minecraft.item.DyeColor;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.TileEntity;
+import com.greatorator.tolkienmobs.init.TolkienTiles;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class SleepingBagTile extends TileEntity {
+public class SleepingBagTile extends BlockEntity {
     private DyeColor color;
 
-    public SleepingBagTile() {
-        super(TTMContent.SLEEPING_BAG_TILE.get());
+    public SleepingBagTile(BlockPos blockPos, BlockState blockState) {
+        super(TolkienTiles.SLEEPING_BAG_TILE.get(), blockPos, blockState);
+        this.color = ((SleepingBagBlock)blockState.getBlock()).getColor();
     }
 
-    public SleepingBagTile(DyeColor colorIn) {
-        this();
-        this.setColor(colorIn);
+    public SleepingBagTile(BlockPos blockPos, BlockState blockState, DyeColor colorIn) {
+        super(TolkienTiles.SLEEPING_BAG_TILE.get(), blockPos, blockState);
+        this.color = colorIn;
     }
 
     @Override
-    public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(this.worldPosition, 11, this.getUpdateTag());
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @OnlyIn(Dist.CLIENT)

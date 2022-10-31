@@ -1,9 +1,6 @@
 package com.greatorator.tolkienmobs.event.entity;
 
 import com.brandon3055.brandonscore.api.TimeKeeper;
-import com.greatorator.tolkienmobs.datagen.BiomeGenerator;
-import com.greatorator.tolkienmobs.datagen.PotionGenerator;
-import com.greatorator.tolkienmobs.datagen.StructureGenerator;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMStructureConfig;
 import com.mojang.serialization.Codec;

@@ -1,19 +1,19 @@
 package com.greatorator.tolkienmobs.block.models;
 
-import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.ChameleonBlock;
+import com.greatorator.tolkienmobs.init.TolkienItems;
 import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
-import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BlockRendererDispatcher;
-import net.minecraft.client.renderer.model.BakedQuad;
-import net.minecraft.client.renderer.model.IBakedModel;
-import net.minecraft.client.renderer.model.ItemOverrideList;
+import net.minecraft.client.renderer.block.BlockRenderDispatcher;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.item.Item;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockDisplayReader;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.data.IModelData;
 import net.minecraftforge.client.model.data.ModelDataMap;
 import net.minecraftforge.client.model.data.ModelProperty;
@@ -26,13 +26,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public class ChameleonBakedModel implements IBakedModel {
+public class ChameleonBakedModel implements BakedModel {
     public static ModelProperty<Optional<BlockState>> COPIED_BLOCK = new ModelProperty<>();
-    private IBakedModel modelWhenNotCamouflaged;
+    private final BakedModel modelWhenNotCamouflaged;
     private static final Logger LOGGER = LogManager.getLogger();
     private static boolean loggedError = false; // prevent spamming console
 
-    public ChameleonBakedModel(IBakedModel unCamouflagedModel)
+    public ChameleonBakedModel(BakedModel unCamouflagedModel)
     {
         modelWhenNotCamouflaged = unCamouflagedModel;
     }
@@ -57,25 +57,25 @@ public class ChameleonBakedModel implements IBakedModel {
 
     @Override
     @Nonnull
-    public IModelData getModelData(@Nonnull IBlockDisplayReader world, @Nonnull BlockPos pos, @Nonnull BlockState state, @Nonnull IModelData tileData)
+    public IModelData getModelData(@Nonnull BlockAndTintGetter world, @Nonnull BlockPos pos, @Nonnull BlockState state, @Nonnull IModelData tileData)
     {
-        Optional<BlockState> bestAdjacentBlock = ((ChameleonBlock)state.getBlock()).selectBestAdjacentBlock(world, pos);
+        Optional<BlockState> bestAdjacentBlock = ((ChameleonBlock<?>)state.getBlock()).selectBestAdjacentBlock(world, pos);
         ModelDataMap modelDataMap = getEmptyIModelData();
         modelDataMap.setData(COPIED_BLOCK, bestAdjacentBlock);
         return modelDataMap;
     }
 
     @Override
-    public TextureAtlasSprite getParticleTexture(@Nonnull IModelData data)
+    public TextureAtlasSprite getParticleIcon(@Nonnull IModelData data)
     {
-        return getActualBakedModelFromIModelData(data).getParticleTexture(data);
+        return getActualBakedModelFromIModelData(data).getParticleIcon(data);
     }
 
-    private IBakedModel getActualBakedModelFromIModelData(@Nonnull IModelData data) {
-        IBakedModel retval = modelWhenNotCamouflaged;
+    private BakedModel getActualBakedModelFromIModelData(@Nonnull IModelData data) {
+        BakedModel retval = modelWhenNotCamouflaged;
         Item item = Minecraft.getInstance().player.getMainHandItem().getItem();
 
-        if (Minecraft.getInstance().player != null && item == TTMContent.ITEM_DEV_TOOL.get()) {
+        if (Minecraft.getInstance().player != null && item == TolkienItems.ITEM_DEV_TOOL.get()) {
             return retval;
         } else if (Minecraft.getInstance().player != null && item instanceof KeyBaseItem) {
             return retval;
@@ -89,7 +89,7 @@ public class ChameleonBakedModel implements IBakedModel {
             Optional<BlockState> copiedBlock = data.getData(COPIED_BLOCK);
             if (!copiedBlock.isPresent()) return retval;
             Minecraft mc = Minecraft.getInstance();
-            BlockRendererDispatcher blockRendererDispatcher = mc.getBlockRenderer();
+            BlockRenderDispatcher blockRendererDispatcher = mc.getBlockRenderer();
             retval = blockRendererDispatcher.getBlockModel(copiedBlock.get());
         }
         return retval;
@@ -127,7 +127,7 @@ public class ChameleonBakedModel implements IBakedModel {
     }
 
     @Override
-    public ItemOverrideList getOverrides()
+    public ItemOverrides getOverrides()
     {
         return modelWhenNotCamouflaged.getOverrides();
     }

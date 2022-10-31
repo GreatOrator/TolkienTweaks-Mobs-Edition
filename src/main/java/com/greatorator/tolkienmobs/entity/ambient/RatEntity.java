@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.entity.ambient;
 
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.AmbientEntity;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;

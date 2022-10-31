@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.handler;
 
-import com.greatorator.tolkienmobs.datagen.PotionGenerator;
 import net.minecraft.item.Food;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;

@@ -3,7 +3,6 @@ package com.greatorator.tolkienmobs.entity.monster;
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMSwitchCombat;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMThrowandAttack;
 import com.greatorator.tolkienmobs.utils.TTMRand;

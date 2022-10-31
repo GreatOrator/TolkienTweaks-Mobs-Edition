@@ -1,7 +1,5 @@
 package com.greatorator.tolkienmobs.entity.boss;
 
-import com.greatorator.tolkienmobs.datagen.PotionGenerator;
-import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;

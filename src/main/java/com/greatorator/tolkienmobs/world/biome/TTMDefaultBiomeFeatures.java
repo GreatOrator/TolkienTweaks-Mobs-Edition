@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.world.biome;
 
-import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.world.gen.TTMFeatures;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;

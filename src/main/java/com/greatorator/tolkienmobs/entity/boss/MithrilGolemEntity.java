@@ -1,7 +1,5 @@
 package com.greatorator.tolkienmobs.entity.boss;
 
-import com.greatorator.tolkienmobs.datagen.PotionGenerator;
-import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.monster.ElementalGolemEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.BlockState;
@@ -19,7 +17,6 @@ import net.minecraft.network.IPacket;
 import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;

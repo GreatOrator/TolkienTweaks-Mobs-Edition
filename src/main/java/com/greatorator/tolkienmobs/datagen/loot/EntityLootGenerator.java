@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.datagen.loot;
 
 import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import net.minecraft.data.loot.EntityLootTables;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Items;

@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.entity.item;
 
-import com.greatorator.tolkienmobs.datagen.EntityGenerator;
-import com.greatorator.tolkienmobs.handler.TTMParticles;
+import com.greatorator.tolkienmobs.init.TolkienParticles;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -50,7 +49,7 @@ public class FellBeastFireballEntity extends BaseFireballEntity {
                areaeffectcloudentity.setOwner((LivingEntity)entity);
             }
 
-            areaeffectcloudentity.setParticle(TTMParticles.fell_beast_breath);
+            areaeffectcloudentity.setParticle(TolkienParticles.fell_beast_breath);
             areaeffectcloudentity.setRadius(3.0F);
             areaeffectcloudentity.setDuration(600);
             areaeffectcloudentity.setRadiusPerTick((7.0F - areaeffectcloudentity.getRadius()) / (float)areaeffectcloudentity.getDuration());
@@ -79,7 +78,7 @@ public class FellBeastFireballEntity extends BaseFireballEntity {
 
    @Override
    protected IParticleData getTrailParticle() {
-      return TTMParticles.fell_beast_breath;
+      return TolkienParticles.fell_beast_breath;
    }
 
    @Override

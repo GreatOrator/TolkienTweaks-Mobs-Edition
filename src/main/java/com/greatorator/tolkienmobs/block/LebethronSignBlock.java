@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.greatorator.tolkienmobs.entity.tile.LebethronSignTile;
 import net.minecraft.block.WallSignBlock;
 import net.minecraft.block.WoodType;
 import net.minecraft.tileentity.TileEntity;

@@ -3,15 +3,15 @@ package com.greatorator.tolkienmobs.proxy;
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.datagen.BiomeGenerator;
-import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
-import com.greatorator.tolkienmobs.datagen.StructureGenerator;
 import com.greatorator.tolkienmobs.event.entity.SleepingEvent;
 import com.greatorator.tolkienmobs.event.entity.WorldEvents;
 import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
 import com.greatorator.tolkienmobs.handler.MobModify;
 import com.greatorator.tolkienmobs.handler.TTMTags;
+import com.greatorator.tolkienmobs.init.TolkienBiomes;
+import com.greatorator.tolkienmobs.init.TolkienEntities;
+import com.greatorator.tolkienmobs.init.TolkienStructures;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.integration.curios.TTMEquipMgr;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
@@ -19,11 +19,11 @@ import com.greatorator.tolkienmobs.network.TolkienNetwork;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMStructureConfig;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMTreeFeatureConfig;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -37,7 +37,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class CommonProxy {
     private Minecraft mc;
-    private World lastWorld;
+    private Level lastWorld;
     private final ConcurrentHashMap<LivingEntity, MobModify> rareMobsClient = new ConcurrentHashMap<>();
 
     public void construct() {
@@ -55,7 +55,7 @@ public class CommonProxy {
 
         TTMTreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
 
-        modBus.addListener(EntityGenerator::registerAttributes);
+        modBus.addListener(TolkienEntities::registerAttributes);
         TolkienNetwork.init();
     }
 
@@ -64,12 +64,12 @@ public class CommonProxy {
         TTMConfig.loadPotionList();
         TTMConfig.loadDimensionList();
         event.enqueueWork(() -> {
-            StructureGenerator.setupStructures();
+            TolkienStructures.setupStructures();
             TTMStructureConfig.registerConfiguredStructures();
         });
-        EntityGenerator.registerSpawnPlacement();
-        BiomeGenerator.addBiomesToOverworld();
-        BiomeGenerator.addTypes();
+        TolkienEntities.registerSpawnPlacement();
+        TolkienBiomes.addBiomesToOverworld();
+        TolkienBiomes.addTypes();
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
@@ -110,7 +110,7 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.addListener(CoinPouchItem::onItemPickup);
     }
 
-    public PlayerEntity getPlayer() {
+    public Player getPlayer() {
         return null;
     }
 }

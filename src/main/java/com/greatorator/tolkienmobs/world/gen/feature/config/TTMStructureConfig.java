@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.world.gen.feature.config;
 
-import com.greatorator.tolkienmobs.datagen.StructureGenerator;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;

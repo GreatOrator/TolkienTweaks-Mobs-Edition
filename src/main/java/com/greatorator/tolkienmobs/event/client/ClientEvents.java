@@ -4,7 +4,6 @@ import com.brandon3055.brandonscore.api.render.GuiHelper;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.SleepingBagBlock;
 import com.greatorator.tolkienmobs.block.models.ChameleonBakedModel;
-import com.greatorator.tolkienmobs.datagen.PotionGenerator;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

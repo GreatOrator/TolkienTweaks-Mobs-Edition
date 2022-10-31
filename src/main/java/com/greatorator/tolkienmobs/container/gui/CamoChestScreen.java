@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.container.gui;
 
-import com.brandon3055.brandonscore.client.BCSprites;
+import com.brandon3055.brandonscore.client.BCGuiSprites;
 import com.brandon3055.brandonscore.client.gui.GuiToolkit;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElement;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElementManager;
@@ -11,14 +11,14 @@ import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
 import com.brandon3055.brandonscore.inventory.SlotMover;
 import com.greatorator.tolkienmobs.container.CamoChestContainer;
 import com.greatorator.tolkienmobs.entity.tile.CamoChestTile;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
 
 public class CamoChestScreen extends ModularGuiContainer<CamoChestContainer> {
     protected GuiToolkit<CamoChestScreen> toolkit = new GuiToolkit<>(this, 171, 166).setTranslationPrefix("gui.tolkienmobs.camo_chest");
     private CamoChestTile tile;
 
-    public CamoChestScreen(CamoChestContainer container, PlayerInventory inv, ITextComponent titleIn) {
+    public CamoChestScreen(CamoChestContainer container, Inventory inv, Component titleIn) {
         super(container, inv, titleIn);
         this.tile = container.tile;
     }
@@ -26,7 +26,7 @@ public class CamoChestScreen extends ModularGuiContainer<CamoChestContainer> {
     @Override
     public void addElements(GuiElementManager manager) {
         TGuiBase template = new TGuiBase(this);
-        template.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCSprites.getThemed("background_dynamic"));
+        template.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCGuiSprites.getThemed("background_dynamic"));
         template.background.onReload(guiTex -> guiTex.setPos(guiLeft(), guiTop()));
         toolkit.loadTemplate(template);
 

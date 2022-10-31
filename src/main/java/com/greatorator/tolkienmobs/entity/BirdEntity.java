@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.entity;
 
-import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import com.greatorator.tolkienmobs.entity.ai.TTMFlyingMovementController;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMHurtByTargetGoal;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMSitGoal;

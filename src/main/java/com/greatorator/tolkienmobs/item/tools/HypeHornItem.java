@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.item.tools;
 
-import com.greatorator.tolkienmobs.datagen.SoundGenerator;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

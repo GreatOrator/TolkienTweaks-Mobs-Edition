@@ -8,26 +8,25 @@ import com.brandon3055.brandonscore.lib.datamanager.DataFlags;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedInt;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedString;
-import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.init.TolkienContainers;
+import com.greatorator.tolkienmobs.init.TolkienTiles;
 import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.network.NetworkHooks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -39,7 +38,7 @@ import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 import static com.greatorator.tolkienmobs.block.CamoKeyStoneBlock.ACTIVE;
 import static com.greatorator.tolkienmobs.block.CamoKeyStoneBlock.POWERED;
 
-public class CamoKeyStoneTile extends TileBCore implements IRSSwitchable, IInteractTile, INamedContainerProvider, ITickableTileEntity {
+public class CamoKeyStoneTile extends TileBCore implements IRSSwitchable, IInteractTile, MenuProvider {
     public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
     public final ManagedString keyCode = register(new ManagedString("KeyCode", "Set_Code", SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
     public final ManagedBool keyConsume = register(new ManagedBool("consume_key", DataFlags.SAVE_NBT_SYNC_TILE, CLIENT_CONTROL));
@@ -53,19 +52,15 @@ public class CamoKeyStoneTile extends TileBCore implements IRSSwitchable, IInter
 
     private int activeTime = 0;
 
-    public CamoKeyStoneTile(TileEntityType<?> tileEntityType) {
-        super(tileEntityType);
+    public CamoKeyStoneTile(BlockPos pos, BlockState state) {
+        super(TolkienTiles.KEY_STONE_TILE.get(), pos, state);
     }
 
-    public CamoKeyStoneTile() {
-        super(TTMContent.KEY_STONE_TILE.get());
-    }
-
-    public void onRightClick(BlockState state, PlayerEntity playerEntity, Hand hand) {
+    public void onRightClick(BlockState state, Player playerEntity, InteractionHand hand) {
         ItemStack stack = playerEntity.getItemInHand(hand);
 
         if (playerEntity.isCreative() && playerEntity.isCrouching()) {
-            openGUI(playerEntity, this, worldPosition);
+            NetworkHooks.openGui((ServerPlayer) playerEntity, this, worldPosition);
         } else if (stack.getItem() instanceof KeyBaseItem && (KeyBaseItem.getCode(stack).equals(keyCode.get()))) {
             redstoneMode(state, level, worldPosition, playerEntity, hand);
             int uses = KeyBaseItem.getUses(stack);
@@ -75,14 +70,14 @@ public class CamoKeyStoneTile extends TileBCore implements IRSSwitchable, IInter
 
                 if (uses == 0) {
                     stack.shrink(1);
-                    level.playSound((PlayerEntity) null, worldPosition, SoundEvents.ITEM_BREAK, SoundCategory.BLOCKS, 0.3F, 0.6F);
-                    playerEntity.sendMessage(new TranslationTextComponent(MODID + ".msg.key_used").withStyle(TextFormatting.RED), Util.NIL_UUID);
+                    level.playSound((Player) null, worldPosition, SoundEvents.ITEM_BREAK, SoundSource.BLOCKS, 0.3F, 0.6F);
+                    playerEntity.sendMessage(new TranslatableComponent(MODID + ".msg.key_used").withStyle(ChatFormatting.RED), Util.NIL_UUID);
                 }
                 uses--;
                 KeyBaseItem.setUses(stack, uses);
             }
         } else {
-            playerEntity.sendMessage(new TranslationTextComponent(MODID + ".msg.wrong_key").withStyle(TextFormatting.RED), Util.NIL_UUID);
+            playerEntity.sendMessage(new TranslatableComponent(MODID + ".msg.wrong_key").withStyle(ChatFormatting.RED), Util.NIL_UUID);
         }
 
         if (keyConsume.get() && !playerEntity.isCreative()) {
@@ -90,38 +85,30 @@ public class CamoKeyStoneTile extends TileBCore implements IRSSwitchable, IInter
         }
     }
 
-    public void openGUI(PlayerEntity player, INamedContainerProvider containerSupplier, BlockPos pos)
-    {
-        if(!player.level.isClientSide)
-        {
-            NetworkHooks.openGui((ServerPlayerEntity)player, containerSupplier, pos);
-        }
-    }
-
-    public void redstoneMode(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand) {
+    public void redstoneMode(BlockState blockState, Level world, BlockPos blockPos, Player playerEntity, InteractionHand hand) {
         if (rsAlways.get()) {
             world.setBlockAndUpdate(blockPos, world.getBlockState(blockPos).cycle(ACTIVE));
-            world.playSound((PlayerEntity)null, blockPos, SoundEvents.LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.6F);
+            world.playSound((Player)null, blockPos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.3F, 0.6F);
             world.setBlock(blockPos, world.getBlockState(blockPos).cycle(POWERED), 3);
         } else if (rsPulse.get()) {
             world.setBlockAndUpdate(blockPos, world.getBlockState(blockPos).setValue(ACTIVE, true));
             world.setBlock(blockPos, world.getBlockState(blockPos).setValue(POWERED, true), 3);
             blockPowered.set(true);
             blockActive.set(true);
-            world.playSound((PlayerEntity)null, blockPos, SoundEvents.STONE_BUTTON_CLICK_ON, SoundCategory.BLOCKS, 0.3F, 0.6F);
+            world.playSound((Player)null, blockPos, SoundEvents.STONE_BUTTON_CLICK_ON, SoundSource.BLOCKS, 0.3F, 0.6F);
         } else if (rsDelay.get() && tickDelay.get() > 0) {
             world.setBlockAndUpdate(blockPos, world.getBlockState(blockPos).setValue(ACTIVE, true));
             world.setBlock(blockPos, world.getBlockState(blockPos).setValue(POWERED, true), 3);
             blockPowered.set(true);
             blockActive.set(true);
-            world.playSound((PlayerEntity)null, blockPos, SoundEvents.METAL_PRESSURE_PLATE_CLICK_ON, SoundCategory.BLOCKS, 0.3F, 0.6F);
+            world.playSound((Player)null, blockPos, SoundEvents.METAL_PRESSURE_PLATE_CLICK_ON, SoundSource.BLOCKS, 0.3F, 0.6F);
         }
     }
 
     @Nullable
     @Override
-    public Container createMenu(int windowID, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new ContainerBCTile<>(TTMContent.KEY_STONE_CONTAINER, windowID, playerInventory, this);
+    public AbstractContainerMenu createMenu(int windowID, Inventory playerInventory, Player playerEntity) {
+        return new ContainerBCTile<>(TolkienContainers.KEY_STONE_CONTAINER, windowID, playerInventory, this);
     }
 
     @Override
@@ -134,7 +121,7 @@ public class CamoKeyStoneTile extends TileBCore implements IRSSwitchable, IInter
                 level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(ACTIVE, false).setValue(POWERED, false));
                 blockActive.set(false);
                 blockPowered.set(false);
-                level.playSound((PlayerEntity)null, worldPosition, SoundEvents.STONE_BUTTON_CLICK_OFF, SoundCategory.BLOCKS, 0.3F, 0.4F);
+                level.playSound((Player)null, worldPosition, SoundEvents.STONE_BUTTON_CLICK_OFF, SoundSource.BLOCKS, 0.3F, 0.4F);
 
                 activeTime = 0;
             }
@@ -144,7 +131,7 @@ public class CamoKeyStoneTile extends TileBCore implements IRSSwitchable, IInter
                 level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(ACTIVE, false).setValue(POWERED, false));
                 blockActive.set(false);
                 blockPowered.set(false);
-                level.playSound((PlayerEntity)null, worldPosition, SoundEvents.METAL_PRESSURE_PLATE_CLICK_OFF, SoundCategory.BLOCKS, 0.3F, 0.4F);
+                level.playSound((Player)null, worldPosition, SoundEvents.METAL_PRESSURE_PLATE_CLICK_OFF, SoundSource.BLOCKS, 0.3F, 0.4F);
 
                 activeTime = 0;
             }

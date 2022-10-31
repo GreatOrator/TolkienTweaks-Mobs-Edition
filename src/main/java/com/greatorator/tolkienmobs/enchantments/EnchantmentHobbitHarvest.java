@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.enchantments;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.datagen.EnchantmentGenerator;
 import com.greatorator.tolkienmobs.handler.interfaces.IHobbitHarvest;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

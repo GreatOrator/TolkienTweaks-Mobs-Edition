@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.entity.special;
 
-import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;

@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.world.biome;
 
-import com.greatorator.tolkienmobs.datagen.BiomeGenerator;
 import com.greatorator.tolkienmobs.world.gen.layer.ArdaLayer;
 import com.greatorator.tolkienmobs.world.gen.layer.transformer.ArdaAreaTransformer;
 import com.mojang.serialization.Codec;

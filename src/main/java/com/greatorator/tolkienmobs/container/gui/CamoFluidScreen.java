@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.container.gui;
 
-import com.brandon3055.brandonscore.client.BCSprites;
+import com.brandon3055.brandonscore.client.BCGuiSprites;
 import com.brandon3055.brandonscore.client.gui.GuiToolkit;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElement;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElementManager;
@@ -11,15 +11,15 @@ import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
 import com.brandon3055.brandonscore.inventory.SlotMover;
 import com.greatorator.tolkienmobs.container.CamoFluidContainer;
 import com.greatorator.tolkienmobs.entity.tile.CamoFluidTile;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
 
 public class CamoFluidScreen extends ModularGuiContainer<CamoFluidContainer> {
     protected GuiToolkit<CamoFluidScreen> toolkit = new GuiToolkit<>(this, 171, 166).setTranslationPrefix("gui.tolkienmobs.camo_fluid");
     private CamoFluidTile tile;
 
-    public CamoFluidScreen(CamoFluidContainer container, PlayerInventory inv, ITextComponent titleIn) {
+    public CamoFluidScreen(CamoFluidContainer container, Inventory inv, Component titleIn) {
         super(container, inv, titleIn);
         this.tile = container.tile;
     }
@@ -27,7 +27,7 @@ public class CamoFluidScreen extends ModularGuiContainer<CamoFluidContainer> {
     @Override
     public void addElements(GuiElementManager manager) {
         TGuiBase template = new TGuiBase(this);
-        template.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCSprites.getThemed("background_dynamic"));
+        template.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCGuiSprites.getThemed("background_dynamic"));
         template.background.onReload(guiTex -> guiTex.setPos(guiLeft(), guiTop()));
         toolkit.loadTemplate(template);
 
@@ -36,7 +36,7 @@ public class CamoFluidScreen extends ModularGuiContainer<CamoFluidContainer> {
 
         // ### Main Inventory ###
         GuiElement<?> mainSlots = toolkit.createSlots(template.background, 1, 1, 0, (x, y) -> new SlotMover(container.mainSlots.get(x + y)), null);
-        mainSlots.setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("fluid.instructions"));
+        mainSlots.setHoverText(ChatFormatting.DARK_AQUA + toolkit.i18n("fluid.instructions"));
 
         toolkit.placeInside(mainSlots, template.background, GuiToolkit.LayoutPos.TOP_CENTER, 0, 32);
 

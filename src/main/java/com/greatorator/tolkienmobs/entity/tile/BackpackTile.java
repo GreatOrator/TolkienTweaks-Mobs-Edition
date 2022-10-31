@@ -3,45 +3,48 @@ package com.greatorator.tolkienmobs.entity.tile;
 import codechicken.lib.data.MCDataInput;
 import com.brandon3055.brandonscore.blocks.TileBCore;
 import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
+import com.brandon3055.brandonscore.lib.IInteractTile;
 import com.brandon3055.brandonscore.lib.datamanager.DataFlags;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedByte;
-import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.BackpackBlock;
 import com.greatorator.tolkienmobs.block.SleepingBagBlock;
 import com.greatorator.tolkienmobs.container.BackpackContainer;
 import com.greatorator.tolkienmobs.handler.TTMTags;
+import com.greatorator.tolkienmobs.init.TolkienBlocks;
+import com.greatorator.tolkienmobs.init.TolkienContainers;
+import com.greatorator.tolkienmobs.init.TolkienItems;
+import com.greatorator.tolkienmobs.init.TolkienTiles;
 import com.greatorator.tolkienmobs.lib.TileFluidHandler;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.properties.BedPart;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
-import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.network.NetworkHooks;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 
 /**
  * Overhauled by brandon3055 on 07/09/2022
  */
-public class BackpackTile extends TileBCore implements INamedContainerProvider, ITickableTileEntity {
+public class BackpackTile extends TileBCore implements MenuProvider, IInteractTile {
     public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
     public final ManagedBool isSleepingbagDeployed = register(new ManagedBool("sleepingbag_is_deployed", DataFlags.SAVE_NBT_SYNC_TILE));
     public final ManagedBool isCampfireDeployed = register(new ManagedBool("campfire_is_deployed", DataFlags.SAVE_NBT_SYNC_TILE));
@@ -58,8 +61,8 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
     public TileItemStackHandler fluidItems = new TileItemStackHandler(2).setSlotLimit(1);
     public ArrayList<ItemStack> list = new ArrayList<ItemStack>();
 
-    public BackpackTile() {
-        super(TTMContent.BACKPACK_TILE.get());
+    public BackpackTile(BlockPos pos, BlockState state) {
+        super(TolkienTiles.BACKPACK_TILE.get(), pos, state);
 
         capManager.setManaged("fluid_tank", CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, fluidTank).saveBoth().syncContainer();
 //        capManager.setManaged("main_inv", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, invZoneContents).saveBoth(); //You would use this to make the inventory accessible to automation.
@@ -77,11 +80,11 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
         upgradeInventory.setContentsChangeListener(this::upgradeSlotChange); //<-- call upgradeSlotChange if the item inventory is modified
     }
 
-    public void onRightClick(PlayerEntity playerEntity, Hand hand) {
+    public void onRightClick(Player playerEntity, InteractionHand hand) {
         if (!playerEntity.level.isClientSide()) {
             if (!FluidUtil.interactWithFluidHandler(playerEntity, hand, fluidTank)) {
                 //Open the gui if no bucket interaction occurs.
-                openGUI(playerEntity, this, worldPosition);
+                NetworkHooks.openGui((ServerPlayer) playerEntity, this, worldPosition);
             }
         }
     }
@@ -96,15 +99,15 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
         byte fire = 0;
         for (int i = 0; i < upgradeInventory.getSlots(); i++) {
             ItemStack stack = upgradeInventory.getStackInSlot(i);
-            if (stack.getItem() == TTMContent.ITEM_BACKPACK_UPGRADE_SIZE.get()) {
+            if (stack.getItem() == TolkienItems.ITEM_BACKPACK_UPGRADE_SIZE.get()) {
                 size += stack.getCount();
-            } else if (stack.getItem() == TTMContent.ITEM_BACKPACK_UPGRADE_CRAFTING.get()) {
+            } else if (stack.getItem() == TolkienItems.ITEM_BACKPACK_UPGRADE_CRAFTING.get()) {
                 craft += stack.getCount();
-            } else if (stack.getItem() == TTMContent.ITEM_BACKPACK_UPGRADE_FLUID.get()) {
+            } else if (stack.getItem() == TolkienItems.ITEM_BACKPACK_UPGRADE_FLUID.get()) {
                 tank += stack.getCount();
-            } else if (stack.getItem() == TTMContent.ITEM_BACKPACK_UPGRADE_SLEEPING.get()) {
+            } else if (stack.getItem() == TolkienItems.ITEM_BACKPACK_UPGRADE_SLEEPING.get()) {
                 bed += stack.getCount();
-            } else if (stack.getItem() == TTMContent.ITEM_BACKPACK_UPGRADE_CAMPFIRE.get()) {
+            } else if (stack.getItem() == TolkienItems.ITEM_BACKPACK_UPGRADE_CAMPFIRE.get()) {
                 fire += stack.getCount();
             }
         }
@@ -152,7 +155,7 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
 
     //This is the method that gets called when you call "tile.sendPacketToServer(mcDataOutput -> {}, id)" from the GUI
     @Override
-    public void receivePacketFromClient(MCDataInput data, ServerPlayerEntity client, int id) {
+    public void receivePacketFromClient(MCDataInput data, ServerPlayer client, int id) {
         if (id == 0) {//Bed button was pressed
             if (!isSleepingbagDeployed.get()) {
                 deploySleepingbag();
@@ -176,16 +179,16 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
         if (!level.isClientSide && isCampfireDeployed.get()) {
             // Make sure nothing in the way, especially the campfire
             this.isCampfireDeployed.set(false);
-            level.playSound(null, worldPosition.relative(facing), SoundEvents.WOOD_BREAK, SoundCategory.BLOCKS, 0.5F, 1.0F);
+            level.playSound(null, worldPosition.relative(facing), SoundEvents.WOOD_BREAK, SoundSource.BLOCKS, 0.5F, 1.0F);
             level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.AIR.defaultBlockState());
         }
         this.isSleepingbagDeployed.set(true);
 
-        level.setBlockAndUpdate(sleepingBagPos1, TTMContent.SLEEPING_BAG_BLUE.get().defaultBlockState().setValue(SleepingBagBlock.FACING, facing).setValue(SleepingBagBlock.PART, BedPart.FOOT));
-        level.setBlockAndUpdate(sleepingBagPos2, TTMContent.SLEEPING_BAG_BLUE.get().defaultBlockState().setValue(SleepingBagBlock.FACING, facing).setValue(SleepingBagBlock.PART, BedPart.HEAD));
+        level.setBlockAndUpdate(sleepingBagPos1, TolkienBlocks.SLEEPING_BAG_BLUE.get().defaultBlockState().setValue(SleepingBagBlock.FACING, facing).setValue(SleepingBagBlock.PART, BedPart.FOOT));
+        level.setBlockAndUpdate(sleepingBagPos2, TolkienBlocks.SLEEPING_BAG_BLUE.get().defaultBlockState().setValue(SleepingBagBlock.FACING, facing).setValue(SleepingBagBlock.PART, BedPart.HEAD));
 
-        level.updateNeighborsAt(worldPosition, TTMContent.SLEEPING_BAG_BLUE.get());
-        level.updateNeighborsAt(sleepingBagPos2, TTMContent.SLEEPING_BAG_BLUE.get());
+        level.updateNeighborsAt(worldPosition, TolkienBlocks.SLEEPING_BAG_BLUE.get());
+        level.updateNeighborsAt(sleepingBagPos2, TolkienBlocks.SLEEPING_BAG_BLUE.get());
     }
 
     private void removeSleepingbag() {
@@ -195,7 +198,7 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
 
         this.isSleepingbagDeployed.set(false);
 
-        level.playSound(null, sleepingBagPos2, SoundEvents.WOOL_PLACE, SoundCategory.BLOCKS, 0.5F, 1.0F);
+        level.playSound(null, sleepingBagPos2, SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 0.5F, 1.0F);
         level.setBlockAndUpdate(sleepingBagPos2, Blocks.AIR.defaultBlockState());
         level.setBlockAndUpdate(sleepingBagPos1, Blocks.AIR.defaultBlockState());
     }
@@ -210,7 +213,7 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
             // Make sure nothing in the way, especially the sleepingbag
             this.isSleepingbagDeployed.set(false);
 
-            level.playSound(null, sleepingBagPos2, SoundEvents.WOOL_PLACE, SoundCategory.BLOCKS, 0.5F, 1.0F);
+            level.playSound(null, sleepingBagPos2, SoundEvents.WOOL_PLACE, SoundSource.BLOCKS, 0.5F, 1.0F);
             level.setBlockAndUpdate(sleepingBagPos2, Blocks.AIR.defaultBlockState());
             level.setBlockAndUpdate(sleepingBagPos1, Blocks.AIR.defaultBlockState());
         }
@@ -224,26 +227,17 @@ public class BackpackTile extends TileBCore implements INamedContainerProvider, 
 
         this.isCampfireDeployed.set(false);
 
-        level.playSound(null, worldPosition.relative(facing), SoundEvents.WOOD_BREAK, SoundCategory.BLOCKS, 0.5F, 1.0F);
+        level.playSound(null, worldPosition.relative(facing), SoundEvents.WOOD_BREAK, SoundSource.BLOCKS, 0.5F, 1.0F);
         level.setBlockAndUpdate(worldPosition.relative(facing), Blocks.AIR.defaultBlockState());
     }
 
-    @Nullable
     @Override
-    public Container createMenu(int windowID, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new BackpackContainer(TTMContent.BACKPACK_CONTAINER, windowID, playerInventory, this);
-    }
-
-    public void openGUI(PlayerEntity player, INamedContainerProvider containerSupplier, BlockPos pos)
-    {
-        if(!player.level.isClientSide)
-        {
-            NetworkHooks.openGui((ServerPlayerEntity)player, containerSupplier, pos);
-        }
+    public AbstractContainerMenu createMenu(int windowID, Inventory playerInventory, Player playerEntity) {
+        return new BackpackContainer(TolkienContainers.BACKPACK_CONTAINER, windowID, playerInventory, this);
     }
 
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-            return stack.getItem().is(TTMTags.items.UPGRADES);
+            return stack.is(TTMTags.items.UPGRADES);
     }
 
     @Override

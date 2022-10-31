@@ -1,16 +1,15 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.entity.tile.CamoFluidTile;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowingFluidBlock;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockDisplayReader;
-import net.minecraft.world.IBlockReader;
+import com.greatorator.tolkienmobs.init.TolkienBlocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -24,17 +23,12 @@ public class CamoFluidBlock extends ChameleonBlock<CamoFluidTile> {
 
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new CamoFluidTile();
+    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new CamoFluidTile(blockPos, blockState);
     }
 
     @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
-    }
-
-    @Override
-    public Optional<BlockState> selectBestAdjacentBlock(@Nonnull IBlockDisplayReader world, @Nonnull BlockPos blockPos) {
+    public Optional<BlockState> selectBestAdjacentBlock(@Nonnull BlockAndTintGetter world, @Nonnull BlockPos blockPos) {
         TreeMap<Direction, BlockState> adjacentSolidBlocks = new TreeMap<Direction, BlockState>();
 
         HashMap<BlockState, Integer> adjacentBlockCount = new HashMap<BlockState, Integer>();
@@ -44,11 +38,11 @@ public class CamoFluidBlock extends ChameleonBlock<CamoFluidTile> {
                     facing.getStepZ());
             BlockState adjacentBS = world.getBlockState(adjacentPosition);
             Block adjacentBlock = adjacentBS.getBlock();
-            if (!adjacentBlock.isAir(adjacentBS, world, adjacentPosition) && !(adjacentBlock instanceof FlowingFluidBlock)) {
+            if (!adjacentBS.isAir() && !(adjacentBlock instanceof LiquidBlock)) {
                 adjacentSolidBlocks.put(facing, adjacentBS);
                 if (adjacentBlockCount.containsKey(adjacentBS)) {
                     adjacentBlockCount.put(adjacentBS, 1 + adjacentBlockCount.get(adjacentBS));
-                } else if (adjacentBS.getBlock() != TTMContent.CHAMELEON_BLOCK.get()
+                } else if (adjacentBS.getBlock() != TolkienBlocks.CHAMELEON_BLOCK.get()
                         && adjacentBS.getBlock() != Blocks.GRASS_BLOCK) {
                     adjacentBlockCount.put(adjacentBS, 1);
                 }
@@ -61,7 +55,7 @@ public class CamoFluidBlock extends ChameleonBlock<CamoFluidTile> {
 
         if (adjacentSolidBlocks.size() == 1) {
             BlockState singleAdjacentBlock = adjacentSolidBlocks.firstEntry().getValue();
-            if (singleAdjacentBlock.getBlock() == TTMContent.CHAMELEON_BLOCK.get()) {
+            if (singleAdjacentBlock.getBlock() == TolkienBlocks.CHAMELEON_BLOCK.get()) {
                 return Optional.empty();
             } else {
                 return Optional.of(singleAdjacentBlock);
@@ -94,7 +88,7 @@ public class CamoFluidBlock extends ChameleonBlock<CamoFluidTile> {
             if (maxCountIBlockStates.contains(iBlockState)) {
                 Direction oppositeSide = entry.getKey().getOpposite();
                 BlockState oppositeBlock = adjacentSolidBlocks.get(oppositeSide);
-                if (oppositeBlock != null && (oppositeBlock == iBlockState || oppositeBlock.getBlock() == TTMContent.CHAMELEON_BLOCK.get()) ) {
+                if (oppositeBlock != null && (oppositeBlock == iBlockState || oppositeBlock.getBlock() == TolkienBlocks.CHAMELEON_BLOCK.get()) ) {
                     adjacentBlockCount.put(iBlockState, 10 + adjacentBlockCount.get(iBlockState));
                 }
             }

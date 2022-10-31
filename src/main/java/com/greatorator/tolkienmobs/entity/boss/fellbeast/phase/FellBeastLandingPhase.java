@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.boss.fellbeast.phase;
 
 import com.greatorator.tolkienmobs.entity.boss.fellbeast.FellBeastEntity;
-import com.greatorator.tolkienmobs.handler.TTMParticles;
+import com.greatorator.tolkienmobs.init.TolkienParticles;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
@@ -31,7 +31,7 @@ public class FellBeastLandingPhase extends FellBeastPhase {
          double d4 = d1 + random.nextGaussian() / 2.0D;
          double d5 = d2 + random.nextGaussian() / 2.0D;
          Vector3d vector3d1 = this.fellbeast.getDeltaMovement();
-         this.fellbeast.level.addParticle(TTMParticles.fell_beast_breath, d3, d4, d5, -vector3d.x * (double)0.08F + vector3d1.x, -vector3d.y * (double)0.3F + vector3d1.y, -vector3d.z * (double)0.08F + vector3d1.z);
+         this.fellbeast.level.addParticle(TolkienParticles.fell_beast_breath, d3, d4, d5, -vector3d.x * (double)0.08F + vector3d1.x, -vector3d.y * (double)0.3F + vector3d1.y, -vector3d.z * (double)0.08F + vector3d1.z);
          vector3d.yRot(0.19634955F);
       }
 

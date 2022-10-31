@@ -1,15 +1,14 @@
 package com.greatorator.tolkienmobs.container.slots;
 
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.Container;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 import java.util.function.Supplier;
 
 
-@Deprecated //TODO this will be added to BCore
 public class SlotCheckValid2 extends SlotItemHandler {
     public Supplier<Boolean> isActive = null;
 
@@ -34,7 +33,7 @@ public class SlotCheckValid2 extends SlotItemHandler {
     public static class IInv extends Slot {
         public Supplier<Boolean> isActive = null;
 
-        public IInv(IInventory itemHandler, int id, int x, int y) {
+        public IInv(Container itemHandler, int id, int x, int y) {
             super(itemHandler, id, x, y);
         }
 

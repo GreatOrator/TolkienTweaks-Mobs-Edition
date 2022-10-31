@@ -1,15 +1,15 @@
 package com.greatorator.tolkienmobs.container;
 
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
-import com.greatorator.tolkienmobs.TTMContent;
-import com.greatorator.tolkienmobs.container.slots.SlotCheckValid2;
+import com.brandon3055.brandonscore.inventory.SlotCheckValid;
 import com.greatorator.tolkienmobs.entity.tile.CamoChestTile;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
+import com.greatorator.tolkienmobs.init.TolkienContainers;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
@@ -18,30 +18,29 @@ import java.util.List;
 
 public class CamoChestContainer extends ContainerBCTile<CamoChestTile> {
     public List<Slot> playerSlots = new ArrayList<>();
-    public List<Slot> playerEquipment = new ArrayList<>();
-    public List<SlotCheckValid2> mainSlots = new ArrayList<>();
+    public List<Slot> mainSlots = new ArrayList<>();
 
-    public CamoChestContainer(int windowId, PlayerInventory playerInv, PacketBuffer extraData) {
-        this(TTMContent.CAMO_CHEST_CONTAINER, windowId, playerInv, getClientTile(extraData));
+    public CamoChestContainer(int windowId, Inventory playerInv, FriendlyByteBuf extraData) {
+        this(TolkienContainers.CAMO_CHEST_CONTAINER, windowId, playerInv, getClientTile(extraData));
         //^^ Don't forget this!
     }
 
-    public CamoChestContainer(@Nullable ContainerType<?> type, int windowId, PlayerInventory playerInv, CamoChestTile tile) {
+    public CamoChestContainer(@Nullable MenuType<?> type, int windowId, Inventory playerInv, CamoChestTile tile) {
         super(type, windowId, playerInv, tile);
 
         //Player Inventory
         for (int i = 0; i < playerInv.items.size(); i++) {
-            playerSlots.add(addSlot(new SlotCheckValid2.IInv(playerInv, i, 0, 0)));
+            playerSlots.add(addSlot(new SlotCheckValid.IInv(playerInv, i, 0, 0)));
         }
 
         //Main Inventory
         for (int i = 0; i < tile.mainInventory.getSlots(); i++) {
-            mainSlots.add((SlotCheckValid2) addSlot(new SlotCheckValid2(tile.mainInventory, i, 0, 0)));
+            mainSlots.add(addSlot(new SlotCheckValid(tile.mainInventory, i, 0, 0)));
         }
     }
 
     @Override
-    public ItemStack quickMoveStack(PlayerEntity player, int i) {
+    public ItemStack quickMoveStack(Player player, int i) {
         int playerSlots = 36 + 5;
         IItemHandler handler = tile.mainInventory;
         Slot slot = getSlot(i);

@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.entity.boss.fellbeast.phase;
 
 import com.google.common.collect.*;
-import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.entity.boss.fellbeast.FellBeastEntity;
 import com.greatorator.tolkienmobs.entity.item.MorgulCrystalEntity;
 import com.greatorator.tolkienmobs.world.server.TTMServerWorld;
@@ -18,7 +17,7 @@ import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.tileentity.EndPortalTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.Unit;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;

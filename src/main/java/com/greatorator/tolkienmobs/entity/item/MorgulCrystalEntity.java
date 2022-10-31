@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.entity.item;
 
-import com.greatorator.tolkienmobs.datagen.EntityGenerator;
 import com.greatorator.tolkienmobs.entity.boss.fellbeast.FellBeastEntity;
 import com.greatorator.tolkienmobs.entity.boss.fellbeast.phase.FellBeastFightManager;
 import com.greatorator.tolkienmobs.world.server.TTMServerWorld;

@@ -1,32 +1,31 @@
 package com.greatorator.tolkienmobs.block;
 
 import com.brandon3055.brandonscore.blocks.BlockBCore;
-import com.greatorator.tolkienmobs.TTMContent;
-import net.minecraft.block.*;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockDisplayReader;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import com.greatorator.tolkienmobs.init.TolkienBlocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 import java.util.*;
 
-public class ChameleonBlock<C> extends BlockBCore implements IWaterLoggable {
+public class ChameleonBlock<C> extends BlockBCore implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
@@ -46,7 +45,7 @@ public class ChameleonBlock<C> extends BlockBCore implements IWaterLoggable {
 
     @SuppressWarnings("deprecation")
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context) {
         switch((Direction)state.getValue(FACING)) {
             case NORTH:
                 return SHAPE_NORTH;
@@ -68,21 +67,21 @@ public class ChameleonBlock<C> extends BlockBCore implements IWaterLoggable {
     }
 
     @Override
-    public int getSignal(BlockState blockState, IBlockReader blockAccess, BlockPos pos, Direction directionFromNeighborToThis) {
+    public int getSignal(BlockState blockState, BlockGetter blockAccess, BlockPos pos, Direction directionFromNeighborToThis) {
         return blockState.getValue(POWERED) ? 15 : 0;
     }
 
 
     @Override
-    public BlockState updateShape(BlockState state, Direction facing, BlockState neighbor, IWorld world, BlockPos pos, BlockPos offset) {
+    public BlockState updateShape(BlockState state, Direction facing, BlockState neighbor, LevelAccessor world, BlockPos pos, BlockPos offset) {
         if (state.getValue(WATERLOGGED)) {
-            world.getLiquidTicks().scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+            world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
         return state;
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, WATERLOGGED);
         super.createBlockStateDefinition(builder);
     }
@@ -94,10 +93,9 @@ public class ChameleonBlock<C> extends BlockBCore implements IWaterLoggable {
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
-        World world = context.getLevel();
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockPos pos = context.getClickedPos();
-        FluidState fluidState = world.getFluidState(pos);
+        FluidState fluidState = context.getLevel().getFluidState(pos);
         return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
     }
 
@@ -109,11 +107,11 @@ public class ChameleonBlock<C> extends BlockBCore implements IWaterLoggable {
     @Nonnull
     @SuppressWarnings("deprecated")
     @Override
-    public BlockRenderType getRenderShape(BlockState iBlockState) {
-        return BlockRenderType.MODEL;
+    public RenderShape getRenderShape(BlockState iBlockState) {
+        return RenderShape.MODEL;
     }
 
-    public Optional<BlockState> selectBestAdjacentBlock(@Nonnull IBlockDisplayReader world, @Nonnull BlockPos blockPos)
+    public Optional<BlockState> selectBestAdjacentBlock(@Nonnull BlockAndTintGetter world, @Nonnull BlockPos blockPos)
     {
         TreeMap<Direction, BlockState> adjacentSolidBlocks = new TreeMap<Direction, BlockState>();
 
@@ -123,12 +121,11 @@ public class ChameleonBlock<C> extends BlockBCore implements IWaterLoggable {
                     facing.getStepY(),
                     facing.getStepZ());
             BlockState adjacentBS = world.getBlockState(adjacentPosition);
-            Block adjacentBlock = adjacentBS.getBlock();
-            if (!adjacentBlock.isAir(adjacentBS, world, adjacentPosition)) {
+            if (!adjacentBS.isAir()) {
                 adjacentSolidBlocks.put(facing, adjacentBS);
                 if (adjacentBlockCount.containsKey(adjacentBS)) {
                     adjacentBlockCount.put(adjacentBS, 1 + adjacentBlockCount.get(adjacentBS));
-                } else if (adjacentBS.getBlock() != TTMContent.CHAMELEON_BLOCK.get()
+                } else if (adjacentBS.getBlock() != TolkienBlocks.CHAMELEON_BLOCK.get()
                         && adjacentBS.getBlock() != Blocks.GRASS_BLOCK) {
                     adjacentBlockCount.put(adjacentBS, 1);
                 }
@@ -141,7 +138,7 @@ public class ChameleonBlock<C> extends BlockBCore implements IWaterLoggable {
 
         if (adjacentSolidBlocks.size() == 1) {
             BlockState singleAdjacentBlock = adjacentSolidBlocks.firstEntry().getValue();
-            if (singleAdjacentBlock.getBlock() == TTMContent.CHAMELEON_BLOCK.get()) {
+            if (singleAdjacentBlock.getBlock() == TolkienBlocks.CHAMELEON_BLOCK.get()) {
                 return Optional.empty();
             } else {
                 return Optional.of(singleAdjacentBlock);
@@ -174,7 +171,7 @@ public class ChameleonBlock<C> extends BlockBCore implements IWaterLoggable {
             if (maxCountIBlockStates.contains(iBlockState)) {
                 Direction oppositeSide = entry.getKey().getOpposite();
                 BlockState oppositeBlock = adjacentSolidBlocks.get(oppositeSide);
-                if (oppositeBlock != null && (oppositeBlock == iBlockState || oppositeBlock.getBlock() == TTMContent.CHAMELEON_BLOCK.get()) ) {
+                if (oppositeBlock != null && (oppositeBlock == iBlockState || oppositeBlock.getBlock() == TolkienBlocks.CHAMELEON_BLOCK.get()) ) {
                     adjacentBlockCount.put(iBlockState, 10 + adjacentBlockCount.get(iBlockState));
                 }
             }
@@ -208,16 +205,19 @@ public class ChameleonBlock<C> extends BlockBCore implements IWaterLoggable {
         throw new AssertionError("unreachable code");
     }
 
-    public VoxelShape getVisualShape(BlockState p_230322_1_, IBlockReader p_230322_2_, BlockPos p_230322_3_, ISelectionContext p_230322_4_) {
-        return VoxelShapes.empty();
+    @Override
+    public VoxelShape getVisualShape(BlockState p_230322_1_, BlockGetter p_230322_2_, BlockPos p_230322_3_, CollisionContext p_230322_4_) {
+        return Shapes.empty();
     }
 
     @OnlyIn(Dist.CLIENT)
-    public float getShadeBrightness(BlockState p_220080_1_, IBlockReader p_220080_2_, BlockPos p_220080_3_) {
+    @Override
+    public float getShadeBrightness(BlockState p_220080_1_, BlockGetter p_220080_2_, BlockPos p_220080_3_) {
         return 1.0F;
     }
 
-    public boolean propagatesSkylightDown(BlockState p_200123_1_, IBlockReader p_200123_2_, BlockPos p_200123_3_) {
+    @Override
+    public boolean propagatesSkylightDown(BlockState p_200123_1_, BlockGetter p_200123_2_, BlockPos p_200123_3_) {
         return true;
     }
 }
