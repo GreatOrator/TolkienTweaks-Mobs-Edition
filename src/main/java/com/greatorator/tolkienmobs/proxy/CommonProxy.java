@@ -8,13 +8,11 @@ import com.greatorator.tolkienmobs.event.entity.SleepingEvent;
 import com.greatorator.tolkienmobs.event.entity.WorldEvents;
 import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
 import com.greatorator.tolkienmobs.handler.MobModify;
-import com.greatorator.tolkienmobs.handler.TTMTags;
-import com.greatorator.tolkienmobs.init.TolkienBiomes;
-import com.greatorator.tolkienmobs.init.TolkienEntities;
-import com.greatorator.tolkienmobs.init.TolkienStructures;
+import com.greatorator.tolkienmobs.init.*;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.integration.curios.TTMEquipMgr;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
+import com.greatorator.tolkienmobs.item.tools.KeyRingItem;
 import com.greatorator.tolkienmobs.network.TolkienNetwork;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMStructureConfig;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMTreeFeatureConfig;
@@ -46,7 +44,7 @@ public class CommonProxy {
         TTMContent.init();
         TTMHelper.init();
         TTMEquipMgr.initialize();
-        TTMTags.init();
+        TolkienTags.init();
         MilestoneSaveData.init();
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.addListener(WorldEvents::onPlayerUpdate);
@@ -66,6 +64,12 @@ public class CommonProxy {
         event.enqueueWork(() -> {
             TolkienStructures.setupStructures();
             TTMStructureConfig.registerConfiguredStructures();
+            TolkienProfessions.registerBanker();
+            TolkienProfessions.registerGrocer();
+            TolkienProfessions.registerJunk();
+            TolkienProfessions.registerPet();
+            TolkienProfessions.registerSmith();
+            TolkienProfessions.registerTailor();
         });
         TolkienEntities.registerSpawnPlacement();
         TolkienBiomes.addBiomesToOverworld();
@@ -108,6 +112,7 @@ public class CommonProxy {
 
     public void registerEventListeners() {
         MinecraftForge.EVENT_BUS.addListener(CoinPouchItem::onItemPickup);
+        MinecraftForge.EVENT_BUS.addListener(KeyRingItem::onItemPickup);
     }
 
     public Player getPlayer() {

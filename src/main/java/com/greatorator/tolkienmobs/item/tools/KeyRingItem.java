@@ -5,7 +5,7 @@ import com.brandon3055.brandonscore.inventory.PlayerSlot;
 import com.greatorator.tolkienmobs.container.KeyRingContainer;
 import com.greatorator.tolkienmobs.container.capability.ItemStackInventory;
 import com.greatorator.tolkienmobs.handler.LoreItem;
-import com.greatorator.tolkienmobs.handler.TTMTags;
+import com.greatorator.tolkienmobs.init.TolkienTags;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -109,7 +110,7 @@ public class KeyRingItem extends LoreItem {
     }
 
     private static boolean isKey(ItemStack stack) {
-        return stack.getItem().is(TTMTags.items.KEYS);
+        return stack.getItem().is(TolkienTags.items.KEYS);
     }
 
     public static void onItemPickup(EntityItemPickupEvent event) {

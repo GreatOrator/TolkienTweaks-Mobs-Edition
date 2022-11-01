@@ -3,7 +3,6 @@ package com.greatorator.tolkienmobs.proxy;
 import com.greatorator.tolkienmobs.entity.merchant.villager.TTMVillagerTrades;
 import com.greatorator.tolkienmobs.event.client.ClientEvents;
 import com.greatorator.tolkienmobs.handler.*;
-import com.greatorator.tolkienmobs.init.TolkienProfessions;
 import com.greatorator.tolkienmobs.init.renders.*;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
@@ -20,7 +19,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import static com.greatorator.tolkienmobs.entity.merchant.villager.TTMVillagerUtility.fixPOITypeBlockStates;
 import static com.greatorator.tolkienmobs.init.TolkienItems.*;
 
 public class ClientProxy extends CommonProxy {
@@ -43,11 +41,6 @@ public class ClientProxy extends CommonProxy {
         if (!TTMHelper.isMantleInstalled) {
             MinecraftForge.EVENT_BUS.register(new TTMHearts());
         }
-
-        fixPOITypeBlockStates(TolkienProfessions.COIN_TRADER.get());
-        fixPOITypeBlockStates(TolkienProfessions.GROCERY_STORE.get());
-        fixPOITypeBlockStates(TolkienProfessions.PET_MERCHANT.get());
-        fixPOITypeBlockStates(TolkienProfessions.JUNK_TRADER.get());
     }
 
     @Override

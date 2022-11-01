@@ -1,237 +1,199 @@
 package com.greatorator.tolkienmobs.datagen.loot;
 
-import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
-import net.minecraft.advancements.criterion.EnchantmentPredicate;
-import net.minecraft.advancements.criterion.ItemPredicate;
-import net.minecraft.advancements.criterion.MinMaxBounds;
-import net.minecraft.advancements.criterion.StatePropertiesPredicate;
-import net.minecraft.block.BedBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.CropsBlock;
-import net.minecraft.data.loot.BlockLootTables;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.loot.*;
-import net.minecraft.loot.conditions.BlockStateProperty;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.loot.conditions.MatchTool;
-import net.minecraft.loot.conditions.TableBonus;
-import net.minecraft.loot.functions.ApplyBonus;
-import net.minecraft.loot.functions.LimitCount;
-import net.minecraft.loot.functions.SetCount;
-import net.minecraft.state.properties.BedPart;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.registry.Registry;
+import com.greatorator.tolkienmobs.block.CropsBlock;
+import com.greatorator.tolkienmobs.init.TolkienBlocks;
+import com.greatorator.tolkienmobs.init.TolkienItems;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.core.Registry;
+import net.minecraft.data.loot.BlockLoot;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.BedPart;
+import net.minecraft.world.level.storage.loot.IntRange;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.LimitCount;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-public class BlockLootGenerator extends BlockLootTables {
-    private final Set<Block> knownBlocks = new HashSet<>();
+public class BlockLootGenerator extends BlockLoot {
+    private static final LootItemCondition.Builder CROP_DROP = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TolkienBlocks.PIPEWEED.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 7));
 
-    private static final float[] DEFAULT_SAPLING_DROP_RATES = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
-    private static final float[] RARE_SAPLING_DROP_RATES = new float[]{0.025F, 0.027777778F, 0.03125F, 0.041666668F, 0.1F};
-    private static final ILootCondition.IBuilder SILK_TOUCH = MatchTool.toolMatches(ItemPredicate.Builder.item().hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.IntBound.atLeast(1))));
-    private static final ILootCondition.IBuilder SHEARS = MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS));
-    private static final ILootCondition.IBuilder SILK_TOUCH_OR_SHEARS = SHEARS.or(SILK_TOUCH);
-    private static final ILootCondition.IBuilder NOT_SILK_TOUCH_OR_SHEARS = SILK_TOUCH_OR_SHEARS.invert();
-    private static final ILootCondition.IBuilder CROP_DROP = BlockStateProperty.hasBlockStateProperties(TTMContent.PIPEWEED.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 7));
-
-    @Override
-    protected void add(Block block, LootTable.Builder builder) {
-        super.add(block, builder);
-        knownBlocks.add(block);
-    }
-
-    @Override
     protected void addTables() {
         // Blocks - Metals & Gems
-        dropSelf(TTMContent.BLOCK_MITHRIL.get());
-        dropSelf(TTMContent.MITHRIL_BARS.get());
-        dropSelf(TTMContent.DOOR_MITHRIL.get());
-        dropSelf(TTMContent.TRAPDOOR_MITHRIL.get());
-        dropSelf(TTMContent.PRESSURE_PLATE_MITHRIL.get());
-        dropSelf(TTMContent.BLOCK_MORGULIRON.get());
-        dropSelf(TTMContent.MORGULIRON_BARS.get());
-        dropSelf(TTMContent.DOOR_MORGULIRON.get());
-        dropSelf(TTMContent.TRAPDOOR_MORGULIRON.get());
-        dropSelf(TTMContent.PRESSURE_PLATE_MORGULIRON.get());
-        dropSelf(TTMContent.DOOR_DURIN.get());
+        dropSelf(TolkienBlocks.BLOCK_MITHRIL.get());
+        dropSelf(TolkienBlocks.MITHRIL_BARS.get());
+        dropSelf(TolkienBlocks.DOOR_MITHRIL.get());
+        dropSelf(TolkienBlocks.TRAPDOOR_MITHRIL.get());
+        dropSelf(TolkienBlocks.PRESSURE_PLATE_MITHRIL.get());
+        dropSelf(TolkienBlocks.BLOCK_MORGULIRON.get());
+        dropSelf(TolkienBlocks.MORGULIRON_BARS.get());
+        dropSelf(TolkienBlocks.DOOR_MORGULIRON.get());
+        dropSelf(TolkienBlocks.TRAPDOOR_MORGULIRON.get());
+        dropSelf(TolkienBlocks.PRESSURE_PLATE_MORGULIRON.get());
+        dropSelf(TolkienBlocks.DOOR_DURIN.get());
 
         // Blocks - Wood & Foliage
-        dropSelf(TTMContent.LOG_MALLORN.get());
-        dropSelf(TTMContent.LOG_MIRKWOOD.get());
-        dropSelf(TTMContent.LOG_CULUMALDA.get());
-        dropSelf(TTMContent.LOG_LEBETHRON.get());
-        dropSelf(TTMContent.STRIPPED_MALLORN_LOG.get());
-        dropSelf(TTMContent.STRIPPED_MIRKWOOD_LOG.get());
-        dropSelf(TTMContent.STRIPPED_CULUMALDA_LOG.get());
-        dropSelf(TTMContent.STRIPPED_LEBETHRON_LOG.get());
-        dropSelf(TTMContent.WOOD_MALLORN.get());
-        dropSelf(TTMContent.WOOD_MIRKWOOD.get());
-        dropSelf(TTMContent.WOOD_CULUMALDA.get());
-        dropSelf(TTMContent.WOOD_LEBETHRON.get());
-        dropSelf(TTMContent.STRIPPED_MALLORN_WOOD.get());
-        dropSelf(TTMContent.STRIPPED_MIRKWOOD_WOOD.get());
-        dropSelf(TTMContent.STRIPPED_CULUMALDA_WOOD.get());
-        dropSelf(TTMContent.STRIPPED_LEBETHRON_WOOD.get());
-        add(TTMContent.LOG_DEADWOOD.get(), createSingleItemTable(Items.STICK, RandomValueRange.between(1.0F, 4.0F)));
-        dropOther(TTMContent.MALLORN_BUTTON.get(), TTMContent.MALLORN_BUTTON_ITEM.get());
-        dropOther(TTMContent.MIRKWOOD_BUTTON.get(), TTMContent.MIRKWOOD_BUTTON_ITEM.get());
-        dropOther(TTMContent.CULUMALDA_BUTTON.get(), TTMContent.CULUMALDA_BUTTON_ITEM.get());
-        dropOther(TTMContent.LEBETHRON_BUTTON.get(), TTMContent.LEBETHRON_BUTTON_ITEM.get());
-        dropSelf(TTMContent.PLANKS_MALLORN.get());
-        dropSelf(TTMContent.PLANKS_MIRKWOOD.get());
-        dropSelf(TTMContent.PLANKS_CULUMALDA.get());
-        dropSelf(TTMContent.PLANKS_LEBETHRON.get());
-        dropSelf(TTMContent.STAIRS_MALLORN.get());
-        dropSelf(TTMContent.STAIRS_MIRKWOOD.get());
-        dropSelf(TTMContent.STAIRS_CULUMALDA.get());
-        dropSelf(TTMContent.STAIRS_LEBETHRON.get());
-        dropSelf(TTMContent.SLAB_MALLORN.get());
-        dropSelf(TTMContent.SLAB_MIRKWOOD.get());
-        dropSelf(TTMContent.SLAB_LEBETHRON.get());
-        dropSelf(TTMContent.SLAB_CULUMALDA.get());
-        dropSelf(TTMContent.DOOR_MALLORN.get());
-        dropSelf(TTMContent.DOOR_MIRKWOOD.get());
-        dropSelf(TTMContent.DOOR_CULUMALDA.get());
-        dropSelf(TTMContent.DOOR_LEBETHRON.get());
-        dropSelf(TTMContent.FENCE_GATE_MALLORN.get());
-        dropSelf(TTMContent.FENCE_GATE_MIRKWOOD.get());
-        dropSelf(TTMContent.FENCE_GATE_CULUMALDA.get());
-        dropSelf(TTMContent.FENCE_GATE_LEBETHRON.get());
-        dropSelf(TTMContent.FENCE_MALLORN.get());
-        dropSelf(TTMContent.FENCE_MIRKWOOD.get());
-        dropSelf(TTMContent.FENCE_CULUMALDA.get());
-        dropSelf(TTMContent.FENCE_LEBETHRON.get());
-        dropSelf(TTMContent.TRAPDOOR_MALLORN.get());
-        dropSelf(TTMContent.TRAPDOOR_MIRKWOOD.get());
-        dropSelf(TTMContent.TRAPDOOR_CULUMALDA.get());
-        dropSelf(TTMContent.TRAPDOOR_LEBETHRON.get());
-        dropSelf(TTMContent.PRESSURE_PLATE_MALLORN.get());
-        dropSelf(TTMContent.PRESSURE_PLATE_MIRKWOOD.get());
-        dropSelf(TTMContent.PRESSURE_PLATE_CULUMALDA.get());
-        dropSelf(TTMContent.PRESSURE_PLATE_LEBETHRON.get());
-        dropSelf(TTMContent.TORCH_MALLORN.get());
-        dropSelf(TTMContent.TORCH_MIRKWOOD.get());
-        dropSelf(TTMContent.TORCH_CULUMALDA.get());
-        dropSelf(TTMContent.TORCH_LEBETHRON.get());
-        add(TTMContent.WALL_TORCH_MALLORN.get(), createSingleItemTable(TTMContent.TORCH_MALLORN.get(), RandomValueRange.between(1.0F, 1.0F)));
-        add(TTMContent.WALL_TORCH_MIRKWOOD.get(), createSingleItemTable(TTMContent.TORCH_MIRKWOOD.get(), RandomValueRange.between(1.0F, 1.0F)));
-        add(TTMContent.WALL_TORCH_CULUMALDA.get(), createSingleItemTable(TTMContent.TORCH_CULUMALDA.get(), RandomValueRange.between(1.0F, 1.0F)));
-        add(TTMContent.WALL_TORCH_LEBETHRON.get(), createSingleItemTable(TTMContent.TORCH_LEBETHRON.get(), RandomValueRange.between(1.0F, 1.0F)));
-        dropSelf(TTMContent.SAPLING_MALLORN.get());
-        dropSelf(TTMContent.SAPLING_MIRKWOOD.get());
-        dropSelf(TTMContent.SAPLING_CULUMALDA.get());
-        dropSelf(TTMContent.SAPLING_LEBETHRON.get());
-        dropSelf(TTMContent.SAPLING_DEADWOOD.get());
-        dropSelf(TTMContent.SAPLING_FANGORNOAK.get());
-        add(TTMContent.LEAVES_MALLORN.get(), (block) -> createLeavesDrops(block, TTMContent.SAPLING_MALLORN.get(), .05f, .0625f, .083333336f, .1f));
-        add(TTMContent.LEAVES_MIRKWOOD.get(), (block) -> createLeavesDrops(block, TTMContent.SAPLING_MIRKWOOD.get(), .05f, .0625f, .083333336f, .1f));
-        add(TTMContent.LEAVES_CULUMALDA.get(), (block) -> createLeavesDrops(block, TTMContent.SAPLING_CULUMALDA.get(), .05f, .0625f, .083333336f, .1f));
-        add(TTMContent.LEAVES_LEBETHRON.get(), (block) -> createLeavesDrops(block, TTMContent.SAPLING_LEBETHRON.get(), .05f, .0625f, .083333336f, .1f));
-        add(TTMContent.LEAVES_FANGORNOAK.get(), (block) -> createLeavesDrops(block, TTMContent.SAPLING_FANGORNOAK.get(), .05f, .0625f, .083333336f, .1f));
-        dropSelf(TTMContent.LEAFPILE_MALLORN.get());
-        dropSelf(TTMContent.LEAFPILE_MIRKWOOD.get());
-        dropSelf(TTMContent.LEAFPILE_CULUMALDA.get());
-        dropSelf(TTMContent.LEAFPILE_LEBETHRON.get());
-        dropSelf(TTMContent.LEAFPILE_FANGORNOAK.get());
+        dropSelf(TolkienBlocks.LOG_MALLORN.get());
+        dropSelf(TolkienBlocks.LOG_MIRKWOOD.get());
+        dropSelf(TolkienBlocks.LOG_CULUMALDA.get());
+        dropSelf(TolkienBlocks.LOG_LEBETHRON.get());
+        dropSelf(TolkienBlocks.STRIPPED_MALLORN_LOG.get());
+        dropSelf(TolkienBlocks.STRIPPED_MIRKWOOD_LOG.get());
+        dropSelf(TolkienBlocks.STRIPPED_CULUMALDA_LOG.get());
+        dropSelf(TolkienBlocks.STRIPPED_LEBETHRON_LOG.get());
+        dropSelf(TolkienBlocks.WOOD_MALLORN.get());
+        dropSelf(TolkienBlocks.WOOD_MIRKWOOD.get());
+        dropSelf(TolkienBlocks.WOOD_CULUMALDA.get());
+        dropSelf(TolkienBlocks.WOOD_LEBETHRON.get());
+        dropSelf(TolkienBlocks.STRIPPED_MALLORN_WOOD.get());
+        dropSelf(TolkienBlocks.STRIPPED_MIRKWOOD_WOOD.get());
+        dropSelf(TolkienBlocks.STRIPPED_CULUMALDA_WOOD.get());
+        dropSelf(TolkienBlocks.STRIPPED_LEBETHRON_WOOD.get());
+        add(TolkienBlocks.LOG_DEADWOOD.get(), createSingleItemTable(Items.STICK, UniformGenerator.between(1.0F, 4.0F)));
+        dropOther(TolkienBlocks.MALLORN_BUTTON.get(), TolkienItems.MALLORN_BUTTON_ITEM.get());
+        dropOther(TolkienBlocks.MIRKWOOD_BUTTON.get(), TolkienItems.MIRKWOOD_BUTTON_ITEM.get());
+        dropOther(TolkienBlocks.CULUMALDA_BUTTON.get(), TolkienItems.CULUMALDA_BUTTON_ITEM.get());
+        dropOther(TolkienBlocks.LEBETHRON_BUTTON.get(), TolkienItems.LEBETHRON_BUTTON_ITEM.get());
+        dropSelf(TolkienBlocks.PLANKS_MALLORN.get());
+        dropSelf(TolkienBlocks.PLANKS_MIRKWOOD.get());
+        dropSelf(TolkienBlocks.PLANKS_CULUMALDA.get());
+        dropSelf(TolkienBlocks.PLANKS_LEBETHRON.get());
+        dropSelf(TolkienBlocks.STAIRS_MALLORN.get());
+        dropSelf(TolkienBlocks.STAIRS_MIRKWOOD.get());
+        dropSelf(TolkienBlocks.STAIRS_CULUMALDA.get());
+        dropSelf(TolkienBlocks.STAIRS_LEBETHRON.get());
+        dropSelf(TolkienBlocks.SLAB_MALLORN.get());
+        dropSelf(TolkienBlocks.SLAB_MIRKWOOD.get());
+        dropSelf(TolkienBlocks.SLAB_LEBETHRON.get());
+        dropSelf(TolkienBlocks.SLAB_CULUMALDA.get());
+        dropSelf(TolkienBlocks.DOOR_MALLORN.get());
+        dropSelf(TolkienBlocks.DOOR_MIRKWOOD.get());
+        dropSelf(TolkienBlocks.DOOR_CULUMALDA.get());
+        dropSelf(TolkienBlocks.DOOR_LEBETHRON.get());
+        dropSelf(TolkienBlocks.FENCE_GATE_MALLORN.get());
+        dropSelf(TolkienBlocks.FENCE_GATE_MIRKWOOD.get());
+        dropSelf(TolkienBlocks.FENCE_GATE_CULUMALDA.get());
+        dropSelf(TolkienBlocks.FENCE_GATE_LEBETHRON.get());
+        dropSelf(TolkienBlocks.FENCE_MALLORN.get());
+        dropSelf(TolkienBlocks.FENCE_MIRKWOOD.get());
+        dropSelf(TolkienBlocks.FENCE_CULUMALDA.get());
+        dropSelf(TolkienBlocks.FENCE_LEBETHRON.get());
+        dropSelf(TolkienBlocks.TRAPDOOR_MALLORN.get());
+        dropSelf(TolkienBlocks.TRAPDOOR_MIRKWOOD.get());
+        dropSelf(TolkienBlocks.TRAPDOOR_CULUMALDA.get());
+        dropSelf(TolkienBlocks.TRAPDOOR_LEBETHRON.get());
+        dropSelf(TolkienBlocks.PRESSURE_PLATE_MALLORN.get());
+        dropSelf(TolkienBlocks.PRESSURE_PLATE_MIRKWOOD.get());
+        dropSelf(TolkienBlocks.PRESSURE_PLATE_CULUMALDA.get());
+        dropSelf(TolkienBlocks.PRESSURE_PLATE_LEBETHRON.get());
+        dropSelf(TolkienBlocks.TORCH_MALLORN.get());
+        dropSelf(TolkienBlocks.TORCH_MIRKWOOD.get());
+        dropSelf(TolkienBlocks.TORCH_CULUMALDA.get());
+        dropSelf(TolkienBlocks.TORCH_LEBETHRON.get());
+        add(TolkienBlocks.WALL_TORCH_MALLORN.get(), createSingleItemTable(TolkienBlocks.TORCH_MALLORN.get(), UniformGenerator.between(1.0F, 1.0F)));
+        add(TolkienBlocks.WALL_TORCH_MIRKWOOD.get(), createSingleItemTable(TolkienBlocks.TORCH_MIRKWOOD.get(), UniformGenerator.between(1.0F, 1.0F)));
+        add(TolkienBlocks.WALL_TORCH_CULUMALDA.get(), createSingleItemTable(TolkienBlocks.TORCH_CULUMALDA.get(), UniformGenerator.between(1.0F, 1.0F)));
+        add(TolkienBlocks.WALL_TORCH_LEBETHRON.get(), createSingleItemTable(TolkienBlocks.TORCH_LEBETHRON.get(), UniformGenerator.between(1.0F, 1.0F)));
+        dropSelf(TolkienBlocks.SAPLING_MALLORN.get());
+        dropSelf(TolkienBlocks.SAPLING_MIRKWOOD.get());
+        dropSelf(TolkienBlocks.SAPLING_CULUMALDA.get());
+        dropSelf(TolkienBlocks.SAPLING_LEBETHRON.get());
+        dropSelf(TolkienBlocks.SAPLING_DEADWOOD.get());
+        dropSelf(TolkienBlocks.SAPLING_FANGORNOAK.get());
+        add(TolkienBlocks.LEAVES_MALLORN.get(), (block) -> createLeavesDrops(block, TolkienBlocks.SAPLING_MALLORN.get(), .05f, .0625f, .083333336f, .1f));
+        add(TolkienBlocks.LEAVES_MIRKWOOD.get(), (block) -> createLeavesDrops(block, TolkienBlocks.SAPLING_MIRKWOOD.get(), .05f, .0625f, .083333336f, .1f));
+        add(TolkienBlocks.LEAVES_CULUMALDA.get(), (block) -> createLeavesDrops(block, TolkienBlocks.SAPLING_CULUMALDA.get(), .05f, .0625f, .083333336f, .1f));
+        add(TolkienBlocks.LEAVES_LEBETHRON.get(), (block) -> createLeavesDrops(block, TolkienBlocks.SAPLING_LEBETHRON.get(), .05f, .0625f, .083333336f, .1f));
+        add(TolkienBlocks.LEAVES_FANGORNOAK.get(), (block) -> createLeavesDrops(block, TolkienBlocks.SAPLING_FANGORNOAK.get(), .05f, .0625f, .083333336f, .1f));
+        dropSelf(TolkienBlocks.LEAFPILE_MALLORN.get());
+        dropSelf(TolkienBlocks.LEAFPILE_MIRKWOOD.get());
+        dropSelf(TolkienBlocks.LEAFPILE_CULUMALDA.get());
+        dropSelf(TolkienBlocks.LEAFPILE_LEBETHRON.get());
+        dropSelf(TolkienBlocks.LEAFPILE_FANGORNOAK.get());
 
         // Blocks - Plants & Flowers
-        dropSelf(TTMContent.MUSHROOM_DECAY_BLOOM.get());
-        dropSelf(TTMContent.MUSHROOM_BLOOM_DECAY.get());
-        add(TTMContent.BLOCK_BLOOM_DECAY.get(), (p_229434_0_) -> {
-            return createMushroomBlockDrop(p_229434_0_, TTMContent.BLOCK_BLOOM_DECAY_ITEM.get());
+        dropSelf(TolkienBlocks.MUSHROOM_DECAY_BLOOM.get());
+        dropSelf(TolkienBlocks.MUSHROOM_BLOOM_DECAY.get());
+        add(TolkienBlocks.BLOCK_BLOOM_DECAY.get(), (block) -> {
+            return createMushroomBlockDrop(block, TolkienBlocks.MUSHROOM_BLOOM_DECAY.get());
         });
-        add(TTMContent.BLOCK_DECAY_BLOOM.get(), (p_229434_0_) -> {
-            return createMushroomBlockDrop(p_229434_0_, TTMContent.BLOCK_DECAY_BLOOM_ITEM.get());
+        add(TolkienBlocks.BLOCK_DECAY_BLOOM.get(), (block) -> {
+            return createMushroomBlockDrop(block, TolkienBlocks.MUSHROOM_DECAY_BLOOM.get());
         });
-        dropSelf(TTMContent.FLOWER_SIMBELMYNE.get());
-        dropSelf(TTMContent.FLOWER_MIRKWOOD.get());
-        dropSelf(TTMContent.FLOWER_ALFIRIN.get());
-        dropSelf(TTMContent.FLOWER_ATHELAS.get());
-        dropSelf(TTMContent.FLOWER_NIPHREDIL.get());
-        dropSelf(TTMContent.FLOWER_SWAMPMILKWEED.get());
-        dropSelf(TTMContent.FLOWER_LILLYOFTHEVALLEY.get());
-        add(TTMContent.PIPEWEED.get(), createCropDrops(TTMContent.PIPEWEED.get(), TTMContent.PIPEWEED_ITEM.get(), TTMContent.PIPEWEED_SEEDS.get(), CROP_DROP));
+        dropSelf(TolkienBlocks.FLOWER_SIMBELMYNE.get());
+        dropSelf(TolkienBlocks.FLOWER_MIRKWOOD.get());
+        dropSelf(TolkienBlocks.FLOWER_ALFIRIN.get());
+        dropSelf(TolkienBlocks.FLOWER_ATHELAS.get());
+        dropSelf(TolkienBlocks.FLOWER_NIPHREDIL.get());
+        dropSelf(TolkienBlocks.FLOWER_SWAMPMILKWEED.get());
+        dropSelf(TolkienBlocks.FLOWER_LILLYOFTHEVALLEY.get());
+        add(TolkienBlocks.PIPEWEED.get(), createCropDrops(TolkienBlocks.PIPEWEED.get(), TolkienItems.PIPEWEED_ITEM.get(), TolkienItems.PIPEWEED_SEEDS.get(), CROP_DROP));
 
         // Blocks - Placards
-        dropSelf(TTMContent.PLACARD.get());
+        dropSelf(TolkienBlocks.PLACARD.get());
 
         // Blocks - Custom
-        dropSelf(TTMContent.BLOCK_HALLOWED.get());
-        dropSelf(TTMContent.STONE_PATH.get());
-        dropSelf(TTMContent.TTMFIREPLACE.get());
-        dropSelf(TTMContent.PIGGYBANK.get());
-        dropSelf(TTMContent.BARREL_MORGULIRON.get());
-        dropSelf(TTMContent.BARREL_MITHRIL.get());
-        dropSelf(TTMContent.BACKPACK.get());
-        dropSelf(TTMContent.CHAMELEON_BLOCK.get());
-        dropSelf(TTMContent.ROCKPILE.get());
+        dropSelf(TolkienBlocks.BLOCK_HALLOWED.get());
+        dropSelf(TolkienBlocks.STONE_PATH.get());
+        dropSelf(TolkienBlocks.TTMFIREPLACE.get());
+        dropSelf(TolkienBlocks.PIGGYBANK.get());
+        dropSelf(TolkienBlocks.BARREL_MORGULIRON.get());
+        dropSelf(TolkienBlocks.BARREL_MITHRIL.get());
+        dropSelf(TolkienBlocks.BACKPACK.get());
+        dropSelf(TolkienBlocks.CHAMELEON_BLOCK.get());
+        dropSelf(TolkienBlocks.ROCKPILE.get());
 
         // Blocks - Sleeping Bags
-        add(TTMContent.SLEEPING_BAG_RED.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
-        add(TTMContent.SLEEPING_BAG_BLUE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
-        add(TTMContent.SLEEPING_BAG_BLACK.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
-        add(TTMContent.SLEEPING_BAG_BROWN.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
-        add(TTMContent.SLEEPING_BAG_CYAN.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
-        add(TTMContent.SLEEPING_BAG_GRAY.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
-        add(TTMContent.SLEEPING_BAG_GREEN.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
-        add(TTMContent.SLEEPING_BAG_LIGHT_BLUE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
-        add(TTMContent.SLEEPING_BAG_LIGHT_GRAY.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
-        add(TTMContent.SLEEPING_BAG_LIME.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
-        add(TTMContent.SLEEPING_BAG_MAGENTA.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
-        add(TTMContent.SLEEPING_BAG_ORANGE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
-        add(TTMContent.SLEEPING_BAG_PINK.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
-        add(TTMContent.SLEEPING_BAG_PURPLE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
-        add(TTMContent.SLEEPING_BAG_WHITE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
-        add(TTMContent.SLEEPING_BAG_YELLOW.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_RED.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_BLUE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_BLACK.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_BROWN.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_CYAN.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_GRAY.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_GREEN.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_LIGHT_BLUE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_LIGHT_GRAY.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_LIME.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_MAGENTA.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_ORANGE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_PINK.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_PURPLE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_WHITE.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
+        add(TolkienBlocks.SLEEPING_BAG_YELLOW.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
 
         //Fortune
-        add(TTMContent.ORE_MITHRIL.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.DUST_MITHRIL.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
-        add(TTMContent.ORE_END_MITHRIL.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.DUST_MITHRIL.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
-        add(TTMContent.ORE_NETHER_MITHRIL.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.DUST_MITHRIL.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
-        add(TTMContent.ORE_MORGULIRON.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.DUST_MORGULIRON.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
-        add(TTMContent.ORE_END_MORGULIRON.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.DUST_MORGULIRON.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
-        add(TTMContent.ORE_NETHER_MORGULIRON.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.DUST_MORGULIRON.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
-        add(TTMContent.ORE_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.GEM_AMMOLITE.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
-        add(TTMContent.ORE_END_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.GEM_AMMOLITE.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
-        add(TTMContent.ORE_NETHER_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.GEM_AMMOLITE.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
-        add(TTMContent.BLOCK_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(TTMContent.GEM_AMMOLITE.get()).apply(SetCount.setCount(RandomValueRange.between(2.0F, 4.0F))).apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(LimitCount.limitCount(IntClamper.clamp(1, 4))))));
+        add(TolkienBlocks.ORE_MITHRIL.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(TolkienItems.DUST_MITHRIL.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
+        add(TolkienBlocks.ORE_END_MITHRIL.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(TolkienItems.DUST_MITHRIL.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
+        add(TolkienBlocks.ORE_NETHER_MITHRIL.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(TolkienItems.DUST_MITHRIL.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
+        add(TolkienBlocks.ORE_MORGULIRON.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(TolkienItems.DUST_MORGULIRON.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
+        add(TolkienBlocks.ORE_END_MORGULIRON.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(TolkienItems.DUST_MORGULIRON.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
+        add(TolkienBlocks.ORE_NETHER_MORGULIRON.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(TolkienItems.DUST_MORGULIRON.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
+        add(TolkienBlocks.ORE_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(TolkienItems.GEM_AMMOLITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
+        add(TolkienBlocks.ORE_END_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(TolkienItems.GEM_AMMOLITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
+        add(TolkienBlocks.ORE_NETHER_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(TolkienItems.GEM_AMMOLITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
+        add(TolkienBlocks.BLOCK_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(TolkienItems.GEM_AMMOLITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(LimitCount.limitCount(IntRange.range(1, 4))))));
 
 
         //Signs, You will need these for every type you add
-        dropOther(TTMContent.MALLORN_SIGN.get(), TTMContent.MALLORN_SIGN_ITEM.get());
-        dropOther(TTMContent.MALLORN_WALL_SIGN.get(), TTMContent.MALLORN_SIGN_ITEM.get());
-        dropOther(TTMContent.MIRKWOOD_SIGN.get(), TTMContent.MIRKWOOD_SIGN_ITEM.get());
-        dropOther(TTMContent.MIRKWOOD_WALL_SIGN.get(), TTMContent.MIRKWOOD_SIGN_ITEM.get());
-        dropOther(TTMContent.CULUMALDA_SIGN.get(), TTMContent.CULUMALDA_SIGN_ITEM.get());
-        dropOther(TTMContent.CULUMALDA_WALL_SIGN.get(), TTMContent.CULUMALDA_SIGN_ITEM.get());
-        dropOther(TTMContent.LEBETHRON_SIGN.get(), TTMContent.LEBETHRON_SIGN_ITEM.get());
-        dropOther(TTMContent.LEBETHRON_WALL_SIGN.get(), TTMContent.LEBETHRON_SIGN_ITEM.get());
+        dropOther(TolkienBlocks.MALLORN_SIGN.get(), TolkienItems.MALLORN_SIGN_ITEM.get());
+        dropOther(TolkienBlocks.MALLORN_WALL_SIGN.get(), TolkienItems.MALLORN_SIGN_ITEM.get());
+        dropOther(TolkienBlocks.MIRKWOOD_SIGN.get(), TolkienItems.MIRKWOOD_SIGN_ITEM.get());
+        dropOther(TolkienBlocks.MIRKWOOD_WALL_SIGN.get(), TolkienItems.MIRKWOOD_SIGN_ITEM.get());
+        dropOther(TolkienBlocks.CULUMALDA_SIGN.get(), TolkienItems.CULUMALDA_SIGN_ITEM.get());
+        dropOther(TolkienBlocks.CULUMALDA_WALL_SIGN.get(), TolkienItems.CULUMALDA_SIGN_ITEM.get());
+        dropOther(TolkienBlocks.LEBETHRON_SIGN.get(), TolkienItems.LEBETHRON_SIGN_ITEM.get());
+        dropOther(TolkienBlocks.LEBETHRON_WALL_SIGN.get(), TolkienItems.LEBETHRON_SIGN_ITEM.get());
     }
 
-    protected static LootTable.Builder createMushroomBlockDrop(Block p_218491_0_, IItemProvider p_218491_1_) {
-        return createSilkTouchDispatchTable(p_218491_0_, applyExplosionDecay(p_218491_0_, ItemLootEntry.lootTableItem(p_218491_1_).apply(SetCount.setCount(RandomValueRange.between(-6.0F, 2.0F))).apply(LimitCount.limitCount(IntClamper.lowerBound(0)))));
-    }
-
-    protected static LootTable.Builder ChancesAndSticks(Block block, Block log, float... chances) {
-        return createSilkTouchDispatchTable(block, applyExplosionCondition(block, ItemLootEntry.lootTableItem(log)).when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, chances))).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).when(NOT_SILK_TOUCH_OR_SHEARS).add(applyExplosionDecay(block, ItemLootEntry.lootTableItem(Items.STICK).apply(SetCount.setCount(RandomValueRange.between(1.0F, 2.0F)))).when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F))));
-    }
-
-    protected static LootTable.Builder createCropDrops(Block block, Item item1, Item item2, ILootCondition.IBuilder builder) {
-        return applyExplosionDecay(block, LootTable.lootTable().withPool(LootPool.lootPool().add(ItemLootEntry.lootTableItem(item1).when(builder).otherwise(ItemLootEntry.lootTableItem(item2)))).withPool(LootPool.lootPool().when(builder).add(ItemLootEntry.lootTableItem(item2).apply(ApplyBonus.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3)))));
-    }
-
-    protected static LootTable.Builder createSingleItemTable(IItemProvider p_218463_0_, IRandomRange p_218463_1_) {
-        return LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).add(applyExplosionDecay(p_218463_0_, ItemLootEntry.lootTableItem(p_218463_0_).apply(SetCount.setCount(p_218463_1_)))));
-    }
-
-    @Override
     protected Iterable<Block> getKnownBlocks() {
         return Registry.BLOCK.stream().filter(block -> Objects.requireNonNull(block.getRegistryName()).getNamespace().equals(TolkienMobs.MODID)).collect(Collectors.toList());
     }

@@ -2,15 +2,15 @@ package com.greatorator.tolkienmobs.handler;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.greatorator.tolkienmobs.TTMContent;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ITag;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
+import com.greatorator.tolkienmobs.init.TolkienRecipes;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.tags.ITag;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -33,11 +33,11 @@ public class FireplaceRecipeBuilder {
         this.cookingTime = cookingTime;
     }
 
-    public static FireplaceRecipeBuilder fireplaceRecipe(IItemProvider resultIn, float experience, int cookingTime) {
+    public static FireplaceRecipeBuilder fireplaceRecipe(ItemLike resultIn, float experience, int cookingTime) {
         return fireplaceRecipe(resultIn, experience, cookingTime, 1);
     }
 
-    public static FireplaceRecipeBuilder fireplaceRecipe(IItemProvider resultIn, float experience, int cookingTime, int countIn) {
+    public static FireplaceRecipeBuilder fireplaceRecipe(ItemLike resultIn, float experience, int cookingTime, int countIn) {
         return fireplaceRecipe(new ItemStack(resultIn, countIn), experience, cookingTime);
     }
 
@@ -57,28 +57,28 @@ public class FireplaceRecipeBuilder {
         return ingredient(Ingredient.of(ingredient));
     }
 
-    public FireplaceRecipeBuilder ingredient(IItemProvider... ingredient) {
+    public FireplaceRecipeBuilder ingredient(ItemLike... ingredient) {
         return ingredient(Ingredient.of(ingredient));
     }
 
     public FireplaceRecipeBuilder ingredient(ITag<Item> ingredient) {
-        return ingredient(Ingredient.of(ingredient));
+        return ingredient(Ingredient.of((ItemLike) ingredient));
     }
 
-    public void build(Consumer<IFinishedRecipe> consumer) {
-        build(consumer, result.getItem().getRegistryName());
+    public void build(Consumer<FinishedRecipe> consumer) {
+        build(consumer, String.valueOf(result.getItem().getRegistryName()));
     }
 
-    public void build(Consumer<IFinishedRecipe> consumer, String save) {
+    public void build(Consumer<FinishedRecipe> consumer, String save) {
         ResourceLocation resourcelocation = result.getItem().getRegistryName();
         if ((new ResourceLocation(save)).equals(resourcelocation)) {
             throw new IllegalStateException("Fireplace Recipe " + save + " should remove its 'save' argument");
         } else {
-            this.build(consumer, new ResourceLocation(save));
+            this.build(consumer, String.valueOf(new ResourceLocation(save)));
         }
     }
 
-    public void build(Consumer<IFinishedRecipe> consumer, ResourceLocation id) {
+    public void build(Consumer<FinishedRecipe> consumer, ResourceLocation id) {
         if (result.isEmpty()) return;
         validate(id);
         consumer.accept(new Result(id, ingredients, result, experience, cookingTime));
@@ -103,7 +103,7 @@ public class FireplaceRecipeBuilder {
         return json;
     }
 
-    public static class Result implements IFinishedRecipe {
+    public static class Result implements FinishedRecipe {
         private final ResourceLocation id;
         private final List<Ingredient> ingredients;
         private final ItemStack result;
@@ -132,8 +132,8 @@ public class FireplaceRecipeBuilder {
             object.addProperty("cookingtime", this.cookingTime);
         }
 
-        public IRecipeSerializer<?> getType() {
-            return TTMContent.TMFIREPLACE_SERIALIZER.get();
+        public RecipeSerializer<?> getType() {
+            return TolkienRecipes.TMFIREPLACE_SERIALIZER.get();
         }
 
         public ResourceLocation getId() {

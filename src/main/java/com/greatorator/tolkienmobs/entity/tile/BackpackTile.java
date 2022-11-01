@@ -10,11 +10,7 @@ import com.brandon3055.brandonscore.lib.datamanager.ManagedByte;
 import com.greatorator.tolkienmobs.block.BackpackBlock;
 import com.greatorator.tolkienmobs.block.SleepingBagBlock;
 import com.greatorator.tolkienmobs.container.BackpackContainer;
-import com.greatorator.tolkienmobs.handler.TTMTags;
-import com.greatorator.tolkienmobs.init.TolkienBlocks;
-import com.greatorator.tolkienmobs.init.TolkienContainers;
-import com.greatorator.tolkienmobs.init.TolkienItems;
-import com.greatorator.tolkienmobs.init.TolkienTiles;
+import com.greatorator.tolkienmobs.init.*;
 import com.greatorator.tolkienmobs.lib.TileFluidHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -237,7 +233,7 @@ public class BackpackTile extends TileBCore implements MenuProvider, IInteractTi
     }
 
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-            return stack.is(TTMTags.items.UPGRADES);
+            return stack.is(TolkienTags.items.UPGRADES);
     }
 
     @Override

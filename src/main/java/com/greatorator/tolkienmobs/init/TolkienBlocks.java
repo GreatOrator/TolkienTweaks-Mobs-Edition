@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.init;
 
 import com.greatorator.tolkienmobs.block.*;
+import com.greatorator.tolkienmobs.world.gen.TTMFeatures;
 import com.greatorator.tolkienmobs.world.trees.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,11 +14,14 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BedPart;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.ToIntFunction;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 import static com.greatorator.tolkienmobs.handler.TolkienWoodTypes.*;
@@ -165,10 +169,14 @@ public class TolkienBlocks {
     public static RegistryObject<Block> PIPEWEED = BLOCKS.register("pipeweed", () -> new CropsBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_GREEN).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
     public static RegistryObject<Block> MUSHROOM_DECAY_BLOOM = BLOCKS.register("mushroom_decay_bloom", () -> new MushroomsBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_PURPLE).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
         return 1;
-    }).hasPostProcess(TolkienBlocks::needsPostProcessing)));
+    }).hasPostProcess(TolkienBlocks::needsPostProcessing), () -> {
+        return TTMFeatures.MUSHROOM_DECAY_BLOOM;
+    }));
     public static RegistryObject<Block> MUSHROOM_BLOOM_DECAY = BLOCKS.register("mushroom_bloom_decay", () -> new MushroomsBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_PURPLE).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
         return 1;
-    }).hasPostProcess(TolkienBlocks::needsPostProcessing)));
+    }).hasPostProcess(TolkienBlocks::needsPostProcessing), () -> {
+        return TTMFeatures.MUSHROOM_BLOOM_DECAY;
+    }));
     public static RegistryObject<Block> BLOCK_DECAY_BLOOM = BLOCKS.register("block_decay_bloom", () -> new HugeMushroomBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_MAGENTA).strength(0.2F).sound(SoundType.WOOD)));
     public static RegistryObject<Block> BLOCK_BLOOM_DECAY = BLOCKS.register("block_bloom_decay", () -> new HugeMushroomBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_MAGENTA).strength(0.2F).sound(SoundType.WOOD)));
     public static RegistryObject<Block> FLOWER_SIMBELMYNE = BLOCKS.register("flower_simbelmyne", () -> new FlowerBlock(MobEffects.HERO_OF_THE_VILLAGE, 7, BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
@@ -182,7 +190,7 @@ public class TolkienBlocks {
     // Custom
     public static RegistryObject<Block> BLOCK_HALLOWED = BLOCKS.register("block_hallowed", () -> new HallowedBlock(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.TERRACOTTA_WHITE).sound(SoundType.GRAVEL).randomTicks()));
     public static RegistryObject<Block> STONE_PATH = BLOCKS.register("block_stone_path", () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_LIGHT_GREEN).sound(SoundType.STONE).isViewBlocking(TolkienBlocks::needsPostProcessing).isSuffocating(TolkienBlocks::needsPostProcessing)));
-    public static RegistryObject<Block> TTMFIREPLACE = BLOCKS.register("block_tmfireplace", () -> new FireplaceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_RED).requiresCorrectToolForDrops().noOcclusion().strength(5f, 6f)));
+    public static RegistryObject<Block> TTMFIREPLACE = BLOCKS.register("block_tmfireplace", () -> new FireplaceBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_RED).requiresCorrectToolForDrops().noOcclusion().strength(5f, 6f).lightLevel(litBlockEmission(15))));
     public static RegistryObject<Block> PIGGYBANK = BLOCKS.register("block_piggybank", () -> new PiggyBankBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_PINK).requiresCorrectToolForDrops().noOcclusion().strength(5f, 6f)));
     public static RegistryObject<Block> BARREL_MITHRIL = BLOCKS.register("block_barrel_mithril", () -> new MithrilBarrelBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).requiresCorrectToolForDrops().noOcclusion().strength(5f, 6f)));
     public static RegistryObject<Block> BARREL_MORGULIRON = BLOCKS.register("block_barrel_morguliron", () -> new MorgulironBarrelBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_BROWN).requiresCorrectToolForDrops().noOcclusion().strength(5f, 6f)));
@@ -258,6 +266,12 @@ public class TolkienBlocks {
 
     private static boolean needsPostProcessing(BlockState state, BlockGetter reader, BlockPos pos) {
         return true;
+    }
+
+    private static ToIntFunction<BlockState> litBlockEmission(int p_50760_) {
+        return (p_50763_) -> {
+            return p_50763_.getValue(BlockStateProperties.LIT) ? p_50760_ : 0;
+        };
     }
 
     private static RotatedPillarBlock log(MaterialColor materialColor1, MaterialColor materialColor2) {

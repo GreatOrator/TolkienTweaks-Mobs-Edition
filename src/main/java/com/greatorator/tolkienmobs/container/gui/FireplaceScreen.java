@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.container.gui;
 
 import codechicken.lib.math.MathHelper;
 import com.brandon3055.brandonscore.api.render.GuiHelper;
-import com.brandon3055.brandonscore.client.BCSprites;
+import com.brandon3055.brandonscore.client.BCGuiSprites;
 import com.brandon3055.brandonscore.client.gui.GuiToolkit;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElement;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElementManager;
@@ -12,11 +12,10 @@ import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.greatorator.tolkienmobs.entity.tile.FireplaceTile;
 import com.greatorator.tolkienmobs.handler.TTMSprites;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.model.RenderMaterial;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.resources.model.Material;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
 
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
@@ -32,7 +31,7 @@ public class FireplaceScreen extends ModularGuiContainer<ContainerBCTile<Firepla
 
     private FireplaceTile tile;
 
-    public FireplaceScreen(ContainerBCTile<FireplaceTile> container, PlayerInventory inv, ITextComponent title) {
+    public FireplaceScreen(ContainerBCTile<FireplaceTile> container, Inventory inv, Component title) {
         super(container, inv, title);
         this.tile = container.tile;
     }
@@ -44,7 +43,7 @@ public class FireplaceScreen extends ModularGuiContainer<ContainerBCTile<Firepla
         GuiElement<?> inputSlots = toolkit.createSlots(template.background, 2, 1, 4, (x, y) -> container.getSlotLayout().getSlotData(TILE_INV, x), null);
         toolkit.placeInside(inputSlots, template.background, TOP_LEFT, 39, 16);
 
-        GuiElement<?> fuelSlot = toolkit.createSlots(template.background, 1, 1, 0, (x, y) -> container.getSlotLayout().getSlotData(TILE_INV, 2), BCSprites.get("slots/fuel"));
+        GuiElement<?> fuelSlot = toolkit.createSlots(template.background, 1, 1, 0, (x, y) -> container.getSlotLayout().getSlotData(TILE_INV, 2), BCGuiSprites.get("slots/fuel"));
         toolkit.placeInside(fuelSlot, template.background, TOP_LEFT, 50, 56);
 
         GuiElement<?> outSlot = toolkit.createSlots(template.background, 1, 1, 0, (x, y) -> container.getSlotLayout().getSlotData(TILE_INV, 3), null);
@@ -64,14 +63,14 @@ public class FireplaceScreen extends ModularGuiContainer<ContainerBCTile<Firepla
 
     //TODO This will be in the next release of BrandonsCore at which point this can be removed and replaced with the one in BCore
     public static class GuiProgressIcon extends GuiElement<GuiProgressIcon> {
-        private RenderMaterial baseTexture;
-        private RenderMaterial overlayTexture;
+        private Material baseTexture;
+        private Material overlayTexture;
         private Rotation rotation;
         private Supplier<Double> progressSupplier = () -> 0D;
         private int upperMargin = 0;
         private int lowerMargin = 0;
 
-        public GuiProgressIcon(RenderMaterial baseTexture, RenderMaterial overlayTexture, Rotation animRotation) {
+        public GuiProgressIcon(Material baseTexture, Material overlayTexture, Rotation animRotation) {
             super();
             this.baseTexture = baseTexture;
             this.overlayTexture = overlayTexture;
@@ -113,8 +112,8 @@ public class FireplaceScreen extends ModularGuiContainer<ContainerBCTile<Firepla
         @Override
         public void renderElement(Minecraft minecraft, int mouseX, int mouseY, float partialTicks) {
             super.renderElement(minecraft, mouseX, mouseY, partialTicks);
-            IRenderTypeBuffer.Impl getter = IRenderTypeBuffer.immediate(Tessellator.getInstance().getBuilder());
-            drawSprite(baseTexture.buffer(getter, BCSprites::makeType), xPos(), yPos(), xSize(), ySize(), baseTexture.sprite());
+            MultiBufferSource.BufferSource getter = Minecraft.getInstance().renderBuffers().bufferSource();
+            drawSprite(baseTexture.buffer(getter, BCGuiSprites::makeType), xPos(), yPos(), xSize(), ySize(), baseTexture.sprite());
             rotation.draw(this, getter);
             getter.endBatch();
         }
@@ -124,26 +123,26 @@ public class FireplaceScreen extends ModularGuiContainer<ContainerBCTile<Firepla
             /**
              * Progress bar animated from bottom to top
              * */
-            UP((icon, getter) -> GuiHelper.drawPartialSprite(icon.overlayTexture.buffer(getter, BCSprites::makeType), icon.xPos(), icon.yPos() + (icon.ySize() * (1D - icon.getRenderState())), icon.xSize(), icon.ySize() * icon.getRenderState(), icon.overlayTexture.sprite(), 0, 1D - icon.getRenderState(), 1, 1)),
+            UP((icon, getter) -> GuiHelper.drawPartialSprite(icon.overlayTexture.buffer(getter, BCGuiSprites::makeType), icon.xPos(), icon.yPos() + (icon.ySize() * (1D - icon.getRenderState())), icon.xSize(), icon.ySize() * icon.getRenderState(), icon.overlayTexture.sprite(), 0, 1D - icon.getRenderState(), 1, 1)),
             /**
              * Progress bar animated from top to bottom
              * */
-            DOWN((icon, getter) -> GuiHelper.drawPartialSprite(icon.overlayTexture.buffer(getter, BCSprites::makeType), icon.xPos(), icon.yPos(), icon.xSize(), icon.ySize() * icon.getRenderState(), icon.overlayTexture.sprite(), 0, 0, 1, icon.getRenderState())),
+            DOWN((icon, getter) -> GuiHelper.drawPartialSprite(icon.overlayTexture.buffer(getter, BCGuiSprites::makeType), icon.xPos(), icon.yPos(), icon.xSize(), icon.ySize() * icon.getRenderState(), icon.overlayTexture.sprite(), 0, 0, 1, icon.getRenderState())),
             /**
              * Progress bar animated from right to left
              * */
-            LEFT((icon, getter) -> GuiHelper.drawPartialSprite(icon.overlayTexture.buffer(getter, BCSprites::makeType), icon.xPos() + (icon.xSize() * (1D - icon.getRenderState())), icon.yPos(), icon.xSize() * icon.getRenderState(), icon.ySize(), icon.overlayTexture.sprite(), 1D - icon.getRenderState(), 0, 1, 1)),
+            LEFT((icon, getter) -> GuiHelper.drawPartialSprite(icon.overlayTexture.buffer(getter, BCGuiSprites::makeType), icon.xPos() + (icon.xSize() * (1D - icon.getRenderState())), icon.yPos(), icon.xSize() * icon.getRenderState(), icon.ySize(), icon.overlayTexture.sprite(), 1D - icon.getRenderState(), 0, 1, 1)),
             /**
              * Progress bar animated from left to right
              * */
-            RIGHT((icon, getter) -> GuiHelper.drawPartialSprite(icon.overlayTexture.buffer(getter, BCSprites::makeType), icon.xPos(), icon.yPos(), icon.xSize() * icon.getRenderState(), icon.ySize(), icon.overlayTexture.sprite(), 0, 0, icon.getRenderState(), 1));
+            RIGHT((icon, getter) -> GuiHelper.drawPartialSprite(icon.overlayTexture.buffer(getter, BCGuiSprites::makeType), icon.xPos(), icon.yPos(), icon.xSize() * icon.getRenderState(), icon.ySize(), icon.overlayTexture.sprite(), 0, 0, icon.getRenderState(), 1));
 
-            private BiConsumer<GuiProgressIcon, IRenderTypeBuffer.Impl> drawFunc;
-            Rotation(BiConsumer<GuiProgressIcon, IRenderTypeBuffer.Impl> drawFunc) {
+            private BiConsumer<GuiProgressIcon, MultiBufferSource.BufferSource> drawFunc;
+            Rotation(BiConsumer<GuiProgressIcon, MultiBufferSource.BufferSource> drawFunc) {
                 this.drawFunc = drawFunc;
             }
 
-            private void draw(GuiProgressIcon icon, IRenderTypeBuffer.Impl getter){
+            private void draw(GuiProgressIcon icon, MultiBufferSource.BufferSource getter){
                 drawFunc.accept(icon, getter);
             }
         }

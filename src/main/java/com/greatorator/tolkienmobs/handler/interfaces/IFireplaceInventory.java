@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.handler.interfaces;
 
-import net.minecraft.inventory.IInventory;
+import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
@@ -8,7 +8,7 @@ import net.minecraftforge.items.IItemHandler;
 /**
  * Created by brandon3055 on 09/12/2021
  */
-public interface IFireplaceInventory extends IInventory {
+public interface IFireplaceInventory extends Container {
 
     IItemHandler getItemHandler();
 

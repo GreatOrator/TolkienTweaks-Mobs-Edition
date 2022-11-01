@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.datagen;
 
-import com.greatorator.tolkienmobs.handler.TTMTags;
 import com.greatorator.tolkienmobs.init.TolkienFluids;
+import com.greatorator.tolkienmobs.init.TolkienTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.FluidTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -16,7 +16,7 @@ public class FluidTagGenerator extends FluidTagsProvider {
 
     @Override
     protected void addTags() {
-        tag(TTMTags.fluids.FLUIDS).add(TolkienFluids.MITHRIL_FLUID.get(), TolkienFluids.MITHRIL_FLOWING.get(), TolkienFluids.MORGULIRON_FLUID.get(), TolkienFluids.MORGULIRON_FLOWING.get());
+        tag(TolkienTags.fluids.FLUIDS).add(TolkienFluids.MITHRIL_FLUID.get(), TolkienFluids.MITHRIL_FLOWING.get(), TolkienFluids.MORGULIRON_FLUID.get(), TolkienFluids.MORGULIRON_FLOWING.get());
 
     }
     @Nonnull

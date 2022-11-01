@@ -9,7 +9,7 @@ import com.brandon3055.brandonscore.lib.IRSSwitchable;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
 import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.PiggyBankBlock;
-import com.greatorator.tolkienmobs.handler.TTMTags;
+import com.greatorator.tolkienmobs.init.TolkienTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -44,7 +44,7 @@ public class PiggyBankTile extends TileBCore implements ITickableTileEntity, INa
 
     private boolean isInput(ItemStack stack) {
         Item coin = stack.getItem();
-        return coin.is(TTMTags.items.COINS);
+        return coin.is(TolkienTags.items.COINS);
     }
 
     private void inventoryChange() {

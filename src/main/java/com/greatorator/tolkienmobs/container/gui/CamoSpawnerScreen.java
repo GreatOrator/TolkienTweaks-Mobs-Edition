@@ -186,8 +186,8 @@ public class CamoSpawnerScreen extends ModularGuiContainer<ContainerBCTile<CamoS
     private int lastListSize = -1;
 
     @Override
-    public void tick() {
-        super.tick();
+    public void containerTick() {
+        super.containerTick();
         if (tile.entityTags.size() != lastListSize) {
             lastListSize = tile.entityTags.size();
             updateEntityList();

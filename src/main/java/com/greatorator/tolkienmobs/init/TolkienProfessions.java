@@ -8,10 +8,12 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -42,6 +44,54 @@ public class TolkienProfessions {
     public static final RegistryObject<PoiType> JUNK_TRADER = POIT.register("junk_trader", ()-> new PoiType("junk_trader", PoiType.getBlockStates(TolkienBlocks.BARREL_MITHRIL.get()), 1, 1));
     public static final RegistryObject<PoiType> TRINKET_SMITH = POIT.register("trinket_smith", ()-> new PoiType("trinket_smith", PoiType.getBlockStates(TolkienBlocks.BLOCK_HALLOWED.get()), 1, 1));
     public static final RegistryObject<PoiType> TRINKET_TAILOR = POIT.register("trinket_tailor", ()-> new PoiType("trinket_tailor", PoiType.getBlockStates(TolkienBlocks.STONE_PATH.get()), 1, 1));
+
+    public static void registerBanker() {
+        try {
+            ObfuscationReflectionHelper.findMethod(PoiType.class, "registerBlockStates", PoiType.class).invoke(null, COIN_TRADER.get());
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void registerGrocer() {
+        try {
+            ObfuscationReflectionHelper.findMethod(PoiType.class, "registerBlockStates", PoiType.class).invoke(null, GROCERY_STORE.get());
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void registerPet() {
+        try {
+            ObfuscationReflectionHelper.findMethod(PoiType.class, "registerBlockStates", PoiType.class).invoke(null, PET_MERCHANT.get());
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void registerJunk() {
+        try {
+            ObfuscationReflectionHelper.findMethod(PoiType.class, "registerBlockStates", PoiType.class).invoke(null, JUNK_TRADER.get());
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void registerSmith() {
+        try {
+            ObfuscationReflectionHelper.findMethod(PoiType.class, "registerBlockStates", PoiType.class).invoke(null, TRINKET_SMITH.get());
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void registerTailor() {
+        try {
+            ObfuscationReflectionHelper.findMethod(PoiType.class, "registerBlockStates", PoiType.class).invoke(null, TRINKET_TAILOR.get());
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
 
     //#################################################################
     // Profession Registry

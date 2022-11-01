@@ -7,6 +7,7 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMTreeFeatureConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -16,21 +17,25 @@ import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 import static net.minecraft.block.LeavesBlock.PERSISTENT;
 
 public final class TTMFeatures {
-    public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> MIRKWOOD = registerWorldFeature(TolkienMobs.prefix("mirkwood"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.MIRKWOOD));
-    public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> MALLORN = registerWorldFeature(TolkienMobs.prefix("mallorn"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.MALLORN));
-    public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> CULUMALDA = registerWorldFeature(TolkienMobs.prefix("culumalda"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.CULUMALDA));
-    public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> CULUMALDA_FIRIEN = registerWorldFeature(TolkienMobs.prefix("culumalda_firien"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.CULUMALDA_FIRIEN));
-    public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> LEBETHRON = registerWorldFeature(TolkienMobs.prefix("lebethron"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.LEBETHRON));
-    public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> LEBETHRON_FIRIEN = registerWorldFeature(TolkienMobs.prefix("lebethron_firien"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.LEBETHRON_FIRIEN));
-    public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> DEADTREE = registerWorldFeature(TolkienMobs.prefix("deadtree"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.DEADTREE));
-    public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> FANGORNOAK = registerWorldFeature(TolkienMobs.prefix("fangornoak"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.FANGORNOAK));
-    public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> OLDFORESTOAK = registerWorldFeature(TolkienMobs.prefix("oldforestoak"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.OLDFORESTOAK));
-    public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> MUSHROOM_BLOOM_DECAY = registerWorldFeature(TolkienMobs.prefix("bloomdecay"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.MUSHROOM_BLOOM_DECAY));
-    public static final ConfiguredFeature<BaseTreeFeatureConfig, ? extends Feature<?>> MUSHROOM_DECAY_BLOOM = registerWorldFeature(TolkienMobs.prefix("decaybloom"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.MUSHROOM_DECAY_BLOOM));
+    public static final ConfiguredFeature<TreeConfiguration, ? extends Feature<?>> MIRKWOOD = FeatureUtils.register((MODID + "mirkwood"), Feature.TREE, (TTMTreeFeatureConfig.TreeConfigurations.MIRKWOOD));
+    public static final ConfiguredFeature<TreeConfiguration, ? extends Feature<?>> MALLORN = registerWorldFeature(TolkienMobs.prefix("mallorn"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.MALLORN));
+    public static final ConfiguredFeature<TreeConfiguration, ? extends Feature<?>> CULUMALDA = registerWorldFeature(TolkienMobs.prefix("culumalda"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.CULUMALDA));
+    public static final ConfiguredFeature<TreeConfiguration, ? extends Feature<?>> CULUMALDA_FIRIEN = registerWorldFeature(TolkienMobs.prefix("culumalda_firien"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.CULUMALDA_FIRIEN));
+    public static final ConfiguredFeature<TreeConfiguration, ? extends Feature<?>> LEBETHRON = registerWorldFeature(TolkienMobs.prefix("lebethron"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.LEBETHRON));
+    public static final ConfiguredFeature<TreeConfiguration, ? extends Feature<?>> LEBETHRON_FIRIEN = registerWorldFeature(TolkienMobs.prefix("lebethron_firien"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.LEBETHRON_FIRIEN));
+    public static final ConfiguredFeature<TreeConfiguration, ? extends Feature<?>> DEADTREE = registerWorldFeature(TolkienMobs.prefix("deadtree"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.DEADTREE));
+    public static final ConfiguredFeature<TreeConfiguration, ? extends Feature<?>> FANGORNOAK = registerWorldFeature(TolkienMobs.prefix("fangornoak"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.FANGORNOAK));
+    public static final ConfiguredFeature<TreeConfiguration, ? extends Feature<?>> OLDFORESTOAK = registerWorldFeature(TolkienMobs.prefix("oldforestoak"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.OLDFORESTOAK));
+    public static final ConfiguredFeature<TreeConfiguration, ? extends Feature<?>> MUSHROOM_BLOOM_DECAY = registerWorldFeature(TolkienMobs.prefix("bloomdecay"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.MUSHROOM_BLOOM_DECAY));
+    public static final ConfiguredFeature<TreeConfiguration, ? extends Feature<?>> MUSHROOM_DECAY_BLOOM = registerWorldFeature(TolkienMobs.prefix("decaybloom"), Feature.TREE.configured(TTMTreeFeatureConfig.TreeConfigurations.MUSHROOM_DECAY_BLOOM));
 
     // Biome placement
     public static final ConfiguredFeature<?, ? extends Feature<?>> PATCH_MALLORN_LEAFPILES = register("patch_mallorn_leafpiles", Feature.RANDOM_PATCH.configured(TTMConfigs.MALLORN_LEAFPILES_CONFIG));
@@ -61,7 +66,7 @@ public final class TTMFeatures {
     public static final ConfiguredFeature<?, ? extends Feature<?>> ROCKPILES = register("patch_rockpiles", Feature.RANDOM_PATCH.configured(TTMConfigs.ROCKPILES_CONFIG).decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE));
 
     private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> feature) {
-        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, TolkienMobs.MODID + ":" + name, feature);
+        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, MODID + ":" + name, feature);
     }
 
     private static <FC extends IFeatureConfig, F extends Feature<FC>> ConfiguredFeature<FC, F> registerWorldFeature(ResourceLocation rl, ConfiguredFeature<FC, F> feature) {

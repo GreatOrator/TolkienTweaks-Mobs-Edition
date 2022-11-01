@@ -5,47 +5,55 @@ import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.inventory.ContainerSlotLayout;
 import com.brandon3055.brandonscore.inventory.ItemHandlerIOControl;
 import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
+import com.brandon3055.brandonscore.lib.IInteractTile;
 import com.brandon3055.brandonscore.lib.IRSSwitchable;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedInt;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedShort;
 import com.google.common.collect.Lists;
-import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.FireplaceBlock;
 import com.greatorator.tolkienmobs.handler.interfaces.IFireplaceInventory;
 import com.greatorator.tolkienmobs.handler.interfaces.IFireplaceRecipe;
+import com.greatorator.tolkienmobs.init.TolkienContainers;
+import com.greatorator.tolkienmobs.init.TolkienTiles;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import net.minecraft.entity.item.ExperienceOrbEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tileentity.FurnaceTileEntity;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_BOTH_SYNC_CONTAINER;
 import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_BOTH_SYNC_TILE;
-import static net.minecraft.util.Direction.*;
+import static net.minecraft.core.Direction.*;
 
-public class FireplaceTile extends TileBCore implements ITickableTileEntity, INamedContainerProvider, IRSSwitchable, IFireplaceInventory {
+public class FireplaceTile extends TileBCore implements MenuProvider, IInteractTile, IRSSwitchable, IFireplaceInventory {
     public static final ContainerSlotLayout.LayoutFactory<FireplaceTile> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.itemHandler);
     private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
+    protected final RecipeType<? extends IFireplaceRecipe> recipeType;
 
     public final ManagedBool isBurning = register(new ManagedBool("is_burning", false, SAVE_BOTH_SYNC_TILE));
     /**
@@ -67,17 +75,25 @@ public class FireplaceTile extends TileBCore implements ITickableTileEntity, INa
 
     public TileItemStackHandler itemHandler = new TileItemStackHandler(4);
 
-    public FireplaceTile() {
-        super(TTMContent.TMFIREPLACE_TILE.get());
+    public FireplaceTile(BlockPos blockPos, BlockState blockState, RecipeType<? extends IFireplaceRecipe> recipeType) {
+        super(TolkienTiles.TMFIREPLACE_TILE.get(), blockPos, blockState);
+        this.recipeType = recipeType;
+
         //Install item handler capability but don't expose it to other tiles.
         capManager.setInternalManaged("inventory", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, itemHandler).saveBoth().syncTile();
         //Exposed item capability by also wrapping it in a handler that lets us control IO
         capManager.set(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, new ItemHandlerIOControl(itemHandler).setInsertCheck((slot, stack) -> slot < 2).setExtractCheck((slot, stack) -> slot == 3), UP, DOWN, null);
         capManager.set(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, new ItemHandlerIOControl(itemHandler).setInsertCheck((slot, stack) -> slot == 2).setExtractCheck((slot, stack) -> slot == 3), NORTH, SOUTH, EAST, WEST, null);
         //Set up slot input validation.
-        itemHandler.setStackValidator((slot, stack) -> slot <= 1 && isInput(stack) || slot == 2 && FurnaceTileEntity.isFuel(stack));
+        itemHandler.setStackValidator((slot, stack) -> slot <= 1 && isInput(stack) || slot == 2 && AbstractFurnaceBlockEntity.isFuel(stack));
         //Add inventory change listener
         itemHandler.setContentsChangeListener(i -> inventoryChange());
+    }
+
+    public void onRightClick(Player playerEntity, InteractionHand hand) {
+        if (!playerEntity.level.isClientSide()) {
+                NetworkHooks.openGui((ServerPlayer) playerEntity, this, worldPosition);
+        }
     }
 
     private boolean isInput(ItemStack stack) {
@@ -142,7 +158,7 @@ public class FireplaceTile extends TileBCore implements ITickableTileEntity, INa
         boolean last = isBurning.get();
         isBurning.set(fuelRemaining.get() > 0);
         if (isBurning.get() != last) {
-            level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(FireplaceBlock.ACTIVE, isBurning.get()));
+            level.setBlockAndUpdate(worldPosition, level.getBlockState(worldPosition).setValue(FireplaceBlock.LIT, isBurning.get()));
         }
 
         if (isBurning.get()) {
@@ -179,7 +195,7 @@ public class FireplaceTile extends TileBCore implements ITickableTileEntity, INa
     public void tryRefuel() {
         ItemStack stack = itemHandler.getStackInSlot(2);
         if (!stack.isEmpty()) {
-            int itemBurnTime = ForgeHooks.getBurnTime(stack);
+            int itemBurnTime = ForgeHooks.getBurnTime(stack, this.recipeType);
             if (itemBurnTime > 0) {
                 if (stack.getCount() == 1) {
                     stack = stack.getItem().getContainerItem(stack);
@@ -193,44 +209,39 @@ public class FireplaceTile extends TileBCore implements ITickableTileEntity, INa
         }
     }
 
-    public void awardUsedRecipesAndPopExperience(PlayerEntity player) {
-        List<IRecipe<?>> list = this.getRecipesToAwardAndPopExperience(player.level, player.position());
+    public void awardUsedRecipesAndPopExperience(ServerPlayer player) {
+        List<Recipe<?>> list = this.getRecipesToAwardAndPopExperience(player.getLevel(), player.position());
         player.awardRecipes(list);
         this.recipesUsed.clear();
     }
 
-    public List<IRecipe<?>> getRecipesToAwardAndPopExperience(World world, Vector3d vector3d) {
-        List<IRecipe<?>> list = Lists.newArrayList();
+    public List<Recipe<?>> getRecipesToAwardAndPopExperience(ServerLevel level, Vec3 vec3) {
+        List<Recipe<?>> list = Lists.newArrayList();
 
         for(Object2IntMap.Entry<ResourceLocation> entry : this.recipesUsed.object2IntEntrySet()) {
-            world.getRecipeManager().byKey(entry.getKey()).ifPresent((p_235642_4_) -> {
-                list.add(p_235642_4_);
-                createExperience(world, vector3d, entry.getIntValue(), ((AbstractCookingRecipe)p_235642_4_).getExperience());
+            level.getRecipeManager().byKey(entry.getKey()).ifPresent((p_155023_) -> {
+                list.add(p_155023_);
+                createExperience(level, vec3, entry.getIntValue(), ((AbstractCookingRecipe)p_155023_).getExperience());
             });
         }
 
         return list;
     }
 
-    private static void createExperience(World world, Vector3d vector3d, int amount, float exp) {
-        int i = MathHelper.floor((float)amount * exp);
-        float f = MathHelper.frac((float)amount * exp);
+    private static void createExperience(ServerLevel level, Vec3 vec3, int p_155001_, float p_155002_) {
+        int i = Mth.floor((float)p_155001_ * p_155002_);
+        float f = Mth.frac((float)p_155001_ * p_155002_);
         if (f != 0.0F && Math.random() < (double)f) {
             ++i;
         }
 
-        while(i > 0) {
-            int j = ExperienceOrbEntity.getExperienceValue(i);
-            i -= j;
-            world.addFreshEntity(new ExperienceOrbEntity(world, vector3d.x, vector3d.y, vector3d.z, j));
-        }
-
+        ExperienceOrb.award(level, vec3, i);
     }
 
     @Nullable
     @Override
-    public Container createMenu(int id, PlayerInventory playerInventory, PlayerEntity player) {
-        return new ContainerBCTile<>(TTMContent.TMFIREPLACE_CONTAINER, id, playerInventory, this, SLOT_LAYOUT);
+    public AbstractContainerMenu createMenu(int windowID, Inventory playerInventory, Player playerEntity) {
+        return new ContainerBCTile<>(TolkienContainers.TMFIREPLACE_CONTAINER, windowID, playerInventory, this, SLOT_LAYOUT);
     }
 
     @Override

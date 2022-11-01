@@ -1,33 +1,34 @@
 package com.greatorator.tolkienmobs.block;
 
+import com.brandon3055.brandonscore.blocks.BlockBCore;
+import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.tile.FireplaceTile;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 
-public class FireplaceBlock extends Block {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
+public class FireplaceBlock extends BlockBCore {
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     protected static final VoxelShape SHAPE_NORTH = Block.box(1.0, 0.0D, 1.0, 15.0, 14.0, 15.0);
     protected static final VoxelShape SHAPE_SOUTH = Block.box(1.0, 0.0D, 1.0, 15.0, 14.0, 15.0);
@@ -37,12 +38,12 @@ public class FireplaceBlock extends Block {
 
     public FireplaceBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ACTIVE, false));
+        this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false));
     }
 
     @SuppressWarnings("deprecation")
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context) {
         switch((Direction)state.getValue(FACING)) {
             case NORTH:
                 return SHAPE_NORTH;
@@ -59,31 +60,26 @@ public class FireplaceBlock extends Block {
 
     @SuppressWarnings("deprecation")
     @Override
-    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult trace) {
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult trace) {
         if (!world.isClientSide) {
-            TileEntity tileEntity = world.getBlockEntity(pos);
+            BlockEntity tile = world.getBlockEntity(pos);
 
-            if (tileEntity instanceof FireplaceTile) {
-                NetworkHooks.openGui((ServerPlayerEntity) player, (FireplaceTile) tileEntity, pos);
+            if (tile instanceof FireplaceTile) {
+                ((FireplaceTile) tile).onRightClick(player, hand);
             }
-            return ActionResultType.CONSUME;
+            return InteractionResult.CONSUME;
         }
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(FACING, ACTIVE);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING, LIT);
         super.createBlockStateDefinition(builder);
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
@@ -95,12 +91,7 @@ public class FireplaceBlock extends Block {
 
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new FireplaceTile();
-    }
-
-    @Override
-    public int getLightValue(BlockState state, IBlockReader world, BlockPos pos) {
-        return state.getValue(ACTIVE) ? 15 : 0;
+    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new FireplaceTile(blockPos, blockState, TolkienMobs.FIREPLACE_RECIPE_TYPE);
     }
 }
