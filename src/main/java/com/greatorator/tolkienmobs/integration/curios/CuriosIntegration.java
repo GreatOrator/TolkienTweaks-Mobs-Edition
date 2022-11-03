@@ -1,19 +1,20 @@
 package com.greatorator.tolkienmobs.integration.curios;
 
 import com.brandon3055.brandonscore.capability.MultiCapabilityProvider;
-import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.init.TolkienItems;
 import com.greatorator.tolkienmobs.item.tools.BackpackItem;
-import com.greatorator.tolkienmobs.lib.FlamingBalrog;
-import net.minecraft.data.TagsProvider;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import com.greatorator.tolkienmobs.lib.TolkienExceptions;
+import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.Tags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -33,20 +34,19 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 /** Borrowed from Draconic Evolution */
-public class TTMCurios extends TTMEquipMgr {
+public class CuriosIntegration extends EquipmentManager {
 
-    public static final Tags.IOptionalNamedTag<Item> CURIO_TAG = ItemTags.createOptional(new ResourceLocation("curios", "curio"));
-    public static final Tags.IOptionalNamedTag<Item> HEAD_TAG = ItemTags.createOptional(new ResourceLocation("curios", "head"));
-    public static final Tags.IOptionalNamedTag<Item> NECK_TAG = ItemTags.createOptional(new ResourceLocation("curios", "necklace"));
-    public static final Tags.IOptionalNamedTag<Item> BACK_TAG = ItemTags.createOptional(new ResourceLocation("curios", "back"));
-    public static final Tags.IOptionalNamedTag<Item> BODY_TAG = ItemTags.createOptional(new ResourceLocation("curios", "body"));
-    public static final Tags.IOptionalNamedTag<Item> HAND_TAG = ItemTags.createOptional(new ResourceLocation("curios", "hands"));
-    public static final Tags.IOptionalNamedTag<Item> RING_TAG = ItemTags.createOptional(new ResourceLocation("curios", "ring"));
-    public static final Tags.IOptionalNamedTag<Item> BELT_TAG = ItemTags.createOptional(new ResourceLocation("curios", "belt"));
-    public static final Tags.IOptionalNamedTag<Item> CHARM_TAG = ItemTags.createOptional(new ResourceLocation("curios", "charm"));
+    public static final TagKey<Item> CURIO_TAG = ItemTags.create(new ResourceLocation("curios", "curio"));
+    public static final TagKey<Item> HEAD_TAG = ItemTags.create(new ResourceLocation("curios", "head"));
+    public static final TagKey<Item> NECK_TAG = ItemTags.create(new ResourceLocation("curios", "necklace"));
+    public static final TagKey<Item> BACK_TAG = ItemTags.create(new ResourceLocation("curios", "back"));
+    public static final TagKey<Item> BODY_TAG = ItemTags.create(new ResourceLocation("curios", "body"));
+    public static final TagKey<Item> HAND_TAG = ItemTags.create(new ResourceLocation("curios", "hands"));
+    public static final TagKey<Item> RING_TAG = ItemTags.create(new ResourceLocation("curios", "ring"));
+    public static final TagKey<Item> BELT_TAG = ItemTags.create(new ResourceLocation("curios", "belt"));
+    public static final TagKey<Item> CHARM_TAG = ItemTags.create(new ResourceLocation("curios", "charm"));
 
-    @CapabilityInject(ICurio.class)
-    public static Capability<ICurio> CURIO_CAP = null;
+    public static Capability<ICurio> CURIO_CAP = CapabilityManager.get(new CapabilityToken<>() {});
 
     public static void sendIMC(InterModEnqueueEvent event) {
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.CURIO.getMessageBuilder().size(1).build());
@@ -62,7 +62,7 @@ public class TTMCurios extends TTMEquipMgr {
 
     @Override
     public void addEquipCaps(ItemStack stack, MultiCapabilityProvider provider) {
-        provider.addUnsavedCap(CURIO_CAP, new TTMCurioWrapper(stack));
+        provider.addUnsavedCap(CURIO_CAP, new CurioWrapper(stack));
     }
 
     @Override
@@ -90,7 +90,7 @@ public class TTMCurios extends TTMEquipMgr {
     public List<ResourceLocation> getSlotIcons(LivingEntity entity) {
         LazyOptional<ICuriosItemHandler> optional = CuriosApi.getCuriosHelper().getCuriosHandler(entity);
         if (optional.isPresent()) {
-            ICuriosItemHandler handler = optional.orElseThrow(FlamingBalrog::new);
+            ICuriosItemHandler handler = optional.orElseThrow(TolkienExceptions::new);
             List<ResourceLocation> icons = new ArrayList<>();
             handler.getCurios().forEach((s, h) -> {
                 for (int i = 0; i < h.getSlots(); i++) {
@@ -104,7 +104,7 @@ public class TTMCurios extends TTMEquipMgr {
 
     public static ICurio createBackpackProvider()
     {
-        return new TTMCurioWrapper(ItemStack.EMPTY);
+        return new CurioWrapper(ItemStack.EMPTY);
     }
 
     public static Optional<ImmutableTriple<String, Integer, ItemStack>> getCurioBackpack(LivingEntity livingEntity)
@@ -113,7 +113,7 @@ public class TTMCurios extends TTMEquipMgr {
         return CuriosApi.getCuriosHelper().findEquippedCurio(backpack, livingEntity);
     }
 
-    public static ItemStack getCurioBackpackStack(PlayerEntity player)
+    public static ItemStack getCurioBackpackStack(Player player)
     {
         if(getCurioBackpack(player).isPresent())
         {
@@ -125,22 +125,22 @@ public class TTMCurios extends TTMEquipMgr {
     /**
      * Data Gen
      */
-    public static void generateTags(Function<Tags.IOptionalNamedTag<Item>, TagsProvider.Builder<Item>> builder) {
+    public static void generateTags(Function<TagKey<Item>, TagsProvider.TagAppender<Item>> builder) {
         builder.apply(NECK_TAG).add(
-                TTMContent.TRINKET_AMULET.get());
+                TolkienItems.TRINKET_AMULET.get());
         builder.apply(BELT_TAG).add(
-                TTMContent.TRINKET_BELT.get());
+                TolkienItems.TRINKET_BELT.get());
         builder.apply(CHARM_TAG).add(
-                TTMContent.TRINKET_CHARM.get());
+                TolkienItems.TRINKET_CHARM.get());
         builder.apply(RING_TAG).add(
-                TTMContent.TRINKET_RING.get());
+                TolkienItems.TRINKET_RING.get());
         builder.apply(HAND_TAG).add(
-                TTMContent.TRINKET_GLOVE.get());
+                TolkienItems.TRINKET_GLOVE.get());
         builder.apply(HEAD_TAG).add(
-                TTMContent.TRINKET_HAT.get());
+                TolkienItems.TRINKET_HAT.get());
         builder.apply(BACK_TAG).add(
-                TTMContent.ITEM_BACKPACK.get());
+                TolkienItems.ITEM_BACKPACK.get());
         builder.apply(BODY_TAG).add(
-                TTMContent.TRINKET_CLOAK.get());
+                TolkienItems.TRINKET_CLOAK.get());
     }
 }

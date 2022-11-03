@@ -811,6 +811,9 @@ public class LangGenerator extends LanguageProvider {
         add("tolkienmobs.msg.key_used", "Key has no remaining uses.");
         add("tolkienmobs.msg.cleared.entities", "All existing entities cleared...");
         add("tolkienmobs.msg.added.entities", "Entity added...");
+        add("tolkienmobs.msg.payment", "Payment item set to...");
+        add("tolkienmobs.msg.payment.insufficient", "Not enough for teleport!");
+        add("tolkienmobs.msg.destination", "Destination not found");
     }
 
     private void gui(PrefixHelper helper) {

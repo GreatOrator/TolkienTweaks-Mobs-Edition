@@ -1,24 +1,24 @@
 package com.greatorator.tolkienmobs.item.potion;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.EffectType;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 
 public class FearEffect extends PotionBaseEffect {
     public static FearEffect instance = null;
     public static int fearDuration = 10;
 
-    public FearEffect(EffectType typeIn, int liquidColorIn) {
+    public FearEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
     }
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        entity.addEffect((new EffectInstance(Effects.WITHER, 40, amplifier, true, false, false, null)));
-        entity.addEffect((new EffectInstance(Effects.BLINDNESS, 40, amplifier, true, false, false, null)));
-        entity.addEffect((new EffectInstance(Effects.WEAKNESS, 40, amplifier, true, false, false, null)));
-        entity.addEffect((new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 40, amplifier, true, false, false, null)));
+        entity.addEffect((new MobEffectInstance(MobEffects.WITHER, 40, amplifier, true, false, false, null)));
+        entity.addEffect((new MobEffectInstance(MobEffects.BLINDNESS, 40, amplifier, true, false, false, null)));
+        entity.addEffect((new MobEffectInstance(MobEffects.WEAKNESS, 40, amplifier, true, false, false, null)));
+        entity.addEffect((new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 40, amplifier, true, false, false, null)));
     }
 
     @Override

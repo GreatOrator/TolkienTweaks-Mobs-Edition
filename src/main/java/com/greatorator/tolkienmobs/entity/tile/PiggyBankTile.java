@@ -5,33 +5,35 @@ import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.inventory.ContainerSlotLayout;
 import com.brandon3055.brandonscore.inventory.ItemHandlerIOControl;
 import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
+import com.brandon3055.brandonscore.lib.IInteractTile;
 import com.brandon3055.brandonscore.lib.IRSSwitchable;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
-import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.PiggyBankBlock;
+import com.greatorator.tolkienmobs.init.TolkienContainers;
 import com.greatorator.tolkienmobs.init.TolkienTags;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.ITickableTileEntity;
+import com.greatorator.tolkienmobs.init.TolkienTiles;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
 
 import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_BOTH_SYNC_TILE;
-import static net.minecraft.util.Direction.UP;
+import static net.minecraft.core.Direction.UP;
 
-public class PiggyBankTile extends TileBCore implements ITickableTileEntity, INamedContainerProvider, IRSSwitchable {
+public class PiggyBankTile extends TileBCore implements MenuProvider, IInteractTile, IRSSwitchable {
     public static final ContainerSlotLayout.LayoutFactory<PiggyBankTile> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.itemHandler);
     public TileItemStackHandler itemHandler = new TileItemStackHandler(63);
     public final ManagedBool isfull = register(new ManagedBool("is_full", false, SAVE_BOTH_SYNC_TILE));
 
-    public PiggyBankTile() {
-        super(TTMContent.PIGGYBANK_TILE.get());
+    public PiggyBankTile(BlockPos pos, BlockState state) {
+        super(TolkienTiles.PIGGYBANK_TILE.get(), pos, state);
         //Exposed item capability by also wrapping it in a handler that lets us control IO
         capManager.set(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, new ItemHandlerIOControl(itemHandler).setInsertCheck((slot, stack) -> slot > 0), UP, null);
         //Install item handler capability but don't expose it to other tiles.
@@ -43,8 +45,7 @@ public class PiggyBankTile extends TileBCore implements ITickableTileEntity, INa
     }
 
     private boolean isInput(ItemStack stack) {
-        Item coin = stack.getItem();
-        return coin.is(TolkienTags.items.COINS);
+        return stack.is(TolkienTags.items.COINS);
     }
 
     private void inventoryChange() {
@@ -66,7 +67,7 @@ public class PiggyBankTile extends TileBCore implements ITickableTileEntity, INa
 
     @Nullable
     @Override
-    public Container createMenu(int id, PlayerInventory playerInventory, PlayerEntity player) {
-        return new ContainerBCTile<>(TTMContent.PIGGYBANK_CONTAINER, id, playerInventory, this, SLOT_LAYOUT);
+    public AbstractContainerMenu createMenu(int windowID, Inventory playerInventory, Player playerEntity) {
+        return new ContainerBCTile<>(TolkienContainers.PIGGYBANK_CONTAINER, windowID, playerInventory, this, SLOT_LAYOUT);
     }
 }

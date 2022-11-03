@@ -1,14 +1,15 @@
 package com.greatorator.tolkienmobs.enchantments;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.BookItem;
-import net.minecraft.item.ItemStack;
+import com.greatorator.tolkienmobs.init.TolkienEnchants;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BookItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -16,8 +17,8 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = TolkienMobs.MODID, value = Dist.CLIENT)
 public class EnchantmentDwarvenEndurance extends Enchantment {
-    public EnchantmentDwarvenEndurance(Rarity rarityIn, EquipmentSlotType... slots) {
-        super(rarityIn, EnchantmentType.ARMOR_HEAD, slots);
+    public EnchantmentDwarvenEndurance(Rarity rarityIn, EquipmentSlot... slots) {
+        super(rarityIn, EnchantmentCategory.ARMOR_HEAD, slots);
     }
 
     @Override
@@ -51,10 +52,10 @@ public class EnchantmentDwarvenEndurance extends Enchantment {
         LivingEntity entity = event.getEntityLiving();
 
         if (entity.level.isClientSide) {
-            int level = EnchantmentHelper.getEnchantmentLevel(EnchantmentGenerator.DWARF_ENDURANCE.get(), entity);
+            int level = EnchantmentHelper.getEnchantmentLevel(TolkienEnchants.DWARF_ENDURANCE.get(), entity);
 
-            if (entity instanceof PlayerEntity && level != 0) {
-                ((PlayerEntity) entity).getFoodData().eat(level + 1, 1.0F);
+            if (entity instanceof Player && level != 0) {
+                ((Player) entity).getFoodData().eat(level + 1, 1.0F);
             }
         }
     }

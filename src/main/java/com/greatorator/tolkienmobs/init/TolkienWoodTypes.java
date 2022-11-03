@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.handler;
+package com.greatorator.tolkienmobs.init;
 
 import net.minecraft.world.level.block.state.properties.WoodType;
 

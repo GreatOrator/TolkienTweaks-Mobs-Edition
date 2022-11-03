@@ -3,30 +3,31 @@ package com.greatorator.tolkienmobs.entity.tile.render;
 import com.greatorator.tolkienmobs.block.MilestoneBlock;
 import com.greatorator.tolkienmobs.entity.tile.MilestoneTile;
 import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
-import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.block.BlockState;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Matrix4f;
+import com.mojang.math.Quaternion;
+import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.vector.Matrix4f;
-import net.minecraft.util.math.vector.Quaternion;
-import net.minecraft.util.math.vector.Vector3f;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class RenderMilestoneTile extends TileEntityRenderer<MilestoneTile> {
-    public RenderMilestoneTile(TileEntityRendererDispatcher rendererDispatcherIn) {
-        super(rendererDispatcherIn);
+public class RenderMilestoneTile implements BlockEntityRenderer<MilestoneTile> {
+    public RenderMilestoneTile(BlockEntityRendererProvider.Context context) {
+
     }
 
     @Override
-    public void render(MilestoneTile te, float partialTicks, MatrixStack mStack, IRenderTypeBuffer getter, int packedLight, int packedOverlay) {
+    public void render(MilestoneTile te, float partialTicks, PoseStack mStack, MultiBufferSource getter, int packedLight, int packedOverlay) {
         BlockState state = te.getBlockState();
         Direction facing = state.getValue(MilestoneBlock.FACING);
-        RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
+        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+        RenderSystem.disableBlend();
 
         mStack.pushPose();
         mStack.translate(0.5, 0.5, 0.5);
@@ -46,16 +47,18 @@ public class RenderMilestoneTile extends TileEntityRenderer<MilestoneTile> {
                 mStack.mulPose(new Quaternion(0, 0, 180, true));
                 break;
         }
+        RenderSystem.enableBlend();
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
         mStack.popPose();
 
         if (MilestoneSaveData.isKnownByClient(te.getUUID(), Minecraft.getInstance().player.getUUID())) {
-            drawNameString(te, mStack, getter, ITextComponent.nullToEmpty(te.milestoneName.get()/*.replace("_", " ")*/), packedLight);
+            drawNameString(te, mStack, getter, Component.nullToEmpty(te.milestoneName.get()/*.replace("_", " ")*/), packedLight);
         }
     }
 
-    private void drawNameString(MilestoneTile te, MatrixStack matrixStack, IRenderTypeBuffer buffer, ITextComponent message, int light) {
-        FontRenderer fontRenderer = this.renderer.font;
+    private void drawNameString(MilestoneTile te, PoseStack matrixStack, MultiBufferSource buffer, Component message, int light) {
+        Font fontRenderer = Minecraft.getInstance().font;
         Minecraft mc = Minecraft.getInstance();
         final float rotation = te.getBlockState().getValue(MilestoneBlock.FACING).toYRot();
         float f3 = 0.015F;

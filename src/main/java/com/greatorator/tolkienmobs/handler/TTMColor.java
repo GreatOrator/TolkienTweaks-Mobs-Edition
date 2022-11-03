@@ -1,10 +1,10 @@
 package com.greatorator.tolkienmobs.handler;
 
-import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.init.TolkienItems;
 import com.greatorator.tolkienmobs.item.tools.TrinketItem;
-import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
+import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
@@ -15,13 +15,13 @@ import java.util.List;
 public class TTMColor {
 
     public static void itemColourEvent(ColorHandlerEvent.Item event) {
-        event.getItemColors().register(new TrinketColour(), TTMContent.TRINKET_CHARM.get(), TTMContent.TRINKET_AMULET.get(), TTMContent.TRINKET_BELT.get(), TTMContent.TRINKET_RING.get(), TTMContent.TRINKET_GLOVE.get(), TTMContent.TRINKET_HAT.get(), TTMContent.TRINKET_CLOAK.get());
+        event.getItemColors().register(new TrinketColour(), TolkienItems.TRINKET_CHARM.get(), TolkienItems.TRINKET_AMULET.get(), TolkienItems.TRINKET_BELT.get(), TolkienItems.TRINKET_RING.get(), TolkienItems.TRINKET_GLOVE.get(), TolkienItems.TRINKET_HAT.get(), TolkienItems.TRINKET_CLOAK.get());
     }
 
-    private static class TrinketColour implements IItemColor {
+    private static class TrinketColour implements ItemColor {
         @Override
         public int getColor(ItemStack stack, int layer) {
-            List<EffectInstance> effects = TrinketItem.getEffects(stack);
+            List<MobEffectInstance> effects = TrinketItem.getEffects(stack);
             if (!effects.isEmpty() && layer == 1) {
                 return effects.get(0).getEffect().getColor();
             }

@@ -1,10 +1,10 @@
 package com.greatorator.tolkienmobs.container.capability;
 
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.Direction;
-import net.minecraft.util.NonNullList;
+import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
@@ -27,7 +27,7 @@ public class ItemStackInventory implements IItemHandlerModifiable, ICapabilityPr
     private int slots;
     private final LazyOptional<IItemHandler> holder = LazyOptional.of(() -> this);
 
-    private CompoundNBT cachedTag;
+    private CompoundTag cachedTag;
     private NonNullList<ItemStack> itemStacksCache;
     private BiPredicate<Integer, ItemStack> stackValidator = null;
 
@@ -158,25 +158,25 @@ public class ItemStackInventory implements IItemHandlerModifiable, ICapabilityPr
     }
 
     private NonNullList<ItemStack> getItemList() {
-        CompoundNBT rootTag = stack.getOrCreateTagElement("item_inv");
+        CompoundTag rootTag = stack.getOrCreateTagElement("item_inv");
         if (cachedTag == null || !cachedTag.equals(rootTag)) {
             itemStacksCache = refreshItemList(rootTag);
         }
         return itemStacksCache;
     }
 
-    private NonNullList<ItemStack> refreshItemList(CompoundNBT rootTag) {
+    private NonNullList<ItemStack> refreshItemList(CompoundTag rootTag) {
         NonNullList<ItemStack> itemStacks = NonNullList.withSize(getSlots(), ItemStack.EMPTY);
         if (rootTag != null && rootTag.contains("Items", 9)) {
-            ItemStackHelper.loadAllItems(rootTag, itemStacks);
+            loadAllItems(rootTag, itemStacks);
         }
         cachedTag = rootTag;
         return itemStacks;
     }
 
     private void setItemList(NonNullList<ItemStack> itemStacks) {
-        CompoundNBT existing = stack.getOrCreateTagElement("item_inv");
-        cachedTag = ItemStackHelper.saveAllItems(existing, itemStacks);
+        CompoundTag existing = stack.getOrCreateTagElement("item_inv");
+        cachedTag = saveAllItems(existing, itemStacks);
     }
 
     @Override
@@ -185,4 +185,38 @@ public class ItemStackInventory implements IItemHandlerModifiable, ICapabilityPr
         return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.orEmpty(cap, this.holder);
     }
 
+    public static CompoundTag saveAllItems(CompoundTag p_191282_0_, NonNullList<ItemStack> p_191282_1_) {
+        return saveAllItems(p_191282_0_, p_191282_1_, true);
+    }
+
+    public static CompoundTag saveAllItems(CompoundTag compoundTag, NonNullList<ItemStack> nonNullList, boolean p_191281_2_) {
+        ListTag listnbt = new ListTag();
+
+        for(int i = 0; i < nonNullList.size(); ++i) {
+            ItemStack itemstack = nonNullList.get(i);
+            if (!itemstack.isEmpty()) {
+                CompoundTag compoundnbt = new CompoundTag();
+                compoundnbt.putByte("Slot", (byte)i);
+                itemstack.save(compoundnbt);
+                listnbt.add(compoundnbt);
+            }
+        }
+
+        if (!listnbt.isEmpty() || p_191281_2_) {
+            compoundTag.put("Items", listnbt);
+        }
+        return compoundTag;
+    }
+
+    public static void loadAllItems(CompoundTag compoundTag, NonNullList<ItemStack> nonNullList) {
+        ListTag listnbt = compoundTag.getList("Items", 10);
+
+        for(int i = 0; i < listnbt.size(); ++i) {
+            CompoundTag compoundnbt = listnbt.getCompound(i);
+            int j = compoundnbt.getByte("Slot") & 255;
+            if (j >= 0 && j < nonNullList.size()) {
+                nonNullList.set(j, ItemStack.of(compoundnbt));
+            }
+        }
+    }
 }

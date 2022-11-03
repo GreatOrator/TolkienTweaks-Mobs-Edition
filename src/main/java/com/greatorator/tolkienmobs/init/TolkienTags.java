@@ -71,6 +71,7 @@ public class TolkienTags {
         public static final TagKey<Item> WOODEN_SLABS = tag("wooden_slabs");
         public static final TagKey<Item> BARRELS_WOODEN = tag("barrels/wooden");
         public static final TagKey<Item> KEYS = tag("keys");
+        public static final TagKey<Item> TRINKET = tag("trinket");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation("forge", name));

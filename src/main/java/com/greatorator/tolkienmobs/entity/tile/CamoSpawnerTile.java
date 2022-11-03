@@ -17,6 +17,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.MenuProvider;
@@ -63,7 +64,11 @@ public class CamoSpawnerTile extends TileBCore implements MenuProvider, IInterac
     @Override
     public void tick() {
         super.tick();
-        spawnerLogic.tick();
+        if (level instanceof ServerLevel){
+            spawnerLogic.serverTick((ServerLevel) level, worldPosition);
+        } else {
+            spawnerLogic.clientTick(level, worldPosition);
+        }
     }
 
     public void onRightClick(BlockState state, Player playerEntity, InteractionHand hand) {

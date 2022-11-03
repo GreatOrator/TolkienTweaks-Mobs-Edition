@@ -1,17 +1,18 @@
 package com.greatorator.tolkienmobs.enchantments;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.BookItem;
-import net.minecraft.item.ItemStack;
+import com.greatorator.tolkienmobs.init.TolkienEnchants;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.BookItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -26,8 +27,8 @@ public class EnchantmentGondorResolve extends Enchantment {
     public static Set<UUID> playersWithHardStance = new HashSet<>();
     private static final AttributeModifier gondorResolve = new AttributeModifier(UUID.randomUUID(), "GondorResolve", 0.25D, AttributeModifier.Operation.ADDITION);
 
-    public EnchantmentGondorResolve(Rarity rarityIn, EquipmentSlotType... slots) {
-        super(rarityIn, EnchantmentType.ARMOR_LEGS, slots);
+    public EnchantmentGondorResolve(Rarity rarityIn, EquipmentSlot... slots) {
+        super(rarityIn, EnchantmentCategory.ARMOR_LEGS, slots);
     }
 
     @Override
@@ -61,8 +62,8 @@ public class EnchantmentGondorResolve extends Enchantment {
         LivingEntity entity = event.getEntityLiving();
 
         if (entity.level.isClientSide) {
-            int level = EnchantmentHelper.getEnchantmentLevel(EnchantmentGenerator.GONDOR_RESOLVE.get(), entity);
-            ModifiableAttributeInstance battleResolve = entity.getAttribute(Attributes.KNOCKBACK_RESISTANCE);
+            int level = EnchantmentHelper.getEnchantmentLevel(TolkienEnchants.GONDOR_RESOLVE.get(), entity);
+            AttributeInstance battleResolve = entity.getAttribute(Attributes.KNOCKBACK_RESISTANCE);
             boolean hardStanceListed = playersWithHardStance.contains(entity.getUUID());
             boolean hasHardStance = level > 0;
 

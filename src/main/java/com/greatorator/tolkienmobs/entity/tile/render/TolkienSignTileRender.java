@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.tile.render;
 import com.google.common.collect.ImmutableMap;
 import com.greatorator.tolkienmobs.block.TolkienSignBlock;
 import com.greatorator.tolkienmobs.entity.tile.TolkienSignTile;
-import com.greatorator.tolkienmobs.handler.TolkienWoodTypes;
+import com.greatorator.tolkienmobs.init.TolkienWoodTypes;
 import com.mojang.blaze3d.platform.NativeImage;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

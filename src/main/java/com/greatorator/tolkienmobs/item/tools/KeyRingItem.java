@@ -1,61 +1,71 @@
 package com.greatorator.tolkienmobs.item.tools;
 
-import codechicken.lib.inventory.InventoryUtils;
 import com.brandon3055.brandonscore.inventory.PlayerSlot;
 import com.greatorator.tolkienmobs.container.KeyRingContainer;
 import com.greatorator.tolkienmobs.container.capability.ItemStackInventory;
-import com.greatorator.tolkienmobs.handler.LoreItem;
 import com.greatorator.tolkienmobs.init.TolkienTags;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
-import net.minecraftforge.fml.network.NetworkHooks;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.*;
 import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
-import static com.greatorator.tolkienmobs.TTMContent.KEY_RING;
+public class KeyRingItem extends Item {
 
-public class KeyRingItem extends LoreItem {
-
-    public KeyRingItem(Item.Properties properties) {
+    public KeyRingItem(Properties properties) {
         super(properties);
     }
 
     @Nonnull
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity player, @Nonnull Hand hand) {
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player player, @Nonnull InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
-        if (player instanceof ServerPlayerEntity) {
+
+        if (player.isShiftKeyDown()) {
+            setActive(stack, !getActive(stack));
+            return new InteractionResultHolder<>(InteractionResult.PASS, stack);
+        }else if (player instanceof ServerPlayer){
             PlayerSlot slot = new PlayerSlot(player, hand);
-            NetworkHooks.openGui((ServerPlayerEntity) player, new KeyRingContainer.Provider(stack, slot), slot::toBuff);
+            NetworkHooks.openGui((ServerPlayer) player, new KeyRingContainer.Provider(stack, slot), slot::toBuff);
         }
-        return ActionResult.pass(stack);
+        return InteractionResultHolder.pass(stack);
     }
 
     @Nonnull
     @Override
-    public ActionResultType onItemUseFirst(ItemStack stack, ItemUseContext ctx) {
-        World world = ctx.getLevel();
-        PlayerEntity player = ctx.getPlayer();
-        if (!(player instanceof ServerPlayerEntity)) return ActionResultType.PASS;
+    public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext ctx) {
+        Level world = ctx.getLevel();
+        Player player = ctx.getPlayer();
+
+        if (!(player instanceof ServerPlayer)) return InteractionResult.PASS;
+
+        if (player.isShiftKeyDown()) {
+            setActive(stack, !getActive(stack));
+            return InteractionResult.PASS;
+        }
 
         BlockPos pos = ctx.getClickedPos();
         Direction side = ctx.getClickedFace();
@@ -63,19 +73,19 @@ public class KeyRingItem extends LoreItem {
         if (!(itemStack.getItem() instanceof KeyRingItem)) throw new AssertionError("Unexpected KeyRingItem type");
         KeyRingItem itemKeyRing = (KeyRingItem)itemStack.getItem();
 
-        TileEntity tileEntity = world.getBlockEntity(pos);
+        BlockEntity tileEntity = world.getBlockEntity(pos);
 
-        if (tileEntity == null) return ActionResultType.PASS;
-        if (world.isClientSide()) return ActionResultType.SUCCESS; // always succeed on client side
+        if (tileEntity == null) return InteractionResult.PASS;
+        if (world.isClientSide()) return InteractionResult.SUCCESS;
 
         IItemHandler tileInventory;
         LazyOptional<IItemHandler> capability = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side);
         if (capability.isPresent()) {
             tileInventory = capability.orElseThrow(AssertionError::new);
-        } else if (tileEntity instanceof IInventory) {
-            tileInventory = new InvWrapper((IInventory)tileEntity);
+        } else if (tileEntity instanceof Container) {
+            tileInventory = new InvWrapper((Container)tileEntity);
         } else {
-            return ActionResultType.FAIL;
+            return InteractionResult.FAIL;
         }
 
         IItemHandlerModifiable itemStackHandlerKeyRing =  (IItemHandlerModifiable)itemKeyRing.getItemStackHandlerKeyRing(itemStack);
@@ -86,17 +96,17 @@ public class KeyRingItem extends LoreItem {
         }
         tileEntity.setChanged();           // make sure that the tileEntity knows we have changed its contents
 
-        CompoundNBT nbt = itemStack.getOrCreateTag();
+        CompoundTag nbt = itemStack.getOrCreateTag();
         int dirtyCounter = nbt.getInt("dirtyCounter");
         nbt.putInt("dirtyCounter", dirtyCounter + 1);
         itemStack.setTag(nbt);
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Nonnull
     @Override
-    public ICapabilityProvider initCapabilities(ItemStack stack, CompoundNBT oldCapNbt) {
+    public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag oldCapNbt) {
         return new ItemStackInventory(stack, 9*2).setStackValidator(KeyRingItem::isKey);
     }
 
@@ -110,42 +120,68 @@ public class KeyRingItem extends LoreItem {
     }
 
     private static boolean isKey(ItemStack stack) {
-        return stack.getItem().is(TolkienTags.items.KEYS);
+        return stack.is(TolkienTags.items.KEYS);
     }
 
-    public static void onItemPickup(EntityItemPickupEvent event) {
-        PlayerEntity player = event.getPlayer();
-        ItemStack stack = event.getItem().getItem();
-        if (!(player instanceof ServerPlayerEntity) || !isKey(stack)) return;
-
-        for (int i = 0; i < player.inventory.getContainerSize(); i++) {
-            ItemStack pouch = player.inventory.getItem(i);
-            if (!pouch.isEmpty() && pouch.getItem() == KEY_RING.get()) {
-                IItemHandler handler = getItemStackHandlerKeyRing(pouch);
-                ItemStack remainder = InventoryUtils.insertItem(handler, stack, false);
-                if (remainder.isEmpty()) {
-                    event.getItem().setItem(ItemStack.EMPTY);
-                    event.getItem().remove();
-                    player.level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((player.level.random.nextFloat() - player.level.random.nextFloat()) * 0.7F + 1.0F) * 2.0F);
-                    event.setCanceled(true);
-                    return;
-                } else {
-                    if (!ItemStack.matches(remainder, stack)) {
-                        event.getItem().setItem(remainder);
-                        player.level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((player.level.random.nextFloat() - player.level.random.nextFloat()) * 0.7F + 1.0F) * 2.0F);
-                        event.setCanceled(true);
-                    }
-                }
+    @Override
+    public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int itemSlot, boolean isSelected) {
+        //if (world.getDayTime() % 20 == 0) return;
+        if (entity instanceof Player player && getActive(stack)) {
+            for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+                ItemStack keyStack = player.getInventory().getItem(i);
+                if (stack.is(TolkienTags.items.KEYS))
+                    addKeyToInventory(stack, keyStack);
             }
         }
     }
 
-    public static float getFullnessPropertyOverride(ItemStack itemStack, @Nullable World world, @Nullable LivingEntity livingEntity) {
+    public static ItemStack addKeyToInventory(ItemStack keyHolder, ItemStack key) {
+        IItemHandler handler = keyHolder.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).orElse(new ItemStackHandler(KeyRingContainer.CARRIED_SLOT_SIZE));
+        List<Integer> emptySlots = new ArrayList<>();
+        for (int i = 0; i < handler.getSlots(); i++) {
+            ItemStack stackInSlot = handler.getStackInSlot(i);
+            if (stackInSlot.isEmpty()) emptySlots.add(i);
+            if (!stackInSlot.isEmpty() && ItemStack.isSameItemSameTags(stackInSlot, key)) {
+                int j = stackInSlot.getCount() + key.getCount();
+                int maxSize = 64;
+                if (j <= maxSize) {
+                    key.setCount(0);
+                    stackInSlot.setCount(j);
+                } else if (stackInSlot.getCount() < maxSize) {
+                    key.shrink(maxSize - stackInSlot.getCount());
+                    stackInSlot.setCount(maxSize);
+                }
+                if (key.isEmpty()) {
+                    return key;
+                }
+            }
+        }
+        if (emptySlots.isEmpty()) return key;
+        handler.insertItem(emptySlots.get(0), key.split(key.getCount()), false);
+        return key;
+    }
+
+    public static boolean getActive(ItemStack stack) {
+        CompoundTag compound = stack.getTag();
+        if (compound == null || !compound.contains("active")) return false;
+        return compound.getBoolean("active");
+    }
+
+    public static boolean setActive(ItemStack stack, boolean active) {
+        if (!active)
+            stack.removeTagKey("active");
+        else
+            stack.getOrCreateTag().putBoolean("active", active);
+        return active;
+    }
+
+    public static float getFullnessPropertyOverride(ItemStack itemStack, @Nullable ClientLevel world, @Nullable LivingEntity livingEntity, int i) {
         IItemHandler keyRing = getItemStackHandlerKeyRing(itemStack);
         if (keyRing == null) return 0;
         int count = 0;
-        for (int i = 0; i < keyRing.getSlots(); i++) {
-            count+=keyRing.getStackInSlot(i).getCount();
+        int j = i;
+        for (j = 0; j < keyRing.getSlots(); j++) {
+            count+=keyRing.getStackInSlot(j).getCount();
         }
         float fractionEmpty = count / (float)(keyRing.getSlots());
         return 0.0F + fractionEmpty;

@@ -4,11 +4,11 @@ import codechicken.lib.packet.ICustomPacketHandler;
 import codechicken.lib.packet.PacketCustom;
 import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.network.play.IClientPlayNetHandler;
+import net.minecraft.client.multiplayer.ClientPacketListener;
 
 public class ClientPacketHandler implements ICustomPacketHandler.IClientPacketHandler {
     @Override
-    public void handlePacket(PacketCustom packet, Minecraft mc, IClientPlayNetHandler handler) {
+    public void handlePacket(PacketCustom packet, Minecraft mc, ClientPacketListener handler) {
         switch (packet.getType()) {
             case TolkienNetwork.C_SEND_MILESTONES: {
                 handleMilestoneSync(packet);

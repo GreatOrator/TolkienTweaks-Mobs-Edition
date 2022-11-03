@@ -2,26 +2,26 @@ package com.greatorator.tolkienmobs.enchantments;
 
 import com.greatorator.tolkienmobs.TTMConfig;
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.block.CropsBlock;
 import com.greatorator.tolkienmobs.handler.interfaces.IHobbitHarvest;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.CropsBlock;
-import net.minecraft.block.NetherWartBlock;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.ToolType;
+import com.greatorator.tolkienmobs.init.TolkienEnchants;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.NetherWartBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -32,8 +32,8 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = TolkienMobs.MODID)
 public class EnchantmentHobbitHarvest extends Enchantment {
 
-    public EnchantmentHobbitHarvest(Rarity rarityIn, EquipmentSlotType... slots) {
-        super(rarityIn, EnchantmentType.DIGGER, slots);
+    public EnchantmentHobbitHarvest(Rarity rarityIn, EquipmentSlot... slots) {
+        super(rarityIn, EnchantmentCategory.DIGGER, slots);
     }
 
     @Override
@@ -58,20 +58,12 @@ public class EnchantmentHobbitHarvest extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        if (stack.getItem() instanceof HoeItem || stack.getToolTypes().contains(ToolType.HOE)) {
-            return (stack.getItem() instanceof HoeItem || stack.getToolTypes().contains(ToolType.HOE));
-        }
-
-        return false;
+        return stack.getItem() instanceof HoeItem ? true : super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if (stack.getItem() instanceof HoeItem || stack.getToolTypes().contains(ToolType.HOE)) {
-            return (stack.getItem() instanceof HoeItem || stack.getToolTypes().contains(ToolType.HOE));
-        }
-
-        return false;
+        return stack.getItem() instanceof HoeItem ? true : super.canEnchant(stack);
     }
 
     @Override
@@ -88,11 +80,11 @@ public class EnchantmentHobbitHarvest extends Enchantment {
     public static void hobbitHarvest(PlayerInteractEvent.RightClickBlock event) {
 
         ItemStack holding = event.getPlayer().getMainHandItem();
-        int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentGenerator.HOBBIT_HARVEST.get(), holding);
+        int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(TolkienEnchants.HOBBIT_HARVEST.get(), holding);
 
-        if (enchantmentLevel > 0 && holding.isEnchanted() && EnchantmentHelper.getEnchantments(holding).containsKey(EnchantmentGenerator.HOBBIT_HARVEST.get()) && !holding.isEmpty()) {
-            World world = event.getWorld();
-            PlayerEntity player = event.getPlayer();
+        if (enchantmentLevel > 0 && holding.isEnchanted() && EnchantmentHelper.getEnchantments(holding).containsKey(TolkienEnchants.HOBBIT_HARVEST.get()) && !holding.isEmpty()) {
+            Level world = event.getWorld();
+            Player player = event.getPlayer();
             boolean replant = TTMConfig.replant;
             for (int x = -enchantmentLevel; x <= enchantmentLevel; x++) {
                 for (int z = -enchantmentLevel; z <= enchantmentLevel; z++) {
@@ -104,7 +96,7 @@ public class EnchantmentHobbitHarvest extends Enchantment {
                         IHobbitHarvest harvestable = (IHobbitHarvest) block;
                         if (harvestable.canHarvest(state)) {
                             harvestable.harvest(world, blockPos, state, player, replant);
-                            player.swing(Hand.MAIN_HAND);
+                            player.swing(InteractionHand.MAIN_HAND);
                             event.setCanceled(true);
                         }
                     } else if (block instanceof CropsBlock) {
@@ -118,7 +110,7 @@ public class EnchantmentHobbitHarvest extends Enchantment {
 
                         if (crop.isMaxAge(state)) {
                             if (!world.isClientSide) {
-                                List<ItemStack> drops = Block.getDrops(state, (ServerWorld) world, blockPos, null, player, player.getMainHandItem());
+                                List<ItemStack> drops = Block.getDrops(state, (ServerLevel) world, blockPos, null, player, player.getMainHandItem());
                                 Item seedItem = crop.getCloneItemStack(world, blockPos, state).getItem();
                                 for (ItemStack drop : drops) {
                                     if (replant && !seedDrop) {
@@ -128,7 +120,7 @@ public class EnchantmentHobbitHarvest extends Enchantment {
                                         }
                                     }
                                     if (!drop.isEmpty()) {
-                                        InventoryHelper.dropItemStack(world, blockPos.getX() + .5, blockPos.getY() + .5, blockPos.getZ() + .5, drop);
+                                        Containers.dropItemStack(world, blockPos.getX() + .5, blockPos.getY() + .5, blockPos.getZ() + .5, drop);
                                     }
                                 }
                                 world.destroyBlock(blockPos, false, player);
@@ -136,7 +128,7 @@ public class EnchantmentHobbitHarvest extends Enchantment {
                                     world.setBlock(blockPos, crop.getStateForAge(0), 3);
                                 }
                             }
-                            player.swing(Hand.MAIN_HAND);
+                            player.swing(InteractionHand.MAIN_HAND);
                             event.setCanceled(true);
                         }
                     } else if (block instanceof NetherWartBlock) {
@@ -151,7 +143,7 @@ public class EnchantmentHobbitHarvest extends Enchantment {
 
                         if (state.getValue(NetherWartBlock.AGE) >= 3) {
                             if (!world.isClientSide) {
-                                List<ItemStack> drops = Block.getDrops(state, (ServerWorld) world, blockPos, null, player, player.getMainHandItem());
+                                List<ItemStack> drops = Block.getDrops(state, (ServerLevel) world, blockPos, null, player, player.getMainHandItem());
                                 Item seedItem = crop.getCloneItemStack(world, blockPos, state).getItem();
                                 for (ItemStack drop : drops) {
                                     if (replant && !seedDrop) {
@@ -161,7 +153,7 @@ public class EnchantmentHobbitHarvest extends Enchantment {
                                         }
                                     }
                                     if (!drop.isEmpty()) {
-                                        InventoryHelper.dropItemStack(world, blockPos.getX() + .5, blockPos.getY() + .5, blockPos.getZ() + .5, drop);
+                                        Containers.dropItemStack(world, blockPos.getX() + .5, blockPos.getY() + .5, blockPos.getZ() + .5, drop);
                                     }
                                 }
                                 world.destroyBlock(blockPos, false, player);
@@ -169,7 +161,7 @@ public class EnchantmentHobbitHarvest extends Enchantment {
                                     world.setBlock(blockPos, crop.defaultBlockState(), 3);
                                 }
                             }
-                            player.swing(Hand.MAIN_HAND);
+                            player.swing(InteractionHand.MAIN_HAND);
                             event.setCanceled(true);
                         }
                     }

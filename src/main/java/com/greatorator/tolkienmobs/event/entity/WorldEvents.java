@@ -1,30 +1,33 @@
 package com.greatorator.tolkienmobs.event.entity;
 
 import com.brandon3055.brandonscore.api.TimeKeeper;
+import com.greatorator.tolkienmobs.init.TolkienBiomes;
+import com.greatorator.tolkienmobs.init.TolkienPotions;
+import com.greatorator.tolkienmobs.init.TolkienStructures;
 import com.greatorator.tolkienmobs.utils.TTMRand;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMStructureConfig;
 import com.mojang.serialization.Codec;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.ChunkGenerator;
+import com.sun.jna.Structure;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 import java.lang.reflect.Method;
 import java.util.*;
@@ -34,18 +37,18 @@ import static com.greatorator.tolkienmobs.world.gen.TTMFeature.*;
 
 public class WorldEvents {
     public static int serverTicks = 0;
-    private static WeakHashMap<MobEntity, Long> ttSpawnedMobs = new WeakHashMap<>();
+    private static WeakHashMap<Mob, Long> ttSpawnedMobs = new WeakHashMap<>();
 
     public static void onPlayerUpdate(TickEvent.PlayerTickEvent event){
-        PlayerEntity player = event.player;
-        Biome biome = player.level.getBiome(player.blockPosition());
+        Player player = event.player;
+        Biome biome = player.level.getBiome(player.blockPosition()).value();
 
-        if(!(player instanceof ServerPlayerEntity) || !player.isAlive()) return;
+        if(!(player instanceof ServerPlayer) || !player.isAlive()) return;
 
         if(player.isInWater() && TimeKeeper.getServerTick() % 20 == 0) {
 
-            if(biome.getRegistryName().equals(BiomeGenerator.BIOME_MIRKWOOD.getRegistryName())) {
-                player.addEffect(new EffectInstance(PotionGenerator.SLEEPNESIA.get(), 1200, 8));
+            if(biome.getRegistryName().equals(TolkienBiomes.BIOME_MIRKWOOD.getRegistryName())) {
+                player.addEffect(new MobEffectInstance(TolkienPotions.SLEEPNESIA.get(), 1200, 8));
             }
         }
     }
@@ -71,14 +74,14 @@ public class WorldEvents {
         }
     }
 
-    public static void onMobSpawnedBySpawner(MobEntity entity) {
+    public static void onMobSpawnedBySpawner(Mob entity) {
         ttSpawnedMobs.put(entity, System.currentTimeMillis());
     }
 
     private static Method GETCODEC_METHOD;
     public static void addDimensionalSpacing(final WorldEvent.Load event) {
-        if(event.getWorld() instanceof ServerWorld){
-            ServerWorld serverWorld = (ServerWorld)event.getWorld();
+        if(event.getWorld() instanceof ServerLevel){
+            ServerLevel serverWorld = (ServerLevel)event.getWorld();
 
             try {
                 if(GETCODEC_METHOD == null) GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
@@ -90,28 +93,28 @@ public class WorldEvents {
             }
 
             if(serverWorld.getChunkSource().getGenerator() instanceof FlatChunkGenerator &&
-                    serverWorld.dimension().equals(World.OVERWORLD)){
+                    serverWorld.dimension().equals(Level.OVERWORLD)){
                 return;
             }
 
             Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkSource().generator.getSettings().structureConfig());
 
-            tempMap.putIfAbsent(StructureGenerator.TTMHOUSE_ELVEN.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOUSE_ELVEN.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMHOUSE_HOBBIT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOUSE_HOBBIT.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMHOUSE_HUMAN.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOUSE_HUMAN.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMHOUSE_DWARF.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOUSE_DWARF.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMHOUSE_DESERT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMHOUSE_DESERT.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMBARROW.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMBARROW.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMRUIN_LARGE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMRUIN_LARGE.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMRUIN_SMALL.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMRUIN_SMALL.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMSWAMP_HAG_HUT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMSWAMP_HAG_HUT.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMSPIDER_TREE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMSPIDER_TREE.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMWARG_PIT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMWARG_PIT.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMMINOTAUR_MAZE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMMINOTAUR_MAZE.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMGOLLUM_CAVE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMGOLLUM_CAVE.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMDARK_TOWER.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMDARK_TOWER.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMINN_DESERT.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMINN_DESERT.get()));
-            tempMap.putIfAbsent(StructureGenerator.TTMSPIDER_CAVE.get(), DimensionStructuresSettings.DEFAULTS.get(StructureGenerator.TTMSPIDER_CAVE.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMHOUSE_ELVEN.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMHOUSE_ELVEN.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMHOUSE_HOBBIT.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMHOUSE_HOBBIT.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMHOUSE_HUMAN.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMHOUSE_HUMAN.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMHOUSE_DWARF.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMHOUSE_DWARF.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMHOUSE_DESERT.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMHOUSE_DESERT.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMBARROW.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMBARROW.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMRUIN_LARGE.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMRUIN_LARGE.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMRUIN_SMALL.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMRUIN_SMALL.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMSWAMP_HAG_HUT.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMSWAMP_HAG_HUT.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMSPIDER_TREE.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMSPIDER_TREE.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMWARG_PIT.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMWARG_PIT.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMMINOTAUR_MAZE.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMMINOTAUR_MAZE.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMGOLLUM_CAVE.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMGOLLUM_CAVE.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMDARK_TOWER.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMDARK_TOWER.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMINN_DESERT.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMINN_DESERT.get()));
+            tempMap.putIfAbsent(TolkienStructures.TTMSPIDER_CAVE.get(), DimensionStructuresSettings.DEFAULTS.get(TolkienStructures.TTMSPIDER_CAVE.get()));
 
             serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
         }
@@ -119,23 +122,23 @@ public class WorldEvents {
 
     public static void biomeModification(final BiomeLoadingEvent event) {
 
-        if (event.getName().equals(BiomeGenerator.BIOME_LORINAND)) {
+        if (event.getName().equals(TolkienBiomes.BIOME_LORINAND)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOUSE_ELVEN);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_BARROWDOWNS)) {
+        if (event.getName().equals(TolkienBiomes.BIOME_BARROWDOWNS)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMBARROW);
             event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, STONE_SPIKE_CONFIG);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_MARSHES)) {
+        if (event.getName().equals(TolkienBiomes.BIOME_MARSHES)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMSWAMP_HAG_HUT);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_SHIRE)) {
+        if (event.getName().equals(TolkienBiomes.BIOME_SHIRE)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOUSE_HOBBIT);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_MIRKWOOD)) {
+        if (event.getName().equals(TolkienBiomes.BIOME_MIRKWOOD)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMSPIDER_TREE);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_MORDOR)) {
+        if (event.getName().equals(TolkienBiomes.BIOME_MORDOR)) {
             int i = TTMRand.getRandomInteger(100, 1);
 
             if(i<=25){
@@ -147,26 +150,26 @@ public class WorldEvents {
                 event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMWARG_PIT);
             }
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_IRONHILLS)) {
+        if (event.getName().equals(TolkienBiomes.BIOME_IRONHILLS)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOUSE_DWARF);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_FANGORN)) {
+        if (event.getName().equals(TolkienBiomes.BIOME_FANGORN)) {
             event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, SMALL_LOG_CONFIG);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_GLADDEN)) {
+        if (event.getName().equals(TolkienBiomes.BIOME_GLADDEN)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMHOUSE_HUMAN);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_DAGORLAD)) {
+        if (event.getName().equals(TolkienBiomes.BIOME_DAGORLAD)) {
             event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, RANDOM_RUBBLE_CONFIG);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_OLDFOREST)) {
+        if (event.getName().equals(TolkienBiomes.BIOME_OLDFOREST)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMMINOTAUR_MAZE);
             event.getGeneration().addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, BLEAK_LAND_CONFIG);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_HITHAEGLIR)) {
+        if (event.getName().equals(TolkienBiomes.BIOME_HITHAEGLIR)) {
             event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMGOLLUM_CAVE);
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_HARADWAITH)) {
+        if (event.getName().equals(TolkienBiomes.BIOME_HARADWAITH)) {
             int i = TTMRand.getRandomInteger(100, 1);
 
             if(i<=50){
@@ -175,7 +178,7 @@ public class WorldEvents {
                 event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMINN_DESERT);
             }
         }
-        if (event.getName().equals(BiomeGenerator.BIOME_DAGORLAD)) {
+        if (event.getName().equals(TolkienBiomes.BIOME_DAGORLAD)) {
             int i = TTMRand.getRandomInteger(100, 1);
 
             if(i<=25){
@@ -186,7 +189,7 @@ public class WorldEvents {
         }
 
         /* Used to test for structure generation */
-        if (event.getCategory() == Biome.Category.PLAINS) {
+        if (event.getCategory() == Biome.BiomeCategory.PLAINS) {
 //            event.getGeneration().getStructures().add(() -> TTMStructureConfig.CONFIGURED_TTMWARG_PIT);
         }
     }

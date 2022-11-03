@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.event.entity;
 
 import com.greatorator.tolkienmobs.entity.boss.ShelobEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.monster.CaveSpiderEntity;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.CaveSpider;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityEvent;
 
 public class SpiderEvent extends EntityEvent {
@@ -13,23 +13,23 @@ public class SpiderEvent extends EntityEvent {
         super(entity);
     }
 
-    public CaveSpiderEntity getSummoner()
+    public CaveSpider getSummoner()
     {
-        return (CaveSpiderEntity) getEntity();
+        return (CaveSpider) getEntity();
     }
 
     @HasResult
     public static class SummonAidEvent extends SpiderEvent {
-        private CaveSpiderEntity customSummonedAid;
+        private CaveSpider customSummonedAid;
         
-        private final World world;
+        private final Level world;
         private final int x;
         private final int y;
         private final int z;
         private final LivingEntity attacker;
         private final double summonChance;
         
-        public SummonAidEvent(ShelobEntity entity, World world, int x, int y, int z, LivingEntity attacker, double summonChance)
+        public SummonAidEvent(ShelobEntity entity, Level world, int x, int y, int z, LivingEntity attacker, double summonChance)
         {
             super(entity);
             this.world = world;
@@ -43,9 +43,9 @@ public class SpiderEvent extends EntityEvent {
         /**
          * Populate this field to have a custom zombie instead of a normal zombie summoned
          */
-        public CaveSpiderEntity getCustomSummonedAid() { return customSummonedAid; }
-        public void setCustomSummonedAid(CaveSpiderEntity customSummonedAid) { this.customSummonedAid = customSummonedAid; }
-        public World getWorld() { return world; }
+        public CaveSpider getCustomSummonedAid() { return customSummonedAid; }
+        public void setCustomSummonedAid(CaveSpider customSummonedAid) { this.customSummonedAid = customSummonedAid; }
+        public Level getWorld() { return world; }
         public int getX() { return x; }
         public int getY() { return y; }
         public int getZ() { return z; }

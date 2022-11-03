@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.container.gui;
 
 import com.brandon3055.brandonscore.BCConfig;
-import com.brandon3055.brandonscore.client.BCSprites;
+import com.brandon3055.brandonscore.client.BCGuiSprites;
 import com.brandon3055.brandonscore.client.gui.GuiToolkit;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElement;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElementManager;
@@ -17,14 +17,14 @@ import com.brandon3055.brandonscore.inventory.SlotMover;
 import com.greatorator.tolkienmobs.container.LockableDoubleTreasureChestContainer;
 import com.greatorator.tolkienmobs.entity.tile.LockableDoubleTreasureChestTile;
 import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Util;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.regex.Pattern;
 
@@ -34,9 +34,9 @@ public class LockableDoubleTreasureChestScreen extends ModularGuiContainer<Locka
     protected GuiToolkit<LockableDoubleTreasureChestScreen> toolkit = new GuiToolkit<>(this, 171, 215).setTranslationPrefix("gui.tolkienmobs.lockable_double_treasure_chest");
     private static final Pattern invalidCharacters = Pattern.compile("[^a-zA-Z-_\\d:]");
     private LockableDoubleTreasureChestTile tile;
-    private final PlayerEntity player;
+    private final Player player;
 
-    public LockableDoubleTreasureChestScreen(LockableDoubleTreasureChestContainer container, PlayerInventory inv, ITextComponent titleIn) {
+    public LockableDoubleTreasureChestScreen(LockableDoubleTreasureChestContainer container, Inventory inv, Component titleIn) {
         super(container, inv, titleIn);
         this.tile = container.tile;
         this.player = inv.player;
@@ -45,11 +45,11 @@ public class LockableDoubleTreasureChestScreen extends ModularGuiContainer<Locka
     @Override
     public void addElements(GuiElementManager manager) {
         TGuiBase template = new TGuiBase(this);
-        template.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCSprites.getThemed("background_dynamic"));
+        template.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCGuiSprites.getThemed("background_dynamic"));
         template.background.onReload(guiTex -> guiTex.setPos(guiLeft(), guiTop()));
         toolkit.loadTemplate(template);
         int bgPad = 5;
-        ItemStack stack = player.getItemInHand(Hand.MAIN_HAND);
+        ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
 
         if (player.isCreative() && player.isCrouching()) {
             // Key Code
@@ -68,16 +68,15 @@ public class LockableDoubleTreasureChestScreen extends ModularGuiContainer<Locka
                     .setMaxXPos(codeBG.maxXPos() - 1, true);
             template.background.addChild(codeBG);
             GuiTextField KeyStoneCode = toolkit.createTextField(template.background)
-                    .setFieldEnabled(true)
-                    .setText(tile.keyCode.get())
-                    .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("instructions"))
-                    .setValidator(toolkit.catchyValidator(s -> s.equals("") || !invalidCharacters.matcher(s).find()))
+                    .setValue(tile.keyCode.get())
+                    .setHoverText(ChatFormatting.DARK_AQUA + toolkit.i18n("instructions"))
+                    .setFilter(toolkit.catchyValidator(s -> s.equals("") || !invalidCharacters.matcher(s).find()))
                     .setPos(codeBG.xPos() + 2, codeBG.maxYPos() - 11)
                     .setSize(156, 10);
             GuiButton saveCode = codeBG.addChild(toolkit.createButton(toolkit.i18n("saved"), template.background).setAlignment(GuiAlign.CENTER))
                     .setPos(codeBG.xPos() + 40, codeBG.maxYPos() + 2)
                     .setSize(78, 12)
-                    .onPressed(() -> tile.keyCode.set(KeyStoneCode.getText()));
+                    .onPressed(() -> tile.keyCode.set(KeyStoneCode.getValue()));
 
         } else if (stack.getItem() instanceof KeyBaseItem && (KeyBaseItem.getCode(stack).equals(tile.keyCode.get()))){
             template.playerSlots = toolkit.createPlayerSlotsManualMovers(template.background, false, index -> new SlotMover(container.slots.get(index)));
@@ -95,7 +94,7 @@ public class LockableDoubleTreasureChestScreen extends ModularGuiContainer<Locka
             template.title.setXPos(mainSlots.xPos());
             template.title.setMaxYPos(mainSlots.yPos() - 3, false);
         } else {
-            player.sendMessage(new TranslationTextComponent(MODID + ".msg.wrong_key").withStyle(TextFormatting.RED), Util.NIL_UUID);
+            player.sendMessage(new TranslatableComponent(MODID + ".msg.wrong_key").withStyle(ChatFormatting.RED), Util.NIL_UUID);
         }
     }
 }

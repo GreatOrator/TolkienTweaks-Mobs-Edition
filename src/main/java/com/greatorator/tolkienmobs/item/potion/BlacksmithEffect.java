@@ -1,10 +1,10 @@
 package com.greatorator.tolkienmobs.item.potion;
 
 import com.google.common.collect.Lists;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class BlacksmithEffect extends PotionBaseEffect {
     public static BlacksmithEffect instance = null;
     public static int damageTime = 20;
 
-    public BlacksmithEffect(EffectType typeIn, int liquidColorIn) {
+    public BlacksmithEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
         instance = this;
     }
@@ -24,11 +24,11 @@ public class BlacksmithEffect extends PotionBaseEffect {
             return;
 
         List<ItemStack> equipment;
-        if (entity instanceof PlayerEntity) {
+        if (entity instanceof Player) {
             equipment = new ArrayList<>();
-            PlayerEntity player = (PlayerEntity) entity;
-            for (int i = 0; i < player.inventory.getContainerSize(); i++) {
-                equipment.add(player.inventory.getItem(i));
+            Player player = (Player) entity;
+            for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+                equipment.add(player.getInventory().getItem(i));
             }
         } else {
             equipment = Lists.newArrayList(entity.getAllSlots());

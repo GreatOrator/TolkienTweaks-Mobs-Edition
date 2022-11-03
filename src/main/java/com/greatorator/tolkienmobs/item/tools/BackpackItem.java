@@ -2,21 +2,23 @@ package com.greatorator.tolkienmobs.item.tools;
 
 import com.greatorator.tolkienmobs.entity.tile.BackpackTile;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+
+import javax.annotation.Nonnull;
 
 public class BackpackItem extends BlockItem {
     public BackpackItem(Block block, Properties properties) {
@@ -24,43 +26,42 @@ public class BackpackItem extends BlockItem {
     }
 
     @Override
-    public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
-    {
-        ItemStack itemstack = playerIn.getItemInHand(handIn);
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player player, @Nonnull InteractionHand hand) {
+        ItemStack itemstack = player.getItemInHand(hand);
 
         if(!worldIn.isClientSide)
         {
-            if(handIn == Hand.MAIN_HAND)
+            if(hand == InteractionHand.MAIN_HAND)
             {
-                if(itemstack.getItem() == this && !playerIn.isCrouching())
+                if(itemstack.getItem() == this && !player.isCrouching())
                 {
 //                    NetworkHooks.openGui((ServerPlayerEntity) playerIn, this);
                 }
             }
         }
-        return ActionResult.success(itemstack);
+        return InteractionResultHolder.success(itemstack);
     }
 
     @Override
-    public ActionResultType useOn(ItemUseContext context)
+    public InteractionResult useOn(UseOnContext context)
     {
-        ActionResultType actionresulttype = this.place(new BlockItemUseContext(context));
+        InteractionResult actionresulttype = this.place((BlockPlaceContext) context);
         return !actionresulttype.consumesAction() ? this.use(context.getLevel(), context.getPlayer(), context.getHand()).getResult() : actionresulttype;
     }
-    @Override
-    public ActionResultType place(BlockItemUseContext context)
+
+    public InteractionResult place(BlockPlaceContext context)
     {
-        if(!context.canPlace() || (context.getHand() == Hand.MAIN_HAND && !context.getPlayer().isCrouching()))
+        if(!context.canPlace() || (context.getHand() == InteractionHand.MAIN_HAND && !context.getPlayer().isCrouching()))
         {
-            return ActionResultType.FAIL;
+            return InteractionResult.FAIL;
         }
         else
         {
-            BlockItemUseContext blockitemusecontext = this.updatePlacementContext(context);
+            BlockPlaceContext blockitemusecontext = this.updatePlacementContext((BlockPlaceContext) context);
 
             if(blockitemusecontext == null)
             {
-                return ActionResultType.FAIL;
+                return InteractionResult.FAIL;
             }
             else
             {
@@ -68,18 +69,18 @@ public class BackpackItem extends BlockItem {
 
                 if(blockstate == null)
                 {
-                    return ActionResultType.FAIL;
+                    return InteractionResult.FAIL;
                 }
 
                 else if(!this.placeBlock(blockitemusecontext, blockstate))
                 {
-                    return ActionResultType.FAIL;
+                    return InteractionResult.FAIL;
                 }
                 else
                 {
                     BlockPos blockpos = blockitemusecontext.getClickedPos();
-                    World world = blockitemusecontext.getLevel();
-                    PlayerEntity player = blockitemusecontext.getPlayer();
+                    Level world = blockitemusecontext.getLevel();
+                    Player player = blockitemusecontext.getPlayer();
                     ItemStack itemstack = blockitemusecontext.getItemInHand();
                     BlockState blockstate1 = world.getBlockState(blockpos);
                     Block block = blockstate1.getBlock();
@@ -99,21 +100,21 @@ public class BackpackItem extends BlockItem {
                             }
                         }
 
-                        if(player instanceof ServerPlayerEntity)
+                        if(player instanceof ServerPlayer)
                         {
-                            CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayerEntity)player, blockpos, itemstack);
+                            CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayer)player, blockpos, itemstack);
                         }
                     }
 
                     SoundType soundtype = blockstate1.getSoundType(world, blockpos, context.getPlayer());
-                    world.playSound(player, blockpos, this.getPlaceSound(blockstate1, world, blockpos, player), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                    world.playSound(player, blockpos, this.getPlaceSound(blockstate1, world, blockpos, player), SoundSource.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
 
-                    if(player == null || !player.abilities.instabuild)
+                    if(player == null || !player.getAbilities().instabuild)
                     {
                         itemstack.shrink(1);
                     }
 
-                    return ActionResultType.sidedSuccess(world.isClientSide);
+                    return InteractionResult.sidedSuccess(world.isClientSide);
                 }
             }
         }

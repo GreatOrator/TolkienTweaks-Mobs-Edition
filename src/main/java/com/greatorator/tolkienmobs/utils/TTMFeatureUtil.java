@@ -2,26 +2,24 @@ package com.greatorator.tolkienmobs.utils;
 
 import com.greatorator.tolkienmobs.world.gen.feature.TTMTreeGenerator;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMTreeFeatureConfig;
-import net.minecraft.block.AirBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.gen.IWorldGenerationReader;
-import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.TreeFeature;
-import net.minecraft.world.gen.trunkplacer.AbstractTrunkPlacer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.AirBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.TreeFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
+import net.minecraft.world.level.material.Material;
 
 import java.util.Random;
 import java.util.Set;
 
 public class TTMFeatureUtil {
-    public static void putLeafBlock(IWorldGenerationReader world, Random random, BlockPos pos, BlockStateProvider state, Set<BlockPos> leavesPos) {
+    public static void putLeafBlock(WorldGenLevel world, Random random, BlockPos pos, BlockStateProvider state, Set<BlockPos> leavesPos) {
         if (/*leavesPos.contains(pos) ||*/ !TreeFeature.validTreePos(world, pos))
             return;
 
@@ -29,7 +27,7 @@ public class TTMFeatureUtil {
         leavesPos.add(pos.immutable());
     }
 
-    public static void makeLeafCircle(IWorldGenerationReader world, Random random, BlockPos centerPos, float radius, BlockStateProvider state, Set<BlockPos> leaves) {
+    public static void makeLeafCircle(WorldGenLevel world, Random random, BlockPos centerPos, float radius, BlockStateProvider state, Set<BlockPos> leaves) {
         // Normally, I'd use mutable pos here but there are multiple bits of logic down the line that force
         // the pos to be immutable causing multiple same BlockPos instances to exist.
         float radiusSquared = radius * radius;
@@ -51,7 +49,7 @@ public class TTMFeatureUtil {
         }
     }
 
-    public static void makeLeafSpheroid(IWorldGenerationReader world, Random random, BlockPos centerPos, float xzRadius, float yRadius, float verticalBias, BlockStateProvider state, Set<BlockPos> leaves) {
+    public static void makeLeafSpheroid(WorldGenLevel world, Random random, BlockPos centerPos, float xzRadius, float yRadius, float verticalBias, BlockStateProvider state, Set<BlockPos> leaves) {
         float xzRadiusSquared = xzRadius * xzRadius;
         float yRadiusSquared = yRadius * yRadius;
         float superRadiusSquared = xzRadiusSquared * yRadiusSquared;
@@ -101,7 +99,7 @@ public class TTMFeatureUtil {
         }
     }
 
-    public static void makeLeafSpheroid(IWorldGenerationReader world, Random random, BlockPos centerPos, float radius, BlockStateProvider state, Set<BlockPos> leaves) {
+    public static void makeLeafSpheroid(WorldGenLevel world, Random random, BlockPos centerPos, float radius, BlockStateProvider state, Set<BlockPos> leaves) {
         float radiusSquared = radius * radius;
         putLeafBlock(world, random, centerPos, state, leaves);
 
@@ -148,7 +146,7 @@ public class TTMFeatureUtil {
         }
     }
 
-    public static boolean hasAirAround(IWorldGenerationReader world, BlockPos pos) {
+    public static boolean hasAirAround(WorldGenLevel world, BlockPos pos) {
         for (Direction e : directionsExceptDown) {
             if (world.isStateAtPosition(pos, b -> b.getBlock() instanceof AirBlock)) {
                 return true;
@@ -158,9 +156,9 @@ public class TTMFeatureUtil {
         return false;
     }
 
-    public static void drawBresenhamBranch(IWorldGenerationReader world, Random random, BlockPos from, BlockPos to, Set<BlockPos> state, MutableBoundingBox mbb, BaseTreeFeatureConfig config) {
+    public static void drawBresenhamBranch(LevelAccessor world, Random random, BlockPos from, BlockPos to, Set<BlockPos> state, BlockPos.MutableBlockPos mbb, TreeConfiguration config) {
         for (BlockPos pixel : getBresenhamArrays(from, to)) {
-            AbstractTrunkPlacer.placeLog(world, random, pixel, state, mbb, config);
+            TrunkPlacer.placeLog(world, random, pixel, state, mbb, config);
         }
     }
 
@@ -175,14 +173,14 @@ public class TTMFeatureUtil {
         );
     }
 
-    public static void drawBresenhamBranch(TTMTreeGenerator<? extends TTMTreeFeatureConfig> generator, IWorld world, Random random, BlockPos from, BlockPos to, Set<BlockPos> state, MutableBoundingBox mbb, TTMTreeFeatureConfig config) {
+    public static void drawBresenhamBranch(TTMTreeGenerator<? extends TTMTreeFeatureConfig> generator, LevelAccessor world, Random random, BlockPos from, BlockPos to, Set<BlockPos> state, BlockPos.MutableBlockPos mbb, TTMTreeFeatureConfig config) {
         for (BlockPos pixel : getBresenhamArrays(from, to)) {
             generator.setBranchBlockState(world, random, pixel, state, mbb, config);
             //world.setBlockState(pixel, state);
         }
     }
 
-    public static void drawBresenhamTree(IWorld world, BlockPos from, BlockPos to, BlockState state, Set<BlockPos> treepos) {
+    public static void drawBresenhamTree(LevelAccessor world, BlockPos from, BlockPos to, BlockState state, Set<BlockPos> treepos) {
         for (BlockPos pixel : getBresenhamArrays(from, to)) {
             world.setBlock(pixel, state, 3);
             treepos.add(pixel.immutable());
@@ -272,7 +270,7 @@ public class TTMFeatureUtil {
         return lineArray;
     }
 
-    public static void makeLeafCircle(IWorld world, BlockPos pos, int rad, BlockState state, Set<BlockPos> leaves, boolean useHack) {
+    public static void makeLeafCircle(LevelAccessor world, BlockPos pos, int rad, BlockState state, Set<BlockPos> leaves, boolean useHack) {
         // trace out a quadrant
         for (byte dx = 0; dx <= rad; dx++) {
             for (byte dz = 0; dz <= rad; dz++) {
@@ -292,16 +290,16 @@ public class TTMFeatureUtil {
         }
     }
 
-    public static void putLeafBlock(IWorld world, BlockPos pos, BlockState state, Set<BlockPos> leavespos) {
+    public static void putLeafBlock(LevelAccessor world, BlockPos pos, BlockState state, Set<BlockPos> leavespos) {
         BlockState whatsThere = world.getBlockState(pos);
 
-        if (whatsThere.canBeReplacedByLeaves(world, pos) && whatsThere.getBlock() != state.getBlock()) {
+        if (whatsThere.isSolidRender(world, pos) && whatsThere.getBlock() != state.getBlock()) {
             world.setBlock(pos, state, 3);
             leavespos.add(pos.immutable());
         }
     }
 
-    public static void makeLeafCircle2(IWorld world, BlockPos pos, int rad, BlockState state, Set<BlockPos> leaves,  boolean useHack) {
+    public static void makeLeafCircle2(LevelAccessor world, BlockPos pos, int rad, BlockState state, Set<BlockPos> leaves,  boolean useHack) {
         for (byte dx = 0; dx <= rad; dx++) {
             for (byte dz = 0; dz <= rad; dz++) {
 
@@ -322,7 +320,7 @@ public class TTMFeatureUtil {
     /**
      * Checks an area to see if it consists of flat natural ground below and air above
      */
-    public static boolean isAreaSuitable(IWorld world, BlockPos pos, int width, int height, int depth) {
+    public static boolean isAreaSuitable(LevelAccessor world, BlockPos pos, int width, int height, int depth) {
         boolean flag = true;
 
         // check if there's anything within the diameter
@@ -351,7 +349,7 @@ public class TTMFeatureUtil {
         return flag;
     }
 
-    public static void drawBlob(IWorld world, BlockPos pos, int rad, BlockState state) {
+    public static void drawBlob(LevelAccessor world, BlockPos pos, int rad, BlockState state) {
         for (byte dx = 0; dx <= rad; dx++) {
             for (byte dy = 0; dy <= rad; dy++) {
                 for (byte dz = 0; dz <= rad; dz++) {
@@ -380,7 +378,7 @@ public class TTMFeatureUtil {
         }
     }
 
-    public static void drawLeafBlob(IWorld world, BlockPos pos, int rad, BlockState state, Set<BlockPos> leaves) {
+    public static void drawLeafBlob(LevelAccessor world, BlockPos pos, int rad, BlockState state, Set<BlockPos> leaves) {
         for (byte dx = 0; dx <= rad; dx++) {
             for (byte dy = 0; dy <= rad; dy++) {
                 for (byte dz = 0; dz <= rad; dz++) {
@@ -408,7 +406,7 @@ public class TTMFeatureUtil {
         }
     }
 
-    public static boolean surroundedByAir(IWorldReader world, BlockPos pos) {
+    public static boolean surroundedByAir(LevelAccessor world, BlockPos pos) {
         for (Direction e : Direction.values()) {
             if (!world.isEmptyBlock(pos.relative(e))) {
                 return false;
@@ -420,7 +418,7 @@ public class TTMFeatureUtil {
 
     private static final Direction[] directionsExceptDown = new Direction[]{Direction.UP, Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST};
 
-    public static boolean hasAirAround(IWorld world, BlockPos pos) {
+    public static boolean hasAirAround(LevelAccessor world, BlockPos pos) {
         for (Direction e : directionsExceptDown) {
             if (world.isEmptyBlock(pos.relative(e))) {
                 return true;
@@ -430,7 +428,7 @@ public class TTMFeatureUtil {
         return false;
     }
 
-    public static boolean isNearSolid(IWorldReader world, BlockPos pos) {
+    public static boolean isNearSolid(LevelAccessor world, BlockPos pos) {
         for (Direction e : Direction.values()) {
             if (world.hasChunkAt(pos.relative(e))
                     && world.getBlockState(pos.relative(e)).getMaterial().isSolid()) {
@@ -441,7 +439,7 @@ public class TTMFeatureUtil {
         return false;
     }
 
-    public static void setBlockStateProvider(IWorld world, BlockStateProvider provider, Random rand, BlockPos pos) {
+    public static void setBlockStateProvider(LevelAccessor world, BlockStateProvider provider, Random rand, BlockPos pos) {
         world.setBlock(pos, provider.getState(rand, pos), 3);
     }
 }

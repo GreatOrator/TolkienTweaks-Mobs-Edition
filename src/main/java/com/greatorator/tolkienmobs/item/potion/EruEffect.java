@@ -1,15 +1,15 @@
 package com.greatorator.tolkienmobs.item.potion;
 
 import com.google.common.collect.ImmutableList;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 
 public class EruEffect extends PotionBaseEffect {
     public static EruEffect instance = null;
     public static int healTime = 20;
 
-    public EruEffect(EffectType typeIn, int liquidColorIn) {
+    public EruEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
     }
 
@@ -20,7 +20,7 @@ public class EruEffect extends PotionBaseEffect {
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        for (EffectInstance effect : ImmutableList.copyOf(entity.getActiveEffects())) {
+        for (MobEffectInstance effect : ImmutableList.copyOf(entity.getActiveEffects())) {
             if (!effect.getEffect().isBeneficial() && !effect.isNoCounter()) {
                 entity.removeEffect(effect.getEffect());
             }

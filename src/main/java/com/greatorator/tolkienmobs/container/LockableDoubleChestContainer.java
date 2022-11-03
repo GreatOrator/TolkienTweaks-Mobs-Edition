@@ -1,17 +1,17 @@
 package com.greatorator.tolkienmobs.container;
 
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
-import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.container.slots.SlotCheckValid2;
 import com.greatorator.tolkienmobs.entity.tile.LockableDoubleChestTile;
+import com.greatorator.tolkienmobs.init.TolkienContainers;
 import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.Hand;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nullable;
@@ -22,14 +22,14 @@ public class LockableDoubleChestContainer extends ContainerBCTile<LockableDouble
     public List<Slot> playerSlots = new ArrayList<>();
     public List<SlotCheckValid2> mainSlots = new ArrayList<>();
 
-    public LockableDoubleChestContainer(int windowId, PlayerInventory playerInv, PacketBuffer extraData) {
-        this(TTMContent.LOCKABLE_DOUBLE_CHEST_CONTAINER, windowId, playerInv, getClientTile(extraData));
+    public LockableDoubleChestContainer(int windowId, Inventory playerInv, FriendlyByteBuf extraData) {
+        this(TolkienContainers.LOCKABLE_DOUBLE_CHEST_CONTAINER, windowId, playerInv, getClientTile(extraData));
         //^^ Don't forget this!
     }
 
-    public LockableDoubleChestContainer(@Nullable ContainerType<?> type, int windowId, PlayerInventory playerInv, LockableDoubleChestTile tile) {
+    public LockableDoubleChestContainer(@Nullable MenuType<?> type, int windowId, Inventory playerInv, LockableDoubleChestTile tile) {
         super(type, windowId, playerInv, tile);
-        ItemStack stack = player.getItemInHand(Hand.MAIN_HAND);
+        ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
 
         if (stack.getItem() instanceof KeyBaseItem && (KeyBaseItem.getCode(stack).equals(tile.keyCode.get()))) {
             //Player Inventory
@@ -45,7 +45,7 @@ public class LockableDoubleChestContainer extends ContainerBCTile<LockableDouble
     }
 
     @Override
-    public ItemStack quickMoveStack(PlayerEntity player, int i) {
+    public ItemStack quickMoveStack(Player player, int i) {
         int playerSlots = 36 + 5;
         IItemHandler handler = tile.mainInventory;
         Slot slot = getSlot(i);

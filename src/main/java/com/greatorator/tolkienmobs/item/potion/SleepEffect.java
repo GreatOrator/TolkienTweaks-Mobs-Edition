@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.item.potion;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.Pose;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
 
 import javax.annotation.Nullable;
 
@@ -12,7 +12,7 @@ public class SleepEffect extends PotionBaseEffect {
     @Nullable
     private Pose forcedPose;
 
-    public SleepEffect(EffectType typeIn, int liquidColorIn) {
+    public SleepEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
     }
 

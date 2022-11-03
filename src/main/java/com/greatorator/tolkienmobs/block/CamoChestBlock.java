@@ -35,7 +35,6 @@ public class CamoChestBlock extends ChameleonBlock<CamoChestTile> {
         this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context) {
         switch((Direction)state.getValue(FACING)) {
@@ -58,7 +57,6 @@ public class CamoChestBlock extends ChameleonBlock<CamoChestTile> {
         return new CamoChestTile(blockPos, blockState);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public BlockState rotate(BlockState state, Rotation direction) {
         return state.setValue(FACING, direction.rotate(state.getValue(FACING)));

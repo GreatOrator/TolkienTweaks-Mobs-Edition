@@ -1,14 +1,15 @@
 package com.greatorator.tolkienmobs.enchantments;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.BookItem;
-import net.minecraft.item.ItemStack;
+import com.greatorator.tolkienmobs.init.TolkienEnchants;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.BookItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -22,8 +23,8 @@ import java.util.UUID;
 public class EnchantmentElvenLongevity extends Enchantment {
     public static Set<UUID> playersWithExtraHealth = new HashSet<>();
 
-    public EnchantmentElvenLongevity(Rarity rarityIn, EquipmentSlotType... slots) {
-        super(rarityIn, EnchantmentType.ARMOR_CHEST, slots);
+    public EnchantmentElvenLongevity(Rarity rarityIn, EquipmentSlot... slots) {
+        super(rarityIn, EnchantmentCategory.ARMOR_CHEST, slots);
     }
 
     @Override
@@ -57,7 +58,7 @@ public class EnchantmentElvenLongevity extends Enchantment {
         LivingEntity entity = event.getEntityLiving();
 
         if (entity.level.isClientSide) {
-            int level = EnchantmentHelper.getEnchantmentLevel(EnchantmentGenerator.ELVEN_LONGEVITY.get(), entity);
+            int level = EnchantmentHelper.getEnchantmentLevel(TolkienEnchants.ELVEN_LONGEVITY.get(), entity);
             float absorb = (float) (10 * level);
             boolean extraHealthListed = playersWithExtraHealth.contains(entity.getUUID());
             boolean hasExtraHealth = level > 0;

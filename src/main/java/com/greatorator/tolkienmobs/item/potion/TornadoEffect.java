@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.item.potion;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.potion.EffectType;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.LivingEntity;
 
 public class TornadoEffect extends PotionBaseEffect {
     public static final String TAG_PITCH = "elemental_tornado_pitch";
@@ -11,7 +11,7 @@ public class TornadoEffect extends PotionBaseEffect {
     public static float rotationSpeed = 2.0f;
 
 
-    public TornadoEffect(EffectType typeIn, int liquidColorIn) {
+    public TornadoEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
     }
 
@@ -26,20 +26,20 @@ public class TornadoEffect extends PotionBaseEffect {
         float randPitch = (entity.getRandom().nextFloat() * maxRand * 2) - maxRand;
         float randYaw = (entity.getRandom().nextFloat() * maxRand * 2) - maxRand;
 
-        if (MathHelper.abs(pitch + randPitch) > maxRotation) {
+        if (Mth.abs(pitch + randPitch) > maxRotation) {
             pitch += -randPitch;
         } else {
             pitch += randPitch;
         }
 
-        if (MathHelper.abs(yaw + randYaw) > maxRotation) {
+        if (Mth.abs(yaw + randYaw) > maxRotation) {
             yaw += -randYaw;
         } else {
             yaw += randYaw;
         }
 
-        entity.xRot += pitch;
-        entity.yRot += yaw;
+        entity.xRotO += pitch;
+        entity.yRotO += yaw;
 
         entity.getPersistentData().putFloat(TAG_PITCH, pitch);
         entity.getPersistentData().putFloat(TAG_YAW, yaw);

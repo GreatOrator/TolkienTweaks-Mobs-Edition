@@ -4,7 +4,7 @@ import com.greatorator.tolkienmobs.init.TolkienEntities;
 import com.greatorator.tolkienmobs.init.TolkienItems;
 import com.greatorator.tolkienmobs.init.TolkienTags;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
-import com.greatorator.tolkienmobs.integration.curios.TTMCurios;
+import com.greatorator.tolkienmobs.integration.curios.CuriosIntegration;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -99,11 +99,12 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(TolkienTags.items.FUR).add(TolkienItems.MONSTER_FUR.get());
         tag(TolkienTags.items.SPAWNEGG).add(TolkienEntities.EGG_TTMELVES.get(), TolkienEntities.EGG_TTMDWARF.get(), TolkienEntities.EGG_TTMHUMAN.get(), TolkienEntities.EGG_TTMTHRUSH.get(), TolkienEntities.EGG_TTMFROG.get(), TolkienEntities.EGG_TTMSWARM.get(), TolkienEntities.EGG_TTMSQUIRREL.get(), TolkienEntities.EGG_TTMRAT.get(), TolkienEntities.EGG_TTMAUROCH.get(), TolkienEntities.EGG_TTMMUMAKIL.get(), TolkienEntities.EGG_TTMGOAT.get(), TolkienEntities.EGG_TTMGOBLIN.get(), TolkienEntities.EGG_TTMGOBLINKING.get(), TolkienEntities.EGG_TTMBARROW.get(), TolkienEntities.EGG_TTMBRIGAND.get(), TolkienEntities.EGG_TTMDEEPCLAW.get(), TolkienEntities.EGG_TTMTREEENT.get(), TolkienEntities.EGG_TTMDUERGAR.get(), TolkienEntities.EGG_TTMFELLSPIRIT.get(), TolkienEntities.EGG_TTMSWAMPHAG.get(), TolkienEntities.EGG_TTMMIRKWOODSPIDER.get(), TolkienEntities.EGG_TTMHARADRIM.get(), TolkienEntities.EGG_TTMTROLL.get(), TolkienEntities.EGG_TTMWARG.get(), TolkienEntities.EGG_TTMMORDORORC.get(), TolkienEntities.EGG_TTMHURON.get(), TolkienEntities.EGG_TTMOATHBREAKER.get(), TolkienEntities.EGG_TTMROMIEWALKER.get(), TolkienEntities.EGG_TTMURUKHAI.get(), TolkienEntities.EGG_TTMELEMENTALGOLEM.get(), TolkienEntities.EGG_TTMMINOTAUR.get(), TolkienEntities.EGG_TTMMIMICCHEST.get(), TolkienEntities.EGG_TTMCREBAIN.get(), TolkienEntities.EGG_TTMSHADOWFAX.get(), TolkienEntities.EGG_TTMGOLLUM.get(), TolkienEntities.EGG_TTMNAZGUL.get(), TolkienEntities.EGG_TTMNAZGULSTEED.get(), TolkienEntities.EGG_TTMMITHRILGOLEM.get(), TolkienEntities.EGG_TTMMORGULIRONGOLEM.get(), TolkienEntities.EGG_TTMDESERTDWELLER.get(), TolkienEntities.EGG_TTMWITCHKING.get(), TolkienEntities.EGG_TTMSHELOB.get(), TolkienEntities.EGG_TTMBALROG.get(), TolkienEntities.EGG_TTMWATCHER.get(), TolkienEntities.EGG_TTMGREATEAGLE.get(), TolkienEntities.EGG_TTMGWAHIR.get(), TolkienEntities.EGG_TTMFELLBEAST.get());
         tag(TolkienTags.items.UPGRADES).add(TolkienItems.ITEM_BACKPACK_UPGRADE_SIZE.get(), TolkienItems.ITEM_BACKPACK_UPGRADE_CRAFTING.get(), TolkienItems.ITEM_BACKPACK_UPGRADE_FLUID.get(), TolkienItems.ITEM_BACKPACK_UPGRADE_SLEEPING.get(), TolkienItems.ITEM_BACKPACK_UPGRADE_CAMPFIRE.get());
+        tag(TolkienTags.items.TRINKET).add(TolkienItems.TRINKET_AMULET.get(), TolkienItems.TRINKET_BELT.get(), TolkienItems.TRINKET_CHARM.get(), TolkienItems.TRINKET_CLOAK.get(), TolkienItems.TRINKET_GLOVE.get(), TolkienItems.TRINKET_HAT.get(), TolkienItems.TRINKET_RING.get());
         tag(TolkienTags.tagkeys.BLACKLISTED_ITEMS).add(TolkienItems.ITEM_FANCYSHIELD.get());
         tag(TolkienTags.tagkeys.ALLOWED_FLUIDS).add(Items.WATER_BUCKET);
 
         if (TTMHelper.isCuriosInstalled) {
-            TTMCurios.generateTags(this::tag);
+            CuriosIntegration.generateTags(this::tag);
         }
     }
     @Nonnull

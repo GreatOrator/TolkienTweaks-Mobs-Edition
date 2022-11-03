@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.handler;
 
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.world.entity.LivingEntity;
 
 public abstract class MobModify {
     protected MobModify nextMod;

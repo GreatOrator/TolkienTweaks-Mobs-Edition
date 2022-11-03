@@ -7,8 +7,8 @@ import com.brandon3055.brandonscore.client.gui.modulargui.ModularGuiContainer;
 import com.brandon3055.brandonscore.client.gui.modulargui.templates.TBasicMachine;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.greatorator.tolkienmobs.entity.tile.MorgulironBarrelTile;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
 
 import static com.brandon3055.brandonscore.client.gui.GuiToolkit.GuiLayout.WIDE_EXTRA_TALL;
 import static com.brandon3055.brandonscore.client.gui.GuiToolkit.LayoutPos.TOP_LEFT;
@@ -20,7 +20,7 @@ public class MorgulironBarrelScreen extends ModularGuiContainer<ContainerBCTile<
 
     private MorgulironBarrelTile tile;
 
-    public MorgulironBarrelScreen(ContainerBCTile<MorgulironBarrelTile> container, PlayerInventory inv, ITextComponent title) {
+    public MorgulironBarrelScreen(ContainerBCTile<MorgulironBarrelTile> container, Inventory inv, Component title) {
         super(container, inv, title);
         this.tile = container.tile;
     }

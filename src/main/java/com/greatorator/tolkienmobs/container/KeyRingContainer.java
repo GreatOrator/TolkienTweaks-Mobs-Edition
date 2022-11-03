@@ -3,18 +3,18 @@ package com.greatorator.tolkienmobs.container;
 import com.brandon3055.brandonscore.inventory.ContainerBCore;
 import com.brandon3055.brandonscore.inventory.PlayerSlot;
 import com.brandon3055.brandonscore.inventory.SlotCheckValid;
-import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.init.TolkienContainers;
 import com.greatorator.tolkienmobs.item.tools.KeyRingItem;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.LazyOptional;
@@ -37,13 +37,13 @@ public class KeyRingContainer extends ContainerBCore<KeyRingItem> {
     public ItemStack stack;
     private IItemHandler stackItemHandler;
 
-    public KeyRingContainer(int windowId, PlayerInventory playerInv, PacketBuffer extraData) {
-        super(TTMContent.KEY_RING_CONTAINER, windowId, playerInv, extraData);
+    public KeyRingContainer(int windowId, Inventory playerInv, FriendlyByteBuf extraData) {
+        super(TolkienContainers.KEY_RING_CONTAINER, windowId, playerInv, extraData);
         this.slot = PlayerSlot.fromBuff(extraData);
         onContainerOpen();
     }
 
-    public KeyRingContainer(@Nullable ContainerType type, int windowId, PlayerInventory player, PlayerSlot slot) {
+    public KeyRingContainer(@Nullable MenuType type, int windowId, Inventory player, PlayerSlot slot) {
         super(type, windowId, player);
         this.slot = slot;
         onContainerOpen();
@@ -56,7 +56,7 @@ public class KeyRingContainer extends ContainerBCore<KeyRingItem> {
 
     private void onContainerOpen() {
         stack = slot.getStackInSlot(player);
-        PlayerInventory playerInv = player.inventory;
+        Inventory playerInv = player.getInventory();
         initItemHandler();
         IItemHandler contentHandler = new TransientItemHandlerWrapper(() -> stackItemHandler);
 
@@ -72,7 +72,7 @@ public class KeyRingContainer extends ContainerBCore<KeyRingItem> {
     }
 
     @Override
-    public boolean stillValid(PlayerEntity playerIn) {
+    public boolean stillValid(Player playerIn) {
         if (stack != slot.getStackInSlot(player)) {
             return false;
         }
@@ -92,8 +92,8 @@ public class KeyRingContainer extends ContainerBCore<KeyRingItem> {
     }
 
     @Override
-    public void setAll(List<ItemStack> stacks) {
-        super.setAll(stacks);
+    public void initializeContents(int stateId, List<ItemStack> stacks, ItemStack carried) {
+        super.initializeContents(stateId, stacks, carried);
         ItemStack stack = slot.getStackInSlot(player);
         if (stack != this.stack && !stack.isEmpty() && stack.getCapability(ITEM_HANDLER_CAPABILITY).isPresent()) {
             this.stack = stack; //Because the client side stack is invalidated every time the server sends an update.
@@ -102,8 +102,8 @@ public class KeyRingContainer extends ContainerBCore<KeyRingItem> {
     }
 
     @Override
-    public void setItem(int slotID, ItemStack stack) {
-        super.setItem(slotID, stack);
+    public void setItem(int slotID, int stateId, ItemStack stack) {
+        super.setItem(slotID, stateId, stack);
         stack = slot.getStackInSlot(player);
         if (stack != this.stack && !stack.isEmpty() && stack.getCapability(ITEM_HANDLER_CAPABILITY).isPresent()) {
             this.stack = stack; //Because the client side stack is invalidated every time the server sends an update.
@@ -116,7 +116,7 @@ public class KeyRingContainer extends ContainerBCore<KeyRingItem> {
         return LazyOptional.of(() -> stackItemHandler);
     }
 
-    public static class Provider implements INamedContainerProvider {
+    public static class Provider implements MenuProvider {
         private ItemStack stack;
 
         private PlayerSlot slot;
@@ -127,13 +127,13 @@ public class KeyRingContainer extends ContainerBCore<KeyRingItem> {
         }
 
         @Override
-        public ITextComponent getDisplayName() {
-            return stack.getHoverName().plainCopy().append(" ").append(new TranslationTextComponent("gui.tolkienmobs.key_ring.title"));
+        public Component getDisplayName() {
+            return stack.getHoverName().plainCopy().append(" ").append(new TranslatableComponent("gui.tolkienmobs.key_ring.title"));
         }
         @Nullable
         @Override
-        public Container createMenu(int menuID, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-            return new KeyRingContainer(TTMContent.KEY_RING_CONTAINER, menuID, playerInventory, slot);
+        public AbstractContainerMenu createMenu(int menuID, Inventory playerInventory, Player playerEntity) {
+            return new KeyRingContainer(TolkienContainers.KEY_RING_CONTAINER, menuID, playerInventory, slot);
         }
 
     }

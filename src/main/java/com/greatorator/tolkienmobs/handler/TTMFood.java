@@ -1,12 +1,12 @@
 package com.greatorator.tolkienmobs.handler;
 
-import com.greatorator.tolkienmobs.TTMContent;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.UseAction;
-import net.minecraft.world.World;
+import com.greatorator.tolkienmobs.init.TolkienItems;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.level.Level;
 
 public class TTMFood extends Item {
     public boolean hasEffectOverride = false;
@@ -32,14 +32,14 @@ public class TTMFood extends Item {
     }
 
     @Override
-    public UseAction getUseAnimation(ItemStack stack) {
-        return hasDrinkAction ? UseAction.DRINK : UseAction.EAT;
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return hasDrinkAction ? UseAnim.DRINK : UseAnim.EAT;
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack stack, World worldIn, LivingEntity entityLiving) {
+    public ItemStack finishUsingItem(ItemStack stack, Level worldIn, LivingEntity entityLiving) {
         ItemStack itemstack = super.finishUsingItem(stack, worldIn, entityLiving);
 
-        return entityLiving instanceof PlayerEntity && ((PlayerEntity)entityLiving).abilities.instabuild ? itemstack : new ItemStack(TTMContent.BOTTLE_FANCY.get());
+        return entityLiving instanceof Player && ((Player) entityLiving).getAbilities().instabuild ? itemstack : new ItemStack(TolkienItems.BOTTLE_FANCY.get());
     }
 }

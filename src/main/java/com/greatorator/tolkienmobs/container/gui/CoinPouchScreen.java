@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.container.gui;
 
-import com.brandon3055.brandonscore.client.BCSprites;
+import com.brandon3055.brandonscore.client.BCGuiSprites;
 import com.brandon3055.brandonscore.client.gui.GuiToolkit;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElement;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElementManager;
@@ -10,16 +10,16 @@ import com.brandon3055.brandonscore.client.gui.modulargui.lib.GuiAlign;
 import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
 import com.brandon3055.brandonscore.inventory.SlotMover;
 import com.greatorator.tolkienmobs.container.CoinPouchContainer;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
 
 public class CoinPouchScreen extends ModularGuiContainer<CoinPouchContainer> {
-    private final PlayerEntity player;
+    private final Player player;
 
     protected GuiToolkit<CoinPouchScreen> toolkit = new GuiToolkit<>(this, 176, 166).setTranslationPrefix("gui.tolkientweaks.coin_pouch");
 
-    public CoinPouchScreen(CoinPouchContainer container, PlayerInventory playerInv, ITextComponent titleIn) {
+    public CoinPouchScreen(CoinPouchContainer container, Inventory playerInv, Component titleIn) {
         super(container, playerInv, titleIn);
         this.player = playerInv.player;
     }
@@ -27,7 +27,7 @@ public class CoinPouchScreen extends ModularGuiContainer<CoinPouchContainer> {
     @Override
     public void addElements(GuiElementManager manager) {
         TGuiBase template = new TGuiBase(this);
-        template.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCSprites.getThemed("background_dynamic"));
+        template.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCGuiSprites.getThemed("background_dynamic"));
         template.background.onReload(guiTex -> guiTex.setPos(guiLeft(), guiTop()));
         toolkit.loadTemplate(template);
         template.playerSlots = toolkit.createPlayerSlotsManualMovers(template.background, false, index -> new SlotMover(container.slots.get(index)));
@@ -47,8 +47,8 @@ public class CoinPouchScreen extends ModularGuiContainer<CoinPouchContainer> {
     }
 
     @Override
-    public void tick() {
+    public void containerTick() {
         container.clientTick();
-        super.tick();
+        super.containerTick();
     }
 }

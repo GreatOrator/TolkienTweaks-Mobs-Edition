@@ -2,7 +2,11 @@ package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.entity.merchant.villager.TTMVillagerTrades;
 import com.greatorator.tolkienmobs.event.client.ClientEvents;
-import com.greatorator.tolkienmobs.handler.*;
+import com.greatorator.tolkienmobs.handler.BowItemModelProperties;
+import com.greatorator.tolkienmobs.handler.TTMColor;
+import com.greatorator.tolkienmobs.handler.TTMHearts;
+import com.greatorator.tolkienmobs.handler.TTMSprites;
+import com.greatorator.tolkienmobs.init.TolkienWoodTypes;
 import com.greatorator.tolkienmobs.init.renders.*;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;

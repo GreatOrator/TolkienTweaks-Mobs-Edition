@@ -1,16 +1,21 @@
 package com.greatorator.tolkienmobs;
 
-import codechicken.lib.config.ConfigTag;
-import codechicken.lib.config.StandardConfigFile;
+import codechicken.lib.config.ConfigCallback;
+import codechicken.lib.config.ConfigCategory;
+import codechicken.lib.config.ConfigFile;
+import codechicken.lib.config.ConfigValue;
 import com.google.common.collect.Lists;
-import net.minecraft.potion.Effect;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.DimensionType;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /**
  * Created by brandon3055 on 31/1/21
@@ -29,21 +34,24 @@ import java.util.List;
  */
 public class TTMConfig {
 
-    private static ConfigTag config;
-    private static ConfigTag clientTag;
-    private static ConfigTag serverTag;
+    private static ConfigCategory config;
+    private static ConfigCategory clientTag;
+    private static ConfigCategory serverTag;
 
     public static void load() {
-        config = new StandardConfigFile(Paths.get("./config/greatorator/TolkienMobs.cfg")).load();
+        config = new ConfigFile(MODID)
+                .path(Paths.get("./config/greatorator/TolkienMobs.cfg"))
+                .load();
         loadServer();
         loadClient();
 //        EquipCfg.loadConfig(config); This is an example of how in DE I load additional configs in different locations because itr does not always make sense to have all your configs in one massive class.
 //        ModuleCfg.loadConfig(config);
-        config.runSync(); //This ensures that all configs are written to their static fields on load.
+        config.runSync(ConfigCallback.Reason.MANUAL); //This ensures that all configs are written to their static fields on load.
         config.save();
     }
 
     //Server properties
+    public static String serverID;
     public static int dimensionalWarpCoinCost;
     public static int blocksPerCoin;
     public static double milestoneCoinCostMultiplier;
@@ -56,60 +64,71 @@ public class TTMConfig {
     public static List<String> potionList;
 
     private static void loadServer() {
-        serverTag = config.getTag("Server");
+        serverTag = config.getCategory("Server");
+        ConfigValue serverIDTag = serverTag.getValue("serverID")
+                .syncTagToClient()
+                .setComment("This is a randomly generated id that clients will use to map their tool config settings to this server.")
+                .setDefaultString(UUID.randomUUID().toString());
+        serverIDTag.onSync((tag, type) -> serverID = tag.getString());
         serverTag.setComment("These are server side config properties.");
 
-        serverTag.getTag("effectList")
+        serverTag.getValueList("effectList")
                 .setComment("Add or remove effect types for trinkets")
-                .setDefaultStringList(Lists.newArrayList(potionTypeArray))
-                .setSyncToClient()
-                .setSyncCallback((tag, type) -> potionList = tag.getStringList());
+                .setDefaultStrings(Lists.newArrayList(potionTypeArray))
+                .syncTagToClient()
+                .onSync((tag, type) -> potionList = tag.getStrings());
 
-        serverTag.getTag("blocksPerCoin")
+        serverTag.getValueList("noWind")
+                .setComment("Add or remove effect types for trinkets")
+                .setDefaultStrings(Lists.newArrayList(dimensionTypeArray))
+                .syncTagToClient()
+                .onSync((tag, type) -> dimensionList = tag.getStrings());
+
+        serverTag.getValue("blocksPerCoin")
                 .setComment("Number of blocks (Default 1000)")
                 .setDefaultInt(1000)
-                .setSyncCallback((tag, type) -> blocksPerCoin = tag.getInt());
+                .onSync((tag, type) -> blocksPerCoin = tag.getInt());
 
-        serverTag.getTag("dimensionalWarpCoinCost")
+        serverTag.getValue("dimensionalWarpCoinCost")
                 .setComment("Multiplier for dimensional teleport (Default 3)")
                 .setDefaultInt(3)
-                .setSyncCallback((tag, type) -> dimensionalWarpCoinCost = tag.getInt());
+                .onSync((tag, type) -> dimensionalWarpCoinCost = tag.getInt());
 
-        serverTag.getTag("milestoneCoinCostMultiplier")
+        serverTag.getValue("milestoneCoinCostMultiplier")
                 .setComment("Multiplier for regular teleport (Default 1)")
                 .setDefaultDouble(1)
-                .setSyncCallback((tag, type) -> milestoneCoinCostMultiplier = tag.getDouble());
+                .onSync((tag, type) -> milestoneCoinCostMultiplier = tag.getDouble());
 
-        serverTag.getTag("minimumCoinCost")
+        serverTag.getValue("minimumCoinCost")
                 .setComment("Minimum coin cost to teleport per (Default 1000) blocks (Default 5)")
                 .setDefaultDouble(5)
-                .setSyncCallback((tag, type) -> minimumCoinCost = tag.getDouble());
+                .onSync((tag, type) -> minimumCoinCost = tag.getDouble());
 
-        serverTag.getTag("maximumCoinCost")
+        serverTag.getValue("maximumCoinCost")
                 .setComment("Maximum coin cost to teleport per (Default 1000) blocks (Default 50)")
                 .setDefaultDouble(50)
-                .setSyncCallback((tag, type) -> maximumCoinCost = tag.getDouble());
+                .onSync((tag, type) -> maximumCoinCost = tag.getDouble());
 
-        serverTag.getTag("dimensionalWarp")
+        serverTag.getValue("dimensionalWarp")
                 .setComment("Enable Cross-dimensional Teleport between Milestones (Default true)")
                 .setDefaultBoolean(true)
-                .setSyncCallback((tag, type) -> dimensionalWarp = tag.getBoolean());
+                .onSync((tag, type) -> dimensionalWarp = tag.getBoolean());
 
-        serverTag.getTag("replant")
+        serverTag.getValue("replant")
                 .setComment("Crops will be replanted when harvested via right click. This requires a seed to drop, and is removed from the drop list. (Default true)")
                 .setDefaultBoolean(true)
-                .setSyncCallback((tag, type) -> replant = tag.getBoolean());
+                .onSync((tag, type) -> replant = tag.getBoolean());
 
-        serverTag.getTag("disableFakePlayer")
+        serverTag.getValue("disableFakePlayer")
                 .setComment("Disable fake player in TolkienMobs (Default false)")
                 .setDefaultBoolean(false)
-                .setSyncToClient()
-                .setSyncCallback((tag, type) -> disableFakePlayer = tag.getBoolean());
+                .syncTagToClient()
+                .onSync((tag, type) -> disableFakePlayer = tag.getBoolean());
 
-        serverTag.getTag("exampleString")
+        serverTag.getValue("exampleString")
                 .setComment("This is an example string")
                 .setDefaultString("Default Example String")
-                .setSyncCallback((tag, type) -> exampleString = tag.getString());
+                .onSync((tag, type) -> exampleString = tag.getString());
     }
 
     //Client properties
@@ -117,36 +136,31 @@ public class TTMConfig {
     public static List<String> dimensionList;
 
     private static void loadClient() {
-        clientTag = config.getTag("Client");
+        clientTag = config.getCategory("Client");
         clientTag.setComment("These are client side config properties.");
 
-        clientTag.getTag("HeartOverlay")
+        clientTag.getValue("HeartOverlay")
                 .setComment("Enable Heart Overlay Feature - Default True")
                 .setDefaultBoolean(true)
-                .setSyncCallback((tag, type) -> HeartOverlay = tag.getBoolean());
-        clientTag.getTag("noWind")
-                .setComment("Add or remove effect types for trinkets")
-                .setDefaultStringList(Lists.newArrayList(dimensionTypeArray))
-                .setSyncToClient()
-                .setSyncCallback((tag, type) -> dimensionList = tag.getStringList());
+                .onSync((tag, type) -> HeartOverlay = tag.getBoolean());
     }
 
     public static String[] potionTypeArray = new String[]{"tolkienmobs:blessing_of_eru", "tolkienmobs:elven_nimbleness", "tolkienmobs:ent_draught", "tolkienmobs:personal_blacksmith", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:fire_resistance"};
     public static String[] dimensionTypeArray = new String[]{DimensionType.NETHER_LOCATION.location().toString(), DimensionType.END_LOCATION.location().toString()};
 
 
-    public static Effect[] potionArray = new Effect[0];
+    public static MobEffect[] potionArray = new MobEffect[0];
     public static String[] dimensionArray = new String[0];
 
     public static void loadPotionList() {
-        List<Effect> potions = new ArrayList<>();
+        List<MobEffect> potions = new ArrayList<>();
         for (String name : potionTypeArray) {
-            Effect potion = ForgeRegistries.POTIONS.getValue(new ResourceLocation(name));
+            MobEffect potion = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(name));
             if (potion != null) {
                 potions.add(potion);
             }
         }
-        potionArray = potions.toArray(new Effect[0]);
+        potionArray = potions.toArray(new MobEffect[0]);
     }
 
     public static void loadDimensionList() {

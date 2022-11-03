@@ -1,28 +1,31 @@
 package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.entity.tile.MithrilBarrelTile;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.monster.piglin.PiglinTasks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.monster.piglin.PiglinAi;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -38,76 +41,83 @@ public class MithrilBarrelBlock extends Block {
 
    @SuppressWarnings("deprecation")
    @Override
-   public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity entity, Hand hand, BlockRayTraceResult trace) {
+   public InteractionResult use(BlockState state, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult trace) {
       if (!world.isClientSide) {
-         TileEntity tileEntity = world.getBlockEntity(pos);
+         BlockEntity tileEntity = world.getBlockEntity(pos);
          boolean flag = state.getValue(MithrilBarrelBlock.OPEN);
 
          if (tileEntity instanceof MithrilBarrelTile) {
-            NetworkHooks.openGui((ServerPlayerEntity) entity, (MithrilBarrelTile) tileEntity, pos);
-            PiglinTasks.angerNearbyPiglins(entity, true);
+            NetworkHooks.openGui((ServerPlayer) entity, (MithrilBarrelTile) tileEntity, pos);
+            PiglinAi.angerNearbyPiglins(entity, true);
          }
-         return ActionResultType.CONSUME;
+         return InteractionResult.CONSUME;
       }
-      return ActionResultType.SUCCESS;
+      return InteractionResult.SUCCESS;
    }
 
    @SuppressWarnings("deprecation")
    @Override
-   public void onRemove(BlockState p_196243_1_, World p_196243_2_, BlockPos p_196243_3_, BlockState p_196243_4_, boolean p_196243_5_) {
-      if (!p_196243_1_.is(p_196243_4_.getBlock())) {
-         TileEntity tileentity = p_196243_2_.getBlockEntity(p_196243_3_);
-         if (tileentity instanceof IInventory) {
-            InventoryHelper.dropContents(p_196243_2_, p_196243_3_, (IInventory)tileentity);
-            p_196243_2_.updateNeighbourForOutputSignal(p_196243_3_, this);
+   public void onRemove(BlockState blockState, Level level, BlockPos blockPos, BlockState blockState1, boolean b) {
+      if (!blockState.is(blockState1.getBlock())) {
+         BlockEntity tileentity = level.getBlockEntity(blockPos);
+         if (tileentity instanceof Container) {
+            Containers.dropContents(level, blockPos, (Container)tileentity);
+            level.updateNeighbourForOutputSignal(blockPos, this);
          }
 
-         super.onRemove(p_196243_1_, p_196243_2_, p_196243_3_, p_196243_4_, p_196243_5_);
+         super.onRemove(blockState, level, blockPos, blockState1, b);
       }
    }
 
    @Override
-   public boolean hasTileEntity(BlockState state) {
-      return true;
-   }
-
-   @Override
-   protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
+   protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
       builder.add(FACING, OPEN);
       super.createBlockStateDefinition(builder);
    }
 
-   public void tick(BlockState p_225534_1_, ServerWorld p_225534_2_, BlockPos p_225534_3_, Random p_225534_4_) {
-      TileEntity tileentity = p_225534_2_.getBlockEntity(p_225534_3_);
+   @SuppressWarnings("deprecation")
+   @Override
+   public void tick(BlockState blockState, ServerLevel level, BlockPos blockPos, Random random) {
+      BlockEntity tileentity = level.getBlockEntity(blockPos);
    }
 
    @Nullable
+   public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+      return new MithrilBarrelTile(blockPos, blockState);
+   }
+
+   @SuppressWarnings("deprecation")
    @Override
-   public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-      return new MithrilBarrelTile();
+   public RenderShape getRenderShape(BlockState blockState) {
+      return RenderShape.MODEL;
    }
 
-   public BlockRenderType getRenderShape(BlockState p_149645_1_) {
-      return BlockRenderType.MODEL;
-   }
-
-   public boolean hasAnalogOutputSignal(BlockState p_149740_1_) {
+   @SuppressWarnings("deprecation")
+   @Override
+   public boolean hasAnalogOutputSignal(BlockState blockState) {
       return true;
    }
 
-   public int getAnalogOutputSignal(BlockState p_180641_1_, World p_180641_2_, BlockPos p_180641_3_) {
-      return Container.getRedstoneSignalFromBlockEntity(p_180641_2_.getBlockEntity(p_180641_3_));
+   @SuppressWarnings("deprecation")
+   @Override
+   public int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos blockPos) {
+      return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(blockPos));
    }
 
-   public BlockState rotate(BlockState p_185499_1_, Rotation p_185499_2_) {
-      return p_185499_1_.setValue(FACING, p_185499_2_.rotate(p_185499_1_.getValue(FACING)));
+   @SuppressWarnings("deprecation")
+   @Override
+   public BlockState rotate(BlockState blockState, Rotation rotation) {
+      return blockState.setValue(FACING, rotation.rotate(blockState.getValue(FACING)));
    }
 
-   public BlockState mirror(BlockState p_185471_1_, Mirror p_185471_2_) {
-      return p_185471_1_.rotate(p_185471_2_.getRotation(p_185471_1_.getValue(FACING)));
+   @SuppressWarnings("deprecation")
+   @Override
+   public BlockState mirror(BlockState blockState, Mirror mirror) {
+      return blockState.rotate(mirror.getRotation(blockState.getValue(FACING)));
    }
 
-   public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
-      return this.defaultBlockState().setValue(FACING, p_196258_1_.getNearestLookingDirection().getOpposite());
+   @Override
+   public BlockState getStateForPlacement(BlockPlaceContext context) {
+      return this.defaultBlockState().setValue(FACING, context.getNearestLookingDirection().getOpposite());
    }
 }

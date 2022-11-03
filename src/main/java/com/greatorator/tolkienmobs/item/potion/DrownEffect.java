@@ -1,24 +1,24 @@
 package com.greatorator.tolkienmobs.item.potion;
 
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.EffectType;
-import net.minecraft.potion.EffectUtils;
-import net.minecraft.util.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectUtil;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
 public class DrownEffect extends PotionBaseEffect {
 
-    public DrownEffect(EffectType typeIn, int liquidColorIn) {
+    public DrownEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
     }
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        boolean isPlayer = entity instanceof PlayerEntity;
-        boolean isCreative = isPlayer && ((PlayerEntity) entity).abilities.invulnerable;
+        boolean isPlayer = entity instanceof Player;
+        boolean isCreative = isPlayer && ((Player) entity).getAbilities().invulnerable;
 
-        if (!EffectUtils.hasWaterBreathing(entity) && !isCreative && !entity.canBreatheUnderwater()) {
+        if (!MobEffectUtil.hasWaterBreathing(entity) && !isCreative && !entity.canBreatheUnderwater()) {
             int a = EnchantmentHelper.getRespiration(entity);
             int newAir = entity.getAirSupply();
             if (!entity.isUnderWater()) {

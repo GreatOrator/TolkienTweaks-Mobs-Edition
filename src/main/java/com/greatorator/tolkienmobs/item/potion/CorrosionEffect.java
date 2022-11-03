@@ -2,13 +2,13 @@ package com.greatorator.tolkienmobs.item.potion;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class CorrosionEffect extends PotionBaseEffect {
     public static CorrosionEffect instance = null;
     public static int damageTime = 20;
 
-    public CorrosionEffect(EffectType typeIn, int liquidColorIn) {
+    public CorrosionEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
         instance = this;
     }
@@ -27,11 +27,11 @@ public class CorrosionEffect extends PotionBaseEffect {
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         List<ItemStack> equipment;
-        if (entity instanceof PlayerEntity) {
+        if (entity instanceof Player) {
             equipment = new ArrayList<>();
-            PlayerEntity player = (PlayerEntity) entity;
-            for (int i = 0; i < player.inventory.getContainerSize(); i++) {
-                equipment.add(player.inventory.getItem(i));
+            Player player = (Player) entity;
+            for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+                equipment.add(player.getInventory().getItem(i));
             }
         } else {
             equipment = Lists.newArrayList(entity.getAllSlots());

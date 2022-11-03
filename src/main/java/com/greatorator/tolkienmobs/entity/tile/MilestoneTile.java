@@ -6,32 +6,38 @@ import com.brandon3055.brandonscore.api.TimeKeeper;
 import com.brandon3055.brandonscore.blocks.TileBCore;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.lib.IInteractTile;
+import com.brandon3055.brandonscore.lib.IRSSwitchable;
 import com.brandon3055.brandonscore.lib.TeleportUtils;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedInt;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedStack;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedString;
 import com.brandon3055.brandonscore.network.BCoreNetwork;
-import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.block.MilestoneBlock;
 import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
-import net.minecraft.block.BlockState;
+import com.greatorator.tolkienmobs.init.TolkienBlocks;
+import com.greatorator.tolkienmobs.init.TolkienContainers;
+import com.greatorator.tolkienmobs.init.TolkienTiles;
+import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -39,7 +45,7 @@ import java.util.UUID;
 import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.CLIENT_CONTROL;
 import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_NBT_SYNC_TILE;
 
-public class MilestoneTile extends TileBCore implements INamedContainerProvider, ITickableTileEntity, IInteractTile {
+public class MilestoneTile extends TileBCore implements MenuProvider, IRSSwitchable, IInteractTile {
     public final ManagedString milestoneName = register(new ManagedString("milestone_name", "Unnamed_Milestone", SAVE_NBT_SYNC_TILE, CLIENT_CONTROL));
     public final ManagedStack paymentItem = register(new ManagedStack("payment_item", SAVE_NBT_SYNC_TILE));
     //The distance a single item will allow you to travel
@@ -48,13 +54,8 @@ public class MilestoneTile extends TileBCore implements INamedContainerProvider,
     public final ManagedInt dimensionCost = register(new ManagedInt("dimension_cost", SAVE_NBT_SYNC_TILE));
     private final ManagedString milestoneUUID = register(new ManagedString("milestone_uuid", SAVE_NBT_SYNC_TILE));
 
-
-    public MilestoneTile(TileEntityType<?> tileEntityTypeIn) {
-        super(tileEntityTypeIn);
-    }
-
-    public MilestoneTile() {
-        super(TTMContent.MILESTONE_TILE.get());
+    public MilestoneTile(BlockPos pos, BlockState state) {
+        super(TolkienTiles.MILESTONE_TILE.get(), pos, state);
     }
 
     @Override
@@ -70,35 +71,34 @@ public class MilestoneTile extends TileBCore implements INamedContainerProvider,
     public void updateClientState() {
         if (MilestoneSaveData.isKnownByClient(getUUID(), Minecraft.getInstance().player.getUUID())) {
             BlockState state = level.getBlockState(worldPosition);
-            if (state.getBlock() == TTMContent.MILESTONE_BLOCK.get() && !state.getValue(MilestoneBlock.ACTIVE)) {
-                level.setBlock(worldPosition, state.setValue(MilestoneBlock.ACTIVE, true), 0);
+            if (state.getBlock() == TolkienBlocks.MILESTONE_BLOCK.get() && !state.getValue(MilestoneBlock.LIT)) {
+                level.setBlock(worldPosition, state.setValue(MilestoneBlock.LIT, true), 0);
             }
         }
     }
 
-    @Override
-    public ActionResultType onBlockUse(BlockState state, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!level.isClientSide) {
             if (!player.isCreative()) {
                 MilestoneSaveData.addPlayerToMilestone(this, player);
             }
 
             openGUI(player, this, worldPosition);
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Nullable
     @Override
-    public Container createMenu(int windowID, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new ContainerBCTile<>(TTMContent.MILESTONE_CONTAINER, windowID, playerInventory, this);
+    public AbstractContainerMenu createMenu(int windowID, Inventory playerInventory, Player playerEntity) {
+        return new ContainerBCTile<>(TolkienContainers.MILESTONE_CONTAINER, windowID, playerInventory, this);
     }
 
-    public void openGUI(PlayerEntity player, INamedContainerProvider containerSupplier, BlockPos pos) {
+    public void openGUI(Player player, MenuProvider containerSupplier, BlockPos pos) {
         if (!player.level.isClientSide) {
-            NetworkHooks.openGui((ServerPlayerEntity) player, containerSupplier, pos);
+            NetworkHooks.openGui((ServerPlayer) player, containerSupplier, pos);
         }
     }
 
@@ -131,16 +131,16 @@ public class MilestoneTile extends TileBCore implements INamedContainerProvider,
     }
 
     @Override
-    public void receivePacketFromClient(MCDataInput input, ServerPlayerEntity client, int id) {
+    public void receivePacketFromClient(MCDataInput input, ServerPlayer client, int id) {
         super.receivePacketFromClient(input, client, id);
 
         if (id <= 2 && !client.isCreative()) return;
 
         switch (id) {
             case 0:
-                ItemStack stack = client.getItemInHand(Hand.MAIN_HAND).copy();
+                ItemStack stack = client.getItemInHand(InteractionHand.MAIN_HAND).copy();
                 stack.setCount(1);
-                client.sendMessage(new StringTextComponent("Payment item set to " + stack.getItem()), Util.NIL_UUID);
+                client.sendMessage(new TranslatableComponent("tolkienmobs.msg.payment" + stack.getItem()), Util.NIL_UUID);
                 paymentItem.set(stack);
                 MilestoneSaveData.updateMilestone(this);
                 break;
@@ -155,22 +155,22 @@ public class MilestoneTile extends TileBCore implements INamedContainerProvider,
             case 3:
                 MilestoneSaveData.MilestoneData data = MilestoneSaveData.getMilestoneData(level, input.readUUID());
                 if (data == null) {
-                    client.sendMessage(new StringTextComponent("Destination not found"), Util.NIL_UUID);
+                    client.sendMessage(new TranslatableComponent("tolkienmobs.msg.destination"), Util.NIL_UUID);
                     break;
                 }
 
                 ItemStack cost = getTravelCost(data);
                 if (!cost.isEmpty()) {
                     int found = 0;
-                    for (ItemStack item : client.inventory.items) {
+                    for (ItemStack item : client.getInventory().items) {
                         if (item.sameItem(cost)) found += item.getCount();
                     }
                     if (found < cost.getCount()) {
-                        client.sendMessage(new StringTextComponent("Insufficient payment!"), Util.NIL_UUID);
+                        client.sendMessage(new TranslatableComponent("tolkienmobs.msg.payment.insufficient"), Util.NIL_UUID);
                         break;
                     }
                     int needed = cost.getCount();
-                    for (ItemStack item : client.inventory.items) {
+                    for (ItemStack item : client.getInventory().items) {
                         if (item.sameItem(cost)) {
                             int count = item.getCount();
                             item.shrink(Math.min(count, needed));
@@ -180,9 +180,9 @@ public class MilestoneTile extends TileBCore implements INamedContainerProvider,
                     }
                 }
 
-                BCoreNetwork.sendSound(client.level, client.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 0.3F, 0.5F, false);
+                BCoreNetwork.sendSound(client.level, client.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 0.3F, 0.5F, false);
                 TeleportUtils.teleportEntity(client, data.getWorldKey(), Vector3.fromBlockPosCenter(data.getPos()).add(0, 1, 0));
-                BCoreNetwork.sendSound(client.level, client.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 0.3F, 0.5F, false);
+                BCoreNetwork.sendSound(client.level, client.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 0.3F, 0.5F, false);
 
                 break;
         }

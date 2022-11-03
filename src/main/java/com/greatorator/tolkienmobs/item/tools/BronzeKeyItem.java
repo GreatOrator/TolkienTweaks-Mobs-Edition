@@ -2,8 +2,8 @@ package com.greatorator.tolkienmobs.item.tools;
 
 import com.greatorator.tolkienmobs.container.gui.BronzeKeyAccessScreen;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 public class BronzeKeyItem extends KeyBaseItem {
     public BronzeKeyItem(Properties properties, int uses) {
@@ -11,7 +11,7 @@ public class BronzeKeyItem extends KeyBaseItem {
     }
 
     @Override
-    public void openGui(ItemStack stack, PlayerEntity player) {
+    public void openGui(ItemStack stack, Player player) {
         Minecraft.getInstance().setScreen(new BronzeKeyAccessScreen(player, stack.getHoverName(), null, getCode(stack), getUses(stack)));
     }
 }

@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.init;
 
 import com.greatorator.tolkienmobs.item.potion.*;
-import net.minecraft.client.renderer.EffectInstance;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.alchemy.Potion;
@@ -38,20 +38,20 @@ public class TolkienPotions {
     //#################################################################
     // Potions
     //#################################################################
-    public static final RegistryObject<Potion> ENT_DRAUGHT = POTIONS.register("ent_draught", () -> new Potion(new EffectInstance(ENT_STANCE.get(), 2400)));
-    public static final RegistryObject<Potion> ELVISH_LIFE = POTIONS.register("elf_vitality", () -> new Potion(new EffectInstance(ELF_VITALITY.get(), 4800)));
-    public static final RegistryObject<Potion> GOLEM_DROWNING = POTIONS.register("elemental_drowning", () -> new Potion(new EffectInstance(ELEMENTAL_DROWNING.get(), 600)));
-    public static final RegistryObject<Potion> GOLEM_LIGHTNING = POTIONS.register("elemental_lightning", () -> new Potion(new EffectInstance(ELEMENTAL_LIGHTNING.get(), 600)));
-    public static final RegistryObject<Potion> GOLEM_FLYING = POTIONS.register("elemental_flight", () -> new Potion(new EffectInstance(ELEMENTAL_FLYING.get(), 600)));
-    public static final RegistryObject<Potion> GOLEM_BURN = POTIONS.register("elemental_burning", () -> new Potion(new EffectInstance(ELEMENTAL_BURNING.get(), 600)));
-    public static final RegistryObject<Potion> GOLEM_TORNADO = POTIONS.register("elemental_tornado", () -> new Potion(new EffectInstance(ELEMENTAL_TORNADO.get(), 600)));
-    public static final RegistryObject<Potion> DECAYING_INVENTORY = POTIONS.register("inventory_corrosion", () -> new Potion(new EffectInstance(INVENTORY_CORROSION.get(), 600)));
-    public static final RegistryObject<Potion> PORTABLE_REPAIR = POTIONS.register("personal_blacksmith", () -> new Potion(new EffectInstance(PERSONAL_BLACKSMITH.get(), 600)));
-    public static final RegistryObject<Potion> DEEP_SLEEP = POTIONS.register("sleepnesia", () -> new Potion(new EffectInstance(SLEEPNESIA.get(), 600)));
-    public static final RegistryObject<Potion> DREAD_AURA = POTIONS.register("dread_aura", () -> new Potion(new EffectInstance(WATCHER_FEAR.get(), 160)));
-    public static final RegistryObject<Potion> CRIPPLING_TERROR = POTIONS.register("crippling_terror", () -> new Potion(new EffectInstance(PARALYSING_FEAR.get(), 200)));
-    public static final RegistryObject<Potion> ELF_FLEETFOOT = POTIONS.register("elven_nimbleness", () -> new Potion(new EffectInstance(ELF_NIMBLENESS.get(), 300)));
-    public static final RegistryObject<Potion> BLESSING_OF_ERU = POTIONS.register("blessing_of_eru", () -> new Potion(new EffectInstance(ERU_BLESSING.get(), 100)));
+    public static final RegistryObject<Potion> ENT_DRAUGHT = POTIONS.register("ent_draught", () -> new Potion(new MobEffectInstance(ENT_STANCE.get(), 2400)));
+    public static final RegistryObject<Potion> ELVISH_LIFE = POTIONS.register("elf_vitality", () -> new Potion(new MobEffectInstance(ELF_VITALITY.get(), 4800)));
+    public static final RegistryObject<Potion> GOLEM_DROWNING = POTIONS.register("elemental_drowning", () -> new Potion(new MobEffectInstance(ELEMENTAL_DROWNING.get(), 600)));
+    public static final RegistryObject<Potion> GOLEM_LIGHTNING = POTIONS.register("elemental_lightning", () -> new Potion(new MobEffectInstance(ELEMENTAL_LIGHTNING.get(), 600)));
+    public static final RegistryObject<Potion> GOLEM_FLYING = POTIONS.register("elemental_flight", () -> new Potion(new MobEffectInstance(ELEMENTAL_FLYING.get(), 600)));
+    public static final RegistryObject<Potion> GOLEM_BURN = POTIONS.register("elemental_burning", () -> new Potion(new MobEffectInstance(ELEMENTAL_BURNING.get(), 600)));
+    public static final RegistryObject<Potion> GOLEM_TORNADO = POTIONS.register("elemental_tornado", () -> new Potion(new MobEffectInstance(ELEMENTAL_TORNADO.get(), 600)));
+    public static final RegistryObject<Potion> DECAYING_INVENTORY = POTIONS.register("inventory_corrosion", () -> new Potion(new MobEffectInstance(INVENTORY_CORROSION.get(), 600)));
+    public static final RegistryObject<Potion> PORTABLE_REPAIR = POTIONS.register("personal_blacksmith", () -> new Potion(new MobEffectInstance(PERSONAL_BLACKSMITH.get(), 600)));
+    public static final RegistryObject<Potion> DEEP_SLEEP = POTIONS.register("sleepnesia", () -> new Potion(new MobEffectInstance(SLEEPNESIA.get(), 600)));
+    public static final RegistryObject<Potion> DREAD_AURA = POTIONS.register("dread_aura", () -> new Potion(new MobEffectInstance(WATCHER_FEAR.get(), 160)));
+    public static final RegistryObject<Potion> CRIPPLING_TERROR = POTIONS.register("crippling_terror", () -> new Potion(new MobEffectInstance(PARALYSING_FEAR.get(), 200)));
+    public static final RegistryObject<Potion> ELF_FLEETFOOT = POTIONS.register("elven_nimbleness", () -> new Potion(new MobEffectInstance(ELF_NIMBLENESS.get(), 300)));
+    public static final RegistryObject<Potion> BLESSING_OF_ERU = POTIONS.register("blessing_of_eru", () -> new Potion(new MobEffectInstance(ERU_BLESSING.get(), 100)));
 
     public String getName() {
         return "Tolkien Tweaks - Mobs Edition Potions";

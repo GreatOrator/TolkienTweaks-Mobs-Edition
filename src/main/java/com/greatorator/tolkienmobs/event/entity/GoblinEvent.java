@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.event.entity;
 
 import com.greatorator.tolkienmobs.entity.monster.GoblinEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityEvent;
 
 public class GoblinEvent extends EntityEvent {
@@ -21,14 +21,14 @@ public class GoblinEvent extends EntityEvent {
     public static class SummonAidEvent extends GoblinEvent {
         private GoblinEntity customSummonedAid;
         
-        private final World world;
+        private final Level world;
         private final int x;
         private final int y;
         private final int z;
         private final LivingEntity attacker;
         private final double summonChance;
         
-        public SummonAidEvent(GoblinEntity entity, World world, int x, int y, int z, LivingEntity attacker, double summonChance)
+        public SummonAidEvent(GoblinEntity entity, Level world, int x, int y, int z, LivingEntity attacker, double summonChance)
         {
             super(entity);
             this.world = world;
@@ -44,7 +44,7 @@ public class GoblinEvent extends EntityEvent {
          */
         public GoblinEntity getCustomSummonedAid() { return customSummonedAid; }
         public void setCustomSummonedAid(GoblinEntity customSummonedAid) { this.customSummonedAid = customSummonedAid; }
-        public World getWorld() { return world; }
+        public Level getWorld() { return world; }
         public int getX() { return x; }
         public int getY() { return y; }
         public int getZ() { return z; }

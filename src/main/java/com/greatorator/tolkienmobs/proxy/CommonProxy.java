@@ -10,7 +10,7 @@ import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
 import com.greatorator.tolkienmobs.handler.MobModify;
 import com.greatorator.tolkienmobs.init.*;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
-import com.greatorator.tolkienmobs.integration.curios.TTMEquipMgr;
+import com.greatorator.tolkienmobs.integration.curios.EquipmentManager;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
 import com.greatorator.tolkienmobs.item.tools.KeyRingItem;
 import com.greatorator.tolkienmobs.network.TolkienNetwork;
@@ -43,7 +43,7 @@ public class CommonProxy {
         TTMConfig.load();
         TTMContent.init();
         TTMHelper.init();
-        TTMEquipMgr.initialize();
+        EquipmentManager.initialize();
         TolkienTags.init();
         MilestoneSaveData.init();
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();

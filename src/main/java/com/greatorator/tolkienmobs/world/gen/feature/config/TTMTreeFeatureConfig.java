@@ -8,25 +8,27 @@ import com.greatorator.tolkienmobs.world.gen.placers.TTMBranchingTrunkPlacer;
 import com.greatorator.tolkienmobs.world.gen.placers.TTMSpheroidFoliagePlacer;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.SaplingBlock;
+import net.minecraft.core.BlockPos;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.blockstateprovider.BlockStateProvider;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FoliagePlacer;
-import net.minecraft.world.gen.foliageplacer.FoliagePlacerType;
 import net.minecraft.world.gen.treedecorator.LeaveVineTreeDecorator;
 import net.minecraft.world.gen.treedecorator.TrunkVineTreeDecorator;
 import net.minecraft.world.gen.trunkplacer.AbstractTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
-import net.minecraft.world.gen.trunkplacer.TrunkPlacerType;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -39,7 +41,7 @@ import java.util.Random;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class TTMTreeFeatureConfig implements IFeatureConfig {
+public class TTMTreeFeatureConfig implements FeatureConfiguration {
     public static final Codec<TTMTreeFeatureConfig> codecTFTreeConfig = RecordCodecBuilder.create((instance) ->
             instance.group(
                     BlockStateProvider.CODEC.fieldOf("trunk_provider").forGetter((obj) -> obj.trunkProvider),
@@ -51,7 +53,7 @@ public class TTMTreeFeatureConfig implements IFeatureConfig {
                     Codec.INT.fieldOf("add_second_five_chance").orElse(1).forGetter((obj) -> obj.chanceAddFiveSecond),
                     Codec.BOOL.fieldOf("has_leaves").orElse(true).forGetter((obj) -> obj.hasLeaves),
                     Codec.BOOL.fieldOf("check_water").orElse(false).forGetter((obj) -> obj.checkWater),
-                    BlockStateProvider.CODEC.fieldOf("sapling").orElse(new SimpleBlockStateProvider(Blocks.OAK_SAPLING.defaultBlockState())).forGetter((obj) -> obj.sapling))
+                    BlockStateProvider.CODEC.fieldOf("sapling").orElse(new SimpleStateProvider(Blocks.OAK_SAPLING.defaultBlockState())).forGetter((obj) -> obj.sapling))
                     .apply(instance, TTMTreeFeatureConfig::new));
 
     public final BlockStateProvider trunkProvider;
@@ -101,8 +103,8 @@ public class TTMTreeFeatureConfig implements IFeatureConfig {
 
     public static final class TreeConfigurations {
         public static final BaseTreeFeatureConfig MIRKWOOD = new BaseTreeFeatureConfig.Builder(
-                new SimpleBlockStateProvider(TTMFeatures.States.MIRKWOOD_LOG),
-                new SimpleBlockStateProvider(TTMFeatures.States.MIRKWOOD_LEAVES),
+                new SimpleStateProvider(TTMFeatures.States.MIRKWOOD_LOG),
+                new SimpleStateProvider(TTMFeatures.States.MIRKWOOD_LEAVES),
                 new TTMSpheroidFoliagePlacer(4.5f, 2.25f, FeatureSpread.fixed(0), 1, 0, 0.45f, (int) (LEAF_SHAG_FACTOR * 1.5f)),
                 new TTMBranchingTrunkPlacer(6, 3, 3, 5, new TTMBranchesConfig(4, 0, 10, 4, 0.23, 0.23), false),
                 new TwoLayerFeature(1, 0, 1))

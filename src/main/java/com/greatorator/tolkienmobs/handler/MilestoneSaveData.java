@@ -4,21 +4,21 @@ import codechicken.lib.data.MCDataInput;
 import codechicken.lib.data.MCDataOutput;
 import com.greatorator.tolkienmobs.entity.tile.MilestoneTile;
 import com.greatorator.tolkienmobs.network.TolkienNetwork;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.INBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.nbt.StringNBT;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.WorldSavedData;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.StringTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -29,14 +29,14 @@ import java.util.*;
 /**
  * Created by brandon3055 on 11/10/2022
  */
-public class MilestoneSaveData extends WorldSavedData {
+public class MilestoneSaveData extends SavedData {
     private static final String SAVE_DATA_NAME = "ttm_milestone_data";
-    private static MilestoneSaveData CLIENT_INSTANCE = new MilestoneSaveData("");
+    private static final MilestoneSaveData CLIENT_INSTANCE = new MilestoneSaveData("");
 
-    private Map<UUID, MilestoneData> dataMap = new HashMap<>();
+    private static final Map<UUID, MilestoneData> dataMap = new HashMap<>();
 
     public MilestoneSaveData(String name) {
-        super(name);
+        super();
     }
 
     public static void init() {
@@ -44,10 +44,10 @@ public class MilestoneSaveData extends WorldSavedData {
     }
 
     public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        if (!(event.getPlayer() instanceof ServerPlayerEntity)) {
+        if (!(event.getPlayer() instanceof ServerPlayer)) {
             return;
         }
-        ServerPlayerEntity player = (ServerPlayerEntity) event.getPlayer();
+        ServerPlayer player = (ServerPlayer) event.getPlayer();
         MilestoneSaveData saveData = getInstance(player.level);
         if (saveData != null) {
             TolkienNetwork.sendMilestonesToClients(saveData, player);
@@ -56,13 +56,13 @@ public class MilestoneSaveData extends WorldSavedData {
 
     // These are the methods you will use
 
-    public static void addPlayerToMilestone(MilestoneTile tile, PlayerEntity player) {
+    public static void addPlayerToMilestone(MilestoneTile tile, Player player) {
         if (player.level.isClientSide) return;
         MilestoneSaveData saveData = getInstance(tile.getLevel());
         if (saveData != null) {
             updateMilestone(tile);
             UUID uuid = tile.getUUID();
-            MilestoneData data = saveData.dataMap.get(uuid);
+            MilestoneData data = dataMap.get(uuid);
             if (!data.name.equals(tile.milestoneName.get())) {
                 data.name = tile.milestoneName.get();
                 saveData.setDirty();
@@ -71,7 +71,7 @@ public class MilestoneSaveData extends WorldSavedData {
             if (!data.players.contains(player.getUUID())) {
                 data.players.add(player.getUUID());
                 saveData.setDirty();
-                TolkienNetwork.sendMilestonesToClients(saveData, (ServerPlayerEntity) player);
+                TolkienNetwork.sendMilestonesToClients(saveData, (ServerPlayer) player);
             }
         }
     }
@@ -81,7 +81,7 @@ public class MilestoneSaveData extends WorldSavedData {
         MilestoneSaveData saveData = getInstance(tile.getLevel());
         if (saveData != null) {
             UUID uuid = tile.getUUID();
-            MilestoneData data = saveData.dataMap.computeIfAbsent(uuid, e -> new MilestoneData(tile.getLevel().dimension(), tile.getBlockPos(), uuid));
+            MilestoneData data = dataMap.computeIfAbsent(uuid, e -> new MilestoneData(tile.getLevel().dimension(), tile.getBlockPos(), uuid));
             data.name = tile.milestoneName.get();
             data.paymentItem = tile.paymentItem.get().getItem();
             data.distanceCost = tile.distanceCost.get();
@@ -93,11 +93,11 @@ public class MilestoneSaveData extends WorldSavedData {
         }
     }
 
-    public static List<MilestoneData> getKnownByPlayer(PlayerEntity player) {
+    public static List<MilestoneData> getKnownByPlayer(Player player) {
         MilestoneSaveData saveData = player.level.isClientSide ? CLIENT_INSTANCE : getInstance(player.level);
         List<MilestoneData> known = new ArrayList<>();
         if (saveData != null) {
-            for (MilestoneData data : saveData.dataMap.values()) {
+            for (MilestoneData data : dataMap.values()) {
                 if (data.players.contains(player.getUUID())) {
                     known.add(data);
                 }
@@ -107,10 +107,10 @@ public class MilestoneSaveData extends WorldSavedData {
     }
 
     @Nullable
-    public static MilestoneData getMilestoneData(World world, UUID uuid) {
+    public static MilestoneData getMilestoneData(Level world, UUID uuid) {
         MilestoneSaveData saveData = getInstance(world);
-        if (saveData != null && saveData.dataMap.containsKey(uuid)) {
-            return saveData.dataMap.get(uuid);
+        if (saveData != null && dataMap.containsKey(uuid)) {
+            return dataMap.get(uuid);
         }
         return null;
     }
@@ -118,42 +118,43 @@ public class MilestoneSaveData extends WorldSavedData {
     public static void removeMilestone(MilestoneTile tile) {
         MilestoneSaveData saveData = getInstance(tile.getLevel());
         UUID id = tile.getUUID();
-        if (saveData != null && saveData.dataMap.containsKey(id)) {
-            saveData.dataMap.remove(id);
+        if (saveData != null && dataMap.containsKey(id)) {
+            dataMap.remove(id);
             saveData.setDirty();
         }
     }
 
     public static boolean isKnownByClient(UUID tileUUID, UUID playerUUID) {
-        return CLIENT_INSTANCE.dataMap.containsKey(tileUUID) && CLIENT_INSTANCE.dataMap.get(tileUUID).players.contains(playerUUID);
+        return dataMap.containsKey(tileUUID) && dataMap.get(tileUUID).players.contains(playerUUID);
     }
 
     // Internal Methods
 
     @Nullable
-    public static MilestoneSaveData getInstance(World world) {
-        if (world instanceof ServerWorld && world.getServer() != null) {
-            ServerWorld level = world.getServer().getLevel(World.OVERWORLD);
+    public static MilestoneSaveData getInstance(Level world) {
+        if (world instanceof ServerLevel && world.getServer() != null) {
+            ServerLevel level = world.getServer().getLevel(Level.OVERWORLD);
             if (level != null) {
-                return level.getDataStorage().computeIfAbsent(() -> new MilestoneSaveData(SAVE_DATA_NAME), SAVE_DATA_NAME);
+                return level.getDataStorage().computeIfAbsent(MilestoneSaveData::load, MilestoneSaveData::new, MilestoneSaveData.SAVE_DATA_NAME);
             }
         }
         return null;
     }
 
-    @Override
-    public void load(CompoundNBT nbt) {
+    public static load(CompoundTag nbt) {
         dataMap.clear();
-        ListNBT list = nbt.getList("data", 10);
-        for (INBT inbt : list) {
-            MilestoneData data = MilestoneData.read((CompoundNBT) inbt);
+        MilestoneSaveData data = new MilestoneSaveData();
+        ListTag list = nbt.getList("data", 10);
+        for (Tag inbt : list) {
+            MilestoneData data = MilestoneData.read((CompoundTag) inbt);
             dataMap.put(data.uuid, data);
         }
+        return data;
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT nbt) {
-        ListNBT list = new ListNBT();
+    public CompoundTag save(CompoundTag nbt) {
+        ListTag list = new ListTag();
         for (MilestoneData value : dataMap.values()) {
             list.add(value.write());
         }
@@ -180,7 +181,7 @@ public class MilestoneSaveData extends WorldSavedData {
     public static class MilestoneData {
         private BlockPos pos;
         private UUID uuid;
-        private RegistryKey<World> worldKey;
+        private ResourceKey<Level> worldKey;
         private List<UUID> players = new ArrayList<>();
 
         private String name;
@@ -188,7 +189,7 @@ public class MilestoneSaveData extends WorldSavedData {
         private int distanceCost = 0;
         private int dimensionCost = 0;
 
-        public MilestoneData(RegistryKey<World> worldKey, BlockPos pos, UUID uuid) {
+        public MilestoneData(ResourceKey<Level> worldKey, BlockPos pos, UUID uuid) {
             this.pos = pos;
             this.uuid = uuid;
             this.worldKey = worldKey;
@@ -202,7 +203,7 @@ public class MilestoneSaveData extends WorldSavedData {
             return uuid;
         }
 
-        public RegistryKey<World> getWorldKey() {
+        public ResourceKey<Level> getWorldKey() {
             return worldKey;
         }
 
@@ -226,8 +227,8 @@ public class MilestoneSaveData extends WorldSavedData {
             return dimensionCost;
         }
 
-        private CompoundNBT write() {
-            CompoundNBT nbt = new CompoundNBT();
+        private CompoundTag write() {
+            CompoundTag nbt = new CompoundTag();
             nbt.putLong("pos", pos.asLong());
             nbt.putUUID("uuid", uuid);
             nbt.putString("world", worldKey.location().toString());
@@ -235,23 +236,23 @@ public class MilestoneSaveData extends WorldSavedData {
             nbt.putString("payment", paymentItem.getRegistryName().toString());
             nbt.putInt("dist_cost", distanceCost);
             nbt.putInt("dim_cost", dimensionCost);
-            ListNBT list = new ListNBT();
-            players.forEach(e -> list.add(StringNBT.valueOf(e.toString())));
+            ListTag list = new ListTag();
+            players.forEach(e -> list.add(StringTag.valueOf(e.toString())));
             nbt.put("players", list);
             return nbt;
         }
 
-        private static MilestoneData read(CompoundNBT nbt) {
+        private static MilestoneData read(CompoundTag nbt) {
             BlockPos pos = BlockPos.of(nbt.getLong("pos"));
             UUID uuid = nbt.getUUID("uuid");
-            RegistryKey<World> key = RegistryKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(nbt.getString("world")));
+            ResourceKey<Level> key = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(nbt.getString("world")));
             MilestoneData data = new MilestoneData(key, pos, uuid);
             data.name = nbt.getString("name");
             data.paymentItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(nbt.getString("payment")));
             data.distanceCost = nbt.getInt("dist_cost");
             data.dimensionCost = nbt.getInt("dim_cost");
 
-            ListNBT list = nbt.getList("players", 8);
+            ListTag list = nbt.getList("players", 8);
             list.forEach(e -> data.players.add(UUID.fromString(e.getAsString())));
             return data;
         }
@@ -274,7 +275,7 @@ public class MilestoneSaveData extends WorldSavedData {
         public static MilestoneData deserialize(MCDataInput input) {
             BlockPos pos = input.readPos();
             UUID uuid = input.readUUID();
-            RegistryKey<World> key = RegistryKey.create(Registry.DIMENSION_REGISTRY, input.readResourceLocation());
+            ResourceKey<Level> key = ResourceKey.create(Registry.DIMENSION_REGISTRY, input.readResourceLocation());
             MilestoneData data = new MilestoneData(key, pos, uuid);
             data.name = input.readString();
             data.paymentItem = ForgeRegistries.ITEMS.getValue(input.readResourceLocation());

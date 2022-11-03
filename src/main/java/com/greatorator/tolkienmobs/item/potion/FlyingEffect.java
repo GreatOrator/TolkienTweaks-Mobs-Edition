@@ -1,21 +1,21 @@
 package com.greatorator.tolkienmobs.item.potion;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.EffectType;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 
 public class FlyingEffect extends PotionBaseEffect {
     public static FlyingEffect instance = null;
     public static int flyDuration = 10;
 
-    public FlyingEffect(EffectType typeIn, int liquidColorIn) {
+    public FlyingEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
     }
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        entity.addEffect((new EffectInstance(Effects.LEVITATION, 40, amplifier, true, false, false, null)));
+        entity.addEffect((new MobEffectInstance(MobEffects.LEVITATION, 40, amplifier, true, false, false, null)));
     }
 
     @Override

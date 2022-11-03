@@ -1,15 +1,15 @@
 package com.greatorator.tolkienmobs.item.potion;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.potion.EffectType;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 
 public class BurningEffect extends PotionBaseEffect {
     public static BurningEffect instance = null;
     public static float fireDuration = 10;
 
-    public BurningEffect(EffectType typeIn, int liquidColorIn) {
+    public BurningEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
     }
 
@@ -21,7 +21,7 @@ public class BurningEffect extends PotionBaseEffect {
     @Override
     public void applyInstantenousEffect(Entity thrownPotion, Entity thrower, LivingEntity entity, int amplifier, double potency) {
 
-        int duration = MathHelper.ceil((double)(amplifier + 1) * (double)fireDuration * potency);
+        int duration = Mth.ceil((double)(amplifier + 1) * (double)fireDuration * potency);
 
         entity.setSecondsOnFire(duration);
     }
@@ -30,7 +30,7 @@ public class BurningEffect extends PotionBaseEffect {
     public void applyEffectTick(LivingEntity entity, int amplifier) {
 
         //10 seconds of fire for each level
-        int duration = MathHelper.ceil((float)(amplifier+1) * fireDuration);
+        int duration = Mth.ceil((float)(amplifier+1) * fireDuration);
 
         entity.setSecondsOnFire(duration);
     }

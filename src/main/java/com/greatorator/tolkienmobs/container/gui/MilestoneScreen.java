@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.container.gui;
 
 import com.brandon3055.brandonscore.BCConfig;
-import com.brandon3055.brandonscore.client.BCSprites;
+import com.brandon3055.brandonscore.client.BCGuiSprites;
 import com.brandon3055.brandonscore.client.gui.GuiToolkit;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElement;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElementManager;
@@ -16,18 +16,18 @@ import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.utils.Utils;
 import com.greatorator.tolkienmobs.entity.tile.MilestoneTile;
 import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.Items;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
 
 public class MilestoneScreen extends ModularGuiContainer<ContainerBCTile<MilestoneTile>> {
     protected GuiToolkit<MilestoneScreen> toolkit = new GuiToolkit<>(this, 200, 150).setTranslationPrefix("screen.tolkienmobs.milestone");
-    private final PlayerEntity player;
+    private final Player player;
     private final MilestoneTile tile;
 
-    public MilestoneScreen(ContainerBCTile<MilestoneTile> container, PlayerInventory playerInventory, ITextComponent titleIn) {
+    public MilestoneScreen(ContainerBCTile<MilestoneTile> container, Inventory playerInventory, Component titleIn) {
         super(container, playerInventory, titleIn);
         this.tile = container.tile;
         this.player = playerInventory.player;
@@ -36,11 +36,11 @@ public class MilestoneScreen extends ModularGuiContainer<ContainerBCTile<Milesto
     @Override
     public void addElements(GuiElementManager manager) {
         TGuiBase temp = new TGuiBase(this);
-        temp.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCSprites.getThemed("background_dynamic"));
+        temp.background = GuiTexture.newDynamicTexture(xSize(), ySize(), () -> BCGuiSprites.getThemed("background_dynamic"));
         temp.background.onReload(guiTex -> guiTex.setPos(guiLeft(), guiTop()));
         toolkit.loadTemplate(temp);
 
-        GuiLabel nameLabel = toolkit.createHeading(TextFormatting.DARK_BLUE + tile.milestoneName.get(), temp.background)
+        GuiLabel nameLabel = toolkit.createHeading(ChatFormatting.DARK_BLUE + tile.milestoneName.get(), temp.background)
                 .setAlignment(GuiAlign.CENTER)
                 .setSize(temp.background.xSize() - 10, 8)
                 .setShadowStateSupplier(() -> BCConfig.darkMode)
@@ -49,9 +49,9 @@ public class MilestoneScreen extends ModularGuiContainer<ContainerBCTile<Milesto
         toolkit.placeOutside(nameLabel, temp.title, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 2);
 
         GuiTextField nameField = toolkit.createTextField(temp.background)
-                .setText(tile.milestoneName.get())
-                .setChangeListener(tile.milestoneName::set)
-                .setHoverText(TextFormatting.DARK_AQUA + toolkit.i18n("instructions"))
+                .setValue(tile.milestoneName.get())
+                .onValueChanged(tile.milestoneName::set)
+                .setHoverText(ChatFormatting.DARK_AQUA + toolkit.i18n("instructions"))
                 .setSize(temp.background.xSize() - 10, 10)
                 .setEnabledCallback(player::isCreative);
         toolkit.placeOutside(nameField, temp.title, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 2);
@@ -109,22 +109,22 @@ public class MilestoneScreen extends ModularGuiContainer<ContainerBCTile<Milesto
                 .setEnabledCallback(player::isCreative);
 
         GuiTextField distPer = toolkit.createTextField(temp.background)
-                .setText(tile.distanceCost.get() == 0 ? "" : tile.distanceCost.get()+"")
-                .setChangeListener(s -> tile.sendPacketToServer(output -> output.writeVarInt(Utils.parseInt(s)), 1))
+                .setValue(tile.distanceCost.get() == 0 ? "" : tile.distanceCost.get()+"")
+                .onValueChanged(s -> tile.sendPacketToServer(output -> output.writeVarInt(Utils.parseInt(s)), 1))
                 .setHoverText("Distance per payment item in blocks (cost will be distance divided by this number)")
                 .setSize(95, 12)
                 .setPos(setPayment.xPos(), setPayment.maxYPos() + 2)
-                .setValidator(toolkit.catchyValidator(s -> s.equals("") || Utils.validInteger(s)))
+                .setFilter(toolkit.catchyValidator(s -> s.equals("") || Utils.validInteger(s)))
                 .setEnabledCallback(player::isCreative);
         distPer.setSuggestion("Distance per item");
 
         GuiTextField dimCost = toolkit.createTextField(temp.background)
-                .setText(tile.dimensionCost.get() == 0 ? "" : tile.dimensionCost.get()+"")
-                .setChangeListener(s -> tile.sendPacketToServer(output -> output.writeVarInt(Utils.parseInt(s)), 2))
+                .setValue(tile.dimensionCost.get() == 0 ? "" : tile.dimensionCost.get()+"")
+                .onValueChanged(s -> tile.sendPacketToServer(output -> output.writeVarInt(Utils.parseInt(s)), 2))
                 .setHoverText("Cost to travel to this milestone from another dimension")
                 .setSize(95, 12)
                 .setPos(distPer.maxXPos(), distPer.yPos())
-                .setValidator(toolkit.catchyValidator(s -> s.equals("") || Utils.validInteger(s)))
+                .setFilter(toolkit.catchyValidator(s -> s.equals("") || Utils.validInteger(s)))
                 .setEnabledCallback(player::isCreative);
         dimCost.setSuggestion("X-Dimension Cost");
 

@@ -1,27 +1,28 @@
 package com.greatorator.tolkienmobs.enchantments;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.world.World;
+import com.greatorator.tolkienmobs.init.TolkienEnchants;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = TolkienMobs.MODID)
 public class EnchantmentBalrogMark extends Enchantment {
-    public EnchantmentBalrogMark(Enchantment.Rarity rarityIn, EquipmentSlotType... slots) {
-    super(rarityIn, EnchantmentType.ARMOR_FEET, slots);
+    public EnchantmentBalrogMark(Enchantment.Rarity rarityIn, EquipmentSlot... slots) {
+    super(rarityIn, EnchantmentCategory.ARMOR_FEET, slots);
 }
 
     /**
@@ -62,24 +63,24 @@ public class EnchantmentBalrogMark extends Enchantment {
     public static void balrogMark (LivingEvent.LivingUpdateEvent living){
         LivingEntity entity = living.getEntityLiving();
         BlockPos pos = entity.blockPosition();
-        World worldIn = living.getEntity().level;
+        Level worldIn = living.getEntity().level;
 
-        int level = EnchantmentHelper.getEnchantmentLevel(EnchantmentGenerator.BALROG_MARK.get(), entity);
+        int level = EnchantmentHelper.getEnchantmentLevel(TolkienEnchants.BALROG_MARK.get(), entity);
 
         if (entity.isOnGround() && level > 0) {
             BlockState blockstate = Blocks.MAGMA_BLOCK.defaultBlockState();
             float f = (float)Math.min(16, 2 + level);
-            BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
+            BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
 
             for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset((double)(-f), -1.0D, (double)(-f)), pos.offset((double)f, -1.0D, (double)f))) {
-                if (blockpos.closerThan(entity.position(), (double)f)) {
+                if (blockpos.closerToCenterThan(entity.position(), (double)f)) {
                     blockpos$mutable.set(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
                     BlockState blockstate1 = worldIn.getBlockState(blockpos$mutable);
-                    if (blockstate1.isAir(worldIn, blockpos$mutable)) {
+                    if (blockstate1.isAir()) {
                         BlockState blockstate2 = worldIn.getBlockState(blockpos);
-                        if (blockstate2.getBlock() == Blocks.GRASS_BLOCK || blockstate2.getBlock() == Blocks.DIRT && worldIn.isUnobstructed(blockstate, blockpos, ISelectionContext.empty()) && !net.minecraftforge.event.ForgeEventFactory.onBlockPlace(entity, net.minecraftforge.common.util.BlockSnapshot.create(worldIn.dimension(), worldIn, blockpos), Direction.DOWN)) {
+                        if (blockstate2.getBlock() == Blocks.GRASS_BLOCK || blockstate2.getBlock() == Blocks.DIRT && worldIn.isUnobstructed(blockstate, blockpos, CollisionContext.empty()) && !net.minecraftforge.event.ForgeEventFactory.onBlockPlace(entity, net.minecraftforge.common.util.BlockSnapshot.create(worldIn.dimension(), worldIn, blockpos), Direction.DOWN)) {
                             worldIn.setBlockAndUpdate(blockpos, blockstate);
-                            worldIn.getBlockTicks().scheduleTick(blockpos, Blocks.MAGMA_BLOCK, MathHelper.nextInt(entity.getRandom(), 60, 120));
+                            worldIn.scheduleTick(blockpos, Blocks.MAGMA_BLOCK, Mth.nextInt(entity.getRandom(), 60, 120));
                         }
                     }
                 }

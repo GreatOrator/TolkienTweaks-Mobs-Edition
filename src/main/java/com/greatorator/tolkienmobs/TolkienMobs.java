@@ -1,20 +1,13 @@
 package com.greatorator.tolkienmobs;
 
 
-import com.greatorator.tolkienmobs.handler.MobModify;
 import com.greatorator.tolkienmobs.handler.interfaces.IFireplaceRecipe;
 import com.greatorator.tolkienmobs.integration.TTMHelper;
-import com.greatorator.tolkienmobs.network.AirPacket;
-import com.greatorator.tolkienmobs.network.NetworkHelper;
 import com.greatorator.tolkienmobs.proxy.ClientProxy;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -37,7 +30,6 @@ public class TolkienMobs {
     public static final String NAME = "Tolkien Tweaks (Mobs Edition)";
     public static final String VERSION = "${mod_version}"; //This will now be set automatically by the build.gradle when the jar is built.
     private static TolkienMobs instance;
-    public NetworkHelper networkHelper;
     public static SimpleChannel NETWORK;
     private HashMap<String, Long> modifiedPlayerTimes;
 
@@ -51,11 +43,12 @@ public class TolkienMobs {
 	        1. Fell Beast - Needs AI adjustments
 			2. Gwaihir - Needs AI adjustments
 			3. Great Eagle - Needs AI adjustments
+	2. Classes
+	    a. MilestoneSaveData
     */
 
     public TolkienMobs() {
         instance = this;
-        networkHelper = new NetworkHelper("tolkienmobs", AirPacket.class);
         modifiedPlayerTimes = new HashMap<>();
 
         synchronized (MinecraftForge.EVENT_BUS) {
@@ -97,24 +90,6 @@ public class TolkienMobs {
 
     public static ResourceLocation prefix(String name) {
         return new ResourceLocation(MODID, name.toLowerCase(Locale.ROOT));
-    }
-
-    public void sendAirPacket(Player target, int lastAir) {
-        if (getIsEntityAllowedTarget(target)) {
-            networkHelper.sendPacketToPlayer(new AirPacket(lastAir), target);
-        }
-    }
-
-    public boolean getIsEntityAllowedTarget(Entity entity) {
-        return !(entity instanceof FakePlayer);
-    }
-
-    public static MobModify getMobModifiers(LivingEntity ent) {
-        return proxy.getRareMobs().get(ent);
-    }
-
-    public HashMap<String, Long> getModifiedPlayerTimes() {
-        return modifiedPlayerTimes;
     }
 
 }

@@ -5,59 +5,48 @@ import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.inventory.ContainerSlotLayout;
 import com.brandon3055.brandonscore.inventory.ItemHandlerIOControl;
 import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
+import com.brandon3055.brandonscore.lib.IInteractTile;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedString;
-import com.greatorator.tolkienmobs.TTMContent;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.network.NetworkHooks;
+import com.greatorator.tolkienmobs.init.TolkienContainers;
+import com.greatorator.tolkienmobs.init.TolkienTiles;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
 import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.CLIENT_CONTROL;
 import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_BOTH_SYNC_TILE;
-import static net.minecraft.util.Direction.UP;
+import static net.minecraft.core.Direction.UP;
 
-public class LockableTreasureChestTile extends TileBCore implements INamedContainerProvider, ITickableTileEntity {
+public class LockableTreasureChestTile extends TileBCore implements MenuProvider, IInteractTile {
     public static final ContainerSlotLayout.LayoutFactory<LockableTreasureChestTile> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.mainInventory);
     public TileItemStackHandler mainInventory = new TileItemStackHandler(27);
     public final ManagedString keyCode = register(new ManagedString("KeyCode", SAVE_BOTH_SYNC_TILE, CLIENT_CONTROL));
 
-    public LockableTreasureChestTile(TileEntityType<?> tileEntityTypeIn) {
-        super(tileEntityTypeIn);
-    }
-
-    public LockableTreasureChestTile() {
-        super(TTMContent.LOCKABLE_TREASURE_CHEST_TILE.get());
+    public LockableTreasureChestTile(BlockPos pos, BlockState state) {
+        super(TolkienTiles.LOCKABLE_TREASURE_CHEST_TILE.get(), pos, state);
 
         capManager.set(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, new ItemHandlerIOControl(mainInventory).setInsertCheck((slot, stack) -> slot > 0), UP, null);
         capManager.setInternalManaged("inventory", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, mainInventory).saveBoth().syncTile();
     }
 
-    public void onRightClick(PlayerEntity playerEntity, Hand hand) {
+    public void onRightClick(Player playerEntity, InteractionHand hand) {
         if (!playerEntity.level.isClientSide()) {
-            openGUI(playerEntity, this, worldPosition);
-        }
-    }
-
-    public void openGUI(PlayerEntity player, INamedContainerProvider containerSupplier, BlockPos pos)
-    {
-        if(!player.level.isClientSide)
-        {
-            NetworkHooks.openGui((ServerPlayerEntity)player, containerSupplier, pos);
+            NetworkHooks.openGui((ServerPlayer) playerEntity, this, worldPosition);
         }
     }
 
     @Nullable
     @Override
-    public Container createMenu(int windowID, PlayerInventory playerInventory, PlayerEntity playerEntity) {
-        return new ContainerBCTile<>(TTMContent.LOCKABLE_TREASURE_CHEST_CONTAINER, windowID, playerInventory, this, SLOT_LAYOUT);
+    public AbstractContainerMenu createMenu(int windowID, Inventory playerInventory, Player playerEntity) {
+        return new ContainerBCTile<>(TolkienContainers.LOCKABLE_TREASURE_CHEST_CONTAINER, windowID, playerInventory, this, SLOT_LAYOUT);
     }
 }

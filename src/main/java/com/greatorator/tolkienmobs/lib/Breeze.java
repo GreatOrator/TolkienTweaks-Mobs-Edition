@@ -2,8 +2,8 @@ package com.greatorator.tolkienmobs.lib;
 
 import com.greatorator.tolkienmobs.utils.SmoothNoise;
 import com.greatorator.tolkienmobs.utils.TriangularDistribution;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -44,7 +44,7 @@ public class Breeze {
         });
     }
 
-    protected static void tickState(ClientWorld world) {
+    protected static void tickState(Level world) {
         --stateDuration;
 
 //        ResourceLocation dimension = world.dimension().location();
@@ -82,7 +82,7 @@ public class Breeze {
         wasThundering = isThundering;
     }
 
-    public static void tick(ClientWorld world) {
+    public static void tick(Level world) {
         tickState(world);
 
         velocityNoise.tick();
@@ -93,8 +93,8 @@ public class Breeze {
         float direction = directionTrendNoise.getLerp() + directionNoise.getNoise();
 
         // calculate wind velocity (in blocks / tick)
-        windX = strength * MathHelper.cos(direction);
-        windZ = strength * MathHelper.sin(direction);
+        windX = strength * Mth.cos(direction);
+        windZ = strength * Mth.sin(direction);
     }
 
     protected enum State {

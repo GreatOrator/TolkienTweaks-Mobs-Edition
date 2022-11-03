@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.item.armor;
 
-import net.minecraft.item.HorseArmorItem;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.HorseArmorItem;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 

@@ -2,21 +2,21 @@ package com.greatorator.tolkienmobs.entity.tile.render;
 
 import com.greatorator.tolkienmobs.block.LockableChestBlock;
 import com.greatorator.tolkienmobs.entity.tile.LockableChestTile;
-import com.mojang.blaze3d.matrix.MatrixStack;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.vector.Quaternion;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Quaternion;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class RenderLockableChestTile extends TileEntityRenderer<LockableChestTile> {
-    public RenderLockableChestTile(TileEntityRendererDispatcher rendererDispatcherIn) {
-        super(rendererDispatcherIn);
+public class RenderLockableChestTile implements BlockEntityRenderer<LockableChestTile> {
+    public RenderLockableChestTile(BlockEntityRendererProvider.Context context) {
+
     }
 
     @Override
-    public void render(LockableChestTile te, float partialTicks, MatrixStack mStack, IRenderTypeBuffer getter, int packedLight, int packedOverlay) {
+    public void render(LockableChestTile te, float partialTicks, PoseStack mStack, MultiBufferSource getter, int packedLight, int packedOverlay) {
         BlockState state = te.getBlockState();
         Direction facing = state.getValue(LockableChestBlock.FACING);
 

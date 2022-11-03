@@ -4,10 +4,10 @@ import codechicken.lib.packet.PacketCustom;
 import codechicken.lib.packet.PacketCustomChannelBuilder;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.network.event.EventNetworkChannel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.network.event.EventNetworkChannel;
 
 import javax.annotation.Nullable;
 
@@ -49,7 +49,7 @@ public class TolkienNetwork {
         packet.sendToServer();
     }
 
-    public static void sendMilestonesToClients(MilestoneSaveData data, @Nullable ServerPlayerEntity player) {
+    public static void sendMilestonesToClients(MilestoneSaveData data, @Nullable ServerPlayer player) {
         PacketCustom packet = new PacketCustom(CHANNEL, C_SEND_MILESTONES);
         data.serialize(packet);
         if (player != null) {

@@ -1,21 +1,21 @@
 package com.greatorator.tolkienmobs.item.potion;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.LightningBoltEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.EffectType;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 public class LightningEffect extends PotionBaseEffect {
     public static LightningEffect instance = null;
     public static float lightningDuration = 10;
 
-    public LightningEffect(EffectType typeIn, int liquidColorIn) {
+    public LightningEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
     }
 
@@ -26,14 +26,14 @@ public class LightningEffect extends PotionBaseEffect {
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        World world = entity.getCommandSenderWorld();
+        Level world = entity.getCommandSenderWorld();
         BlockPos blockpos = entity.blockPosition();
 
-        LightningBoltEntity lightningboltentity = EntityType.LIGHTNING_BOLT.create(world);
-        lightningboltentity.moveTo(Vector3d.atBottomCenterOf(blockpos));
+        LightningBolt lightningboltentity = EntityType.LIGHTNING_BOLT.create(world);
+        lightningboltentity.moveTo(Vec3.atBottomCenterOf(blockpos));
         lightningboltentity.setCause(null);
         world.addFreshEntity(lightningboltentity);
-        world.playSound((PlayerEntity) null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.TRIDENT_THUNDER, SoundCategory.WEATHER, 5.0f, 1.0f);
+        world.playSound((Player) null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.TRIDENT_THUNDER, SoundSource.WEATHER, 5.0f, 1.0f);
     }
 
     @Override

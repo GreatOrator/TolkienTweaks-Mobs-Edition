@@ -1,29 +1,29 @@
 package com.greatorator.tolkienmobs.enchantments;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.EnchantmentType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
+import com.greatorator.tolkienmobs.init.TolkienEnchants;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentCategory;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = TolkienMobs.MODID)
 public class EnchantmentHobbitPlow extends Enchantment {
-    public EnchantmentHobbitPlow(Rarity rarityIn, EquipmentSlotType... slots) {
-        super(rarityIn, EnchantmentType.DIGGER, slots);
+    public EnchantmentHobbitPlow(Rarity rarityIn, EquipmentSlot... slots) {
+        super(rarityIn, EnchantmentCategory.DIGGER, slots);
     }
 
     @Override
@@ -48,20 +48,12 @@ public class EnchantmentHobbitPlow extends Enchantment {
 
     @Override
     public boolean canEnchant(ItemStack stack) {
-        if (stack.getItem() instanceof HoeItem || stack.getToolTypes().contains(ToolType.HOE)) {
-            return (stack.getItem() instanceof HoeItem || stack.getToolTypes().contains(ToolType.HOE));
-        }
-
-        return false;
+        return stack.getItem() instanceof HoeItem ? true : super.canEnchant(stack);
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack) {
-        if (stack.getItem() instanceof HoeItem || stack.getToolTypes().contains(ToolType.HOE)) {
-            return (stack.getItem() instanceof HoeItem || stack.getToolTypes().contains(ToolType.HOE));
-        }
-
-        return false;
+        return stack.getItem() instanceof HoeItem ? true : super.canEnchant(stack);
     }
 
     @Override
@@ -77,13 +69,13 @@ public class EnchantmentHobbitPlow extends Enchantment {
     @SubscribeEvent
     public static void hobbitPlow(PlayerInteractEvent.RightClickBlock event) {
         ItemStack holding = event.getItemStack();
-        PlayerEntity player = event.getPlayer();
+        Player player = event.getPlayer();
         if (holding.isEmpty() || event.getWorld().isClientSide()) return;
 
-        World world = event.getWorld();
+        Level world = event.getWorld();
         BlockPos blockPos = event.getPos();
 
-        int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentGenerator.HOBBIT_PLOW.get(), holding);
+        int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(TolkienEnchants.HOBBIT_PLOW.get(), holding);
 
         if (enchantmentLevel > 0 && !world.isClientSide()) {
             Block targetBlock = event.getWorld().getBlockState(blockPos).getBlock();
@@ -92,7 +84,7 @@ public class EnchantmentHobbitPlow extends Enchantment {
                 world.setBlockAndUpdate(blockPos, Blocks.WATER.defaultBlockState());
 
                 if (!player.isCreative()) {
-                    player.getItemInHand(Hand.MAIN_HAND).hurtAndBreak((enchantmentLevel * 2) + 1, player, entity -> entity.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
+                    player.getItemInHand(InteractionHand.MAIN_HAND).hurtAndBreak((enchantmentLevel * 2) + 1, player, entity -> entity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
                 }
 
                 for (int x = -enchantmentLevel; x <= enchantmentLevel; x++) {
@@ -100,7 +92,7 @@ public class EnchantmentHobbitPlow extends Enchantment {
                         BlockPos targetPos = new BlockPos(blockPos.getX() + x, blockPos.getY(), blockPos.getZ() + z);
                         if (world.isEmptyBlock(targetPos.above()) && world.getBlockState(targetPos).getMaterial().blocksMotion()) {
                             world.setBlockAndUpdate(targetPos, Blocks.FARMLAND.defaultBlockState());
-                            world.playSound(player, blockPos, SoundEvents.HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                            world.playSound(player, blockPos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
                         }
                     }
                 }

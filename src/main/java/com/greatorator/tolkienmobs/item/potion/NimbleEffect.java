@@ -1,12 +1,12 @@
 package com.greatorator.tolkienmobs.item.potion;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.LivingEntity;
 
 public class NimbleEffect extends PotionBaseEffect {
     public static NimbleEffect instance = null;
 
-    public NimbleEffect(EffectType typeIn, int liquidColorIn) {
+    public NimbleEffect(MobEffectCategory typeIn, int liquidColorIn) {
         super(typeIn, liquidColorIn);
     }
 

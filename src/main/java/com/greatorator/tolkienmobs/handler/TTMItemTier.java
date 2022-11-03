@@ -1,18 +1,19 @@
 package com.greatorator.tolkienmobs.handler;
 
-import com.greatorator.tolkienmobs.TTMContent;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.LazyValue;
+import com.greatorator.tolkienmobs.init.TolkienItems;
+import net.covers1624.quack.util.LazyValue;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.crafting.Ingredient;
 
+import javax.annotation.Nonnull;
 import java.util.function.Supplier;
 
-public enum TTMItemTier implements IItemTier {
+public enum TTMItemTier implements Tier {
     MITHRIL(6, 2531, 15, 2.0F, 27, () -> {
-        return Ingredient.of(TTMContent.INGOT_MITHRIL.get());
+        return Ingredient.of(TolkienItems.INGOT_MITHRIL.get());
     }),
     MORGULIRON(5, 2243, 11.0F, 5.0F, 23, () -> {
-        return Ingredient.of(TTMContent.INGOT_MORGULIRON.get());
+        return Ingredient.of(TolkienItems.INGOT_MORGULIRON.get());
     });
 
     private final int harvestLevel;
@@ -56,6 +57,7 @@ public enum TTMItemTier implements IItemTier {
         return this.enchantability;
     }
 
+    @Nonnull
     @Override
     public Ingredient getRepairIngredient() {
         return this.repairMaterial.get();
