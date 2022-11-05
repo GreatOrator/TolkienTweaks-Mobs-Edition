@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "tolkienmobs:block/pressure_plate_fangornoak"
+    },
+    "powered=true": {
+      "model": "tolkienmobs:block/pressure_plate_fangornoak_down"
+    }
+  }
+}

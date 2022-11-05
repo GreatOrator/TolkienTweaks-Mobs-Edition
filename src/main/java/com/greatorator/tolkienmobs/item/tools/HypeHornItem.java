@@ -1,12 +1,15 @@
 package com.greatorator.tolkienmobs.item.tools;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.world.World;
+import com.greatorator.tolkienmobs.init.TolkienSounds;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+
+import javax.annotation.Nonnull;
 
 public class HypeHornItem extends Item {
     public HypeHornItem(Properties properties) {
@@ -14,10 +17,10 @@ public class HypeHornItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        if (!world.isClientSide){
-            world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundGenerator.hype_horn.get(), SoundCategory.PLAYERS, 5F, 0.95F + world.random.nextFloat() * 0.1F);
+    public InteractionResultHolder<ItemStack> use(Level worldIn, Player player, @Nonnull InteractionHand hand) {
+        if (!worldIn.isClientSide){
+            worldIn.playSound(null, player.getX(), player.getY(), player.getZ(), TolkienSounds.hype_horn.get(), SoundSource.PLAYERS, 5F, 0.95F + worldIn.random.nextFloat() * 0.1F);
         }
-        return super.use(world, player, hand);
+        return super.use(worldIn, player, hand);
     }
 }

@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.enchantments;
 
-import com.greatorator.tolkienmobs.TTMConfig;
+import com.greatorator.tolkienmobs.TolkienConfig;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.CropsBlock;
 import com.greatorator.tolkienmobs.handler.interfaces.IHobbitHarvest;
@@ -85,7 +85,7 @@ public class EnchantmentHobbitHarvest extends Enchantment {
         if (enchantmentLevel > 0 && holding.isEnchanted() && EnchantmentHelper.getEnchantments(holding).containsKey(TolkienEnchants.HOBBIT_HARVEST.get()) && !holding.isEmpty()) {
             Level world = event.getWorld();
             Player player = event.getPlayer();
-            boolean replant = TTMConfig.replant;
+            boolean replant = TolkienConfig.replant;
             for (int x = -enchantmentLevel; x <= enchantmentLevel; x++) {
                 for (int z = -enchantmentLevel; z <= enchantmentLevel; z++) {
                     BlockPos blockPos = new BlockPos(event.getPos().getX() + x, event.getPos().getY(), event.getPos().getZ() + z);

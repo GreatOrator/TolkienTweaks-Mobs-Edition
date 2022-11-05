@@ -1,36 +1,31 @@
 package com.greatorator.tolkienmobs.entity.item;
 
-import com.greatorator.tolkienmobs.TTMContent;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.IPacket;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
-import net.minecraftforge.fml.network.NetworkHooks;
+import com.greatorator.tolkienmobs.init.TolkienEntities;
+import com.greatorator.tolkienmobs.init.TolkienItems;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.Arrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nonnull;
 
-public class UtumnoArrowEntity extends ArrowEntity {
+public class UtumnoArrowEntity extends Arrow {
     private double baseDamage = 5.0D;
 
-    public UtumnoArrowEntity(World world, double x, double y, double z) {
-        super(world, x, y, z);
-    }
-
-    public UtumnoArrowEntity(EntityType<UtumnoArrowEntity> entityType, World world) {
+    public UtumnoArrowEntity(EntityType<? extends UtumnoArrowEntity> entityType, Level world, double x, double y, double z) {
         super(entityType, world);
+    }
+
+    public UtumnoArrowEntity(EntityType<? extends UtumnoArrowEntity> entity, Level world) {
+        super(entity, world);
         this.setPierceLevel((byte) 5);
     }
 
-    public UtumnoArrowEntity(World world, LivingEntity entity) {
+    public UtumnoArrowEntity(LivingEntity entity, Level world) {
         super(world, entity);
-        this.setPierceLevel((byte) 5);
-    }
-
-    public UtumnoArrowEntity(FMLPlayMessages.SpawnEntity spawnPacket, World world) {
-        super(world, 0, 0, 0);
     }
 
     @Override
@@ -46,11 +41,11 @@ public class UtumnoArrowEntity extends ArrowEntity {
     @Override
     @Nonnull
     public EntityType<?> getType() {
-        return EntityGenerator.AMMO_ARROW_UTUMNO.get();
+        return TolkienEntities.AMMO_ARROW_UTUMNO.get();
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -61,6 +56,6 @@ public class UtumnoArrowEntity extends ArrowEntity {
 
     @Override
     protected ItemStack getPickupItem() {
-        return new ItemStack(TTMContent.UTUMNO_ARROW.get());
+        return new ItemStack(TolkienItems.UTUMNO_ARROW.get());
     }
 }

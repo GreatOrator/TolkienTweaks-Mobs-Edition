@@ -1,22 +1,23 @@
 package com.greatorator.tolkienmobs.entity.item;
 
+import com.greatorator.tolkienmobs.init.TolkienEntities;
 import com.greatorator.tolkienmobs.init.TolkienParticles;
-import net.minecraft.entity.AreaEffectCloudEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.AreaEffectCloud;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nonnull;
 import java.util.List;
@@ -24,27 +25,27 @@ import java.util.List;
 public class FellBeastFireballEntity extends BaseFireballEntity {
    public int explosionPower = 1;
 
-   public FellBeastFireballEntity(EntityType<? extends FellBeastFireballEntity> entityType, World world) {
+   public FellBeastFireballEntity(EntityType<? extends FellBeastFireballEntity> entityType, Level world) {
       super(entityType, world);
    }
 
    @OnlyIn(Dist.CLIENT)
-   public FellBeastFireballEntity(World world, double p_i1768_2_, double p_i1768_4_, double p_i1768_6_, double p_i1768_8_, double p_i1768_10_, double p_i1768_12_) {
-      super(EntityGenerator.AMMO_FELLBEAST_FIREBALL.get(), p_i1768_2_, p_i1768_4_, p_i1768_6_, p_i1768_8_, p_i1768_10_, p_i1768_12_, world);
+   public FellBeastFireballEntity(Level world, double p_i1768_2_, double p_i1768_4_, double p_i1768_6_, double p_i1768_8_, double p_i1768_10_, double p_i1768_12_) {
+      super(TolkienEntities.AMMO_FELLBEAST_FIREBALL.get(), p_i1768_2_, p_i1768_4_, p_i1768_6_, p_i1768_8_, p_i1768_10_, p_i1768_12_, world);
    }
 
-   public FellBeastFireballEntity(World world, LivingEntity livingEntity, double x, double y, double z) {
-      super(EntityGenerator.AMMO_FELLBEAST_FIREBALL.get(), livingEntity, x, y, z, world);
+   public FellBeastFireballEntity(Level world, LivingEntity livingEntity, double x, double y, double z) {
+      super(TolkienEntities.AMMO_FELLBEAST_FIREBALL.get(), livingEntity, x, y, z, world);
    }
 
    @Override
-   protected void onHit(RayTraceResult rayTraceResult) {
+   protected void onHit(HitResult rayTraceResult) {
       super.onHit(rayTraceResult);
       Entity entity = this.getOwner();
-      if (rayTraceResult.getType() != RayTraceResult.Type.ENTITY || !((EntityRayTraceResult)rayTraceResult).getEntity().is(entity)) {
+      if (rayTraceResult.getType() != HitResult.Type.ENTITY || !((EntityHitResult)rayTraceResult).getEntity().is(entity)) {
          if (!this.level.isClientSide) {
             List<LivingEntity> list = this.level.getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(4.0D, 2.0D, 4.0D));
-            AreaEffectCloudEntity areaeffectcloudentity = new AreaEffectCloudEntity(this.level, this.getX(), this.getY(), this.getZ());
+            AreaEffectCloud areaeffectcloudentity = new AreaEffectCloud(this.level, this.getX(), this.getY(), this.getZ());
             if (entity instanceof LivingEntity) {
                areaeffectcloudentity.setOwner((LivingEntity)entity);
             }
@@ -53,7 +54,7 @@ public class FellBeastFireballEntity extends BaseFireballEntity {
             areaeffectcloudentity.setRadius(3.0F);
             areaeffectcloudentity.setDuration(600);
             areaeffectcloudentity.setRadiusPerTick((7.0F - areaeffectcloudentity.getRadius()) / (float)areaeffectcloudentity.getDuration());
-            areaeffectcloudentity.addEffect(new EffectInstance(Effects.HARM, 1, 1));
+            areaeffectcloudentity.addEffect(new MobEffectInstance(MobEffects.HARM, 1, 1));
             if (!list.isEmpty()) {
                for(LivingEntity livingentity : list) {
                   double d0 = this.distanceToSqr(livingentity);
@@ -66,7 +67,7 @@ public class FellBeastFireballEntity extends BaseFireballEntity {
 
             this.level.levelEvent(2006, this.blockPosition(), this.isSilent() ? -1 : 1);
             this.level.addFreshEntity(areaeffectcloudentity);
-            this.remove();
+            this.discard();
          }
       }
    }
@@ -77,7 +78,7 @@ public class FellBeastFireballEntity extends BaseFireballEntity {
    }
 
    @Override
-   protected IParticleData getTrailParticle() {
+   protected ParticleOptions getTrailParticle() {
       return TolkienParticles.fell_beast_breath;
    }
 
@@ -87,13 +88,13 @@ public class FellBeastFireballEntity extends BaseFireballEntity {
    }
 
    @Override
-   public void addAdditionalSaveData(CompoundNBT p_213281_1_) {
+   public void addAdditionalSaveData(CompoundTag p_213281_1_) {
       super.addAdditionalSaveData(p_213281_1_);
       p_213281_1_.putInt("ExplosionPower", this.explosionPower);
    }
 
    @Override
-   public void readAdditionalSaveData(CompoundNBT p_70037_1_) {
+   public void readAdditionalSaveData(CompoundTag p_70037_1_) {
       super.readAdditionalSaveData(p_70037_1_);
       if (p_70037_1_.contains("ExplosionPower", 99)) {
          this.explosionPower = p_70037_1_.getInt("ExplosionPower");
@@ -102,7 +103,7 @@ public class FellBeastFireballEntity extends BaseFireballEntity {
 
    @Nonnull
    @Override
-   public IPacket<?> getAddEntityPacket() {
+   public Packet<?> getAddEntityPacket() {
       return NetworkHooks.getEntitySpawningPacket(this);
    }
 }

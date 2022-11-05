@@ -1,39 +1,34 @@
 package com.greatorator.tolkienmobs.entity.item;
 
-import com.greatorator.tolkienmobs.TTMContent;
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.BoatEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
-import net.minecraftforge.registries.ForgeRegistries;
+import com.greatorator.tolkienmobs.init.TolkienBlocks;
+import com.greatorator.tolkienmobs.init.TolkienEntities;
+import com.greatorator.tolkienmobs.init.TolkienItems;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nonnull;
 
-import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+public class TolkienBoatEntity extends Boat {
+    private static final EntityDataAccessor<Integer> WOOD_TYPE = SynchedEntityData.defineId(TolkienBoatEntity.class, EntityDataSerializers.INT);
 
-public class TolkienBoatEntity extends BoatEntity {
-    private static final DataParameter<Integer> WOOD_TYPE = EntityDataManager.defineId(TolkienBoatEntity.class, DataSerializers.INT);
-
-    public TolkienBoatEntity(EntityType<? extends BoatEntity> type, World world) {
+    public TolkienBoatEntity(EntityType<? extends Boat> type, Level world) {
         super(type, world);
         this.blocksBuilding = true;
     }
 
-    public TolkienBoatEntity(World worldIn, double x, double y, double z) {
-        this(EntityGenerator.MALLORN_BOAT.get(), worldIn);
+    public TolkienBoatEntity(Level worldIn, double x, double y, double z) {
+        this(TolkienEntities.MALLORN_BOAT.get(), worldIn);
         this.setPos(x, y, z);
-        this.setDeltaMovement(Vector3d.ZERO);
         this.xo = x;
         this.yo = y;
         this.zo = z;
@@ -46,7 +41,7 @@ public class TolkienBoatEntity extends BoatEntity {
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundNBT compound) {
+    protected void readAdditionalSaveData(CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         if (compound.contains("Type", 8)) {
             this.setWoodType(TolkienBoatEntity.Type.byName(compound.getString("Type")));
@@ -54,7 +49,7 @@ public class TolkienBoatEntity extends BoatEntity {
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundNBT compound) {
+    protected void addAdditionalSaveData(CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putString("Type", this.getWoodType().getName());
     }
@@ -73,27 +68,32 @@ public class TolkienBoatEntity extends BoatEntity {
         switch(this.getWoodType()) {
             case MALLORN:
             default:
-                return TTMContent.MALLORN_BOAT.get();
+                return TolkienItems.MALLORN_BOAT.get();
             case MIRKWOOD:
-                return TTMContent.MIRKWOOD_BOAT.get();
+                return TolkienItems.MIRKWOOD_BOAT.get();
             case CULUMALDA:
-                return TTMContent.CULUMALDA_BOAT.get();
+                return TolkienItems.CULUMALDA_BOAT.get();
             case LEBETHRON:
-                return TTMContent.LEBETHRON_BOAT.get();
+                return TolkienItems.LEBETHRON_BOAT.get();
+            case DEADWOOD:
+                return TolkienItems.DEADWOOD_BOAT.get();
+            case FANGORNOAK:
+                return TolkienItems.FANGORNOAK_BOAT.get();
         }
     }
 
     @Override
-    public ItemStack getPickedResult(RayTraceResult target) {
-        return new ItemStack(ForgeRegistries.ITEMS.getValue(
-                new ResourceLocation(MODID, "boat_" + this.getWoodType().getName())));
+    public ItemStack getPickResult() {
+        return new ItemStack(this.getDropItem());
     }
 
     public static enum Type {
-        MALLORN(TTMContent.PLANKS_MALLORN.get(), "mallorn"),
-        MIRKWOOD(TTMContent.PLANKS_MIRKWOOD.get(), "mirkwood"),
-        CULUMALDA(TTMContent.PLANKS_CULUMALDA.get(), "culumalda"),
-        LEBETHRON(TTMContent.PLANKS_LEBETHRON.get(), "lebethron");
+        MALLORN(TolkienBlocks.PLANKS_MALLORN.get(), "mallorn"),
+        MIRKWOOD(TolkienBlocks.PLANKS_MIRKWOOD.get(), "mirkwood"),
+        CULUMALDA(TolkienBlocks.PLANKS_CULUMALDA.get(), "culumalda"),
+        LEBETHRON(TolkienBlocks.PLANKS_LEBETHRON.get(), "lebethron"),
+        DEADWOOD(TolkienBlocks.PLANKS_LEBETHRON.get(), "deadwood"),
+        FANGORNOAK(TolkienBlocks.PLANKS_LEBETHRON.get(), "fangornoak");
 
         private final String name;
         private final Block planks;
@@ -138,7 +138,7 @@ public class TolkienBoatEntity extends BoatEntity {
 
     @Nonnull
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

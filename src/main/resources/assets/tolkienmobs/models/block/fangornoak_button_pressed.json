@@ -1,0 +1,6 @@
+{
+  "parent": "block/button_pressed",
+  "textures": {
+    "texture": "tolkienmobs:block/planks_fangornoak"
+  }
+}

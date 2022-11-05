@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.integration.jei;
 
-import com.greatorator.tolkienmobs.TTMContent;
 import com.greatorator.tolkienmobs.handler.interfaces.IFireplaceRecipe;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.greatorator.tolkienmobs.init.TolkienBlocks;
+import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -10,9 +10,10 @@ import mezz.jei.api.gui.drawable.IDrawableStatic;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class FireplaceRecipeCategory implements IRecipeCategory<IFireplaceRecipe
 
     public FireplaceRecipeCategory(IGuiHelper guiHelper) {
         this.background = guiHelper.createDrawable(TEXTURE, 0, 0, 176, 85);
-        this.icon = guiHelper.createDrawableIngredient(new ItemStack(TTMContent.TTMFIREPLACE.get()));
+        this.icon = guiHelper.createDrawableIngredient(new ItemStack(TolkienBlocks.TTMFIREPLACE.get()));
         this.campFire = guiHelper.createDrawable(TEXTURE, 176, 0, 14, 17);
     }
 
@@ -44,8 +45,8 @@ public class FireplaceRecipeCategory implements IRecipeCategory<IFireplaceRecipe
     }
 
     @Override
-    public String getTitle() {
-        return "Fireplace";
+    public Component getTitle() {
+        return (Component) UID;
     }
 
     @Override
@@ -77,7 +78,7 @@ public class FireplaceRecipeCategory implements IRecipeCategory<IFireplaceRecipe
     }
 
     @Override
-    public void draw(IFireplaceRecipe recipe, MatrixStack matrixStack, double mouseX, double mouseY) {
+    public void draw(IFireplaceRecipe recipe, PoseStack matrixStack, double mouseX, double mouseY) {
             this.campFire.draw(matrixStack, 52, 36);
     }
 }

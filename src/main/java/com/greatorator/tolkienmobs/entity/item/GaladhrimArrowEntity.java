@@ -1,36 +1,31 @@
 package com.greatorator.tolkienmobs.entity.item;
 
-import com.greatorator.tolkienmobs.TTMContent;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.network.IPacket;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.FMLPlayMessages;
-import net.minecraftforge.fml.network.NetworkHooks;
+import com.greatorator.tolkienmobs.init.TolkienEntities;
+import com.greatorator.tolkienmobs.init.TolkienItems;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.Arrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nonnull;
 
-public class GaladhrimArrowEntity extends ArrowEntity {
+public class GaladhrimArrowEntity extends Arrow {
     private double baseDamage = 8.0D;
 
-    public GaladhrimArrowEntity(World world, double x, double y, double z) {
-        super(world, x, y, z);
-    }
-
-    public GaladhrimArrowEntity(EntityType<GaladhrimArrowEntity> entityType, World world) {
+    public GaladhrimArrowEntity(EntityType<? extends GaladhrimArrowEntity> entityType, Level world, double x, double y, double z) {
         super(entityType, world);
+    }
+
+    public GaladhrimArrowEntity(EntityType<? extends GaladhrimArrowEntity> entity, Level world) {
+        super(entity, world);
         this.setPierceLevel((byte) 10);
     }
 
-    public GaladhrimArrowEntity(World world, LivingEntity entity) {
+    public GaladhrimArrowEntity(LivingEntity entity, Level world) {
         super(world, entity);
-        this.setPierceLevel((byte) 10);
-    }
-
-    public GaladhrimArrowEntity(FMLPlayMessages.SpawnEntity spawnPacket, World world) {
-        super(world, 0, 0, 0);
     }
 
     @Override
@@ -46,11 +41,11 @@ public class GaladhrimArrowEntity extends ArrowEntity {
     @Override
     @Nonnull
     public EntityType<?> getType() {
-        return EntityGenerator.AMMO_ARROW_GALADHRIM.get();
+        return TolkienEntities.AMMO_ARROW_GALADHRIM.get();
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -61,6 +56,6 @@ public class GaladhrimArrowEntity extends ArrowEntity {
 
     @Override
     protected ItemStack getPickupItem() {
-        return new ItemStack(TTMContent.GALADHRIM_ARROW.get());
+        return new ItemStack(TolkienItems.GALADHRIM_ARROW.get());
     }
 }

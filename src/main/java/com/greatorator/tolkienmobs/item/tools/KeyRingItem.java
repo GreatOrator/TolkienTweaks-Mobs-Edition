@@ -116,7 +116,7 @@ public class KeyRingItem extends Item {
         if (optional.isPresent()) {
             return optional.orElseThrow(RuntimeException::new);
         }
-        return null; //If this returns null then someone has broken something.
+        return null;
     }
 
     private static boolean isKey(ItemStack stack) {

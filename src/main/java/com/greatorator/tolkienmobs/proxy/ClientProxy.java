@@ -1,14 +1,15 @@
 package com.greatorator.tolkienmobs.proxy;
 
-import com.greatorator.tolkienmobs.entity.merchant.villager.TTMVillagerTrades;
 import com.greatorator.tolkienmobs.event.client.ClientEvents;
 import com.greatorator.tolkienmobs.handler.BowItemModelProperties;
 import com.greatorator.tolkienmobs.handler.TTMColor;
 import com.greatorator.tolkienmobs.handler.TTMHearts;
 import com.greatorator.tolkienmobs.handler.TTMSprites;
 import com.greatorator.tolkienmobs.init.TolkienWoodTypes;
-import com.greatorator.tolkienmobs.init.renders.*;
-import com.greatorator.tolkienmobs.integration.TTMHelper;
+import com.greatorator.tolkienmobs.init.renders.TolkienBlockRenders;
+import com.greatorator.tolkienmobs.init.renders.TolkienGuiRenders;
+import com.greatorator.tolkienmobs.init.renders.TolkienTileRenders;
+import com.greatorator.tolkienmobs.integration.IntegrationHelper;
 import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
 import com.greatorator.tolkienmobs.item.tools.KeyRingItem;
 import net.minecraft.client.Minecraft;
@@ -16,7 +17,6 @@ import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -32,7 +32,7 @@ public class ClientProxy extends CommonProxy {
         super.construct();
         MinecraftForge.EVENT_BUS.addListener(ClientEvents::livingUpdate);
         MinecraftForge.EVENT_BUS.addListener(ClientEvents::renderOverlayEvent);
-        MinecraftForge.EVENT_BUS.addListener(TTMVillagerTrades::onVillagerTradesEvent);
+//        MinecraftForge.EVENT_BUS.addListener(TTMVillagerTrades::onVillagerTradesEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(TTMColor::itemColourEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(TTMSprites::initialize);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientEvents::onModelBakeEvent);
@@ -42,7 +42,7 @@ public class ClientProxy extends CommonProxy {
     public void commonSetup(FMLCommonSetupEvent event) {
         super.commonSetup(event);
 
-        if (!TTMHelper.isMantleInstalled) {
+        if (!IntegrationHelper.isMantleInstalled) {
             MinecraftForge.EVENT_BUS.register(new TTMHearts());
         }
     }
@@ -52,7 +52,6 @@ public class ClientProxy extends CommonProxy {
         super.clientSetup(event);
         setupRenderLayers();
         registerPropertyOverride();
-        registerEntityRenderer();
         registerTileRenderers();
         registerWoodTypes(event);
     }
@@ -68,14 +67,9 @@ public class ClientProxy extends CommonProxy {
     //#################################################################
     // Render Registry
     //#################################################################
-    public static void registerEntityRenderer(EntityRenderersEvent.RegisterRenderers event) {
-        TolkienEntityRenders.init(event);
-    }
-
     public static void setupRenderLayers() {
         TolkienBlockRenders.init();
         TolkienGuiRenders.init();
-        TolkienFluidRenders.init();
 
         BowItemModelProperties.makeBow(ELVEN_BOW.get());
         BowItemModelProperties.makeBow(URUK_BOW.get());

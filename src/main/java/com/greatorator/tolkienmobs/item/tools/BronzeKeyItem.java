@@ -11,7 +11,7 @@ public class BronzeKeyItem extends KeyBaseItem {
     }
 
     @Override
-    public void openGui(ItemStack stack, Player player) {
-        Minecraft.getInstance().setScreen(new BronzeKeyAccessScreen(player, stack.getHoverName(), null, getCode(stack), getUses(stack)));
+    public void openGui(ItemStack stack, Player playerIn) {
+        Minecraft.getInstance().setScreen(new BronzeKeyAccessScreen(playerIn, stack.getHoverName(), null, getCode(stack), getUses(stack)));
     }
 }

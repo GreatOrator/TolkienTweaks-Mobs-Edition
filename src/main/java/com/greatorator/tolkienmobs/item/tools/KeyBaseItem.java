@@ -112,6 +112,5 @@ public class KeyBaseItem extends ItemBCore implements IKeyBase {
 
     @Override
     public void setName(ItemStack stack, String key) {
-
     }
 }

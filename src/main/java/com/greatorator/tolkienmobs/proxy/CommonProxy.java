@@ -1,27 +1,29 @@
 package com.greatorator.tolkienmobs.proxy;
 
-import com.greatorator.tolkienmobs.TTMConfig;
-import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.TolkienConfig;
+import com.greatorator.tolkienmobs.TolkienContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
 import com.greatorator.tolkienmobs.event.entity.SleepingEvent;
 import com.greatorator.tolkienmobs.event.entity.WorldEvents;
 import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
 import com.greatorator.tolkienmobs.handler.MobModify;
-import com.greatorator.tolkienmobs.init.*;
-import com.greatorator.tolkienmobs.integration.TTMHelper;
+import com.greatorator.tolkienmobs.init.TolkienProfessions;
+import com.greatorator.tolkienmobs.init.TolkienTags;
+import com.greatorator.tolkienmobs.integration.IntegrationHelper;
 import com.greatorator.tolkienmobs.integration.curios.EquipmentManager;
-import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
-import com.greatorator.tolkienmobs.item.tools.KeyRingItem;
+import com.greatorator.tolkienmobs.integration.tcon.TConIntegration;
 import com.greatorator.tolkienmobs.network.TolkienNetwork;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TTMStructureConfig;
-import com.greatorator.tolkienmobs.world.gen.feature.config.TTMTreeFeatureConfig;
+import com.greatorator.tolkienmobs.world.gen.feature.config.TreeFeatureConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -33,6 +35,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import static com.greatorator.tolkienmobs.init.TolkienBlocks.*;
+
 public class CommonProxy {
     private Minecraft mc;
     private Level lastWorld;
@@ -40,10 +44,11 @@ public class CommonProxy {
 
     public void construct() {
         registerEventListeners();
-        TTMConfig.load();
-        TTMContent.init();
-        TTMHelper.init();
+        TolkienConfig.load();
+        TolkienContent.init();
+        IntegrationHelper.init();
         EquipmentManager.initialize();
+        TConIntegration.initialize();
         TolkienTags.init();
         MilestoneSaveData.init();
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -51,18 +56,18 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.addListener(WorldEvents::addDimensionalSpacing);
         MinecraftForge.EVENT_BUS.addListener(WorldEvents::biomeModification);
 
-        TTMTreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
+        TreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
 
-        modBus.addListener(TolkienEntities::registerAttributes);
+//        modBus.addListener(TolkienEntities::registerAttributes);
         TolkienNetwork.init();
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
         RecipeGenerator.potions();
-        TTMConfig.loadPotionList();
-        TTMConfig.loadDimensionList();
+        TolkienConfig.loadPotionList();
+        TolkienConfig.loadDimensionList();
         event.enqueueWork(() -> {
-            TolkienStructures.setupStructures();
+//            TolkienStructures.setupStructures();
             TTMStructureConfig.registerConfiguredStructures();
             TolkienProfessions.registerBanker();
             TolkienProfessions.registerGrocer();
@@ -70,10 +75,26 @@ public class CommonProxy {
             TolkienProfessions.registerPet();
             TolkienProfessions.registerSmith();
             TolkienProfessions.registerTailor();
+
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(MUSHROOM_DECAY_BLOOM.getId(), POTTED_MUSHROOM_DECAY_BLOOM);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(MUSHROOM_BLOOM_DECAY.getId(), POTTED_MUSHROOM_BLOOM_DECAY);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(FLOWER_SIMBELMYNE.getId(), POTTED_FLOWER_SIMBELMYNE);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(FLOWER_MIRKWOOD.getId(), POTTED_FLOWER_MIRKWOOD);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(FLOWER_ALFIRIN.getId(), POTTED_FLOWER_ALFIRIN);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(FLOWER_ATHELAS.getId(), POTTED_FLOWER_ATHELAS);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(FLOWER_NIPHREDIL.getId(), POTTED_FLOWER_NIPHREDIL);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(FLOWER_SWAMPMILKWEED.getId(), POTTED_FLOWER_SWAMPMILKWEED);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(FLOWER_LILLYOFTHEVALLEY.getId(), POTTED_FLOWER_LILLYOFTHEVALLEY);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(SAPLING_MALLORN.getId(), POTTED_SAPLING_MALLORN);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(SAPLING_MIRKWOOD.getId(), POTTED_SAPLING_MIRKWOOD);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(SAPLING_CULUMALDA.getId(), POTTED_SAPLING_CULUMALDA);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(SAPLING_LEBETHRON.getId(), POTTED_SAPLING_LEBETHRON);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(SAPLING_DEADWOOD.getId(), POTTED_SAPLING_DEADWOOD);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(SAPLING_FANGORNOAK.getId(), POTTED_SAPLING_FANGORNOAK);
         });
-        TolkienEntities.registerSpawnPlacement();
-        TolkienBiomes.addBiomesToOverworld();
-        TolkienBiomes.addTypes();
+//        TolkienEntities.registerSpawnPlacement();
+//        TolkienBiomes.addBiomesToOverworld();
+//        TolkienBiomes.addTypes();
     }
 
     public void clientSetup(FMLClientSetupEvent event) {
@@ -111,8 +132,6 @@ public class CommonProxy {
     }
 
     public void registerEventListeners() {
-        MinecraftForge.EVENT_BUS.addListener(CoinPouchItem::onItemPickup);
-        MinecraftForge.EVENT_BUS.addListener(KeyRingItem::onItemPickup);
     }
 
     public Player getPlayer() {

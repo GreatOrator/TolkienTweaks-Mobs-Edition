@@ -2,17 +2,19 @@ package com.greatorator.tolkienmobs.item.tools;
 
 import com.greatorator.tolkienmobs.entity.boss.fellbeast.phase.FellBeastFightManager;
 import com.greatorator.tolkienmobs.entity.item.MorgulCrystalEntity;
-import com.greatorator.tolkienmobs.world.server.TTMServerWorld;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import com.greatorator.tolkienmobs.world.server.TolkienServerLevel;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
@@ -22,36 +24,37 @@ public class MorgulCrystalItem extends Item {
    }
 
    @Override
-   public ActionResultType useOn(ItemUseContext p_195939_1_) {
-      World world = p_195939_1_.getLevel();
-      BlockPos blockpos = p_195939_1_.getClickedPos();
-      BlockState blockstate = world.getBlockState(blockpos);
+   public InteractionResult useOn(UseOnContext context) {
+      Level level = context.getLevel();
+      BlockPos blockpos = context.getClickedPos();
+      BlockState blockstate = level.getBlockState(blockpos);
       if (!blockstate.is(Blocks.OBSIDIAN) && !blockstate.is(Blocks.BEDROCK)) {
-         return ActionResultType.FAIL;
+         return InteractionResult.FAIL;
       } else {
          BlockPos blockpos1 = blockpos.above();
-         if (!world.isEmptyBlock(blockpos1)) {
-            return ActionResultType.FAIL;
+         if (!level.isEmptyBlock(blockpos1)) {
+            return InteractionResult.FAIL;
          } else {
             double d0 = (double)blockpos1.getX();
             double d1 = (double)blockpos1.getY();
             double d2 = (double)blockpos1.getZ();
-            List<Entity> list = world.getEntities((Entity)null, new AxisAlignedBB(d0, d1, d2, d0 + 1.0D, d1 + 2.0D, d2 + 1.0D));
+            List<Entity> list = level.getEntities((Entity)null, new AABB(d0, d1, d2, d0 + 1.0D, d1 + 2.0D, d2 + 1.0D));
             if (!list.isEmpty()) {
-               return ActionResultType.FAIL;
+               return InteractionResult.FAIL;
             } else {
-               if (!world.isClientSide) {
-                  MorgulCrystalEntity morgulcrystalentity = new MorgulCrystalEntity(world, d0 + 0.5D, d1, d2 + 0.5D);
+               if (level instanceof ServerLevel) {
+                  MorgulCrystalEntity morgulcrystalentity = new MorgulCrystalEntity(level, d0 + 0.5D, d1, d2 + 0.5D);
                   morgulcrystalentity.setShowBottom(true);
-                  world.addFreshEntity(morgulcrystalentity);
-                  FellBeastFightManager fellBeastFightManager = ((TTMServerWorld)world).fellbeastFight();
+                  level.addFreshEntity(morgulcrystalentity);
+                  level.gameEvent(context.getPlayer(), GameEvent.ENTITY_PLACE, blockpos1);
+                  FellBeastFightManager fellBeastFightManager = ((TolkienServerLevel)level).fellbeastFight();
                   if (fellBeastFightManager != null) {
                      fellBeastFightManager.tryRespawn();
                   }
                }
 
-               p_195939_1_.getItemInHand().shrink(1);
-               return ActionResultType.sidedSuccess(world.isClientSide);
+               context.getItemInHand().shrink(1);
+               return InteractionResult.sidedSuccess(level.isClientSide);
             }
          }
       }

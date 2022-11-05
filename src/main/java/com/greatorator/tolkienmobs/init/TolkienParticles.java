@@ -29,6 +29,8 @@ public class TolkienParticles {
     public static SimpleParticleType mirkwood_flame = new SimpleParticleType(false);
     public static SimpleParticleType culumalda_flame = new SimpleParticleType(false);
     public static SimpleParticleType lebethron_flame = new SimpleParticleType(false);
+    public static SimpleParticleType deadwood_flame = new SimpleParticleType(false);
+    public static SimpleParticleType fangornoak_flame = new SimpleParticleType(false);
     public static SimpleParticleType falling_leaves = new SimpleParticleType(false);
     public static SimpleParticleType fell_beast_breath = new SimpleParticleType(false);
 
@@ -37,6 +39,8 @@ public class TolkienParticles {
         event.getRegistry().register(mirkwood_flame.setRegistryName("mirkwood_flame"));
         event.getRegistry().register(culumalda_flame.setRegistryName("culumalda_flame"));
         event.getRegistry().register(lebethron_flame.setRegistryName("lebethron_flame"));
+        event.getRegistry().register(deadwood_flame.setRegistryName("deadwood_flame"));
+        event.getRegistry().register(fangornoak_flame.setRegistryName("fangornoak_flame"));
         event.getRegistry().register(falling_leaves.setRegistryName("falling_leaves"));
         event.getRegistry().register(fell_beast_breath.setRegistryName("fell_beast_breath"));
     }
@@ -48,6 +52,8 @@ public class TolkienParticles {
         manager.register(mirkwood_flame, FlameParticle.Provider::new);
         manager.register(culumalda_flame, FlameParticle.Provider::new);
         manager.register(lebethron_flame, FlameParticle.Provider::new);
+        manager.register(deadwood_flame, FlameParticle.Provider::new);
+        manager.register(fangornoak_flame, FlameParticle.Provider::new);
         manager.register(falling_leaves, LeafParticle.Provider::new);
         manager.register(fell_beast_breath, FellBeastBreathParticle.Provider::new);
     }

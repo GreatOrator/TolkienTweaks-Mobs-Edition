@@ -1,39 +1,44 @@
 package com.greatorator.tolkienmobs.item.tools;
 
 import com.greatorator.tolkienmobs.entity.item.FellBeastFireballEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+
+import javax.annotation.Nonnull;
+import java.util.Random;
 
 public class FellBeastFireballItem extends Item {
+   protected final Random random = new Random();
+
    public FellBeastFireballItem(Properties p_i48499_1_) {
       super(p_i48499_1_);
    }
 
    @Override
-   public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
-      ItemStack itemstack = playerEntity.getItemInHand(hand);
-      Vector3d pos = playerEntity.getLookAngle();
-      world.playSound((PlayerEntity)null, playerEntity.getX(), playerEntity.getY(), playerEntity.getZ(), SoundEvents.FIREWORK_ROCKET_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-      if (!world.isClientSide) {
-         FellBeastFireballEntity fellBeastFireballEntity = new FellBeastFireballEntity(world, playerEntity, pos.x, pos.y, pos.z);
+   public InteractionResultHolder<ItemStack> use(Level worldIn, Player player, @Nonnull InteractionHand hand) {
+      ItemStack itemstack = player.getItemInHand(hand);
+      Vec3 pos = player.getLookAngle();
+      worldIn.playSound((Player)null, player.getX(), player.getY(), player.getZ(), SoundEvents.FIREWORK_ROCKET_SHOOT, SoundSource.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+      if (!worldIn.isClientSide) {
+         FellBeastFireballEntity fellBeastFireballEntity = new FellBeastFireballEntity(worldIn, player, pos.x, pos.y, pos.z);
          fellBeastFireballEntity.setItem(itemstack);
-         fellBeastFireballEntity.shootFromRotation(playerEntity, playerEntity.xRot, playerEntity.yRot, 0.0F, 1.5F, 1.0F);
-         world.addFreshEntity(fellBeastFireballEntity);
+         fellBeastFireballEntity.shootFromRotation(player, player.xRotO, player.yRotO, 0.0F, 1.5F, 1.0F);
+         worldIn.addFreshEntity(fellBeastFireballEntity);
       }
 
-      playerEntity.awardStat(Stats.ITEM_USED.get(this));
-      if (!playerEntity.abilities.instabuild) {
+      player.awardStat(Stats.ITEM_USED.get(this));
+      if (!player.getAbilities().instabuild) {
          itemstack.shrink(1);
       }
 
-      return ActionResult.sidedSuccess(itemstack, world.isClientSide());
+      return InteractionResultHolder.sidedSuccess(itemstack, worldIn.isClientSide());
    }
 }

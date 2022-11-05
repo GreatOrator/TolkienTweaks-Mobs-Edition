@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.init;
 
 import com.greatorator.tolkienmobs.block.*;
-import com.greatorator.tolkienmobs.world.gen.TTMFeatures;
+import com.greatorator.tolkienmobs.world.gen.feature.TreeFeature;
 import com.greatorator.tolkienmobs.world.trees.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,8 +19,10 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.ObjectHolder;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
@@ -28,6 +30,7 @@ import static com.greatorator.tolkienmobs.init.TolkienWoodTypes.*;
 
 public class TolkienBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
+    @ObjectHolder("fireplace")                  public static FireplaceBlock                 fireplace;
 
     // Metals & Gems
     public static RegistryObject<Block> ORE_MITHRIL = BLOCKS.register("ore_mithril", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.STONE)));
@@ -76,8 +79,8 @@ public class TolkienBlocks {
     public static RegistryObject<Block> MALLORN_SIGN = BLOCKS.register("sign_mallorn", () -> new TolkienStandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), MALLORN));
     public static RegistryObject<Block> MALLORN_WALL_SIGN = BLOCKS.register("wall_sign_mallorn", () -> new TolkienSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(MALLORN_SIGN.get()), MALLORN));
     public static RegistryObject<Block> MALLORN_BUTTON = BLOCKS.register("mallorn_button", () -> new WoodButtonBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD)));
-    public static RegistryObject<SaplingBlock> SAPLING_MALLORN = BLOCKS.register("sapling_mallorn", () -> new SaplingBlock(new TTMMallornTree(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAVES_MALLORN = BLOCKS.register("leaves_mallorn", leaves(SoundType.GRASS));
+    public static RegistryObject<SaplingBlock> SAPLING_MALLORN = BLOCKS.register("sapling_mallorn", () -> new SaplingBlock(new MallornTreeGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAVES_MALLORN = BLOCKS.register("leaves_mallorn", () -> new LeafBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(TolkienBlocks::ocelotOrParrot).isSuffocating(TolkienBlocks::never).isViewBlocking(TolkienBlocks::never)));
     public static RegistryObject<Block> LEAFPILE_MALLORN = BLOCKS.register("leafpile_mallorn", () -> new LeafPileBlock(BlockBehaviour.Properties.of(Material.LEAVES, MaterialColor.TERRACOTTA_YELLOW).strength(2.0F, 3.0F).noOcclusion().sound(SoundType.GRASS)));
 
     // Mirkwood
@@ -102,8 +105,8 @@ public class TolkienBlocks {
     public static RegistryObject<Block> MIRKWOOD_SIGN = BLOCKS.register("sign_mirkwood", () -> new TolkienStandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), MIRKWOOD));
     public static RegistryObject<Block> MIRKWOOD_WALL_SIGN = BLOCKS.register("wall_sign_mirkwood", () -> new TolkienSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(MIRKWOOD_SIGN.get()), MIRKWOOD));
     public static RegistryObject<Block> MIRKWOOD_BUTTON = BLOCKS.register("mirkwood_button", () -> new WoodButtonBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD)));
-    public static RegistryObject<SaplingBlock> SAPLING_MIRKWOOD = BLOCKS.register("sapling_mirkwood", () -> new SaplingBlock(new TTMMirkwoodTree(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAVES_MIRKWOOD = BLOCKS.register("leaves_mirkwood", leaves(SoundType.GRASS));
+    public static RegistryObject<SaplingBlock> SAPLING_MIRKWOOD = BLOCKS.register("sapling_mirkwood", () -> new SaplingBlock(new MirkwoodTreeGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAVES_MIRKWOOD = BLOCKS.register("leaves_mirkwood", () -> new LeafBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(TolkienBlocks::ocelotOrParrot).isSuffocating(TolkienBlocks::never).isViewBlocking(TolkienBlocks::never)));
     public static RegistryObject<Block> LEAFPILE_MIRKWOOD = BLOCKS.register("leafpile_mirkwood", () -> new LeafPileBlock(BlockBehaviour.Properties.of(Material.LEAVES, MaterialColor.TERRACOTTA_GREEN).strength(2.0F, 3.0F).noOcclusion().sound(SoundType.GRASS)));
 
     // Culumalda
@@ -128,8 +131,8 @@ public class TolkienBlocks {
     public static RegistryObject<Block> CULUMALDA_SIGN = BLOCKS.register("sign_culumalda", () -> new TolkienStandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), CULUMALDA));
     public static RegistryObject<Block> CULUMALDA_WALL_SIGN = BLOCKS.register("wall_sign_culumalda", () -> new TolkienSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(CULUMALDA_SIGN.get()), CULUMALDA));
     public static RegistryObject<Block> CULUMALDA_BUTTON = BLOCKS.register("culumalda_button", () -> new WoodButtonBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD)));
-    public static RegistryObject<SaplingBlock> SAPLING_CULUMALDA = BLOCKS.register("sapling_culumalda", () -> new SaplingBlock(new TTMCulumaldaTree(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAVES_CULUMALDA = BLOCKS.register("leaves_culumalda", leaves(SoundType.GRASS));
+    public static RegistryObject<SaplingBlock> SAPLING_CULUMALDA = BLOCKS.register("sapling_culumalda", () -> new SaplingBlock(new CulumaldaTreeGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAVES_CULUMALDA = BLOCKS.register("leaves_culumalda", () -> new LeafBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(TolkienBlocks::ocelotOrParrot).isSuffocating(TolkienBlocks::never).isViewBlocking(TolkienBlocks::never)));
     public static RegistryObject<Block> LEAFPILE_CULUMALDA = BLOCKS.register("leafpile_culumalda", () -> new LeafPileBlock(BlockBehaviour.Properties.of(Material.LEAVES, MaterialColor.TERRACOTTA_PINK).strength(2.0F, 3.0F).noOcclusion().sound(SoundType.GRASS)));
 
     // Lebethron
@@ -154,15 +157,58 @@ public class TolkienBlocks {
     public static RegistryObject<Block> LEBETHRON_SIGN = BLOCKS.register("sign_lebethron", () -> new TolkienStandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), LEBETHRON));
     public static RegistryObject<Block> LEBETHRON_WALL_SIGN = BLOCKS.register("wall_sign_lebethron", () -> new TolkienSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(LEBETHRON_SIGN.get()), LEBETHRON));
     public static RegistryObject<Block> LEBETHRON_BUTTON = BLOCKS.register("lebethron_button", () -> new WoodButtonBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD)));
-    public static RegistryObject<SaplingBlock> SAPLING_LEBETHRON = BLOCKS.register("sapling_lebethron", () -> new SaplingBlock(new TTMLebethronTree(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAVES_LEBETHRON = BLOCKS.register("leaves_lebethron", leaves(SoundType.GRASS));
+    public static RegistryObject<SaplingBlock> SAPLING_LEBETHRON = BLOCKS.register("sapling_lebethron", () -> new SaplingBlock(new LebethronTreeGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAVES_LEBETHRON = BLOCKS.register("leaves_lebethron", () -> new LeafBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(TolkienBlocks::ocelotOrParrot).isSuffocating(TolkienBlocks::never).isViewBlocking(TolkienBlocks::never)));
     public static RegistryObject<Block> LEAFPILE_LEBETHRON = BLOCKS.register("leafpile_lebethron", () -> new LeafPileBlock(BlockBehaviour.Properties.of(Material.LEAVES, MaterialColor.TERRACOTTA_LIGHT_GREEN).strength(2.0F, 3.0F).noOcclusion().sound(SoundType.GRASS)));
 
-    // Miscellaneous
+    // Deadwood
     public static RegistryObject<Block> LOG_DEADWOOD = BLOCKS.register("log_deadwood", () -> log(MaterialColor.WOOD, MaterialColor.COLOR_ORANGE));
-    public static RegistryObject<SaplingBlock> SAPLING_DEADWOOD = BLOCKS.register("sapling_deadwood", () -> new SaplingBlock(new TTMDeadTree(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static RegistryObject<SaplingBlock> SAPLING_FANGORNOAK = BLOCKS.register("sapling_fangornoak", () -> new SaplingBlock(new TTMFangornOakTree(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
-    public static RegistryObject<Block> LEAVES_FANGORNOAK = BLOCKS.register("leaves_fangornoak", leaves(SoundType.GRASS));
+    public static RegistryObject<Block> WOOD_DEADWOOD = BLOCKS.register("wood_deadwood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(2.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<Block> STRIPPED_DEADWOOD_LOG = BLOCKS.register("stripped_log_deadwood", () -> log(MaterialColor.WOOD, MaterialColor.COLOR_ORANGE));
+    public static RegistryObject<Block> STRIPPED_DEADWOOD_WOOD = BLOCKS.register("stripped_wood_deadwood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(2.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<Block> PLANKS_DEADWOOD = BLOCKS.register("planks_deadwood", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.TERRACOTTA_LIGHT_GRAY).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<StairBlock> STAIRS_DEADWOOD = BLOCKS.register("stairs_deadwood", () -> new StairBlock(PLANKS_DEADWOOD.get().defaultBlockState(), BlockBehaviour.Properties.copy(PLANKS_DEADWOOD.get())));
+    public static RegistryObject<SlabBlock> SLAB_DEADWOOD = BLOCKS.register("slab_deadwood", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD)));
+    public static RegistryObject<DoorBlock> DOOR_DEADWOOD = BLOCKS.register("door_deadwood", () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD, PLANKS_DEADWOOD.get().defaultMaterialColor()).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static RegistryObject<FenceGateBlock> FENCE_GATE_DEADWOOD = BLOCKS.register("fence_gate_deadwood", () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD, PLANKS_DEADWOOD.get().defaultMaterialColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<FenceBlock> FENCE_DEADWOOD = BLOCKS.register("fence_deadwood", () -> new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD, PLANKS_DEADWOOD.get().defaultMaterialColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<TrapDoorBlock> TRAPDOOR_DEADWOOD = BLOCKS.register("trapdoor_deadwood", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TolkienBlocks::never)));
+    public static RegistryObject<TorchBlock> TORCH_DEADWOOD = BLOCKS.register("torch_deadwood", () -> new TorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
+        return 9;
+    }).sound(SoundType.WOOD), TolkienParticles.deadwood_flame));
+    public static RegistryObject<TorchBlock> WALL_TORCH_DEADWOOD = BLOCKS.register("wall_torch_deadwood", () -> new WallTorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
+        return 9;
+    }).sound(SoundType.WOOD), TolkienParticles.deadwood_flame));
+    public static RegistryObject<Block> PRESSURE_PLATE_DEADWOOD = BLOCKS.register("pressure_plate_deadwood", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.WOOD, PLANKS_MALLORN.get().defaultMaterialColor()).noCollission().strength(0.5F).sound(SoundType.WOOD)));
+    public static RegistryObject<Block> DEADWOOD_SIGN = BLOCKS.register("sign_deadwood", () -> new TolkienStandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), DEADWOOD));
+    public static RegistryObject<Block> DEADWOOD_WALL_SIGN = BLOCKS.register("wall_sign_deadwood", () -> new TolkienSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(DEADWOOD_SIGN.get()), DEADWOOD));
+    public static RegistryObject<Block> DEADWOOD_BUTTON = BLOCKS.register("deadwood_button", () -> new WoodButtonBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<SaplingBlock> SAPLING_DEADWOOD = BLOCKS.register("sapling_deadwood", () -> new SaplingBlock(new DeadTreeGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
+
+    // Fangorn Oak
+    public static RegistryObject<Block> LOG_FANGORNOAK = BLOCKS.register("log_fangornoak", () -> log(MaterialColor.WOOD, MaterialColor.COLOR_LIGHT_GREEN));
+    public static RegistryObject<Block> WOOD_FANGORNOAK = BLOCKS.register("wood_fangornoak", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_LIGHT_GREEN).strength(2.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<Block> STRIPPED_FANGORNOAK_LOG = BLOCKS.register("stripped_log_fangornoak", () -> log(MaterialColor.WOOD, MaterialColor.COLOR_LIGHT_GREEN));
+    public static RegistryObject<Block> STRIPPED_FANGORNOAK_WOOD = BLOCKS.register("stripped_wood_fangornoak", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_LIGHT_GREEN).strength(2.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<Block> PLANKS_FANGORNOAK = BLOCKS.register("planks_fangornoak", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.TERRACOTTA_LIGHT_GRAY).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<StairBlock> STAIRS_FANGORNOAK = BLOCKS.register("stairs_fangornoak", () -> new StairBlock(PLANKS_FANGORNOAK.get().defaultBlockState(), BlockBehaviour.Properties.copy(PLANKS_FANGORNOAK.get())));
+    public static RegistryObject<SlabBlock> SLAB_FANGORNOAK = BLOCKS.register("slab_fangornoak", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD)));
+    public static RegistryObject<DoorBlock> DOOR_FANGORNOAK = BLOCKS.register("door_fangornoak", () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD, PLANKS_FANGORNOAK.get().defaultMaterialColor()).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
+    public static RegistryObject<FenceGateBlock> FENCE_GATE_FANGORNOAK = BLOCKS.register("fence_gate_fangornoak", () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD, PLANKS_FANGORNOAK.get().defaultMaterialColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<FenceBlock> FENCE_FANGORNOAK = BLOCKS.register("fence_fangornoak", () -> new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD, PLANKS_FANGORNOAK.get().defaultMaterialColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<TrapDoorBlock> TRAPDOOR_FANGORNOAK = BLOCKS.register("trapdoor_fangornoak", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TolkienBlocks::never)));
+    public static RegistryObject<TorchBlock> TORCH_FANGORNOAK = BLOCKS.register("torch_fangornoak", () -> new TorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
+        return 14;
+    }).sound(SoundType.WOOD), TolkienParticles.fangornoak_flame));
+    public static RegistryObject<TorchBlock> WALL_TORCH_FANGORNOAK = BLOCKS.register("wall_torch_fangornoak", () -> new WallTorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
+        return 14;
+    }).sound(SoundType.WOOD), TolkienParticles.fangornoak_flame));
+    public static RegistryObject<Block> PRESSURE_PLATE_FANGORNOAK = BLOCKS.register("pressure_plate_fangornoak", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.WOOD, PLANKS_MALLORN.get().defaultMaterialColor()).noCollission().strength(0.5F).sound(SoundType.WOOD)));
+    public static RegistryObject<Block> FANGORNOAK_SIGN = BLOCKS.register("sign_fangornoak", () -> new TolkienStandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), FANGORNOAK));
+    public static RegistryObject<Block> FANGORNOAK_WALL_SIGN = BLOCKS.register("wall_sign_fangornoak", () -> new TolkienSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(FANGORNOAK_SIGN.get()), FANGORNOAK));
+    public static RegistryObject<Block> FANGORNOAK_BUTTON = BLOCKS.register("fangornoak_button", () -> new WoodButtonBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<SaplingBlock> SAPLING_FANGORNOAK = BLOCKS.register("sapling_fangornoak", () -> new SaplingBlock(new FangornOakTreeGrower(), BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
+    public static RegistryObject<Block> LEAVES_FANGORNOAK = BLOCKS.register("leaves_fangornoak", () -> new LeafBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(TolkienBlocks::ocelotOrParrot).isSuffocating(TolkienBlocks::never).isViewBlocking(TolkienBlocks::never)));
     public static RegistryObject<Block> LEAFPILE_FANGORNOAK = BLOCKS.register("leafpile_fangornoak", () -> new LeafPileBlock(BlockBehaviour.Properties.of(Material.LEAVES, MaterialColor.TERRACOTTA_GREEN).strength(2.0F, 3.0F).noOcclusion().sound(SoundType.GRASS)));
 
     // Plants & Flowers
@@ -170,12 +216,12 @@ public class TolkienBlocks {
     public static RegistryObject<Block> MUSHROOM_DECAY_BLOOM = BLOCKS.register("mushroom_decay_bloom", () -> new MushroomsBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_PURPLE).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
         return 1;
     }).hasPostProcess(TolkienBlocks::needsPostProcessing), () -> {
-        return TTMFeatures.MUSHROOM_DECAY_BLOOM;
+        return TreeFeature.MUSHROOM_DECAY_BLOOM;
     }));
     public static RegistryObject<Block> MUSHROOM_BLOOM_DECAY = BLOCKS.register("mushroom_bloom_decay", () -> new MushroomsBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.COLOR_PURPLE).noCollission().instabreak().sound(SoundType.GRASS).lightLevel((state) -> {
         return 1;
     }).hasPostProcess(TolkienBlocks::needsPostProcessing), () -> {
-        return TTMFeatures.MUSHROOM_BLOOM_DECAY;
+        return TreeFeature.MUSHROOM_BLOOM_DECAY;
     }));
     public static RegistryObject<Block> BLOCK_DECAY_BLOOM = BLOCKS.register("block_decay_bloom", () -> new HugeMushroomBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_MAGENTA).strength(0.2F).sound(SoundType.WOOD)));
     public static RegistryObject<Block> BLOCK_BLOOM_DECAY = BLOCKS.register("block_bloom_decay", () -> new HugeMushroomBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_MAGENTA).strength(0.2F).sound(SoundType.WOOD)));
@@ -186,6 +232,21 @@ public class TolkienBlocks {
     public static RegistryObject<Block> FLOWER_NIPHREDIL = BLOCKS.register("flower_niphredil", () -> new FlowerBlock(MobEffects.SATURATION, 7, BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
     public static RegistryObject<Block> FLOWER_SWAMPMILKWEED = BLOCKS.register("flower_swamp_milkweed", () -> new FlowerBlock(MobEffects.MOVEMENT_SLOWDOWN, 7, BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
     public static RegistryObject<Block> FLOWER_LILLYOFTHEVALLEY = BLOCKS.register("flower_valley_lilly", () -> new FlowerBlock(MobEffects.HEAL, 7, BlockBehaviour.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> POTTED_MUSHROOM_DECAY_BLOOM = registerBlockWithoutBlockItem("potted_mushroom_decay_bloom", () -> new FlowerPotBlock(null, MUSHROOM_DECAY_BLOOM, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    public static final RegistryObject<Block> POTTED_MUSHROOM_BLOOM_DECAY = registerBlockWithoutBlockItem("potted_mushroom_bloom_decay", () -> new FlowerPotBlock(null, MUSHROOM_BLOOM_DECAY, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    public static final RegistryObject<Block> POTTED_FLOWER_SIMBELMYNE = registerBlockWithoutBlockItem("potted_flower_simbelmyne", () -> new FlowerPotBlock(null, FLOWER_SIMBELMYNE, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    public static final RegistryObject<Block> POTTED_FLOWER_MIRKWOOD = registerBlockWithoutBlockItem("potted_flower_mirkwood", () -> new FlowerPotBlock(null, FLOWER_MIRKWOOD, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    public static final RegistryObject<Block> POTTED_FLOWER_ALFIRIN = registerBlockWithoutBlockItem("potted_flower_alfirin", () -> new FlowerPotBlock(null, FLOWER_ALFIRIN, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    public static final RegistryObject<Block> POTTED_FLOWER_ATHELAS = registerBlockWithoutBlockItem("potted_flower_athelas", () -> new FlowerPotBlock(null, FLOWER_ATHELAS, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    public static final RegistryObject<Block> POTTED_FLOWER_NIPHREDIL = registerBlockWithoutBlockItem("potted_flower_niphredil", () -> new FlowerPotBlock(null, FLOWER_NIPHREDIL, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    public static final RegistryObject<Block> POTTED_FLOWER_SWAMPMILKWEED = registerBlockWithoutBlockItem("potted_flower_swamp_milkweed", () -> new FlowerPotBlock(null, FLOWER_SWAMPMILKWEED, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    public static final RegistryObject<Block> POTTED_FLOWER_LILLYOFTHEVALLEY = registerBlockWithoutBlockItem("potted_flower_valley_lilly", () -> new FlowerPotBlock(null, FLOWER_LILLYOFTHEVALLEY, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    public static final RegistryObject<Block> POTTED_SAPLING_MALLORN = registerBlockWithoutBlockItem("potted_sapling_mallorn", () -> new FlowerPotBlock(null, SAPLING_MALLORN, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    public static final RegistryObject<Block> POTTED_SAPLING_MIRKWOOD = registerBlockWithoutBlockItem("potted_sapling_mirkwood", () -> new FlowerPotBlock(null, SAPLING_MIRKWOOD, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    public static final RegistryObject<Block> POTTED_SAPLING_CULUMALDA = registerBlockWithoutBlockItem("potted_sapling_culumalda", () -> new FlowerPotBlock(null, SAPLING_CULUMALDA, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    public static final RegistryObject<Block> POTTED_SAPLING_LEBETHRON = registerBlockWithoutBlockItem("potted_sapling_lebethron", () -> new FlowerPotBlock(null, SAPLING_LEBETHRON, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    public static final RegistryObject<Block> POTTED_SAPLING_DEADWOOD = registerBlockWithoutBlockItem("potted_sapling_deadwood", () -> new FlowerPotBlock(null, SAPLING_DEADWOOD, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    public static final RegistryObject<Block> POTTED_SAPLING_FANGORNOAK = registerBlockWithoutBlockItem("potted_sapling_fangornoak", () -> new FlowerPotBlock(null, SAPLING_FANGORNOAK, BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
 
     // Custom
     public static RegistryObject<Block> BLOCK_HALLOWED = BLOCKS.register("block_hallowed", () -> new HallowedBlock(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.TERRACOTTA_WHITE).sound(SoundType.GRAVEL).randomTicks()));
@@ -268,6 +329,10 @@ public class TolkienBlocks {
         return true;
     }
 
+    private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name, Supplier<T> block) {
+        return BLOCKS.register(name, block);
+    }
+
     private static ToIntFunction<BlockState> litBlockEmission(int p_50760_) {
         return (p_50763_) -> {
             return p_50763_.getValue(BlockStateProperties.LIT) ? p_50760_ : 0;
@@ -289,11 +354,7 @@ public class TolkienBlocks {
     }
 
     private static Boolean ocelotOrParrot(BlockState blockState, BlockGetter getter, BlockPos pos, EntityType<?> entityType) {
-        return entityType == EntityType.OCELOT || entityType == EntityType.PARROT;
-    }
-
-    private static LeavesBlock leaves(SoundType soundType) {
-        return new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(soundType).noOcclusion().isValidSpawn(TolkienBlocks::ocelotOrParrot).isSuffocating(TolkienBlocks::never).isViewBlocking(TolkienBlocks::never));
+        return entityType == EntityType.OCELOT || entityType == EntityType.PARROT;// || entityType == TolkienEntities.ENTITY_TTM_SQUIRREL.get();
     }
 
     public String getName() {

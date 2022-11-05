@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs;
 
 
 import com.greatorator.tolkienmobs.handler.interfaces.IFireplaceRecipe;
-import com.greatorator.tolkienmobs.integration.TTMHelper;
+import com.greatorator.tolkienmobs.integration.IntegrationHelper;
 import com.greatorator.tolkienmobs.proxy.ClientProxy;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
 import net.minecraft.resources.ResourceLocation;
@@ -45,6 +45,10 @@ public class TolkienMobs {
 			3. Great Eagle - Needs AI adjustments
 	2. Classes
 	    a. MilestoneSaveData
+	    b. TolkienTiles
+	3. Categories
+	    a. Entities
+	    b. World Generation
     */
 
     public TolkienMobs() {
@@ -55,7 +59,7 @@ public class TolkienMobs {
             Logger ttLog = LogManager.getLogger("tolkientweaks");
             Logger bcLog = LogManager.getLogger("brandonscore");
             LOGGER.info("Meeting of the Fellowship started! Waiting for the rest of the party to arrive...");
-            if (TTMHelper.isTTInstalled) {
+            if (IntegrationHelper.isTTInstalled) {
                 ttLog.log(Level.INFO, "You shall have my axe!");
                 bcLog.log(Level.INFO, "...and you shall have my bow!");
                 LOGGER.info("Together we shall be the Fellowship of the Mods!");
@@ -69,7 +73,7 @@ public class TolkienMobs {
         proxy.construct();
 
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
-        if (TTMHelper.isJEIInstalled) {
+        if (IntegrationHelper.isJEIInstalled) {
             TolkienMobs.FIREPLACE_RECIPE_TYPE = RecipeType.register(MODID + ":tmfireplace");
         }
     }

@@ -1,93 +1,92 @@
 package com.greatorator.tolkienmobs.entity.item.model;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableList.Builder;
 import com.greatorator.tolkienmobs.entity.item.TolkienBoatEntity;
-import net.minecraft.client.renderer.entity.model.SegmentedModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.model.ListModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Arrays;
-
 @OnlyIn(Dist.CLIENT)
-public class TolkienBoatModel extends SegmentedModel<TolkienBoatEntity> {
-   private final ModelRenderer[] paddles = new ModelRenderer[2];
-   private final ModelRenderer waterPatch;
-   private final ImmutableList<ModelRenderer> parts;
+public class TolkienBoatModel extends ListModel<TolkienBoatEntity> {
+   private static final String LEFT_PADDLE = "left_paddle";
+   private static final String RIGHT_PADDLE = "right_paddle";
+   private static final String WATER_PATCH = "water_patch";
+   private static final String BOTTOM = "bottom";
+   private static final String BACK = "back";
+   private static final String FRONT = "front";
+   private static final String RIGHT = "right";
+   private static final String LEFT = "left";
+   private final ModelPart leftPaddle;
+   private final ModelPart rightPaddle;
+   private final ModelPart waterPatch;
+   private final ImmutableList<ModelPart> parts;
 
-   public TolkienBoatModel() {
-      ModelRenderer[] amodelrenderer = new ModelRenderer[]{(new ModelRenderer(this, 0, 0)).setTexSize(128, 64), (new ModelRenderer(this, 0, 19)).setTexSize(128, 64), (new ModelRenderer(this, 0, 27)).setTexSize(128, 64), (new ModelRenderer(this, 0, 35)).setTexSize(128, 64), (new ModelRenderer(this, 0, 43)).setTexSize(128, 64)};
+   public TolkienBoatModel(ModelPart p_170462_) {
+      this.leftPaddle = p_170462_.getChild("left_paddle");
+      this.rightPaddle = p_170462_.getChild("right_paddle");
+      this.waterPatch = p_170462_.getChild("water_patch");
+      this.parts = ImmutableList.of(p_170462_.getChild("bottom"), p_170462_.getChild("back"), p_170462_.getChild("front"), p_170462_.getChild("right"), p_170462_.getChild("left"), this.leftPaddle, this.rightPaddle);
+   }
+
+   public static LayerDefinition createBodyModel() {
+      MeshDefinition meshdefinition = new MeshDefinition();
+      PartDefinition partdefinition = meshdefinition.getRoot();
       int i = 32;
       int j = 6;
       int k = 20;
       int l = 4;
       int i1 = 28;
-      amodelrenderer[0].addBox(-14.0F, -9.0F, -3.0F, 28.0F, 16.0F, 3.0F, 0.0F);
-      amodelrenderer[0].setPos(0.0F, 3.0F, 1.0F);
-      amodelrenderer[1].addBox(-13.0F, -7.0F, -1.0F, 18.0F, 6.0F, 2.0F, 0.0F);
-      amodelrenderer[1].setPos(-15.0F, 4.0F, 4.0F);
-      amodelrenderer[2].addBox(-8.0F, -7.0F, -1.0F, 16.0F, 6.0F, 2.0F, 0.0F);
-      amodelrenderer[2].setPos(15.0F, 4.0F, 0.0F);
-      amodelrenderer[3].addBox(-14.0F, -7.0F, -1.0F, 28.0F, 6.0F, 2.0F, 0.0F);
-      amodelrenderer[3].setPos(0.0F, 4.0F, -9.0F);
-      amodelrenderer[4].addBox(-14.0F, -7.0F, -1.0F, 28.0F, 6.0F, 2.0F, 0.0F);
-      amodelrenderer[4].setPos(0.0F, 4.0F, 9.0F);
-      amodelrenderer[0].xRot = ((float)Math.PI / 2F);
-      amodelrenderer[1].yRot = ((float)Math.PI * 1.5F);
-      amodelrenderer[2].yRot = ((float)Math.PI / 2F);
-      amodelrenderer[3].yRot = (float)Math.PI;
-      this.paddles[0] = this.makePaddle(true);
-      this.paddles[0].setPos(3.0F, -5.0F, 9.0F);
-      this.paddles[1] = this.makePaddle(false);
-      this.paddles[1].setPos(3.0F, -5.0F, -9.0F);
-      this.paddles[1].yRot = (float)Math.PI;
-      this.paddles[0].zRot = 0.19634955F;
-      this.paddles[1].zRot = 0.19634955F;
-      this.waterPatch = (new ModelRenderer(this, 0, 0)).setTexSize(128, 64);
-      this.waterPatch.addBox(-14.0F, -9.0F, -3.0F, 28.0F, 16.0F, 3.0F, 0.0F);
-      this.waterPatch.setPos(0.0F, -3.0F, 1.0F);
-      this.waterPatch.xRot = ((float)Math.PI / 2F);
-      Builder<ModelRenderer> builder = ImmutableList.builder();
-      builder.addAll(Arrays.asList(amodelrenderer));
-      builder.addAll(Arrays.asList(this.paddles));
-      this.parts = builder.build();
+      partdefinition.addOrReplaceChild("bottom", CubeListBuilder.create().texOffs(0, 0).addBox(-14.0F, -9.0F, -3.0F, 28.0F, 16.0F, 3.0F), PartPose.offsetAndRotation(0.0F, 3.0F, 1.0F, ((float)Math.PI / 2F), 0.0F, 0.0F));
+      partdefinition.addOrReplaceChild("back", CubeListBuilder.create().texOffs(0, 19).addBox(-13.0F, -7.0F, -1.0F, 18.0F, 6.0F, 2.0F), PartPose.offsetAndRotation(-15.0F, 4.0F, 4.0F, 0.0F, ((float)Math.PI * 1.5F), 0.0F));
+      partdefinition.addOrReplaceChild("front", CubeListBuilder.create().texOffs(0, 27).addBox(-8.0F, -7.0F, -1.0F, 16.0F, 6.0F, 2.0F), PartPose.offsetAndRotation(15.0F, 4.0F, 0.0F, 0.0F, ((float)Math.PI / 2F), 0.0F));
+      partdefinition.addOrReplaceChild("right", CubeListBuilder.create().texOffs(0, 35).addBox(-14.0F, -7.0F, -1.0F, 28.0F, 6.0F, 2.0F), PartPose.offsetAndRotation(0.0F, 4.0F, -9.0F, 0.0F, (float)Math.PI, 0.0F));
+      partdefinition.addOrReplaceChild("left", CubeListBuilder.create().texOffs(0, 43).addBox(-14.0F, -7.0F, -1.0F, 28.0F, 6.0F, 2.0F), PartPose.offset(0.0F, 4.0F, 9.0F));
+      int j1 = 20;
+      int k1 = 7;
+      int l1 = 6;
+      float f = -5.0F;
+      partdefinition.addOrReplaceChild("left_paddle", CubeListBuilder.create().texOffs(62, 0).addBox(-1.0F, 0.0F, -5.0F, 2.0F, 2.0F, 18.0F).addBox(-1.001F, -3.0F, 8.0F, 1.0F, 6.0F, 7.0F), PartPose.offsetAndRotation(3.0F, -5.0F, 9.0F, 0.0F, 0.0F, 0.19634955F));
+      partdefinition.addOrReplaceChild("right_paddle", CubeListBuilder.create().texOffs(62, 20).addBox(-1.0F, 0.0F, -5.0F, 2.0F, 2.0F, 18.0F).addBox(0.001F, -3.0F, 8.0F, 1.0F, 6.0F, 7.0F), PartPose.offsetAndRotation(3.0F, -5.0F, -9.0F, 0.0F, (float)Math.PI, 0.19634955F));
+      partdefinition.addOrReplaceChild("water_patch", CubeListBuilder.create().texOffs(0, 0).addBox(-14.0F, -9.0F, -3.0F, 28.0F, 16.0F, 3.0F), PartPose.offsetAndRotation(0.0F, -3.0F, 1.0F, ((float)Math.PI / 2F), 0.0F, 0.0F));
+      return LayerDefinition.create(meshdefinition, 128, 64);
    }
 
-   @Override
-   public void setupAnim(TolkienBoatEntity tolkienBoatEntity, float x, float y, float z, float pitch, float yaw) {
-      this.animatePaddle(tolkienBoatEntity, 0, x);
-      this.animatePaddle(tolkienBoatEntity, 1, x);
+   public void setupAnim(TolkienBoatEntity p_102269_, float p_102270_, float p_102271_, float p_102272_, float p_102273_, float p_102274_) {
+      animatePaddle(p_102269_, 0, this.leftPaddle, p_102270_);
+      animatePaddle(p_102269_, 1, this.rightPaddle, p_102270_);
    }
 
-   @Override
-   public ImmutableList<ModelRenderer> parts() {
+   public ImmutableList<ModelPart> parts() {
       return this.parts;
    }
 
-   public ModelRenderer waterPatch() {
+   public ModelPart waterPatch() {
       return this.waterPatch;
    }
 
-   protected ModelRenderer makePaddle(boolean paddle) {
-      ModelRenderer modelrenderer = (new ModelRenderer(this, 62, paddle ? 0 : 20)).setTexSize(128, 64);
-      int i = 20;
-      int j = 7;
-      int k = 6;
-      float f = -5.0F;
-      modelrenderer.addBox(-1.0F, 0.0F, -5.0F, 2.0F, 2.0F, 18.0F);
-      modelrenderer.addBox(paddle ? -1.001F : 0.001F, -3.0F, 8.0F, 1.0F, 6.0F, 7.0F);
-      return modelrenderer;
+   private static void animatePaddle(TolkienBoatEntity p_170465_, int p_170466_, ModelPart p_170467_, float p_170468_) {
+      float f = p_170465_.getRowingTime(p_170466_, p_170468_);
+      p_170467_.xRot = Mth.clampedLerp((-(float)Math.PI / 3F), -0.2617994F, (Mth.sin(-f) + 1.0F) / 2.0F);
+      p_170467_.yRot = Mth.clampedLerp((-(float)Math.PI / 4F), ((float)Math.PI / 4F), (Mth.sin(-f + 1.0F) + 1.0F) / 2.0F);
+      if (p_170466_ == 1) {
+         p_170467_.yRot = (float)Math.PI - p_170467_.yRot;
+      }
    }
 
-   protected void animatePaddle(TolkienBoatEntity tolkienBoatEntity, int p_228244_2_, float p_228244_3_) {
-      float f = tolkienBoatEntity.getRowingTime(p_228244_2_, p_228244_3_);
-      ModelRenderer modelrenderer = this.paddles[p_228244_2_];
-      modelrenderer.xRot = (float)MathHelper.clampedLerp((double)(-(float)Math.PI / 3F), (double)-0.2617994F, (double)((MathHelper.sin(-f) + 1.0F) / 2.0F));
-      modelrenderer.yRot = (float)MathHelper.clampedLerp((double)(-(float)Math.PI / 4F), (double)((float)Math.PI / 4F), (double)((MathHelper.sin(-f + 1.0F) + 1.0F) / 2.0F));
-      if (p_228244_2_ == 1) {
-         modelrenderer.yRot = (float)Math.PI - modelrenderer.yRot;
-      }
+   public static ModelLayerLocation createModelName(TolkienBoatEntity.Type type) {
+      return createLocation("boat/" + type.getName(), "main");
+   }
+
+   private static ModelLayerLocation createLocation(String p_171301_, String p_171302_) {
+      return new ModelLayerLocation(new ResourceLocation("minecraft", p_171301_), p_171302_);
    }
 }

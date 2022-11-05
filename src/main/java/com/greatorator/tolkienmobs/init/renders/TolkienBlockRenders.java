@@ -45,10 +45,14 @@ public class TolkienBlockRenders {
         ItemBlockRenderTypes.canRenderInLayer(TORCH_MIRKWOOD.get().defaultBlockState(), cutout);
         ItemBlockRenderTypes.canRenderInLayer(TORCH_CULUMALDA.get().defaultBlockState(), cutout);
         ItemBlockRenderTypes.canRenderInLayer(TORCH_LEBETHRON.get().defaultBlockState(), cutout);
+        ItemBlockRenderTypes.canRenderInLayer(TORCH_DEADWOOD.get().defaultBlockState(), cutout);
+        ItemBlockRenderTypes.canRenderInLayer(TORCH_FANGORNOAK.get().defaultBlockState(), cutout);
         ItemBlockRenderTypes.canRenderInLayer(WALL_TORCH_MALLORN.get().defaultBlockState(), cutout);
         ItemBlockRenderTypes.canRenderInLayer(WALL_TORCH_MIRKWOOD.get().defaultBlockState(), cutout);
         ItemBlockRenderTypes.canRenderInLayer(WALL_TORCH_CULUMALDA.get().defaultBlockState(), cutout);
         ItemBlockRenderTypes.canRenderInLayer(WALL_TORCH_LEBETHRON.get().defaultBlockState(), cutout);
+        ItemBlockRenderTypes.canRenderInLayer(WALL_TORCH_DEADWOOD.get().defaultBlockState(), cutout);
+        ItemBlockRenderTypes.canRenderInLayer(WALL_TORCH_FANGORNOAK.get().defaultBlockState(), cutout);
         ItemBlockRenderTypes.canRenderInLayer(LEAFPILE_MALLORN.get().defaultBlockState(), cutoutMipped);
         ItemBlockRenderTypes.canRenderInLayer(LEAFPILE_MIRKWOOD.get().defaultBlockState(), cutoutMipped);
         ItemBlockRenderTypes.canRenderInLayer(LEAFPILE_CULUMALDA.get().defaultBlockState(), cutoutMipped);
@@ -57,7 +61,10 @@ public class TolkienBlockRenders {
         ItemBlockRenderTypes.canRenderInLayer(TTMFIREPLACE.get().defaultBlockState(), cutoutMipped);
         ItemBlockRenderTypes.canRenderInLayer(PIGGYBANK.get().defaultBlockState(), cutoutMipped);
         ItemBlockRenderTypes.canRenderInLayer(PIPEWEED.get().defaultBlockState(), cutout);
-        ItemBlockRenderTypes.canRenderInLayer(PLACARD.get().defaultBlockState(), cutout);
+        ItemBlockRenderTypes.canRenderInLayer(PLANKS_DEADWOOD.get().defaultBlockState(), cutoutMipped);
+        ItemBlockRenderTypes.canRenderInLayer(SLAB_DEADWOOD.get().defaultBlockState(), cutoutMipped);
+        ItemBlockRenderTypes.canRenderInLayer(STAIRS_DEADWOOD.get().defaultBlockState(), cutoutMipped);
+        ItemBlockRenderTypes.canRenderInLayer(DEADWOOD_BUTTON.get().defaultBlockState(), cutoutMipped);
         ItemBlockRenderTypes.canRenderInLayer(CHAMELEON_BLOCK.get().defaultBlockState(), cutout);
         ItemBlockRenderTypes.canRenderInLayer(KEY_STONE_BLOCK.get().defaultBlockState(), cutout);
         ItemBlockRenderTypes.canRenderInLayer(CAMO_GLOWSTONE_BLOCK.get().defaultBlockState(), cutout);
@@ -67,6 +74,20 @@ public class TolkienBlockRenders {
         ItemBlockRenderTypes.canRenderInLayer(ROCKPILE.get().defaultBlockState(), cutoutMipped);
         ItemBlockRenderTypes.canRenderInLayer(MILESTONE_BLOCK.get().defaultBlockState(), cutoutMipped);
         ItemBlockRenderTypes.canRenderInLayer(BLOCK_AMMOLITE.get().defaultBlockState(), translucent);
-
+        ItemBlockRenderTypes.setRenderLayer(POTTED_MUSHROOM_DECAY_BLOOM.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POTTED_MUSHROOM_BLOOM_DECAY.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POTTED_FLOWER_SIMBELMYNE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POTTED_FLOWER_MIRKWOOD.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POTTED_FLOWER_ALFIRIN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POTTED_FLOWER_ATHELAS.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POTTED_FLOWER_NIPHREDIL.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POTTED_FLOWER_SWAMPMILKWEED.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POTTED_FLOWER_LILLYOFTHEVALLEY.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POTTED_SAPLING_MALLORN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POTTED_SAPLING_MIRKWOOD.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POTTED_SAPLING_CULUMALDA.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POTTED_SAPLING_LEBETHRON.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POTTED_SAPLING_DEADWOOD.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(POTTED_SAPLING_FANGORNOAK.get(), RenderType.cutout());
     }
 }

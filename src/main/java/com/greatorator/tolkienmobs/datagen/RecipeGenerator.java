@@ -369,11 +369,12 @@ public class RecipeGenerator extends RecipeProvider {
     }
 
     public static void potions() {
-        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TolkienItems.MIRUVOR.get(), TolkienPotions.ENT_DRAUGHT.get()));
-        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TolkienItems.GEM_AMMOLITE.get(), TolkienPotions.BLESSING_OF_ERU.get()));
-        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TolkienItems.LEMBAS.get(), TolkienPotions.ELVISH_LIFE.get()));
-        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TolkienItems.GOLDEN_INSECT.get(), TolkienPotions.ELF_FLEETFOOT.get()));
-        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TolkienItems.BLOCK_MITHRIL_ITEM.get(), TolkienPotions.PORTABLE_REPAIR.get()));
+        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(TolkienPotions.ISTARI.get(), TolkienItems.MIRUVOR.get(), TolkienPotions.ENT_DRAUGHT.get()));
+        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(TolkienPotions.ISTARI.get(), TolkienItems.GEM_AMMOLITE.get(), TolkienPotions.BLESSING_OF_ERU.get()));
+        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(TolkienPotions.ISTARI.get(), TolkienItems.LEMBAS.get(), TolkienPotions.ELVISH_LIFE.get()));
+        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(TolkienPotions.ISTARI.get(), TolkienItems.GOLDEN_INSECT.get(), TolkienPotions.ELF_FLEETFOOT.get()));
+        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(TolkienPotions.ISTARI.get(), TolkienItems.BLOCK_MITHRIL_ITEM.get(), TolkienPotions.PORTABLE_REPAIR.get()));
+        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(Potions.AWKWARD, TolkienItems.GEM_AMMOLITE.get(), TolkienPotions.ISTARI.get()));
     }
 
     private static void magic(Consumer<FinishedRecipe> consumer) {

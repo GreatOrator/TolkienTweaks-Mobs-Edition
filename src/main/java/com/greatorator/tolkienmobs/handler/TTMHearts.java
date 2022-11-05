@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.handler;
 
-import com.greatorator.tolkienmobs.TTMConfig;
+import com.greatorator.tolkienmobs.TolkienConfig;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -45,7 +45,7 @@ public class TTMHearts {
     /* HUD */
     @SubscribeEvent(priority = EventPriority.LOW)
     public void renderHealthbar(RenderGameOverlayEvent.PreLayer event) {
-        if (event.isCanceled() || !TTMConfig.HeartOverlay || event.getOverlay() != ForgeIngameGui.PLAYER_HEALTH_ELEMENT) {
+        if (event.isCanceled() || !TolkienConfig.HeartOverlay || event.getOverlay() != ForgeIngameGui.PLAYER_HEALTH_ELEMENT) {
             return;
         }
         // ensure its visible

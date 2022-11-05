@@ -4,7 +4,7 @@ import com.brandon3055.brandonscore.BrandonsCore;
 import com.brandon3055.brandonscore.capability.MultiCapabilityProvider;
 import com.brandon3055.brandonscore.lib.IEquipmentManager;
 import com.google.common.collect.ImmutableList;
-import com.greatorator.tolkienmobs.integration.TTMHelper;
+import com.greatorator.tolkienmobs.integration.IntegrationHelper;
 import com.greatorator.tolkienmobs.lib.TolkienExceptions;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -28,7 +28,7 @@ public abstract class EquipmentManager implements IEquipmentManager {
     public static void initialize() {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-        curiosLoaded = TTMHelper.isCuriosInstalled;
+        curiosLoaded = IntegrationHelper.isCuriosInstalled;
 
         if (curiosLoaded) {
             modBus.addListener(CuriosIntegration::sendIMC);

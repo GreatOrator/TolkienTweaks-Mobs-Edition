@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.item.tools;
 
 import com.brandon3055.brandonscore.api.TimeKeeper;
 import com.brandon3055.brandonscore.utils.ItemNBTHelper;
-import com.greatorator.tolkienmobs.TTMConfig;
+import com.greatorator.tolkienmobs.TolkienConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
@@ -40,7 +40,7 @@ public class TrinketItem extends Item {
     @Override
     public void fillItemCategory(@Nonnull CreativeModeTab group, @Nonnull NonNullList<ItemStack> items) {
         if (this.allowdedIn(group)) {
-            for (MobEffect p : TTMConfig.potionArray) {
+            for (MobEffect p : TolkienConfig.potionArray) {
                 if (p != null) {
                     items.add(getTrinketForEffect(p));
                 }

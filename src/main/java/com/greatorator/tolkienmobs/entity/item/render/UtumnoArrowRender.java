@@ -2,8 +2,8 @@ package com.greatorator.tolkienmobs.entity.item.render;
 
 import com.greatorator.tolkienmobs.entity.item.UtumnoArrowEntity;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -13,7 +13,7 @@ import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 public class UtumnoArrowRender extends ArrowRenderer<UtumnoArrowEntity> {
     private static final ResourceLocation UTUMNO_ARROW_TEXTURES = new ResourceLocation(MODID,"textures/entity/ammo_utumno_arrow.png");
 
-    public UtumnoArrowRender(EntityRendererManager rendererManager) {
+    public UtumnoArrowRender(EntityRendererProvider.Context rendererManager) {
         super(rendererManager);
     }
 

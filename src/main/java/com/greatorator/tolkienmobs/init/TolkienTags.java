@@ -5,15 +5,23 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.Collections;
+import java.util.Objects;
 
 public class TolkienTags {
     public static void init(){
         items.init();
         blocks.init();
         fluids.init();
+        biomes.init();
+        entities.init();
         tagkeys.init();
     }
 
@@ -109,6 +117,15 @@ public class TolkienTags {
         public static final TagKey<Block> SIGNS = tag("signs");
         public static final TagKey<Block> CROPS = tag("crops");
         public static final TagKey<Block> MUSHROOM_GROW_BLOCK = tag("mushroom_grow_block");
+        public static final TagKey<Block> REPLACEABLE = tag("replaceable");
+        public static final TagKey<Block> ROOT_SKIP = tag("root_skip");
+        public static final TagKey<Block> MINEABLE_WITH_AXE = tag("mineable/axe");
+        public static final TagKey<Block> MINEABLE_WITH_HOE = tag("mineable/hoe");
+        public static final TagKey<Block> MINEABLE_WITH_PICKAXE = tag("mineable/pickaxe");
+        public static final TagKey<Block> MINEABLE_WITH_SHOVEL = tag("mineable/shovel");
+        public static final TagKey<Block> NEEDS_DIAMOND_TOOL = tag("needs_diamond_tool");
+        public static final TagKey<Block> NEEDS_IRON_TOOL = tag("needs_iron_tool");
+        public static final TagKey<Block> NEEDS_STONE_TOOL = tag("needs_stone_tool");
 
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation("forge", name));
@@ -123,6 +140,32 @@ public class TolkienTags {
 
         private static TagKey<Fluid> tag(String name) {
             return FluidTags.create(new ResourceLocation("forge", name));
+        }
+    }
+
+    public static class biomes{
+        private static void init(){}
+
+        public static final TagKey<Biome> IS_FOREST = tag("is_forest");
+        public static final TagKey<Biome> IS_MOUNTAIN = tag("is_mountain");
+        public static final TagKey<Biome> IS_BADLANDS = tag("is_badlands");
+        public static final TagKey<Biome> IS_DESERT = tag("is_desert");
+        public static final TagKey<Biome> IS_TAIGA = tag("is_taiga");
+        public static final TagKey<Biome> HAS_PILLAGER_OUTPOST = tag("has_structure/pillager_outpost");
+
+        private static TagKey<Biome> tag(String name) {
+            return Objects.requireNonNull(ForgeRegistries.BIOMES.tags()).createOptionalTagKey(new ResourceLocation("forge", name), Collections.emptySet());
+        }
+    }
+
+    public static class entities{
+        private static void init(){}
+
+        public static final TagKey<EntityType<?>> ARROWS = tag("arrows");
+
+
+        private static TagKey<EntityType<?>> tag(String name) {
+            return Objects.requireNonNull(ForgeRegistries.ENTITIES.tags()).createOptionalTagKey(new ResourceLocation("forge", name), Collections.emptySet());
         }
     }
 

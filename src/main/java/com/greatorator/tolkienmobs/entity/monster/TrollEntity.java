@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
 import com.google.common.collect.Maps;
-import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.TolkienContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.utils.TTMRand;
@@ -75,15 +75,15 @@ public class TrollEntity extends MonsterEntity {
     @Override
     protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
         super.populateDefaultEquipmentSlots(p_180481_1_);
-        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TTMContent.CLUB_WOODEN.get()));
+        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TolkienContent.CLUB_WOODEN.get()));
     }
 
     @Override
     public void reassessWeaponGoal() {
         if (this.level != null && !this.level.isClientSide) {
             this.goalSelector.removeGoal(this.meleeGoal);
-            ItemStack itemstack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, TTMContent.CLUB_WOODEN.get()));
-            if (itemstack.getItem() == TTMContent.CLUB_WOODEN.get()) {
+            ItemStack itemstack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, TolkienContent.CLUB_WOODEN.get()));
+            if (itemstack.getItem() == TolkienContent.CLUB_WOODEN.get()) {
                 this.goalSelector.addGoal(4, this.meleeGoal);
             }
         }

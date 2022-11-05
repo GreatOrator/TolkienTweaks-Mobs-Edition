@@ -2,8 +2,6 @@ package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
-import com.greatorator.tolkienmobs.init.TolkienEntities;
-import com.greatorator.tolkienmobs.init.TolkienFluids;
 import com.greatorator.tolkienmobs.init.TolkienItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -53,76 +51,120 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TolkienItems.DOOR_DURIN_ITEM.get());
 
         // Block Items - Wood & Foliage
+        // Mallorn
         blockItem(TolkienBlocks.LOG_MALLORN.get());
+        blockItem(TolkienBlocks.STRIPPED_MALLORN_LOG.get());
+        blockItem(TolkienBlocks.WOOD_MALLORN.get());
+        blockItem(TolkienBlocks.STRIPPED_MALLORN_WOOD.get());
+        blockItem(TolkienBlocks.PLANKS_MALLORN.get());
+        blockItem(TolkienBlocks.STAIRS_MALLORN.get());
+        blockItem(TolkienBlocks.SLAB_MALLORN.get());
+        simpleItem(TolkienItems.DOOR_MALLORN_ITEM.get());
+        blockItem(TolkienBlocks.FENCE_GATE_MALLORN.get(), modLoc("block/fence_gate_mallorn_fence_gate"));
+        blockItem(TolkienBlocks.FENCE_MALLORN.get(), modLoc("block/mallorn_fence_inventory"));
+        blockItem(TolkienBlocks.TRAPDOOR_MALLORN.get(), modLoc("block/mallorn_trapdoor_bottom"));
+        blockItem(TolkienBlocks.PRESSURE_PLATE_MALLORN.get(), modLoc("block/pressure_plate_mallorn"));
+        blockItem(TolkienBlocks.TORCH_MALLORN.get(), modLoc("block/torch_mallorn"));
+        blockItem(TolkienBlocks.LEAVES_MALLORN.get());
+        blockItem(TolkienBlocks.LEAFPILE_MALLORN.get(), modLoc("block/leafpile_mallorn"));
+        blockItem(TolkienBlocks.SAPLING_MALLORN.get());
+        simpleItem(TolkienItems.MALLORN_SIGN_ITEM.get());
+        simpleItem(TolkienItems.MALLORN_BOAT.get());
+
+        // Mirkwood
         blockItem(TolkienBlocks.LOG_MIRKWOOD.get());
+        blockItem(TolkienBlocks.STRIPPED_MIRKWOOD_LOG.get());
+        blockItem(TolkienBlocks.WOOD_MIRKWOOD.get());
+        blockItem(TolkienBlocks.STRIPPED_MIRKWOOD_WOOD.get());
+        blockItem(TolkienBlocks.PLANKS_MIRKWOOD.get());
+        blockItem(TolkienBlocks.STAIRS_MIRKWOOD.get());
+        blockItem(TolkienBlocks.SLAB_MIRKWOOD.get());
+        simpleItem(TolkienItems.DOOR_MIRKWOOD_ITEM.get());
+        blockItem(TolkienBlocks.FENCE_GATE_MIRKWOOD.get(), modLoc("block/fence_gate_mirkwood_fence_gate"));
+        blockItem(TolkienBlocks.FENCE_MIRKWOOD.get(), modLoc("block/mirkwood_fence_inventory"));
+        blockItem(TolkienBlocks.TRAPDOOR_MIRKWOOD.get(), modLoc("block/mirkwood_trapdoor_bottom"));
+        blockItem(TolkienBlocks.PRESSURE_PLATE_MIRKWOOD.get(), modLoc("block/pressure_plate_mirkwood"));
+        blockItem(TolkienBlocks.TORCH_MIRKWOOD.get(), modLoc("block/torch_mirkwood"));
+        blockItem(TolkienBlocks.LEAVES_MIRKWOOD.get());
+        blockItem(TolkienBlocks.LEAFPILE_MIRKWOOD.get(), modLoc("block/leafpile_mirkwood"));
+        blockItem(TolkienBlocks.SAPLING_MIRKWOOD.get());
+        simpleItem(TolkienItems.MIRKWOOD_SIGN_ITEM.get());
+        simpleItem(TolkienItems.MIRKWOOD_BOAT.get());
+
+        // Culumalda
         blockItem(TolkienBlocks.LOG_CULUMALDA.get());
+        blockItem(TolkienBlocks.STRIPPED_CULUMALDA_LOG.get());
+        blockItem(TolkienBlocks.WOOD_CULUMALDA.get());
+        blockItem(TolkienBlocks.STRIPPED_CULUMALDA_WOOD.get());
+        blockItem(TolkienBlocks.PLANKS_CULUMALDA.get());
+        blockItem(TolkienBlocks.STAIRS_CULUMALDA.get());
+        blockItem(TolkienBlocks.SLAB_CULUMALDA.get());
+        simpleItem(TolkienItems.DOOR_CULUMALDA_ITEM.get());
+        blockItem(TolkienBlocks.FENCE_GATE_CULUMALDA.get(), modLoc("block/fence_gate_culumalda_fence_gate"));
+        blockItem(TolkienBlocks.FENCE_CULUMALDA.get(), modLoc("block/culumalda_fence_inventory"));
+        blockItem(TolkienBlocks.TRAPDOOR_CULUMALDA.get(), modLoc("block/culumalda_trapdoor_bottom"));
+        blockItem(TolkienBlocks.PRESSURE_PLATE_CULUMALDA.get(), modLoc("block/pressure_plate_culumalda"));
+        blockItem(TolkienBlocks.TORCH_CULUMALDA.get(), modLoc("block/torch_culumalda"));
+        blockItem(TolkienBlocks.LEAVES_CULUMALDA.get());
+        blockItem(TolkienBlocks.LEAFPILE_CULUMALDA.get(), modLoc("block/leafpile_culumalda"));
+        blockItem(TolkienBlocks.SAPLING_CULUMALDA.get());
+        simpleItem(TolkienItems.CULUMALDA_SIGN_ITEM.get());
+        simpleItem(TolkienItems.CULUMALDA_BOAT.get());
+        blockItem(TolkienBlocks.FENCE_GATE_LEBETHRON.get(), modLoc("block/fence_gate_lebethron_fence_gate"));
+        blockItem(TolkienBlocks.FENCE_LEBETHRON.get(), modLoc("block/lebethron_fence_inventory"));
+        blockItem(TolkienBlocks.TRAPDOOR_LEBETHRON.get(), modLoc("block/lebethron_trapdoor_bottom"));
+        blockItem(TolkienBlocks.PRESSURE_PLATE_LEBETHRON.get(), modLoc("block/pressure_plate_lebethron"));
+        blockItem(TolkienBlocks.TORCH_LEBETHRON.get(), modLoc("block/torch_lebethron"));
         blockItem(TolkienBlocks.LOG_LEBETHRON.get());
         blockItem(TolkienBlocks.LOG_DEADWOOD.get());
-        blockItem(TolkienBlocks.STRIPPED_MALLORN_LOG.get());
-        blockItem(TolkienBlocks.STRIPPED_MIRKWOOD_LOG.get());
-        blockItem(TolkienBlocks.STRIPPED_CULUMALDA_LOG.get());
         blockItem(TolkienBlocks.STRIPPED_LEBETHRON_LOG.get());
-        blockItem(TolkienBlocks.WOOD_MALLORN.get());
-        blockItem(TolkienBlocks.WOOD_MIRKWOOD.get());
-        blockItem(TolkienBlocks.WOOD_CULUMALDA.get());
         blockItem(TolkienBlocks.WOOD_LEBETHRON.get());
-        blockItem(TolkienBlocks.STRIPPED_MALLORN_WOOD.get());
-        blockItem(TolkienBlocks.STRIPPED_MIRKWOOD_WOOD.get());
-        blockItem(TolkienBlocks.STRIPPED_CULUMALDA_WOOD.get());
         blockItem(TolkienBlocks.STRIPPED_LEBETHRON_WOOD.get());
-        blockItem(TolkienBlocks.LOG_DEADWOOD.get());
-        blockItem(TolkienBlocks.PLANKS_MALLORN.get());
-        blockItem(TolkienBlocks.PLANKS_MIRKWOOD.get());
-        blockItem(TolkienBlocks.PLANKS_CULUMALDA.get());
         blockItem(TolkienBlocks.PLANKS_LEBETHRON.get());
-        blockItem(TolkienBlocks.STAIRS_MALLORN.get());
-        blockItem(TolkienBlocks.STAIRS_MIRKWOOD.get());
-        blockItem(TolkienBlocks.STAIRS_CULUMALDA.get());
         blockItem(TolkienBlocks.STAIRS_LEBETHRON.get());
-        blockItem(TolkienBlocks.SLAB_MALLORN.get());
-        blockItem(TolkienBlocks.SLAB_MIRKWOOD.get());
         blockItem(TolkienBlocks.SLAB_LEBETHRON.get());
-        blockItem(TolkienBlocks.SLAB_CULUMALDA.get());
-        simpleItem(TolkienItems.DOOR_MALLORN_ITEM.get());
-        simpleItem(TolkienItems.DOOR_MIRKWOOD_ITEM.get());
-        simpleItem(TolkienItems.DOOR_CULUMALDA_ITEM.get());
         simpleItem(TolkienItems.DOOR_LEBETHRON_ITEM.get());
-
-        blockItem(TolkienBlocks.FENCE_GATE_MALLORN.get(), modLoc("block/fence_gate_mallorn_fence_gate"));
-        blockItem(TolkienBlocks.FENCE_GATE_MIRKWOOD.get(), modLoc("block/fence_gate_mirkwood_fence_gate"));
-        blockItem(TolkienBlocks.FENCE_GATE_CULUMALDA.get(), modLoc("block/fence_gate_culumalda_fence_gate"));
-        blockItem(TolkienBlocks.FENCE_GATE_LEBETHRON.get(), modLoc("block/fence_gate_lebethron_fence_gate"));
-        blockItem(TolkienBlocks.FENCE_MALLORN.get(), modLoc("block/mallorn_fence_inventory"));
-        blockItem(TolkienBlocks.FENCE_MIRKWOOD.get(), modLoc("block/mirkwood_fence_inventory"));
-        blockItem(TolkienBlocks.FENCE_CULUMALDA.get(), modLoc("block/culumalda_fence_inventory"));
-        blockItem(TolkienBlocks.FENCE_LEBETHRON.get(), modLoc("block/lebethron_fence_inventory"));
-        blockItem(TolkienBlocks.TRAPDOOR_MALLORN.get(), modLoc("block/mallorn_trapdoor_bottom"));
-        blockItem(TolkienBlocks.TRAPDOOR_MIRKWOOD.get(), modLoc("block/mirkwood_trapdoor_bottom"));
-        blockItem(TolkienBlocks.TRAPDOOR_CULUMALDA.get(), modLoc("block/culumalda_trapdoor_bottom"));
-        blockItem(TolkienBlocks.TRAPDOOR_LEBETHRON.get(), modLoc("block/lebethron_trapdoor_bottom"));
-        blockItem(TolkienBlocks.PRESSURE_PLATE_MALLORN.get(), modLoc("block/pressure_plate_mallorn"));
-        blockItem(TolkienBlocks.PRESSURE_PLATE_MIRKWOOD.get(), modLoc("block/pressure_plate_mirkwood"));
-        blockItem(TolkienBlocks.PRESSURE_PLATE_CULUMALDA.get(), modLoc("block/pressure_plate_culumalda"));
-        blockItem(TolkienBlocks.PRESSURE_PLATE_LEBETHRON.get(), modLoc("block/pressure_plate_lebethron"));
-        blockItem(TolkienBlocks.TORCH_MALLORN.get(), modLoc("block/torch_mallorn"));
-        blockItem(TolkienBlocks.TORCH_MIRKWOOD.get(), modLoc("block/torch_mirkwood"));
-        blockItem(TolkienBlocks.TORCH_CULUMALDA.get(), modLoc("block/torch_culumalda"));
-        blockItem(TolkienBlocks.TORCH_LEBETHRON.get(), modLoc("block/torch_lebethron"));
-        blockItem(TolkienBlocks.LEAVES_MALLORN.get());
-        blockItem(TolkienBlocks.LEAVES_MIRKWOOD.get());
-        blockItem(TolkienBlocks.LEAVES_CULUMALDA.get());
         blockItem(TolkienBlocks.LEAVES_LEBETHRON.get());
-        blockItem(TolkienBlocks.LEAVES_FANGORNOAK.get());
-        blockItem(TolkienBlocks.LEAFPILE_MALLORN.get(), modLoc("block/leafpile_mallorn"));
-        blockItem(TolkienBlocks.LEAFPILE_MIRKWOOD.get(), modLoc("block/leafpile_mirkwood"));
-        blockItem(TolkienBlocks.LEAFPILE_CULUMALDA.get(), modLoc("block/leafpile_culumalda"));
         blockItem(TolkienBlocks.LEAFPILE_LEBETHRON.get(), modLoc("block/leafpile_lebethron"));
-        blockItem(TolkienBlocks.LEAFPILE_FANGORNOAK.get(), modLoc("block/leafpile_fangornoak"));
-        blockItem(TolkienBlocks.SAPLING_MALLORN.get());
-        blockItem(TolkienBlocks.SAPLING_MIRKWOOD.get());
-        blockItem(TolkienBlocks.SAPLING_CULUMALDA.get());
         blockItem(TolkienBlocks.SAPLING_LEBETHRON.get());
+        simpleItem(TolkienItems.LEBETHRON_SIGN_ITEM.get());
+        simpleItem(TolkienItems.LEBETHRON_BOAT.get());
+
+        // Deadwood
+        blockItem(TolkienBlocks.LOG_DEADWOOD.get());
+        blockItem(TolkienBlocks.STRIPPED_DEADWOOD_LOG.get());
+        blockItem(TolkienBlocks.WOOD_DEADWOOD.get());
+        blockItem(TolkienBlocks.STRIPPED_DEADWOOD_WOOD.get());
+        blockItem(TolkienBlocks.PLANKS_DEADWOOD.get());
+        blockItem(TolkienBlocks.STAIRS_DEADWOOD.get());
+        blockItem(TolkienBlocks.SLAB_DEADWOOD.get());
+        simpleItem(TolkienItems.DOOR_DEADWOOD_ITEM.get());
+        blockItem(TolkienBlocks.FENCE_GATE_DEADWOOD.get(), modLoc("block/fence_gate_deadwood_fence_gate"));
+        blockItem(TolkienBlocks.FENCE_DEADWOOD.get(), modLoc("block/deadwood_fence_inventory"));
+        blockItem(TolkienBlocks.TRAPDOOR_DEADWOOD.get(), modLoc("block/deadwood_trapdoor_bottom"));
+        blockItem(TolkienBlocks.PRESSURE_PLATE_DEADWOOD.get(), modLoc("block/pressure_plate_deadwood"));
+        blockItem(TolkienBlocks.TORCH_DEADWOOD.get(), modLoc("block/torch_deadwood"));
+        simpleItem(TolkienItems.DEADWOOD_SIGN_ITEM.get());
+        simpleItem(TolkienItems.DEADWOOD_BOAT.get());
         blockItem(TolkienBlocks.SAPLING_DEADWOOD.get());
+
+        // Fangornoak
+        blockItem(TolkienBlocks.STRIPPED_FANGORNOAK_LOG.get());
+        blockItem(TolkienBlocks.WOOD_FANGORNOAK.get());
+        blockItem(TolkienBlocks.STRIPPED_FANGORNOAK_WOOD.get());
+        blockItem(TolkienBlocks.PLANKS_FANGORNOAK.get());
+        blockItem(TolkienBlocks.STAIRS_FANGORNOAK.get());
+        blockItem(TolkienBlocks.SLAB_FANGORNOAK.get());
+        simpleItem(TolkienItems.DOOR_FANGORNOAK_ITEM.get());
+        blockItem(TolkienBlocks.FENCE_GATE_FANGORNOAK.get(), modLoc("block/fence_gate_fangornoak_fence_gate"));
+        blockItem(TolkienBlocks.FENCE_FANGORNOAK.get(), modLoc("block/fangornoak_fence_inventory"));
+        blockItem(TolkienBlocks.TRAPDOOR_FANGORNOAK.get(), modLoc("block/fangornoak_trapdoor_bottom"));
+        blockItem(TolkienBlocks.PRESSURE_PLATE_FANGORNOAK.get(), modLoc("block/pressure_plate_fangornoak"));
+        blockItem(TolkienBlocks.TORCH_FANGORNOAK.get(), modLoc("block/torch_fangornoak"));
+        simpleItem(TolkienItems.FANGORNOAK_SIGN_ITEM.get());
+        simpleItem(TolkienItems.FANGORNOAK_BOAT.get());
+        blockItem(TolkienBlocks.LEAVES_FANGORNOAK.get());
+        blockItem(TolkienBlocks.LEAFPILE_FANGORNOAK.get(), modLoc("block/leafpile_fangornoak"));
         blockItem(TolkienBlocks.SAPLING_FANGORNOAK.get());
 
         // Block Items - Plants & Flowers
@@ -333,10 +375,6 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TolkienItems.GALADHRIM_ARROW.get());
         simpleItem(TolkienItems.UTUMNO_ARROW.get());
 
-        //region Fluids
-        simpleItem(TolkienFluids.MITHRIL_FLUID_BUCKET.get());
-        simpleItem(TolkienFluids.MORGULIRON_FLUID_BUCKET.get());
-
         //region Trinkets
         trinketItem(TolkienItems.TRINKET_AMULET.get(), modLoc("item/trinket_amulet"), modLoc("item/trinket_amulet"));
         trinketItem(TolkienItems.TRINKET_BELT.get(), modLoc("item/trinket_belt"), modLoc("item/trinket_belt"));
@@ -348,77 +386,64 @@ public class ItemModelGenerator extends ItemModelProvider {
 
         //region Spawn Eggs
             // Ambient
-        eggItem(TolkienEntities.EGG_TTMRAT.get());
-        eggItem(TolkienEntities.EGG_TTMSQUIRREL.get());
-        eggItem(TolkienEntities.EGG_TTMFROG.get());
-        eggItem(TolkienEntities.EGG_TTMSWARM.get());
-        eggItem(TolkienEntities.EGG_TTMTHRUSH.get());
-        eggItem(TolkienEntities.EGG_TTMCREBAIN.get());
-
-        // Merchants
-        eggItem(TolkienEntities.EGG_TTMHUMAN.get());
-        eggItem(TolkienEntities.EGG_TTMDWARF.get());
-        eggItem(TolkienEntities.EGG_TTMELVES.get());
-        eggItem(TolkienEntities.EGG_TTMHOBBIT.get());
-        eggItem(TolkienEntities.EGG_TTMDESERTDWELLER.get());
-
-        // Monster
-        eggItem(TolkienEntities.EGG_TTMGOBLIN.get());
-        eggItem(TolkienEntities.EGG_TTMBARROW.get());
-        eggItem(TolkienEntities.EGG_TTMBRIGAND.get());
-        eggItem(TolkienEntities.EGG_TTMDEEPCLAW.get());
-        eggItem(TolkienEntities.EGG_TTMTREEENT.get());
-        eggItem(TolkienEntities.EGG_TTMDUERGAR.get());
-        eggItem(TolkienEntities.EGG_TTMFELLSPIRIT.get());
-        eggItem(TolkienEntities.EGG_TTMSWAMPHAG.get());
-        eggItem(TolkienEntities.EGG_TTMMIRKWOODSPIDER.get());
-        eggItem(TolkienEntities.EGG_TTMHARADRIM.get());
-        eggItem(TolkienEntities.EGG_TTMTROLL.get());
-        eggItem(TolkienEntities.EGG_TTMWARG.get());
-        eggItem(TolkienEntities.EGG_TTMMORDORORC.get());
-        eggItem(TolkienEntities.EGG_TTMHURON.get());
-        eggItem(TolkienEntities.EGG_TTMOATHBREAKER.get());
-        eggItem(TolkienEntities.EGG_TTMROMIEWALKER.get());
-        eggItem(TolkienEntities.EGG_TTMURUKHAI.get());
-        eggItem(TolkienEntities.EGG_TTMELEMENTALGOLEM.get());
-        eggItem(TolkienEntities.EGG_TTMMINOTAUR.get());
-        eggItem(TolkienEntities.EGG_TTMMIMICCHEST.get());
-
-        // Boss
-        eggItem(TolkienEntities.EGG_TTMGOBLINKING.get());
-        eggItem(TolkienEntities.EGG_TTMMITHRILGOLEM.get());
-        eggItem(TolkienEntities.EGG_TTMMORGULIRONGOLEM.get());
-        eggItem(TolkienEntities.EGG_TTMWITCHKING.get());
-        eggItem(TolkienEntities.EGG_TTMSHELOB.get());
-        eggItem(TolkienEntities.EGG_TTMBALROG.get());
-        eggItem(TolkienEntities.EGG_TTMWATCHER.get());
-        eggItem(TolkienEntities.EGG_TTMGWAHIR.get());
-        eggItem(TolkienEntities.EGG_TTMFELLBEAST.get());
-
-        // Passive
-        eggItem(TolkienEntities.EGG_TTMAUROCH.get());
-        eggItem(TolkienEntities.EGG_TTMMUMAKIL.get());
-        eggItem(TolkienEntities.EGG_TTMGOAT.get());
-
-        // Special
-        eggItem(TolkienEntities.EGG_TTMSHADOWFAX.get());
-        eggItem(TolkienEntities.EGG_TTMGOLLUM.get());
-        eggItem(TolkienEntities.EGG_TTMNAZGUL.get());
-        eggItem(TolkienEntities.EGG_TTMNAZGULSTEED.get());
-        eggItem(TolkienEntities.EGG_TTMGREATEAGLE.get());
-
-            //Signs
-        simpleItem(TolkienItems.MALLORN_SIGN_ITEM.get());
-        simpleItem(TolkienItems.MIRKWOOD_SIGN_ITEM.get());
-        simpleItem(TolkienItems.CULUMALDA_SIGN_ITEM.get());
-        simpleItem(TolkienItems.LEBETHRON_SIGN_ITEM.get());
-
-            // Boats
-        simpleItem(TolkienItems.MALLORN_BOAT.get());
-        simpleItem(TolkienItems.MIRKWOOD_BOAT.get());
-        simpleItem(TolkienItems.CULUMALDA_BOAT.get());
-        simpleItem(TolkienItems.LEBETHRON_BOAT.get());
-
+//        eggItem(TolkienEntities.EGG_TTMRAT.get());
+//        eggItem(TolkienEntities.EGG_TTMSQUIRREL.get());
+//        eggItem(TolkienEntities.EGG_TTMFROG.get());
+//        eggItem(TolkienEntities.EGG_TTMSWARM.get());
+//        eggItem(TolkienEntities.EGG_TTMTHRUSH.get());
+//        eggItem(TolkienEntities.EGG_TTMCREBAIN.get());
+//
+//        // Merchants
+//        eggItem(TolkienEntities.EGG_TTMHUMAN.get());
+//        eggItem(TolkienEntities.EGG_TTMDWARF.get());
+//        eggItem(TolkienEntities.EGG_TTMELVES.get());
+//        eggItem(TolkienEntities.EGG_TTMHOBBIT.get());
+//        eggItem(TolkienEntities.EGG_TTMDESERTDWELLER.get());
+//
+//        // Monster
+//        eggItem(TolkienEntities.EGG_TTMGOBLIN.get());
+//        eggItem(TolkienEntities.EGG_TTMBARROW.get());
+//        eggItem(TolkienEntities.EGG_TTMBRIGAND.get());
+//        eggItem(TolkienEntities.EGG_TTMDEEPCLAW.get());
+//        eggItem(TolkienEntities.EGG_TTMTREEENT.get());
+//        eggItem(TolkienEntities.EGG_TTMDUERGAR.get());
+//        eggItem(TolkienEntities.EGG_TTMFELLSPIRIT.get());
+//        eggItem(TolkienEntities.EGG_TTMSWAMPHAG.get());
+//        eggItem(TolkienEntities.EGG_TTMMIRKWOODSPIDER.get());
+//        eggItem(TolkienEntities.EGG_TTMHARADRIM.get());
+//        eggItem(TolkienEntities.EGG_TTMTROLL.get());
+//        eggItem(TolkienEntities.EGG_TTMWARG.get());
+//        eggItem(TolkienEntities.EGG_TTMMORDORORC.get());
+//        eggItem(TolkienEntities.EGG_TTMHURON.get());
+//        eggItem(TolkienEntities.EGG_TTMOATHBREAKER.get());
+//        eggItem(TolkienEntities.EGG_TTMROMIEWALKER.get());
+//        eggItem(TolkienEntities.EGG_TTMURUKHAI.get());
+//        eggItem(TolkienEntities.EGG_TTMELEMENTALGOLEM.get());
+//        eggItem(TolkienEntities.EGG_TTMMINOTAUR.get());
+//        eggItem(TolkienEntities.EGG_TTMMIMICCHEST.get());
+//
+//        // Boss
+//        eggItem(TolkienEntities.EGG_TTMGOBLINKING.get());
+//        eggItem(TolkienEntities.EGG_TTMMITHRILGOLEM.get());
+//        eggItem(TolkienEntities.EGG_TTMMORGULIRONGOLEM.get());
+//        eggItem(TolkienEntities.EGG_TTMWITCHKING.get());
+//        eggItem(TolkienEntities.EGG_TTMSHELOB.get());
+//        eggItem(TolkienEntities.EGG_TTMBALROG.get());
+//        eggItem(TolkienEntities.EGG_TTMWATCHER.get());
+//        eggItem(TolkienEntities.EGG_TTMGWAHIR.get());
+//        eggItem(TolkienEntities.EGG_TTMFELLBEAST.get());
+//
+//        // Passive
+//        eggItem(TolkienEntities.EGG_TTMAUROCH.get());
+//        eggItem(TolkienEntities.EGG_TTMMUMAKIL.get());
+//        eggItem(TolkienEntities.EGG_TTMGOAT.get());
+//
+//        // Special
+//        eggItem(TolkienEntities.EGG_TTMSHADOWFAX.get());
+//        eggItem(TolkienEntities.EGG_TTMGOLLUM.get());
+//        eggItem(TolkienEntities.EGG_TTMNAZGUL.get());
+//        eggItem(TolkienEntities.EGG_TTMNAZGULSTEED.get());
+//        eggItem(TolkienEntities.EGG_TTMGREATEAGLE.get());
     }
 
     private ItemModelBuilder simpleMod(ModelFile itemGenerated, String name) {

@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class TolkienSignItem extends StandingAndWallBlockItem {
@@ -23,7 +24,7 @@ public class TolkienSignItem extends StandingAndWallBlockItem {
    }
 
    @Override
-   protected boolean updateCustomBlockEntityTag(BlockPos blockPos, Level world, @Nullable Player player, ItemStack stack, BlockState blockState) {
+   protected boolean updateCustomBlockEntityTag(@Nonnull BlockPos blockPos, @Nonnull Level world, @Nullable Player player, @Nonnull ItemStack stack, @Nonnull BlockState blockState) {
       boolean flag = super.updateCustomBlockEntityTag(blockPos, world, player, stack, blockState);
       if (!flag && player != null) {
          if (world.isClientSide) {

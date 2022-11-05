@@ -9,4 +9,6 @@ public class TolkienWoodTypes {
     public static WoodType MIRKWOOD = WoodType.register(WoodType.create(MODID + ":mirkwood"));
     public static WoodType CULUMALDA = WoodType.register(WoodType.create(MODID + ":culumalda"));
     public static WoodType LEBETHRON = WoodType.register(WoodType.create(MODID + ":lebethron"));
+    public static WoodType DEADWOOD = WoodType.register(WoodType.create(MODID + ":deadwood"));
+    public static WoodType FANGORNOAK = WoodType.register(WoodType.create(MODID + ":fangornoak"));
 }

@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
 import com.google.common.collect.Maps;
-import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.TolkienContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.ai.goal.TTMSwitchCombat;
@@ -73,7 +73,7 @@ public class MordorOrcEntity extends MonsterEntity {
     @Override
     protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
         super.populateDefaultEquipmentSlots(p_180481_1_);
-        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TTMContent.SWORD_MORGULIRON.get()));
+        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TolkienContent.SWORD_MORGULIRON.get()));
         this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(Items.BOW));
     }
 

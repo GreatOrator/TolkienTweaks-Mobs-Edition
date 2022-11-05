@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.init;
 
-import com.greatorator.tolkienmobs.item.potion.*;
+import com.greatorator.tolkienmobs.potion.*;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -52,6 +52,7 @@ public class TolkienPotions {
     public static final RegistryObject<Potion> CRIPPLING_TERROR = POTIONS.register("crippling_terror", () -> new Potion(new MobEffectInstance(PARALYSING_FEAR.get(), 200)));
     public static final RegistryObject<Potion> ELF_FLEETFOOT = POTIONS.register("elven_nimbleness", () -> new Potion(new MobEffectInstance(ELF_NIMBLENESS.get(), 300)));
     public static final RegistryObject<Potion> BLESSING_OF_ERU = POTIONS.register("blessing_of_eru", () -> new Potion(new MobEffectInstance(ERU_BLESSING.get(), 100)));
+    public static final RegistryObject<Potion> ISTARI = POTIONS.register("istari", Potion::new);
 
     public String getName() {
         return "Tolkien Tweaks - Mobs Edition Potions";

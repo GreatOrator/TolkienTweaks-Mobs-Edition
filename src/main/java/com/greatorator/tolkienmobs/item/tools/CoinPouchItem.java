@@ -175,7 +175,7 @@ public class CoinPouchItem extends Item {
         return active;
     }
 
-    public static float getFullnessPropertyOverride(ItemStack itemStack, @Nullable ClientLevel world, @Nullable LivingEntity livingEntity, int i) {
+    public static float getFullnessPropertyOverride(ItemStack itemStack, @Nullable ClientLevel world, @Nullable LivingEntity entity, int i) {
         IItemHandler coinPouch = getItemStackHandlerCoinPouch(itemStack);
         if (coinPouch == null) return 0;
         int count = 0;

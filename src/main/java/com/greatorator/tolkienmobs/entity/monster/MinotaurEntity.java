@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
 import com.google.common.collect.Maps;
-import com.greatorator.tolkienmobs.TTMContent;
+import com.greatorator.tolkienmobs.TolkienContent;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.boss.GoblinKingEntity;
@@ -89,15 +89,15 @@ public class MinotaurEntity extends MonsterEntity {
     @Override
     protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
         super.populateDefaultEquipmentSlots(p_180481_1_);
-        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TTMContent.AXE_MORGULIRON.get()));
+        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TolkienContent.AXE_MORGULIRON.get()));
     }
 
     @Override
     public void reassessWeaponGoal() {
         if (this.level != null && !this.level.isClientSide) {
             this.goalSelector.removeGoal(this.meleeGoal);
-            ItemStack itemstack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, TTMContent.AXE_MORGULIRON.get()));
-            if (itemstack.getItem() == TTMContent.AXE_MORGULIRON.get()) {
+            ItemStack itemstack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, TolkienContent.AXE_MORGULIRON.get()));
+            if (itemstack.getItem() == TolkienContent.AXE_MORGULIRON.get()) {
                 this.goalSelector.addGoal(4, this.meleeGoal);
             }
         }
