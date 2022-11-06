@@ -14,7 +14,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
@@ -55,9 +54,9 @@ public class MorgulCrystalEntity extends Entity {
       ++this.time;
       if (this.level instanceof TolkienServerLevel) {
          BlockPos blockpos = this.blockPosition();
-         if (((TolkienServerLevel)this.level).fellbeastFight() != null && this.level.getBlockState(blockpos).isAir()) {
-            this.level.setBlockAndUpdate(blockpos, BaseFireBlock.getState(this.level, blockpos));
-         }
+//         if (((TolkienServerLevel)this.level).fellbeastFight() != null && this.level.getBlockState(blockpos).isAir()) {
+//            this.level.setBlockAndUpdate(blockpos, BaseFireBlock.getState(this.level, blockpos));
+//         }
       }
 
    }

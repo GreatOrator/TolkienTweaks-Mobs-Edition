@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.block;
 
 import com.brandon3055.brandonscore.blocks.BlockBCore;
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.tile.FireplaceTile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -91,6 +90,6 @@ public class FireplaceBlock extends BlockBCore {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new FireplaceTile(blockPos, blockState, TolkienMobs.FIREPLACE_RECIPE_TYPE);
+        return new FireplaceTile(blockPos, blockState);
     }
 }

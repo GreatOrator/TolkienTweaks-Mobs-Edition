@@ -5,10 +5,8 @@ import com.greatorator.tolkienmobs.entity.item.TolkienBoatEntity;
 import com.greatorator.tolkienmobs.handler.*;
 import com.greatorator.tolkienmobs.handler.enums.TolkienArmorMaterials;
 import com.greatorator.tolkienmobs.handler.enums.TolkienTiers;
-import com.greatorator.tolkienmobs.item.armor.MithrilArmor;
-import com.greatorator.tolkienmobs.item.armor.MithrilHorseArmor;
-import com.greatorator.tolkienmobs.item.armor.MorgulironArmor;
-import com.greatorator.tolkienmobs.item.armor.MorgulironHorseArmor;
+import com.greatorator.tolkienmobs.item.armor.BaseArmorItem;
+import com.greatorator.tolkienmobs.item.armor.BaseHorseArmorItem;
 import com.greatorator.tolkienmobs.item.tools.*;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
@@ -294,16 +292,16 @@ public class TolkienItems {
     public static RegistryObject<Item> GEM_AMMOLITE = ITEMS.register("gem_ammolite", () -> new LoreItem(new Item.Properties().stacksTo(16).tab(matsGroup)).setEffectOverride());
 
     // Equipment & Armor
-    public static RegistryObject<ArmorItem> HELMET_MITHRIL = ITEMS.register("helmet_mithril", () -> new MithrilArmor(TolkienArmorMaterials.MITHRIL, EquipmentSlot.HEAD, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<ArmorItem> CHESTPLATE_MITHRIL = ITEMS.register("chestplate_mithril", () -> new MithrilArmor(TolkienArmorMaterials.MITHRIL, EquipmentSlot.CHEST, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<ArmorItem> LEGGINGS_MITHRIL = ITEMS.register("leggings_mithril", () -> new MithrilArmor(TolkienArmorMaterials.MITHRIL, EquipmentSlot.LEGS, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<ArmorItem> BOOTS_MITHRIL = ITEMS.register("boots_mithril", () -> new MithrilArmor(TolkienArmorMaterials.MITHRIL, EquipmentSlot.FEET, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<Item> MITHRIL_HORSE_ARMOR = ITEMS.register("mithril_horse_armor", () -> new MithrilHorseArmor(15, "mithril", (new Item.Properties()).stacksTo(1).tab(toolsGroup)));
-    public static RegistryObject<ArmorItem> HELMET_MORGULIRON = ITEMS.register("helmet_morguliron", () -> new MorgulironArmor(TolkienArmorMaterials.MORGULIRON, EquipmentSlot.HEAD, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<ArmorItem> CHESTPLATE_MORGULIRON = ITEMS.register("chestplate_morguliron", () -> new MorgulironArmor(TolkienArmorMaterials.MORGULIRON, EquipmentSlot.CHEST, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<ArmorItem> LEGGINGS_MORGULIRON = ITEMS.register("leggings_morguliron", () -> new MorgulironArmor(TolkienArmorMaterials.MORGULIRON, EquipmentSlot.LEGS, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<ArmorItem> BOOTS_MORGULIRON = ITEMS.register("boots_morguliron", () -> new MorgulironArmor(TolkienArmorMaterials.MORGULIRON, EquipmentSlot.FEET, (new Item.Properties()).tab(toolsGroup)));
-    public static RegistryObject<Item> MORGULIRON_HORSE_ARMOR = ITEMS.register("morguliron_horse_armor", () -> new MorgulironHorseArmor(13, "morguliron", (new Item.Properties()).stacksTo(1).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> HELMET_MITHRIL = ITEMS.register("helmet_mithril", () -> new BaseArmorItem.Helmet(TolkienArmorMaterials.MITHRIL, EquipmentSlot.HEAD, (new Item.Properties()).tab(toolsGroup), "mithril"));
+    public static RegistryObject<ArmorItem> CHESTPLATE_MITHRIL = ITEMS.register("chestplate_mithril", () -> new BaseArmorItem.Chest(TolkienArmorMaterials.MITHRIL, EquipmentSlot.CHEST, (new Item.Properties()).tab(toolsGroup), "mithril"));
+    public static RegistryObject<ArmorItem> LEGGINGS_MITHRIL = ITEMS.register("leggings_mithril", () -> new BaseArmorItem.Leggings(TolkienArmorMaterials.MITHRIL, EquipmentSlot.LEGS, (new Item.Properties()).tab(toolsGroup), "mithril"));
+    public static RegistryObject<ArmorItem> BOOTS_MITHRIL = ITEMS.register("boots_mithril", () -> new BaseArmorItem.Boots(TolkienArmorMaterials.MITHRIL, EquipmentSlot.FEET, (new Item.Properties()).tab(toolsGroup), "mithril"));
+    public static RegistryObject<Item> MITHRIL_HORSE_ARMOR = ITEMS.register("mithril_horse_armor", () -> new BaseHorseArmorItem(15, "mithril", (new Item.Properties()).stacksTo(1).tab(toolsGroup)));
+    public static RegistryObject<ArmorItem> HELMET_MORGULIRON = ITEMS.register("helmet_morguliron", () -> new BaseArmorItem.Helmet(TolkienArmorMaterials.MORGULIRON, EquipmentSlot.HEAD, (new Item.Properties()).tab(toolsGroup), "morguliron"));
+    public static RegistryObject<ArmorItem> CHESTPLATE_MORGULIRON = ITEMS.register("chestplate_morguliron", () -> new BaseArmorItem.Chest(TolkienArmorMaterials.MORGULIRON, EquipmentSlot.CHEST, (new Item.Properties()).tab(toolsGroup), "morguliron"));
+    public static RegistryObject<ArmorItem> LEGGINGS_MORGULIRON = ITEMS.register("leggings_morguliron", () -> new BaseArmorItem.Leggings(TolkienArmorMaterials.MORGULIRON, EquipmentSlot.LEGS, (new Item.Properties()).tab(toolsGroup), "morguliron"));
+    public static RegistryObject<ArmorItem> BOOTS_MORGULIRON = ITEMS.register("boots_morguliron", () -> new BaseArmorItem.Boots(TolkienArmorMaterials.MORGULIRON, EquipmentSlot.FEET, (new Item.Properties()).tab(toolsGroup), "morguliron"));
+    public static RegistryObject<Item> MORGULIRON_HORSE_ARMOR = ITEMS.register("morguliron_horse_armor", () -> new BaseHorseArmorItem(13, "morguliron", (new Item.Properties()).stacksTo(1).tab(toolsGroup)));
 
     public static RegistryObject<AxeItem> AXE_MITHRIL = ITEMS.register("axe_mithril", () -> new AxeItem(TolkienTiers.MITHRIL, 8.0F, -1.5F, (new Item.Properties()).tab(toolsGroup)));
     public static RegistryObject<HoeItem> HOE_MITHRIL = ITEMS.register("hoe_mithril", () -> new HoeItem(TolkienTiers.MITHRIL, 1, 0.8F, (new Item.Properties()).tab(toolsGroup)));

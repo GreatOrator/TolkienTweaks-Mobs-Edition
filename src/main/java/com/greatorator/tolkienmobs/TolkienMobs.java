@@ -44,8 +44,6 @@ public class TolkienMobs {
 			2. Gwaihir - Needs AI adjustments
 			3. Great Eagle - Needs AI adjustments
 	2. Classes
-	    a. MilestoneSaveData
-	    b. TolkienTiles
 	3. Categories
 	    a. Entities
 	    b. World Generation
@@ -74,7 +72,7 @@ public class TolkienMobs {
 
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
         if (IntegrationHelper.isJEIInstalled) {
-            TolkienMobs.FIREPLACE_RECIPE_TYPE = RecipeType.register(MODID + ":tmfireplace");
+//            TolkienMobs.FIREPLACE_RECIPE_TYPE = RecipeType.register(MODID + ":tmfireplace");
         }
     }
 

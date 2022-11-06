@@ -14,7 +14,6 @@ import com.greatorator.tolkienmobs.integration.IntegrationHelper;
 import com.greatorator.tolkienmobs.integration.curios.EquipmentManager;
 import com.greatorator.tolkienmobs.integration.tcon.TConIntegration;
 import com.greatorator.tolkienmobs.network.TolkienNetwork;
-import com.greatorator.tolkienmobs.world.gen.feature.config.TTMStructureConfig;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TreeFeatureConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -54,7 +53,7 @@ public class CommonProxy {
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.addListener(WorldEvents::onPlayerUpdate);
         MinecraftForge.EVENT_BUS.addListener(WorldEvents::addDimensionalSpacing);
-        MinecraftForge.EVENT_BUS.addListener(WorldEvents::biomeModification);
+//        MinecraftForge.EVENT_BUS.addListener(WorldEvents::biomeModification);
 
         TreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
 
@@ -68,7 +67,7 @@ public class CommonProxy {
         TolkienConfig.loadDimensionList();
         event.enqueueWork(() -> {
 //            TolkienStructures.setupStructures();
-            TTMStructureConfig.registerConfiguredStructures();
+//            TTMStructureConfig.registerConfiguredStructures();
             TolkienProfessions.registerBanker();
             TolkienProfessions.registerGrocer();
             TolkienProfessions.registerJunk();

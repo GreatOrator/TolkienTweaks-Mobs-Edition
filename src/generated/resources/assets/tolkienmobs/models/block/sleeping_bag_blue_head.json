@@ -1,7 +1,0 @@
-{
-  "parent": "tolkienmobs:block/sleeping_bag_head",
-  "textures": {
-    "sleeping_bag": "tolkienmobs:block/sleepingbag/sleeping_bag_blue",
-    "particle": "tolkienmobs:block/sleepingbag/sleeping_bag_blue"
-  }
-}

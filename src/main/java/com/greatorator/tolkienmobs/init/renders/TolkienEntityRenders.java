@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.init.renders;
 
 import com.greatorator.tolkienmobs.entity.item.render.GaladhrimArrowRender;
+import com.greatorator.tolkienmobs.entity.item.render.MorgulCrystalRenderer;
 import com.greatorator.tolkienmobs.entity.item.render.TolkienBoatRender;
 import com.greatorator.tolkienmobs.entity.item.render.UtumnoArrowRender;
 import com.greatorator.tolkienmobs.init.TolkienEntities;
@@ -90,6 +91,6 @@ public class TolkienEntityRenders {
         event.registerEntityRenderer(TolkienEntities.LEBETHRON_BOAT.get(), TolkienBoatRender::new);
         event.registerEntityRenderer(TolkienEntities.DEADWOOD_BOAT.get(), TolkienBoatRender::new);
         event.registerEntityRenderer(TolkienEntities.FANGORNOAK_BOAT.get(), TolkienBoatRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.MORGUL_CRYSTAL.get(), MorgulCrystalRenderer::new);
+        event.registerEntityRenderer(TolkienEntities.MORGUL_CRYSTAL.get(), MorgulCrystalRenderer::new);
     }
 }

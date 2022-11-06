@@ -1,8 +1,6 @@
 package com.greatorator.tolkienmobs.item.tools;
 
-import com.greatorator.tolkienmobs.entity.boss.fellbeast.phase.FellBeastFightManager;
 import com.greatorator.tolkienmobs.entity.item.MorgulCrystalEntity;
-import com.greatorator.tolkienmobs.world.server.TolkienServerLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
@@ -47,10 +45,10 @@ public class MorgulCrystalItem extends Item {
                   morgulcrystalentity.setShowBottom(true);
                   level.addFreshEntity(morgulcrystalentity);
                   level.gameEvent(context.getPlayer(), GameEvent.ENTITY_PLACE, blockpos1);
-                  FellBeastFightManager fellBeastFightManager = ((TolkienServerLevel)level).fellbeastFight();
-                  if (fellBeastFightManager != null) {
-                     fellBeastFightManager.tryRespawn();
-                  }
+//                  FellBeastFightManager fellBeastFightManager = ((TolkienServerLevel)level).fellbeastFight();
+//                  if (fellBeastFightManager != null) {
+//                     fellBeastFightManager.tryRespawn();
+//                  }
                }
 
                context.getItemInHand().shrink(1);
