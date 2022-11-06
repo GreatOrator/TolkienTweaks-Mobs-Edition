@@ -31,11 +31,11 @@ import java.util.*;
  */
 public class MilestoneSaveData extends SavedData {
     private static final String SAVE_DATA_NAME = "ttm_milestone_data";
-    private static final MilestoneSaveData CLIENT_INSTANCE = new MilestoneSaveData("");
+    private static final MilestoneSaveData CLIENT_INSTANCE = new MilestoneSaveData();
 
     private static final Map<UUID, MilestoneData> dataMap = new HashMap<>();
 
-    public MilestoneSaveData(String name) {
+    public MilestoneSaveData() {
         super();
     }
 
@@ -141,15 +141,15 @@ public class MilestoneSaveData extends SavedData {
         return null;
     }
 
-    public static load(CompoundTag nbt) {
+    public static MilestoneSaveData load(CompoundTag nbt) {
         dataMap.clear();
-        MilestoneSaveData data = new MilestoneSaveData();
+        MilestoneSaveData saveData = new MilestoneSaveData();
         ListTag list = nbt.getList("data", 10);
         for (Tag inbt : list) {
             MilestoneData data = MilestoneData.read((CompoundTag) inbt);
             dataMap.put(data.uuid, data);
         }
-        return data;
+        return saveData;
     }
 
     @Override

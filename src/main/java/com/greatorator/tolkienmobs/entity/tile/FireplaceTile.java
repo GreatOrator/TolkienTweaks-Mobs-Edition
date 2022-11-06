@@ -53,7 +53,6 @@ import static net.minecraft.core.Direction.*;
 public class FireplaceTile extends TileBCore implements MenuProvider, IInteractTile, IRSSwitchable, IFireplaceInventory {
     public static final ContainerSlotLayout.LayoutFactory<FireplaceTile> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.itemHandler);
     private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
-    protected final RecipeType<? extends IFireplaceRecipe> recipeType;
 
     public final ManagedBool isBurning = register(new ManagedBool("is_burning", false, SAVE_BOTH_SYNC_TILE));
     /**
@@ -75,9 +74,8 @@ public class FireplaceTile extends TileBCore implements MenuProvider, IInteractT
 
     public TileItemStackHandler itemHandler = new TileItemStackHandler(4);
 
-    public FireplaceTile(BlockPos blockPos, BlockState blockState, RecipeType<? extends IFireplaceRecipe> recipeType) {
+    public FireplaceTile(BlockPos blockPos, BlockState blockState) {
         super(TolkienTiles.TMFIREPLACE_TILE.get(), blockPos, blockState);
-        this.recipeType = recipeType;
 
         //Install item handler capability but don't expose it to other tiles.
         capManager.setInternalManaged("inventory", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, itemHandler).saveBoth().syncTile();
@@ -195,7 +193,7 @@ public class FireplaceTile extends TileBCore implements MenuProvider, IInteractT
     public void tryRefuel() {
         ItemStack stack = itemHandler.getStackInSlot(2);
         if (!stack.isEmpty()) {
-            int itemBurnTime = ForgeHooks.getBurnTime(stack, this.recipeType);
+            int itemBurnTime = ForgeHooks.getBurnTime(stack, TolkienMobs.FIREPLACE_RECIPE_TYPE);
             if (itemBurnTime > 0) {
                 if (stack.getCount() == 1) {
                     stack = stack.getItem().getContainerItem(stack);
