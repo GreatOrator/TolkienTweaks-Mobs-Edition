@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.TolkienConfig;
-import com.greatorator.tolkienmobs.utils.TTMDamageSource;
+import com.greatorator.tolkienmobs.handler.registers.TolkienDamageRegister;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -37,7 +37,7 @@ public class HallowedBlock extends Block
         {
             if(!TolkienConfig.disableFakePlayer) {
                 FakePlayer fakePlayer = FakePlayerFactory.getMinecraft((ServerLevel) worldIn);
-                entityIn.hurt(TTMDamageSource.causeHallowedDamage(fakePlayer), 3.0F);
+                entityIn.hurt(TolkienDamageRegister.causeHallowedDamage(fakePlayer), 3.0F);
             }else {
                 entityIn.hurt(DamageSource.MAGIC, 2.0F);
             }

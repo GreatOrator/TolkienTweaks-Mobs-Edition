@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.network;
 
 import codechicken.lib.packet.ICustomPacketHandler;
 import codechicken.lib.packet.PacketCustom;
-import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
+import com.greatorator.tolkienmobs.handler.MilestoneHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 
@@ -10,7 +10,7 @@ public class ClientPacketHandler implements ICustomPacketHandler.IClientPacketHa
     @Override
     public void handlePacket(PacketCustom packet, Minecraft mc, ClientPacketListener handler) {
         switch (packet.getType()) {
-            case TolkienNetwork.C_SEND_MILESTONES: {
+            case TolkienPacketHandler.C_SEND_MILESTONES: {
                 handleMilestoneSync(packet);
                 break;
             }
@@ -18,6 +18,6 @@ public class ClientPacketHandler implements ICustomPacketHandler.IClientPacketHa
     }
 
     private static void handleMilestoneSync(PacketCustom packet) {
-        MilestoneSaveData.deserialize(packet);
+        MilestoneHandler.deserialize(packet);
     }
 }

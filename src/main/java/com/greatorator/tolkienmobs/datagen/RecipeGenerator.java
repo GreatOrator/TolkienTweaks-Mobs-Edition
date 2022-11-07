@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.datagen;
 
-import com.greatorator.tolkienmobs.handler.FireplaceRecipeBuilder;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
 import com.greatorator.tolkienmobs.init.TolkienItems;
 import com.greatorator.tolkienmobs.init.TolkienPotions;
+import com.greatorator.tolkienmobs.recipe.FireplaceRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -37,6 +37,7 @@ public class RecipeGenerator extends RecipeProvider {
         specialty(consumer);
         magic(consumer);
         fireplace(consumer);
+        trinket(consumer);
     }
 
     private static void components(Consumer<FinishedRecipe> consumer) {
@@ -465,7 +466,10 @@ public class RecipeGenerator extends RecipeProvider {
         fireplaceRecipe3(TolkienItems.MONSTER_FLESH.get(), 50, 100, consumer, Items.COOKED_RABBIT, Items.COOKED_PORKCHOP, Items.COOKED_MUTTON, Items.COOKED_BEEF, Items.COOKED_SALMON, Items.COOKED_COD, Items.COOKED_CHICKEN, Items.ROTTEN_FLESH);
     }
 
-    // Helper Methods
+    private static void trinket(Consumer<FinishedRecipe> consumer) {
+    }
+
+        // Helper Methods
 
     public static void upgradeRecipe(ItemLike output, ItemLike input1, ItemLike input2, Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(output, 1)

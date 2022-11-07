@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.block.models;
 
 import com.greatorator.tolkienmobs.block.ChameleonBlock;
 import com.greatorator.tolkienmobs.init.TolkienItems;
-import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
+import com.greatorator.tolkienmobs.item.keys.KeyBaseItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
 import net.minecraft.client.renderer.block.model.BakedQuad;

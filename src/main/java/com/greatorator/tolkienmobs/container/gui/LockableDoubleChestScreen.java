@@ -16,7 +16,7 @@ import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
 import com.brandon3055.brandonscore.inventory.SlotMover;
 import com.greatorator.tolkienmobs.container.LockableDoubleChestContainer;
 import com.greatorator.tolkienmobs.entity.tile.LockableDoubleChestTile;
-import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
+import com.greatorator.tolkienmobs.item.keys.KeyBaseItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.network.chat.Component;

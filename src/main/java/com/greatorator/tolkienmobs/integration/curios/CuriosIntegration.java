@@ -2,8 +2,7 @@ package com.greatorator.tolkienmobs.integration.curios;
 
 import com.brandon3055.brandonscore.capability.MultiCapabilityProvider;
 import com.greatorator.tolkienmobs.init.TolkienItems;
-import com.greatorator.tolkienmobs.item.tools.BackpackItem;
-import com.greatorator.tolkienmobs.lib.TolkienExceptions;
+import com.greatorator.tolkienmobs.item.container.BackpackItem;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;

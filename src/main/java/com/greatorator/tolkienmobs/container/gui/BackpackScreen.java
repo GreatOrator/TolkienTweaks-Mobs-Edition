@@ -18,7 +18,7 @@ import com.brandon3055.brandonscore.utils.MathUtils;
 import com.brandon3055.brandonscore.utils.Utils;
 import com.greatorator.tolkienmobs.container.BackpackContainer;
 import com.greatorator.tolkienmobs.entity.tile.BackpackTile;
-import com.greatorator.tolkienmobs.handler.TTMSprites;
+import com.greatorator.tolkienmobs.handler.registers.SpritesRegister;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -130,7 +130,7 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
                 .setRelPos(headSlot, 18 / 2, 18 * 2);
 
         // ### Crafting Slots ###
-        GuiTexture craftTexture = template.background.addChild(new GuiTexture(imageWidth, imageHeight, 56, 56, TTMSprites.get("backpack/crafting_table")));
+        GuiTexture craftTexture = template.background.addChild(new GuiTexture(imageWidth, imageHeight, 56, 56, SpritesRegister.get("backpack/crafting_table")));
         //Place the texture relative to the top left of the background.
         toolkit.placeInside(craftTexture, template.background, GuiToolkit.LayoutPos.TOP_LEFT, 4, 4);
         //Create the 3/3 grid of output slots
@@ -143,11 +143,11 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
         toolkit.placeOutside(craftOutputSlot, craftInputSlots, GuiToolkit.LayoutPos.BOTTOM_LEFT, 18, 2);
 
         //Add the crafting arrow
-        GuiTexture craftArrow = template.background.addChild(new GuiTexture(16, 16, TTMSprites.get("backpack/craft_arrow")));
+        GuiTexture craftArrow = template.background.addChild(new GuiTexture(16, 16, SpritesRegister.get("backpack/craft_arrow")));
         toolkit.placeOutside(craftArrow, craftOutputSlot, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 4, -1);
 
         // ### Tank ###
-        GuiTexture tankSlotsTex = template.background.addChild(new GuiTexture(20, 75, TTMSprites.get("backpack/tank_slots")));
+        GuiTexture tankSlotsTex = template.background.addChild(new GuiTexture(20, 75, SpritesRegister.get("backpack/tank_slots")));
         toolkit.placeOutside(tankSlotsTex, craftOutputSlot, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, 8);
         //Tank Slots
         GuiElement<?> tankInputSlot = createSlotsNoBG(template.background, 1, 1, 0, (x, y) -> new SlotMover(container.fluidItemSlots.get(0)));
@@ -155,29 +155,29 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
         GuiElement<?> tankOutputSlot = createSlotsNoBG(template.background, 1, 1, 0, (x, y) -> new SlotMover(container.fluidItemSlots.get(1)));
         toolkit.placeInside(tankOutputSlot, tankSlotsTex, GuiToolkit.LayoutPos.BOTTOM_CENTER, 0, -5);
 
-        GuiTexture tankArrows = template.background.addChild(new GuiTexture(12, 12, TTMSprites.get("backpack/tank_arrows")));
+        GuiTexture tankArrows = template.background.addChild(new GuiTexture(12, 12, SpritesRegister.get("backpack/tank_arrows")));
         toolkit.placeOutside(tankArrows, tankSlotsTex, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
 
-        GuiTexture tankBG = template.background.addChild(new GuiTexture(12, 75, TTMSprites.get("backpack/tank")));
+        GuiTexture tankBG = template.background.addChild(new GuiTexture(12, 75, SpritesRegister.get("backpack/tank")));
         toolkit.placeOutside(tankBG, tankArrows, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
         GuiElement<?> fluidRenderer = createFluidLevelRenderer(tankBG, tile.fluidTank, 10, 73);
         toolkit.placeOutside(fluidRenderer, tankArrows, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 2, -1);
-        GuiTexture tankOverlay = fluidRenderer.addChild(new GuiTexture(12, 75, TTMSprites.get("backpack/tank_overlay")));
+        GuiTexture tankOverlay = fluidRenderer.addChild(new GuiTexture(12, 75, SpritesRegister.get("backpack/tank_overlay")));
         toolkit.placeOutside(tankOverlay, tankArrows, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
 
-        GuiButton bedButton = toolkit.createIconButton(template.background, 16, 16, () -> tile.isSleepingbagDeployed.get() ? TTMSprites.get("backpack/bed_deployed") : TTMSprites.get("backpack/bed"));
+        GuiButton bedButton = toolkit.createIconButton(template.background, 16, 16, () -> tile.isSleepingbagDeployed.get() ? SpritesRegister.get("backpack/bed_deployed") : SpritesRegister.get("backpack/bed"));
         toolkit.placeInside(bedButton, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 4, -4);
         bedButton.setHoverText(e -> tile.isSleepingbagDeployed.get() ? toolkit.i18n("bed.remove") : toolkit.i18n("bed.deployed"));
         bedButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {
         }, 0));
 
-        GuiButton campfireButton = toolkit.createIconButton(template.background, 16, 16, () -> tile.isCampfireDeployed.get() ? TTMSprites.get("backpack/campfire_deployed") : TTMSprites.get("backpack/campfire"));
+        GuiButton campfireButton = toolkit.createIconButton(template.background, 16, 16, () -> tile.isCampfireDeployed.get() ? SpritesRegister.get("backpack/campfire_deployed") : SpritesRegister.get("backpack/campfire"));
         toolkit.placeOutside(campfireButton, bedButton, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
         campfireButton.setHoverText(e -> tile.isCampfireDeployed.get() ? toolkit.i18n("campfire.remove") : toolkit.i18n("campfire.deployed"));
         campfireButton.onPressed(() -> tile.sendPacketToServer(mcDataOutput -> {
         }, 1));
 
-        GuiButton upgradeButton = toolkit.createIconButton(template.background, 16, 16, () -> displayUpgrades ? TTMSprites.get("backpack/close_upgrade") : TTMSprites.get("backpack/upgrade"));
+        GuiButton upgradeButton = toolkit.createIconButton(template.background, 16, 16, () -> displayUpgrades ? SpritesRegister.get("backpack/close_upgrade") : SpritesRegister.get("backpack/upgrade"));
         toolkit.placeOutside(upgradeButton, campfireButton, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 35, 0);
         upgradeButton.setHoverText(e -> displayUpgrades ? toolkit.i18n("close.upgrade") : toolkit.i18n("open.upgrade"));
         upgradeButton.onPressed(() -> {

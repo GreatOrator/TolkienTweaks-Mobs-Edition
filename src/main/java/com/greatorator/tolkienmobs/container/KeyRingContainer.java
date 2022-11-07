@@ -4,7 +4,7 @@ import com.brandon3055.brandonscore.inventory.ContainerBCore;
 import com.brandon3055.brandonscore.inventory.PlayerSlot;
 import com.brandon3055.brandonscore.inventory.SlotCheckValid;
 import com.greatorator.tolkienmobs.init.TolkienContainers;
-import com.greatorator.tolkienmobs.item.tools.KeyRingItem;
+import com.greatorator.tolkienmobs.item.container.KeyRingItem;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;

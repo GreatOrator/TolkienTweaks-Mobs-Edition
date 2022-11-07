@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.integration.jei;
 
+import com.greatorator.tolkienmobs.init.TolkienRecipes;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -7,6 +8,7 @@ import mezz.jei.api.helpers.IJeiHelpers;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.runtime.IJeiRuntime;
+import mezz.jei.util.ErrorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.resources.ResourceLocation;
@@ -22,7 +24,7 @@ public class JEIIntegration implements IModPlugin {
     public static IJeiRuntime jeiRuntime = null;
 
     @Nullable
-//    private FireplaceRecipeCategory fireplaceRecipeCategory;
+    private FireplaceRecipeCategory fireplaceRecipeCategory;
 
     public JEIIntegration() {
     }
@@ -37,15 +39,16 @@ public class JEIIntegration implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         IJeiHelpers jeiHelpers = registration.getJeiHelpers();
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
-//        registration.addRecipeCategories(fireplaceRecipeCategory = new FireplaceRecipeCategory(guiHelper));
+        registration.addRecipeCategories(fireplaceRecipeCategory = new FireplaceRecipeCategory(guiHelper));
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-//        ErrorUtil.checkNotNull(fireplaceRecipeCategory, "fireplaceRecipeCategory");
+        ErrorUtil.checkNotNull(fireplaceRecipeCategory, "fireplaceRecipeCategory");
         jeiHelpers = registration.getJeiHelpers();
+        var recipeManager = Minecraft.getInstance().level.getRecipeManager();
 
         ClientLevel world = Minecraft.getInstance().level;
-//        registration.addRecipes(world.getRecipeManager().getAllRecipesFor(TolkienMobs.FIREPLACE_RECIPE_TYPE), FireplaceRecipeCategory.UID);
+        registration.addRecipes(FireplaceRecipeCategory.RECIPE_TYPE, recipeManager.getAllRecipesFor(TolkienRecipes.FIREPLACE_RECIPE_TYPE.get()));
     }
 }

@@ -14,7 +14,7 @@ import com.brandon3055.brandonscore.client.gui.modulargui.lib.GuiAlign;
 import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.greatorator.tolkienmobs.entity.tile.CamoKeyStoneTile;
-import com.greatorator.tolkienmobs.handler.TTMSprites;
+import com.greatorator.tolkienmobs.handler.registers.SpritesRegister;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -106,7 +106,7 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
                     .setEnabledCallback(() -> !rsPulse);
 
             // Key and Redstone Modes
-            GuiButton keyButton = toolkit.createIconButton(template.background, 18, 18, () -> tile.keyConsume.get() ? TTMSprites.get("keys/key_consume") : TTMSprites.get("keys/key_keep"));
+            GuiButton keyButton = toolkit.createIconButton(template.background, 18, 18, () -> tile.keyConsume.get() ? SpritesRegister.get("keys/key_consume") : SpritesRegister.get("keys/key_keep"));
                 toolkit.placeInside(keyButton, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 60, -42);
                 keyButton.setHoverText(e -> tile.keyConsume.get() ? toolkit.i18n("key.consume") : toolkit.i18n("key.keep"));
                 keyButton.onPressed(() -> {
@@ -114,7 +114,7 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
                     tile.sendPacketToServer(mcDataOutput -> {
                     }, 0);
                 });
-            GuiButton redstoneDelay = toolkit.createIconButton(template.background, 18, 18, () -> tile.rsDelay.get() ? TTMSprites.get("keys/redstone_delay_active") : TTMSprites.get("keys/redstone_delay"));
+            GuiButton redstoneDelay = toolkit.createIconButton(template.background, 18, 18, () -> tile.rsDelay.get() ? SpritesRegister.get("keys/redstone_delay_active") : SpritesRegister.get("keys/redstone_delay"));
             toolkit.placeInside(redstoneDelay, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 100, -42);
             redstoneDelay.setHoverText(e -> tile.rsDelay.get() ? toolkit.i18n("redstone.delay.active") : toolkit.i18n("redstone.delay"));
             redstoneDelay.onPressed(() -> {
@@ -133,7 +133,7 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
                 tile.sendPacketToServer(mcDataOutput -> {
                 }, 2);
             });
-            GuiButton redstoneAlways = toolkit.createIconButton(template.background, 18, 18, () -> tile.rsAlways.get() ? TTMSprites.get("keys/redstone_always_active") : TTMSprites.get("keys/redstone_always"));
+            GuiButton redstoneAlways = toolkit.createIconButton(template.background, 18, 18, () -> tile.rsAlways.get() ? SpritesRegister.get("keys/redstone_always_active") : SpritesRegister.get("keys/redstone_always"));
                 toolkit.placeInside(redstoneAlways, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 80, -42);
                 redstoneAlways.setHoverText(e -> tile.rsAlways.get() ? toolkit.i18n("redstone.always.active") : toolkit.i18n("redstone.always"));
                 redstoneAlways.onPressed(() -> {
@@ -151,7 +151,7 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
                     tile.sendPacketToServer(mcDataOutput -> {
                     }, 1);
                 });
-            GuiButton redstonePulse = toolkit.createIconButton(template.background, 18, 18, () -> tile.rsPulse.get() ? TTMSprites.get("keys/redstone_pulse_active") : TTMSprites.get("keys/redstone_pulse"));
+            GuiButton redstonePulse = toolkit.createIconButton(template.background, 18, 18, () -> tile.rsPulse.get() ? SpritesRegister.get("keys/redstone_pulse_active") : SpritesRegister.get("keys/redstone_pulse"));
                 toolkit.placeInside(redstonePulse, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 120, -42);
                 redstonePulse.setHoverText(e -> tile.rsPulse.get() ? toolkit.i18n("redstone.pulse.active") : toolkit.i18n("redstone.pulse"));
                 redstonePulse.onPressed(() -> {

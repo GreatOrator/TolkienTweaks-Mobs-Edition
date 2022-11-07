@@ -6,14 +6,14 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
 import com.greatorator.tolkienmobs.event.entity.SleepingEvent;
 import com.greatorator.tolkienmobs.event.entity.WorldEvents;
-import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
-import com.greatorator.tolkienmobs.handler.MobModify;
+import com.greatorator.tolkienmobs.handler.MilestoneHandler;
+import com.greatorator.tolkienmobs.handler.MobHandler;
 import com.greatorator.tolkienmobs.init.TolkienProfessions;
 import com.greatorator.tolkienmobs.init.TolkienTags;
 import com.greatorator.tolkienmobs.integration.IntegrationHelper;
 import com.greatorator.tolkienmobs.integration.curios.EquipmentManager;
 import com.greatorator.tolkienmobs.integration.tcon.TConIntegration;
-import com.greatorator.tolkienmobs.network.TolkienNetwork;
+import com.greatorator.tolkienmobs.network.TolkienPacketHandler;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TreeFeatureConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -39,7 +39,7 @@ import static com.greatorator.tolkienmobs.init.TolkienBlocks.*;
 public class CommonProxy {
     private Minecraft mc;
     private Level lastWorld;
-    private final ConcurrentHashMap<LivingEntity, MobModify> rareMobsClient = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<LivingEntity, MobHandler> rareMobsClient = new ConcurrentHashMap<>();
 
     public void construct() {
         registerEventListeners();
@@ -49,7 +49,7 @@ public class CommonProxy {
         EquipmentManager.initialize();
         TConIntegration.initialize();
         TolkienTags.init();
-        MilestoneSaveData.init();
+        MilestoneHandler.init();
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.addListener(WorldEvents::onPlayerUpdate);
         MinecraftForge.EVENT_BUS.addListener(WorldEvents::addDimensionalSpacing);
@@ -58,7 +58,7 @@ public class CommonProxy {
         TreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
 
 //        modBus.addListener(TolkienEntities::registerAttributes);
-        TolkienNetwork.init();
+        TolkienPacketHandler.init();
     }
 
     public void commonSetup(FMLCommonSetupEvent event) {
@@ -126,7 +126,7 @@ public class CommonProxy {
         }
     }
 
-    public ConcurrentHashMap<LivingEntity, MobModify> getRareMobs() {
+    public ConcurrentHashMap<LivingEntity, MobHandler> getRareMobs() {
         return rareMobsClient;
     }
 

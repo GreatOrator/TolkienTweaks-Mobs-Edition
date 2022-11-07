@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.entity.tile.render;
 
 import com.greatorator.tolkienmobs.block.MilestoneBlock;
 import com.greatorator.tolkienmobs.entity.tile.MilestoneTile;
-import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
+import com.greatorator.tolkienmobs.handler.MilestoneHandler;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Matrix4f;
@@ -52,7 +52,7 @@ public class RenderMilestoneTile implements BlockEntityRenderer<MilestoneTile> {
 
         mStack.popPose();
 
-        if (MilestoneSaveData.isKnownByClient(te.getUUID(), Minecraft.getInstance().player.getUUID())) {
+        if (MilestoneHandler.isKnownByClient(te.getUUID(), Minecraft.getInstance().player.getUUID())) {
             drawNameString(te, mStack, getter, Component.nullToEmpty(te.milestoneName.get()/*.replace("_", " ")*/), packedLight);
         }
     }

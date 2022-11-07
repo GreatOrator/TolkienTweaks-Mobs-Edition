@@ -15,7 +15,7 @@ import com.brandon3055.brandonscore.client.gui.modulargui.lib.GuiEvent;
 import com.brandon3055.brandonscore.client.gui.modulargui.lib.IGuiEventListener;
 import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
 import com.greatorator.tolkienmobs.handler.interfaces.IKeyBase;
-import com.greatorator.tolkienmobs.network.TolkienNetwork;
+import com.greatorator.tolkienmobs.network.TolkienPacketHandler;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
@@ -72,7 +72,7 @@ public class KeyBaseAccessScreen extends ModularGuiScreen implements IGuiEventLi
                     .setFilter(toolkit.catchyValidator(s -> s.equals("") || !invalidCharacters.matcher(s).find()))
                     .setPos(codeBG.xPos() + 2, codeBG.maxYPos() - 11)
                     .setSize(145,10)
-                    .onValueChanged(TolkienNetwork::sendKeyCodeUpdate);
+                    .onValueChanged(TolkienPacketHandler::sendKeyCodeUpdate);
             GuiBorderedRect codeBG2 = new GuiBorderedRect()
                     .set3DGetters(GuiToolkit.Palette.Slot::fill, GuiToolkit.Palette.Slot::accentDark, GuiToolkit.Palette.Slot::accentLight)
                     .setBorderColourL(GuiToolkit.Palette.Slot::border3D)
@@ -99,7 +99,7 @@ public class KeyBaseAccessScreen extends ModularGuiScreen implements IGuiEventLi
                     .setFilter(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
                     .setPos(codeBG2.xPos() + 2, codeBG2.maxYPos() - 11)
                     .setSize(145,10)
-                    .onValueChanged(TolkienNetwork::sendKeyUsesUpdate);
+                    .onValueChanged(TolkienPacketHandler::sendKeyUsesUpdate);
         }
     }
 

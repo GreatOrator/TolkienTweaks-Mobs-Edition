@@ -8,7 +8,7 @@ import com.brandon3055.brandonscore.lib.datamanager.DataFlags;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedByte;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedShort;
-import com.greatorator.tolkienmobs.container.capability.CamoSpawnerLogic;
+import com.greatorator.tolkienmobs.container.capability.CamoSpawnerCapability;
 import com.greatorator.tolkienmobs.init.TolkienContainers;
 import com.greatorator.tolkienmobs.init.TolkienTiles;
 import net.minecraft.ChatFormatting;
@@ -55,7 +55,7 @@ public class CamoSpawnerTile extends TileBCore implements MenuProvider, IInterac
     public final ManagedBool spawnerParticles = register(new ManagedBool("spawner_particles", true, DataFlags.SAVE_NBT_SYNC_TILE, CLIENT_CONTROL));
 
     public List<CompoundTag> entityTags = new ArrayList<>();
-    public CamoSpawnerLogic spawnerLogic = new CamoSpawnerLogic(this);
+    public CamoSpawnerCapability spawnerLogic = new CamoSpawnerCapability(this);
 
     public CamoSpawnerTile(BlockPos pos, BlockState state) {
         super(TolkienTiles.CAMO_SPAWNER_TILE.get(), pos, state);

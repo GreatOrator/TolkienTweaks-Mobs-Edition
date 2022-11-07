@@ -1,17 +1,17 @@
 package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.event.client.ClientEvents;
-import com.greatorator.tolkienmobs.handler.BowItemModelProperties;
-import com.greatorator.tolkienmobs.handler.TTMColor;
-import com.greatorator.tolkienmobs.handler.TTMHearts;
-import com.greatorator.tolkienmobs.handler.TTMSprites;
+import com.greatorator.tolkienmobs.handler.BowItemModelHandler;
+import com.greatorator.tolkienmobs.handler.ColorHandler;
+import com.greatorator.tolkienmobs.handler.HealthHandler;
+import com.greatorator.tolkienmobs.handler.registers.SpritesRegister;
 import com.greatorator.tolkienmobs.init.TolkienWoodTypes;
 import com.greatorator.tolkienmobs.init.renders.TolkienBlockRenders;
 import com.greatorator.tolkienmobs.init.renders.TolkienGuiRenders;
 import com.greatorator.tolkienmobs.init.renders.TolkienTileRenders;
 import com.greatorator.tolkienmobs.integration.IntegrationHelper;
-import com.greatorator.tolkienmobs.item.tools.CoinPouchItem;
-import com.greatorator.tolkienmobs.item.tools.KeyRingItem;
+import com.greatorator.tolkienmobs.item.container.CoinPouchItem;
+import com.greatorator.tolkienmobs.item.container.KeyRingItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -33,8 +33,8 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.addListener(ClientEvents::livingUpdate);
         MinecraftForge.EVENT_BUS.addListener(ClientEvents::renderOverlayEvent);
 //        MinecraftForge.EVENT_BUS.addListener(TTMVillagerTrades::onVillagerTradesEvent);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(TTMColor::itemColourEvent);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(TTMSprites::initialize);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(ColorHandler::itemColourEvent);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(SpritesRegister::initialize);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientEvents::onModelBakeEvent);
     }
 
@@ -43,7 +43,7 @@ public class ClientProxy extends CommonProxy {
         super.commonSetup(event);
 
         if (!IntegrationHelper.isMantleInstalled) {
-            MinecraftForge.EVENT_BUS.register(new TTMHearts());
+            MinecraftForge.EVENT_BUS.register(new HealthHandler());
         }
     }
 
@@ -71,8 +71,8 @@ public class ClientProxy extends CommonProxy {
         TolkienBlockRenders.init();
         TolkienGuiRenders.init();
 
-        BowItemModelProperties.makeBow(ELVEN_BOW.get());
-        BowItemModelProperties.makeBow(URUK_BOW.get());
+        BowItemModelHandler.makeBow(ELVEN_BOW.get());
+        BowItemModelHandler.makeBow(URUK_BOW.get());
 
     }
     public static void registerPropertyOverride() {

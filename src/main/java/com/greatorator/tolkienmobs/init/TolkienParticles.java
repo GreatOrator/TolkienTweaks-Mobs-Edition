@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.init;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.lib.FellBeastBreathParticle;
-import com.greatorator.tolkienmobs.lib.LeafParticle;
+import com.greatorator.tolkienmobs.particles.FellBeastBreathParticle;
+import com.greatorator.tolkienmobs.particles.LeafParticle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.ParticleEngine;

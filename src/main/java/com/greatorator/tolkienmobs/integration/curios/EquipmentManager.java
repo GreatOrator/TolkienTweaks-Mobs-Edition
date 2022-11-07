@@ -5,7 +5,6 @@ import com.brandon3055.brandonscore.capability.MultiCapabilityProvider;
 import com.brandon3055.brandonscore.lib.IEquipmentManager;
 import com.google.common.collect.ImmutableList;
 import com.greatorator.tolkienmobs.integration.IntegrationHelper;
-import com.greatorator.tolkienmobs.lib.TolkienExceptions;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

@@ -13,7 +13,7 @@ import com.brandon3055.brandonscore.lib.datamanager.ManagedStack;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedString;
 import com.brandon3055.brandonscore.network.BCoreNetwork;
 import com.greatorator.tolkienmobs.block.MilestoneBlock;
-import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
+import com.greatorator.tolkienmobs.handler.MilestoneHandler;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
 import com.greatorator.tolkienmobs.init.TolkienContainers;
 import com.greatorator.tolkienmobs.init.TolkienTiles;
@@ -69,7 +69,7 @@ public class MilestoneTile extends TileBCore implements MenuProvider, IRSSwitcha
     //This is a terrible hack, but it's the simplest way to set the block to active for specific players
     @OnlyIn(Dist.CLIENT)
     public void updateClientState() {
-        if (MilestoneSaveData.isKnownByClient(getUUID(), Minecraft.getInstance().player.getUUID())) {
+        if (MilestoneHandler.isKnownByClient(getUUID(), Minecraft.getInstance().player.getUUID())) {
             BlockState state = level.getBlockState(worldPosition);
             if (state.getBlock() == TolkienBlocks.MILESTONE_BLOCK.get() && !state.getValue(MilestoneBlock.LIT)) {
                 level.setBlock(worldPosition, state.setValue(MilestoneBlock.LIT, true), 0);
@@ -80,7 +80,7 @@ public class MilestoneTile extends TileBCore implements MenuProvider, IRSSwitcha
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!level.isClientSide) {
             if (!player.isCreative()) {
-                MilestoneSaveData.addPlayerToMilestone(this, player);
+                MilestoneHandler.addPlayerToMilestone(this, player);
             }
 
             openGUI(player, this, worldPosition);
@@ -116,7 +116,7 @@ public class MilestoneTile extends TileBCore implements MenuProvider, IRSSwitcha
         return uuidCache;
     }
 
-    public ItemStack getTravelCost(MilestoneSaveData.MilestoneData dest) {
+    public ItemStack getTravelCost(MilestoneHandler.MilestoneData dest) {
         if (dest.getPaymentItem() == Items.AIR) return ItemStack.EMPTY;
         ItemStack stack = new ItemStack(dest.getPaymentItem());
 
@@ -142,18 +142,18 @@ public class MilestoneTile extends TileBCore implements MenuProvider, IRSSwitcha
                 stack.setCount(1);
                 client.sendMessage(new TranslatableComponent("tolkienmobs.msg.payment" + stack.getItem()), Util.NIL_UUID);
                 paymentItem.set(stack);
-                MilestoneSaveData.updateMilestone(this);
+                MilestoneHandler.updateMilestone(this);
                 break;
             case 1:
                 distanceCost.set(input.readVarInt());
-                MilestoneSaveData.updateMilestone(this);
+                MilestoneHandler.updateMilestone(this);
                 break;
             case 2:
                 dimensionCost.set(input.readVarInt());
-                MilestoneSaveData.updateMilestone(this);
+                MilestoneHandler.updateMilestone(this);
                 break;
             case 3:
-                MilestoneSaveData.MilestoneData data = MilestoneSaveData.getMilestoneData(level, input.readUUID());
+                MilestoneHandler.MilestoneData data = MilestoneHandler.getMilestoneData(level, input.readUUID());
                 if (data == null) {
                     client.sendMessage(new TranslatableComponent("tolkienmobs.msg.destination"), Util.NIL_UUID);
                     break;

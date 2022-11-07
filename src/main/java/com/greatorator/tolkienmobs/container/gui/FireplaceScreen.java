@@ -10,7 +10,7 @@ import com.brandon3055.brandonscore.client.gui.modulargui.ModularGuiContainer;
 import com.brandon3055.brandonscore.client.gui.modulargui.templates.TBasicMachine;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.greatorator.tolkienmobs.entity.tile.FireplaceTile;
-import com.greatorator.tolkienmobs.handler.TTMSprites;
+import com.greatorator.tolkienmobs.handler.registers.SpritesRegister;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.resources.model.Material;
@@ -49,13 +49,13 @@ public class FireplaceScreen extends ModularGuiContainer<ContainerBCTile<Firepla
         GuiElement<?> outSlot = toolkit.createSlots(template.background, 1, 1, 0, (x, y) -> container.getSlotLayout().getSlotData(TILE_INV, 3), null);
         toolkit.placeInside(outSlot, template.background, TOP_LEFT, 117, 36);
 
-        GuiProgressIcon fireIcon = template.background.addChild(new GuiProgressIcon(TTMSprites.get("fireplace/fire_empty"), TTMSprites.get("fireplace/fire_full"), UP));//.setMargins(0, 1).setProgressSupplier(() -> (TimeKeeper.getClientTick() % 100) / 100D).setPos(20, 0).setSize(18, 18));
+        GuiProgressIcon fireIcon = template.background.addChild(new GuiProgressIcon(SpritesRegister.get("fireplace/fire_empty"), SpritesRegister.get("fireplace/fire_full"), UP));//.setMargins(0, 1).setProgressSupplier(() -> (TimeKeeper.getClientTick() % 100) / 100D).setPos(20, 0).setSize(18, 18));
         fireIcon.setSize(18, 18);
         fireIcon.setMargins(0, 1);
         fireIcon.setProgressSupplier(() -> tile.fuelRemaining.get() / (double)Math.max(1, tile.fuelValue.get()));
         toolkit.placeInside(fireIcon, template.background, TOP_LEFT, 50, 36);
 
-        GuiProgressIcon progressIcon = template.background.addChild(new GuiProgressIcon(TTMSprites.get("fireplace/craft_empty"), TTMSprites.get("fireplace/craft_full"), RIGHT));//.setMargins(0, 1).setProgressSupplier(() -> (TimeKeeper.getClientTick() % 100) / 100D).setPos(20, 0).setSize(18, 18));
+        GuiProgressIcon progressIcon = template.background.addChild(new GuiProgressIcon(SpritesRegister.get("fireplace/craft_empty"), SpritesRegister.get("fireplace/craft_full"), RIGHT));//.setMargins(0, 1).setProgressSupplier(() -> (TimeKeeper.getClientTick() % 100) / 100D).setPos(20, 0).setSize(18, 18));
         progressIcon.setSize(32, 32);
         progressIcon.setProgressSupplier(() -> tile.recipeProgress.get() / (double)Math.max(1, tile.recipeTime.get()));
         toolkit.placeInside(progressIcon, template.background, TOP_LEFT, 80, 34);

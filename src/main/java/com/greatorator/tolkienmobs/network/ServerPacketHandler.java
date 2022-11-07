@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.network;
 import codechicken.lib.packet.ICustomPacketHandler;
 import codechicken.lib.packet.PacketCustom;
 import com.greatorator.tolkienmobs.entity.tile.TolkienSignTile;
-import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
+import com.greatorator.tolkienmobs.item.keys.KeyBaseItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.level.ServerLevel;
@@ -26,13 +26,13 @@ public class ServerPacketHandler implements ICustomPacketHandler.IServerPacketHa
     @Override
     public void handlePacket(PacketCustom packet, ServerPlayer sender, ServerGamePacketListenerImpl handler) {
         switch (packet.getType()) {
-            case TolkienNetwork.S_UPDATE_SIGN:
+            case TolkienPacketHandler.S_UPDATE_SIGN:
                 handleSignUpdate(packet, sender);
                 break;
-            case TolkienNetwork.S_UPDATE_KEY_CODE:
+            case TolkienPacketHandler.S_UPDATE_KEY_CODE:
                 handleKeyCodeUpdate(packet, sender);
                 break;
-            case TolkienNetwork.S_UPDATE_KEY_USES:
+            case TolkienPacketHandler.S_UPDATE_KEY_USES:
                 handleKeyUsesUpdate(packet, sender);
                 break;
         }

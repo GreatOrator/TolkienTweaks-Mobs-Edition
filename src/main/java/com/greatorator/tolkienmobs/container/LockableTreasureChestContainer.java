@@ -4,7 +4,7 @@ import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.greatorator.tolkienmobs.container.slots.SlotCheckValid2;
 import com.greatorator.tolkienmobs.entity.tile.LockableTreasureChestTile;
 import com.greatorator.tolkienmobs.init.TolkienContainers;
-import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
+import com.greatorator.tolkienmobs.item.keys.KeyBaseItem;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Inventory;

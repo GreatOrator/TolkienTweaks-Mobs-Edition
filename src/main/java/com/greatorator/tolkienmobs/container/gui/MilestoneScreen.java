@@ -15,7 +15,7 @@ import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.utils.Utils;
 import com.greatorator.tolkienmobs.entity.tile.MilestoneTile;
-import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
+import com.greatorator.tolkienmobs.handler.MilestoneHandler;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
@@ -77,7 +77,7 @@ public class MilestoneScreen extends ModularGuiContainer<ContainerBCTile<Milesto
                 .setVerticalScrollBar(scrollBar)
                 .setStandardScrollBehavior();
 
-        for (MilestoneSaveData.MilestoneData data : MilestoneSaveData.getKnownByPlayer(player)) {
+        for (MilestoneHandler.MilestoneData data : MilestoneHandler.getKnownByPlayer(player)) {
             if (data.getUuid().equals(tile.getUUID())) continue;
             GuiElement<?> container = new GuiElement<>()
                     .setYSize(18);

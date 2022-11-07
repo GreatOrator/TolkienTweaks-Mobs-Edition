@@ -1,12 +1,10 @@
 package com.greatorator.tolkienmobs;
 
 
-import com.greatorator.tolkienmobs.handler.interfaces.IFireplaceRecipe;
 import com.greatorator.tolkienmobs.integration.IntegrationHelper;
 import com.greatorator.tolkienmobs.proxy.ClientProxy;
 import com.greatorator.tolkienmobs.proxy.CommonProxy;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -35,8 +33,6 @@ public class TolkienMobs {
 
     public static CommonProxy proxy;
 
-    public static RecipeType<IFireplaceRecipe> FIREPLACE_RECIPE_TYPE;
-
     /*TODO List
     1. Entities
 	    a. Remaining Entities
@@ -44,6 +40,11 @@ public class TolkienMobs {
 			2. Gwaihir - Needs AI adjustments
 			3. Great Eagle - Needs AI adjustments
 	2. Classes
+	    a. TrinketRecipeBuilder (Builder to control building of trinket recipes)
+	    b. TrinketRecipe (Recipes for trinkets to add potions)
+	    c. TolkienLootFunctions (Registration of loot functions created)
+	    d. PotionRandomlyFunction (Ability to randomly select potion effect on trinkets in loot tables)
+	    e. BackpackItem (Allow to open GUI instead of only using block form)
 	3. Categories
 	    a. Entities
 	    b. World Generation
@@ -71,9 +72,6 @@ public class TolkienMobs {
         proxy.construct();
 
         FMLJavaModLoadingContext.get().getModEventBus().register(this);
-        if (IntegrationHelper.isJEIInstalled) {
-//            TolkienMobs.FIREPLACE_RECIPE_TYPE = RecipeType.register(MODID + ":tmfireplace");
-        }
     }
 
     public static TolkienMobs instance() {

@@ -11,12 +11,11 @@ import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedInt;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedShort;
 import com.google.common.collect.Lists;
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.FireplaceBlock;
-import com.greatorator.tolkienmobs.handler.interfaces.IFireplaceInventory;
-import com.greatorator.tolkienmobs.handler.interfaces.IFireplaceRecipe;
 import com.greatorator.tolkienmobs.init.TolkienContainers;
+import com.greatorator.tolkienmobs.init.TolkienRecipes;
 import com.greatorator.tolkienmobs.init.TolkienTiles;
+import com.greatorator.tolkienmobs.recipe.FireplaceRecipe;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
@@ -24,6 +23,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Mth;
+import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.ExperienceOrb;
@@ -34,13 +34,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.network.NetworkHooks;
 
 import javax.annotation.Nullable;
@@ -50,7 +48,7 @@ import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_BOTH_S
 import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_BOTH_SYNC_TILE;
 import static net.minecraft.core.Direction.*;
 
-public class FireplaceTile extends TileBCore implements MenuProvider, IInteractTile, IRSSwitchable, IFireplaceInventory {
+public class FireplaceTile extends TileBCore implements MenuProvider, IInteractTile, IRSSwitchable {
     public static final ContainerSlotLayout.LayoutFactory<FireplaceTile> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.itemHandler);
     private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
 
@@ -98,9 +96,9 @@ public class FireplaceTile extends TileBCore implements MenuProvider, IInteractT
         return true;
     }
 
-    private boolean canCraft(IFireplaceRecipe recipe) {
+    private boolean canCraft(FireplaceRecipe recipe) {
         if (recipe != null) {
-            ItemStack itemstack = recipe.assemble(this);
+            ItemStack itemstack = recipe.assemble((Container) this);
             if (itemstack.isEmpty()) {
                 return false;
             } else {
@@ -109,7 +107,7 @@ public class FireplaceTile extends TileBCore implements MenuProvider, IInteractT
                     return true;
                 } else if (!outSlot.sameItem(itemstack)) {
                     return false;
-                } else if (outSlot.getCount() + itemstack.getCount() <= this.getMaxStackSize() && outSlot.getCount() + itemstack.getCount() <= outSlot.getMaxStackSize()) {
+                } else if (outSlot.getCount() + itemstack.getCount() <= ((Container) this).getMaxStackSize() && outSlot.getCount() + itemstack.getCount() <= outSlot.getMaxStackSize()) {
                     return true;
                 } else {
                     return outSlot.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize();
@@ -120,7 +118,7 @@ public class FireplaceTile extends TileBCore implements MenuProvider, IInteractT
         }
     }
 
-    private void completeCraft(IFireplaceRecipe recipe) {
+    private void completeCraft(FireplaceRecipe recipe) {
         if (canCraft(recipe)) {
             for (Ingredient ingredient : recipe.getIngredients()) {
                 if (ingredient.test(itemHandler.getStackInSlot(0))) {
@@ -130,7 +128,7 @@ public class FireplaceTile extends TileBCore implements MenuProvider, IInteractT
                 }
             }
 
-            ItemStack result = recipe.assemble(this);
+            ItemStack result = recipe.assemble((Container) this);
             ItemStack outputSlot = itemHandler.getStackInSlot(3).copy();
             if (outputSlot.isEmpty()) {
                 itemHandler.setStackInSlot(3, result);
@@ -142,7 +140,7 @@ public class FireplaceTile extends TileBCore implements MenuProvider, IInteractT
     }
 
     private void inventoryChange() {
-        IFireplaceRecipe recipe = level.getRecipeManager().getRecipeFor(TolkienMobs.FIREPLACE_RECIPE_TYPE, this, level).orElse(null);
+        FireplaceRecipe recipe = level.getRecipeManager().getRecipeFor(TolkienRecipes.FIREPLACE_RECIPE_TYPE.get(), (Container) this, level).orElse(null);
         if (fuelRemaining.get() <= 0 && isTileEnabled() && canCraft(recipe)) {
             tryRefuel();
         }
@@ -165,7 +163,7 @@ public class FireplaceTile extends TileBCore implements MenuProvider, IInteractT
             return;
         }
 
-        IFireplaceRecipe recipe = level.getRecipeManager().getRecipeFor(TolkienMobs.FIREPLACE_RECIPE_TYPE, this, level).orElse(null);
+        FireplaceRecipe recipe = level.getRecipeManager().getRecipeFor(TolkienRecipes.FIREPLACE_RECIPE_TYPE.get(), (Container) this, level).orElse(null);
 
         if (isBurning.get() && isTileEnabled()) {
             if (canCraft(recipe)) {
@@ -193,7 +191,7 @@ public class FireplaceTile extends TileBCore implements MenuProvider, IInteractT
     public void tryRefuel() {
         ItemStack stack = itemHandler.getStackInSlot(2);
         if (!stack.isEmpty()) {
-            int itemBurnTime = ForgeHooks.getBurnTime(stack, TolkienMobs.FIREPLACE_RECIPE_TYPE);
+            int itemBurnTime = ForgeHooks.getBurnTime(stack, TolkienRecipes.FIREPLACE_RECIPE_TYPE.get());
             if (itemBurnTime > 0) {
                 if (stack.getCount() == 1) {
                     stack = stack.getItem().getContainerItem(stack);
@@ -240,10 +238,5 @@ public class FireplaceTile extends TileBCore implements MenuProvider, IInteractT
     @Override
     public AbstractContainerMenu createMenu(int windowID, Inventory playerInventory, Player playerEntity) {
         return new ContainerBCTile<>(TolkienContainers.TMFIREPLACE_CONTAINER, windowID, playerInventory, this, SLOT_LAYOUT);
-    }
-
-    @Override
-    public IItemHandler getItemHandler() {
-        return itemHandler;
     }
 }

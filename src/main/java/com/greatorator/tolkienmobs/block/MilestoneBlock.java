@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.block;
 
 import com.brandon3055.brandonscore.blocks.BlockBCore;
 import com.greatorator.tolkienmobs.entity.tile.MilestoneTile;
-import com.greatorator.tolkienmobs.handler.MilestoneSaveData;
+import com.greatorator.tolkienmobs.handler.MilestoneHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -122,7 +122,7 @@ public class MilestoneBlock extends BlockBCore {
     public void onRemove(BlockState state, Level world, BlockPos pos, BlockState state1, boolean b) {
         BlockEntity tile = world.getBlockEntity(pos);
         if (tile instanceof MilestoneTile) {
-            MilestoneSaveData.removeMilestone((MilestoneTile) tile);
+            MilestoneHandler.removeMilestone((MilestoneTile) tile);
         }
         super.onRemove(state, world, pos, state1, b);
     }

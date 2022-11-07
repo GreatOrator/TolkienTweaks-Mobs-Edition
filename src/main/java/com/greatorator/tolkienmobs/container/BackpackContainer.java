@@ -2,10 +2,10 @@ package com.greatorator.tolkienmobs.container;
 
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.inventory.SlotCheckValid;
+import com.greatorator.tolkienmobs.container.capability.CraftingInventoryCapability;
 import com.greatorator.tolkienmobs.container.slots.SlotCheckValid2;
 import com.greatorator.tolkienmobs.entity.tile.BackpackTile;
 import com.greatorator.tolkienmobs.init.TolkienContainers;
-import com.greatorator.tolkienmobs.lib.CraftingInventoryWrapper;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -36,7 +36,7 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
     public List<SlotCheckValid2.IInv> craftInputSlots = new ArrayList<>();
     public List<SlotCheckValid2> fluidItemSlots = new ArrayList<>();
     public CraftingResultSlot2 craftResultSlot;
-    private CraftingInventoryWrapper craftInventory;
+    private CraftingInventoryCapability craftInventory;
     private final ResultContainer resultInventory = new ResultContainer();
 
     public BackpackContainer(int windowId, Inventory playerInv, FriendlyByteBuf extraData) {
@@ -71,7 +71,7 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
         }
 
         //Crafting Inventory
-        craftInventory = new CraftingInventoryWrapper(this, 3, 3, tile.craftingItems);
+        craftInventory = new CraftingInventoryCapability(this, 3, 3, tile.craftingItems);
         this.addSlot(craftResultSlot = new CraftingResultSlot2(playerInv.player, craftInventory, resultInventory, 0, 0, 0));
         for (int i = 0; i < 9; ++i) {
             craftInputSlots.add((SlotCheckValid2.IInv) addSlot(new SlotCheckValid2.IInv(craftInventory, i, 0, 0)));

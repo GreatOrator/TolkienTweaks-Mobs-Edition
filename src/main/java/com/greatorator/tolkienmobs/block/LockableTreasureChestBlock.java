@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.block;
 
 import com.brandon3055.brandonscore.blocks.BlockBCore;
 import com.greatorator.tolkienmobs.entity.tile.LockableTreasureChestTile;
-import com.greatorator.tolkienmobs.item.tools.KeyBaseItem;
+import com.greatorator.tolkienmobs.item.keys.KeyBaseItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
