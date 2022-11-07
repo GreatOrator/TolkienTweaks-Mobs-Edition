@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "side": "tolkienmobs:block/planks_culumalda",
-    "bottom": "tolkienmobs:block/planks_culumalda",
-    "top": "tolkienmobs:block/planks_culumalda"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "side": "tolkienmobs:block/planks_lebethron",
-    "bottom": "tolkienmobs:block/planks_lebethron",
-    "top": "tolkienmobs:block/planks_lebethron"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "side": "tolkienmobs:block/log_culumalda",
-    "end": "tolkienmobs:block/log_culumalda_top"
-  }
-}

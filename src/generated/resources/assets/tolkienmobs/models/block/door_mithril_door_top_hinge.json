@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_top_rh",
-  "textures": {
-    "bottom": "tolkienmobs:block/door_mithril_bottom",
-    "top": "tolkienmobs:block/door_mithril_top"
-  }
-}

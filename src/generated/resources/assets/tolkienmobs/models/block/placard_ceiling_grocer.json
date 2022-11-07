@@ -1,6 +1,0 @@
-{
-  "parent": "tolkienmobs:block/placard_hanging",
-  "textures": {
-    "tex": "tolkienmobs:block/signs/placard_grocer"
-  }
-}

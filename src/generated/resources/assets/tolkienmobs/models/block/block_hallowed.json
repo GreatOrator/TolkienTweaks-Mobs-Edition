@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "side": "tolkienmobs:block/block_hallowed_side",
-    "bottom": "tolkienmobs:block/block_hallowed",
-    "top": "tolkienmobs:block/block_hallowed_top"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "tolkienmobs:block/placard_wall",
-  "textures": {
-    "tex": "tolkienmobs:block/signs/placard_butcher1"
-  }
-}

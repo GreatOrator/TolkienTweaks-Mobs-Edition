@@ -76,32 +76,46 @@ public class RecipeGenerator extends RecipeProvider {
         plankRecipe(TolkienBlocks.PLANKS_MIRKWOOD.get(), TolkienBlocks.LOG_MIRKWOOD.get(), consumer);
         plankRecipe(TolkienBlocks.PLANKS_CULUMALDA.get(), TolkienBlocks.LOG_CULUMALDA.get(), consumer);
         plankRecipe(TolkienBlocks.PLANKS_LEBETHRON.get(), TolkienBlocks.LOG_LEBETHRON.get(), consumer);
+        plankRecipe(TolkienBlocks.PLANKS_DEADWOOD.get(), TolkienBlocks.LOG_DEADWOOD.get(), consumer);
+        plankRecipe(TolkienBlocks.PLANKS_FANGORNOAK.get(), TolkienBlocks.LOG_FANGORNOAK.get(), consumer);
         plankWoodRecipe(TolkienBlocks.PLANKS_MALLORN.get(), TolkienBlocks.WOOD_MALLORN.get(), consumer);
         plankWoodRecipe(TolkienBlocks.PLANKS_MIRKWOOD.get(), TolkienBlocks.WOOD_MIRKWOOD.get(), consumer);
         plankWoodRecipe(TolkienBlocks.PLANKS_CULUMALDA.get(), TolkienBlocks.WOOD_CULUMALDA.get(), consumer);
         plankWoodRecipe(TolkienBlocks.PLANKS_LEBETHRON.get(), TolkienBlocks.WOOD_LEBETHRON.get(), consumer);
+        plankWoodRecipe(TolkienBlocks.PLANKS_DEADWOOD.get(), TolkienBlocks.WOOD_DEADWOOD.get(), consumer);
+        plankWoodRecipe(TolkienBlocks.PLANKS_FANGORNOAK.get(), TolkienBlocks.WOOD_FANGORNOAK.get(), consumer);
         plankStrippedRecipe(TolkienBlocks.PLANKS_MALLORN.get(), TolkienBlocks.STRIPPED_MALLORN_LOG.get(), consumer);
         plankStrippedRecipe(TolkienBlocks.PLANKS_MIRKWOOD.get(), TolkienBlocks.STRIPPED_MIRKWOOD_LOG.get(), consumer);
         plankStrippedRecipe(TolkienBlocks.PLANKS_CULUMALDA.get(), TolkienBlocks.STRIPPED_CULUMALDA_LOG.get(), consumer);
         plankStrippedRecipe(TolkienBlocks.PLANKS_LEBETHRON.get(), TolkienBlocks.STRIPPED_LEBETHRON_LOG.get(), consumer);
+        plankStrippedRecipe(TolkienBlocks.PLANKS_DEADWOOD.get(), TolkienBlocks.STRIPPED_DEADWOOD_LOG.get(), consumer);
+        plankStrippedRecipe(TolkienBlocks.PLANKS_FANGORNOAK.get(), TolkienBlocks.STRIPPED_FANGORNOAK_LOG.get(), consumer);
         plankWoodStrippedRecipe(TolkienBlocks.PLANKS_MALLORN.get(), TolkienBlocks.STRIPPED_MALLORN_WOOD.get(), consumer);
         plankWoodStrippedRecipe(TolkienBlocks.PLANKS_MIRKWOOD.get(), TolkienBlocks.STRIPPED_MIRKWOOD_WOOD.get(), consumer);
         plankWoodStrippedRecipe(TolkienBlocks.PLANKS_CULUMALDA.get(), TolkienBlocks.STRIPPED_CULUMALDA_WOOD.get(), consumer);
         plankWoodStrippedRecipe(TolkienBlocks.PLANKS_LEBETHRON.get(), TolkienBlocks.STRIPPED_LEBETHRON_WOOD.get(), consumer);
+        plankWoodStrippedRecipe(TolkienBlocks.PLANKS_DEADWOOD.get(), TolkienBlocks.STRIPPED_DEADWOOD_WOOD.get(), consumer);
+        plankWoodStrippedRecipe(TolkienBlocks.PLANKS_FANGORNOAK.get(), TolkienBlocks.STRIPPED_FANGORNOAK_WOOD.get(), consumer);
 
         fullBarkRecipe(TolkienBlocks.STRIPPED_MALLORN_WOOD.get(), TolkienBlocks.STRIPPED_MALLORN_LOG.get(), consumer);
         fullBarkRecipe(TolkienBlocks.STRIPPED_MIRKWOOD_WOOD.get(), TolkienBlocks.STRIPPED_MIRKWOOD_LOG.get(), consumer);
         fullBarkRecipe(TolkienBlocks.STRIPPED_CULUMALDA_WOOD.get(), TolkienBlocks.STRIPPED_CULUMALDA_LOG.get(), consumer);
         fullBarkRecipe(TolkienBlocks.STRIPPED_LEBETHRON_WOOD.get(), TolkienBlocks.STRIPPED_LEBETHRON_LOG.get(), consumer);
+        fullBarkRecipe(TolkienBlocks.STRIPPED_DEADWOOD_WOOD.get(), TolkienBlocks.STRIPPED_DEADWOOD_LOG.get(), consumer);
+        fullBarkRecipe(TolkienBlocks.STRIPPED_FANGORNOAK_WOOD.get(), TolkienBlocks.STRIPPED_FANGORNOAK_LOG.get(), consumer);
         fullBarkRecipe(TolkienBlocks.WOOD_MALLORN.get(), TolkienBlocks.LOG_MALLORN.get(), consumer);
         fullBarkRecipe(TolkienBlocks.WOOD_MIRKWOOD.get(), TolkienBlocks.LOG_MIRKWOOD.get(), consumer);
         fullBarkRecipe(TolkienBlocks.WOOD_CULUMALDA.get(), TolkienBlocks.LOG_CULUMALDA.get(), consumer);
         fullBarkRecipe(TolkienBlocks.WOOD_LEBETHRON.get(), TolkienBlocks.LOG_LEBETHRON.get(), consumer);
+        fullBarkRecipe(TolkienBlocks.WOOD_DEADWOOD.get(), TolkienBlocks.LOG_DEADWOOD.get(), consumer);
+        fullBarkRecipe(TolkienBlocks.WOOD_FANGORNOAK.get(), TolkienBlocks.LOG_FANGORNOAK.get(), consumer);
 
         doorRecipe(TolkienBlocks.DOOR_MALLORN.get(), TolkienBlocks.PLANKS_MALLORN.get(), consumer);
         doorRecipe(TolkienBlocks.DOOR_MIRKWOOD.get(), TolkienBlocks.PLANKS_MIRKWOOD.get(), consumer);
         doorRecipe(TolkienBlocks.DOOR_CULUMALDA.get(), TolkienBlocks.PLANKS_CULUMALDA.get(), consumer);
         doorRecipe(TolkienBlocks.DOOR_LEBETHRON.get(), TolkienBlocks.PLANKS_LEBETHRON.get(), consumer);
+        doorRecipe(TolkienBlocks.DOOR_DEADWOOD.get(), TolkienBlocks.PLANKS_DEADWOOD.get(), consumer);
+        doorRecipe(TolkienBlocks.DOOR_FANGORNOAK.get(), TolkienBlocks.PLANKS_FANGORNOAK.get(), consumer);
         doorRecipe(TolkienBlocks.DOOR_MITHRIL.get(), TolkienItems.INGOT_MITHRIL.get(), consumer);
         doorRecipe(TolkienBlocks.DOOR_MORGULIRON.get(), TolkienItems.INGOT_MORGULIRON.get(), consumer);
 
@@ -109,23 +123,31 @@ public class RecipeGenerator extends RecipeProvider {
         fenceGateRecipe(TolkienBlocks.FENCE_GATE_MIRKWOOD.get(), Items.STICK, TolkienBlocks.PLANKS_MIRKWOOD.get(), consumer);
         fenceGateRecipe(TolkienBlocks.FENCE_GATE_CULUMALDA.get(), Items.STICK, TolkienBlocks.PLANKS_CULUMALDA.get(), consumer);
         fenceGateRecipe(TolkienBlocks.FENCE_GATE_LEBETHRON.get(), Items.STICK, TolkienBlocks.PLANKS_LEBETHRON.get(), consumer);
+        fenceGateRecipe(TolkienBlocks.FENCE_GATE_DEADWOOD.get(), Items.STICK, TolkienBlocks.PLANKS_DEADWOOD.get(), consumer);
+        fenceGateRecipe(TolkienBlocks.FENCE_GATE_FANGORNOAK.get(), Items.STICK, TolkienBlocks.PLANKS_FANGORNOAK.get(), consumer);
 
         fenceRecipe(TolkienBlocks.FENCE_MALLORN.get(), TolkienBlocks.PLANKS_MALLORN.get(), Items.STICK, consumer);
         fenceRecipe(TolkienBlocks.FENCE_MIRKWOOD.get(), TolkienBlocks.PLANKS_MIRKWOOD.get(), Items.STICK, consumer);
         fenceRecipe(TolkienBlocks.FENCE_CULUMALDA.get(), TolkienBlocks.PLANKS_CULUMALDA.get(), Items.STICK, consumer);
         fenceRecipe(TolkienBlocks.FENCE_LEBETHRON.get(), TolkienBlocks.PLANKS_LEBETHRON.get(), Items.STICK, consumer);
+        fenceRecipe(TolkienBlocks.FENCE_DEADWOOD.get(), TolkienBlocks.PLANKS_DEADWOOD.get(), Items.STICK, consumer);
+        fenceRecipe(TolkienBlocks.FENCE_FANGORNOAK.get(), TolkienBlocks.PLANKS_FANGORNOAK.get(), Items.STICK, consumer);
 
         trapDoorRecipe(TolkienBlocks.TRAPDOOR_MALLORN.get(), TolkienBlocks.PLANKS_MALLORN.get(), consumer);
         trapDoorRecipe(TolkienBlocks.TRAPDOOR_MIRKWOOD.get(), TolkienBlocks.PLANKS_MIRKWOOD.get(), consumer);
         trapDoorRecipe(TolkienBlocks.TRAPDOOR_CULUMALDA.get(), TolkienBlocks.PLANKS_CULUMALDA.get(), consumer);
         trapDoorRecipe(TolkienBlocks.TRAPDOOR_LEBETHRON.get(), TolkienBlocks.PLANKS_LEBETHRON.get(), consumer);
+        trapDoorRecipe(TolkienBlocks.TRAPDOOR_DEADWOOD.get(), TolkienBlocks.PLANKS_DEADWOOD.get(), consumer);
+        trapDoorRecipe(TolkienBlocks.TRAPDOOR_FANGORNOAK.get(), TolkienBlocks.PLANKS_FANGORNOAK.get(), consumer);
         metalTrapDoorRecipe(TolkienBlocks.TRAPDOOR_MITHRIL.get(), TolkienItems.INGOT_MITHRIL.get(), consumer);
         metalTrapDoorRecipe(TolkienBlocks.TRAPDOOR_MORGULIRON.get(), TolkienItems.INGOT_MORGULIRON.get(), consumer);
 
         pressurePlateRecipe(TolkienBlocks.PRESSURE_PLATE_MALLORN.get(), TolkienBlocks.PLANKS_MALLORN.get(), consumer);
-        pressurePlateRecipe(TolkienBlocks.PRESSURE_PLATE_MIRKWOOD.get(), TolkienBlocks.PLANKS_MALLORN.get(), consumer);
-        pressurePlateRecipe(TolkienBlocks.PRESSURE_PLATE_CULUMALDA.get(), TolkienBlocks.PLANKS_MALLORN.get(), consumer);
-        pressurePlateRecipe(TolkienBlocks.PRESSURE_PLATE_LEBETHRON.get(), TolkienBlocks.PLANKS_MALLORN.get(), consumer);
+        pressurePlateRecipe(TolkienBlocks.PRESSURE_PLATE_MIRKWOOD.get(), TolkienBlocks.PLANKS_MIRKWOOD.get(), consumer);
+        pressurePlateRecipe(TolkienBlocks.PRESSURE_PLATE_CULUMALDA.get(), TolkienBlocks.PLANKS_CULUMALDA.get(), consumer);
+        pressurePlateRecipe(TolkienBlocks.PRESSURE_PLATE_LEBETHRON.get(), TolkienBlocks.PLANKS_LEBETHRON.get(), consumer);
+        pressurePlateRecipe(TolkienBlocks.PRESSURE_PLATE_DEADWOOD.get(), TolkienBlocks.PLANKS_DEADWOOD.get(), consumer);
+        pressurePlateRecipe(TolkienBlocks.PRESSURE_PLATE_FANGORNOAK.get(), TolkienBlocks.PLANKS_FANGORNOAK.get(), consumer);
         pressurePlateRecipe(TolkienBlocks.PRESSURE_PLATE_MITHRIL.get(), TolkienItems.INGOT_MITHRIL.get(), consumer);
         pressurePlateRecipe(TolkienBlocks.PRESSURE_PLATE_MORGULIRON.get(), TolkienItems.INGOT_MORGULIRON.get(), consumer);
 
@@ -133,11 +155,15 @@ public class RecipeGenerator extends RecipeProvider {
         torchRecipe(TolkienBlocks.TORCH_MIRKWOOD.get(), TolkienBlocks.PLANKS_MIRKWOOD.get(), consumer);
         torchRecipe(TolkienBlocks.TORCH_CULUMALDA.get(), TolkienBlocks.PLANKS_CULUMALDA.get(), consumer);
         torchRecipe(TolkienBlocks.TORCH_LEBETHRON.get(), TolkienBlocks.PLANKS_LEBETHRON.get(), consumer);
+        torchRecipe(TolkienBlocks.TORCH_DEADWOOD.get(), TolkienBlocks.PLANKS_DEADWOOD.get(), consumer);
+        torchRecipe(TolkienBlocks.TORCH_FANGORNOAK.get(), TolkienBlocks.PLANKS_FANGORNOAK.get(), consumer);
 
         signRecipe(TolkienBlocks.MALLORN_SIGN.get(), TolkienBlocks.PLANKS_MALLORN.get(), Items.STICK, consumer);
         signRecipe(TolkienBlocks.MIRKWOOD_SIGN.get(), TolkienBlocks.PLANKS_MIRKWOOD.get(), Items.STICK, consumer);
         signRecipe(TolkienBlocks.CULUMALDA_SIGN.get(), TolkienBlocks.PLANKS_CULUMALDA.get(), Items.STICK, consumer);
         signRecipe(TolkienBlocks.LEBETHRON_SIGN.get(), TolkienBlocks.PLANKS_LEBETHRON.get(), Items.STICK, consumer);
+        signRecipe(TolkienBlocks.DEADWOOD_SIGN.get(), TolkienBlocks.PLANKS_DEADWOOD.get(), Items.STICK, consumer);
+        signRecipe(TolkienBlocks.FANGORNOAK_SIGN.get(), TolkienBlocks.PLANKS_FANGORNOAK.get(), Items.STICK, consumer);
 
         helmetRecipe(TolkienItems.HELMET_MITHRIL.get(), TolkienItems.INGOT_MITHRIL.get(), TolkienItems.GEM_AMMOLITE.get(), consumer);
         helmetRecipe(TolkienItems.HELMET_MORGULIRON.get(), TolkienItems.INGOT_MORGULIRON.get(), TolkienItems.GEM_AMMOLITE.get(), consumer);
@@ -451,19 +477,19 @@ public class RecipeGenerator extends RecipeProvider {
     }
 
     private static void fireplace(Consumer<FinishedRecipe> consumer) {
-        fireplaceRecipe1(Items.COOKED_BEEF, 50, 100, Items.BEEF, consumer);
-        fireplaceRecipe1(Items.COOKED_CHICKEN, 50, 100, Items.CHICKEN, consumer);
-        fireplaceRecipe1(Items.COOKED_COD, 50, 100, Items.COD, consumer);
-        fireplaceRecipe1(Items.DRIED_KELP, 50, 100, Items.KELP, consumer);
-        fireplaceRecipe1(Items.COOKED_MUTTON, 50, 100, Items.MUTTON, consumer);
-        fireplaceRecipe1(Items.COOKED_PORKCHOP, 50, 100, Items.PORKCHOP, consumer);
-        fireplaceRecipe1(Items.BAKED_POTATO, 50, 100, Items.POTATO, consumer);
-        fireplaceRecipe1(Items.COOKED_RABBIT, 50, 100, Items.RABBIT, consumer);
-        fireplaceRecipe1(Items.COOKED_SALMON, 50, 100, Items.SALMON, consumer);
-        fireplaceRecipe2(TolkienItems.LEMBAS.get(), 50, 100, TolkienItems.CRAM.get(), TolkienItems.FOOD_HONEY.get(), consumer);
-        fireplaceRecipe2(Items.GOLDEN_APPLE, 100, 500, Items.APPLE, Items.GOLD_INGOT, consumer);
-        fireplaceRecipe2(Items.ENCHANTED_GOLDEN_APPLE, 500, 200, Items.GOLDEN_APPLE, Items.GOLD_BLOCK, consumer);
-        fireplaceRecipe3(TolkienItems.MONSTER_FLESH.get(), 50, 100, consumer, Items.COOKED_RABBIT, Items.COOKED_PORKCHOP, Items.COOKED_MUTTON, Items.COOKED_BEEF, Items.COOKED_SALMON, Items.COOKED_COD, Items.COOKED_CHICKEN, Items.ROTTEN_FLESH);
+//        fireplaceRecipe1(Items.COOKED_BEEF, 50, 100, Items.BEEF, consumer);
+//        fireplaceRecipe1(Items.COOKED_CHICKEN, 50, 100, Items.CHICKEN, consumer);
+//        fireplaceRecipe1(Items.COOKED_COD, 50, 100, Items.COD, consumer);
+//        fireplaceRecipe1(Items.DRIED_KELP, 50, 100, Items.KELP, consumer);
+//        fireplaceRecipe1(Items.COOKED_MUTTON, 50, 100, Items.MUTTON, consumer);
+//        fireplaceRecipe1(Items.COOKED_PORKCHOP, 50, 100, Items.PORKCHOP, consumer);
+//        fireplaceRecipe1(Items.BAKED_POTATO, 50, 100, Items.POTATO, consumer);
+//        fireplaceRecipe1(Items.COOKED_RABBIT, 50, 100, Items.RABBIT, consumer);
+//        fireplaceRecipe1(Items.COOKED_SALMON, 50, 100, Items.SALMON, consumer);
+//        fireplaceRecipe2(TolkienItems.LEMBAS.get(), 50, 100, TolkienItems.CRAM.get(), TolkienItems.FOOD_HONEY.get(), consumer);
+//        fireplaceRecipe2(Items.GOLDEN_APPLE, 100, 500, Items.APPLE, Items.GOLD_INGOT, consumer);
+//        fireplaceRecipe2(Items.ENCHANTED_GOLDEN_APPLE, 500, 200, Items.GOLDEN_APPLE, Items.GOLD_BLOCK, consumer);
+//        fireplaceRecipe3(TolkienItems.MONSTER_FLESH.get(), 50, 100, consumer, Items.COOKED_RABBIT, Items.COOKED_PORKCHOP, Items.COOKED_MUTTON, Items.COOKED_BEEF, Items.COOKED_SALMON, Items.COOKED_COD, Items.COOKED_CHICKEN, Items.ROTTEN_FLESH);
     }
 
     private static void trinket(Consumer<FinishedRecipe> consumer) {

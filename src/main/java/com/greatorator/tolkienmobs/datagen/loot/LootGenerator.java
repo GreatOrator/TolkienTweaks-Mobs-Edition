@@ -21,7 +21,8 @@ import java.util.function.Supplier;
  * Created by brandon3055 on 10/3/20.
  */
 public class LootGenerator extends LootTableProvider {
-    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> lootTables = ImmutableList.of(Pair.of(BlockLootGenerator::new, LootContextParamSets.BLOCK), Pair.of(EntityLootGenerator::new, LootContextParamSets.ENTITY), Pair.of(ChestLootGenerator::new, LootContextParamSets.CHEST));
+    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> lootTables = ImmutableList.of(Pair.of(BlockLootGenerator::new, LootContextParamSets.BLOCK), Pair.of(ChestLootGenerator::new, LootContextParamSets.CHEST));
+//    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> lootTables = ImmutableList.of(Pair.of(BlockLootGenerator::new, LootContextParamSets.BLOCK), Pair.of(EntityLootGenerator::new, LootContextParamSets.ENTITY), Pair.of(ChestLootGenerator::new, LootContextParamSets.CHEST));
 
     public LootGenerator(DataGenerator dataGeneratorIn) {
         super(dataGeneratorIn);

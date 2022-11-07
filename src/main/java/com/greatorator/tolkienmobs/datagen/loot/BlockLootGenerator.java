@@ -169,8 +169,22 @@ public class BlockLootGenerator extends BlockLoot {
         dropSelf(TolkienBlocks.FLOWER_LILLYOFTHEVALLEY.get());
         add(TolkienBlocks.PIPEWEED.get(), createCropDrops(TolkienBlocks.PIPEWEED.get(), TolkienItems.PIPEWEED_ITEM.get(), TolkienItems.PIPEWEED_SEEDS.get(), CROP_DROP));
 
-        // Blocks - Placards
-        dropSelf(TolkienBlocks.PLACARD.get());
+        // Blocks - Potted
+        dropPottedContents(TolkienBlocks.POTTED_MUSHROOM_DECAY_BLOOM.get());
+        dropPottedContents(TolkienBlocks.POTTED_MUSHROOM_BLOOM_DECAY.get());
+        dropPottedContents(TolkienBlocks.POTTED_FLOWER_SIMBELMYNE.get());
+        dropPottedContents(TolkienBlocks.POTTED_FLOWER_MIRKWOOD.get());
+        dropPottedContents(TolkienBlocks.POTTED_FLOWER_ALFIRIN.get());
+        dropPottedContents(TolkienBlocks.POTTED_FLOWER_ATHELAS.get());
+        dropPottedContents(TolkienBlocks.POTTED_FLOWER_NIPHREDIL.get());
+        dropPottedContents(TolkienBlocks.POTTED_FLOWER_SWAMPMILKWEED.get());
+        dropPottedContents(TolkienBlocks.POTTED_FLOWER_LILLYOFTHEVALLEY.get());
+        dropPottedContents(TolkienBlocks.POTTED_SAPLING_MALLORN.get());
+        dropPottedContents(TolkienBlocks.POTTED_SAPLING_MIRKWOOD.get());
+        dropPottedContents(TolkienBlocks.POTTED_SAPLING_CULUMALDA.get());
+        dropPottedContents(TolkienBlocks.POTTED_SAPLING_LEBETHRON.get());
+        dropPottedContents(TolkienBlocks.POTTED_SAPLING_DEADWOOD.get());
+        dropPottedContents(TolkienBlocks.POTTED_SAPLING_FANGORNOAK.get());
 
         // Blocks - Custom
         dropSelf(TolkienBlocks.BLOCK_HALLOWED.get());
@@ -182,6 +196,7 @@ public class BlockLootGenerator extends BlockLoot {
         dropSelf(TolkienBlocks.BACKPACK.get());
         dropSelf(TolkienBlocks.CHAMELEON_BLOCK.get());
         dropSelf(TolkienBlocks.ROCKPILE.get());
+        dropSelf(TolkienBlocks.PLACARD.get());
 
         // Blocks - Sleeping Bags
         add(TolkienBlocks.SLEEPING_BAG_RED.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));

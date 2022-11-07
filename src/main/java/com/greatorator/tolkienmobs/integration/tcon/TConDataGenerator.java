@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.integration.tcon;
 
-import com.greatorator.tolkienmobs.handler.enums.TolkienTiers;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.tags.FluidTagsProvider;
@@ -25,6 +24,7 @@ import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+import static net.minecraft.world.item.Tiers.NETHERITE;
 
 public class TConDataGenerator {
 
@@ -156,12 +156,12 @@ public class TConDataGenerator {
         @Override
         protected void addMaterialStats() {
             addMaterialStats(TConMaterialManager.SHINY,
-                    new HeadMaterialStats(1050, 6.5F, TolkienTiers.MITHRIL, 3.5F),
+                    new HeadMaterialStats(1050, 6.5F, NETHERITE, 3.5F),
                     ExtraMaterialStats.DEFAULT,
                     HandleMaterialStats.DEFAULT);
 
             addMaterialStats(TConMaterialManager.URUK,
-                    new HeadMaterialStats(850, 6.0F, TolkienTiers.MORGULIRON, 2.5F),
+                    new HeadMaterialStats(850, 6.0F, NETHERITE, 2.5F),
                     ExtraMaterialStats.DEFAULT,
                     HandleMaterialStats.DEFAULT);
         }

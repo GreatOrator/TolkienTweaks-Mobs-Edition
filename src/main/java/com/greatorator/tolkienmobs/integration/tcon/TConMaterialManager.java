@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.integration.tcon;
 
 import com.greatorator.tolkienmobs.integration.tcon.traits.GuldurilModifier;
 import com.greatorator.tolkienmobs.integration.tcon.traits.VingiloteModifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
@@ -27,10 +28,6 @@ public class TConMaterialManager {
     public static final StaticModifier<GuldurilModifier> GULDURIL = MODIFIERS.register("gulduril", GuldurilModifier::new);
 
     // Materials
-    public static final MaterialId SHINY = id("shiny");
-    public static final MaterialId URUK = id("uruk");
-
-    private static MaterialId id(String name) {
-        return new MaterialId(MODID, name);
-    }
+    public static final MaterialId SHINY = new MaterialId(new ResourceLocation(MODID,"shiny"));
+    public static final MaterialId URUK = new MaterialId(new ResourceLocation(MODID,"uruk"));
 }

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "tolkienmobs:block/ore_nether_mithril"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "parent": "tolkienmobs:block/placard_standing",
-  "textures": {
-    "tex": "tolkienmobs:block/signs/placard_potions"
-  }
-}

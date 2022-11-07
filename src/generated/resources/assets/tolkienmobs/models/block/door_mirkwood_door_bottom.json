@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom",
-  "textures": {
-    "bottom": "tolkienmobs:block/door_mirkwood_bottom",
-    "top": "tolkienmobs:block/door_mirkwood_top"
-  }
-}

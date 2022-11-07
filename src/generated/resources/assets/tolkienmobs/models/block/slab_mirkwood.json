@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab",
-  "textures": {
-    "side": "tolkienmobs:block/planks_mirkwood",
-    "bottom": "tolkienmobs:block/planks_mirkwood",
-    "top": "tolkienmobs:block/planks_mirkwood"
-  }
-}

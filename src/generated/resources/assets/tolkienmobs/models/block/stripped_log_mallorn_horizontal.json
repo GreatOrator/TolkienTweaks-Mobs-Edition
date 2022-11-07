@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column_horizontal",
-  "textures": {
-    "side": "tolkienmobs:block/stripped_log_mallorn",
-    "end": "tolkienmobs:block/stripped_log_mallorn_top"
-  }
-}

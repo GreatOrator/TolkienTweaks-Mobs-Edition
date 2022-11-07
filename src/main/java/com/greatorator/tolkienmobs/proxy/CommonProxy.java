@@ -14,7 +14,6 @@ import com.greatorator.tolkienmobs.integration.IntegrationHelper;
 import com.greatorator.tolkienmobs.integration.curios.EquipmentManager;
 import com.greatorator.tolkienmobs.integration.tcon.TConIntegration;
 import com.greatorator.tolkienmobs.network.TolkienPacketHandler;
-import com.greatorator.tolkienmobs.world.gen.feature.config.TreeFeatureConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
@@ -55,7 +54,7 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.addListener(WorldEvents::addDimensionalSpacing);
 //        MinecraftForge.EVENT_BUS.addListener(WorldEvents::biomeModification);
 
-        TreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
+//        TreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
 
 //        modBus.addListener(TolkienEntities::registerAttributes);
         TolkienPacketHandler.init();

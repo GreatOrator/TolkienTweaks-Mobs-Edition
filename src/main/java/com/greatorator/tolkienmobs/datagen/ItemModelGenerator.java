@@ -20,6 +20,11 @@ import java.util.List;
  * Created by brandon3055 on 28/2/20.
  */
 public class ItemModelGenerator extends ItemModelProvider {
+    List<String> sleepingBagTypes = Arrays.asList("black", "blue", "brown", "cyan", "gray", "green", "light_blue", "light_gray", "lime", "magenta", "orange", "pink", "purple", "red", "white", "yellow");
+    List<String> keyTypes = Arrays.asList("bronze", "silver", "gold", "mithril", "master");
+    List<String> woodTypes = Arrays.asList("mallorn", "mirkwood", "culumalda", "lebethron", "deadwood", "fangornoak");
+    List<String> metalTypes = Arrays.asList("mithril", "morguliron");
+    ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
 
     public ItemModelGenerator(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, TolkienMobs.MODID, existingFileHelper);
@@ -110,6 +115,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.SAPLING_CULUMALDA.get());
         simpleItem(TolkienItems.CULUMALDA_SIGN_ITEM.get());
         simpleItem(TolkienItems.CULUMALDA_BOAT.get());
+
+        // Lebethron
         blockItem(TolkienBlocks.FENCE_GATE_LEBETHRON.get(), modLoc("block/fence_gate_lebethron_fence_gate"));
         blockItem(TolkienBlocks.FENCE_LEBETHRON.get(), modLoc("block/lebethron_fence_inventory"));
         blockItem(TolkienBlocks.TRAPDOOR_LEBETHRON.get(), modLoc("block/lebethron_trapdoor_bottom"));
@@ -149,6 +156,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.SAPLING_DEADWOOD.get());
 
         // Fangornoak
+        blockItem(TolkienBlocks.LOG_FANGORNOAK.get());
         blockItem(TolkienBlocks.STRIPPED_FANGORNOAK_LOG.get());
         blockItem(TolkienBlocks.WOOD_FANGORNOAK.get());
         blockItem(TolkienBlocks.STRIPPED_FANGORNOAK_WOOD.get());
@@ -188,7 +196,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.BARREL_MITHRIL.get(), modLoc("block/barrel_mithril"));
         blockItem(TolkienBlocks.BARREL_MORGULIRON.get(), modLoc("block/barrel_morguliron"));
         blockItem(TolkienBlocks.BACKPACK.get(), modLoc("block/container_backpack"));
-        getBuilder(TolkienItems.ITEM_PLACARD.get().getRegistryName().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("block/placard_wall_empty")));
+//        getBuilder(TolkienItems.ITEM_PLACARD.get().getRegistryName().getPath()).parent(new ModelFile.UncheckedModelFile(modLoc("block/placard_wall_empty")));
         blockItem(TolkienBlocks.CHAMELEON_BLOCK.get());
         blockItem(TolkienBlocks.KEY_STONE_BLOCK.get());
         blockItem(TolkienBlocks.CAMO_GLOWSTONE_BLOCK.get());
@@ -208,16 +216,12 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TolkienItems.ITEM_DEV_DEBUG_TOOL.get());
 
         // Sleeping Bags
-        ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
-
-        List<String> sleepingBags = Arrays.asList("black", "blue", "brown", "cyan", "gray", "green", "light_blue", "light_gray", "lime", "magenta", "orange", "pink", "purple", "red", "white", "yellow");
-        for (String color : sleepingBags) {
+        for (String color : sleepingBagTypes) {
             simpleMod(itemGenerated, "item/sleeping_bag_"+color);
         }
 
         // Keys
-        List<String> keys = Arrays.asList("bronze", "silver", "gold", "mithril", "master");
-        for (String keyType : keys) {
+        for (String keyType : keyTypes) {
             simpleMod(itemGenerated, "item/" + keyType + "_key");
         }
 
@@ -374,6 +378,11 @@ public class ItemModelGenerator extends ItemModelProvider {
         handheldItem(TolkienItems.SWORD_URUK.get());
         simpleItem(TolkienItems.GALADHRIM_ARROW.get());
         simpleItem(TolkienItems.UTUMNO_ARROW.get());
+
+        // region Fluids
+//        simpleItem(TolkienItems.MITHRIL_FLUID_BUCKET.get());
+//        simpleItem(TolkienItems.MORGULIRON_FLUID_BUCKET.get());
+
 
         //region Trinkets
         trinketItem(TolkienItems.TRINKET_AMULET.get(), modLoc("item/trinket_amulet"), modLoc("item/trinket_amulet"));

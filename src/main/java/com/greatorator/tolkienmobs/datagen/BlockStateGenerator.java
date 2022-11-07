@@ -7,12 +7,12 @@ import com.greatorator.tolkienmobs.init.TolkienBlocks;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -31,6 +31,10 @@ import java.util.function.Supplier;
 public class BlockStateGenerator extends BlockStateProvider {
     private static final Logger LOGGER = LogManager.getLogger();
     private final BiConsumer<ResourceLocation, Supplier<JsonElement>> modelOutput = null;
+    List<String> sleepingBagTypes = Arrays.asList("black", "blue", "brown", "cyan", "gray", "green", "light_blue", "light_gray", "lime", "magenta", "orange", "pink", "purple", "red", "white", "yellow");
+    List<String> keyTypes = Arrays.asList("bronze", "silver", "gold", "mithril", "master");
+    List<String> woodTypes = Arrays.asList("mallorn", "mirkwood", "culumalda", "lebethron", "deadwood", "fangornoak");
+    List<String> metalTypes = Arrays.asList("mithril", "morguliron");
 
 
     public BlockStateGenerator(DataGenerator gen, ExistingFileHelper exFileHelper) {
@@ -49,7 +53,11 @@ public class BlockStateGenerator extends BlockStateProvider {
         paneBlock(TolkienBlocks.MITHRIL_BARS.get(), modLoc("block/mithril_bars"), modLoc("block/mithril_bars"));
         doorBlock(TolkienBlocks.DOOR_MITHRIL.get(), "door_mithril", modLoc("block/door_mithril_bottom"), modLoc("block/door_mithril_top"));
         trapdoorBlock(TolkienBlocks.TRAPDOOR_MITHRIL.get(), "mithril", modLoc("block/trapdoor_mithril"), true);
-        simpleBlock(TolkienBlocks.PRESSURE_PLATE_MITHRIL.get(), models().getExistingFile(modLoc("block/pressure_plate_mithril")));
+        weightedPressurePlateBlock(TolkienBlocks.PRESSURE_PLATE_MITHRIL.get(),
+                models().withExistingParent("pressure_plate_mithril", mcLoc("block/pressure_plate_up"))
+                        .texture("texture", "block/block_mithril"),
+                models().withExistingParent("pressure_plate_mithril_down", mcLoc("block/pressure_plate_down"))
+                        .texture("texture", "block/block_mithril"));
         simpleBlock(TolkienBlocks.ORE_MORGULIRON.get());
         simpleBlock(TolkienBlocks.ORE_END_MORGULIRON.get());
         simpleBlock(TolkienBlocks.ORE_NETHER_MORGULIRON.get());
@@ -57,7 +65,11 @@ public class BlockStateGenerator extends BlockStateProvider {
         paneBlock(TolkienBlocks.MORGULIRON_BARS.get(), modLoc("block/morguliron_bars"), modLoc("block/morguliron_bars"));
         doorBlock(TolkienBlocks.DOOR_MORGULIRON.get(), "door_morguliron", modLoc("block/door_morguliron_bottom"), modLoc("block/door_morguliron_top"));
         trapdoorBlock(TolkienBlocks.TRAPDOOR_MORGULIRON.get(), "morguliron", modLoc("block/trapdoor_morguliron"), true);
-        simpleBlock(TolkienBlocks.PRESSURE_PLATE_MORGULIRON.get(), models().getExistingFile(modLoc("block/pressure_plate_morguliron")));
+        weightedPressurePlateBlock(TolkienBlocks.PRESSURE_PLATE_MORGULIRON.get(),
+                models().withExistingParent("pressure_plate_morguliron", mcLoc("block/pressure_plate_up"))
+                        .texture("texture", "block/block_morguliron"),
+                models().withExistingParent("pressure_plate_morguliron_down", mcLoc("block/pressure_plate_down"))
+                        .texture("texture", "block/block_morguliron"));
         simpleBlock(TolkienBlocks.ORE_AMMOLITE.get());
         simpleBlock(TolkienBlocks.ORE_END_AMMOLITE.get());
         simpleBlock(TolkienBlocks.ORE_NETHER_AMMOLITE.get());
@@ -132,12 +144,36 @@ public class BlockStateGenerator extends BlockStateProvider {
         trapdoorBlock(TolkienBlocks.TRAPDOOR_LEBETHRON.get(), "lebethron", modLoc("block/trapdoor_lebethron"), true);
         trapdoorBlock(TolkienBlocks.TRAPDOOR_DEADWOOD.get(), "deadwood", modLoc("block/trapdoor_deadwood"), true);
         trapdoorBlock(TolkienBlocks.TRAPDOOR_FANGORNOAK.get(), "fangornoak", modLoc("block/trapdoor_fangornoak"), true);
-        simpleBlock(TolkienBlocks.PRESSURE_PLATE_MALLORN.get(), models().getExistingFile(modLoc("block/pressure_plate_mallorn")));
-        simpleBlock(TolkienBlocks.PRESSURE_PLATE_MIRKWOOD.get(), models().getExistingFile(modLoc("block/pressure_plate_mirkwood")));
-        simpleBlock(TolkienBlocks.PRESSURE_PLATE_CULUMALDA.get(), models().getExistingFile(modLoc("block/pressure_plate_culumalda")));
-        simpleBlock(TolkienBlocks.PRESSURE_PLATE_LEBETHRON.get(), models().getExistingFile(modLoc("block/pressure_plate_lebethron")));
-        simpleBlock(TolkienBlocks.PRESSURE_PLATE_LEBETHRON.get(), models().getExistingFile(modLoc("block/pressure_plate_deadwood")));
-        simpleBlock(TolkienBlocks.PRESSURE_PLATE_LEBETHRON.get(), models().getExistingFile(modLoc("block/pressure_plate_fangornoak")));
+        pressurePlateBlock(TolkienBlocks.PRESSURE_PLATE_MALLORN.get(),
+                models().withExistingParent("pressure_plate_mallorn", mcLoc("block/pressure_plate_up"))
+                        .texture("texture", "block/planks_mallorn"),
+                models().withExistingParent("pressure_plate_mallorn_down", mcLoc("block/pressure_plate_down"))
+                        .texture("texture", "block/planks_mallorn"));
+        pressurePlateBlock(TolkienBlocks.PRESSURE_PLATE_MIRKWOOD.get(),
+                models().withExistingParent("pressure_plate_mirkwood", mcLoc("block/pressure_plate_up"))
+                        .texture("texture", "block/planks_mirkwood"),
+                models().withExistingParent("pressure_plate_mirkwood_down", mcLoc("block/pressure_plate_down"))
+                        .texture("texture", "block/planks_mirkwood"));
+        pressurePlateBlock(TolkienBlocks.PRESSURE_PLATE_CULUMALDA.get(),
+                models().withExistingParent("pressure_plate_culumalda", mcLoc("block/pressure_plate_up"))
+                        .texture("texture", "block/planks_culumalda"),
+                models().withExistingParent("pressure_plate_culumalda_down", mcLoc("block/pressure_plate_down"))
+                        .texture("texture", "block/planks_culumalda"));
+        pressurePlateBlock(TolkienBlocks.PRESSURE_PLATE_LEBETHRON.get(),
+                models().withExistingParent("pressure_plate_lebethron", mcLoc("block/pressure_plate_up"))
+                        .texture("texture", "block/planks_lebethron"),
+                models().withExistingParent("pressure_plate_lebethron_down", mcLoc("block/pressure_plate_down"))
+                        .texture("texture", "block/planks_lebethron"));
+        pressurePlateBlock(TolkienBlocks.PRESSURE_PLATE_DEADWOOD.get(),
+                models().withExistingParent("pressure_plate_deadwood", mcLoc("block/pressure_plate_up"))
+                        .texture("texture", "block/planks_deadwood"),
+                models().withExistingParent("pressure_plate_deadwood_down", mcLoc("block/pressure_plate_down"))
+                        .texture("texture", "block/planks_deadwood"));
+        pressurePlateBlock(TolkienBlocks.PRESSURE_PLATE_FANGORNOAK.get(),
+                models().withExistingParent("pressure_plate_fangornoak", mcLoc("block/pressure_plate_up"))
+                        .texture("texture", "block/planks_fangornoak"),
+                models().withExistingParent("pressure_plate_fangornoak_down", mcLoc("block/pressure_plate_down"))
+                        .texture("texture", "block/planks_fangornoak"));
         simpleBlock(TolkienBlocks.TORCH_MALLORN.get(), models().getExistingFile(modLoc("block/torch_mallorn")));
         simpleBlock(TolkienBlocks.TORCH_MIRKWOOD.get(), models().getExistingFile(modLoc("block/torch_mirkwood")));
         simpleBlock(TolkienBlocks.TORCH_CULUMALDA.get(), models().getExistingFile(modLoc("block/torch_culumalda")));
@@ -148,8 +184,8 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TolkienBlocks.WALL_TORCH_MIRKWOOD.get(), models().getExistingFile(modLoc("block/wall_torch_mirkwood")));
         simpleBlock(TolkienBlocks.WALL_TORCH_CULUMALDA.get(), models().getExistingFile(modLoc("block/wall_torch_culumalda")));
         simpleBlock(TolkienBlocks.WALL_TORCH_LEBETHRON.get(), models().getExistingFile(modLoc("block/wall_torch_lebethron")));
-        simpleBlock(TolkienBlocks.WALL_TORCH_LEBETHRON.get(), models().getExistingFile(modLoc("block/wall_torch_deadwood")));
-        simpleBlock(TolkienBlocks.WALL_TORCH_LEBETHRON.get(), models().getExistingFile(modLoc("block/wall_torch_fangornoak")));
+        simpleBlock(TolkienBlocks.WALL_TORCH_DEADWOOD.get(), models().getExistingFile(modLoc("block/wall_torch_deadwood")));
+        simpleBlock(TolkienBlocks.WALL_TORCH_FANGORNOAK.get(), models().getExistingFile(modLoc("block/wall_torch_fangornoak")));
         simpleBlock(TolkienBlocks.LEAVES_MALLORN.get());
         simpleBlock(TolkienBlocks.LEAVES_MIRKWOOD.get());
         simpleBlock(TolkienBlocks.LEAVES_CULUMALDA.get());
@@ -166,12 +202,40 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TolkienBlocks.SAPLING_LEBETHRON.get(), models().cross("sapling_lebethron", modLoc("block/sapling_lebethron")));
         simpleBlock(TolkienBlocks.SAPLING_DEADWOOD.get(), models().cross("sapling_deadwood", modLoc("block/sapling_deadwood")));
         simpleBlock(TolkienBlocks.SAPLING_FANGORNOAK.get(), models().cross("sapling_fangornoak", modLoc("block/sapling_fangornoak")));
+        buttonBlock((ButtonBlock) TolkienBlocks.MALLORN_BUTTON.get(),
+                models().withExistingParent("mallorn_button", mcLoc("block/button"))
+                        .texture("texture", "block/planks_mallorn"),
+                models().withExistingParent("mallorn_button_pressed", mcLoc("block/button_pressed"))
+                        .texture("texture", "block/planks_mallorn"));
+        buttonBlock((ButtonBlock) TolkienBlocks.MIRKWOOD_BUTTON.get(),
+                models().withExistingParent("mirkwood_button", mcLoc("block/button"))
+                        .texture("texture", "block/planks_mirkwood"),
+                models().withExistingParent("mirkwood_button_pressed", mcLoc("block/button_pressed"))
+                        .texture("texture", "block/planks_mirkwood"));
+        buttonBlock((ButtonBlock) TolkienBlocks.CULUMALDA_BUTTON.get(),
+                models().withExistingParent("culumalda_button", mcLoc("block/button"))
+                        .texture("texture", "block/planks_culumalda"),
+                models().withExistingParent("culumalda_button_pressed", mcLoc("block/button_pressed"))
+                        .texture("texture", "block/planks_culumalda"));
+        buttonBlock((ButtonBlock) TolkienBlocks.LEBETHRON_BUTTON.get(),
+                models().withExistingParent("lebethron_button", mcLoc("block/button"))
+                        .texture("texture", "block/planks_lebethron"),
+                models().withExistingParent("lebethron_button_pressed", mcLoc("block/button_pressed"))
+                        .texture("texture", "block/planks_lebethron"));
+        buttonBlock((ButtonBlock) TolkienBlocks.DEADWOOD_BUTTON.get(),
+                models().withExistingParent("deadwood_button", mcLoc("block/button"))
+                        .texture("texture", "block/planks_deadwood"),
+                models().withExistingParent("deadwood_button_pressed", mcLoc("block/button_pressed"))
+                        .texture("texture", "block/planks_deadwood"));
+        buttonBlock((ButtonBlock) TolkienBlocks.FANGORNOAK_BUTTON.get(),
+                models().withExistingParent("fangornoak_button", mcLoc("block/button"))
+                        .texture("texture", "block/planks_fangornoak"),
+                models().withExistingParent("fangornoak_button_pressed", mcLoc("block/button_pressed"))
+                        .texture("texture", "block/planks_fangornoak"));
 
         // Plants & Flowers
         simpleBlock(TolkienBlocks.MUSHROOM_DECAY_BLOOM.get(), models().cross("mushroom_decay_bloom", modLoc("block/mushroom_decay_bloom")));
         simpleBlock(TolkienBlocks.MUSHROOM_BLOOM_DECAY.get(), models().cross("mushroom_bloom_decay", modLoc("block/mushroom_bloom_decay")));
-        simpleBlock(TolkienBlocks.BLOCK_BLOOM_DECAY.get(), models().getExistingFile(modLoc("block/block_bloom_decay")));
-        simpleBlock(TolkienBlocks.BLOCK_DECAY_BLOOM.get(), models().getExistingFile(modLoc("block/block_decay_bloom")));
         simpleBlock(TolkienBlocks.FLOWER_SIMBELMYNE.get(), models().cross("flower_simbelmyne", modLoc("block/flower_simbelmyne")));
         simpleBlock(TolkienBlocks.FLOWER_MIRKWOOD.get(), models().cross("flower_mirkwood", modLoc("block/flower_mirkwood")));
         simpleBlock(TolkienBlocks.FLOWER_ALFIRIN.get(), models().cross("flower_alfirin", modLoc("block/flower_alfirin")));
@@ -179,7 +243,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TolkienBlocks.FLOWER_NIPHREDIL.get(), models().cross("flower_niphredil", modLoc("block/flower_niphredil")));
         simpleBlock(TolkienBlocks.FLOWER_SWAMPMILKWEED.get(), models().cross("flower_swamp_milkweed", modLoc("block/flower_swamp_milkweed")));
         simpleBlock(TolkienBlocks.FLOWER_LILLYOFTHEVALLEY.get(), models().cross("flower_valley_lilly", modLoc("block/flower_valley_lilly")));
-
+        cropsBlock(TolkienBlocks.PIPEWEED.get(), CropsBlock.AGE, "pipeweed_stage");
         // Custom
         simpleBlock(TolkienBlocks.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
         simpleBlock(TolkienBlocks.STONE_PATH.get(), models().getExistingFile(modLoc("block/block_stone_path")));
@@ -193,6 +257,19 @@ public class BlockStateGenerator extends BlockStateProvider {
         horizontalBlock(TolkienBlocks.LOCKABLE_DOUBLE_CHEST_BLOCK.get(), models().getExistingFile(modLoc("block/lockable_double_chest_block")), 180);
         horizontalBlock(TolkienBlocks.LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK.get(), models().getExistingFile(modLoc("block/lockable_double_treasure_chest_block")), 180);
         horizontalBlock(TolkienBlocks.BACKPACK.get(), models().getExistingFile(modLoc("block/container_backpack")), 0);
+
+        signBlock(TolkienBlocks.MALLORN_SIGN.get(), TolkienMobs.MODID + ":block/planks_mallorn");
+        signBlock(TolkienBlocks.MALLORN_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_mallorn");
+        signBlock(TolkienBlocks.MIRKWOOD_SIGN.get(), TolkienMobs.MODID + ":block/planks_mirkwood");
+        signBlock(TolkienBlocks.MIRKWOOD_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_mirkwood");
+        signBlock(TolkienBlocks.CULUMALDA_SIGN.get(), TolkienMobs.MODID + ":block/planks_culumalda");
+        signBlock(TolkienBlocks.CULUMALDA_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_culumalda");
+        signBlock(TolkienBlocks.LEBETHRON_SIGN.get(), TolkienMobs.MODID + ":block/planks_lebethron");
+        signBlock(TolkienBlocks.LEBETHRON_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_lebethron");
+        signBlock(TolkienBlocks.DEADWOOD_SIGN.get(), TolkienMobs.MODID + ":block/planks_deadwood");
+        signBlock(TolkienBlocks.DEADWOOD_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_deadwood");
+        signBlock(TolkienBlocks.FANGORNOAK_SIGN.get(), TolkienMobs.MODID + ":block/planks_fangornoak");
+        signBlock(TolkienBlocks.FANGORNOAK_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_fangornoak");
 
         ModelFile barrelMithril = models().cubeBottomTop("barrel_mithril", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top"));
         ModelFile barrelMithrilOpen = models().cubeBottomTop("barrel_mithril_open", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top_open"));
@@ -217,19 +294,6 @@ public class BlockStateGenerator extends BlockStateProvider {
         ModelFile mileActive = models().getExistingFile(modLoc("block/milestone_block_active"));
         ModelFile mileInactive = models().getExistingFile(modLoc("block/milestone_block"));
         horizontalBlock(TolkienBlocks.MILESTONE_BLOCK.get(), e -> e.getValue(MilestoneBlock.LIT) ? mileActive : mileInactive, 180);
-
-        signBlock(TolkienBlocks.MALLORN_SIGN.get(), TolkienMobs.MODID + ":block/planks_mallorn");
-        signBlock(TolkienBlocks.MALLORN_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_mallorn");
-        signBlock(TolkienBlocks.MIRKWOOD_SIGN.get(), TolkienMobs.MODID + ":block/planks_mirkwood");
-        signBlock(TolkienBlocks.MIRKWOOD_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_mirkwood");
-        signBlock(TolkienBlocks.CULUMALDA_SIGN.get(), TolkienMobs.MODID + ":block/planks_culumalda");
-        signBlock(TolkienBlocks.CULUMALDA_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_culumalda");
-        signBlock(TolkienBlocks.LEBETHRON_SIGN.get(), TolkienMobs.MODID + ":block/planks_lebethron");
-        signBlock(TolkienBlocks.LEBETHRON_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_lebethron");
-        signBlock(TolkienBlocks.DEADWOOD_SIGN.get(), TolkienMobs.MODID + ":block/planks_deadwood");
-        signBlock(TolkienBlocks.DEADWOOD_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_deadwood");
-        signBlock(TolkienBlocks.FANGORNOAK_SIGN.get(), TolkienMobs.MODID + ":block/planks_fangornoak");
-        signBlock(TolkienBlocks.FANGORNOAK_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_fangornoak");
 
         sleepingBagModels();
 
@@ -259,6 +323,33 @@ public class BlockStateGenerator extends BlockStateProvider {
         }
     }
 
+    public void sleepingBagModels() {
+        new ConfiguredModel(models().withExistingParent("block/sleeping_bag_head", mcLoc("block/thin_block"))
+                .element()
+                .from(0, 0, 0).to(16, 2, 16)
+                .face(Direction.EAST).uvs(12, 1.5f, 16, 2).texture("#sleeping_bag").cullface(Direction.EAST).end()
+                .face(Direction.SOUTH).uvs(10, 0.5f, 14, 1).texture("#sleeping_bag").cullface(Direction.SOUTH).end()
+                .face(Direction.WEST).uvs(12, 1, 16, 1.5f).texture("#sleeping_bag").cullface(Direction.WEST).end()
+                .face(Direction.UP).uvs(0, 0, 4, 4).texture("#sleeping_bag").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
+                .face(Direction.DOWN).uvs(4, 0, 8, 4).texture("#sleeping_bag").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
+                .end());
+        new ConfiguredModel(models().withExistingParent("block/sleeping_bag_foot", mcLoc("block/thin_block"))
+                .element()
+                .from(0, 0, 0).to(16, 2, 16)
+                .face(Direction.EAST).uvs(8, 1, 12, 1.5f).texture("#sleeping_bag").cullface(Direction.EAST).end()
+                .face(Direction.NORTH).uvs(10, 0.5f, 14, 1).texture("#sleeping_bag").cullface(Direction.NORTH).end()
+                .face(Direction.WEST).uvs(8, 1.5f, 12, 2).texture("#sleeping_bag").cullface(Direction.WEST).end()
+                .face(Direction.UP).uvs(0, 4, 4, 8).texture("#sleeping_bag").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
+                .face(Direction.DOWN).uvs(4, 4, 8, 8).texture("#sleeping_bag").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
+                .end());
+
+        for (String color : sleepingBagTypes) {
+//            sleepingBag(color, modLoc("block/sleeping_bag_" + color + "_head"), modLoc("block/sleeping_bag_" + color + "_foot"));
+            new ConfiguredModel(models().withExistingParent("block/sleeping_bag_" + color + "_head", modLoc("block/sleeping_bag_head")).texture("sleeping_bag", modLoc("block/sleepingbag/sleeping_bag_" + color)).texture("particle", modLoc("block/sleepingbag/sleeping_bag_" + color)));
+            new ConfiguredModel(models().withExistingParent("block/sleeping_bag_" + color + "_foot", modLoc("block/sleeping_bag_foot")).texture("sleeping_bag", modLoc("block/sleepingbag/sleeping_bag_" + color)).texture("particle", modLoc("block/sleepingbag/sleeping_bag_" + color)));
+        }
+    }
+
     public void sleepingBag(String color, ResourceLocation head, ResourceLocation foot) {
         ModelFile headModel = models().getExistingFile(head);
         ModelFile footModel = models().getExistingFile(foot);
@@ -271,35 +362,23 @@ public class BlockStateGenerator extends BlockStateProvider {
         });
     }
 
-    public void sleepingBagModels() {
-        new ConfiguredModel(models().withExistingParent("block/sleeping_bag_foot", mcLoc("block/thin_block"))
-                .element()
-                .from(0, 0, 0).to(16, 2, 16)
-                .face(Direction.EAST).uvs(8, 1, 12, 1.5f).texture("#sleeping_bag").cullface(Direction.EAST).end()
-                .face(Direction.NORTH).uvs(10, 0.5f, 14, 1).texture("#sleeping_bag").cullface(Direction.NORTH).end()
-                .face(Direction.WEST).uvs(8, 1.5f, 12, 2).texture("#sleeping_bag").cullface(Direction.WEST).end()
-                .face(Direction.UP).uvs(0, 4, 4, 8).texture("#sleeping_bag").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
-                .face(Direction.DOWN).uvs(4, 4, 8, 8).texture("#sleeping_bag").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
-                .end());
-
-        new ConfiguredModel(models().withExistingParent("block/sleeping_bag_head", mcLoc("block/thin_block"))
-                .element()
-                .from(0, 0, 0).to(16, 2, 16)
-                .face(Direction.EAST).uvs(12, 1.5f, 16, 2).texture("#sleeping_bag").cullface(Direction.EAST).end()
-                .face(Direction.SOUTH).uvs(10, 0.5f, 14, 1).texture("#sleeping_bag").cullface(Direction.SOUTH).end()
-                .face(Direction.WEST).uvs(12, 1, 16, 1.5f).texture("#sleeping_bag").cullface(Direction.WEST).end()
-                .face(Direction.UP).uvs(0, 0, 4, 4).texture("#sleeping_bag").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
-                .face(Direction.DOWN).uvs(4, 0, 8, 4).texture("#sleeping_bag").rotation(ModelBuilder.FaceRotation.UPSIDE_DOWN).end()
-                .end());
-
-        List<String> sleepingBags = Arrays.asList("black", "blue", "brown", "cyan", "gray", "green", "light_blue", "light_gray", "lime", "magenta", "orange", "pink", "purple", "red", "white", "yellow");
-        for (String color : sleepingBags) {
-            sleepingBag(color, modLoc("block/sleeping_bag_" + color + "_head"), modLoc("block/sleeping_bag_" + color + "_foot"));
-            new ConfiguredModel(models().withExistingParent("block/sleeping_bag_" + color + "_head", modLoc("block/sleeping_bag_head")).texture("sleeping_bag", modLoc("block/sleepingbag/sleeping_bag_" + color)).texture("particle", modLoc("block/sleepingbag/sleeping_bag_" + color)));
-            new ConfiguredModel(models().withExistingParent("block/sleeping_bag_" + color + "_foot", modLoc("block/sleeping_bag_foot")).texture("sleeping_bag", modLoc("block/sleepingbag/sleeping_bag_" + color)).texture("particle", modLoc("block/sleepingbag/sleeping_bag_" + color)));
-        }
+    private String name(Block block) {
+        return block.getRegistryName().getPath();
     }
 
+    public void pressurePlateBlock(Block block, ModelFile normal,  ModelFile powered) {
+        getVariantBuilder(block)
+                .partialState().with(PressurePlateBlock.POWERED, Boolean.FALSE).addModels(new ConfiguredModel(normal))
+                .partialState().with(PressurePlateBlock.POWERED, Boolean.TRUE).addModels(new ConfiguredModel(powered));
+    }
+
+    public void weightedPressurePlateBlock(Block block, ModelFile normal,  ModelFile powered) {
+        getVariantBuilder(block)
+                .partialState().with(WeightedPressurePlateBlock.POWER, 0).addModels(new ConfiguredModel(normal));
+        for (int i = 1; i <= 15; i++) {
+            getVariantBuilder(block)
+                    .partialState().with(WeightedPressurePlateBlock.POWER, i).setModels(new ConfiguredModel(powered));
+        }    }
 
     private void signBlock(Block block, String particleTexture) {
         ModelFile model = models()
@@ -344,18 +423,51 @@ public class BlockStateGenerator extends BlockStateProvider {
                 });
     }
 
-    private void cropsBlock(Block block, String name, int age) {
-        String path = block.getRegistryName().getPath();
-        //Integer cropAge = BlockTTMCrops.AGE;
+    public void buttonBlock(Block block, ModelFile normal, ModelFile powered) {
+        buttonBlock(block, normal, powered, 180);
+    }
 
-        for (int i = 0; i < age; i++) {
-            ResourceLocation resource = new ResourceLocation(block.getRegistryName().getNamespace(), "block/" + name + "_stage" + i);
-            ModelFile model = models().crop(path + "_stage" + i, resource);
-            simpleBlock(block, models().withExistingParent(path, mcLoc("block/crop")).texture("plant", resource));
-//            getVariantBuilder(block)
-//                .partialState().with(cropAge, i)
-//                .modelForState().modelFile(path + "_stage" +  i).addModel();
-        }
+    public void buttonBlock(Block block, ModelFile normal, ModelFile powered, int angleOffset) {
+        buttonBlock(block, $ -> normal, $ -> powered, angleOffset);
+    }
+
+    public void buttonBlock(Block block, Function<BlockState, ModelFile> normal, Function<BlockState, ModelFile> pressed) {
+        buttonBlock(block, normal, pressed, 180);
+    }
+
+    public void buttonBlock(Block block, Function<BlockState, ModelFile> normal,  Function<BlockState, ModelFile> pressed, int angleOffset) {
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                    Boolean powered = state.getValue(BlockStateProperties.POWERED);
+                    if (powered) {
+                        return ConfiguredModel.builder()
+                                .modelFile(pressed.apply(state))
+                                .rotationX(state.getValue(BlockStateProperties.ATTACH_FACE).ordinal() * 90)
+                                .rotationY((((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + angleOffset) + (state.getValue(BlockStateProperties.ATTACH_FACE) == AttachFace.CEILING ? 180 : 0)) % 360)
+                                .build();
+                    } else {
+                        return ConfiguredModel.builder()
+                                .modelFile(normal.apply(state))
+                                .rotationX(state.getValue(BlockStateProperties.ATTACH_FACE).ordinal() * 90)
+                                .rotationY((((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + angleOffset) + (state.getValue(BlockStateProperties.ATTACH_FACE) == AttachFace.CEILING ? 180 : 0)) % 360)
+                                .build();
+                    }
+                });
+    }
+
+    private void cropsBlock(Block block, IntegerProperty ageProp, String name) {
+        getVariantBuilder(block).forAllStates(state -> {
+            int age = state.getValue(ageProp);
+            if (age == 0 || age == 1) {
+                return ConfiguredModel.builder().modelFile(models().withExistingParent(name+0, mcLoc("block/crop")).texture("crop", "block/"+name+0)).build();
+            } else if (age == 2 || age == 3) {
+                return ConfiguredModel.builder().modelFile(models().withExistingParent(name+1, mcLoc("block/crop")).texture("crop", "block/"+name+1)).build();
+            } else if (age == 4 || age == 5 || age == 6) {
+                return ConfiguredModel.builder().modelFile(models().withExistingParent(name+2, mcLoc("block/crop")).texture("crop", "block/"+name+2)).build();
+            } else {
+                return ConfiguredModel.builder().modelFile(models().withExistingParent(name+3, mcLoc("block/crop")).texture("crop", "block/"+name+3)).build();
+            }
+        });
 
     }
 
