@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:tools_axe_morguliron"
+    ]
+  },
+  "criteria": {
+    "has_ingot_morguliron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:ingot_morguliron"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:tools_axe_morguliron"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ingot_morguliron",
+      "has_the_recipe"
+    ]
+  ]
+}

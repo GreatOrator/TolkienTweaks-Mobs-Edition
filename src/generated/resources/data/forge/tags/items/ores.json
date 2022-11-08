@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:ores/mithril",
+    "#forge:ores/morguliron",
+    "#forge:ores/ammolite"
+  ]
+}

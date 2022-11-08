@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    " -",
+    " -"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:ingot_mithril"
+    },
+    "-": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:hoe_mithril"
+  }
+}

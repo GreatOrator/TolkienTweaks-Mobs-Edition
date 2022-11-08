@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MZM",
+    "A A",
+    "MZM"
+  ],
+  "key": {
+    "A": {
+      "item": "tolkienmobs:ingot_morguliron"
+    },
+    "M": {
+      "item": "tolkienmobs:planks_mirkwood"
+    },
+    "Z": {
+      "item": "tolkienmobs:slab_mirkwood"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:block_barrel_morguliron"
+  }
+}

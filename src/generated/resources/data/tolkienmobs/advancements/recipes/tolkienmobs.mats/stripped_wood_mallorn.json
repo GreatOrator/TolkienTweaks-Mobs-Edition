@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:stripped_wood_mallorn"
+    ]
+  },
+  "criteria": {
+    "has_stripped_log_mallorn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:stripped_log_mallorn"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:stripped_wood_mallorn"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stripped_log_mallorn",
+      "has_the_recipe"
+    ]
+  ]
+}

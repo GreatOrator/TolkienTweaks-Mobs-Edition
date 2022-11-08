@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "tolkienmobs:block/slab_deadwood_top"
+    },
+    "type=bottom": {
+      "model": "tolkienmobs:block/slab_deadwood"
+    },
+    "type=double": {
+      "model": "tolkienmobs:block/planks_deadwood"
+    }
+  }
+}

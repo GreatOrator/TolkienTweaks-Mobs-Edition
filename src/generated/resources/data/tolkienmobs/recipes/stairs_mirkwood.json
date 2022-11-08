@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:planks_mirkwood"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:stairs_mirkwood",
+    "count": 4
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "active=false,facing=north,powered=false,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone"
+    },
+    "active=true,facing=north,powered=false,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone_active"
+    },
+    "active=false,facing=south,powered=false,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone",
+      "y": 180
+    },
+    "active=true,facing=south,powered=false,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone_active",
+      "y": 180
+    },
+    "active=false,facing=west,powered=false,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone",
+      "y": 270
+    },
+    "active=true,facing=west,powered=false,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone_active",
+      "y": 270
+    },
+    "active=false,facing=east,powered=false,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone",
+      "y": 90
+    },
+    "active=true,facing=east,powered=false,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone_active",
+      "y": 90
+    },
+    "active=false,facing=north,powered=true,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone"
+    },
+    "active=true,facing=north,powered=true,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone_active"
+    },
+    "active=false,facing=south,powered=true,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone",
+      "y": 180
+    },
+    "active=true,facing=south,powered=true,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone_active",
+      "y": 180
+    },
+    "active=false,facing=west,powered=true,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone",
+      "y": 270
+    },
+    "active=true,facing=west,powered=true,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone_active",
+      "y": 270
+    },
+    "active=false,facing=east,powered=true,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone",
+      "y": 90
+    },
+    "active=true,facing=east,powered=true,waterlogged=false": {
+      "model": "tolkienmobs:block/block_key_stone_active",
+      "y": 90
+    },
+    "active=false,facing=north,powered=false,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone"
+    },
+    "active=true,facing=north,powered=false,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone_active"
+    },
+    "active=false,facing=south,powered=false,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone",
+      "y": 180
+    },
+    "active=true,facing=south,powered=false,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone_active",
+      "y": 180
+    },
+    "active=false,facing=west,powered=false,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone",
+      "y": 270
+    },
+    "active=true,facing=west,powered=false,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone_active",
+      "y": 270
+    },
+    "active=false,facing=east,powered=false,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone",
+      "y": 90
+    },
+    "active=true,facing=east,powered=false,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone_active",
+      "y": 90
+    },
+    "active=false,facing=north,powered=true,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone"
+    },
+    "active=true,facing=north,powered=true,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone_active"
+    },
+    "active=false,facing=south,powered=true,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone",
+      "y": 180
+    },
+    "active=true,facing=south,powered=true,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone_active",
+      "y": 180
+    },
+    "active=false,facing=west,powered=true,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone",
+      "y": 270
+    },
+    "active=true,facing=west,powered=true,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone_active",
+      "y": 270
+    },
+    "active=false,facing=east,powered=true,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone",
+      "y": 90
+    },
+    "active=true,facing=east,powered=true,waterlogged=true": {
+      "model": "tolkienmobs:block/block_key_stone_active",
+      "y": 90
+    }
+  }
+}

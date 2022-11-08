@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "side": "tolkienmobs:block/stripped_log_deadwood",
+    "end": "tolkienmobs:block/stripped_log_deadwood_top"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tolkienmobs:log_fangornoak"
+    }
+  ],
+  "result": {
+    "item": "tolkienmobs:planks_fangornoak",
+    "count": 4
+  }
+}

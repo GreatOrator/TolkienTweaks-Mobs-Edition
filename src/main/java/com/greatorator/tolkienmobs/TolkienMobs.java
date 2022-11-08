@@ -34,20 +34,19 @@ public class TolkienMobs {
     public static CommonProxy proxy;
 
     /*TODO List
-    1. Entities
-	    a. Remaining Entities
-	        1. Fell Beast - Needs AI adjustments
-			2. Gwaihir - Needs AI adjustments
-			3. Great Eagle - Needs AI adjustments
-	2. Classes
+	1. Classes
 	    a. TrinketRecipeBuilder (Builder to control building of trinket recipes)
 	    b. TrinketRecipe (Recipes for trinkets to add potions)
 	    c. TolkienLootFunctions (Registration of loot functions created)
-	    d. PotionRandomlyFunction (Ability to randomly select potion effect on trinkets in loot tables)
-	    e. BackpackItem (Allow to open GUI instead of only using block form)
-	3. Categories
-	    a. Entities
-	    b. World Generation
+	    d. BackpackItem (Allow to open GUI instead of only using block form)
+	    e. FireplaceRecipeBuilder (DataGen errors when processing recipes)
+	    f. EntityLootGenerator (Attempting to process loot for other mods in workspace)
+	2. Categories
+	    a. Entities (Implementation)
+	    	1. Fell Beast - Needs AI adjustments
+			2. Gwaihir - Needs AI adjustments
+			3. Great Eagle - Needs AI adjustments
+        b. World Generation (Implementation)
     */
 
     public TolkienMobs() {

@@ -32,7 +32,6 @@ public class BlockStateGenerator extends BlockStateProvider {
     private static final Logger LOGGER = LogManager.getLogger();
     private final BiConsumer<ResourceLocation, Supplier<JsonElement>> modelOutput = null;
     List<String> sleepingBagTypes = Arrays.asList("black", "blue", "brown", "cyan", "gray", "green", "light_blue", "light_gray", "lime", "magenta", "orange", "pink", "purple", "red", "white", "yellow");
-    List<String> keyTypes = Arrays.asList("bronze", "silver", "gold", "mithril", "master");
     List<String> woodTypes = Arrays.asList("mallorn", "mirkwood", "culumalda", "lebethron", "deadwood", "fangornoak");
     List<String> metalTypes = Arrays.asList("mithril", "morguliron");
 

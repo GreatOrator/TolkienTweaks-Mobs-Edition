@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:dye_green_dye"
+    ]
+  },
+  "criteria": {
+    "has_flower_athelas": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:flower_athelas"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:dye_green_dye"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_flower_athelas",
+      "has_the_recipe"
+    ]
+  ]
+}

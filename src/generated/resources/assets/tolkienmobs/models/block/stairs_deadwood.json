@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "side": "tolkienmobs:block/planks_deadwood",
+    "bottom": "tolkienmobs:block/planks_deadwood",
+    "top": "tolkienmobs:block/planks_deadwood"
+  }
+}

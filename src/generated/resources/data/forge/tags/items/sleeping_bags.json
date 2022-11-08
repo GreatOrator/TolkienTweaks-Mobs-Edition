@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:sleeping_bag_red",
+    "tolkienmobs:sleeping_bag_blue",
+    "tolkienmobs:sleeping_bag_black",
+    "tolkienmobs:sleeping_bag_brown",
+    "tolkienmobs:sleeping_bag_cyan",
+    "tolkienmobs:sleeping_bag_gray",
+    "tolkienmobs:sleeping_bag_green",
+    "tolkienmobs:sleeping_bag_light_blue",
+    "tolkienmobs:sleeping_bag_light_gray",
+    "tolkienmobs:sleeping_bag_lime",
+    "tolkienmobs:sleeping_bag_magenta",
+    "tolkienmobs:sleeping_bag_orange",
+    "tolkienmobs:sleeping_bag_pink",
+    "tolkienmobs:sleeping_bag_purple",
+    "tolkienmobs:sleeping_bag_white",
+    "tolkienmobs:sleeping_bag_yellow"
+  ]
+}

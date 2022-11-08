@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:block_piggybank"
+    ]
+  },
+  "criteria": {
+    "has_goldcoin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:item_coin_gold"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:block_piggybank"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_goldcoin",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "MAM",
+    "MMM"
+  ],
+  "key": {
+    "A": {
+      "item": "tolkienmobs:gem_ammolite"
+    },
+    "M": {
+      "item": "minecraft:grass_block"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:block_hallowed",
+    "count": 8
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:planks_deadwood"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:door_deadwood",
+    "count": 3
+  }
+}

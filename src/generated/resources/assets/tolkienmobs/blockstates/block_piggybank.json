@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,full=false": {
+      "model": "tolkienmobs:block/block_piggybank"
+    },
+    "facing=south,full=false": {
+      "model": "tolkienmobs:block/block_piggybank",
+      "y": 180
+    },
+    "facing=west,full=false": {
+      "model": "tolkienmobs:block/block_piggybank",
+      "y": 270
+    },
+    "facing=east,full=false": {
+      "model": "tolkienmobs:block/block_piggybank",
+      "y": 90
+    },
+    "facing=north,full=true": {
+      "model": "tolkienmobs:block/block_piggybank_full"
+    },
+    "facing=south,full=true": {
+      "model": "tolkienmobs:block/block_piggybank_full",
+      "y": 180
+    },
+    "facing=west,full=true": {
+      "model": "tolkienmobs:block/block_piggybank_full",
+      "y": 270
+    },
+    "facing=east,full=true": {
+      "model": "tolkienmobs:block/block_piggybank_full",
+      "y": 90
+    }
+  }
+}

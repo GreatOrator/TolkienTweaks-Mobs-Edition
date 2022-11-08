@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:drink_miruvor",
+    "tolkienmobs:drink_grog",
+    "tolkienmobs:drink_ent_draught",
+    "tolkienmobs:drink_personal_blacksmith",
+    "tolkienmobs:drink_elf_blessing",
+    "tolkienmobs:drink_elf_vitality",
+    "tolkienmobs:drink_eru_blessing"
+  ]
+}

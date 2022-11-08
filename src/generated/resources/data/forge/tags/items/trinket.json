@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:trinket_amulet",
+    "tolkienmobs:trinket_belt",
+    "tolkienmobs:trinket_charm",
+    "tolkienmobs:trinket_cloak",
+    "tolkienmobs:trinket_glove",
+    "tolkienmobs:trinket_hat",
+    "tolkienmobs:trinket_ring"
+  ]
+}

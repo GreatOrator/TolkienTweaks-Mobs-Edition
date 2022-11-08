@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:fence_mallorn",
+    "tolkienmobs:fence_mirkwood",
+    "tolkienmobs:fence_gate_culumalda",
+    "tolkienmobs:fence_lebethron"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "tolkienmobs:block/barrel_morguliron_side",
+    "bottom": "tolkienmobs:block/barrel_morguliron_bottom",
+    "top": "tolkienmobs:block/barrel_morguliron_top_open"
+  }
+}

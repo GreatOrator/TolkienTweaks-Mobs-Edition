@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:leafpile_culumalda"
+    ]
+  },
+  "criteria": {
+    "has_leaves_culumalda": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:leaves_culumalda"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:leafpile_culumalda"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_leaves_culumalda",
+      "has_the_recipe"
+    ]
+  ]
+}

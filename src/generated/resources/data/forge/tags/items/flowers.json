@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:flower_alfirin",
+    "tolkienmobs:flower_athelas",
+    "tolkienmobs:flower_mirkwood",
+    "tolkienmobs:flower_niphredil",
+    "tolkienmobs:flower_simbelmyne",
+    "tolkienmobs:flower_valley_lilly",
+    "tolkienmobs:flower_swamp_milkweed"
+  ]
+}

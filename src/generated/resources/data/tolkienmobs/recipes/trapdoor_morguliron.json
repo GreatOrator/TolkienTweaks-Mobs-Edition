@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:ingot_morguliron"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:trapdoor_morguliron",
+    "count": 4
+  }
+}

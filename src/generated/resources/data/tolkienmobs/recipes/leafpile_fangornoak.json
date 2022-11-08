@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:leaves_fangornoak"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:leafpile_fangornoak",
+    "count": 3
+  }
+}

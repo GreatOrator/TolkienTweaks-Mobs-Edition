@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:storage_ingot_morguliron"
+    ]
+  },
+  "criteria": {
+    "has_nugget_morguliron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:nugget_morguliron"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:storage_ingot_morguliron"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_nugget_morguliron",
+      "has_the_recipe"
+    ]
+  ]
+}

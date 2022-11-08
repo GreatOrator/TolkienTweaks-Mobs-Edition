@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "tolkienmobs:block/slab_mirkwood_top"
+    },
+    "type=bottom": {
+      "model": "tolkienmobs:block/slab_mirkwood"
+    },
+    "type=double": {
+      "model": "tolkienmobs:block/planks_mirkwood"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "tolkienmobs:block/slab_fangornoak_top"
+    },
+    "type=bottom": {
+      "model": "tolkienmobs:block/slab_fangornoak"
+    },
+    "type=double": {
+      "model": "tolkienmobs:block/planks_fangornoak"
+    }
+  }
+}

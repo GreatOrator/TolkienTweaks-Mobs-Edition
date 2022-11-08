@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "tolkienmobs:block/log_fangornoak",
+    "end": "tolkienmobs:block/log_fangornoak_top"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:stairs_mallorn",
+    "tolkienmobs:stairs_mirkwood",
+    "tolkienmobs:stairs_lebethron",
+    "tolkienmobs:stairs_culumalda"
+  ]
+}

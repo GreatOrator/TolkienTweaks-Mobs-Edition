@@ -25,13 +25,14 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by brandon3055 on 13/10/2021
  */
 public class TrinketItem extends Item {
+    private static int trinket_effect = 0;
+    private static final Random random_effect = new Random();
 
     public TrinketItem(Properties properties) {
         super(properties);
@@ -51,6 +52,17 @@ public class TrinketItem extends Item {
     public ItemStack getTrinketForEffect(MobEffect effect) {
         ItemStack stack = new ItemStack(this);
         PotionUtils.setCustomEffects(stack, Collections.singleton(new MobEffectInstance(effect, 60*20, 0, false, false)));
+        return stack;
+    }
+
+    public static ItemStack getRandomTrinketEffect(ItemStack stack) {
+        if (stack.getItem() instanceof TrinketItem) {
+            List<MobEffect> values = new ArrayList<MobEffect>(Arrays.asList(TolkienConfig.potionArray));
+            trinket_effect = (trinket_effect + random_effect.nextInt(values.size() - 1) + 1) % values.size();
+            if (trinket_effect >= 0) {
+                PotionUtils.setCustomEffects(stack, Collections.singleton(new MobEffectInstance(values.get(trinket_effect), 60 * 20, 0, false, false)));
+            }
+        }
         return stack;
     }
 

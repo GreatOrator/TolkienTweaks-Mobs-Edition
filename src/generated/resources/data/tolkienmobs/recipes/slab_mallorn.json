@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:planks_mallorn"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:slab_mallorn",
+    "count": 6
+  }
+}

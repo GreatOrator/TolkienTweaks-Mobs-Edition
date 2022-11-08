@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "tolkienmobs:item/trinket_hat",
+    "layer1": "tolkienmobs:item/trinket_hat_gem"
+  }
+}

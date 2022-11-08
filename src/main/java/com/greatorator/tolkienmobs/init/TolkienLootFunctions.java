@@ -1,10 +1,16 @@
 package com.greatorator.tolkienmobs.init;
 
-//
-//public class TolkienLootFunctions {
-//    public static final LootItemFunctionType POTION_RANDOMLY = new LootItemFunctionType(new PotionRandomlyFunction.Serializer());
-//
-//    public static void registerLootFunction(IEventBus event) {
-//        Registry.register(Registry.LOOT_FUNCTION_TYPE, new ResourceLocation(MODID, "potion_function"), POTION_RANDOMLY);
-//    }
-//}
+
+import com.greatorator.tolkienmobs.handler.functions.TrinketRandomlyFunction;
+import net.minecraft.core.Registry;
+import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+
+public class TolkienLootFunctions {
+    public static final DeferredRegister<LootItemFunctionType> LOOT_FUNCTIONS = DeferredRegister.create(Registry.LOOT_FUNCTION_REGISTRY, MODID);
+
+    public static final RegistryObject<LootItemFunctionType> TRINKET_RANDOMLY = LOOT_FUNCTIONS.register("random_trinket", () -> new LootItemFunctionType(new TrinketRandomlyFunction.Serializer()));
+}

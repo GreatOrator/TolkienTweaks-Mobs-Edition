@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tolkienmobs:planks_mallorn"
+    }
+  ],
+  "result": {
+    "item": "tolkienmobs:mallorn_button"
+  }
+}

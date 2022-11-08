@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "-"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:coal"
+    },
+    "-": {
+      "item": "tolkienmobs:planks_deadwood"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:torch_deadwood",
+    "count": 16
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:leafpile_mirkwood"
+    ]
+  },
+  "criteria": {
+    "has_leaves_mirkwood": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:leaves_mirkwood"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:leafpile_mirkwood"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_leaves_mirkwood",
+      "has_the_recipe"
+    ]
+  ]
+}

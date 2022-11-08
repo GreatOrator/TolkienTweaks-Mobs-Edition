@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top",
+  "textures": {
+    "bottom": "tolkienmobs:block/door_fangornoak_bottom",
+    "top": "tolkienmobs:block/door_fangornoak_top"
+  }
+}
