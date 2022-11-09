@@ -1,0 +1,16 @@
+{
+  "type": "tolkienmobs:fireplace",
+  "result": {
+    "item": "minecraft:enchanted_golden_apple"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:golden_apple"
+    },
+    {
+      "item": "minecraft:gold_block"
+    }
+  ],
+  "experience": 500.0,
+  "cookingtime": 200
+}

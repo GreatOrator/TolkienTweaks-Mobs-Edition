@@ -1,0 +1,13 @@
+{
+  "type": "tolkienmobs:fireplace",
+  "result": {
+    "item": "minecraft:cooked_beef"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:beef"
+    }
+  ],
+  "experience": 50.0,
+  "cookingtime": 100
+}

@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.init.TolkienBlocks;
 import com.greatorator.tolkienmobs.init.TolkienItems;
 import com.greatorator.tolkienmobs.init.TolkienPotions;
 import com.greatorator.tolkienmobs.recipe.FireplaceRecipeBuilder;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -477,19 +478,19 @@ public class RecipeGenerator extends RecipeProvider {
     }
 
     private static void fireplace(Consumer<FinishedRecipe> consumer) {
-//        fireplaceRecipe1(Items.COOKED_BEEF, 50, 100, Items.BEEF, consumer);
-//        fireplaceRecipe1(Items.COOKED_CHICKEN, 50, 100, Items.CHICKEN, consumer);
-//        fireplaceRecipe1(Items.COOKED_COD, 50, 100, Items.COD, consumer);
-//        fireplaceRecipe1(Items.DRIED_KELP, 50, 100, Items.KELP, consumer);
-//        fireplaceRecipe1(Items.COOKED_MUTTON, 50, 100, Items.MUTTON, consumer);
-//        fireplaceRecipe1(Items.COOKED_PORKCHOP, 50, 100, Items.PORKCHOP, consumer);
-//        fireplaceRecipe1(Items.BAKED_POTATO, 50, 100, Items.POTATO, consumer);
-//        fireplaceRecipe1(Items.COOKED_RABBIT, 50, 100, Items.RABBIT, consumer);
-//        fireplaceRecipe1(Items.COOKED_SALMON, 50, 100, Items.SALMON, consumer);
-//        fireplaceRecipe2(TolkienItems.LEMBAS.get(), 50, 100, TolkienItems.CRAM.get(), TolkienItems.FOOD_HONEY.get(), consumer);
-//        fireplaceRecipe2(Items.GOLDEN_APPLE, 100, 500, Items.APPLE, Items.GOLD_INGOT, consumer);
-//        fireplaceRecipe2(Items.ENCHANTED_GOLDEN_APPLE, 500, 200, Items.GOLDEN_APPLE, Items.GOLD_BLOCK, consumer);
-//        fireplaceRecipe3(TolkienItems.MONSTER_FLESH.get(), 50, 100, consumer, Items.COOKED_RABBIT, Items.COOKED_PORKCHOP, Items.COOKED_MUTTON, Items.COOKED_BEEF, Items.COOKED_SALMON, Items.COOKED_COD, Items.COOKED_CHICKEN, Items.ROTTEN_FLESH);
+        fireplaceNormal(Items.COOKED_BEEF, 50, 100, Items.BEEF, consumer);
+        fireplaceNormal(Items.COOKED_CHICKEN, 50, 100, Items.CHICKEN, consumer);
+        fireplaceNormal(Items.COOKED_COD, 50, 100, Items.COD, consumer);
+        fireplaceNormal(Items.DRIED_KELP, 50, 100, Items.KELP, consumer);
+        fireplaceNormal(Items.COOKED_MUTTON, 50, 100, Items.MUTTON, consumer);
+        fireplaceNormal(Items.COOKED_PORKCHOP, 50, 100, Items.PORKCHOP, consumer);
+        fireplaceNormal(Items.BAKED_POTATO, 50, 100, Items.POTATO, consumer);
+        fireplaceNormal(Items.COOKED_RABBIT, 50, 100, Items.RABBIT, consumer);
+        fireplaceNormal(Items.COOKED_SALMON, 50, 100, Items.SALMON, consumer);
+        fireplaceCustom(TolkienItems.LEMBAS.get(), 50, 100, TolkienItems.CRAM.get(), TolkienItems.FOOD_HONEY.get(), consumer);
+        fireplaceCustom(Items.GOLDEN_APPLE, 100, 500, Items.APPLE, Items.GOLD_INGOT, consumer);
+        fireplaceCustom(Items.ENCHANTED_GOLDEN_APPLE, 500, 200, Items.GOLDEN_APPLE, Items.GOLD_BLOCK, consumer);
+        fireplaceMultiple(TolkienItems.MONSTER_FLESH.get(), 50, 100, consumer, Items.COOKED_RABBIT, Items.COOKED_PORKCHOP, Items.COOKED_MUTTON, Items.COOKED_BEEF, Items.COOKED_SALMON, Items.COOKED_COD, Items.COOKED_CHICKEN, Items.ROTTEN_FLESH);
     }
 
     private static void trinket(Consumer<FinishedRecipe> consumer) {
@@ -530,23 +531,26 @@ public class RecipeGenerator extends RecipeProvider {
                 .save(consumer, "tolkienmobs:sleepingbag_" + output.asItem().getRegistryName().getPath());
     }
 
-    public static void fireplaceRecipe1(ItemLike output, int experience, int cookTime, ItemLike input1, Consumer<FinishedRecipe> consumer){
+    public static void fireplaceNormal(ItemLike output, int experience, int cookTime, ItemLike input1, Consumer<FinishedRecipe> consumer){
         FireplaceRecipeBuilder.fireplaceRecipe(output, experience, cookTime)
                 .ingredient(input1)
-                .build(consumer);
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(input1))
+                .save(consumer);
     }
 
-    public static void fireplaceRecipe2(ItemLike output, int experience, int cookTime, ItemLike input1, ItemLike input2, Consumer<FinishedRecipe> consumer){
+    public static void fireplaceCustom(ItemLike output, int experience, int cookTime, ItemLike input1, ItemLike input2, Consumer<FinishedRecipe> consumer){
         FireplaceRecipeBuilder.fireplaceRecipe(output, experience, cookTime)
                 .ingredient(input1)
                 .ingredient(input2)
-                .build(consumer);
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(input1))
+                .save(consumer);
     }
 
-    public static void fireplaceRecipe3(ItemLike output, int experience, int cookTime, Consumer<FinishedRecipe> consumer, ItemLike... input1){
+    public static void fireplaceMultiple(ItemLike output, int experience, int cookTime, Consumer<FinishedRecipe> consumer, ItemLike... input1){
         FireplaceRecipeBuilder.fireplaceRecipe(output, experience, cookTime)
                 .ingredient(input1)
-                .build(consumer);
+                .unlockedBy("has_" + TolkienItems.TTMFIREPLACE_ITEM.get().asItem().getRegistryName().getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(input1))
+                .save(consumer);
     }
 
     public static void chestRecipe(ItemLike output, ItemLike input1, ItemLike input2, Consumer<FinishedRecipe> consumer) {

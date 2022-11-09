@@ -37,10 +37,8 @@ public class TolkienMobs {
 	1. Classes
 	    a. TrinketRecipeBuilder (Builder to control building of trinket recipes)
 	    b. TrinketRecipe (Recipes for trinkets to add potions)
-	    c. TolkienLootFunctions (Registration of loot functions created)
-	    d. BackpackItem (Allow to open GUI instead of only using block form)
-	    e. FireplaceRecipeBuilder (DataGen errors when processing recipes)
-	    f. EntityLootGenerator (Attempting to process loot for other mods in workspace)
+	    c. BackpackItem (Allow to open GUI instead of only using block form)
+	    d. EntityLootGenerator (Attempting to process loot for other mods in workspace)
 	2. Categories
 	    a. Entities (Implementation)
 	    	1. Fell Beast - Needs AI adjustments

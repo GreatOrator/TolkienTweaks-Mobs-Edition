@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:food_lembas"
+    ]
+  },
+  "criteria": {
+    "has_food_cram": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:food_cram"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:food_lembas"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_food_cram",
+      "has_the_recipe"
+    ]
+  ]
+}
