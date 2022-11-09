@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:raw_mithril"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:raw_mithril_block"
+  }
+}

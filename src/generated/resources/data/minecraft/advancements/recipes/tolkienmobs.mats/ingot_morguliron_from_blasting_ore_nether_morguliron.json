@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:ingot_morguliron_from_blasting_ore_nether_morguliron"
+    ]
+  },
+  "criteria": {
+    "has_ore_nether_morguliron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:ore_nether_morguliron"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:ingot_morguliron_from_blasting_ore_nether_morguliron"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ore_nether_morguliron",
+      "has_the_recipe"
+    ]
+  ]
+}

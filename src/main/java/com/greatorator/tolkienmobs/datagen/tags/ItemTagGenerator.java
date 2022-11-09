@@ -24,6 +24,9 @@ public class ItemTagGenerator extends ItemTagsProvider {
 
     @Override
     protected void addTags() {
+        tag(RAW_MATERIALS_MITHRIL).add(TolkienItems.RAW_MITHRIL.get());
+        tag(RAW_MATERIALS_MORGULIRON).add(TolkienItems.RAW_MORGULIRON.get());
+        tag(Tags.Items.RAW_MATERIALS).addTags(RAW_MATERIALS_MITHRIL, RAW_MATERIALS_MORGULIRON);
         tag(DUSTS_MITHRIL).add(TolkienItems.DUST_MITHRIL.get());
         tag(DUSTS_MORGULIRON).add(TolkienItems.DUST_MORGULIRON.get());
         tag(Tags.Items.DUSTS).addTags(DUSTS_MITHRIL, DUSTS_MORGULIRON);
@@ -33,8 +36,8 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(INGOTS_MITHRIL).add(TolkienItems.INGOT_MITHRIL.get());
         tag(INGOTS_MORGULIRON).add(TolkienItems.INGOT_MORGULIRON.get());
         tag(Tags.Items.INGOTS).addTags(INGOTS_MITHRIL, INGOTS_MORGULIRON);
-        tag(STORAGE_BLOCKS_MITHRIL).add(TolkienItems.BLOCK_MITHRIL_ITEM.get());
-        tag(STORAGE_BLOCKS_MORGULIRON).add(TolkienItems.BLOCK_MORGULIRON_ITEM.get());
+        tag(STORAGE_BLOCKS_MITHRIL).add(TolkienItems.BLOCK_MITHRIL_ITEM.get(), TolkienItems.RAW_MITHRIL_BLOCK_ITEM.get());
+        tag(STORAGE_BLOCKS_MORGULIRON).add(TolkienItems.BLOCK_MORGULIRON_ITEM.get(), TolkienItems.RAW_MORGULIRON_BLOCK_ITEM.get());
         tag(Tags.Items.STORAGE_BLOCKS).addTags(STORAGE_BLOCKS_MITHRIL, STORAGE_BLOCKS_MORGULIRON);
         tag(ORES_MITHRIL).add(TolkienItems.ORE_MITHRIL_ITEM.get(), TolkienItems.ORE_END_MITHRIL_ITEM.get(), TolkienItems.ORE_NETHER_MITHRIL_ITEM.get());
         tag(ORES_MORGULIRON).add(TolkienItems.ORE_MORGULIRON_ITEM.get(), TolkienItems.ORE_END_MORGULIRON_ITEM.get(), TolkienItems.ORE_NETHER_MORGULIRON_ITEM.get());

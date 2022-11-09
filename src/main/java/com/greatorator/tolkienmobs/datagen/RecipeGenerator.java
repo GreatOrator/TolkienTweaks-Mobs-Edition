@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.datagen;
 
+import com.google.common.collect.ImmutableList;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
 import com.greatorator.tolkienmobs.init.TolkienItems;
 import com.greatorator.tolkienmobs.init.TolkienPotions;
@@ -27,6 +28,8 @@ import java.util.function.Consumer;
  * Created by brandon3055 on 1/12/20
  */
 public class RecipeGenerator extends RecipeProvider {
+    protected static final ImmutableList<ItemLike> MITHRIL_SMELTABLES = ImmutableList.of(TolkienItems.ORE_MITHRIL_ITEM.get(), TolkienItems.ORE_END_MITHRIL_ITEM.get(), TolkienItems.ORE_NETHER_MITHRIL_ITEM.get(), TolkienItems.RAW_MITHRIL.get());
+    protected static final ImmutableList<ItemLike> MORGULIRON_SMELTABLES = ImmutableList.of(TolkienItems.ORE_MORGULIRON_ITEM.get(), TolkienItems.ORE_END_MORGULIRON_ITEM.get(), TolkienItems.ORE_NETHER_MORGULIRON_ITEM.get(), TolkienItems.RAW_MORGULIRON.get());
 
     public RecipeGenerator(DataGenerator generatorIn) {
         super(generatorIn);
@@ -44,14 +47,19 @@ public class RecipeGenerator extends RecipeProvider {
     private static void components(Consumer<FinishedRecipe> consumer) {
 
         // Cooking & Smelting Recipes
-        smeltingRecipe(TolkienItems.DUST_MITHRIL.get(), TolkienItems.INGOT_MITHRIL.get(), 0.35F, 200, consumer);
-        smeltingRecipe(TolkienItems.DUST_MORGULIRON.get(), TolkienItems.INGOT_MORGULIRON.get(), 0.35F, 200, consumer);
+        smeltingRecipe(TolkienItems.RAW_MITHRIL.get(), TolkienItems.INGOT_MITHRIL.get(), 0.35F, 200, consumer);
+        smeltingRecipe(TolkienItems.RAW_MORGULIRON.get(), TolkienItems.INGOT_MORGULIRON.get(), 0.35F, 200, consumer);
+
+        oreBlasting(consumer, MITHRIL_SMELTABLES, TolkienItems.INGOT_MITHRIL.get(), 0.7F, 100, "mithril_ingot");
+        oreBlasting(consumer, MORGULIRON_SMELTABLES, TolkienItems.INGOT_MORGULIRON.get(), 0.7F, 100, "morguliron_ingot");
 
         //Common Recipes
         storageRecipe(TolkienBlocks.BLOCK_MITHRIL.get(), TolkienItems.INGOT_MITHRIL.get(), consumer);
         storageRecipe(TolkienItems.INGOT_MITHRIL.get(), TolkienItems.NUGGET_MITHRIL.get(), consumer);
+        storageRecipe(TolkienBlocks.RAW_MITHRIL_BLOCK.get(), TolkienItems.RAW_MITHRIL.get(), consumer);
         storageRecipe(TolkienBlocks.BLOCK_MORGULIRON.get(), TolkienItems.INGOT_MORGULIRON.get(), consumer);
         storageRecipe(TolkienItems.INGOT_MORGULIRON.get(), TolkienItems.NUGGET_MORGULIRON.get(), consumer);
+        storageRecipe(TolkienBlocks.RAW_MORGULIRON_BLOCK.get(), TolkienItems.RAW_MORGULIRON.get(), consumer);
 
         smallStorageRecipe(TolkienBlocks.BLOCK_AMMOLITE.get(), TolkienItems.GEM_AMMOLITE.get(), consumer);
 
@@ -221,7 +229,9 @@ public class RecipeGenerator extends RecipeProvider {
 
         // Shapeless Recipes
         unstorageRecipe(TolkienItems.INGOT_MITHRIL.get(), TolkienBlocks.BLOCK_MITHRIL.get(), consumer);
+        unstorageRecipe(TolkienItems.RAW_MITHRIL.get(), TolkienBlocks.RAW_MITHRIL_BLOCK.get(), consumer);
         unstorageRecipe(TolkienItems.INGOT_MORGULIRON.get(), TolkienBlocks.BLOCK_MORGULIRON.get(), consumer);
+        unstorageRecipe(TolkienItems.RAW_MORGULIRON.get(), TolkienBlocks.RAW_MORGULIRON_BLOCK.get(), consumer);
 
         // Bow Recipes
         bowRecipe(TolkienItems.ELVEN_BOW.get(), TolkienItems.GEM_AMMOLITE.get(), consumer);

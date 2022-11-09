@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.datagen;
 
 import com.google.gson.JsonElement;
-import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
 import net.minecraft.core.Direction;
@@ -10,12 +9,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.AttachFace;
-import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,19 +22,23 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+
 /**
  * Created by brandon3055 on 28/2/20.
  */
 public class BlockStateGenerator extends BlockStateProvider {
     private static final Logger LOGGER = LogManager.getLogger();
     private final BiConsumer<ResourceLocation, Supplier<JsonElement>> modelOutput = null;
+    private final ItemModelProvider provider;
     List<String> sleepingBagTypes = Arrays.asList("black", "blue", "brown", "cyan", "gray", "green", "light_blue", "light_gray", "lime", "magenta", "orange", "pink", "purple", "red", "white", "yellow");
     List<String> woodTypes = Arrays.asList("mallorn", "mirkwood", "culumalda", "lebethron", "deadwood", "fangornoak");
     List<String> metalTypes = Arrays.asList("mithril", "morguliron");
 
 
     public BlockStateGenerator(DataGenerator gen, ExistingFileHelper exFileHelper) {
-        super(gen, TolkienMobs.MODID, exFileHelper);
+        super(gen, MODID, exFileHelper);
+        this.provider = this.itemModels();
     }
 
     //So this is where blockStates are generated. This is also where you generate simple block models or implement more advanced custom models.
@@ -49,6 +50,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TolkienBlocks.ORE_END_MITHRIL.get());
         simpleBlock(TolkienBlocks.ORE_NETHER_MITHRIL.get());
         simpleBlock(TolkienBlocks.BLOCK_MITHRIL.get());
+        simpleBlock(TolkienBlocks.RAW_MITHRIL_BLOCK.get());
         paneBlock(TolkienBlocks.MITHRIL_BARS.get(), modLoc("block/mithril_bars"), modLoc("block/mithril_bars"));
         doorBlock(TolkienBlocks.DOOR_MITHRIL.get(), "door_mithril", modLoc("block/door_mithril_bottom"), modLoc("block/door_mithril_top"));
         trapdoorBlock(TolkienBlocks.TRAPDOOR_MITHRIL.get(), "mithril", modLoc("block/trapdoor_mithril"), true);
@@ -61,6 +63,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TolkienBlocks.ORE_END_MORGULIRON.get());
         simpleBlock(TolkienBlocks.ORE_NETHER_MORGULIRON.get());
         simpleBlock(TolkienBlocks.BLOCK_MORGULIRON.get());
+        simpleBlock(TolkienBlocks.RAW_MORGULIRON_BLOCK.get());
         paneBlock(TolkienBlocks.MORGULIRON_BARS.get(), modLoc("block/morguliron_bars"), modLoc("block/morguliron_bars"));
         doorBlock(TolkienBlocks.DOOR_MORGULIRON.get(), "door_morguliron", modLoc("block/door_morguliron_bottom"), modLoc("block/door_morguliron_top"));
         trapdoorBlock(TolkienBlocks.TRAPDOOR_MORGULIRON.get(), "morguliron", modLoc("block/trapdoor_morguliron"), true);
@@ -206,31 +209,37 @@ public class BlockStateGenerator extends BlockStateProvider {
                         .texture("texture", "block/planks_mallorn"),
                 models().withExistingParent("mallorn_button_pressed", mcLoc("block/button_pressed"))
                         .texture("texture", "block/planks_mallorn"));
+        provider.buttonInventory("mallorn_button", modLoc("block/planks_mallorn"));
         buttonBlock((ButtonBlock) TolkienBlocks.MIRKWOOD_BUTTON.get(),
                 models().withExistingParent("mirkwood_button", mcLoc("block/button"))
                         .texture("texture", "block/planks_mirkwood"),
                 models().withExistingParent("mirkwood_button_pressed", mcLoc("block/button_pressed"))
                         .texture("texture", "block/planks_mirkwood"));
+        provider.buttonInventory("mirkwood_button", modLoc("block/planks_mirkwood"));
         buttonBlock((ButtonBlock) TolkienBlocks.CULUMALDA_BUTTON.get(),
                 models().withExistingParent("culumalda_button", mcLoc("block/button"))
                         .texture("texture", "block/planks_culumalda"),
                 models().withExistingParent("culumalda_button_pressed", mcLoc("block/button_pressed"))
                         .texture("texture", "block/planks_culumalda"));
+        provider.buttonInventory("culumalda_button", modLoc("block/planks_culumalda"));
         buttonBlock((ButtonBlock) TolkienBlocks.LEBETHRON_BUTTON.get(),
                 models().withExistingParent("lebethron_button", mcLoc("block/button"))
                         .texture("texture", "block/planks_lebethron"),
                 models().withExistingParent("lebethron_button_pressed", mcLoc("block/button_pressed"))
                         .texture("texture", "block/planks_lebethron"));
+        provider.buttonInventory("lebethron_button", modLoc("block/planks_lebethron"));
         buttonBlock((ButtonBlock) TolkienBlocks.DEADWOOD_BUTTON.get(),
                 models().withExistingParent("deadwood_button", mcLoc("block/button"))
                         .texture("texture", "block/planks_deadwood"),
                 models().withExistingParent("deadwood_button_pressed", mcLoc("block/button_pressed"))
                         .texture("texture", "block/planks_deadwood"));
+        provider.buttonInventory("deadwood_button", modLoc("block/planks_deadwood"));
         buttonBlock((ButtonBlock) TolkienBlocks.FANGORNOAK_BUTTON.get(),
                 models().withExistingParent("fangornoak_button", mcLoc("block/button"))
                         .texture("texture", "block/planks_fangornoak"),
                 models().withExistingParent("fangornoak_button_pressed", mcLoc("block/button_pressed"))
                         .texture("texture", "block/planks_fangornoak"));
+        provider.buttonInventory("fangornoak_button", modLoc("block/planks_fangornoak"));
 
         // Plants & Flowers
         simpleBlock(TolkienBlocks.MUSHROOM_DECAY_BLOOM.get(), models().cross("mushroom_decay_bloom", modLoc("block/mushroom_decay_bloom")));
@@ -243,6 +252,22 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TolkienBlocks.FLOWER_SWAMPMILKWEED.get(), models().cross("flower_swamp_milkweed", modLoc("block/flower_swamp_milkweed")));
         simpleBlock(TolkienBlocks.FLOWER_LILLYOFTHEVALLEY.get(), models().cross("flower_valley_lilly", modLoc("block/flower_valley_lilly")));
         cropsBlock(TolkienBlocks.PIPEWEED.get(), CropsBlock.AGE, "pipeweed_stage");
+        simpleBlock(TolkienBlocks.POTTED_SAPLING_MALLORN.get(), flowerPotCross(normalizeBlockPath(TolkienBlocks.POTTED_SAPLING_MALLORN.get())));
+        simpleBlock(TolkienBlocks.POTTED_SAPLING_MIRKWOOD.get(), flowerPotCross(normalizeBlockPath(TolkienBlocks.POTTED_SAPLING_MIRKWOOD.get())));
+        simpleBlock(TolkienBlocks.POTTED_SAPLING_CULUMALDA.get(), flowerPotCross(normalizeBlockPath(TolkienBlocks.POTTED_SAPLING_CULUMALDA.get())));
+        simpleBlock(TolkienBlocks.POTTED_SAPLING_LEBETHRON.get(), flowerPotCross(normalizeBlockPath(TolkienBlocks.POTTED_SAPLING_LEBETHRON.get())));
+        simpleBlock(TolkienBlocks.POTTED_SAPLING_DEADWOOD.get(), flowerPotCross(normalizeBlockPath(TolkienBlocks.POTTED_SAPLING_DEADWOOD.get())));
+        simpleBlock(TolkienBlocks.POTTED_SAPLING_FANGORNOAK.get(), flowerPotCross(normalizeBlockPath(TolkienBlocks.POTTED_SAPLING_FANGORNOAK.get())));
+        simpleBlock(TolkienBlocks.POTTED_MUSHROOM_DECAY_BLOOM.get(), flowerPotCross(normalizeBlockPath(TolkienBlocks.POTTED_MUSHROOM_DECAY_BLOOM.get())));
+        simpleBlock(TolkienBlocks.POTTED_MUSHROOM_BLOOM_DECAY.get(), flowerPotCross(normalizeBlockPath(TolkienBlocks.POTTED_MUSHROOM_BLOOM_DECAY.get())));
+        simpleBlock(TolkienBlocks.POTTED_FLOWER_SIMBELMYNE.get(), flowerPotCross(normalizeBlockPath(TolkienBlocks.POTTED_FLOWER_SIMBELMYNE.get())));
+        simpleBlock(TolkienBlocks.POTTED_FLOWER_MIRKWOOD.get(), flowerPotCross(normalizeBlockPath(TolkienBlocks.POTTED_FLOWER_MIRKWOOD.get())));
+        simpleBlock(TolkienBlocks.POTTED_FLOWER_ALFIRIN.get(), flowerPotCross(normalizeBlockPath(TolkienBlocks.POTTED_FLOWER_ALFIRIN.get())));
+        simpleBlock(TolkienBlocks.POTTED_FLOWER_ATHELAS.get(), flowerPotCross(normalizeBlockPath(TolkienBlocks.POTTED_FLOWER_ATHELAS.get())));
+        simpleBlock(TolkienBlocks.POTTED_FLOWER_NIPHREDIL.get(), flowerPotCross(normalizeBlockPath(TolkienBlocks.POTTED_FLOWER_NIPHREDIL.get())));
+        simpleBlock(TolkienBlocks.POTTED_FLOWER_SWAMPMILKWEED.get(), flowerPotCross(normalizeBlockPath(TolkienBlocks.POTTED_FLOWER_SWAMPMILKWEED.get())));
+        simpleBlock(TolkienBlocks.POTTED_FLOWER_LILLYOFTHEVALLEY.get(), flowerPotCross(normalizeBlockPath(TolkienBlocks.POTTED_FLOWER_LILLYOFTHEVALLEY.get())));
+
         // Custom
         simpleBlock(TolkienBlocks.BLOCK_HALLOWED.get(), models().cubeBottomTop("block_hallowed", modLoc("block/block_hallowed_side"), modLoc("block/block_hallowed"), modLoc("block/block_hallowed_top")));
         simpleBlock(TolkienBlocks.STONE_PATH.get(), models().getExistingFile(modLoc("block/block_stone_path")));
@@ -257,18 +282,12 @@ public class BlockStateGenerator extends BlockStateProvider {
         horizontalBlock(TolkienBlocks.LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK.get(), models().getExistingFile(modLoc("block/lockable_double_treasure_chest_block")), 180);
         horizontalBlock(TolkienBlocks.BACKPACK.get(), models().getExistingFile(modLoc("block/container_backpack")), 0);
 
-        signBlock(TolkienBlocks.MALLORN_SIGN.get(), TolkienMobs.MODID + ":block/planks_mallorn");
-        signBlock(TolkienBlocks.MALLORN_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_mallorn");
-        signBlock(TolkienBlocks.MIRKWOOD_SIGN.get(), TolkienMobs.MODID + ":block/planks_mirkwood");
-        signBlock(TolkienBlocks.MIRKWOOD_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_mirkwood");
-        signBlock(TolkienBlocks.CULUMALDA_SIGN.get(), TolkienMobs.MODID + ":block/planks_culumalda");
-        signBlock(TolkienBlocks.CULUMALDA_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_culumalda");
-        signBlock(TolkienBlocks.LEBETHRON_SIGN.get(), TolkienMobs.MODID + ":block/planks_lebethron");
-        signBlock(TolkienBlocks.LEBETHRON_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_lebethron");
-        signBlock(TolkienBlocks.DEADWOOD_SIGN.get(), TolkienMobs.MODID + ":block/planks_deadwood");
-        signBlock(TolkienBlocks.DEADWOOD_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_deadwood");
-        signBlock(TolkienBlocks.FANGORNOAK_SIGN.get(), TolkienMobs.MODID + ":block/planks_fangornoak");
-        signBlock(TolkienBlocks.FANGORNOAK_WALL_SIGN.get(), TolkienMobs.MODID + ":block/planks_fangornoak");
+        signBlock((TolkienStandingSignBlock) TolkienBlocks.MALLORN_SIGN.get(), (TolkienWallSignBlock) TolkienBlocks.MALLORN_WALL_SIGN.get(), modLoc("block/planks_mallorn"));
+        signBlock((TolkienStandingSignBlock) TolkienBlocks.MIRKWOOD_SIGN.get(), (TolkienWallSignBlock) TolkienBlocks.MIRKWOOD_WALL_SIGN.get(), modLoc("block/planks_mirkwood"));
+        signBlock((TolkienStandingSignBlock) TolkienBlocks.CULUMALDA_SIGN.get(), (TolkienWallSignBlock) TolkienBlocks.CULUMALDA_WALL_SIGN.get(), modLoc("block/planks_culumalda"));
+        signBlock((TolkienStandingSignBlock) TolkienBlocks.LEBETHRON_SIGN.get(), (TolkienWallSignBlock) TolkienBlocks.LEBETHRON_WALL_SIGN.get(), modLoc("block/planks_lebethron"));
+        signBlock((TolkienStandingSignBlock) TolkienBlocks.DEADWOOD_SIGN.get(), (TolkienWallSignBlock) TolkienBlocks.DEADWOOD_WALL_SIGN.get(), modLoc("block/planks_deadwood"));
+        signBlock((TolkienStandingSignBlock) TolkienBlocks.FANGORNOAK_SIGN.get(), (TolkienWallSignBlock) TolkienBlocks.FANGORNOAK_WALL_SIGN.get(), modLoc("block/planks_fangornoak"));
 
         ModelFile barrelMithril = models().cubeBottomTop("barrel_mithril", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top"));
         ModelFile barrelMithrilOpen = models().cubeBottomTop("barrel_mithril_open", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top_open"));
@@ -343,26 +362,23 @@ public class BlockStateGenerator extends BlockStateProvider {
                 .end());
 
         for (String color : sleepingBagTypes) {
-//            sleepingBag(color, modLoc("block/sleeping_bag_" + color + "_head"), modLoc("block/sleeping_bag_" + color + "_foot"));
             new ConfiguredModel(models().withExistingParent("block/sleeping_bag_" + color + "_head", modLoc("block/sleeping_bag_head")).texture("sleeping_bag", modLoc("block/sleepingbag/sleeping_bag_" + color)).texture("particle", modLoc("block/sleepingbag/sleeping_bag_" + color)));
             new ConfiguredModel(models().withExistingParent("block/sleeping_bag_" + color + "_foot", modLoc("block/sleeping_bag_foot")).texture("sleeping_bag", modLoc("block/sleepingbag/sleeping_bag_" + color)).texture("particle", modLoc("block/sleepingbag/sleeping_bag_" + color)));
         }
     }
 
-    public void sleepingBag(String color, ResourceLocation head, ResourceLocation foot) {
-        ModelFile headModel = models().getExistingFile(head);
-        ModelFile footModel = models().getExistingFile(foot);
-        Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(TolkienMobs.MODID, "sleeping_bag_" + color));
-        getVariantBuilder(block).forAllStatesExcept(state -> {
-            int yRot = ((int) state.getValue(SleepingBagBlock.FACING).toYRot());
-            return ConfiguredModel.builder().modelFile(state.getValue(SleepingBagBlock.PART) == BedPart.FOOT ? footModel : headModel)
-                    .rotationY(yRot)
-                    .build();
-        });
-    }
-
     private String name(Block block) {
         return block.getRegistryName().getPath();
+    }
+
+    private String normalizeBlockPath(Block block) {
+        return MODID + ":block/"+ block.toString().replace("Block{", "").replace("}", "")
+                .replace(MODID+ ":", "");
+    }
+
+    public ModelFile flowerPotCross(String name) {
+        return models().withExistingParent(name, "flower_pot_cross").texture("plant",
+                new ResourceLocation(name.replace("potted_", "")));
     }
 
     public void pressurePlateBlock(Block block, ModelFile normal,  ModelFile powered) {
@@ -377,13 +393,17 @@ public class BlockStateGenerator extends BlockStateProvider {
         for (int i = 1; i <= 15; i++) {
             getVariantBuilder(block)
                     .partialState().with(WeightedPressurePlateBlock.POWER, i).setModels(new ConfiguredModel(powered));
-        }    }
+        }
+    }
 
-    private void signBlock(Block block, String particleTexture) {
-        ModelFile model = models()
-                .withExistingParent("dummy", "block")
-                .texture("particle", particleTexture);
-        simpleBlock(block, model);
+    public void signBlock(TolkienStandingSignBlock signBlock, TolkienWallSignBlock wallSignBlock, ResourceLocation texture) {
+        ModelFile sign = models().sign(name(signBlock), texture);
+        signBlock(signBlock, wallSignBlock, sign);
+    }
+
+    public void signBlock(TolkienStandingSignBlock signBlock, TolkienWallSignBlock wallSignBlock, ModelFile sign) {
+        simpleBlock(signBlock, sign);
+        simpleBlock(wallSignBlock, sign);
     }
 
     public void directionalFromNorth(Block block, ModelFile model) {
@@ -420,18 +440,6 @@ public class BlockStateGenerator extends BlockStateProvider {
                             .rotationY(dir.getAxis().isVertical() ? 0 : (((int) dir.toYRot()) + angleOffset) % 360)
                             .build();
                 });
-    }
-
-    public void buttonBlock(Block block, ModelFile normal, ModelFile powered) {
-        buttonBlock(block, normal, powered, 180);
-    }
-
-    public void buttonBlock(Block block, ModelFile normal, ModelFile powered, int angleOffset) {
-        buttonBlock(block, $ -> normal, $ -> powered, angleOffset);
-    }
-
-    public void buttonBlock(Block block, Function<BlockState, ModelFile> normal, Function<BlockState, ModelFile> pressed) {
-        buttonBlock(block, normal, pressed, 180);
     }
 
     public void buttonBlock(Block block, Function<BlockState, ModelFile> normal,  Function<BlockState, ModelFile> pressed, int angleOffset) {

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "tolkienmobs:block/raw_morguliron_block"
+  }
+}

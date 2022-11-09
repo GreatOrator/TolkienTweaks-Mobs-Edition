@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "group": "mithril_ingot",
+  "ingredient": {
+    "item": "tolkienmobs:ore_end_mithril"
+  },
+  "result": "tolkienmobs:ingot_mithril",
+  "experience": 0.7,
+  "cookingtime": 100
+}

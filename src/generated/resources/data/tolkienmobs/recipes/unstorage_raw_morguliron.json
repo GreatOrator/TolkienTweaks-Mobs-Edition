@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tolkienmobs:raw_morguliron_block"
+    }
+  ],
+  "result": {
+    "item": "tolkienmobs:raw_morguliron",
+    "count": 9
+  }
+}

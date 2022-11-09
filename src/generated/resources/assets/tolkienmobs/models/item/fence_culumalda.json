@@ -1,3 +1,6 @@
 {
-  "parent": "tolkienmobs:block/culumalda_fence_inventory"
+  "parent": "minecraft:block/fence_inventory",
+  "textures": {
+    "texture": "tolkienmobs:block/planks_culumalda"
+  }
 }

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:unstorage_raw_mithril"
+    ]
+  },
+  "criteria": {
+    "has_raw_mithril_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:raw_mithril_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:unstorage_raw_mithril"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_mithril_block",
+      "has_the_recipe"
+    ]
+  ]
+}

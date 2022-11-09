@@ -20,8 +20,8 @@ public class BlockTagGenerator extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
-        tag(STORAGE_BLOCKS_MITHRIL).add(TolkienBlocks.BLOCK_MITHRIL.get());
-        tag(STORAGE_BLOCKS_MORGULIRON).add(TolkienBlocks.BLOCK_MORGULIRON.get());
+        tag(STORAGE_BLOCKS_MITHRIL).add(TolkienBlocks.BLOCK_MITHRIL.get(), TolkienBlocks.RAW_MITHRIL_BLOCK.get());
+        tag(STORAGE_BLOCKS_MORGULIRON).add(TolkienBlocks.BLOCK_MORGULIRON.get(), TolkienBlocks.RAW_MORGULIRON_BLOCK.get());
         tag(Tags.Blocks.STORAGE_BLOCKS).add(TolkienBlocks.BLOCK_MITHRIL.get(), TolkienBlocks.BLOCK_MORGULIRON.get());
         tag(ORES_MITHRIL).add(TolkienBlocks.ORE_MITHRIL.get(), TolkienBlocks.ORE_END_MITHRIL.get(), TolkienBlocks.ORE_NETHER_MITHRIL.get());
         tag(ORES_MORGULIRON).add(TolkienBlocks.ORE_MORGULIRON.get(), TolkienBlocks.ORE_END_MORGULIRON.get(), TolkienBlocks.ORE_NETHER_MORGULIRON.get());

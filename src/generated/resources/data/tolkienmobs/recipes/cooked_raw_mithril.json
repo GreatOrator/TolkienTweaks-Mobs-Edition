@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "tolkienmobs:ingot_mithril"
+  },
+  "result": "tolkienmobs:raw_mithril",
+  "experience": 0.35,
+  "cookingtime": 200
+}

@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "tolkienmobs:block/dummy"
+      "model": "tolkienmobs:block/sign_mirkwood"
     }
   }
 }

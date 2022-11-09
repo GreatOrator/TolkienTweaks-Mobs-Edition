@@ -1,0 +1,69 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:monster_flesh"
+    ]
+  },
+  "criteria": {
+    "has_block_tmfireplace": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:cooked_rabbit"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:cooked_porkchop"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:cooked_mutton"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:cooked_beef"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:cooked_salmon"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:cooked_cod"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:cooked_chicken"
+            ]
+          },
+          {
+            "items": [
+              "minecraft:rotten_flesh"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:monster_flesh"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_block_tmfireplace",
+      "has_the_recipe"
+    ]
+  ]
+}

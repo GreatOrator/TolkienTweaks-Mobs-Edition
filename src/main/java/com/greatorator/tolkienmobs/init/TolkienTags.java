@@ -28,8 +28,11 @@ public class TolkienTags {
     public static class items{
         private static void init(){}
 
+        public static final TagKey<Item> RAW_MATERIALS = tag("raw_materials");
         public static final TagKey<Item> DUSTS_MITHRIL = tag("dusts/mithril");
+        public static final TagKey<Item> RAW_MATERIALS_MITHRIL = tag("raw_materials/mithril");
         public static final TagKey<Item> DUSTS_MORGULIRON = tag("dusts/morguliron");
+        public static final TagKey<Item> RAW_MATERIALS_MORGULIRON = tag("raw_materials/morguliron");
         public static final TagKey<Item> NUGGETS_MITHRIL = tag("nuggets/mithril");
         public static final TagKey<Item> NUGGETS_MORGULIRON = tag("nuggets/morguliron");
         public static final TagKey<Item> INGOTS_MITHRIL = tag("ingots/mithril");

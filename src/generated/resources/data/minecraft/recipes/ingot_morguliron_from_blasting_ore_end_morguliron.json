@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:blasting",
+  "group": "morguliron_ingot",
+  "ingredient": {
+    "item": "tolkienmobs:ore_end_morguliron"
+  },
+  "result": "tolkienmobs:ingot_morguliron",
+  "experience": 0.7,
+  "cookingtime": 100
+}

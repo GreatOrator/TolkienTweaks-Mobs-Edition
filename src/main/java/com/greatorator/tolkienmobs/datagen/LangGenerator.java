@@ -45,6 +45,7 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienBlocks.ORE_END_MITHRIL.get(), "Ender Mithril Ore");
         add(TolkienBlocks.ORE_NETHER_MITHRIL.get(), "Fiery Mithril Ore");
         add(TolkienBlocks.BLOCK_MITHRIL.get(), "Mithril Block");
+        add(TolkienBlocks.RAW_MITHRIL_BLOCK.get(), "Raw Mithril Block");
         add(TolkienBlocks.MITHRIL_BARS.get(), "Mithril Bars");
         add(TolkienBlocks.DOOR_MITHRIL.get(), "Mithril Door");
         add(TolkienBlocks.TRAPDOOR_MITHRIL.get(), "Mithril Trap Door");
@@ -53,6 +54,7 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienBlocks.ORE_END_MORGULIRON.get(), "Ender Morgul Iron Ore");
         add(TolkienBlocks.ORE_NETHER_MORGULIRON.get(), "Fiery Morgul Iron Ore");
         add(TolkienBlocks.BLOCK_MORGULIRON.get(), "Morgul Iron Block");
+        add(TolkienBlocks.RAW_MORGULIRON_BLOCK.get(), "Raw Morgul Iron Block");
         add(TolkienBlocks.MORGULIRON_BARS.get(), "Morgul Iron Bars");
         add(TolkienBlocks.DOOR_MORGULIRON.get(), "Morgul Iron Door");
         add(TolkienBlocks.TRAPDOOR_MORGULIRON.get(), "Morgul Iron Trap Door");
@@ -265,9 +267,11 @@ public class LangGenerator extends LanguageProvider {
 
     private void items() {
         //Components
+        add(TolkienItems.RAW_MITHRIL.get(), "Raw Mithril");
         add(TolkienItems.DUST_MITHRIL.get(), "Mithril Dust");
         add(TolkienItems.NUGGET_MITHRIL.get(), "Mithril Nugget");
         add(TolkienItems.INGOT_MITHRIL.get(), "Mithril Ingot");
+        add(TolkienItems.RAW_MORGULIRON.get(), "Raw Morgul Iron");
         add(TolkienItems.DUST_MORGULIRON.get(), "Morgul Iron Dust");
         add(TolkienItems.NUGGET_MORGULIRON.get(), "Morgul Iron Nugget");
         add(TolkienItems.INGOT_MORGULIRON.get(), "Morgul Iron Ingot");
