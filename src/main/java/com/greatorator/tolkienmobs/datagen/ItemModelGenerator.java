@@ -15,6 +15,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
+
 
 /**
  * Created by brandon3055 on 28/2/20.
@@ -546,6 +548,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 
     @Override
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Item Models";
+        return NAME + " - Item Models";
     }
 }

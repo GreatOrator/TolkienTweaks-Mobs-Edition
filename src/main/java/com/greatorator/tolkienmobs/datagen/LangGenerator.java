@@ -9,6 +9,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.LanguageProvider;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
+
 /**
  * Created by brandon3055 on 21/5/20.
  */
@@ -1006,6 +1008,6 @@ public class LangGenerator extends LanguageProvider {
 
     @Override
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition English Translation";
+        return NAME + " - English Translation";
     }
 }

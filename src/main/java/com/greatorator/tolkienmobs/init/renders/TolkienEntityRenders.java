@@ -11,12 +11,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TolkienEntityRenders {
 
     @SubscribeEvent
-    public static void init(EntityRenderersEvent.RegisterRenderers event) {
+    public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
 //
 //        // Ambient
 //        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_RAT.get(), RatRender::new);
@@ -92,5 +93,9 @@ public class TolkienEntityRenders {
         event.registerEntityRenderer(TolkienEntities.DEADWOOD_BOAT.get(), TolkienBoatRender::new);
         event.registerEntityRenderer(TolkienEntities.FANGORNOAK_BOAT.get(), TolkienBoatRender::new);
         event.registerEntityRenderer(TolkienEntities.MORGUL_CRYSTAL.get(), MorgulCrystalRenderer::new);
+    }
+
+    public String getName() {
+        return NAME + " - Entities";
     }
 }

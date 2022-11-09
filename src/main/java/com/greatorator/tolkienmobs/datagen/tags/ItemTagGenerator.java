@@ -15,6 +15,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 import static com.greatorator.tolkienmobs.init.TolkienTags.items.*;
 
 public class ItemTagGenerator extends ItemTagsProvider {
@@ -114,6 +115,6 @@ public class ItemTagGenerator extends ItemTagsProvider {
     @Nonnull
     @Override
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Item Tags";
+        return NAME + " - Item Tags";
     }
 }

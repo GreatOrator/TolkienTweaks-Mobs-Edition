@@ -1233,6 +1233,6 @@ public class EntityLootGenerator extends EntityLoot {
 //    }
 //
 //    public String getName() {
-//        return "Tolkien Tweaks - Mobs Edition Loot Tables - Entity";
+//        return NAME + " - Entity";
 //    }
 }

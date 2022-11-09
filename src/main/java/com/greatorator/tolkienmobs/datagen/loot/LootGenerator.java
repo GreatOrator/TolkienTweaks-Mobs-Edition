@@ -17,6 +17,8 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
+
 /**
  * Created by brandon3055 on 10/3/20.
  */
@@ -40,6 +42,6 @@ public class LootGenerator extends LootTableProvider {
 
     @Override
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Loot Tables";
+        return NAME + " - Loot Tables";
     }
 }

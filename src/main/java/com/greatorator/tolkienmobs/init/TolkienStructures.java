@@ -76,6 +76,6 @@ public class TolkienStructures {
 //    }
 //
 //    public String getName() {
-//        return "Tolkien Tweaks - Mobs Edition Structures";
+//        return NAME + " - Structures";
 //    }
 }

@@ -7,6 +7,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 
 public class TolkienSounds {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, MODID);
@@ -178,6 +179,6 @@ public class TolkienSounds {
     }
 
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Sounds";
+        return NAME + " - Sounds";
     }
 }

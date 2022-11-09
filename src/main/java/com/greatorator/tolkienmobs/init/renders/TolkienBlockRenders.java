@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.init.renders;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 import static com.greatorator.tolkienmobs.init.TolkienBlocks.*;
 
 public class TolkienBlockRenders {
@@ -89,5 +90,9 @@ public class TolkienBlockRenders {
         ItemBlockRenderTypes.setRenderLayer(POTTED_SAPLING_LEBETHRON.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(POTTED_SAPLING_DEADWOOD.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(POTTED_SAPLING_FANGORNOAK.get(), RenderType.cutout());
+    }
+
+    public String getName() {
+        return NAME + " - Block Renders";
     }
 }

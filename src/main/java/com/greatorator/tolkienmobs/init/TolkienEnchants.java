@@ -8,6 +8,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 
 public class TolkienEnchants {
     private static final EquipmentSlot[] ARMOR_SLOTS = new EquipmentSlot[]{EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
@@ -22,6 +23,6 @@ public class TolkienEnchants {
     public static final RegistryObject<Enchantment> HOBBIT_HARVEST = ENCHANTS.register("hobbit_harvest", () -> new EnchantmentHobbitHarvest(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND));
 
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Enchantments";
+        return NAME + " - Enchantments";
     }
 }

@@ -15,6 +15,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import java.util.function.BiConsumer;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 
 public class ChestLootGenerator extends ChestLoot {
     @Override
@@ -508,5 +509,9 @@ public class ChestLootGenerator extends ChestLoot {
 
     public void createInjectPool(BiConsumer<ResourceLocation, LootTable.Builder> consumer, String name, LootTable.Builder builder) {
         consumer.accept(new ResourceLocation(MODID, "inject/chests/" + name), builder);
+    }
+
+    public String getName() {
+        return NAME + " - Loot Tables - Chests";
     }
 }

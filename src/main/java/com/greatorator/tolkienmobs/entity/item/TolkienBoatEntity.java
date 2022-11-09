@@ -20,6 +20,7 @@ import javax.annotation.Nonnull;
 
 public class TolkienBoatEntity extends Boat {
     private static final EntityDataAccessor<Integer> WOOD_TYPE = SynchedEntityData.defineId(TolkienBoatEntity.class, EntityDataSerializers.INT);
+    public static TolkienBoatEntity.Type type;
 
     public TolkienBoatEntity(EntityType<? extends Boat> type, Level world) {
         super(type, world);

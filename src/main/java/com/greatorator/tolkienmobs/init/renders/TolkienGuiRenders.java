@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.init.renders;
 import com.greatorator.tolkienmobs.container.gui.*;
 import net.minecraft.client.gui.screens.MenuScreens;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 import static com.greatorator.tolkienmobs.init.TolkienContainers.*;
 
 public class TolkienGuiRenders {
@@ -23,5 +24,9 @@ public class TolkienGuiRenders {
         MenuScreens.register(LOCKABLE_TREASURE_CHEST_CONTAINER, LockableTreasureChestScreen::new);
         MenuScreens.register(LOCKABLE_DOUBLE_CHEST_CONTAINER, LockableDoubleChestScreen::new);
         MenuScreens.register(LOCKABLE_DOUBLE_TREASURE_CHEST_CONTAINER, LockableDoubleTreasureChestScreen::new);
+    }
+
+    public String getName() {
+        return NAME + " - GUI Renders";
     }
 }

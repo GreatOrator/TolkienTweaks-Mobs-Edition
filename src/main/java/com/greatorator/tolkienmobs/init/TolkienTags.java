@@ -15,6 +15,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Collections;
 import java.util.Objects;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
+
 public class TolkienTags {
     public static void init(){
         items.init();
@@ -181,5 +183,9 @@ public class TolkienTags {
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation("forge", name));
         }
+    }
+
+    public String getName() {
+        return NAME + " - Tags";
     }
 }

@@ -337,6 +337,6 @@ public class TolkienEntities {
 //    }
 //
 //    public String getName() {
-//        return "Tolkien Tweaks - Mobs Edition Entities";
+//        return NAME + " - Entities";
 //    }
 }

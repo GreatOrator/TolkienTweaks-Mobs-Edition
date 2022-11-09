@@ -87,6 +87,6 @@ public class TolkienBiomes {
 //    }
 //
 //    public String getName() {
-//        return "Tolkien Tweaks - Mobs Edition Biomes";
+//        return NAME + " - Biomes";
 //    }
 }

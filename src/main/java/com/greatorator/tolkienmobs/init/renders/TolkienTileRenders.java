@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.init.renders;
 import com.greatorator.tolkienmobs.entity.tile.render.*;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 import static com.greatorator.tolkienmobs.init.TolkienTiles.*;
 
 public class TolkienTileRenders {
@@ -23,5 +24,9 @@ public class TolkienTileRenders {
         BlockEntityRenderers.register(LOCKABLE_TREASURE_CHEST_TILE.get(), RenderLockableTreasureChestTile::new);
         BlockEntityRenderers.register(LOCKABLE_DOUBLE_CHEST_TILE.get(), RenderLockableDoubleChestTile::new);
         BlockEntityRenderers.register(LOCKABLE_DOUBLE_TREASURE_CHEST_TILE.get(), RenderLockableDoubleTreasureChestTile::new);
+    }
+
+    public String getName() {
+        return NAME + " - Tile Renders";
     }
 }

@@ -12,6 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 
 public class TolkienPotions {
     public static final DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, MODID);
@@ -55,6 +56,5 @@ public class TolkienPotions {
     public static final RegistryObject<Potion> ISTARI = POTIONS.register("istari", Potion::new);
 
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Potions";
-    }
-}
+        return NAME + " - Potions";
+    }}

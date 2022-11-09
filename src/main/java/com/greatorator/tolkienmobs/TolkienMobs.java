@@ -26,7 +26,7 @@ public class TolkienMobs {
 
     public static final String MODID = "tolkienmobs";
     public static final String NAME = "Tolkien Tweaks (Mobs Edition)";
-    public static final String VERSION = "${mod_version}"; //This will now be set automatically by the build.gradle when the jar is built.
+    public static final String VERSION = "${mod_version}";
     private static TolkienMobs instance;
     public static SimpleChannel NETWORK;
     private HashMap<String, Long> modifiedPlayerTimes;

@@ -26,6 +26,8 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
+
 public class BlockLootGenerator extends BlockLoot {
     private static final LootItemCondition.Builder CROP_DROP = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TolkienBlocks.PIPEWEED.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 7));
 
@@ -255,6 +257,6 @@ public class BlockLootGenerator extends BlockLoot {
     }
 
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Loot Tables - Blocks";
+        return NAME + " - Loot Tables - Blocks";
     }
 }

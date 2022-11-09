@@ -24,6 +24,7 @@ import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 import static net.minecraft.world.item.Tiers.NETHERITE;
 
 public class TConDataGenerator {
@@ -48,6 +49,11 @@ public class TConDataGenerator {
             tagLocal(fluid);
             tag(fluid.getForgeTag()).addOptionalTag(fluid.getLocalTag().location());
         }
+
+        @Override
+        public String getName() {
+            return NAME + " - Fluids";
+        }
     }
 
 
@@ -64,7 +70,7 @@ public class TConDataGenerator {
 
         @Override
         public String getName() {
-            return "Tolkien Tweaks - Mobs Edition Materials";
+            return NAME + " - Materials";
         }
 
     }
@@ -87,7 +93,7 @@ public class TConDataGenerator {
 
         @Override
         public String getName() {
-            return "Tolkien Tweaks - Mobs Edition Material Recipes";
+            return NAME + " - Material Recipes";
         }
     }
 
@@ -105,7 +111,7 @@ public class TConDataGenerator {
 
         @Override
         public String getName() {
-            return "Tolkien Tweaks - Mobs Edition Material Renders";
+            return NAME + " - Material Renders";
         }
     }
 
@@ -113,7 +119,7 @@ public class TConDataGenerator {
 
         @Override
         public String getName() {
-            return "Tolkien Tweaks - Mobs Edition Material Sprites";
+            return NAME + " - Material Sprites";
         }
 
         @Override
@@ -150,7 +156,7 @@ public class TConDataGenerator {
 
         @Override
         public String getName() {
-            return "Tolkien Tweaks - Mobs Edition Material Stats";
+            return NAME + " - Material Stats";
         }
 
         @Override
@@ -181,7 +187,7 @@ public class TConDataGenerator {
 
         @Override
         public String getName() {
-            return "Tolkien Tweaks - Mobs Edition Traits";
+            return NAME + " - Traits";
         }
     }
 
@@ -206,7 +212,7 @@ public class TConDataGenerator {
 
         @Override
         public String getName() {
-            return "Tolkien Tweaks - Mobs Edition Smeltery Recipes";
+            return NAME + " - Smeltery Recipes";
         }
     }
 }

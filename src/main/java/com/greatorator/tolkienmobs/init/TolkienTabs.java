@@ -3,6 +3,8 @@ package com.greatorator.tolkienmobs.init;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
+
 public class TolkienTabs {
     public static final CreativeModeTab toolsGroup = new CreativeModeTab("tolkienmobs.tools") {
         public ItemStack makeIcon() {
@@ -36,6 +38,6 @@ public class TolkienTabs {
     };
 
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Creative Tabs";
+        return NAME + " - Creative Tabs";
     }
 }

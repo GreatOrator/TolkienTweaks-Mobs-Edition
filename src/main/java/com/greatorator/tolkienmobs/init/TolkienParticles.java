@@ -16,6 +16,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 import static net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.MOD;
 
 /**
@@ -56,5 +57,9 @@ public class TolkienParticles {
         manager.register(fangornoak_flame, FlameParticle.Provider::new);
         manager.register(falling_leaves, LeafParticle.Provider::new);
         manager.register(fell_beast_breath, FellBeastBreathParticle.Provider::new);
+    }
+
+    public String getName() {
+        return NAME + " - Particles";
     }
 }

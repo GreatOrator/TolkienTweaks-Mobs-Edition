@@ -3,14 +3,12 @@ package com.greatorator.tolkienmobs.entity.item.model;
 import com.google.common.collect.ImmutableList;
 import com.greatorator.tolkienmobs.entity.item.TolkienBoatEntity;
 import net.minecraft.client.model.ListModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -30,11 +28,11 @@ public class TolkienBoatModel extends ListModel<TolkienBoatEntity> {
    private final ModelPart waterPatch;
    private final ImmutableList<ModelPart> parts;
 
-   public TolkienBoatModel(ModelPart p_170462_) {
-      this.leftPaddle = p_170462_.getChild("left_paddle");
-      this.rightPaddle = p_170462_.getChild("right_paddle");
-      this.waterPatch = p_170462_.getChild("water_patch");
-      this.parts = ImmutableList.of(p_170462_.getChild("bottom"), p_170462_.getChild("back"), p_170462_.getChild("front"), p_170462_.getChild("right"), p_170462_.getChild("left"), this.leftPaddle, this.rightPaddle);
+   public TolkienBoatModel(ModelPart modelPart) {
+      this.leftPaddle = modelPart.getChild("left_paddle");
+      this.rightPaddle = modelPart.getChild("right_paddle");
+      this.waterPatch = modelPart.getChild("water_patch");
+      this.parts = ImmutableList.of(modelPart.getChild("bottom"), modelPart.getChild("back"), modelPart.getChild("front"), modelPart.getChild("right"), modelPart.getChild("left"), this.leftPaddle, this.rightPaddle);
    }
 
    public static LayerDefinition createBodyModel() {
@@ -60,9 +58,9 @@ public class TolkienBoatModel extends ListModel<TolkienBoatEntity> {
       return LayerDefinition.create(meshdefinition, 128, 64);
    }
 
-   public void setupAnim(TolkienBoatEntity p_102269_, float p_102270_, float p_102271_, float p_102272_, float p_102273_, float p_102274_) {
-      animatePaddle(p_102269_, 0, this.leftPaddle, p_102270_);
-      animatePaddle(p_102269_, 1, this.rightPaddle, p_102270_);
+   public void setupAnim(TolkienBoatEntity boatEntity, float x, float y, float z, float pitch, float yaw) {
+      animatePaddle(boatEntity, 0, this.leftPaddle, x);
+      animatePaddle(boatEntity, 1, this.rightPaddle, x);
    }
 
    public ImmutableList<ModelPart> parts() {
@@ -73,20 +71,12 @@ public class TolkienBoatModel extends ListModel<TolkienBoatEntity> {
       return this.waterPatch;
    }
 
-   private static void animatePaddle(TolkienBoatEntity p_170465_, int p_170466_, ModelPart p_170467_, float p_170468_) {
-      float f = p_170465_.getRowingTime(p_170466_, p_170468_);
+   private static void animatePaddle(TolkienBoatEntity boatEntity, int p_170466_, ModelPart p_170467_, float p_170468_) {
+      float f = boatEntity.getRowingTime(p_170466_, p_170468_);
       p_170467_.xRot = Mth.clampedLerp((-(float)Math.PI / 3F), -0.2617994F, (Mth.sin(-f) + 1.0F) / 2.0F);
       p_170467_.yRot = Mth.clampedLerp((-(float)Math.PI / 4F), ((float)Math.PI / 4F), (Mth.sin(-f + 1.0F) + 1.0F) / 2.0F);
       if (p_170466_ == 1) {
          p_170467_.yRot = (float)Math.PI - p_170467_.yRot;
       }
-   }
-
-   public static ModelLayerLocation createModelName(TolkienBoatEntity.Type type) {
-      return createLocation("boat/" + type.getName(), "main");
-   }
-
-   private static ModelLayerLocation createLocation(String p_171301_, String p_171302_) {
-      return new ModelLayerLocation(new ResourceLocation("minecraft", p_171301_), p_171302_);
    }
 }

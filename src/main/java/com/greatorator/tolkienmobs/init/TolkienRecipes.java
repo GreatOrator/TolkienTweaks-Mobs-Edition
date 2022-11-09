@@ -12,6 +12,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 
 public class TolkienRecipes {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZER = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, MODID);
@@ -25,6 +26,6 @@ public class TolkienRecipes {
     public static final RegistryObject<FireplaceRecipe.Serializer> TMFIREPLACE_SERIALIZER = RECIPE_SERIALIZER.register("fireplace", FireplaceRecipe.Serializer::new);
 
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Recipes";
+        return NAME + " - Recipes";
     }
 }

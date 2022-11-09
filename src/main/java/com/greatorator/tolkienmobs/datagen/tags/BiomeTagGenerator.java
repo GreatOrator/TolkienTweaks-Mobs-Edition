@@ -7,6 +7,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
+
 public class BiomeTagGenerator extends BiomeTagsProvider {
     public BiomeTagGenerator(DataGenerator generatorIn, String modId, @Nullable ExistingFileHelper existingFileHelper) {
         super(generatorIn, modId, existingFileHelper);
@@ -21,6 +23,6 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
     @Nonnull
     @Override
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Biome Tags";
+        return NAME + " - Biome Tags";
     }
 }

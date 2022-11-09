@@ -23,6 +23,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 
 /**
  * Created by brandon3055 on 28/2/20.
@@ -480,6 +481,6 @@ public class BlockStateGenerator extends BlockStateProvider {
 
     @Override
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Blockstates";
+        return NAME + " - Blockstates";
     }
 }

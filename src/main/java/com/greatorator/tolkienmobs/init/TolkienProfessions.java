@@ -20,6 +20,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 
 public class TolkienProfessions {
     private static final Supplier<Set<PoiType>> WORKSTATIONS = Suppliers.memoize(() -> {
@@ -106,6 +107,6 @@ public class TolkienProfessions {
     public static final RegistryObject<VillagerProfession> TRINKET_TAILOR_PROFESSION = PROFESSION.register("trinket_tailor", () -> new VillagerProfession("trinket_tailor", TRINKET_TAILOR.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_LEATHERWORKER));
 
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Villager Professions";
+        return NAME + " - Villager Professions";
     }
 }

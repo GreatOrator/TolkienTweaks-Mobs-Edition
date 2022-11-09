@@ -24,6 +24,8 @@ import net.minecraftforge.common.brewing.IBrewingRecipe;
 
 import java.util.function.Consumer;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
+
 /**
  * Created by brandon3055 on 1/12/20
  */
@@ -921,6 +923,6 @@ public class RecipeGenerator extends RecipeProvider {
 
     @Override
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Recipes";
+        return NAME + " - Recipes";
     }
 }

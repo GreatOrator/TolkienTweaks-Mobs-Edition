@@ -10,6 +10,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 
 public class TolkienContainers {
     public static final DeferredRegister<MenuType<?>> CONTAINER = DeferredRegister.create(ForgeRegistries.CONTAINERS, MODID);
@@ -50,6 +51,6 @@ public class TolkienContainers {
         event.getRegistry().register(LOCKABLE_DOUBLE_TREASURE_CHEST_CONTAINER = (MenuType<LockableDoubleTreasureChestContainer>) IForgeMenuType.create(LockableDoubleTreasureChestContainer::new).setRegistryName("lockable_double_treasure_chest_container"));
     }
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Menus";
+        return NAME + " - Menus";
     }
 }

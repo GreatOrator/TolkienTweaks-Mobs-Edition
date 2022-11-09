@@ -22,6 +22,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 import static com.greatorator.tolkienmobs.init.TolkienBlocks.*;
 import static com.greatorator.tolkienmobs.init.TolkienSounds.*;
 import static com.greatorator.tolkienmobs.init.TolkienTabs.*;
@@ -427,6 +428,6 @@ public class TolkienItems {
     public static RegistryObject<Item> PIPEWEED_SEEDS = ITEMS.register("pipeweed_seeds", () -> new ItemBlockBCore(PIPEWEED.get(), new Item.Properties().tab(matsGroup)));
 
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Items";
+        return NAME + " - Items";
     }
 }

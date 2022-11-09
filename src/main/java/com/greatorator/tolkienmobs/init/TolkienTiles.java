@@ -8,6 +8,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 import static com.greatorator.tolkienmobs.init.TolkienBlocks.*;
 
 public class TolkienTiles {
@@ -35,6 +36,6 @@ public class TolkienTiles {
     public static RegistryObject<BlockEntityType<TolkienSignTile>> LEBETHRON_SIGN_TILE = TILE.register("lebethron_sign", () -> BlockEntityType.Builder.of(TolkienSignTile::new, LEBETHRON_SIGN.get(), LEBETHRON_WALL_SIGN.get()).build(null));
 
     public String getName() {
-        return "Tolkien Tweaks - Mobs Edition Tile Entities";
+        return NAME + " - Tile Entities";
     }
 }
