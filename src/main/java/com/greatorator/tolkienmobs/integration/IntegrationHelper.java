@@ -7,7 +7,7 @@ public class IntegrationHelper {
     public static boolean isJEIInstalled;
     public static boolean isMantleInstalled;
     public static boolean isTCONInstalled;
-    public static boolean isTTInstalled;
+    public static boolean isCCInstalled;
     public static boolean isBCInstalled;
 
     public static void init(){
@@ -15,7 +15,7 @@ public class IntegrationHelper {
         isJEIInstalled = ModList.get().isLoaded("jei");
         isTCONInstalled = ModList.get().isLoaded("tconstruct");
         isMantleInstalled = ModList.get().isLoaded("mantle");
-        isTTInstalled = ModList.get().isLoaded("tolkientweaks");
+        isCCInstalled = ModList.get().isLoaded("codechickenlib");
         isBCInstalled = ModList.get().isLoaded("brandonscore");
     }
 

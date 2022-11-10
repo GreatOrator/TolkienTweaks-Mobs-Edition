@@ -45,6 +45,9 @@ public class TolkienMobs {
 			2. Gwaihir - Needs AI adjustments
 			3. Great Eagle - Needs AI adjustments
         b. World Generation (Implementation)
+            a. Add Fell Beast to dark tower structure and Morgul Crystal
+            b. Possible village generation using house structures by race type
+            c. Root systems on trees (mallorn, fangornoak and mirkwood)
     */
 
     public TolkienMobs() {
@@ -52,11 +55,12 @@ public class TolkienMobs {
         modifiedPlayerTimes = new HashMap<>();
 
         synchronized (MinecraftForge.EVENT_BUS) {
-            Logger ttLog = LogManager.getLogger("tolkientweaks");
+            Logger ccLog = LogManager.getLogger("codechickenlib");
             Logger bcLog = LogManager.getLogger("brandonscore");
+            Logger ttLog = LogManager.getLogger("tolkienmobs");
             LOGGER.info("Meeting of the Fellowship started! Waiting for the rest of the party to arrive...");
-            if (IntegrationHelper.isTTInstalled) {
-                ttLog.log(Level.INFO, "You shall have my axe!");
+            if (IntegrationHelper.isCCInstalled) {
+                ccLog.log(Level.INFO, "You shall have my axe!");
                 bcLog.log(Level.INFO, "...and you shall have my bow!");
                 LOGGER.info("Together we shall be the Fellowship of the Mods!");
             } else {

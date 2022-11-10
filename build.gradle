@@ -99,7 +99,6 @@ dependencies {
     implementation fg.deobf("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal")
     implementation fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${mc_version}-${curios_version}")
-    implementation fg.deobf("vazkii.patchouli:Patchouli:${patchouli_version}")
     implementation fg.deobf("com.brandon3055.brandonscore:BrandonsCore:${mc_version}-${bcore_version}:universal")
     implementation fg.deobf("slimeknights.mantle:Mantle:${mc_version}-${mantle_version}")
     implementation fg.deobf("slimeknights.tconstruct:TConstruct:${mc_version}-${tcon_version}")

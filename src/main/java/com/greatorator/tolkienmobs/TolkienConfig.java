@@ -7,7 +7,6 @@ import codechicken.lib.config.ConfigValue;
 import com.google.common.collect.Lists;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.nio.file.Paths;
@@ -60,7 +59,6 @@ public class TolkienConfig {
     public static boolean dimensionalWarp;
     public static boolean disableFakePlayer;
     public static boolean replant;
-    public static String exampleString;
     public static List<String> potionList;
 
     private static void loadServer() {
@@ -78,42 +76,6 @@ public class TolkienConfig {
                 .syncTagToClient()
                 .onSync((tag, type) -> potionList = tag.getStrings());
 
-        serverTag.getValueList("noWind")
-                .setComment("Add or remove effect types for trinkets")
-                .setDefaultStrings(Lists.newArrayList(dimensionTypeArray))
-                .syncTagToClient()
-                .onSync((tag, type) -> dimensionList = tag.getStrings());
-
-        serverTag.getValue("blocksPerCoin")
-                .setComment("Number of blocks (Default 1000)")
-                .setDefaultInt(1000)
-                .onSync((tag, type) -> blocksPerCoin = tag.getInt());
-
-        serverTag.getValue("dimensionalWarpCoinCost")
-                .setComment("Multiplier for dimensional teleport (Default 3)")
-                .setDefaultInt(3)
-                .onSync((tag, type) -> dimensionalWarpCoinCost = tag.getInt());
-
-        serverTag.getValue("milestoneCoinCostMultiplier")
-                .setComment("Multiplier for regular teleport (Default 1)")
-                .setDefaultDouble(1)
-                .onSync((tag, type) -> milestoneCoinCostMultiplier = tag.getDouble());
-
-        serverTag.getValue("minimumCoinCost")
-                .setComment("Minimum coin cost to teleport per (Default 1000) blocks (Default 5)")
-                .setDefaultDouble(5)
-                .onSync((tag, type) -> minimumCoinCost = tag.getDouble());
-
-        serverTag.getValue("maximumCoinCost")
-                .setComment("Maximum coin cost to teleport per (Default 1000) blocks (Default 50)")
-                .setDefaultDouble(50)
-                .onSync((tag, type) -> maximumCoinCost = tag.getDouble());
-
-        serverTag.getValue("dimensionalWarp")
-                .setComment("Enable Cross-dimensional Teleport between Milestones (Default true)")
-                .setDefaultBoolean(true)
-                .onSync((tag, type) -> dimensionalWarp = tag.getBoolean());
-
         serverTag.getValue("replant")
                 .setComment("Crops will be replanted when harvested via right click. This requires a seed to drop, and is removed from the drop list. (Default true)")
                 .setDefaultBoolean(true)
@@ -124,16 +86,10 @@ public class TolkienConfig {
                 .setDefaultBoolean(false)
                 .syncTagToClient()
                 .onSync((tag, type) -> disableFakePlayer = tag.getBoolean());
-
-        serverTag.getValue("exampleString")
-                .setComment("This is an example string")
-                .setDefaultString("Default Example String")
-                .onSync((tag, type) -> exampleString = tag.getString());
     }
 
     //Client properties
     public static boolean HeartOverlay;
-    public static List<String> dimensionList;
 
     private static void loadClient() {
         clientTag = config.getCategory("Client");
@@ -146,11 +102,9 @@ public class TolkienConfig {
     }
 
     public static String[] potionTypeArray = new String[]{"tolkienmobs:blessing_of_eru", "tolkienmobs:elven_nimbleness", "tolkienmobs:ent_draught", "tolkienmobs:personal_blacksmith", "minecraft:absorption", "minecraft:invisibility", "minecraft:night_vision", "minecraft:speed", "minecraft:regeneration", "minecraft:jump_boost", "minecraft:haste", "minecraft:water_breathing", "minecraft:fire_resistance"};
-    public static String[] dimensionTypeArray = new String[]{DimensionType.NETHER_LOCATION.location().toString(), DimensionType.END_LOCATION.location().toString()};
 
 
     public static MobEffect[] potionArray = new MobEffect[0];
-    public static String[] dimensionArray = new String[0];
 
     public static void loadPotionList() {
         List<MobEffect> potions = new ArrayList<>();
@@ -161,15 +115,5 @@ public class TolkienConfig {
             }
         }
         potionArray = potions.toArray(new MobEffect[0]);
-    }
-
-    public static void loadDimensionList() {
-        List<String> dimensions = new ArrayList<>();
-        for (String name : dimensionTypeArray) {
-            if (name != null) {
-                dimensions.add(name);
-            }
-        }
-        dimensionArray = dimensions.toArray(new String[0]);
     }
 }

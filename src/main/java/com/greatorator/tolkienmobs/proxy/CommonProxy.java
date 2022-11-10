@@ -63,7 +63,6 @@ public class CommonProxy {
     public void commonSetup(FMLCommonSetupEvent event) {
         RecipeGenerator.potions();
         TolkienConfig.loadPotionList();
-        TolkienConfig.loadDimensionList();
         event.enqueueWork(() -> {
 //            TolkienStructures.setupStructures();
 //            TTMStructureConfig.registerConfiguredStructures();
