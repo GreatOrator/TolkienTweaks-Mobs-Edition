@@ -1,6 +1,9 @@
 package com.greatorator.tolkienmobs.datagen;
 
+import com.brandon3055.brandonscore.utils.DataUtils;
 import com.google.common.collect.ImmutableList;
+import com.greatorator.tolkienmobs.TolkienConfig;
+import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
 import com.greatorator.tolkienmobs.init.TolkienItems;
 import com.greatorator.tolkienmobs.init.TolkienPotions;
@@ -10,6 +13,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -21,6 +25,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.common.brewing.IBrewingRecipe;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
 
@@ -506,9 +511,23 @@ public class RecipeGenerator extends RecipeProvider {
     }
 
     private static void trinket(Consumer<FinishedRecipe> consumer) {
+        for (Potion potion : ForgeRegistries.POTIONS.getValues()) {
+            if (potion.getEffects().isEmpty() || potion.getEffects().size() > 1) continue;
+            MobEffect effect = potion.getEffects().get(0).getEffect();
+            if (DataUtils.contains(TolkienConfig.potionArray, e -> e.equals(effect))) {
+                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_BELT.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_belt_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_BELT.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
+                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_AMULET.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_amulet_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_AMULET.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
+                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_BELT.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_belt_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_BELT.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
+                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_CHARM.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_charm_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_CHARM.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
+                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_RING.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_ring_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_RING.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
+                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_GLOVE.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_glove_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_GLOVE.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
+                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_HAT.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_hat_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_HAT.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
+                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_CLOAK.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_cloak_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_CLOAK.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
+            }
+        }
     }
 
-        // Helper Methods
+    // Helper Methods
 
     public static void upgradeRecipe(ItemLike output, ItemLike input1, ItemLike input2, Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(output, 1)
@@ -543,14 +562,14 @@ public class RecipeGenerator extends RecipeProvider {
                 .save(consumer, "tolkienmobs:sleepingbag_" + output.asItem().getRegistryName().getPath());
     }
 
-    public static void fireplaceNormal(ItemLike output, int experience, int cookTime, ItemLike input1, Consumer<FinishedRecipe> consumer){
+    public static void fireplaceNormal(ItemLike output, int experience, int cookTime, ItemLike input1, Consumer<FinishedRecipe> consumer) {
         FireplaceRecipeBuilder.fireplaceRecipe(output, experience, cookTime)
                 .ingredient(input1)
                 .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(input1))
                 .save(consumer);
     }
 
-    public static void fireplaceCustom(ItemLike output, int experience, int cookTime, ItemLike input1, ItemLike input2, Consumer<FinishedRecipe> consumer){
+    public static void fireplaceCustom(ItemLike output, int experience, int cookTime, ItemLike input1, ItemLike input2, Consumer<FinishedRecipe> consumer) {
         FireplaceRecipeBuilder.fireplaceRecipe(output, experience, cookTime)
                 .ingredient(input1)
                 .ingredient(input2)
@@ -558,7 +577,7 @@ public class RecipeGenerator extends RecipeProvider {
                 .save(consumer);
     }
 
-    public static void fireplaceMultiple(ItemLike output, int experience, int cookTime, Consumer<FinishedRecipe> consumer, ItemLike... input1){
+    public static void fireplaceMultiple(ItemLike output, int experience, int cookTime, Consumer<FinishedRecipe> consumer, ItemLike... input1) {
         FireplaceRecipeBuilder.fireplaceRecipe(output, experience, cookTime)
                 .ingredient(input1)
                 .unlockedBy("has_" + TolkienItems.TTMFIREPLACE_ITEM.get().asItem().getRegistryName().getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(input1))
@@ -672,9 +691,9 @@ public class RecipeGenerator extends RecipeProvider {
                 .save(consumer, "tolkienmobs:torch_" + output.asItem().getRegistryName().getPath());
     }
 
-    public static void smeltingRecipe(ItemLike output, ItemLike input, float xp, int cook,Consumer<FinishedRecipe> consumer) {
+    public static void smeltingRecipe(ItemLike output, ItemLike input, float xp, int cook, Consumer<FinishedRecipe> consumer) {
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(input),
-                output, xp, cook)
+                        output, xp, cook)
                 .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
                 .save(consumer, "tolkienmobs:cooked_" + output.asItem().getRegistryName().getPath());
     }
@@ -907,7 +926,7 @@ public class RecipeGenerator extends RecipeProvider {
 
         @Override
         public ItemStack getOutput(ItemStack input, ItemStack ingredient) {
-            if(isInput(input) && isIngredient(ingredient)) {
+            if (isInput(input) && isIngredient(ingredient)) {
                 return this.output.copy();
             } else {
                 return ItemStack.EMPTY;
