@@ -26,4 +26,9 @@ public class TolkienSignBlock extends SignBlock {
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new TolkienSignTile(blockPos, blockState);
     }
+
+    @Override
+    public WoodType type() {
+        return this.type;
+    }
 }

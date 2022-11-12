@@ -6,8 +6,8 @@ import com.greatorator.tolkienmobs.handler.ColorHandler;
 import com.greatorator.tolkienmobs.handler.HealthHandler;
 import com.greatorator.tolkienmobs.handler.registers.SpritesRegister;
 import com.greatorator.tolkienmobs.init.TolkienWoodTypes;
-import com.greatorator.tolkienmobs.init.renders.TolkienBlockRenders;
 import com.greatorator.tolkienmobs.init.renders.TolkienGuiRenders;
+import com.greatorator.tolkienmobs.init.renders.TolkienItemBlockRenders;
 import com.greatorator.tolkienmobs.init.renders.TolkienTileRenders;
 import com.greatorator.tolkienmobs.integration.IntegrationHelper;
 import com.greatorator.tolkienmobs.item.container.CoinPouchItem;
@@ -50,38 +50,35 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void clientSetup(FMLClientSetupEvent event) {
         super.clientSetup(event);
-        setupRenderLayers();
+
+        registerRenders();
         registerPropertyOverride();
-        registerTileRenderers();
         registerWoodTypes(event);
     }
 
-    private static void registerWoodTypes(FMLClientSetupEvent event) {
-        //Add each of your custom wood types here. This is for textures.
-        event.enqueueWork(() -> Sheets.addWoodType(TolkienWoodTypes.MALLORN));
-        event.enqueueWork(() -> Sheets.addWoodType(TolkienWoodTypes.MIRKWOOD));
-        event.enqueueWork(() -> Sheets.addWoodType(TolkienWoodTypes.CULUMALDA));
-        event.enqueueWork(() -> Sheets.addWoodType(TolkienWoodTypes.LEBETHRON));
-    }
-
-    //#################################################################
-    // Render Registry
-    //#################################################################
-    public static void setupRenderLayers() {
-        TolkienBlockRenders.init();
+    private void registerRenders() {
         TolkienGuiRenders.init();
-
+        TolkienItemBlockRenders.init();
+        TolkienTileRenders.init();
         BowItemModelHandler.makeBow(ELVEN_BOW.get());
         BowItemModelHandler.makeBow(URUK_BOW.get());
-
     }
-    public static void registerPropertyOverride() {
+
+    public void registerPropertyOverride() {
         ItemProperties.register(COIN_POUCH.get(), new ResourceLocation("fullness"), CoinPouchItem::getFullnessPropertyOverride);
         ItemProperties.register(KEY_RING.get(), new ResourceLocation("fullness"), KeyRingItem::getFullnessPropertyOverride);
     }
 
-    private void registerTileRenderers() {
-        TolkienTileRenders.init();
+    private void registerWoodTypes(FMLClientSetupEvent event) {
+        //Add each of your custom wood types here. This is for textures.
+        event.enqueueWork(() -> {
+                     Sheets.addWoodType(TolkienWoodTypes.MALLORN);
+                     Sheets.addWoodType(TolkienWoodTypes.MIRKWOOD);
+                     Sheets.addWoodType(TolkienWoodTypes.CULUMALDA);
+                     Sheets.addWoodType(TolkienWoodTypes.LEBETHRON);
+                     Sheets.addWoodType(TolkienWoodTypes.DEADWOOD);
+                     Sheets.addWoodType(TolkienWoodTypes.FANGORNOAK);
+        });
     }
 
     @Override

@@ -25,8 +25,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.List;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
-import static mezz.jei.api.recipe.RecipeIngredientRole.INPUT;
-import static mezz.jei.api.recipe.RecipeIngredientRole.OUTPUT;
+import static mezz.jei.api.recipe.RecipeIngredientRole.*;
 
 public class FireplaceRecipeCategory implements IRecipeCategory<FireplaceRecipe> {
     public final static ResourceLocation TEXTURE = new ResourceLocation(MODID, "textures/gui/fireplace_gui.png");
@@ -83,8 +82,8 @@ public class FireplaceRecipeCategory implements IRecipeCategory<FireplaceRecipe>
                 .addIngredients(iFireplaceRecipe.getIngredients().get(0));
         iRecipeLayout.addSlot(INPUT, 60, 15)
                 .addIngredients(iFireplaceRecipe.getIngredients().get(1));
-        iRecipeLayout.addSlot(INPUT, 117, 36)
-                .addIngredients(iFireplaceRecipe.getIngredients().get(2));
+        iRecipeLayout.addSlot(CATALYST, 117, 36)
+                .addIngredients(iFireplaceRecipe.getIngredients().get(0));
 
         iRecipeLayout.addSlot(OUTPUT, 116, 35)
                 .addItemStack(iFireplaceRecipe.getResultItem());
@@ -97,7 +96,7 @@ public class FireplaceRecipeCategory implements IRecipeCategory<FireplaceRecipe>
         campFire.draw(stack, 52, 36);
         soup.draw(stack, 80, 34);
 
-        drawExperience(recipe, stack, 0);
+        drawExperience(recipe, stack, 12);
         drawCookTime(recipe, stack, 45);
     }
 

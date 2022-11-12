@@ -10,7 +10,6 @@ import com.greatorator.tolkienmobs.item.armor.BaseArmorItem;
 import com.greatorator.tolkienmobs.item.armor.BaseHorseArmorItem;
 import com.greatorator.tolkienmobs.item.basic.HypeHornItem;
 import com.greatorator.tolkienmobs.item.basic.TrinketItem;
-import com.greatorator.tolkienmobs.item.container.BackpackItem;
 import com.greatorator.tolkienmobs.item.container.CoinPouchItem;
 import com.greatorator.tolkienmobs.item.container.KeyRingItem;
 import com.greatorator.tolkienmobs.item.entity.*;
@@ -329,7 +328,7 @@ public class TolkienItems {
     public static RegistryObject<SwordItem> SWORD_URUK = ITEMS.register("sword_uruk", () -> new SwordHandler(TolkienTiers.MORGULIRON, 11, -0.5F, (new Item.Properties()).tab(toolsGroup)).setEffectOverride());
     public static RegistryObject<SwordItem> WHIP_FIRE = ITEMS.register("whip_fire", () -> new SwordHandler(TolkienTiers.MORGULIRON, 15, -0.5F, (new Item.Properties()).tab(toolsGroup)).setEffectOverride());
     public static RegistryObject<SwordItem> CLUB_WOODEN = ITEMS.register("club_wooden", () -> new SwordHandler(TolkienTiers.MORGULIRON, 9, -0.5F, (new Item.Properties()).tab(toolsGroup)).setEffectOverride());
-    public static RegistryObject<BlockItem> ITEM_BACKPACK = ITEMS.register("item_backpack", () -> new BackpackItem(BACKPACK.get(), (new Item.Properties()).stacksTo(1).tab(toolsGroup)));
+    public static RegistryObject<Item> ITEM_BACKPACK = ITEMS.register("item_backpack", () -> new ItemBlockBCore(BACKPACK.get(), new Item.Properties().stacksTo(1).tab(decoGroup)));
     public static RegistryObject<BowItem> ELVEN_BOW = ITEMS.register("elven_bow", () -> new BowItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
     public static RegistryObject<BowItem> URUK_BOW = ITEMS.register("uruk_bow", () -> new BowItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
     public static RegistryObject<Item> COIN_POUCH = ITEMS.register("coin_pouch", () -> new CoinPouchItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));

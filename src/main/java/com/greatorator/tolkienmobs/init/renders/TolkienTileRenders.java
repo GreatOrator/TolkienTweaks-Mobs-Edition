@@ -12,10 +12,7 @@ public class TolkienTileRenders {
         BlockEntityRenderers.register(PIGGYBANK_TILE.get(), RenderPiggyBankTile::new);
         BlockEntityRenderers.register(BACKPACK_TILE.get(), RenderBackpackTile::new);
         BlockEntityRenderers.register(PLACARD_TILE.get(), RenderPlacardTile::new);
-        BlockEntityRenderers.register(MALLORN_SIGN_TILE.get(), TolkienSignTileRender::new);
-        BlockEntityRenderers.register(MIRKWOOD_SIGN_TILE.get(), TolkienSignTileRender::new);
-        BlockEntityRenderers.register(CULUMALDA_SIGN_TILE.get(), TolkienSignTileRender::new);
-        BlockEntityRenderers.register(LEBETHRON_SIGN_TILE.get(), TolkienSignTileRender::new);
+        BlockEntityRenderers.register(SIGN_TILE.get(), TolkienSignTileRender::new);
         BlockEntityRenderers.register(MILESTONE_TILE.get(), RenderMilestoneTile::new);
         BlockEntityRenderers.register(KEY_STONE_TILE.get(), RenderCamoKeyStoneTile::new);
         BlockEntityRenderers.register(CAMO_SPAWNER_TILE.get(), RenderCamoSpawnerTile::new);

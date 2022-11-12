@@ -50,6 +50,7 @@ public class TolkienContainers {
         event.getRegistry().register(LOCKABLE_DOUBLE_CHEST_CONTAINER = (MenuType<LockableDoubleChestContainer>) IForgeMenuType.create(LockableDoubleChestContainer::new).setRegistryName("lockable_double_chest_container"));
         event.getRegistry().register(LOCKABLE_DOUBLE_TREASURE_CHEST_CONTAINER = (MenuType<LockableDoubleTreasureChestContainer>) IForgeMenuType.create(LockableDoubleTreasureChestContainer::new).setRegistryName("lockable_double_treasure_chest_container"));
     }
+
     public String getName() {
         return NAME + " - Menus";
     }

@@ -40,7 +40,7 @@ public class TolkienSignTile extends BlockEntity {
     private DyeColor color = DyeColor.BLACK;
 
     public TolkienSignTile(BlockPos pos, BlockState state) {
-        super(TolkienTiles.CULUMALDA_SIGN_TILE.get(), pos, state);
+        super(TolkienTiles.SIGN_TILE.get(), pos, state);
     }
 
     @Override

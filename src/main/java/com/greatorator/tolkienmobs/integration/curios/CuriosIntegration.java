@@ -2,13 +2,11 @@ package com.greatorator.tolkienmobs.integration.curios;
 
 import com.brandon3055.brandonscore.capability.MultiCapabilityProvider;
 import com.greatorator.tolkienmobs.init.TolkienItems;
-import com.greatorator.tolkienmobs.item.container.BackpackItem;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
@@ -28,7 +26,6 @@ import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -101,25 +98,25 @@ public class CuriosIntegration extends EquipmentManager {
         return Collections.emptyList();
     }
 
-    public static ICurio createBackpackProvider()
-    {
-        return new CurioWrapper(ItemStack.EMPTY);
-    }
-
-    public static Optional<ImmutableTriple<String, Integer, ItemStack>> getCurioBackpack(LivingEntity livingEntity)
-    {
-        Predicate<ItemStack> backpack = stack -> stack.getItem() instanceof BackpackItem;
-        return CuriosApi.getCuriosHelper().findEquippedCurio(backpack, livingEntity);
-    }
-
-    public static ItemStack getCurioBackpackStack(Player player)
-    {
-        if(getCurioBackpack(player).isPresent())
-        {
-            return getCurioBackpack(player).get().getRight();
-        }
-        return ItemStack.EMPTY;
-    }
+//    public static ICurio createBackpackProvider()
+//    {
+//        return new CurioWrapper(ItemStack.EMPTY);
+//    }
+//
+//    public static Optional<ImmutableTriple<String, Integer, ItemStack>> getCurioBackpack(LivingEntity livingEntity)
+//    {
+//        Predicate<ItemStack> backpack = stack -> stack.getItem() instanceof BackpackItem;
+//        return CuriosApi.getCuriosHelper().findEquippedCurio(backpack, livingEntity);
+//    }
+//
+//    public static ItemStack getCurioBackpackStack(Player player)
+//    {
+//        if(getCurioBackpack(player).isPresent())
+//        {
+//            return getCurioBackpack(player).get().getRight();
+//        }
+//        return ItemStack.EMPTY;
+//    }
 
     /**
      * Data Gen

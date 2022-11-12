@@ -39,6 +39,9 @@ public class TolkienMobs {
 	    b. TrinketRecipe (Recipes for trinkets to add potions)
 	    c. BackpackItem (Allow to open GUI instead of only using block form)
 	    d. EntityLootGenerator (Attempting to process loot for other mods in workspace)
+	    e. GUI's for blocks not loading
+	    f. Camo for spawner not working
+	    g. Signs not rendering proper texture
 	2. Categories
 	    a. Entities (Implementation)
 	    	1. Fell Beast - Needs AI adjustments

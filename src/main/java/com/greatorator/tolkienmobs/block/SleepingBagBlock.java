@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.greatorator.tolkienmobs.entity.tile.SleepingBagTile;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.DyeColor;
@@ -63,7 +62,8 @@ public class SleepingBagBlock extends BedBlock {
     }
 
     @Override
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new SleepingBagTile(blockPos, blockState, this.color);
+    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState)
+    {
+        return null;
     }
 }
