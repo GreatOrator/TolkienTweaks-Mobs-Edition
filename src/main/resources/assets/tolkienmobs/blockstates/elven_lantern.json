@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "hanging=true,lit=true": { "model": "tolkienmobs:block/elven_lantern_hanging_lit"},
+    "hanging=true,lit=false": { "model": "tolkienmobs:block/elven_lantern_hanging_unlit"},
+    "hanging=false,lit=true": { "model": "tolkienmobs:block/elven_lantern_lit"},
+    "hanging=false,lit=false": { "model": "tolkienmobs:block/elven_lantern_unlit"}
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "variants": {
+    "facing=down,waterlogged=false": {
+      "model": "tolkienmobs:block/lightningbug",
+      "x": 180
+    },
+    "facing=up,waterlogged=false": {
+      "model": "tolkienmobs:block/lightningbug"
+    },
+    "facing=north,waterlogged=false": {
+      "model": "tolkienmobs:block/lightningbug",
+      "x": 90
+    },
+    "facing=south,waterlogged=false": {
+      "model": "tolkienmobs:block/lightningbug",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,waterlogged=false": {
+      "model": "tolkienmobs:block/lightningbug",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,waterlogged=false": {
+      "model": "tolkienmobs:block/lightningbug",
+      "x": 90,
+      "y": 90
+    },
+    "facing=down,waterlogged=true": {
+      "model": "tolkienmobs:block/lightningbug",
+      "x": 180
+    },
+    "facing=up,waterlogged=true": {
+      "model": "tolkienmobs:block/lightningbug"
+    },
+    "facing=north,waterlogged=true": {
+      "model": "tolkienmobs:block/lightningbug",
+      "x": 90
+    },
+    "facing=south,waterlogged=true": {
+      "model": "tolkienmobs:block/lightningbug",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,waterlogged=true": {
+      "model": "tolkienmobs:block/lightningbug",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,waterlogged=true": {
+      "model": "tolkienmobs:block/lightningbug",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

@@ -1,8 +1,7 @@
 package com.greatorator.tolkienmobs.entity.tile.render;
 
-
-import com.greatorator.tolkienmobs.block.BackpackBlock;
-import com.greatorator.tolkienmobs.entity.tile.PlacardTile;
+import com.greatorator.tolkienmobs.block.CamoChestBlock;
+import com.greatorator.tolkienmobs.entity.tile.CamoChestTile;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Quaternion;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -11,15 +10,16 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class RenderPlacardTile implements BlockEntityRenderer<PlacardTile> {
-    public RenderPlacardTile(BlockEntityRendererProvider.Context context) {
+public class CamoChestTileRender implements BlockEntityRenderer<CamoChestTile> {
+    public CamoChestTileRender(BlockEntityRendererProvider.Context context) {
 
     }
 
+
     @Override
-    public void render(PlacardTile te, float partialTicks, PoseStack mStack, MultiBufferSource getter, int packedLight, int packedOverlay) {
+    public void render(CamoChestTile te, float partialTicks, PoseStack mStack, MultiBufferSource getter, int packedLight, int packedOverlay) {
         BlockState state = te.getBlockState();
-        Direction facing = state.getValue(BackpackBlock.FACING);
+        Direction facing = state.getValue(CamoChestBlock.FACING);
 
         mStack.pushPose();
         mStack.translate(0.5, 0.5, 0.5);

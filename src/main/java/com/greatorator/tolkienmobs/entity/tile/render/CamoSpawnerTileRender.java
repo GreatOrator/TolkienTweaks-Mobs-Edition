@@ -10,8 +10,8 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class RenderCamoSpawnerTile implements BlockEntityRenderer<CamoSpawnerTile> {
-    public RenderCamoSpawnerTile(BlockEntityRendererProvider.Context context) {
+public class CamoSpawnerTileRender implements BlockEntityRenderer<CamoSpawnerTile> {
+    public CamoSpawnerTileRender(BlockEntityRendererProvider.Context context) {
 
     }
 

@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.tile.render;
 
-import com.greatorator.tolkienmobs.block.MilestoneBlock;
-import com.greatorator.tolkienmobs.entity.tile.CamoKeyStoneTile;
+import com.greatorator.tolkienmobs.block.LockableDoubleChestBlock;
+import com.greatorator.tolkienmobs.entity.tile.LockableDoubleChestTile;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Quaternion;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -10,15 +10,15 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class RenderCamoKeyStoneTile implements BlockEntityRenderer<CamoKeyStoneTile> {
-    public RenderCamoKeyStoneTile(BlockEntityRendererProvider.Context context) {
+public class LockableDoubleChestTileRender implements BlockEntityRenderer<LockableDoubleChestTile> {
+    public LockableDoubleChestTileRender(BlockEntityRendererProvider.Context context) {
 
     }
 
     @Override
-    public void render(CamoKeyStoneTile te, float partialTicks, PoseStack mStack, MultiBufferSource getter, int packedLight, int packedOverlay) {
+    public void render(LockableDoubleChestTile te, float partialTicks, PoseStack mStack, MultiBufferSource getter, int packedLight, int packedOverlay) {
         BlockState state = te.getBlockState();
-        Direction facing = state.getValue(MilestoneBlock.FACING);
+        Direction facing = state.getValue(LockableDoubleChestBlock.FACING);
 
         mStack.pushPose();
         mStack.translate(0.5, 0.5, 0.5);
@@ -38,6 +38,7 @@ public class RenderCamoKeyStoneTile implements BlockEntityRenderer<CamoKeyStoneT
                 mStack.mulPose(new Quaternion(0, 0, 180, true));
                 break;
         }
+
         mStack.popPose();
     }
 }

@@ -1,8 +1,11 @@
 package com.greatorator.tolkienmobs.world.gen.placers;
 
 import com.google.common.collect.Lists;
-import com.greatorator.tolkienmobs.utils.FeatureUtility;
-import com.greatorator.tolkienmobs.world.gen.feature.config.TTMBranchesConfig;
+import com.greatorator.tolkienmobs.utils.BresenhamIterator;
+import com.greatorator.tolkienmobs.utils.FeatureLogic;
+import com.greatorator.tolkienmobs.utils.FeaturePlacer;
+import com.greatorator.tolkienmobs.world.gen.feature.config.BranchesConfig;
+import com.greatorator.tolkienmobs.world.gen.feature.config.RootConfig;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TreeFeatureConfig;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -24,30 +27,34 @@ public class BranchingLargeTrunkPlacer extends TrunkPlacer {
     public static final Codec<BranchingLargeTrunkPlacer> CODEC = RecordCodecBuilder.create(instance ->
         trunkPlacerParts(instance).and(instance.group(
                 Codec.intRange(0, 24).fieldOf("branch_start_offset_down").forGetter(o -> o.branchDownwardOffset),
-                TTMBranchesConfig.CODEC.fieldOf("branch_config").forGetter(o -> o.branchesConfig),
+                BranchesConfig.CODEC.fieldOf("branch_config").forGetter(o -> o.branchesConfig),
+                RootConfig.CODEC.fieldOf("root_config").forGetter(o -> o.rootsConfig),
                 Codec.BOOL.fieldOf("perpendicular_branches").forGetter(o -> o.perpendicularBranches)
         )).apply(instance, BranchingLargeTrunkPlacer::new)
 );
 
     private final int branchDownwardOffset;
-    private final TTMBranchesConfig branchesConfig;
+    private final BranchesConfig branchesConfig;
+    private final RootConfig rootsConfig;
     private final boolean perpendicularBranches;
 
-    public BranchingLargeTrunkPlacer(int baseHeight, int randomHeightA, int randomHeightB, int branchDownwardOffset, TTMBranchesConfig branchesConfig, boolean perpendicularBranches) {
+    public BranchingLargeTrunkPlacer(int baseHeight, int randomHeightA, int randomHeightB, int branchDownwardOffset, BranchesConfig branchesConfig, RootConfig rootsConfig, boolean perpendicularBranches) {
         super(baseHeight, randomHeightA, randomHeightB);
         this.branchDownwardOffset = branchDownwardOffset;
         this.branchesConfig = branchesConfig;
+        this.rootsConfig = rootsConfig;
         this.perpendicularBranches = perpendicularBranches;
     }
 
     @Override
     protected TrunkPlacerType<BranchingLargeTrunkPlacer> type() {
-        return TreeFeatureConfig.TRUNK_BRANCHING_LARGE;
+        return TreeFeatureConfig.TRUNK_BRANCHING_LARGE.get();
     }
 
     @Override
     public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader world, BiConsumer<BlockPos, BlockState> consumer, Random random, int height, BlockPos startPos, TreeConfiguration baseTreeFeatureConfig) {
         List<FoliagePlacer.FoliageAttachment> leafBlocks = Lists.newArrayList();
+        List<BlockPos> rootBlocks = Lists.newArrayList();
         setDirtAt(world, consumer, random, startPos.below(), baseTreeFeatureConfig);
         setDirtAt(world, consumer, random, startPos.below().east(), baseTreeFeatureConfig);
         setDirtAt(world, consumer, random, startPos.below().south(), baseTreeFeatureConfig);
@@ -82,6 +89,7 @@ public class BranchingLargeTrunkPlacer extends TrunkPlacer {
         }
 
         leafBlocks.add(new FoliagePlacer.FoliageAttachment(startPos.above(height), 0, false));
+        rootBlocks.add(new BlockPos(startPos));
 
         int numBranches = branchesConfig.branchCount + random.nextInt(branchesConfig.randomAddBranches + 1);
         float offset = random.nextFloat();
@@ -89,13 +97,42 @@ public class BranchingLargeTrunkPlacer extends TrunkPlacer {
             buildBranch(world, startPos, consumer, leafBlocks, height - branchDownwardOffset + b, branchesConfig.length, branchesConfig.spacingYaw * b + offset, branchesConfig.downwardsPitch, random, mutableBoundingBox, baseTreeFeatureConfig, perpendicularBranches);
         }
 
+        int numRoots = rootsConfig.strands + random.nextInt(rootsConfig.addExtraStrands);
+        for (int b = 0; b < numRoots; b++) {
+            buildRoot(world, consumer, random, rootBlocks);
+        }
+
         return leafBlocks;
     }
+
+    public void buildRoot(LevelSimulatedReader worldReader, BiConsumer<BlockPos, BlockState> worldPlacer, Random random, List<BlockPos> trunkBlocks) {
+        if (trunkBlocks.isEmpty())
+            return;
+
+        int numBranches = rootsConfig.strands + random.nextInt(rootsConfig.addExtraStrands + 1);
+        float offset = random.nextFloat();
+        BlockPos startPos = trunkBlocks.get(0);
+
+        if (rootsConfig.hasSurfaceRoots) {
+            for (int i = 0; i < numBranches; i++) {
+                BlockPos dest = FeatureLogic.translate(startPos.below(i + 2), rootsConfig.length, 0.3 * i + (double) offset, 0.8);
+
+                FeaturePlacer.traceExposedRoot(worldReader, worldPlacer, random, rootsConfig.surfaceBlock, rootsConfig.rootBlock, new BresenhamIterator(startPos.below(), dest));
+            }
+        } else {
+            for (int i = 0; i < numBranches; i++) {
+                BlockPos dest = FeatureLogic.translate(startPos.below(i + 2), rootsConfig.length, 0.3 * i + (double) offset, 0.8);
+
+                FeaturePlacer.traceRoot(worldReader, worldPlacer, random, rootsConfig.rootBlock, new BresenhamIterator(startPos.below(), dest));
+            }
+        }
+    }
+
 
 
     private static void buildBranch(LevelSimulatedReader world, BlockPos pos, BiConsumer<BlockPos, BlockState> trunkBlocks, List<FoliagePlacer.FoliageAttachment> leafBlocks, int height, double length, double angle, double tilt, Random treeRNG, BlockPos.MutableBlockPos mbb, TreeConfiguration config, boolean perpendicularBranches) {
         BlockPos src = pos.above(height);
-        BlockPos dest = FeatureUtility.translate(src, length, angle, tilt);
+        BlockPos dest = FeaturePlacer.translate(src, length, angle, tilt);
         BlockPos.MutableBlockPos mutableBoundingBox = new BlockPos.MutableBlockPos();
 
         if (perpendicularBranches) {
@@ -119,7 +156,7 @@ public class BranchingLargeTrunkPlacer extends TrunkPlacer {
     }
 
     private static void drawBresenhamBranch(LevelSimulatedReader world, Random random, BlockPos from, BlockPos to, BiConsumer<BlockPos, BlockState> state, BlockPos.MutableBlockPos mbb, TreeConfiguration config) {
-        for (BlockPos pixel : FeatureUtility.getBresenhamArrays(from, to)) {
+        for (BlockPos pixel : FeaturePlacer.getBresenhamArrays(from, to)) {
             placeLog(world, state, random, pixel, config);
         }
     }

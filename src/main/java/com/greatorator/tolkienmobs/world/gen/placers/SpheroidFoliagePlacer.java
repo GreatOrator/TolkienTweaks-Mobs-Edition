@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.world.gen.placers;
 
-import com.greatorator.tolkienmobs.utils.FeatureUtility;
+import com.greatorator.tolkienmobs.utils.FeaturePlacer;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TreeFeatureConfig;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -64,7 +64,7 @@ public class SpheroidFoliagePlacer extends FoliagePlacer {
         BlockPos center = foliage.pos().above(offset); // foliage.getCenter
 
         //FeatureUtil.makeLeafCircle(world, random, center, radius, baseTreeFeatureConfig.leavesProvider, leavesSet);
-        FeatureUtility.makeLeafSpheroid(worldReader, worldPlacer, FeatureUtility.VALID_TREE_POS, random, center, foliage.radiusOffset() + this.horizontalRadius + random.nextInt(this.randomHorizontal + 1), foliage.radiusOffset() + this.verticalRadius + random.nextInt(this.randomVertical + 1), this.verticalBias, baseTreeFeatureConfig.foliageProvider);
+        FeaturePlacer.makeLeafSpheroid(worldReader, worldPlacer, FeaturePlacer.VALID_TREE_POS, random, center, foliage.radiusOffset() + this.horizontalRadius + random.nextInt(this.randomHorizontal + 1), foliage.radiusOffset() + this.verticalRadius + random.nextInt(this.randomVertical + 1), this.verticalBias, baseTreeFeatureConfig.foliageProvider);
 
         if (shag_factor > 0) {
             for (int i = 0; i < shag_factor; i++) {
@@ -82,10 +82,10 @@ public class SpheroidFoliagePlacer extends FoliagePlacer {
     }
 
     private void placeLeafCluster(LevelSimulatedReader worldReader, Random random, BlockPos pos, BlockStateProvider state, BiConsumer<BlockPos, BlockState> worldPlacer) {
-        FeatureUtility.putLeafBlock(worldReader, worldPlacer, FeatureUtility.VALID_TREE_POS, pos, state, random);
-        FeatureUtility.putLeafBlock(worldReader, worldPlacer, FeatureUtility.VALID_TREE_POS, pos.east(), state, random);
-        FeatureUtility.putLeafBlock(worldReader, worldPlacer, FeatureUtility.VALID_TREE_POS, pos.south(), state, random);
-        FeatureUtility.putLeafBlock(worldReader, worldPlacer, FeatureUtility.VALID_TREE_POS, pos.offset(1, 0, 1), state, random);
+        FeaturePlacer.putLeafBlock(worldReader, worldPlacer, FeaturePlacer.VALID_TREE_POS, pos, state, random);
+        FeaturePlacer.putLeafBlock(worldReader, worldPlacer, FeaturePlacer.VALID_TREE_POS, pos.east(), state, random);
+        FeaturePlacer.putLeafBlock(worldReader, worldPlacer, FeaturePlacer.VALID_TREE_POS, pos.south(), state, random);
+        FeaturePlacer.putLeafBlock(worldReader, worldPlacer, FeaturePlacer.VALID_TREE_POS, pos.offset(1, 0, 1), state, random);
     }
 
     @Override // foliage Height

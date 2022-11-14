@@ -214,6 +214,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.LOCKABLE_DOUBLE_CHEST_BLOCK.get());
         blockItem(TolkienBlocks.LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK.get());
         blockItem(TolkienBlocks.ROCKPILE.get());
+        blockItem(TolkienBlocks.LIGHTNINGBUG_BLOCK.get());
 
         // Dev Tools
         simpleItem(TolkienItems.ITEM_DEV_TOOL.get());

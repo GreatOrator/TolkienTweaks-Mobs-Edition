@@ -54,8 +54,6 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.addListener(WorldEvents::addDimensionalSpacing);
 //        MinecraftForge.EVENT_BUS.addListener(WorldEvents::biomeModification);
 
-//        TreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
-
 //        modBus.addListener(TolkienEntities::registerAttributes);
         TolkienPacketHandler.init();
     }

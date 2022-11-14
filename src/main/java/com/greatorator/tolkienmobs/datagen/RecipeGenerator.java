@@ -73,6 +73,9 @@ public class RecipeGenerator extends RecipeProvider {
         barsRecipe(TolkienBlocks.MITHRIL_BARS.get(), TolkienItems.INGOT_MITHRIL.get(), consumer);
         barsRecipe(TolkienBlocks.MORGULIRON_BARS.get(), TolkienItems.INGOT_MORGULIRON.get(), consumer);
 
+        lanternRecipe(TolkienBlocks.ELVEN_LANTERN.get(), TolkienItems.NUGGET_MITHRIL.get(), TolkienBlocks.TORCH_MALLORN.get(), consumer);
+        lanternRecipe(TolkienBlocks.MORGUL_LANTERN.get(), TolkienItems.NUGGET_MORGULIRON.get(), TolkienBlocks.TORCH_MIRKWOOD.get(), consumer);
+
         stairsRecipe(TolkienBlocks.STAIRS_MALLORN.get(), TolkienBlocks.PLANKS_MALLORN.get(), consumer);
         stairsRecipe(TolkienBlocks.STAIRS_MIRKWOOD.get(), TolkienBlocks.PLANKS_MIRKWOOD.get(), consumer);
         stairsRecipe(TolkienBlocks.STAIRS_CULUMALDA.get(), TolkienBlocks.PLANKS_CULUMALDA.get(), consumer);
@@ -517,7 +520,6 @@ public class RecipeGenerator extends RecipeProvider {
             if (DataUtils.contains(TolkienConfig.potionArray, e -> e.equals(effect))) {
                 consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_BELT.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_belt_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_BELT.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
                 consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_AMULET.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_amulet_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_AMULET.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
-                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_BELT.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_belt_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_BELT.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
                 consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_CHARM.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_charm_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_CHARM.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
                 consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_RING.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_ring_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_RING.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
                 consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_GLOVE.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_glove_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_GLOVE.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
@@ -679,6 +681,17 @@ public class RecipeGenerator extends RecipeProvider {
                 .define('-', Items.STICK)
                 .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
                 .save(consumer, "tolkienmobs:tools_" + output.asItem().getRegistryName().getPath());
+    }
+
+    public static void lanternRecipe(ItemLike output, ItemLike input1, ItemLike input2, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("###")
+                .pattern("#-#")
+                .pattern("###")
+                .define('#', input1)
+                .define('-', input2)
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
+                .save(consumer, "tolkienmobs:lantern_" + output.asItem().getRegistryName().getPath());
     }
 
     public static void torchRecipe(ItemLike output, ItemLike input, Consumer<FinishedRecipe> consumer) {

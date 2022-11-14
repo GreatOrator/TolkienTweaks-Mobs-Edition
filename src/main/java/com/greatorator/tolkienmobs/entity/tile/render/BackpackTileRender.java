@@ -10,8 +10,8 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class RenderBackpackTile implements BlockEntityRenderer<BackpackTile> {
-    public RenderBackpackTile(BlockEntityRendererProvider.Context context) {
+public class BackpackTileRender implements BlockEntityRenderer<BackpackTile> {
+    public BackpackTileRender(BlockEntityRendererProvider.Context context) {
 
     }
 

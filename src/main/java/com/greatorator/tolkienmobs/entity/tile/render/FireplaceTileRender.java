@@ -16,8 +16,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.GROUND;
 import static net.minecraft.client.renderer.block.model.ItemTransforms.TransformType.NONE;
 
-public class RenderFireplaceTile implements BlockEntityRenderer<FireplaceTile> {
-    public RenderFireplaceTile(BlockEntityRendererProvider.Context context) {
+public class FireplaceTileRender implements BlockEntityRenderer<FireplaceTile> {
+    public FireplaceTileRender(BlockEntityRendererProvider.Context context) {
 
     }
 

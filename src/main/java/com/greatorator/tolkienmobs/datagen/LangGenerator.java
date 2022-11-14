@@ -231,8 +231,11 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienBlocks.LOCKABLE_TREASURE_CHEST_BLOCK.get(), "Lockable Treasure Chest");
         add(TolkienBlocks.LOCKABLE_DOUBLE_CHEST_BLOCK.get(), "Lockable Double Chest");
         add(TolkienBlocks.LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK.get(), "Lockable Double Treasure Chest");
-//        add(TolkienBlocks.PLACARD.get(), "Country Signs");
-//        addLore(Item.byBlock(TolkienBlocks.PLACARD.get()), "Shift right-click on sign to cycle types");
+        add(TolkienBlocks.LIGHTNINGBUG_BLOCK.get(), "Lightning Bug");
+        add(TolkienBlocks.ELVEN_LANTERN.get(), "Elven Lantern");
+        add(TolkienBlocks.MORGUL_LANTERN.get(), "Morgul Lantern");
+        add(TolkienBlocks.PLACARD.get(), "Country Signs");
+        addLore(Item.byBlock(TolkienBlocks.PLACARD.get()), "Shift right-click on sign to cycle types");
         add(TolkienBlocks.SLEEPING_BAG_BLACK.get(), "Black Sleeping Bag");
         addLore(Item.byBlock(TolkienBlocks.SLEEPING_BAG_BLACK.get()), ChatFormatting.RED + "Does not reset spawn point.");
         add(TolkienBlocks.SLEEPING_BAG_BLUE.get(), "Blue Sleeping Bag");

@@ -98,6 +98,19 @@
 				"east": {"uv": [0, 16, 7, 15], "rotation": 90, "texture": "#tex"},
 				"west": {"uv": [0, 16, 7, 15], "rotation": 90, "texture": "#tex"}
 			}
+		},
+		{
+			"name": "crossbar",
+			"from": [-0.1, 15.3, 7.4],
+			"to": [16.1, 16.5, 8.6],
+			"faces": {
+				"north": {"uv": [1.25, 1.25, 15.75, 1.75], "texture": "#tex"},
+				"east": {"uv": [15.25, 1.25, 15.75, 1.75], "texture": "#tex"},
+				"south": {"uv": [1.25, 1.25, 15.75, 1.75], "texture": "#tex"},
+				"west": {"uv": [1.25, 1.25, 1.75, 1.75], "texture": "#tex"},
+				"up": {"uv": [1.25, 1.25, 15.75, 1.75], "texture": "#tex"},
+				"down": {"uv": [1.25, 1.25, 15.75, 1.75], "texture": "#tex"}
+			}
 		}
 	]
 }

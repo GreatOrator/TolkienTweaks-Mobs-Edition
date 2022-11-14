@@ -794,6 +794,15 @@
       }
     ]
   },
+  "lightningbug_ambient": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "tolkienmobs:block/lightningbug",
+        "stream": true
+      }
+    ]
+  },
   "mob.demonlaugh": {
     "category": "hostile",
     "sounds":

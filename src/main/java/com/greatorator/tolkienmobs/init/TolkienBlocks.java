@@ -5,7 +5,6 @@ import com.greatorator.tolkienmobs.world.gen.feature.TreeFeature;
 import com.greatorator.tolkienmobs.world.trees.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.DyeColor;
@@ -72,10 +71,10 @@ public class TolkienBlocks {
     public static RegistryObject<TrapDoorBlock> TRAPDOOR_MALLORN = BLOCKS.register("trapdoor_mallorn", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(3.0F).sound(SoundType.WOOD).noOcclusion().isValidSpawn(TolkienBlocks::never)));
     public static RegistryObject<TorchBlock> TORCH_MALLORN = BLOCKS.register("torch_mallorn", () -> new TorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
-    }).sound(SoundType.WOOD), ParticleTypes.SOUL_FIRE_FLAME));
+    }).sound(SoundType.WOOD), TolkienParticles.mallorn_flame));
     public static RegistryObject<TorchBlock> WALL_TORCH_MALLORN = BLOCKS.register("wall_torch_mallorn", () -> new WallTorchBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().instabreak().lightLevel((p_235470_0_) -> {
         return 14;
-    }).sound(SoundType.WOOD), ParticleTypes.SOUL_FIRE_FLAME));
+    }).sound(SoundType.WOOD), TolkienParticles.mallorn_flame));
     public static RegistryObject<Block> PRESSURE_PLATE_MALLORN = BLOCKS.register("pressure_plate_mallorn", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.WOOD, PLANKS_MALLORN.get().defaultMaterialColor()).noCollission().strength(0.5F).sound(SoundType.WOOD)));
     public static RegistryObject<Block> MALLORN_SIGN = BLOCKS.register("sign_mallorn", () -> new TolkienStandingSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD), MALLORN));
     public static RegistryObject<Block> MALLORN_WALL_SIGN = BLOCKS.register("wall_sign_mallorn", () -> new TolkienWallSignBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.SAND).noCollission().strength(1.0F).sound(SoundType.WOOD).dropsLike(MALLORN_SIGN.get()), MALLORN));
@@ -260,9 +259,8 @@ public class TolkienBlocks {
     public static RegistryObject<Block> PLACARD = BLOCKS.register("placard", () -> new PlacardBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_BROWN).requiresCorrectToolForDrops().noOcclusion().strength(1f, 1f)));
     public static RegistryObject<Block> CHAMELEON_BLOCK = BLOCKS.register("chameleon_block", () -> new ChameleonBlock<>(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().noOcclusion()));
     public static RegistryObject<Block> KEY_STONE_BLOCK = BLOCKS.register("block_key_stone", () -> new CamoKeyStoneBlock(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
-    public static RegistryObject<Block> CAMO_GLOWSTONE_BLOCK = BLOCKS.register("block_camo_glowstone", () -> new CamoGlowstoneBlock(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().lightLevel((p_235464_0_) -> {
-        return 15;
-    })));
+    public static RegistryObject<Block> CAMO_GLOWSTONE_BLOCK = BLOCKS.register("block_camo_glowstone", () -> new CamoGlowstoneBlock(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().lightLevel((state) -> 15)));
+    public static RegistryObject<Block> LIGHTNINGBUG_BLOCK = BLOCKS.register("lightningbug", () -> new LightningBugBlock(BlockBehaviour.Properties.of(new Material.Builder(MaterialColor.GRASS).noCollider().nonSolid().build()).lightLevel((state) -> 15).sound(SoundType.SLIME_BLOCK).instabreak().noCollission()));
     public static RegistryObject<Block> CAMO_SMOKER_BLOCK = BLOCKS.register("block_camo_smoker", () -> new CamoSmokerBlock(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
     public static RegistryObject<Block> CAMO_FLUID_BLOCK = BLOCKS.register("block_camo_fluid", () -> new CamoFluidBlock(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
     public static RegistryObject<Block> CAMO_CHEST_BLOCK = BLOCKS.register("block_camo_chest", () -> new CamoChestBlock(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
@@ -273,6 +271,8 @@ public class TolkienBlocks {
     public static RegistryObject<Block> LOCKABLE_DOUBLE_CHEST_BLOCK = BLOCKS.register("lockable_double_chest_block", () -> new LockableDoubleChestBlock(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
     public static RegistryObject<Block> LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK = BLOCKS.register("lockable_double_treasure_chest_block", () -> new LockableDoubleTreasureChestBlock(BlockBehaviour.Properties.of(Material.STONE).strength(-1.0F, 3600000.0F).noDrops().noOcclusion()));
     public static RegistryObject<Block> ROCKPILE = BLOCKS.register("rockpile", () -> new RockPileBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_GRAY).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(5f, 6f).dynamicShape()));
+    public static RegistryObject<Block> ELVEN_LANTERN = BLOCKS.register("elven_lantern", () -> new FancyLanternBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_GRAY).sound(SoundType.LANTERN).requiresCorrectToolForDrops().strength(3.5F, 3.5F).noOcclusion().lightLevel(litBlockEmission(15))));
+    public static RegistryObject<Block> MORGUL_LANTERN = BLOCKS.register("morgul_lantern", () -> new FancyLanternBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_GRAY).sound(SoundType.LANTERN).requiresCorrectToolForDrops().strength(3.5F, 3.5F).noOcclusion().lightLevel(litBlockEmission(10))));
 
     // Custom - Sleeping Bags
     public static RegistryObject<Block> SLEEPING_BAG_BLUE = BLOCKS.register("sleeping_bag_blue", () -> new SleepingBagBlock(DyeColor.BLUE, BlockBehaviour.Properties.of(Material.WOOL, (state) -> {

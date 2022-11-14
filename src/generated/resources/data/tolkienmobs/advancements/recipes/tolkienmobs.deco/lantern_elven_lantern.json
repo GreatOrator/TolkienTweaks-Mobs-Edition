@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:lantern_elven_lantern"
+    ]
+  },
+  "criteria": {
+    "has_nugget_mithril": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:nugget_mithril"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:lantern_elven_lantern"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_nugget_mithril",
+      "has_the_recipe"
+    ]
+  ]
+}

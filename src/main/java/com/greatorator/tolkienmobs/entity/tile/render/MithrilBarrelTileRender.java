@@ -10,8 +10,8 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class RenderMithrilBarrelTile implements BlockEntityRenderer<MithrilBarrelTile> {
-    public RenderMithrilBarrelTile(BlockEntityRendererProvider.Context context) {
+public class MithrilBarrelTileRender implements BlockEntityRenderer<MithrilBarrelTile> {
+    public MithrilBarrelTileRender(BlockEntityRendererProvider.Context context) {
 
     }
 

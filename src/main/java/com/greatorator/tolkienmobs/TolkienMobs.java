@@ -37,11 +37,11 @@ public class TolkienMobs {
 	1. Classes
 	    a. TrinketRecipeBuilder (Builder to control building of trinket recipes)
 	    b. TrinketRecipe (Recipes for trinkets to add potions)
-	    c. BackpackItem (Allow to open GUI instead of only using block form)
-	    d. EntityLootGenerator (Attempting to process loot for other mods in workspace)
-	    e. GUI's for blocks not loading
-	    f. Camo for spawner not working
-	    g. Signs not rendering proper texture
+	    c. EntityLootGenerator (Attempting to process loot for other mods in workspace)
+	    d. GUI's for blocks not loading
+	    e. Camo for spawner not working
+	    f. Signs not rendering proper texture
+	    g. Enchantments needing fixed (Longevity, Resolve, Endurance)
 	2. Categories
 	    a. Entities (Implementation)
 	    	1. Fell Beast - Needs AI adjustments
@@ -51,6 +51,9 @@ public class TolkienMobs {
             a. Add Fell Beast to dark tower structure and Morgul Crystal
             b. Possible village generation using house structures by race type
             c. Root systems on trees (mallorn, fangornoak and mirkwood)
+    3. Stuff Added
+        a. Lightning Bug
+        b. Lanterns
     */
 
     public TolkienMobs() {

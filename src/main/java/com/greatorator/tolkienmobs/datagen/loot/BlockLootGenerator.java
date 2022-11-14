@@ -201,6 +201,8 @@ public class BlockLootGenerator extends BlockLoot {
         dropSelf(TolkienBlocks.CHAMELEON_BLOCK.get());
         dropSelf(TolkienBlocks.ROCKPILE.get());
         dropSelf(TolkienBlocks.PLACARD.get());
+        dropSelf(TolkienBlocks.ELVEN_LANTERN.get());
+        dropSelf(TolkienBlocks.MORGUL_LANTERN.get());
 
         // Blocks - Sleeping Bags
         add(TolkienBlocks.SLEEPING_BAG_RED.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
@@ -231,6 +233,7 @@ public class BlockLootGenerator extends BlockLoot {
         add(TolkienBlocks.ORE_END_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(TolkienItems.GEM_AMMOLITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
         add(TolkienBlocks.ORE_NETHER_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(TolkienItems.GEM_AMMOLITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
         add(TolkienBlocks.BLOCK_AMMOLITE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(TolkienItems.GEM_AMMOLITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(LimitCount.limitCount(IntRange.range(1, 4))))));
+        add(TolkienBlocks.LIGHTNINGBUG_BLOCK.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(Items.GLOWSTONE_DUST).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(LimitCount.limitCount(IntRange.range(1, 4))))));
 
 
         //Signs, You will need these for every type you add

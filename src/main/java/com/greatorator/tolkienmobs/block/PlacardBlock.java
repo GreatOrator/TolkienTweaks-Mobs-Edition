@@ -88,6 +88,7 @@ public class PlacardBlock extends Block implements EntityBlock {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!world.isClientSide() && player.isShiftKeyDown()) {

@@ -17,8 +17,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class RenderMilestoneTile implements BlockEntityRenderer<MilestoneTile> {
-    public RenderMilestoneTile(BlockEntityRendererProvider.Context context) {
+public class MilestoneTileRender implements BlockEntityRenderer<MilestoneTile> {
+    public MilestoneTileRender(BlockEntityRendererProvider.Context context) {
 
     }
 

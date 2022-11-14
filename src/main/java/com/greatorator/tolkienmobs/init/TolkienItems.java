@@ -213,6 +213,9 @@ public class TolkienItems {
     public static RegistryObject<Item> LOCKABLE_DOUBLE_CHEST_BLOCK_ITEM = ITEMS.register("lockable_double_chest_block", () -> new ItemBlockBCore(LOCKABLE_DOUBLE_CHEST_BLOCK.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK_ITEM = ITEMS.register("lockable_double_treasure_chest_block", () -> new ItemBlockBCore(LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> ROCKPILE_ITEM = ITEMS.register("rockpile", () -> new ItemBlockBCore(ROCKPILE.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> LIGHTNINGBUG_ITEM = ITEMS.register("lightningbug", () -> new ItemBlockBCore(LIGHTNINGBUG_BLOCK.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> ELVEN_LANTERN_ITEM = ITEMS.register("elven_lantern", () -> new ItemBlockBCore(ELVEN_LANTERN.get(), new Item.Properties().stacksTo(1).tab(decoGroup)));
+    public static RegistryObject<Item> MORGUL_LANTERN_ITEM = ITEMS.register("morgul_lantern", () -> new ItemBlockBCore(MORGUL_LANTERN.get(), new Item.Properties().stacksTo(1).tab(decoGroup)));
 
     // Blocks - Sleeping Bags
     public static RegistryObject<Item> SLEEPING_BAG_BLUE_ITEM = ITEMS.register("sleeping_bag_blue", () -> new LoreBlockHandler(SLEEPING_BAG_BLUE.get(), new Item.Properties().tab(decoGroup)).setHasLore());

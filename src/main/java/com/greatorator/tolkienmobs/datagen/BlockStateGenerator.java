@@ -282,6 +282,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         horizontalBlock(TolkienBlocks.LOCKABLE_DOUBLE_CHEST_BLOCK.get(), models().getExistingFile(modLoc("block/lockable_double_chest_block")), 180);
         horizontalBlock(TolkienBlocks.LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK.get(), models().getExistingFile(modLoc("block/lockable_double_treasure_chest_block")), 180);
         horizontalBlock(TolkienBlocks.BACKPACK.get(), models().getExistingFile(modLoc("block/container_backpack")), 0);
+        directionalBlock(TolkienBlocks.LIGHTNINGBUG_BLOCK.get(), models().getExistingFile(modLoc("block/lightningbug")));
 
         signBlock((TolkienStandingSignBlock) TolkienBlocks.MALLORN_SIGN.get(), (TolkienWallSignBlock) TolkienBlocks.MALLORN_WALL_SIGN.get(), modLoc("block/planks_mallorn"));
         signBlock((TolkienStandingSignBlock) TolkienBlocks.MIRKWOOD_SIGN.get(), (TolkienWallSignBlock) TolkienBlocks.MIRKWOOD_WALL_SIGN.get(), modLoc("block/planks_mirkwood"));

@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.init;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.particles.FellBeastBreathParticle;
 import com.greatorator.tolkienmobs.particles.LeafParticle;
+import com.greatorator.tolkienmobs.particles.LightningbugParticle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.ParticleEngine;
@@ -27,6 +28,7 @@ import static net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus.MOD;
 @ObjectHolder(TolkienMobs.MODID)
 public class TolkienParticles {
 
+    public static SimpleParticleType mallorn_flame = new SimpleParticleType(false);
     public static SimpleParticleType mirkwood_flame = new SimpleParticleType(false);
     public static SimpleParticleType culumalda_flame = new SimpleParticleType(false);
     public static SimpleParticleType lebethron_flame = new SimpleParticleType(false);
@@ -34,9 +36,11 @@ public class TolkienParticles {
     public static SimpleParticleType fangornoak_flame = new SimpleParticleType(false);
     public static SimpleParticleType falling_leaves = new SimpleParticleType(false);
     public static SimpleParticleType fell_beast_breath = new SimpleParticleType(false);
+    public static SimpleParticleType lightningbug = new SimpleParticleType(false);
 
     @SubscribeEvent
     public static void registerParticles(RegistryEvent.Register<ParticleType<?>> event) {
+        event.getRegistry().register(mallorn_flame.setRegistryName("mallorn_flame"));
         event.getRegistry().register(mirkwood_flame.setRegistryName("mirkwood_flame"));
         event.getRegistry().register(culumalda_flame.setRegistryName("culumalda_flame"));
         event.getRegistry().register(lebethron_flame.setRegistryName("lebethron_flame"));
@@ -44,12 +48,14 @@ public class TolkienParticles {
         event.getRegistry().register(fangornoak_flame.setRegistryName("fangornoak_flame"));
         event.getRegistry().register(falling_leaves.setRegistryName("falling_leaves"));
         event.getRegistry().register(fell_beast_breath.setRegistryName("fell_beast_breath"));
+        event.getRegistry().register(lightningbug.setRegistryName("lightningbug"));
     }
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerFactories(ParticleFactoryRegisterEvent event) {
         ParticleEngine manager = Minecraft.getInstance().particleEngine;
+        manager.register(mallorn_flame, FlameParticle.Provider::new);
         manager.register(mirkwood_flame, FlameParticle.Provider::new);
         manager.register(culumalda_flame, FlameParticle.Provider::new);
         manager.register(lebethron_flame, FlameParticle.Provider::new);
@@ -57,6 +63,7 @@ public class TolkienParticles {
         manager.register(fangornoak_flame, FlameParticle.Provider::new);
         manager.register(falling_leaves, LeafParticle.Provider::new);
         manager.register(fell_beast_breath, FellBeastBreathParticle.Provider::new);
+        manager.register(lightningbug, LightningbugParticle.Provider::new);
     }
 
     public String getName() {

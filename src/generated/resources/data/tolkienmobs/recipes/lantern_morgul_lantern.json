@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#-#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:nugget_morguliron"
+    },
+    "-": {
+      "item": "tolkienmobs:torch_mirkwood"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:morgul_lantern"
+  }
+}

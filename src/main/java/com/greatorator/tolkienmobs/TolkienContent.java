@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs;
 
 import com.greatorator.tolkienmobs.init.*;
+import com.greatorator.tolkienmobs.world.gen.feature.config.TreeFeatureConfig;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -35,6 +36,10 @@ public class TolkienContent {
         TolkienProfessions.PROFESSION.register(modBus);
         TolkienProfessions.POIT.register(modBus);
         LOGGER.info("Time to create the land...");
+        TreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
+        TreeFeatureConfig.TREE_DECORATORS.register(modBus);
+        TreeFeatureConfig.TRUNK_PLACERS.register(modBus);
+        TreeFeatureConfig.PLACEMENT_MODIFIERS.register(modBus);
 //        TolkienBiomes.BIOMES.register(modBus);
 //        TolkienStructures.STRUCTURES.register(modBus);
         modBus.addGenericListener(MenuType.class, TolkienContainers::registerContainers);

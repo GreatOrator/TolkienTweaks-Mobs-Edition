@@ -80,6 +80,7 @@ public class TolkienItemBlockRenders {
             ItemBlockRenderTypes.setRenderLayer(CAMO_FLUID_BLOCK.get(), cutout);
             ItemBlockRenderTypes.setRenderLayer(CAMO_SPAWNER_BLOCK.get(), cutout);
             ItemBlockRenderTypes.setRenderLayer(ROCKPILE.get(), cutoutMipped);
+            ItemBlockRenderTypes.setRenderLayer(LIGHTNINGBUG_BLOCK.get(), cutoutMipped);
             ItemBlockRenderTypes.setRenderLayer(MILESTONE_BLOCK.get(), cutoutMipped);
             ItemBlockRenderTypes.setRenderLayer(BLOCK_AMMOLITE.get(), translucent);
             ItemBlockRenderTypes.setRenderLayer(POTTED_MUSHROOM_DECAY_BLOOM.get(), cutout);
@@ -97,7 +98,12 @@ public class TolkienItemBlockRenders {
             ItemBlockRenderTypes.setRenderLayer(POTTED_SAPLING_LEBETHRON.get(), cutout);
             ItemBlockRenderTypes.setRenderLayer(POTTED_SAPLING_DEADWOOD.get(), cutout);
             ItemBlockRenderTypes.setRenderLayer(POTTED_SAPLING_FANGORNOAK.get(), cutout);
+            ItemBlockRenderTypes.setRenderLayer(ELVEN_LANTERN.get(), TolkienItemBlockRenders::isGlassLanternValidLayer);
+            ItemBlockRenderTypes.setRenderLayer(MORGUL_LANTERN.get(), TolkienItemBlockRenders::isGlassLanternValidLayer);
         }
+    public static boolean isGlassLanternValidLayer(RenderType layerToCheck) {
+        return layerToCheck == RenderType.cutout() || layerToCheck == RenderType.translucent();
+    }
 
     public String getName() {
         return NAME + " - Block Renders";
