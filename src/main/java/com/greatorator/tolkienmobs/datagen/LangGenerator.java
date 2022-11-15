@@ -544,6 +544,9 @@ public class LangGenerator extends LanguageProvider {
         add("item.minecraft.splash_potion.effect.elemental_burning", "Splash Potion of Elemental Burning");
         add("item.minecraft.lingering_potion.effect.elemental_burning", "Lingering Potion of Elemental Burning");
         add("item.minecraft.tipped_arrow.effect.elemental_burning", "Arrow of Elemental Burning");
+        add("item.minecraft.potion.effect.istari", "Istari Potion");
+        add("item.minecraft.splash_potion.effect.istari", "Istari Splash Potion");
+        add("item.minecraft.lingering_potion.effect.istari", "Istari Lingering Potion");
     }
 
     private void enchants() {

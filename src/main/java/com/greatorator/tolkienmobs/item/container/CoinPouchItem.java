@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.item.container;
 
 import com.brandon3055.brandonscore.inventory.PlayerSlot;
 import com.greatorator.tolkienmobs.container.CoinPouchContainer;
+import com.greatorator.tolkienmobs.container.KeyRingContainer;
 import com.greatorator.tolkienmobs.container.capability.ItemStackCapability;
 import com.greatorator.tolkienmobs.init.TolkienTags;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -42,16 +43,24 @@ public class CoinPouchItem extends Item {
     @Nonnull
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player player, @Nonnull InteractionHand hand) {
-        ItemStack stack = player.getItemInHand(hand);
+        ItemStack itemStack = player.getItemInHand(hand);
+
+        if (worldIn.isClientSide()) return new InteractionResultHolder<>(InteractionResult.PASS, itemStack);
 
         if (player.isShiftKeyDown()) {
-            setActive(stack, !getActive(stack));
-            return new InteractionResultHolder<>(InteractionResult.PASS, stack);
-        }else if (player instanceof ServerPlayer){
-            PlayerSlot slot = new PlayerSlot(player, hand);
-            NetworkHooks.openGui((ServerPlayer) player, new CoinPouchContainer.Provider(stack, slot), slot::toBuff);
+            setActive(itemStack, !getActive(itemStack));
+            return new InteractionResultHolder<>(InteractionResult.PASS, itemStack);
         }
-        return InteractionResultHolder.pass(stack);
+
+        PlayerSlot slot = new PlayerSlot(player, hand);
+        NetworkHooks.openGui((ServerPlayer) player, new KeyRingContainer.Provider(itemStack, slot), slot::toBuff);
+
+        return new InteractionResultHolder<>(InteractionResult.PASS, itemStack);
+    }
+
+    @Override
+    public boolean isFoil(ItemStack itemStack) {
+        return getActive(itemStack);
     }
 
     @Nonnull
@@ -125,18 +134,17 @@ public class CoinPouchItem extends Item {
 
     @Override
     public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int itemSlot, boolean isSelected) {
-        //if (world.getDayTime() % 20 == 0) return;
         if (entity instanceof Player player && getActive(stack)) {
             for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                 ItemStack coinStack = player.getInventory().getItem(i);
-                if (stack.is(TolkienTags.items.COINS))
+                if (coinStack.is(TolkienTags.items.COINS))
                     addCoinToInventory(stack, coinStack);
             }
         }
     }
 
     public static ItemStack addCoinToInventory(ItemStack keyHolder, ItemStack coin) {
-        IItemHandler handler = keyHolder.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).orElse(new ItemStackHandler(CoinPouchContainer.CARRIED_SLOT_SIZE));
+        IItemHandler handler = keyHolder.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).orElse(new ItemStackHandler(CoinPouchContainer.SLOTS));
         List<Integer> emptySlots = new ArrayList<>();
         for (int i = 0; i < handler.getSlots(); i++) {
             ItemStack stackInSlot = handler.getStackInSlot(i);

@@ -57,4 +57,5 @@ public class TolkienPotions {
 
     public String getName() {
         return NAME + " - Potions";
-    }}
+    }
+}

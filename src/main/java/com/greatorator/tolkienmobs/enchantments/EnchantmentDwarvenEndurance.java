@@ -2,6 +2,8 @@ package com.greatorator.tolkienmobs.enchantments;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.TolkienEnchants;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -10,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -39,7 +42,7 @@ public class EnchantmentDwarvenEndurance extends Enchantment {
 
     @Override
     public int getMaxLevel() {
-        return 1;
+        return 4;
     }
 
     @Override
@@ -53,9 +56,16 @@ public class EnchantmentDwarvenEndurance extends Enchantment {
 
         if (entity.level.isClientSide) {
             int level = EnchantmentHelper.getEnchantmentLevel(TolkienEnchants.DWARF_ENDURANCE.get(), entity);
-
+            int food = (level * 5);
+            float saturation = (float) (level * 5);
             if (entity instanceof Player && level != 0) {
-                ((Player) entity).getFoodData().eat(level + 1, 1.0F);
+                Player player = (Player) event.getEntity();
+                if (player.getFoodData().needsFood()) {
+                    Level world = entity.getLevel();
+                    world.playSound((Player)null, entity, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.3F, 0.5F);
+                    player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel() + food);
+                    player.getFoodData().setSaturation(player.getFoodData().getSaturationLevel() + saturation);
+                }
             }
         }
     }

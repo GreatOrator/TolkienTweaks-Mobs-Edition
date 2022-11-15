@@ -7,6 +7,7 @@ import com.greatorator.tolkienmobs.handler.MilestoneHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.network.event.EventNetworkChannel;
 
 import javax.annotation.Nullable;
@@ -20,11 +21,29 @@ public class TolkienPacketHandler {
 
     //Server to client
     public static final int C_SEND_MILESTONES =         1;
+    public static final int S_UPDATE_PLAYER =           2;
 
     //Client to server
     public static final int S_UPDATE_SIGN =             1;
     public static final int S_UPDATE_KEY_CODE =         2;
     public static final int S_UPDATE_KEY_USES =         3;
+
+    public static void sendToAttribute(Object msg, ServerPlayer player) {
+        PacketCustom packet = new PacketCustom(CHANNEL, S_UPDATE_PLAYER);
+        if(!(player instanceof FakePlayer)) {
+            packet.sendToPlayer(player);
+        }
+    }
+
+    public static void sendMilestonesToClients(MilestoneHandler data, @Nullable ServerPlayer player) {
+        PacketCustom packet = new PacketCustom(CHANNEL, C_SEND_MILESTONES);
+        data.serialize(packet);
+        if (player != null) {
+            packet.sendToPlayer(player);
+        } else {
+            packet.sendToClients();
+        }
+    }
 
     public static void sendSignUpdate(BlockPos blockPos, String line1, String line2, String line3, String line4) {
         PacketCustom packet = new PacketCustom(CHANNEL, S_UPDATE_SIGN);
@@ -47,16 +66,6 @@ public class TolkienPacketHandler {
         PacketCustom packet = new PacketCustom(CHANNEL, S_UPDATE_KEY_USES);
         packet.writeString(uses);
         packet.sendToServer();
-    }
-
-    public static void sendMilestonesToClients(MilestoneHandler data, @Nullable ServerPlayer player) {
-        PacketCustom packet = new PacketCustom(CHANNEL, C_SEND_MILESTONES);
-        data.serialize(packet);
-        if (player != null) {
-            packet.sendToPlayer(player);
-        } else {
-            packet.sendToClients();
-        }
     }
 
     public static void init() {

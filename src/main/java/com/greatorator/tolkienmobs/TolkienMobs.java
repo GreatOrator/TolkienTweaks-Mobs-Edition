@@ -41,7 +41,7 @@ public class TolkienMobs {
 	    d. GUI's for blocks not loading
 	    e. Camo for spawner not working
 	    f. Signs not rendering proper texture
-	    g. Enchantments needing fixed (Longevity, Resolve, Endurance)
+	    g. Armor crashing when worn or placed on armor stand
 	2. Categories
 	    a. Entities (Implementation)
 	    	1. Fell Beast - Needs AI adjustments
@@ -54,6 +54,8 @@ public class TolkienMobs {
     3. Stuff Added
         a. Lightning Bug
         b. Lanterns
+        c. Coin Pouch and Key Ring will now auto collect items if activated
+        d. new potion base for this mod's potions
     */
 
     public TolkienMobs() {

@@ -42,16 +42,24 @@ public class KeyRingItem extends Item {
     @Nonnull
     @Override
     public InteractionResultHolder<ItemStack> use(Level worldIn, Player player, @Nonnull InteractionHand hand) {
-        ItemStack stack = player.getItemInHand(hand);
+        ItemStack itemStack = player.getItemInHand(hand);
+
+        if (worldIn.isClientSide()) return new InteractionResultHolder<>(InteractionResult.PASS, itemStack);
 
         if (player.isShiftKeyDown()) {
-            setActive(stack, !getActive(stack));
-            return new InteractionResultHolder<>(InteractionResult.PASS, stack);
-        }else if (player instanceof ServerPlayer){
-            PlayerSlot slot = new PlayerSlot(player, hand);
-            NetworkHooks.openGui((ServerPlayer) player, new KeyRingContainer.Provider(stack, slot), slot::toBuff);
+            setActive(itemStack, !getActive(itemStack));
+            return new InteractionResultHolder<>(InteractionResult.PASS, itemStack);
         }
-        return InteractionResultHolder.pass(stack);
+
+        PlayerSlot slot = new PlayerSlot(player, hand);
+        NetworkHooks.openGui((ServerPlayer) player, new KeyRingContainer.Provider(itemStack, slot), slot::toBuff);
+
+        return new InteractionResultHolder<>(InteractionResult.PASS, itemStack);
+    }
+
+    @Override
+    public boolean isFoil(ItemStack itemStack) {
+        return getActive(itemStack);
     }
 
     @Nonnull
@@ -125,25 +133,24 @@ public class KeyRingItem extends Item {
 
     @Override
     public void inventoryTick(@NotNull ItemStack stack, @NotNull Level world, @NotNull Entity entity, int itemSlot, boolean isSelected) {
-        //if (world.getDayTime() % 20 == 0) return;
         if (entity instanceof Player player && getActive(stack)) {
             for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                 ItemStack keyStack = player.getInventory().getItem(i);
-                if (stack.is(TolkienTags.items.KEYS))
+                if (keyStack.is(TolkienTags.items.KEYS))
                     addKeyToInventory(stack, keyStack);
             }
         }
     }
 
     public static ItemStack addKeyToInventory(ItemStack keyHolder, ItemStack key) {
-        IItemHandler handler = keyHolder.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).orElse(new ItemStackHandler(KeyRingContainer.CARRIED_SLOT_SIZE));
+        IItemHandler handler = keyHolder.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).orElse(new ItemStackHandler(KeyRingContainer.SLOTS));
         List<Integer> emptySlots = new ArrayList<>();
         for (int i = 0; i < handler.getSlots(); i++) {
             ItemStack stackInSlot = handler.getStackInSlot(i);
             if (stackInSlot.isEmpty()) emptySlots.add(i);
             if (!stackInSlot.isEmpty() && ItemStack.isSameItemSameTags(stackInSlot, key)) {
                 int j = stackInSlot.getCount() + key.getCount();
-                int maxSize = 64;
+                int maxSize = 1;
                 if (j <= maxSize) {
                     key.setCount(0);
                     stackInSlot.setCount(j);

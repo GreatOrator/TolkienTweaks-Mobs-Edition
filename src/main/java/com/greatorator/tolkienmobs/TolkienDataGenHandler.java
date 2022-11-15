@@ -9,14 +9,11 @@ import com.greatorator.tolkienmobs.datagen.tags.BiomeTagGenerator;
 import com.greatorator.tolkienmobs.datagen.tags.BlockTagGenerator;
 import com.greatorator.tolkienmobs.datagen.tags.EntityTagGenerator;
 import com.greatorator.tolkienmobs.datagen.tags.ItemTagGenerator;
-import com.greatorator.tolkienmobs.integration.tcon.TConIntegration;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
-
-import static com.greatorator.tolkienmobs.integration.IntegrationHelper.isTCONInstalled;
 
 /**
  * Created by brandon3055 on 26/2/20.
@@ -43,10 +40,6 @@ public class TolkienDataGenHandler {
             gen.addProvider(new BiomeTagGenerator(gen, TolkienMobs.MODID, helper));
             gen.addProvider(new EntityTagGenerator(gen, TolkienMobs.MODID, helper));
             gen.addProvider(new ItemTagGenerator(gen, blockGen, TolkienMobs.MODID, helper));
-
-            if (isTCONInstalled) {
-                TConIntegration.tConDatagen(event);
-            }
         }
     }
 }

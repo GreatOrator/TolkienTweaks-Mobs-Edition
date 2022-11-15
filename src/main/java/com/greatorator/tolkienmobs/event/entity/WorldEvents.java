@@ -4,20 +4,26 @@ import com.brandon3055.brandonscore.api.TimeKeeper;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.WeakHashMap;
 
 public class WorldEvents {
     public static int serverTicks = 0;
     private static WeakHashMap<Mob, Long> ttSpawnedMobs = new WeakHashMap<>();
+    public static final UUID PLAYER_BASE_HEALTH = UUID.fromString("615a41b8-6456-11ed-81ce-0242ac120002");
 
     public static void onPlayerUpdate(TickEvent.PlayerTickEvent event){
         Player player = event.player;
@@ -33,7 +39,37 @@ public class WorldEvents {
         }
     }
 
-    @SubscribeEvent
+    public static void onEntityJoinWorld(EntityJoinWorldEvent event) {
+        if (!(event.getEntity() instanceof Player))
+        {
+            return;
+        }
+
+        Player player = (Player) event.getEntity();
+        AttributeInstance maxHealth = player.getAttribute(Attributes.MAX_HEALTH);
+        AttributeModifier baseHealthModifier = new AttributeModifier(PLAYER_BASE_HEALTH, "Base", 20, AttributeModifier.Operation.ADDITION);
+
+        // Add base modifier only if not added yet
+        if (!maxHealth.hasModifier(baseHealthModifier))
+        {
+            maxHealth.addPermanentModifier(baseHealthModifier);
+        }
+        // Or if config updated and value changed
+        else if (maxHealth.getModifier(PLAYER_BASE_HEALTH).getAmount() != baseHealthModifier.getAmount())
+        {
+            // Remove old instance and apply new one
+            maxHealth.removeModifier(PLAYER_BASE_HEALTH);
+            maxHealth.addPermanentModifier(baseHealthModifier);
+        }
+
+        // Fixing health being higher than max health
+        if (player.getHealth() > player.getMaxHealth())
+        {
+            player.setHealth(player.getMaxHealth());
+        }
+    }
+
+        @SubscribeEvent
     public void serverTick(TickEvent.ServerTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
             serverTicks++;

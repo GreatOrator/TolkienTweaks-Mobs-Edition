@@ -75,6 +75,7 @@ public class RecipeGenerator extends RecipeProvider {
 
         lanternRecipe(TolkienBlocks.ELVEN_LANTERN.get(), TolkienItems.NUGGET_MITHRIL.get(), TolkienBlocks.TORCH_MALLORN.get(), consumer);
         lanternRecipe(TolkienBlocks.MORGUL_LANTERN.get(), TolkienItems.NUGGET_MORGULIRON.get(), TolkienBlocks.TORCH_MIRKWOOD.get(), consumer);
+        lanternRecipe(TolkienBlocks.LIGHTNINGBUG_BLOCK.get(), Items.TORCH, TolkienItems.INSECT.get(), consumer);
 
         stairsRecipe(TolkienBlocks.STAIRS_MALLORN.get(), TolkienBlocks.PLANKS_MALLORN.get(), consumer);
         stairsRecipe(TolkienBlocks.STAIRS_MIRKWOOD.get(), TolkienBlocks.PLANKS_MIRKWOOD.get(), consumer);
@@ -417,8 +418,8 @@ public class RecipeGenerator extends RecipeProvider {
     }
 
     public static void potions() {
-        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(TolkienPotions.ISTARI.get(), TolkienItems.MIRUVOR.get(), TolkienPotions.ENT_DRAUGHT.get()));
-        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(TolkienPotions.ISTARI.get(), TolkienItems.GEM_AMMOLITE.get(), TolkienPotions.BLESSING_OF_ERU.get()));
+        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(TolkienPotions.ISTARI.get(), TolkienItems.PIPEWEED_ITEM.get(), TolkienPotions.ENT_DRAUGHT.get()));
+        BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(TolkienPotions.ISTARI.get(), TolkienItems.BLOCK_AMMOLITE_ITEM.get(), TolkienPotions.BLESSING_OF_ERU.get()));
         BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(TolkienPotions.ISTARI.get(), TolkienItems.LEMBAS.get(), TolkienPotions.ELVISH_LIFE.get()));
         BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(TolkienPotions.ISTARI.get(), TolkienItems.GOLDEN_INSECT.get(), TolkienPotions.ELF_FLEETFOOT.get()));
         BrewingRecipeRegistry.addRecipe(new ModBrewingRecipe(TolkienPotions.ISTARI.get(), TolkienItems.BLOCK_MITHRIL_ITEM.get(), TolkienPotions.PORTABLE_REPAIR.get()));

@@ -33,6 +33,7 @@ public class CoinPouchContainer extends ContainerBCore<CoinPouchItem> {
     public List<Slot> playerSlots = new ArrayList<>();
     public List<Slot> mainSlots = new ArrayList<>();
 
+    public static final int SLOTS = 18;
     private PlayerSlot slot;
     public ItemStack stack;
     private IItemHandler stackItemHandler;

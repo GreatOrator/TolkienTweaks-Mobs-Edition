@@ -1,9 +1,12 @@
 package com.greatorator.tolkienmobs.enchantments;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.event.entity.WorldEvents;
 import com.greatorator.tolkienmobs.init.TolkienEnchants;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.BookItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -14,6 +17,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +26,10 @@ import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = TolkienMobs.MODID, value = Dist.CLIENT)
 public class EnchantmentElvenLongevity extends Enchantment {
-    public static Set<UUID> playersWithExtraHealth = new HashSet<>();
+    public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
+    private static final UUID ELVEN_LONGEVITY_ID = UUID.fromString("a038f128-6432-11ed-81ce-0242ac120002");
+    protected static final String ELVEN_LONGEVITY = "ElvenLongevity";
+    public static Set<UUID> EXTRA_HEALTH = new HashSet<>();
 
     public EnchantmentElvenLongevity(Rarity rarityIn, EquipmentSlot... slots) {
         super(rarityIn, EnchantmentCategory.ARMOR_CHEST, slots);
@@ -56,21 +64,22 @@ public class EnchantmentElvenLongevity extends Enchantment {
     @SubscribeEvent
     public static void elvenLongevity(LivingEvent.LivingUpdateEvent event) {
         LivingEntity entity = event.getEntityLiving();
+        int level = EnchantmentHelper.getEnchantmentLevel(TolkienEnchants.ELVEN_LONGEVITY.get(), entity);
+        float absorb = (float) (10 * level);
+        AttributeModifier healthModifier = new AttributeModifier(ELVEN_LONGEVITY_ID, ELVEN_LONGEVITY, absorb, AttributeModifier.Operation.ADDITION);
+        AttributeModifier baseModifier = entity.getAttribute(Attributes.MAX_HEALTH).getModifier(WorldEvents.PLAYER_BASE_HEALTH);
+        boolean extraHealth = EXTRA_HEALTH.contains(entity.getUUID());
+        boolean hasExtraHealth = level > 0;
 
         if (entity.level.isClientSide) {
-            int level = EnchantmentHelper.getEnchantmentLevel(TolkienEnchants.ELVEN_LONGEVITY.get(), entity);
-            float absorb = (float) (10 * level);
-            boolean extraHealthListed = playersWithExtraHealth.contains(entity.getUUID());
-            boolean hasExtraHealth = level > 0;
-
-            if (hasExtraHealth && entity.getAbsorptionAmount() == 0 || !extraHealthListed) {
-                playersWithExtraHealth.add(entity.getUUID());
-                entity.setAbsorptionAmount(entity.getAbsorptionAmount() + (absorb));
-            }
-
-            if (!hasExtraHealth && extraHealthListed) {
-                playersWithExtraHealth.add(entity.getUUID());
-                entity.setAbsorptionAmount(entity.getAbsorptionAmount() - (absorb));
+            if (hasExtraHealth && !extraHealth) {
+                EXTRA_HEALTH.add(entity.getUUID());
+                entity.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(healthModifier);
+                entity.heal(6.0F);
+            }else if (!hasExtraHealth && extraHealth){
+                EXTRA_HEALTH.remove(entity.getUUID());
+                entity.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthModifier);
+                entity.getAttribute(Attributes.MAX_HEALTH).setBaseValue(baseModifier.getAmount() - (healthModifier.getAmount() + 20));
             }
         }
     }

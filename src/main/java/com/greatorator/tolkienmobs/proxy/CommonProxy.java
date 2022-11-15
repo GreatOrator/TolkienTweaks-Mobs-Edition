@@ -12,7 +12,6 @@ import com.greatorator.tolkienmobs.init.TolkienProfessions;
 import com.greatorator.tolkienmobs.init.TolkienTags;
 import com.greatorator.tolkienmobs.integration.IntegrationHelper;
 import com.greatorator.tolkienmobs.integration.curios.EquipmentManager;
-import com.greatorator.tolkienmobs.integration.tcon.TConIntegration;
 import com.greatorator.tolkienmobs.network.TolkienPacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -46,11 +45,11 @@ public class CommonProxy {
         TolkienContent.init();
         IntegrationHelper.init();
         EquipmentManager.initialize();
-        TConIntegration.initialize();
         TolkienTags.init();
         MilestoneHandler.init();
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.addListener(WorldEvents::onPlayerUpdate);
+        MinecraftForge.EVENT_BUS.addListener(WorldEvents::onEntityJoinWorld);
         MinecraftForge.EVENT_BUS.addListener(WorldEvents::addDimensionalSpacing);
 //        MinecraftForge.EVENT_BUS.addListener(WorldEvents::biomeModification);
 

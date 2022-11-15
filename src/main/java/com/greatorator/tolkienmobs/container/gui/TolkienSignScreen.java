@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.container.gui;
 
 import com.greatorator.tolkienmobs.entity.tile.TolkienSignTile;
 import com.greatorator.tolkienmobs.entity.tile.render.TolkienSignTileRender;
+import com.greatorator.tolkienmobs.network.TolkienPacketHandler;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -20,7 +21,6 @@ import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.network.protocol.game.ServerboundSignUpdatePacket;
 import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -74,7 +74,7 @@ public class TolkienSignScreen extends Screen {
         this.minecraft.keyboardHandler.setSendRepeatsToGui(false);
         ClientPacketListener clientpacketlistener = this.minecraft.getConnection();
         if (clientpacketlistener != null) {
-            clientpacketlistener.send(new ServerboundSignUpdatePacket(this.sign.getBlockPos(), this.messages[0], this.messages[1], this.messages[2], this.messages[3]));
+            TolkienPacketHandler.sendSignUpdate(this.sign.getBlockPos(), this.messages[0], this.messages[1], this.messages[2], this.messages[3]);
         }
 
         this.sign.setEditable(true);
