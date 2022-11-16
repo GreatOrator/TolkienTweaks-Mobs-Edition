@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:ingot_mithril_from_blasting_ore_deepslate_mithril"
+    ]
+  },
+  "criteria": {
+    "has_ore_deepslate_mithril": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:ore_deepslate_mithril"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:ingot_mithril_from_blasting_ore_deepslate_mithril"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ore_deepslate_mithril",
+      "has_the_recipe"
+    ]
+  ]
+}

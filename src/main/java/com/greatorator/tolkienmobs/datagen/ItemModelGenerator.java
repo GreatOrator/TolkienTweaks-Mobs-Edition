@@ -38,6 +38,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.ORE_MITHRIL.get());
         blockItem(TolkienBlocks.ORE_END_MITHRIL.get());
         blockItem(TolkienBlocks.ORE_NETHER_MITHRIL.get());
+        blockItem(TolkienBlocks.ORE_DEEPSLATE_MITHRIL.get());
         blockItem(TolkienBlocks.BLOCK_MITHRIL.get());
         blockItem(TolkienBlocks.RAW_MITHRIL_BLOCK.get());
         simpleItem(TolkienItems.MITHRIL_BARS_ITEM.get());
@@ -47,6 +48,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.ORE_MORGULIRON.get());
         blockItem(TolkienBlocks.ORE_END_MORGULIRON.get());
         blockItem(TolkienBlocks.ORE_NETHER_MORGULIRON.get());
+        blockItem(TolkienBlocks.ORE_DEEPSLATE_MORGULIRON.get());
         blockItem(TolkienBlocks.BLOCK_MORGULIRON.get());
         blockItem(TolkienBlocks.RAW_MORGULIRON_BLOCK.get());
         simpleItem(TolkienItems.MORGULIRON_BARS_ITEM.get());
@@ -56,6 +58,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.ORE_AMMOLITE.get());
         blockItem(TolkienBlocks.ORE_END_AMMOLITE.get());
         blockItem(TolkienBlocks.ORE_NETHER_AMMOLITE.get());
+        blockItem(TolkienBlocks.ORE_DEEPSLATE_AMMOLITE.get());
         blockItem(TolkienBlocks.BLOCK_AMMOLITE.get());
         simpleItem(TolkienItems.DOOR_DURIN_ITEM.get());
 
@@ -79,6 +82,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.SAPLING_MALLORN.get());
         simpleItem(TolkienItems.MALLORN_SIGN_ITEM.get());
         simpleItem(TolkienItems.MALLORN_BOAT.get());
+        blockItem(TolkienBlocks.BARREL_MALLORN.get(), modLoc("block/barrel_mallorn"));
 
         // Mirkwood
         blockItem(TolkienBlocks.LOG_MIRKWOOD.get());
@@ -99,6 +103,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.SAPLING_MIRKWOOD.get());
         simpleItem(TolkienItems.MIRKWOOD_SIGN_ITEM.get());
         simpleItem(TolkienItems.MIRKWOOD_BOAT.get());
+        blockItem(TolkienBlocks.BARREL_MIRKWOOD.get(), modLoc("block/barrel_mirkwood"));
 
         // Culumalda
         blockItem(TolkienBlocks.LOG_CULUMALDA.get());
@@ -119,6 +124,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.SAPLING_CULUMALDA.get());
         simpleItem(TolkienItems.CULUMALDA_SIGN_ITEM.get());
         simpleItem(TolkienItems.CULUMALDA_BOAT.get());
+        blockItem(TolkienBlocks.BARREL_CULUMALDA.get(), modLoc("block/barrel_culumalda"));
 
         // Lebethron
         blockItem(TolkienBlocks.FENCE_GATE_LEBETHRON.get(), modLoc("block/fence_gate_lebethron_fence_gate"));
@@ -140,6 +146,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.SAPLING_LEBETHRON.get());
         simpleItem(TolkienItems.LEBETHRON_SIGN_ITEM.get());
         simpleItem(TolkienItems.LEBETHRON_BOAT.get());
+        blockItem(TolkienBlocks.BARREL_LEBETHRON.get(), modLoc("block/barrel_lebethron"));
 
         // Deadwood
         blockItem(TolkienBlocks.LOG_DEADWOOD.get());
@@ -158,6 +165,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TolkienItems.DEADWOOD_SIGN_ITEM.get());
         simpleItem(TolkienItems.DEADWOOD_BOAT.get());
         blockItem(TolkienBlocks.SAPLING_DEADWOOD.get());
+        blockItem(TolkienBlocks.BARREL_DEADWOOD.get(), modLoc("block/barrel_deadwood"));
 
         // Fangornoak
         blockItem(TolkienBlocks.LOG_FANGORNOAK.get());
@@ -178,6 +186,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.LEAVES_FANGORNOAK.get());
         blockItem(TolkienBlocks.LEAFPILE_FANGORNOAK.get(), modLoc("block/leafpile_fangornoak"));
         blockItem(TolkienBlocks.SAPLING_FANGORNOAK.get());
+        blockItem(TolkienBlocks.BARREL_FANGORNOAK.get(), modLoc("block/barrel_fangornoak"));
 
         // Block Items - Plants & Flowers
         blockItem(TolkienBlocks.MUSHROOM_DECAY_BLOOM.get());

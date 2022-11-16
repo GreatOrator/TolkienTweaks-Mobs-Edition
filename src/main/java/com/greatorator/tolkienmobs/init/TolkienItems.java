@@ -33,8 +33,9 @@ public class TolkienItems {
     public static RegistryObject<Item> ORE_MITHRIL_ITEM = ITEMS.register("ore_mithril", () -> new ItemBlockBCore(ORE_MITHRIL.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_END_MITHRIL_ITEM = ITEMS.register("ore_end_mithril", () -> new ItemBlockBCore(ORE_END_MITHRIL.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_NETHER_MITHRIL_ITEM = ITEMS.register("ore_nether_mithril", () -> new ItemBlockBCore(ORE_NETHER_MITHRIL.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> BLOCK_MITHRIL_ITEM = ITEMS.register("block_mithril", () -> new ItemBlockBCore(BLOCK_MITHRIL.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> RAW_MITHRIL_BLOCK_ITEM = ITEMS.register("raw_mithril_block", () -> new ItemBlockBCore(RAW_MITHRIL_BLOCK.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> ORE_DEEPSLATE_MITHRIL_ITEM = ITEMS.register("ore_deepslate_mithril", () -> new ItemBlockBCore(ORE_DEEPSLATE_MITHRIL.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> BLOCK_MITHRIL_ITEM = ITEMS.register("block_mithril", () -> new ItemBlockBCore(BLOCK_MITHRIL.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> RAW_MITHRIL_BLOCK_ITEM = ITEMS.register("raw_mithril_block", () -> new ItemBlockBCore(RAW_MITHRIL_BLOCK.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> MITHRIL_BARS_ITEM = ITEMS.register("mithril_bars", () -> new ItemBlockBCore(MITHRIL_BARS.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> DOOR_MITHRIL_ITEM = ITEMS.register("door_mithril", () -> new ItemBlockBCore(DOOR_MITHRIL.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> TRAPDOOR_MITHRIL_ITEM = ITEMS.register("trapdoor_mithril", () -> new ItemBlockBCore(TRAPDOOR_MITHRIL.get(), new Item.Properties().tab(decoGroup)));
@@ -42,8 +43,9 @@ public class TolkienItems {
     public static RegistryObject<Item> ORE_MORGULIRON_ITEM = ITEMS.register("ore_morguliron", () -> new ItemBlockBCore(ORE_MORGULIRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_END_MORGULIRON_ITEM = ITEMS.register("ore_end_morguliron", () -> new ItemBlockBCore(ORE_END_MORGULIRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_NETHER_MORGULIRON_ITEM = ITEMS.register("ore_nether_morguliron", () -> new ItemBlockBCore(ORE_NETHER_MORGULIRON.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> BLOCK_MORGULIRON_ITEM = ITEMS.register("block_morguliron", () -> new ItemBlockBCore(BLOCK_MORGULIRON.get(), new Item.Properties().tab(matsGroup)));
-    public static RegistryObject<Item> RAW_MORGULIRON_BLOCK_ITEM = ITEMS.register("raw_morguliron_block", () -> new ItemBlockBCore(RAW_MORGULIRON_BLOCK.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> ORE_DEEPSLATE_MORGULIRON_ITEM = ITEMS.register("ore_deepslate_morguliron", () -> new ItemBlockBCore(ORE_DEEPSLATE_MORGULIRON.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> BLOCK_MORGULIRON_ITEM = ITEMS.register("block_morguliron", () -> new ItemBlockBCore(BLOCK_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> RAW_MORGULIRON_BLOCK_ITEM = ITEMS.register("raw_morguliron_block", () -> new ItemBlockBCore(RAW_MORGULIRON_BLOCK.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> MORGULIRON_BARS_ITEM = ITEMS.register("morguliron_bars", () -> new ItemBlockBCore(MORGULIRON_BARS.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> DOOR_MORGULIRON_ITEM = ITEMS.register("door_morguliron", () -> new ItemBlockBCore(DOOR_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> TRAPDOOR_MORGULIRON_ITEM = ITEMS.register("trapdoor_morguliron", () -> new ItemBlockBCore(TRAPDOOR_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
@@ -51,6 +53,7 @@ public class TolkienItems {
     public static RegistryObject<Item> ORE_AMMOLITE_ITEM = ITEMS.register("ore_ammolite", () -> new ItemBlockBCore(ORE_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_END_AMMOLITE_ITEM = ITEMS.register("ore_end_ammolite", () -> new ItemBlockBCore(ORE_END_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_NETHER_AMMOLITE_ITEM = ITEMS.register("ore_nether_ammolite", () -> new ItemBlockBCore(ORE_NETHER_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
+    public static RegistryObject<Item> ORE_DEEPSLATE_AMMOLITE_ITEM = ITEMS.register("ore_deepslate_ammolite", () -> new ItemBlockBCore(ORE_DEEPSLATE_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> BLOCK_AMMOLITE_ITEM = ITEMS.register("block_ammolite", () -> new ItemBlockBCore(BLOCK_AMMOLITE.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> DOOR_DURIN_ITEM = ITEMS.register("door_durin", () -> new ItemBlockBCore(DOOR_DURIN.get(), new Item.Properties().tab(decoGroup)));
 
@@ -75,6 +78,7 @@ public class TolkienItems {
     public static RegistryObject<Item> LEAFPILE_MALLORN_ITEM = ITEMS.register("leafpile_mallorn", () -> new ItemBlockBCore(LEAFPILE_MALLORN.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> SAPLING_MALLORN_ITEM = ITEMS.register("sapling_mallorn", () -> new ItemBlockBCore(SAPLING_MALLORN.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> MALLORN_BOAT = ITEMS.register("boat_mallorn", () -> new TolkienBoatItem(TolkienBoatEntity.Type.MALLORN, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<Item> BARREL_MALLORN_ITEM = ITEMS.register("block_barrel_mallorn", () -> new ItemBlockBCore(BARREL_MALLORN.get(), new Item.Properties().tab(decoGroup)));
 
     // Mirkwood
     public static RegistryObject<Item> LOG_MIRKWOOD_ITEM = ITEMS.register("log_mirkwood", () -> new ItemBlockBCore(LOG_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
@@ -96,6 +100,7 @@ public class TolkienItems {
     public static RegistryObject<Item> LEAFPILE_MIRKWOOD_ITEM = ITEMS.register("leafpile_mirkwood", () -> new ItemBlockBCore(LEAFPILE_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> SAPLING_MIRKWOOD_ITEM = ITEMS.register("sapling_mirkwood", () -> new ItemBlockBCore(SAPLING_MIRKWOOD.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> MIRKWOOD_BOAT = ITEMS.register("boat_mirkwood", () -> new TolkienBoatItem(TolkienBoatEntity.Type.MIRKWOOD, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<Item> BARREL_MIRKWOOD_ITEM = ITEMS.register("block_barrel_mirkwood", () -> new ItemBlockBCore(BARREL_MIRKWOOD.get(), new Item.Properties().tab(decoGroup)));
 
     // Culumalda
     public static RegistryObject<Item> LOG_CULUMALDA_ITEM = ITEMS.register("log_culumalda", () -> new ItemBlockBCore(LOG_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
@@ -117,6 +122,7 @@ public class TolkienItems {
     public static RegistryObject<Item> LEAFPILE_CULUMALDA_ITEM = ITEMS.register("leafpile_culumalda", () -> new ItemBlockBCore(LEAFPILE_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> SAPLING_CULUMALDA_ITEM = ITEMS.register("sapling_culumalda", () -> new ItemBlockBCore(SAPLING_CULUMALDA.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> CULUMALDA_BOAT = ITEMS.register("boat_culumalda", () -> new TolkienBoatItem(TolkienBoatEntity.Type.CULUMALDA, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<Item> BARREL_CULUMALDA_ITEM = ITEMS.register("block_barrel_culumalda", () -> new ItemBlockBCore(BARREL_CULUMALDA.get(), new Item.Properties().tab(decoGroup)));
 
     // Lebethron
     public static RegistryObject<Item> LOG_LEBETHRON_ITEM = ITEMS.register("log_lebethron", () -> new ItemBlockBCore(LOG_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
@@ -138,6 +144,7 @@ public class TolkienItems {
     public static RegistryObject<Item> LEAFPILE_LEBETHRON_ITEM = ITEMS.register("leafpile_lebethron", () -> new ItemBlockBCore(LEAFPILE_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> SAPLING_LEBETHRON_ITEM = ITEMS.register("sapling_lebethron", () -> new ItemBlockBCore(SAPLING_LEBETHRON.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> LEBETHRON_BOAT = ITEMS.register("boat_lebethron", () -> new TolkienBoatItem(TolkienBoatEntity.Type.LEBETHRON, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<Item> BARREL_LEBETHRON_ITEM = ITEMS.register("block_barrel_lebethron", () -> new ItemBlockBCore(BARREL_LEBETHRON.get(), new Item.Properties().tab(decoGroup)));
 
     // Deadwood
     public static RegistryObject<Item> LOG_DEADWOOD_ITEM = ITEMS.register("log_deadwood", () -> new ItemBlockBCore(LOG_DEADWOOD.get(), new Item.Properties().tab(matsGroup)));
@@ -157,6 +164,7 @@ public class TolkienItems {
     public static RegistryObject<Item> DEADWOOD_SIGN_ITEM = ITEMS.register("sign_deadwood", () -> new TolkienSignItem(new Item.Properties().tab(decoGroup), DEADWOOD_SIGN.get(), DEADWOOD_WALL_SIGN.get()));
     public static RegistryObject<Item> SAPLING_DEADWOOD_ITEM = ITEMS.register("sapling_deadwood", () -> new ItemBlockBCore(SAPLING_DEADWOOD.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> DEADWOOD_BOAT = ITEMS.register("boat_deadwood", () -> new TolkienBoatItem(TolkienBoatEntity.Type.DEADWOOD, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<Item> BARREL_DEADWOOD_ITEM = ITEMS.register("block_barrel_deadwood", () -> new ItemBlockBCore(BARREL_DEADWOOD.get(), new Item.Properties().tab(decoGroup)));
 
     // Fangornoak
     public static RegistryObject<Item> LOG_FANGORNOAK_ITEM = ITEMS.register("log_fangornoak", () -> new ItemBlockBCore(LOG_FANGORNOAK.get(), new Item.Properties().tab(matsGroup)));
@@ -178,6 +186,7 @@ public class TolkienItems {
     public static RegistryObject<Item> LEAFPILE_FANGORNOAK_ITEM = ITEMS.register("leafpile_fangornoak", () -> new ItemBlockBCore(LEAFPILE_FANGORNOAK.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> SAPLING_FANGORNOAK_ITEM = ITEMS.register("sapling_fangornoak", () -> new ItemBlockBCore(SAPLING_FANGORNOAK.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> FANGORNOAK_BOAT = ITEMS.register("boat_fangornoak", () -> new TolkienBoatItem(TolkienBoatEntity.Type.FANGORNOAK, (new Item.Properties()).tab(toolsGroup)));
+    public static RegistryObject<Item> BARREL_FANGORNOAK_ITEM = ITEMS.register("block_barrel_fangornoak", () -> new ItemBlockBCore(BARREL_FANGORNOAK.get(), new Item.Properties().tab(decoGroup)));
 
     // Blocks - Plants & Flowers
     public static RegistryObject<Item> MUSHROOM_DECAY_BLOOM_ITEM = ITEMS.register("mushroom_decay_bloom", () -> new ItemBlockBCore(MUSHROOM_DECAY_BLOOM.get(), new Item.Properties().tab(matsGroup)));

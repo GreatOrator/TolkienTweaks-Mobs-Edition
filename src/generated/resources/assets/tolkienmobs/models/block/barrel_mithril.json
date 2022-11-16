@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "side": "tolkienmobs:block/barrel_mithril_side",
-    "bottom": "tolkienmobs:block/barrel_mithril_bottom",
-    "top": "tolkienmobs:block/barrel_mithril_top"
+    "side": "tolkienmobs:block/barrel/barrel_mithril_side",
+    "bottom": "tolkienmobs:block/barrel/barrel_mithril_bottom",
+    "top": "tolkienmobs:block/barrel/barrel_mithril_top"
   }
 }

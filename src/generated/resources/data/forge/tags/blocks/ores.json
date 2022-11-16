@@ -4,11 +4,14 @@
     "tolkienmobs:ore_mithril",
     "tolkienmobs:ore_end_mithril",
     "tolkienmobs:ore_nether_mithril",
+    "tolkienmobs:ore_deepslate_mithril",
     "tolkienmobs:ore_morguliron",
     "tolkienmobs:ore_end_morguliron",
     "tolkienmobs:ore_nether_morguliron",
+    "tolkienmobs:ore_deepslate_morguliron",
     "tolkienmobs:ore_ammolite",
     "tolkienmobs:ore_end_ammolite",
-    "tolkienmobs:ore_nether_ammolite"
+    "tolkienmobs:ore_nether_ammolite",
+    "tolkienmobs:ore_deepslate_ammolite"
   ]
 }

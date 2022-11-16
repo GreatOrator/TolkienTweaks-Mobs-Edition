@@ -40,8 +40,7 @@ public class TolkienMobs {
 	    c. EntityLootGenerator (Attempting to process loot for other mods in workspace)
 	    d. GUI's for blocks not loading
 	    e. Camo for spawner not working
-	    f. Signs not rendering proper texture
-	    g. Armor crashing when worn or placed on armor stand
+	    f. Armor crashing when worn or placed on armor stand
 	2. Categories
 	    a. Entities (Implementation)
 	    	1. Fell Beast - Needs AI adjustments
@@ -56,6 +55,8 @@ public class TolkienMobs {
         b. Lanterns
         c. Coin Pouch and Key Ring will now auto collect items if activated
         d. new potion base for this mod's potions
+        e. Deepslate versions of ore
+        f. Barrels for all wood types
     */
 
     public TolkienMobs() {

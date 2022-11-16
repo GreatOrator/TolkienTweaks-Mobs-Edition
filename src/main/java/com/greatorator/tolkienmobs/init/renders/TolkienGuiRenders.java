@@ -12,6 +12,7 @@ public class TolkienGuiRenders {
         MenuScreens.register(PIGGYBANK_CONTAINER, PiggyBankScreen::new);
         MenuScreens.register(BARREL_MITHRIL_CONTAINER, MithrilBarrelScreen::new);
         MenuScreens.register(BARREL_MORGULIRON_CONTAINER, MorgulironBarrelScreen::new);
+        MenuScreens.register(BARREL_BASE_CONTAINER, BaseBarrelScreen::new);
         MenuScreens.register(BACKPACK_CONTAINER, BackpackScreen::new);
         MenuScreens.register(COIN_POUCH_CONTAINER, CoinPouchScreen::new);
         MenuScreens.register(KEY_RING_CONTAINER, KeyRingScreen::new);

@@ -2,6 +2,8 @@ package com.greatorator.tolkienmobs.entity.tile.render;
 
 import com.google.common.collect.ImmutableMap;
 import com.greatorator.tolkienmobs.block.TolkienSignBlock;
+import com.greatorator.tolkienmobs.block.TolkienStandingSignBlock;
+import com.greatorator.tolkienmobs.block.TolkienWallSignBlock;
 import com.greatorator.tolkienmobs.entity.tile.TolkienSignTile;
 import com.greatorator.tolkienmobs.init.TolkienWoodTypes;
 import com.mojang.blaze3d.platform.NativeImage;
@@ -26,8 +28,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.StandingSignBlock;
-import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.Vec3;
@@ -65,14 +65,14 @@ public class TolkienSignTileRender implements BlockEntityRenderer<TolkienSignTil
         float f = 0.6666667F;
         WoodType woodtype = getWoodType(blockstate.getBlock());
         TolkienSignTileRender.SignModel signrenderer$signmodel = this.signModels.get(woodtype);
-        if (blockstate.getBlock() instanceof StandingSignBlock) {
+        if (blockstate.getBlock() instanceof TolkienStandingSignBlock) {
             p_112499_.translate(0.5D, 0.5D, 0.5D);
-            float f1 = -((float)(blockstate.getValue(StandingSignBlock.ROTATION) * 360) / 16.0F);
+            float f1 = -((float)(blockstate.getValue(TolkienStandingSignBlock.ROTATION) * 360) / 16.0F);
             p_112499_.mulPose(Vector3f.YP.rotationDegrees(f1));
             signrenderer$signmodel.stick.visible = true;
         } else {
             p_112499_.translate(0.5D, 0.5D, 0.5D);
-            float f4 = -blockstate.getValue(WallSignBlock.FACING).toYRot();
+            float f4 = -blockstate.getValue(TolkienWallSignBlock.FACING).toYRot();
             p_112499_.mulPose(Vector3f.YP.rotationDegrees(f4));
             p_112499_.translate(0.0D, -0.3125D, -0.4375D);
             signrenderer$signmodel.stick.visible = false;
@@ -143,10 +143,10 @@ public class TolkienSignTileRender implements BlockEntityRenderer<TolkienSignTil
         return i == DyeColor.BLACK.getTextColor() && p_173640_.hasGlowingText() ? -988212 : NativeImage.combine(0, l, k, j);
     }
 
-    public static WoodType getWoodType(Block p_173638_) {
+    public static WoodType getWoodType(Block block) {
         WoodType woodtype;
-        if (p_173638_ instanceof TolkienSignBlock) {
-            woodtype = ((TolkienSignBlock)p_173638_).type();
+        if (block instanceof TolkienSignBlock) {
+            woodtype = ((TolkienSignBlock)block).type();
         } else {
             woodtype = TolkienWoodTypes.MALLORN;
         }

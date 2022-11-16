@@ -3,6 +3,7 @@
   "values": [
     "tolkienmobs:ore_morguliron",
     "tolkienmobs:ore_end_morguliron",
-    "tolkienmobs:ore_nether_morguliron"
+    "tolkienmobs:ore_nether_morguliron",
+    "tolkienmobs:ore_deepslate_morguliron"
   ]
 }

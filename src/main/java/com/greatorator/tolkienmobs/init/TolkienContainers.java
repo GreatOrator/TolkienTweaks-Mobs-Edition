@@ -19,6 +19,7 @@ public class TolkienContainers {
     public static MenuType<ContainerBCTile<PiggyBankTile>> PIGGYBANK_CONTAINER;
     public static MenuType<ContainerBCTile<MithrilBarrelTile>> BARREL_MITHRIL_CONTAINER;
     public static MenuType<ContainerBCTile<MorgulironBarrelTile>> BARREL_MORGULIRON_CONTAINER;
+    public static MenuType<ContainerBCTile<BaseBarrelTile>> BARREL_BASE_CONTAINER;
     public static MenuType<BackpackContainer> BACKPACK_CONTAINER;
     public static MenuType<CoinPouchContainer> COIN_POUCH_CONTAINER;
     public static MenuType<KeyRingContainer> KEY_RING_CONTAINER;
@@ -37,6 +38,7 @@ public class TolkienContainers {
         event.getRegistry().register(PIGGYBANK_CONTAINER = (MenuType<ContainerBCTile<PiggyBankTile>>) IForgeMenuType.create((id, playerInv, extraData) -> new ContainerBCTile<>(PIGGYBANK_CONTAINER, id, playerInv, extraData, PiggyBankTile.SLOT_LAYOUT)).setRegistryName("piggybank_container"));
         event.getRegistry().register(BARREL_MITHRIL_CONTAINER = (MenuType<ContainerBCTile<MithrilBarrelTile>>) IForgeMenuType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MITHRIL_CONTAINER, id, playerInv, extraData, MithrilBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_mithril_container"));
         event.getRegistry().register(BARREL_MORGULIRON_CONTAINER = (MenuType<ContainerBCTile<MorgulironBarrelTile>>) IForgeMenuType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_MORGULIRON_CONTAINER, id, playerInv, extraData, MorgulironBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_morguliron_container"));
+        event.getRegistry().register(BARREL_BASE_CONTAINER = (MenuType<ContainerBCTile<BaseBarrelTile>>) IForgeMenuType.create((id, playerInv, extraData) -> new ContainerBCTile<>(BARREL_BASE_CONTAINER, id, playerInv, extraData, BaseBarrelTile.SLOT_LAYOUT)).setRegistryName("barrel_base_container"));
         event.getRegistry().register(BACKPACK_CONTAINER = (MenuType<BackpackContainer>) IForgeMenuType.create(BackpackContainer::new).setRegistryName("backpack_container"));
         event.getRegistry().register(COIN_POUCH_CONTAINER = (MenuType<CoinPouchContainer>) IForgeMenuType.create(CoinPouchContainer::new).setRegistryName("coin_pouch_container"));
         event.getRegistry().register(KEY_RING_CONTAINER = (MenuType<KeyRingContainer>) IForgeMenuType.create(KeyRingContainer::new).setRegistryName("key_ring_container"));

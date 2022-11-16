@@ -46,6 +46,7 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienBlocks.ORE_MITHRIL.get(), "Mithril Ore");
         add(TolkienBlocks.ORE_END_MITHRIL.get(), "Ender Mithril Ore");
         add(TolkienBlocks.ORE_NETHER_MITHRIL.get(), "Fiery Mithril Ore");
+        add(TolkienBlocks.ORE_DEEPSLATE_MITHRIL.get(), "Deepslate Mithril Ore");
         add(TolkienBlocks.BLOCK_MITHRIL.get(), "Mithril Block");
         add(TolkienBlocks.RAW_MITHRIL_BLOCK.get(), "Raw Mithril Block");
         add(TolkienBlocks.MITHRIL_BARS.get(), "Mithril Bars");
@@ -55,6 +56,7 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienBlocks.ORE_MORGULIRON.get(), "Morgul Iron Ore");
         add(TolkienBlocks.ORE_END_MORGULIRON.get(), "Ender Morgul Iron Ore");
         add(TolkienBlocks.ORE_NETHER_MORGULIRON.get(), "Fiery Morgul Iron Ore");
+        add(TolkienBlocks.ORE_DEEPSLATE_MORGULIRON.get(), "Deepslate Morgul Iron Ore");
         add(TolkienBlocks.BLOCK_MORGULIRON.get(), "Morgul Iron Block");
         add(TolkienBlocks.RAW_MORGULIRON_BLOCK.get(), "Raw Morgul Iron Block");
         add(TolkienBlocks.MORGULIRON_BARS.get(), "Morgul Iron Bars");
@@ -64,6 +66,7 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienBlocks.ORE_AMMOLITE.get(), "Ammolite Ore");
         add(TolkienBlocks.ORE_END_AMMOLITE.get(), "Ender Ammolite Ore");
         add(TolkienBlocks.ORE_NETHER_AMMOLITE.get(), "Firey Ammolite Ore");
+        add(TolkienBlocks.ORE_DEEPSLATE_AMMOLITE.get(), "Deepslate Ammolite Ore");
         add(TolkienBlocks.BLOCK_AMMOLITE.get(), "Ammolite Block");
         add(TolkienBlocks.DOOR_DURIN.get(), "Door of Durin");
 
@@ -180,6 +183,12 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienBlocks.SAPLING_LEBETHRON.get(), "Lebethron Sapling");
         add(TolkienBlocks.SAPLING_DEADWOOD.get(), "Deadwood Sapling");
         add(TolkienBlocks.SAPLING_FANGORNOAK.get(), "Fangorn Oak Sapling");
+        add(TolkienBlocks.BARREL_MALLORN.get(), "Mallorn Barrel");
+        add(TolkienBlocks.BARREL_MIRKWOOD.get(), "Mirkwood Barrel");
+        add(TolkienBlocks.BARREL_CULUMALDA.get(), "Culumalda Barrel");
+        add(TolkienBlocks.BARREL_LEBETHRON.get(), "Lebethron Barrel");
+        add(TolkienBlocks.BARREL_DEADWOOD.get(), "Deadwood Barrel");
+        add(TolkienBlocks.BARREL_FANGORNOAK.get(), "Fangorn Oak Barrel");
 
         // Plants & Flowers
         add(TolkienBlocks.BLOCK_DECAY_BLOOM.get(), "Bloom of Decay Block");

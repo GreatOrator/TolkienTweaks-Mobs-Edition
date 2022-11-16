@@ -24,10 +24,10 @@ public class BlockTagGenerator extends BlockTagsProvider {
         tag(STORAGE_BLOCKS_MITHRIL).add(TolkienBlocks.BLOCK_MITHRIL.get(), TolkienBlocks.RAW_MITHRIL_BLOCK.get());
         tag(STORAGE_BLOCKS_MORGULIRON).add(TolkienBlocks.BLOCK_MORGULIRON.get(), TolkienBlocks.RAW_MORGULIRON_BLOCK.get());
         tag(Tags.Blocks.STORAGE_BLOCKS).add(TolkienBlocks.BLOCK_MITHRIL.get(), TolkienBlocks.BLOCK_MORGULIRON.get());
-        tag(ORES_MITHRIL).add(TolkienBlocks.ORE_MITHRIL.get(), TolkienBlocks.ORE_END_MITHRIL.get(), TolkienBlocks.ORE_NETHER_MITHRIL.get());
-        tag(ORES_MORGULIRON).add(TolkienBlocks.ORE_MORGULIRON.get(), TolkienBlocks.ORE_END_MORGULIRON.get(), TolkienBlocks.ORE_NETHER_MORGULIRON.get());
-        tag(ORES_AMMOLITE).add(TolkienBlocks.ORE_AMMOLITE.get(), TolkienBlocks.ORE_END_AMMOLITE.get(), TolkienBlocks.ORE_NETHER_AMMOLITE.get());
-        tag(Tags.Blocks.ORES).add(TolkienBlocks.ORE_MITHRIL.get(), TolkienBlocks.ORE_END_MITHRIL.get(), TolkienBlocks.ORE_NETHER_MITHRIL.get(), TolkienBlocks.ORE_MORGULIRON.get(), TolkienBlocks.ORE_END_MORGULIRON.get(), TolkienBlocks.ORE_NETHER_MORGULIRON.get(), TolkienBlocks.ORE_AMMOLITE.get(), TolkienBlocks.ORE_END_AMMOLITE.get(), TolkienBlocks.ORE_NETHER_AMMOLITE.get());
+        tag(ORES_MITHRIL).add(TolkienBlocks.ORE_MITHRIL.get(), TolkienBlocks.ORE_END_MITHRIL.get(), TolkienBlocks.ORE_NETHER_MITHRIL.get(), TolkienBlocks.ORE_DEEPSLATE_MITHRIL.get());
+        tag(ORES_MORGULIRON).add(TolkienBlocks.ORE_MORGULIRON.get(), TolkienBlocks.ORE_END_MORGULIRON.get(), TolkienBlocks.ORE_NETHER_MORGULIRON.get(), TolkienBlocks.ORE_DEEPSLATE_MORGULIRON.get());
+        tag(ORES_AMMOLITE).add(TolkienBlocks.ORE_AMMOLITE.get(), TolkienBlocks.ORE_END_AMMOLITE.get(), TolkienBlocks.ORE_NETHER_AMMOLITE.get(), TolkienBlocks.ORE_DEEPSLATE_AMMOLITE.get());
+        tag(Tags.Blocks.ORES).add(TolkienBlocks.ORE_MITHRIL.get(), TolkienBlocks.ORE_END_MITHRIL.get(), TolkienBlocks.ORE_NETHER_MITHRIL.get(), TolkienBlocks.ORE_DEEPSLATE_MITHRIL.get(), TolkienBlocks.ORE_MORGULIRON.get(), TolkienBlocks.ORE_END_MORGULIRON.get(), TolkienBlocks.ORE_NETHER_MORGULIRON.get(), TolkienBlocks.ORE_DEEPSLATE_MORGULIRON.get(), TolkienBlocks.ORE_AMMOLITE.get(), TolkienBlocks.ORE_END_AMMOLITE.get(), TolkienBlocks.ORE_NETHER_AMMOLITE.get(), TolkienBlocks.ORE_DEEPSLATE_AMMOLITE.get());
         tag(WOODEN_FENCES).add(TolkienBlocks.FENCE_MALLORN.get(), TolkienBlocks.FENCE_MIRKWOOD.get(), TolkienBlocks.FENCE_GATE_CULUMALDA.get(), TolkienBlocks.FENCE_LEBETHRON.get());
         tag(BlockTags.WOODEN_FENCES).addTag(WOODEN_FENCES);
         tag(BlockTags.FENCES).addTag(WOODEN_FENCES);
@@ -74,7 +74,7 @@ public class BlockTagGenerator extends BlockTagsProvider {
         tag(BlockTags.SIGNS).addTag(SIGNS);
         tag(SLEEPING_BAGS).add(TolkienBlocks.SLEEPING_BAG_RED.get(), TolkienBlocks.SLEEPING_BAG_BLUE.get(), TolkienBlocks.SLEEPING_BAG_BLACK.get(), TolkienBlocks.SLEEPING_BAG_BROWN.get(), TolkienBlocks.SLEEPING_BAG_CYAN.get(), TolkienBlocks.SLEEPING_BAG_GRAY.get(), TolkienBlocks.SLEEPING_BAG_GREEN.get(), TolkienBlocks.SLEEPING_BAG_LIGHT_BLUE.get(), TolkienBlocks.SLEEPING_BAG_LIGHT_GRAY.get(), TolkienBlocks.SLEEPING_BAG_LIME.get(), TolkienBlocks.SLEEPING_BAG_MAGENTA.get(), TolkienBlocks.SLEEPING_BAG_ORANGE.get(), TolkienBlocks.SLEEPING_BAG_PINK.get(), TolkienBlocks.SLEEPING_BAG_PURPLE.get(), TolkienBlocks.SLEEPING_BAG_WHITE.get(), TolkienBlocks.SLEEPING_BAG_YELLOW.get());
         tag(BlockTags.BEDS).addTag(SLEEPING_BAGS);
-        tag(BARRELS_WOODEN).add(TolkienBlocks.BARREL_MITHRIL.get(), TolkienBlocks.BARREL_MORGULIRON.get());
+        tag(BARRELS_WOODEN).add(TolkienBlocks.BARREL_MITHRIL.get(), TolkienBlocks.BARREL_MORGULIRON.get(), TolkienBlocks.BARREL_MALLORN.get(), TolkienBlocks.BARREL_MIRKWOOD.get(), TolkienBlocks.BARREL_CULUMALDA.get(), TolkienBlocks.BARREL_LEBETHRON.get(), TolkienBlocks.BARREL_DEADWOOD.get(), TolkienBlocks.BARREL_FANGORNOAK.get());
         tag(CROPS).add(TolkienBlocks.PIPEWEED.get());
         tag(BlockTags.CROPS).addTag(CROPS);
         tag(TORCHES).add(TolkienBlocks.TORCH_MALLORN.get(), TolkienBlocks.TORCH_MIRKWOOD.get(), TolkienBlocks.TORCH_CULUMALDA.get(), TolkienBlocks.TORCH_LEBETHRON.get());

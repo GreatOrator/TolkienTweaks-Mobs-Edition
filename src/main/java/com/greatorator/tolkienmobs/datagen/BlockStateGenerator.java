@@ -50,6 +50,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TolkienBlocks.ORE_MITHRIL.get());
         simpleBlock(TolkienBlocks.ORE_END_MITHRIL.get());
         simpleBlock(TolkienBlocks.ORE_NETHER_MITHRIL.get());
+        simpleBlock(TolkienBlocks.ORE_DEEPSLATE_MITHRIL.get());
         simpleBlock(TolkienBlocks.BLOCK_MITHRIL.get());
         simpleBlock(TolkienBlocks.RAW_MITHRIL_BLOCK.get());
         paneBlock(TolkienBlocks.MITHRIL_BARS.get(), modLoc("block/mithril_bars"), modLoc("block/mithril_bars"));
@@ -63,6 +64,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TolkienBlocks.ORE_MORGULIRON.get());
         simpleBlock(TolkienBlocks.ORE_END_MORGULIRON.get());
         simpleBlock(TolkienBlocks.ORE_NETHER_MORGULIRON.get());
+        simpleBlock(TolkienBlocks.ORE_DEEPSLATE_MORGULIRON.get());
         simpleBlock(TolkienBlocks.BLOCK_MORGULIRON.get());
         simpleBlock(TolkienBlocks.RAW_MORGULIRON_BLOCK.get());
         paneBlock(TolkienBlocks.MORGULIRON_BARS.get(), modLoc("block/morguliron_bars"), modLoc("block/morguliron_bars"));
@@ -76,6 +78,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TolkienBlocks.ORE_AMMOLITE.get());
         simpleBlock(TolkienBlocks.ORE_END_AMMOLITE.get());
         simpleBlock(TolkienBlocks.ORE_NETHER_AMMOLITE.get());
+        simpleBlock(TolkienBlocks.ORE_DEEPSLATE_AMMOLITE.get());
         simpleBlock(TolkienBlocks.CHAMELEON_BLOCK.get());
         simpleBlock(TolkienBlocks.BLOCK_AMMOLITE.get());
         doorBlock(TolkienBlocks.DOOR_DURIN.get(), "door_durin", modLoc("block/door_durin_bottom"), modLoc("block/door_durin_top"));
@@ -291,13 +294,37 @@ public class BlockStateGenerator extends BlockStateProvider {
         signBlock((TolkienStandingSignBlock) TolkienBlocks.DEADWOOD_SIGN.get(), (TolkienWallSignBlock) TolkienBlocks.DEADWOOD_WALL_SIGN.get(), modLoc("block/planks_deadwood"));
         signBlock((TolkienStandingSignBlock) TolkienBlocks.FANGORNOAK_SIGN.get(), (TolkienWallSignBlock) TolkienBlocks.FANGORNOAK_WALL_SIGN.get(), modLoc("block/planks_fangornoak"));
 
-        ModelFile barrelMithril = models().cubeBottomTop("barrel_mithril", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top"));
-        ModelFile barrelMithrilOpen = models().cubeBottomTop("barrel_mithril_open", modLoc("block/barrel_mithril_side"), modLoc("block/barrel_mithril_bottom"), modLoc("block/barrel_mithril_top_open"));
+        ModelFile barrelMithril = models().cubeBottomTop("barrel_mithril", modLoc("block/barrel/barrel_mithril_side"), modLoc("block/barrel/barrel_mithril_bottom"), modLoc("block/barrel/barrel_mithril_top"));
+        ModelFile barrelMithrilOpen = models().cubeBottomTop("barrel_mithril_open", modLoc("block/barrel/barrel_mithril_side"), modLoc("block/barrel/barrel_mithril_bottom"), modLoc("block/barrel/barrel_mithril_top_open"));
         directionalBlock(TolkienBlocks.BARREL_MITHRIL.get(), state -> state.getValue(MithrilBarrelBlock.OPEN) ? barrelMithrilOpen : barrelMithril);
 
-        ModelFile barrelMorgulIron = models().cubeBottomTop("barrel_morguliron", modLoc("block/barrel_morguliron_side"), modLoc("block/barrel_morguliron_bottom"), modLoc("block/barrel_morguliron_top"));
-        ModelFile barrelMorgulIronOpen = models().cubeBottomTop("barrel_morguliron_open", modLoc("block/barrel_morguliron_side"), modLoc("block/barrel_morguliron_bottom"), modLoc("block/barrel_morguliron_top_open"));
+        ModelFile barrelMorgulIron = models().cubeBottomTop("barrel_morguliron", modLoc("block/barrel/barrel_morguliron_side"), modLoc("block/barrel/barrel_morguliron_bottom"), modLoc("block/barrel/barrel_morguliron_top"));
+        ModelFile barrelMorgulIronOpen = models().cubeBottomTop("barrel_morguliron_open", modLoc("block/barrel/barrel_morguliron_side"), modLoc("block/barrel/barrel_morguliron_bottom"), modLoc("block/barrel/barrel_morguliron_top_open"));
         directionalBlock(TolkienBlocks.BARREL_MORGULIRON.get(), state -> state.getValue(MorgulironBarrelBlock.OPEN) ? barrelMorgulIronOpen : barrelMorgulIron);
+
+        ModelFile barrelMallorn = models().cubeBottomTop("barrel_mallorn", modLoc("block/barrel/barrel_mallorn_side"), modLoc("block/barrel/barrel_mallorn_bottom"), modLoc("block/barrel/barrel_mallorn_top"));
+        ModelFile barrelMallornOpen = models().cubeBottomTop("barrel_mallorn_open", modLoc("block/barrel/barrel_mallorn_side"), modLoc("block/barrel/barrel_mallorn_bottom"), modLoc("block/barrel/barrel_mallorn_top_open"));
+        directionalBlock(TolkienBlocks.BARREL_MALLORN.get(), state -> state.getValue(BaseBarrelBlock.OPEN) ? barrelMallornOpen : barrelMallorn);
+
+        ModelFile barrelMirkwood = models().cubeBottomTop("barrel_mirkwood", modLoc("block/barrel/barrel_mirkwood_side"), modLoc("block/barrel/barrel_mirkwood_bottom"), modLoc("block/barrel/barrel_mirkwood_top"));
+        ModelFile barrelMirkwoodOpen = models().cubeBottomTop("barrel_mirkwood_open", modLoc("block/barrel/barrel_mirkwood_side"), modLoc("block/barrel/barrel_mirkwood_bottom"), modLoc("block/barrel/barrel_mirkwood_top_open"));
+        directionalBlock(TolkienBlocks.BARREL_MIRKWOOD.get(), state -> state.getValue(BaseBarrelBlock.OPEN) ? barrelMirkwoodOpen : barrelMirkwood);
+
+        ModelFile barrelCulumalda = models().cubeBottomTop("barrel_culumalda", modLoc("block/barrel/barrel_culumalda_side"), modLoc("block/barrel/barrel_culumalda_bottom"), modLoc("block/barrel/barrel_culumalda_top"));
+        ModelFile barrelCulumaldaOpen = models().cubeBottomTop("barrel_culumalda_open", modLoc("block/barrel/barrel_culumalda_side"), modLoc("block/barrel/barrel_culumalda_bottom"), modLoc("block/barrel/barrel_culumalda_top_open"));
+        directionalBlock(TolkienBlocks.BARREL_CULUMALDA.get(), state -> state.getValue(BaseBarrelBlock.OPEN) ? barrelCulumaldaOpen : barrelCulumalda);
+
+        ModelFile barrelLebethron = models().cubeBottomTop("barrel_lebethron", modLoc("block/barrel/barrel_lebethron_side"), modLoc("block/barrel/barrel_lebethron_bottom"), modLoc("block/barrel/barrel_lebethron_top"));
+        ModelFile barrelLebethronOpen = models().cubeBottomTop("barrel_lebethron_open", modLoc("block/barrel/barrel_lebethron_side"), modLoc("block/barrel/barrel_lebethron_bottom"), modLoc("block/barrel/barrel_lebethron_top_open"));
+        directionalBlock(TolkienBlocks.BARREL_LEBETHRON.get(), state -> state.getValue(BaseBarrelBlock.OPEN) ? barrelLebethronOpen : barrelLebethron);
+
+        ModelFile barrelDeadwood = models().cubeBottomTop("barrel_deadwood", modLoc("block/barrel/barrel_deadwood_side"), modLoc("block/barrel/barrel_deadwood_bottom"), modLoc("block/barrel/barrel_deadwood_top"));
+        ModelFile barrelDeadwoodOpen = models().cubeBottomTop("barrel_deadwood_open", modLoc("block/barrel/barrel_deadwood_side"), modLoc("block/barrel/barrel_deadwood_bottom"), modLoc("block/barrel/barrel_deadwood_top_open"));
+        directionalBlock(TolkienBlocks.BARREL_DEADWOOD.get(), state -> state.getValue(BaseBarrelBlock.OPEN) ? barrelDeadwoodOpen : barrelDeadwood);
+
+        ModelFile barrelFangornoak = models().cubeBottomTop("barrel_fangornoak", modLoc("block/barrel/barrel_fangornoak_side"), modLoc("block/barrel/barrel_fangornoak_bottom"), modLoc("block/barrel/barrel_fangornoak_top"));
+        ModelFile barrelFangornoakOpen = models().cubeBottomTop("barrel_fangornoak_open", modLoc("block/barrel/barrel_fangornoak_side"), modLoc("block/barrel/barrel_fangornoak_bottom"), modLoc("block/barrel/barrel_fangornoak_top_open"));
+        directionalBlock(TolkienBlocks.BARREL_FANGORNOAK.get(), state -> state.getValue(BaseBarrelBlock.OPEN) ? barrelFangornoakOpen : barrelFangornoak);
 
         ModelFile bankFull = models().getExistingFile(modLoc("block/block_piggybank_full"));
         ModelFile bankEmpty = models().getExistingFile(modLoc("block/block_piggybank"));

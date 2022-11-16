@@ -2,6 +2,12 @@
   "replace": false,
   "values": [
     "tolkienmobs:block_barrel_mithril",
-    "tolkienmobs:block_barrel_morguliron"
+    "tolkienmobs:block_barrel_morguliron",
+    "tolkienmobs:block_barrel_mallorn",
+    "tolkienmobs:block_barrel_mirkwood",
+    "tolkienmobs:block_barrel_culumalda",
+    "tolkienmobs:block_barrel_lebethron",
+    "tolkienmobs:block_barrel_deadwood",
+    "tolkienmobs:block_barrel_fangornoak"
   ]
 }

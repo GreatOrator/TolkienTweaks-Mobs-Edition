@@ -35,8 +35,8 @@ import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
  * Created by brandon3055 on 1/12/20
  */
 public class RecipeGenerator extends RecipeProvider {
-    protected static final ImmutableList<ItemLike> MITHRIL_SMELTABLES = ImmutableList.of(TolkienItems.ORE_MITHRIL_ITEM.get(), TolkienItems.ORE_END_MITHRIL_ITEM.get(), TolkienItems.ORE_NETHER_MITHRIL_ITEM.get(), TolkienItems.RAW_MITHRIL.get());
-    protected static final ImmutableList<ItemLike> MORGULIRON_SMELTABLES = ImmutableList.of(TolkienItems.ORE_MORGULIRON_ITEM.get(), TolkienItems.ORE_END_MORGULIRON_ITEM.get(), TolkienItems.ORE_NETHER_MORGULIRON_ITEM.get(), TolkienItems.RAW_MORGULIRON.get());
+    protected static final ImmutableList<ItemLike> MITHRIL_SMELTABLES = ImmutableList.of(TolkienItems.ORE_MITHRIL_ITEM.get(), TolkienItems.ORE_END_MITHRIL_ITEM.get(), TolkienItems.ORE_NETHER_MITHRIL_ITEM.get(), TolkienItems.ORE_DEEPSLATE_MITHRIL_ITEM.get(), TolkienItems.RAW_MITHRIL.get());
+    protected static final ImmutableList<ItemLike> MORGULIRON_SMELTABLES = ImmutableList.of(TolkienItems.ORE_MORGULIRON_ITEM.get(), TolkienItems.ORE_END_MORGULIRON_ITEM.get(), TolkienItems.ORE_NETHER_MORGULIRON_ITEM.get(), TolkienItems.ORE_DEEPSLATE_MORGULIRON_ITEM.get(), TolkienItems.RAW_MORGULIRON.get());
 
     public RecipeGenerator(DataGenerator generatorIn) {
         super(generatorIn);
@@ -184,6 +184,13 @@ public class RecipeGenerator extends RecipeProvider {
         signRecipe(TolkienBlocks.LEBETHRON_SIGN.get(), TolkienBlocks.PLANKS_LEBETHRON.get(), Items.STICK, consumer);
         signRecipe(TolkienBlocks.DEADWOOD_SIGN.get(), TolkienBlocks.PLANKS_DEADWOOD.get(), Items.STICK, consumer);
         signRecipe(TolkienBlocks.FANGORNOAK_SIGN.get(), TolkienBlocks.PLANKS_FANGORNOAK.get(), Items.STICK, consumer);
+
+        barrelRecipe(TolkienBlocks.BARREL_MALLORN.get(), TolkienBlocks.PLANKS_MALLORN.get(), TolkienBlocks.SLAB_MALLORN.get(), consumer);
+        barrelRecipe(TolkienBlocks.BARREL_MIRKWOOD.get(), TolkienBlocks.PLANKS_MIRKWOOD.get(), TolkienBlocks.SLAB_MIRKWOOD.get(), consumer);
+        barrelRecipe(TolkienBlocks.BARREL_CULUMALDA.get(), TolkienBlocks.PLANKS_CULUMALDA.get(), TolkienBlocks.SLAB_CULUMALDA.get(), consumer);
+        barrelRecipe(TolkienBlocks.BARREL_LEBETHRON.get(), TolkienBlocks.PLANKS_LEBETHRON.get(), TolkienBlocks.SLAB_LEBETHRON.get(), consumer);
+        barrelRecipe(TolkienBlocks.BARREL_DEADWOOD.get(), TolkienBlocks.PLANKS_DEADWOOD.get(), TolkienBlocks.SLAB_DEADWOOD.get(), consumer);
+        barrelRecipe(TolkienBlocks.BARREL_FANGORNOAK.get(), TolkienBlocks.PLANKS_FANGORNOAK.get(), TolkienBlocks.SLAB_FANGORNOAK.get(), consumer);
 
         helmetRecipe(TolkienItems.HELMET_MITHRIL.get(), TolkienItems.INGOT_MITHRIL.get(), TolkienItems.GEM_AMMOLITE.get(), consumer);
         helmetRecipe(TolkienItems.HELMET_MORGULIRON.get(), TolkienItems.INGOT_MORGULIRON.get(), TolkienItems.GEM_AMMOLITE.get(), consumer);
@@ -532,6 +539,16 @@ public class RecipeGenerator extends RecipeProvider {
 
     // Helper Methods
 
+    public static void barrelRecipe(ItemLike output, ItemLike input1, ItemLike input2, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 1)
+                .pattern("MZM")
+                .pattern("M M")
+                .pattern("MZM")
+                .define('M', input1)
+                .define('Z', input2)
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), has(input1))
+                .save(consumer);
+    }
     public static void upgradeRecipe(ItemLike output, ItemLike input1, ItemLike input2, Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(output, 1)
                 .pattern("#  ")

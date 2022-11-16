@@ -3,6 +3,7 @@
   "values": [
     "tolkienmobs:ore_ammolite",
     "tolkienmobs:ore_end_ammolite",
-    "tolkienmobs:ore_nether_ammolite"
+    "tolkienmobs:ore_nether_ammolite",
+    "tolkienmobs:ore_deepslate_ammolite"
   ]
 }

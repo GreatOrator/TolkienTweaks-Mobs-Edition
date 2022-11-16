@@ -92,7 +92,7 @@ public class ItemTagGenerator extends ItemTagsProvider {
         tag(ItemTags.WOODEN_STAIRS).addTag(WOODEN_STAIRS);
         tag(WOODEN_SLABS).add(TolkienItems.SLAB_MALLORN_ITEM.get(), TolkienItems.SLAB_MIRKWOOD_ITEM.get(), TolkienItems.SLAB_CULUMALDA_ITEM.get(), TolkienItems.SLAB_LEBETHRON_ITEM.get());
         tag(ItemTags.WOODEN_SLABS).addTag(WOODEN_SLABS);
-        tag(BARRELS_WOODEN).add(TolkienItems.BARREL_MITHRIL_ITEM.get(), TolkienItems.BARREL_MORGULIRON_ITEM.get());
+        tag(BARRELS_WOODEN).add(TolkienItems.BARREL_MITHRIL_ITEM.get(), TolkienItems.BARREL_MORGULIRON_ITEM.get(), TolkienItems.BARREL_MALLORN_ITEM.get(), TolkienItems.BARREL_MIRKWOOD_ITEM.get(), TolkienItems.BARREL_CULUMALDA_ITEM.get(), TolkienItems.BARREL_LEBETHRON_ITEM.get(), TolkienItems.BARREL_DEADWOOD_ITEM.get(), TolkienItems.BARREL_FANGORNOAK_ITEM.get());
         tag(BOTTLE).add(TolkienItems.BOTTLE_FANCY.get());
         tag(COINS).add(TolkienItems.ITEM_COIN_BRONZE.get(), TolkienItems.ITEM_COIN_SILVER.get(), TolkienItems.ITEM_COIN_GOLD.get(), TolkienItems.ITEM_COIN_MITHRIL.get(), TolkienItems.ITEM_FACTIONCOIN.get(), TolkienItems.ITEM_FACTIONTOKEN.get(), TolkienItems.ITEM_DARKSIGIL.get());
         tag(TOKENS).add(TolkienItems.ITEM_FACTIONTOKEN.get(), TolkienItems.ITEM_CAVECOMPLETE.get(), TolkienItems.ITEM_DARKSIGIL.get(), TolkienItems.ITEM_WATCHERCOMPLETE.get(), TolkienItems.ITEM_TOKEN_EASTERN_ALLIANCE.get(), TolkienItems.ITEM_TOKEN_WESTERN_ALLIANCE.get());

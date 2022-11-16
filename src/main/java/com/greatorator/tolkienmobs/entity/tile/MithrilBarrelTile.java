@@ -7,7 +7,6 @@ import com.brandon3055.brandonscore.inventory.ItemHandlerIOControl;
 import com.brandon3055.brandonscore.inventory.TileItemStackHandler;
 import com.brandon3055.brandonscore.lib.IInteractTile;
 import com.brandon3055.brandonscore.lib.IRSSwitchable;
-import com.brandon3055.brandonscore.lib.datamanager.ManagedBool;
 import com.greatorator.tolkienmobs.init.TolkienContainers;
 import com.greatorator.tolkienmobs.init.TolkienTiles;
 import net.minecraft.core.BlockPos;
@@ -21,13 +20,11 @@ import net.minecraftforge.items.CapabilityItemHandler;
 
 import javax.annotation.Nullable;
 
-import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_BOTH_SYNC_TILE;
 import static net.minecraft.core.Direction.UP;
 
 public class MithrilBarrelTile extends TileBCore implements MenuProvider, IInteractTile, IRSSwitchable {
    public static final ContainerSlotLayout.LayoutFactory<MithrilBarrelTile> SLOT_LAYOUT = (player, tile) -> new ContainerSlotLayout().playerMain(player).allTile(tile.itemHandler);
    public TileItemStackHandler itemHandler = new TileItemStackHandler(54);
-   public final ManagedBool isOpen = register(new ManagedBool("is_open", false, SAVE_BOTH_SYNC_TILE));
 
    public MithrilBarrelTile(BlockPos pos, BlockState state) {
       super(TolkienTiles.BARREL_MITHRIL_TILE.get(), pos, state);
