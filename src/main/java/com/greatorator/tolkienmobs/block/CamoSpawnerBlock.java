@@ -39,6 +39,7 @@ public class CamoSpawnerBlock extends ChameleonBlock<CamoSpawnerTile> {
         return new CamoSpawnerTile(blockPos, blockState);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onRemove(BlockState state, Level worldIn, BlockPos pos, BlockState newState, boolean isMoving) {
         super.onRemove(state, worldIn, pos, newState, isMoving);
