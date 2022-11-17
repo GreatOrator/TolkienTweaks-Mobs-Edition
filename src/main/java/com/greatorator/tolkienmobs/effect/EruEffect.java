@@ -5,7 +5,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 
-public class EruEffect extends PotionBaseEffect {
+public class EruEffect extends BasePotionEffect {
     public static EruEffect instance = null;
     public static int healTime = 20;
 

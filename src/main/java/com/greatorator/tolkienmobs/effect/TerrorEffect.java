@@ -5,7 +5,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 
-public class TerrorEffect extends PotionBaseEffect {
+public class TerrorEffect extends BasePotionEffect {
     public static FearEffect instance = null;
     public static int terrorDuration = 10;
 

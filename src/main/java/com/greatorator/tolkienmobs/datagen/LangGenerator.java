@@ -50,6 +50,7 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienBlocks.BLOCK_MITHRIL.get(), "Mithril Block");
         add(TolkienBlocks.RAW_MITHRIL_BLOCK.get(), "Raw Mithril Block");
         add(TolkienBlocks.MITHRIL_BARS.get(), "Mithril Bars");
+        add(TolkienBlocks.WALL_MITHRIL.get(), "Mithril Wall");
         add(TolkienBlocks.DOOR_MITHRIL.get(), "Mithril Door");
         add(TolkienBlocks.TRAPDOOR_MITHRIL.get(), "Mithril Trap Door");
         add(TolkienBlocks.PRESSURE_PLATE_MITHRIL.get(), "Mithril Pressure Plate");
@@ -60,6 +61,7 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienBlocks.BLOCK_MORGULIRON.get(), "Morgul Iron Block");
         add(TolkienBlocks.RAW_MORGULIRON_BLOCK.get(), "Raw Morgul Iron Block");
         add(TolkienBlocks.MORGULIRON_BARS.get(), "Morgul Iron Bars");
+        add(TolkienBlocks.WALL_MORGULIRON.get(), "Morgul Iron Wall");
         add(TolkienBlocks.DOOR_MORGULIRON.get(), "Morgul Iron Door");
         add(TolkienBlocks.TRAPDOOR_MORGULIRON.get(), "Morgul Iron Trap Door");
         add(TolkienBlocks.PRESSURE_PLATE_MORGULIRON.get(), "Morgul Iron Pressure Plate");

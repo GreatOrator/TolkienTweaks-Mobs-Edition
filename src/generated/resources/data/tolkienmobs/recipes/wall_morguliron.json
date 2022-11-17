@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:block_morguliron"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:wall_morguliron",
+    "count": 6
+  }
+}

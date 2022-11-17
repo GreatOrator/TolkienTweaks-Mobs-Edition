@@ -31,6 +31,7 @@ public class TolkienBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
 
     // Metals & Gems
+        // Mithril
     public static RegistryObject<Block> ORE_MITHRIL = BLOCKS.register("ore_mithril", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.STONE)));
     public static RegistryObject<Block> ORE_END_MITHRIL = BLOCKS.register("ore_end_mithril", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.STONE)));
     public static RegistryObject<Block> ORE_NETHER_MITHRIL = BLOCKS.register("ore_nether_mithril", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.STONE)));
@@ -38,9 +39,11 @@ public class TolkienBlocks {
     public static RegistryObject<Block> BLOCK_MITHRIL = BLOCKS.register("block_mithril", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
     public static RegistryObject<Block> RAW_MITHRIL_BLOCK = BLOCKS.register("raw_mithril_block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
     public static RegistryObject<IronBarsBlock> MITHRIL_BARS = BLOCKS.register("mithril_bars", () -> new IronBarsBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
+    public static RegistryObject<Block> WALL_MITHRIL = BLOCKS.register("wall_mithril", () -> new WallBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
     public static RegistryObject<DoorBlock> DOOR_MITHRIL = BLOCKS.register("door_mithril", () -> new DoorBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
     public static RegistryObject<TrapDoorBlock> TRAPDOOR_MITHRIL = BLOCKS.register("trapdoor_mithril", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5.0F).sound(SoundType.METAL).noOcclusion().isValidSpawn(TolkienBlocks::never)));
 
+        // MorgulIron
     public static RegistryObject<Block> PRESSURE_PLATE_MITHRIL = BLOCKS.register("pressure_plate_mithril", () -> new WeightedPressurePlateBlock(15, BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_LIGHT_GRAY).requiresCorrectToolForDrops().noCollission().strength(0.5F).sound(SoundType.WOOD)));
     public static RegistryObject<Block> ORE_MORGULIRON = BLOCKS.register("ore_morguliron", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.STONE)));
     public static RegistryObject<Block> ORE_END_MORGULIRON = BLOCKS.register("ore_end_morguliron", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.STONE)));
@@ -49,9 +52,12 @@ public class TolkienBlocks {
     public static RegistryObject<Block> BLOCK_MORGULIRON = BLOCKS.register("block_morguliron", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
     public static RegistryObject<Block> RAW_MORGULIRON_BLOCK = BLOCKS.register("raw_morguliron_block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL)));
     public static RegistryObject<IronBarsBlock> MORGULIRON_BARS = BLOCKS.register("morguliron_bars", () -> new IronBarsBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
+    public static RegistryObject<Block> WALL_MORGULIRON = BLOCKS.register("wall_morguliron", () -> new WallBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.METAL).noOcclusion()));
     public static RegistryObject<DoorBlock> DOOR_MORGULIRON = BLOCKS.register("door_morguliron", () -> new DoorBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_BLACK).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
     public static RegistryObject<TrapDoorBlock> TRAPDOOR_MORGULIRON = BLOCKS.register("trapdoor_morguliron", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5.0F).sound(SoundType.METAL).noOcclusion().isValidSpawn(TolkienBlocks::never)));
     public static RegistryObject<Block> PRESSURE_PLATE_MORGULIRON = BLOCKS.register("pressure_plate_morguliron", () -> new WeightedPressurePlateBlock(150, BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().noCollission().strength(0.5F).sound(SoundType.WOOD)));
+
+        // Ammolite
     public static RegistryObject<Block> ORE_AMMOLITE = BLOCKS.register("ore_ammolite", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.DEEPSLATE).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.STONE)));
     public static RegistryObject<Block> ORE_END_AMMOLITE = BLOCKS.register("ore_end_ammolite", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.DEEPSLATE).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.STONE)));
     public static RegistryObject<Block> ORE_NETHER_AMMOLITE = BLOCKS.register("ore_nether_ammolite", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.DEEPSLATE).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.STONE)));

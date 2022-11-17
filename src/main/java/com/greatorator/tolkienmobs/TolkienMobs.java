@@ -41,6 +41,7 @@ public class TolkienMobs {
 	    d. GUI's for blocks not loading
 	    e. Camo for spawner not working
 	    f. Armor crashing when worn or placed on armor stand
+	    g. Tornado Effect not working
 	2. Categories
 	    a. Entities (Implementation)
 	    	1. Fell Beast - Needs AI adjustments
@@ -57,6 +58,8 @@ public class TolkienMobs {
         d. new potion base for this mod's potions
         e. Deepslate versions of ore
         f. Barrels for all wood types
+        g. Added blocks to mineable with tools
+        h. Added Mithril and Morgul Iron walls
     */
 
     public TolkienMobs() {

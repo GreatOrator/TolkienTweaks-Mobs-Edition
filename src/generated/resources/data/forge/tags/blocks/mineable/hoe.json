@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:leaves_mallorn",
+    "tolkienmobs:leaves_mirkwood",
+    "tolkienmobs:leaves_culumalda",
+    "tolkienmobs:leaves_lebethron",
+    "tolkienmobs:leaves_fangornoak",
+    "tolkienmobs:leafpile_mallorn",
+    "tolkienmobs:leafpile_mirkwood",
+    "tolkienmobs:leafpile_culumalda",
+    "tolkienmobs:leafpile_lebethron",
+    "tolkienmobs:leafpile_fangornoak"
+  ]
+}

@@ -6,7 +6,7 @@ import net.minecraft.world.entity.Pose;
 
 import javax.annotation.Nullable;
 
-public class SleepEffect extends PotionBaseEffect {
+public class SleepEffect extends BasePotionEffect {
     public static SleepEffect instance = null;
     public static int sleepDuration = 10;
     @Nullable

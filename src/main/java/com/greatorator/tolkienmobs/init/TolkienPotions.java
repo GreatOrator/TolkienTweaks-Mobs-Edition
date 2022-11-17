@@ -21,8 +21,8 @@ public class TolkienPotions {
     //#################################################################
     // Effects
     //#################################################################
-    public static final RegistryObject<MobEffect> ENT_STANCE = EFFECTS.register("ent_draught", () -> new PotionBaseEffect(MobEffectCategory.BENEFICIAL, 3135135).addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE, "38030aa0-6efa-11eb-9439-0242ac130002", (double)1.0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
-    public static final RegistryObject<MobEffect> ELF_VITALITY = EFFECTS.register("elf_vitality", () -> new PotionBaseEffect(MobEffectCategory.BENEFICIAL, 14687673).addAttributeModifier(Attributes.MAX_HEALTH, "38031022-6efa-11eb-9439-0242ac130002", (double)1.0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
+    public static final RegistryObject<MobEffect> ENT_STANCE = EFFECTS.register("ent_draught", () -> new BasePotionEffect(MobEffectCategory.BENEFICIAL, 3135135).addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE, "38030aa0-6efa-11eb-9439-0242ac130002", (double)1.0F, AttributeModifier.Operation.MULTIPLY_TOTAL));
+    public static final RegistryObject<MobEffect> ELF_VITALITY = EFFECTS.register("elf_vitality", () -> new ElvenLifeEffect(MobEffectCategory.BENEFICIAL, 14687673));
     public static final RegistryObject<MobEffect> ELEMENTAL_DROWNING = EFFECTS.register("elemental_drowning", () -> new DrownEffect(MobEffectCategory.HARMFUL, 7791097));
     public static final RegistryObject<MobEffect> ELEMENTAL_LIGHTNING = EFFECTS.register("elemental_lightning", () -> new LightningEffect(MobEffectCategory.HARMFUL, 16640281));
     public static final RegistryObject<MobEffect> ELEMENTAL_FLYING = EFFECTS.register("elemental_flight", () -> new FlyingEffect(MobEffectCategory.HARMFUL, 6498056));

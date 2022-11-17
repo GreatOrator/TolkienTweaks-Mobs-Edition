@@ -54,7 +54,8 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TolkienBlocks.BLOCK_MITHRIL.get());
         simpleBlock(TolkienBlocks.RAW_MITHRIL_BLOCK.get());
         paneBlock(TolkienBlocks.MITHRIL_BARS.get(), modLoc("block/mithril_bars"), modLoc("block/mithril_bars"));
-        doorBlock(TolkienBlocks.DOOR_MITHRIL.get(), "door_mithril", modLoc("block/door_mithril_bottom"), modLoc("block/door_mithril_top"));
+        wallBlocks((WallBlock) TolkienBlocks.WALL_MITHRIL.get(), "block_mithril");
+        doorBlock(TolkienBlocks.DOOR_MITHRIL.get(), "mithril", modLoc("block/door_mithril_bottom"), modLoc("block/door_mithril_top"));
         trapdoorBlock(TolkienBlocks.TRAPDOOR_MITHRIL.get(), "mithril", modLoc("block/trapdoor_mithril"), true);
         weightedPressurePlateBlock(TolkienBlocks.PRESSURE_PLATE_MITHRIL.get(),
                 models().withExistingParent("pressure_plate_mithril", mcLoc("block/pressure_plate_up"))
@@ -68,7 +69,8 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TolkienBlocks.BLOCK_MORGULIRON.get());
         simpleBlock(TolkienBlocks.RAW_MORGULIRON_BLOCK.get());
         paneBlock(TolkienBlocks.MORGULIRON_BARS.get(), modLoc("block/morguliron_bars"), modLoc("block/morguliron_bars"));
-        doorBlock(TolkienBlocks.DOOR_MORGULIRON.get(), "door_morguliron", modLoc("block/door_morguliron_bottom"), modLoc("block/door_morguliron_top"));
+        wallBlocks((WallBlock) TolkienBlocks.WALL_MORGULIRON.get(), "block_morguliron");
+        doorBlock(TolkienBlocks.DOOR_MORGULIRON.get(), "morguliron", modLoc("block/door_morguliron_bottom"), modLoc("block/door_morguliron_top"));
         trapdoorBlock(TolkienBlocks.TRAPDOOR_MORGULIRON.get(), "morguliron", modLoc("block/trapdoor_morguliron"), true);
         weightedPressurePlateBlock(TolkienBlocks.PRESSURE_PLATE_MORGULIRON.get(),
                 models().withExistingParent("pressure_plate_morguliron", mcLoc("block/pressure_plate_up"))
@@ -126,24 +128,24 @@ public class BlockStateGenerator extends BlockStateProvider {
         stairsBlock(TolkienBlocks.STAIRS_LEBETHRON.get(), modLoc("block/planks_lebethron"));
         stairsBlock(TolkienBlocks.STAIRS_DEADWOOD.get(), modLoc("block/planks_deadwood"));
         stairsBlock(TolkienBlocks.STAIRS_FANGORNOAK.get(), modLoc("block/planks_fangornoak"));
-        doorBlock(TolkienBlocks.DOOR_MALLORN.get(), "door_mallorn", modLoc("block/door_mallorn_bottom"), modLoc("block/door_mallorn_top"));
-        doorBlock(TolkienBlocks.DOOR_MIRKWOOD.get(), "door_mirkwood", modLoc("block/door_mirkwood_bottom"), modLoc("block/door_mirkwood_top"));
-        doorBlock(TolkienBlocks.DOOR_CULUMALDA.get(), "door_culumalda", modLoc("block/door_culumalda_bottom"), modLoc("block/door_culumalda_top"));
-        doorBlock(TolkienBlocks.DOOR_LEBETHRON.get(), "door_lebethron", modLoc("block/door_lebethron_bottom"), modLoc("block/door_lebethron_top"));
-        doorBlock(TolkienBlocks.DOOR_DEADWOOD.get(), "door_deadwood", modLoc("block/door_deadwood_bottom"), modLoc("block/door_deadwood_top"));
-        doorBlock(TolkienBlocks.DOOR_FANGORNOAK.get(), "door_fangornoak", modLoc("block/door_fangornoak_bottom"), modLoc("block/door_fangornoak_top"));
-        fenceGateBlock(TolkienBlocks.FENCE_GATE_MALLORN.get(), "fence_gate_mallorn", modLoc("block/planks_mallorn"));
-        fenceGateBlock(TolkienBlocks.FENCE_GATE_MIRKWOOD.get(), "fence_gate_mirkwood", modLoc("block/planks_mirkwood"));
-        fenceGateBlock(TolkienBlocks.FENCE_GATE_CULUMALDA.get(), "fence_gate_culumalda", modLoc("block/planks_culumalda"));
-        fenceGateBlock(TolkienBlocks.FENCE_GATE_LEBETHRON.get(), "fence_gate_lebethron", modLoc("block/planks_lebethron"));
-        fenceGateBlock(TolkienBlocks.FENCE_GATE_DEADWOOD.get(), "fence_gate_deadwood", modLoc("block/planks_deadwood"));
-        fenceGateBlock(TolkienBlocks.FENCE_GATE_FANGORNOAK.get(), "fence_gate_fangornoak", modLoc("block/planks_fangornoak"));
-        fenceBlock(TolkienBlocks.FENCE_MALLORN.get(), "fence_mallorn", modLoc("block/planks_mallorn"));
-        fenceBlock(TolkienBlocks.FENCE_MIRKWOOD.get(), "fence_mirkwood", modLoc("block/planks_mirkwood"));
-        fenceBlock(TolkienBlocks.FENCE_CULUMALDA.get(), "fence_culumalda", modLoc("block/planks_culumalda"));
-        fenceBlock(TolkienBlocks.FENCE_LEBETHRON.get(), "fence_lebethron", modLoc("block/planks_lebethron"));
-        fenceBlock(TolkienBlocks.FENCE_DEADWOOD.get(), "fence_deadwood", modLoc("block/planks_deadwood"));
-        fenceBlock(TolkienBlocks.FENCE_FANGORNOAK.get(), "fence_fangornoak", modLoc("block/planks_fangornoak"));
+        doorBlock(TolkienBlocks.DOOR_MALLORN.get(), "mallorn", modLoc("block/door_mallorn_bottom"), modLoc("block/door_mallorn_top"));
+        doorBlock(TolkienBlocks.DOOR_MIRKWOOD.get(), "mirkwood", modLoc("block/door_mirkwood_bottom"), modLoc("block/door_mirkwood_top"));
+        doorBlock(TolkienBlocks.DOOR_CULUMALDA.get(), "culumalda", modLoc("block/door_culumalda_bottom"), modLoc("block/door_culumalda_top"));
+        doorBlock(TolkienBlocks.DOOR_LEBETHRON.get(), "lebethron", modLoc("block/door_lebethron_bottom"), modLoc("block/door_lebethron_top"));
+        doorBlock(TolkienBlocks.DOOR_DEADWOOD.get(), "deadwood", modLoc("block/door_deadwood_bottom"), modLoc("block/door_deadwood_top"));
+        doorBlock(TolkienBlocks.DOOR_FANGORNOAK.get(), "fangornoak", modLoc("block/door_fangornoak_bottom"), modLoc("block/door_fangornoak_top"));
+        fenceGateBlock(TolkienBlocks.FENCE_GATE_MALLORN.get(), "mallorn", modLoc("block/planks_mallorn"));
+        fenceGateBlock(TolkienBlocks.FENCE_GATE_MIRKWOOD.get(), "mirkwood", modLoc("block/planks_mirkwood"));
+        fenceGateBlock(TolkienBlocks.FENCE_GATE_CULUMALDA.get(), "culumalda", modLoc("block/planks_culumalda"));
+        fenceGateBlock(TolkienBlocks.FENCE_GATE_LEBETHRON.get(), "lebethron", modLoc("block/planks_lebethron"));
+        fenceGateBlock(TolkienBlocks.FENCE_GATE_DEADWOOD.get(), "deadwood", modLoc("block/planks_deadwood"));
+        fenceGateBlock(TolkienBlocks.FENCE_GATE_FANGORNOAK.get(), "fangornoak", modLoc("block/planks_fangornoak"));
+        fenceBlock(TolkienBlocks.FENCE_MALLORN.get(), "mallorn", modLoc("block/planks_mallorn"));
+        fenceBlock(TolkienBlocks.FENCE_MIRKWOOD.get(), "mirkwood", modLoc("block/planks_mirkwood"));
+        fenceBlock(TolkienBlocks.FENCE_CULUMALDA.get(), "culumalda", modLoc("block/planks_culumalda"));
+        fenceBlock(TolkienBlocks.FENCE_LEBETHRON.get(), "lebethron", modLoc("block/planks_lebethron"));
+        fenceBlock(TolkienBlocks.FENCE_DEADWOOD.get(), "deadwood", modLoc("block/planks_deadwood"));
+        fenceBlock(TolkienBlocks.FENCE_FANGORNOAK.get(), "fangornoak", modLoc("block/planks_fangornoak"));
         trapdoorBlock(TolkienBlocks.TRAPDOOR_MALLORN.get(), "mallorn", modLoc("block/trapdoor_mallorn"), true);
         trapdoorBlock(TolkienBlocks.TRAPDOOR_MIRKWOOD.get(), "mirkwood", modLoc("block/trapdoor_mirkwood"), true);
         trapdoorBlock(TolkienBlocks.TRAPDOOR_CULUMALDA.get(), "culumalda", modLoc("block/trapdoor_culumalda"), true);
@@ -400,6 +402,15 @@ public class BlockStateGenerator extends BlockStateProvider {
         return block.getRegistryName().getPath();
     }
 
+    private ResourceLocation modBlockLoc(String texture) {
+        return modLoc("block/" + texture);
+    }
+
+    public void wallBlocks(WallBlock block, String texture) {
+        wallBlock(block, modBlockLoc(texture));
+        models().wallInventory(name(block) + "_inventory", modBlockLoc(texture));
+    }
+
     private String normalizeBlockPath(Block block) {
         return MODID + ":block/"+ block.toString().replace("Block{", "").replace("}", "")
                 .replace(MODID+ ":", "");
@@ -468,26 +479,6 @@ public class BlockStateGenerator extends BlockStateProvider {
                             .rotationX(dir == Direction.DOWN ? 90 : dir == Direction.UP ? -90 : 0)
                             .rotationY(dir.getAxis().isVertical() ? 0 : (((int) dir.toYRot()) + angleOffset) % 360)
                             .build();
-                });
-    }
-
-    public void buttonBlock(Block block, Function<BlockState, ModelFile> normal,  Function<BlockState, ModelFile> pressed, int angleOffset) {
-        getVariantBuilder(block)
-                .forAllStates(state -> {
-                    Boolean powered = state.getValue(BlockStateProperties.POWERED);
-                    if (powered) {
-                        return ConfiguredModel.builder()
-                                .modelFile(pressed.apply(state))
-                                .rotationX(state.getValue(BlockStateProperties.ATTACH_FACE).ordinal() * 90)
-                                .rotationY((((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + angleOffset) + (state.getValue(BlockStateProperties.ATTACH_FACE) == AttachFace.CEILING ? 180 : 0)) % 360)
-                                .build();
-                    } else {
-                        return ConfiguredModel.builder()
-                                .modelFile(normal.apply(state))
-                                .rotationX(state.getValue(BlockStateProperties.ATTACH_FACE).ordinal() * 90)
-                                .rotationY((((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + angleOffset) + (state.getValue(BlockStateProperties.ATTACH_FACE) == AttachFace.CEILING ? 180 : 0)) % 360)
-                                .build();
-                    }
                 });
     }
 

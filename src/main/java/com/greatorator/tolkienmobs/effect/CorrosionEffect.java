@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.effect;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.greatorator.tolkienmobs.init.TolkienItems;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class CorrosionEffect extends PotionBaseEffect {
+public class CorrosionEffect extends BasePotionEffect {
     private final Map<Attribute, AttributeModifier> attributeModifierMap = Maps.newHashMap();
     public static CorrosionEffect instance = null;
     public static int damageTime = 20;
@@ -37,7 +38,7 @@ public class CorrosionEffect extends PotionBaseEffect {
             equipment = Lists.newArrayList(entity.getAllSlots());
         }
 
-        equipment.removeIf(stack -> stack.isDamaged() || !stack.getItem().canBeDepleted() || stack.getItem().isValidRepairItem(stack, new ItemStack(Items.GOLD_INGOT)));
+        equipment.removeIf(stack -> stack.isDamaged() || !stack.getItem().canBeDepleted() || stack.getItem().isValidRepairItem(stack, new ItemStack(Items.GOLD_INGOT)) || stack.getItem().isValidRepairItem(stack, new ItemStack(TolkienItems.INGOT_MITHRIL.get())));
 
         if (!equipment.isEmpty()) {
             equipment.get(entity.level.random.nextInt(equipment.size())). hurtAndBreak(amplifier + 1, entity, null);

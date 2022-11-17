@@ -1,0 +1,31 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:block_mithril",
+    "tolkienmobs:raw_mithril_block",
+    "tolkienmobs:block_morguliron",
+    "tolkienmobs:raw_morguliron_block",
+    "tolkienmobs:ore_mithril",
+    "tolkienmobs:ore_end_mithril",
+    "tolkienmobs:ore_nether_mithril",
+    "tolkienmobs:ore_deepslate_mithril",
+    "tolkienmobs:ore_morguliron",
+    "tolkienmobs:ore_end_morguliron",
+    "tolkienmobs:ore_nether_morguliron",
+    "tolkienmobs:ore_deepslate_morguliron",
+    "tolkienmobs:ore_ammolite",
+    "tolkienmobs:ore_end_ammolite",
+    "tolkienmobs:ore_nether_ammolite",
+    "tolkienmobs:ore_deepslate_ammolite",
+    "tolkienmobs:block_stone_path",
+    "tolkienmobs:block_tmfireplace",
+    "tolkienmobs:block_piggybank",
+    "tolkienmobs:mithril_bars",
+    "tolkienmobs:morguliron_bars",
+    "tolkienmobs:trapdoor_mithril",
+    "tolkienmobs:trapdoor_morguliron",
+    "tolkienmobs:door_mithril",
+    "tolkienmobs:door_morguliron",
+    "tolkienmobs:door_durin"
+  ]
+}

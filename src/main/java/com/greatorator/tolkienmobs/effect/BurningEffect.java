@@ -5,7 +5,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
-public class BurningEffect extends PotionBaseEffect {
+public class BurningEffect extends BasePotionEffect {
     public static BurningEffect instance = null;
     public static float fireDuration = 10;
 

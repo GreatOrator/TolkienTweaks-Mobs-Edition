@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "tolkienmobs:block/barrel/barrel_fangornoak_side",
+    "bottom": "tolkienmobs:block/barrel/barrel_fangornoak_bottom",
+    "top": "tolkienmobs:block/barrel/barrel_fangornoak_top"
+  }
+}

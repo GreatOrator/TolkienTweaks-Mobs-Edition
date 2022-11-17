@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MZM",
+    "M M",
+    "MZM"
+  ],
+  "key": {
+    "M": {
+      "item": "tolkienmobs:planks_culumalda"
+    },
+    "Z": {
+      "item": "tolkienmobs:slab_culumalda"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:block_barrel_culumalda"
+  }
+}

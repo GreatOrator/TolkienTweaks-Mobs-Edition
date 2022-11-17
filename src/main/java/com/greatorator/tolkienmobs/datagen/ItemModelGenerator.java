@@ -35,6 +35,7 @@ public class ItemModelGenerator extends ItemModelProvider {
     @Override
     protected void registerModels() {
         // Block Items - Metals & Gems
+            // Mithril
         blockItem(TolkienBlocks.ORE_MITHRIL.get());
         blockItem(TolkienBlocks.ORE_END_MITHRIL.get());
         blockItem(TolkienBlocks.ORE_NETHER_MITHRIL.get());
@@ -42,9 +43,12 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.BLOCK_MITHRIL.get());
         blockItem(TolkienBlocks.RAW_MITHRIL_BLOCK.get());
         simpleItem(TolkienItems.MITHRIL_BARS_ITEM.get());
+        blockItem(TolkienBlocks.WALL_MITHRIL.get(), modLoc("block/wall_mithril_inventory"));
         simpleItem(TolkienItems.DOOR_MITHRIL_ITEM.get());
         blockItem(TolkienBlocks.TRAPDOOR_MITHRIL.get(), modLoc("block/mithril_trapdoor_bottom"));
         blockItem(TolkienBlocks.PRESSURE_PLATE_MITHRIL.get(), modLoc("block/pressure_plate_mithril"));
+
+            // MorgulIron
         blockItem(TolkienBlocks.ORE_MORGULIRON.get());
         blockItem(TolkienBlocks.ORE_END_MORGULIRON.get());
         blockItem(TolkienBlocks.ORE_NETHER_MORGULIRON.get());
@@ -52,9 +56,12 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.BLOCK_MORGULIRON.get());
         blockItem(TolkienBlocks.RAW_MORGULIRON_BLOCK.get());
         simpleItem(TolkienItems.MORGULIRON_BARS_ITEM.get());
+        blockItem(TolkienBlocks.WALL_MORGULIRON.get(), modLoc("block/wall_morguliron_inventory"));
         simpleItem(TolkienItems.DOOR_MORGULIRON_ITEM.get());
         blockItem(TolkienBlocks.TRAPDOOR_MORGULIRON.get(), modLoc("block/morguliron_trapdoor_bottom"));
         blockItem(TolkienBlocks.PRESSURE_PLATE_MORGULIRON.get(), modLoc("block/pressure_plate_morguliron"));
+
+            // Ammolite
         blockItem(TolkienBlocks.ORE_AMMOLITE.get());
         blockItem(TolkienBlocks.ORE_END_AMMOLITE.get());
         blockItem(TolkienBlocks.ORE_NETHER_AMMOLITE.get());
@@ -72,7 +79,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.STAIRS_MALLORN.get());
         blockItem(TolkienBlocks.SLAB_MALLORN.get());
         simpleItem(TolkienItems.DOOR_MALLORN_ITEM.get());
-        blockItem(TolkienBlocks.FENCE_GATE_MALLORN.get(), modLoc("block/fence_gate_mallorn_fence_gate"));
+        blockItem(TolkienBlocks.FENCE_GATE_MALLORN.get(), modLoc("block/mallorn_fence_gate"));
         registerFence(TolkienBlocks.FENCE_MALLORN.get(), "planks_mallorn");
         blockItem(TolkienBlocks.TRAPDOOR_MALLORN.get(), modLoc("block/mallorn_trapdoor_bottom"));
         blockItem(TolkienBlocks.PRESSURE_PLATE_MALLORN.get(), modLoc("block/pressure_plate_mallorn"));
@@ -93,7 +100,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.STAIRS_MIRKWOOD.get());
         blockItem(TolkienBlocks.SLAB_MIRKWOOD.get());
         simpleItem(TolkienItems.DOOR_MIRKWOOD_ITEM.get());
-        blockItem(TolkienBlocks.FENCE_GATE_MIRKWOOD.get(), modLoc("block/fence_gate_mirkwood_fence_gate"));
+        blockItem(TolkienBlocks.FENCE_GATE_MIRKWOOD.get(), modLoc("block/mirkwood_fence_gate"));
         registerFence(TolkienBlocks.FENCE_MIRKWOOD.get(), "planks_mirkwood");
         blockItem(TolkienBlocks.TRAPDOOR_MIRKWOOD.get(), modLoc("block/mirkwood_trapdoor_bottom"));
         blockItem(TolkienBlocks.PRESSURE_PLATE_MIRKWOOD.get(), modLoc("block/pressure_plate_mirkwood"));
@@ -114,7 +121,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.STAIRS_CULUMALDA.get());
         blockItem(TolkienBlocks.SLAB_CULUMALDA.get());
         simpleItem(TolkienItems.DOOR_CULUMALDA_ITEM.get());
-        blockItem(TolkienBlocks.FENCE_GATE_CULUMALDA.get(), modLoc("block/fence_gate_culumalda_fence_gate"));
+        blockItem(TolkienBlocks.FENCE_GATE_CULUMALDA.get(), modLoc("block/culumalda_fence_gate"));
         registerFence(TolkienBlocks.FENCE_CULUMALDA.get(), "planks_culumalda");
         blockItem(TolkienBlocks.TRAPDOOR_CULUMALDA.get(), modLoc("block/culumalda_trapdoor_bottom"));
         blockItem(TolkienBlocks.PRESSURE_PLATE_CULUMALDA.get(), modLoc("block/pressure_plate_culumalda"));
@@ -127,7 +134,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.BARREL_CULUMALDA.get(), modLoc("block/barrel_culumalda"));
 
         // Lebethron
-        blockItem(TolkienBlocks.FENCE_GATE_LEBETHRON.get(), modLoc("block/fence_gate_lebethron_fence_gate"));
+        blockItem(TolkienBlocks.FENCE_GATE_LEBETHRON.get(), modLoc("block/lebethron_fence_gate"));
         registerFence(TolkienBlocks.FENCE_LEBETHRON.get(), "planks_lebethron");
         blockItem(TolkienBlocks.TRAPDOOR_LEBETHRON.get(), modLoc("block/lebethron_trapdoor_bottom"));
         blockItem(TolkienBlocks.PRESSURE_PLATE_LEBETHRON.get(), modLoc("block/pressure_plate_lebethron"));
@@ -157,7 +164,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.STAIRS_DEADWOOD.get());
         blockItem(TolkienBlocks.SLAB_DEADWOOD.get());
         simpleItem(TolkienItems.DOOR_DEADWOOD_ITEM.get());
-        blockItem(TolkienBlocks.FENCE_GATE_DEADWOOD.get(), modLoc("block/fence_gate_deadwood_fence_gate"));
+        blockItem(TolkienBlocks.FENCE_GATE_DEADWOOD.get(), modLoc("block/deadwood_fence_gate"));
         registerFence(TolkienBlocks.FENCE_DEADWOOD.get(), "planks_deadwood");
         blockItem(TolkienBlocks.TRAPDOOR_DEADWOOD.get(), modLoc("block/deadwood_trapdoor_bottom"));
         blockItem(TolkienBlocks.PRESSURE_PLATE_DEADWOOD.get(), modLoc("block/pressure_plate_deadwood"));
@@ -176,7 +183,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.STAIRS_FANGORNOAK.get());
         blockItem(TolkienBlocks.SLAB_FANGORNOAK.get());
         simpleItem(TolkienItems.DOOR_FANGORNOAK_ITEM.get());
-        blockItem(TolkienBlocks.FENCE_GATE_FANGORNOAK.get(), modLoc("block/fence_gate_fangornoak_fence_gate"));
+        blockItem(TolkienBlocks.FENCE_GATE_FANGORNOAK.get(), modLoc("block/fangornoak_fence_gate"));
         registerFence(TolkienBlocks.FENCE_FANGORNOAK.get(), "planks_fangornoak");
         blockItem(TolkienBlocks.TRAPDOOR_FANGORNOAK.get(), modLoc("block/fangornoak_trapdoor_bottom"));
         blockItem(TolkienBlocks.PRESSURE_PLATE_FANGORNOAK.get(), modLoc("block/pressure_plate_fangornoak"));

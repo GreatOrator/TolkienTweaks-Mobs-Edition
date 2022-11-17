@@ -2,6 +2,9 @@
   "replace": false,
   "values": [
     "tolkienmobs:block_mithril",
-    "tolkienmobs:block_morguliron"
+    "tolkienmobs:block_morguliron",
+    "tolkienmobs:raw_mithril_block",
+    "tolkienmobs:raw_morguliron_block",
+    "tolkienmobs:block_ammolite"
   ]
 }

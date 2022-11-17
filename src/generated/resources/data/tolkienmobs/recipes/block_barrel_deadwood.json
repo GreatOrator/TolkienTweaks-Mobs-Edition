@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MZM",
+    "M M",
+    "MZM"
+  ],
+  "key": {
+    "M": {
+      "item": "tolkienmobs:planks_deadwood"
+    },
+    "Z": {
+      "item": "tolkienmobs:slab_deadwood"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:block_barrel_deadwood"
+  }
+}

@@ -5,7 +5,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 
-public class FlyingEffect extends PotionBaseEffect {
+public class FlyingEffect extends BasePotionEffect {
     public static FlyingEffect instance = null;
     public static int flyDuration = 10;
 

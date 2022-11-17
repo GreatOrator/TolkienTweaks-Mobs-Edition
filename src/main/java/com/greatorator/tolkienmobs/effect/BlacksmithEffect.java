@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlacksmithEffect extends PotionBaseEffect {
+public class BlacksmithEffect extends BasePotionEffect {
     public static BlacksmithEffect instance = null;
     public static int damageTime = 20;
 

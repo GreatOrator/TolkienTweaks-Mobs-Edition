@@ -5,7 +5,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 
-public class FearEffect extends PotionBaseEffect {
+public class FearEffect extends BasePotionEffect {
     public static FearEffect instance = null;
     public static int fearDuration = 10;
 

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:block_hallowed",
+    "tolkienmobs:block_mithril",
+    "tolkienmobs:raw_mithril_block",
+    "tolkienmobs:block_morguliron",
+    "tolkienmobs:raw_morguliron_block"
+  ]
+}

@@ -73,6 +73,9 @@ public class RecipeGenerator extends RecipeProvider {
         barsRecipe(TolkienBlocks.MITHRIL_BARS.get(), TolkienItems.INGOT_MITHRIL.get(), consumer);
         barsRecipe(TolkienBlocks.MORGULIRON_BARS.get(), TolkienItems.INGOT_MORGULIRON.get(), consumer);
 
+        wallRecipe(TolkienBlocks.WALL_MITHRIL.get(), TolkienBlocks.BLOCK_MITHRIL.get(), consumer);
+        wallRecipe(TolkienBlocks.WALL_MORGULIRON.get(), TolkienBlocks.BLOCK_MORGULIRON.get(), consumer);
+
         lanternRecipe(TolkienBlocks.ELVEN_LANTERN.get(), TolkienItems.NUGGET_MITHRIL.get(), TolkienBlocks.TORCH_MALLORN.get(), consumer);
         lanternRecipe(TolkienBlocks.MORGUL_LANTERN.get(), TolkienItems.NUGGET_MORGULIRON.get(), TolkienBlocks.TORCH_MIRKWOOD.get(), consumer);
         lanternRecipe(TolkienBlocks.LIGHTNINGBUG_BLOCK.get(), Items.TORCH, TolkienItems.INSECT.get(), consumer);
@@ -761,6 +764,15 @@ public class RecipeGenerator extends RecipeProvider {
 
     public static void slabRecipe(ItemLike output, ItemLike input, Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(output, 6)
+                .pattern("###")
+                .define('#', input)
+                .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))
+                .save(consumer);
+    }
+
+    public static void wallRecipe(ItemLike output, ItemLike input, Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(output, 6)
+                .pattern("###")
                 .pattern("###")
                 .define('#', input)
                 .unlockedBy("has_" + input.asItem().getRegistryName().getPath(), has(input))

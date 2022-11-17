@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:block_mithril"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:wall_mithril",
+    "count": 6
+  }
+}

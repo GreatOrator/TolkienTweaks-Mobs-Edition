@@ -4,7 +4,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 
-public class TornadoEffect extends PotionBaseEffect {
+public class TornadoEffect extends BasePotionEffect {
     public static final String TAG_PITCH = "elemental_tornado_pitch";
     public static final String TAG_YAW = "elemental_tornado_yaw";
 

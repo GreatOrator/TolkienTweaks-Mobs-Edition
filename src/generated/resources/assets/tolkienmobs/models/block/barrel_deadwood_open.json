@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "side": "tolkienmobs:block/barrel/barrel_deadwood_side",
+    "bottom": "tolkienmobs:block/barrel/barrel_deadwood_bottom",
+    "top": "tolkienmobs:block/barrel/barrel_deadwood_top_open"
+  }
+}

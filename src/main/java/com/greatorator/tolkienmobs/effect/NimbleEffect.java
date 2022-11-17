@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.effect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 
-public class NimbleEffect extends PotionBaseEffect {
+public class NimbleEffect extends BasePotionEffect {
     public static NimbleEffect instance = null;
 
     public NimbleEffect(MobEffectCategory typeIn, int liquidColorIn) {
