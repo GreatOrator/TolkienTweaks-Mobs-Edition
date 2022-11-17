@@ -79,6 +79,7 @@ public class MilestoneBlock extends BlockBCore {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1, LevelAccessor accessor, BlockPos pos, BlockPos pos1) {
         if (blockState.getValue(WATERLOGGED)) {
@@ -113,11 +114,13 @@ public class MilestoneBlock extends BlockBCore {
         return new MilestoneTile(blockPos, blockState);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onRemove(BlockState state, Level world, BlockPos pos, BlockState state1, boolean b) {
         BlockEntity tile = world.getBlockEntity(pos);
