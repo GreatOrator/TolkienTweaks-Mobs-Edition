@@ -1,8 +1,10 @@
 package com.greatorator.tolkienmobs.block;
 
 import com.brandon3055.brandonscore.blocks.BlockBCore;
+import com.greatorator.tolkienmobs.TolkienContent;
 import com.greatorator.tolkienmobs.entity.tile.MilestoneTile;
 import com.greatorator.tolkienmobs.handler.MilestoneHandler;
+import com.greatorator.tolkienmobs.init.TolkienTiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -13,6 +15,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,7 +33,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class MilestoneBlock extends BlockBCore {
+public class MilestoneBlock extends BlockBCore implements EntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty LIT = BooleanProperty.create("lit");
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -43,6 +46,7 @@ public class MilestoneBlock extends BlockBCore {
 
     public MilestoneBlock(Properties properties) {
         super(properties);
+        setBlockEntity(() -> TolkienTiles.MILESTONE_TILE.get(), true); //<-- The boolean (true) specifies that this tile needs to tick. If your tile implemented ITickableTileEntity in 1.16 then this needs to be true
         this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
@@ -106,12 +110,6 @@ public class MilestoneBlock extends BlockBCore {
     @Override
     public BlockState rotate(BlockState state, Rotation direction) {
         return state.setValue(FACING, direction.rotate(state.getValue(FACING)));
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new MilestoneTile(blockPos, blockState);
     }
 
     @SuppressWarnings("deprecation")

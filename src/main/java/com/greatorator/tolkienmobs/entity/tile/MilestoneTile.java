@@ -77,7 +77,8 @@ public class MilestoneTile extends TileBCore implements MenuProvider, IRSSwitcha
         }
     }
 
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    @Override
+    public InteractionResult onBlockUse(BlockState state, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!level.isClientSide) {
             if (!player.isCreative()) {
                 MilestoneHandler.addPlayerToMilestone(this, player);

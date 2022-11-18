@@ -81,7 +81,7 @@ public class MilestoneScreen extends ModularGuiContainer<ContainerBCTile<Milesto
             if (data.getUuid().equals(tile.getUUID())) continue;
             GuiElement<?> container = new GuiElement<>()
                     .setYSize(18);
-            GuiButton button = toolkit.createButton(data.getName(), container)
+            GuiButton button = toolkit.createButton_old(data.getName(), container)
                     .setYSize(container.ySize())
                     .setXSize(listElement.getInsetRect().width - (data.getPaymentItem() == Items.AIR ? 0 : 18))
                     .onPressed(() -> tile.sendPacketToServer(output -> output.writeUUID(data.getUuid()), 3));
@@ -101,7 +101,7 @@ public class MilestoneScreen extends ModularGuiContainer<ContainerBCTile<Milesto
             listElement.addElement(container);
         }
 
-        GuiButton setPayment = toolkit.createButton("Set held item as payment", temp.background)
+        GuiButton setPayment = toolkit.createButton_old("Set held item as payment", temp.background)
                 .setHoverText("Set the payment item required to travel to this milestone")
                 .setSize(nameField.xSize(), 12)
                 .setPos(nameField.xPos(), nameField.maxYPos() + 2)
