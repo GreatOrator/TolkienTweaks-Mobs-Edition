@@ -34,14 +34,15 @@ public class TolkienMobs {
     public static CommonProxy proxy;
 
     /*TODO List
-	1. Classes
+	1. Classes & Wish list
 	    a. TrinketRecipeBuilder (Builder to control building of trinket recipes)
 	    b. TrinketRecipe (Recipes for trinkets to add potions)
-	    c. EntityLootGenerator (Attempting to process loot for other mods in workspace)
-	    d. GUI's for blocks not loading
-	    e. Camo for spawner not working
-	    f. Armor crashing when worn or placed on armor stand
-	    g. Tornado Effect not working
+	    c. Trinket table for crafting trinkets with potions
+	    d. EntityLootGenerator (Attempting to process loot for other mods in workspace)
+	    e. GUI's for blocks not loading
+	    f. Camo for spawner not working
+	    g. Armor crashing when worn or placed on armor stand
+	    h. Tornado Effect not working
 	2. Categories
 	    a. Entities (Implementation)
 	    	1. Fell Beast - Needs AI adjustments
