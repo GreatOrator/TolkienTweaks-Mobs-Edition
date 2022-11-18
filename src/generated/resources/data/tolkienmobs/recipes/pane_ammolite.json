@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:block_ammolite"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:pane_ammolite"
+  }
+}

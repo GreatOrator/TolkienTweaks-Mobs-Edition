@@ -70,6 +70,7 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienBlocks.ORE_NETHER_AMMOLITE.get(), "Firey Ammolite Ore");
         add(TolkienBlocks.ORE_DEEPSLATE_AMMOLITE.get(), "Deepslate Ammolite Ore");
         add(TolkienBlocks.BLOCK_AMMOLITE.get(), "Ammolite Block");
+        add(TolkienBlocks.PANE_AMMOLITE.get(), "Ammolite Pane");
         add(TolkienBlocks.DOOR_DURIN.get(), "Door of Durin");
 
         // Wood & Foliage

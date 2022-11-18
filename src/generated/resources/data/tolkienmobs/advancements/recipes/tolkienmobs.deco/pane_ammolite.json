@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:pane_ammolite"
+    ]
+  },
+  "criteria": {
+    "has_block_ammolite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:block_ammolite"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:pane_ammolite"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_block_ammolite",
+      "has_the_recipe"
+    ]
+  ]
+}

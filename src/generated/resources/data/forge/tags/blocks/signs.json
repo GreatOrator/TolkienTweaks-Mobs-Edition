@@ -5,6 +5,14 @@
     "tolkienmobs:sign_mallorn",
     "tolkienmobs:sign_mirkwood",
     "tolkienmobs:sign_culumalda",
-    "tolkienmobs:sign_lebethron"
+    "tolkienmobs:sign_lebethron",
+    "tolkienmobs:sign_deadwood",
+    "tolkienmobs:sign_fangornoak",
+    "tolkienmobs:wall_sign_mallorn",
+    "tolkienmobs:wall_sign_mirkwood",
+    "tolkienmobs:wall_sign_culumalda",
+    "tolkienmobs:wall_sign_lebethron",
+    "tolkienmobs:wall_sign_deadwood",
+    "tolkienmobs:wall_sign_fangornoak"
   ]
 }

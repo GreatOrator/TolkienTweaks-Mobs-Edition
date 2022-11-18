@@ -72,6 +72,7 @@ public class RecipeGenerator extends RecipeProvider {
 
         barsRecipe(TolkienBlocks.MITHRIL_BARS.get(), TolkienItems.INGOT_MITHRIL.get(), consumer);
         barsRecipe(TolkienBlocks.MORGULIRON_BARS.get(), TolkienItems.INGOT_MORGULIRON.get(), consumer);
+        barsRecipe(TolkienBlocks.PANE_AMMOLITE.get(), TolkienItems.BLOCK_AMMOLITE_ITEM.get(), consumer);
 
         wallRecipe(TolkienBlocks.WALL_MITHRIL.get(), TolkienBlocks.BLOCK_MITHRIL.get(), consumer);
         wallRecipe(TolkienBlocks.WALL_MORGULIRON.get(), TolkienBlocks.BLOCK_MORGULIRON.get(), consumer);

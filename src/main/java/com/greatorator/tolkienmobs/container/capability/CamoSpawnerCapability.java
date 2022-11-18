@@ -36,15 +36,17 @@ public class CamoSpawnerCapability extends BaseSpawner {
         this.tile = tile;
     }
 
-    public void clientTick(Level p_151320_, BlockPos p_151321_) {
-        if (!this.isNearPlayer(p_151320_, p_151321_)) {
+    public void clientTick(Level level, BlockPos pos) {
+        if (!this.isNearPlayer(level, pos)) {
             this.prevMobRotation = this.mobRotation;
         } else {
-            double d0 = (double)p_151321_.getX() + p_151320_.random.nextDouble();
-            double d1 = (double)p_151321_.getY() + p_151320_.random.nextDouble();
-            double d2 = (double)p_151321_.getZ() + p_151320_.random.nextDouble();
-            p_151320_.addParticle(ParticleTypes.SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
-            p_151320_.addParticle(ParticleTypes.FLAME, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+            if (tile.spawnerParticles.get()) {
+                double d0 = (double) pos.getX() + level.random.nextDouble();
+                double d1 = (double) pos.getY() + level.random.nextDouble();
+                double d2 = (double) pos.getZ() + level.random.nextDouble();
+                level.addParticle(ParticleTypes.SMOKE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+                level.addParticle(ParticleTypes.FLAME, d0, d1, d2, 0.0D, 0.0D, 0.0D);
+            }
             if (tile.spawnDelay.get() > 0) {
                 tile.spawnDelay.dec();
             }

@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.entity.tile.CamoSpawnerTile;
+import com.greatorator.tolkienmobs.init.TolkienTiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -8,16 +9,18 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
 
-public class CamoSpawnerBlock extends ChameleonBlock<CamoSpawnerTile> {
+public class CamoSpawnerBlock extends ChameleonBlock<CamoSpawnerTile> implements EntityBlock {
 
     public CamoSpawnerBlock(Properties properties) {
         super(properties);
+        setBlockEntity(() -> TolkienTiles.CAMO_SPAWNER_TILE.get(), true); //<-- The boolean (true) specifies that this tile needs to tick. If your tile implemented ITickableTileEntity in 1.16 then this needs to be true
     }
 
     @Override
@@ -31,12 +34,6 @@ public class CamoSpawnerBlock extends ChameleonBlock<CamoSpawnerTile> {
             }
         }
         return InteractionResult.SUCCESS;
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new CamoSpawnerTile(blockPos, blockState);
     }
 
     @SuppressWarnings("deprecation")

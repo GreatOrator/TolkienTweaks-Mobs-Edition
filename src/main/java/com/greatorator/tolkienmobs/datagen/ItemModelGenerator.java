@@ -43,6 +43,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.BLOCK_MITHRIL.get());
         blockItem(TolkienBlocks.RAW_MITHRIL_BLOCK.get());
         simpleItem(TolkienItems.MITHRIL_BARS_ITEM.get());
+        simpleItem(TolkienItems.PANE_AMMOLITE_ITEM.get());
         blockItem(TolkienBlocks.WALL_MITHRIL.get(), modLoc("block/wall_mithril_inventory"));
         simpleItem(TolkienItems.DOOR_MITHRIL_ITEM.get());
         blockItem(TolkienBlocks.TRAPDOOR_MITHRIL.get(), modLoc("block/mithril_trapdoor_bottom"));

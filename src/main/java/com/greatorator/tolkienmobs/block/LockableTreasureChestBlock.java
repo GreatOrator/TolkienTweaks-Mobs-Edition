@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.block;
 
 import com.brandon3055.brandonscore.blocks.BlockBCore;
 import com.greatorator.tolkienmobs.entity.tile.LockableTreasureChestTile;
+import com.greatorator.tolkienmobs.init.TolkienTiles;
 import com.greatorator.tolkienmobs.item.keys.KeyBaseItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
@@ -19,6 +20,8 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,18 +35,17 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import javax.annotation.Nullable;
-
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class LockableTreasureChestBlock extends BlockBCore {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+public class LockableTreasureChestBlock extends BlockBCore implements EntityBlock {
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     protected static final VoxelShape LOCKABLE_SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D);
 
     public LockableTreasureChestBlock(Properties properties) {
         super(properties);
+        setBlockEntity(() -> TolkienTiles.LOCKABLE_TREASURE_CHEST_TILE.get(), true); //<-- The boolean (true) specifies that this tile needs to tick. If your tile implemented ITickableTileEntity in 1.16 then this needs to be true
         this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
@@ -81,12 +83,6 @@ public class LockableTreasureChestBlock extends BlockBCore {
             return InteractionResult.CONSUME;
         }
         return InteractionResult.SUCCESS;
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new LockableTreasureChestTile(blockPos, blockState);
     }
 
     @SuppressWarnings("deprecation")

@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.entity.tile.CamoKeyStoneTile;
+import com.greatorator.tolkienmobs.init.TolkienTiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -12,6 +13,8 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -29,13 +32,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
-public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
+public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> implements EntityBlock {
     public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
 
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
@@ -44,6 +46,7 @@ public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
 
     public CamoKeyStoneBlock(Properties properties) {
         super(properties);
+        setBlockEntity(() -> TolkienTiles.KEY_STONE_TILE.get(), true); //<-- The boolean (true) specifies that this tile needs to tick. If your tile implemented ITickableTileEntity in 1.16 then this needs to be true
         this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(ACTIVE, false).setValue(WATERLOGGED, Boolean.FALSE).setValue(POWERED, Boolean.FALSE));
     }
 
@@ -70,12 +73,6 @@ public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> {
     @Override
     public boolean isSignalSource(BlockState blockState) {
         return true;
-    }
-
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new CamoKeyStoneTile(blockPos, blockState);
     }
 
     @SuppressWarnings("deprecation")

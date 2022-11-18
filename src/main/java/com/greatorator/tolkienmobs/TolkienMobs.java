@@ -39,11 +39,13 @@ public class TolkienMobs {
 	    b. TrinketRecipe (Recipes for trinkets to add potions)
 	    c. Trinket table for crafting trinkets with potions
 	    d. EntityLootGenerator (Attempting to process loot for other mods in workspace)
-	    e. GUI's for blocks not loading
-	    f. Camo for spawner not working
-	    g. Armor crashing when worn or placed on armor stand
-	    h. Tornado Effect not working
-	2. Categories
+	    e. Armor crashing when worn or placed on armor stand
+	    f. Tornado Effect not working
+		g. KeyStone crashing when GUI opens
+	    h. Milestone counting all item cost as max int
+	    i. FirePlace not processing recipes
+	    j. BackPack fluid handler capability crash
+2. Categories
 	    a. Entities (Implementation)
 	    	1. Fell Beast - Needs AI adjustments
 			2. Gwaihir - Needs AI adjustments
@@ -61,6 +63,8 @@ public class TolkienMobs {
         f. Barrels for all wood types
         g. Added blocks to mineable with tools
         h. Added Mithril and Morgul Iron walls
+        i. Ammolite Panes
+        j. Refactoring of tags to fix some block weirdness
     */
 
     public TolkienMobs() {

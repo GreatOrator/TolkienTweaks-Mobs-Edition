@@ -83,6 +83,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         simpleBlock(TolkienBlocks.ORE_DEEPSLATE_AMMOLITE.get());
         simpleBlock(TolkienBlocks.CHAMELEON_BLOCK.get());
         simpleBlock(TolkienBlocks.BLOCK_AMMOLITE.get());
+        paneBlock(TolkienBlocks.PANE_AMMOLITE.get(), modLoc("block/block_ammolite"), modLoc("block/ammolite_pane_top"));
         doorBlock(TolkienBlocks.DOOR_DURIN.get(), "door_durin", modLoc("block/door_durin_bottom"), modLoc("block/door_durin_top"));
 
         // Wood & Foliage

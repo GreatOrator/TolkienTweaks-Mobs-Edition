@@ -6,17 +6,24 @@
     "tolkienmobs:log_culumalda",
     "tolkienmobs:log_lebethron",
     "tolkienmobs:log_deadwood",
+    "tolkienmobs:log_fangornoak",
     "tolkienmobs:stripped_log_mallorn",
     "tolkienmobs:stripped_log_mirkwood",
     "tolkienmobs:stripped_log_culumalda",
     "tolkienmobs:stripped_log_lebethron",
+    "tolkienmobs:stripped_log_deadwood",
+    "tolkienmobs:stripped_log_fangornoak",
     "tolkienmobs:stripped_wood_mallorn",
     "tolkienmobs:stripped_wood_mirkwood",
     "tolkienmobs:stripped_wood_culumalda",
     "tolkienmobs:stripped_wood_lebethron",
+    "tolkienmobs:stripped_wood_deadwood",
+    "tolkienmobs:stripped_wood_fangornoak",
     "tolkienmobs:wood_mallorn",
     "tolkienmobs:wood_mirkwood",
     "tolkienmobs:wood_culumalda",
-    "tolkienmobs:wood_lebethron"
+    "tolkienmobs:wood_lebethron",
+    "tolkienmobs:wood_deadwood",
+    "tolkienmobs:wood_fangornoak"
   ]
 }

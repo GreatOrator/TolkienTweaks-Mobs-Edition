@@ -106,12 +106,14 @@ public class TolkienTags {
         public static final TagKey<Block> TORCHES = tag("torches");
         public static final TagKey<Block> LOGS = tag("logs");
         public static final TagKey<Block> BARS_IRON = tag("bars/iron");
+        public static final TagKey<Block> BARS_GLASS = tag("bars/glass");
         public static final TagKey<Block> FLOWERS = tag("flowers");
         public static final TagKey<Block> DECAY_GROW_BLOCK = tag("decay_grow_block");
         public static final TagKey<Block> SLEEPING_BAGS = tag("sleeping_bags");
         public static final TagKey<Block> BARRELS_WOODEN = tag("barrels/wooden");
         public static final TagKey<Block> WOODEN_DOORS = tag("wooden_doors");
         public static final TagKey<Block> WOODEN_STAIRS = tag("wooden_stairs");
+        public static final TagKey<Block> WALLS = tag("walls");
         public static final TagKey<Block> WOODEN_SLABS = tag("wooden_slabs");
         public static final TagKey<Block> WOODEN_FENCES = tag("wooden_fences");
         public static final TagKey<Block> PRESSURE_PLATES = tag("pressure_plates");
@@ -120,6 +122,8 @@ public class TolkienTags {
         public static final TagKey<Block> DOORS = tag("doors");
         public static final TagKey<Block> TRAPDOORS = tag("trapdoors");
         public static final TagKey<Block> SIGNS = tag("signs");
+        public static final TagKey<Block> WALL_SIGNS = tag("signs");
+        public static final TagKey<Block> STANDING_SIGNS = tag("signs");
         public static final TagKey<Block> CROPS = tag("crops");
         public static final TagKey<Block> MUSHROOM_GROW_BLOCK = tag("mushroom_grow_block");
         public static final TagKey<Block> REPLACEABLE = tag("replaceable");

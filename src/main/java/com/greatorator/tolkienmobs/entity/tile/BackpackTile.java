@@ -11,7 +11,6 @@ import com.greatorator.tolkienmobs.block.BackpackBlock;
 import com.greatorator.tolkienmobs.block.SleepingBagBlock;
 import com.greatorator.tolkienmobs.container.BackpackContainer;
 import com.greatorator.tolkienmobs.init.*;
-import com.greatorator.tolkienmobs.utils.TileFluid;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,9 +25,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BedPart;
-import net.minecraftforge.fluids.FluidActionResult;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.network.NetworkHooks;
@@ -50,7 +46,7 @@ public class BackpackTile extends TileBCore implements MenuProvider, IInteractTi
     public final ManagedByte bedUpgrade = register(new ManagedByte("bed_upgrade_installed", DataFlags.SAVE_NBT_SYNC_TILE));
     public final ManagedByte fireUpgrade = register(new ManagedByte("campfire_upgrade_installed", DataFlags.SAVE_NBT_SYNC_TILE));
 
-    public TileFluid fluidTank = new TileFluid(FluidAttributes.BUCKET_VOLUME * 16);
+//    public TileFluid fluidTank = new TileFluid(FluidAttributes.BUCKET_VOLUME * 16);
     public TileItemStackHandler mainInventory = new TileItemStackHandler(54);
     public TileItemStackHandler upgradeInventory = new TileItemStackHandler(5);
     public TileItemStackHandler craftingItems = new TileItemStackHandler(9);
@@ -60,7 +56,7 @@ public class BackpackTile extends TileBCore implements MenuProvider, IInteractTi
     public BackpackTile(BlockPos pos, BlockState state) {
         super(TolkienTiles.BACKPACK_TILE.get(), pos, state);
 
-        capManager.setManaged("fluid_tank", CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, fluidTank).saveBoth().syncContainer();
+//        capManager.setManaged("fluid_tank", CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, fluidTank).saveBoth().syncContainer();
 //        capManager.setManaged("main_inv", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, invZoneContents).saveBoth(); //You would use this to make the inventory accessible to automation.
         capManager.setInternalManaged("main_inv", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, mainInventory).saveBoth();
         capManager.setInternalManaged("upgrade_inv", CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, upgradeInventory).saveBoth();
@@ -69,7 +65,7 @@ public class BackpackTile extends TileBCore implements MenuProvider, IInteractTi
 
         //Ensure fluidItems only accepts fluid storage items.
         fluidItems.setStackValidator(stack -> stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).isPresent());
-        fluidItems.setContentsChangeListener(this::fluiditemSlotChange); //<-- call fluiditemSlotChange if the fluid item inventory is modified
+//        fluidItems.setContentsChangeListener(this::fluiditemSlotChange); //<-- call fluiditemSlotChange if the fluid item inventory is modified
 
         //Ensure upgradeInventory only accepts upgrade items.
         upgradeInventory.setStackValidator(this::isItemValidForSlot);
@@ -78,10 +74,10 @@ public class BackpackTile extends TileBCore implements MenuProvider, IInteractTi
 
     public void onRightClick(Player playerEntity, InteractionHand hand) {
         if (!playerEntity.level.isClientSide()) {
-            if (!FluidUtil.interactWithFluidHandler(playerEntity, hand, fluidTank)) {
+//            if (!FluidUtil.interactWithFluidHandler(playerEntity, hand, fluidTank)) {
                 //Open the gui if no bucket interaction occurs.
                 NetworkHooks.openGui((ServerPlayer) playerEntity, this, worldPosition);
-            }
+//            }
         }
     }
 
@@ -130,24 +126,24 @@ public class BackpackTile extends TileBCore implements MenuProvider, IInteractTi
         }
     }
 
-    private void fluiditemSlotChange(int slot) {
-        ItemStack stack = fluidItems.getStackInSlot(slot);
-        if (stack.isEmpty()) {
-            return;
-        }
-
-        if (slot == 0) { //Input Slot
-            FluidActionResult result = FluidUtil.tryEmptyContainer(stack, fluidTank, fluidTank.getSpace(), null, true);
-            if (result.isSuccess()) {
-                fluidItems.setStackInSlot(slot, result.getResult());
-            }
-        } else { //Output Slot
-            FluidActionResult result = FluidUtil.tryFillContainer(stack, fluidTank, fluidTank.getFluidAmount(), null, true);
-            if (result.isSuccess()) {
-                fluidItems.setStackInSlot(slot, result.getResult());
-            }
-        }
-    }
+//    private void fluiditemSlotChange(int slot) {
+//        ItemStack stack = fluidItems.getStackInSlot(slot);
+//        if (stack.isEmpty()) {
+//            return;
+//        }
+//
+//        if (slot == 0) { //Input Slot
+//            FluidActionResult result = FluidUtil.tryEmptyContainer(stack, fluidTank, fluidTank.getSpace(), null, true);
+//            if (result.isSuccess()) {
+//                fluidItems.setStackInSlot(slot, result.getResult());
+//            }
+//        } else { //Output Slot
+//            FluidActionResult result = FluidUtil.tryFillContainer(stack, fluidTank, fluidTank.getFluidAmount(), null, true);
+//            if (result.isSuccess()) {
+//                fluidItems.setStackInSlot(slot, result.getResult());
+//            }
+//        }
+//    }
 
     //This is the method that gets called when you call "tile.sendPacketToServer(mcDataOutput -> {}, id)" from the GUI
     @Override

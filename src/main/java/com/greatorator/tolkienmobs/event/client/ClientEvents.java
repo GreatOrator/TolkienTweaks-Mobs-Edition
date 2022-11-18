@@ -118,6 +118,19 @@ public class ClientEvents {
                 event.getModelRegistry().put(variantMRL, customModel);
             }
         }
+
+        for (BlockState blockState : TolkienBlocks.CAMO_SPAWNER_BLOCK.get().getStateDefinition().getPossibleStates()) {
+            ModelResourceLocation variantMRL = BlockModelShaper.stateToModelLocation(blockState);
+            BakedModel existingModel = event.getModelRegistry().get(variantMRL);
+            if (existingModel == null) {
+                LOGGER.warn("Did not find the expected vanilla baked model(s) for blockCamouflage in registry");
+            } else if (existingModel instanceof ChameleonBakedModel) {
+                LOGGER.warn("Tried to replace CamouflagedBakedModel twice");
+            } else {
+                ChameleonBakedModel customModel = new ChameleonBakedModel(existingModel);
+                event.getModelRegistry().put(variantMRL, customModel);
+            }
+        }
     }
     public static void livingUpdate(LivingEvent.LivingUpdateEvent event) {
         LivingEntity entity = event.getEntityLiving();

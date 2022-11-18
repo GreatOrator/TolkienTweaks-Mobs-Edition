@@ -62,6 +62,7 @@ public class TolkienItems {
     public static RegistryObject<Item> ORE_NETHER_AMMOLITE_ITEM = ITEMS.register("ore_nether_ammolite", () -> new ItemBlockBCore(ORE_NETHER_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> ORE_DEEPSLATE_AMMOLITE_ITEM = ITEMS.register("ore_deepslate_ammolite", () -> new ItemBlockBCore(ORE_DEEPSLATE_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));
     public static RegistryObject<Item> BLOCK_AMMOLITE_ITEM = ITEMS.register("block_ammolite", () -> new ItemBlockBCore(BLOCK_AMMOLITE.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> PANE_AMMOLITE_ITEM = ITEMS.register("pane_ammolite", () -> new ItemBlockBCore(PANE_AMMOLITE.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> DOOR_DURIN_ITEM = ITEMS.register("door_durin", () -> new ItemBlockBCore(DOOR_DURIN.get(), new Item.Properties().tab(decoGroup)));
 
     // Blocks - Wood & Foliage

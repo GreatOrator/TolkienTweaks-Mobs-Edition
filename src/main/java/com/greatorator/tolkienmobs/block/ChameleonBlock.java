@@ -26,7 +26,7 @@ import javax.annotation.Nonnull;
 import java.util.*;
 
 public class ChameleonBlock<C> extends BlockBCore implements SimpleWaterloggedBlock {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
@@ -72,6 +72,7 @@ public class ChameleonBlock<C> extends BlockBCore implements SimpleWaterloggedBl
     }
 
 
+    @SuppressWarnings("deprecation")
     @Override
     public BlockState updateShape(BlockState state, Direction facing, BlockState neighbor, LevelAccessor world, BlockPos pos, BlockPos offset) {
         if (state.getValue(WATERLOGGED)) {
@@ -99,6 +100,7 @@ public class ChameleonBlock<C> extends BlockBCore implements SimpleWaterloggedBl
         return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
@@ -205,6 +207,7 @@ public class ChameleonBlock<C> extends BlockBCore implements SimpleWaterloggedBl
         throw new AssertionError("unreachable code");
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public VoxelShape getVisualShape(BlockState p_230322_1_, BlockGetter p_230322_2_, BlockPos p_230322_3_, CollisionContext p_230322_4_) {
         return Shapes.empty();

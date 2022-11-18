@@ -28,7 +28,10 @@ public class TileFluid<T extends INBTSerializable<CompoundTag>> extends FluidTan
 
     @Override
     public CompoundTag serializeNBT() {
-        return capability.serializeNBT();
+        if (capability != null) {
+            return capability.serializeNBT();
+        }
+        return serializeNBT();
     }
 
     @Override

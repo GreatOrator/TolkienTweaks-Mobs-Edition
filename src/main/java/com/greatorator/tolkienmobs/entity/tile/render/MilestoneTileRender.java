@@ -53,24 +53,23 @@ public class MilestoneTileRender implements BlockEntityRenderer<MilestoneTile> {
         mStack.popPose();
 
         if (MilestoneHandler.isKnownByClient(te.getUUID(), Minecraft.getInstance().player.getUUID())) {
-            drawNameString(te, mStack, getter, Component.nullToEmpty(te.milestoneName.get()/*.replace("_", " ")*/), packedLight);
+            drawNameString(te, mStack, getter, Component.nullToEmpty(te.milestoneName.get()), packedLight);
         }
     }
 
     private void drawNameString(MilestoneTile te, PoseStack matrixStack, MultiBufferSource buffer, Component message, int light) {
-        Font fontRenderer = Minecraft.getInstance().font;
         Minecraft mc = Minecraft.getInstance();
-        final float rotation = te.getBlockState().getValue(MilestoneBlock.FACING).toYRot();
-        float f3 = 0.015F;
-        float opacity = mc.options.getBackgroundOpacity(0.25F);
-        int alpha = (int) (opacity * 255.0F) << 24;
+        Font fontRenderer = mc.font;
+        float scale = 0.015F;
+        int alpha = (int) (0.4F * 255.0F) << 24;
         float width = (-fontRenderer.width(message) / 2);
 
         matrixStack.pushPose();
 
         matrixStack.translate(0.5D, 2.0D, 0.5D);
-        matrixStack.mulPose(Vector3f.YN.rotationDegrees(rotation));
-        matrixStack.scale(f3, -f3, f3);
+        matrixStack.mulPose(Vector3f.YN.rotationDegrees(180F));
+        matrixStack.scale(scale, -scale, scale);
+        matrixStack.mulPose(mc.getEntityRenderDispatcher().cameraOrientation());
         Matrix4f matrix4f = matrixStack.last().pose();
         fontRenderer.drawInBatch(message, width, 0.0F, 553648127, false, matrix4f, buffer, false, alpha, light);
         fontRenderer.drawInBatch(message, width, 0.0F, 65535, true, matrix4f, buffer, true, 0, light);

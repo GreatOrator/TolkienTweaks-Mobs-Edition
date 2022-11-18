@@ -26,6 +26,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -34,6 +35,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -140,7 +142,17 @@ public class FireplaceTile extends TileBCore implements MenuProvider, IInteractT
     }
 
     private void inventoryChange() {
-        FireplaceRecipe recipe = level.getRecipeManager().getRecipeFor(TolkienRecipes.FIREPLACE_RECIPE_TYPE.get(), (Container) this, level).orElse(null);
+        SimpleContainer inv = new SimpleContainer(4);
+        RecipeManager mgr = level.getRecipeManager();
+
+        FireplaceRecipe recipe = mgr.getRecipeFor(TolkienRecipes.FIREPLACE_RECIPE_TYPE.get(), inv, level).orElse(null);
+//        Optional<Recipe<Inventory>> optRecipe = ObjectUtils.firstNonNull(new Optional[] { mgr
+//                .getRecipeFor(RecipeType.SMELTING, inv, level), mgr
+//                .getRecipeFor(RecipeType.CAMPFIRE_COOKING, inv, level), mgr
+//                .getRecipeFor(RecipeType.SMOKING, inv, level), mgr
+//                .getRecipeFor(TolkienRecipes.FIREPLACE_RECIPE_TYPE.get(), inv, level),
+//                Optional.empty() });
+
         if (fuelRemaining.get() <= 0 && isTileEnabled() && canCraft(recipe)) {
             tryRefuel();
         }
@@ -149,6 +161,9 @@ public class FireplaceTile extends TileBCore implements MenuProvider, IInteractT
     @Override
     public void tick() {
         super.tick();
+        SimpleContainer inv = new SimpleContainer(4);
+        RecipeManager mgr = level.getRecipeManager();
+
         if (level == null || level.isClientSide) return;
 
         boolean last = isBurning.get();
@@ -163,7 +178,13 @@ public class FireplaceTile extends TileBCore implements MenuProvider, IInteractT
             return;
         }
 
-        FireplaceRecipe recipe = level.getRecipeManager().getRecipeFor(TolkienRecipes.FIREPLACE_RECIPE_TYPE.get(), (Container) this, level).orElse(null);
+        FireplaceRecipe recipe = level.getRecipeManager().getRecipeFor(TolkienRecipes.FIREPLACE_RECIPE_TYPE.get(), inv, level).orElse(null);
+//        Optional<Recipe<Inventory>> optRecipe = ObjectUtils.firstNonNull(new Optional[] { mgr
+//                .getRecipeFor(RecipeType.SMELTING, inv, level), mgr
+//                .getRecipeFor(RecipeType.CAMPFIRE_COOKING, inv, level), mgr
+//                .getRecipeFor(RecipeType.SMOKING, inv, level), mgr
+//                .getRecipeFor(TolkienRecipes.FIREPLACE_RECIPE_TYPE.get(), inv, level),
+//                Optional.empty() });
 
         if (isBurning.get() && isTileEnabled()) {
             if (canCraft(recipe)) {

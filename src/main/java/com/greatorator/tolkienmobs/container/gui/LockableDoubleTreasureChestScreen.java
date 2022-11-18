@@ -73,7 +73,7 @@ public class LockableDoubleTreasureChestScreen extends ModularGuiContainer<Locka
                     .setFilter(toolkit.catchyValidator(s -> s.equals("") || !invalidCharacters.matcher(s).find()))
                     .setPos(codeBG.xPos() + 2, codeBG.maxYPos() - 11)
                     .setSize(156, 10);
-            GuiButton saveCode = codeBG.addChild(toolkit.createButton(toolkit.i18n("saved"), template.background).setAlignment(GuiAlign.CENTER))
+            GuiButton saveCode = codeBG.addChild(toolkit.createButton_old(toolkit.i18n("saved"), template.background).setAlignment(GuiAlign.CENTER))
                     .setPos(codeBG.xPos() + 40, codeBG.maxYPos() + 2)
                     .setSize(78, 12)
                     .onPressed(() -> tile.keyCode.set(KeyStoneCode.getValue()));

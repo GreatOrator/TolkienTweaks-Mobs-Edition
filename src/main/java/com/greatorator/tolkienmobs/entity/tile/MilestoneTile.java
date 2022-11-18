@@ -32,7 +32,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
@@ -141,7 +140,7 @@ public class MilestoneTile extends TileBCore implements MenuProvider, IRSSwitcha
             case 0:
                 ItemStack stack = client.getItemInHand(InteractionHand.MAIN_HAND).copy();
                 stack.setCount(1);
-                client.sendMessage(new TranslatableComponent("tolkienmobs.msg.payment" + stack.getItem()), Util.NIL_UUID);
+                client.sendMessage(new TranslatableComponent("tolkienmobs.msg.payment").append(stack.getItem().getName(stack)), Util.NIL_UUID);
                 paymentItem.set(stack);
                 MilestoneHandler.updateMilestone(this);
                 break;

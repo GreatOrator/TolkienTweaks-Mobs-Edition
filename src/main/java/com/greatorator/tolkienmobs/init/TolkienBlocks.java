@@ -63,6 +63,7 @@ public class TolkienBlocks {
     public static RegistryObject<Block> ORE_NETHER_AMMOLITE = BLOCKS.register("ore_nether_ammolite", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.DEEPSLATE).requiresCorrectToolForDrops().strength(3.0F, 3.0F).sound(SoundType.STONE)));
     public static RegistryObject<Block> ORE_DEEPSLATE_AMMOLITE = BLOCKS.register("ore_deepslate_ammolite", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.DEEPSLATE).requiresCorrectToolForDrops().strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE)));
     public static RegistryObject<Block> BLOCK_AMMOLITE = BLOCKS.register("block_ammolite", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.GLASS)));
+    public static RegistryObject<IronBarsBlock> PANE_AMMOLITE = BLOCKS.register("pane_ammolite", () -> new IronBarsBlock(BlockBehaviour.Properties.of(Material.GLASS, MaterialColor.TERRACOTTA_LIGHT_GREEN).requiresCorrectToolForDrops().strength(5.0F, 6.0F).sound(SoundType.GLASS).noOcclusion()));
     public static RegistryObject<DoorBlock> DOOR_DURIN = BLOCKS.register("door_durin", () -> new DoorBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_GRAY).requiresCorrectToolForDrops().strength(5.0F).sound(SoundType.METAL).noOcclusion()));
 
     /* Wood & Foliage */
@@ -179,9 +180,9 @@ public class TolkienBlocks {
     public static RegistryObject<Block> WOOD_DEADWOOD = BLOCKS.register("wood_deadwood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(2.0F).sound(SoundType.WOOD)));
     public static RegistryObject<Block> STRIPPED_DEADWOOD_LOG = BLOCKS.register("stripped_log_deadwood", () -> log(MaterialColor.WOOD, MaterialColor.COLOR_ORANGE));
     public static RegistryObject<Block> STRIPPED_DEADWOOD_WOOD = BLOCKS.register("stripped_wood_deadwood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(2.0F).sound(SoundType.WOOD)));
-    public static RegistryObject<Block> PLANKS_DEADWOOD = BLOCKS.register("planks_deadwood", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static RegistryObject<Block> PLANKS_DEADWOOD = BLOCKS.register("planks_deadwood", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE).strength(2.0F, 3.0F).sound(SoundType.WOOD).noOcclusion()));
     public static RegistryObject<StairBlock> STAIRS_DEADWOOD = BLOCKS.register("stairs_deadwood", () -> new StairBlock(PLANKS_DEADWOOD.get().defaultBlockState(), BlockBehaviour.Properties.copy(PLANKS_DEADWOOD.get())));
-    public static RegistryObject<SlabBlock> SLAB_DEADWOOD = BLOCKS.register("slab_deadwood", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD)));
+    public static RegistryObject<SlabBlock> SLAB_DEADWOOD = BLOCKS.register("slab_deadwood", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD).noOcclusion()));
     public static RegistryObject<DoorBlock> DOOR_DEADWOOD = BLOCKS.register("door_deadwood", () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD, PLANKS_DEADWOOD.get().defaultMaterialColor()).strength(3.0F).sound(SoundType.WOOD).noOcclusion()));
     public static RegistryObject<FenceGateBlock> FENCE_GATE_DEADWOOD = BLOCKS.register("fence_gate_deadwood", () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD, PLANKS_DEADWOOD.get().defaultMaterialColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
     public static RegistryObject<FenceBlock> FENCE_DEADWOOD = BLOCKS.register("fence_deadwood", () -> new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD, PLANKS_DEADWOOD.get().defaultMaterialColor()).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
