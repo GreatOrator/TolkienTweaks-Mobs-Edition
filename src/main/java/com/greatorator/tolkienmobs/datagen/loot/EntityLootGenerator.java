@@ -1,18 +1,60 @@
 package com.greatorator.tolkienmobs.datagen.loot;
 
+import com.greatorator.tolkienmobs.TolkienMobs;
+import com.greatorator.tolkienmobs.handler.LootHandler;
+import com.greatorator.tolkienmobs.handler.functions.TrinketRandomlyFunction;
+import com.greatorator.tolkienmobs.init.TolkienItems;
 import net.minecraft.data.loot.EntityLoot;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithLootingCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+
+import javax.annotation.Nonnull;
+import java.text.MessageFormat;
+import java.util.HashSet;
+import java.util.Set;
 
 public class EntityLootGenerator extends EntityLoot {
-//    private final Set<EntityType<?>> knownEntities = new HashSet<>();
-//
-//    @Override
-//    protected void add(EntityType<?> entity, LootTable.Builder builder) {
-//        super.add(entity, builder);
-//        knownEntities.add(entity);
-//    }
-//
-//    @Override
-//    protected void addTables() {
+    private final Set<EntityType<?>> knownEntities = new HashSet<>();
+    private static final LootPool.Builder BRONZE = createCoinPool(TolkienItems.ITEM_COIN_BRONZE.get());
+    private static final LootPool.Builder SILVER = createCoinPool(TolkienItems.ITEM_COIN_SILVER.get());
+    private static final LootPool.Builder GOLD = createCoinPool(TolkienItems.ITEM_COIN_GOLD.get());
+    private static final LootPool.Builder MITHRIL = createCoinPool(TolkienItems.ITEM_COIN_MITHRIL.get());
+
+    private static final LootPool.Builder AMULET = createTrinketPool(TolkienItems.TRINKET_AMULET.get());
+    private static final LootPool.Builder BELT = createTrinketPool(TolkienItems.TRINKET_BELT.get());
+    private static final LootPool.Builder CHARM = createTrinketPool(TolkienItems.TRINKET_CHARM.get());
+    private static final LootPool.Builder RING = createTrinketPool(TolkienItems.TRINKET_RING.get());
+    private static final LootPool.Builder GLOVE = createTrinketPool(TolkienItems.TRINKET_GLOVE.get());
+    private static final LootPool.Builder HAT = createTrinketPool(TolkienItems.TRINKET_HAT.get());
+    private static final LootPool.Builder CLOAK = createTrinketPool(TolkienItems.TRINKET_CLOAK.get());
+
+    @Override
+    protected void add(@Nonnull EntityType<?> entity, @Nonnull LootTable.Builder builder) {
+        super.add(entity, builder);
+        knownEntities.add(entity);
+    }
+
+    @Nonnull
+    @Override
+    protected Iterable<EntityType<?>> getKnownEntities() {
+        return knownEntities;
+    }
+
+    @Override
+    protected void addTables() {
+        //Adding stuff to vanilla entity loot tables
+        addInject(BRONZE, EntityType.ZOMBIE);
+
 //        // Ambient
 //        add(TolkienEntities.ENTITY_TTM_RAT.get(), noLoot());
 //        add(TolkienEntities.ENTITY_TTM_THRUSH.get(), fromEntityLootTable(EntityType.PARROT));
@@ -1234,5 +1276,34 @@ public class EntityLootGenerator extends EntityLoot {
 //
 //    public String getName() {
 //        return NAME + " - Entity";
-//    }
+    }
+
+    private static LootPool.Builder createCoinPool(Item type) {
+        return LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+                .add(LootItem.lootTableItem(type)
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 5))).setWeight(70))
+                .add(LootItem.lootTableItem(type).when(LootItemKilledByPlayerCondition.killedByPlayer()))
+                .when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.25F, 0.03F));
+    }
+
+    private static LootPool.Builder createTrinketPool(Item type) {
+        return LootPool.lootPool().setRolls(ConstantValue.exactly(1))
+                .add(LootItem.lootTableItem(type)
+                        .apply(TrinketRandomlyFunction.randomApplicableEffect())
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 1)))
+                        .setWeight(10))
+                .add(LootItem.lootTableItem(type).when(LootItemKilledByPlayerCondition.killedByPlayer()))
+                .when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.25F, 0.03F));
+    }
+
+        private void addInject(LootPool.Builder pool, EntityType<?> entityType) {
+        addInject(LootTable.lootTable().withPool(pool).setParamSet(LootContextParamSets.ENTITY), TolkienMobs.createRL(entityType.getDefaultLootTable().getPath()));
+    }
+
+    private void addInject(LootTable.Builder builder, ResourceLocation location) {
+        if (!LootHandler.INJECT_LIST.contains(location.getPath())) {
+            throw new IllegalStateException(MessageFormat.format("{} is not present in LootHandler.INJECT_LIST and will not be injected at runtime!", location));
+        }
+        add(new ResourceLocation(location.getNamespace(), "inject/" + location.getPath()), builder);
+    }
 }

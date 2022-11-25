@@ -22,6 +22,8 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -31,6 +33,7 @@ import java.util.*;
  * Created by brandon3055 on 13/10/2021
  */
 public class TrinketItem extends Item {
+    public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
     private static int trinket_effect = 0;
     private static final Random random_effect = new Random();
 
@@ -71,16 +74,18 @@ public class TrinketItem extends Item {
     public Component getName(@Nonnull ItemStack stack) {
         List<MobEffectInstance> effects = getEffects(stack);
         StringBuilder trinketName = new StringBuilder();
+
         if (effects.isEmpty()) {
-            return super.getName(stack);
+            trinketName.append(super.getName(stack));
+            trinketName.append(" of Nothingness");
+
+            return new TextComponent(trinketName.toString());
         }
 
-        Component effectName = effects.get(0).getEffect().getDisplayName();
-        Component itemName = (TranslatableComponent) super.getName(stack);
+        trinketName.append(super.getName(stack));
+        trinketName.append(" of ");
+        trinketName.append(effects.get(0).getEffect().getDisplayName());
 
-        trinketName.append(itemName);
-        trinketName.append(" ");
-        trinketName.append(effectName);
         return new TextComponent(trinketName.toString());
     }
 

@@ -41,7 +41,8 @@ public class BaseArmorItem {
                 public HumanoidModel getBaseArmorModel(LivingEntity living, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> defaultModel) {
 
                     Map<String, ModelPart> map = ImmutableMap.of(
-                            "head", new BaseArmorModel.armorBody(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorBody.LAYER_LOCATION)).head,
+                            "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                            "hat", new BaseArmorModel.armorBody(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorBody.BODY_LAYER_LOCATION)).head,
                             "body", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                             "right_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                             "left_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
@@ -61,7 +62,7 @@ public class BaseArmorItem {
 
         @Override
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-            return MODID + ":textures/armor/" + type + "_armor_model.png";
+            return MODID + ":textures/armor/" + armorType + "_armor_model.png";
         }
 
         @Override
@@ -99,10 +100,11 @@ public class BaseArmorItem {
                 public HumanoidModel getBaseArmorModel(LivingEntity living, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> defaultModel) {
 
                     Map<String, ModelPart> map = ImmutableMap.of(
-                            "body", new BaseArmorModel.armorBody(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorBody.LAYER_LOCATION)).body,
-                            "right_arm", new BaseArmorModel.armorBody(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorBody.LAYER_LOCATION)).rightArm,
-                            "left_arm", new BaseArmorModel.armorBody(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorBody.LAYER_LOCATION)).leftArm,
+                            "body", new BaseArmorModel.armorBody(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorBody.BODY_LAYER_LOCATION)).body,
+                            "right_arm", new BaseArmorModel.armorBody(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorBody.BODY_LAYER_LOCATION)).rightArm,
+                            "left_arm", new BaseArmorModel.armorBody(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorBody.BODY_LAYER_LOCATION)).leftArm,
                             "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                            "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                             "right_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                             "left_leg", new ModelPart(Collections.emptyList(), Collections.emptyMap())
                     );
@@ -119,7 +121,7 @@ public class BaseArmorItem {
 
         @Override
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-            return MODID + ":textures/armor/" + type + "_armor_model.png";
+            return MODID + ":textures/armor/" + armorType + "_armor_model.png";
         }
 
         @Override
@@ -156,9 +158,10 @@ public class BaseArmorItem {
                 public HumanoidModel getBaseArmorModel(LivingEntity living, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> defaultModel) {
 
                     Map<String, ModelPart> map = ImmutableMap.of(
-                            "right_leg", new BaseArmorModel.armorLegs(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorLegs.LAYER_LOCATION)).rightLeg,
-                            "left_leg", new BaseArmorModel.armorLegs(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorLegs.LAYER_LOCATION)).leftLeg,
+                            "right_leg", new BaseArmorModel.armorLegs(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorLegs.LEG_LAYER_LOCATION)).rightLeg,
+                            "left_leg", new BaseArmorModel.armorLegs(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorLegs.LEG_LAYER_LOCATION)).leftLeg,
                             "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                            "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                             "body", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                             "right_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                             "left_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()));
@@ -175,7 +178,7 @@ public class BaseArmorItem {
 
         @Override
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-            return MODID + ":textures/armor/" + type + "_armor_model.png";
+            return MODID + ":textures/armor/" + armorType + "_armor_model.png";
         }
 
         @Override
@@ -215,9 +218,10 @@ public class BaseArmorItem {
                 public HumanoidModel getBaseArmorModel(LivingEntity living, ItemStack itemStack, EquipmentSlot armorSlot, HumanoidModel<?> defaultModel) {
 
                     Map<String, ModelPart> map = ImmutableMap.of(
-                            "right_leg", new BaseArmorModel.armorBody(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorBody.LAYER_LOCATION)).rightLeg,
-                            "left_leg", new BaseArmorModel.armorBody(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorBody.LAYER_LOCATION)).leftLeg,
+                            "right_leg", new BaseArmorModel.armorBody(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorBody.BODY_LAYER_LOCATION)).rightLeg,
+                            "left_leg", new BaseArmorModel.armorBody(Minecraft.getInstance().getEntityModels().bakeLayer(BaseArmorModel.armorBody.BODY_LAYER_LOCATION)).leftLeg,
                             "head", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
+                            "hat", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                             "body", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                             "right_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap()),
                             "left_arm", new ModelPart(Collections.emptyList(), Collections.emptyMap())
@@ -236,7 +240,7 @@ public class BaseArmorItem {
 
         @Override
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-            return MODID + ":textures/armor/" + type + "_armor_model.png";
+            return MODID + ":textures/armor/" + armorType + "_armor_model.png";
         }
 
         @Override

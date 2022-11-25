@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.greatorator.tolkienmobs.init.TolkienItems;
-import com.greatorator.tolkienmobs.init.TolkienRecipes;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -19,14 +18,17 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 public class FireplaceRecipe implements Recipe<Container> {
     private final ResourceLocation id;
     private final NonNullList<Ingredient> ingredient;
     private final int cookingTime;
-    private float experience;
+    private final float experience;
     private final ItemStack result;
 
     public FireplaceRecipe(ResourceLocation id, NonNullList<Ingredient> ingredient, float experience, int cookingTime, ItemStack result) {
@@ -38,7 +40,7 @@ public class FireplaceRecipe implements Recipe<Container> {
     }
 
     @Override
-    public boolean matches(Container inventory, Level pLevel) {
+    public boolean matches(Container inventory, @Nonnull Level level) {
         List<ItemStack> inputs = Lists.newArrayList(inventory.getItem(0), inventory.getItem(1));
         for (Ingredient ingredient : getIngredients()) {
             ItemStack match = inputs.stream()
@@ -54,8 +56,9 @@ public class FireplaceRecipe implements Recipe<Container> {
         return true;
     }
 
+    @Nonnull
     @Override
-    public ItemStack assemble(Container pContainer) {
+    public ItemStack assemble(@Nonnull Container container) {
         return getResultItem();
     }
 
@@ -95,7 +98,7 @@ public class FireplaceRecipe implements Recipe<Container> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return TolkienRecipes.TMFIREPLACE_SERIALIZER.get();
+        return FireplaceRecipe.Serializer.INSTANCE;
     }
 
     public float getExperience() {
@@ -107,11 +110,20 @@ public class FireplaceRecipe implements Recipe<Container> {
     }
 
     @Override
-    public RecipeType<?> getType() {
-        return TolkienRecipes.FIREPLACE_RECIPE_TYPE.get();
+    public RecipeType<?> getType(){
+        return FireplaceRecipe.Type.INSTANCE;
+    }
+
+    public static class Type implements RecipeType<FireplaceRecipe> {
+        private Type() { }
+        public static final FireplaceRecipe.Type INSTANCE = new FireplaceRecipe.Type();
+        public static final String ID = "fireplace";
     }
 
     public static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<FireplaceRecipe> {
+        public static final FireplaceRecipe.Serializer INSTANCE = new FireplaceRecipe.Serializer();
+        public static final ResourceLocation ID = new ResourceLocation(MODID,"fireplace");
+
         @Override
         public FireplaceRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             ItemStack result = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(json, "result"), true);
@@ -151,6 +163,7 @@ public class FireplaceRecipe implements Recipe<Container> {
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buffer);
             }
+
             buffer.writeItemStack(recipe.getResultItem(), false);
             buffer.writeFloat(recipe.experience);
             buffer.writeVarInt(recipe.cookingTime);

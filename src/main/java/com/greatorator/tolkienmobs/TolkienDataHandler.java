@@ -4,7 +4,6 @@ import com.greatorator.tolkienmobs.datagen.BlockStateGenerator;
 import com.greatorator.tolkienmobs.datagen.ItemModelGenerator;
 import com.greatorator.tolkienmobs.datagen.LangGenerator;
 import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
-import com.greatorator.tolkienmobs.datagen.loot.LootGenerator;
 import com.greatorator.tolkienmobs.datagen.tags.BiomeTagGenerator;
 import com.greatorator.tolkienmobs.datagen.tags.BlockTagGenerator;
 import com.greatorator.tolkienmobs.datagen.tags.EntityTagGenerator;
@@ -19,7 +18,7 @@ import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
  * Created by brandon3055 on 26/2/20.
  */
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-public class TolkienDataGenHandler {
+public class TolkienDataHandler {
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
@@ -35,7 +34,7 @@ public class TolkienDataGenHandler {
 
         if (event.includeServer()) {
             gen.addProvider(new RecipeGenerator(gen));
-            gen.addProvider(new LootGenerator(gen));
+            gen.addProvider(new TolkienLootHandler(gen));
             gen.addProvider(new BlockTagGenerator(gen, TolkienMobs.MODID, helper));
             gen.addProvider(new BiomeTagGenerator(gen, TolkienMobs.MODID, helper));
             gen.addProvider(new EntityTagGenerator(gen, TolkienMobs.MODID, helper));

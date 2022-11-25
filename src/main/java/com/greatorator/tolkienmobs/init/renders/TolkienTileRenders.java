@@ -9,6 +9,7 @@ import static com.greatorator.tolkienmobs.init.TolkienTiles.*;
 public class TolkienTileRenders {
     public static void init() {
         BlockEntityRenderers.register(TMFIREPLACE_TILE.get(), FireplaceTileRender::new);
+        BlockEntityRenderers.register(TRINKETTABLE_TILE.get(), TrinketTableTileRender::new);
         BlockEntityRenderers.register(PIGGYBANK_TILE.get(), PiggyBankTileRender::new);
         BlockEntityRenderers.register(BACKPACK_TILE.get(), BackpackTileRender::new);
         BlockEntityRenderers.register(PLACARD_TILE.get(), PlacardTileRender::new);

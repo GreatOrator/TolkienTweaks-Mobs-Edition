@@ -31,6 +31,7 @@ public class TolkienTiles {
     public static RegistryObject<BlockEntityType<LockableDoubleTreasureChestTile>> LOCKABLE_DOUBLE_TREASURE_CHEST_TILE = TILE.register("lockable_double_treasure_chest_tile", () -> BlockEntityType.Builder.of(LockableDoubleTreasureChestTile::new, LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK.get()).build(null));
     public static RegistryObject<BlockEntityType<TolkienSignTile>> SIGN_TILE = TILE.register("tolkien_sign_tile", () -> new BlockEntityType<>(TolkienSignTile::new, Sets.newHashSet(MALLORN_SIGN.get(), MIRKWOOD_SIGN.get(), CULUMALDA_SIGN.get(), LEBETHRON_SIGN.get(), DEADWOOD_SIGN.get(), FANGORNOAK_SIGN.get(), MALLORN_WALL_SIGN.get(), MIRKWOOD_WALL_SIGN.get(), CULUMALDA_WALL_SIGN.get(), LEBETHRON_WALL_SIGN.get(), DEADWOOD_WALL_SIGN.get(), FANGORNOAK_WALL_SIGN.get()), null));
     public static RegistryObject<BlockEntityType<BaseBarrelTile>> BARREL_TILE = TILE.register("base_barrel_tile", () -> new BlockEntityType<>(BaseBarrelTile::new, Sets.newHashSet(BARREL_MALLORN.get(), BARREL_MIRKWOOD.get(), BARREL_CULUMALDA.get(), BARREL_LEBETHRON.get(), BARREL_DEADWOOD.get(), BARREL_FANGORNOAK.get()), null));
+    public static RegistryObject<BlockEntityType<TrinketTableTile>> TRINKETTABLE_TILE = TILE.register("trinket_table_tile", () -> BlockEntityType.Builder.of(TrinketTableTile::new, TRINKET_TABLE.get()).build(null));
 
     public String getName() {
         return NAME + " - Tile Entities";

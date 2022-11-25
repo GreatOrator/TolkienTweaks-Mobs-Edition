@@ -160,10 +160,10 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
 
         GuiTexture tankBG = template.background.addChild(new GuiTexture(12, 75, SpritesRegister.get("backpack/tank")));
         toolkit.placeOutside(tankBG, tankArrows, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
-//        GuiElement<?> fluidRenderer = createFluidLevelRenderer(tankBG, tile.fluidTank, 10, 73);
-//        toolkit.placeOutside(fluidRenderer, tankArrows, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 2, -1);
-//        GuiTexture tankOverlay = fluidRenderer.addChild(new GuiTexture(12, 75, SpritesRegister.get("backpack/tank_overlay")));
-//        toolkit.placeOutside(tankOverlay, tankArrows, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
+        GuiElement<?> fluidRenderer = createFluidLevelRenderer(tankBG, tile.fluidTank, 10, 73);
+        toolkit.placeOutside(fluidRenderer, tankArrows, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 2, -1);
+        GuiTexture tankOverlay = fluidRenderer.addChild(new GuiTexture(12, 75, SpritesRegister.get("backpack/tank_overlay")));
+        toolkit.placeOutside(tankOverlay, tankArrows, GuiToolkit.LayoutPos.MIDDLE_RIGHT, 1, 0);
 
         GuiButton bedButton = toolkit.createIconButton(template.background, 16, 16, () -> tile.isSleepingbagDeployed.get() ? SpritesRegister.get("backpack/bed_deployed") : SpritesRegister.get("backpack/bed"));
         toolkit.placeInside(bedButton, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 4, -4);
@@ -204,7 +204,7 @@ public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
         tankSlotsTex.setEnabledCallback(() -> tile.tankUpgrade.get() > 0);
         tankArrows.setEnabledCallback(() -> tile.tankUpgrade.get() > 0);
         tankBG.setEnabledCallback(() -> tile.tankUpgrade.get() > 0);
-//        tankOverlay.setEnabledCallback(() -> tile.tankUpgrade.get() > 0);
+        tankOverlay.setEnabledCallback(() -> tile.tankUpgrade.get() > 0);
 
         bedButton.setEnabledCallback(() -> tile.bedUpgrade.get() > 0);
         campfireButton.setEnabledCallback(() -> tile.fireUpgrade.get() > 0);

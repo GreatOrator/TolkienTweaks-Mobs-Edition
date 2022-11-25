@@ -1,7 +1,11 @@
-package com.greatorator.tolkienmobs.integration.jei;
+package com.greatorator.tolkienmobs.integration.jei.category;
 
 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
+import com.greatorator.tolkienmobs.integration.jei.RecipeCategoryRegister;
 import com.greatorator.tolkienmobs.recipe.FireplaceRecipe;
 import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -13,6 +17,7 @@ import mezz.jei.api.gui.drawable.IDrawableStatic;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
@@ -21,25 +26,28 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.List;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
-import static mezz.jei.api.recipe.RecipeIngredientRole.*;
+import static mezz.jei.api.recipe.RecipeIngredientRole.CATALYST;
+import static mezz.jei.api.recipe.RecipeIngredientRole.INPUT;
 
 public class FireplaceRecipeCategory implements IRecipeCategory<FireplaceRecipe> {
-    public final static ResourceLocation TEXTURE = new ResourceLocation(MODID, "textures/gui/fireplace_gui.png");
+    public final static ResourceLocation TEXTURE = new ResourceLocation(MODID, "textures/gui/fireplace/fireplace_gui.png");
+    public final static ResourceLocation FLAME = new ResourceLocation(MODID, "textures/gui/fireplace/fire_full.png");
+    public final static ResourceLocation PROGRESS = new ResourceLocation(MODID, "textures/gui/fireplace/craft_full.png");
     public static final RecipeType<FireplaceRecipe> RECIPE_TYPE = RecipeType.create(MODID, "fireplace", FireplaceRecipe.class);
 
     private final IDrawable background;
     private final IDrawable icon;
-    protected final IDrawableStatic staticFire;
-    protected final IDrawableStatic staticSoup;
-    private final IDrawableAnimated campFire;
-    private final IDrawableAnimated soup;
+    protected final IDrawableStatic staticFlame;
+    private final IDrawableAnimated animatedFlame;
+    private final LoadingCache<Integer, IDrawableAnimated> progress;
 
     private final Component localizedName;
-    private final int regularCookTime;
     private int xSize = 176;
     private int ySize = 85;
 
@@ -47,11 +55,14 @@ public class FireplaceRecipeCategory implements IRecipeCategory<FireplaceRecipe>
         background = guiHelper.createDrawable(TEXTURE, 0, 0, xSize, ySize);
         localizedName = new TranslatableComponent(TolkienBlocks.TTMFIREPLACE.get().getDescriptionId());
         icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(TolkienBlocks.TTMFIREPLACE.get()));
-        this.staticFire = guiHelper.createDrawable(TEXTURE, 176, 0, 14, 17);
-        this.staticSoup = guiHelper.createDrawable(TEXTURE, 176, 0, 14, 17);
-        campFire = guiHelper.createAnimatedDrawable(staticFire, 300, IDrawableAnimated.StartDirection.BOTTOM, true);
-        soup = guiHelper.createAnimatedDrawable(staticSoup, 300, IDrawableAnimated.StartDirection.LEFT, true);
-        this.regularCookTime = 200;
+        this.staticFlame = guiHelper.createDrawable(FLAME, 0, 0, 18, 18);
+        this.animatedFlame = guiHelper.createAnimatedDrawable(staticFlame, 200, IDrawableAnimated.StartDirection.TOP, true);
+        this.progress = CacheBuilder.newBuilder().maximumSize(18).build(new CacheLoader<>() {
+            @Override
+            public IDrawableAnimated load(Integer cookTime) {
+                return guiHelper.drawableBuilder(PROGRESS, 0, 0, 18, 18).buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
+            }
+        });
     }
 
     @Override
@@ -75,29 +86,34 @@ public class FireplaceRecipeCategory implements IRecipeCategory<FireplaceRecipe>
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder iRecipeLayout, FireplaceRecipe iFireplaceRecipe, IFocusGroup iIngredients) {
-        IRecipeCategory.super.setRecipe(iRecipeLayout, iFireplaceRecipe, iIngredients);
+    public void setRecipe(IRecipeLayoutBuilder builder, FireplaceRecipe recipe, IFocusGroup focusGroup) {
+        IRecipeCategory.super.setRecipe(builder, recipe, focusGroup);
 
-        iRecipeLayout.addSlot(INPUT, 38, 15)
-                .addIngredients(iFireplaceRecipe.getIngredients().get(0));
-        iRecipeLayout.addSlot(INPUT, 60, 15)
-                .addIngredients(iFireplaceRecipe.getIngredients().get(1));
-        iRecipeLayout.addSlot(CATALYST, 117, 36)
-                .addIngredients(iFireplaceRecipe.getIngredients().get(0));
+        builder.addSlot(INPUT, 39, 16).addIngredients(recipe.getIngredients().get(0));
+        builder.addSlot(INPUT, 61, 16).addIngredients(recipe.getIngredients().get(1));
+        builder.addSlot(CATALYST, 50, 56).addIngredients(Ingredient.of(Items.COAL));
 
-        iRecipeLayout.addSlot(OUTPUT, 116, 35)
-                .addItemStack(iFireplaceRecipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 117, 36).addItemStack(recipe.getResultItem());
     }
 
     @Override
     public void draw(FireplaceRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX, double mouseY) {
         IRecipeCategory.super.draw(recipe, recipeSlotsView, stack, mouseX, mouseY);
 
-        campFire.draw(stack, 52, 36);
-        soup.draw(stack, 80, 34);
+        animatedFlame.draw(stack, 52, 36);
+        IDrawableAnimated arrow = this.getArrow(recipe);
+        arrow.draw(stack, 80, 34);
 
         drawExperience(recipe, stack, 12);
         drawCookTime(recipe, stack, 45);
+    }
+
+    protected IDrawableAnimated getArrow(FireplaceRecipe recipe) {
+        int cookTime = recipe.getCookingTime();
+        if (cookTime <= 0) {
+            cookTime = 200;
+        }
+        return this.progress.getUnchecked(cookTime);
     }
 
     protected void drawExperience(FireplaceRecipe recipe, PoseStack poseStack, int y) {
@@ -136,7 +152,7 @@ public class FireplaceRecipeCategory implements IRecipeCategory<FireplaceRecipe>
     @SuppressWarnings("removal")
     @Override
     public ResourceLocation getUid() {
-        return RecipeCategory.FIREPLACE_CRAFTING;
+        return RecipeCategoryRegister.FIREPLACE_CRAFTING;
     }
 
     @SuppressWarnings("removal")

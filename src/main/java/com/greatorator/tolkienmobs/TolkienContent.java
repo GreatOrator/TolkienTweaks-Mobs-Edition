@@ -27,7 +27,6 @@ public class TolkienContent {
         TolkienItems.ITEMS.register(modBus);
         TolkienTiles.TILE.register(modBus);
         TolkienLootFunctions.LOOT_FUNCTIONS.register(modBus);
-        TolkienRecipes.RECIPE_TYPES.register(modBus);
         TolkienRecipes.RECIPE_SERIALIZER.register(modBus);
         LOGGER.info("Populating the peoples of Middle-earth...");
         TolkienEntities.ENTITY.register(modBus);

@@ -8,6 +8,7 @@ import com.greatorator.tolkienmobs.init.TolkienBlocks;
 import com.greatorator.tolkienmobs.init.TolkienItems;
 import com.greatorator.tolkienmobs.init.TolkienPotions;
 import com.greatorator.tolkienmobs.recipe.FireplaceRecipeBuilder;
+import com.greatorator.tolkienmobs.recipe.TrinketRecipeBuilder;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.*;
@@ -510,35 +511,40 @@ public class RecipeGenerator extends RecipeProvider {
     }
 
     private static void fireplace(Consumer<FinishedRecipe> consumer) {
-        fireplaceNormal(Items.COOKED_BEEF, 50, 100, Items.BEEF, consumer);
-        fireplaceNormal(Items.COOKED_CHICKEN, 50, 100, Items.CHICKEN, consumer);
-        fireplaceNormal(Items.COOKED_COD, 50, 100, Items.COD, consumer);
-        fireplaceNormal(Items.DRIED_KELP, 50, 100, Items.KELP, consumer);
-        fireplaceNormal(Items.COOKED_MUTTON, 50, 100, Items.MUTTON, consumer);
-        fireplaceNormal(Items.COOKED_PORKCHOP, 50, 100, Items.PORKCHOP, consumer);
-        fireplaceNormal(Items.BAKED_POTATO, 50, 100, Items.POTATO, consumer);
-        fireplaceNormal(Items.COOKED_RABBIT, 50, 100, Items.RABBIT, consumer);
-        fireplaceNormal(Items.COOKED_SALMON, 50, 100, Items.SALMON, consumer);
         fireplaceCustom(TolkienItems.LEMBAS.get(), 50, 100, TolkienItems.CRAM.get(), TolkienItems.FOOD_HONEY.get(), consumer);
         fireplaceCustom(Items.GOLDEN_APPLE, 100, 500, Items.APPLE, Items.GOLD_INGOT, consumer);
         fireplaceCustom(Items.ENCHANTED_GOLDEN_APPLE, 500, 200, Items.GOLDEN_APPLE, Items.GOLD_BLOCK, consumer);
         fireplaceMultiple(TolkienItems.MONSTER_FLESH.get(), 50, 100, consumer, Items.COOKED_RABBIT, Items.COOKED_PORKCHOP, Items.COOKED_MUTTON, Items.COOKED_BEEF, Items.COOKED_SALMON, Items.COOKED_COD, Items.COOKED_CHICKEN, Items.ROTTEN_FLESH);
     }
 
+//    private static void trinket(Consumer<FinishedRecipe> consumer) {
+//        trinketRecipe(TolkienItems.ITEM_COIN_GOLD.get(), 50, 100, TolkienItems.TRINKET_AMULET.get(), consumer);
+//    }
+
     private static void trinket(Consumer<FinishedRecipe> consumer) {
         for (Potion potion : ForgeRegistries.POTIONS.getValues()) {
             if (potion.getEffects().isEmpty() || potion.getEffects().size() > 1) continue;
             MobEffect effect = potion.getEffects().get(0).getEffect();
             if (DataUtils.contains(TolkienConfig.potionArray, e -> e.equals(effect))) {
-                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_BELT.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_belt_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_BELT.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
-                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_AMULET.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_amulet_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_AMULET.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
-                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_CHARM.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_charm_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_CHARM.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
-                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_RING.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_ring_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_RING.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
-                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_GLOVE.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_glove_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_GLOVE.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
-                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_HAT.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_hat_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_HAT.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
-                consumer.accept(codechicken.lib.datagen.recipe.ShapelessRecipeBuilder.builder(TolkienItems.TRINKET_CLOAK.get().getTrinketForEffect(effect), new ResourceLocation(TolkienMobs.MODID, "trinket_cloak_" + potion.getRegistryName().getPath())).addIngredient(TolkienItems.TRINKET_CLOAK.get()).addIngredient(new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion))).build());
-            }
+                TolkienMobs.LOGGER.info(effect);
+                trinketRecipe(TolkienItems.TRINKET_BELT.get().getTrinketForEffect(effect), 120, 200, TolkienItems.TRINKET_BELT.get(), new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion)), consumer);
+                trinketRecipe(TolkienItems.TRINKET_AMULET.get().getTrinketForEffect(effect), 120, 200, TolkienItems.TRINKET_AMULET.get(), new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion)), consumer);
+                trinketRecipe(TolkienItems.TRINKET_CHARM.get().getTrinketForEffect(effect), 120, 200, TolkienItems.TRINKET_CHARM.get(), new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion)), consumer);
+                trinketRecipe(TolkienItems.TRINKET_RING.get().getTrinketForEffect(effect), 120, 200, TolkienItems.TRINKET_RING.get(), new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion)), consumer);
+                trinketRecipe(TolkienItems.TRINKET_GLOVE.get().getTrinketForEffect(effect), 120, 200, TolkienItems.TRINKET_GLOVE.get(), new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion)), consumer);
+                trinketRecipe(TolkienItems.TRINKET_HAT.get().getTrinketForEffect(effect), 120, 200, TolkienItems.TRINKET_HAT.get(), new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion)), consumer);
+                trinketRecipe(TolkienItems.TRINKET_CLOAK.get().getTrinketForEffect(effect), 120, 200, TolkienItems.TRINKET_CLOAK.get(), new NBTIngredient(PotionUtils.setPotion(new ItemStack(Items.POTION), potion)), consumer);
+           }
         }
+    }
+
+    public static void trinketRecipe(ItemStack output, int experience, int cookTime, ItemLike input1, NBTIngredient input2, Consumer<FinishedRecipe> consumer) {
+        TrinketRecipeBuilder.trinketRecipe(output, experience, cookTime)
+                .ingredient(input1)
+                .ingredient(input2)
+                .ingredient(TolkienItems.GEM_AMMOLITE.get())
+                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(input1))
+                .build(consumer, "tolkienmobs:magic_" + output.getItem().getRegistryName().getPath());
     }
 
     // Helper Methods
@@ -584,13 +590,6 @@ public class RecipeGenerator extends RecipeProvider {
                 .define('C', Items.LEATHER)
                 .unlockedBy("has_wool", has(input1))
                 .save(consumer, "tolkienmobs:sleepingbag_" + output.asItem().getRegistryName().getPath());
-    }
-
-    public static void fireplaceNormal(ItemLike output, int experience, int cookTime, ItemLike input1, Consumer<FinishedRecipe> consumer) {
-        FireplaceRecipeBuilder.fireplaceRecipe(output, experience, cookTime)
-                .ingredient(input1)
-                .unlockedBy("has_" + input1.asItem().getRegistryName().getPath(), InventoryChangeTrigger.TriggerInstance.hasItems(input1))
-                .save(consumer);
     }
 
     public static void fireplaceCustom(ItemLike output, int experience, int cookTime, ItemLike input1, ItemLike input2, Consumer<FinishedRecipe> consumer) {

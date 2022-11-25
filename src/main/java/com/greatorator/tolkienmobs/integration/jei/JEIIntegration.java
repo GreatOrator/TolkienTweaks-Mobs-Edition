@@ -1,6 +1,9 @@
 package com.greatorator.tolkienmobs.integration.jei;
 
-import com.greatorator.tolkienmobs.init.TolkienRecipes;
+import com.greatorator.tolkienmobs.integration.jei.category.FireplaceRecipeCategory;
+import com.greatorator.tolkienmobs.integration.jei.category.TrinketRecipeCategory;
+import com.greatorator.tolkienmobs.recipe.FireplaceRecipe;
+import com.greatorator.tolkienmobs.recipe.TrinketRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -25,6 +28,8 @@ public class JEIIntegration implements IModPlugin {
 
     @Nullable
     private FireplaceRecipeCategory fireplaceRecipeCategory;
+    @Nullable
+    private TrinketRecipeCategory trinketRecipeCategory;
 
     public JEIIntegration() {
     }
@@ -40,15 +45,18 @@ public class JEIIntegration implements IModPlugin {
         IJeiHelpers jeiHelpers = registration.getJeiHelpers();
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
         registration.addRecipeCategories(fireplaceRecipeCategory = new FireplaceRecipeCategory(guiHelper));
+        registration.addRecipeCategories(trinketRecipeCategory = new TrinketRecipeCategory(guiHelper));
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         ErrorUtil.checkNotNull(fireplaceRecipeCategory, "fireplaceRecipeCategory");
+        ErrorUtil.checkNotNull(trinketRecipeCategory, "trinketRecipeCategory");
         jeiHelpers = registration.getJeiHelpers();
         var recipeManager = Minecraft.getInstance().level.getRecipeManager();
 
         ClientLevel world = Minecraft.getInstance().level;
-        registration.addRecipes(FireplaceRecipeCategory.RECIPE_TYPE, recipeManager.getAllRecipesFor(TolkienRecipes.FIREPLACE_RECIPE_TYPE.get()));
+        registration.addRecipes(FireplaceRecipeCategory.RECIPE_TYPE, recipeManager.getAllRecipesFor(FireplaceRecipe.Type.INSTANCE));
+        registration.addRecipes(TrinketRecipeCategory.RECIPE_TYPE, recipeManager.getAllRecipesFor(TrinketRecipe.Type.INSTANCE));
     }
 }

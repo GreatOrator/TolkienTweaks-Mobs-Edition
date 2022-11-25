@@ -25,6 +25,7 @@ public class TolkienGuiRenders {
         MenuScreens.register(LOCKABLE_TREASURE_CHEST_CONTAINER, LockableTreasureChestScreen::new);
         MenuScreens.register(LOCKABLE_DOUBLE_CHEST_CONTAINER, LockableDoubleChestScreen::new);
         MenuScreens.register(LOCKABLE_DOUBLE_TREASURE_CHEST_CONTAINER, LockableDoubleTreasureChestScreen::new);
+        MenuScreens.register(TRINKETTABLE_CONTAINER, TrinketTableScreen::new);
     }
 
     public String getName() {

@@ -12,6 +12,7 @@ import com.brandon3055.brandonscore.lib.datamanager.ManagedInt;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedStack;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedString;
 import com.brandon3055.brandonscore.network.BCoreNetwork;
+import com.greatorator.tolkienmobs.TolkienConfig;
 import com.greatorator.tolkienmobs.block.MilestoneBlock;
 import com.greatorator.tolkienmobs.handler.MilestoneHandler;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
@@ -37,6 +38,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -45,12 +48,13 @@ import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.CLIENT_CONT
 import static com.brandon3055.brandonscore.lib.datamanager.DataFlags.SAVE_NBT_SYNC_TILE;
 
 public class MilestoneTile extends TileBCore implements MenuProvider, IRSSwitchable, IInteractTile {
+    public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
     public final ManagedString milestoneName = register(new ManagedString("milestone_name", "Unnamed_Milestone", SAVE_NBT_SYNC_TILE, CLIENT_CONTROL));
     public final ManagedStack paymentItem = register(new ManagedStack("payment_item", SAVE_NBT_SYNC_TILE));
     //The distance a single item will allow you to travel
-    public final ManagedInt distanceCost = register(new ManagedInt("distance_cost", SAVE_NBT_SYNC_TILE));
+    public final ManagedInt distanceCost = register(new ManagedInt("distance_cost", TolkienConfig.coinCost, SAVE_NBT_SYNC_TILE));
     //The cost for an interdimensional trip
-    public final ManagedInt dimensionCost = register(new ManagedInt("dimension_cost", SAVE_NBT_SYNC_TILE));
+    public final ManagedInt dimensionCost = register(new ManagedInt("dimension_cost", TolkienConfig.dimensionalWarp, SAVE_NBT_SYNC_TILE));
     private final ManagedString milestoneUUID = register(new ManagedString("milestone_uuid", SAVE_NBT_SYNC_TILE));
 
     public MilestoneTile(BlockPos pos, BlockState state) {
@@ -181,7 +185,7 @@ public class MilestoneTile extends TileBCore implements MenuProvider, IRSSwitcha
                 }
 
                 BCoreNetwork.sendSound(client.level, client.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 0.3F, 0.5F, false);
-                TeleportUtils.teleportEntity(client, data.getWorldKey(), Vector3.fromBlockPosCenter(data.getPos()).add(0, 1, 0));
+                TeleportUtils.teleportEntity(client, data.getWorldKey(), Vector3.fromBlockPosCenter(data.getPos()).add(1, 1, 0));
                 BCoreNetwork.sendSound(client.level, client.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 0.3F, 0.5F, false);
 
                 break;

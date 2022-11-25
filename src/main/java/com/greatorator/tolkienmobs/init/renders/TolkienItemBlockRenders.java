@@ -100,6 +100,7 @@ public class TolkienItemBlockRenders {
             ItemBlockRenderTypes.setRenderLayer(POTTED_SAPLING_FANGORNOAK.get(), cutout);
             ItemBlockRenderTypes.setRenderLayer(ELVEN_LANTERN.get(), TolkienItemBlockRenders::isGlassLanternValidLayer);
             ItemBlockRenderTypes.setRenderLayer(MORGUL_LANTERN.get(), TolkienItemBlockRenders::isGlassLanternValidLayer);
+            ItemBlockRenderTypes.setRenderLayer(TRINKET_TABLE.get(), cutoutMipped);
         }
     public static boolean isGlassLanternValidLayer(RenderType layerToCheck) {
         return layerToCheck == RenderType.cutout() || layerToCheck == RenderType.translucent();

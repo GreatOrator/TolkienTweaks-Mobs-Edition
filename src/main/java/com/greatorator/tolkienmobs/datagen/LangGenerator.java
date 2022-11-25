@@ -226,6 +226,7 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienBlocks.STONE_PATH.get(), "Stone Path");
         add(TolkienBlocks.TTMFIREPLACE.get(), "Fireplace");
         add(TolkienBlocks.PIGGYBANK.get(), "Piggy Bank");
+        add(TolkienBlocks.TRINKET_TABLE.get(), "Trinket Table");
         add(TolkienBlocks.BARREL_MITHRIL.get(), "Mithril Barrel");
         add(TolkienBlocks.BARREL_MORGULIRON.get(), "Morgul Iron Barrel");
         add(TolkienBlocks.BACKPACK.get(), "Adventurer's Backpack");
@@ -324,6 +325,7 @@ public class LangGenerator extends LanguageProvider {
 
         add("item_info.tolkienmobs.sneak_right_click_activate", "Shift right-click to activate/deactivate effect");
         add("container.tolkienmobs.ttmfireplace", "Fireplace");
+        add("container.tolkienmobs.trinkettable", "Trinket Table");
         add("container.tolkienmobs.piggybank", "Piggy Bank");
         add("container.tolkienmobs.backpack", "Adventurer's Backpack");
         add("container.tolkienmobs.upgrade", "Backpack Upgrades");
@@ -661,13 +663,13 @@ public class LangGenerator extends LanguageProvider {
     }
 
     private void trinket(PrefixHelper helper) {
-        add(TolkienItems.TRINKET_AMULET.get(), "Magical Amulet of ");
-        add(TolkienItems.TRINKET_BELT.get(), "Magical Belt of ");
-        add(TolkienItems.TRINKET_CHARM.get(), "Magical Charm of ");
-        add(TolkienItems.TRINKET_RING.get(), "Magical Ring of ");
-        add(TolkienItems.TRINKET_GLOVE.get(), "Magical Glove of ");
-        add(TolkienItems.TRINKET_HAT.get(), "Magical Hat of ");
-        add(TolkienItems.TRINKET_CLOAK.get(), "Magical Cloak of ");
+        add(TolkienItems.TRINKET_AMULET.get(), "Magical Amulet");
+        add(TolkienItems.TRINKET_BELT.get(), "Magical Belt");
+        add(TolkienItems.TRINKET_CHARM.get(), "Magical Charm");
+        add(TolkienItems.TRINKET_RING.get(), "Magical Ring");
+        add(TolkienItems.TRINKET_GLOVE.get(), "Magical Glove");
+        add(TolkienItems.TRINKET_HAT.get(), "Magical Hat");
+        add(TolkienItems.TRINKET_CLOAK.get(), "Magical Cloak");
     }
 
     private void biomes(PrefixHelper helper) {

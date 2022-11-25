@@ -35,16 +35,17 @@ public class TolkienMobs {
 
     /*TODO List
 	1. Classes & Wish list
-	    a. TrinketRecipeBuilder (Builder to control building of trinket recipes)
-	    b. TrinketRecipe (Recipes for trinkets to add potions)
-	    c. Trinket table for crafting trinkets with potions
-	    d. EntityLootGenerator (Attempting to process loot for other mods in workspace)
-	    e. Armor crashing when worn or placed on armor stand
-	    f. Tornado Effect not working
-		g. KeyStone crashing when GUI opens
-	    h. Milestone counting all item cost as max int
-	    i. FirePlace not processing recipes
-	    j. BackPack fluid handler capability crash
+        a. Recipe Generator not creating trinket recipes
+        b. Spawner not rendering mob in list
+	    c. EntityLootGenerator (Attempting to process loot for other mods in workspace)
+	    d. Armor texture rendering incorrectly
+	    e. Tornado Effect not working
+		f. BackPack fluid handler capability crash
+	    g. Trinket Names not translating properly
+	    h. FirePlace not processing recipes
+	    i. Trinket Table not processing recipes
+	    j.
+	    k.
 2. Categories
 	    a. Entities (Implementation)
 	    	1. Fell Beast - Needs AI adjustments
@@ -65,6 +66,8 @@ public class TolkienMobs {
         h. Added Mithril and Morgul Iron walls
         i. Ammolite Panes
         j. Refactoring of tags to fix some block weirdness
+        k. Trinket Table (Block only so far)
+        l. Random trinkets for loot drops/chests
     */
 
     public TolkienMobs() {
@@ -94,6 +97,13 @@ public class TolkienMobs {
 
     public static TolkienMobs instance() {
         return instance;
+    }
+
+    public static ResourceLocation createRL(String name) {
+        if (name.contains(":")) {
+            return new ResourceLocation(name);
+        }
+        return new ResourceLocation(MODID, name);
     }
 
     @SubscribeEvent

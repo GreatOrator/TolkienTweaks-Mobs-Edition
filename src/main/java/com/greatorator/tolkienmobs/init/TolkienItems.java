@@ -233,6 +233,7 @@ public class TolkienItems {
     public static RegistryObject<Item> LIGHTNINGBUG_ITEM = ITEMS.register("lightningbug", () -> new ItemBlockBCore(LIGHTNINGBUG_BLOCK.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> ELVEN_LANTERN_ITEM = ITEMS.register("elven_lantern", () -> new ItemBlockBCore(ELVEN_LANTERN.get(), new Item.Properties().stacksTo(1).tab(decoGroup)));
     public static RegistryObject<Item> MORGUL_LANTERN_ITEM = ITEMS.register("morgul_lantern", () -> new ItemBlockBCore(MORGUL_LANTERN.get(), new Item.Properties().stacksTo(1).tab(decoGroup)));
+    public static RegistryObject<Item> TRINKET_TABLE_ITEM = ITEMS.register("trinket_table", () -> new ItemBlockBCore(TRINKET_TABLE.get(), new Item.Properties().stacksTo(1).tab(decoGroup)));
 
     // Blocks - Sleeping Bags
     public static RegistryObject<Item> SLEEPING_BAG_BLUE_ITEM = ITEMS.register("sleeping_bag_blue", () -> new LoreBlockHandler(SLEEPING_BAG_BLUE.get(), new Item.Properties().tab(decoGroup)).setHasLore());
@@ -362,13 +363,13 @@ public class TolkienItems {
     public static RegistryObject<Item> MORGUL_CRYSTAL = ITEMS.register("morgul_crystal", () -> new MorgulCrystalItem(new Item.Properties().stacksTo(1).tab(decoGroup)));
 
     // Trinkets
-    public static RegistryObject<TrinketItem> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<TrinketItem> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<TrinketItem> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<TrinketItem> TRINKET_RING = ITEMS.register("trinket_ring", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<TrinketItem> TRINKET_GLOVE = ITEMS.register("trinket_glove", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<TrinketItem> TRINKET_HAT = ITEMS.register("trinket_hat", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
-    public static RegistryObject<TrinketItem> TRINKET_CLOAK = ITEMS.register("trinket_cloak", () -> new TrinketItem(new Item.Properties().tab(toolsGroup)));
+    public static RegistryObject<TrinketItem> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new TrinketItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
+    public static RegistryObject<TrinketItem> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new TrinketItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
+    public static RegistryObject<TrinketItem> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new TrinketItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
+    public static RegistryObject<TrinketItem> TRINKET_RING = ITEMS.register("trinket_ring", () -> new TrinketItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
+    public static RegistryObject<TrinketItem> TRINKET_GLOVE = ITEMS.register("trinket_glove", () -> new TrinketItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
+    public static RegistryObject<TrinketItem> TRINKET_HAT = ITEMS.register("trinket_hat", () -> new TrinketItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
+    public static RegistryObject<TrinketItem> TRINKET_CLOAK = ITEMS.register("trinket_cloak", () -> new TrinketItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
 
     // Projectiles
     public static RegistryObject<ArrowItem> GALADHRIM_ARROW = ITEMS.register("ammo_galadhrim_arrow", () -> new GaladhrimArrowItem((new Item.Properties()).tab(toolsGroup)));

@@ -1,7 +1,10 @@
-package com.greatorator.tolkienmobs.datagen.loot;
+package com.greatorator.tolkienmobs;
 
 
 import com.google.common.collect.ImmutableList;
+import com.greatorator.tolkienmobs.datagen.loot.BlockLootGenerator;
+import com.greatorator.tolkienmobs.datagen.loot.ChestLootGenerator;
+import com.greatorator.tolkienmobs.datagen.loot.EntityLootGenerator;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.LootTableProvider;
@@ -22,11 +25,13 @@ import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 /**
  * Created by brandon3055 on 10/3/20.
  */
-public class LootGenerator extends LootTableProvider {
-    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> lootTables = ImmutableList.of(Pair.of(BlockLootGenerator::new, LootContextParamSets.BLOCK), Pair.of(ChestLootGenerator::new, LootContextParamSets.CHEST));
-//    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> lootTables = ImmutableList.of(Pair.of(BlockLootGenerator::new, LootContextParamSets.BLOCK), Pair.of(EntityLootGenerator::new, LootContextParamSets.ENTITY), Pair.of(ChestLootGenerator::new, LootContextParamSets.CHEST));
+public class TolkienLootHandler extends LootTableProvider {
+    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> lootTables = ImmutableList.of(
+            Pair.of(BlockLootGenerator::new, LootContextParamSets.BLOCK),
+            Pair.of(EntityLootGenerator::new, LootContextParamSets.ENTITY),
+            Pair.of(ChestLootGenerator::new, LootContextParamSets.CHEST));
 
-    public LootGenerator(DataGenerator dataGeneratorIn) {
+    public TolkienLootHandler(DataGenerator dataGeneratorIn) {
         super(dataGeneratorIn);
     }
 

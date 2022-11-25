@@ -337,6 +337,10 @@ public class BlockStateGenerator extends BlockStateProvider {
         ModelFile fireInactive = models().getExistingFile(modLoc("block/fireplace_inactive"));
         directionalFromNorthHoz(TolkienBlocks.TTMFIREPLACE.get(), e -> e.getValue(FireplaceBlock.LIT) ? fireActive : fireInactive, 180);
 
+        ModelFile trinketActive = models().getExistingFile(modLoc("block/trinkettable_active"));
+        ModelFile trinketInactive = models().getExistingFile(modLoc("block/trinkettable"));
+        directionalFromNorthHoz(TolkienBlocks.TRINKET_TABLE.get(), e -> e.getValue(TrinketTableBlock.LIT) ? trinketActive : trinketInactive, 0);
+
         ModelFile keyActive = models().getExistingFile(modLoc("block/block_key_stone_active"));
         ModelFile keyInactive = models().getExistingFile(modLoc("block/block_key_stone"));
         horizontalBlock(TolkienBlocks.KEY_STONE_BLOCK.get(), e -> e.getValue(CamoKeyStoneBlock.ACTIVE) ? keyActive : keyInactive, 180);

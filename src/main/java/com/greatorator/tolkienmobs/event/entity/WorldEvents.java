@@ -69,7 +69,7 @@ public class WorldEvents {
         }
     }
 
-        @SubscribeEvent
+    @SubscribeEvent
     public void serverTick(TickEvent.ServerTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
             serverTicks++;

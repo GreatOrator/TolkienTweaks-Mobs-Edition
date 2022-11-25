@@ -51,12 +51,8 @@ public class TolkienConfig {
 
     //Server properties
     public static String serverID;
-    public static int dimensionalWarpCoinCost;
-    public static int blocksPerCoin;
-    public static double milestoneCoinCostMultiplier;
-    public static double minimumCoinCost;
-    public static double maximumCoinCost;
-    public static boolean dimensionalWarp;
+    public static int coinCost;
+    public static int dimensionalWarp;
     public static boolean disableFakePlayer;
     public static boolean replant;
     public static List<String> potionList;
@@ -76,13 +72,23 @@ public class TolkienConfig {
                 .syncTagToClient()
                 .onSync((tag, type) -> potionList = tag.getStrings());
 
+        serverTag.getValue("dimensionalWarpCoinCost")
+                .setComment("Cost multiplier for dimensional teleport (Default 3)")
+                .setDefaultInt(3)
+                .onSync((tag, type) -> dimensionalWarp = tag.getInt());
+
+        serverTag.getValue("coinCost")
+                .setComment("Cost to teleport per (Default 500) blocks")
+                .setDefaultInt(500)
+                .onSync((tag, type) -> coinCost = tag.getInt());
+
         serverTag.getValue("replant")
                 .setComment("Crops will be replanted when harvested via right click. This requires a seed to drop, and is removed from the drop list. (Default true)")
                 .setDefaultBoolean(true)
                 .onSync((tag, type) -> replant = tag.getBoolean());
 
         serverTag.getValue("disableFakePlayer")
-                .setComment("Disable fake player in TolkienMobs (Default false)")
+                .setComment("Disable fake player for Hallowed Earth (Default false)")
                 .setDefaultBoolean(false)
                 .syncTagToClient()
                 .onSync((tag, type) -> disableFakePlayer = tag.getBoolean());

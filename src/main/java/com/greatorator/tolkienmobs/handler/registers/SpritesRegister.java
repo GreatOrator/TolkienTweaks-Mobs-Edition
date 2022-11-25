@@ -22,6 +22,14 @@ public class SpritesRegister {
         register(MODID, "fireplace/craft_empty");
         register(MODID, "fireplace/craft_full");
 
+        register(MODID, "trinkettable/trinket_empty");
+        register(MODID, "trinkettable/trinket_full");
+        register(MODID, "trinkettable/craft_empty");
+        register(MODID, "trinkettable/craft_full");
+        register(MODID, "trinkettable/potion");
+        register(MODID, "trinkettable/ring");
+        register(MODID, "trinkettable/gem");
+
         register(MODID, "backpack/crafting_table");
         register(MODID, "backpack/craft_arrow");
         register(MODID, "backpack/tank_slots");

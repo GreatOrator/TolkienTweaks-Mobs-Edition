@@ -20,7 +20,7 @@ import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 public class ChestLootGenerator extends ChestLoot {
     @Override
     public void accept(BiConsumer<ResourceLocation, LootTable.Builder> registrar) {
-        //Adding stuff to vanilla loot tables
+        //Adding stuff to vanilla chest loot tables
         createInjectPool(registrar, "shipwreck_supply", LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1))

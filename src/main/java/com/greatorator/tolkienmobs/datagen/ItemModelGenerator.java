@@ -214,6 +214,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.STONE_PATH.get());
         blockItem(TolkienBlocks.TTMFIREPLACE.get(), modLoc("block/fireplace_active"));
         blockItem(TolkienBlocks.PIGGYBANK.get(), modLoc("block/block_piggybank"));
+        blockItem(TolkienBlocks.TRINKET_TABLE.get(), modLoc("block/trinkettable"));
         blockItem(TolkienBlocks.BARREL_MITHRIL.get(), modLoc("block/barrel_mithril"));
         blockItem(TolkienBlocks.BARREL_MORGULIRON.get(), modLoc("block/barrel_morguliron"));
         blockItem(TolkienBlocks.BACKPACK.get(), modLoc("block/container_backpack"));

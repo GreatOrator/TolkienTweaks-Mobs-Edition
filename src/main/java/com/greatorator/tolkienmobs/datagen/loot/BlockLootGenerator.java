@@ -47,6 +47,7 @@ public class BlockLootGenerator extends BlockLoot {
         dropSelf(TolkienBlocks.DOOR_MORGULIRON.get());
         dropSelf(TolkienBlocks.TRAPDOOR_MORGULIRON.get());
         dropSelf(TolkienBlocks.PRESSURE_PLATE_MORGULIRON.get());
+        dropSelf(TolkienBlocks.TRINKET_TABLE.get());
         dropWhenSilkTouch(TolkienBlocks.PANE_AMMOLITE.get());
         dropSelf(TolkienBlocks.DOOR_DURIN.get());
 

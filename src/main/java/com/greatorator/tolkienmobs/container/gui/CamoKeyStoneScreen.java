@@ -6,7 +6,6 @@ import com.brandon3055.brandonscore.client.gui.GuiToolkit;
 import com.brandon3055.brandonscore.client.gui.modulargui.GuiElementManager;
 import com.brandon3055.brandonscore.client.gui.modulargui.ModularGuiContainer;
 import com.brandon3055.brandonscore.client.gui.modulargui.baseelements.GuiButton;
-import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiBorderedRect;
 import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiLabel;
 import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiTextField;
 import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiTexture;
@@ -52,54 +51,41 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
 
         if (player.isCreative()) {
             // Key Code
-            GuiBorderedRect codeBG = new GuiBorderedRect()
-                    .set3DGetters(GuiToolkit.Palette.Slot::fill, GuiToolkit.Palette.Slot::accentDark, GuiToolkit.Palette.Slot::accentLight)
-                    .setBorderColourL(GuiToolkit.Palette.Slot::border3D)
-                    .setSize(188, 12)
-                    .setXPos(template.background.xPos() + bgPad + 1)
-                    .setMaxYPos(template.background.ySize() + bgPad + 100, false);
-            template.background.addChild(codeBG);
-            GuiLabel KeyStoneTitle = codeBG.addChild(new GuiLabel().setAlignment(GuiAlign.CENTER).setShadowStateSupplier(() -> BCConfig.darkMode))
-                    .setDisplaySupplier(() -> toolkit.i18n("keystonecode"))
-                    .setPos(codeBG.xPos() + 5, codeBG.maxYPos() - 21)
-                    .setYSize(8)
-                    .setTextColGetter(GuiToolkit.Palette.Slot::text)
-                    .setMaxXPos(codeBG.maxXPos() - 1, true);
-            template.background.addChild(codeBG);
             GuiTextField KeyStoneCode = toolkit.createTextField(template.background)
                     .setValue(tile.keyCode.get())
                     .setHoverText(ChatFormatting.DARK_AQUA + toolkit.i18n("instructions"))
                     .setFilter(toolkit.catchyValidator(s -> s.equals("") || !invalidCharacters.matcher(s).find()))
-                    .setPos(codeBG.xPos() + 2, codeBG.maxYPos() - 11)
+                    .setPos(template.background.xPos() + bgPad + 1, template.background.ySize() + bgPad + 100)
                     .setSize(186, 10);
-            GuiButton saveCode = codeBG.addChild(toolkit.createButton_old(toolkit.i18n("saved"), template.background).setAlignment(GuiAlign.CENTER))
-                    .setPos(codeBG.xPos() + 55, codeBG.maxYPos() + 2)
+            template.background.addChild(KeyStoneCode);
+            GuiLabel KeyStoneTitle = KeyStoneCode.addChild(new GuiLabel().setAlignment(GuiAlign.CENTER).setShadowStateSupplier(() -> BCConfig.darkMode))
+                    .setDisplaySupplier(() -> toolkit.i18n("keystonecode"))
+                    .setPos(KeyStoneCode.xPos() + 5, KeyStoneCode.maxYPos() - 21)
+                    .setYSize(8)
+                    .setTextColGetter(GuiToolkit.Palette.Slot::text)
+                    .setMaxXPos(KeyStoneCode.maxXPos() - 1, true);
+            template.background.addChild(KeyStoneCode);
+            GuiButton saveCode = KeyStoneCode.addChild(toolkit.createButton_old(toolkit.i18n("saved"), template.background).setAlignment(GuiAlign.CENTER))
+                    .setPos(KeyStoneCode.xPos() + 55, KeyStoneCode.maxYPos() + 2)
                     .setSize(78, 12)
                     .onPressed(() -> tile.keyCode.set(KeyStoneCode.getValue()));
 
             // Tick Delay
-            GuiBorderedRect delayBG = new GuiBorderedRect();
-            toolkit.placeInside(delayBG, template.background, GuiToolkit.LayoutPos.BOTTOM_LEFT, 4, -6);
-            delayBG.set3DGetters(GuiToolkit.Palette.Slot::fill, GuiToolkit.Palette.Slot::accentDark, GuiToolkit.Palette.Slot::accentLight)
-                    .setPos(-9000, -9000)
-                    .setBorderColourL(GuiToolkit.Palette.Slot::border3D)
-                    .setSize(78, 12)
-                    .setEnabledCallback(() -> !rsPulse);
-            GuiLabel delayTitle = delayBG.addChild(new GuiLabel().setAlignment(GuiAlign.CENTER).setShadowStateSupplier(() -> BCConfig.darkMode))
-                    .setDisplaySupplier(() -> toolkit.i18n("delaytitle"))
-                    .setPos(delayBG.xPos() + 5, delayBG.maxYPos() - 21)
-                    .setYSize(8)
-                    .setTextColGetter(GuiToolkit.Palette.Slot::text)
-                    .setMaxXPos(delayBG.maxXPos() - 1, true)
-                    .setEnabledCallback(() -> !rsPulse);
-            GuiTextField delayCode = delayBG.addChild(toolkit.createTextField(template.background))
+            GuiTextField delayCode = toolkit.createTextField(template.background)
                     .setValue(String.valueOf(tile.tickDelay.get()))
                     .setHoverText(ChatFormatting.DARK_AQUA + toolkit.i18n("tickdelay"))
                     .setFilter(toolkit.catchyValidator(s -> s.equals("") || Long.parseLong(s) >= 0))
-                    .setPos(delayBG.xPos() + 2, delayBG.maxYPos() - 11)
+                    .setPos(-9000, -9000)
                     .setSize(76, 10)
                     .setEnabledCallback(() -> !rsPulse);
-            GuiButton saveTick = delayBG.addChild(toolkit.createButton_old(toolkit.i18n("savedelay"), template.background).setAlignment(GuiAlign.CENTER))
+            GuiLabel delayTitle = delayCode.addChild(new GuiLabel().setAlignment(GuiAlign.CENTER).setShadowStateSupplier(() -> BCConfig.darkMode))
+                    .setDisplaySupplier(() -> toolkit.i18n("delaytitle"))
+                    .setPos(delayCode.xPos() + 5, delayCode.maxYPos() - 21)
+                    .setYSize(8)
+                    .setTextColGetter(GuiToolkit.Palette.Slot::text)
+                    .setMaxXPos(delayCode.maxXPos() - 1, true)
+                    .setEnabledCallback(() -> !rsPulse);
+            GuiButton saveTick = delayCode.addChild(toolkit.createButton_old(toolkit.i18n("savedelay"), template.background).setAlignment(GuiAlign.CENTER))
                     .setPos(-9000, -9000)
                     .setSize(78, 12)
                     .onPressed(() -> tile.tickDelay.set(Integer.parseInt((delayCode.getValue()))))
@@ -124,10 +110,10 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
                 tile.rsPulse.set(false);
                 tile.rsDelay.set(rsDelay = !rsDelay);
 
-                    delayBG.setPos(template.background.maxXPos() + bgPad + 1, delayBG.maxYPos() - 21);
-                    toolkit.placeOutside(delayBG, redstoneDelay, GuiToolkit.LayoutPos.TOP_CENTER, -8, 42);
+                delayCode.setPos(template.background.maxXPos() + bgPad + 1, delayCode.maxYPos() - 21);
+                    toolkit.placeOutside(delayCode, redstoneDelay, GuiToolkit.LayoutPos.TOP_CENTER, -8, 42);
 
-                    saveTick.setPos(delayBG.xPos() + 5, delayBG.maxYPos() + 2);
+                    saveTick.setPos(delayCode.xPos() + 5, delayCode.maxYPos() + 2);
                     toolkit.placeOutside(saveTick, redstoneDelay, GuiToolkit.LayoutPos.TOP_CENTER, -8, 55);
 
                 tile.sendPacketToServer(mcDataOutput -> {
@@ -145,7 +131,7 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
                     tile.rsDelay.set(false);
                     tile.rsAlways.set(rsAlways = !rsAlways);
 
-                        delayBG.setPos(-9000, -9000);
+                    delayCode.setPos(-9000, -9000);
                         saveTick.setPos(-9000, -9000);
 
                     tile.sendPacketToServer(mcDataOutput -> {
@@ -161,7 +147,7 @@ public class CamoKeyStoneScreen extends ModularGuiContainer<ContainerBCTile<Camo
                     tile.rsDelay.set(false);
                     tile.rsPulse.set(rsPulse = !rsPulse);
 
-                        delayBG.setPos(-9000, -9000);
+                    delayCode.setPos(-9000, -9000);
                         saveTick.setPos(-9000, -9000);
 
                     tile.sendPacketToServer(mcDataOutput -> {
