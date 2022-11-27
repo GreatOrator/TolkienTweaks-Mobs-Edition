@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    },
+    "level=1": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    },
+    "level=2": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    },
+    "level=3": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    },
+    "level=4": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    },
+    "level=5": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    },
+    "level=6": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    },
+    "level=7": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    },
+    "level=8": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    },
+    "level=9": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    },
+    "level=10": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    },
+    "level=11": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    },
+    "level=12": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    },
+    "level=13": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    },
+    "level=14": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    },
+    "level=15": {
+      "model": "tolkienmobs:block/mithril_fluid"
+    }
+  }
+}

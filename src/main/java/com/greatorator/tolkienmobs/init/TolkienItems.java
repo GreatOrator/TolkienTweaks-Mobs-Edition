@@ -42,6 +42,7 @@ public class TolkienItems {
     public static RegistryObject<Item> DOOR_MITHRIL_ITEM = ITEMS.register("door_mithril", () -> new ItemBlockBCore(DOOR_MITHRIL.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> TRAPDOOR_MITHRIL_ITEM = ITEMS.register("trapdoor_mithril", () -> new ItemBlockBCore(TRAPDOOR_MITHRIL.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> PRESSURE_PLATE_MITHRIL_ITEM = ITEMS.register("pressure_plate_mithril", () -> new ItemBlockBCore(PRESSURE_PLATE_MITHRIL.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> MITHRIL_FLUID_BUCKET = ITEMS.register("mithril_fluid_bucket", () -> new BucketItem(() -> TolkienFluids.MITHRIL_FLUID.get(), new Item.Properties().stacksTo(1).tab(matsGroup)));
 
         // MorgulIron
     public static RegistryObject<Item> ORE_MORGULIRON_ITEM = ITEMS.register("ore_morguliron", () -> new ItemBlockBCore(ORE_MORGULIRON.get(), new Item.Properties().tab(matsGroup)));
@@ -55,6 +56,7 @@ public class TolkienItems {
     public static RegistryObject<Item> DOOR_MORGULIRON_ITEM = ITEMS.register("door_morguliron", () -> new ItemBlockBCore(DOOR_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> TRAPDOOR_MORGULIRON_ITEM = ITEMS.register("trapdoor_morguliron", () -> new ItemBlockBCore(TRAPDOOR_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
     public static RegistryObject<Item> PRESSURE_PLATE_MORGULIRON_ITEM = ITEMS.register("pressure_plate_morguliron", () -> new ItemBlockBCore(PRESSURE_PLATE_MORGULIRON.get(), new Item.Properties().tab(decoGroup)));
+    public static RegistryObject<Item> MORGULIRON_FLUID_BUCKET = ITEMS.register("morguliron_fluid_bucket", () -> new BucketItem(() -> TolkienFluids.MORGULIRON_FLUID.get(), new Item.Properties().stacksTo(1).tab(matsGroup)));
 
         // Ammolite
     public static RegistryObject<Item> ORE_AMMOLITE_ITEM = ITEMS.register("ore_ammolite", () -> new ItemBlockBCore(ORE_AMMOLITE.get(), new Item.Properties().tab(matsGroup)));

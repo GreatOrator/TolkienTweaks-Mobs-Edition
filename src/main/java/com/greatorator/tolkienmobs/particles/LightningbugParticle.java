@@ -11,17 +11,17 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class LightningbugParticle extends TextureSheetParticle {
     private final int halfLife;
 
-    LightningbugParticle(ClientLevel world, double x, double y, double z, double vx, double vy, double vz) {
-        super(world, x, y, z, vx, vy, vz);
-        xd *= 2.1;
-        yd *= 2.1;
-        zd *= 2.1;
-        rCol = 0.9F;
-        gCol = 1.0F;
-        bCol = 0.0F;
-        quadSize = 0.2f + (random.nextFloat() * 0.1f);
-        lifetime = 10 + random.nextInt(21);
-        halfLife = lifetime / 2;
+    LightningbugParticle(ClientLevel level, double xCoord, double yCoord, double zCoord, double xd, double yd, double zd) {
+        super(level, xCoord, yCoord, zCoord, xd, yd, zd);
+        this.xd *= 2.1;
+        this.yd *= 2.1;
+        this.zd *= 2.1;
+        this.rCol = 0.9F;
+        this.gCol = 1.0F;
+        this.bCol = 0.0F;
+        this.quadSize = 0.2f + (random.nextFloat() * 0.1f);
+        this.lifetime = 10 + random.nextInt(21);
+        this.halfLife = lifetime / 2;
         hasPhysics = true;
     }
 

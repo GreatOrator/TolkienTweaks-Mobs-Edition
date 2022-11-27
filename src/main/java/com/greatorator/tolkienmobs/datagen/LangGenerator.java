@@ -2,12 +2,15 @@ package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
+import com.greatorator.tolkienmobs.init.TolkienFluids;
 import com.greatorator.tolkienmobs.init.TolkienItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.LanguageProvider;
+
+import javax.annotation.Nonnull;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 
@@ -33,15 +36,15 @@ public class LangGenerator extends LanguageProvider {
         tools();
         entities();
         merchants(helper);
-        trinket(helper);
+        trinket();
         biomes(helper);
-        chatMessages(helper);
+        chatMessages();
         creativeTabGroups();
         gui(helper);
         keyCommand();
-        TCon();
     }
 
+    @SuppressWarnings("deprecated")
     private void blocks() {
         add(TolkienBlocks.ORE_MITHRIL.get(), "Mithril Ore");
         add(TolkienBlocks.ORE_END_MITHRIL.get(), "Ender Mithril Ore");
@@ -281,6 +284,10 @@ public class LangGenerator extends LanguageProvider {
         addLore(Item.byBlock(TolkienBlocks.SLEEPING_BAG_WHITE.get()), ChatFormatting.RED + "Does not reset spawn point.");
         add(TolkienBlocks.SLEEPING_BAG_YELLOW.get(), "Yellow Sleeping Bag");
         addLore(Item.byBlock(TolkienBlocks.SLEEPING_BAG_YELLOW.get()), ChatFormatting.RED + "Does not reset spawn point.");
+        add(TolkienFluids.MITHRIL_BLOCK.get(), "Molten Mithril");
+        add("fluid.tolkienmobs.mithril_fluid", "Molten Mithril");
+        add(TolkienFluids.MORGULIRON_BLOCK.get(), "Molten Morguliron");
+        add("fluid.tolkienmobs.morguliron_fluid", "Molten Morguliron");
     }
 
     private void items() {
@@ -289,10 +296,12 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienItems.DUST_MITHRIL.get(), "Mithril Dust");
         add(TolkienItems.NUGGET_MITHRIL.get(), "Mithril Nugget");
         add(TolkienItems.INGOT_MITHRIL.get(), "Mithril Ingot");
+        add(TolkienItems.MITHRIL_FLUID_BUCKET.get(), "Molten Mithril Bucket");
         add(TolkienItems.RAW_MORGULIRON.get(), "Raw Morgul Iron");
         add(TolkienItems.DUST_MORGULIRON.get(), "Morgul Iron Dust");
         add(TolkienItems.NUGGET_MORGULIRON.get(), "Morgul Iron Nugget");
         add(TolkienItems.INGOT_MORGULIRON.get(), "Morgul Iron Ingot");
+        add(TolkienItems.MORGULIRON_FLUID_BUCKET.get(), "Molten Morguliron Bucket");
         add(TolkienItems.GEM_AMMOLITE.get(), "Star of Elendil");
         add(TolkienItems.CREBAIN_FEATHER.get(), "Crebain Feather");
         add(TolkienItems.BIRD_FEATHER.get(), "Bird Feather");
@@ -664,7 +673,7 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienItems.MORGUL_CRYSTAL.get(), "Morgul Crystal");
     }
 
-    private void trinket(PrefixHelper helper) {
+    private void trinket() {
         add(TolkienItems.TRINKET_AMULET.get(), "Magical Amulet");
         add(TolkienItems.TRINKET_BELT.get(), "Magical Belt");
         add(TolkienItems.TRINKET_CHARM.get(), "Magical Charm");
@@ -849,7 +858,7 @@ public class LangGenerator extends LanguageProvider {
 //        add(TolkienEntities.EGG_TTMGREATEAGLE.get(), "Great Eagle Spawn Egg");
     }
 
-    private void chatMessages(PrefixHelper helper) {
+    private void chatMessages() {
         add("tolkienmobs.msg.helpcomming", "Goblin King is attempting to call for help...Reinforcements have arrived!");
         add("tolkienmobs.msg.nohelp", "Goblin King is attempting to call for help, but no help came.");
         add("tolkienmobs.msg.nodrown", "Goblin King doesn't want to drown.");
@@ -970,39 +979,17 @@ public class LangGenerator extends LanguageProvider {
         add("key.tolkienmobs.backpack_key",             "Open Backpack");
     }
 
-    private void TCon() {
-        // Modifiers
-        add("modifier.tolkienmobs.vingilote", "Vingilote");
-        add("modifier.tolkienmobs.vingilote.flavor", "A priceless mineral.");
-        add("modifier.tolkienmobs.vingilote.description", "The deeper you delve, the faster you mine with limitless durability!");
-        add("modifier.tolkienmobs.gulduril", "Gulduril");
-        add("modifier.tolkienmobs.gulduril.flavor", "A Dark Sorcery surrounds this.");
-        add("modifier.tolkienmobs.gulduril.description", "Defeat your enemies fast and painfully!");
-
-        // Materials
-        add("material.tolkienmobs.shiny", "Mithril");
-        add("material.tolkienmobs.uruk", "Morguliron");
-
-        // Fluids
-        add("block.tolkienmobs.molten_mithril_fluid", "Molten Mithril");
-        add("fluid.tolkienmobs.molten_mithril", "Molten Mithril");
-        add("item.tolkienmobs.molten_mithril_bucket", "Molten Mithril Bucket");
-        add("block.tolkienmobs.molten_morguliron_fluid", "Molten Morguliron");
-        add("fluid.tolkienmobs.molten_morguliron", "Molten Morguliron");
-        add("item.tolkienmobs.molten_morguliron_bucket", "Molten Morguliron Bucket");
-    }
-
 
         //region Helpers
 
     @Override
-    public void add(Block key, String name) {
-        if (key != null) super.add(key, name);
+    public void add(@Nonnull Block key, @Nonnull String name) {
+        super.add(key, name);
     }
 
     @Override
-    public void add(Item key, String name) {
-        if (key != null) super.add(key, name);
+    public void add(@Nonnull Item key, @Nonnull String name) {
+        super.add(key, name);
     }
 
     public void addLore(Item key, String lore) {
@@ -1010,7 +997,7 @@ public class LangGenerator extends LanguageProvider {
     }
 
     public static class PrefixHelper {
-        private LangGenerator generator;
+        private final LangGenerator generator;
         private String prefix;
 
         public PrefixHelper(LangGenerator generator) {
@@ -1028,6 +1015,7 @@ public class LangGenerator extends LanguageProvider {
 
     //endregion
 
+    @Nonnull
     @Override
     public String getName() {
         return NAME + " - English Translation";

@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.datagen;
 import com.google.gson.JsonElement;
 import com.greatorator.tolkienmobs.block.*;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
+import com.greatorator.tolkienmobs.init.TolkienFluids;
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -350,6 +351,7 @@ public class BlockStateGenerator extends BlockStateProvider {
         horizontalBlock(TolkienBlocks.MILESTONE_BLOCK.get(), e -> e.getValue(MilestoneBlock.LIT) ? mileActive : mileInactive, 180);
 
         sleepingBagModels();
+        fluid();
 
         //Placards
         ModelFile placardWallModel = models().getExistingFile(modLoc("block/placard_wall"));
@@ -409,6 +411,32 @@ public class BlockStateGenerator extends BlockStateProvider {
 
     private ResourceLocation modBlockLoc(String texture) {
         return modLoc("block/" + texture);
+    }
+
+    public void fluid() {
+        String mithrilName = TolkienFluids.MITHRIL_FLUID.get().getRegistryName().toString();
+        String nameMithril = mithrilName.substring(mithrilName.lastIndexOf('.') + 1);
+
+        ModelFile mithrilFile = models()
+                .withExistingParent(nameMithril, modLoc("block/mithril"));
+        BlockModelBuilder mithrilFluid = models()
+                .withExistingParent(nameMithril, modLoc("block/mithril"))
+                .texture("particle", modLoc("block/mithril_still"));
+        getVariantBuilder(TolkienFluids.MITHRIL_BLOCK.get())
+                .forAllStates(state -> ConfiguredModel.builder().modelFile(mithrilFile).build());
+
+        String morgulironName = TolkienFluids.MORGULIRON_FLUID.get().getRegistryName().toString();
+        String nameMorguliron = morgulironName.substring(morgulironName.lastIndexOf('.') + 1);
+
+        ModelFile morgulironFile = models()
+                .withExistingParent(nameMorguliron, modLoc("block/morguliron"));
+        BlockModelBuilder morgulironFluid = models()
+                .withExistingParent(nameMorguliron, modLoc("block/morguliron"))
+                .texture("particle", modLoc("block/morguliron_still"));
+
+        getVariantBuilder(TolkienFluids.MORGULIRON_BLOCK.get())
+                .forAllStates(state -> ConfiguredModel.builder().modelFile(morgulironFile).build());
+
     }
 
     public void wallBlocks(WallBlock block, String texture) {

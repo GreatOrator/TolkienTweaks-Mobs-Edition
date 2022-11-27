@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:mithril_flowing",
+    "tolkienmobs:mithril_fluid",
+    "tolkienmobs:morguliron_flowing",
+    "tolkienmobs:morguliron_fluid"
+  ]
+}

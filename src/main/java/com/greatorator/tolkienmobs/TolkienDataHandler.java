@@ -4,10 +4,7 @@ import com.greatorator.tolkienmobs.datagen.BlockStateGenerator;
 import com.greatorator.tolkienmobs.datagen.ItemModelGenerator;
 import com.greatorator.tolkienmobs.datagen.LangGenerator;
 import com.greatorator.tolkienmobs.datagen.RecipeGenerator;
-import com.greatorator.tolkienmobs.datagen.tags.BiomeTagGenerator;
-import com.greatorator.tolkienmobs.datagen.tags.BlockTagGenerator;
-import com.greatorator.tolkienmobs.datagen.tags.EntityTagGenerator;
-import com.greatorator.tolkienmobs.datagen.tags.ItemTagGenerator;
+import com.greatorator.tolkienmobs.datagen.tags.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -36,9 +33,10 @@ public class TolkienDataHandler {
             gen.addProvider(new RecipeGenerator(gen));
             gen.addProvider(new TolkienLootHandler(gen));
             gen.addProvider(new BlockTagGenerator(gen, TolkienMobs.MODID, helper));
-            gen.addProvider(new BiomeTagGenerator(gen, TolkienMobs.MODID, helper));
-            gen.addProvider(new EntityTagGenerator(gen, TolkienMobs.MODID, helper));
+            gen.addProvider(new FluidTagGenerator(gen, TolkienMobs.MODID, helper));
             gen.addProvider(new ItemTagGenerator(gen, blockGen, TolkienMobs.MODID, helper));
+            gen.addProvider(new EntityTagGenerator(gen, TolkienMobs.MODID, helper));
+            gen.addProvider(new BiomeTagGenerator(gen, TolkienMobs.MODID, helper));
         }
     }
 }

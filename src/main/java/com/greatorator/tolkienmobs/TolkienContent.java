@@ -25,6 +25,7 @@ public class TolkienContent {
         TolkienBlocks.BLOCKS.register(modBus);
         LOGGER.info("Stocking the markets...");
         TolkienItems.ITEMS.register(modBus);
+        TolkienFluids.FLUIDS.register(modBus);
         TolkienTiles.TILE.register(modBus);
         TolkienLootFunctions.LOOT_FUNCTIONS.register(modBus);
         TolkienRecipes.RECIPE_SERIALIZER.register(modBus);

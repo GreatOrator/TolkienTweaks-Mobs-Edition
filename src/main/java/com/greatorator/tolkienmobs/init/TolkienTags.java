@@ -145,7 +145,7 @@ public class TolkienTags {
         private static void init() {
         }
 
-        public static final TagKey<Fluid> FLUIDS = tag("lava");
+        public static final TagKey<Fluid> LAVA = tag("lava");
 
         private static TagKey<Fluid> tag(String name) {
             return FluidTags.create(new ResourceLocation("forge", name));

@@ -48,6 +48,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TolkienItems.DOOR_MITHRIL_ITEM.get());
         blockItem(TolkienBlocks.TRAPDOOR_MITHRIL.get(), modLoc("block/mithril_trapdoor_bottom"));
         blockItem(TolkienBlocks.PRESSURE_PLATE_MITHRIL.get(), modLoc("block/pressure_plate_mithril"));
+        simpleItem(TolkienItems.MITHRIL_FLUID_BUCKET.get());
 
             // MorgulIron
         blockItem(TolkienBlocks.ORE_MORGULIRON.get());
@@ -61,6 +62,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TolkienItems.DOOR_MORGULIRON_ITEM.get());
         blockItem(TolkienBlocks.TRAPDOOR_MORGULIRON.get(), modLoc("block/morguliron_trapdoor_bottom"));
         blockItem(TolkienBlocks.PRESSURE_PLATE_MORGULIRON.get(), modLoc("block/pressure_plate_morguliron"));
+        simpleItem(TolkienItems.MORGULIRON_FLUID_BUCKET.get());
 
             // Ammolite
         blockItem(TolkienBlocks.ORE_AMMOLITE.get());
