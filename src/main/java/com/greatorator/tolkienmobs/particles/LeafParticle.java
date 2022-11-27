@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.particles;
 
-import com.greatorator.tolkienmobs.utils.Breeze;
-import com.greatorator.tolkienmobs.utils.TolkienRandom;
+import com.greatorator.tolkienmobs.utils.BreezeUtility;
+import com.greatorator.tolkienmobs.utils.RandomUtility;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.BlockPos;
@@ -37,7 +37,7 @@ public class LeafParticle extends TextureSheetParticle {
         this.zd = 0.0;
 
         this.hasPhysics = true;
-        this.lifetime = TolkienRandom.getRandomInteger(200, 100);
+        this.lifetime = RandomUtility.getRandomInteger(200, 100);
 
         this.rCol = Mth.nextFloat(this.random, 0.1529411F, 0.7490196F);
         this.gCol = Mth.nextFloat(this.random, 0.6431372F, 0.8627450F);
@@ -48,7 +48,7 @@ public class LeafParticle extends TextureSheetParticle {
 
         this.roll = this.oRoll = random.nextFloat() * TAU;
 
-        this.quadSize = TolkienRandom.getRandomInteger(4, 1) / 50f;
+        this.quadSize = RandomUtility.getRandomInteger(4, 1) / 50f;
     }
 
     @Override
@@ -97,8 +97,8 @@ public class LeafParticle extends TextureSheetParticle {
             // the wind coefficient is just another factor in (0, 1) to add some variance between leaves.
             // this implementation lags behind the actual wind speed and will never reach it fully,
             // so wind speeds needs to be adjusted accordingly
-            xd += (Breeze.windX - xd) * windCoefficient / 60.0f;
-            zd += (Breeze.windZ - zd) * windCoefficient / 60.0f;
+            xd += (BreezeUtility.windX - xd) * windCoefficient / 60.0f;
+            zd += (BreezeUtility.windZ - zd) * windCoefficient / 60.0f;
         }
 
         move(xd, yd, zd);

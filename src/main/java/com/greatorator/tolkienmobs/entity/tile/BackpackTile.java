@@ -11,7 +11,7 @@ import com.greatorator.tolkienmobs.block.BackpackBlock;
 import com.greatorator.tolkienmobs.block.SleepingBagBlock;
 import com.greatorator.tolkienmobs.container.BackpackContainer;
 import com.greatorator.tolkienmobs.init.*;
-import com.greatorator.tolkienmobs.utils.TileFluid;
+import com.greatorator.tolkienmobs.utils.TileFluidUtility;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -50,7 +50,7 @@ public class BackpackTile extends TileBCore implements MenuProvider, IInteractTi
     public final ManagedByte bedUpgrade = register(new ManagedByte("bed_upgrade_installed", DataFlags.SAVE_NBT_SYNC_TILE));
     public final ManagedByte fireUpgrade = register(new ManagedByte("campfire_upgrade_installed", DataFlags.SAVE_NBT_SYNC_TILE));
 
-    public TileFluid fluidTank = new TileFluid(FluidAttributes.BUCKET_VOLUME * 16);
+    public TileFluidUtility fluidTank = new TileFluidUtility(FluidAttributes.BUCKET_VOLUME * 16);
     public TileItemStackHandler mainInventory = new TileItemStackHandler(54);
     public TileItemStackHandler upgradeInventory = new TileItemStackHandler(5);
     public TileItemStackHandler craftingItems = new TileItemStackHandler(9);

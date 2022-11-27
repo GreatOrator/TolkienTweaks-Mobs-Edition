@@ -3,12 +3,12 @@ package com.greatorator.tolkienmobs.utils;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class TriangularDistribution {
+public class TriangularDistributionUtility {
     public final float a, b, c;
     protected final Random rng;
     protected final float f;
 
-    public TriangularDistribution(float a, float b, float c, @Nullable Random rng) {
+    public TriangularDistributionUtility(float a, float b, float c, @Nullable Random rng) {
         if (!(a < b) || !(a <= c && c <= b))
             throw new IllegalArgumentException(String.format("not %f <= %f <= %f", a, b, c));
 

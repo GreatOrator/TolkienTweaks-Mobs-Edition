@@ -12,7 +12,7 @@ import java.util.Random;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
-public class FeaturePlacer {
+public class FeaturePlacerUtility {
     public static final BiFunction<LevelSimulatedReader, BlockPos, Boolean> VALID_TREE_POS = TreeFeature::validTreePos;
 
     public static void putLeafBlock(LevelSimulatedReader world, BiConsumer<BlockPos, BlockState> worldPlacer, BiFunction<LevelSimulatedReader, BlockPos, Boolean> predicate, BlockPos pos, BlockStateProvider config, Random random) {
@@ -70,13 +70,13 @@ public class FeaturePlacer {
     }
 
     public static void drawBresenhamBranch(LevelAccessor world, BiConsumer<BlockPos, BlockState> trunkPlacer, Random random, BlockPos start, BlockPos end, BlockStateProvider config) {
-        for (BlockPos pixel : new BresenhamIterator(start, end)) {
+        for (BlockPos pixel : new BresenhamIteratorUtility(start, end)) {
             placeIfValidTreePos(world, trunkPlacer, random, pixel, config);
         }
     }
 
     public static void drawBresenhamTree(LevelSimulatedReader world, BiConsumer<BlockPos, BlockState> placer, BiFunction<LevelSimulatedReader, BlockPos, Boolean> predicate, BlockPos from, BlockPos to, BlockStateProvider config, Random random) {
-        for (BlockPos pixel : new BresenhamIterator(from, to)) {
+        for (BlockPos pixel : new BresenhamIteratorUtility(from, to)) {
             placeProvidedBlock(world, placer, predicate, pixel, config, random);
         }
     }
@@ -180,9 +180,9 @@ public class FeaturePlacer {
     }
 
     public static void buildRoot(LevelAccessor world, BiConsumer<BlockPos, BlockState> placer, Random rand, BlockPos start, double offset, int b, BlockStateProvider config) {
-        BlockPos dest = FeatureLogic.translate(start.below(b + 2), 5, 0.3 * b + offset, 0.8);
+        BlockPos dest = FeatureLogicUtility.translate(start.below(b + 2), 5, 0.3 * b + offset, 0.8);
 
-        for (BlockPos coord : new BresenhamIterator(start.below(), dest)) {
+        for (BlockPos coord : new BresenhamIteratorUtility(start.below(), dest)) {
             if (!placeIfValidRootPos(world, placer, rand, coord, config)) return;
         }
     }
@@ -192,7 +192,7 @@ public class FeaturePlacer {
         // Normally, I'd use mutable pos here but there are multiple bits of logic down the line that force
         // the pos to be immutable causing multiple same BlockPos instances to exist.
         float radiusSquared = radius * radius;
-        FeaturePlacer.placeProvidedBlock(world, placer, predicate, centerPos, config, random);
+        FeaturePlacerUtility.placeProvidedBlock(world, placer, predicate, centerPos, config, random);
 
         // trace out a quadrant
         for (int x = 0; x <= radius; x++) {
@@ -200,10 +200,10 @@ public class FeaturePlacer {
                 // if we're inside the blob, fill it
                 if (x * x + z * z <= radiusSquared) {
                     // do four at a time for easiness!
-                    FeaturePlacer.placeProvidedBlock(world, placer, predicate, centerPos.offset(  x, 0,  z), config, random);
-                    FeaturePlacer.placeProvidedBlock(world, placer, predicate, centerPos.offset( -x, 0, -z), config, random);
-                    FeaturePlacer.placeProvidedBlock(world, placer, predicate, centerPos.offset( -z, 0,  x), config, random);
-                    FeaturePlacer.placeProvidedBlock(world, placer, predicate, centerPos.offset(  z, 0, -x), config, random);
+                    FeaturePlacerUtility.placeProvidedBlock(world, placer, predicate, centerPos.offset(  x, 0,  z), config, random);
+                    FeaturePlacerUtility.placeProvidedBlock(world, placer, predicate, centerPos.offset( -x, 0, -z), config, random);
+                    FeaturePlacerUtility.placeProvidedBlock(world, placer, predicate, centerPos.offset( -z, 0,  x), config, random);
+                    FeaturePlacerUtility.placeProvidedBlock(world, placer, predicate, centerPos.offset(  z, 0, -x), config, random);
                     // Confused how this circle pixel-filling algorithm works exactly? https://www.desmos.com/calculator/psqynhk21k
                 }
             }
@@ -223,7 +223,7 @@ public class FeaturePlacer {
     }
 
     public static boolean placeIfValidRootPos(LevelSimulatedReader world, BiConsumer<BlockPos, BlockState> placer, Random random, BlockPos pos, BlockStateProvider config) {
-        if (FeatureLogic.canRootGrowIn(world, pos)) {
+        if (FeatureLogicUtility.canRootGrowIn(world, pos)) {
             placer.accept(pos, config.getState(random, pos));
             return true;
         } else {
@@ -234,11 +234,11 @@ public class FeaturePlacer {
     public static void traceRoot(LevelSimulatedReader worldReader, BiConsumer<BlockPos, BlockState> worldPlacer, Random random, BlockStateProvider dirtRoot, Iterable<BlockPos> posTracer) {
         // Trace block positions and stop tracing too far into open air
         for (BlockPos rootPos : posTracer) {
-            if (worldReader.isStateAtPosition(rootPos, FeatureLogic.ROOT_SHOULD_SKIP))
+            if (worldReader.isStateAtPosition(rootPos, FeatureLogicUtility.ROOT_SHOULD_SKIP))
                 continue; // Ignore pos if this block should be checked (root, or one of the protected block IDs)
 
             // If the block/position cannot be replaced or is detached from ground-mass, stop
-            if (!FeaturePlacer.placeIfValidRootPos(worldReader, worldPlacer, random, rootPos, dirtRoot))
+            if (!FeaturePlacerUtility.placeIfValidRootPos(worldReader, worldPlacer, random, rootPos, dirtRoot))
                 return;
         }
     }
@@ -246,19 +246,19 @@ public class FeaturePlacer {
     public static void traceExposedRoot(LevelSimulatedReader worldReader, BiConsumer<BlockPos, BlockState> worldPlacer, Random random, BlockStateProvider exposedRoot, BlockStateProvider dirtRoot, Iterable<BlockPos> posTracer) {
         // Trace block positions and alternate the root tracing once "underground"
         for (BlockPos exposedPos : posTracer) {
-            if (worldReader.isStateAtPosition(exposedPos, FeatureLogic.ROOT_SHOULD_SKIP))
+            if (worldReader.isStateAtPosition(exposedPos, FeatureLogicUtility.ROOT_SHOULD_SKIP))
                 continue;
 
             // Is the position considered underground?
-            if (!FeatureLogic.hasEmptyHorizontalNeighbor(worldReader, exposedPos)) {
+            if (!FeatureLogicUtility.hasEmptyHorizontalNeighbor(worldReader, exposedPos)) {
                 // Retry placement at position as underground root. If successful, continue the tracing as regular root
-                if (FeaturePlacer.placeIfValidRootPos(worldReader, worldPlacer, random, exposedPos, dirtRoot))
+                if (FeaturePlacerUtility.placeIfValidRootPos(worldReader, worldPlacer, random, exposedPos, dirtRoot))
                     traceRoot(worldReader, worldPlacer, random, dirtRoot, posTracer);
                 // Now the outer loop can end. Goodbye!
                 return;
             } else { // Not underground
                 // Check if the position is not replaceable
-                if (!worldReader.isStateAtPosition(exposedPos, FeatureLogic::worldGenReplaceable))
+                if (!worldReader.isStateAtPosition(exposedPos, FeatureLogicUtility::worldGenReplaceable))
                     return; // Root must stop
 
                 // Good to go!

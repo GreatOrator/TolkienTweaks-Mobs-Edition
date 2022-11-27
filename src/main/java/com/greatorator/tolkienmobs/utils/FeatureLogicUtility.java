@@ -10,7 +10,7 @@ import net.minecraft.world.level.levelgen.RandomSource;
 
 import java.util.function.Predicate;
 
-public class FeatureLogic {
+public class FeatureLogicUtility {
     public static final Predicate<BlockState> IS_REPLACEABLE_AIR = state -> state.getMaterial().isReplaceable() || state.isAir();
     public static final Predicate<BlockState> ROOT_SHOULD_SKIP = state -> state.is(TolkienTags.blocks.ROOT_SKIP);
     public static boolean hasEmptyHorizontalNeighbor(LevelSimulatedReader worldReader, BlockPos pos) {
@@ -36,7 +36,7 @@ public class FeatureLogic {
             // roots can grow through air if they are near a solid block
             return hasSolidNeighbor(worldReader, pos);
         } else {
-            return worldReader.isStateAtPosition(pos, FeatureLogic::worldGenReplaceable);
+            return worldReader.isStateAtPosition(pos, FeatureLogicUtility::worldGenReplaceable);
         }
     }
 

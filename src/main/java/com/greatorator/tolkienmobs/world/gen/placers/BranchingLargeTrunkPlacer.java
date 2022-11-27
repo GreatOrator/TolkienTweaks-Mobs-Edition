@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.world.gen.placers;
 
 import com.google.common.collect.Lists;
-import com.greatorator.tolkienmobs.utils.BresenhamIterator;
-import com.greatorator.tolkienmobs.utils.FeatureLogic;
-import com.greatorator.tolkienmobs.utils.FeaturePlacer;
+import com.greatorator.tolkienmobs.utils.BresenhamIteratorUtility;
+import com.greatorator.tolkienmobs.utils.FeatureLogicUtility;
+import com.greatorator.tolkienmobs.utils.FeaturePlacerUtility;
 import com.greatorator.tolkienmobs.world.gen.feature.config.BranchesConfig;
 import com.greatorator.tolkienmobs.world.gen.feature.config.RootConfig;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TreeFeatureConfig;
@@ -115,15 +115,15 @@ public class BranchingLargeTrunkPlacer extends TrunkPlacer {
 
         if (rootsConfig.hasSurfaceRoots) {
             for (int i = 0; i < numBranches; i++) {
-                BlockPos dest = FeatureLogic.translate(startPos.below(i + 2), rootsConfig.length, 0.3 * i + (double) offset, 0.8);
+                BlockPos dest = FeatureLogicUtility.translate(startPos.below(i + 2), rootsConfig.length, 0.3 * i + (double) offset, 0.8);
 
-                FeaturePlacer.traceExposedRoot(worldReader, worldPlacer, random, rootsConfig.surfaceBlock, rootsConfig.rootBlock, new BresenhamIterator(startPos.below(), dest));
+                FeaturePlacerUtility.traceExposedRoot(worldReader, worldPlacer, random, rootsConfig.surfaceBlock, rootsConfig.rootBlock, new BresenhamIteratorUtility(startPos.below(), dest));
             }
         } else {
             for (int i = 0; i < numBranches; i++) {
-                BlockPos dest = FeatureLogic.translate(startPos.below(i + 2), rootsConfig.length, 0.3 * i + (double) offset, 0.8);
+                BlockPos dest = FeatureLogicUtility.translate(startPos.below(i + 2), rootsConfig.length, 0.3 * i + (double) offset, 0.8);
 
-                FeaturePlacer.traceRoot(worldReader, worldPlacer, random, rootsConfig.rootBlock, new BresenhamIterator(startPos.below(), dest));
+                FeaturePlacerUtility.traceRoot(worldReader, worldPlacer, random, rootsConfig.rootBlock, new BresenhamIteratorUtility(startPos.below(), dest));
             }
         }
     }
@@ -132,7 +132,7 @@ public class BranchingLargeTrunkPlacer extends TrunkPlacer {
 
     private static void buildBranch(LevelSimulatedReader world, BlockPos pos, BiConsumer<BlockPos, BlockState> trunkBlocks, List<FoliagePlacer.FoliageAttachment> leafBlocks, int height, double length, double angle, double tilt, Random treeRNG, BlockPos.MutableBlockPos mbb, TreeConfiguration config, boolean perpendicularBranches) {
         BlockPos src = pos.above(height);
-        BlockPos dest = FeaturePlacer.translate(src, length, angle, tilt);
+        BlockPos dest = FeaturePlacerUtility.translate(src, length, angle, tilt);
         BlockPos.MutableBlockPos mutableBoundingBox = new BlockPos.MutableBlockPos();
 
         if (perpendicularBranches) {
@@ -156,7 +156,7 @@ public class BranchingLargeTrunkPlacer extends TrunkPlacer {
     }
 
     private static void drawBresenhamBranch(LevelSimulatedReader world, Random random, BlockPos from, BlockPos to, BiConsumer<BlockPos, BlockState> state, BlockPos.MutableBlockPos mbb, TreeConfiguration config) {
-        for (BlockPos pixel : FeaturePlacer.getBresenhamArrays(from, to)) {
+        for (BlockPos pixel : FeaturePlacerUtility.getBresenhamArrays(from, to)) {
             placeLog(world, state, random, pixel, config);
         }
     }

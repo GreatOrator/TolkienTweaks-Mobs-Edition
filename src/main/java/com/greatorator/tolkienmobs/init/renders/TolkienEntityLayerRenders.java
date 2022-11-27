@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.init.renders;
 
 import com.greatorator.tolkienmobs.entity.item.TolkienBoatEntity;
 import com.greatorator.tolkienmobs.entity.item.model.TolkienBoatModel;
-import com.greatorator.tolkienmobs.handler.TolkienModelLayers;
+import com.greatorator.tolkienmobs.handler.ModelLayerHandler;
 import com.greatorator.tolkienmobs.item.armor.model.BaseArmorModel;
 import com.greatorator.tolkienmobs.item.armor.render.BaseArmorRender;
 import net.minecraft.client.model.HumanoidModel;
@@ -28,12 +28,12 @@ public class TolkienEntityLayerRenders {
         // Armor
         event.registerLayerDefinition(BaseArmorRender.BaseArmorMain.BODY_LAYER_LOCATION, BaseArmorModel.armorBody::createBodyLayer);
         event.registerLayerDefinition(BaseArmorRender.BaseArmorLegs.LEG_LAYER_LOCATION, BaseArmorModel.armorLegs::createLegLayer);
-        event.registerLayerDefinition(TolkienModelLayers.createBoatModelName(TolkienBoatEntity.Type.byName("mallorn")), TolkienBoatModel::createBodyModel);
-        event.registerLayerDefinition(TolkienModelLayers.createBoatModelName(TolkienBoatEntity.Type.byName("mirkwood")), TolkienBoatModel::createBodyModel);
-        event.registerLayerDefinition(TolkienModelLayers.createBoatModelName(TolkienBoatEntity.Type.byName("culumalda")), TolkienBoatModel::createBodyModel);
-        event.registerLayerDefinition(TolkienModelLayers.createBoatModelName(TolkienBoatEntity.Type.byName("lebethron")), TolkienBoatModel::createBodyModel);
-        event.registerLayerDefinition(TolkienModelLayers.createBoatModelName(TolkienBoatEntity.Type.byName("deadwood")), TolkienBoatModel::createBodyModel);
-        event.registerLayerDefinition(TolkienModelLayers.createBoatModelName(TolkienBoatEntity.Type.byName("fangornoak")), TolkienBoatModel::createBodyModel);
+        event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("mallorn")), TolkienBoatModel::createBodyModel);
+        event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("mirkwood")), TolkienBoatModel::createBodyModel);
+        event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("culumalda")), TolkienBoatModel::createBodyModel);
+        event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("lebethron")), TolkienBoatModel::createBodyModel);
+        event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("deadwood")), TolkienBoatModel::createBodyModel);
+        event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("fangornoak")), TolkienBoatModel::createBodyModel);
     }
 
 //    @SubscribeEvent

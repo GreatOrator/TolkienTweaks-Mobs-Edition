@@ -44,9 +44,9 @@ public class TolkienMobs {
 	    g. Trinket Names not translating properly
 	    h. FirePlace not processing recipes
 	    i. Trinket Table not processing recipes
-	    j.
+	    j. Hobbit Growth not "bonemealing"
 	    k.
-2. Categories
+    2. Categories
 	    a. Entities (Implementation)
 	    	1. Fell Beast - Needs AI adjustments
 			2. Gwaihir - Needs AI adjustments

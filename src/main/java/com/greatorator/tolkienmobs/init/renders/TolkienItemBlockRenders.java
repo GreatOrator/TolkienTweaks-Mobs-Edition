@@ -83,6 +83,7 @@ public class TolkienItemBlockRenders {
             ItemBlockRenderTypes.setRenderLayer(LIGHTNINGBUG_BLOCK.get(), cutoutMipped);
             ItemBlockRenderTypes.setRenderLayer(MILESTONE_BLOCK.get(), cutoutMipped);
             ItemBlockRenderTypes.setRenderLayer(BLOCK_AMMOLITE.get(), translucent);
+            ItemBlockRenderTypes.setRenderLayer(PANE_AMMOLITE.get(), translucent);
             ItemBlockRenderTypes.setRenderLayer(POTTED_MUSHROOM_DECAY_BLOOM.get(), cutout);
             ItemBlockRenderTypes.setRenderLayer(POTTED_MUSHROOM_BLOOM_DECAY.get(), cutout);
             ItemBlockRenderTypes.setRenderLayer(POTTED_FLOWER_SIMBELMYNE.get(), cutout);

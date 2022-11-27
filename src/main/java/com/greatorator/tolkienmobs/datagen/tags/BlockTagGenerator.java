@@ -13,6 +13,7 @@ import javax.annotation.Nullable;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 import static com.greatorator.tolkienmobs.init.TolkienTags.blocks.*;
+import static com.greatorator.tolkienmobs.init.TolkienTags.tagkeys.BLACKLIST_HARVEST;
 
 public class BlockTagGenerator extends BlockTagsProvider {
     public BlockTagGenerator(DataGenerator generatorIn, String modId, @Nullable ExistingFileHelper existingFileHelper) {
@@ -86,7 +87,10 @@ public class BlockTagGenerator extends BlockTagsProvider {
             tag(Tags.Blocks.GLASS_PANES).addTag(BARS_GLASS);
         tag(DECAY_GROW_BLOCK).add(Blocks.COBBLESTONE).add(Blocks.STONE).add(Blocks.MYCELIUM).add(Blocks.PODZOL).add(Blocks.CRIMSON_NYLIUM).add(Blocks.WARPED_NYLIUM);
 
+        // Blacklists
+        tag(BLACKLIST_HARVEST).add(Blocks.GRASS_BLOCK, Blocks.CRIMSON_NYLIUM, Blocks.NETHERRACK, Blocks.MELON_STEM, Blocks.PUMPKIN_STEM, Blocks.WARPED_NYLIUM, Blocks.SMALL_DRIPLEAF, Blocks.MOSS_BLOCK, Blocks.ROOTED_DIRT);
         // Mineable tools
+
         tag(MINEABLE_WITH_AXE).addTags(LOGS, FENCE_GATES_WOODEN, WOODEN_FENCES, MUSHROOM_GROW_BLOCK, WOODEN_TRAPDOORS, WOODEN_DOORS, WOODEN_PRESSURE_PLATES, WOODEN_STAIRS, WOODEN_SLABS, PLANKS);
         tag(MINEABLE_WITH_HOE).addTag(LEAVES);
         tag(MINEABLE_WITH_PICKAXE).add(TolkienBlocks.BLOCK_MITHRIL.get(), TolkienBlocks.RAW_MITHRIL_BLOCK.get(), TolkienBlocks.BLOCK_MORGULIRON.get(), TolkienBlocks.RAW_MORGULIRON_BLOCK.get(), TolkienBlocks.ORE_MITHRIL.get(), TolkienBlocks.ORE_END_MITHRIL.get(), TolkienBlocks.ORE_NETHER_MITHRIL.get(), TolkienBlocks.ORE_DEEPSLATE_MITHRIL.get(), TolkienBlocks.ORE_MORGULIRON.get(), TolkienBlocks.ORE_END_MORGULIRON.get(), TolkienBlocks.ORE_NETHER_MORGULIRON.get(), TolkienBlocks.ORE_DEEPSLATE_MORGULIRON.get(), TolkienBlocks.ORE_AMMOLITE.get(), TolkienBlocks.ORE_END_AMMOLITE.get(), TolkienBlocks.ORE_NETHER_AMMOLITE.get(), TolkienBlocks.ORE_DEEPSLATE_AMMOLITE.get(), TolkienBlocks.STONE_PATH.get(), TolkienBlocks.TTMFIREPLACE.get(), TolkienBlocks.PIGGYBANK.get(), TolkienBlocks.MITHRIL_BARS.get(), TolkienBlocks.MORGULIRON_BARS.get(), TolkienBlocks.TRAPDOOR_MITHRIL.get(), TolkienBlocks.TRAPDOOR_MORGULIRON.get(), TolkienBlocks.DOOR_MITHRIL.get(), TolkienBlocks.DOOR_MORGULIRON.get(), TolkienBlocks.DOOR_DURIN.get());

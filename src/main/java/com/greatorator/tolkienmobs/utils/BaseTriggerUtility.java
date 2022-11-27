@@ -12,11 +12,11 @@ import net.minecraft.server.level.ServerPlayer;
 
 import java.util.*;
 
-public class BaseTrigger implements CriterionTrigger<BaseTrigger.Instance> {
+public class BaseTriggerUtility implements CriterionTrigger<BaseTriggerUtility.Instance> {
     private final Map<PlayerAdvancements, Listeners> listeners = Maps.newHashMap();
     private final ResourceLocation id;
 
-    public BaseTrigger(ResourceLocation id) {
+    public BaseTriggerUtility(ResourceLocation id) {
         this.id = id;
     }
 

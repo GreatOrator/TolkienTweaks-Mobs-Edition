@@ -14,7 +14,7 @@ import com.brandon3055.brandonscore.client.gui.modulargui.lib.GuiAlign;
 import com.brandon3055.brandonscore.client.gui.modulargui.lib.GuiEvent;
 import com.brandon3055.brandonscore.client.gui.modulargui.lib.IGuiEventListener;
 import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
-import com.greatorator.tolkienmobs.handler.interfaces.IKeyBase;
+import com.greatorator.tolkienmobs.handler.interfaces.KeyBase;
 import com.greatorator.tolkienmobs.network.TolkienPacketHandler;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -30,7 +30,7 @@ public class KeyBaseAccessScreen extends ModularGuiScreen implements IGuiEventLi
     private final String currentCode;
     private final int uses;
 
-    public KeyBaseAccessScreen(Player playerIn, Component title, IKeyBase lockable, String currentCode, int uses) {
+    public KeyBaseAccessScreen(Player playerIn, Component title, KeyBase lockable, String currentCode, int uses) {
         super(title);
         this.player = playerIn;
         this.currentCode = currentCode;

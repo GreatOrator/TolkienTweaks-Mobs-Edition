@@ -575,7 +575,9 @@ public class LangGenerator extends LanguageProvider {
         add("enchantment.tolkienmobs.hobbit_plow", "Hobbit Plowing");
         add("enchantment.tolkienmobs.hobbit_plow.desc", "Farm like the experts.  Will plow an area up to 9x9.");
         add("enchantment.tolkienmobs.hobbit_harvest", "Hobbit Harvest");
-        add("enchantment.tolkienmobs.hobbit_harvest.desc", "Harvest and replant seeds from your bountiful farms. up to 9x9");
+        add("enchantment.tolkienmobs.hobbit_harvest.desc", "Harvest and replant seeds from your bountiful farms. Up to 9x9");
+        add("enchantment.tolkienmobs.hobbit_growth", "Hobbit Growth");
+        add("enchantment.tolkienmobs.hobbit_growth.desc", "Grow like a master gardener. Accelerates growth up to 9x9");
     }
 
     private void food() {

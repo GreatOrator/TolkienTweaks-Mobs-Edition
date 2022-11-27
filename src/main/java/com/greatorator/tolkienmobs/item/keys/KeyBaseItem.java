@@ -4,7 +4,7 @@ import com.brandon3055.brandonscore.blocks.BlockBCore;
 import com.brandon3055.brandonscore.items.ItemBCore;
 import com.brandon3055.brandonscore.utils.ItemNBTHelper;
 import com.greatorator.tolkienmobs.container.gui.KeyBaseAccessScreen;
-import com.greatorator.tolkienmobs.handler.interfaces.IKeyBase;
+import com.greatorator.tolkienmobs.handler.interfaces.KeyBase;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
@@ -30,7 +30,7 @@ import java.util.Objects;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class KeyBaseItem extends ItemBCore implements IKeyBase {
+public class KeyBaseItem extends ItemBCore implements KeyBase {
     private final int keyUses;
 
     public KeyBaseItem(Properties properties, int uses) {

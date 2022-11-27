@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nonnull;
 
-public interface IHobbitHarvest {
+public interface HobbitHarvest {
     boolean canHarvest(BlockState state);
 
     boolean harvest(Level world, BlockPos pos, BlockState state, @Nonnull Player player, boolean replant);

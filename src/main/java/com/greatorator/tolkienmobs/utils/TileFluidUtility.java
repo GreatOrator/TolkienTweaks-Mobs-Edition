@@ -10,18 +10,18 @@ import java.util.function.Predicate;
 /**
  * Created by brandon3055 on 07/09/2022
  */
-public class TileFluid<T extends INBTSerializable<CompoundTag>> extends FluidTank implements INBTSerializable<CompoundTag> {
+public class TileFluidUtility<T extends INBTSerializable<CompoundTag>> extends FluidTank implements INBTSerializable<CompoundTag> {
     private T capability;
 
-    public TileFluid(int capacity) {
+    public TileFluidUtility(int capacity) {
         super(capacity);
     }
 
-    public TileFluid(int capacity, Predicate<FluidStack> validator) {
+    public TileFluidUtility(int capacity, Predicate<FluidStack> validator) {
         super(capacity, validator);
     }
 
-    public TileFluid(int capacity, T capability) {
+    public TileFluidUtility(int capacity, T capability) {
         super(capacity);
         this.capability = capability;
     }

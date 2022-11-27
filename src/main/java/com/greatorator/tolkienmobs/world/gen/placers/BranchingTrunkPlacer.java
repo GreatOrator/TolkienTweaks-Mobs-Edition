@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.world.gen.placers;
 
 import com.google.common.collect.Lists;
-import com.greatorator.tolkienmobs.utils.FeaturePlacer;
+import com.greatorator.tolkienmobs.utils.FeaturePlacerUtility;
 import com.greatorator.tolkienmobs.world.gen.feature.config.BranchesConfig;
 import com.greatorator.tolkienmobs.world.gen.feature.config.TreeFeatureConfig;
 import com.mojang.serialization.Codec;
@@ -70,7 +70,7 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
 
     private static void buildBranch(LevelSimulatedReader world, BlockPos pos, BiConsumer<BlockPos, BlockState> trunkBlocks, List<FoliagePlacer.FoliageAttachment> leafBlocks, int height, double length, double angle, double tilt, Random treeRNG, BlockPos.MutableBlockPos mbb, TreeConfiguration config, boolean perpendicularBranches) {
         BlockPos src = pos.above(height);
-        BlockPos dest = FeaturePlacer.translate(src, length, angle, tilt);
+        BlockPos dest = FeaturePlacerUtility.translate(src, length, angle, tilt);
         BlockPos.MutableBlockPos mutableBoundingBox = new BlockPos.MutableBlockPos();
 
         if (perpendicularBranches) {
@@ -94,7 +94,7 @@ public class BranchingTrunkPlacer extends TrunkPlacer {
     }
 
     private static void drawBresenhamBranch(LevelSimulatedReader world, Random random, BlockPos from, BlockPos to, BiConsumer<BlockPos, BlockState> state, BlockPos.MutableBlockPos mbb, TreeConfiguration config) {
-        for (BlockPos pixel : FeaturePlacer.getBresenhamArrays(from, to)) {
+        for (BlockPos pixel : FeaturePlacerUtility.getBresenhamArrays(from, to)) {
             placeLog(world, state, random, pixel, config);
         }
     }

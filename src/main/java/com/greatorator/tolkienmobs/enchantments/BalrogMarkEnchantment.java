@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.enchantments;
 
+import com.greatorator.tolkienmobs.TolkienConfig;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.TolkienEnchants;
 import net.minecraft.core.BlockPos;
@@ -7,6 +8,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -20,40 +23,46 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = TolkienMobs.MODID)
-public class EnchantmentBalrogMark extends Enchantment {
-    public EnchantmentBalrogMark(Enchantment.Rarity rarityIn, EquipmentSlot... slots) {
-    super(rarityIn, EnchantmentCategory.ARMOR_FEET, slots);
-}
-
-    /**
-     * Returns the minimal value of enchantability needed on the enchantment level passed.
-     */
-    @Override
-    public int getMinCost(int enchantmentLevel) {
-        return enchantmentLevel * 10;
+public class BalrogMarkEnchantment extends BaseEnchantment {
+    public BalrogMarkEnchantment(Enchantment.Rarity rarityIn, EquipmentSlot... slots) {
+        super(rarityIn, EnchantmentCategory.ARMOR_FEET, slots);
     }
 
     @Override
-    public int getMaxCost(int enchantmentLevel) {
-        return this.getMinCost(enchantmentLevel) + 15;
+    public boolean isEnabled() {
+        return TolkienConfig.disableBalrogMark;
     }
 
     @Override
-    public boolean isTreasureOnly() {
-        return true;
+    public boolean isTradeable() {
+        return isEnabled() && super.isTradeable();
     }
 
-    /**
-     * Returns the maximum level that the enchantment can have.
-     */
+    @Override
+    public boolean isDiscoverable() {
+        return isEnabled() && super.isDiscoverable();
+    }
+
+    @Override
+    public boolean isAllowedOnBooks() {
+        return isEnabled() && super.isAllowedOnBooks();
+    }
+
+    @Override
+    public boolean canEnchant(ItemStack stack) {
+        return isEnabled() && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlot.FEET;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
+        return isEnabled() && super.canApplyAtEnchantingTable(stack);
+    }
+
     @Override
     public int getMaxLevel() {
         return 2;
     }
 
-    /**
-     * Determines if the enchantment passed can be applied together with this enchantment.
-     */
     @Override
     public boolean checkCompatibility(Enchantment ench) {
         return super.checkCompatibility(ench) && ench != Enchantments.DEPTH_STRIDER && ench != Enchantments.FROST_WALKER;

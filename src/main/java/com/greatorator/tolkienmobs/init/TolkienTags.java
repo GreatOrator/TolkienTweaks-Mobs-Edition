@@ -181,11 +181,18 @@ public class TolkienTags {
     public static class tagkeys{
         private static void init(){}
 
-        public static final TagKey<Item> BLACKLISTED_ITEMS = tag("blacklisted_items");
-        public static final TagKey<Item> ALLOWED_FLUIDS = tag("allowed_fluids");
+        // Items
+        public static final TagKey<Item> BLACKLISTED_ITEMS = itemTag("blacklisted_items");
+        public static final TagKey<Item> ALLOWED_FLUIDS = itemTag("allowed_fluids");
 
-        private static TagKey<Item> tag(String name) {
+        // Blocks
+        public static final TagKey<Block> BLACKLIST_HARVEST = blockTag("blacklist/harvest");
+
+        private static TagKey<Item> itemTag(String name) {
             return ItemTags.create(new ResourceLocation("forge", name));
+        }
+        private static TagKey<Block> blockTag(String name) {
+            return BlockTags.create(new ResourceLocation("forge", name));
         }
     }
 

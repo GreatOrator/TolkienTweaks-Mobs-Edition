@@ -198,7 +198,7 @@ a864661f76fb0aedbe5e7431e4d144a9f2b2b787 assets/tolkienmobs/blockstates/wood_dea
 b1e71309b07b0dc4b7b6e044c6d6a26d01dea548 assets/tolkienmobs/blockstates/wood_lebethron.json
 ddc6d0212bd4cd36e497b7e0ad23d4b97e590d73 assets/tolkienmobs/blockstates/wood_mallorn.json
 222644330b32cd15feaaf2a34e71372ba6969d12 assets/tolkienmobs/blockstates/wood_mirkwood.json
-bf18ca39ccd6284e64defdfe12ee08116a99a4b4 assets/tolkienmobs/lang/en_us.json
+d5e6d397e5ede7742a2e8436db7bc79fef718c90 assets/tolkienmobs/lang/en_us.json
 3eafe2d3f6640cd8397f07d68377062507658ead assets/tolkienmobs/models/block/barrel_culumalda.json
 47b9c5eb01093a7548125ae5c3ca0cfe4c7ad40a assets/tolkienmobs/models/block/barrel_culumalda_open.json
 2b6ed3d7fad0a5fdbcf1bcb2607dafd7e216eca6 assets/tolkienmobs/models/block/barrel_deadwood.json
@@ -959,6 +959,7 @@ f0df08dfaf231a29dc56eccb02c86671db95cfa2 data/curios/tags/items/ring.json
 cf55d2a0b09ce9558a23c2f1907bbd0b77a7221e data/forge/tags/blocks/barrels/wooden.json
 2fd84469c57f97f9b1b7af3bb8b9f64ae087b7a3 data/forge/tags/blocks/bars/glass.json
 1234bae62420dcd68c1febfc7d21827c65d89a67 data/forge/tags/blocks/bars/iron.json
+f67dcfa542ea7f594267a1ad5ae13ba4d05b6542 data/forge/tags/blocks/blacklist/harvest.json
 7f60537246190ebfc13058a5e6bcb04ae727edd0 data/forge/tags/blocks/crops.json
 9470f1df4b97545294d0a41ee8ec7ab09f0004db data/forge/tags/blocks/decay_grow_block.json
 8ccec1cd255c3a9dda3bc2ffec055f25f3ac0467 data/forge/tags/blocks/doors.json

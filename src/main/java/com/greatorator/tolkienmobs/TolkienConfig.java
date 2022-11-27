@@ -55,6 +55,14 @@ public class TolkienConfig {
     public static int dimensionalWarp;
     public static boolean disableFakePlayer;
     public static boolean replant;
+    public static boolean disableBalrogMark;
+    public static boolean disableDwarvenEndurance;
+    public static boolean disableElvenLongevity;
+    public static boolean disableGondorResolve;
+    public static boolean disableHobbitHarvest;
+    public static boolean disableHobbitPlow;
+    public static boolean disableHobbitGrowth;
+
     public static List<String> potionList;
 
     private static void loadServer() {
@@ -92,6 +100,43 @@ public class TolkienConfig {
                 .setDefaultBoolean(false)
                 .syncTagToClient()
                 .onSync((tag, type) -> disableFakePlayer = tag.getBoolean());
+
+        serverTag.setComment("Enchantment Configs");
+        serverTag.getValue("disableBalrogMark")
+                .setComment("Enable Balrog Mark Enchantment (Default true)")
+                .setDefaultBoolean(true)
+                .syncTagToClient()
+                .onSync((tag, type) -> disableBalrogMark = tag.getBoolean());
+        serverTag.getValue("disableDwarvenEndurance")
+                .setComment("Enable Dwarven Endurance Enchantment (Default true)")
+                .setDefaultBoolean(true)
+                .syncTagToClient()
+                .onSync((tag, type) -> disableDwarvenEndurance = tag.getBoolean());
+        serverTag.getValue("disableElvenLongevity")
+                .setComment("Enable Elven Longevity Enchantment (Default true)")
+                .setDefaultBoolean(true)
+                .syncTagToClient()
+                .onSync((tag, type) -> disableElvenLongevity = tag.getBoolean());
+        serverTag.getValue("disableGondorResolve")
+                .setComment("Enable Gondor Resolve Enchantment (Default true)")
+                .setDefaultBoolean(true)
+                .syncTagToClient()
+                .onSync((tag, type) -> disableGondorResolve = tag.getBoolean());
+        serverTag.getValue("disableHobbitHarvest")
+                .setComment("Enable Hobbit Harvest Enchantment (Default true)")
+                .setDefaultBoolean(true)
+                .syncTagToClient()
+                .onSync((tag, type) -> disableHobbitHarvest = tag.getBoolean());
+        serverTag.getValue("disableHobbitPlow")
+                .setComment("Enable Hobbit Plow Enchantment (Default true)")
+                .setDefaultBoolean(true)
+                .syncTagToClient()
+                .onSync((tag, type) -> disableHobbitPlow = tag.getBoolean());
+        serverTag.getValue("disableHobbitGrowth")
+                .setComment("Enable Hobbit Green Thumb Enchantment (Default true)")
+                .setDefaultBoolean(true)
+                .syncTagToClient()
+                .onSync((tag, type) -> disableHobbitGrowth = tag.getBoolean());
     }
 
     //Client properties

@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.utils;
+package com.greatorator.tolkienmobs.handler.interfaces;
 
 @FunctionalInterface
 public interface FloatFunction {

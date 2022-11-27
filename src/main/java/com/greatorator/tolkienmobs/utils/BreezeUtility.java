@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
 
-public class Breeze {
+public class BreezeUtility {
     private static final Logger LOGGER = LogManager.getLogger();
     public static float windX;
     public static float windZ;
@@ -100,10 +100,10 @@ public class Breeze {
         WINDY(0.05f, 0.3f, 0.7f),
         STORMY(0.05f, 0.6f, 1.1f);
 
-        public TriangularDistribution velocityDistribution;
+        public TriangularDistributionUtility velocityDistribution;
 
         State(float minSpeed, float likelySpeed, float maxSpeed) {
-            this.velocityDistribution = new TriangularDistribution(minSpeed, maxSpeed, likelySpeed, rng);
+            this.velocityDistribution = new TriangularDistributionUtility(minSpeed, maxSpeed, likelySpeed, rng);
         }
     }
 }

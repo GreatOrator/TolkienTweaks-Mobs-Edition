@@ -5,18 +5,18 @@ import net.minecraft.core.Direction;
 
 import java.util.Iterator;
 
-public class BresenhamIterator implements Iterator<BlockPos>, Iterable<BlockPos> {
+public class BresenhamIteratorUtility implements Iterator<BlockPos>, Iterable<BlockPos> {
     private final int x_inc, y_inc, z_inc, doubleAbsDx, doubleAbsDy, doubleAbsDz, length;
     private final BlockPos.MutableBlockPos voxel;
     private final Direction.Axis direction;
 
     private int i = 0, err_1, err_2;
 
-    public BresenhamIterator(BlockPos voxel, BlockPos towards) {
+    public BresenhamIteratorUtility(BlockPos voxel, BlockPos towards) {
         this(voxel, towards.getX(), towards.getY(), towards.getZ());
     }
 
-    public BresenhamIterator(BlockPos voxel, final int x2, final int y2, final int z2) {
+    public BresenhamIteratorUtility(BlockPos voxel, final int x2, final int y2, final int z2) {
         this.voxel = voxel.mutable();
 
         final int x1 = this.voxel.getX();

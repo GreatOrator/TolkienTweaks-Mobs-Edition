@@ -1,5 +1,7 @@
 package com.greatorator.tolkienmobs.utils;
 
+import com.greatorator.tolkienmobs.handler.interfaces.FloatFunction;
+
 import javax.annotation.Nonnull;
 
 public class SmoothNoise {

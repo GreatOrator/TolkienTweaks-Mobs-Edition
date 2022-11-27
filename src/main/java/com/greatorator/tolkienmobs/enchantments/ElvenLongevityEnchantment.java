@@ -1,5 +1,6 @@
 package com.greatorator.tolkienmobs.enchantments;
 
+import com.greatorator.tolkienmobs.TolkienConfig;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.event.entity.WorldEvents;
 import com.greatorator.tolkienmobs.init.TolkienEnchants;
@@ -7,7 +8,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.BookItem;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -25,30 +26,44 @@ import java.util.Set;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = TolkienMobs.MODID, value = Dist.CLIENT)
-public class EnchantmentElvenLongevity extends Enchantment {
+public class ElvenLongevityEnchantment extends BaseEnchantment {
     public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
     private static final UUID ELVEN_LONGEVITY_ID = UUID.fromString("a038f128-6432-11ed-81ce-0242ac120002");
     protected static final String ELVEN_LONGEVITY = "ElvenLongevity";
     public static Set<UUID> EXTRA_HEALTH = new HashSet<>();
 
-    public EnchantmentElvenLongevity(Rarity rarityIn, EquipmentSlot... slots) {
+    public ElvenLongevityEnchantment(Rarity rarityIn, EquipmentSlot... slots) {
         super(rarityIn, EnchantmentCategory.ARMOR_CHEST, slots);
     }
 
     @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack)
-    {
-        return stack.getItem() instanceof BookItem;
+    public boolean isEnabled() {
+        return TolkienConfig.disableElvenLongevity;
     }
 
     @Override
-    public int getMinCost(int enchantmentLevel) {
-        return 20 * enchantmentLevel;
+    public boolean isTradeable() {
+        return isEnabled() && super.isTradeable();
     }
 
     @Override
-    public int getMaxCost(int enchantmentLevel) {
-        return this.getMinCost(enchantmentLevel) + 10;
+    public boolean isDiscoverable() {
+        return isEnabled() && super.isDiscoverable();
+    }
+
+    @Override
+    public boolean isAllowedOnBooks() {
+        return isEnabled() && super.isAllowedOnBooks();
+    }
+
+    @Override
+    public boolean canEnchant(ItemStack stack) {
+        return isEnabled() && (stack.getItem() instanceof ArmorItem) && ((ArmorItem) stack.getItem()).getSlot() == EquipmentSlot.CHEST;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack) {
+        return isEnabled() && super.canApplyAtEnchantingTable(stack);
     }
 
     @Override

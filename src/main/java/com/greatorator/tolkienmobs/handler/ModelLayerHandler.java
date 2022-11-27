@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class TolkienModelLayers {
+public class ModelLayerHandler {
 
     public static ModelLayerLocation createBoatModelName(TolkienBoatEntity.Type type) {
         return createLocation(MODID,"boat/" + type.getName(), "boat");

@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.handler.interfaces;
 
-public interface IFluidPosition {
+public interface FluidPosition {
    double x();
 
    double y();

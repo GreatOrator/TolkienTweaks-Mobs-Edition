@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:grass_block",
+    "minecraft:crimson_nylium",
+    "minecraft:netherrack",
+    "minecraft:melon_stem",
+    "minecraft:pumpkin_stem",
+    "minecraft:warped_nylium",
+    "minecraft:small_dripleaf",
+    "minecraft:moss_block",
+    "minecraft:rooted_dirt"
+  ]
+}

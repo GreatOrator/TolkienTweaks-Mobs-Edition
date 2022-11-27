@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.utils;
 
-public class TolkienRandom {
+public class RandomUtility {
 
     public static int getRandom(int max){
         return (int) (Math.random()*max);
