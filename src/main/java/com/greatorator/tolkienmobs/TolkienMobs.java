@@ -36,15 +36,15 @@ public class TolkienMobs {
     /*TODO List
 	1. Classes & Wish list
         a. Recipe Generator not creating trinket recipes
-        b. Spawner not rendering mob in list
+        b. Armor texture rendering incorrectly
 	    c. EntityLootGenerator (Attempting to process loot for other mods in workspace)
-	    d. Armor texture rendering incorrectly
+	    d. Hobbit Growth not "bonemealing"
 	    e. Tornado Effect not working
-		f. BackPack fluid handler capability crash
+		f. Spawner not rendering mob in list
 	    g. Trinket Names not translating properly
 	    h. FirePlace not processing recipes
 	    i. Trinket Table not processing recipes
-	    j. Hobbit Growth not "bonemealing"
+	    j. BackPack fluid handler capability crash
 	    k.
     2. Categories
 	    a. Entities (Implementation)
