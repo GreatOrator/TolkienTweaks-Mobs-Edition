@@ -45,6 +45,7 @@ public class TolkienProfessions {
     public static final RegistryObject<PoiType> JUNK_TRADER = POIT.register("junk_trader", ()-> new PoiType("junk_trader", PoiType.getBlockStates(TolkienBlocks.BARREL_MITHRIL.get()), 1, 1));
     public static final RegistryObject<PoiType> TRINKET_SMITH = POIT.register("trinket_smith", ()-> new PoiType("trinket_smith", PoiType.getBlockStates(TolkienBlocks.BLOCK_HALLOWED.get()), 1, 1));
     public static final RegistryObject<PoiType> TRINKET_TAILOR = POIT.register("trinket_tailor", ()-> new PoiType("trinket_tailor", PoiType.getBlockStates(TolkienBlocks.STONE_PATH.get()), 1, 1));
+    public static final RegistryObject<PoiType> ARDA_PORTAL = POIT.register("arda_portal", () -> new PoiType("arda_portal", PoiType.getBlockStates(TolkienBlocks.ARDA_PORTAL.get()), 0, 1));
 
     public static void registerBanker() {
         try {
@@ -107,6 +108,6 @@ public class TolkienProfessions {
     public static final RegistryObject<VillagerProfession> TRINKET_TAILOR_PROFESSION = PROFESSION.register("trinket_tailor", () -> new VillagerProfession("trinket_tailor", TRINKET_TAILOR.get(), ImmutableSet.of(), ImmutableSet.of(), SoundEvents.VILLAGER_WORK_LEATHERWORKER));
 
     public String getName() {
-        return NAME + " - Villager Professions";
+        return NAME + " - Professions & POIT";
     }
 }

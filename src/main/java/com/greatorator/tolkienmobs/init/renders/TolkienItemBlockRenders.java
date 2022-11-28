@@ -70,6 +70,7 @@ public class TolkienItemBlockRenders {
             ItemBlockRenderTypes.setRenderLayer(STAIRS_DEADWOOD.get(), cutout);
             ItemBlockRenderTypes.setRenderLayer(DEADWOOD_BUTTON.get(), cutoutMipped);
             ItemBlockRenderTypes.setRenderLayer(DOOR_DEADWOOD.get(), cutout);
+            ItemBlockRenderTypes.setRenderLayer(DOOR_FANGORNOAK.get(), cutout);
             ItemBlockRenderTypes.setRenderLayer(TRAPDOOR_DEADWOOD.get(), cutoutMipped);
             ItemBlockRenderTypes.setRenderLayer(FENCE_DEADWOOD.get(), cutoutMipped);
             ItemBlockRenderTypes.setRenderLayer(FENCE_GATE_DEADWOOD.get(), cutoutMipped);
@@ -84,6 +85,7 @@ public class TolkienItemBlockRenders {
             ItemBlockRenderTypes.setRenderLayer(MILESTONE_BLOCK.get(), cutoutMipped);
             ItemBlockRenderTypes.setRenderLayer(BLOCK_AMMOLITE.get(), translucent);
             ItemBlockRenderTypes.setRenderLayer(PANE_AMMOLITE.get(), translucent);
+            ItemBlockRenderTypes.setRenderLayer(ARDA_PORTAL.get(), RenderType.translucent());
             ItemBlockRenderTypes.setRenderLayer(POTTED_MUSHROOM_DECAY_BLOOM.get(), cutout);
             ItemBlockRenderTypes.setRenderLayer(POTTED_MUSHROOM_BLOOM_DECAY.get(), cutout);
             ItemBlockRenderTypes.setRenderLayer(POTTED_FLOWER_SIMBELMYNE.get(), cutout);

@@ -128,6 +128,7 @@ public class TolkienTags {
         public static final TagKey<Block> MUSHROOM_GROW_BLOCK = tag("mushroom_grow_block");
         public static final TagKey<Block> REPLACEABLE = tag("replaceable");
         public static final TagKey<Block> ROOT_SKIP = tag("root_skip");
+        public static final TagKey<Block> PORTAL_FRAME_BLOCKS = tag("portal_frame_blocks");
         public static final TagKey<Block> MINEABLE_WITH_AXE = tag("mineable/axe");
         public static final TagKey<Block> MINEABLE_WITH_HOE = tag("mineable/hoe");
         public static final TagKey<Block> MINEABLE_WITH_PICKAXE = tag("mineable/pickaxe");

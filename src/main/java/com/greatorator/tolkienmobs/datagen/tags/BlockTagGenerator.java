@@ -87,8 +87,9 @@ public class BlockTagGenerator extends BlockTagsProvider {
             tag(Tags.Blocks.GLASS_PANES).addTag(BARS_GLASS);
         tag(DECAY_GROW_BLOCK).add(Blocks.COBBLESTONE).add(Blocks.STONE).add(Blocks.MYCELIUM).add(Blocks.PODZOL).add(Blocks.CRIMSON_NYLIUM).add(Blocks.WARPED_NYLIUM);
 
-        // Blacklists
+        // Custom
         tag(BLACKLIST_HARVEST).add(Blocks.GRASS_BLOCK, Blocks.CRIMSON_NYLIUM, Blocks.NETHERRACK, Blocks.MELON_STEM, Blocks.PUMPKIN_STEM, Blocks.WARPED_NYLIUM, Blocks.SMALL_DRIPLEAF, Blocks.MOSS_BLOCK, Blocks.ROOTED_DIRT);
+        tag(PORTAL_FRAME_BLOCKS).add(TolkienBlocks.BLOCK_AMMOLITE.get());
 
         // Mineable tools
         tag(MINEABLE_WITH_AXE).addTags(LOGS, FENCE_GATES_WOODEN, WOODEN_FENCES, MUSHROOM_GROW_BLOCK, WOODEN_TRAPDOORS, WOODEN_DOORS, WOODEN_PRESSURE_PLATES, WOODEN_STAIRS, WOODEN_SLABS, PLANKS);

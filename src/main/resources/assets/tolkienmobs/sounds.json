@@ -933,5 +933,14 @@
         "stream": false
       }
     ]
+  },
+  "hype_horn": {
+    "category": "ambient",
+    "sounds": [
+      {
+        "name": "tolkienmobs:ambient/arda_portal",
+        "stream": true
+      }
+    ]
   }
 }

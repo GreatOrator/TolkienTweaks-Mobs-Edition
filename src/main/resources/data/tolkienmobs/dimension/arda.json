@@ -1,0 +1,12 @@
+{
+  "type": "tolkienmobs:arda",
+  "generator": {
+    "type": "minecraft:noise",
+    "seed": 1842424883,
+    "settings": "minecraft:overworld",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "minecraft:plains"
+    }
+  }
+}

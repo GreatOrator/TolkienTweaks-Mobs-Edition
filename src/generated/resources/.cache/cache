@@ -200,7 +200,7 @@ a864661f76fb0aedbe5e7431e4d144a9f2b2b787 assets/tolkienmobs/blockstates/wood_dea
 b1e71309b07b0dc4b7b6e044c6d6a26d01dea548 assets/tolkienmobs/blockstates/wood_lebethron.json
 ddc6d0212bd4cd36e497b7e0ad23d4b97e590d73 assets/tolkienmobs/blockstates/wood_mallorn.json
 222644330b32cd15feaaf2a34e71372ba6969d12 assets/tolkienmobs/blockstates/wood_mirkwood.json
-138d33105122a406b91c0fb4fcfe9273626a4d87 assets/tolkienmobs/lang/en_us.json
+1454cdb886a882dde9732a5883add82e0e94b6bc assets/tolkienmobs/lang/en_us.json
 3eafe2d3f6640cd8397f07d68377062507658ead assets/tolkienmobs/models/block/barrel_culumalda.json
 47b9c5eb01093a7548125ae5c3ca0cfe4c7ad40a assets/tolkienmobs/models/block/barrel_culumalda_open.json
 2b6ed3d7fad0a5fdbcf1bcb2607dafd7e216eca6 assets/tolkienmobs/models/block/barrel_deadwood.json
@@ -987,6 +987,7 @@ ac32ddbbd6a4677f1d9679df9f995dcdee47daa6 data/forge/tags/blocks/ores/ammolite.js
 a256a27a2c033f1cde91644c17b148218cb9cc54 data/forge/tags/blocks/ores/mithril.json
 885c94d5bb94174359d31b3c3345e0e1dfb6224d data/forge/tags/blocks/ores/morguliron.json
 af124ca2eeb7837607c20049577be32096bfa959 data/forge/tags/blocks/planks.json
+81d088d4f2881e5d2e1dfd21f5bb94c23a755071 data/forge/tags/blocks/portal_frame_blocks.json
 cd467a40dd6c6169d3e4f4a1d9820265ffbc9345 data/forge/tags/blocks/pressure_plates.json
 e34f073b06e2c1750c434f3cf973020eda225247 data/forge/tags/blocks/saplings.json
 1c511b126e08660c5b5c5feca021859d8d44a2ef data/forge/tags/blocks/signs.json

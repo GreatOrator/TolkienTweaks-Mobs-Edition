@@ -69,6 +69,8 @@ public class TolkienMobs {
         k. Trinket Table (Block only so far)
         l. Random trinkets for loot drops/chests
         m. Proper molten fluid implementation
+        n. Arda Dimension added along with portal
+        o. Arda Staff for portal activation
     */
 
     public TolkienMobs() {

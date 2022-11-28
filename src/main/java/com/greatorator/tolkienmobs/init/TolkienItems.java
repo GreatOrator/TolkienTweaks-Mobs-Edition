@@ -8,6 +8,7 @@ import com.greatorator.tolkienmobs.handler.enums.TolkienTiers;
 import com.greatorator.tolkienmobs.handler.registers.FoodsRegister;
 import com.greatorator.tolkienmobs.item.armor.BaseArmorItem;
 import com.greatorator.tolkienmobs.item.armor.BaseHorseArmorItem;
+import com.greatorator.tolkienmobs.item.basic.CatalystItem;
 import com.greatorator.tolkienmobs.item.basic.HypeHornItem;
 import com.greatorator.tolkienmobs.item.basic.TrinketItem;
 import com.greatorator.tolkienmobs.item.container.CoinPouchItem;
@@ -303,8 +304,9 @@ public class TolkienItems {
     public static RegistryObject<Item> ITEM_RUNE_STONE = ITEMS.register("item_rune_stone", () -> new LoreItemHandler(new Item.Properties().stacksTo(8).tab(questGroup)).setEffectOverride().setHasLore());
 
     // Dev Tools
-    public static RegistryObject<Item> ITEM_DEV_TOOL = ITEMS.register("item_dev_tool", () -> new LoreItemHandler(new Item.Properties().stacksTo(8).tab(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_DEV_DEBUG_TOOL = ITEMS.register("item_dev_debug_tool", () -> new LoreItemHandler(new Item.Properties().stacksTo(8).tab(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_DEV_TOOL = ITEMS.register("item_dev_tool", () -> new LoreItemHandler(new Item.Properties().stacksTo(1).tab(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_DEV_DEBUG_TOOL = ITEMS.register("item_dev_debug_tool", () -> new LoreItemHandler(new Item.Properties().stacksTo(1).tab(questGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ARDA_STAFF = ITEMS.register("arda_staff", () -> new CatalystItem(new Item.Properties().stacksTo(1).tab(questGroup).rarity(Rarity.RARE)).setHasLore());
 
     // Backpack Upgrades
     public static RegistryObject<Item> ITEM_BACKPACK_UPGRADE_BASE = ITEMS.register("upgrade_item_backpack_upgrade_base", () -> new LoreItemHandler(new Item.Properties().stacksTo(5).tab(matsGroup)).setHasLore());

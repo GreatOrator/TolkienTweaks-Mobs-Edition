@@ -42,6 +42,7 @@ public class TolkienSounds {
     public static final RegistryObject<SoundEvent> underworld = addSound("ambient.underworld");
     public static final RegistryObject<SoundEvent> hype_horn = addSound("hype_horn");
     public static final RegistryObject<SoundEvent> lightningbug_ambient = addSound("lightningbug_ambient");
+    public static final RegistryObject<SoundEvent> arda_portal = addSound("arda_portal");
 
     //Sounds - Mumakil
     public static final RegistryObject<SoundEvent> soundAmbientMumakil = addSound("mob.mumakil.say");

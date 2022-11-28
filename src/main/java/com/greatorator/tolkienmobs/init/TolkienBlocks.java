@@ -290,6 +290,7 @@ public class TolkienBlocks {
     public static RegistryObject<Block> ELVEN_LANTERN = BLOCKS.register("elven_lantern", () -> new FancyLanternBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_GRAY).sound(SoundType.LANTERN).requiresCorrectToolForDrops().strength(3.5F, 3.5F).noOcclusion().lightLevel(litBlockEmission(15))));
     public static RegistryObject<Block> MORGUL_LANTERN = BLOCKS.register("morgul_lantern", () -> new FancyLanternBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.TERRACOTTA_GRAY).sound(SoundType.LANTERN).requiresCorrectToolForDrops().strength(3.5F, 3.5F).noOcclusion().lightLevel(litBlockEmission(10))));
     public static RegistryObject<Block> TRINKET_TABLE = BLOCKS.register("trinket_table", () -> new TrinketTableBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_BLUE).sound(SoundType.STONE).requiresCorrectToolForDrops().strength(3.5F, 3.5F).noOcclusion()));
+    public static RegistryObject<Block> ARDA_PORTAL = registerBlockWithoutBlockItem("arda_portal", () -> new ArdaPortalBlock(BlockBehaviour.Properties.of(Material.PORTAL).strength(-1F).noCollission().lightLevel((state) -> 10).noDrops()));
 
     // Custom - Sleeping Bags
     public static RegistryObject<Block> SLEEPING_BAG_BLUE = BLOCKS.register("sleeping_bag_blue", () -> new SleepingBagBlock(DyeColor.BLUE, BlockBehaviour.Properties.of(Material.WOOL, (state) -> {

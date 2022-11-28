@@ -36,6 +36,7 @@ public class TolkienContent {
         TolkienProfessions.PROFESSION.register(modBus);
         TolkienProfessions.POIT.register(modBus);
         LOGGER.info("Time to create the land...");
+        TolkienDimensions.register();
         TreeFeatureConfig.FOLIAGE_PLACER_REGISTER.register(modBus);
         TreeFeatureConfig.TREE_DECORATORS.register(modBus);
         TreeFeatureConfig.TRUNK_PLACERS.register(modBus);

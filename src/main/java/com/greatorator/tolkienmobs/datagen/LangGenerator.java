@@ -670,6 +670,7 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienItems.UTUMNO_ARROW.get(), "Utumno Arrows");
         add(TolkienItems.FELLBEAST_FIREBALL.get(), "Fell Beast Fireball");
         add(TolkienItems.BOULDER.get(), "Boulder");
+        add(TolkienItems.ARDA_STAFF.get(), "Arda Staff");
         add(TolkienItems.MORGUL_CRYSTAL.get(), "Morgul Crystal");
     }
 
