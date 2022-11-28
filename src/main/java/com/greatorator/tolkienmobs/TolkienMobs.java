@@ -68,6 +68,7 @@ public class TolkienMobs {
         j. Refactoring of tags to fix some block weirdness
         k. Trinket Table (Block only so far)
         l. Random trinkets for loot drops/chests
+        m. Proper molten fluid implementation
     */
 
     public TolkienMobs() {

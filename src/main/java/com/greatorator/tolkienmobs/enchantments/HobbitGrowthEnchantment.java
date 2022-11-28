@@ -10,7 +10,7 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;
@@ -60,8 +60,8 @@ public class HobbitGrowthEnchantment extends BaseEnchantment {
     }
 
     @SubscribeEvent
-    public void hobbitGrowth(BlockEvent.BlockToolModificationEvent event) {
-        Player p = event.getPlayer();
+    public void hobbitGrowth(LivingEvent.LivingUpdateEvent event) {
+        Player p = (Player) event.getEntityLiving();
         ItemStack holding = p.getMainHandItem();
         int enchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(TolkienEnchants.HOBBIT_GROWTH.get(), holding);
 
