@@ -9,6 +9,7 @@ import com.greatorator.tolkienmobs.handler.registers.FoodsRegister;
 import com.greatorator.tolkienmobs.item.armor.BaseArmorItem;
 import com.greatorator.tolkienmobs.item.armor.BaseHorseArmorItem;
 import com.greatorator.tolkienmobs.item.basic.CatalystItem;
+import com.greatorator.tolkienmobs.item.basic.HobbitRingItem;
 import com.greatorator.tolkienmobs.item.basic.HypeHornItem;
 import com.greatorator.tolkienmobs.item.basic.TrinketItem;
 import com.greatorator.tolkienmobs.item.container.CoinPouchItem;
@@ -304,9 +305,10 @@ public class TolkienItems {
     public static RegistryObject<Item> ITEM_RUNE_STONE = ITEMS.register("item_rune_stone", () -> new LoreItemHandler(new Item.Properties().stacksTo(8).tab(questGroup)).setEffectOverride().setHasLore());
 
     // Dev Tools
-    public static RegistryObject<Item> ITEM_DEV_TOOL = ITEMS.register("item_dev_tool", () -> new LoreItemHandler(new Item.Properties().stacksTo(1).tab(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ITEM_DEV_DEBUG_TOOL = ITEMS.register("item_dev_debug_tool", () -> new LoreItemHandler(new Item.Properties().stacksTo(1).tab(questGroup)).setEffectOverride().setHasLore());
-    public static RegistryObject<Item> ARDA_STAFF = ITEMS.register("arda_staff", () -> new CatalystItem(new Item.Properties().stacksTo(1).tab(questGroup).rarity(Rarity.RARE)).setHasLore());
+    public static RegistryObject<Item> ITEM_DEV_TOOL = ITEMS.register("item_dev_tool", () -> new LoreItemHandler(new Item.Properties().stacksTo(1).tab(toolsGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ITEM_DEV_DEBUG_TOOL = ITEMS.register("item_dev_debug_tool", () -> new LoreItemHandler(new Item.Properties().stacksTo(1).tab(toolsGroup)).setEffectOverride().setHasLore());
+    public static RegistryObject<Item> ARDA_STAFF = ITEMS.register("arda_staff", () -> new CatalystItem(new Item.Properties().stacksTo(1).tab(toolsGroup).rarity(Rarity.RARE)).setHasLore());
+    public static RegistryObject<Item> HOBBIT_RING = ITEMS.register("hobbit_ring", () -> new HobbitRingItem(new Item.Properties().stacksTo(1).tab(toolsGroup).rarity(Rarity.RARE)).setHasLore());
 
     // Backpack Upgrades
     public static RegistryObject<Item> ITEM_BACKPACK_UPGRADE_BASE = ITEMS.register("upgrade_item_backpack_upgrade_base", () -> new LoreItemHandler(new Item.Properties().stacksTo(5).tab(matsGroup)).setHasLore());
@@ -368,9 +370,9 @@ public class TolkienItems {
 
     // Trinkets
     public static RegistryObject<TrinketItem> TRINKET_AMULET = ITEMS.register("trinket_amulet", () -> new TrinketItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
-    public static RegistryObject<TrinketItem> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new TrinketItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
     public static RegistryObject<TrinketItem> TRINKET_CHARM = ITEMS.register("trinket_charm", () -> new TrinketItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
     public static RegistryObject<TrinketItem> TRINKET_RING = ITEMS.register("trinket_ring", () -> new TrinketItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
+    public static RegistryObject<TrinketItem> TRINKET_BELT = ITEMS.register("trinket_belt", () -> new TrinketItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
     public static RegistryObject<TrinketItem> TRINKET_GLOVE = ITEMS.register("trinket_glove", () -> new TrinketItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
     public static RegistryObject<TrinketItem> TRINKET_HAT = ITEMS.register("trinket_hat", () -> new TrinketItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
     public static RegistryObject<TrinketItem> TRINKET_CLOAK = ITEMS.register("trinket_cloak", () -> new TrinketItem(new Item.Properties().stacksTo(1).tab(toolsGroup)));
@@ -407,10 +409,7 @@ public class TolkienItems {
     public static RegistryObject<Item> GOLEM_STONE_WATER = ITEMS.register("item_golem_stone_water", () -> new Item(new Item.Properties().stacksTo(16).tab(matsGroup)));
     public static RegistryObject<Item> GOLEM_STONE_SUMMON = ITEMS.register("item_golem_stone_summon", () -> new LoreItemHandler(new Item.Properties().stacksTo(16).tab(spawnGroup)).setEffectOverride().setHasLore().setItemHasUse().setSpawnInfo());
 
-    //#################################################################
-    // Record Items
-    //#################################################################
-    // Sounds - Music Disc
+    // Music Discs
     public static RegistryObject<Item> RECORD_RIVENDELL = ITEMS.register("record_rivendell", () -> new RecordHandler(1, ridersofrivendell, (new Item.Properties()).stacksTo(1).tab(questGroup)));
     public static RegistryObject<Item> RECORD_LOTHLORIEN = ITEMS.register("record_lothlorien", () -> new RecordHandler(2, thelightoflothlorien, (new Item.Properties()).stacksTo(1).tab(questGroup)));
     public static RegistryObject<Item> RECORD_EREBOR = ITEMS.register("record_erebor", () -> new RecordHandler(3, allthatglittersinerebor, (new Item.Properties()).stacksTo(1).tab(questGroup)));
@@ -424,9 +423,6 @@ public class TolkienItems {
     public static RegistryObject<Item> RECORD_BOMBADIL = ITEMS.register("record_bombadil", () -> new RecordHandler(11, mysteryoftombombadil, (new Item.Properties()).stacksTo(1).tab(questGroup)));
     public static RegistryObject<Item> RECORD_HOBBITS = ITEMS.register("record_hobbits", () -> new RecordHandler(12, concerninghobbits, (new Item.Properties()).stacksTo(1).tab(questGroup)));
 
-    //#################################################################
-    // Food & Drink Items
-    //#################################################################
     // Drinks
     public static RegistryObject<Item> DRINK_ENT_DRAUGHT = ITEMS.register("drink_ent_draught", () -> new FoodHandler(new Item.Properties().tab(foodGroup).stacksTo(16).food(FoodsRegister.DRINK_ENT_DRAUGHT)).setEffectOverride().setItemUseAction(true));
     public static RegistryObject<Item> DRINK_PERSONAL_BLACKSMITH = ITEMS.register("drink_personal_blacksmith", () -> new FoodHandler(new Item.Properties().tab(foodGroup).stacksTo(16).food(FoodsRegister.DRINK_PERSONAL_BLACKSMITH)).setEffectOverride().setItemUseAction(true));
@@ -436,7 +432,7 @@ public class TolkienItems {
     public static RegistryObject<Item> MIRUVOR = ITEMS.register("drink_miruvor", () -> new FoodHandler(new Item.Properties().tab(foodGroup).stacksTo(16).food(FoodsRegister.MIRUVOR)).setEffectOverride().setItemUseAction(true));
     public static RegistryObject<Item> GROG = ITEMS.register("drink_grog", () -> new FoodHandler(new Item.Properties().tab(foodGroup).stacksTo(16).food(FoodsRegister.GROG)).setEffectOverride().setItemUseAction(true));
 
-    // Food
+    // Foods
     public static RegistryObject<Item> LEMBAS = ITEMS.register("food_lembas", () -> new FoodHandler(new Item.Properties().tab(foodGroup).stacksTo(64).food(FoodsRegister.LEMBAS)).setEffectOverride());
     public static RegistryObject<Item> HONEY_CAKE = ITEMS.register("food_honeycake", () -> new Item(new Item.Properties().tab(foodGroup).stacksTo(64).food(FoodsRegister.HONEY_CAKE)));
     public static RegistryObject<Item> CRAM = ITEMS.register("food_cram", () -> new Item(new Item.Properties().tab(foodGroup).stacksTo(64).food(FoodsRegister.CRAM)));

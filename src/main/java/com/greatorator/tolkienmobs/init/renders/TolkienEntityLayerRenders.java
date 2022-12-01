@@ -34,6 +34,18 @@ public class TolkienEntityLayerRenders {
         event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("lebethron")), TolkienBoatModel::createBodyModel);
         event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("deadwood")), TolkienBoatModel::createBodyModel);
         event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("fangornoak")), TolkienBoatModel::createBodyModel);
+
+        // Ambient
+
+        // Merchants
+
+        // Monster
+
+        // Boss
+
+        // Passive
+
+        // Special
     }
 
 //    @SubscribeEvent

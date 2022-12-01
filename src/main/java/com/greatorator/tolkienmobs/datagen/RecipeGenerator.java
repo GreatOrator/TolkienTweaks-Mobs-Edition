@@ -508,6 +508,26 @@ public class RecipeGenerator extends RecipeProvider {
                 .define('M', TolkienItems.MUMAKIL_LEATHER.get())
                 .unlockedBy("has_mithril", has(TolkienItems.INGOT_MITHRIL.get()))
                 .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TolkienItems.HOBBIT_RING.get())
+                .pattern("AGA")
+                .pattern("GMG")
+                .pattern("AGA")
+                .define('G', TolkienItems.GEM_AMMOLITE.get())
+                .define('A', Blocks.BONE_BLOCK)
+                .define('M', TolkienItems.TRINKET_RING.get())
+                .unlockedBy("has_ammolite", has(TolkienItems.GEM_AMMOLITE.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(TolkienItems.ARDA_STAFF.get())
+                .pattern(" MG")
+                .pattern(" AM")
+                .pattern("A  ")
+                .define('G', TolkienItems.GEM_AMMOLITE.get())
+                .define('A', Items.STICK)
+                .define('M', ItemTags.create(new ResourceLocation("forge", "leaves")))
+                .unlockedBy("has_ammolite", has(TolkienItems.GEM_AMMOLITE.get()))
+                .save(consumer);
     }
 
     private static void fireplace(Consumer<FinishedRecipe> consumer) {

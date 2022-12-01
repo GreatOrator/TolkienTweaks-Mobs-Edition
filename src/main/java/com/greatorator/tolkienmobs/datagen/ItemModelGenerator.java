@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
+import com.greatorator.tolkienmobs.init.TolkienEntities;
 import com.greatorator.tolkienmobs.init.TolkienItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -239,6 +240,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         // Dev Tools
         simpleItem(TolkienItems.ITEM_DEV_TOOL.get());
         simpleItem(TolkienItems.ITEM_DEV_DEBUG_TOOL.get());
+        simpleItem(TolkienItems.HOBBIT_RING.get());
 
         // Sleeping Bags
         for (String color : sleepingBagTypes) {
@@ -430,11 +432,11 @@ public class ItemModelGenerator extends ItemModelProvider {
 //        eggItem(TolkienEntities.EGG_TTMCREBAIN.get());
 //
 //        // Merchants
-//        eggItem(TolkienEntities.EGG_TTMHUMAN.get());
+        eggItem(TolkienEntities.EGG_TTMHUMAN.get());
 //        eggItem(TolkienEntities.EGG_TTMDWARF.get());
 //        eggItem(TolkienEntities.EGG_TTMELVES.get());
 //        eggItem(TolkienEntities.EGG_TTMHOBBIT.get());
-//        eggItem(TolkienEntities.EGG_TTMDESERTDWELLER.get());
+        eggItem(TolkienEntities.EGG_TTMDESERTDWELLER.get());
 //
 //        // Monster
 //        eggItem(TolkienEntities.EGG_TTMGOBLIN.get());

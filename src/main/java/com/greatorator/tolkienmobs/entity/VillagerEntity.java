@@ -1,124 +1,127 @@
 package com.greatorator.tolkienmobs.entity;
 
-//
-//public class VillagerEntity extends net.minecraft.entity.merchant.villager.VillagerEntity {
-//    private int texture_index;
-//    private int rndMax;
-//    private int rndMin;
-//
-//    public VillagerEntity(EntityType<? extends VillagerEntity> type, World worldIn) {
-//        super(type, worldIn);
-//        this.texture_index = TTMRand.getRandomInteger(rndMax, rndMin);
-//    }
-//
-//    @Override
-//    protected void registerGoals() {
-//        this.goalSelector.addGoal(0, new SwimGoal(this));
-//        this.goalSelector.addGoal(0, new UseItemGoal<>(this, PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.INVISIBILITY), SoundEvents.WANDERING_TRADER_DISAPPEARED, (p_213733_1_) -> {
-//            return !this.level.isDay() && !p_213733_1_.isInvisible();
-//        }));
-//        this.goalSelector.addGoal(0, new UseItemGoal<>(this, new ItemStack(Items.MILK_BUCKET), SoundEvents.WANDERING_TRADER_REAPPEARED, (p_213736_1_) -> {
-//            return this.level.isDay() && p_213736_1_.isInvisible();
-//        }));
-//        this.goalSelector.addGoal(1, new TradeWithPlayerGoal(this));
-//        this.goalSelector.addGoal(1, new PanicGoal(this, 0.5D));
-//        this.goalSelector.addGoal(1, new LookAtCustomerGoal(this));
-//        this.goalSelector.addGoal(4, new MoveTowardsRestrictionGoal(this, 1.0D));
-//        this.goalSelector.addGoal(8, new WaterAvoidingRandomWalkingGoal(this, 0.35D));
-//        this.goalSelector.addGoal(9, new LookAtWithoutMovingGoal(this, PlayerEntity.class, 3.0F, 1.0F));
-//        this.goalSelector.addGoal(10, new LookAtGoal(this, MobEntity.class, 8.0F));
-//    }
-//
-//    @Override
-//    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
-//        return sizeIn.height * 0.85F;
-//    }
-//
-//    public int getTextureIndex() {
-//        return this.texture_index;
-//    }
-//
-//    public void setRndMinMax(int rndMin, int rndMax) {
-//        this.rndMin = rndMin;
-//        this.rndMax = rndMax;
-//    }
-//
-//    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-//        return MobEntity.createMobAttributes().add(Attributes.MOVEMENT_SPEED, 0.5D).add(Attributes.FOLLOW_RANGE, 48.0D);
-//    }
-//
-//    @Override
-//    protected void rewardTradeXp(MerchantOffer offer) {
-//        if (offer.shouldRewardExp()) {
-//            int i = 3 + this.random.nextInt(4);
-//            this.level.addFreshEntity(new ExperienceOrbEntity(this.level, this.getX(), this.getY() + 0.5D, this.getZ(), i));
-//        }
-//    }
-//
-//    @Override
-//    public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-//        ItemStack itemstack = player.getItemInHand(hand);
-//        if (itemstack.getItem() != Items.VILLAGER_SPAWN_EGG && this.isAlive() && !this.isTrading() && !this.isSleeping() && !player.isSecondaryUseActive()) {
-//            if (this.isBaby()) {
-//                this.shakeHead();
-//                return ActionResultType.sidedSuccess(this.level.isClientSide);
-//            } else {
-//                boolean flag = this.getOffers().isEmpty();
-//                if (hand == Hand.MAIN_HAND) {
-//                    if (flag && !this.level.isClientSide) {
-//                        this.shakeHead();
-//                    }
-//
-//                    player.awardStat(Stats.TALKED_TO_VILLAGER);
-//                }
-//
-//                if (flag) {
-//                    return ActionResultType.sidedSuccess(this.level.isClientSide);
-//                } else {
-//                    if (!this.level.isClientSide && !this.offers.isEmpty()) {
-//                        this.displayMerchantGui(player);
-//                    }
-//
-//                    return ActionResultType.sidedSuccess(this.level.isClientSide);
-//                }
-//            }
-//        } else {
-//            return super.mobInteract(player, hand);
-//        }
-//    }
-//
-//    private void shakeHead() {
-//        this.setUnhappyCounter(40);
-//        if (!this.level.isClientSide()) {
-//            this.playSound(SoundEvents.VILLAGER_NO, this.getSoundVolume(), this.getVoicePitch());
-//        }
-//
-//    }
-//
-//    private void displayMerchantGui(PlayerEntity player) {
-//        this.recalculateSpecialPricesFor(player);
-//        this.setTradingPlayer(player);
-//        this.openTradingScreen(player, this.getDisplayName(), this.getVillagerData().getLevel());
-//    }
-//
-//    private void recalculateSpecialPricesFor(PlayerEntity playerIn) {
-//        int i = this.getPlayerReputation(playerIn);
-//        if (i != 0) {
-//            for(MerchantOffer merchantoffer : this.getOffers()) {
-//                merchantoffer.addToSpecialPriceDiff(-MathHelper.floor((float)i * merchantoffer.getPriceMultiplier()));
-//            }
-//        }
-//
-//        if (playerIn.hasEffect(Effects.HERO_OF_THE_VILLAGE)) {
-//            EffectInstance effectinstance = playerIn.getEffect(Effects.HERO_OF_THE_VILLAGE);
-//            int k = effectinstance.getAmplifier();
-//
-//            for(MerchantOffer merchantoffer1 : this.getOffers()) {
-//                double d0 = 0.3D + 0.0625D * (double)k;
-//                int j = (int)Math.floor(d0 * (double)merchantoffer1.getBaseCostA().getCount());
-//                merchantoffer1.addToSpecialPriceDiff(-Math.max(j, 1));
-//            }
-//        }
-//
-//    }
-//}
+
+import com.greatorator.tolkienmobs.entity.merchant.variant.EntityVariant;
+import com.greatorator.tolkienmobs.init.TolkienProfessions;
+import com.greatorator.tolkienmobs.utils.RandomUtility;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.VillagerData;
+import net.minecraft.world.entity.npc.VillagerType;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+public class VillagerEntity extends Villager {
+    public static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(VillagerEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<VillagerData> DATA_MERCHANT_VARIANT = SynchedEntityData.defineId(VillagerEntity.class, EntityDataSerializers.VILLAGER_DATA);
+
+    public VillagerEntity(EntityType<? extends VillagerEntity> type, Level level) {
+        super(type, level);
+    }
+
+    @Nonnull
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 15.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.50D)
+                .add(Attributes.FOLLOW_RANGE, 48.0D);
+    }
+
+    public void readAdditionalSaveData(@Nonnull CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
+    }
+
+    @Override
+    public void addAdditionalSaveData(@Nonnull CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putInt("Variant", this.getTypeVariant());
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
+        this.entityData.define(DATA_MERCHANT_VARIANT, new VillagerData(VillagerType.PLAINS, TolkienProfessions.UNEMPLOYED_PROFESSION.get(), 1));
+    }
+
+    public void setProfession() {
+        if (this.entityData.get(DATA_ID_TYPE_VARIANT) <= 0 || this.entityData.get(DATA_ID_TYPE_VARIANT) > 16) {
+            this.setVillagerData(this.getVillagerData().setProfession(TolkienProfessions.UNEMPLOYED_PROFESSION.get()));
+        }
+        if (this.entityData.get(DATA_ID_TYPE_VARIANT) == 1 || this.entityData.get(DATA_ID_TYPE_VARIANT) == 9) {
+            this.setVillagerData(this.getVillagerData().setProfession(TolkienProfessions.COIN_TRADER_PROFESSION.get()));
+        }
+        if (this.entityData.get(DATA_ID_TYPE_VARIANT) == 2 || this.entityData.get(DATA_ID_TYPE_VARIANT) == 10) {
+            this.setVillagerData(this.getVillagerData().setProfession(TolkienProfessions.GROCERY_STORE_PROFESSION.get()));
+        }
+        if (this.entityData.get(DATA_ID_TYPE_VARIANT) == 3 || this.entityData.get(DATA_ID_TYPE_VARIANT) == 11) {
+            this.setVillagerData(this.getVillagerData().setProfession(TolkienProfessions.PET_MERCHANT_PROFESSION.get()));
+        }
+        if (this.entityData.get(DATA_ID_TYPE_VARIANT) == 4 || this.entityData.get(DATA_ID_TYPE_VARIANT) == 12) {
+            this.setVillagerData(this.getVillagerData().setProfession(TolkienProfessions.JUNK_TRADER_PROFESSION.get()));
+        }
+        if (this.entityData.get(DATA_ID_TYPE_VARIANT) == 5 || this.entityData.get(DATA_ID_TYPE_VARIANT) == 13) {
+            this.setVillagerData(this.getVillagerData().setProfession(TolkienProfessions.TRINKET_SMITH_PROFESSION.get()));
+        }
+        if (this.entityData.get(DATA_ID_TYPE_VARIANT) == 6 || this.entityData.get(DATA_ID_TYPE_VARIANT) == 14) {
+            this.setVillagerData(this.getVillagerData().setProfession(TolkienProfessions.TRINKET_TAILOR_PROFESSION.get()));
+        }
+        if (this.entityData.get(DATA_ID_TYPE_VARIANT) == 7 || this.entityData.get(DATA_ID_TYPE_VARIANT) == 15) {
+            this.setVillagerData(this.getVillagerData().setProfession(TolkienProfessions.UNEMPLOYED_PROFESSION.get()));
+        }
+        if (this.entityData.get(DATA_ID_TYPE_VARIANT) == 8 || this.entityData.get(DATA_ID_TYPE_VARIANT) == 16) {
+            this.setVillagerData(this.getVillagerData().setProfession(TolkienProfessions.UNEMPLOYED_PROFESSION.get()));
+        }
+    }
+
+    /** VARIANTS */
+    @Override
+    public SpawnGroupData finalizeSpawn(@Nonnull ServerLevelAccessor accessor, @Nonnull DifficultyInstance instance, @Nonnull MobSpawnType type, @Nullable SpawnGroupData data, @Nullable CompoundTag compoundTag) {
+        EntityVariant variant = EntityVariant.byId(RandomUtility.getRandomInteger(16, 0));
+        setVariant(variant);
+        setProfession();
+        return super.finalizeSpawn(accessor, instance, type, data, compoundTag);
+    }
+
+    public EntityVariant getVariant() {
+        return EntityVariant.byId(this.getTypeVariant() & 255);
+    }
+
+    protected int getTypeVariant() {
+        return this.entityData.get(DATA_ID_TYPE_VARIANT);
+    }
+
+    protected void setVariant(EntityVariant variant) {
+        this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
+    }
+
+    @Nonnull
+    @Override
+    public VillagerData getVillagerData() {
+        return this.entityData.get(DATA_MERCHANT_VARIANT);
+    }
+
+    @Override
+    public void setVillagerData(VillagerData data) {
+        VillagerData villagerdata = this.getVillagerData();
+        if (villagerdata.getProfession() != data.getProfession()) {
+            this.offers = null;
+        }
+
+        this.entityData.set(DATA_MERCHANT_VARIANT, data);
+    }
+}

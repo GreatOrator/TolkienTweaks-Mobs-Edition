@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " MG",
+    " AM",
+    "A  "
+  ],
+  "key": {
+    "G": {
+      "item": "tolkienmobs:gem_ammolite"
+    },
+    "A": {
+      "item": "minecraft:stick"
+    },
+    "M": {
+      "tag": "forge:leaves"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:arda_staff"
+  }
+}

@@ -38,13 +38,13 @@ public class TolkienMobs {
         a. Recipe Generator not creating trinket recipes
         b. Armor texture rendering incorrectly
 	    c. EntityLootGenerator (Attempting to process loot for other mods in workspace)
-	    d. Hobbit Growth not "bonemealing"
-	    e. Tornado Effect not working
-		f. Spawner not rendering mob in list
-	    g. Trinket Names not translating properly
-	    h. FirePlace not processing recipes
-	    i. Trinket Table not processing recipes
-	    j. BackPack fluid handler capability crash
+	    d. Tornado Effect not working
+	    e. Spawner not rendering mob in list
+		f. Trinket Names not translating properly
+	    g. FirePlace not processing recipes
+	    h. Trinket Table not processing recipes
+	    i. BackPack fluid handler capability crash
+	    j.
 	    k.
     2. Categories
 	    a. Entities (Implementation)
@@ -71,6 +71,8 @@ public class TolkienMobs {
         m. Proper molten fluid implementation
         n. Arda Dimension added along with portal
         o. Arda Staff for portal activation
+        p. Hobbit Ring for speeding up crop growth
+        q. Remade Desert Dweller as a wandering trader
     */
 
     public TolkienMobs() {

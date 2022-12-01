@@ -5,6 +5,7 @@ import com.greatorator.tolkienmobs.handler.BowItemModelHandler;
 import com.greatorator.tolkienmobs.handler.ColorHandler;
 import com.greatorator.tolkienmobs.handler.HealthHandler;
 import com.greatorator.tolkienmobs.handler.registers.SpritesRegister;
+import com.greatorator.tolkienmobs.init.TolkienTrades;
 import com.greatorator.tolkienmobs.init.TolkienWoodTypes;
 import com.greatorator.tolkienmobs.init.renders.TolkienGuiRenders;
 import com.greatorator.tolkienmobs.init.renders.TolkienItemBlockRenders;
@@ -32,7 +33,7 @@ public class ClientProxy extends CommonProxy {
         super.construct();
         MinecraftForge.EVENT_BUS.addListener(ClientEvents::livingUpdate);
         MinecraftForge.EVENT_BUS.addListener(ClientEvents::renderOverlayEvent);
-//        MinecraftForge.EVENT_BUS.addListener(TTMVillagerTrades::onVillagerTradesEvent);
+        MinecraftForge.EVENT_BUS.addListener(TolkienTrades::onVillagerTradesEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ColorHandler::itemColourEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(SpritesRegister::initialize);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientEvents::onModelBakeEvent);

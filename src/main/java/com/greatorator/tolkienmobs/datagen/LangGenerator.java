@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.datagen;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
+import com.greatorator.tolkienmobs.init.TolkienEntities;
 import com.greatorator.tolkienmobs.init.TolkienFluids;
 import com.greatorator.tolkienmobs.init.TolkienItems;
 import net.minecraft.ChatFormatting;
@@ -671,6 +672,8 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienItems.FELLBEAST_FIREBALL.get(), "Fell Beast Fireball");
         add(TolkienItems.BOULDER.get(), "Boulder");
         add(TolkienItems.ARDA_STAFF.get(), "Arda Staff");
+        add(TolkienItems.HOBBIT_RING.get(), "Hobbit Ring of Growth");
+        addLore(TolkienItems.HOBBIT_RING.get(), "Gift from the elves to enhance farming");
         add(TolkienItems.MORGUL_CRYSTAL.get(), "Morgul Crystal");
     }
 
@@ -765,16 +768,16 @@ public class LangGenerator extends LanguageProvider {
 //        add(TolkienEntities.EGG_TTMCREBAIN.get(), "Crebain Spawn Egg");
 //
 //        // Merchants
-//        add(TolkienEntities.ENTITY_TTM_HUMAN.get(), "Human");
-//        add(TolkienEntities.EGG_TTMHUMAN.get(), "Human Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_HUMAN.get(), "Human");
+        add(TolkienEntities.EGG_TTMHUMAN.get(), "Human Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_DWARF.get(), "Dwarf");
 //        add(TolkienEntities.EGG_TTMDWARF.get(), "Dwarf Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_ELVES.get(), "Elf");
 //        add(TolkienEntities.EGG_TTMELVES.get(), "Elf Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_HOBBIT.get(), "Hobbit");
 //        add(TolkienEntities.EGG_TTMHOBBIT.get(), "Hobbit Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_DESERTDWELLER.get(), "Wandering Villager");
-//        add(TolkienEntities.EGG_TTMDESERTDWELLER.get(), "Wandering Villager Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_DESERTDWELLER.get(), "Desert Nomad");
+        add(TolkienEntities.EGG_TTMDESERTDWELLER.get(), "Desert Nomad Spawn Egg");
 //
 //        // Monster
 //        add(TolkienEntities.ENTITY_TTM_GOBLIN.get(), "Goblin");

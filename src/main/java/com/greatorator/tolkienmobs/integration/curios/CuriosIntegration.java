@@ -129,7 +129,7 @@ public class CuriosIntegration extends EquipmentManager {
         builder.apply(CHARM_TAG).add(
                 TolkienItems.TRINKET_CHARM.get());
         builder.apply(RING_TAG).add(
-                TolkienItems.TRINKET_RING.get());
+                TolkienItems.TRINKET_RING.get(), TolkienItems.HOBBIT_RING.get());
         builder.apply(HAND_TAG).add(
                 TolkienItems.TRINKET_GLOVE.get());
         builder.apply(HEAD_TAG).add(

@@ -31,7 +31,7 @@ public class TolkienContent {
         TolkienRecipes.RECIPE_SERIALIZER.register(modBus);
         LOGGER.info("Populating the peoples of Middle-earth...");
         TolkienEntities.ENTITY.register(modBus);
-        TolkienEntities.SPAWN_EGGS.register(modBus);
+        TolkienEntities.EGG_ITEMS.register(modBus);
         LOGGER.info("Setting the task master to work...");
         TolkienProfessions.PROFESSION.register(modBus);
         TolkienProfessions.POIT.register(modBus);

@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.world.dimension.portal;
+package com.greatorator.tolkienmobs.world.dimension;
 
 import com.greatorator.tolkienmobs.block.ArdaPortalBlock;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;

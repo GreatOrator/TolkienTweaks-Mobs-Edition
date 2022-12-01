@@ -8,6 +8,7 @@ import com.greatorator.tolkienmobs.event.entity.SleepingEvent;
 import com.greatorator.tolkienmobs.event.entity.WorldEvents;
 import com.greatorator.tolkienmobs.handler.MilestoneHandler;
 import com.greatorator.tolkienmobs.handler.MobHandler;
+import com.greatorator.tolkienmobs.init.TolkienEntities;
 import com.greatorator.tolkienmobs.init.TolkienProfessions;
 import com.greatorator.tolkienmobs.init.TolkienTags;
 import com.greatorator.tolkienmobs.integration.IntegrationHelper;
@@ -53,7 +54,7 @@ public class CommonProxy {
         MinecraftForge.EVENT_BUS.addListener(WorldEvents::addDimensionalSpacing);
 //        MinecraftForge.EVENT_BUS.addListener(WorldEvents::biomeModification);
 
-//        modBus.addListener(TolkienEntities::registerAttributes);
+        modBus.addListener(TolkienEntities::registerAttributes);
         TolkienPacketHandler.init();
     }
 
@@ -63,12 +64,7 @@ public class CommonProxy {
         event.enqueueWork(() -> {
 //            TolkienStructures.setupStructures();
 //            TTMStructureConfig.registerConfiguredStructures();
-            TolkienProfessions.registerBanker();
-            TolkienProfessions.registerGrocer();
-            TolkienProfessions.registerJunk();
-            TolkienProfessions.registerPet();
-            TolkienProfessions.registerSmith();
-            TolkienProfessions.registerTailor();
+            TolkienProfessions.registerPOIS();
 
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(MUSHROOM_DECAY_BLOOM.getId(), POTTED_MUSHROOM_DECAY_BLOOM);
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(MUSHROOM_BLOOM_DECAY.getId(), POTTED_MUSHROOM_BLOOM_DECAY);
@@ -86,7 +82,7 @@ public class CommonProxy {
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(SAPLING_DEADWOOD.getId(), POTTED_SAPLING_DEADWOOD);
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(SAPLING_FANGORNOAK.getId(), POTTED_SAPLING_FANGORNOAK);
         });
-//        TolkienEntities.registerSpawnPlacement();
+        TolkienEntities.registerSpawnPlacement();
 //        TolkienBiomes.addBiomesToOverworld();
 //        TolkienBiomes.addTypes();
     }

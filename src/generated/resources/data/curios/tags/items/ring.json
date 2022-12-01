@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "tolkienmobs:trinket_ring"
+    "tolkienmobs:trinket_ring",
+    "tolkienmobs:hobbit_ring"
   ]
 }

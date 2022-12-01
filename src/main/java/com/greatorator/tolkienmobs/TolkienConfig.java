@@ -51,8 +51,10 @@ public class TolkienConfig {
 
     //Server properties
     public static String serverID;
+    public static String traderCostItem;
     public static int coinCost;
     public static int dimensionalWarp;
+    public static double traderCostMultiplier;
     public static boolean disableFakePlayer;
     public static boolean replant;
     public static boolean disableBalrogMark;
@@ -79,6 +81,18 @@ public class TolkienConfig {
                 .setDefaultStrings(Lists.newArrayList(potionTypeArray))
                 .syncTagToClient()
                 .onSync((tag, type) -> potionList = tag.getStrings());
+
+        serverTag.getValue("traderCostItem")
+                .setComment("Set item for Desert Nomad for ask for purchases (Default tolkienmobs:item_coin_bronze")
+                .setDefaultString("tolkienmobs:item_coin_bronze")
+                .syncTagToClient()
+                .onSync((tag, type) -> traderCostItem = tag.getString());
+
+        serverTag.getValue("traderCostMultiplier")
+                .setComment("Set item for Desert Nomad for ask for purchases (Default tolkienmobs:item_coin_bronze")
+                .setDefaultDouble(1.0D)
+                .syncTagToClient()
+                .onSync((tag, type) -> traderCostMultiplier = tag.getDouble());
 
         serverTag.getValue("dimensionalWarpCoinCost")
                 .setComment("Cost multiplier for dimensional teleport (Default 3)")
@@ -132,11 +146,6 @@ public class TolkienConfig {
                 .setDefaultBoolean(true)
                 .syncTagToClient()
                 .onSync((tag, type) -> disableHobbitPlow = tag.getBoolean());
-        serverTag.getValue("disableHobbitGrowth")
-                .setComment("Enable Hobbit Green Thumb Enchantment (Default true)")
-                .setDefaultBoolean(true)
-                .syncTagToClient()
-                .onSync((tag, type) -> disableHobbitGrowth = tag.getBoolean());
     }
 
     //Client properties

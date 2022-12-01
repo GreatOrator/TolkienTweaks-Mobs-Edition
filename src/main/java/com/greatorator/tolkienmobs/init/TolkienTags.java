@@ -172,6 +172,7 @@ public class TolkienTags {
         private static void init(){}
 
         public static final TagKey<EntityType<?>> ARROWS = tag("arrows");
+        public static final TagKey<EntityType<?>> IMPACT_PROJECTILES = tag("impact_projectiles");
 
 
         private static TagKey<EntityType<?>> tag(String name) {

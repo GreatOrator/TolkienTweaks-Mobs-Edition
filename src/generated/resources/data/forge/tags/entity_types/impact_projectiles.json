@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "tolkienmobs:ammo_arrow_galadhrim",
+    "tolkienmobs:ammo_utumno_arrow",
+    "tolkienmobs:ammo_boulder",
+    "tolkienmobs:ammo_fellbeast_fireball"
+  ]
+}

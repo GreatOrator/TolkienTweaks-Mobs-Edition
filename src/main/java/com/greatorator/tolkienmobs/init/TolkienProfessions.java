@@ -26,7 +26,6 @@ public class TolkienProfessions {
     private static final Supplier<Set<PoiType>> WORKSTATIONS = Suppliers.memoize(() -> {
         return Registry.VILLAGER_PROFESSION.stream().map(VillagerProfession::getJobPoiType).collect(Collectors.toSet());
     });
-
     public static final Predicate<PoiType> ANY_VILLAGER_WORKSTATION = (type) -> {
         return WORKSTATIONS.get().contains(type);
     };
@@ -38,57 +37,22 @@ public class TolkienProfessions {
     // POIT
     //#################################################################
     //Points of Interest Types
-    public static final RegistryObject<PoiType> SLACKER = POIT.register("unemployed", ()-> new PoiType("unemployed", ImmutableSet.of(), 1,ANY_VILLAGER_WORKSTATION, 1));
+    public static final RegistryObject<PoiType> SLACKER = POIT.register("unemployed", ()-> new PoiType("unemployed", ImmutableSet.of(), 1, ANY_VILLAGER_WORKSTATION, 1));
     public static final RegistryObject<PoiType> COIN_TRADER = POIT.register("coin_trader", ()-> new PoiType("coin_trader", PoiType.getBlockStates(TolkienBlocks.PIGGYBANK.get()), 1, 1));
     public static final RegistryObject<PoiType> GROCERY_STORE = POIT.register("grocery_store", ()-> new PoiType("grocery_store", PoiType.getBlockStates(TolkienBlocks.TTMFIREPLACE.get()), 1, 1));
     public static final RegistryObject<PoiType> PET_MERCHANT = POIT.register("pet_merchant", ()-> new PoiType("pet_merchant", PoiType.getBlockStates(Blocks.HAY_BLOCK), 1, 1));
-    public static final RegistryObject<PoiType> JUNK_TRADER = POIT.register("junk_trader", ()-> new PoiType("junk_trader", PoiType.getBlockStates(TolkienBlocks.BARREL_MITHRIL.get()), 1, 1));
-    public static final RegistryObject<PoiType> TRINKET_SMITH = POIT.register("trinket_smith", ()-> new PoiType("trinket_smith", PoiType.getBlockStates(TolkienBlocks.BLOCK_HALLOWED.get()), 1, 1));
-    public static final RegistryObject<PoiType> TRINKET_TAILOR = POIT.register("trinket_tailor", ()-> new PoiType("trinket_tailor", PoiType.getBlockStates(TolkienBlocks.STONE_PATH.get()), 1, 1));
+    public static final RegistryObject<PoiType> JUNK_TRADER = POIT.register("junk_trader", ()-> new PoiType("junk_trader", PoiType.getBlockStates(TolkienBlocks.BARREL_MALLORN.get()), 1, 1));
+    public static final RegistryObject<PoiType> TRINKET_SMITH = POIT.register("trinket_smith", ()-> new PoiType("trinket_smith", PoiType.getBlockStates(TolkienBlocks.TRINKET_TABLE.get()), 1, 1));
+    public static final RegistryObject<PoiType> TRINKET_TAILOR = POIT.register("trinket_tailor", ()-> new PoiType("trinket_tailor", PoiType.getBlockStates(TolkienBlocks.LOCKABLE_TREASURE_CHEST_BLOCK.get()), 1, 1));
     public static final RegistryObject<PoiType> ARDA_PORTAL = POIT.register("arda_portal", () -> new PoiType("arda_portal", PoiType.getBlockStates(TolkienBlocks.ARDA_PORTAL.get()), 0, 1));
 
-    public static void registerBanker() {
+    public static void registerPOIS() {
         try {
             ObfuscationReflectionHelper.findMethod(PoiType.class, "registerBlockStates", PoiType.class).invoke(null, COIN_TRADER.get());
-        } catch (InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void registerGrocer() {
-        try {
             ObfuscationReflectionHelper.findMethod(PoiType.class, "registerBlockStates", PoiType.class).invoke(null, GROCERY_STORE.get());
-        } catch (InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void registerPet() {
-        try {
             ObfuscationReflectionHelper.findMethod(PoiType.class, "registerBlockStates", PoiType.class).invoke(null, PET_MERCHANT.get());
-        } catch (InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void registerJunk() {
-        try {
             ObfuscationReflectionHelper.findMethod(PoiType.class, "registerBlockStates", PoiType.class).invoke(null, JUNK_TRADER.get());
-        } catch (InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void registerSmith() {
-        try {
             ObfuscationReflectionHelper.findMethod(PoiType.class, "registerBlockStates", PoiType.class).invoke(null, TRINKET_SMITH.get());
-        } catch (InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void registerTailor() {
-        try {
             ObfuscationReflectionHelper.findMethod(PoiType.class, "registerBlockStates", PoiType.class).invoke(null, TRINKET_TAILOR.get());
         } catch (InvocationTargetException | IllegalAccessException e) {
             e.printStackTrace();

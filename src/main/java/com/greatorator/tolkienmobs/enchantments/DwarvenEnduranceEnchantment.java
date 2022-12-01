@@ -13,6 +13,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -72,8 +73,9 @@ public class DwarvenEnduranceEnchantment extends BaseEnchantment {
                 if (player.getFoodData().needsFood()) {
                     Level world = entity.getLevel();
                     world.playSound((Player)null, entity, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.3F, 0.5F);
-                    player.getFoodData().setFoodLevel(player.getFoodData().getFoodLevel() + food);
-                    player.getFoodData().setSaturation(player.getFoodData().getSaturationLevel() + saturation);
+                    player.getFoodData().eat(food, saturation);
+                    world.gameEvent(player, GameEvent.EAT, player.eyeBlockPosition());
+                    player.gameEvent(GameEvent.EAT);
                 }
             }
         }

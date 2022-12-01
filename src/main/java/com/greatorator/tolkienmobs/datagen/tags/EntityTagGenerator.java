@@ -10,6 +10,7 @@ import javax.annotation.Nullable;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 import static com.greatorator.tolkienmobs.init.TolkienTags.entities.ARROWS;
+import static com.greatorator.tolkienmobs.init.TolkienTags.entities.IMPACT_PROJECTILES;
 
 public class EntityTagGenerator extends EntityTypeTagsProvider {
     public EntityTagGenerator(DataGenerator generatorIn, String modId, @Nullable ExistingFileHelper existingFileHelper) {
@@ -19,6 +20,7 @@ public class EntityTagGenerator extends EntityTypeTagsProvider {
     @Override
     protected void addTags() {
         tag(ARROWS).add(TolkienEntities.AMMO_ARROW_GALADHRIM.get(), TolkienEntities.AMMO_ARROW_UTUMNO.get());
+        tag(IMPACT_PROJECTILES).add(TolkienEntities.AMMO_ARROW_GALADHRIM.get(), TolkienEntities.AMMO_ARROW_UTUMNO.get(), TolkienEntities.AMMO_BOULDER.get(), TolkienEntities.AMMO_FELLBEAST_FIREBALL.get());
 
     }
 

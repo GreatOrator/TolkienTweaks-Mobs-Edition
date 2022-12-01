@@ -21,7 +21,6 @@ public class TolkienEnchants {
     public static final RegistryObject<Enchantment> DWARF_ENDURANCE = ENCHANTS.register("dwarven_endurance", () -> new DwarvenEnduranceEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.HEAD));
     public static final RegistryObject<Enchantment> HOBBIT_PLOW = ENCHANTS.register("hobbit_plow", () -> new HobbitPlowEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND));
     public static final RegistryObject<Enchantment> HOBBIT_HARVEST = ENCHANTS.register("hobbit_harvest", () -> new HobbitHarvestEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND));
-    public static final RegistryObject<Enchantment> HOBBIT_GROWTH = ENCHANTS.register("hobbit_growth", () -> new HobbitGrowthEnchantment(Enchantment.Rarity.RARE, EquipmentSlot.MAINHAND));
 
     public String getName() {
         return NAME + " - Enchantments";

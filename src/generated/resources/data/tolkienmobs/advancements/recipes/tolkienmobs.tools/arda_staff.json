@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:arda_staff"
+    ]
+  },
+  "criteria": {
+    "has_ammolite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:gem_ammolite"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:arda_staff"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ammolite",
+      "has_the_recipe"
+    ]
+  ]
+}

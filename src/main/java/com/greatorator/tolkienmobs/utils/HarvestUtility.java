@@ -33,14 +33,14 @@ public class HarvestUtility {
         return () -> BlockPos.betweenClosedStream(corner1, corner2).iterator();
     }
 
-    public static void growNearbyRandomly(boolean harvest, Level level, BlockPos pos, Player player, int enchantLevel) {
+    public static void growNearbyRandomly(boolean harvest, Level level, BlockPos pos, Player player) {
         if (!(level instanceof ServerLevel serverLevel)) {
             return;
         }
 
         boolean grewWater = false;
         int chance = harvest ? 16 : 32;
-        for (BlockPos currentPos : getPositionsFromBox(pos.offset(-enchantLevel, -3, -enchantLevel), pos.offset(enchantLevel, 3, enchantLevel))) {
+        for (BlockPos currentPos : getPositionsFromBox(pos.offset(-4, -3, -4), pos.offset(4, 3, 4))) {
             currentPos = currentPos.immutable();
             BlockState state = serverLevel.getBlockState(currentPos);
             Block crop = state.getBlock();
