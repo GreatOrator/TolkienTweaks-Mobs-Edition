@@ -672,6 +672,7 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienItems.FELLBEAST_FIREBALL.get(), "Fell Beast Fireball");
         add(TolkienItems.BOULDER.get(), "Boulder");
         add(TolkienItems.ARDA_STAFF.get(), "Arda Staff");
+        addLore(TolkienItems.ARDA_STAFF.get(), "Right-click on portal frame to activatet");
         add(TolkienItems.HOBBIT_RING.get(), "Hobbit Ring of Growth");
         addLore(TolkienItems.HOBBIT_RING.get(), "Gift from the elves to enhance farming");
         add(TolkienItems.MORGUL_CRYSTAL.get(), "Morgul Crystal");
@@ -770,14 +771,14 @@ public class LangGenerator extends LanguageProvider {
 //        // Merchants
         add(TolkienEntities.ENTITY_TTM_HUMAN.get(), "Human");
         add(TolkienEntities.EGG_TTMHUMAN.get(), "Human Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_DWARF.get(), "Dwarf");
-//        add(TolkienEntities.EGG_TTMDWARF.get(), "Dwarf Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_ELVES.get(), "Elf");
-//        add(TolkienEntities.EGG_TTMELVES.get(), "Elf Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_HOBBIT.get(), "Hobbit");
-//        add(TolkienEntities.EGG_TTMHOBBIT.get(), "Hobbit Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_DWARF.get(), "Dwarf");
+        add(TolkienEntities.EGG_TTMDWARF.get(), "Dwarf Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_DESERTDWELLER.get(), "Desert Nomad");
         add(TolkienEntities.EGG_TTMDESERTDWELLER.get(), "Desert Nomad Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_ELVES.get(), "Elf");
+        add(TolkienEntities.EGG_TTMELVES.get(), "Elf Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_HOBBIT.get(), "Hobbit");
+        add(TolkienEntities.EGG_TTMHOBBIT.get(), "Hobbit Spawn Egg");
 //
 //        // Monster
 //        add(TolkienEntities.ENTITY_TTM_GOBLIN.get(), "Goblin");

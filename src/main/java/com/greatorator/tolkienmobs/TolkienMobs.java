@@ -36,14 +36,14 @@ public class TolkienMobs {
     /*TODO List
 	1. Classes & Wish list
         a. Recipe Generator not creating trinket recipes
-        b. Armor texture rendering incorrectly
-	    c. EntityLootGenerator (Attempting to process loot for other mods in workspace)
-	    d. Tornado Effect not working
+        b. EntityLootGenerator (Attempting to process loot for other mods in workspace)
+	    c. Tornado Effect not working
+	    d. BackPack fluid handler capability crash
 	    e. Spawner not rendering mob in list
 		f. Trinket Names not translating properly
 	    g. FirePlace not processing recipes
 	    h. Trinket Table not processing recipes
-	    i. BackPack fluid handler capability crash
+	    i.
 	    j.
 	    k.
     2. Categories
@@ -73,6 +73,7 @@ public class TolkienMobs {
         o. Arda Staff for portal activation
         p. Hobbit Ring for speeding up crop growth
         q. Remade Desert Dweller as a wandering trader
+        r. Animations added to Arda Staff
     */
 
     public TolkienMobs() {

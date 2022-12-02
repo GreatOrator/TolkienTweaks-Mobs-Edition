@@ -70,6 +70,9 @@ repositories {
     maven { // Patchouli
         url 'https://maven.blamejared.com/'
     }
+    maven { // GeckoLib
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+    }
 }
 
 minecraft {
@@ -100,6 +103,7 @@ dependencies {
     implementation fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${mc_version}-${curios_version}")
     implementation fg.deobf("com.brandon3055.brandonscore:BrandonsCore:${mc_version}-${bcore_version}:universal")
+    implementation fg.deobf('software.bernie.geckolib:geckolib-1.18-forge:3.0.13')
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }

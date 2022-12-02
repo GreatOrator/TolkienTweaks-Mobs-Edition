@@ -3,8 +3,7 @@ package com.greatorator.tolkienmobs.init;
 import com.greatorator.tolkienmobs.entity.VillagerEntity;
 import com.greatorator.tolkienmobs.entity.WanderingEntity;
 import com.greatorator.tolkienmobs.entity.item.*;
-import com.greatorator.tolkienmobs.entity.merchant.DesertDwellerEntity;
-import com.greatorator.tolkienmobs.entity.merchant.HumanEntity;
+import com.greatorator.tolkienmobs.entity.merchant.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -40,28 +39,38 @@ public class TolkienEntities {
 //    private static final EntityType<CrebainEntity> entityTTMCrebain = buildEntity("entityttmcrebain", CrebainEntity::new, MobCategory.CREATURE, 0.5F, 0.5F);
 //    public static final RegistryObject<EntityType<CrebainEntity>> ENTITY_TTM_CREBAIN = ENTITY.register("entityttmcrebain", () -> entityTTMCrebain);
 //
-//    // Merchants
-//    private static final EntityType<HumanEntity> entityTTMHuman = buildEntity("entityttmhuman", HumanEntity::new, MobCategory.MISC, 0.7F, 1.85F);
-//    public static final RegistryObject<EntityType<HumanEntity>> ENTITY_TTM_HUMAN = ENTITY.register("entityttmhuman", () -> entityTTMHuman);
+    // Merchants
     public static final RegistryObject<EntityType<HumanEntity>> ENTITY_TTM_HUMAN = ENTITY.register(
             "entityttmhuman",
             () -> EntityType.Builder.of(HumanEntity::new, MobCategory.MISC)
                     .sized(0.7F, 1.85F)
                     .build(new ResourceLocation(MODID, "entityttmhuman").toString())
     );
-//    private static final EntityType<DwarfEntity> entityTTMDwarf = buildEntity("entityttmdwarf", DwarfEntity::new, MobCategory.MISC, 0.7F, 1.6F);
-//    public static final RegistryObject<EntityType<DwarfEntity>> ENTITY_TTM_DWARF = ENTITY.register("entityttmdwarf", () -> entityTTMDwarf);
-//    private static final EntityType<ElvesEntity> entityTTMElves = buildEntity("entityttmelves", ElvesEntity::new, MobCategory.MISC, 0.9F, 2.0F);
-//    public static final RegistryObject<EntityType<ElvesEntity>> ENTITY_TTM_ELVES = ENTITY.register("entityttmelves", () -> entityTTMElves);
-//    private static final EntityType<HobbitEntity> entityTTMHobbit = buildEntity("entityttmhobbit", HobbitEntity::new, MobCategory.MISC, 0.6F, 1.4F);
-//    public static final RegistryObject<EntityType<HobbitEntity>> ENTITY_TTM_HOBBIT = ENTITY.register("entityttmhobbit", () -> entityTTMHobbit);
+    public static final RegistryObject<EntityType<DwarfEntity>> ENTITY_TTM_DWARF = ENTITY.register(
+            "entityttmdwarf",
+            () -> EntityType.Builder.of(DwarfEntity::new, MobCategory.MISC)
+                    .sized(0.7F, 1.6F)
+                    .build(new ResourceLocation(MODID, "entityttmdwarf").toString())
+    );
     public static final RegistryObject<EntityType<DesertDwellerEntity>> ENTITY_TTM_DESERTDWELLER = ENTITY.register(
             "entityttmdesertdweller",
             () -> EntityType.Builder.of(DesertDwellerEntity::new, MobCategory.MISC)
                     .sized(0.7F, 1.85F)
                     .build(new ResourceLocation(MODID, "entityttmdesertdweller").toString())
     );
-//
+    public static final RegistryObject<EntityType<ElvesEntity>> ENTITY_TTM_ELVES = ENTITY.register(
+            "entityttmelves",
+            () -> EntityType.Builder.of(ElvesEntity::new, MobCategory.MISC)
+                    .sized(0.9F, 2.0F)
+                    .build(new ResourceLocation(MODID, "entityttmelves").toString())
+    );
+    public static final RegistryObject<EntityType<HobbitEntity>> ENTITY_TTM_HOBBIT = ENTITY.register(
+            "entityttmhobbit",
+            () -> EntityType.Builder.of(HobbitEntity::new, MobCategory.MISC)
+                    .sized(0.6F, 1.4F)
+                    .build(new ResourceLocation(MODID, "entityttmhobbit").toString())
+    );
+
 //    // Monster
 //    private static final EntityType<GoblinEntity> entityTTMGoblin = buildEntity("entityttmgoblin", GoblinEntity::new, MobCategory.MONSTER, 0.9F, 1.0F);
 //    public static final RegistryObject<EntityType<GoblinEntity>> ENTITY_TTM_GOBLIN = ENTITY.register("entityttmgoblin", () -> entityTTMGoblin);
@@ -172,11 +181,11 @@ public class TolkienEntities {
 //
     /* Merchants */
     public static RegistryObject<ForgeSpawnEggItem> EGG_TTMHUMAN = EGG_ITEMS.register("entityttmhuman", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_HUMAN, 15186506, 2301661, new Item.Properties().tab(spawnGroup)));
-//    public static final RegistryObject<Item> EGG_TTMDWARF = createSpawnEgg("entityttmdwarf", entityTTMDwarf, 15186506, 5600397);
-//    public static final RegistryObject<Item> EGG_TTMELVES = createSpawnEgg("entityttmelves", entityTTMElves, 15186506, 14289362);
-//    public static final RegistryObject<Item> EGG_TTMHOBBIT = createSpawnEgg("entityttmhobbit", entityTTMHobbit, 15186506, 14088652);
     public static RegistryObject<ForgeSpawnEggItem> EGG_TTMDESERTDWELLER = EGG_ITEMS.register("entityttmdesertdweller", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_DESERTDWELLER, 15186506, 9467561, new Item.Properties().tab(spawnGroup)));
-//
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMDWARF = EGG_ITEMS.register("entityttmdwarf", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_DWARF, 15186506, 5600397, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMELVES = EGG_ITEMS.register("entityttmelves", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_ELVES, 15186506, 14289362, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMHOBBIT = EGG_ITEMS.register("entityttmhobbit", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_HOBBIT, 15186506, 14088652, new Item.Properties().tab(spawnGroup)));
+
 //    // Monster
 //    public static final RegistryObject<Item> EGG_TTMGOBLIN = createSpawnEgg("entityttmgoblin", entityTTMGoblin, 585619, 2301661);
 //    public static final RegistryObject<Item> EGG_TTMBARROW = createSpawnEgg("entityttmbarrow", entityTTMBarrow, 585619, 5600397);
@@ -232,13 +241,13 @@ public class TolkienEntities {
 //        event.put(ENTITY_TTM_THRUSH.get(), ThrushEntity.registerAttributes().build());
 //        event.put(ENTITY_TTM_CREBAIN.get(), CrebainEntity.registerAttributes().build());
 //
-//        // Merchants
+        // Merchants
         event.put(ENTITY_TTM_HUMAN.get(), HumanEntity.createAttributes().build());
-//        event.put(ENTITY_TTM_DWARF.get(), DwarfEntity.registerAttributes().build());
-//        event.put(ENTITY_TTM_ELVES.get(), ElvesEntity.registerAttributes().build());
-//        event.put(ENTITY_TTM_HOBBIT.get(), HobbitEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_DWARF.get(), DwarfEntity.createAttributes().build());
         event.put(ENTITY_TTM_DESERTDWELLER.get(), DesertDwellerEntity.createAttributes().build());
-//
+        event.put(ENTITY_TTM_ELVES.get(), ElvesEntity.createAttributes().build());
+        event.put(ENTITY_TTM_HOBBIT.get(), HobbitEntity.createAttributes().build());
+
 //        // Monster
 //        event.put(ENTITY_TTM_GOBLIN.get(), GoblinEntity.registerAttributes().build());
 //        event.put(ENTITY_TTM_BARROW.get(), BarrowWightEntity.registerAttributes().build());
@@ -295,13 +304,13 @@ public class TolkienEntities {
 //        SpawnPlacements.register(ENTITY_TTM_RAT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AmbientEntity::checkTTMAmbientSpawn);
 //        SpawnPlacements.register(ENTITY_TTM_CREBAIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CrebainEntity::checkCrebainSpawn);
 //
-//        // Merchants
+        // Merchants
         SpawnPlacements.register(ENTITY_TTM_HUMAN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
-//        SpawnPlacements.register(ENTITY_TTM_ELVES.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
-//        SpawnPlacements.register(ENTITY_TTM_DWARF.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
-//        SpawnPlacements.register(ENTITY_TTM_HOBBIT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
         SpawnPlacements.register(ENTITY_TTM_DESERTDWELLER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WanderingEntity::checkMobSpawnRules);
-//
+        SpawnPlacements.register(ENTITY_TTM_DWARF.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
+        SpawnPlacements.register(ENTITY_TTM_ELVES.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
+        SpawnPlacements.register(ENTITY_TTM_HOBBIT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
+
 //        //Monster
 //        SpawnPlacements.register(ENTITY_TTM_GOBLIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
 //        SpawnPlacements.register(ENTITY_TTM_BARROW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);

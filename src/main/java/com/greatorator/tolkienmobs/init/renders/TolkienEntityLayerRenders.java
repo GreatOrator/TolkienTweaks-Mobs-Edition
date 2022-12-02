@@ -3,8 +3,10 @@ package com.greatorator.tolkienmobs.init.renders;
 import com.greatorator.tolkienmobs.entity.item.TolkienBoatEntity;
 import com.greatorator.tolkienmobs.entity.item.model.TolkienBoatModel;
 import com.greatorator.tolkienmobs.handler.ModelLayerHandler;
-import com.greatorator.tolkienmobs.item.armor.model.BaseArmorModel;
-import com.greatorator.tolkienmobs.item.armor.render.BaseArmorRender;
+import com.greatorator.tolkienmobs.item.armor.MithrilArmorItem;
+import com.greatorator.tolkienmobs.item.armor.MorgulironArmorItem;
+import com.greatorator.tolkienmobs.item.client.render.MithrilArmorRender;
+import com.greatorator.tolkienmobs.item.client.render.MorgulironArmorRender;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -12,6 +14,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,8 +29,6 @@ public class TolkienEntityLayerRenders {
     @SubscribeEvent
     public static void register(EntityRenderersEvent.RegisterLayerDefinitions event) {
         // Armor
-        event.registerLayerDefinition(BaseArmorRender.BaseArmorMain.BODY_LAYER_LOCATION, BaseArmorModel.armorBody::createBodyLayer);
-        event.registerLayerDefinition(BaseArmorRender.BaseArmorLegs.LEG_LAYER_LOCATION, BaseArmorModel.armorLegs::createLegLayer);
         event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("mallorn")), TolkienBoatModel::createBodyModel);
         event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("mirkwood")), TolkienBoatModel::createBodyModel);
         event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("culumalda")), TolkienBoatModel::createBodyModel);
@@ -52,6 +53,11 @@ public class TolkienEntityLayerRenders {
 //    public static void registerLayers(EntityRenderersEvent.AddLayers event) {
 //        EntityRendererProvider.Context context = new EntityRendererProvider.Context(Minecraft.getInstance().getEntityRenderDispatcher(),Minecraft.getInstance().getItemRenderer(), Minecraft.getInstance().getResourceManager(), Minecraft.getInstance().getEntityModels(), Minecraft.getInstance().font);
 //    }
+    @SubscribeEvent
+    public static void registerArmorRenderers(final EntityRenderersEvent.AddLayers event) {
+        GeoArmorRenderer.registerArmorRenderer(MithrilArmorItem.class, new MithrilArmorRender());
+        GeoArmorRenderer.registerArmorRenderer(MorgulironArmorItem.class, new MorgulironArmorRender());
+    }
 
     public String getName() {
         return NAME + " - Layer Renders";

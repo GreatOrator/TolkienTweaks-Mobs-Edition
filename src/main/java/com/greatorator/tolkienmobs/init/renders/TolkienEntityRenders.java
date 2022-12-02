@@ -4,8 +4,7 @@ import com.greatorator.tolkienmobs.entity.item.render.GaladhrimArrowRender;
 import com.greatorator.tolkienmobs.entity.item.render.MorgulCrystalRenderer;
 import com.greatorator.tolkienmobs.entity.item.render.TolkienBoatRender;
 import com.greatorator.tolkienmobs.entity.item.render.UtumnoArrowRender;
-import com.greatorator.tolkienmobs.entity.merchant.render.DesertDwellerRender;
-import com.greatorator.tolkienmobs.entity.merchant.render.HumanRender;
+import com.greatorator.tolkienmobs.entity.merchant.render.*;
 import com.greatorator.tolkienmobs.init.TolkienEntities;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -31,10 +30,10 @@ public class TolkienEntityRenders {
 //
 //        // Merchants
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_HUMAN.get(), HumanRender::new);
-//        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_DWARF.get(), m -> new DwarfRender(m, new DwarfModel<>(1.0F), 0.5F));
-//        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_ELVES.get(), ElvesRender::new);
-//        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_HOBBIT.get(), RenderTTMHobbit::new);
+        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_DWARF.get(), DwarfRender::new);
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_DESERTDWELLER.get(), DesertDwellerRender::new);
+        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_ELVES.get(), ElvesRender::new);
+        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_HOBBIT.get(), HobbitRender::new);
 //
 //        // Monster
 //        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_GOBLIN.get(), GoblinRender::new);

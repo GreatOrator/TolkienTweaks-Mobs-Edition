@@ -433,10 +433,10 @@ public class ItemModelGenerator extends ItemModelProvider {
 //
 //        // Merchants
         eggItem(TolkienEntities.EGG_TTMHUMAN.get());
-//        eggItem(TolkienEntities.EGG_TTMDWARF.get());
-//        eggItem(TolkienEntities.EGG_TTMELVES.get());
-//        eggItem(TolkienEntities.EGG_TTMHOBBIT.get());
+        eggItem(TolkienEntities.EGG_TTMDWARF.get());
         eggItem(TolkienEntities.EGG_TTMDESERTDWELLER.get());
+        eggItem(TolkienEntities.EGG_TTMELVES.get());
+        eggItem(TolkienEntities.EGG_TTMHOBBIT.get());
 //
 //        // Monster
 //        eggItem(TolkienEntities.EGG_TTMGOBLIN.get());

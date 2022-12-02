@@ -1,101 +1,62 @@
 package com.greatorator.tolkienmobs.entity.merchant;
 
-//
-//public class HobbitEntity extends VillagerEntity {
-//
-//    private static final DataParameter<Integer> HOBBIT_TYPE = EntityDataManager.defineId(HobbitEntity.class, DataSerializers.INT);
-//    private static final DataParameter<VillagerData> HOBBIT_DATA = EntityDataManager.defineId(HobbitEntity.class, DataSerializers.VILLAGER_DATA);
-//    public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
-//        option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit1.png"));
-//        option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit2.png"));
-//        option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit3.png"));
-//        option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit4.png"));
-//        option.put(5, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit5.png"));
-//        option.put(6, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit6.png"));
-//        option.put(7, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit7.png"));
-//        option.put(8, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit8.png"));
-//        option.put(9, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit9.png"));
-//        option.put(10, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit10.png"));
-//        option.put(11, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit11.png"));
-//        option.put(12, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit12.png"));
-//        option.put(13, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit13.png"));
-//        option.put(14, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit14.png"));
-//        option.put(15, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit15.png"));
-//        option.put(16, new ResourceLocation(TolkienMobs.MODID, "textures/entity/hobbit/hobbit16.png"));
-//    });
-//
-//    public HobbitEntity(EntityType<? extends VillagerEntity> type, World worldIn) {
-//        super(type, worldIn);
-//        this.setRndMinMax(1,16);
-//    }
-//
-//    /** Region for determining random skin */
-//    public ResourceLocation getHobbitTypeName() {
-//        return TEXTURE_BY_ID.getOrDefault(this.getHobbitType(), TEXTURE_BY_ID.get(1));
-//    }
-//
-//    public int getHobbitType() {
-//        return this.entityData.get(HOBBIT_TYPE);
-//    }
-//
-//    public void setHobbitType(int type) {
-//        if (type < 0 || type >= 17) {
-//            type = this.random.nextInt(16);
-//        }
-//
-//        this.entityData.set(HOBBIT_TYPE, type);
-//    }
-//
-//    @Nullable
-//    @Override
-//    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-//        int job = TTMRand.getRandomInteger(1, 16);
-//        this.setHobbitType(job);
-//
-//        if (job == 1 || job == 9) {
-//            this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.COIN_TRADER_PROFESSION.get()));
-//        }
-//        if (job == 2 || job == 10) {
-//            this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.GROCERY_STORE_PROFESSION.get()));
-//        }
-//        if (job == 3 || job == 11) {
-//            this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.JUNK_TRADER_PROFESSION.get()));
-//        }
-//        if (job == 4 || job == 12) {
-//            this.setVillagerData(this.getVillagerData().setProfession(ProfessionGenerator.PET_MERCHANT_PROFESSION.get()));
-//        }
-//        if (job == 5 || job == 13) {
-//            this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.FARMER));
-//        }
-//        if (job == 6 || job == 14) {
-//            this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.FISHERMAN));
-//        }
-//        if (job == 7 || job == 15) {
-//            this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.SHEPHERD));
-//        }
-//        if (job == 8 || job == 16) {
-//            this.setVillagerData(this.getVillagerData().setProfession(VillagerProfession.NONE));
-//        }
-//
-//        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-//    }
-//
-//    @Override
-//    protected void defineSynchedData() {
-//        super.defineSynchedData();
-//        this.entityData.define(HOBBIT_TYPE, 16);
-//        this.entityData.define(HOBBIT_DATA, new VillagerData(VillagerType.PLAINS, ProfessionGenerator.UNEMPLOYED_PROFESSION.get(), 1));
-//    }
-//
-//    @Override
-//    public void addAdditionalSaveData(CompoundNBT compound) {
-//        super.addAdditionalSaveData(compound);
-//        compound.putInt("HobbitType", this.getHobbitType());
-//    }
-//
-//    @Override
-//    public void readAdditionalSaveData(CompoundNBT compound) {
-//        super.readAdditionalSaveData(compound);
-//        this.setHobbitType(compound.getInt("HobbitType"));
-//    }
-//}
+import com.greatorator.tolkienmobs.entity.VillagerEntity;
+import com.greatorator.tolkienmobs.entity.merchant.variant.EntityVariant;
+import com.greatorator.tolkienmobs.utils.RandomUtility;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
+
+import javax.annotation.Nullable;
+
+public class HobbitEntity extends VillagerEntity implements IAnimatable {
+    private final AnimationFactory factory = new AnimationFactory(this);
+    public HobbitEntity(EntityType<? extends VillagerEntity> type, Level level) {
+        super(type, level);
+    }
+
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.hobbit.walk", true));
+            return PlayState.CONTINUE;
+        }
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.hobbit.idle", true));
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void registerControllers(AnimationData data) {
+        data.addAnimationController(new AnimationController(this, "controller",
+                0, this::predicate));
+    }
+
+    @Override
+    public AnimationFactory getFactory() {
+        return this.factory;
+    }
+
+    /** VARIANTS */
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, DifficultyInstance instance, MobSpawnType type, @Nullable SpawnGroupData data, @Nullable CompoundTag compoundTag) {
+        EntityVariant variant = EntityVariant.byId(RandomUtility.getRandomInteger(10, 0));
+        setVariant(variant);
+        setProfession();
+        return super.finalizeSpawn(accessor, instance, type, data, compoundTag);
+    }
+
+    @Override
+    public EntityVariant getVariant() {
+        return EntityVariant.byId(this.getTypeVariant() & 255);
+    }
+}

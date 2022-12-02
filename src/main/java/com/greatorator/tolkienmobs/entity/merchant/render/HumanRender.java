@@ -7,17 +7,16 @@ import com.greatorator.tolkienmobs.entity.merchant.model.HumanModel;
 import com.greatorator.tolkienmobs.entity.merchant.variant.EntityVariant;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.Util;
-import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
 import java.util.Map;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class HumanRender extends MobRenderer<HumanEntity, HumanModel<HumanEntity>> {
+public class HumanRender extends GeoEntityRenderer<HumanEntity> {
     public static final Map<EntityVariant, ResourceLocation> LOCATION_BY_VARIANT =
             Util.make(Maps.newEnumMap(EntityVariant.class), (enumMap) -> {
                 enumMap.put(EntityVariant.DEFAULT,
@@ -57,8 +56,8 @@ public class HumanRender extends MobRenderer<HumanEntity, HumanModel<HumanEntity
             });
 
     public HumanRender(EntityRendererProvider.Context context) {
-        super(context, new HumanModel<>(context.bakeLayer(ModelLayers.HUSK)), 0.25F);
-        model.setAllVisible(true);
+        super(context, new HumanModel());
+        this.shadowRadius = 0.3f;
     }
 
     public void render(HumanEntity entity, float p_115977_, float p_115978_, PoseStack stack, MultiBufferSource bufferSource, int p_115981_) {
@@ -68,4 +67,5 @@ public class HumanRender extends MobRenderer<HumanEntity, HumanModel<HumanEntity
     @Override
     public ResourceLocation getTextureLocation(HumanEntity entity) {
         return LOCATION_BY_VARIANT.get(entity.getVariant());
-    }}
+    }
+}
