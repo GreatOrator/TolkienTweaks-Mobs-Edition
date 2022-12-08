@@ -4,6 +4,7 @@ import com.brandon3055.brandonscore.api.render.GuiHelper;
 import com.greatorator.tolkienmobs.block.SleepingBagBlock;
 import com.greatorator.tolkienmobs.block.models.ChameleonBakedModel;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
+import com.greatorator.tolkienmobs.init.TolkienKeys;
 import com.greatorator.tolkienmobs.init.TolkienPotions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -21,6 +22,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
@@ -132,6 +134,7 @@ public class ClientEvents {
             }
         }
     }
+
     public static void livingUpdate(LivingEvent.LivingUpdateEvent event) {
         LivingEntity entity = event.getEntityLiving();
         Player player = Minecraft.getInstance().player;
@@ -177,7 +180,6 @@ public class ClientEvents {
         //endregion
     }
 
-
     public static void renderOverlayEvent(RenderGameOverlayEvent.Post event) {
         if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
             Player player = Minecraft.getInstance().player;
@@ -220,6 +222,14 @@ public class ClientEvents {
                     matrixStack.translate(0.0f, 0.375F, 0.0f);
                 }
             });
+        }
+    }
+
+    @SubscribeEvent
+    public static void onKeyPress(InputEvent.KeyInputEvent event) {
+        if (TolkienKeys.KEY_OPEN_BACKPACK.isDown()) {
+            Minecraft mc = Minecraft.getInstance();
+            System.out.println("EXAMPLE KEY PRESSED");
         }
     }
 }

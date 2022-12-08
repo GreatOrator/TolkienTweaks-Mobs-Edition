@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.entity;
 
 
-import com.greatorator.tolkienmobs.entity.merchant.variant.EntityVariant;
+import com.greatorator.tolkienmobs.entity.merchant.variant.MerchantVariant;
 import com.greatorator.tolkienmobs.init.TolkienProfessions;
-import com.greatorator.tolkienmobs.utils.RandomUtility;
+import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -39,7 +39,7 @@ public class VillagerEntity extends Villager {
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 15.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.50D)
+                .add(Attributes.MOVEMENT_SPEED, 0.30D)
                 .add(Attributes.FOLLOW_RANGE, 48.0D);
     }
 
@@ -66,7 +66,7 @@ public class VillagerEntity extends Villager {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
+        this.entityData.define(DATA_ID_TYPE_VARIANT, 1);
         this.entityData.define(DATA_MERCHANT_VARIANT, new VillagerData(VillagerType.PLAINS, TolkienProfessions.UNEMPLOYED_PROFESSION.get(), 1));
     }
 
@@ -103,21 +103,21 @@ public class VillagerEntity extends Villager {
     /** VARIANTS */
     @Override
     public SpawnGroupData finalizeSpawn(@Nonnull ServerLevelAccessor accessor, @Nonnull DifficultyInstance instance, @Nonnull MobSpawnType type, @Nullable SpawnGroupData data, @Nullable CompoundTag compoundTag) {
-        EntityVariant variant = EntityVariant.byId(RandomUtility.getRandomInteger(16, 0));
+        MerchantVariant variant = Util.getRandom(MerchantVariant.values(), this.random);
         setVariant(variant);
         setProfession();
         return super.finalizeSpawn(accessor, instance, type, data, compoundTag);
     }
 
-    public EntityVariant getVariant() {
-        return EntityVariant.byId(this.getTypeVariant() & 255);
+    public MerchantVariant getVariant() {
+        return MerchantVariant.byId(this.getTypeVariant() & 255);
     }
 
     protected int getTypeVariant() {
         return this.entityData.get(DATA_ID_TYPE_VARIANT);
     }
 
-    protected void setVariant(EntityVariant variant) {
+    protected void setVariant(MerchantVariant variant) {
         this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
     }
 

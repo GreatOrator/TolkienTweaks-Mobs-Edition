@@ -10,7 +10,7 @@ import com.brandon3055.brandonscore.client.gui.modulargui.ModularGuiContainer;
 import com.brandon3055.brandonscore.client.gui.modulargui.templates.TBasicMachine;
 import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.greatorator.tolkienmobs.entity.tile.TrinketTableTile;
-import com.greatorator.tolkienmobs.handler.registers.SpritesRegister;
+import com.greatorator.tolkienmobs.handler.registers.SpriteRegister;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.resources.model.Material;
@@ -40,25 +40,25 @@ public class TrinketTableScreen extends ModularGuiContainer<ContainerBCTile<Trin
     public void addElements(GuiElementManager manager) {
         TBasicMachine template = toolkit.loadTemplate(new TBasicMachine(this, tile));
 
-        GuiElement<?> trinketSlot = toolkit.createSlots(template.background, 1, 1, 4, (x, y) -> container.getSlotLayout().getSlotData(TILE_INV, 0), SpritesRegister.get("trinkettable/ring"));
+        GuiElement<?> trinketSlot = toolkit.createSlots(template.background, 1, 1, 4, (x, y) -> container.getSlotLayout().getSlotData(TILE_INV, 0), SpriteRegister.get("trinkettable/ring"));
         toolkit.placeInside(trinketSlot, template.background, TOP_LEFT, 39, 16);
 
-        GuiElement<?> potionSlot = toolkit.createSlots(template.background, 1, 1, 4, (x, y) -> container.getSlotLayout().getSlotData(TILE_INV, 1), SpritesRegister.get("trinkettable/potion"));
+        GuiElement<?> potionSlot = toolkit.createSlots(template.background, 1, 1, 4, (x, y) -> container.getSlotLayout().getSlotData(TILE_INV, 1), SpriteRegister.get("trinkettable/potion"));
         toolkit.placeInside(potionSlot, template.background, TOP_LEFT, 61, 16);
 
-        GuiElement<?> gemSlot = toolkit.createSlots(template.background, 1, 1, 0, (x, y) -> container.getSlotLayout().getSlotData(TILE_INV, 2), SpritesRegister.get("trinkettable/gem"));
+        GuiElement<?> gemSlot = toolkit.createSlots(template.background, 1, 1, 0, (x, y) -> container.getSlotLayout().getSlotData(TILE_INV, 2), SpriteRegister.get("trinkettable/gem"));
         toolkit.placeInside(gemSlot, template.background, TOP_LEFT, 50, 56);
 
         GuiElement<?> outSlot = toolkit.createSlots(template.background, 1, 1, 0, (x, y) -> container.getSlotLayout().getSlotData(TILE_INV, 3), null);
         toolkit.placeInside(outSlot, template.background, TOP_LEFT, 117, 36);
 
-        GuiProgressIcon gemIcon = template.background.addChild(new GuiProgressIcon(SpritesRegister.get("trinkettable/trinket_empty"), SpritesRegister.get("trinkettable/trinket_full"), UP));//.setMargins(0, 1).setProgressSupplier(() -> (TimeKeeper.getClientTick() % 100) / 100D).setPos(20, 0).setSize(18, 18));
+        GuiProgressIcon gemIcon = template.background.addChild(new GuiProgressIcon(SpriteRegister.get("trinkettable/trinket_empty"), SpriteRegister.get("trinkettable/trinket_full"), UP));//.setMargins(0, 1).setProgressSupplier(() -> (TimeKeeper.getClientTick() % 100) / 100D).setPos(20, 0).setSize(18, 18));
         gemIcon.setSize(18, 18);
         gemIcon.setMargins(0, 1);
         gemIcon.setProgressSupplier(() -> tile.fuelRemaining.get() / (double)Math.max(1, tile.fuelValue.get()));
         toolkit.placeInside(gemIcon, template.background, TOP_LEFT, 50, 36);
 
-        GuiProgressIcon tinkerIcon = template.background.addChild(new GuiProgressIcon(SpritesRegister.get("trinkettable/craft_empty"), SpritesRegister.get("trinkettable/craft_full"), RIGHT));//.setMargins(0, 1).setProgressSupplier(() -> (TimeKeeper.getClientTick() % 100) / 100D).setPos(20, 0).setSize(18, 18));
+        GuiProgressIcon tinkerIcon = template.background.addChild(new GuiProgressIcon(SpriteRegister.get("trinkettable/craft_empty"), SpriteRegister.get("trinkettable/craft_full"), RIGHT));//.setMargins(0, 1).setProgressSupplier(() -> (TimeKeeper.getClientTick() % 100) / 100D).setPos(20, 0).setSize(18, 18));
         tinkerIcon.setSize(18, 18);
         tinkerIcon.setProgressSupplier(() -> tile.recipeProgress.get() / (double)Math.max(1, tile.recipeTime.get()));
         toolkit.placeInside(tinkerIcon, template.background, TOP_LEFT, 88, 36);

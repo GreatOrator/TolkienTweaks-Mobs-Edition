@@ -408,11 +408,6 @@ public class ItemModelGenerator extends ItemModelProvider {
         simpleItem(TolkienItems.GALADHRIM_ARROW.get());
         simpleItem(TolkienItems.UTUMNO_ARROW.get());
 
-        // region Fluids
-//        simpleItem(TolkienItems.MITHRIL_FLUID_BUCKET.get());
-//        simpleItem(TolkienItems.MORGULIRON_FLUID_BUCKET.get());
-
-
         //region Trinkets
         trinketItem(TolkienItems.TRINKET_AMULET.get(), modLoc("item/trinket_amulet"), modLoc("item/trinket_amulet"));
         trinketItem(TolkienItems.TRINKET_BELT.get(), modLoc("item/trinket_belt"), modLoc("item/trinket_belt"));
@@ -427,58 +422,58 @@ public class ItemModelGenerator extends ItemModelProvider {
 //        eggItem(TolkienEntities.EGG_TTMRAT.get());
 //        eggItem(TolkienEntities.EGG_TTMSQUIRREL.get());
 //        eggItem(TolkienEntities.EGG_TTMFROG.get());
-//        eggItem(TolkienEntities.EGG_TTMSWARM.get());
+        eggItem(TolkienEntities.EGG_TTMSWARM.get());
 //        eggItem(TolkienEntities.EGG_TTMTHRUSH.get());
 //        eggItem(TolkienEntities.EGG_TTMCREBAIN.get());
-//
-//        // Merchants
+
+      // Merchants
         eggItem(TolkienEntities.EGG_TTMHUMAN.get());
         eggItem(TolkienEntities.EGG_TTMDWARF.get());
         eggItem(TolkienEntities.EGG_TTMDESERTDWELLER.get());
         eggItem(TolkienEntities.EGG_TTMELVES.get());
         eggItem(TolkienEntities.EGG_TTMHOBBIT.get());
-//
-//        // Monster
+
+        // Monster
+        eggItem(TolkienEntities.EGG_TTMOATHBREAKER.get());
+        eggItem(TolkienEntities.EGG_TTMBARROW.get());
+        eggItem(TolkienEntities.EGG_TTMFELLSPIRIT.get());
+        eggItem(TolkienEntities.EGG_TTMBRIGAND.get());
+        eggItem(TolkienEntities.EGG_TTMHARADRIM.get());
+        eggItem(TolkienEntities.EGG_TTMROMIEWALKER.get());
 //        eggItem(TolkienEntities.EGG_TTMGOBLIN.get());
-//        eggItem(TolkienEntities.EGG_TTMBARROW.get());
-//        eggItem(TolkienEntities.EGG_TTMBRIGAND.get());
-//        eggItem(TolkienEntities.EGG_TTMDEEPCLAW.get());
+        eggItem(TolkienEntities.EGG_TTMDEEPCLAW.get());
 //        eggItem(TolkienEntities.EGG_TTMTREEENT.get());
 //        eggItem(TolkienEntities.EGG_TTMDUERGAR.get());
-//        eggItem(TolkienEntities.EGG_TTMFELLSPIRIT.get());
 //        eggItem(TolkienEntities.EGG_TTMSWAMPHAG.get());
 //        eggItem(TolkienEntities.EGG_TTMMIRKWOODSPIDER.get());
-//        eggItem(TolkienEntities.EGG_TTMHARADRIM.get());
 //        eggItem(TolkienEntities.EGG_TTMTROLL.get());
 //        eggItem(TolkienEntities.EGG_TTMWARG.get());
 //        eggItem(TolkienEntities.EGG_TTMMORDORORC.get());
 //        eggItem(TolkienEntities.EGG_TTMHURON.get());
-//        eggItem(TolkienEntities.EGG_TTMOATHBREAKER.get());
-//        eggItem(TolkienEntities.EGG_TTMROMIEWALKER.get());
 //        eggItem(TolkienEntities.EGG_TTMURUKHAI.get());
 //        eggItem(TolkienEntities.EGG_TTMELEMENTALGOLEM.get());
 //        eggItem(TolkienEntities.EGG_TTMMINOTAUR.get());
 //        eggItem(TolkienEntities.EGG_TTMMIMICCHEST.get());
-//
-//        // Boss
+
+        // Boss
+        eggItem(TolkienEntities.EGG_TTMWATCHER.get());
+        eggItem(TolkienEntities.EGG_TTMBALROG.get());
 //        eggItem(TolkienEntities.EGG_TTMGOBLINKING.get());
 //        eggItem(TolkienEntities.EGG_TTMMITHRILGOLEM.get());
 //        eggItem(TolkienEntities.EGG_TTMMORGULIRONGOLEM.get());
 //        eggItem(TolkienEntities.EGG_TTMWITCHKING.get());
 //        eggItem(TolkienEntities.EGG_TTMSHELOB.get());
-//        eggItem(TolkienEntities.EGG_TTMBALROG.get());
-//        eggItem(TolkienEntities.EGG_TTMWATCHER.get());
 //        eggItem(TolkienEntities.EGG_TTMGWAHIR.get());
 //        eggItem(TolkienEntities.EGG_TTMFELLBEAST.get());
-//
-//        // Passive
-//        eggItem(TolkienEntities.EGG_TTMAUROCH.get());
-//        eggItem(TolkienEntities.EGG_TTMMUMAKIL.get());
-//        eggItem(TolkienEntities.EGG_TTMGOAT.get());
-//
-//        // Special
+
+        // Passive
+        eggItem(TolkienEntities.EGG_TTMAUROCH.get());
+        eggItem(TolkienEntities.EGG_TTMMUMAKIL.get());
+        eggItem(TolkienEntities.EGG_TTMGOAT.get());
+
+        // Special
 //        eggItem(TolkienEntities.EGG_TTMSHADOWFAX.get());
-//        eggItem(TolkienEntities.EGG_TTMGOLLUM.get());
+        eggItem(TolkienEntities.EGG_TTMGOLLUM.get());
 //        eggItem(TolkienEntities.EGG_TTMNAZGUL.get());
 //        eggItem(TolkienEntities.EGG_TTMNAZGULSTEED.get());
 //        eggItem(TolkienEntities.EGG_TTMGREATEAGLE.get());

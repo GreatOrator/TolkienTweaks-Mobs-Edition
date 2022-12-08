@@ -1,75 +1,76 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-//
-//public class DeepClawEntity extends MonsterEntity {
-//    private static final DataParameter<Integer> DEEPCLAW_TYPE = EntityDataManager.defineId(DeepClawEntity.class, DataSerializers.INT);
-//    public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
-//        option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/tmdeepclaw/tmdeepclaw1.png"));
-//        option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/tmdeepclaw/tmdeepclaw2.png"));
-//        option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/tmdeepclaw/tmdeepclaw3.png"));
-//        option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/tmdeepclaw/tmdeepclaw4.png"));
-//    });
-//
-//    public DeepClawEntity(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
-//        super(type, worldIn);
-//    }
-//
-//    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-//        return net.minecraft.entity.monster.MonsterEntity.createMonsterAttributes()
-//                .add(Attributes.MAX_HEALTH, 22.0D)
-//                .add(Attributes.MOVEMENT_SPEED, 0.23D)
-//                .add(Attributes.ATTACK_DAMAGE, 8.0D)
-//                .add(Attributes.ARMOR, 10.0D);
-//    }
-//
-//    @Override
-//    protected float getStandingEyeHeight(Pose p_213348_1_, EntitySize p_213348_2_) {
-//        return 0.5F;
-//    }
-//
-//    /**
-//     * Region for determining random skin
-//     */
-//    public ResourceLocation getDeepclawTypeName() {
-//        return TEXTURE_BY_ID.getOrDefault(this.getDeepclawType(), TEXTURE_BY_ID.get(1));
-//    }
-//
-//    public int getDeepclawType() {
-//        return this.entityData.get(DEEPCLAW_TYPE);
-//    }
-//
-//    public void setDeepclawType(int type) {
-//        if (type < 0 || type >= 5) {
-//            type = this.random.nextInt(4);
-//        }
-//
-//        this.entityData.set(DEEPCLAW_TYPE, type);
-//    }
-//
-//    @Nullable
-//    @Override
-//    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-//        int job = TTMRand.getRandomInteger(5, 1);
-//        this.setDeepclawType(job);
-//
-//        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-//    }
-//
-//    @Override
-//    protected void defineSynchedData() {
-//        super.defineSynchedData();
-//        this.entityData.define(DEEPCLAW_TYPE, 3);
-//    }
-//
-//    @Override
-//    public void addAdditionalSaveData(CompoundNBT compound) {
-//        super.addAdditionalSaveData(compound);
-//        compound.putInt("DeepclawType", this.getDeepclawType());
-//    }
-//
-//    @Override
-//    public void readAdditionalSaveData(CompoundNBT compound) {
-//        super.readAdditionalSaveData(compound);
-//        this.setDeepclawType(compound.getInt("DeepclawType"));
-//    }
-//}
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import software.bernie.geckolib3.core.AnimationState;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+
+import javax.annotation.Nonnull;
+
+public class DeepClawEntity extends MonsterEntity {
+    public DeepClawEntity(EntityType<? extends MonsterEntity> type, Level level) {
+        super(type, level);
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 22.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.23D)
+                .add(Attributes.ATTACK_DAMAGE, 8.0D)
+                .add(Attributes.ARMOR, 10.0D);
+    }
+
+    @Override
+    public ItemStack getHeldItem() {
+        return super.getHeldItem();
+    }
+
+    @Override
+    public void setHeldItem(ItemStack heldItem) {
+    }
+
+    @Override
+    protected float getStandingEyeHeight(@Nonnull Pose pose, @Nonnull EntityDimensions dimensions) {
+        return 0.5F;
+    }
+
+    /** Animation region */
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            return PlayState.CONTINUE;
+        }else if (!event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+            return PlayState.CONTINUE;
+        }
+        return PlayState.CONTINUE;
+    }
+
+    private PlayState attackPredicate(AnimationEvent event) {
+        if (this.isAggressive() && event.getController().getAnimationState().equals(AnimationState.Stopped)){
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
+        }
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void registerControllers(AnimationData data) {
+        data.addAnimationController(new AnimationController(this, "controller",
+                0, this::predicate));
+        data.addAnimationController(new AnimationController(this, "attackController",
+                0, this::attackPredicate));
+    }
+}

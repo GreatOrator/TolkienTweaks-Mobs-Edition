@@ -1,7 +1,6 @@
 package com.greatorator.tolkienmobs.item.basic;
 
 import com.greatorator.tolkienmobs.block.ArdaPortalBlock;
-import com.greatorator.tolkienmobs.handler.LoreItemHandler;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
 import com.greatorator.tolkienmobs.init.TolkienDimensions;
 import com.greatorator.tolkienmobs.item.client.render.CatalystRender;
@@ -24,7 +23,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.function.Consumer;
 
-public class CatalystItem extends LoreItemHandler implements IAnimatable {
+public class CatalystItem extends BaseItem implements IAnimatable {
     public AnimationFactory factory = new AnimationFactory(this);
 
     public CatalystItem(Properties props) {

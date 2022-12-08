@@ -1,0 +1,503 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 8,
+				"visible_bounds_height": 5.5,
+				"visible_bounds_offset": [0, 2.25, 0]
+			},
+			"bones": [
+				{
+					"name": "body",
+					"pivot": [0, 33.05555, 1.40344],
+					"rotation": [12.5, 0, 0],
+					"cubes": [
+						{"origin": [-8.5, 31.14196, -1.57628], "size": [17, 13, 8], "uv": [78, 43]},
+						{"origin": [-8, 23.06591, -0.02155], "size": [16, 10, 7], "pivot": [0, 34.21115, 2.70509], "rotation": [-29.19, 0, 0], "uv": [82, 26]}
+					]
+				},
+				{
+					"name": "head",
+					"pivot": [0, 46, -1],
+					"rotation": [10, 0, 0],
+					"cubes": [
+						{"origin": [-2.5, 43.21975, -3.72574], "size": [5, 6, 5], "uv": [106, 15]}
+					]
+				},
+				{
+					"name": "BalrogSkull",
+					"parent": "head",
+					"pivot": [0, 52.5, -2.8],
+					"rotation": [-10, 0, 0],
+					"cubes": [
+						{"origin": [-4.5, 46.7, -7.3], "size": [9, 9, 9], "uv": [45, 30]}
+					]
+				},
+				{
+					"name": "BalrogHornR1",
+					"parent": "BalrogSkull",
+					"pivot": [3.5, 55.3, -2.8],
+					"rotation": [-10, -10, 30],
+					"cubes": [
+						{"origin": [4.14013, 52.67167, -4.21566], "size": [5, 3, 3], "uv": [114, 0]}
+					]
+				},
+				{
+					"name": "BalrogHornR2",
+					"parent": "BalrogHornR1",
+					"pivot": [8, 55, -2.3],
+					"rotation": [0, 10, -20],
+					"cubes": [
+						{"origin": [8.19769, 53.22078, -3.6795], "size": [5, 2, 2], "uv": [114, 1]}
+					]
+				},
+				{
+					"name": "BalrogHornR3",
+					"parent": "BalrogHornR2",
+					"pivot": [12, 55.2, -2.3],
+					"rotation": [0, 20, -50],
+					"cubes": [
+						{"origin": [11.15735, 53.7263, -4.07846], "size": [5, 2, 2], "uv": [114, 1]}
+					]
+				},
+				{
+					"name": "BalrogHornR4",
+					"parent": "BalrogHornR3",
+					"pivot": [15.7, 55.4, -2.3],
+					"rotation": [0, 20, -50],
+					"cubes": [
+						{"origin": [14.55114, 54.91962, -4.50807], "size": [5, 2, 2], "uv": [114, 1]}
+					]
+				},
+				{
+					"name": "BalrogHornR5",
+					"parent": "BalrogHornR4",
+					"pivot": [20.1, 54.9, -1.9],
+					"rotation": [0, 10, 0],
+					"cubes": [
+						{"origin": [19.07419, 55.41962, -4.29833], "size": [5, 1, 1], "uv": [114, 2]}
+					]
+				},
+				{
+					"name": "BalrogHornL1",
+					"parent": "BalrogSkull",
+					"pivot": [-3.5, 55.3, -2.8],
+					"rotation": [-10, 10, -30],
+					"cubes": [
+						{"origin": [-9.14013, 52.67167, -4.21566], "size": [5, 3, 3], "uv": [114, 0]}
+					]
+				},
+				{
+					"name": "BalrogHornL2",
+					"parent": "BalrogHornL1",
+					"pivot": [-8, 55, -2.3],
+					"rotation": [0, -10, 20],
+					"cubes": [
+						{"origin": [-13.19769, 53.22078, -3.6795], "size": [5, 2, 2], "uv": [114, 1]}
+					]
+				},
+				{
+					"name": "BalrogHornL3",
+					"parent": "BalrogHornL2",
+					"pivot": [-12, 55.2, -2.3],
+					"rotation": [0, -20, 50],
+					"cubes": [
+						{"origin": [-16.15735, 53.7263, -4.07846], "size": [5, 2, 2], "uv": [114, 1]}
+					]
+				},
+				{
+					"name": "BalrogHornL4",
+					"parent": "BalrogHornL3",
+					"pivot": [-16, 55.4, -2.3],
+					"rotation": [0, -20, 50],
+					"cubes": [
+						{"origin": [-19.85114, 54.91962, -4.50807], "size": [5, 2, 2], "uv": [114, 1]}
+					]
+				},
+				{
+					"name": "BalrogHornL5",
+					"parent": "BalrogHornL4",
+					"pivot": [-20.4, 54.9, -1.9],
+					"rotation": [0, -10, 0],
+					"cubes": [
+						{"origin": [-24.37419, 55.41962, -4.29833], "size": [5, 1, 1], "uv": [115, 2]}
+					]
+				},
+				{
+					"name": "BalrogJawTop",
+					"parent": "BalrogSkull",
+					"pivot": [0, 48.72372, -3.98813],
+					"rotation": [12.5, 0, 0],
+					"cubes": [
+						{"origin": [-2.5, 48.67526, -11.76345], "size": [5, 3, 8], "uv": [26, 64]}
+					]
+				},
+				{
+					"name": "BalrogTooth3",
+					"parent": "BalrogJawTop",
+					"pivot": [-2.2, 51.16917, -9.42096],
+					"rotation": [-5, 0, 0],
+					"cubes": [
+						{"origin": [-2.6, 49.30226, -11.85156], "size": [1, 2, 1], "uv": [0, 28]}
+					]
+				},
+				{
+					"name": "BalrogTooth4",
+					"parent": "BalrogJawTop",
+					"pivot": [2.2, 51.26917, -9.42096],
+					"rotation": [-5, 0, 0],
+					"cubes": [
+						{"origin": [1.6, 49.30226, -11.85156], "size": [1, 2, 1], "uv": [0, 28]}
+					]
+				},
+				{
+					"name": "BalrogTooth42",
+					"parent": "BalrogJawTop",
+					"pivot": [0.7, 50.28765, -11.50235],
+					"rotation": [-15, 0, 0],
+					"cubes": [
+						{"origin": [0.2, 49.48765, -11.80235], "size": [1, 1, 1], "pivot": [0.7, 50.28765, -11.50235], "rotation": [10, 0, 0], "uv": [0, 28]}
+					]
+				},
+				{
+					"name": "BalrogTooth32",
+					"parent": "BalrogJawTop",
+					"pivot": [-0.8, 50.36917, -9.32096],
+					"rotation": [-15, 0, 0],
+					"cubes": [
+						{"origin": [-1.3, 48.92584, -11.70692], "size": [1, 1, 1], "pivot": [-0.8, 49.72584, -11.40692], "rotation": [10, 0, 0], "uv": [0, 28]}
+					]
+				},
+				{
+					"name": "BalrogJawBottom",
+					"parent": "BalrogSkull",
+					"pivot": [0, 48.56971, -3.93371],
+					"rotation": [12.5, 0, 0],
+					"cubes": [
+						{"origin": [-2.5, 46.66754, -11.7187], "size": [5, 2, 8], "uv": [0, 64]}
+					]
+				},
+				{
+					"name": "BalrogTooth1",
+					"parent": "BalrogJawBottom",
+					"pivot": [-2.1, 46.8156, -9.40199],
+					"rotation": [5, 0, 0],
+					"cubes": [
+						{"origin": [-2.6, 46.94408, -11.83614], "size": [1, 2, 1], "uv": [0, 28]}
+					]
+				},
+				{
+					"name": "BalrogTooth2",
+					"parent": "BalrogJawBottom",
+					"pivot": [2.1, 46.8156, -9.40199],
+					"rotation": [5, 0, 0],
+					"cubes": [
+						{"origin": [1.6, 46.94408, -11.83614], "size": [1, 2, 1], "uv": [0, 28]}
+					]
+				},
+				{
+					"name": "BalrogTooth22",
+					"parent": "BalrogJawBottom",
+					"pivot": [0.7, 46.6156, -9.40199],
+					"rotation": [5, 0, 0],
+					"cubes": [
+						{"origin": [0.2, 47.94408, -11.63614], "size": [1, 1, 1], "uv": [0, 28]}
+					]
+				},
+				{
+					"name": "BalrogTooth12",
+					"parent": "BalrogJawBottom",
+					"pivot": [-0.7, 46.6156, -9.40199],
+					"rotation": [5, 0, 0],
+					"cubes": [
+						{"origin": [-1.2, 47.94408, -11.63614], "size": [1, 1, 1], "uv": [0, 28]}
+					]
+				},
+				{
+					"name": "rightWing",
+					"pivot": [3.5, 37.1, 3],
+					"rotation": [0, -45, -45],
+					"cubes": [
+						{"origin": [3.35, 35.88787, 3.15], "size": [17, 2, 2], "uv": [38, 26], "mirror": true},
+						{"origin": [20.29295, 34.88512, 3.15], "size": [17, 2, 2], "pivot": [21.7, 37.40711, 2.5], "rotation": [0, 0, 40], "uv": [38, 26], "mirror": true},
+						{"origin": [34.22109, 24.79797, 3.15], "size": [17, 2, 2], "pivot": [34, 28.20711, 3.4], "rotation": [0, 0, 60], "uv": [38, 26], "mirror": true},
+						{"origin": [41.71815, 9.12661, 3.05], "size": [21, 2, 2], "pivot": [42.1, 12.00711, 2.5], "rotation": [0, 0, 100], "uv": [38, 26], "mirror": true},
+						{"origin": [9.85, 36.38787, 3.65], "size": [17, 1, 1], "uv": [38, 26], "mirror": true},
+						{"origin": [25.97109, 13.68457, 3.65], "size": [17, 1, 1], "pivot": [38, 12.20711, 3.5], "rotation": [0, 0, 60], "uv": [38, 26], "mirror": true}
+					]
+				},
+				{
+					"name": "BalrogWingSkin2",
+					"parent": "rightWing",
+					"pivot": [22.5, 33.50711, 2.5],
+					"rotation": [0, 0, 45],
+					"cubes": [
+						{"origin": [8.29038, 12.39749, 4.05], "size": [53, 26, 0], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "wingfingerl2",
+					"parent": "BalrogWingSkin2",
+					"pivot": [22.5, 39.30711, 2.2],
+					"rotation": [0, 0, -39],
+					"cubes": [
+						{"origin": [13.94965, 14.32496, 3.55], "size": [2, 24, 1], "uv": [122, 103], "mirror": true}
+					]
+				},
+				{
+					"name": "wingfingerl3",
+					"parent": "BalrogWingSkin2",
+					"pivot": [56.2, 40.20711, 2.2],
+					"rotation": [0, 0, 47.03],
+					"cubes": [
+						{"origin": [57.14169, 5.59008, 3.55], "size": [2, 24, 1], "uv": [122, 103], "mirror": true}
+					]
+				},
+				{
+					"name": "wingfingerl4",
+					"parent": "BalrogWingSkin2",
+					"pivot": [39.4, 36.30711, 1.5],
+					"rotation": [0, 0, 4.29],
+					"cubes": [
+						{"origin": [32.97285, 12.21484, 3.15], "size": [2, 23, 2], "inflate": -0.1, "uv": [120, 103], "mirror": true}
+					]
+				},
+				{
+					"name": "leftWing",
+					"pivot": [-3.5, 37.1, 3],
+					"rotation": [0, 45, 45],
+					"cubes": [
+						{"origin": [-20.35, 35.88787, 3.15], "size": [17, 2, 2], "uv": [38, 26]},
+						{"origin": [-37.29295, 34.88512, 3.15], "size": [17, 2, 2], "pivot": [-21.7, 37.40711, 2.5], "rotation": [0, 0, -40], "uv": [38, 26]},
+						{"origin": [-51.22109, 24.79797, 3.15], "size": [17, 2, 2], "pivot": [-34, 28.20711, 3.4], "rotation": [0, 0, -60], "uv": [38, 26]},
+						{"origin": [-62.71815, 9.12661, 3.05], "size": [21, 2, 2], "pivot": [-42.1, 12.00711, 2.5], "rotation": [0, 0, -100], "uv": [38, 26]},
+						{"origin": [-26.85, 36.38787, 3.65], "size": [17, 1, 1], "uv": [38, 26]},
+						{"origin": [-42.97109, 13.68457, 3.65], "size": [17, 1, 1], "pivot": [-38, 12.20711, 3.5], "rotation": [0, 0, -60], "uv": [38, 26]}
+					]
+				},
+				{
+					"name": "BalrogWingSkin1",
+					"parent": "leftWing",
+					"pivot": [-22.5, 33.50711, 2.5],
+					"rotation": [0, 0, -45],
+					"cubes": [
+						{"origin": [-61.19038, 12.39749, 4.05], "size": [53, 26, 0], "uv": [0, 0], "mirror": true}
+					]
+				},
+				{
+					"name": "wingfingerl1",
+					"parent": "BalrogWingSkin1",
+					"pivot": [-22.5, 39.30711, 2.2],
+					"rotation": [0, 0, 39],
+					"cubes": [
+						{"origin": [-15.94965, 14.32496, 3.55], "size": [2, 24, 1], "uv": [122, 103]}
+					]
+				},
+				{
+					"name": "wingfingerl12",
+					"parent": "BalrogWingSkin1",
+					"pivot": [-56.2, 40.20711, 2.2],
+					"rotation": [0, 0, -47.03],
+					"cubes": [
+						{"origin": [-59.14169, 5.59008, 3.55], "size": [2, 24, 1], "uv": [122, 103]}
+					]
+				},
+				{
+					"name": "wingfingerl13",
+					"parent": "BalrogWingSkin1",
+					"pivot": [-39.4, 36.30711, 1.5],
+					"rotation": [0, 0, -4.29],
+					"cubes": [
+						{"origin": [-34.97285, 12.21484, 3.15], "size": [2, 23, 2], "inflate": -0.1, "uv": [120, 103]}
+					]
+				},
+				{
+					"name": "rightArm",
+					"pivot": [8, 44, 0.5],
+					"cubes": [
+						{"origin": [8.5, 34.2, -2.5], "size": [5, 10, 6], "uv": [0, 48]}
+					]
+				},
+				{
+					"name": "bipedRightArmLower",
+					"parent": "rightArm",
+					"pivot": [10.5, 36, 1.5],
+					"rotation": [-10, 0, 0],
+					"cubes": [
+						{"origin": [9, 21.71975, -1.27426], "size": [4, 13, 4], "uv": [0, 31]}
+					]
+				},
+				{
+					"name": "leftArm",
+					"pivot": [-8.5, 44, 0.5],
+					"cubes": [
+						{"origin": [-13.5, 34.2, -2.5], "size": [5, 10, 6], "uv": [0, 48], "mirror": true}
+					]
+				},
+				{
+					"name": "bipedLeftArmLower",
+					"parent": "leftArm",
+					"pivot": [-11.5, 36, 1.5],
+					"rotation": [-10, 0, 0],
+					"cubes": [
+						{"origin": [-13, 21.71975, -1.27426], "size": [4, 13, 4], "uv": [0, 31], "mirror": true}
+					]
+				},
+				{
+					"name": "rightLeg",
+					"pivot": [7.5, 23, -0.2],
+					"rotation": [-37.5, 0, 0],
+					"cubes": [
+						{"origin": [1.5, 14, -4.2], "size": [7, 11, 8], "uv": [22, 45], "mirror": true}
+					]
+				},
+				{
+					"name": "LegLowR",
+					"parent": "rightLeg",
+					"pivot": [5, 16.5, -1.7],
+					"rotation": [80, 0, 0],
+					"cubes": [
+						{"origin": [2.5, 0.5, -4.2], "size": [5, 16, 5], "uv": [22, 43], "mirror": true}
+					]
+				},
+				{
+					"name": "LegLLR",
+					"parent": "LegLowR",
+					"pivot": [7, 4.3, 0.3],
+					"rotation": [-94.05, 0, 0],
+					"cubes": [
+						{"origin": [3, -7.7, 0.3], "size": [4, 12, 4], "uv": [62, 48]}
+					]
+				},
+				{
+					"name": "FeetR",
+					"parent": "LegLLR",
+					"pivot": [5, -8.65669, 3.13835],
+					"rotation": [51.89, 0, 0],
+					"cubes": [
+						{"origin": [2.5, -9.48704, -1.26565], "size": [5, 2, 6], "uv": [56, 56]}
+					]
+				},
+				{
+					"name": "FeetR1",
+					"parent": "FeetR",
+					"pivot": [7, -6.48704, 4.03435],
+					"rotation": [-109.4, 0, 0],
+					"cubes": [
+						{"origin": [3, -8.48704, 4.03435], "size": [4, 2, 3], "uv": [64, 59]}
+					]
+				},
+				{
+					"name": "FeetR2",
+					"parent": "FeetR",
+					"pivot": [7, -7.98704, -1.16565],
+					"rotation": [-29.8, 0, 0],
+					"cubes": [
+						{"origin": [3, -8.98704, -1.16565], "size": [4, 1, 1], "uv": [67, 62]}
+					]
+				},
+				{
+					"name": "leftLeg",
+					"pivot": [-2.5, 23, -0.2],
+					"rotation": [-37.5, 0, 0],
+					"cubes": [
+						{"origin": [-8.5, 14, -4.2], "size": [7, 11, 8], "uv": [22, 45], "mirror": true}
+					]
+				},
+				{
+					"name": "LegLowR2",
+					"parent": "leftLeg",
+					"pivot": [-5, 16.5, -1.7],
+					"rotation": [80, 0, 0],
+					"cubes": [
+						{"origin": [-7.5, 0.5, -4.2], "size": [5, 16, 5], "uv": [22, 43], "mirror": true}
+					]
+				},
+				{
+					"name": "LegLLR2",
+					"parent": "LegLowR2",
+					"pivot": [-3, 4.3, 0.3],
+					"rotation": [-94.05, 0, 0],
+					"cubes": [
+						{"origin": [-7, -7.7, 0.3], "size": [4, 12, 4], "uv": [62, 48]}
+					]
+				},
+				{
+					"name": "FeetR5",
+					"parent": "LegLLR2",
+					"pivot": [-5, -8.65669, 3.13835],
+					"rotation": [51.89, 0, 0],
+					"cubes": [
+						{"origin": [-7.5, -9.48704, -1.26565], "size": [5, 2, 6], "uv": [56, 56]}
+					]
+				},
+				{
+					"name": "FeetR4",
+					"parent": "FeetR5",
+					"pivot": [-3, -6.48704, 4.03435],
+					"rotation": [-109.4, 0, 0],
+					"cubes": [
+						{"origin": [-7, -8.48704, 4.03435], "size": [4, 2, 3], "uv": [64, 59]}
+					]
+				},
+				{
+					"name": "FeetR3",
+					"parent": "FeetR5",
+					"pivot": [-3, -7.98704, -1.16565],
+					"rotation": [-29.8, 0, 0],
+					"cubes": [
+						{"origin": [-7, -8.98704, -1.16565], "size": [4, 1, 1], "uv": [67, 62]}
+					]
+				},
+				{
+					"name": "tail",
+					"pivot": [0, 24.20265, 2.95191],
+					"rotation": [-48.65, 0, 0],
+					"cubes": [
+						{"origin": [-2, 22.38271, 1.7746], "size": [4, 4, 8], "uv": [28, 52]}
+					]
+				},
+				{
+					"name": "BalrogTail2",
+					"parent": "tail",
+					"pivot": [-0.5, 24.74156, 6.8987],
+					"rotation": [9.73, 0, 0],
+					"cubes": [
+						{"origin": [-1.5, 22.73013, 7.71541], "size": [3, 3, 8], "uv": [28, 52]}
+					]
+				},
+				{
+					"name": "BalrogTail3",
+					"parent": "BalrogTail2",
+					"pivot": [-0.5, 24.44156, 12.8987],
+					"rotation": [9.73, 0, 0],
+					"cubes": [
+						{"origin": [-1, 22.80665, 13.53272], "size": [2, 2, 8], "uv": [28, 52]}
+					]
+				},
+				{
+					"name": "BalrogTail4",
+					"parent": "BalrogTail3",
+					"pivot": [-0.5, 24.44156, 19.8987],
+					"rotation": [9.73, 0, 0],
+					"cubes": [
+						{"origin": [-1, 22.71582, 20.3318], "size": [2, 2, 8], "uv": [28, 52]}
+					]
+				},
+				{
+					"name": "BalrogTail5",
+					"parent": "BalrogTail4",
+					"pivot": [-0.5, 24.24156, 26.8987],
+					"rotation": [9.73, 0, 0],
+					"cubes": [
+						{"origin": [-0.5, 22.96026, 27.11841], "size": [1, 1, 8], "uv": [28, 52]}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,25 @@
+package com.greatorator.tolkienmobs.init;
+
+import com.mojang.blaze3d.platform.InputConstants;
+import net.minecraft.client.KeyMapping;
+import net.minecraftforge.client.ClientRegistry;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+
+public final class TolkienKeys {
+    public static final String KEY_CATEGORY = "key.category.tolkienmobs";
+    public static KeyMapping KEY_OPEN_BACKPACK;
+
+    private TolkienKeys() {
+    }
+
+    public static void init() {
+        KEY_OPEN_BACKPACK = registerKey("backpack_key", KEY_CATEGORY, InputConstants.KEY_B);
+    }
+
+    private static KeyMapping registerKey(String name, String category, int keycode) {
+        final var key = new KeyMapping("key." + MODID + "." + name, keycode, category);
+        ClientRegistry.registerKeyBinding(key);
+        return key;
+    }
+}

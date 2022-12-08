@@ -1,10 +1,10 @@
 package com.greatorator.tolkienmobs.entity;
 
 
-import com.greatorator.tolkienmobs.entity.merchant.variant.EntityVariant;
+import com.greatorator.tolkienmobs.entity.merchant.variant.MerchantVariant;
 import com.greatorator.tolkienmobs.init.TolkienProfessions;
 import com.greatorator.tolkienmobs.init.TolkienTrades;
-import com.greatorator.tolkienmobs.utils.RandomUtility;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -92,7 +92,7 @@ public class WanderingEntity extends WanderingTrader {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(DATA_ID_TYPE_VARIANT, 0);
+        this.entityData.define(DATA_ID_TYPE_VARIANT, 1);
         this.entityData.define(DATA_MERCHANT_VARIANT, new VillagerData(VillagerType.PLAINS, TolkienProfessions.UNEMPLOYED_PROFESSION.get(), 1));
     }
 
@@ -150,20 +150,20 @@ public class WanderingEntity extends WanderingTrader {
 
     /** VARIANTS */
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, DifficultyInstance instance, MobSpawnType type, @Nullable SpawnGroupData data, @Nullable CompoundTag compoundTag) {
-        EntityVariant variant = EntityVariant.byId(RandomUtility.getRandomInteger(16, 0));
+        MerchantVariant variant = Util.getRandom(MerchantVariant.values(), this.random);
         setVariant(variant);
         return super.finalizeSpawn(accessor, instance, type, data, compoundTag);
     }
 
-    public EntityVariant getVariant() {
-        return EntityVariant.byId(this.getTypeVariant() & 255);
+    public MerchantVariant getVariant() {
+        return MerchantVariant.byId(this.getTypeVariant() & 255);
     }
 
     protected int getTypeVariant() {
         return this.entityData.get(DATA_ID_TYPE_VARIANT);
     }
 
-    protected void setVariant(EntityVariant variant) {
+    protected void setVariant(MerchantVariant variant) {
         this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
     }
 

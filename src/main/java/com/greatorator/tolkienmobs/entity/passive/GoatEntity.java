@@ -1,193 +1,318 @@
 package com.greatorator.tolkienmobs.entity.passive;
 
-//
-//public class GoatEntity extends AbstractChestedHorseEntity {
-//    private static final DataParameter<Boolean> DATA_ID_CHEST = EntityDataManager.defineId(GoatEntity.class, DataSerializers.BOOLEAN);
-//    private static final DataParameter<Integer> GOAT_TYPE = EntityDataManager.defineId(GoatEntity.class, DataSerializers.INT);
-//    public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
-//        option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/goat/goat1.png"));
-//        option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/goat/goat2.png"));
-//        option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/goat/goat3.png"));
-//        option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/goat/goat4.png"));
-//    });
-//
-//    public GoatEntity(EntityType<? extends AbstractChestedHorseEntity> type, World worldIn) {
-//        super(type, worldIn);
-//    }
-//
-//    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-//        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 20.0D).add(Attributes.JUMP_STRENGTH, 2.5D).add(Attributes.ATTACK_DAMAGE, 8.0D).add(Attributes.ARMOR, 4.0D).add(Attributes.KNOCKBACK_RESISTANCE, 1.0D).add(Attributes.MOVEMENT_SPEED, 0.8D);
-//    }
-//
-//    @Override
-//    protected void registerGoals() {
-//        this.goalSelector.addGoal(1, new PanicGoal(this, 1.2D));
-//        this.goalSelector.addGoal(1, new RunAroundLikeCrazyGoal(this, 1.2D));
-//        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D, GoatEntity.class));
-//        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.0D));
-//        this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 0.7D));
-//        this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-//        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-//        this.addBehaviourGoals();
-//    }
-//
-//    @Override
-//    public double getPassengersRidingOffset()
-//    {
-//        return super.getPassengersRidingOffset() - 0.025D;
-//    }
-//
-//    @Override
-//    protected void playGallopSound(SoundType p_190680_1_)
-//    {
-//        super.playGallopSound(p_190680_1_);
-//
-//        if (this.random.nextInt(10) == 0)
-//        {
-//            this.playSound(SoundEvents.HORSE_BREATHE, p_190680_1_.getVolume() * 0.6F, p_190680_1_.getPitch());
-//        }
-//    }
-//
-//    @Override
-//    protected SoundEvent getAmbientSound()
-//    {
-//        super.getAmbientSound();
-//        return SoundGenerator.soundIdleGoat.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getDeathSound()
-//    {
-//        super.getDeathSound();
-//        return SoundGenerator.soundDeathGoat.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-//    {
-//        super.getHurtSound(damageSourceIn);
-//        return SoundGenerator.soundHurtGoat.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getAngrySound()
-//    {
-//        super.getAngrySound();
-//        return SoundGenerator.soundAngryGoat.get();
-//    }
-//
-//    @Override
-//    public int getMaxSpawnClusterSize() {
-//        return 4;
-//    }
-//
-//    @Override
-//    public GoatEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-//        return EntityGenerator.ENTITY_TTM_GOAT.get().create(p_241840_1_);
-//    }
-//
-//    /** Region for determining random skin */
-//    public ResourceLocation getGoatTypeName() {
-//        return TEXTURE_BY_ID.getOrDefault(this.getGoatType(), TEXTURE_BY_ID.get(1));
-//    }
-//
-//    public int getGoatType() {
-//        return this.entityData.get(GOAT_TYPE);
-//    }
-//
-//    public void setGoatType(int type) {
-//        if (type < 0 || type >= 5) {
-//            type = this.random.nextInt(4);
-//        }
-//
-//        this.entityData.set(GOAT_TYPE, type);
-//    }
-//
-//    @Nullable
-//    @Override
-//    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-//        int job = TTMRand.getRandomInteger(1, 4);
-//        this.setGoatType(job);
-//        if (worldIn.getRandom().nextInt(100) == 0) {
-//            DwarfEntity dwarfentity = EntityGenerator.ENTITY_TTM_DWARF.get().create(this.level);
-//            dwarfentity.moveTo(this.getX(), this.getY(), this.getZ(), this.yRot, 0.0F);
-//            dwarfentity.finalizeSpawn(worldIn, difficultyIn, reason, (ILivingEntityData)null, (CompoundNBT)null);
-//            this.setTamed(true);
-//            dwarfentity.startRiding(this);
-//        }
-//
-//        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-//    }
-//
-//    @Override
-//    protected void defineSynchedData() {
-//        super.defineSynchedData();
-//        this.entityData.define(GOAT_TYPE, 1);
-//        this.entityData.define(DATA_ID_CHEST, false);
-//    }
-//
-//    @Override
-//    public boolean hasChest() {
-//        return this.entityData.get(DATA_ID_CHEST);
-//    }
-//
-//    @Override
-//    public void setChest(boolean chested) {
-//        this.entityData.set(DATA_ID_CHEST, chested);
-//    }
-//
-//    @Override
-//    protected int getInventorySize() {
-//        return this.hasChest() ? 17 : super.getInventorySize();
-//    }
-//
-//    @Override
-//    public void addAdditionalSaveData(CompoundNBT compound) {
-//        super.addAdditionalSaveData(compound);
-//        compound.putInt("GoatType", this.getGoatType());
-//        compound.putBoolean("ChestedGoat", this.hasChest());
-//        if (this.hasChest()) {
-//            ListNBT listnbt = new ListNBT();
-//
-//            for(int i = 2; i < this.inventory.getContainerSize(); ++i) {
-//                ItemStack itemstack = this.inventory.getItem(i);
-//                if (!itemstack.isEmpty()) {
-//                    CompoundNBT compoundnbt = new CompoundNBT();
-//                    compoundnbt.putByte("Slot", (byte)i);
-//                    itemstack.save(compoundnbt);
-//                    listnbt.add(compoundnbt);
-//                }
-//            }
-//
-//            compound.put("Items", listnbt);
-//        }
-//        if (!this.inventory.getItem(0).isEmpty()) {
-//            compound.put("SaddleItem", this.inventory.getItem(0).save(new CompoundNBT()));
-//        }
-//    }
-//
-//    @Override
-//    public void readAdditionalSaveData(CompoundNBT compound) {
-//        super.readAdditionalSaveData(compound);
-//        this.setGoatType(compound.getInt("GoatType"));
-//        this.setChest(compound.getBoolean("ChestedGoat"));
-//        if (this.hasChest()) {
-//            ListNBT listnbt = compound.getList("Items", 10);
-//            this.createInventory();
-//
-//            for(int i = 0; i < listnbt.size(); ++i) {
-//                CompoundNBT compoundnbt = listnbt.getCompound(i);
-//                int j = compoundnbt.getByte("Slot") & 255;
-//                if (j >= 2 && j < this.inventory.getContainerSize()) {
-//                    this.inventory.setItem(j, ItemStack.of(compoundnbt));
-//                }
-//            }
-//        }
-//        if (compound.contains("SaddleItem", 10)) {
-//            ItemStack itemstack = ItemStack.of(compound.getCompound("SaddleItem"));
-//            if (itemstack.getItem() == Items.SADDLE) {
-//                this.inventory.setItem(0, itemstack);
-//            }
-//        }
-//    }
-//}
+import com.greatorator.tolkienmobs.entity.ai.goal.BabyFollowParentGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.BabyHurtByTargetGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.BabyNearPlayerGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.BabyPanicGoal;
+import com.greatorator.tolkienmobs.entity.merchant.DwarfEntity;
+import com.greatorator.tolkienmobs.entity.passive.variant.PassiveVariant;
+import com.greatorator.tolkienmobs.init.TolkienEntities;
+import com.greatorator.tolkienmobs.init.TolkienItems;
+import com.greatorator.tolkienmobs.init.TolkienSounds;
+import net.minecraft.Util;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.animal.horse.AbstractChestedHorse;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.SoundType;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Random;
+
+public class GoatEntity extends AbstractChestedHorse implements IAnimatable {
+    public static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(GoatEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> DATA_ID_CHEST = SynchedEntityData.defineId(GoatEntity.class, EntityDataSerializers.BOOLEAN);
+    private final AnimationFactory factory = new AnimationFactory(this);
+    private int warningSoundTicks;
+
+    public GoatEntity(EntityType<? extends AbstractChestedHorse> entityType, Level level) {
+        super(entityType, level);
+    }
+
+    @Nullable
+    @Override
+    public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
+        return TolkienEntities.ENTITY_TTM_GOAT.get().create(serverLevel);
+    }
+
+    @Override
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Bee.class, 8.0f, 1.5, 1.5));
+        this.goalSelector.addGoal(1, new GoatEntity.GoatEntityMeleeAttackGoal());
+        this.goalSelector.addGoal(3, new BabyPanicGoal(this, 2.0D));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.of(TolkienItems.PIPEWEED_ITEM.get()), false));
+        this.goalSelector.addGoal(4, new BabyFollowParentGoal(this, 1.25D, 24.0D, 6.0D, 12.0D));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0));
+        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0f));
+        this.goalSelector.addGoal(9, new RandomLookAroundGoal(this));
+        this.targetSelector.addGoal(1, new BabyHurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new BabyNearPlayerGoal(this, 0.5F));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH)
+                .add(Attributes.MOVEMENT_SPEED)
+                .add(Attributes.JUMP_STRENGTH)
+                .add(Attributes.ATTACK_DAMAGE, 16.0D)
+                .add(Attributes.ARMOR, 8.0D)
+                .add(Attributes.FOLLOW_RANGE, 8.0D);
+    }
+
+    @Override
+    protected PathNavigation createNavigation(Level level) {
+        return new GroundPathNavigation(this, level);
+    }
+
+    @Override
+    public double getPassengersRidingOffset() {
+        return super.getPassengersRidingOffset() + 0.015D;
+    }
+
+    @Override
+    protected void randomizeAttributes() {
+        this.getAttribute(Attributes.MAX_HEALTH).setBaseValue((double)this.generateRandomMaxHealth());
+        this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue((double)this.generateRandomSpeed());
+        this.getAttribute(Attributes.JUMP_STRENGTH).setBaseValue((double)this.generateRandomJumpStrength());
+    }
+
+    @Override
+    protected float generateRandomMaxHealth() {
+        return 20.0F + (float)this.random.nextInt(8) + (float)this.random.nextInt(9);
+    }
+
+    @Override
+    protected double generateRandomJumpStrength() {
+        return (double)0.6F + this.random.nextDouble() * 0.2D + this.random.nextDouble() * 0.2D + this.random.nextDouble() * 0.2D;
+    }
+
+    @Override
+    protected double generateRandomSpeed() {
+        return ((double)0.55F + this.random.nextDouble() * 0.3D + this.random.nextDouble() * 0.3D + this.random.nextDouble() * 0.3D) * 0.25D;
+    }
+
+    /** Sounds */
+    protected void playGallopSound(SoundType p_30709_) {
+        super.playGallopSound(p_30709_);
+        if (this.random.nextInt(10) == 0) {
+            this.playSound(SoundEvents.HORSE_BREATHE, p_30709_.getVolume() * 0.6F, p_30709_.getPitch());
+        }
+
+        ItemStack stack = this.inventory.getItem(1);
+        if (isArmor(stack)) stack.onHorseArmorTick(level, this);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        super.getAmbientSound();
+        return TolkienSounds.soundIdleGoat.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        super.getDeathSound();
+        return TolkienSounds.soundDeathGoat.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        super.getHurtSound(damageSourceIn);
+        return TolkienSounds.soundHurtGoat.get();
+    }
+
+    @Override
+    protected SoundEvent getAngrySound() {
+        super.getAngrySound();
+        return TolkienSounds.soundAngryGoat.get();
+    }
+
+    @Nullable
+    protected SoundEvent getEatingSound() {
+        return SoundEvents.HORSE_EAT;
+    }
+
+    protected void playWarningSound() {
+        if (this.warningSoundTicks <= 0) {
+            this.playSound(TolkienSounds.soundScreamGoat.get(), 1.0F, this.getVoicePitch());
+            this.warningSoundTicks = 40;
+        }
+
+    }
+
+    /** Animation */
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            return PlayState.CONTINUE;
+        }
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void registerControllers(AnimationData data) {
+        data.addAnimationController(new AnimationController(this, "controller",
+                10, this::predicate));
+    }
+
+    @Override
+    public AnimationFactory getFactory() {
+        return this.factory;
+    }
+
+    /** Variant */
+    @Override
+    public SpawnGroupData finalizeSpawn(@Nonnull ServerLevelAccessor accessor, @Nonnull DifficultyInstance instance, @Nonnull MobSpawnType type, @Nullable SpawnGroupData data, @Nullable CompoundTag compoundTag) {
+        PassiveVariant variant = Util.getRandom(PassiveVariant.values(), this.random);
+        setVariant(variant);
+        this.randomizeAttributes();
+        AgeableMobGroupData ageableMobGroupData;
+        if (data == null) {
+            data = new AgeableMobGroupData(true);
+        }
+        if ((ageableMobGroupData = (AgeableMobGroupData)data).getGroupSize() > 1) {
+            this.setAge(-24000);
+        }
+        ageableMobGroupData.increaseGroupSizeByOne();
+        Random random = level.getRandom();
+        this.getAttribute(Attributes.FOLLOW_RANGE).addPermanentModifier(new AttributeModifier("Random spawn bonus", random.nextInt(3), AttributeModifier.Operation.MULTIPLY_BASE));
+
+        if (accessor.getRandom().nextInt(100) == 0) {
+            DwarfEntity dwarfentity = TolkienEntities.ENTITY_TTM_DWARF.get().create(this.level);
+            dwarfentity.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
+            dwarfentity.finalizeSpawn(accessor, instance, type, (SpawnGroupData)null, (CompoundTag)null);
+            this.setTamed(true);
+            dwarfentity.startRiding(this);
+        }
+
+        return super.finalizeSpawn(accessor, instance, type, data, compoundTag);
+    }
+
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.setChest(tag.getBoolean("ChestedGoat"));
+        this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
+        this.createInventory();
+        if (this.hasChest()) {
+            ListTag listtag = tag.getList("Items", 10);
+
+            for(int i = 0; i < listtag.size(); ++i) {
+                CompoundTag compoundtag = listtag.getCompound(i);
+                int j = compoundtag.getByte("Slot") & 255;
+                if (j >= 2 && j < this.inventory.getContainerSize()) {
+                    this.inventory.setItem(j, ItemStack.of(compoundtag));
+                }
+            }
+        }
+        this.updateContainerEquipment();
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putBoolean("ChestedGoat", this.hasChest());
+        tag.putInt("Variant", this.getTypeVariant());
+        if (this.hasChest()) {
+            ListTag listtag = new ListTag();
+
+            for(int i = 2; i < this.inventory.getContainerSize(); ++i) {
+                ItemStack itemstack = this.inventory.getItem(i);
+                if (!itemstack.isEmpty()) {
+                    CompoundTag compoundtag = new CompoundTag();
+                    compoundtag.putByte("Slot", (byte)i);
+                    itemstack.save(compoundtag);
+                    listtag.add(compoundtag);
+                }
+            }
+            tag.put("Items", listtag);
+        }
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(DATA_ID_TYPE_VARIANT, 1);
+        this.entityData.define(DATA_ID_CHEST, false);
+    }
+
+    public PassiveVariant getVariant() {
+        return PassiveVariant.byId(this.getTypeVariant() & 255);
+    }
+
+    protected int getTypeVariant() {
+        return this.entityData.get(DATA_ID_TYPE_VARIANT);
+    }
+
+    protected void setVariant(PassiveVariant variant) {
+        this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
+    }
+
+    /** Goals */
+    class GoatEntityMeleeAttackGoal extends MeleeAttackGoal {
+        public GoatEntityMeleeAttackGoal() {
+            super(GoatEntity.this, 1.25D, true);
+        }
+
+        protected void checkAndPerformAttack(LivingEntity p_29589_, double p_29590_) {
+            double d0 = this.getAttackReachSqr(p_29589_);
+            if (p_29590_ <= d0 && this.isTimeToAttack()) {
+                this.resetAttackCooldown();
+                this.mob.doHurtTarget(p_29589_);
+                GoatEntity.this.setStanding(false);
+            } else if (p_29590_ <= d0 * 2.0D) {
+                if (this.isTimeToAttack()) {
+                    GoatEntity.this.setStanding(false);
+                    this.resetAttackCooldown();
+                }
+
+                if (this.getTicksUntilNextAttack() <= 10) {
+                    GoatEntity.this.setStanding(true);
+                    GoatEntity.this.playWarningSound();
+                }
+            } else {
+                this.resetAttackCooldown();
+                GoatEntity.this.setStanding(false);
+            }
+
+        }
+
+        public void stop() {
+            GoatEntity.this.setStanding(false);
+            super.stop();
+        }
+
+        protected double getAttackReachSqr(LivingEntity p_29587_) {
+            return (double)(4.0F + p_29587_.getBbWidth());
+        }
+    }
+}

@@ -16,7 +16,7 @@ import com.brandon3055.brandonscore.inventory.ContainerBCTile;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedByte;
 import com.brandon3055.brandonscore.lib.datamanager.ManagedShort;
 import com.greatorator.tolkienmobs.entity.tile.CamoSpawnerTile;
-import com.greatorator.tolkienmobs.handler.registers.SpritesRegister;
+import com.greatorator.tolkienmobs.handler.registers.SpriteRegister;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -114,17 +114,17 @@ public class CamoSpawnerScreen extends ModularGuiContainer<ContainerBCTile<CamoS
 
         // Other Settings
 
-        GuiButton spawnerParticles = toolkit.createIconButton(temp.background, 16, 16, () -> tile.spawnerParticles.get() ? SpritesRegister.get("spawner/particles") : SpritesRegister.get("spawner/ignore_particles"))
+        GuiButton spawnerParticles = toolkit.createIconButton(temp.background, 16, 16, () -> tile.spawnerParticles.get() ? SpriteRegister.get("spawner/particles") : SpriteRegister.get("spawner/ignore_particles"))
                 .setHoverText(e -> toolkit.i18n("spawnerParticles") + "\n" + (tile.spawnerParticles.get() ? "Enabled" : "Disabled"))
                 .onPressed(tile.spawnerParticles::invert);
         toolkit.placeInside(spawnerParticles, temp.background, GuiToolkit.LayoutPos.BOTTOM_RIGHT, -6, -6);
 
-        GuiButton spawnRequirement = toolkit.createIconButton(temp.background, 16, 16, () -> tile.ignoreSpawnReq.get() ? SpritesRegister.get("spawner/spawn_requirements") : SpritesRegister.get("spawner/ignore_spawn_requirements"))
+        GuiButton spawnRequirement = toolkit.createIconButton(temp.background, 16, 16, () -> tile.ignoreSpawnReq.get() ? SpriteRegister.get("spawner/spawn_requirements") : SpriteRegister.get("spawner/ignore_spawn_requirements"))
                 .setHoverText(e -> toolkit.i18n("ignoreSpawnReq") + "\n" + (tile.ignoreSpawnReq.get() ? "Not Ignored" : "Ignored"))
                 .onPressed(tile.ignoreSpawnReq::invert);
         toolkit.placeOutside(spawnRequirement, spawnerParticles, GuiToolkit.LayoutPos.MIDDLE_LEFT, -10, 0);
 
-        GuiButton ignorePlayer = toolkit.createIconButton(temp.background, 16, 16, () -> tile.requirePlayer.get() ? SpritesRegister.get("spawner/player") : SpritesRegister.get("spawner/ignore_player"))
+        GuiButton ignorePlayer = toolkit.createIconButton(temp.background, 16, 16, () -> tile.requirePlayer.get() ? SpriteRegister.get("spawner/player") : SpriteRegister.get("spawner/ignore_player"))
                 .setHoverText(e -> toolkit.i18n("requirePlayer") + "\n" + (tile.requirePlayer.get() ? "Required" : "Not Required"))
                 .onPressed(tile.requirePlayer::invert);
         toolkit.placeOutside(ignorePlayer, spawnRequirement, GuiToolkit.LayoutPos.MIDDLE_LEFT, -10, 0);

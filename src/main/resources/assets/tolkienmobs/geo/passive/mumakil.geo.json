@@ -1,0 +1,247 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 256,
+				"texture_height": 256,
+				"visible_bounds_width": 7,
+				"visible_bounds_height": 4.5,
+				"visible_bounds_offset": [0, 1.75, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 24, 0]
+				},
+				{
+					"name": "MumuLegFL",
+					"parent": "root",
+					"pivot": [2, 32, -18.5],
+					"cubes": [
+						{"origin": [8, 0, -24], "size": [11, 32, 11], "uv": [212, 213], "mirror": true}
+					]
+				},
+				{
+					"name": "MumuLegFR",
+					"parent": "root",
+					"pivot": [-8, 32, -18.5],
+					"cubes": [
+						{"origin": [-19, 0, -24], "size": [11, 32, 11], "uv": [212, 213]}
+					]
+				},
+				{
+					"name": "MumuLegRR",
+					"parent": "root",
+					"pivot": [-8, 32, 18.5],
+					"cubes": [
+						{"origin": [-19, 0, 13], "size": [11, 32, 11], "uv": [212, 213]}
+					]
+				},
+				{
+					"name": "MumuLegRL",
+					"parent": "root",
+					"pivot": [2, 32, 18.5],
+					"cubes": [
+						{"origin": [8, 0, 13], "size": [11, 32, 11], "uv": [212, 213], "mirror": true}
+					]
+				},
+				{
+					"name": "MumuBody",
+					"parent": "root",
+					"pivot": [0, 36.33972, 0.14894],
+					"rotation": [-6.5, 0, 0],
+					"cubes": [
+						{"origin": [-18.5, 23.83972, -23.35106], "size": [37, 25, 47], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "MumuHump1",
+					"parent": "MumuBody",
+					"pivot": [-0.5, 38.43972, -7.85106],
+					"rotation": [-5.4, 0, 0],
+					"cubes": [
+						{"origin": [-16.5, 45.93972, -7.85106], "size": [33, 5, 22], "uv": [0, 229]}
+					]
+				},
+				{
+					"name": "MumuBottom",
+					"parent": "MumuBody",
+					"pivot": [1.5, 25.83972, -19.85106],
+					"rotation": [5, 0, 0],
+					"cubes": [
+						{"origin": [-10.5, 20.83972, -19.85106], "size": [23, 5, 35], "uv": [0, 188]}
+					]
+				},
+				{
+					"name": "MumuHump2",
+					"parent": "MumuBody",
+					"pivot": [-0.5, 38.03972, -22.95106],
+					"rotation": [1.3, 0, 0],
+					"cubes": [
+						{"origin": [-16.5, 45.53972, -23.15106], "size": [33, 5, 17], "uv": [5, 234]}
+					]
+				},
+				{
+					"name": "tail",
+					"parent": "MumuBody",
+					"pivot": [-0.5, 34.61619, 23.54941],
+					"cubes": [
+						{"origin": [-3.5, 15.33037, 23.71548], "size": [6, 20, 0], "pivot": [-0.5, 34.23972, 22.84894], "rotation": [10, 0, 0], "uv": [26, 23]}
+					]
+				},
+				{
+					"name": "MumuNeck",
+					"parent": "root",
+					"pivot": [0, 41.5, -21.5],
+					"rotation": [5, 0, 0]
+				},
+				{
+					"name": "MumuSkull",
+					"parent": "MumuNeck",
+					"pivot": [3, 44.5, -35],
+					"cubes": [
+						{"origin": [-8.5, 33, -45.5], "size": [17, 17, 15], "uv": [146, 224]},
+						{"origin": [-5.5, 36, -32], "size": [11, 11, 11], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "MumuEarL",
+					"parent": "MumuNeck",
+					"pivot": [-8.6, 43.5, -37.5],
+					"rotation": [0, 45, -45],
+					"cubes": [
+						{"origin": [-12.1, 38.5, -38], "size": [11, 11, 1], "uv": [117, 244]}
+					]
+				},
+				{
+					"name": "MumuEarR",
+					"parent": "MumuNeck",
+					"pivot": [8.5, 43.5, -38.5],
+					"rotation": [0, -45, 45],
+					"cubes": [
+						{"origin": [1, 38.6, -39], "size": [11, 11, 1], "uv": [117, 244], "mirror": true}
+					]
+				},
+				{
+					"name": "MumuTuskFR1",
+					"parent": "MumuNeck",
+					"pivot": [7, 36.5, -42.6],
+					"rotation": [60, -15, 0],
+					"cubes": [
+						{"origin": [6, 35.5, -54.6], "size": [2, 2, 9], "uv": [0, 201], "mirror": true}
+					]
+				},
+				{
+					"name": "MumuTuskFR2",
+					"parent": "MumuNeck",
+					"pivot": [9.1, 23.2, -50.5],
+					"rotation": [53, -15, 0],
+					"cubes": [
+						{"origin": [8.1, 22.2, -55.5], "size": [2, 2, 9], "uv": [0, 201], "mirror": true}
+					]
+				},
+				{
+					"name": "MumuTuskFR3",
+					"parent": "MumuNeck",
+					"pivot": [10.4, 16.6, -55.4],
+					"rotation": [53, -15, 0],
+					"cubes": [
+						{"origin": [9.4, 15.6, -60.4], "size": [2, 2, 9], "uv": [0, 201], "mirror": true}
+					]
+				},
+				{
+					"name": "MumuTuskRR1",
+					"parent": "MumuNeck",
+					"pivot": [6.5, 36.4, -38.5],
+					"rotation": [60, -35, 0],
+					"cubes": [
+						{"origin": [5.5, 35.4, -50.5], "size": [2, 2, 9], "uv": [0, 201], "mirror": true}
+					]
+				},
+				{
+					"name": "MumuTuskRR2",
+					"parent": "MumuNeck",
+					"pivot": [10.9, 24.1, -44.8],
+					"rotation": [53, -35, 0],
+					"cubes": [
+						{"origin": [9.9, 23.1, -49.8], "size": [2, 2, 9], "uv": [0, 201], "mirror": true}
+					]
+				},
+				{
+					"name": "MumuTuskFL1",
+					"parent": "MumuNeck",
+					"pivot": [-7, 36.5, -42.6],
+					"rotation": [60, 15, 0],
+					"cubes": [
+						{"origin": [-8, 35.5, -54.6], "size": [2, 2, 9], "uv": [0, 201]}
+					]
+				},
+				{
+					"name": "MumuTuskFL2",
+					"parent": "MumuNeck",
+					"pivot": [-9.1, 23.2, -50.5],
+					"rotation": [53, 15, 0],
+					"cubes": [
+						{"origin": [-10.1, 22.2, -55.5], "size": [2, 2, 9], "uv": [0, 201]}
+					]
+				},
+				{
+					"name": "MumuTuskFL3",
+					"parent": "MumuNeck",
+					"pivot": [-10.4, 16.6, -55.4],
+					"rotation": [53, 15, 0],
+					"cubes": [
+						{"origin": [-11.4, 15.6, -60.4], "size": [2, 2, 9], "uv": [0, 201]}
+					]
+				},
+				{
+					"name": "MumuTuskRL1",
+					"parent": "MumuNeck",
+					"pivot": [-6.5, 36.4, -38.5],
+					"rotation": [60, 35, 0],
+					"cubes": [
+						{"origin": [-7.5, 35.4, -50.5], "size": [2, 2, 9], "uv": [0, 201]}
+					]
+				},
+				{
+					"name": "MumuTuskRL2",
+					"parent": "MumuNeck",
+					"pivot": [-10.9, 24.1, -44.8],
+					"rotation": [53, 35, 0],
+					"cubes": [
+						{"origin": [-11.9, 23.1, -49.8], "size": [2, 2, 9], "uv": [0, 201]}
+					]
+				},
+				{
+					"name": "MumuTrunk1",
+					"parent": "MumuNeck",
+					"pivot": [0, 39.9, -44],
+					"rotation": [-10, 0, 0],
+					"cubes": [
+						{"origin": [-3.5, 26.9, -46.5], "size": [7, 13, 5], "uv": [232, 0]}
+					]
+				},
+				{
+					"name": "MumuTrunk2",
+					"parent": "MumuTrunk1",
+					"pivot": [0, 27.4, -44],
+					"rotation": [-10, 0, 0],
+					"cubes": [
+						{"origin": [-3, 18.4, -46], "size": [6, 9, 4], "uv": [236, 20]}
+					]
+				},
+				{
+					"name": "MumuTrunk3",
+					"parent": "MumuTrunk2",
+					"pivot": [0, 18.9, -44],
+					"rotation": [-15, 0, 0],
+					"cubes": [
+						{"origin": [-2.5, 9.9, -45.5], "size": [5, 9, 3], "uv": [240, 34]}
+					]
+				}
+			]
+		}
+	]
+}

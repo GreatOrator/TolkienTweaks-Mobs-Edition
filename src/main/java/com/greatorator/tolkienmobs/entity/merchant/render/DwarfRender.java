@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.merchant.render;
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.entity.merchant.DwarfEntity;
 import com.greatorator.tolkienmobs.entity.merchant.model.DwarfModel;
-import com.greatorator.tolkienmobs.entity.merchant.variant.EntityVariant;
+import com.greatorator.tolkienmobs.entity.merchant.variant.MerchantVariant;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.Util;
@@ -18,29 +18,29 @@ import java.util.Map;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 public class DwarfRender extends GeoEntityRenderer<DwarfEntity> {
-    public static final Map<EntityVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(EntityVariant.class), (enumMap) -> {
-                enumMap.put(EntityVariant.DEFAULT,
+    public static final Map<MerchantVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(MerchantVariant.class), (enumMap) -> {
+                enumMap.put(MerchantVariant.DEFAULT,
                         new ResourceLocation(MODID, "textures/entity/dwarf/dwarf1.png"));
-                enumMap.put(EntityVariant.RED,
+                enumMap.put(MerchantVariant.RED,
                         new ResourceLocation(MODID, "textures/entity/dwarf/dwarf1.png"));
-                enumMap.put(EntityVariant.ORANGE,
+                enumMap.put(MerchantVariant.ORANGE,
                         new ResourceLocation(MODID, "textures/entity/dwarf/dwarf2.png"));
-                enumMap.put(EntityVariant.YELLOW,
+                enumMap.put(MerchantVariant.YELLOW,
                         new ResourceLocation(MODID, "textures/entity/dwarf/dwarf3.png"));
-                enumMap.put(EntityVariant.GREEN,
+                enumMap.put(MerchantVariant.GREEN,
                         new ResourceLocation(MODID, "textures/entity/dwarf/dwarf4.png"));
-                enumMap.put(EntityVariant.BLUE,
+                enumMap.put(MerchantVariant.BLUE,
                         new ResourceLocation(MODID, "textures/entity/dwarf/dwarf5.png"));
-                enumMap.put(EntityVariant.INDIGO,
+                enumMap.put(MerchantVariant.INDIGO,
                         new ResourceLocation(MODID, "textures/entity/dwarf/dwarf6.png"));
-                enumMap.put(EntityVariant.VIOLET,
+                enumMap.put(MerchantVariant.VIOLET,
                         new ResourceLocation(MODID, "textures/entity/dwarf/dwarf7.png"));
-                enumMap.put(EntityVariant.MAGENTA,
+                enumMap.put(MerchantVariant.MAGENTA,
                         new ResourceLocation(MODID, "textures/entity/dwarf/dwarf8.png"));
-                enumMap.put(EntityVariant.PINK,
+                enumMap.put(MerchantVariant.PINK,
                         new ResourceLocation(MODID, "textures/entity/dwarf/dwarf9.png"));
-                enumMap.put(EntityVariant.GRAY,
+                enumMap.put(MerchantVariant.GRAY,
                         new ResourceLocation(MODID, "textures/entity/dwarf/dwarf10.png"));
             });
 

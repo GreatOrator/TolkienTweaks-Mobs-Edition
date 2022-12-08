@@ -1,350 +1,406 @@
 package com.greatorator.tolkienmobs.entity.boss;
 
-//
-//public class BalrogEntity extends MonsterEntity {
-//    private final ServerBossInfo bossInfo = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(), BossInfo.Color.YELLOW, BossInfo.Overlay.NOTCHED_20)).setDarkenScreen(true);
-//    private static final DataParameter<Byte> DATA_FLAGS_ID;
-//    private final RangedBowAttackGoal<BalrogEntity> bowGoal = new RangedBowAttackGoal<>(this, 1.0D, 20, 15.0F);
-//    private final MeleeAttackGoal meleeGoal = new BalrogEntity.BalrogAttackGoal(this, 1.0D, 20, 15.0F, false);
-//    private boolean scheduleWeaponGoalUpdate = true;
-//    private long nextAbilityUse = 0L;
-//    private final static long coolDown = 15000L;
-//
-//    public BalrogEntity(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
-//        super(type, worldIn);
-//        this.setPathfindingMalus(PathNodeType.DANGER_FIRE, 0.0F);
-//        this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, 0.0F);
+import codechicken.lib.math.MathHelper;
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
+import com.greatorator.tolkienmobs.entity.ai.goal.BalrogAttackGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.SwitchCombatGoal;
+import com.greatorator.tolkienmobs.entity.item.FellBeastFireballEntity;
+import com.greatorator.tolkienmobs.init.TolkienItems;
+import com.greatorator.tolkienmobs.init.TolkienSounds;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.BossEvent;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.SmoothSwimmingMoveControl;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ProjectileWeaponItem;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+
+public class BalrogEntity extends MonsterEntity implements IAnimatable {
+    private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(BalrogEntity.class, EntityDataSerializers.BYTE);
+    private static final EntityDataAccessor<Integer> DATA_ID_INV = SynchedEntityData.defineId(BalrogEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<ItemStack> HELD_ITEM = SynchedEntityData.defineId(BalrogEntity.class, EntityDataSerializers.ITEM_STACK);
+    private final ServerBossEvent balrogEvent = (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
+    private final AnimationFactory factory = new AnimationFactory(this);
+    private final RangedBowAttackGoal<BalrogEntity> bowGoal = new RangedBowAttackGoal<>(this, 1.0D, 20, 15.0F);
+    private final MeleeAttackGoal meleeGoal = new BalrogAttackGoal(this, 1.0D, 20, 15.0F, false);
+    private boolean scheduleWeaponGoalUpdate = true;
+    private boolean ranged;
+
+    public BalrogEntity(EntityType<? extends MonsterEntity> entityType, Level level) {
+        super(entityType, level);
+        this.moveControl = new SmoothSwimmingMoveControl(this, 45, 1, 0.35F, 0.01F, true);
+        this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, 0.0F);
+        this.setPersistenceRequired();
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 300.0D)
+                .add(Attributes.ATTACK_DAMAGE, 17.0D)
+                .add(Attributes.ATTACK_KNOCKBACK)
+                .add(Attributes.MOVEMENT_SPEED, 0.40D)
+                .add(Attributes.FOLLOW_RANGE, 40.0D)
+                .add(Attributes.ARMOR, 24.0D)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+    }
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        if (!super.hurt(source, amount)) {
+            return false;
+        } else if (!(this.level instanceof ServerLevel)) {
+            return false;
+        } else {
+            LivingEntity livingentity = this.getTarget();
+            if (livingentity == null && source.getEntity() instanceof LivingEntity) {
+                livingentity = (LivingEntity) source.getEntity();
+            }
+
+            if (livingentity == null) return true;
+
+            if (this.random.nextFloat() < 0.15F && this.isEyeInFluid(FluidTags.WATER) && !this.hasEffect(MobEffects.WATER_BREATHING)) {
+                livingentity.sendMessage(new TranslatableComponent(MODID + ".msg.nodrown.balrog").withStyle(ChatFormatting.DARK_BLUE), Util.NIL_UUID);
+                this.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 2 * 20, 0));
+            }
+
+            if (this.random.nextFloat() < 0.15F && (this.isOnFire() || this.getLastDamageSource() != null && this.getLastDamageSource().isFire()) && !this.hasEffect(MobEffects.FIRE_RESISTANCE)) {
+                livingentity.sendMessage(new TranslatableComponent(MODID + ".msg.onfire.balrog").withStyle(ChatFormatting.DARK_RED), Util.NIL_UUID);
+                this.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 2 * 20, 0));
+            }
+
+            if (this.random.nextFloat() < 0.05F && this.getHealth() < this.getMaxHealth()) {
+                livingentity.sendMessage(new TranslatableComponent(MODID + ".msg.healself.balrog").withStyle(ChatFormatting.LIGHT_PURPLE), Util.NIL_UUID);
+                this.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 2 * 20, 0));
+            }
+
+            if (this.random.nextFloat() < 0.5F && this.getTarget() != null && !this.hasEffect(MobEffects.MOVEMENT_SPEED) && this.getTarget().distanceToSqr(this) > 121.0D) {
+                livingentity.sendMessage(new TranslatableComponent(MODID + ".msg.speedup.balrog").withStyle(ChatFormatting.AQUA), Util.NIL_UUID);
+                this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2 * 20, 0));
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void aiStep() {
+        super.aiStep();
+        if (!this.level.isClientSide) {
+            if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this)) {
+                return;
+            }
+
+            BlockPos pos = this.blockPosition();
+            BlockState blockstate = Blocks.MAGMA_BLOCK.defaultBlockState();
+            float f = (float)Math.min(16, 2);
+            BlockPos.MutableBlockPos blockpos$mutable = new BlockPos.MutableBlockPos();
+
+            for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset((double)(-f), -1.0D, (double)(-f)), pos.offset((double)f, -1.0D, (double)f))) {
+                if (blockpos.closerToCenterThan(this.position(), (double)f)) {
+                    blockpos$mutable.set(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
+                    BlockState blockstate1 = level.getBlockState(blockpos$mutable);
+                    if (blockstate1.isAir()) {
+                        BlockState blockstate2 = level.getBlockState(blockpos);
+                        if (blockstate2.getBlock() == Blocks.GRASS_BLOCK || blockstate2.getBlock() == Blocks.DIRT && level.isUnobstructed(blockstate, blockpos, CollisionContext.empty()) && !net.minecraftforge.event.ForgeEventFactory.onBlockPlace(this, net.minecraftforge.common.util.BlockSnapshot.create(level.dimension(), level, blockpos), Direction.DOWN)) {
+                            level.setBlockAndUpdate(blockpos, blockstate);
+                            level.getBlockTicks().hasScheduledTick(blockpos, Blocks.MAGMA_BLOCK);
+                        }
+                    }
+                }
+            }
+
+        }
+
+        if (this.level.isClientSide) {
+            if (this.random.nextInt(24) == 0 && !this.isSilent()) {
+                this.level.playLocalSound(this.getX() + 0.5D, this.getY() + 0.5D, this.getZ() + 0.5D, SoundEvents.BLAZE_BURN, this.getSoundSource(), 1.0F + this.random.nextFloat(), this.random.nextFloat() * 0.7F + 0.3F, false);
+            }
+            for(int lvt_1_1_ = 0; lvt_1_1_ < 2; ++lvt_1_1_) {
+                this.level.addParticle(ParticleTypes.LARGE_SMOKE, this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D), 0.0D, 0.0D, 0.0D);
+            }
+        }
+    }
+
+    @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(1, new SwitchCombatGoal(this, 6.0D, 12.0D));
+        this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 0.6D));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, false));
+    }
+
+    /** Set up using weapons **/
+
+    public void setHeldItem(ItemStack heldItem) {
+        this.entityData.set(HELD_ITEM, heldItem.copy());
+    }
+
+    public ItemStack getHeldItem() {
+        return this.entityData.get(HELD_ITEM).copy();
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(HELD_ITEM, ItemStack.EMPTY);
+        this.entityData.define(DATA_FLAGS_ID, (byte)0);
+    }
+
+    @Override
+    protected void populateDefaultEquipmentSlots(DifficultyInstance instance) {
+        super.populateDefaultEquipmentSlots(instance);
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(TolkienItems.WHIP_FIRE.get()));
+    }
+
+    @Override
+    public boolean canFireProjectileWeapon(ProjectileWeaponItem weaponItem) {
+        return true;
+    }
+
+    @Override
+    public void performRangedAttack(LivingEntity entity, float x) {
+        double d0 = entity.getEyeY() - (double)1.1F;
+        double d1 = entity.getX() - this.getX();
+        double d3 = entity.getZ() - this.getZ();
+        FellBeastFireballEntity fireballentity = new FellBeastFireballEntity(this.level, this, d1, d0, d3);
+        double d2 = d0 - fireballentity.getY();
+        float f = MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.2F;
+        fireballentity.shoot(d1, d2 + (double)f, d3, 1.6F, 12.0F);
+        this.playSound(SoundEvents.FIRECHARGE_USE, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+        this.level.addFreshEntity(fireballentity);
+    }
+
+    @Override
+    public boolean isSensitiveToWater() {
+        return true;
+    }
+
+    @Override
+    public boolean causeFallDamage(float p_225503_1_, float p_225503_2_, @Nonnull DamageSource damageSource) {
+        return false;
+    }
+
+    @Override
+    public void setItemSlot(@Nonnull EquipmentSlot slot, @Nonnull ItemStack stack) {
+        super.setItemSlot(slot, stack);
+        setHeldItem(stack);
+        reassessWeaponGoal();
+    }
+
+    public void reassessWeaponGoal() {
+        if (!this.level.isClientSide) {
+            scheduleWeaponGoalUpdate = true;
+        }
+    }
+
+    @Override
+    public void tick() {
+        if (scheduleWeaponGoalUpdate) {
+            updateWeaponGoal();
+        }
+        super.tick();
+    }
+
+    protected void updateWeaponGoal() {
+        scheduleWeaponGoalUpdate = false;
+        this.goalSelector.removeGoal(this.meleeGoal);
+        this.goalSelector.removeGoal(this.bowGoal);
+        ItemStack itemstack = this.getMainHandItem();
+        if (itemstack.getItem() == Items.BOW) {
+            int i = 20;
+            if (this.level.getDifficulty() != Difficulty.HARD) {
+                i = 40;
+            }
+
+            this.bowGoal.setMinAttackInterval(i);
+            this.goalSelector.addGoal(4, this.bowGoal);
+            this.ranged = true;
+        } else {
+            this.goalSelector.addGoal(4, this.meleeGoal);
+            this.ranged = false;
+        }
+    }
+
+    private boolean getRanged() {
+        return ranged;
+    }
+
+    public boolean isOnFire() {
+        return this.isCharged();
+    }
+
+    private boolean isCharged() {
+        return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
+    }
+
+    public void setCharged(boolean charged) {
+        byte chargedState = this.entityData.get(DATA_FLAGS_ID);
+        if (charged) {
+            chargedState = (byte)(chargedState | 1);
+        } else {
+            chargedState &= -2;
+        }
+        this.entityData.set(DATA_FLAGS_ID, chargedState);
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return TolkienSounds.soundIdleBalrog.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return TolkienSounds.soundHurtBalrog.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return TolkienSounds.soundDeathBalrog.get();
+    }
+
+    protected void playStepSound(BlockPos pos, Block blockIn) {
+        this.playSound(TolkienSounds.soundStepBalrog.get(), 0.25F, 1.0F);
+    }
+
+    @Nullable
+    @Override
+    public SpawnGroupData finalizeSpawn(@Nonnull ServerLevelAccessor accessor, @Nonnull DifficultyInstance instance, @Nonnull MobSpawnType type, @Nullable SpawnGroupData data, @Nullable CompoundTag compoundTag) {
+        this.populateDefaultEquipmentSlots(instance);
+        reassessWeaponGoal();
+        return super.finalizeSpawn(accessor, instance, type, data, compoundTag);
+    }
+
+    /** Animation region */
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if (event.isMoving()){
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            return PlayState.CONTINUE;
+        }else if(!event.isMoving()){
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+            return PlayState.CONTINUE;
+        }else if (this.swinging && !this.getRanged()){
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
+            return PlayState.CONTINUE;
+        }else if (this.isAggressive() && this.getRanged()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("ranged", false));
+            return PlayState.CONTINUE;
+        }
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void registerControllers(AnimationData data) {
+        data.addAnimationController(new AnimationController(this, "controller",
+                0, this::predicate));
+    }
+
+    @Override
+    public AnimationFactory getFactory() {
+        return this.factory;
+    }
+
+    /** Boss Section */
+//    public int getInvulnerableTicks() {
+//        return this.entityData.get(DATA_ID_INV);
 //    }
-//
-//    @Override
-//    protected void registerGoals() {
-//        this.goalSelector.addGoal(3, new TTMSwitchCombat(this, 6.0D, 6.0D));
-//        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-//        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-//        this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
-//        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-//        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
-//        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
-//        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, net.minecraft.entity.monster.MonsterEntity.class, 10, true, false, TurtleEntity.BABY_ON_LAND_SELECTOR));
+
+//    public void setInvulnerableTicks(int invulnerableTicks) {
+//        this.entityData.set(DATA_ID_INV, invulnerableTicks);
 //    }
-//
-//    /** Set up using weapons **/
-//    @Override
-//    protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
-//        super.populateDefaultEquipmentSlots(p_180481_1_);
-//        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TolkienContent.WHIP_FIRE.get()));
-//    }
-//
-//    @Override
-//    public boolean canFireProjectileWeapon(ShootableItem p_230280_1_) {
-//        return true;
-//    }
-//
-//    @Override
-//    public void performRangedAttack(LivingEntity entity, float x) {
-//        double d0 = entity.getEyeY() - (double)1.1F;
-//        double d1 = entity.getX() - this.getX();
-//        double d3 = entity.getZ() - this.getZ();
-//        FellBeastFireballEntity fireballentity = new FellBeastFireballEntity(this.level, this, d1, d0, d3);
-//        double d2 = d0 - fireballentity.getY();
-//        float f = MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.2F;
-//        fireballentity.shoot(d1, d2 + (double)f, d3, 1.6F, 12.0F);
-//        this.playSound(SoundEvents.FIRECHARGE_USE, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
-//        this.level.addFreshEntity(fireballentity);
-//    }
-//
-//    @Override
-//    public boolean isSensitiveToWater() {
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean causeFallDamage(float p_225503_1_, float p_225503_2_) {
-//        return false;
-//    }
-//
-//    static class BalrogAttackGoal extends TTMThrowandAttack {
-//        private final BalrogEntity balrog;
-//        private int raiseArmTicks;
-//        private int attackStep;
-//        private int attackTime;
-//
-//        BalrogAttackGoal(BalrogEntity balrogEntity, double speedAmplifier, int attackInterval, float maxDistance, boolean useLongMemory) {
-//            super(balrogEntity, speedAmplifier, attackInterval, maxDistance, useLongMemory);
-//            this.balrog = balrogEntity;
+
+    public void addAdditionalSaveData(@Nonnull CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+//        tag.putInt("Invul", this.getInvulnerableTicks());
+    }
+
+    @Override
+    public void readAdditionalSaveData(@Nonnull CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+//        this.setInvulnerableTicks(tag.getInt("Invul"));
+        if (this.hasCustomName()) {
+            this.balrogEvent.setName(this.getDisplayName());
+        }
+        reassessWeaponGoal();
+    }
+
+    @Override
+    public void setCustomName(@Nullable Component component) {
+        super.setCustomName(component);
+        this.balrogEvent.setName(this.getDisplayName());
+    }
+
+    @Override
+    protected void customServerAiStep() {
+//        if (this.getInvulnerableTicks() > 0) {
+//            int k1 = this.getInvulnerableTicks() - 1;
+//            this.balrogEvent.setProgress(1.0F - (float) k1 / 220.0F);
 //        }
-//
-//        @Override
-//        public void start() {
-//            super.start();
-//            this.raiseArmTicks = 0;
-//        }
-//
-//        @Override
-//        public void stop() {
-//            super.stop();
-//            this.balrog.setCharged(false);
-//            this.balrog.setAggressive(false);
-//        }
-//
-//        @Override
-//        public void tick() {
-//            super.tick();
-//            LivingEntity entity = this.balrog.getTarget();
-//            double following = this.balrog.distanceToSqr(entity);
-//            boolean entitySpotted = this.balrog.getSensing().canSee(entity);
-//            ++this.raiseArmTicks;
-//            if (this.raiseArmTicks >= 5 && this.getTicksUntilNextAttack() < this.getAttackInterval() / 2) {
-//                this.balrog.setAggressive(true);
-//            } else {
-//                this.balrog.setAggressive(false);
-//            }
-//
-//            if (following < this.getFollowDistance() * this.getFollowDistance() && entitySpotted) {
-//                if (this.attackTime <= 0) {
-//                    ++this.attackStep;
-//                    if (this.attackStep == 1) {
-//                        this.attackTime = 60;
-//                        this.balrog.setCharged(true);
-//                    } else if (this.attackStep <= 4) {
-//                        this.attackTime = 6;
-//                    } else {
-//                        this.attackTime = 100;
-//                        this.attackStep = 0;
-//                        this.balrog.setCharged(false);
-//                    }
-//                }
-//            }
-//        }
-//        private double getFollowDistance() {
-//            return this.balrog.getAttributeValue(Attributes.FOLLOW_RANGE);
-//        }
+        this.balrogEvent.setProgress(this.getHealth() / this.getMaxHealth());
+    }
+
+//    public void makeInvulnerable() {
+//        this.setInvulnerableTicks(220);
+//        this.balrogEvent.setProgress(0.0F);
+//        this.setHealth(this.getMaxHealth() / 3.0F);
 //    }
-//
-//    /** End Region **/
-//
-//    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-//        return net.minecraft.entity.monster.MonsterEntity.createMonsterAttributes()
-//                .add(Attributes.MAX_HEALTH, 300.0D)
-//                .add(Attributes.MOVEMENT_SPEED, 0.40D)
-//                .add(Attributes.ATTACK_DAMAGE, 17.0D)
-//                .add(Attributes.FOLLOW_RANGE, 40.0D)
-//                .add(Attributes.ARMOR, 24.0D);
-//    }
-//
-//    @Override
-//    public boolean hurt(DamageSource source, float amount) {
-//        if (!super.hurt(source, amount)) {
-//            return false;
-//        } else if (!(this.level instanceof ServerWorld)) {
-//            return false;
-//        } else {
-//            LivingEntity livingentity = this.getTarget();
-//            if (livingentity == null && source.getEntity() instanceof LivingEntity) {
-//                livingentity = (LivingEntity) source.getEntity();
-//            }
-//
-//            if (livingentity == null) return true;
-//
-//            if (this.random.nextFloat() < 0.15F && this.isEyeInFluid(FluidTags.WATER) && !this.hasEffect(Effects.WATER_BREATHING)) {
-//                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.nodrown.balrog").withStyle(TextFormatting.DARK_BLUE), Util.NIL_UUID);
-//                this.addEffect(new EffectInstance(Effects.WATER_BREATHING, 2 * 20, 0));
-//            }
-//
-//            if (this.random.nextFloat() < 0.15F && (this.isOnFire() || this.getLastDamageSource() != null && this.getLastDamageSource().isFire()) && !this.hasEffect(Effects.FIRE_RESISTANCE)) {
-//                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.onfire.balrog").withStyle(TextFormatting.DARK_RED), Util.NIL_UUID);
-//                this.addEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 2 * 20, 0));
-//            }
-//
-//            if (this.random.nextFloat() < 0.05F && this.getHealth() < this.getMaxHealth()) {
-//                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.healself.balrog").withStyle(TextFormatting.LIGHT_PURPLE), Util.NIL_UUID);
-//                this.addEffect(new EffectInstance(Effects.REGENERATION, 2 * 20, 0));
-//            }
-//
-//            if (this.random.nextFloat() < 0.5F && this.getTarget() != null && !this.hasEffect(Effects.MOVEMENT_SPEED) && this.getTarget().distanceToSqr(this) > 121.0D) {
-//                livingentity.sendMessage(new TranslationTextComponent(MODID + ".msg.speedup.balrog").withStyle(TextFormatting.AQUA), Util.NIL_UUID);
-//                this.addEffect(new EffectInstance(Effects.MOVEMENT_SPEED, 2 * 20, 0));
-//            }
-//        }
-//        return true;
-//    }
-//
-//    @Override
-//    public void aiStep() {
-//        super.aiStep();
-//        if (!this.level.isClientSide) {
-//            if (!net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.level, this)) {
-//                return;
-//            }
-//
-//            BlockPos pos = this.blockPosition();
-//            BlockState blockstate = Blocks.MAGMA_BLOCK.defaultBlockState();
-//            float f = (float)Math.min(16, 2);
-//            BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
-//
-//            for(BlockPos blockpos : BlockPos.betweenClosed(pos.offset((double)(-f), -1.0D, (double)(-f)), pos.offset((double)f, -1.0D, (double)f))) {
-//                if (blockpos.closerThan(this.position(), (double)f)) {
-//                    blockpos$mutable.set(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
-//                    BlockState blockstate1 = level.getBlockState(blockpos$mutable);
-//                    if (blockstate1.isAir(level, blockpos$mutable)) {
-//                        BlockState blockstate2 = level.getBlockState(blockpos);
-//                        if (blockstate2.getBlock() == Blocks.GRASS_BLOCK || blockstate2.getBlock() == Blocks.DIRT && level.isUnobstructed(blockstate, blockpos, ISelectionContext.empty()) && !net.minecraftforge.event.ForgeEventFactory.onBlockPlace(this, net.minecraftforge.common.util.BlockSnapshot.create(level.dimension(), level, blockpos), Direction.DOWN)) {
-//                            level.setBlockAndUpdate(blockpos, blockstate);
-//                            level.getBlockTicks().scheduleTick(blockpos, Blocks.MAGMA_BLOCK, MathHelper.nextInt(this.getRandom(), 60, 120));
-//                        }
-//                    }
-//                }
-//            }
-//
-//        }
-//
-//        if (this.level.isClientSide) {
-//            if (this.random.nextInt(24) == 0 && !this.isSilent()) {
-//                this.level.playLocalSound(this.getX() + 0.5D, this.getY() + 0.5D, this.getZ() + 0.5D, SoundEvents.BLAZE_BURN, this.getSoundSource(), 1.0F + this.random.nextFloat(), this.random.nextFloat() * 0.7F + 0.3F, false);
-//            }
-//            for(int lvt_1_1_ = 0; lvt_1_1_ < 2; ++lvt_1_1_) {
-//                this.level.addParticle(ParticleTypes.LARGE_SMOKE, this.getRandomX(0.5D), this.getRandomY(), this.getRandomZ(0.5D), 0.0D, 0.0D, 0.0D);
-//            }
-//        }
-//    }
-//
-//    @Override
-//    protected SoundEvent getAmbientSound()
-//    {
-//        return SoundGenerator.soundIdleBalrog.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-//    {
-//        return SoundGenerator.soundHurtBalrog.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getDeathSound()
-//    {
-//        return SoundGenerator.soundDeathBalrog.get();
-//    }
-//
-//    protected void playStepSound(BlockPos pos, Block blockIn)
-//    {
-//        this.playSound(SoundGenerator.soundStepBalrog.get(), 0.25F, 1.0F);
-//    }
-//
-//    @Nullable
-//    @Override
-//    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-//        this.populateDefaultEquipmentSlots(difficultyIn);
-//        reassessWeaponGoal();
-//        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-//    }
-//
-//    @Override
-//    protected void defineSynchedData() {
-//        super.defineSynchedData();
-//        this.entityData.define(DATA_FLAGS_ID, (byte)0);
-//
-//    }
-//
-//    @Override
-//    public void addAdditionalSaveData(CompoundNBT compound) {
-//        super.addAdditionalSaveData(compound);
-//    }
-//
-//    @Override
-//    public void readAdditionalSaveData(CompoundNBT compound) {
-//        super.readAdditionalSaveData(compound);
-//        if (this.hasCustomName()) {
-//            this.bossInfo.setName(this.getDisplayName());
-//        }
-//        reassessWeaponGoal();
-//    }
-//
-//    @Override
-//    public void setItemSlot(EquipmentSlotType p_184201_1_, ItemStack p_184201_2_) {
-//        super.setItemSlot(p_184201_1_, p_184201_2_);
-//        reassessWeaponGoal();
-//    }
-//
-//    public void reassessWeaponGoal() {
-//        if (this.level != null && !this.level.isClientSide) {
-//            scheduleWeaponGoalUpdate = true;
-//        }
-//    }
-//
-//    @Override
-//    public void tick() {
-//        if (scheduleWeaponGoalUpdate) {
-//            updateWeaponGoal();
-//        }
-//        super.tick();
-//    }
-//
-//    protected void updateWeaponGoal() {
-//        scheduleWeaponGoalUpdate = false;
-//        this.goalSelector.removeGoal(this.meleeGoal);
-//        this.goalSelector.removeGoal(this.bowGoal);
-//        ItemStack itemstack = this.getMainHandItem();
-//        if (itemstack.getItem() == Items.BOW) {
-//            int i = 20;
-//            if (this.level.getDifficulty() != Difficulty.HARD) {
-//                i = 40;
-//            }
-//
-//            this.bowGoal.setMinAttackInterval(i);
-//            this.goalSelector.addGoal(4, this.bowGoal);
-//        } else {
-//            this.goalSelector.addGoal(4, this.meleeGoal);
-//        }
-//    }
-//
-//    public boolean isOnFire() {
-//        return this.isCharged();
-//    }
-//
-//    private boolean isCharged() {
-//        return ((Byte)this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
-//    }
-//
-//    private void setCharged(boolean p_70844_1_) {
-//        byte lvt_2_1_ = (Byte)this.entityData.get(DATA_FLAGS_ID);
-//        if (p_70844_1_) {
-//            lvt_2_1_ = (byte)(lvt_2_1_ | 1);
-//        } else {
-//            lvt_2_1_ &= -2;
-//        }
-//
-//        this.entityData.set(DATA_FLAGS_ID, lvt_2_1_);
-//    }
-//
-//    static {
-//        DATA_FLAGS_ID = EntityDataManager.defineId(BalrogEntity.class, DataSerializers.BYTE);
-//    }
-//
-//    @Override
-//    public void setCustomName(@Nullable ITextComponent name) {
-//        super.setCustomName(name);
-//        this.bossInfo.setName(this.getDisplayName());
-//    }
-//
-//    @Override
-//    public void startSeenByPlayer(ServerPlayerEntity player) {
-//        super.startSeenByPlayer(player);
-//        this.bossInfo.addPlayer(player);
-//    }
-//
-//    @Override
-//    public void stopSeenByPlayer(ServerPlayerEntity player) {
-//        super.stopSeenByPlayer(player);
-//        this.bossInfo.removePlayer(player);
-//    }
-//
-//    @Override
-//    protected void customServerAiStep() {
-//        if (this.tickCount % 20 == 0) {
-//            this.heal(1.0F);
-//        }
-//
-//        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
-//    }
-//}
+
+    @Override
+    public void startSeenByPlayer(@Nonnull ServerPlayer serverPlayer) {
+        super.startSeenByPlayer(serverPlayer);
+        this.balrogEvent.addPlayer(serverPlayer);
+    }
+
+    @Override
+    public void stopSeenByPlayer(@Nonnull ServerPlayer serverPlayer) {
+        super.stopSeenByPlayer(serverPlayer);
+        this.balrogEvent.removePlayer(serverPlayer);
+    }
+}

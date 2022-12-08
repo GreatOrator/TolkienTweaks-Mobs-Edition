@@ -488,6 +488,14 @@
       "tolkienmobs:mob/goat/goat_hurt"
     ]
   },
+  "mob.goat.scream":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/goat/goat_scream"
+    ]
+  },
   "mob.goat.idle":
   {
     "category": "neutral",

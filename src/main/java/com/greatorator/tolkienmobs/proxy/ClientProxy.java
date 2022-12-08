@@ -1,10 +1,11 @@
 package com.greatorator.tolkienmobs.proxy;
 
 import com.greatorator.tolkienmobs.event.client.ClientEvents;
-import com.greatorator.tolkienmobs.handler.BowItemModelHandler;
+import com.greatorator.tolkienmobs.handler.BowLayerHandler;
 import com.greatorator.tolkienmobs.handler.ColorHandler;
 import com.greatorator.tolkienmobs.handler.HealthHandler;
-import com.greatorator.tolkienmobs.handler.registers.SpritesRegister;
+import com.greatorator.tolkienmobs.handler.registers.SpriteRegister;
+import com.greatorator.tolkienmobs.init.TolkienKeys;
 import com.greatorator.tolkienmobs.init.TolkienTrades;
 import com.greatorator.tolkienmobs.init.TolkienWoodTypes;
 import com.greatorator.tolkienmobs.init.renders.TolkienGuiRenders;
@@ -35,7 +36,7 @@ public class ClientProxy extends CommonProxy {
         MinecraftForge.EVENT_BUS.addListener(ClientEvents::renderOverlayEvent);
         MinecraftForge.EVENT_BUS.addListener(TolkienTrades::onVillagerTradesEvent);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ColorHandler::itemColourEvent);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(SpritesRegister::initialize);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(SpriteRegister::initialize);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(ClientEvents::onModelBakeEvent);
     }
 
@@ -52,6 +53,7 @@ public class ClientProxy extends CommonProxy {
     public void clientSetup(FMLClientSetupEvent event) {
         super.clientSetup(event);
 
+        TolkienKeys.init();
         registerRenders();
         registerPropertyOverride();
         registerWoodTypes(event);
@@ -61,8 +63,8 @@ public class ClientProxy extends CommonProxy {
         TolkienGuiRenders.init();
         TolkienItemBlockRenders.init();
         TolkienTileRenders.init();
-        BowItemModelHandler.makeBow(ELVEN_BOW.get());
-        BowItemModelHandler.makeBow(URUK_BOW.get());
+        BowLayerHandler.makeBow(ELVEN_BOW.get());
+        BowLayerHandler.makeBow(URUK_BOW.get());
     }
 
     public void registerPropertyOverride() {

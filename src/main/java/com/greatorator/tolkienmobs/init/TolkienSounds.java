@@ -159,6 +159,7 @@ public class TolkienSounds {
     public static final RegistryObject<SoundEvent> soundIdleGoat = addSound("mob.goat.idle");
     public static final RegistryObject<SoundEvent> soundHurtGoat = addSound("mob.goat.hurt");
     public static final RegistryObject<SoundEvent> soundAngryGoat = addSound("mob.goat.angry");
+    public static final RegistryObject<SoundEvent> soundScreamGoat = addSound("mob.goat.scream");
 
     //Sounds - Toaddle
     public static final RegistryObject<SoundEvent> soundDeathToaddle = addSound("mob.toaddle.death");

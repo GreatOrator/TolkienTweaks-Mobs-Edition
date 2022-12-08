@@ -1,7 +1,8 @@
 package com.greatorator.tolkienmobs.item.armor;
 
 import com.google.common.collect.ImmutableMap;
-import com.greatorator.tolkienmobs.handler.enums.TolkienArmorMaterials;
+import com.greatorator.tolkienmobs.handler.enums.TolkienArmorMaterial;
+import com.greatorator.tolkienmobs.init.TolkienItems;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -27,8 +28,7 @@ public class MorgulironArmorItem extends GeoArmorItem implements IAnimatable {
 
     private static final Map<ArmorMaterial, MobEffectInstance> MATERIAL_TO_EFFECT_MAP =
             (new ImmutableMap.Builder<ArmorMaterial, MobEffectInstance>())
-                    .put(TolkienArmorMaterials.MITHRIL, new MobEffectInstance(MobEffects.NIGHT_VISION, 40, 2, true, false))
-                    .put(TolkienArmorMaterials.MORGULIRON, new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 40, 2, true, false)).build();
+                    .put(TolkienArmorMaterial.MORGULIRON, new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 40, 2, true, false)).build();
 
     public MorgulironArmorItem(ArmorMaterial material, EquipmentSlot slot, Properties settings) {
         super(material, slot, settings);
@@ -54,6 +54,20 @@ public class MorgulironArmorItem extends GeoArmorItem implements IAnimatable {
     @Override
     public void onArmorTick(ItemStack stack, Level world, Player player) {
         if(!world.isClientSide()) {
+            if (player.getInventory().getArmor(3).getItem() == TolkienItems.HELMET_MORGULIRON.get()) {
+                player.addEffect(new MobEffectInstance(MobEffects.SATURATION, 40, 2, true, false));
+                player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 40, 3, true, false));
+            }
+            if (player.getInventory().getArmor(2).getItem() == TolkienItems.CHESTPLATE_MORGULIRON.get()) {
+                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 40, 2, true, false));
+            }
+            if (player.getInventory().getArmor(1).getItem() == TolkienItems.LEGGINGS_MORGULIRON.get()) {
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 40, 2, true, false));
+                player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 40, 3, true, false));
+            }
+            if (player.getInventory().getArmor(0).getItem() == TolkienItems.BOOTS_MORGULIRON.get()) {
+                player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 40, 1, true, false));
+            }
             if(hasFullSuitOfArmorOn(player)) {
                 evaluateArmorEffects(player);
             }

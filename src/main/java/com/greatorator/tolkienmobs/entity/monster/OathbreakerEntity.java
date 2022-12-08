@@ -1,138 +1,81 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-//
-//public class OathbreakerEntity extends MonsterEntity {
-//    private static final DataParameter<Integer> OATHBREAKER_TYPE = EntityDataManager.defineId(OathbreakerEntity.class, DataSerializers.INT);
-//    public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
-//        option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/oathbreaker/oathbreaker1.png"));
-//        option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/oathbreaker/oathbreaker2.png"));
-//        option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/oathbreaker/oathbreaker3.png"));
-//        option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/oathbreaker/oathbreaker4.png"));
-//    });
-//
-//    public OathbreakerEntity(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
-//        super(type, worldIn);
-//    }
-//
-//    @Override
-//    protected void registerGoals() {
-//        this.goalSelector.addGoal(2, new RestrictSunGoal(this));
-//        this.goalSelector.addGoal(3, new FleeSunGoal(this, 1.0D));
-//        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-//        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-//        this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
-//        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-//        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-//        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
-//    }
-//
-//    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-//        return net.minecraft.entity.monster.MonsterEntity.createMonsterAttributes()
-//                .add(Attributes.MAX_HEALTH, 16.0D)
-//                .add(Attributes.MOVEMENT_SPEED, 0.23D)
-//                .add(Attributes.ATTACK_DAMAGE, 3.0D)
-//                .add(Attributes.ARMOR, 5.0D);
-//    }
-//
-//    @Override
-//    public void aiStep() {
-//        if (this.isAlive()) {
-//            boolean flag = this.shouldBurnInDay() && this.isSunBurnTick();
-//            if (flag) {
-//                ItemStack itemstack = this.getItemBySlot(EquipmentSlotType.HEAD);
-//                if (!itemstack.isEmpty()) {
-//                    if (itemstack.isDamageableItem()) {
-//                        itemstack.setDamageValue(itemstack.getDamageValue() + this.random.nextInt(2));
-//                        if (itemstack.getDamageValue() >= itemstack.getMaxDamage()) {
-//                            this.broadcastBreakEvent(EquipmentSlotType.HEAD);
-//                            this.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
-//                        }
-//                    }
-//
-//                    flag = false;
-//                }
-//
-//                if (flag) {
-//                    this.setSecondsOnFire(8);
-//                }
-//            }
-//        }
-//
-//        super.aiStep();
-//    }
-//
-//    protected boolean shouldBurnInDay() {
-//        return true;
-//    }
-//
-//    @Override
-//    public CreatureAttribute getMobType()
-//    {
-//        return CreatureAttribute.UNDEAD;
-//    }
-//
-//    @Override
-//    protected SoundEvent getAmbientSound()
-//    {
-//        return SoundGenerator.soundIdleOathbreaker.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-//    {
-//        return SoundGenerator.soundHurtBarrowWight.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getDeathSound()
-//    {
-//        return SoundGenerator.soundHurtBarrowWight.get();
-//    }
-//
-//    /**
-//     * Region for determining random skin
-//     */
-//    public ResourceLocation getOathbreakerTypeName() {
-//        return TEXTURE_BY_ID.getOrDefault(this.getOathbreakerType(), TEXTURE_BY_ID.get(1));
-//    }
-//
-//    public int getOathbreakerType() {
-//        return this.entityData.get(OATHBREAKER_TYPE);
-//    }
-//
-//    public void setOathbreakerType(int type) {
-//        if (type < 0 || type >= 5) {
-//            type = this.random.nextInt(4);
-//        }
-//
-//        this.entityData.set(OATHBREAKER_TYPE, type);
-//    }
-//
-//    @Nullable
-//    @Override
-//    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-//        int job = TTMRand.getRandomInteger(5, 1);
-//        this.setOathbreakerType(job);
-//        this.populateDefaultEquipmentSlots(difficultyIn);
-//
-//        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-//    }
-//
-//    @Override
-//    protected void defineSynchedData() {
-//        super.defineSynchedData();
-//        this.entityData.define(OATHBREAKER_TYPE, 3);
-//    }
-//
-//    @Override
-//    public void addAdditionalSaveData(CompoundNBT compound) {
-//        super.addAdditionalSaveData(compound);
-//        compound.putInt("OathbreakerType", this.getOathbreakerType());
-//    }
-//
-//    @Override
-//    public void readAdditionalSaveData(CompoundNBT compound) {
-//        super.readAdditionalSaveData(compound);
-//        this.setOathbreakerType(compound.getInt("OathbreakerType"));
-//    }
-//}
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
+import com.greatorator.tolkienmobs.init.TolkienItems;
+import com.greatorator.tolkienmobs.init.TolkienSounds;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.ai.goal.FleeSunGoal;
+import net.minecraft.world.entity.ai.goal.RestrictSunGoal;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+
+public class OathbreakerEntity extends MonsterEntity {
+    public OathbreakerEntity(EntityType<? extends MonsterEntity> type, Level level) {
+        super(type, level);
+    }
+
+    @Override
+    protected void populateDefaultEquipmentSlots(DifficultyInstance instance) {
+        super.populateDefaultEquipmentSlots(instance);
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(TolkienItems.SWORD_MORGULIRON.get()));
+    }
+
+    @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(2, new RestrictSunGoal(this));
+        this.goalSelector.addGoal(3, new FleeSunGoal(this, 1.0D));
+    }
+
+    @Override
+    public void aiStep() {
+        if (this.isAlive()) {
+            boolean flag = this.shouldBurnInDay() && this.isSunBurnTick();
+            if (flag) {
+                ItemStack itemstack = this.getItemBySlot(EquipmentSlot.HEAD);
+                if (!itemstack.isEmpty()) {
+                    if (itemstack.isDamageableItem()) {
+                        itemstack.setDamageValue(itemstack.getDamageValue() + this.random.nextInt(2));
+                        if (itemstack.getDamageValue() >= itemstack.getMaxDamage()) {
+                            this.broadcastBreakEvent(EquipmentSlot.HEAD);
+                            this.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
+                        }
+                    }
+                    flag = false;
+                }
+                if (flag) {
+                    this.setSecondsOnFire(8);
+                }
+            }
+        }
+        super.aiStep();
+    }
+
+    protected boolean shouldBurnInDay() {
+        return true;
+    }
+
+    @Override
+    public MobType getMobType() {
+        return MobType.UNDEAD;
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return TolkienSounds.soundIdleOathbreaker.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return TolkienSounds.soundHurtBarrowWight.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return TolkienSounds.soundHurtBarrowWight.get();
+    }
+}

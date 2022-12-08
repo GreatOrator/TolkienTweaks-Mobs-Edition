@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.item.basic;
 
 import com.brandon3055.brandonscore.api.TimeKeeper;
 import com.brandon3055.brandonscore.utils.ItemNBTHelper;
-import com.greatorator.tolkienmobs.handler.LoreItemHandler;
 import com.greatorator.tolkienmobs.utils.HarvestUtility;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -22,7 +21,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class HobbitRingItem extends LoreItemHandler {
+public class HobbitRingItem extends BaseItem {
     public HobbitRingItem(Properties props) {
         super(props);
     }

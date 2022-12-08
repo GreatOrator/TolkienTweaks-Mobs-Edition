@@ -761,8 +761,8 @@ public class LangGenerator extends LanguageProvider {
 //        add(TolkienEntities.EGG_TTMSQUIRREL.get(), "Squirrel Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_FROG.get(), "Frog");
 //        add(TolkienEntities.EGG_TTMFROG.get(), "Frog Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_SWARM.get(), "Midge Flies");
-//        add(TolkienEntities.EGG_TTMSWARM.get(), "Midge Flies Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_SWARM.get(), "Midge Flies");
+        add(TolkienEntities.EGG_TTMSWARM.get(), "Midge Flies Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_THRUSH.get(), "Thrush");
 //        add(TolkienEntities.EGG_TTMTHRUSH.get(), "Thrush Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_CREBAIN.get(), "Crebain");
@@ -779,28 +779,32 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienEntities.EGG_TTMELVES.get(), "Elf Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_HOBBIT.get(), "Hobbit");
         add(TolkienEntities.EGG_TTMHOBBIT.get(), "Hobbit Spawn Egg");
-//
-//        // Monster
+
+        // Monster
+        add(TolkienEntities.ENTITY_TTM_OATHBREAKER.get(), "Oath Breaker");
+        add(TolkienEntities.EGG_TTMOATHBREAKER.get(), "Oath Breaker Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_BARROW.get(), "Barrow Wight");
+        add(TolkienEntities.EGG_TTMBARROW.get(), "Barrow Wight Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_FELLSPIRIT.get(), "Fell Spirit");
+        add(TolkienEntities.EGG_TTMFELLSPIRIT.get(), "Fell Spirit Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_BRIGAND.get(), "Brigand");
+        add(TolkienEntities.EGG_TTMBRIGAND.get(), "Brigand Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_HARADRIM.get(), "Haradrim");
+        add(TolkienEntities.EGG_TTMHARADRIM.get(), "Haradrim Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_ROMIEWALKER.get(), "Romie Walker");
+        add(TolkienEntities.EGG_TTMROMIEWALKER.get(), "Romie Walker Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_GOBLIN.get(), "Goblin");
 //        add(TolkienEntities.EGG_TTMGOBLIN.get(), "Goblin Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_BARROW.get(), "Barrow Wight");
-//        add(TolkienEntities.EGG_TTMBARROW.get(), "Barrow Wight Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_BRIGAND.get(), "Brigand");
-//        add(TolkienEntities.EGG_TTMBRIGAND.get(), "Brigand Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_DEEPCLAW.get(), "Deepclaw");
-//        add(TolkienEntities.EGG_TTMDEEPCLAW.get(), "Deepclaw Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_DEEPCLAW.get(), "Deepclaw");
+        add(TolkienEntities.EGG_TTMDEEPCLAW.get(), "Deepclaw Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_TREEENT.get(), "Tree Ent");
 //        add(TolkienEntities.EGG_TTMTREEENT.get(), "Tree Ent Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_DUERGAR.get(), "Duergar");
 //        add(TolkienEntities.EGG_TTMDUERGAR.get(), "Duergar Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_FELLSPIRIT.get(), "Fell Spirit");
-//        add(TolkienEntities.EGG_TTMFELLSPIRIT.get(), "Fell Spirit Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_SWAMPHAG.get(), "Swamp Hag");
 //        add(TolkienEntities.EGG_TTMSWAMPHAG.get(), "Swamp Hag Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_MIRKWOODSPIDER.get(), "Mirkwood Spider");
 //        add(TolkienEntities.EGG_TTMMIRKWOODSPIDER.get(), "Mirkwood Spider Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_HARADRIM.get(), "Haradrim");
-//        add(TolkienEntities.EGG_TTMHARADRIM.get(), "Haradrim Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_TROLL.get(), "Cave Troll");
 //        add(TolkienEntities.EGG_TTMTROLL.get(), "Cave Troll Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_WARG.get(), "Warg");
@@ -809,10 +813,6 @@ public class LangGenerator extends LanguageProvider {
 //        add(TolkienEntities.EGG_TTMMORDORORC.get(), "Mordor Orc Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_HURON.get(), "Huron");
 //        add(TolkienEntities.EGG_TTMHURON.get(), "Huron Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_OATHBREAKER.get(), "Oath Breaker");
-//        add(TolkienEntities.EGG_TTMOATHBREAKER.get(), "Oath Breaker Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_ROMIEWALKER.get(), "Romie Walker");
-//        add(TolkienEntities.EGG_TTMROMIEWALKER.get(), "Romie Walker Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_URUKHAI.get(), "Uruk Hai");
 //        add(TolkienEntities.EGG_TTMURUKHAI.get(), "Uruk Hai Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_ELEMENTALGOLEM.get(), "Elemental Golem");
@@ -821,8 +821,12 @@ public class LangGenerator extends LanguageProvider {
 //        add(TolkienEntities.EGG_TTMMINOTAUR.get(), "Minotaur Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_MIMICCHEST.get(), "Mimic");
 //        add(TolkienEntities.EGG_TTMMIMICCHEST.get(), "Mimic Spawn Egg");
-//
-//        // Boss
+
+        // Boss
+        add(TolkienEntities.ENTITY_TTM_WATCHER.get(), "Watcher of the Water");
+        add(TolkienEntities.EGG_TTMWATCHER.get(), "Watcher Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_BALROG.get(), "Balrog");
+        add(TolkienEntities.EGG_TTMBALROG.get(), "Balrog Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_GOBLINKING.get(), "Goblin King");
 //        add(TolkienEntities.EGG_TTMGOBLINKING.get(), "Goblin King Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_MITHRILGOLEM.get(), "Mithril Golem");
@@ -833,28 +837,24 @@ public class LangGenerator extends LanguageProvider {
 //        add(TolkienEntities.EGG_TTMWITCHKING.get(), "Witch King Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_SHELOB.get(), "Shelob");
 //        add(TolkienEntities.EGG_TTMSHELOB.get(), "Shelob Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_BALROG.get(), "Balrog");
-//        add(TolkienEntities.EGG_TTMBALROG.get(), "Balrog Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_WATCHER.get(), "Watcher of the Water");
-//        add(TolkienEntities.EGG_TTMWATCHER.get(), "Watcher Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_GWAHIR.get(), "Gwahir, Lord of the Eagles");
 //        add(TolkienEntities.EGG_TTMGWAHIR.get(), "Gwahir Spawn Egg");
 //        add(TolkienEntities.ENTITY_FELL_BEAST.get(), "Fell Beast");
 //        add(TolkienEntities.EGG_TTMFELLBEAST.get(), "Fell Beast Spawn Egg");
 //
-//        // Passive
-//        add(TolkienEntities.ENTITY_TTM_AUROCH.get(), "Auroch");
-//        add(TolkienEntities.EGG_TTMAUROCH.get(), "Auroch Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_MUMAKIL.get(), "Mumakil");
-//        add(TolkienEntities.EGG_TTMMUMAKIL.get(), "Mumakil Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_GOAT.get(), "Goat");
-//        add(TolkienEntities.EGG_TTMGOAT.get(), "Goat Spawn Egg");
-//
-//        // Special
+        // Passive
+        add(TolkienEntities.ENTITY_TTM_AUROCH.get(), "Auroch");
+        add(TolkienEntities.EGG_TTMAUROCH.get(), "Auroch Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_MUMAKIL.get(), "Mumakil");
+        add(TolkienEntities.EGG_TTMMUMAKIL.get(), "Mumakil Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_GOAT.get(), "Goat");
+        add(TolkienEntities.EGG_TTMGOAT.get(), "Goat Spawn Egg");
+
+        // Special
 //        add(TolkienEntities.ENTITY_TTM_SHADOWFAX.get(), "Shadowfax");
 //        add(TolkienEntities.EGG_TTMSHADOWFAX.get(), "Shadowfax Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_GOLLUM.get(), "Gollum");
-//        add(TolkienEntities.EGG_TTMGOLLUM.get(), "Gollum Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_GOLLUM.get(), "Gollum");
+        add(TolkienEntities.EGG_TTMGOLLUM.get(), "Gollum Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_NAZGUL.get(), "Nazgul");
 //        add(TolkienEntities.EGG_TTMNAZGUL.get(), "Nazgul Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_NAZGULSTEED.get(), "Nazgul Steed");
@@ -980,7 +980,7 @@ public class LangGenerator extends LanguageProvider {
     }
 
     private void keyCommand() {
-        add("key.category.tolkienmobs",                 "TolkienTweaks Mobs");
+        add("key.category.tolkienmobs",                 "Tolkien Tweaks Mobs");
         add("key.tolkienmobs.backpack_key",             "Open Backpack");
     }
 

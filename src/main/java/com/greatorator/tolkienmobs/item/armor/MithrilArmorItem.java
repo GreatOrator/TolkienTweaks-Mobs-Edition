@@ -1,7 +1,9 @@
 package com.greatorator.tolkienmobs.item.armor;
 
 import com.google.common.collect.ImmutableMap;
-import com.greatorator.tolkienmobs.handler.enums.TolkienArmorMaterials;
+import com.greatorator.tolkienmobs.handler.enums.TolkienArmorMaterial;
+import com.greatorator.tolkienmobs.init.TolkienItems;
+import com.greatorator.tolkienmobs.init.TolkienPotions;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -27,8 +29,7 @@ public class MithrilArmorItem extends GeoArmorItem implements IAnimatable {
 
     private static final Map<ArmorMaterial, MobEffectInstance> MATERIAL_TO_EFFECT_MAP =
             (new ImmutableMap.Builder<ArmorMaterial, MobEffectInstance>())
-                    .put(TolkienArmorMaterials.MITHRIL, new MobEffectInstance(MobEffects.NIGHT_VISION, 40, 2, true, false))
-                    .put(TolkienArmorMaterials.MORGULIRON, new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 40, 2, true, false)).build();
+                    .put(TolkienArmorMaterial.MITHRIL, new MobEffectInstance(MobEffects.REGENERATION, 40, 2, true, false)).build();
 
     public MithrilArmorItem(ArmorMaterial material, EquipmentSlot slot, Properties settings) {
         super(material, slot, settings);
@@ -54,6 +55,20 @@ public class MithrilArmorItem extends GeoArmorItem implements IAnimatable {
     @Override
     public void onArmorTick(ItemStack stack, Level world, Player player) {
         if(!world.isClientSide()) {
+            if (player.getInventory().getArmor(3).getItem() == TolkienItems.HELMET_MITHRIL.get()) {
+                player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 40, 2, true, false));
+            }
+            if (player.getInventory().getArmor(2).getItem() == TolkienItems.CHESTPLATE_MITHRIL.get()) {
+                player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 40, 2, true, false));
+            }
+            if (player.getInventory().getArmor(1).getItem() == TolkienItems.LEGGINGS_MITHRIL.get()) {
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 40, 2, true, false));
+                player.addEffect(new MobEffectInstance(MobEffects.JUMP, 40, 2, true, false));
+                player.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 40, 3, true, false));
+            }
+            if (player.getInventory().getArmor(0).getItem() == TolkienItems.BOOTS_MITHRIL.get()) {
+                player.addEffect(new MobEffectInstance(TolkienPotions.ELF_NIMBLENESS.get(), 40, 1, true, false));
+            }
             if(hasFullSuitOfArmorOn(player)) {
                 evaluateArmorEffects(player);
             }
@@ -69,6 +84,7 @@ public class MithrilArmorItem extends GeoArmorItem implements IAnimatable {
                 addStatusEffectForMaterial(player, mapArmorMaterial, mapStatusEffect);
             }
         }
+
     }
 
     private void addStatusEffectForMaterial(Player player, ArmorMaterial mapArmorMaterial,

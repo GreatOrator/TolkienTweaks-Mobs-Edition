@@ -1,13 +1,17 @@
 package com.greatorator.tolkienmobs.init.renders;
 
+import com.greatorator.tolkienmobs.entity.ambient.model.SwarmLayer;
+import com.greatorator.tolkienmobs.entity.ambient.model.SwarmModel;
 import com.greatorator.tolkienmobs.entity.item.TolkienBoatEntity;
 import com.greatorator.tolkienmobs.entity.item.model.TolkienBoatModel;
-import com.greatorator.tolkienmobs.handler.ModelLayerHandler;
+import com.greatorator.tolkienmobs.handler.BoatLayerHandler;
 import com.greatorator.tolkienmobs.item.armor.MithrilArmorItem;
 import com.greatorator.tolkienmobs.item.armor.MorgulironArmorItem;
 import com.greatorator.tolkienmobs.item.client.render.MithrilArmorRender;
 import com.greatorator.tolkienmobs.item.client.render.MorgulironArmorRender;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
@@ -29,14 +33,15 @@ public class TolkienEntityLayerRenders {
     @SubscribeEvent
     public static void register(EntityRenderersEvent.RegisterLayerDefinitions event) {
         // Armor
-        event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("mallorn")), TolkienBoatModel::createBodyModel);
-        event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("mirkwood")), TolkienBoatModel::createBodyModel);
-        event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("culumalda")), TolkienBoatModel::createBodyModel);
-        event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("lebethron")), TolkienBoatModel::createBodyModel);
-        event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("deadwood")), TolkienBoatModel::createBodyModel);
-        event.registerLayerDefinition(ModelLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("fangornoak")), TolkienBoatModel::createBodyModel);
+        event.registerLayerDefinition(BoatLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("mallorn")), TolkienBoatModel::createBodyModel);
+        event.registerLayerDefinition(BoatLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("mirkwood")), TolkienBoatModel::createBodyModel);
+        event.registerLayerDefinition(BoatLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("culumalda")), TolkienBoatModel::createBodyModel);
+        event.registerLayerDefinition(BoatLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("lebethron")), TolkienBoatModel::createBodyModel);
+        event.registerLayerDefinition(BoatLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("deadwood")), TolkienBoatModel::createBodyModel);
+        event.registerLayerDefinition(BoatLayerHandler.createBoatModelName(TolkienBoatEntity.Type.byName("fangornoak")), TolkienBoatModel::createBodyModel);
 
         // Ambient
+        event.registerLayerDefinition(SwarmLayer.ENTITY_TTM_SWARM, SwarmModel::create);
 
         // Merchants
 
@@ -49,10 +54,11 @@ public class TolkienEntityLayerRenders {
         // Special
     }
 
-//    @SubscribeEvent
-//    public static void registerLayers(EntityRenderersEvent.AddLayers event) {
-//        EntityRendererProvider.Context context = new EntityRendererProvider.Context(Minecraft.getInstance().getEntityRenderDispatcher(),Minecraft.getInstance().getItemRenderer(), Minecraft.getInstance().getResourceManager(), Minecraft.getInstance().getEntityModels(), Minecraft.getInstance().font);
-//    }
+    @SubscribeEvent
+    public static void registerLayers(EntityRenderersEvent.AddLayers event) {
+        EntityRendererProvider.Context context = new EntityRendererProvider.Context(Minecraft.getInstance().getEntityRenderDispatcher(),Minecraft.getInstance().getItemRenderer(), Minecraft.getInstance().getResourceManager(), Minecraft.getInstance().getEntityModels(), Minecraft.getInstance().font);
+    }
+
     @SubscribeEvent
     public static void registerArmorRenderers(final EntityRenderersEvent.AddLayers event) {
         GeoArmorRenderer.registerArmorRenderer(MithrilArmorItem.class, new MithrilArmorRender());

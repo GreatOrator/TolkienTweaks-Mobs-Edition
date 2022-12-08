@@ -4,7 +4,7 @@ package com.greatorator.tolkienmobs.entity.merchant.render;
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.entity.merchant.HumanEntity;
 import com.greatorator.tolkienmobs.entity.merchant.model.HumanModel;
-import com.greatorator.tolkienmobs.entity.merchant.variant.EntityVariant;
+import com.greatorator.tolkienmobs.entity.merchant.variant.MerchantVariant;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.Util;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -17,41 +17,41 @@ import java.util.Map;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 public class HumanRender extends GeoEntityRenderer<HumanEntity> {
-    public static final Map<EntityVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(EntityVariant.class), (enumMap) -> {
-                enumMap.put(EntityVariant.DEFAULT,
+    public static final Map<MerchantVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(MerchantVariant.class), (enumMap) -> {
+                enumMap.put(MerchantVariant.DEFAULT,
                         new ResourceLocation(MODID, "textures/entity/human/human1.png"));
-                enumMap.put(EntityVariant.RED,
+                enumMap.put(MerchantVariant.RED,
                         new ResourceLocation(MODID, "textures/entity/human/human1.png"));
-                enumMap.put(EntityVariant.ORANGE,
+                enumMap.put(MerchantVariant.ORANGE,
                         new ResourceLocation(MODID, "textures/entity/human/human2.png"));
-                enumMap.put(EntityVariant.YELLOW,
+                enumMap.put(MerchantVariant.YELLOW,
                         new ResourceLocation(MODID, "textures/entity/human/human3.png"));
-                enumMap.put(EntityVariant.GREEN,
+                enumMap.put(MerchantVariant.GREEN,
                         new ResourceLocation(MODID, "textures/entity/human/human4.png"));
-                enumMap.put(EntityVariant.BLUE,
+                enumMap.put(MerchantVariant.BLUE,
                         new ResourceLocation(MODID, "textures/entity/human/human5.png"));
-                enumMap.put(EntityVariant.INDIGO,
+                enumMap.put(MerchantVariant.INDIGO,
                         new ResourceLocation(MODID, "textures/entity/human/human6.png"));
-                enumMap.put(EntityVariant.VIOLET,
+                enumMap.put(MerchantVariant.VIOLET,
                         new ResourceLocation(MODID, "textures/entity/human/human7.png"));
-                enumMap.put(EntityVariant.MAGENTA,
+                enumMap.put(MerchantVariant.MAGENTA,
                         new ResourceLocation(MODID, "textures/entity/human/human8.png"));
-                enumMap.put(EntityVariant.PINK,
+                enumMap.put(MerchantVariant.PINK,
                         new ResourceLocation(MODID, "textures/entity/human/human9.png"));
-                enumMap.put(EntityVariant.GRAY,
+                enumMap.put(MerchantVariant.GRAY,
                         new ResourceLocation(MODID, "textures/entity/human/human10.png"));
-                enumMap.put(EntityVariant.AQUA,
+                enumMap.put(MerchantVariant.AQUA,
                         new ResourceLocation(MODID, "textures/entity/human/human11.png"));
-                enumMap.put(EntityVariant.BEIGE,
+                enumMap.put(MerchantVariant.BEIGE,
                         new ResourceLocation(MODID, "textures/entity/human/human12.png"));
-                enumMap.put(EntityVariant.BROWN,
+                enumMap.put(MerchantVariant.BROWN,
                         new ResourceLocation(MODID, "textures/entity/human/human13.png"));
-                enumMap.put(EntityVariant.CORAL,
+                enumMap.put(MerchantVariant.CORAL,
                         new ResourceLocation(MODID, "textures/entity/human/human14.png"));
-                enumMap.put(EntityVariant.CYAN,
+                enumMap.put(MerchantVariant.CYAN,
                         new ResourceLocation(MODID, "textures/entity/human/human15.png"));
-                enumMap.put(EntityVariant.LAVENDER,
+                enumMap.put(MerchantVariant.LAVENDER,
                         new ResourceLocation(MODID, "textures/entity/human/human16.png"));
             });
 
@@ -60,8 +60,8 @@ public class HumanRender extends GeoEntityRenderer<HumanEntity> {
         this.shadowRadius = 0.3f;
     }
 
-    public void render(HumanEntity entity, float p_115977_, float p_115978_, PoseStack stack, MultiBufferSource bufferSource, int p_115981_) {
-        super.render(entity, p_115977_, p_115978_, stack, bufferSource, p_115981_);
+    public void render(HumanEntity entity, float entityYaw, float partialTicks, PoseStack stack, MultiBufferSource bufferSource, int packedLightIn) {
+        super.render(entity, entityYaw, partialTicks, stack, bufferSource, packedLightIn);
     }
 
     @Override

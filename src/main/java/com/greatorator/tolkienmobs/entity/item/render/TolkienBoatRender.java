@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.item.TolkienBoatEntity;
 import com.greatorator.tolkienmobs.entity.item.model.TolkienBoatModel;
-import com.greatorator.tolkienmobs.handler.ModelLayerHandler;
+import com.greatorator.tolkienmobs.handler.BoatLayerHandler;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.datafixers.util.Pair;
@@ -30,7 +30,7 @@ public class TolkienBoatRender extends EntityRenderer<TolkienBoatEntity> {
         this.boatResources = Stream.of(TolkienBoatEntity.Type.values()).collect(ImmutableMap.toImmutableMap((type) -> {
             return type;
         }, (type) -> {
-            return Pair.of(new ResourceLocation(TolkienMobs.MODID, "textures/entity/boat/" + type.getName() + ".png"), new TolkienBoatModel(rendererManager.bakeLayer(ModelLayerHandler.createBoatModelName(type))));
+            return Pair.of(new ResourceLocation(TolkienMobs.MODID, "textures/entity/boat/" + type.getName() + ".png"), new TolkienBoatModel(rendererManager.bakeLayer(BoatLayerHandler.createBoatModelName(type))));
         }));
     }
 

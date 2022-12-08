@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.merchant.render;
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.entity.merchant.HobbitEntity;
 import com.greatorator.tolkienmobs.entity.merchant.model.HobbitModel;
-import com.greatorator.tolkienmobs.entity.merchant.variant.EntityVariant;
+import com.greatorator.tolkienmobs.entity.merchant.variant.MerchantVariant;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.Util;
@@ -18,41 +18,41 @@ import java.util.Map;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 public class HobbitRender extends GeoEntityRenderer<HobbitEntity> {
-    public static final Map<EntityVariant, ResourceLocation> LOCATION_BY_VARIANT =
-            Util.make(Maps.newEnumMap(EntityVariant.class), (enumMap) -> {
-                enumMap.put(EntityVariant.DEFAULT,
+    public static final Map<MerchantVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(MerchantVariant.class), (enumMap) -> {
+                enumMap.put(MerchantVariant.DEFAULT,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit1.png"));
-                enumMap.put(EntityVariant.RED,
+                enumMap.put(MerchantVariant.RED,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit1.png"));
-                enumMap.put(EntityVariant.ORANGE,
+                enumMap.put(MerchantVariant.ORANGE,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit2.png"));
-                enumMap.put(EntityVariant.YELLOW,
+                enumMap.put(MerchantVariant.YELLOW,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit3.png"));
-                enumMap.put(EntityVariant.GREEN,
+                enumMap.put(MerchantVariant.GREEN,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit4.png"));
-                enumMap.put(EntityVariant.BLUE,
+                enumMap.put(MerchantVariant.BLUE,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit5.png"));
-                enumMap.put(EntityVariant.INDIGO,
+                enumMap.put(MerchantVariant.INDIGO,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit6.png"));
-                enumMap.put(EntityVariant.VIOLET,
+                enumMap.put(MerchantVariant.VIOLET,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit7.png"));
-                enumMap.put(EntityVariant.MAGENTA,
+                enumMap.put(MerchantVariant.MAGENTA,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit8.png"));
-                enumMap.put(EntityVariant.PINK,
+                enumMap.put(MerchantVariant.PINK,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit9.png"));
-                enumMap.put(EntityVariant.GRAY,
+                enumMap.put(MerchantVariant.GRAY,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit10.png"));
-                enumMap.put(EntityVariant.AQUA,
+                enumMap.put(MerchantVariant.AQUA,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit11.png"));
-                enumMap.put(EntityVariant.BEIGE,
+                enumMap.put(MerchantVariant.BEIGE,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit12.png"));
-                enumMap.put(EntityVariant.BROWN,
+                enumMap.put(MerchantVariant.BROWN,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit13.png"));
-                enumMap.put(EntityVariant.CORAL,
+                enumMap.put(MerchantVariant.CORAL,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit14.png"));
-                enumMap.put(EntityVariant.CYAN,
+                enumMap.put(MerchantVariant.CYAN,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit15.png"));
-                enumMap.put(EntityVariant.LAVENDER,
+                enumMap.put(MerchantVariant.LAVENDER,
                         new ResourceLocation(MODID, "textures/entity/hobbit/hobbit16.png"));
             });
 
