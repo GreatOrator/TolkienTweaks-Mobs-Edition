@@ -1,20 +1,22 @@
 package com.greatorator.tolkienmobs.init;
 
+import com.greatorator.tolkienmobs.entity.AmbientEntity;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.VillagerEntity;
 import com.greatorator.tolkienmobs.entity.WanderingEntity;
-import com.greatorator.tolkienmobs.entity.ambient.SwarmEntity;
+import com.greatorator.tolkienmobs.entity.ambient.*;
 import com.greatorator.tolkienmobs.entity.boss.BalrogEntity;
+import com.greatorator.tolkienmobs.entity.boss.GwahirEntity;
 import com.greatorator.tolkienmobs.entity.boss.WatcherEntity;
+import com.greatorator.tolkienmobs.entity.boss.WitchKingEntity;
 import com.greatorator.tolkienmobs.entity.item.*;
 import com.greatorator.tolkienmobs.entity.merchant.*;
 import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.entity.passive.AurochEntity;
 import com.greatorator.tolkienmobs.entity.passive.GoatEntity;
 import com.greatorator.tolkienmobs.entity.passive.MumakilEntity;
-import com.greatorator.tolkienmobs.entity.special.GollumEntity;
+import com.greatorator.tolkienmobs.entity.special.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.SpawnPlacements;
@@ -42,18 +44,36 @@ public class TolkienEntities {
                     .sized(0.7F, 1.9F)
                     .build(new ResourceLocation(MODID, "entityttmswarm").toString())
     );
-//    private static final EntityType<RatEntity> entityTTMRat = buildEntity("entityttmrat", RatEntity::new, MobCategory.CREATURE, 0.75F, 0.5F);
-//    public static final RegistryObject<EntityType<RatEntity>> ENTITY_TTM_RAT = ENTITY.register("entityttmrat", () -> entityTTMRat);
-//    private static final EntityType<SquirrelEntity> entityTTMSquirrel = buildEntity("entityttmsquirrel", SquirrelEntity::new, MobCategory.CREATURE, 0.5F, 0.5F);
-//    public static final RegistryObject<EntityType<SquirrelEntity>> ENTITY_TTM_SQUIRREL = ENTITY.register("entityttmsquirrel", () -> entityTTMSquirrel);
-//    private static final EntityType<FrogEntity> entityTTMFrog = buildEntity("entityttmfrog", FrogEntity::new, MobCategory.CREATURE, 0.5F, 0.5F);
-//    public static final RegistryObject<EntityType<FrogEntity>> ENTITY_TTM_FROG = ENTITY.register("entityttmfrog", () -> entityTTMFrog);
-//    private static final EntityType<SwarmEntity> entityTTMSwarm = buildEntity("entityttmswarm", SwarmEntity::new, MobCategory.CREATURE, 0.7F, 1.9F);
-//    public static final RegistryObject<EntityType<SwarmEntity>> ENTITY_TTM_SWARM = ENTITY.register("entityttmswarm", () -> entityTTMSwarm);
-//    private static final EntityType<ThrushEntity> entityTTMThrush = buildEntity("entityttmthrush", ThrushEntity::new, MobCategory.CREATURE, 0.5F, 0.5F);
-//    public static final RegistryObject<EntityType<ThrushEntity>> ENTITY_TTM_THRUSH = ENTITY.register("entityttmthrush", () -> entityTTMThrush);
-//    private static final EntityType<CrebainEntity> entityTTMCrebain = buildEntity("entityttmcrebain", CrebainEntity::new, MobCategory.CREATURE, 0.5F, 0.5F);
-//    public static final RegistryObject<EntityType<CrebainEntity>> ENTITY_TTM_CREBAIN = ENTITY.register("entityttmcrebain", () -> entityTTMCrebain);
+    public static final RegistryObject<EntityType<ThrushEntity>> ENTITY_TTM_THRUSH = ENTITY.register(
+            "entityttmthrush",
+            () -> EntityType.Builder.of(ThrushEntity::new, MobCategory.CREATURE)
+                    .sized(0.5F, 0.5F)
+                    .build(new ResourceLocation(MODID, "entityttmthrush").toString())
+    );
+    public static final RegistryObject<EntityType<CrebainEntity>> ENTITY_TTM_CREBAIN = ENTITY.register(
+            "entityttmcrebain",
+            () -> EntityType.Builder.of(CrebainEntity::new, MobCategory.CREATURE)
+                    .sized(0.5F, 0.5F)
+                    .build(new ResourceLocation(MODID, "entityttmcrebain").toString())
+    );
+    public static final RegistryObject<EntityType<RatEntity>> ENTITY_TTM_RAT = ENTITY.register(
+            "entityttmrat",
+            () -> EntityType.Builder.of(RatEntity::new, MobCategory.CREATURE)
+                    .sized(0.75F, 0.5F)
+                    .build(new ResourceLocation(MODID, "entityttmrat").toString())
+    );
+    public static final RegistryObject<EntityType<SquirrelEntity>> ENTITY_TTM_SQUIRREL = ENTITY.register(
+            "entityttmsquirrel",
+            () -> EntityType.Builder.of(SquirrelEntity::new, MobCategory.CREATURE)
+                    .sized(0.5F, 0.5F)
+                    .build(new ResourceLocation(MODID, "entityttmsquirrel").toString())
+    );
+    public static final RegistryObject<EntityType<FrogEntity>> ENTITY_TTM_FROG = ENTITY.register(
+            "entityttmfrog",
+            () -> EntityType.Builder.of(FrogEntity::new, MobCategory.CREATURE)
+                    .sized(0.5F, 0.5F)
+                    .build(new ResourceLocation(MODID, "entityttmfrog").toString())
+    );
 
     // Merchants
     public static final RegistryObject<EntityType<HumanEntity>> ENTITY_TTM_HUMAN = ENTITY.register(
@@ -134,6 +154,12 @@ public class TolkienEntities {
                     .fireImmune()
                     .build(new ResourceLocation(MODID, "entityttmdeepclaw").toString())
     );
+    public static final RegistryObject<EntityType<TreeEntEntity>> ENTITY_TTM_TREEENT = ENTITY.register(
+            "entityttmtreeent",
+            () -> EntityType.Builder.of(TreeEntEntity::new, MobCategory.MONSTER)
+                    .sized(1.0F, 1.0F)
+                    .build(new ResourceLocation(MODID, "entityttmtreeent").toString())
+    );
 //    private static final EntityType<GoblinEntity> entityTTMGoblin = buildEntity("entityttmgoblin", GoblinEntity::new, MobCategory.MONSTER, 0.9F, 1.0F);
 //    public static final RegistryObject<EntityType<GoblinEntity>> ENTITY_TTM_GOBLIN = ENTITY.register("entityttmgoblin", () -> entityTTMGoblin);
 //    private static final EntityType<TreeEntEntity> entityTTMTreeEnt = buildEntity("entityttmtreeent", TreeEntEntity::new, MobCategory.MONSTER, 1.35F, 5.5F);
@@ -175,6 +201,18 @@ public class TolkienEntities {
                     .fireImmune()
                     .build(new ResourceLocation(MODID, "entityttmbalrog").toString())
     );
+    public static final RegistryObject<EntityType<WitchKingEntity>> ENTITY_TTM_WITCHKING = ENTITY.register(
+            "entityttmwitchking",
+            () -> EntityType.Builder.of(WitchKingEntity::new, MobCategory.MONSTER)
+                    .sized(2.3F, 1.1F)
+                    .build(new ResourceLocation(MODID, "entityttmwitchking").toString())
+    );
+    public static final RegistryObject<EntityType<GwahirEntity>> ENTITY_TTM_GWAHIR = ENTITY.register(
+            "entityttmgwahir",
+            () -> EntityType.Builder.of(GwahirEntity::new, MobCategory.CREATURE)
+                    .sized(1.3964844F, 1.6F)
+                    .build(new ResourceLocation(MODID, "entityttmgwahir").toString())
+    );
 //    private static final EntityType<GoblinKingEntity> entityTTMGoblinKing = buildEntity("entityttmgoblinking", GoblinKingEntity::new, MobCategory.MONSTER, 0.9F, 1.0F);
 //    public static final RegistryObject<EntityType<GoblinKingEntity>> ENTITY_TTM_GOBLINKING = ENTITY.register("entityttmgoblinking", () -> entityTTMGoblinKing);
 //    private static final EntityType<FellBeastEntity> entityFellBeast = buildEntity("entityttmfellbeast", FellBeastEntity::new, MobCategory.MONSTER, 16.0F, 8.0F);
@@ -183,15 +221,11 @@ public class TolkienEntities {
 //    public static final RegistryObject<EntityType<MithrilGolemEntity>> ENTITY_TTM_MITHRILGOLEM = ENTITY.register("entityttmmithrilgolem", () -> entityTTMMithrilGolem);
 //    private static final EntityType<MorgulIronGolemEntity> entityTTMMorgulIronGolem = buildEntity("entityttmmorgulirongolem", MorgulIronGolemEntity::new, MobCategory.MONSTER, 1.8F, 3.1F);
 //    public static final RegistryObject<EntityType<MorgulIronGolemEntity>> ENTITY_TTM_MORGULIRONGOLEM = ENTITY.register("entityttmmorgulirongolem", () -> entityTTMMorgulIronGolem);
-//    private static final EntityType<WitchKingEntity> entityTTMWitchKing = buildEntity("entityttmwitchking", WitchKingEntity::new, MobCategory.MONSTER, 1.3F, 2.2F);
-//    public static final RegistryObject<EntityType<WitchKingEntity>> ENTITY_TTM_WITCHKING = ENTITY.register("entityttmwitchking", () -> entityTTMWitchKing);
 //    private static final EntityType<ShelobEntity> entityTTMShelob = buildEntity("entityttmshelob", ShelobEntity::new, MobCategory.MONSTER, 2.3F, 1.1F);
 //    public static final RegistryObject<EntityType<ShelobEntity>> ENTITY_TTM_SHELOB = ENTITY.register("entityttmshelob", () -> entityTTMShelob);
 //    private static final EntityType<BalrogEntity> entityTTMBalrog = buildFireEntity("entityttmbalrog", BalrogEntity::new, MobCategory.MONSTER, 2.3F, 3.5F);
 //    public static final RegistryObject<EntityType<BalrogEntity>> ENTITY_TTM_BALROG = ENTITY.register("entityttmbalrog", () -> entityTTMBalrog);
-//    private static final EntityType<GwahirEntity> entityTTMGwahir = buildEntity("entityttmgwahir", GwahirEntity::new, MobCategory.CREATURE, 1.3964844F, 1.6F);
-//    public static final RegistryObject<EntityType<GwahirEntity>> ENTITY_TTM_GWAHIR = ENTITY.register("entityttmgwahir", () -> entityTTMGwahir);
-//
+
         // Passive
     public static final RegistryObject<EntityType<MumakilEntity>> ENTITY_TTM_MUMAKIL = ENTITY.register(
             "entityttmmumakil",
@@ -219,15 +253,31 @@ public class TolkienEntities {
                     .sized(1.0F, 1.0F)
                     .build(new ResourceLocation(MODID, "entityttmgollum").toString())
     );
-//    private static final EntityType<ShadowfaxEntity> entityTTMShadowfax = buildEntity("entityttmshadowfax", ShadowfaxEntity::new, MobCategory.CREATURE, 1.3964844F, 1.6F);
-//    public static final RegistryObject<EntityType<ShadowfaxEntity>> ENTITY_TTM_SHADOWFAX = ENTITY.register("entityttmshadowfax", () -> entityTTMShadowfax);
-//    private static final EntityType<NazgulEntity> entityTTMNazgul = buildEntity("entityttmnazgul", NazgulEntity::new, MobCategory.MONSTER, 1.3F, 2.2F);
-//    public static final RegistryObject<EntityType<NazgulEntity>> ENTITY_TTM_NAZGUL = ENTITY.register("entityttmnazgul", () -> entityTTMNazgul);
-//    private static final EntityType<NazgulSteedEntity> entityTTMNazgulSteed = buildEntity("entityttmnazgulsteed", NazgulSteedEntity::new, MobCategory.CREATURE, 1.3964844F, 1.6F);
-//    public static final RegistryObject<EntityType<NazgulSteedEntity>> ENTITY_TTM_NAZGULSTEED = ENTITY.register("entityttmnazgulsteed", () -> entityTTMNazgulSteed);
-//    private static final EntityType<GreatEagleEntity> entityTTMGreatEagle = buildEntity("entityttmgreateagle", GreatEagleEntity::new, MobCategory.CREATURE, 1.3964844F, 1.6F);
-//    public static final RegistryObject<EntityType<GreatEagleEntity>> ENTITY_TTM_GREAT_EAGLE = ENTITY.register("entityttmgreateagle", () -> entityTTMGreatEagle);
-//
+    public static final RegistryObject<EntityType<ShadowfaxEntity>> ENTITY_TTM_SHADOWFAX = ENTITY.register(
+            "entityttmshadowfax",
+            () -> EntityType.Builder.of(ShadowfaxEntity::new, MobCategory.CREATURE)
+                    .sized(1.3964844F, 1.6F)
+                    .build(new ResourceLocation(MODID, "entityttmshadowfax").toString())
+    );
+    public static final RegistryObject<EntityType<NazgulEntity>> ENTITY_TTM_NAZGUL = ENTITY.register(
+            "entityttmnazgul",
+            () -> EntityType.Builder.of(NazgulEntity::new, MobCategory.MONSTER)
+                    .sized(1.3F, 2.2F)
+                    .build(new ResourceLocation(MODID, "entityttmnazgul").toString())
+    );
+    public static final RegistryObject<EntityType<NazgulSteedEntity>> ENTITY_TTM_NAZGULSTEED = ENTITY.register(
+            "entityttmnazgulsteed",
+            () -> EntityType.Builder.of(NazgulSteedEntity::new, MobCategory.CREATURE)
+                    .sized(1.3964844F, 1.6F)
+                    .build(new ResourceLocation(MODID, "entityttmnazgulsteed").toString())
+    );
+    public static final RegistryObject<EntityType<GreatEagleEntity>> ENTITY_TTM_GREAT_EAGLE = ENTITY.register(
+            "entityttmgreateagle",
+            () -> EntityType.Builder.of(GreatEagleEntity::new, MobCategory.CREATURE)
+                    .sized(1.3964844F, 1.6F)
+                    .build(new ResourceLocation(MODID, "entityttmgreateagle").toString())
+    );
+
     // Ammo
     public static final RegistryObject<EntityType<GaladhrimArrowEntity>> AMMO_ARROW_GALADHRIM = ENTITY.register("ammo_arrow_galadhrim", () -> EntityType.Builder.<GaladhrimArrowEntity>of(GaladhrimArrowEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).build(MODID + ":ammo_arrow_galadhrim"));
     public static final RegistryObject<EntityType<UtumnoArrowEntity>> AMMO_ARROW_UTUMNO = ENTITY.register("ammo_utumno_arrow", () -> EntityType.Builder.<UtumnoArrowEntity>of(UtumnoArrowEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).build(MODID + ":ammo_utumno_arrow"));
@@ -248,11 +298,11 @@ public class TolkienEntities {
     /* Spawn Eggs */
     // Ambient
     public static RegistryObject<ForgeSpawnEggItem> EGG_TTMSWARM = EGG_ITEMS.register("entityttmswarm", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_SWARM, 9482106, 14088652, new Item.Properties().tab(spawnGroup)));
-//    public static final RegistryObject<Item> EGG_TTMRAT = createSpawnEgg("entityttmrat", entityTTMRat, 9482106, 2301661);
-//    public static final RegistryObject<Item> EGG_TTMSQUIRREL = createSpawnEgg("entityttmsquirrel", entityTTMSquirrel, 9482106, 5600397);
-//    public static final RegistryObject<Item> EGG_TTMFROG = createSpawnEgg("entityttmfrog", entityTTMFrog, 9482106, 14289362);
-//    public static final RegistryObject<Item> EGG_TTMTHRUSH = createSpawnEgg("entityttmthrush", entityTTMThrush, 9482106, 9467561);
-//    public static final RegistryObject<Item> EGG_TTMCREBAIN = createSpawnEgg("entityttmcrebain", entityTTMCrebain, 9482106, 9226665);
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMTHRUSH = EGG_ITEMS.register("entityttmthrush", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_THRUSH, 9482106, 9467561, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMCREBAIN = EGG_ITEMS.register("entityttmcrebain", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_CREBAIN, 9482106, 9226665, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMRAT = EGG_ITEMS.register("entityttmrat", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_RAT, 9482106, 2301661, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMSQUIRREL = EGG_ITEMS.register("entityttmsquirrel", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_SQUIRREL, 9482106, 5600397, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMFROG = EGG_ITEMS.register("entityttmfrog", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_FROG, 9482106, 14289362, new Item.Properties().tab(spawnGroup)));
 
     // Merchants
     public static RegistryObject<ForgeSpawnEggItem> EGG_TTMHUMAN = EGG_ITEMS.register("entityttmhuman", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_HUMAN, 15186506, 2301661, new Item.Properties().tab(spawnGroup)));
@@ -269,8 +319,8 @@ public class TolkienEntities {
     public static RegistryObject<ForgeSpawnEggItem> EGG_TTMHARADRIM = EGG_ITEMS.register("entityttmharadrim", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_HARADRIM, 585619, 12198412, new Item.Properties().tab(spawnGroup)));
     public static RegistryObject<ForgeSpawnEggItem> EGG_TTMROMIEWALKER = EGG_ITEMS.register("entityttmromiewalker", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_ROMIEWALKER, 585619, 16739362, new Item.Properties().tab(spawnGroup)));
     public static RegistryObject<ForgeSpawnEggItem> EGG_TTMDEEPCLAW = EGG_ITEMS.register("entityttmdeepclaw", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_DEEPCLAW, 585619, 14088652, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMTREEENT = EGG_ITEMS.register("entityttmtreeent", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_TREEENT, 585619, 9467561, new Item.Properties().tab(spawnGroup)));
 //    public static final RegistryObject<Item> EGG_TTMGOBLIN = createSpawnEgg("entityttmgoblin", entityTTMGoblin, 585619, 2301661);
-//    public static final RegistryObject<Item> EGG_TTMTREEENT = createSpawnEgg("entityttmtreeent", entityTTMTreeEnt, 585619, 9467561);
 //    public static final RegistryObject<Item> EGG_TTMDUERGAR = createSpawnEgg("entityttmduergar", entityTTMDuergar, 585619, 9226665);
 //    public static final RegistryObject<Item> EGG_TTMSWAMPHAG = createSpawnEgg("entityttmswamphag", entityTTMSwampHag, 585619, 12659887);
 //    public static final RegistryObject<Item> EGG_TTMMIRKWOODSPIDER = createSpawnEgg("entityttmmirkwoodspider", entityTTMMirkwoodSpider, 585619, 16211457);
@@ -286,12 +336,12 @@ public class TolkienEntities {
     // Boss
     public static RegistryObject<ForgeSpawnEggItem> EGG_TTMWATCHER = EGG_ITEMS.register("entityttmwatcher", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_WATCHER, 15673963, 7405383, new Item.Properties().tab(spawnGroup)));
     public static RegistryObject<ForgeSpawnEggItem> EGG_TTMBALROG = EGG_ITEMS.register("entityttmbalrog", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_BALROG, 15673963, 9226665, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMWITCHKING = EGG_ITEMS.register("entityttmwitchking", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_WITCHKING, 15673963, 14088652, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMGWAHIR = EGG_ITEMS.register("entityttmgwahir", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_GWAHIR, 15673963, 12659887, new Item.Properties().tab(spawnGroup)));
 //    public static final RegistryObject<Item> EGG_TTMGOBLINKING = createSpawnEgg("entityttmgoblinking", entityTTMGoblinKing, 15673963, 2301661);
 //    public static final RegistryObject<Item> EGG_TTMMITHRILGOLEM = createSpawnEgg("entityttmmithrilgolem", entityTTMMithrilGolem, 15673963, 5600397);
 //    public static final RegistryObject<Item> EGG_TTMMORGULIRONGOLEM = createSpawnEgg("entityttmmorgulirongolem", entityTTMMorgulIronGolem, 15673963, 14289362);
-//    public static final RegistryObject<Item> EGG_TTMWITCHKING = createSpawnEgg("entityttmwitchking", entityTTMWitchKing, 15673963, 14088652);
 //    public static final RegistryObject<Item> EGG_TTMSHELOB = createSpawnEgg("entityttmshelob", entityTTMShelob, 15673963, 9467561);
-//    public static final RegistryObject<Item> EGG_TTMGWAHIR = createSpawnEgg("entityttmgwahir", entityTTMGwahir, 15673963, 12659887);
 //    public static final RegistryObject<Item> EGG_TTMFELLBEAST = createSpawnEgg("entityttmfellbeast", entityFellBeast, 15673963, 16211457);
 
     // Passive
@@ -301,20 +351,20 @@ public class TolkienEntities {
 
     // Special
     public static RegistryObject<ForgeSpawnEggItem> EGG_TTMGOLLUM = EGG_ITEMS.register("entityttmgollum", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_GOLLUM, 2576351, 5600397, new Item.Properties().tab(spawnGroup)));
-//    public static final RegistryObject<Item> EGG_TTMSHADOWFAX = createSpawnEgg("entityttmshadowfax", entityTTMShadowfax, 2576351, 2301661);
-//    public static final RegistryObject<Item> EGG_TTMNAZGUL = createSpawnEgg("entityttmnazgul", entityTTMNazgul, 2576351, 14289362);
-//    public static final RegistryObject<Item> EGG_TTMNAZGULSTEED = createSpawnEgg("entityttmnazgulsteed", entityTTMNazgulSteed, 2576351, 14088652);
-//    public static final RegistryObject<Item> EGG_TTMGREATEAGLE = createSpawnEgg("entityttmgreateagle", entityTTMGreatEagle, 2576351, 9467561);
-//
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMSHADOWFAX = EGG_ITEMS.register("entityttmshadowfax", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_SHADOWFAX, 2576351, 2301661, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMNAZGUL = EGG_ITEMS.register("entityttmnazgul", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_NAZGUL, 2576351, 14289362, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMNAZGULSTEED = EGG_ITEMS.register("entityttmnazgulsteed", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_NAZGULSTEED, 2576351, 14088652, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMGREATEAGLE = EGG_ITEMS.register("entityttmgreateagle", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_GREAT_EAGLE, 2576351, 9467561, new Item.Properties().tab(spawnGroup)));
+
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         /* Attribute Registry */
         // Ambient
-//        event.put(ENTITY_TTM_RAT.get(), RatEntity.registerAttributes().build());
-//        event.put(ENTITY_TTM_SQUIRREL.get(), SquirrelEntity.registerAttributes().build());
-//        event.put(ENTITY_TTM_FROG.get(), SquirrelEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_RAT.get(), RatEntity.createAttributes().build());
+        event.put(ENTITY_TTM_SQUIRREL.get(), SquirrelEntity.createAttributes().build());
+        event.put(ENTITY_TTM_FROG.get(), SquirrelEntity.createAttributes().build());
         event.put(ENTITY_TTM_SWARM.get(), SwarmEntity.createAttributes().build());
-//        event.put(ENTITY_TTM_THRUSH.get(), ThrushEntity.registerAttributes().build());
-//        event.put(ENTITY_TTM_CREBAIN.get(), CrebainEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_THRUSH.get(), ThrushEntity.createAttributes().build());
+        event.put(ENTITY_TTM_CREBAIN.get(), CrebainEntity.createAttributes().build());
 
         // Merchants
         event.put(ENTITY_TTM_HUMAN.get(), HumanEntity.createAttributes().build());
@@ -332,7 +382,7 @@ public class TolkienEntities {
         event.put(ENTITY_TTM_ROMIEWALKER.get(), RomieWalkerEntity.createAttributes().build());
 //        event.put(ENTITY_TTM_GOBLIN.get(), GoblinEntity.registerAttributes().build());
         event.put(ENTITY_TTM_DEEPCLAW.get(), DeepClawEntity.createAttributes().build());
-//        event.put(ENTITY_TTM_TREEENT.get(), TreeEntEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_TREEENT.get(), TreeEntEntity.createAttributes().build());
 //        event.put(ENTITY_TTM_DUERGAR.get(), DuergarEntity.registerAttributes().build());
 //        event.put(ENTITY_TTM_SWAMPHAG.get(), SwampHagEntity.registerAttributes().build());
 //        event.put(ENTITY_TTM_MIRKWOODSPIDER.get(), MirkwoodSpiderEntity.registerAttributes().build());
@@ -348,13 +398,13 @@ public class TolkienEntities {
         // Boss
         event.put(ENTITY_TTM_WATCHER.get(), WatcherEntity.createAttributes().build());
         event.put(ENTITY_TTM_BALROG.get(), BalrogEntity.createAttributes().build());
+        event.put(ENTITY_TTM_WITCHKING.get(), WitchKingEntity.createAttributes().build());
+        event.put(ENTITY_TTM_GWAHIR.get(), GwahirEntity.createAttributes().build());
 //        event.put(ENTITY_TTM_GOBLINKING.get(), GoblinKingEntity.registerAttributes().build());
 //        event.put(ENTITY_FELL_BEAST.get(), FellBeastEntity.registerAttributes().build());
 //        event.put(ENTITY_TTM_MITHRILGOLEM.get(), MithrilGolemEntity.registerAttributes().build());
 //        event.put(ENTITY_TTM_MORGULIRONGOLEM.get(), MorgulIronGolemEntity.registerAttributes().build());
-//        event.put(ENTITY_TTM_WITCHKING.get(), WitchKingEntity.registerAttributes().build());
 //        event.put(ENTITY_TTM_SHELOB.get(), ShelobEntity.registerAttributes().build());
-//        event.put(ENTITY_TTM_GWAHIR.get(), GwahirEntity.registerAttributes().build());
 
         // Passive
         event.put(ENTITY_TTM_AUROCH.get(), AurochEntity.createAttributes().build());
@@ -362,23 +412,23 @@ public class TolkienEntities {
         event.put(ENTITY_TTM_GOAT.get(), GoatEntity.createAttributes().build());
 
 //        // Special
-//        event.put(ENTITY_TTM_SHADOWFAX.get(), ShadowfaxEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_SHADOWFAX.get(), ShadowfaxEntity.createAttributes().build());
         event.put(ENTITY_TTM_GOLLUM.get(), GollumEntity.createAttributes().build());
-//        event.put(ENTITY_TTM_NAZGUL.get(), NazgulEntity.registerAttributes().build());
-//        event.put(ENTITY_TTM_NAZGULSTEED.get(), NazgulSteedEntity.registerAttributes().build());
-//        event.put(ENTITY_TTM_GREAT_EAGLE.get(), GreatEagleEntity.registerAttributes().build());
+        event.put(ENTITY_TTM_NAZGUL.get(), NazgulEntity.createAttributes().build());
+        event.put(ENTITY_TTM_NAZGULSTEED.get(), NazgulSteedEntity.createAttributes().build());
+        event.put(ENTITY_TTM_GREAT_EAGLE.get(), GreatEagleEntity.createAttributes().build());
     }
 
     public static void registerSpawnPlacement() {
         //Look in SpawnPlacements for examples
         // Ambient
-//        SpawnPlacements.register(ENTITY_TTM_SQUIRREL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AmbientEntity::checkTTMAmbientSpawn);
-//        SpawnPlacements.register(ENTITY_TTM_FROG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FrogEntity::checkFrogSpawnRules);
-//        SpawnPlacements.register(ENTITY_TTM_THRUSH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ThrushEntity::checkThrushSpawn);
+        SpawnPlacements.register(ENTITY_TTM_THRUSH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, ThrushEntity::checkThrushSpawn);
         SpawnPlacements.register(ENTITY_TTM_SWARM.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SwarmEntity::checkSwarmSpawn);
-//        SpawnPlacements.register(ENTITY_TTM_RAT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AmbientEntity::checkTTMAmbientSpawn);
-//        SpawnPlacements.register(ENTITY_TTM_CREBAIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CrebainEntity::checkCrebainSpawn);
-//
+        SpawnPlacements.register(ENTITY_TTM_CREBAIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, CrebainEntity::checkCrebainSpawn);
+        SpawnPlacements.register(ENTITY_TTM_SQUIRREL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AmbientEntity::checkAmbientSpawn);
+        SpawnPlacements.register(ENTITY_TTM_FROG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, FrogEntity::checkFrogSpawnRules);
+        SpawnPlacements.register(ENTITY_TTM_RAT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, AmbientEntity::checkAmbientSpawn);
+
         // Merchants
         SpawnPlacements.register(ENTITY_TTM_HUMAN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, VillagerEntity::checkMobSpawnRules);
         SpawnPlacements.register(ENTITY_TTM_DESERTDWELLER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, WanderingEntity::checkMobSpawnRules);
@@ -395,7 +445,7 @@ public class TolkienEntities {
         SpawnPlacements.register(ENTITY_TTM_ROMIEWALKER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
 //        SpawnPlacements.register(ENTITY_TTM_GOBLIN.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         SpawnPlacements.register(ENTITY_TTM_DEEPCLAW.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
-//        SpawnPlacements.register(ENTITY_TTM_TREEENT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TreeEntEntity::checkTreeEntSpawn);
+        SpawnPlacements.register(ENTITY_TTM_TREEENT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, TreeEntEntity::checkTreeEntSpawn);
 //        SpawnPlacements.register(ENTITY_TTM_DUERGAR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
 //        SpawnPlacements.register(ENTITY_TTM_SWAMPHAG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
 //        SpawnPlacements.register(ENTITY_TTM_MIRKWOODSPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
@@ -407,34 +457,16 @@ public class TolkienEntities {
 //        SpawnPlacements.register(ENTITY_TTM_ELEMENTALGOLEM.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
 //        SpawnPlacements.register(ENTITY_TTM_MINOTAUR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MinotaurEntity::checkMinotaurSpawn);
 //        SpawnPlacements.register(ENTITY_TTM_MIMICCHEST.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
-//
-//        // Boss
-//
-//        //Passive
+
+        //Passive
         SpawnPlacements.register(ENTITY_TTM_MUMAKIL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MumakilEntity::checkMumakilSpawn);
         SpawnPlacements.register(ENTITY_TTM_AUROCH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
         SpawnPlacements.register(ENTITY_TTM_GOAT.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-//
-//        // Special
-//        SpawnPlacements.register(ENTITY_TTM_SHADOWFAX.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+
+        // Special
+        SpawnPlacements.register(ENTITY_TTM_SHADOWFAX.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
         SpawnPlacements.register(ENTITY_TTM_GOLLUM.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GollumEntity::checkGollumSpawn);
-//        SpawnPlacements.register(ENTITY_TTM_NAZGUL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, NazgulEntity::checkNazgulSpawn);
-//        SpawnPlacements.register(ENTITY_TTM_NAZGULSTEED.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-    }
-
-    // Helper Methods
-    private static<T extends Entity> EntityType<T> buildEntity(String name, EntityType.EntityFactory<T> factory, MobCategory classification, float size1, float size2) {
-        return makeBuilder(factory, classification).sized(size1, size2).build(name);
-    }
-    private static<T extends Entity> EntityType<T> buildFireEntity(String name, EntityType.EntityFactory<T> factory, MobCategory classification, float size1, float size2) {
-        return makeBuilder(factory, classification).fireImmune().sized(size1, size2).build(name);
-    }
-    private static<T extends Entity> EntityType<T> buildEntity(String name, EntityType.EntityFactory<T> factory, MobCategory classification) {
-        return makeBuilder(factory, classification).build(name);
-    }
-
-    private static<T extends Entity> EntityType.Builder<T> makeBuilder(EntityType.EntityFactory<T> factory, MobCategory classification) {
-        return EntityType.Builder.of(factory, classification);
+        SpawnPlacements.register(ENTITY_TTM_NAZGULSTEED.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
     }
 
     public String getName() {

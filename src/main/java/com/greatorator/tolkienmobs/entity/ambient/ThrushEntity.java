@@ -1,363 +1,270 @@
 package com.greatorator.tolkienmobs.entity.ambient;
 
-//
-//public class ThrushEntity extends ParrotEntity {
-//    private static final DataParameter<Integer> VARIANT = EntityDataManager.defineId(ThrushEntity.class, DataSerializers.INT);
-//    private static final Item DEADLY_ITEM = Items.COOKIE;
-//    private static final Set<Item> TAME_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
-//
-//    public float flap;
-//    public float flapSpeed;
-//    public float oFlapSpeed;
-//    public float oFlap;
-//    private float flapping = 1.0F;
-//    private boolean partyParrot;
-//    private BlockPos jukeboxPosition;
-//
-//    public ThrushEntity(EntityType<? extends ThrushEntity> type, World worldIn) {
-//        super(type, worldIn);
-//        this.moveControl = new TTMFlyingMovementController(this, 10, false);
-//        this.setPathfindingMalus(PathNodeType.DANGER_FIRE, -1.0F);
-//        this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, -1.0F);
-//        this.setPathfindingMalus(PathNodeType.COCOA, -1.0F);
-//    }
-//
-//    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-//        return MobEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 6.0D)
-//                .add(Attributes.FLYING_SPEED, (double) 0.4F)
-//                .add(Attributes.MOVEMENT_SPEED, (double) 0.2F);
-//    }
-//
-//    /**
-//     * If Animal, checks if the age timer is negative
-//     */
-//    @Override
-//    public boolean isBaby() {
-//        return false;
-//    }
-//
-//    @Override
-//    protected void registerGoals() {
-//        this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
-//        this.goalSelector.addGoal(0, new SwimGoal(this));
-//        this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-//        this.goalSelector.addGoal(2, new SitGoal(this));
-//        this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0D, 5.0F, 1.0F, true));
-//        this.goalSelector.addGoal(2, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
-//        this.goalSelector.addGoal(3, new LandOnOwnersShoulderGoal(this));
-//        this.goalSelector.addGoal(3, new FollowMobGoal(this, 1.0D, 3.0F, 7.0F));
-//    }
-//
-//    @Nullable
-//    @Override
-//    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-//        this.setVariant(this.random.nextInt(5));
-//        if (spawnDataIn == null) {
-//            spawnDataIn = new AgeableEntity.AgeableData(false);
-//        }
-//
-//        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-//    }
-//
-//    /**
-//     * Returns new PathNavigateGround instance
-//     */
-//    @Override
-//    protected PathNavigator createNavigation(World worldIn) {
-//        FlyingPathNavigator flyingpathnavigator = new FlyingPathNavigator(this, worldIn);
-//        flyingpathnavigator.setCanOpenDoors(false);
-//        flyingpathnavigator.setCanFloat(true);
-//        flyingpathnavigator.setCanPassDoors(true);
-//        return flyingpathnavigator;
-//    }
-//
-//    @Override
-//    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
-//        return sizeIn.height * 0.6F;
-//    }
-//
-//    /**
-//     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-//     * use this to react to sunlight and start to burn.
-//     */
-//    @Override
-//    public void aiStep() {
-//        if (this.jukeboxPosition == null || !this.jukeboxPosition.closerThan(this.position(), 3.46D) || !this.level.getBlockState(this.jukeboxPosition).is(Blocks.JUKEBOX)) {
-//            this.partyParrot = false;
-//            this.jukeboxPosition = null;
-//        }
-//
-//        if (this.level.random.nextInt(400) == 0) {
-//            playMimicSound(this.level, this);
-//        }
-//
-//        super.aiStep();
-//        this.calculateFlapping();
-//    }
-//
-//    /**
-//     * Called when a record starts or stops playing. Used to make parrots start or stop partying.
-//     */
-//    @OnlyIn(Dist.CLIENT)
-//    @Override
-//    public void setRecordPlayingNearby(BlockPos pos, boolean isPartying) {
-//        this.jukeboxPosition = pos;
-//        this.partyParrot = isPartying;
-//    }
-//
-//    @OnlyIn(Dist.CLIENT)
-//    @Override
-//    public boolean isPartyParrot() {
-//        return this.partyParrot;
-//    }
-//
-//    private void calculateFlapping() {
-//        this.oFlap = this.flap;
-//        this.oFlapSpeed = this.flapSpeed;
-//        this.flapSpeed = (float) ((double) this.flapSpeed + (double) (!this.onGround && !this.isPassenger() ? 4 : -1) * 0.3D);
-//        this.flapSpeed = MathHelper.clamp(this.flapSpeed, 0.0F, 1.0F);
-//        if (!this.onGround && this.flapping < 1.0F) {
-//            this.flapping = 1.0F;
-//        }
-//
-//        this.flapping = (float) ((double) this.flapping * 0.9D);
-//        Vector3d vector3d = this.getDeltaMovement();
-//        if (!this.onGround && vector3d.y < 0.0D) {
-//            this.setDeltaMovement(vector3d.multiply(1.0D, 0.6D, 1.0D));
-//        }
-//
-//        this.flap += this.flapping * 2.0F;
-//    }
-//
-//    public static boolean playMimicSound(World worldIn, Entity parrotIn) {
-//        return false;
-//    }
-//
-//    @Override
-//    public ActionResultType mobInteract(PlayerEntity p_230254_1_, Hand p_230254_2_) {
-//        ItemStack itemstack = p_230254_1_.getItemInHand(p_230254_2_);
-//        if (!this.isTame() && TAME_ITEMS.contains(itemstack.getItem())) {
-//            if (!p_230254_1_.abilities.instabuild) {
-//                itemstack.shrink(1);
-//            }
-//
-//            if (!this.isSilent()) {
-//                this.level.playSound((PlayerEntity) null, this.getX(), this.getY(), this.getZ(), SoundEvents.PARROT_EAT, this.getSoundSource(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
-//            }
-//
-//            if (!this.level.isClientSide) {
-//                if (this.random.nextInt(10) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, p_230254_1_)) {
-//                    this.tame(p_230254_1_);
-//                    this.level.broadcastEntityEvent(this, (byte) 7);
-//                } else {
-//                    this.level.broadcastEntityEvent(this, (byte) 6);
-//                }
-//            }
-//
-//            return ActionResultType.sidedSuccess(this.level.isClientSide);
-//        } else if (itemstack.getItem() == DEADLY_ITEM) {
-//            if (!p_230254_1_.abilities.instabuild) {
-//                itemstack.shrink(1);
-//            }
-//
-//            this.addEffect(new EffectInstance(Effects.POISON, 900));
-//            if (p_230254_1_.isCreative() || !this.isInvulnerable()) {
-//                this.hurt(DamageSource.playerAttack(p_230254_1_), Float.MAX_VALUE);
-//            }
-//
-//            return ActionResultType.sidedSuccess(this.level.isClientSide);
-//        } else if (!this.isFlying() && this.isTame() && this.isOwnedBy(p_230254_1_)) {
-//            if (!this.level.isClientSide) {
-//                this.setOrderedToSit(!this.isOrderedToSit());
-//            }
-//
-//            return ActionResultType.sidedSuccess(this.level.isClientSide);
-//        } else {
-//            return super.mobInteract(p_230254_1_, p_230254_2_);
-//        }
-//    }
-//
-//    /**
-//     * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
-//     * the animal type)
-//     */
-//    @Override
-//    public boolean isFood(ItemStack stack) {
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean causeFallDamage(float distance, float damageMultiplier) {
-//        return false;
-//    }
-//
-//    @Override
-//    protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
-//    }
-//
-//    /**
-//     * Returns true if the mob is currently able to mate with the specified mob.
-//     */
-//    @Override
-//    public boolean canMate(AnimalEntity otherAnimal) {
-//        return false;
-//    }
-//
-//    @Nullable
-//    @Override
-//    public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-//        return null;
-//    }
-//
-//    @Override
-//    public boolean doHurtTarget(Entity entityIn) {
-//        return entityIn.hurt(DamageSource.mobAttack(this), 3.0F);
-//    }
-//
-//    @Nullable
-//    @Override
-//    public SoundEvent getAmbientSound() {
-//        return getAmbient(this.level, this.level.random);
-//    }
-//
-//    public static SoundEvent getAmbient(World p_234212_0_, Random p_234212_1_) {
-//        return SoundGenerator.soundIdleTMThrush.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-//        return SoundGenerator.soundHurtTMThrush.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getDeathSound() {
-//        return SoundGenerator.soundDeathTMThrush.get();
-//    }
-//
-//    @Override
-//    protected void playStepSound(BlockPos pos, BlockState blockIn) {
-//        this.playSound(SoundEvents.PARROT_STEP, 0.15F, 1.0F);
-//    }
-//
-//    @Override
-//    protected float playFlySound(float volume) {
-//        this.playSound(SoundGenerator.soundFlappingCrebain.get(), 0.15F, 1.0F);
-//        return volume + this.flapSpeed / 2.0F;
-//    }
-//
-//    @Override
-//    protected boolean makeFlySound() {
-//        return true;
-//    }
-//
-//    /**
-//     * Gets the pitch of living sounds in living entities.
-//     */
-//    @Override
-//    protected float getVoicePitch() {
-//        return getPitch(this.random);
-//    }
-//
-//    public static float getPitch(Random random) {
-//        return (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F;
-//    }
-//
-//    @Override
-//    public SoundCategory getSoundSource() {
-//        return SoundCategory.NEUTRAL;
-//    }
-//
-//    /**
-//     * Returns true if this entity should push and be pushed by other entities when colliding.
-//     */
-//    @Override
-//    public boolean isPushable() {
-//        return true;
-//    }
-//
-//    @Override
-//    protected void doPush(Entity entityIn) {
-//        if (!(entityIn instanceof PlayerEntity)) {
-//            super.doPush(entityIn);
-//        }
-//    }
-//
-//    /**
-//     * Called when the entity is attacked.
-//     */
-//    @Override
-//    public boolean hurt(DamageSource source, float amount) {
-//        if (this.isInvulnerableTo(source)) {
-//            return false;
-//        } else {
-//            this.setOrderedToSit(false);
-//            return super.hurt(source, amount);
-//        }
-//    }
-//
-//    @Override
-//    public int getVariant() {
-//        return MathHelper.clamp(this.entityData.get(VARIANT), 0, 4);
-//    }
-//
-//    @Override
-//    public void setVariant(int variantIn) {
-//        this.entityData.set(VARIANT, variantIn);
-//    }
-//
-//    @Override
-//    protected void defineSynchedData() {
-//        super.defineSynchedData();
-//        this.entityData.define(VARIANT, 0);
-//    }
-//
-//    @Override
-//    public void addAdditionalSaveData(CompoundNBT compound) {
-//        super.addAdditionalSaveData(compound);
-//        compound.putInt("Variant", this.getVariant());
-//    }
-//
-//    /**
-//     * (abstract) Protected helper method to read subclass entity data from NBT.
-//     */
-//    @Override
-//    public void readAdditionalSaveData(CompoundNBT compound) {
-//        super.readAdditionalSaveData(compound);
-//        this.setVariant(compound.getInt("Variant"));
-//    }
-//
-//    @Override
-//    public boolean isFlying() {
-//        return !this.onGround;
-//    }
-//
-//    @OnlyIn(Dist.CLIENT)
-//    @Override
-//    public Vector3d getLeashOffset() {
-//        return new Vector3d(0.0D, (double) (0.5F * this.getEyeHeight()), (double) (this.getBbWidth() * 0.4F));
-//    }
-//
-//    public static int spawnChance()
-//    {
-//        int i = TTMRand.getRandomInteger(100, 1);
-//        return i;
-//    }
-//
-//    protected boolean isValidLightLevel() {
-//        return true;
-//    }
-//
-//    public boolean getCanSpawnHere() {
-//        int i = MathHelper.floor(this.getX());
-//        int j = MathHelper.floor(this.getBoundingBox().minY);
-//        int k = MathHelper.floor(this.getZ());
-//        BlockPos blockpos = new BlockPos(i, j, k);
-//
-//        return this.level.getDifficulty() != Difficulty.PEACEFUL && this.isValidLightLevel() && spawnChance()<5;
-//    }
-//
-//    public static boolean checkThrushSpawn(EntityType<ThrushEntity> type, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
-//        int chance = 200; //1 in x
-//        return random.nextInt(chance) == 0 && checkMobSpawnRules(type, world, reason, pos, random);
-//    }
-//}
+import com.google.common.collect.Sets;
+import com.greatorator.tolkienmobs.entity.BirdEntity;
+import com.greatorator.tolkienmobs.entity.ai.goal.bird.BirdFollowOwnerGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.bird.BirdSitWhenOrderedToGoal;
+import com.greatorator.tolkienmobs.init.TolkienEntities;
+import com.greatorator.tolkienmobs.init.TolkienItems;
+import com.greatorator.tolkienmobs.init.TolkienSounds;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.players.OldUsersConverter;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Optional;
+import java.util.Random;
+import java.util.Set;
+import java.util.UUID;
+
+public class ThrushEntity extends BirdEntity {
+    private static final Set<Item> FOOD_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS, TolkienItems.PIPEWEED_SEEDS.get());
+    protected static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(ThrushEntity.class, EntityDataSerializers.BYTE);
+    protected static final EntityDataAccessor<Optional<UUID>> DATA_OWNERUUID_ID = SynchedEntityData.defineId(ThrushEntity.class, EntityDataSerializers.OPTIONAL_UUID);
+    private boolean orderedToSit;
+
+    public ThrushEntity(EntityType<? extends BirdEntity> entityType, Level world) {
+        super(entityType, world);
+        this.entityData.define(DATA_FLAGS_ID, (byte)0);
+        this.entityData.define(DATA_OWNERUUID_ID, Optional.empty());
+        this.setPathfindingMalus(BlockPathTypes.DANGER_FIRE, -1.0F);
+        this.setPathfindingMalus(BlockPathTypes.DAMAGE_FIRE, -1.0F);
+        this.setPathfindingMalus(BlockPathTypes.COCOA, -1.0F);
+        this.reassessTameGoals();
+    }
+
+    @Override
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(2, new BirdSitWhenOrderedToGoal(this));
+        this.goalSelector.addGoal(6, new BirdFollowOwnerGoal(this, 1.0D, 10.0F, 2.0F, false));
+    }
+
+    @Override
+    public boolean isFood(ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    public ThrushEntity getBreedOffspring(@Nonnull ServerLevel serverLevel, @Nonnull AgeableMob ageableMob) {
+        return TolkienEntities.ENTITY_TTM_THRUSH.get().create(serverLevel);
+    }
+
+    public static boolean checkThrushSpawn(EntityType<ThrushEntity> entityType, LevelAccessor accessor, MobSpawnType spawnType, BlockPos pos, Random random) {
+        int chance = 200; //1 in x
+        return random.nextInt(chance) == 0 && checkMobSpawnRules(entityType, accessor, spawnType, pos, random);
+    }
+
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack itemstack = player.getItemInHand(hand);
+        Item item = itemstack.getItem();
+        if (!this.isTame() && FOOD_ITEMS.contains(itemstack.getItem())) {
+            if (!player.getAbilities().instabuild) {
+                itemstack.shrink(1);
+            }
+
+            if (!this.isSilent()) {
+                this.level.playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.PARROT_EAT, this.getSoundSource(), 1.0F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.2F);
+            }
+
+            if (!this.level.isClientSide) {
+                if (this.random.nextInt(10) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+                    this.tame(player);
+                    this.level.broadcastEntityEvent(this, (byte)7);
+                } else {
+                    this.level.broadcastEntityEvent(this, (byte)6);
+                }
+            }
+
+            if (!(item instanceof DyeItem)) {
+                InteractionResult interactionresult = super.mobInteract(player, hand);
+                if ((!interactionresult.consumesAction() || this.isBaby()) && this.isOwnedBy(player)) {
+                    this.setOrderedToSit(!this.isOrderedToSit());
+                    this.jumping = false;
+                    this.navigation.stop();
+                    this.setTarget((LivingEntity)null);
+                    return InteractionResult.SUCCESS;
+                }
+                return interactionresult;
+            }
+            return InteractionResult.sidedSuccess(this.level.isClientSide);
+        } else if (!this.getFlying() && this.isTame() && this.isOwnedBy(player)) {
+            if (!this.level.isClientSide) {
+                this.setOrderedToSit(!this.isOrderedToSit());
+            }
+
+            return InteractionResult.sidedSuccess(this.level.isClientSide);
+        } else {
+            return super.mobInteract(player, hand);
+        }
+    }
+
+    public boolean isTame() {
+        return (this.entityData.get(DATA_FLAGS_ID) & 4) != 0;
+    }
+
+    @Nullable
+    public LivingEntity getOwner() {
+        try {
+            UUID uuid = this.getOwnerUUID();
+            return uuid == null ? null : this.level.getPlayerByUUID(uuid);
+        } catch (IllegalArgumentException illegalargumentexception) {
+            return null;
+        }
+    }
+
+    public boolean isOwnedBy(LivingEntity entity) {
+        return entity == this.getOwner();
+    }
+
+    @Nullable
+    public UUID getOwnerUUID() {
+        return this.entityData.get(DATA_OWNERUUID_ID).orElse((UUID)null);
+    }
+
+    public void setOwnerUUID(@Nullable UUID p_21817_) {
+        this.entityData.set(DATA_OWNERUUID_ID, Optional.ofNullable(p_21817_));
+    }
+
+    public void setTame(boolean p_21836_) {
+        byte b0 = this.entityData.get(DATA_FLAGS_ID);
+        if (p_21836_) {
+            this.entityData.set(DATA_FLAGS_ID, (byte)(b0 | 4));
+        } else {
+            this.entityData.set(DATA_FLAGS_ID, (byte)(b0 & -5));
+        }
+        this.reassessTameGoals();
+    }
+
+    protected void reassessTameGoals() {
+    }
+
+    public void tame(Player player) {
+        this.setTame(true);
+        this.setOwnerUUID(player.getUUID());
+        if (player instanceof ServerPlayer) {
+            CriteriaTriggers.TAME_ANIMAL.trigger((ServerPlayer)player, this);
+        }
+    }
+
+    public boolean isInSittingPose() {
+        return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
+    }
+
+    @Override
+    public boolean isOrderedToSit() {
+        return this.orderedToSit;
+    }
+
+    public void setOrderedToSit(boolean sitting) {
+        this.orderedToSit = sitting;
+    }
+
+    public void setInSittingPose(boolean sitting) {
+        byte b0 = this.entityData.get(DATA_FLAGS_ID);
+        if (sitting) {
+            this.entityData.set(DATA_FLAGS_ID, (byte)(b0 | 1));
+        } else {
+            this.entityData.set(DATA_FLAGS_ID, (byte)(b0 & -2));
+        }
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);
+        if (this.getOwnerUUID() != null) {
+            nbt.putUUID("Owner", this.getOwnerUUID());
+        }
+
+        nbt.putBoolean("Sitting", this.orderedToSit);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);
+        UUID uuid;
+        if (nbt.hasUUID("Owner")) {
+            uuid = nbt.getUUID("Owner");
+        } else {
+            String s = nbt.getString("Owner");
+            uuid = OldUsersConverter.convertMobOwnerIfNecessary(this.getServer(), s);
+        }
+
+        if (uuid != null) {
+            try {
+                this.setOwnerUUID(uuid);
+                this.setTame(true);
+            } catch (Throwable throwable) {
+                this.setTame(false);
+            }
+        }
+        this.orderedToSit = nbt.getBoolean("Sitting");
+        this.setInSittingPose(this.orderedToSit);
+    }
+
+    @Nullable
+    @Override
+    public SoundEvent getAmbientSound() {
+        return getAmbient(this.level, this.level.random);
+    }
+
+    public static SoundEvent getAmbient(Level level, Random random) {
+        return TolkienSounds.soundIdleTMThrush.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return TolkienSounds.soundHurtTMThrush.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return TolkienSounds.soundDeathTMThrush.get();
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pos, BlockState blockIn) {
+        this.playSound(SoundEvents.PARROT_STEP, 0.15F, 1.0F);
+    }
+
+    @Override
+    public float getVoicePitch() {
+        return getPitch(this.random);
+    }
+
+    public static float getPitch(Random random) {
+        return (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F;
+    }
+
+    @Override
+    public SoundSource getSoundSource() {
+        return SoundSource.NEUTRAL;
+    }
+}

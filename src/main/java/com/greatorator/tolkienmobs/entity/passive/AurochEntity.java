@@ -1,10 +1,10 @@
 package com.greatorator.tolkienmobs.entity.passive;
 
 import com.greatorator.tolkienmobs.entity.HerdEntity;
-import com.greatorator.tolkienmobs.entity.ai.goal.BabyFollowParentGoal;
-import com.greatorator.tolkienmobs.entity.ai.goal.BabyHurtByTargetGoal;
-import com.greatorator.tolkienmobs.entity.ai.goal.BabyNearPlayerGoal;
-import com.greatorator.tolkienmobs.entity.ai.goal.BabyPanicGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyFollowParentGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyHurtByTargetGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyNearPlayerGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyPanicGoal;
 import com.greatorator.tolkienmobs.init.TolkienEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -30,8 +30,10 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class AurochEntity extends HerdEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
 
@@ -61,7 +63,7 @@ public class AurochEntity extends HerdEntity implements IAnimatable {
 
     @Nullable
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
+    public AgeableMob getBreedOffspring(@Nonnull ServerLevel serverLevel, @Nonnull AgeableMob ageableMob) {
         return TolkienEntities.ENTITY_TTM_AUROCH.get().create(serverLevel);
     }
 

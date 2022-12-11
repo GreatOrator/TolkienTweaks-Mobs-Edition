@@ -1,9 +1,9 @@
 package com.greatorator.tolkienmobs.entity.passive;
 
-import com.greatorator.tolkienmobs.entity.ai.goal.BabyFollowParentGoal;
-import com.greatorator.tolkienmobs.entity.ai.goal.BabyHurtByTargetGoal;
-import com.greatorator.tolkienmobs.entity.ai.goal.BabyNearPlayerGoal;
-import com.greatorator.tolkienmobs.entity.ai.goal.BabyPanicGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyFollowParentGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyHurtByTargetGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyNearPlayerGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyPanicGoal;
 import com.greatorator.tolkienmobs.entity.merchant.DwarfEntity;
 import com.greatorator.tolkienmobs.entity.passive.variant.PassiveVariant;
 import com.greatorator.tolkienmobs.init.TolkienEntities;
@@ -47,6 +47,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class GoatEntity extends AbstractChestedHorse implements IAnimatable {
     public static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(GoatEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> DATA_ID_CHEST = SynchedEntityData.defineId(GoatEntity.class, EntityDataSerializers.BOOLEAN);

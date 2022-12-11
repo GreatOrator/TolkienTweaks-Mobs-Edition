@@ -1,20 +1,45 @@
 package com.greatorator.tolkienmobs.entity.special.render;
 
-//
-//@OnlyIn(Dist.CLIENT)
-//public class NazgulSteedRender extends AbstractHorseRenderer<NazgulSteedEntity, HorseModel<NazgulSteedEntity>> {
-//    private final ResourceLocation mobTexture = new ResourceLocation(MODID + ":textures/entity/horse/nazgulsteed.png");
-//    public NazgulSteedRender(EntityRendererManager renderManagerIn) {
-//        super(renderManagerIn, new HorseModel<>(0.0F), 1.1F);
-//    }
-//
-//    @Override
-//    public ResourceLocation getTextureLocation(NazgulSteedEntity p_110775_1_) {
-//        return mobTexture;
-//    }
-//
-//    @Override
-//    protected void scale(NazgulSteedEntity entitylivingbaseIn, MatrixStack matrixStackIn, float partialTickTime) {
-//        super.scale(entitylivingbaseIn, matrixStackIn, partialTickTime);
-//    }
-//}
+import com.greatorator.tolkienmobs.entity.special.NazgulSteedEntity;
+import com.greatorator.tolkienmobs.entity.special.model.NazgulSteedModel;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+
+public class NazgulSteedRender extends GeoEntityRenderer<NazgulSteedEntity> {
+    public NazgulSteedRender(EntityRendererProvider.Context context) {
+        super(context, new NazgulSteedModel());
+        this.shadowRadius = 1.3F;
+    }
+
+    @Override
+    public void renderEarly(NazgulSteedEntity animatable, PoseStack stackIn, float ticks, MultiBufferSource renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn, int packedOverlayIn, float red, float green, float blue, float partialTicks) {
+        super.renderEarly(animatable, stackIn, ticks, renderTypeBuffer, vertexBuilder, packedLightIn, packedOverlayIn, red, green, blue, partialTicks);
+        if (animatable.isBaby()) {
+            stackIn.scale(0.5F, 0.5F, 0.5F);
+        }
+    }
+
+    public void render(NazgulSteedEntity entity, float entityYaw, float partialTicks, @Nonnull PoseStack stack, @Nonnull MultiBufferSource bufferSource, int packedLightIn) {
+        super.render(entity, entityYaw, partialTicks, stack, bufferSource, packedLightIn);
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(NazgulSteedEntity entity) {
+        return new ResourceLocation(MODID, "textures/entity/horse/nazgulsteed.png");
+    }
+
+    @Override
+    public RenderType getRenderType(NazgulSteedEntity animatable, float partialTicks, PoseStack stack, @Nullable MultiBufferSource renderTypeBuffer, @Nullable VertexConsumer vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
+        return RenderType.entityCutoutNoCull(textureLocation);
+    }
+}

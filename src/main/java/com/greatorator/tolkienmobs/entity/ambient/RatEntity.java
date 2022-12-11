@@ -1,108 +1,120 @@
 package com.greatorator.tolkienmobs.entity.ambient;
 
-//
-//public class RatEntity extends AmbientEntity {
-//    private static final DataParameter<Integer> RAT_TYPE = EntityDataManager.defineId(RatEntity.class, DataSerializers.INT);
-//    public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
-//        option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/entityttmrat/entityttmrat0.png"));
-//        option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/entityttmrat/entityttmrat1.png"));
-//        option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/entityttmrat/entityttmrat2.png"));
-//        option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/entityttmrat/entityttmrat3.png"));
-//    });
-//
-//    public RatEntity(EntityType<? extends RatEntity> type, World worldIn) {
-//        super(type, worldIn);
-//    }
-//
-//    @Override
-//    protected void registerGoals() {
-//        this.goalSelector.addGoal(1, new SwimGoal(this));
-//        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
-//        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-//        this.goalSelector.addGoal(4, new RatEntity.AvoidEntityGoal<>(this, WolfEntity.class, 10.0F, 2.2D, 2.2D));
-//        this.goalSelector.addGoal(5, new PanicGoal(this, 1.3F));
-//        this.goalSelector.addGoal(6, new AvoidEntityGoal<>(this, PlayerEntity.class, 2.0F, 0.8F, 1.4F));
-//        this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-//        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-//        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers());
-//    }
-//
-//    @Override
-//    protected SoundEvent getAmbientSound() {
-//        return SoundGenerator.soundIdleTMRat.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
-//        return SoundGenerator.soundHurtTMRat.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getDeathSound() {
-//        return SoundGenerator.soundDeathTMRat.get();
-//    }
-//
-//    static class AvoidEntityGoal<T extends LivingEntity> extends net.minecraft.entity.ai.goal.AvoidEntityGoal<T> {
-//        private final RatEntity ttmRat;
-//
-//        public AvoidEntityGoal(RatEntity ttmRat, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_, double p_i46403_6_) {
-//            super(ttmRat, p_i46403_2_, p_i46403_3_, p_i46403_4_, p_i46403_6_);
-//            this.ttmRat = ttmRat;
-//        }
-//
-//        /**
-//         * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-//         * method as well.
-//         */
-//        @Override
-//        public boolean canUse() {
-//            return this.ttmRat.getRatType() != 99 && super.canUse();
-//        }
-//    }
-//
-//    @Nullable
-//    @Override
-//    public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-//        return null;
-//    }
-//
-//    /** Region for determining random skin */
-//    public ResourceLocation getRatTypeName() {
-//        return TEXTURE_BY_ID.getOrDefault(this.getRatType(), TEXTURE_BY_ID.get(0));
-//    }
-//
-//    public int getRatType() {
-//        return this.entityData.get(RAT_TYPE);
-//    }
-//
-//    public void setRatType(int type) {
-//        if (type < 0 || type >= 4) {
-//            type = this.random.nextInt(3);
-//        }
-//
-//        this.entityData.set(RAT_TYPE, type);
-//    }
-//
-//    @Override
-//    protected void defineSynchedData() {
-//        super.defineSynchedData();
-//        this.entityData.define(RAT_TYPE, 1);
-//    }
-//
-//    @Override
-//    public void addAdditionalSaveData(CompoundNBT compound) {
-//        super.addAdditionalSaveData(compound);
-//        compound.putInt("RatType", this.getRatType());
-//    }
-//
-//    @Override
-//    public void readAdditionalSaveData(CompoundNBT compound) {
-//        super.readAdditionalSaveData(compound);
-//        this.setRatType(compound.getInt("RatType"));
-//    }
-//
-//    @Override
-//    public IPacket<?> getAddEntityPacket() {
-//        return NetworkHooks.getEntitySpawningPacket(this);
-//    }
-//}
+import com.greatorator.tolkienmobs.entity.AmbientEntity;
+import com.greatorator.tolkienmobs.init.TolkienSounds;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
+
+import javax.annotation.Nonnull;
+
+public class RatEntity extends AmbientEntity implements IAnimatable {
+    protected final AnimationFactory factory = new AnimationFactory(this);
+
+    public RatEntity(EntityType<? extends AmbientEntity> type, Level level) {
+        super(type, level);
+    }
+
+    @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new RatEntity.RatPanicGoal(this, 2.2D));
+        this.goalSelector.addGoal(4, new RatEntity.RatAvoidEntityGoal<>(this, Player.class, 8.0F, 2.2D, 2.2D));
+        this.goalSelector.addGoal(4, new RatEntity.RatAvoidEntityGoal<>(this, Wolf.class, 10.0F, 2.2D, 2.2D));
+        this.goalSelector.addGoal(4, new RatEntity.RatAvoidEntityGoal<>(this, Monster.class, 4.0F, 2.2D, 2.2D));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(11, new LookAtPlayerGoal(this, Player.class, 8.0F));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 6.0D)
+                .add(Attributes.MOVEMENT_SPEED, (double)0.3F);
+    }
+
+    /** Animation */
+    protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            return PlayState.CONTINUE;
+        }
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+        return PlayState.CONTINUE;
+
+    }
+
+    @Override
+    public void registerControllers(AnimationData animationData) {
+        animationData.addAnimationController(new AnimationController<>(this, "controller", 5, this::predicate));
+    }
+
+    @Override
+    public AnimationFactory getFactory() {
+        return factory;
+    }
+
+    /** Goals */
+    static class RatAvoidEntityGoal<T extends LivingEntity> extends AvoidEntityGoal<T> {
+        public RatAvoidEntityGoal(RatEntity entity, Class<T> tClass, float p_29745_, double p_29746_, double p_29747_) {
+            super(entity, tClass, p_29745_, p_29746_, p_29747_);
+        }
+
+        @Override
+        public boolean canUse() {
+            return super.canUse();
+        }
+    }
+
+    public void setSpeedModifier(double p_29726_) {
+        this.getNavigation().setSpeedModifier(p_29726_);
+        this.moveControl.setWantedPosition(this.moveControl.getWantedX(), this.moveControl.getWantedY(), this.moveControl.getWantedZ(), p_29726_);
+    }
+
+    static class RatPanicGoal extends PanicGoal {
+        private final RatEntity rat;
+
+        public RatPanicGoal(RatEntity p_29775_, double p_29776_) {
+            super(p_29775_, p_29776_);
+            this.rat = p_29775_;
+        }
+
+        @Override
+        public void tick() {
+            super.tick();
+            this.rat.setSpeedModifier(this.speedModifier);
+        }
+    }
+
+    /** Sounds */
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return TolkienSounds.soundIdleTMRat.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(@Nonnull DamageSource damageSourceIn) {
+        return TolkienSounds.soundHurtTMRat.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return TolkienSounds.soundDeathTMRat.get();
+    }
+}

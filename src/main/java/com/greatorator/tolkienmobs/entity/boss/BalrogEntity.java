@@ -1,6 +1,7 @@
 package com.greatorator.tolkienmobs.entity.boss;
 
 import codechicken.lib.math.MathHelper;
+import com.greatorator.tolkienmobs.entity.BossEntity;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.ai.goal.BalrogAttackGoal;
 import com.greatorator.tolkienmobs.entity.ai.goal.SwitchCombatGoal;
@@ -13,14 +14,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.FluidTags;
@@ -61,11 +59,10 @@ import javax.annotation.Nullable;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class BalrogEntity extends MonsterEntity implements IAnimatable {
+public class BalrogEntity extends BossEntity implements IAnimatable {
     private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(BalrogEntity.class, EntityDataSerializers.BYTE);
     private static final EntityDataAccessor<Integer> DATA_ID_INV = SynchedEntityData.defineId(BalrogEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<ItemStack> HELD_ITEM = SynchedEntityData.defineId(BalrogEntity.class, EntityDataSerializers.ITEM_STACK);
-    private final ServerBossEvent balrogEvent = (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
     private final AnimationFactory factory = new AnimationFactory(this);
     private final RangedBowAttackGoal<BalrogEntity> bowGoal = new RangedBowAttackGoal<>(this, 1.0D, 20, 15.0F);
     private final MeleeAttackGoal meleeGoal = new BalrogAttackGoal(this, 1.0D, 20, 15.0F, false);
@@ -242,6 +239,11 @@ public class BalrogEntity extends MonsterEntity implements IAnimatable {
     }
 
     @Override
+    public BossEvent.BossBarColor getBossNameColour() {
+        return BossEvent.BossBarColor.RED;
+    }
+
+    @Override
     public void tick() {
         if (scheduleWeaponGoalUpdate) {
             updateWeaponGoal();
@@ -269,7 +271,7 @@ public class BalrogEntity extends MonsterEntity implements IAnimatable {
         }
     }
 
-    private boolean getRanged() {
+    public boolean getRanged() {
         return ranged;
     }
 
@@ -336,6 +338,7 @@ public class BalrogEntity extends MonsterEntity implements IAnimatable {
         return PlayState.CONTINUE;
     }
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController(this, "controller",
@@ -345,62 +348,5 @@ public class BalrogEntity extends MonsterEntity implements IAnimatable {
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
-    }
-
-    /** Boss Section */
-//    public int getInvulnerableTicks() {
-//        return this.entityData.get(DATA_ID_INV);
-//    }
-
-//    public void setInvulnerableTicks(int invulnerableTicks) {
-//        this.entityData.set(DATA_ID_INV, invulnerableTicks);
-//    }
-
-    public void addAdditionalSaveData(@Nonnull CompoundTag tag) {
-        super.addAdditionalSaveData(tag);
-//        tag.putInt("Invul", this.getInvulnerableTicks());
-    }
-
-    @Override
-    public void readAdditionalSaveData(@Nonnull CompoundTag tag) {
-        super.readAdditionalSaveData(tag);
-//        this.setInvulnerableTicks(tag.getInt("Invul"));
-        if (this.hasCustomName()) {
-            this.balrogEvent.setName(this.getDisplayName());
-        }
-        reassessWeaponGoal();
-    }
-
-    @Override
-    public void setCustomName(@Nullable Component component) {
-        super.setCustomName(component);
-        this.balrogEvent.setName(this.getDisplayName());
-    }
-
-    @Override
-    protected void customServerAiStep() {
-//        if (this.getInvulnerableTicks() > 0) {
-//            int k1 = this.getInvulnerableTicks() - 1;
-//            this.balrogEvent.setProgress(1.0F - (float) k1 / 220.0F);
-//        }
-        this.balrogEvent.setProgress(this.getHealth() / this.getMaxHealth());
-    }
-
-//    public void makeInvulnerable() {
-//        this.setInvulnerableTicks(220);
-//        this.balrogEvent.setProgress(0.0F);
-//        this.setHealth(this.getMaxHealth() / 3.0F);
-//    }
-
-    @Override
-    public void startSeenByPlayer(@Nonnull ServerPlayer serverPlayer) {
-        super.startSeenByPlayer(serverPlayer);
-        this.balrogEvent.addPlayer(serverPlayer);
-    }
-
-    @Override
-    public void stopSeenByPlayer(@Nonnull ServerPlayer serverPlayer) {
-        super.stopSeenByPlayer(serverPlayer);
-        this.balrogEvent.removePlayer(serverPlayer);
     }
 }

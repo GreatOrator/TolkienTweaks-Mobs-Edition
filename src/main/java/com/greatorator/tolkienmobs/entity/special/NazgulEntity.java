@@ -1,182 +1,148 @@
 package com.greatorator.tolkienmobs.entity.special;
 
-//
-//public class NazgulEntity extends MonsterEntity {
-//    private final ServerBossInfo bossInfo = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(), BossInfo.Color.RED, BossInfo.Overlay.PROGRESS)).setDarkenScreen(true);
-//
-//    /** Set up using weapons **/
-//    private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false) {
-//        @Override
-//        public void stop() {
-//            super.stop();
-//            NazgulEntity.this.setAggressive(false);
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
+import com.greatorator.tolkienmobs.init.TolkienItems;
+import com.greatorator.tolkienmobs.init.TolkienPotions;
+import com.greatorator.tolkienmobs.init.TolkienSounds;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.BossEvent;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+public class NazgulEntity extends MonsterEntity {
+    private final ServerBossEvent nazgulEvent = (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.PURPLE, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
+    private long nextAbilityUse = 0L;
+    private final static long coolDown = 15000L;
+
+    public NazgulEntity(EntityType<? extends MonsterEntity> type, Level level) {
+        super(type, level);
+        this.setPersistenceRequired();
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 150.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.23D)
+                .add(Attributes.ATTACK_DAMAGE, 20.0D)
+                .add(Attributes.ARMOR, 25.0D);
+    }
+
+    @Override
+    protected void populateDefaultEquipmentSlots(DifficultyInstance instance) {
+        super.populateDefaultEquipmentSlots(instance);
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(TolkienItems.SWORD_MORGULIRON.get()));
+    }
+
+    @Override
+    public MobType getMobType() {
+        return MobType.UNDEAD;
+    }
+
+    /** Sounds */
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return TolkienSounds.soundIdleWitchKing.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return TolkienSounds.soundHurtWitchKing.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return TolkienSounds.soundHurtWitchKing.get();
+    }
+
+    /** Special Attack */
+    @Override
+    public boolean doHurtTarget(Entity entityIn) {
+        long time = System.currentTimeMillis();
+        if (super.doHurtTarget(entityIn)) {
+            if (entityIn instanceof Player) {
+                if (time > nextAbilityUse) {
+                    nextAbilityUse = time + coolDown;
+                    Player player = (Player) entityIn;
+                    BlockPos blockpos = player.blockPosition();
+                    int strength = 2;
+                    level.playSound(null, blockpos, TolkienSounds.soundIdleWitchKing.get(), SoundSource.HOSTILE, 1.0F + level.random.nextFloat(), level.random.nextFloat() * 0.7F + 0.3F);
+                    player.addEffect(new MobEffectInstance(TolkienPotions.PARALYSING_FEAR.get(), strength * 20, 0));
+                }
+            }
+        }
+        return true;
+    }
+
+    /** Boss Section */
+//    public int getInvulnerableTicks() {
+//        return this.entityData.get(DATA_ID_INV);
+//    }
+
+//    public void setInvulnerableTicks(int invulnerableTicks) {
+//        this.entityData.set(DATA_ID_INV, invulnerableTicks);
+//    }
+
+    public void addAdditionalSaveData(@Nonnull CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+//        tag.putInt("Invul", this.getInvulnerableTicks());
+    }
+
+    @Override
+    public void readAdditionalSaveData(@Nonnull CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+//        this.setInvulnerableTicks(tag.getInt("Invul"));
+        if (this.hasCustomName()) {
+            this.nazgulEvent.setName(this.getDisplayName());
+        }
+        reassessWeaponGoal();
+    }
+
+    @Override
+    public void setCustomName(@Nullable Component component) {
+        super.setCustomName(component);
+        this.nazgulEvent.setName(this.getDisplayName());
+    }
+
+    @Override
+    protected void customServerAiStep() {
+//        if (this.getInvulnerableTicks() > 0) {
+//            int k1 = this.getInvulnerableTicks() - 1;
+//            this.balrogEvent.setProgress(1.0F - (float) k1 / 220.0F);
 //        }
-//
-//        @Override
-//        public void start() {
-//            super.start();
-//            NazgulEntity.this.setAggressive(true);
-//        }
-//    };
-//    /** End Region **/
-//
-//    private long nextAbilityUse = 0L;
-//    private final static long coolDown = 15000L;
-//
-//    public NazgulEntity(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
-//        super(type, worldIn);
+        this.nazgulEvent.setProgress(this.getHealth() / this.getMaxHealth());
+    }
+
+//    public void makeInvulnerable() {
+//        this.setInvulnerableTicks(220);
+//        this.balrogEvent.setProgress(0.0F);
+//        this.setHealth(this.getMaxHealth() / 3.0F);
 //    }
-//
-//    @Override
-//    protected void registerGoals() {
-//        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-//        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-//        this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
-//        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-//        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-//        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
-//    }
-//
-//    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-//        return net.minecraft.entity.monster.MonsterEntity.createMonsterAttributes()
-//                .add(Attributes.MAX_HEALTH, 150.0D)
-//                .add(Attributes.MOVEMENT_SPEED, 0.23D)
-//                .add(Attributes.ATTACK_DAMAGE, 20.0D)
-//                .add(Attributes.ARMOR, 25.0D);
-//    }
-//
-//    /** Special Attack */
-//    @Override
-//    public boolean doHurtTarget(Entity entityIn) {
-//        long time = System.currentTimeMillis();
-//        if (super.doHurtTarget(entityIn)) {
-//            if (entityIn instanceof PlayerEntity) {
-//                if (time > nextAbilityUse) {
-//                    nextAbilityUse = time + coolDown;
-//                    PlayerEntity player = (PlayerEntity) entityIn;
-//                    BlockPos blockpos = player.blockPosition();
-//                    int strength = 2;
-//                    level.playSound(null, blockpos, SoundGenerator.soundIdleWitchKing.get(), SoundCategory.HOSTILE, 1.0F + level.random.nextFloat(), level.random.nextFloat() * 0.7F + 0.3F);
-//                    player.addEffect(new EffectInstance(PotionGenerator.PARALYSING_FEAR.get(), strength * 20, 0));
-//                }
-//            }
-//        }
-//        return true;
-//    }
-//
-//    /** Set up using weapons **/
-//    @Override
-//    protected void populateDefaultEquipmentSlots(DifficultyInstance p_180481_1_) {
-//        super.populateDefaultEquipmentSlots(p_180481_1_);
-//        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(TolkienContent.SWORD_MORGULIRON.get()));
-//    }
-//
-//    @Override
-//    public void reassessWeaponGoal() {
-//        if (this.level != null && !this.level.isClientSide) {
-//            this.goalSelector.removeGoal(this.meleeGoal);
-//            ItemStack itemstack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, TolkienContent.SWORD_MORGULIRON.get()));
-//            if (itemstack.getItem() == TolkienContent.SWORD_MORGULIRON.get()) {
-//                this.goalSelector.addGoal(4, this.meleeGoal);
-//            }
-//        }
-//    }
-//
-//    @Override
-//    public void setItemSlot(EquipmentSlotType p_184201_1_, ItemStack p_184201_2_) {
-//        super.setItemSlot(p_184201_1_, p_184201_2_);
-//        if (!this.level.isClientSide) {
-//            this.reassessWeaponGoal();
-//        }
-//
-//    }
-//    /** End Region **/
-//
-//    @Override
-//    public CreatureAttribute getMobType()
-//    {
-//        return CreatureAttribute.UNDEAD;
-//    }
-//
-//    @Override
-//    protected SoundEvent getAmbientSound()
-//    {
-//        return SoundGenerator.soundIdleWitchKing.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-//    {
-//        return SoundGenerator.soundHurtWitchKing.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getDeathSound()
-//    {
-//        return SoundGenerator.soundHurtWitchKing.get();
-//    }
-//
-//    protected void playStepSound(BlockPos pos, Block blockIn)
-//    {
-//        this.playSound(SoundGenerator.soundStepWitchKing.get(), 0.25F, 1.0F);
-//    }
-//
-//    @Nullable
-//    @Override
-//    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-//        this.populateDefaultEquipmentSlots(difficultyIn);
-//        this.reassessWeaponGoal();
-//        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-//    }
-//
-//    @Override
-//    public void addAdditionalSaveData(CompoundNBT compound) {
-//        super.addAdditionalSaveData(compound);
-//    }
-//
-//    @Override
-//    public void readAdditionalSaveData(CompoundNBT compound) {
-//        super.readAdditionalSaveData(compound);
-//        if (this.hasCustomName()) {
-//            this.bossInfo.setName(this.getDisplayName());
-//        }
-//        this.reassessWeaponGoal();
-//    }
-//
-//    @Override
-//    public void setCustomName(@Nullable ITextComponent name) {
-//        super.setCustomName(name);
-//        this.bossInfo.setName(this.getDisplayName());
-//    }
-//
-//    @Override
-//    public void startSeenByPlayer(ServerPlayerEntity player) {
-//        super.startSeenByPlayer(player);
-//        this.bossInfo.addPlayer(player);
-//    }
-//
-//    @Override
-//    public void stopSeenByPlayer(ServerPlayerEntity player) {
-//        super.stopSeenByPlayer(player);
-//        this.bossInfo.removePlayer(player);
-//    }
-//
-//    @Override
-//    protected void customServerAiStep() {
-//        if (this.tickCount % 20 == 0) {
-//            this.heal(1.0F);
-//        }
-//
-//        this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
-//    }
-//
-//    @Override
-//    public IPacket<?> getAddEntityPacket() {
-//        return NetworkHooks.getEntitySpawningPacket(this);
-//    }
-//
-//    public static boolean checkNazgulSpawn(EntityType<NazgulEntity> type, IWorld world, SpawnReason reason, BlockPos pos, Random random) {
-//        int chance = 200; //1 in x
-//        return random.nextInt(chance) == 0 && checkMobSpawnRules(type, world, reason, pos, random);
-//    }
-//}
+
+    @Override
+    public void startSeenByPlayer(@Nonnull ServerPlayer serverPlayer) {
+        super.startSeenByPlayer(serverPlayer);
+        this.nazgulEvent.addPlayer(serverPlayer);
+    }
+
+    @Override
+    public void stopSeenByPlayer(@Nonnull ServerPlayer serverPlayer) {
+        super.stopSeenByPlayer(serverPlayer);
+        this.nazgulEvent.removePlayer(serverPlayer);
+    }
+}

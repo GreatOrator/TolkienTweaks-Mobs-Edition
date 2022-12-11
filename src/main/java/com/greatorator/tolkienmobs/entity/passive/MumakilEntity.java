@@ -1,10 +1,10 @@
 package com.greatorator.tolkienmobs.entity.passive;
 
 import com.greatorator.tolkienmobs.entity.HerdEntity;
-import com.greatorator.tolkienmobs.entity.ai.goal.BabyFollowParentGoal;
-import com.greatorator.tolkienmobs.entity.ai.goal.BabyHurtByTargetGoal;
-import com.greatorator.tolkienmobs.entity.ai.goal.BabyNearPlayerGoal;
-import com.greatorator.tolkienmobs.entity.ai.goal.BabyPanicGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyFollowParentGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyHurtByTargetGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyNearPlayerGoal;
+import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyPanicGoal;
 import com.greatorator.tolkienmobs.init.TolkienEntities;
 import com.greatorator.tolkienmobs.init.TolkienSounds;
 import net.minecraft.core.BlockPos;
@@ -42,10 +42,12 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.Random;
 
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class MumakilEntity extends HerdEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     private static final EntityDataAccessor<Boolean> DRINKING = SynchedEntityData.defineId(MumakilEntity.class, EntityDataSerializers.BOOLEAN);
@@ -70,7 +72,7 @@ public class MumakilEntity extends HerdEntity implements IAnimatable {
 
     @Nullable
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
+    public MumakilEntity getBreedOffspring(@Nonnull ServerLevel serverLevel, @Nonnull AgeableMob ageableMob) {
         return TolkienEntities.ENTITY_TTM_MUMAKIL.get().create(serverLevel);
     }
 

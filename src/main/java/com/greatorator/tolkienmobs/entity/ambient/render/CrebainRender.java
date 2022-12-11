@@ -1,29 +1,36 @@
 package com.greatorator.tolkienmobs.entity.ambient.render;
 
-//
-//@OnlyIn(Dist.CLIENT)
-//public class CrebainRender extends MobRenderer<CrebainEntity, CrebainModel> {
-//    public static final ResourceLocation[] THRUSH_TEXTURES = new ResourceLocation[] {new ResourceLocation(TolkienMobs.MODID+":textures/entity/birds/crebain.png"), new ResourceLocation(TolkienMobs.MODID+":textures/entity/birds/crebain.png"), new ResourceLocation(TolkienMobs.MODID+":textures/entity/birds/crebain.png"), new ResourceLocation(TolkienMobs.MODID+":textures/entity/birds/crebain.png"), new ResourceLocation(TolkienMobs.MODID+":textures/entity/birds/crebain.png")};
-//
-//    public CrebainRender(EntityRendererManager renderManagerIn) {
-//        super(renderManagerIn, new CrebainModel(), 0.3F);
-//    }
-//
-//    /**
-//     * Returns the location of an entity's texture.
-//     */
-//    @Override
-//    public ResourceLocation getTextureLocation(CrebainEntity entity) {
-//        return THRUSH_TEXTURES[entity.getVariant()];
-//    }
-//
-//    /**
-//     * Defines what float the third param in setRotationAngles of ModelBase is
-//     */
-//    @Override
-//    public float getBob(CrebainEntity livingBase, float partialTicks) {
-//        float f = MathHelper.lerp(partialTicks, livingBase.oFlap, livingBase.flap);
-//        float f1 = MathHelper.lerp(partialTicks, livingBase.oFlapSpeed, livingBase.flapSpeed);
-//        return (MathHelper.sin(f) + 1.0F) * f1;
-//    }
-//}
+import com.greatorator.tolkienmobs.entity.ambient.CrebainEntity;
+import com.greatorator.tolkienmobs.entity.ambient.model.CrebainModel;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+
+public class CrebainRender extends GeoEntityRenderer<CrebainEntity> {
+    private final ResourceLocation mobTexture = new ResourceLocation(MODID, "textures/entity/birds/crebain.png");
+
+    public CrebainRender(EntityRendererProvider.Context ctx) {
+        super(ctx, new CrebainModel());
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(CrebainEntity entity) {
+        return mobTexture;
+    }
+
+    @Override
+    public RenderType getRenderType(CrebainEntity animatable, float partialTicks, PoseStack stack,
+                                    MultiBufferSource renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn,
+                                    ResourceLocation textureLocation) {
+
+        stack.scale(0.3F, 0.3F, 0.3F);
+
+        return super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
+    }
+}

@@ -755,20 +755,20 @@ public class LangGenerator extends LanguageProvider {
 
     private void entities() {
         // Ambient
-//        add(TolkienEntities.ENTITY_TTM_RAT.get(), "Rat");
-//        add(TolkienEntities.EGG_TTMRAT.get(), "Rat Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_SQUIRREL.get(), "Squirrel");
-//        add(TolkienEntities.EGG_TTMSQUIRREL.get(), "Squirrel Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_FROG.get(), "Frog");
-//        add(TolkienEntities.EGG_TTMFROG.get(), "Frog Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_RAT.get(), "Rat");
+        add(TolkienEntities.EGG_TTMRAT.get(), "Rat Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_SQUIRREL.get(), "Squirrel");
+        add(TolkienEntities.EGG_TTMSQUIRREL.get(), "Squirrel Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_FROG.get(), "Frog");
+        add(TolkienEntities.EGG_TTMFROG.get(), "Frog Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_SWARM.get(), "Midge Flies");
         add(TolkienEntities.EGG_TTMSWARM.get(), "Midge Flies Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_THRUSH.get(), "Thrush");
-//        add(TolkienEntities.EGG_TTMTHRUSH.get(), "Thrush Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_CREBAIN.get(), "Crebain");
-//        add(TolkienEntities.EGG_TTMCREBAIN.get(), "Crebain Spawn Egg");
-//
-//        // Merchants
+        add(TolkienEntities.ENTITY_TTM_THRUSH.get(), "Thrush");
+        add(TolkienEntities.EGG_TTMTHRUSH.get(), "Thrush Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_CREBAIN.get(), "Crebain");
+        add(TolkienEntities.EGG_TTMCREBAIN.get(), "Crebain Spawn Egg");
+
+        // Merchants
         add(TolkienEntities.ENTITY_TTM_HUMAN.get(), "Human");
         add(TolkienEntities.EGG_TTMHUMAN.get(), "Human Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_DWARF.get(), "Dwarf");
@@ -793,12 +793,12 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienEntities.EGG_TTMHARADRIM.get(), "Haradrim Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_ROMIEWALKER.get(), "Romie Walker");
         add(TolkienEntities.EGG_TTMROMIEWALKER.get(), "Romie Walker Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_GOBLIN.get(), "Goblin");
-//        add(TolkienEntities.EGG_TTMGOBLIN.get(), "Goblin Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_DEEPCLAW.get(), "Deepclaw");
         add(TolkienEntities.EGG_TTMDEEPCLAW.get(), "Deepclaw Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_TREEENT.get(), "Tree Ent");
-//        add(TolkienEntities.EGG_TTMTREEENT.get(), "Tree Ent Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_TREEENT.get(), "Tree Ent");
+        add(TolkienEntities.EGG_TTMTREEENT.get(), "Tree Ent Spawn Egg");
+//        add(TolkienEntities.ENTITY_TTM_GOBLIN.get(), "Goblin");
+//        add(TolkienEntities.EGG_TTMGOBLIN.get(), "Goblin Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_DUERGAR.get(), "Duergar");
 //        add(TolkienEntities.EGG_TTMDUERGAR.get(), "Duergar Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_SWAMPHAG.get(), "Swamp Hag");
@@ -827,18 +827,18 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienEntities.EGG_TTMWATCHER.get(), "Watcher Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_BALROG.get(), "Balrog");
         add(TolkienEntities.EGG_TTMBALROG.get(), "Balrog Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_WITCHKING.get(), "Witch King of Angmar");
+        add(TolkienEntities.EGG_TTMWITCHKING.get(), "Witch King Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_GWAHIR.get(), "Gwahir, Lord of the Eagles");
+        add(TolkienEntities.EGG_TTMGWAHIR.get(), "Gwahir Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_GOBLINKING.get(), "Goblin King");
 //        add(TolkienEntities.EGG_TTMGOBLINKING.get(), "Goblin King Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_MITHRILGOLEM.get(), "Mithril Golem");
 //        add(TolkienEntities.EGG_TTMMITHRILGOLEM.get(), "Mithril Golem Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_MORGULIRONGOLEM.get(), "Morgul Iron Golem");
 //        add(TolkienEntities.EGG_TTMMORGULIRONGOLEM.get(), "Morgul Iron Golem Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_WITCHKING.get(), "Witch King of Angmar");
-//        add(TolkienEntities.EGG_TTMWITCHKING.get(), "Witch King Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_SHELOB.get(), "Shelob");
 //        add(TolkienEntities.EGG_TTMSHELOB.get(), "Shelob Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_GWAHIR.get(), "Gwahir, Lord of the Eagles");
-//        add(TolkienEntities.EGG_TTMGWAHIR.get(), "Gwahir Spawn Egg");
 //        add(TolkienEntities.ENTITY_FELL_BEAST.get(), "Fell Beast");
 //        add(TolkienEntities.EGG_TTMFELLBEAST.get(), "Fell Beast Spawn Egg");
 //
@@ -851,16 +851,16 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienEntities.EGG_TTMGOAT.get(), "Goat Spawn Egg");
 
         // Special
-//        add(TolkienEntities.ENTITY_TTM_SHADOWFAX.get(), "Shadowfax");
-//        add(TolkienEntities.EGG_TTMSHADOWFAX.get(), "Shadowfax Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_SHADOWFAX.get(), "Shadowfax");
+        add(TolkienEntities.EGG_TTMSHADOWFAX.get(), "Shadowfax Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_GOLLUM.get(), "Gollum");
         add(TolkienEntities.EGG_TTMGOLLUM.get(), "Gollum Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_NAZGUL.get(), "Nazgul");
-//        add(TolkienEntities.EGG_TTMNAZGUL.get(), "Nazgul Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_NAZGULSTEED.get(), "Nazgul Steed");
-//        add(TolkienEntities.EGG_TTMNAZGULSTEED.get(), "Nazgul Steed Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_GREAT_EAGLE.get(), "Great Eagle");
-//        add(TolkienEntities.EGG_TTMGREATEAGLE.get(), "Great Eagle Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_NAZGUL.get(), "Nazgul");
+        add(TolkienEntities.EGG_TTMNAZGUL.get(), "Nazgul Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_NAZGULSTEED.get(), "Nazgul Steed");
+        add(TolkienEntities.EGG_TTMNAZGULSTEED.get(), "Nazgul Steed Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_GREAT_EAGLE.get(), "Great Eagle");
+        add(TolkienEntities.EGG_TTMGREATEAGLE.get(), "Great Eagle Spawn Egg");
     }
 
     private void chatMessages() {
@@ -980,6 +980,8 @@ public class LangGenerator extends LanguageProvider {
     }
 
     private void keyCommand() {
+        add("entity.tolkienmobs.entityttmfrog.murder",  "Murder Frog");
+        add("entity.tolkienmobs.entityttmsquirrel.murder",  "Death Squirrel");
         add("key.category.tolkienmobs",                 "Tolkien Tweaks Mobs");
         add("key.tolkienmobs.backpack_key",             "Open Backpack");
     }

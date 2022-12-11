@@ -11,6 +11,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class HobbitEntity extends VillagerEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     public HobbitEntity(EntityType<? extends VillagerEntity> type, Level level) {

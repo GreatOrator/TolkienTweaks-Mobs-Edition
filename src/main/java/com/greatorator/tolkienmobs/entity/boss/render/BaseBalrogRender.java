@@ -19,13 +19,13 @@ import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
 import javax.annotation.Nullable;
 
-public abstract class BaseBossRender<T extends LivingEntity & IAnimatable> extends GeoEntityRenderer<T> {
+public abstract class BaseBalrogRender<T extends LivingEntity & IAnimatable> extends GeoEntityRenderer<T> {
     protected T tolkienEntity;
     protected RenderType renderType;
     protected abstract ItemStack getHeldItemStack();
     protected abstract String getArmPartName();
 
-    public BaseBossRender(EntityRendererProvider.Context context, AnimatedGeoModel<T> modelProvider) {
+    public BaseBalrogRender(EntityRendererProvider.Context context, AnimatedGeoModel<T> modelProvider) {
         super(context, modelProvider);
         this.shadowRadius = 0.8f;
     }

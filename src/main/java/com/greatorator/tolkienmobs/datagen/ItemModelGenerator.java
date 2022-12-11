@@ -419,12 +419,12 @@ public class ItemModelGenerator extends ItemModelProvider {
 
         //region Spawn Eggs
             // Ambient
-//        eggItem(TolkienEntities.EGG_TTMRAT.get());
-//        eggItem(TolkienEntities.EGG_TTMSQUIRREL.get());
-//        eggItem(TolkienEntities.EGG_TTMFROG.get());
+        eggItem(TolkienEntities.EGG_TTMRAT.get());
+        eggItem(TolkienEntities.EGG_TTMSQUIRREL.get());
+        eggItem(TolkienEntities.EGG_TTMFROG.get());
         eggItem(TolkienEntities.EGG_TTMSWARM.get());
-//        eggItem(TolkienEntities.EGG_TTMTHRUSH.get());
-//        eggItem(TolkienEntities.EGG_TTMCREBAIN.get());
+        eggItem(TolkienEntities.EGG_TTMTHRUSH.get());
+        eggItem(TolkienEntities.EGG_TTMCREBAIN.get());
 
       // Merchants
         eggItem(TolkienEntities.EGG_TTMHUMAN.get());
@@ -440,9 +440,9 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(TolkienEntities.EGG_TTMBRIGAND.get());
         eggItem(TolkienEntities.EGG_TTMHARADRIM.get());
         eggItem(TolkienEntities.EGG_TTMROMIEWALKER.get());
-//        eggItem(TolkienEntities.EGG_TTMGOBLIN.get());
         eggItem(TolkienEntities.EGG_TTMDEEPCLAW.get());
-//        eggItem(TolkienEntities.EGG_TTMTREEENT.get());
+        eggItem(TolkienEntities.EGG_TTMTREEENT.get());
+//        eggItem(TolkienEntities.EGG_TTMGOBLIN.get());
 //        eggItem(TolkienEntities.EGG_TTMDUERGAR.get());
 //        eggItem(TolkienEntities.EGG_TTMSWAMPHAG.get());
 //        eggItem(TolkienEntities.EGG_TTMMIRKWOODSPIDER.get());
@@ -458,12 +458,12 @@ public class ItemModelGenerator extends ItemModelProvider {
         // Boss
         eggItem(TolkienEntities.EGG_TTMWATCHER.get());
         eggItem(TolkienEntities.EGG_TTMBALROG.get());
+        eggItem(TolkienEntities.EGG_TTMWITCHKING.get());
+        eggItem(TolkienEntities.EGG_TTMGWAHIR.get());
 //        eggItem(TolkienEntities.EGG_TTMGOBLINKING.get());
 //        eggItem(TolkienEntities.EGG_TTMMITHRILGOLEM.get());
 //        eggItem(TolkienEntities.EGG_TTMMORGULIRONGOLEM.get());
-//        eggItem(TolkienEntities.EGG_TTMWITCHKING.get());
 //        eggItem(TolkienEntities.EGG_TTMSHELOB.get());
-//        eggItem(TolkienEntities.EGG_TTMGWAHIR.get());
 //        eggItem(TolkienEntities.EGG_TTMFELLBEAST.get());
 
         // Passive
@@ -472,11 +472,11 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(TolkienEntities.EGG_TTMGOAT.get());
 
         // Special
-//        eggItem(TolkienEntities.EGG_TTMSHADOWFAX.get());
+        eggItem(TolkienEntities.EGG_TTMSHADOWFAX.get());
         eggItem(TolkienEntities.EGG_TTMGOLLUM.get());
-//        eggItem(TolkienEntities.EGG_TTMNAZGUL.get());
-//        eggItem(TolkienEntities.EGG_TTMNAZGULSTEED.get());
-//        eggItem(TolkienEntities.EGG_TTMGREATEAGLE.get());
+        eggItem(TolkienEntities.EGG_TTMNAZGUL.get());
+        eggItem(TolkienEntities.EGG_TTMNAZGULSTEED.get());
+        eggItem(TolkienEntities.EGG_TTMGREATEAGLE.get());
     }
 
     private ItemModelBuilder simpleMod(ModelFile itemGenerated, String name) {

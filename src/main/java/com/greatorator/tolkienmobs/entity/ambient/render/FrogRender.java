@@ -1,38 +1,61 @@
 package com.greatorator.tolkienmobs.entity.ambient.render;
 
-//
-//public class FrogRender extends MobRenderer<FrogEntity, FrogModel<FrogEntity>> {
-//    private static final ResourceLocation FROG_GREEN_LOCATION = new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/toaddle_green.png");
-//    private static final ResourceLocation FROG_RED_LOCATION = new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/toaddle_red.png");
-//    private static final ResourceLocation FROG_BLACK_LOCATION = new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/toaddle_black.png");
-//    private static final ResourceLocation FROG_RAINBOW_LOCATION = new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/toaddle_rainbow.png");
-//    private static final ResourceLocation FROG_YELLOW_LOCATION = new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/toaddle_yellow.png");
-//    private static final ResourceLocation FROG_WHITE_LOCATION = new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/toaddle_white.png");
-//    private static final ResourceLocation FROG_MURDER_LOCATION = new ResourceLocation(TolkienMobs.MODID, "textures/entity/toaddle/murderfrog.png");
-//
-//    public FrogRender(EntityRendererManager renderManagerIn) {
-//        super(renderManagerIn, new FrogModel<>(), 0.4F);
-//    }
-//
-//    @Nullable
-//    @Override
-//    public ResourceLocation getTextureLocation(FrogEntity entity) {
-//        switch(entity.getFrogType()) {
-//            case 0:
-//            default:
-//                return FROG_GREEN_LOCATION;
-//            case 1:
-//                return FROG_RED_LOCATION;
-//            case 2:
-//                return FROG_BLACK_LOCATION;
-//            case 3:
-//                return FROG_RAINBOW_LOCATION;
-//            case 4:
-//                return FROG_YELLOW_LOCATION;
-//            case 5:
-//                return FROG_WHITE_LOCATION;
-//            case 99:
-//                return FROG_MURDER_LOCATION;
-//        }
-//    }
-//}
+import com.google.common.collect.Maps;
+import com.greatorator.tolkienmobs.entity.ambient.FrogEntity;
+import com.greatorator.tolkienmobs.entity.ambient.model.FrogModel;
+import com.greatorator.tolkienmobs.entity.ambient.variant.AmbientVariant;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.Util;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
+
+import java.util.Map;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+
+public class FrogRender extends GeoEntityRenderer<FrogEntity> {
+    public static final Map<AmbientVariant, ResourceLocation> LOCATION_BY_VARIANT =
+            Util.make(Maps.newEnumMap(AmbientVariant.class), (enumMap) -> {
+                enumMap.put(AmbientVariant.DEFAULT,
+                        new ResourceLocation(MODID, "textures/entity/toaddle/toaddle_green.png"));
+                enumMap.put(AmbientVariant.RED,
+                        new ResourceLocation(MODID, "textures/entity/toaddle/toaddle_yellow.png"));
+                enumMap.put(AmbientVariant.ORANGE,
+                        new ResourceLocation(MODID, "textures/entity/toaddle/toaddle_white.png"));
+                enumMap.put(AmbientVariant.YELLOW,
+                        new ResourceLocation(MODID, "textures/entity/toaddle/toaddle_red.png"));
+                enumMap.put(AmbientVariant.GREEN,
+                        new ResourceLocation(MODID, "textures/entity/toaddle/toaddle_rainbow.png"));
+                enumMap.put(AmbientVariant.BLUE,
+                        new ResourceLocation(MODID, "textures/entity/toaddle/toaddle_green.png"));
+                enumMap.put(AmbientVariant.INDIGO,
+                        new ResourceLocation(MODID, "textures/entity/toaddle/toaddle_black.png"));
+                enumMap.put(AmbientVariant.VIOLET,
+                        new ResourceLocation(MODID, "textures/entity/toaddle/toaddle_blue.png"));
+                enumMap.put(AmbientVariant.MURDER,
+                        new ResourceLocation(MODID, "textures/entity/toaddle/murderfrog.png"));
+            });
+
+    public FrogRender(EntityRendererProvider.Context ctx) {
+        super(ctx, new FrogModel());
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(FrogEntity entity) {
+        return LOCATION_BY_VARIANT.get(entity.getVariant());
+    }
+
+    @Override
+    public RenderType getRenderType(FrogEntity animatable, float partialTicks, PoseStack stack,
+                                    MultiBufferSource renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn,
+                                    ResourceLocation textureLocation) {
+
+        stack.scale(0.3F, 0.3F, 0.3F);
+
+        return super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
+    }
+}

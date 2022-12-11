@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.entity.ai.goal;
+package com.greatorator.tolkienmobs.entity.ai.goal.mumakil;
 
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.ai.goal.Goal;

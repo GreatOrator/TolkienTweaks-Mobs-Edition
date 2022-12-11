@@ -1,235 +1,251 @@
 package com.greatorator.tolkienmobs.entity.ambient;
 
-//
-//public class SquirrelEntity extends AmbientEntity {
-//    private static final DataParameter<Integer> SQUIRREL_TYPE = EntityDataManager.defineId(SquirrelEntity.class, DataSerializers.INT);
-//    private static final ResourceLocation KILLER_SQUIRREL = new ResourceLocation(TolkienMobs.MODID, "textures/entity/sosquirrel/killer_squirrel");
-//
-//    public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
-//        option.put(0, new ResourceLocation(TolkienMobs.MODID, "textures/entity/sosquirrel/sosquirrel.png"));
-//        option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/sosquirrel/sosquirrel2.png"));
-//        option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/sosquirrel/sosquirrel3.png"));
-//        option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/sosquirrel/sosquirrel4.png"));
-//    });
-//
-//    public SquirrelEntity(EntityType<? extends SquirrelEntity> type, World worldIn)
-//    {
-//        super(type, worldIn);
-//    }
-//
-//    @Override
-//    protected void registerGoals()
-//    {
-//        this.goalSelector.addGoal(1, new SwimGoal(this));
-//        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
-//        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-//        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, Ingredient.of(TolkienTags.items.ACORNS), true));
-//        this.goalSelector.addGoal(5, new PanicGoal(this, 1.3F));
-//        this.goalSelector.addGoal(6, new AvoidEntityGoal<>(this, PlayerEntity.class, 2.0F, 0.8F, 1.4F));
-//        this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-//        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-//        this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers());
-//    }
-//
-//    @Override
-//    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
-//        return 0.13F;
-//    }
-//
-//    static class AvoidEntityGoal<T extends LivingEntity> extends net.minecraft.entity.ai.goal.AvoidEntityGoal<T> {
-//        private final SquirrelEntity ttmSquirrel;
-//
-//        public AvoidEntityGoal(SquirrelEntity ttmSquirrel, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_, double p_i46403_6_) {
-//            super(ttmSquirrel, p_i46403_2_, p_i46403_3_, p_i46403_4_, p_i46403_6_);
-//            this.ttmSquirrel = ttmSquirrel;
-//        }
-//
-//        /**
-//         * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-//         * method as well.
-//         */
-//        @Override
-//        public boolean canUse() {
-//            return this.ttmSquirrel.getSquirrelType() != 99 && super.canUse();
-//        }
-//    }
-//
-//    /** Region for determining random skin */
-//    public ResourceLocation getSquirrelTypeName() {
-//        return TEXTURE_BY_ID.getOrDefault(this.getSquirrelType(), TEXTURE_BY_ID.get(0));
-//    }
-//
-//    public int getSquirrelType() {
-//        return this.entityData.get(SQUIRREL_TYPE);
-//    }
-//
-//    public void setSquirrelType(int type) {
-//        if (type == 99) {
-//            this.getAttribute(Attributes.ARMOR).setBaseValue(8.0D);
-//            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers());
-//            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-//            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WolfEntity.class, true));
-//            this.goalSelector.addGoal(4, new SquirrelEntity.EvilAttackGoal(this));
-//            if (!this.hasCustomName()) {
-//                this.setCustomName(new TranslationTextComponent(Util.makeDescriptionId("entity", KILLER_SQUIRREL)));
-//            }
-//        }
-//
-//        this.entityData.set(SQUIRREL_TYPE, type);
-//        if (type < 0 || type >= 4) {
-//            type = this.random.nextInt(3);
-//        }
-//
-//        this.entityData.set(SQUIRREL_TYPE, type);
-//    }
-//
-//    static class EvilAttackGoal extends MeleeAttackGoal {
-//        public EvilAttackGoal(SquirrelEntity squirrel) {
-//            super(squirrel, 1.4D, true);
-//        }
-//
-//        @Override
-//        protected double getAttackReachSqr(LivingEntity attackTarget) {
-//            return (double)(4.0F + attackTarget.getBbWidth());
-//        }
-//    }
-//
-//    @Override
-//    protected void defineSynchedData() {
-//        super.defineSynchedData();
-//        this.entityData.define(SQUIRREL_TYPE, 1);
-//    }
-//
-//    @Override
-//    public void addAdditionalSaveData(CompoundNBT compound) {
-//        super.addAdditionalSaveData(compound);
-//        compound.putInt("SquirrelType", this.getSquirrelType());
-//    }
-//
-//    @Override
-//    public void readAdditionalSaveData(CompoundNBT compound) {
-//        super.readAdditionalSaveData(compound);
-//        this.setSquirrelType(compound.getInt("SquirrelType"));
-//    }
-//
-//    protected SoundEvent getJumpSound()
-//    {
-//        return SoundGenerator.soundStepSOSquirrel.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getAmbientSound()
-//    {
-//        return SoundGenerator.soundIdleSOSquirrel.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-//    {
-//        return SoundGenerator.soundHurtSOSquirrel.get();
-//    }
-//
-//    @Override
-//    protected SoundEvent getDeathSound()
-//    {
-//        return SoundGenerator.soundDeathSOSquirrel.get();
-//    }
-//
-//    @Override
-//    public SoundCategory getSoundSource()
-//    {
-//        return this.getSquirrelType() == 99 ? SoundCategory.HOSTILE : SoundCategory.NEUTRAL;
-//    }
-//
-//    @Override
-//    public boolean doHurtTarget(Entity entityIn)
-//    {
-//        if (this.getSquirrelType() == 99)
-//        {
-//            this.playSound(SoundGenerator.soundAngrySOSquirrel.get(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-//            return entityIn.hurt(DamageSource.mobAttack(this), 8.0F);
-//        }
-//        else
-//        {
-//            return entityIn.hurt(DamageSource.mobAttack(this), 3.0F);
-//        }
-//    }
-//
-//    private boolean isSquirrelBreedingItem(Item itemIn)
-//    {
-//        return itemIn == TolkienContent.TREE_ACORN.get() || itemIn == TolkienContent.GOLDEN_TREE_ACORN.get();
-//    }
-//
-//    @Override
-//    public boolean isFood(ItemStack stack)
-//    {
-//        return this.isSquirrelBreedingItem(stack.getItem());
-//    }
-//
-//    @Override
-//    public float getWalkTargetValue(BlockPos pos) {
-//        // prefer standing on leaves
-//        Material underMaterial = this.level.getBlockState(pos.below()).getMaterial();
-//        if (underMaterial == Material.LEAVES) {
-//            return 12.0F;
-//        }
-//        if (underMaterial == Material.WOOD) {
-//            return 15.0F;
-//        }
-//        if (underMaterial == Material.DIRT) {
-//            return 10.0F;
-//        }
-//
-//        return this.level.getLightEmission(pos) - 0.5F;
-//    }
-//
-//    @Nullable
-//    @Override
-//    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag)
-//    {
-//        int i = this.getRandomSquirrelType(worldIn);
-//        if (spawnDataIn instanceof SquirrelEntity.SquirrelData) {
-//            i = ((SquirrelEntity.SquirrelData)spawnDataIn).typeData;
-//        } else {
-//            spawnDataIn = new SquirrelEntity.SquirrelData(i);
-//        }
-//
-//        this.setSquirrelType(i);
-//        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-//    }
-//
-//    private int getRandomSquirrelType(IWorld worldIn)
-//    {
-//        Biome biome = worldIn.getBiome(this.blockPosition());
-//        int i = this.random.nextInt(100);
-//
-//        if (biome.getPrecipitation() == Biome.RainType.SNOW) {
-//            return i < 80 ? 1 : 3;
-//        } else if (biome.getBiomeCategory() == Biome.Category.DESERT) {
-//            return 4;
-//        } else {
-//            return i < 50 ? 0 : (i < 90 ? 4 : 2);
-//        }
-//    }
-//
-//    public static class SquirrelData extends AgeableEntity.AgeableData {
-//        public final int typeData;
-//
-//        public SquirrelData(int type) {
-//            super(1.0F);
-//            this.typeData = type;
-//        }
-//    }
-//
-//    @Nullable
-//    @Override
-//    public AgeableEntity getBreedOffspring(ServerWorld p_241840_1_, AgeableEntity p_241840_2_) {
-//        return null;
-//    }
-//
-//    @Override
-//    @Nullable
-//    protected ResourceLocation getDefaultLootTable() {
-//        return null;
-//    }
-//}
+import com.greatorator.tolkienmobs.entity.AmbientEntity;
+import com.greatorator.tolkienmobs.entity.ambient.variant.AmbientVariant;
+import com.greatorator.tolkienmobs.init.TolkienSounds;
+import com.greatorator.tolkienmobs.init.TolkienTags;
+import com.greatorator.tolkienmobs.utils.RandomUtility;
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.material.Material;
+import software.bernie.geckolib3.core.AnimationState;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+@SuppressWarnings({ "unchecked", "rawtypes" })
+public class SquirrelEntity extends AmbientEntity implements IAnimatable {
+    protected final AnimationFactory factory = new AnimationFactory(this);
+    private static final EntityDataAccessor<Integer> DATA_TYPE_ID = SynchedEntityData.defineId(SquirrelEntity.class, EntityDataSerializers.INT);
+
+    public SquirrelEntity(EntityType<? extends AmbientEntity> type, Level level) {
+        super(type, level);
+    }
+
+    @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new SquirrelEntity.SquirrelPanicGoal(this, 2.2D));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0D, Ingredient.of(TolkienTags.items.ACORNS), true));
+        this.goalSelector.addGoal(4, new SquirrelEntity.SquirrelAvoidEntityGoal<>(this, Player.class, 8.0F, 2.2D, 2.2D));
+        this.goalSelector.addGoal(4, new SquirrelEntity.SquirrelAvoidEntityGoal<>(this, Wolf.class, 10.0F, 2.2D, 2.2D));
+        this.goalSelector.addGoal(4, new SquirrelEntity.SquirrelAvoidEntityGoal<>(this, Monster.class, 4.0F, 2.2D, 2.2D));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(11, new LookAtPlayerGoal(this, Player.class, 8.0F));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 6.0D)
+                .add(Attributes.MOVEMENT_SPEED, (double)0.3F);
+    }
+
+    @Override
+    public float getWalkTargetValue(BlockPos pos) {
+        Material underMaterial = this.level.getBlockState(pos.below()).getMaterial();
+        if (underMaterial == Material.LEAVES) {
+            return 12.0F;
+        }
+        if (underMaterial == Material.WOOD) {
+            return 15.0F;
+        }
+        if (underMaterial == Material.DIRT) {
+            return 10.0F;
+        }
+        return this.level.getLightEmission(pos) - 0.5F;
+    }
+
+    /** Animation */
+    protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        int rand = RandomUtility.getRandomInteger(100, 1);
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            return PlayState.CONTINUE;
+        } else if (rand <= 70) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+            return PlayState.CONTINUE;
+        } else {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("idle2", true));
+        }
+        return PlayState.CONTINUE;
+    }
+
+    private PlayState attackPredicate(AnimationEvent event) {
+        if (this.isAggressive() && event.getController().getAnimationState().equals(AnimationState.Stopped)){
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
+
+            this.setAggressive(false);
+        }
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void registerControllers(AnimationData animationData) {
+        animationData.addAnimationController(new AnimationController<>(this, "controller", 5, this::predicate));
+        animationData.addAnimationController(new AnimationController(this, "attackController",
+                0, this::attackPredicate));
+    }
+
+    @Override
+    public AnimationFactory getFactory() {
+        return factory;
+    }
+
+    /** VARIANTS */
+    @Nullable
+    @Override
+    public SpawnGroupData finalizeSpawn(@Nonnull ServerLevelAccessor levelAccessor, @Nonnull DifficultyInstance instance, @Nonnull MobSpawnType type, @Nullable SpawnGroupData groupData, @Nullable CompoundTag tag) {
+        AmbientVariant variant = Util.getRandom(AmbientVariant.values(), this.random);
+        setVariant(variant);
+        setSquirrelType(variant.getId());
+        groupData = super.finalizeSpawn(levelAccessor, instance, type, groupData, tag);
+        return groupData;
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(DATA_TYPE_ID, 0);
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putInt("SquirrelType", this.getSquirrelType());
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.setSquirrelType(tag.getInt("SquirrelType"));
+    }
+
+    private void setSquirrelType(int squirrelType) {
+        if (squirrelType == 8) {
+            this.getAttribute(Attributes.ARMOR).setBaseValue(8.0D);
+            this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.6D);
+            this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(15.0D);
+            this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(15.0D);
+            this.goalSelector.addGoal(4, new SquirrelEntity.EvilSquirrelAttackGoal(this));
+            this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)).setAlertOthers());
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+            this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Wolf.class, true));
+            if (!this.hasCustomName()) {
+                this.setCustomName(new TranslatableComponent("entity.tolkienmobs.entityttmsquirrel.murder"));
+            }
+        }
+        this.entityData.set(DATA_TYPE_ID, squirrelType);
+    }
+
+    private int getSquirrelType() {
+        return this.entityData.get(DATA_TYPE_ID);
+    }
+
+    /** Goals */
+    static class EvilSquirrelAttackGoal extends MeleeAttackGoal {
+        public EvilSquirrelAttackGoal(SquirrelEntity entity) {
+            super(entity, 1.4D, true);
+        }
+
+        @Override
+        protected double getAttackReachSqr(LivingEntity livingEntity) {
+            return (double)(4.0F + livingEntity.getBbWidth());
+        }
+    }
+
+    static class SquirrelAvoidEntityGoal<T extends LivingEntity> extends AvoidEntityGoal<T> {
+        private final SquirrelEntity squirrel;
+
+        public SquirrelAvoidEntityGoal(SquirrelEntity entity, Class<T> tClass, float p_29745_, double p_29746_, double p_29747_) {
+            super(entity, tClass, p_29745_, p_29746_, p_29747_);
+            this.squirrel = entity;
+        }
+
+        @Override
+        public boolean canUse() {
+            return this.squirrel.getSquirrelType() != 8 && super.canUse();
+        }
+    }
+
+    public void setSpeedModifier(double p_29726_) {
+        this.getNavigation().setSpeedModifier(p_29726_);
+        this.moveControl.setWantedPosition(this.moveControl.getWantedX(), this.moveControl.getWantedY(), this.moveControl.getWantedZ(), p_29726_);
+    }
+
+    static class SquirrelPanicGoal extends PanicGoal {
+        private final SquirrelEntity squirrel;
+
+        public SquirrelPanicGoal(SquirrelEntity p_29775_, double p_29776_) {
+            super(p_29775_, p_29776_);
+            this.squirrel = p_29775_;
+        }
+
+        @Override
+        public void tick() {
+            super.tick();
+            this.squirrel.setSpeedModifier(this.speedModifier);
+        }
+    }
+
+    /** Sounds */
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return TolkienSounds.soundIdleSOSquirrel.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return TolkienSounds.soundHurtSOSquirrel.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return TolkienSounds.soundDeathSOSquirrel.get();
+    }
+
+    @Override
+    public SoundSource getSoundSource() {
+        return this.getSquirrelType() == 8 ? SoundSource.HOSTILE : SoundSource.NEUTRAL;
+    }
+
+    @Override
+    public boolean doHurtTarget(Entity entityIn) {
+        if (this.getSquirrelType() == 8) {
+            this.playSound(TolkienSounds.soundAngrySOSquirrel.get(), 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+            return entityIn.hurt(DamageSource.mobAttack(this), 8.0F);
+        }
+        else {
+            return entityIn.hurt(DamageSource.mobAttack(this), 3.0F);
+        }
+    }
+}

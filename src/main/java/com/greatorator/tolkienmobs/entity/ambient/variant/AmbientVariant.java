@@ -11,7 +11,8 @@ public enum AmbientVariant {
     GREEN(4),
     BLUE(5),
     INDIGO(6),
-    VIOLET(7);
+    VIOLET(7),
+    MURDER(8);
 
     private static final AmbientVariant[] BY_ID = Arrays.stream(values()).sorted(Comparator.
             comparingInt(AmbientVariant::getId)).toArray(AmbientVariant[]::new);

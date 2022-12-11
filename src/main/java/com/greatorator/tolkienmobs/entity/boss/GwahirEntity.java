@@ -1,7 +1,194 @@
 package com.greatorator.tolkienmobs.entity.boss;
 
-//
-//public class GwahirEntity extends BirdEntity {
+import com.greatorator.tolkienmobs.entity.BirdEntity;
+import com.greatorator.tolkienmobs.init.TolkienSounds;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.BossEvent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.Chicken;
+import net.minecraft.world.level.Level;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+
+public class GwahirEntity extends BirdEntity {
+    private final ServerBossEvent gwahirEvent = (ServerBossEvent)(new ServerBossEvent(this.getDisplayName(), BossEvent.BossBarColor.YELLOW, BossEvent.BossBarOverlay.PROGRESS)).setDarkenScreen(true);
+    private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false) {
+        public void stop() {
+            super.stop();
+            GwahirEntity.this.setAggressive(false);
+        }
+
+        public void start() {
+            super.start();
+            GwahirEntity.this.setAggressive(true);
+        }
+    };
+    private boolean scheduleWeaponGoalUpdate = true;
+
+    public GwahirEntity(EntityType<? extends BirdEntity> type, Level level) {
+        super(type, level);
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 240.0D)
+                .add(Attributes.ARMOR, 30.0D)
+                .add(Attributes.ATTACK_DAMAGE, 21.0D)
+                .add(Attributes.MOVEMENT_SPEED, (double)0.28F)
+                .add(Attributes.FLYING_SPEED, (double) 1.6F);
+    }
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        if (!super.hurt(source, amount)) {
+            return false;
+        } else if (!(this.level instanceof ServerLevel)) {
+            return false;
+        } else {
+            LivingEntity livingentity = this.getTarget();
+            if (livingentity == null && source.getEntity() instanceof LivingEntity) {
+                livingentity = (LivingEntity) source.getEntity();
+            }
+
+            if (livingentity == null) return true;
+
+            if (this.random.nextFloat() < 0.15F && this.isEyeInFluid(FluidTags.WATER) && !this.hasEffect(MobEffects.WATER_BREATHING)) {
+                livingentity.sendMessage(new TranslatableComponent(MODID + ".msg.nodrown.gwahir").withStyle(ChatFormatting.DARK_BLUE), Util.NIL_UUID);
+                this.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 2 * 20, 0));
+            }
+
+            if (this.random.nextFloat() < 0.15F && (this.isOnFire() || this.getLastDamageSource() != null && this.getLastDamageSource().isFire()) && !this.hasEffect(MobEffects.FIRE_RESISTANCE)) {
+                livingentity.sendMessage(new TranslatableComponent(MODID + ".msg.onfire.gwahir").withStyle(ChatFormatting.DARK_RED), Util.NIL_UUID);
+                this.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 2 * 20, 0));
+            }
+
+            if (this.random.nextFloat() < 0.05F && this.getHealth() < this.getMaxHealth()) {
+                livingentity.sendMessage(new TranslatableComponent(MODID + ".msg.healself.gwahir").withStyle(ChatFormatting.LIGHT_PURPLE), Util.NIL_UUID);
+                this.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 2 * 20, 0));
+            }
+
+            if (this.random.nextFloat() < 0.5F && this.getTarget() != null && !this.hasEffect(MobEffects.MOVEMENT_SPEED) && this.getTarget().distanceToSqr(this) > 121.0D) {
+                livingentity.sendMessage(new TranslatableComponent(MODID + ".msg.speedup.gwahir").withStyle(ChatFormatting.AQUA), Util.NIL_UUID);
+                this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 2 * 20, 0));
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void tick() {
+        if (scheduleWeaponGoalUpdate) {
+            updateWeaponGoal();
+        }
+        super.tick();
+    }
+
+    protected void updateWeaponGoal() {
+        scheduleWeaponGoalUpdate = false;
+        this.goalSelector.removeGoal(this.meleeGoal);
+        this.goalSelector.addGoal(4, this.meleeGoal);
+    }
+
+    @Override
+    protected void registerGoals() {
+        super.registerGoals();
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Chicken.class, true));
+        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+    }
+
+    /** Boss Section */
+//    public int getInvulnerableTicks() {
+//        return this.entityData.get(DATA_ID_INV);
+//    }
+
+//    public void setInvulnerableTicks(int invulnerableTicks) {
+//        this.entityData.set(DATA_ID_INV, invulnerableTicks);
+//    }
+
+    public void addAdditionalSaveData(@Nonnull CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+//        tag.putInt("Invul", this.getInvulnerableTicks());
+    }
+
+    @Override
+    public void readAdditionalSaveData(@Nonnull CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+//        this.setInvulnerableTicks(tag.getInt("Invul"));
+        if (this.hasCustomName()) {
+            this.gwahirEvent.setName(this.getDisplayName());
+        }
+    }
+
+    @Override
+    public void setCustomName(@Nullable Component component) {
+        super.setCustomName(component);
+        this.gwahirEvent.setName(this.getDisplayName());
+    }
+
+    @Override
+    protected void customServerAiStep() {
+//        if (this.getInvulnerableTicks() > 0) {
+//            int k1 = this.getInvulnerableTicks() - 1;
+//            this.gwahirEvent.setProgress(1.0F - (float) k1 / 220.0F);
+//        }
+        this.gwahirEvent.setProgress(this.getHealth() / this.getMaxHealth());
+    }
+
+//    public void makeInvulnerable() {
+//        this.setInvulnerableTicks(220);
+//        this.gwahirEvent.setProgress(0.0F);
+//        this.setHealth(this.getMaxHealth() / 3.0F);
+//    }
+
+    @Override
+    public void startSeenByPlayer(@Nonnull ServerPlayer serverPlayer) {
+        super.startSeenByPlayer(serverPlayer);
+        this.gwahirEvent.addPlayer(serverPlayer);
+    }
+
+    @Override
+    public void stopSeenByPlayer(@Nonnull ServerPlayer serverPlayer) {
+        super.stopSeenByPlayer(serverPlayer);
+        this.gwahirEvent.removePlayer(serverPlayer);
+    }
+
+    /** Sound Region */
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return TolkienSounds.soundCallTMGreatEagle.get();
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+        return TolkienSounds.soundHurtTMGreatEagle.get();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return TolkienSounds.soundDeathTMGreatEagle.get();
+    }
 //    private final ServerBossInfo bossInfo = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(), BossInfo.Color.WHITE, BossInfo.Overlay.NOTCHED_12)).setDarkenScreen(true);
 //
 //    public GwahirEntity(EntityType<? extends BirdEntity> entityIn, World worldIn) {
@@ -116,4 +303,4 @@ package com.greatorator.tolkienmobs.entity.boss;
 //        return SoundGenerator.soundDeathTMGreatEagle.get();
 //    }
 //    // End Region
-//}
+}

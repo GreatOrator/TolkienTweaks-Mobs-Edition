@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class BalrogRender extends BaseBossRender<BalrogEntity> {
+public class BalrogRender extends BaseBalrogRender<BalrogEntity> {
     public BalrogRender(EntityRendererProvider.Context context) {
         super(context, new BalrogModel());
     }

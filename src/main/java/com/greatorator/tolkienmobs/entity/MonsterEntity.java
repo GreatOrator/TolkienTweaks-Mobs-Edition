@@ -42,6 +42,7 @@ import javax.annotation.Nullable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public class MonsterEntity extends Monster implements RangedAttackMob, IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     public static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(MonsterEntity.class, EntityDataSerializers.INT);
@@ -59,7 +60,7 @@ public class MonsterEntity extends Monster implements RangedAttackMob, IAnimatab
         }
     };
     private boolean scheduleWeaponGoalUpdate = true;
-    private boolean ranged;
+    protected boolean ranged;
 
     protected MonsterEntity(EntityType<? extends Monster> type, Level level) {
         super(type, level);
@@ -175,7 +176,7 @@ public class MonsterEntity extends Monster implements RangedAttackMob, IAnimatab
         }
     }
 
-    private boolean getRanged() {
+    public boolean getRanged() {
         return ranged;
     }
 
@@ -218,7 +219,6 @@ public class MonsterEntity extends Monster implements RangedAttackMob, IAnimatab
     }
 
     /** VARIANTS */
-
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(@Nonnull ServerLevelAccessor levelAccessor, @Nonnull DifficultyInstance instance, @Nonnull MobSpawnType type, @Nullable SpawnGroupData groupData, @Nullable CompoundTag tag) {
