@@ -1,0 +1,511 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 6,
+				"visible_bounds_height": 5.5,
+				"visible_bounds_offset": [0, 2.25, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 24, 0]
+				},
+				{
+					"name": "body",
+					"parent": "root",
+					"pivot": [0, 37.67415, 2.00323],
+					"rotation": [12.5, 0, 0],
+					"cubes": [
+						{"origin": [-8.5, 30.67415, -2.49677], "size": [17, 14, 9], "uv": [76, 77]}
+					]
+				},
+				{
+					"name": "BalrogChest",
+					"parent": "body",
+					"pivot": [0, 33.47415, 1.50323],
+					"rotation": [-29.19, 0, 0],
+					"cubes": [
+						{"origin": [-8, 23.47415, -1.99677], "size": [16, 10, 8], "uv": [80, 58]}
+					]
+				},
+				{
+					"name": "lionclothWaist1",
+					"parent": "BalrogChest",
+					"pivot": [0, 27.47415, -2.49677],
+					"cubes": [
+						{"origin": [-8, 23.47415, -2.49677], "size": [16, 4, 1], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "lionclothWaist2",
+					"parent": "lionclothWaist1",
+					"pivot": [0, 27.47415, 5.50323],
+					"cubes": [
+						{"origin": [-8, 23.47415, 5.50323], "size": [16, 4, 1], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "lionclothWaist3",
+					"parent": "lionclothWaist1",
+					"pivot": [-8, 27.47415, -2.49677],
+					"cubes": [
+						{"origin": [-8.5, 23.47415, -2.49677], "size": [1, 4, 9], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "lionclothWaist4",
+					"parent": "lionclothWaist1",
+					"pivot": [8, 27.47415, -2.49677],
+					"cubes": [
+						{"origin": [7.5, 23.47415, -2.49677], "size": [1, 4, 9], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "lionclothHang1",
+					"parent": "lionclothWaist1",
+					"pivot": [0, 26.97415, -2.19677],
+					"cubes": [
+						{"origin": [-3.5, 22.47415, -2.69677], "size": [7, 5, 1], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "lionclothHang2",
+					"parent": "lionclothHang1",
+					"pivot": [0, 22.97415, -2.69677],
+					"cubes": [
+						{"origin": [-3.5, 15.97415, -2.69677], "size": [7, 7, 1], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "rightArm",
+					"parent": "body",
+					"pivot": [9, 43.27415, 2.00323],
+					"rotation": [-12.5, 0, 0],
+					"cubes": [
+						{"origin": [8.5, 34.77415, -0.99677], "size": [6, 10, 6], "uv": [56, 95], "mirror": true}
+					]
+				},
+				{
+					"name": "bipedRightArmLower",
+					"parent": "rightArm",
+					"pivot": [12, 34.04655, 1.8897],
+					"rotation": [-10, 0, 0],
+					"cubes": [
+						{"origin": [10, 22.44886, -0.22686], "size": [4, 13, 4], "uv": [59, 111]}
+					]
+				},
+				{
+					"name": "armbandr",
+					"parent": "bipedRightArmLower",
+					"pivot": [14.5, 28.44886, -0.72686],
+					"cubes": [
+						{"origin": [9.5, 26.44886, -0.72686], "size": [5, 2, 5], "uv": [0, 109]}
+					]
+				},
+				{
+					"name": "leftArm",
+					"parent": "body",
+					"pivot": [-8.5, 43.27415, 2.00323],
+					"rotation": [-10, 0, 0],
+					"cubes": [
+						{"origin": [-14.5, 34.77415, -0.99677], "size": [6, 10, 6], "uv": [56, 95]}
+					]
+				},
+				{
+					"name": "bipedLeftArmLower",
+					"parent": "leftArm",
+					"pivot": [-12, 34.04655, 1.8897],
+					"rotation": [-10, 0, 0],
+					"cubes": [
+						{"origin": [-14, 22.44886, -0.22686], "size": [4, 13, 4], "uv": [59, 111], "mirror": true}
+					]
+				},
+				{
+					"name": "armbandl",
+					"parent": "bipedLeftArmLower",
+					"pivot": [-9.5, 28.44886, -0.72686],
+					"cubes": [
+						{"origin": [-14.5, 26.44886, -0.72686], "size": [5, 2, 5], "uv": [0, 109]}
+					]
+				},
+				{
+					"name": "tail",
+					"parent": "body",
+					"pivot": [-0.5, 24.27415, 0.50323],
+					"rotation": [-48.65, 0, 0],
+					"cubes": [
+						{"origin": [-2, 22.77415, 0.40323], "size": [4, 4, 8], "uv": [0, 116]}
+					]
+				},
+				{
+					"name": "BalrogTail2",
+					"parent": "tail",
+					"pivot": [-0.5, 24.27415, 6.50323],
+					"rotation": [9.73, 0, 0],
+					"cubes": [
+						{"origin": [-1.5, 23.27415, 6.50323], "size": [3, 3, 8], "uv": [0, 117]}
+					]
+				},
+				{
+					"name": "BalrogTail3",
+					"parent": "BalrogTail2",
+					"pivot": [-0.5, 23.97415, 12.50323],
+					"rotation": [9.73, 0, 0],
+					"cubes": [
+						{"origin": [-1, 23.47415, 12.50323], "size": [2, 2, 8], "uv": [0, 118]}
+					]
+				},
+				{
+					"name": "BalrogTail4",
+					"parent": "BalrogTail3",
+					"pivot": [-0.5, 23.97415, 19.50323],
+					"rotation": [9.73, 0, 0],
+					"cubes": [
+						{"origin": [-1, 23.47415, 19.50323], "size": [2, 2, 8], "uv": [0, 118]}
+					]
+				},
+				{
+					"name": "BalrogTailBand",
+					"parent": "BalrogTail4",
+					"pivot": [0.5, 24.77415, 26.50323],
+					"rotation": [9.73, 0, 0],
+					"cubes": [
+						{"origin": [-1.5, 22.77415, 26.50323], "size": [3, 3, 4], "uv": [0, 109]}
+					]
+				},
+				{
+					"name": "BalrogTail6",
+					"parent": "BalrogTailBand",
+					"pivot": [0, 24.17415, 29.50323],
+					"rotation": [9.73, 0, 0],
+					"cubes": [
+						{"origin": [-1, 23.17415, 29.50323], "size": [2, 2, 4], "uv": [0, 122]}
+					]
+				},
+				{
+					"name": "head",
+					"parent": "root",
+					"pivot": [0, 44.97721, -1.26047],
+					"rotation": [10, 0, 0],
+					"cubes": [
+						{"origin": [-2.5, 42.96202, -3.58682], "size": [5, 6, 5], "uv": [33, 81]}
+					]
+				},
+				{
+					"name": "BalrogSkull",
+					"parent": "head",
+					"pivot": [0, 47.96202, -2.88682],
+					"rotation": [-10, 0, 0],
+					"cubes": [
+						{"origin": [-4.5, 46.41644, -7.90777], "size": [9, 9, 9], "uv": [87, 110]}
+					]
+				},
+				{
+					"name": "BalrogHornR1",
+					"parent": "BalrogSkull",
+					"pivot": [3.5, 55.41644, -3.40777],
+					"rotation": [0, 0, -55],
+					"cubes": [
+						{"origin": [0.5, 52.91644, -4.90777], "size": [8, 4, 3], "uv": [0, 102]}
+					]
+				},
+				{
+					"name": "BalrogHornR2",
+					"parent": "BalrogHornR1",
+					"pivot": [7.4, 54.81644, -2.90777],
+					"rotation": [0, 0, -20],
+					"cubes": [
+						{"origin": [7.4, 53.31644, -4.40777], "size": [5, 3, 2], "uv": [0, 103]}
+					]
+				},
+				{
+					"name": "BalrogHornR3",
+					"parent": "BalrogHornR2",
+					"pivot": [11.3, 54.21644, -2.90777],
+					"rotation": [0, 0, -55],
+					"cubes": [
+						{"origin": [11.3, 52.71644, -4.50777], "size": [5, 3, 2], "uv": [0, 102]}
+					]
+				},
+				{
+					"name": "BalrogHornR4",
+					"parent": "BalrogHornR3",
+					"pivot": [14.5, 54.51644, -2.90777],
+					"rotation": [0, 0, 32.5],
+					"cubes": [
+						{"origin": [15.5, 54.01644, -4.50777], "size": [4, 2, 2], "uv": [0, 102]}
+					]
+				},
+				{
+					"name": "BalrogHornR5",
+					"parent": "BalrogHornR4",
+					"pivot": [15.9, 54.01644, -2.50777],
+					"cubes": [
+						{"origin": [18.9, 54.51644, -4.10777], "size": [2, 1, 1], "uv": [0, 102]}
+					]
+				},
+				{
+					"name": "BalrogHornL1",
+					"parent": "BalrogSkull",
+					"pivot": [-3.5, 55.41644, -3.40777],
+					"rotation": [0, 0, 55],
+					"cubes": [
+						{"origin": [-8.5, 52.91644, -4.90777], "size": [8, 4, 3], "uv": [0, 102], "mirror": true}
+					]
+				},
+				{
+					"name": "BalrogHornL2",
+					"parent": "BalrogHornL1",
+					"pivot": [-7.4, 54.81644, -2.90777],
+					"rotation": [0, 0, 22.5],
+					"cubes": [
+						{"origin": [-12.4, 53.31644, -4.40777], "size": [5, 3, 2], "uv": [0, 103], "mirror": true}
+					]
+				},
+				{
+					"name": "BalrogHornL3",
+					"parent": "BalrogHornL2",
+					"pivot": [-11.3, 54.21644, -2.90777],
+					"rotation": [0, 0, 52.5],
+					"cubes": [
+						{"origin": [-16.3, 52.71644, -4.50777], "size": [5, 3, 2], "uv": [0, 102], "mirror": true}
+					]
+				},
+				{
+					"name": "BalrogHornL4",
+					"parent": "BalrogHornL3",
+					"pivot": [-15.5, 53.91644, -2.90777],
+					"rotation": [0, 0, -35],
+					"cubes": [
+						{"origin": [-19.5, 53.41644, -4.50777], "size": [4, 2, 2], "uv": [0, 102], "mirror": true}
+					]
+				},
+				{
+					"name": "BalrogHornL5",
+					"parent": "BalrogHornL4",
+					"pivot": [-18.9, 53.41644, -2.50777],
+					"cubes": [
+						{"origin": [-20.9, 53.91644, -4.10777], "size": [2, 1, 1], "uv": [0, 102], "mirror": true}
+					]
+				},
+				{
+					"name": "BalrogMouth",
+					"parent": "BalrogSkull",
+					"pivot": [0, 49.41644, -5.40777],
+					"rotation": [12.5, 0, 0],
+					"cubes": [
+						{"origin": [-2.5, 48.91644, -10.40777], "size": [5, 3, 8], "uv": [26, 92]}
+					]
+				},
+				{
+					"name": "ring",
+					"parent": "BalrogMouth",
+					"pivot": [0, 50.91644, -10.30777],
+					"rotation": [-20, 0, 0],
+					"cubes": [
+						{"origin": [-1, 50.81644, -10.80777], "size": [2, 1, 1], "uv": [7, 112]}
+					]
+				},
+				{
+					"name": "ring8",
+					"parent": "ring",
+					"pivot": [1.9, 50.41644, -10.30777],
+					"cubes": [
+						{"origin": [1.9, 48.41644, -10.80777], "size": [1, 2, 1], "uv": [7, 112]}
+					]
+				},
+				{
+					"name": "ring7",
+					"parent": "ring",
+					"pivot": [-3, 50.41644, -10.30777],
+					"cubes": [
+						{"origin": [-2.9, 48.41644, -10.80777], "size": [1, 2, 1], "uv": [7, 112]}
+					]
+				},
+				{
+					"name": "ring6",
+					"parent": "ring",
+					"pivot": [0, 47.91644, -10.30777],
+					"cubes": [
+						{"origin": [-1.5, 47.01644, -10.80777], "size": [3, 1, 1], "uv": [7, 112]}
+					]
+				},
+				{
+					"name": "ring5",
+					"parent": "ring",
+					"pivot": [1.5, 48.41644, -10.30777],
+					"rotation": [0, 0, -45],
+					"cubes": [
+						{"origin": [0.5, 47.41644, -10.80777], "size": [2, 1, 1], "uv": [7, 112]}
+					]
+				},
+				{
+					"name": "ring4",
+					"parent": "ring",
+					"pivot": [2.2, 51.11644, -10.30777],
+					"rotation": [0, 0, 45],
+					"cubes": [
+						{"origin": [1.2, 50.11644, -10.80777], "size": [2, 1, 1], "uv": [7, 112]}
+					]
+				},
+				{
+					"name": "ring3",
+					"parent": "ring",
+					"pivot": [-2.3, 51.11644, -10.30777],
+					"rotation": [0, 0, -45],
+					"cubes": [
+						{"origin": [-3.22929, 50.04573, -10.80777], "size": [2, 1, 1], "uv": [7, 112]}
+					]
+				},
+				{
+					"name": "ring2",
+					"parent": "ring",
+					"pivot": [-1.6, 48.41644, -10.30777],
+					"rotation": [0, 0, 45],
+					"cubes": [
+						{"origin": [-2.52929, 47.48715, -10.80777], "size": [2, 1, 1], "uv": [7, 112]}
+					]
+				},
+				{
+					"name": "nose",
+					"parent": "BalrogMouth",
+					"pivot": [0, 51.81644, -10.40777],
+					"rotation": [5, 0, 0],
+					"cubes": [
+						{"origin": [-1, 51.31644, -10.40777], "size": [2, 1, 4], "uv": [110, 120]}
+					]
+				},
+				{
+					"name": "nose2",
+					"parent": "nose",
+					"pivot": [0, 51.81644, -11.20777],
+					"cubes": [
+						{"origin": [-1.5, 49.31644, -11.20777], "size": [3, 3, 2], "uv": [115, 114]}
+					]
+				},
+				{
+					"name": "BalrogMouth2",
+					"parent": "BalrogMouth",
+					"pivot": [0, 48.21644, -5.50777],
+					"rotation": [15, 0, 0],
+					"cubes": [
+						{"origin": [-2.5, 47.21644, -10.50777], "size": [5, 2, 5], "uv": [10, 85]}
+					]
+				},
+				{
+					"name": "brow1",
+					"parent": "BalrogSkull",
+					"pivot": [-3.10086, 54.97327, -7.7915],
+					"rotation": [-3.44177, 8.39309, 34.77729],
+					"cubes": [
+						{"origin": [-3.224, 54.23493, -8.07365], "size": [3, 1, 1], "uv": [115, 119]}
+					]
+				},
+				{
+					"name": "brow2",
+					"parent": "BalrogSkull",
+					"pivot": [3.39371, 55.09734, -7.80184],
+					"rotation": [-4.26175, -9.05478, -29.66239],
+					"cubes": [
+						{"origin": [0.54686, 54.24026, -8.06], "size": [3, 1, 1], "uv": [115, 119]}
+					]
+				},
+				{
+					"name": "rightLeg",
+					"parent": "root",
+					"pivot": [-5, 24.70827, -1.15318],
+					"rotation": [-17.5, 0, 0],
+					"cubes": [
+						{"origin": [-8.5, 15.39341, -3.95035], "size": [7, 11, 8], "uv": [50, 67], "mirror": true}
+					]
+				},
+				{
+					"name": "LegLowR",
+					"parent": "rightLeg",
+					"pivot": [-5, 17.25138, 0.25286],
+					"rotation": [62.5, 0, 0],
+					"cubes": [
+						{"origin": [-7.5, 5.17418, -3.9658], "size": [5, 14, 6], "pivot": [0, 2.97418, 2.5342], "rotation": [-2.5, 0, 0], "uv": [27, 108], "mirror": true}
+					]
+				},
+				{
+					"name": "LegLLR",
+					"parent": "LegLowR",
+					"pivot": [-5, 7.5562, -0.91521],
+					"rotation": [-96.07, 0, 0],
+					"cubes": [
+						{"origin": [-7, -1.42698, -2.59798], "size": [4, 12, 4], "uv": [28, 109]}
+					]
+				},
+				{
+					"name": "FeetR",
+					"parent": "LegLLR",
+					"pivot": [-5, -1.56624, -0.16252],
+					"rotation": [51.89, 0, 0],
+					"cubes": [
+						{"origin": [-7.5, -4.47024, -3.33217], "size": [5, 3, 6], "uv": [10, 69]}
+					]
+				},
+				{
+					"name": "FeetR1",
+					"parent": "FeetR",
+					"pivot": [-3, 0.32976, 1.46783],
+					"rotation": [-110.4, 0, 0],
+					"cubes": [
+						{"origin": [-7, -2.57024, 2.26783], "size": [4, 2, 3], "uv": [16, 63]}
+					]
+				},
+				{
+					"name": "leftLeg",
+					"parent": "root",
+					"pivot": [4.8, 24.6805, -1.17275],
+					"rotation": [-17.5, 0, 0],
+					"cubes": [
+						{"origin": [1.3, 15.36564, -3.96993], "size": [7, 11, 8], "uv": [50, 67], "mirror": true}
+					]
+				},
+				{
+					"name": "LegLowL",
+					"parent": "leftLeg",
+					"pivot": [4.8, 16.89961, 1.09225],
+					"rotation": [60, 0, 0],
+					"cubes": [
+						{"origin": [2.3, 5.80153, -2.50583], "size": [5, 14, 5], "uv": [27, 109], "mirror": true}
+					]
+				},
+				{
+					"name": "LegLLL",
+					"parent": "LegLowL",
+					"pivot": [4.8, 8.03029, -0.1321],
+					"rotation": [-94.05, 0, 0],
+					"cubes": [
+						{"origin": [2.8, -0.96222, -1.92022], "size": [4, 12, 4], "uv": [28, 112]}
+					]
+				},
+				{
+					"name": "FeetR3",
+					"parent": "LegLLL",
+					"pivot": [4.8, -0.7275, 0.61154],
+					"rotation": [51.89, 0, 0],
+					"cubes": [
+						{"origin": [2.3, -3.6315, -2.55811], "size": [5, 3, 6], "uv": [10, 67]}
+					]
+				},
+				{
+					"name": "FeetR2",
+					"parent": "FeetR3",
+					"pivot": [6.8, 0.3685, 0.74189],
+					"rotation": [-110.4, 0, 0],
+					"cubes": [
+						{"origin": [2.8, -1.6315, 0.74189], "size": [4, 2, 3], "uv": [16, 63]}
+					]
+				}
+			]
+		}
+	]
+}

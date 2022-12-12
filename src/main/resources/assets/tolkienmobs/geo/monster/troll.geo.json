@@ -1,0 +1,184 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 128,
+				"texture_height": 64,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 4.5,
+				"visible_bounds_offset": [0, 1.75, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 24, 0]
+				},
+				{
+					"name": "head",
+					"parent": "root",
+					"pivot": [0, 36.5, -1.2],
+					"rotation": [-10, 0, 0],
+					"cubes": [
+						{"origin": [-3.5, 33.7, -4.2], "size": [7, 5, 6], "pivot": [0, 38.5, -1.2], "rotation": [-27.5, 0, 0], "uv": [48, 14]}
+					]
+				},
+				{
+					"name": "TrollHead",
+					"parent": "head",
+					"pivot": [0, 38, -3.4],
+					"rotation": [10, 0, 0],
+					"cubes": [
+						{"origin": [-4.5, 33.5, -9.4], "size": [9, 8, 6], "uv": [47, 0]}
+					]
+				},
+				{
+					"name": "TrollNose",
+					"parent": "TrollHead",
+					"pivot": [0, 36.8, -9.7],
+					"rotation": [10, 0, 0],
+					"cubes": [
+						{"origin": [-0.5, 36.3, -10.2], "size": [1, 1, 1], "uv": [0, 32]}
+					]
+				},
+				{
+					"name": "body",
+					"parent": "root",
+					"pivot": [0, 25, -0.2],
+					"cubes": [
+						{"origin": [-9, 25, -3.7], "size": [18, 12, 7], "uv": [77, 0]}
+					]
+				},
+				{
+					"name": "TrollBodyLower",
+					"parent": "body",
+					"pivot": [0, 25.5, -0.2],
+					"cubes": [
+						{"origin": [-8.5, 14.5, -3.2], "size": [17, 11, 6], "uv": [81, 19]}
+					]
+				},
+				{
+					"name": "leftArm",
+					"parent": "body",
+					"pivot": [-8.8, 35, -0.2],
+					"cubes": [
+						{"origin": [-14.8, 26.5, -3.2], "size": [6, 11, 6], "uv": [0, 47], "mirror": true}
+					]
+				},
+				{
+					"name": "TrollArmLowerL",
+					"parent": "leftArm",
+					"pivot": [-11.8, 27, -0.2],
+					"rotation": [-5, 0, 0],
+					"cubes": [
+						{"origin": [-14.3, 14, -2.7], "size": [5, 13, 5], "uv": [24, 46], "mirror": true}
+					]
+				},
+				{
+					"name": "rightArm",
+					"parent": "body",
+					"pivot": [8.8, 35, -0.2],
+					"cubes": [
+						{"origin": [8.8, 26.5, -3.2], "size": [6, 11, 6], "uv": [0, 47]}
+					]
+				},
+				{
+					"name": "TrollArmLowerR",
+					"parent": "rightArm",
+					"pivot": [11.8, 26.9, -0.2],
+					"rotation": [-5, 0, 0],
+					"cubes": [
+						{"origin": [9.3, 13.9, -2.7], "size": [5, 13, 5], "uv": [24, 46]}
+					]
+				},
+				{
+					"name": "leftLeg",
+					"parent": "root",
+					"pivot": [-5.2, 15.5, -0.7],
+					"rotation": [-5, 0, 0],
+					"cubes": [
+						{"origin": [-8.7, 8.5, -3.2], "size": [6, 7, 6], "uv": [0, 35]}
+					]
+				},
+				{
+					"name": "TrollLegMidL",
+					"parent": "leftLeg",
+					"pivot": [-5.2, 9, -0.7],
+					"rotation": [5, 0, 0],
+					"cubes": [
+						{"origin": [-8.2, 3, -2.7], "size": [5, 6, 5], "uv": [0, 25]}
+					]
+				},
+				{
+					"name": "TrollFootL",
+					"parent": "TrollLegMidL",
+					"pivot": [-5.7, 3, 0.8],
+					"cubes": [
+						{"origin": [-8.2, 0, -4.2], "size": [5, 3, 7], "uv": [24, 36]}
+					]
+				},
+				{
+					"name": "TrollNail3",
+					"parent": "TrollFootL",
+					"pivot": [-3.4, 1.5, -4.2],
+					"rotation": [0, 0.44, 0],
+					"cubes": [
+						{"origin": [-4.9, 0, -4.7], "size": [2, 2, 2], "uv": [19, 35]}
+					]
+				},
+				{
+					"name": "TrollNail4",
+					"parent": "TrollFootL",
+					"pivot": [-7, 1.5, -4.2],
+					"cubes": [
+						{"origin": [-8.5, 0, -4.7], "size": [2, 2, 2], "uv": [19, 35]}
+					]
+				},
+				{
+					"name": "rightLeg",
+					"parent": "root",
+					"pivot": [6.2, 15.5, -0.7],
+					"rotation": [-5, 0, 0],
+					"cubes": [
+						{"origin": [2.7, 8.5, -3.2], "size": [6, 7, 6], "uv": [0, 35]}
+					]
+				},
+				{
+					"name": "TrollLegMidR",
+					"parent": "rightLeg",
+					"pivot": [6.2, 9, -0.7],
+					"rotation": [5, 0, 0],
+					"cubes": [
+						{"origin": [3.2, 3, -2.7], "size": [5, 6, 5], "uv": [0, 25]}
+					]
+				},
+				{
+					"name": "TrollFootR",
+					"parent": "TrollLegMidR",
+					"pivot": [5.7, 3, 0.8],
+					"cubes": [
+						{"origin": [3.2, 0, -4.2], "size": [5, 3, 7], "uv": [24, 36]}
+					]
+				},
+				{
+					"name": "TrollNail1",
+					"parent": "TrollFootR",
+					"pivot": [8, 1.5, -4.2],
+					"rotation": [0, 0.44, 0],
+					"cubes": [
+						{"origin": [6.5, 0, -4.7], "size": [2, 2, 2], "uv": [19, 35]}
+					]
+				},
+				{
+					"name": "TrollNail2",
+					"parent": "TrollFootR",
+					"pivot": [4.4, 1.5, -4.2],
+					"cubes": [
+						{"origin": [2.9, 0, -4.7], "size": [2, 2, 2], "uv": [19, 35]}
+					]
+				}
+			]
+		}
+	]
+}

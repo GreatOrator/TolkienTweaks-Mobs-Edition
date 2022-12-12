@@ -1,0 +1,189 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 64,
+				"texture_height": 32,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "root",
+					"pivot": [0, 24, 0]
+				},
+				{
+					"name": "head",
+					"parent": "root",
+					"pivot": [0, 8, -0.5],
+					"cubes": [
+						{"origin": [-4, 9, -3], "size": [8, 6, 5], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "GoblinMouth",
+					"parent": "head",
+					"pivot": [0, 9, 0],
+					"cubes": [
+						{"origin": [-3, 8, -2], "size": [6, 1, 4], "uv": [0, 11]}
+					]
+				},
+				{
+					"name": "GoblinToothL",
+					"parent": "head",
+					"pivot": [2.5, 9, -2.7],
+					"cubes": [
+						{"origin": [1.5, 8, -2.7], "size": [1, 1, 1], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "GoblinToothR",
+					"parent": "head",
+					"pivot": [-1.5, 9, -2.7],
+					"cubes": [
+						{"origin": [-2.5, 8, -2.7], "size": [1, 1, 1], "uv": [0, 2]}
+					]
+				},
+				{
+					"name": "GoblinEarR1",
+					"parent": "head",
+					"pivot": [-4, 12.5, -0.5],
+					"cubes": [
+						{"origin": [-9, 13, -1], "size": [5, 1, 1], "uv": [26, 0]}
+					]
+				},
+				{
+					"name": "GoblinEarR2",
+					"parent": "GoblinEarR1",
+					"pivot": [-4, 13, -1],
+					"cubes": [
+						{"origin": [-8, 12, -1], "size": [4, 1, 1], "uv": [26, 2]}
+					]
+				},
+				{
+					"name": "GoblinEarR3",
+					"parent": "GoblinEarR1",
+					"pivot": [-4, 12, -1],
+					"cubes": [
+						{"origin": [-7, 11, -1], "size": [3, 1, 1], "uv": [26, 4]}
+					]
+				},
+				{
+					"name": "GoblinEarL1",
+					"parent": "head",
+					"pivot": [4.3, 12.5, -0.5],
+					"cubes": [
+						{"origin": [4, 13, -1], "size": [5, 1, 1], "uv": [34, 4]}
+					]
+				},
+				{
+					"name": "GoblinEarL2",
+					"parent": "GoblinEarL1",
+					"pivot": [4, 13, -1],
+					"cubes": [
+						{"origin": [4, 12, -1], "size": [4, 1, 1], "uv": [36, 2]}
+					]
+				},
+				{
+					"name": "GoblinEarL3",
+					"parent": "GoblinEarL1",
+					"pivot": [4, 12, -1],
+					"cubes": [
+						{"origin": [4, 11, -1], "size": [3, 1, 1], "uv": [38, 0]}
+					]
+				},
+				{
+					"name": "GoblinHair1",
+					"parent": "head",
+					"pivot": [0, 15.2, -2],
+					"cubes": [
+						{"origin": [-1, 14.7, -2], "size": [2, 1, 5], "uv": [46, 0]}
+					]
+				},
+				{
+					"name": "GoblinHair2",
+					"parent": "head",
+					"pivot": [0, 15.2, 2.5],
+					"cubes": [
+						{"origin": [-1, 8.7, 2], "size": [2, 7, 1], "uv": [50, 6]}
+					]
+				},
+				{
+					"name": "body",
+					"parent": "root",
+					"pivot": [0, 5, 0],
+					"cubes": [
+						{"origin": [-2.5, 2, -2], "size": [5, 6, 4], "uv": [24, 22]}
+					]
+				},
+				{
+					"name": "rightArm",
+					"parent": "body",
+					"pivot": [-2.5, 7, 0],
+					"cubes": [
+						{"origin": [-4.5, 6.5, -1], "size": [2, 1, 2], "uv": [0, 29]}
+					]
+				},
+				{
+					"name": "GoblinArmR",
+					"parent": "rightArm",
+					"pivot": [-3, 6.5, -0.5],
+					"cubes": [
+						{"origin": [-5, 5.5, -1.5], "size": [3, 1, 3], "uv": [0, 25]}
+					]
+				},
+				{
+					"name": "GoblinHandR",
+					"parent": "GoblinArmR",
+					"pivot": [-4, 5.5, -0.5],
+					"cubes": [
+						{"origin": [-6, 2.5, -1.5], "size": [3, 3, 3], "uv": [0, 19], "mirror": true}
+					]
+				},
+				{
+					"name": "leftArm",
+					"parent": "body",
+					"pivot": [2.5, 7, 0],
+					"cubes": [
+						{"origin": [2.5, 6.5, -1], "size": [2, 1, 2], "uv": [8, 29]}
+					]
+				},
+				{
+					"name": "GoblinArmL",
+					"parent": "leftArm",
+					"pivot": [4, 6.5, -0.5],
+					"cubes": [
+						{"origin": [2, 5.5, -1.5], "size": [3, 1, 3], "uv": [12, 25]}
+					]
+				},
+				{
+					"name": "GoblinHandL",
+					"parent": "GoblinArmL",
+					"pivot": [5, 5.5, -0.5],
+					"cubes": [
+						{"origin": [3, 2.5, -1.5], "size": [3, 3, 3], "uv": [12, 19], "mirror": true}
+					]
+				},
+				{
+					"name": "leftLeg",
+					"parent": "root",
+					"pivot": [1.4, 2, 0.3],
+					"cubes": [
+						{"origin": [0.4, 0, -1.2], "size": [2, 2, 3], "uv": [54, 26]}
+					]
+				},
+				{
+					"name": "rightLeg",
+					"parent": "root",
+					"pivot": [-1.4, 2, 0.3],
+					"cubes": [
+						{"origin": [-2.4, 0, -1.2], "size": [2, 2, 3], "uv": [54, 20]}
+					]
+				}
+			]
+		}
+	]
+}
