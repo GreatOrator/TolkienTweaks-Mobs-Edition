@@ -10,6 +10,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
@@ -18,10 +20,12 @@ import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -56,6 +60,18 @@ public class AurochEntity extends HerdEntity implements IAnimatable {
         this.targetSelector.addGoal(2, new BabyNearPlayerGoal(this, 0.5F));
     }
 
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        ItemStack itemstack = player.getItemInHand(hand);
+        if (itemstack.is(Items.BUCKET) && !this.isBaby()) {
+            player.playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
+            ItemStack itemstack1 = ItemUtils.createFilledResult(itemstack, player, Items.MILK_BUCKET.getDefaultInstance());
+            player.setItemInHand(hand, itemstack1);
+            return InteractionResult.sidedSuccess(this.level.isClientSide);
+        } else {
+            return super.mobInteract(player, hand);
+        }
+    }
+
     @Override
     protected PathNavigation createNavigation(Level level) {
         return new GroundPathNavigation(this, level);
@@ -82,7 +98,8 @@ public class AurochEntity extends HerdEntity implements IAnimatable {
         return SoundEvents.COW_DEATH;
     }
 
-    protected void playStepSound(BlockPos pos, Block blockIn) {
+    @Override
+    protected void playStepSound(BlockPos blockPos, BlockState blockState) {
         this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
     }
 

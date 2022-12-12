@@ -442,6 +442,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(TolkienEntities.EGG_TTMROMIEWALKER.get());
         eggItem(TolkienEntities.EGG_TTMDEEPCLAW.get());
         eggItem(TolkienEntities.EGG_TTMTREEENT.get());
+        eggItem(TolkienEntities.EGG_TTMMIMICCHEST.get());
 //        eggItem(TolkienEntities.EGG_TTMGOBLIN.get());
 //        eggItem(TolkienEntities.EGG_TTMDUERGAR.get());
 //        eggItem(TolkienEntities.EGG_TTMSWAMPHAG.get());
@@ -453,7 +454,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 //        eggItem(TolkienEntities.EGG_TTMURUKHAI.get());
 //        eggItem(TolkienEntities.EGG_TTMELEMENTALGOLEM.get());
 //        eggItem(TolkienEntities.EGG_TTMMINOTAUR.get());
-//        eggItem(TolkienEntities.EGG_TTMMIMICCHEST.get());
 
         // Boss
         eggItem(TolkienEntities.EGG_TTMWATCHER.get());

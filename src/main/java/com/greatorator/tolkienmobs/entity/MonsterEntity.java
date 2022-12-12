@@ -101,6 +101,17 @@ public class MonsterEntity extends Monster implements RangedAttackMob, IAnimatab
         this.entityData.define(HELD_ITEM, ItemStack.EMPTY);
     }
 
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putInt("Variant", this.getTypeVariant());
+    }
+
     @Override
     protected void populateDefaultEquipmentSlots(DifficultyInstance instance) {
         super.populateDefaultEquipmentSlots(instance);
@@ -240,6 +251,7 @@ public class MonsterEntity extends Monster implements RangedAttackMob, IAnimatab
         }
         return groupData;
     }
+
     public MonsterVariant getVariant() {
         return MonsterVariant.byId(this.getTypeVariant() & 255);
     }

@@ -797,6 +797,8 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienEntities.EGG_TTMDEEPCLAW.get(), "Deepclaw Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_TREEENT.get(), "Tree Ent");
         add(TolkienEntities.EGG_TTMTREEENT.get(), "Tree Ent Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_MIMICCHEST.get(), "Mimic");
+        add(TolkienEntities.EGG_TTMMIMICCHEST.get(), "Mimic Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_GOBLIN.get(), "Goblin");
 //        add(TolkienEntities.EGG_TTMGOBLIN.get(), "Goblin Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_DUERGAR.get(), "Duergar");
@@ -819,8 +821,6 @@ public class LangGenerator extends LanguageProvider {
 //        add(TolkienEntities.EGG_TTMELEMENTALGOLEM.get(), "Elemental Golem Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_MINOTAUR.get(), "Minotaur");
 //        add(TolkienEntities.EGG_TTMMINOTAUR.get(), "Minotaur Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_MIMICCHEST.get(), "Mimic");
-//        add(TolkienEntities.EGG_TTMMIMICCHEST.get(), "Mimic Spawn Egg");
 
         // Boss
         add(TolkienEntities.ENTITY_TTM_WATCHER.get(), "Watcher of the Water");

@@ -1,164 +1,195 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-//
-//public class MimicChestEntity extends MonsterEntity {
-//    private static final DataParameter<Integer> MIMIC_TYPE = EntityDataManager.defineId(MimicChestEntity.class, DataSerializers.INT);
-//    private static final DataParameter<Boolean> MIMIC_STATE = EntityDataManager.defineId(MimicChestEntity.class, DataSerializers.BOOLEAN);
-//    private static final DataParameter<Boolean> MIMIC_ATTACK = EntityDataManager.defineId(MimicChestEntity.class, DataSerializers.BOOLEAN);
-//    public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
-//        option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest1.png"));
-//        option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest2.png"));
-//        option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest3.png"));
-//        option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest4.png"));
-//        option.put(5, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mimicchest/mimicchest5.png"));
-//    });
-//    private long nextAbilityUse = 0L;
-//    private final static long coolDown = 15000L;
-//
-//    public MimicChestEntity(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
-//        super(type, worldIn);
-//    }
-//
-//    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-//        return net.minecraft.entity.monster.MonsterEntity.createMonsterAttributes()
-//                .add(Attributes.MAX_HEALTH, 40.0D)
-//                .add(Attributes.MOVEMENT_SPEED, 0.23D)
-//                .add(Attributes.ATTACK_DAMAGE, 3.0D)
-//                .add(Attributes.ARMOR, 5.0D);
-//    }
-//
-//    @Override
-//    protected void registerGoals() {
-//        this.goalSelector.addGoal(2, new LeapAtTargetGoal(this, 0.3F));
-//        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0D, false));
-//        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-//        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-//        this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
-//        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-//        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-//        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
-//    }
-//
-//    /** Special Attack */
-//    @Override
-//    public boolean doHurtTarget(Entity entityIn) {
-//        long time = System.currentTimeMillis();
-//        if (super.doHurtTarget(entityIn)) {
-//            if (entityIn instanceof PlayerEntity) {
-//                if (time > nextAbilityUse) {
-//                    nextAbilityUse = time + coolDown;
-//                    PlayerEntity player = (PlayerEntity) entityIn;
-//                    int strength = 2;
-//                    player.addEffect(new EffectInstance(PotionGenerator.INVENTORY_CORROSION.get(), strength * 20, 0));
-//                }
-//            }
-//        }
-//        return true;
-//    }
-//
-//    @Override
-//    public ActionResultType mobInteract(PlayerEntity playerIn, Hand handIn) {
-//        if (getMimicChest() && !this.level.isClientSide) {
-//            this.setMimicChest(!this.getMimicChest());
-//            this.setMimicAttack(!this.isMimicAttack());
-//            this.setNoAi(false);
-//            this.isEffectiveAi();
-//            return ActionResultType.PASS;
-//        }
-//        return ActionResultType.FAIL;
-//    }
-//
-//    @Override
-//    public void tick() {
-//        super.tick();
-//        if (!getMimicChest()) {
-//            setNoAi(false);
-//        }
-//    }
-//
-//    @Override
-//    public boolean isPushedByFluid() {
-//        return false;
-//    }
-//
-//    public void setMimicChest(boolean chestRender) {
-//        this.entityData.set(MIMIC_STATE, chestRender);
-//    }
-//
-//    public boolean getMimicChest() {
-//        return this.entityData.get(MIMIC_STATE);
-//    }
-//
-//    private boolean isMimicAttack() {
-//        return this.entityData.get(MIMIC_ATTACK);
-//    }
-//
-//    public void setMimicAttack(boolean setAttack) {
-//        this.entityData.set(MIMIC_ATTACK, setAttack);
-//    }
-//
-//    public boolean getMimicAttack() {
-//        return this.entityData.get(MIMIC_ATTACK);
-//    }
-//
-//
-//    /**
-//     * Region for determining random skin
-//     */
-//    public ResourceLocation getMimicChestTypeName() {
-//        return TEXTURE_BY_ID.getOrDefault(this.getMimicChestType(), TEXTURE_BY_ID.get(1));
-//    }
-//
-//    public int getMimicChestType() {
-//        return this.entityData.get(MIMIC_TYPE);
-//    }
-//
-//    public void setMimicChestType(int type) {
-//        if (type < 0 || type >= 6) {
-//            type = this.random.nextInt(5);
-//        }
-//
-//        this.entityData.set(MIMIC_TYPE, type);
-//    }
-//
-//    @Nullable
-//    @Override
-//    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-//        int job = TTMRand.getRandomInteger(6, 1);
-//        this.setMimicChestType(job);
-//        this.setMimicChest(true);
-//        this.setMimicAttack(false);
-//        this.setNoAi(true);
-//
-//        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-//    }
-//
-//    @Override
-//    protected void defineSynchedData() {
-//        super.defineSynchedData();
-//        this.entityData.define(MIMIC_TYPE, 1);
-//        this.entityData.define(MIMIC_STATE, true);
-//        this.entityData.define(MIMIC_ATTACK, false);
-//    }
-//
-//    @Override
-//    public void addAdditionalSaveData(CompoundNBT compound) {
-//        super.addAdditionalSaveData(compound);
-//        compound.putInt("MimicChestType", this.getMimicChestType());
-//        compound.putBoolean("isChest", getMimicChest());
-//        compound.putBoolean("canAttack", getMimicAttack());
-//
-//        if (this.isNoAi()) {
-//            compound.putBoolean("NoAI", this.isNoAi());
-//        }
-//    }
-//
-//    @Override
-//    public void readAdditionalSaveData(CompoundNBT compound) {
-//        super.readAdditionalSaveData(compound);
-//        this.setMimicChestType(compound.getInt("MimicChestType"));
-//        this.setMimicChest(compound.getBoolean("isChest"));
-//        this.setMimicAttack(compound.getBoolean("canAttack"));
-//        this.setNoAi(compound.getBoolean("NoAI"));
-//    }
-//}
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
+import com.greatorator.tolkienmobs.entity.VillagerEntity;
+import com.greatorator.tolkienmobs.init.TolkienPotions;
+import com.greatorator.tolkienmobs.init.TolkienSounds;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
+import software.bernie.geckolib3.core.AnimationState;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+@SuppressWarnings({ "unchecked", "rawtypes" })
+public class MimicChestEntity extends MonsterEntity {
+    private static final EntityDataAccessor<Boolean> ATTACK = SynchedEntityData.defineId(MimicChestEntity.class, EntityDataSerializers.BOOLEAN);
+    private long nextAbilityUse = 0L;
+    private final static long coolDown = 15000L;
+
+    public MimicChestEntity(EntityType<? extends MonsterEntity> type, Level level) {
+        super(type, level);
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.FOLLOW_RANGE, 35.0D)
+                .add(Attributes.MAX_HEALTH, 40.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.23D)
+                .add(Attributes.ATTACK_DAMAGE, 3.0D)
+                .add(Attributes.ARMOR, 5.0D);
+    }
+
+    @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(2, new LeapAtTargetGoal(this, 0.3F));
+        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 1.0D, false));
+        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, VillagerEntity.class, true));
+    }
+
+    @Override
+    public ItemStack getHeldItem() {
+        return super.getHeldItem();
+    }
+
+    @Override
+    public void setHeldItem(ItemStack heldItem) {
+    }
+
+    public void setActive(boolean active) {
+        this.entityData.set(ATTACK, active);
+    }
+
+    public boolean isActive() {
+        return this.entityData.get(ATTACK);
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(ATTACK, false);
+    }
+
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.entityData.set(ATTACK, tag.getBoolean("canAttack"));
+        this.entityData.set(DATA_ID_TYPE_VARIANT, tag.getInt("Variant"));
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putBoolean("canAttack", this.isActive());
+        tag.putInt("Variant", this.getTypeVariant());
+    }
+
+    @Nullable
+    @Override
+    public SpawnGroupData finalizeSpawn(@Nonnull ServerLevelAccessor levelAccessor, @Nonnull DifficultyInstance instance, @Nonnull MobSpawnType type, @Nullable SpawnGroupData groupData, @Nullable CompoundTag tag) {
+        groupData = super.finalizeSpawn(levelAccessor, instance, type, groupData, tag);
+        this.setActive(false);
+        this.setNoAi(true);
+        this.setCustomName(new TranslatableComponent("block.minecraft.chest"));
+
+        return groupData;
+    }
+
+    @Nonnull
+    @Override
+    public InteractionResult mobInteract(@Nonnull Player player, @Nonnull InteractionHand hand) {
+        if (!this.isActive() && !this.level.isClientSide) {
+            this.setActive(true);
+            this.setNoAi(false);
+            this.isEffectiveAi();
+            this.setCustomName(new TranslatableComponent("entity.tolkienmobs.entityttmmimicchest"));
+            return InteractionResult.PASS;
+        }
+        return InteractionResult.FAIL;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (!isActive()) {
+            setNoAi(false);
+        }
+    }
+
+    @Override
+    public boolean isPushedByFluid() {
+        return false;
+    }
+
+    @Override
+    protected void playStepSound(@Nonnull BlockPos blockPos, @Nonnull BlockState blockState) {
+        this.playSound(TolkienSounds.soundStepMimic.get(), 0.15F, 1.0F);
+    }
+
+    /** Special Attack */
+    @Override
+    public boolean doHurtTarget(@Nonnull Entity entityIn) {
+        long time = System.currentTimeMillis();
+        if (super.doHurtTarget(entityIn)) {
+            if (entityIn instanceof Player) {
+                if (time > nextAbilityUse) {
+                    nextAbilityUse = time + coolDown;
+                    Player player = (Player) entityIn;
+                    int strength = 2;
+                    player.addEffect(new MobEffectInstance(TolkienPotions.INVENTORY_CORROSION.get(), strength * 20, 0));
+                }
+            }
+        }
+        return true;
+    }
+
+    /** Animation region */
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if (event.isMoving() && this.isActive()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            return PlayState.CONTINUE;
+        }else if (!event.isMoving() && this.isActive()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+            return PlayState.CONTINUE;
+        }else {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("idle_mimic", true));
+            return PlayState.CONTINUE;
+        }
+    }
+
+    private PlayState attackPredicate(AnimationEvent event) {
+        if (this.isActive() && event.getController().getAnimationState().equals(AnimationState.Stopped)){
+            event.getController().markNeedsReload();
+            this.playSound(TolkienSounds.soundAngryMimic.get(), 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
+        }
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void registerControllers(AnimationData data) {
+        data.addAnimationController(new AnimationController(this, "controller",
+                0, this::predicate));
+        data.addAnimationController(new AnimationController(this, "attackController",
+                0, this::attackPredicate));
+    }
+}

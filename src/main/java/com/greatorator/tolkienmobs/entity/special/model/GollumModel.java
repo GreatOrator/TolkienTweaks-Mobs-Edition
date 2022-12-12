@@ -1,6 +1,5 @@
 package com.greatorator.tolkienmobs.entity.special.model;
 
-import com.greatorator.tolkienmobs.entity.monster.render.BarrowWightRender;
 import com.greatorator.tolkienmobs.entity.special.GollumEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -17,6 +16,8 @@ import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
  * ModelGollum - GreatOrator
  */
 public class GollumModel extends AnimatedGeoModel<GollumEntity> {
+    private final ResourceLocation mobTexture = new ResourceLocation(MODID, "textures/entity/birds/entitygreateagle.png");
+
     @Override
     public ResourceLocation getModelLocation(GollumEntity object) {
         return new ResourceLocation(MODID, "geo/special/gollum.geo.json");
@@ -24,7 +25,7 @@ public class GollumModel extends AnimatedGeoModel<GollumEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(GollumEntity object) {
-        return BarrowWightRender.LOCATION_BY_VARIANT.get(object.getVariant());
+        return new ResourceLocation(MODID + ":textures/entity/gollum.png");
     }
 
     @Override
