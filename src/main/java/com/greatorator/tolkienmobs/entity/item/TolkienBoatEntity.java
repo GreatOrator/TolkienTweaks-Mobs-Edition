@@ -88,7 +88,7 @@ public class TolkienBoatEntity extends Boat {
         return new ItemStack(this.getDropItem());
     }
 
-    public static enum Type {
+    public enum Type {
         MALLORN(TolkienBlocks.PLANKS_MALLORN.get(), "mallorn"),
         MIRKWOOD(TolkienBlocks.PLANKS_MIRKWOOD.get(), "mirkwood"),
         CULUMALDA(TolkienBlocks.PLANKS_CULUMALDA.get(), "culumalda"),

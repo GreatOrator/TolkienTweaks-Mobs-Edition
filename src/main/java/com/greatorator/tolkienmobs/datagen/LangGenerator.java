@@ -799,10 +799,12 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienEntities.EGG_TTMTREEENT.get(), "Tree Ent Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_MIMICCHEST.get(), "Mimic");
         add(TolkienEntities.EGG_TTMMIMICCHEST.get(), "Mimic Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_DUERGAR.get(), "Duergar");
+        add(TolkienEntities.EGG_TTMDUERGAR.get(), "Duergar Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_ELEMENTALGOLEM.get(), "Elemental Golem");
+        add(TolkienEntities.EGG_TTMELEMENTALGOLEM.get(), "Elemental Golem Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_GOBLIN.get(), "Goblin");
 //        add(TolkienEntities.EGG_TTMGOBLIN.get(), "Goblin Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_DUERGAR.get(), "Duergar");
-//        add(TolkienEntities.EGG_TTMDUERGAR.get(), "Duergar Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_SWAMPHAG.get(), "Swamp Hag");
 //        add(TolkienEntities.EGG_TTMSWAMPHAG.get(), "Swamp Hag Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_MIRKWOODSPIDER.get(), "Mirkwood Spider");
@@ -817,8 +819,6 @@ public class LangGenerator extends LanguageProvider {
 //        add(TolkienEntities.EGG_TTMHURON.get(), "Huron Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_URUKHAI.get(), "Uruk Hai");
 //        add(TolkienEntities.EGG_TTMURUKHAI.get(), "Uruk Hai Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_ELEMENTALGOLEM.get(), "Elemental Golem");
-//        add(TolkienEntities.EGG_TTMELEMENTALGOLEM.get(), "Elemental Golem Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_MINOTAUR.get(), "Minotaur");
 //        add(TolkienEntities.EGG_TTMMINOTAUR.get(), "Minotaur Spawn Egg");
 

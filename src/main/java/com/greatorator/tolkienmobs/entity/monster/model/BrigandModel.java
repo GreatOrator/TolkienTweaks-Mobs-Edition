@@ -10,6 +10,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
+/** Brigand - GreatOrator */
 public class BrigandModel extends AnimatedGeoModel<BrigandEntity> {
     @Override
     public ResourceLocation getModelLocation(BrigandEntity object) {

@@ -10,6 +10,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
+/** Barrow Wight - GreatOrator */
 public class BarrowWightModel extends AnimatedGeoModel<BarrowWightEntity> {
     @Override
     public ResourceLocation getModelLocation(BarrowWightEntity object) {

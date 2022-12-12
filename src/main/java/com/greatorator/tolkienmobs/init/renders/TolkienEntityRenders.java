@@ -58,8 +58,9 @@ public class TolkienEntityRenders {
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_DEEPCLAW.get(), DeepClawRender::new);
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_TREEENT.get(), TreeEntRender::new);
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MIMICCHEST.get(), MimicChestRender::new);
+        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_DUERGAR.get(), DuergarRender::new);
+        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_ELEMENTALGOLEM.get(), ElementalGolemRender::new);
 //        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_GOBLIN.get(), GoblinRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_DUERGAR.get(), m -> new DuergarRender(m, new DuergarModel<>(1.0F), 0.5F));
 //        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_SWAMPHAG.get(), SwampHagRender::new);
 //        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MIRKWOODSPIDER.get(), MirkwoodSpiderRender::new);
 //        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_TROLL.get(), m -> new TrollRender(m, new TrollModel<>(1.0F), 1.0F));
@@ -67,7 +68,6 @@ public class TolkienEntityRenders {
 //        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MORDORORC.get(), MordorOrcRender::new);
 //        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_HURON.get(), HuronRender::new);
 //        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_URUKHAI.get(), UrukHaiRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_ELEMENTALGOLEM.get(), ElementalGolemRender::new);
 //        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MINOTAUR.get(), MinotaurRender::new);
 
         // Boss

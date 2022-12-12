@@ -1,24 +1,52 @@
 package com.greatorator.tolkienmobs.entity.monster.render;
 
-//
-//public class ElementalGolemRender extends MobRenderer<ElementalGolemEntity, ElementalGolemModel<ElementalGolemEntity>> {
-//    public ElementalGolemRender(EntityRendererManager renderManagerIn) {
-//        super(renderManagerIn, new ElementalGolemModel<>(), 1.0F);
-//    }
-//
-//    @Override
-//    public ResourceLocation getTextureLocation(ElementalGolemEntity entity) {
-//        return entity.getElementalGolemTypeName();
-//    }
-//
-//    @Override
-//    protected void setupRotations(ElementalGolemEntity entity, MatrixStack matrixStack, float f1, float f2, float f3) {
-//        super.setupRotations(entity, matrixStack, f1, f2, f3);
-//        if (!((double)entity.animationSpeed < 0.01D)) {
-//            float lvt_6_1_ = 13.0F;
-//            float lvt_7_1_ = entity.animationPosition - entity.animationSpeed * (1.0F - f3) + 6.0F;
-//            float lvt_8_1_ = (Math.abs(lvt_7_1_ % 13.0F - 6.5F) - 3.25F) / 3.25F;
-//            matrixStack.mulPose(Vector3f.ZP.rotationDegrees(6.5F * lvt_8_1_));
-//        }
-//    }
-//}
+import com.google.common.collect.Maps;
+import com.greatorator.tolkienmobs.entity.monster.ElementalGolemEntity;
+import com.greatorator.tolkienmobs.entity.monster.model.ElementalGolemModel;
+import com.greatorator.tolkienmobs.entity.monster.variant.MonsterVariant;
+import net.minecraft.Util;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+
+import java.util.Map;
+
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
+
+public class ElementalGolemRender extends BaseMonsterRender<ElementalGolemEntity> {
+    public static final Map<MonsterVariant, ResourceLocation> LOCATION_BY_VARIANT =
+        Util.make(Maps.newEnumMap(MonsterVariant.class), (enumMap) -> {
+        enumMap.put(MonsterVariant.DEFAULT,
+        new ResourceLocation(MODID, "textures/entity/elementalgolem/elemental_golem_none.png"));
+        enumMap.put(MonsterVariant.ORANGE,
+        new ResourceLocation(MODID, "textures/entity/elementalgolem/elemental_golem_none.png"));
+        enumMap.put(MonsterVariant.GREEN,
+        new ResourceLocation(MODID, "textures/entity/elementalgolem/elemental_golem_earth.png"));
+        enumMap.put(MonsterVariant.RED,
+        new ResourceLocation(MODID, "textures/entity/elementalgolem/elemental_golem_fire.png"));
+        enumMap.put(MonsterVariant.YELLOW,
+        new ResourceLocation(MODID, "textures/entity/elementalgolem/elemental_golem_air.png"));
+        enumMap.put(MonsterVariant.BLUE,
+        new ResourceLocation(MODID, "textures/entity/elementalgolem/elemental_golem_water.png"));
+        });
+
+    public ElementalGolemRender(EntityRendererProvider.Context context) {
+        super(context, new ElementalGolemModel());
+        this.shadowRadius = 1.0f;
+        }
+
+    @Override
+    protected ItemStack getHeldItemStack() {
+        return this.tolkienEntity.getHeldItem();
+    }
+
+    @Override
+    protected String getArmPartName() {
+        return "rightArm";
+    }
+
+    @Override
+    public ResourceLocation getTextureLocation(ElementalGolemEntity entity) {
+        return LOCATION_BY_VARIANT.getOrDefault(entity.getVariant(), LOCATION_BY_VARIANT.get(MonsterVariant.DEFAULT));
+    }
+}
