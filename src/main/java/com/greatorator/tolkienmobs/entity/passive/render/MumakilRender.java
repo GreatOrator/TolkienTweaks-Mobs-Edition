@@ -53,7 +53,7 @@ public class MumakilRender extends GeoEntityRenderer<MumakilEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(MumakilEntity entity) {
-        return LOCATION_BY_VARIANT.get(entity.getVariant());
+        return LOCATION_BY_VARIANT.getOrDefault(entity.getVariant(), LOCATION_BY_VARIANT.get(PassiveVariant.DEFAULT));
     }
 
     @Override

@@ -49,8 +49,6 @@ public class TolkienMobs {
     2. Categories
 	    a. Entities (Implementation)
 	    	1. Fell Beast - Needs AI adjustments
-			2. Gwaihir - Needs AI adjustments
-			3. Great Eagle - Needs AI adjustments
         b. World Generation (Implementation)
             a. Add Fell Beast to dark tower structure and Morgul Crystal
             b. Possible village generation using house structures by race type

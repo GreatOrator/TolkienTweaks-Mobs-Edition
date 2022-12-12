@@ -53,7 +53,7 @@ public class GoatRender extends GeoEntityRenderer<GoatEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(GoatEntity entity) {
-        return LOCATION_BY_VARIANT.get(entity.getVariant());
+        return LOCATION_BY_VARIANT.getOrDefault(entity.getVariant(), LOCATION_BY_VARIANT.get(PassiveVariant.DEFAULT));
     }
 
     @Override

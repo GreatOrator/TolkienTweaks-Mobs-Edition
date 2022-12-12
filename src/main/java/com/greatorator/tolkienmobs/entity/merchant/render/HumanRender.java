@@ -66,6 +66,6 @@ public class HumanRender extends GeoEntityRenderer<HumanEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(HumanEntity entity) {
-        return LOCATION_BY_VARIANT.get(entity.getVariant());
+        return LOCATION_BY_VARIANT.getOrDefault(entity.getVariant(), LOCATION_BY_VARIANT.get(MerchantVariant.DEFAULT));
     }
 }

@@ -53,7 +53,7 @@ public class AurochRender extends GeoEntityRenderer<AurochEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(AurochEntity entity) {
-        return LOCATION_BY_VARIANT.get(entity.getVariant());
+        return LOCATION_BY_VARIANT.getOrDefault(entity.getVariant(), LOCATION_BY_VARIANT.get(PassiveVariant.DEFAULT));
     }
 
     @Override

@@ -63,7 +63,7 @@ public class HobbitRender extends GeoEntityRenderer<HobbitEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(HobbitEntity entity) {
-        return LOCATION_BY_VARIANT.get(entity.getVariant());
+        return LOCATION_BY_VARIANT.getOrDefault(entity.getVariant(), LOCATION_BY_VARIANT.get(MerchantVariant.DEFAULT));
     }
 
     @Override

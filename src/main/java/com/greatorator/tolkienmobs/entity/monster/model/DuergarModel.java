@@ -1,8 +1,6 @@
 package com.greatorator.tolkienmobs.entity.monster.model;
 
-/**
- * Dwarf - GreatOrator
- */
+/** Dwarf - GreatOrator */
 //
 //public class DuergarModel<T extends MonsterEntity> extends BipedModel<T> {
 //    private final ModelRenderer root;

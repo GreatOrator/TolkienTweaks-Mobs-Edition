@@ -57,6 +57,6 @@ public class HaradrimRender extends BaseMonsterRender<HaradrimEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(HaradrimEntity entity) {
-        return LOCATION_BY_VARIANT.get(entity.getVariant());
+        return LOCATION_BY_VARIANT.getOrDefault(entity.getVariant(), LOCATION_BY_VARIANT.get(MonsterVariant.DEFAULT));
     }
 }

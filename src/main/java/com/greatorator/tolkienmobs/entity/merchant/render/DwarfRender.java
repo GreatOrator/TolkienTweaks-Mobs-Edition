@@ -51,7 +51,7 @@ public class DwarfRender extends GeoEntityRenderer<DwarfEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(DwarfEntity entity) {
-        return LOCATION_BY_VARIANT.get(entity.getVariant());
+        return LOCATION_BY_VARIANT.getOrDefault(entity.getVariant(), LOCATION_BY_VARIANT.get(MerchantVariant.DEFAULT));
     }
 
     @Override

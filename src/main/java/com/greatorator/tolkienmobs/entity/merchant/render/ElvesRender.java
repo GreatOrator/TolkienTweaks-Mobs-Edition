@@ -63,7 +63,7 @@ public class ElvesRender extends GeoEntityRenderer<ElvesEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(ElvesEntity entity) {
-        return LOCATION_BY_VARIANT.get(entity.getVariant());
+        return LOCATION_BY_VARIANT.getOrDefault(entity.getVariant(), LOCATION_BY_VARIANT.get(MerchantVariant.DEFAULT));
     }
 
     @Override

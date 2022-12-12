@@ -40,7 +40,7 @@ public class SquirrelRender extends GeoEntityRenderer<SquirrelEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(SquirrelEntity entity) {
-        return LOCATION_BY_VARIANT.get(entity.getVariant());
+        return LOCATION_BY_VARIANT.getOrDefault(entity.getVariant(), LOCATION_BY_VARIANT.get(AmbientVariant.DEFAULT));
     }
 
     @Override

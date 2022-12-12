@@ -47,12 +47,13 @@ public class DesertDwellerRender extends GeoEntityRenderer<DesertDwellerEntity> 
         this.shadowRadius = 0.3f;
     }
 
+    @Override
     public void render(DesertDwellerEntity entity, float entityYaw, float partialTicks, PoseStack stack, MultiBufferSource bufferSource, int packedLightIn) {
         super.render(entity, entityYaw, partialTicks, stack, bufferSource, packedLightIn);
     }
 
     @Override
     public ResourceLocation getTextureLocation(DesertDwellerEntity entity) {
-        return LOCATION_BY_VARIANT.get(entity.getVariant());
+        return LOCATION_BY_VARIANT.getOrDefault(entity.getVariant(), LOCATION_BY_VARIANT.get(MerchantVariant.DEFAULT));
     }
 }

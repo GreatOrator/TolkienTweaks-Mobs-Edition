@@ -46,7 +46,7 @@ public class FrogRender extends GeoEntityRenderer<FrogEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(FrogEntity entity) {
-        return LOCATION_BY_VARIANT.get(entity.getVariant());
+        return LOCATION_BY_VARIANT.getOrDefault(entity.getVariant(), LOCATION_BY_VARIANT.get(AmbientVariant.DEFAULT));
     }
 
     @Override

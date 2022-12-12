@@ -41,7 +41,7 @@ public class TreeEntRender extends BaseMonsterRender<TreeEntEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(TreeEntEntity entity) {
-        return LOCATION_BY_VARIANT.get(entity.getVariant());
+        return LOCATION_BY_VARIANT.getOrDefault(entity.getVariant(), LOCATION_BY_VARIANT.get(MonsterVariant.DEFAULT));
     }
 
     @Override

@@ -128,14 +128,6 @@ public class MimicChestEntity extends MonsterEntity {
     }
 
     @Override
-    public void tick() {
-        super.tick();
-        if (!isActive()) {
-            setNoAi(false);
-        }
-    }
-
-    @Override
     public boolean isPushedByFluid() {
         return false;
     }

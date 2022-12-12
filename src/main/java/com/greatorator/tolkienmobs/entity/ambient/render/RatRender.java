@@ -40,7 +40,7 @@ public class RatRender extends GeoEntityRenderer<RatEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(RatEntity entity) {
-        return LOCATION_BY_VARIANT.get(entity.getVariant());
+        return LOCATION_BY_VARIANT.getOrDefault(entity.getVariant(), LOCATION_BY_VARIANT.get(AmbientVariant.DEFAULT));
     }
 
     @Override
