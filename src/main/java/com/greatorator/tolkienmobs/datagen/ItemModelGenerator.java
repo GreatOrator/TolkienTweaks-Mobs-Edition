@@ -464,7 +464,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(TolkienEntities.EGG_TTMMITHRILGOLEM.get());
         eggItem(TolkienEntities.EGG_TTMMORGULIRONGOLEM.get());
         eggItem(TolkienEntities.EGG_TTMSHELOB.get());
-//        eggItem(TolkienEntities.EGG_TTMFELLBEAST.get());
+        eggItem(TolkienEntities.EGG_TTMFELLBEAST.get());
 
         // Passive
         eggItem(TolkienEntities.EGG_TTMAUROCH.get());

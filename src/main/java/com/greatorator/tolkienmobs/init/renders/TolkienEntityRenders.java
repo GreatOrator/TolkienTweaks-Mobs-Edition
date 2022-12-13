@@ -1,14 +1,11 @@
 package com.greatorator.tolkienmobs.init.renders;
 
 import com.greatorator.tolkienmobs.TolkienMobs;
-import com.greatorator.tolkienmobs.entity.ambient.model.SwarmLayer;
 import com.greatorator.tolkienmobs.entity.ambient.model.SwarmModel;
 import com.greatorator.tolkienmobs.entity.ambient.render.*;
+import com.greatorator.tolkienmobs.entity.ambient.render.layer.SwarmLayer;
 import com.greatorator.tolkienmobs.entity.boss.render.*;
-import com.greatorator.tolkienmobs.entity.item.render.GaladhrimArrowRender;
-import com.greatorator.tolkienmobs.entity.item.render.MorgulCrystalRenderer;
-import com.greatorator.tolkienmobs.entity.item.render.TolkienBoatRender;
-import com.greatorator.tolkienmobs.entity.item.render.UtumnoArrowRender;
+import com.greatorator.tolkienmobs.entity.item.render.*;
 import com.greatorator.tolkienmobs.entity.merchant.render.*;
 import com.greatorator.tolkienmobs.entity.monster.render.*;
 import com.greatorator.tolkienmobs.entity.passive.render.AurochRender;
@@ -76,7 +73,7 @@ public class TolkienEntityRenders {
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MITHRILGOLEM.get(), MithrilGolemRender::new);
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MORGULIRONGOLEM.get(), MorgulironGolemRender::new);
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_SHELOB.get(), ShelobRender::new);
-//        event.registerEntityRenderer(TolkienEntities.ENTITY_FELL_BEAST.get(), FellBeastRender::new);
+        event.registerEntityRenderer(TolkienEntities.ENTITY_FELL_BEAST.get(), FellBeastRender::new);
 //
         // Passive
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_AUROCH.get(), AurochRender::new);
@@ -93,8 +90,9 @@ public class TolkienEntityRenders {
         // Ammo
         event.registerEntityRenderer(TolkienEntities.AMMO_ARROW_GALADHRIM.get(), GaladhrimArrowRender::new);
         event.registerEntityRenderer(TolkienEntities.AMMO_ARROW_UTUMNO.get(), UtumnoArrowRender::new);
-        event.registerEntityRenderer(TolkienEntities.AMMO_FELLBEAST_FIREBALL.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(TolkienEntities.AMMO_FELLBEAST_FIREBALL.get(), FellBeastFireballRender::new);
         event.registerEntityRenderer(TolkienEntities.AMMO_BOULDER.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(TolkienEntities.AMMO_DRAGON_BREATH.get(), DragonWeaponRender::new);
 
         // Items
         event.registerEntityRenderer(TolkienEntities.MALLORN_BOAT.get(), TolkienBoatRender::new);

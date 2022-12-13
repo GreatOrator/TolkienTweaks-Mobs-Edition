@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.Random;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class MumakilEntity extends HerdEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     private static final EntityDataAccessor<Boolean> DRINKING = SynchedEntityData.defineId(MumakilEntity.class, EntityDataSerializers.BOOLEAN);

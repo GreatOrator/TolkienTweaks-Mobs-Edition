@@ -11,6 +11,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /** DeepClaw - GreatOrator */
+@SuppressWarnings({ "unchecked", "removal" })
 public class DeepClawModel extends AnimatedGeoModel<DeepClawEntity> {
     @Override
     public ResourceLocation getModelLocation(DeepClawEntity object) {
@@ -27,7 +28,6 @@ public class DeepClawModel extends AnimatedGeoModel<DeepClawEntity> {
         return new ResourceLocation(MODID, "animations/monster/deepclaw.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void setLivingAnimations(DeepClawEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);

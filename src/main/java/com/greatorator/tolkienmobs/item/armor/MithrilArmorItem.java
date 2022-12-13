@@ -23,6 +23,7 @@ import software.bernie.geckolib3.item.GeoArmorItem;
 
 import java.util.Map;
 
+@SuppressWarnings({"removal" })
 public class MithrilArmorItem extends GeoArmorItem implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
     public static String armorType;

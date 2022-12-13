@@ -10,6 +10,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /** Shelob - GreatOrator */
+@SuppressWarnings({ "unchecked", "removal" })
 public class ShelobModel extends AnimatedGeoModel<ShelobEntity> {
     @Override
     public ResourceLocation getModelLocation(ShelobEntity object) {
@@ -18,7 +19,7 @@ public class ShelobModel extends AnimatedGeoModel<ShelobEntity> {
 
     @Override
     public ResourceLocation getTextureLocation(ShelobEntity object) {
-        return new ResourceLocation(MODID, "textures/entity/shelob.png");
+        return new ResourceLocation(MODID, "textures/entity/tmshelob.png");
     }
 
     @Override
@@ -26,7 +27,6 @@ public class ShelobModel extends AnimatedGeoModel<ShelobEntity> {
         return new ResourceLocation(MODID, "animations/boss/shelob.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void setLivingAnimations(ShelobEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);

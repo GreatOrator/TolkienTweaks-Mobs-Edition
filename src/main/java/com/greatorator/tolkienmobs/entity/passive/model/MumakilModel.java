@@ -14,9 +14,8 @@ import java.util.List;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-/**
- * Mumakil - GreatOrator
- */
+/** Mumakil - GreatOrator */
+@SuppressWarnings({ "unchecked", "removal" })
 public class MumakilModel extends AnimatedGeoModel<MumakilEntity> {
     @Override
     public ResourceLocation getModelLocation(MumakilEntity mumakil) {

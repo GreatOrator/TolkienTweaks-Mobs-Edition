@@ -11,6 +11,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /** Duergar - GreatOrator */
+@SuppressWarnings({ "unchecked", "removal" })
 public class DuergarModel extends AnimatedGeoModel<DuergarEntity> {
     @Override
     public ResourceLocation getModelLocation(DuergarEntity object) {
@@ -27,7 +28,6 @@ public class DuergarModel extends AnimatedGeoModel<DuergarEntity> {
         return new ResourceLocation(MODID, "animations/monster/duergar.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked"})
     @Override
     public void setLivingAnimations(DuergarEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);

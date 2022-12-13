@@ -14,7 +14,7 @@ import java.util.List;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /** Rat - GreatOrator */
-@SuppressWarnings({ "unchecked"})
+@SuppressWarnings({ "unchecked", "removal" })
 public class RatModel extends AnimatedGeoModel<RatEntity> {
     @Override
     public ResourceLocation getModelLocation(RatEntity object) {

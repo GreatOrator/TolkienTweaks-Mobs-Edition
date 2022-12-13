@@ -7,6 +7,8 @@ import com.greatorator.tolkienmobs.init.TolkienBlocks;
 import com.greatorator.tolkienmobs.init.TolkienKeys;
 import com.greatorator.tolkienmobs.init.TolkienPotions;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
+import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockModelShaper;
@@ -20,8 +22,11 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -39,6 +44,7 @@ public class ClientEvents {
     private static final Logger LOGGER = LogManager.getLogger();
     public static Set<UUID> playersWithUphillStep = new HashSet<>();
     public static Set<UUID> playersWayTooTired = new HashSet<>();
+    public static Set<UUID> dragonRiders = new HashSet<>();
 
     private static AttributeModifier sleepTight = new AttributeModifier(UUID.randomUUID(), "SleepyTime", -10F, AttributeModifier.Operation.ADDITION);
 
@@ -224,6 +230,36 @@ public class ClientEvents {
             });
         }
     }
+
+    public static double getViewCollision(double wanted, Entity entity) {
+
+        Camera info = getClient().gameRenderer.getMainCamera();
+        Vec3 position = info.getPosition();
+        Vector3f forwards = info.getLookVector();
+        for (int i = 0; i < 8; ++i)
+        {
+            float f = (float) ((i & 1) * 2 - 1);
+            float f1 = (float) ((i >> 1 & 1) * 2 - 1);
+            float f2 = (float) ((i >> 2 & 1) * 2 - 1);
+            f = f * 0.1F;
+            f1 = f1 * 0.1F;
+            f2 = f2 * 0.1F;
+            Vec3 vector3d = position.add(f, f1, f2);
+            Vec3 vector3d1 = new Vec3(position.x - forwards.x() * wanted + f + f2, position.y - forwards.y() * wanted + f1, position.z - forwards.z() * wanted + f2);
+            HitResult rtr = entity.level.clip(new ClipContext(vector3d, vector3d1, ClipContext.Block.VISUAL, ClipContext.Fluid.NONE, entity));
+            if (rtr.getType() != HitResult.Type.MISS)
+            {
+                double distance = rtr.getLocation().distanceTo(position);
+                if (distance < wanted) wanted = distance;
+            }
+        }
+        return wanted;
+    }
+
+    public static Minecraft getClient() {
+        return Minecraft.getInstance();
+    }
+
 
     @SubscribeEvent
     public static void onKeyPress(InputEvent.KeyInputEvent event) {

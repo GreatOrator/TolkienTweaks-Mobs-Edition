@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.special.render;
 
-import com.greatorator.tolkienmobs.entity.monster.render.BaseMonsterRender;
+import com.greatorator.tolkienmobs.entity.monster.render.layer.WeaponLayer;
 import com.greatorator.tolkienmobs.entity.special.GollumEntity;
 import com.greatorator.tolkienmobs.entity.special.model.GollumModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class GollumRender extends BaseMonsterRender<GollumEntity> {
+public class GollumRender extends WeaponLayer<GollumEntity> {
     private final ResourceLocation mobTexture = new ResourceLocation(MODID + ":textures/entity/gollum.png");
 
     public GollumRender(EntityRendererProvider.Context context) {

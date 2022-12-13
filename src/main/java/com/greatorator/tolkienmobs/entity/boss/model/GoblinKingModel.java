@@ -10,6 +10,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /** Goblin King - GreatOrator */
+@SuppressWarnings({ "unchecked", "removal" })
 public class GoblinKingModel extends AnimatedGeoModel<GoblinKingEntity> {
     @Override
     public ResourceLocation getModelLocation(GoblinKingEntity object) {
@@ -26,7 +27,6 @@ public class GoblinKingModel extends AnimatedGeoModel<GoblinKingEntity> {
         return new ResourceLocation(MODID, "animations/boss/goblinking.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void setLivingAnimations(GoblinKingEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);

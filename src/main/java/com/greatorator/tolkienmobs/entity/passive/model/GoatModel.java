@@ -14,9 +14,8 @@ import java.util.List;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-/**
- * Goat - GreatOrator
- */
+/** Goat - GreatOrator */
+@SuppressWarnings({ "unchecked", "removal" })
 public class GoatModel extends AnimatedGeoModel<GoatEntity> {
     @Override
     public ResourceLocation getModelLocation(GoatEntity mumakil) {

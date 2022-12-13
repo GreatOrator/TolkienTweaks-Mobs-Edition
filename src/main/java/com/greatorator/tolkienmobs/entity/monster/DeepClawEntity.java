@@ -19,7 +19,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 
 import javax.annotation.Nonnull;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class DeepClawEntity extends MonsterEntity {
     public DeepClawEntity(EntityType<? extends MonsterEntity> type, Level level) {
         super(type, level);

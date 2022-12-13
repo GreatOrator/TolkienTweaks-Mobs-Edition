@@ -17,11 +17,12 @@ public class ShelobRender extends GeoEntityRenderer<ShelobEntity> {
     }
 
     public void render(ShelobEntity entity, float entityYaw, float partialTicks, PoseStack stack, MultiBufferSource bufferSource, int packedLightIn) {
+        stack.scale(1.5F, 1.5F, 1.5F);
         super.render(entity, entityYaw, partialTicks, stack, bufferSource, packedLightIn);
     }
 
     @Override
     public ResourceLocation getTextureLocation(ShelobEntity entity) {
-        return new ResourceLocation(MODID, "textures/entity/shelob.png");
+        return new ResourceLocation(MODID, "textures/entity/tmshelob.png");
     }
 }

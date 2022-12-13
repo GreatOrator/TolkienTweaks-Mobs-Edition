@@ -48,7 +48,7 @@ public class TolkienMobs {
 	    k.
     2. Categories
 	    a. Entities (Implementation)
-	    	1. Fell Beast - Needs AI adjustments
+	    	1. Handful of monster entities remaining
         b. World Generation (Implementation)
             a. Add Fell Beast to dark tower structure and Morgul Crystal
             b. Possible village generation using house structures by race type
@@ -72,6 +72,9 @@ public class TolkienMobs {
         p. Hobbit Ring for speeding up crop growth
         q. Remade Desert Dweller as a wandering trader
         r. Animations added to Arda Staff
+        s. New Watcher Model
+        t. New Shelob Model
+        u. New Fell Beast model and improved attack
     */
 
     public TolkienMobs() {

@@ -24,6 +24,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nonnull;
 
+@SuppressWarnings({"removal" })
 public class RatEntity extends AmbientEntity implements IAnimatable {
     protected final AnimationFactory factory = new AnimationFactory(this);
 

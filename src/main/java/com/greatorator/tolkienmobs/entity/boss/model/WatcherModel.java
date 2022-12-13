@@ -6,9 +6,8 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-/**
- * Watcher - GreatOrator
- */
+/** Watcher - GreatOrator */
+@SuppressWarnings({"removal" })
 public class WatcherModel extends AnimatedGeoModel<WatcherEntity> {
 
     @Override

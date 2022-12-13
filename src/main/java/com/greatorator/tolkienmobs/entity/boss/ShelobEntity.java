@@ -4,7 +4,7 @@ import com.greatorator.tolkienmobs.entity.BossEntity;
 import com.greatorator.tolkienmobs.event.entity.SpiderEvent;
 import com.greatorator.tolkienmobs.event.server.ServerEvents;
 import com.greatorator.tolkienmobs.init.TolkienPotions;
-import com.greatorator.tolkienmobs.utils.RandomUtility;
+import com.greatorator.tolkienmobs.utils.MathUtility;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -52,7 +52,7 @@ import java.util.Objects;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class ShelobEntity extends BossEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(ShelobEntity.class, EntityDataSerializers.BYTE);
@@ -72,7 +72,8 @@ public class ShelobEntity extends BossEntity implements IAnimatable {
                 .add(Attributes.MOVEMENT_SPEED, 0.40D)
                 .add(Attributes.FOLLOW_RANGE, 40.0D)
                 .add(Attributes.ARMOR, 24.0D)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D);
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1.0D)
+                .add(Attributes.SPAWN_REINFORCEMENTS_CHANCE, 100.0D);
     }
 
     @Override
@@ -90,7 +91,7 @@ public class ShelobEntity extends BossEntity implements IAnimatable {
 
     @Override
     public BossEvent.BossBarColor getBossNameColour() {
-        return BossEvent.BossBarColor.RED;
+        return BossEvent.BossBarColor.WHITE;
     }
 
     @Nonnull
@@ -205,7 +206,7 @@ public class ShelobEntity extends BossEntity implements IAnimatable {
                         nextAbilityUse = time + coolDown;
                         Player player = (Player) entityIn;
                         int strength = 2;
-                        if (RandomUtility.getRandom(10) <= 3) {
+                        if (MathUtility.getRandom(10) <= 3) {
                             player.addEffect(new MobEffectInstance(TolkienPotions.WATCHER_FEAR.get(), strength * 20, 0));
                         } else {
                             player.addEffect(new MobEffectInstance(TolkienPotions.SLEEPNESIA.get(), strength * 20, 0));

@@ -10,6 +10,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
+@SuppressWarnings({ "unchecked", "removal" })
 public class OathbreakerModel extends AnimatedGeoModel<OathbreakerEntity> {
     @Override
     public ResourceLocation getModelLocation(OathbreakerEntity object) {
@@ -26,7 +27,6 @@ public class OathbreakerModel extends AnimatedGeoModel<OathbreakerEntity> {
         return new ResourceLocation(MODID, "animations/monster/base.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void setLivingAnimations(OathbreakerEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);

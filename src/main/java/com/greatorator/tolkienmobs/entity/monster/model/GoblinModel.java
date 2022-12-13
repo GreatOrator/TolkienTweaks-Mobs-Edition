@@ -11,7 +11,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /** Goblin - GreatOrator */
-@SuppressWarnings({ "unchecked"})
+@SuppressWarnings({ "unchecked", "removal" })
 public class GoblinModel extends AnimatedGeoModel<GoblinEntity> {
     @Override
     public ResourceLocation getModelLocation(GoblinEntity object) {

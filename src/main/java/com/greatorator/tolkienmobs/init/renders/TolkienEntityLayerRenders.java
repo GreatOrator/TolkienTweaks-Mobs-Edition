@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.init.renders;
 
-import com.greatorator.tolkienmobs.entity.ambient.model.SwarmLayer;
 import com.greatorator.tolkienmobs.entity.ambient.model.SwarmModel;
+import com.greatorator.tolkienmobs.entity.ambient.render.layer.SwarmLayer;
 import com.greatorator.tolkienmobs.entity.item.TolkienBoatEntity;
 import com.greatorator.tolkienmobs.entity.item.model.TolkienBoatModel;
 import com.greatorator.tolkienmobs.handler.BoatLayerHandler;
@@ -59,6 +59,7 @@ public class TolkienEntityLayerRenders {
         EntityRendererProvider.Context context = new EntityRendererProvider.Context(Minecraft.getInstance().getEntityRenderDispatcher(),Minecraft.getInstance().getItemRenderer(), Minecraft.getInstance().getResourceManager(), Minecraft.getInstance().getEntityModels(), Minecraft.getInstance().font);
     }
 
+    @SuppressWarnings({"removal" })
     @SubscribeEvent
     public static void registerArmorRenderers(final EntityRenderersEvent.AddLayers event) {
         GeoArmorRenderer.registerArmorRenderer(MithrilArmorItem.class, new MithrilArmorRender());

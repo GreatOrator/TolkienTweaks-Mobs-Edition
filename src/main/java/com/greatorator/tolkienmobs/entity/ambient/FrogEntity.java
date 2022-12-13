@@ -4,7 +4,7 @@ import com.greatorator.tolkienmobs.entity.AmbientEntity;
 import com.greatorator.tolkienmobs.entity.ambient.variant.AmbientVariant;
 import com.greatorator.tolkienmobs.init.TolkienSounds;
 import com.greatorator.tolkienmobs.init.TolkienTags;
-import com.greatorator.tolkienmobs.utils.RandomUtility;
+import com.greatorator.tolkienmobs.utils.MathUtility;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Random;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class FrogEntity extends AmbientEntity implements IAnimatable {
     protected final AnimationFactory factory = new AnimationFactory(this);
     private static final EntityDataAccessor<Boolean> INSECT = SynchedEntityData.defineId(FrogEntity.class, EntityDataSerializers.BOOLEAN);
@@ -78,7 +78,7 @@ public class FrogEntity extends AmbientEntity implements IAnimatable {
 
     /** Animation */
     protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        int rand = RandomUtility.getRandomInteger(100, 1);
+        int rand = MathUtility.getRandomInteger(100, 1);
         if (event.isMoving()) {
             this.spawnSprintParticle();
             event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));

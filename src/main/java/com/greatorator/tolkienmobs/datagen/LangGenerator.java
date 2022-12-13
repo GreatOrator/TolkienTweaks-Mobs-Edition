@@ -839,9 +839,9 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienEntities.EGG_TTMMORGULIRONGOLEM.get(), "Morgul Iron Golem Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_SHELOB.get(), "Shelob");
         add(TolkienEntities.EGG_TTMSHELOB.get(), "Shelob Spawn Egg");
-//        add(TolkienEntities.ENTITY_FELL_BEAST.get(), "Fell Beast");
-//        add(TolkienEntities.EGG_TTMFELLBEAST.get(), "Fell Beast Spawn Egg");
-//
+        add(TolkienEntities.ENTITY_FELL_BEAST.get(), "Fell Beast");
+        add(TolkienEntities.EGG_TTMFELLBEAST.get(), "Fell Beast Spawn Egg");
+
         // Passive
         add(TolkienEntities.ENTITY_TTM_AUROCH.get(), "Auroch");
         add(TolkienEntities.EGG_TTMAUROCH.get(), "Auroch Spawn Egg");

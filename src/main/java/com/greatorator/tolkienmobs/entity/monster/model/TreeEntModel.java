@@ -13,9 +13,8 @@ import java.util.List;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-/**
- * Tree Ent - GreatOrator
- */
+/** Tree Ent - GreatOrator */
+@SuppressWarnings({ "unchecked", "removal" })
 public class TreeEntModel extends AnimatedGeoModel<TreeEntEntity> {
     @Override
     public ResourceLocation getModelLocation(TreeEntEntity object) {
@@ -32,7 +31,6 @@ public class TreeEntModel extends AnimatedGeoModel<TreeEntEntity> {
         return new ResourceLocation(MODID, "animations/monster/treeent.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void setLivingAnimations(TreeEntEntity treeEnt, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(treeEnt, uniqueID, customPredicate);

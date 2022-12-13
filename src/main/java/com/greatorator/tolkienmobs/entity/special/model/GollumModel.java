@@ -12,9 +12,8 @@ import java.util.List;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-/**
- * ModelGollum - GreatOrator
- */
+/** ModelGollum - GreatOrator */
+@SuppressWarnings({ "unchecked", "removal" })
 public class GollumModel extends AnimatedGeoModel<GollumEntity> {
     private final ResourceLocation mobTexture = new ResourceLocation(MODID, "textures/entity/birds/entitygreateagle.png");
 
@@ -33,7 +32,6 @@ public class GollumModel extends AnimatedGeoModel<GollumEntity> {
         return new ResourceLocation(MODID, "animations/special/gollum.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void setLivingAnimations(GollumEntity gollum, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(gollum, uniqueID, customPredicate);

@@ -13,7 +13,7 @@ import java.util.List;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-@SuppressWarnings({ "unchecked"})
+@SuppressWarnings({ "unchecked", "removal" })
 public class NazgulSteedModel extends AnimatedGeoModel<NazgulSteedEntity> {
     @Override
     public ResourceLocation getModelLocation(NazgulSteedEntity steed) {

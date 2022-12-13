@@ -11,6 +11,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /** Barrow Wight - GreatOrator */
+@SuppressWarnings({ "unchecked", "removal" })
 public class BarrowWightModel extends AnimatedGeoModel<BarrowWightEntity> {
     @Override
     public ResourceLocation getModelLocation(BarrowWightEntity object) {
@@ -27,7 +28,6 @@ public class BarrowWightModel extends AnimatedGeoModel<BarrowWightEntity> {
         return new ResourceLocation(MODID, "animations/monster/base.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void setLivingAnimations(BarrowWightEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);

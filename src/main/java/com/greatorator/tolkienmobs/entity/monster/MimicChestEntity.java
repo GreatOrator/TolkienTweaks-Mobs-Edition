@@ -36,7 +36,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class MimicChestEntity extends MonsterEntity {
     private static final EntityDataAccessor<Boolean> ATTACK = SynchedEntityData.defineId(MimicChestEntity.class, EntityDataSerializers.BOOLEAN);
     private long nextAbilityUse = 0L;

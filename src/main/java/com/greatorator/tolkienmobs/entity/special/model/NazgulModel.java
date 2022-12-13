@@ -9,6 +9,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
+@SuppressWarnings({ "unchecked", "removal" })
 public class NazgulModel extends AnimatedGeoModel<NazgulEntity> {
     @Override
     public ResourceLocation getModelLocation(NazgulEntity object) {
@@ -25,7 +26,6 @@ public class NazgulModel extends AnimatedGeoModel<NazgulEntity> {
         return new ResourceLocation(MODID, "animations/monster/base.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked"})
     @Override
     public void setLivingAnimations(NazgulEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);

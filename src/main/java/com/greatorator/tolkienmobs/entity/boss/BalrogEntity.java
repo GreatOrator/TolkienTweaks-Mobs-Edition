@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class BalrogEntity extends BossEntity implements IAnimatable {
     private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(BalrogEntity.class, EntityDataSerializers.BYTE);
     private static final EntityDataAccessor<Integer> DATA_ID_INV = SynchedEntityData.defineId(BalrogEntity.class, EntityDataSerializers.INT);

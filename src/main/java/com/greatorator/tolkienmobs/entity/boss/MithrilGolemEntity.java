@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.boss;
 import com.greatorator.tolkienmobs.entity.BossEntity;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.init.TolkienPotions;
-import com.greatorator.tolkienmobs.utils.RandomUtility;
+import com.greatorator.tolkienmobs.utils.MathUtility;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -42,7 +42,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class MithrilGolemEntity extends BossEntity implements IAnimatable, NeutralMob {
     private final AnimationFactory factory = new AnimationFactory(this);
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
@@ -152,7 +152,7 @@ public class MithrilGolemEntity extends BossEntity implements IAnimatable, Neutr
                         nextAbilityUse = time + coolDown;
                         Player player = (Player) entityIn;
                         int strength = 2;
-                        if (RandomUtility.getRandom(10) <= 3) {
+                        if (MathUtility.getRandom(10) <= 3) {
                             player.addEffect(new MobEffectInstance(TolkienPotions.ELEMENTAL_FLYING.get(), strength * 20, 0));
                         } else {
                             player.addEffect(new MobEffectInstance(TolkienPotions.ELEMENTAL_LIGHTNING.get(), strength * 20, 0));

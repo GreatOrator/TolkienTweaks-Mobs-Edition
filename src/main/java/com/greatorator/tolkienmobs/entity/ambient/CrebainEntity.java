@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-@SuppressWarnings("rawtypes")
+@SuppressWarnings({"removal" })
 public class CrebainEntity extends BirdEntity {
     public CrebainEntity(EntityType<? extends BirdEntity> entityType, Level world) {
         super(entityType, world);

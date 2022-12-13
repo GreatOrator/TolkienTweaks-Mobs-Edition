@@ -11,6 +11,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /** Brigand - GreatOrator */
+@SuppressWarnings({ "unchecked", "removal" })
 public class BrigandModel extends AnimatedGeoModel<BrigandEntity> {
     @Override
     public ResourceLocation getModelLocation(BrigandEntity object) {
@@ -27,7 +28,6 @@ public class BrigandModel extends AnimatedGeoModel<BrigandEntity> {
         return new ResourceLocation(MODID, "animations/monster/base.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void setLivingAnimations(BrigandEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);

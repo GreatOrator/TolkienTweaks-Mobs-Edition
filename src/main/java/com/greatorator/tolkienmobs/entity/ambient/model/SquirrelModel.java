@@ -14,7 +14,7 @@ import java.util.List;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /** SOSquirrel - Boyd151995 & GreatOrator */
-@SuppressWarnings({ "unchecked"})
+@SuppressWarnings({ "unchecked", "removal" })
 public class SquirrelModel extends AnimatedGeoModel<SquirrelEntity> {
     @Override
     public ResourceLocation getModelLocation(SquirrelEntity object) {

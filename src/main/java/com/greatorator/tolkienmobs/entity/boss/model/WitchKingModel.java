@@ -9,10 +9,8 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-/**
- * WitchKing - GreatOrator
- */
-
+/**WitchKing - GreatOrator */
+@SuppressWarnings({ "unchecked", "removal" })
 public class WitchKingModel extends AnimatedGeoModel<WitchKingEntity> {
     @Override
     public ResourceLocation getModelLocation(WitchKingEntity object) {
@@ -29,7 +27,6 @@ public class WitchKingModel extends AnimatedGeoModel<WitchKingEntity> {
         return new ResourceLocation(MODID, "animations/monster/base.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked"})
     @Override
     public void setLivingAnimations(WitchKingEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);

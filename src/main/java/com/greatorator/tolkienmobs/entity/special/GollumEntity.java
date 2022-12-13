@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.Random;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class GollumEntity extends MonsterEntity implements IAnimatable {
     private static final EntityDataAccessor<Boolean> EATING = SynchedEntityData.defineId(GollumEntity.class, EntityDataSerializers.BOOLEAN);
     private final AnimationFactory factory = new AnimationFactory(this);

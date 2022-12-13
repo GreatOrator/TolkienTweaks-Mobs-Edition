@@ -10,7 +10,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /* Crebain - GreatOrator */
-@SuppressWarnings({ "unchecked"})
+@SuppressWarnings({ "unchecked", "removal" })
 public class CrebainModel extends AnimatedGeoModel<CrebainEntity> {
     @Override
     public ResourceLocation getModelLocation(CrebainEntity object) {

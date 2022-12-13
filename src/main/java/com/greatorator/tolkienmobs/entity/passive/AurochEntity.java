@@ -37,7 +37,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class AurochEntity extends HerdEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
 

@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.boss.render;
 
 import com.greatorator.tolkienmobs.entity.boss.BalrogEntity;
 import com.greatorator.tolkienmobs.entity.boss.model.BalrogModel;
+import com.greatorator.tolkienmobs.entity.boss.render.layer.BalrogLayer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -10,7 +11,7 @@ import net.minecraft.world.item.ItemStack;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class BalrogRender extends BaseBalrogRender<BalrogEntity> {
+public class BalrogRender extends BalrogLayer<BalrogEntity> {
     public BalrogRender(EntityRendererProvider.Context context) {
         super(context, new BalrogModel());
     }

@@ -14,7 +14,7 @@ import java.util.List;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /** Frog - GreatOrator */
-@SuppressWarnings({ "unchecked"})
+@SuppressWarnings({ "unchecked", "removal" })
 public class FrogModel extends AnimatedGeoModel<FrogEntity> {
     @Override
     public ResourceLocation getModelLocation(FrogEntity object) {

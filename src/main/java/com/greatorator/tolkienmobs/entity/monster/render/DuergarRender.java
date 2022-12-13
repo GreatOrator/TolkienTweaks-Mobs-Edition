@@ -3,6 +3,7 @@ package com.greatorator.tolkienmobs.entity.monster.render;
 import com.google.common.collect.Maps;
 import com.greatorator.tolkienmobs.entity.monster.DuergarEntity;
 import com.greatorator.tolkienmobs.entity.monster.model.DuergarModel;
+import com.greatorator.tolkienmobs.entity.monster.render.layer.WeaponLayer;
 import com.greatorator.tolkienmobs.entity.monster.variant.MonsterVariant;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -17,7 +18,7 @@ import java.util.Map;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class DuergarRender extends BaseMonsterRender<DuergarEntity> {
+public class DuergarRender extends WeaponLayer<DuergarEntity> {
     public static final Map<MonsterVariant, ResourceLocation> LOCATION_BY_VARIANT =
             Util.make(Maps.newEnumMap(MonsterVariant.class), (enumMap) -> {
                 enumMap.put(MonsterVariant.DEFAULT,

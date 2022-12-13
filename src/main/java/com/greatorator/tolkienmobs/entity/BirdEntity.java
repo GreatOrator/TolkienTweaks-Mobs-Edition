@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity;
 import com.greatorator.tolkienmobs.entity.ai.goal.bird.*;
 import com.greatorator.tolkienmobs.handler.interfaces.CommonTraits;
 import com.greatorator.tolkienmobs.init.TolkienSounds;
-import com.greatorator.tolkienmobs.utils.RandomUtility;
+import com.greatorator.tolkienmobs.utils.MathUtility;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -34,14 +34,15 @@ import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class BirdEntity extends Animal implements IAnimatable, CommonTraits {
-    protected final AnimationFactory factory = new AnimationFactory(this);
+    protected final AnimationFactory factory = GeckoLibUtil.createFactory(this);
     protected static final EntityDataAccessor<Boolean> PECKING = SynchedEntityData.defineId(BirdEntity.class, EntityDataSerializers.BOOLEAN);
     protected static final EntityDataAccessor<Boolean> FLYING = SynchedEntityData.defineId(BirdEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> COLLAR_COLOR = SynchedEntityData.defineId(BirdEntity.class, EntityDataSerializers.INT);
@@ -186,7 +187,7 @@ public class BirdEntity extends Animal implements IAnimatable, CommonTraits {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("sit", true));
             return PlayState.CONTINUE;
         }
-        int rand = RandomUtility.getRandomInteger(100, 1);
+        int rand = MathUtility.getRandomInteger(100, 1);
         if (rand <= 10 && this.isPecking()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("idle3", true));
         } else if (rand <= 30) {

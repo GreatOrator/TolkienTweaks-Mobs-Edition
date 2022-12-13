@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.boss;
 import com.greatorator.tolkienmobs.entity.ai.goal.WatcherAttackGoal;
 import com.greatorator.tolkienmobs.init.TolkienPotions;
 import com.greatorator.tolkienmobs.init.TolkienSounds;
-import com.greatorator.tolkienmobs.utils.RandomUtility;
+import com.greatorator.tolkienmobs.utils.MathUtility;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.particles.ParticleOptions;
@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class WatcherEntity extends WaterAnimal implements IAnimatable {
     public static final EntityDataAccessor<Integer> DATA_ID_STATE = SynchedEntityData.defineId(WatcherEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> DATA_ID_INV = SynchedEntityData.defineId(WatcherEntity.class, EntityDataSerializers.INT);
@@ -136,7 +137,7 @@ public class WatcherEntity extends WaterAnimal implements IAnimatable {
                         nextAbilityUse = time + coolDown;
                         Player player = (Player) entityIn;
                         int strength = 3;
-                        if (RandomUtility.getRandom(10) <= 3) {
+                        if (MathUtility.getRandom(10) <= 3) {
                             this.drowning = true;
                             player.addEffect(new MobEffectInstance(TolkienPotions.ELEMENTAL_DROWNING.get(), strength * 20, 0));
                         } else {
@@ -286,7 +287,6 @@ public class WatcherEntity extends WaterAnimal implements IAnimatable {
         return PlayState.CONTINUE;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController(this, "controller",

@@ -12,6 +12,7 @@ import java.util.List;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
+@SuppressWarnings({ "unchecked", "removal" })
 public class GreatEagleModel extends AnimatedGeoModel<GreatEagleEntity> {
     @Override
     public ResourceLocation getModelLocation(GreatEagleEntity object) {
@@ -28,7 +29,6 @@ public class GreatEagleModel extends AnimatedGeoModel<GreatEagleEntity> {
         return new ResourceLocation(MODID, "animations/special/eagle.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked"})
     @Override
     public void setLivingAnimations(GreatEagleEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);

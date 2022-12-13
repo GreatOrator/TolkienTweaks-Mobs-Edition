@@ -4,7 +4,7 @@ import codechicken.lib.math.MathHelper;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.item.BoulderEntity;
 import com.greatorator.tolkienmobs.init.TolkienSounds;
-import com.greatorator.tolkienmobs.utils.RandomUtility;
+import com.greatorator.tolkienmobs.utils.MathUtility;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.UUID;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class TreeEntEntity extends MonsterEntity implements NeutralMob {
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
     private final AnimationFactory factory = new AnimationFactory(this);
@@ -120,16 +120,16 @@ public class TreeEntEntity extends MonsterEntity implements NeutralMob {
     }
 
     @Override
-    public void performRangedAttack(LivingEntity target, float distanceFactor) {
+    public void performRangedAttack(LivingEntity entity, float distanceFactor) {
         BoulderEntity entityboulder = new BoulderEntity(this.level, this);
         if (!this.isSilent()) {
             this.level.levelEvent((Player)null, 1024, this.blockPosition(), 0);
         }
 
-        double d0 = target.position().y + (double)target.getEyeHeight() - 1.100000023841858D;
-        double d1 = target.position().x - this.position().x;
+        double d0 = entity.position().y + (double) entity.getEyeHeight() - 1.100000023841858D;
+        double d1 = entity.position().x - this.position().x;
         double d2 = d0 - entityboulder.position().y;
-        double d3 = target.position().z - this.position().z;
+        double d3 = entity.position().z - this.position().z;
         float f = MathHelper.sqrt(d1 * d1 + d3 * d3) * 0.2F;
         entityboulder.shoot(d1, d2 + (double)f, d3, 1.6F, 12.0F);
         entityboulder.setOwner(this);
@@ -217,7 +217,7 @@ public class TreeEntEntity extends MonsterEntity implements NeutralMob {
     private PlayState attackPredicate(AnimationEvent event) {
         if (this.swinging && event.getController().getAnimationState().equals(AnimationState.Stopped)){
             event.getController().markNeedsReload();
-            if(RandomUtility.getRandomInteger(6, 1) <= 3) {
+            if(MathUtility.getRandomInteger(6, 1) <= 3) {
                 event.getController().setAnimation(new AnimationBuilder().addAnimation("swing", false));
             }else {
                 event.getController().setAnimation(new AnimationBuilder().addAnimation("stomp", false));

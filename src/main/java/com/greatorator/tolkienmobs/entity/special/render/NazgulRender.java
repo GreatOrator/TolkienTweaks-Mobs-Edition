@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.special.render;
 
-import com.greatorator.tolkienmobs.entity.boss.render.BaseNazgulRender;
+import com.greatorator.tolkienmobs.entity.boss.render.layer.NazgulLayer;
 import com.greatorator.tolkienmobs.entity.special.NazgulEntity;
 import com.greatorator.tolkienmobs.entity.special.model.NazgulModel;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -13,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class NazgulRender extends BaseNazgulRender<NazgulEntity> {
+public class NazgulRender extends NazgulLayer<NazgulEntity> {
     public NazgulRender(EntityRendererProvider.Context context) {
         super(context, new NazgulModel());
     }

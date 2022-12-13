@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.particles;
 
 import com.greatorator.tolkienmobs.utils.BreezeUtility;
-import com.greatorator.tolkienmobs.utils.RandomUtility;
+import com.greatorator.tolkienmobs.utils.MathUtility;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.BlockPos;
@@ -37,7 +37,7 @@ public class LeafParticle extends TextureSheetParticle {
         this.zd = 0.0;
 
         this.hasPhysics = true;
-        this.lifetime = RandomUtility.getRandomInteger(200, 100);
+        this.lifetime = MathUtility.getRandomInteger(200, 100);
 
         this.rCol = Mth.nextFloat(this.random, 0.1529411F, 0.7490196F);
         this.gCol = Mth.nextFloat(this.random, 0.6431372F, 0.8627450F);
@@ -48,7 +48,7 @@ public class LeafParticle extends TextureSheetParticle {
 
         this.roll = this.oRoll = random.nextFloat() * TAU;
 
-        this.quadSize = RandomUtility.getRandomInteger(4, 1) / 50f;
+        this.quadSize = MathUtility.getRandomInteger(4, 1) / 50f;
     }
 
     @Override

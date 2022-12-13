@@ -43,6 +43,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
+@SuppressWarnings({"removal" })
 public class ThrushEntity extends BirdEntity {
     private static final Set<Item> FOOD_ITEMS = Sets.newHashSet(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS, TolkienItems.PIPEWEED_SEEDS.get());
     protected static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(ThrushEntity.class, EntityDataSerializers.BYTE);

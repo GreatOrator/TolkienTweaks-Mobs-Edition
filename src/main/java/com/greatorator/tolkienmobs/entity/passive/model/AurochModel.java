@@ -14,9 +14,8 @@ import java.util.List;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-/**
- * Auroch - GreatOrator
- */
+/** Auroch - GreatOrator */
+@SuppressWarnings({ "unchecked", "removal" })
 public class AurochModel extends AnimatedGeoModel<AurochEntity> {
     @Override
     public ResourceLocation getModelLocation(AurochEntity mumakil) {

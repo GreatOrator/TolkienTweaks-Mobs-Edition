@@ -4,7 +4,7 @@ import com.greatorator.tolkienmobs.entity.AmbientEntity;
 import com.greatorator.tolkienmobs.entity.ambient.variant.AmbientVariant;
 import com.greatorator.tolkienmobs.init.TolkienSounds;
 import com.greatorator.tolkienmobs.init.TolkienTags;
-import com.greatorator.tolkienmobs.utils.RandomUtility;
+import com.greatorator.tolkienmobs.utils.MathUtility;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -41,7 +41,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-@SuppressWarnings({ "unchecked", "rawtypes" })
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class SquirrelEntity extends AmbientEntity implements IAnimatable {
     protected final AnimationFactory factory = new AnimationFactory(this);
     private static final EntityDataAccessor<Integer> DATA_TYPE_ID = SynchedEntityData.defineId(SquirrelEntity.class, EntityDataSerializers.INT);
@@ -86,7 +86,7 @@ public class SquirrelEntity extends AmbientEntity implements IAnimatable {
 
     /** Animation */
     protected <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        int rand = RandomUtility.getRandomInteger(100, 1);
+        int rand = MathUtility.getRandomInteger(100, 1);
         if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
             return PlayState.CONTINUE;

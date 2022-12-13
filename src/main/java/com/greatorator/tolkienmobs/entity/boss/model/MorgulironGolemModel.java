@@ -10,6 +10,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /** Golem - GreatOrator */
+@SuppressWarnings({ "unchecked", "removal" })
 public class MorgulironGolemModel extends AnimatedGeoModel<MorgulironGolemEntity> {
     @Override
     public ResourceLocation getModelLocation(MorgulironGolemEntity object) {
@@ -26,7 +27,6 @@ public class MorgulironGolemModel extends AnimatedGeoModel<MorgulironGolemEntity
         return new ResourceLocation(MODID, "animations/monster/golem.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void setLivingAnimations(MorgulironGolemEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);

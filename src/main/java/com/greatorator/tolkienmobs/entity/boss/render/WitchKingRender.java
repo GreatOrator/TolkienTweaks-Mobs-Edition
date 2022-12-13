@@ -2,6 +2,7 @@ package com.greatorator.tolkienmobs.entity.boss.render;
 
 import com.greatorator.tolkienmobs.entity.boss.WitchKingEntity;
 import com.greatorator.tolkienmobs.entity.boss.model.WitchKingModel;
+import com.greatorator.tolkienmobs.entity.boss.render.layer.NazgulLayer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -12,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class WitchKingRender extends BaseNazgulRender<WitchKingEntity> {
+public class WitchKingRender extends NazgulLayer<WitchKingEntity> {
     public WitchKingRender(EntityRendererProvider.Context context) {
         super(context, new WitchKingModel());
     }

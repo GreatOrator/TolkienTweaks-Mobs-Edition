@@ -7,6 +7,8 @@ import codechicken.lib.config.ConfigValue;
 import com.google.common.collect.Lists;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.nio.file.Paths;
@@ -54,8 +56,12 @@ public class TolkienConfig {
     public static String traderCostItem;
     public static int coinCost;
     public static int dimensionalWarp;
+    public static int homeRadius;
     public static double traderCostMultiplier;
+    public static double fireBreathSpread;
     public static boolean disableFakePlayer;
+    public static boolean respectGriefing;
+    public static boolean dragonGriefing;
     public static boolean replant;
     public static boolean disableBalrogMark;
     public static boolean disableDwarvenEndurance;
@@ -89,7 +95,7 @@ public class TolkienConfig {
                 .onSync((tag, type) -> traderCostItem = tag.getString());
 
         serverTag.getValue("traderCostMultiplier")
-                .setComment("Set item for Desert Nomad for ask for purchases (Default tolkienmobs:item_coin_bronze")
+                .setComment("Set item for Desert Nomad to ask for purchases (Default tolkienmobs:item_coin_bronze)")
                 .setDefaultDouble(1.0D)
                 .syncTagToClient()
                 .onSync((tag, type) -> traderCostMultiplier = tag.getDouble());
@@ -103,6 +109,29 @@ public class TolkienConfig {
                 .setComment("Cost to teleport per (Default 500) blocks")
                 .setDefaultInt(500)
                 .onSync((tag, type) -> coinCost = tag.getInt());
+
+        serverTag.getValue("homeRadius")
+                .setComment("How far the FellBeast will roam from home (Default 32)")
+                .setDefaultInt(32)
+                .onSync((tag, type) -> homeRadius = tag.getInt());
+
+        serverTag.getValue("fireBreathSpread")
+                .setComment("How far fire caused by Fell Beast will spread (Default 0 = disabled")
+                .setDefaultDouble(0.0D)
+                .syncTagToClient()
+                .onSync((tag, type) -> fireBreathSpread = tag.getDouble());
+
+        serverTag.getValue("respectGriefing")
+                .setComment("Disable Mob Griefing for mobs in this mod (Default true)")
+                .setDefaultBoolean(true)
+                .syncTagToClient()
+                .onSync((tag, type) -> respectGriefing = tag.getBoolean());
+
+        serverTag.getValue("dragonGriefing")
+                .setComment("Disable Mob Griefing for the Fell Beast specifically (Default true)")
+                .setDefaultBoolean(true)
+                .syncTagToClient()
+                .onSync((tag, type) -> dragonGriefing = tag.getBoolean());
 
         serverTag.getValue("replant")
                 .setComment("Crops will be replanted when harvested via right click. This requires a seed to drop, and is removed from the drop list. (Default true)")
@@ -146,6 +175,10 @@ public class TolkienConfig {
                 .setDefaultBoolean(true)
                 .syncTagToClient()
                 .onSync((tag, type) -> disableHobbitPlow = tag.getBoolean());
+    }
+
+    public static boolean canGrief(Level level) {
+        return respectGriefing? level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) : dragonGriefing;
     }
 
     //Client properties

@@ -10,6 +10,7 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /** ModelGollum - GreatOrator */
+@SuppressWarnings({"removal" })
 public class MimicChestModel extends AnimatedGeoModel<MimicChestEntity> {
     @Override
     public ResourceLocation getModelLocation(MimicChestEntity object) {

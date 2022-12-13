@@ -13,6 +13,7 @@ import java.util.List;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /* Thrush - GreatOrator */
+@SuppressWarnings({ "unchecked", "removal" })
 public class ThrushModel extends AnimatedGeoModel<ThrushEntity> {
     @Override
     public ResourceLocation getModelLocation(ThrushEntity object) {
@@ -29,7 +30,6 @@ public class ThrushModel extends AnimatedGeoModel<ThrushEntity> {
         return new ResourceLocation(MODID, "animations/ambient/thrush.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked"})
     @Override
     public void setLivingAnimations(ThrushEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);

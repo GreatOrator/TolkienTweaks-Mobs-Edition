@@ -103,7 +103,7 @@ dependencies {
     implementation fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
     implementation fg.deobf("top.theillusivec4.curios:curios-forge:${mc_version}-${curios_version}")
     implementation fg.deobf("com.brandon3055.brandonscore:BrandonsCore:${mc_version}-${bcore_version}:universal")
-    implementation fg.deobf('software.bernie.geckolib:geckolib-1.18-forge:3.0.13')
+    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.56')
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }

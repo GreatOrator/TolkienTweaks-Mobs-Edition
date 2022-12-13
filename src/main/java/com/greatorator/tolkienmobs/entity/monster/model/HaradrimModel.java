@@ -10,6 +10,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
+@SuppressWarnings({ "unchecked", "removal" })
 public class HaradrimModel extends AnimatedGeoModel<HaradrimEntity> {
     @Override
     public ResourceLocation getModelLocation(HaradrimEntity object) {
@@ -26,7 +27,6 @@ public class HaradrimModel extends AnimatedGeoModel<HaradrimEntity> {
         return new ResourceLocation(MODID, "animations/monster/base.animation.json");
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void setLivingAnimations(HaradrimEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
