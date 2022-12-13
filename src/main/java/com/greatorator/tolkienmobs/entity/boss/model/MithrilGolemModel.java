@@ -1,7 +1,6 @@
-package com.greatorator.tolkienmobs.entity.monster.model;
+package com.greatorator.tolkienmobs.entity.boss.model;
 
-import com.greatorator.tolkienmobs.entity.monster.GoblinEntity;
-import com.greatorator.tolkienmobs.entity.monster.render.HaradrimRender;
+import com.greatorator.tolkienmobs.entity.boss.MithrilGolemEntity;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;
@@ -10,26 +9,26 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-/** Goblin - GreatOrator */
-@SuppressWarnings({ "unchecked"})
-public class GoblinModel extends AnimatedGeoModel<GoblinEntity> {
+/** Golem - GreatOrator */
+public class MithrilGolemModel extends AnimatedGeoModel<MithrilGolemEntity> {
     @Override
-    public ResourceLocation getModelLocation(GoblinEntity object) {
-        return new ResourceLocation(MODID, "geo/monster/goblin.geo.json");
+    public ResourceLocation getModelLocation(MithrilGolemEntity object) {
+        return new ResourceLocation(MODID, "geo/monster/golem.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(GoblinEntity object) {
-        return HaradrimRender.LOCATION_BY_VARIANT.get(object.getVariant());
+    public ResourceLocation getTextureLocation(MithrilGolemEntity object) {
+        return new ResourceLocation(MODID, "textures/entity/elementalgolem/elemental_golem_mithril.png");
     }
 
     @Override
-    public ResourceLocation getAnimationFileLocation(GoblinEntity animatable) {
-        return new ResourceLocation(MODID, "animations/monster/goblin.animation.json");
+    public ResourceLocation getAnimationFileLocation(MithrilGolemEntity animatable) {
+        return new ResourceLocation(MODID, "animations/monster/golem.animation.json");
     }
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void setLivingAnimations(GoblinEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
+    public void setLivingAnimations(MithrilGolemEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
         IBone head = this.getAnimationProcessor().getBone("head");
 

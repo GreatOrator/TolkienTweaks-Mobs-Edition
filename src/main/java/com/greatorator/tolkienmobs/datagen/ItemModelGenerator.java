@@ -445,7 +445,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(TolkienEntities.EGG_TTMMIMICCHEST.get());
         eggItem(TolkienEntities.EGG_TTMDUERGAR.get());
         eggItem(TolkienEntities.EGG_TTMELEMENTALGOLEM.get());
-//        eggItem(TolkienEntities.EGG_TTMGOBLIN.get());
+        eggItem(TolkienEntities.EGG_TTMGOBLIN.get());
 //        eggItem(TolkienEntities.EGG_TTMSWAMPHAG.get());
 //        eggItem(TolkienEntities.EGG_TTMMIRKWOODSPIDER.get());
 //        eggItem(TolkienEntities.EGG_TTMTROLL.get());
@@ -460,10 +460,10 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(TolkienEntities.EGG_TTMBALROG.get());
         eggItem(TolkienEntities.EGG_TTMWITCHKING.get());
         eggItem(TolkienEntities.EGG_TTMGWAHIR.get());
-//        eggItem(TolkienEntities.EGG_TTMGOBLINKING.get());
-//        eggItem(TolkienEntities.EGG_TTMMITHRILGOLEM.get());
-//        eggItem(TolkienEntities.EGG_TTMMORGULIRONGOLEM.get());
-//        eggItem(TolkienEntities.EGG_TTMSHELOB.get());
+        eggItem(TolkienEntities.EGG_TTMGOBLINKING.get());
+        eggItem(TolkienEntities.EGG_TTMMITHRILGOLEM.get());
+        eggItem(TolkienEntities.EGG_TTMMORGULIRONGOLEM.get());
+        eggItem(TolkienEntities.EGG_TTMSHELOB.get());
 //        eggItem(TolkienEntities.EGG_TTMFELLBEAST.get());
 
         // Passive

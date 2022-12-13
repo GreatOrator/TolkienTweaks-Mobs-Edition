@@ -4,10 +4,7 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.entity.ambient.model.SwarmLayer;
 import com.greatorator.tolkienmobs.entity.ambient.model.SwarmModel;
 import com.greatorator.tolkienmobs.entity.ambient.render.*;
-import com.greatorator.tolkienmobs.entity.boss.render.BalrogRender;
-import com.greatorator.tolkienmobs.entity.boss.render.GwahirRender;
-import com.greatorator.tolkienmobs.entity.boss.render.WatcherRender;
-import com.greatorator.tolkienmobs.entity.boss.render.WitchKingRender;
+import com.greatorator.tolkienmobs.entity.boss.render.*;
 import com.greatorator.tolkienmobs.entity.item.render.GaladhrimArrowRender;
 import com.greatorator.tolkienmobs.entity.item.render.MorgulCrystalRenderer;
 import com.greatorator.tolkienmobs.entity.item.render.TolkienBoatRender;
@@ -60,26 +57,26 @@ public class TolkienEntityRenders {
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MIMICCHEST.get(), MimicChestRender::new);
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_DUERGAR.get(), DuergarRender::new);
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_ELEMENTALGOLEM.get(), ElementalGolemRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_GOBLIN.get(), GoblinRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_SWAMPHAG.get(), SwampHagRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MIRKWOODSPIDER.get(), MirkwoodSpiderRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_TROLL.get(), m -> new TrollRender(m, new TrollModel<>(1.0F), 1.0F));
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_WARG.get(), WargRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MORDORORC.get(), MordorOrcRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_HURON.get(), HuronRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_URUKHAI.get(), UrukHaiRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MINOTAUR.get(), MinotaurRender::new);
+        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_GOBLIN.get(), GoblinRender::new);
+//        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_SWAMPHAG.get(), SwampHagRender::new);
+//        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MIRKWOODSPIDER.get(), MirkwoodSpiderRender::new);
+//        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_TROLL.get(), m -> new TrollRender(m, new TrollModel<>(1.0F), 1.0F));
+//        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_WARG.get(), WargRender::new);
+//        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MORDORORC.get(), MordorOrcRender::new);
+//        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_HURON.get(), HuronRender::new);
+//        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_URUKHAI.get(), UrukHaiRender::new);
+//        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MINOTAUR.get(), MinotaurRender::new);
 
         // Boss
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_WATCHER.get(), WatcherRender::new);
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_BALROG.get(), BalrogRender::new);
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_WITCHKING.get(), WitchKingRender::new);
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_GWAHIR.get(), GwahirRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_GOBLINKING.get(), GoblinKingRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MITHRILGOLEM.get(), MithrilGolemRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MORGULIRONGOLEM.get(), MorgulIronGolemRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_TTM_SHELOB.get(), ShelobRender::new);
-//        RenderingRegistry.registerEntityRenderer(TolkienEntities.ENTITY_FELL_BEAST.get(), FellBeastRender::new);
+        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_GOBLINKING.get(), GoblinKingRender::new);
+        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MITHRILGOLEM.get(), MithrilGolemRender::new);
+        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MORGULIRONGOLEM.get(), MorgulironGolemRender::new);
+        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_SHELOB.get(), ShelobRender::new);
+//        event.registerEntityRenderer(TolkienEntities.ENTITY_FELL_BEAST.get(), FellBeastRender::new);
 //
         // Passive
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_AUROCH.get(), AurochRender::new);

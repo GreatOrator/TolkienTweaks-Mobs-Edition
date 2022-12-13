@@ -40,7 +40,6 @@ import java.util.UUID;
 
 public class ElementalGolemEntity extends MonsterEntity implements NeutralMob {
     public static final EntityDataAccessor<Integer> ELEMENT_TYPE = SynchedEntityData.defineId(ElementalGolemEntity.class, EntityDataSerializers.INT);
-    protected static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(ElementalGolemEntity.class, EntityDataSerializers.BYTE);
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
     private int attackAnimationTick;
     private int remainingPersistentAngerTime;
@@ -252,7 +251,6 @@ public class ElementalGolemEntity extends MonsterEntity implements NeutralMob {
         } else {
             super.handleEntityEvent(stage);
         }
-
     }
 
     @Override
@@ -266,6 +264,7 @@ public class ElementalGolemEntity extends MonsterEntity implements NeutralMob {
         super.readAdditionalSaveData(tag);
         this.readPersistentAngerSaveData(this.level, tag);
     }
+
     @Nullable
     @Override
     public SpawnGroupData finalizeSpawn(@Nonnull ServerLevelAccessor levelAccessor, @Nonnull DifficultyInstance instance, @Nonnull MobSpawnType type, @Nullable SpawnGroupData groupData, @Nullable CompoundTag tag) {

@@ -803,8 +803,8 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienEntities.EGG_TTMDUERGAR.get(), "Duergar Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_ELEMENTALGOLEM.get(), "Elemental Golem");
         add(TolkienEntities.EGG_TTMELEMENTALGOLEM.get(), "Elemental Golem Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_GOBLIN.get(), "Goblin");
-//        add(TolkienEntities.EGG_TTMGOBLIN.get(), "Goblin Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_GOBLIN.get(), "Goblin");
+        add(TolkienEntities.EGG_TTMGOBLIN.get(), "Goblin Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_SWAMPHAG.get(), "Swamp Hag");
 //        add(TolkienEntities.EGG_TTMSWAMPHAG.get(), "Swamp Hag Spawn Egg");
 //        add(TolkienEntities.ENTITY_TTM_MIRKWOODSPIDER.get(), "Mirkwood Spider");
@@ -831,14 +831,14 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienEntities.EGG_TTMWITCHKING.get(), "Witch King Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_GWAHIR.get(), "Gwahir, Lord of the Eagles");
         add(TolkienEntities.EGG_TTMGWAHIR.get(), "Gwahir Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_GOBLINKING.get(), "Goblin King");
-//        add(TolkienEntities.EGG_TTMGOBLINKING.get(), "Goblin King Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_MITHRILGOLEM.get(), "Mithril Golem");
-//        add(TolkienEntities.EGG_TTMMITHRILGOLEM.get(), "Mithril Golem Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_MORGULIRONGOLEM.get(), "Morgul Iron Golem");
-//        add(TolkienEntities.EGG_TTMMORGULIRONGOLEM.get(), "Morgul Iron Golem Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_SHELOB.get(), "Shelob");
-//        add(TolkienEntities.EGG_TTMSHELOB.get(), "Shelob Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_GOBLINKING.get(), "Goblin King");
+        add(TolkienEntities.EGG_TTMGOBLINKING.get(), "Goblin King Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_MITHRILGOLEM.get(), "Mithril Golem");
+        add(TolkienEntities.EGG_TTMMITHRILGOLEM.get(), "Mithril Golem Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_MORGULIRONGOLEM.get(), "Morgul Iron Golem");
+        add(TolkienEntities.EGG_TTMMORGULIRONGOLEM.get(), "Morgul Iron Golem Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_SHELOB.get(), "Shelob");
+        add(TolkienEntities.EGG_TTMSHELOB.get(), "Shelob Spawn Egg");
 //        add(TolkienEntities.ENTITY_FELL_BEAST.get(), "Fell Beast");
 //        add(TolkienEntities.EGG_TTMFELLBEAST.get(), "Fell Beast Spawn Egg");
 //

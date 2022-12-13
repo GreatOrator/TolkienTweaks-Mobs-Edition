@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.entity.boss.model;
 
-import com.greatorator.tolkienmobs.entity.boss.GoblinKingEntity;
+import com.greatorator.tolkienmobs.entity.boss.MorgulironGolemEntity;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;
@@ -9,26 +9,26 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-/** Goblin King - GreatOrator */
-public class GoblinKingModel extends AnimatedGeoModel<GoblinKingEntity> {
+/** Golem - GreatOrator */
+public class MorgulironGolemModel extends AnimatedGeoModel<MorgulironGolemEntity> {
     @Override
-    public ResourceLocation getModelLocation(GoblinKingEntity object) {
-        return new ResourceLocation(MODID, "geo/boss/goblinking.geo.json");
+    public ResourceLocation getModelLocation(MorgulironGolemEntity object) {
+        return new ResourceLocation(MODID, "geo/monster/golem.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(GoblinKingEntity object) {
-        return new ResourceLocation(MODID, "textures/entity/goblin/goblinking.png");
+    public ResourceLocation getTextureLocation(MorgulironGolemEntity object) {
+        return new ResourceLocation(MODID, "textures/entity/elementalgolem/elemental_golem_morgul.png");
     }
 
     @Override
-    public ResourceLocation getAnimationFileLocation(GoblinKingEntity animatable) {
-        return new ResourceLocation(MODID, "animations/boss/goblinking.animation.json");
+    public ResourceLocation getAnimationFileLocation(MorgulironGolemEntity animatable) {
+        return new ResourceLocation(MODID, "animations/monster/golem.animation.json");
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void setLivingAnimations(GoblinKingEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
+    public void setLivingAnimations(MorgulironGolemEntity entity, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(entity, uniqueID, customPredicate);
         IBone head = this.getAnimationProcessor().getBone("head");
 
