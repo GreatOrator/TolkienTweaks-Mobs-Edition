@@ -1,7 +1,7 @@
-package com.greatorator.tolkienmobs.entity.item.render;
+package com.greatorator.tolkienmobs.entity.projectiles.render;
 
-import com.greatorator.tolkienmobs.entity.item.CobwebProjectileEntity;
-import com.greatorator.tolkienmobs.entity.item.model.CobwebProjectileModel;
+import com.greatorator.tolkienmobs.entity.projectiles.CobwebProjectileEntity;
+import com.greatorator.tolkienmobs.entity.projectiles.model.CobwebProjectileModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

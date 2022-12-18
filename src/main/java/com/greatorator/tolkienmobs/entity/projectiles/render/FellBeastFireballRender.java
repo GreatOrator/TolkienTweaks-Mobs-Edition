@@ -1,7 +1,7 @@
-package com.greatorator.tolkienmobs.entity.item.render;
+package com.greatorator.tolkienmobs.entity.projectiles.render;
 
-import com.greatorator.tolkienmobs.entity.item.FellBeastFireballEntity;
-import com.greatorator.tolkienmobs.entity.item.model.FellBeastFireballModel;
+import com.greatorator.tolkienmobs.entity.projectiles.FellBeastFireballEntity;
+import com.greatorator.tolkienmobs.entity.projectiles.model.FellBeastFireballModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

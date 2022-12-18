@@ -6,12 +6,14 @@ import com.greatorator.tolkienmobs.entity.ambient.render.*;
 import com.greatorator.tolkienmobs.entity.ambient.render.layer.SwarmLayer;
 import com.greatorator.tolkienmobs.entity.boss.render.*;
 import com.greatorator.tolkienmobs.entity.item.model.SimpleTrapRender;
-import com.greatorator.tolkienmobs.entity.item.render.*;
+import com.greatorator.tolkienmobs.entity.item.render.MorgulCrystalRenderer;
+import com.greatorator.tolkienmobs.entity.item.render.TolkienBoatRender;
 import com.greatorator.tolkienmobs.entity.merchant.render.*;
 import com.greatorator.tolkienmobs.entity.monster.render.*;
 import com.greatorator.tolkienmobs.entity.passive.render.AurochRender;
 import com.greatorator.tolkienmobs.entity.passive.render.GoatRender;
 import com.greatorator.tolkienmobs.entity.passive.render.MumakilRender;
+import com.greatorator.tolkienmobs.entity.projectiles.render.*;
 import com.greatorator.tolkienmobs.entity.special.render.*;
 import com.greatorator.tolkienmobs.init.TolkienEntities;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -95,6 +97,7 @@ public class TolkienEntityRenders {
         event.registerEntityRenderer(TolkienEntities.AMMO_BOULDER.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(TolkienEntities.AMMO_DRAGON_BREATH.get(), DragonWeaponRender::new);
         event.registerEntityRenderer(TolkienEntities.AMMO_COBWEB.get(), CobwebProjectileRender::new);
+        event.registerEntityRenderer(TolkienEntities.AMMO_TORNADO.get(), TornadoRender::new);
 
         // Traps
         event.registerEntityRenderer(TolkienEntities.TRAP_SIMPLE.get(), SimpleTrapRender::new);

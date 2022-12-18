@@ -1,7 +1,7 @@
-package com.greatorator.tolkienmobs.entity.item.render;
+package com.greatorator.tolkienmobs.entity.projectiles.render;
 
-import com.greatorator.tolkienmobs.entity.item.DragonProjectileEntity;
-import com.greatorator.tolkienmobs.entity.item.model.DragonWeaponModel;
+import com.greatorator.tolkienmobs.entity.projectiles.DragonProjectileEntity;
+import com.greatorator.tolkienmobs.entity.projectiles.model.DragonWeaponModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

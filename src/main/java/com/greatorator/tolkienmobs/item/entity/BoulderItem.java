@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.item.entity;
 
-import com.greatorator.tolkienmobs.entity.item.BoulderEntity;
+import com.greatorator.tolkienmobs.entity.projectiles.BoulderEntity;
 import com.greatorator.tolkienmobs.init.TolkienSounds;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;

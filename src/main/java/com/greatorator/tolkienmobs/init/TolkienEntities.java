@@ -6,12 +6,15 @@ import com.greatorator.tolkienmobs.entity.VillagerEntity;
 import com.greatorator.tolkienmobs.entity.WanderingEntity;
 import com.greatorator.tolkienmobs.entity.ambient.*;
 import com.greatorator.tolkienmobs.entity.boss.*;
-import com.greatorator.tolkienmobs.entity.item.*;
+import com.greatorator.tolkienmobs.entity.item.MorgulCrystalEntity;
+import com.greatorator.tolkienmobs.entity.item.SimpleTrapEntity;
+import com.greatorator.tolkienmobs.entity.item.TolkienBoatEntity;
 import com.greatorator.tolkienmobs.entity.merchant.*;
 import com.greatorator.tolkienmobs.entity.monster.*;
 import com.greatorator.tolkienmobs.entity.passive.AurochEntity;
 import com.greatorator.tolkienmobs.entity.passive.GoatEntity;
 import com.greatorator.tolkienmobs.entity.passive.MumakilEntity;
+import com.greatorator.tolkienmobs.entity.projectiles.*;
 import com.greatorator.tolkienmobs.entity.special.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -356,6 +359,7 @@ public class TolkienEntities {
     public static final RegistryObject<EntityType<BoulderEntity>> AMMO_BOULDER = ENTITY.register("ammo_boulder", () -> EntityType.Builder.<BoulderEntity>of(BoulderEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).build(MODID + ":ammo_boulder"));
     public static final RegistryObject<EntityType<FireBreathEntity>> AMMO_DRAGON_BREATH = ENTITY.register("ammo_dragon_breath", () -> EntityType.Builder.<FireBreathEntity>of(FireBreathEntity::new, MobCategory.MISC).sized(0.75F, 0.75F).build(MODID + ":ammo_dragon_breath"));
     public static final RegistryObject<EntityType<CobwebProjectileEntity>> AMMO_COBWEB = ENTITY.register("ammo_cobweb", () -> EntityType.Builder.<CobwebProjectileEntity>of(CobwebProjectileEntity::new, MobCategory.MISC).sized(0.75F, 0.75F).build(MODID + ":ammo_cobweb"));
+    public static final RegistryObject<EntityType<TornadoEntity>> AMMO_TORNADO = ENTITY.register("ammo_tornado", () -> EntityType.Builder.<TornadoEntity>of(TornadoEntity::new, MobCategory.MISC).sized(0.75F, 0.75F).build(MODID + ":ammo_tornado"));
 
     /** Traps */
     public static final RegistryObject<EntityType<SimpleTrapEntity>> TRAP_SIMPLE = ENTITY.register("trap_simple", () -> EntityType.Builder.<SimpleTrapEntity>of(SimpleTrapEntity::new, MobCategory.MISC).sized(0.75F, 0.75F).build(MODID + ":trap_simple"));

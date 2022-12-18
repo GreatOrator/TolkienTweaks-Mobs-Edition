@@ -37,15 +37,14 @@ public class TolkienMobs {
 	1. Classes & Wish list
         a. Recipe Generator not creating trinket recipes
         b. EntityLootGenerator (Attempting to process loot for other mods in workspace)
-	    c. Tornado Effect not working
-	    d. BackPack fluid handler capability crash
-	    e. Spawner not rendering mob in list
-		f. Trinket Names not translating properly
-	    g. FirePlace not processing recipes
-	    h. Trinket Table not processing recipes
+	    c. BackPack fluid handler capability crash
+	    d. Spawner not rendering mob in list
+		r. Trinket Names not translating properly
+	    f. FirePlace not processing recipes
+	    g. Trinket Table not processing recipes
+	    h.
+	    h.
 	    i.
-	    j.
-	    k.
     2. Categories
         a. World Generation (Implementation)
             a. Add Fell Beast to dark tower structure and Morgul Crystal
@@ -76,6 +75,7 @@ public class TolkienMobs {
         v. Updated Warg Model
         w. New Swamp hag model
         x. Updated Mirkwood Spider Model and AI
+        y. Removed tornado effect in lieu of actual attack
     */
 
     public TolkienMobs() {

@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.item.entity;
 
-import com.greatorator.tolkienmobs.entity.item.FellBeastFireballEntity;
+import com.greatorator.tolkienmobs.entity.projectiles.FellBeastFireballEntity;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;

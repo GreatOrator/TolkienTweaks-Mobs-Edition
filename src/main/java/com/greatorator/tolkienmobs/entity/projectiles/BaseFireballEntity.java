@@ -1,4 +1,4 @@
-package com.greatorator.tolkienmobs.entity.item;
+package com.greatorator.tolkienmobs.entity.projectiles;
 
 import com.greatorator.tolkienmobs.init.TolkienItems;
 import net.minecraft.Util;

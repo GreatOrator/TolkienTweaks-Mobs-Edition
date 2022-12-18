@@ -1,5 +1,6 @@
-package com.greatorator.tolkienmobs.entity.item;
+package com.greatorator.tolkienmobs.entity.projectiles;
 
+import com.greatorator.tolkienmobs.entity.item.SimpleTrapEntity;
 import com.greatorator.tolkienmobs.init.TolkienEntities;
 import com.greatorator.tolkienmobs.init.TolkienSounds;
 import net.minecraft.core.particles.ParticleTypes;

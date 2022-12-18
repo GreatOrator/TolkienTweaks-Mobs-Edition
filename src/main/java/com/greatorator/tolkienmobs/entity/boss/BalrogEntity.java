@@ -5,7 +5,7 @@ import com.greatorator.tolkienmobs.entity.BossEntity;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.ai.goal.BalrogAttackGoal;
 import com.greatorator.tolkienmobs.entity.ai.goal.SwitchCombatGoal;
-import com.greatorator.tolkienmobs.entity.item.FellBeastFireballEntity;
+import com.greatorator.tolkienmobs.entity.projectiles.FellBeastFireballEntity;
 import com.greatorator.tolkienmobs.init.TolkienItems;
 import com.greatorator.tolkienmobs.init.TolkienSounds;
 import net.minecraft.ChatFormatting;

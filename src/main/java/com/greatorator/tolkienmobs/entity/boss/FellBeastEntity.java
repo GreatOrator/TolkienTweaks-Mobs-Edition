@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.entity.boss;
 
 import com.greatorator.tolkienmobs.entity.DragonEntity;
 import com.greatorator.tolkienmobs.entity.ai.goal.dragon.*;
-import com.greatorator.tolkienmobs.entity.item.FireBreathEntity;
+import com.greatorator.tolkienmobs.entity.projectiles.FireBreathEntity;
 import com.greatorator.tolkienmobs.event.client.ClientEvents;
 import com.greatorator.tolkienmobs.handler.EntityHandler;
 import com.greatorator.tolkienmobs.init.TolkienSounds;

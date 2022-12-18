@@ -1,6 +1,6 @@
-package com.greatorator.tolkienmobs.entity.item.model;
+package com.greatorator.tolkienmobs.entity.projectiles.model;
 
-import com.greatorator.tolkienmobs.entity.item.CobwebProjectileEntity;
+import com.greatorator.tolkienmobs.entity.projectiles.CobwebProjectileEntity;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.processor.IBone;

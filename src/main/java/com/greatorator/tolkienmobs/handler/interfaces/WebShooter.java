@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.handler.interfaces;
 
-import com.greatorator.tolkienmobs.entity.item.CobwebProjectileEntity;
+import com.greatorator.tolkienmobs.entity.projectiles.CobwebProjectileEntity;
 import com.greatorator.tolkienmobs.init.TolkienSounds;
 import com.greatorator.tolkienmobs.utils.GeneralUtility;
 import net.minecraft.util.Mth;

@@ -20,12 +20,10 @@ import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 @Mod.EventBusSubscriber(modid = MODID)
 public class LootHandler {
     private static final List<String> BLACKLIST = ImmutableList.of("dispenser");
-    public static final List<String> INJECT_LIST = ImmutableList.copyOf(getInjects(EntityType.ZOMBIE, EntityType.ZOMBIE_VILLAGER, EntityType.SKELETON, EntityType.WITHER_SKELETON, EntityType.SILVERFISH,
-            EntityType.IRON_GOLEM, EntityType.SKELETON_HORSE, EntityType.CREEPER, EntityType.GHAST, EntityType.BLAZE, EntityType.HUSK, EntityType.MAGMA_CUBE, EntityType.ZOMBIFIED_PIGLIN,
-            EntityType.ZOGLIN, EntityType.DROWNED, EntityType.GUARDIAN, EntityType.ELDER_GUARDIAN, EntityType.SLIME, EntityType.STRAY, EntityType.SQUID, EntityType.GLOW_SQUID,
-            EntityType.GOAT, EntityType.AXOLOTL, EntityType.POLAR_BEAR, EntityType.DOLPHIN,
-            EntityType.COD, EntityType.SALMON, EntityType.TROPICAL_FISH, EntityType.PUFFERFISH, EntityType.ENDERMAN, EntityType.SPIDER, EntityType.CAVE_SPIDER, EntityType.PHANTOM,
-            EntityType.SHULKER));
+    public static final List<String> INJECT_LIST = ImmutableList.copyOf(getInjects(EntityType.ZOMBIE, EntityType.ZOMBIE_VILLAGER, EntityType.SKELETON, EntityType.WITHER_SKELETON,
+            EntityType.SKELETON_HORSE, EntityType.CREEPER, EntityType.GHAST, EntityType.BLAZE, EntityType.HUSK, EntityType.MAGMA_CUBE, EntityType.ZOMBIFIED_PIGLIN,
+            EntityType.ZOGLIN, EntityType.DROWNED, EntityType.GUARDIAN, EntityType.ELDER_GUARDIAN, EntityType.SLIME, EntityType.STRAY,
+            EntityType.ENDERMAN, EntityType.SPIDER, EntityType.CAVE_SPIDER));
 
     private LootHandler() {}
 

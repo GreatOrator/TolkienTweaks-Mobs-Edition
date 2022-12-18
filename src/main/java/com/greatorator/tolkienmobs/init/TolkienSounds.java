@@ -29,6 +29,7 @@ public class TolkienSounds {
     //Sounds - Blocks, Miscellaneous & Ambient
     public static final RegistryObject<SoundEvent> sound_Boulder_Shoot = addSound("entity.boulder.shoot");
     public static final RegistryObject<SoundEvent> sound_Web_Shoot = addSound("entity.web.shoot");
+    public static final RegistryObject<SoundEvent> sound_Tornado_Shoot = addSound("entity.tornado.shoot");
     public static final RegistryObject<SoundEvent> sound_demonic_laughter = addSound("mob.demonlaugh");
     public static final RegistryObject<SoundEvent> sound_evil_witch_laugh = addSound("mob.evilwitchlaugh");
     public static final RegistryObject<SoundEvent> sound_ghostly_lament = addSound("mob.ghostlylament");

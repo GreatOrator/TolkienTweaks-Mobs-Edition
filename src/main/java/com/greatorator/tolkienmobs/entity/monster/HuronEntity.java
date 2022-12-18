@@ -3,7 +3,7 @@ package com.greatorator.tolkienmobs.entity.monster;
 import codechicken.lib.math.MathHelper;
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.boss.GoblinKingEntity;
-import com.greatorator.tolkienmobs.entity.item.BoulderEntity;
+import com.greatorator.tolkienmobs.entity.projectiles.BoulderEntity;
 import com.greatorator.tolkienmobs.init.TolkienSounds;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;

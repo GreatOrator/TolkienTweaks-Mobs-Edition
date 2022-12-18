@@ -185,6 +185,16 @@
       "tolkienmobs:mob/mirkwoodspider/shoot2"
     ]
   },
+  "entity.tornado.shoot":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/ammo/lift_wind1",
+      "tolkienmobs:mob/ammo/lift_wind2",
+      "tolkienmobs:mob/ammo/lift_wind3"
+    ]
+  },
   "entity.web.shoot":
   {
     "category": "neutral",

@@ -4,6 +4,7 @@ import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.particles.FellBeastBreathParticle;
 import com.greatorator.tolkienmobs.particles.LeafParticle;
 import com.greatorator.tolkienmobs.particles.LightningbugParticle;
+import com.greatorator.tolkienmobs.particles.WindParticle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.ParticleEngine;
@@ -37,6 +38,7 @@ public class TolkienParticles {
     public static SimpleParticleType falling_leaves = new SimpleParticleType(false);
     public static SimpleParticleType fell_beast_breath = new SimpleParticleType(false);
     public static SimpleParticleType lightningbug = new SimpleParticleType(false);
+    public static SimpleParticleType windParticle = new SimpleParticleType(false);
 
     @SubscribeEvent
     public static void registerParticles(RegistryEvent.Register<ParticleType<?>> event) {
@@ -49,6 +51,7 @@ public class TolkienParticles {
         event.getRegistry().register(falling_leaves.setRegistryName("falling_leaves"));
         event.getRegistry().register(fell_beast_breath.setRegistryName("fell_beast_breath"));
         event.getRegistry().register(lightningbug.setRegistryName("lightningbug"));
+        event.getRegistry().register(windParticle.setRegistryName("windparticle"));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -64,6 +67,7 @@ public class TolkienParticles {
         manager.register(falling_leaves, LeafParticle.Provider::new);
         manager.register(fell_beast_breath, FellBeastBreathParticle.Provider::new);
         manager.register(lightningbug, LightningbugParticle.Provider::new);
+        manager.register(windParticle, WindParticle.Provider::new);
     }
 
     public String getName() {

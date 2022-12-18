@@ -57,6 +57,25 @@ public class EntityLootGenerator extends EntityLoot {
     protected void addTables() {
         //Adding stuff to vanilla entity loot tables
         addInject(BRONZE, EntityType.ZOMBIE);
+        addInject(BRONZE, EntityType.ZOMBIE_VILLAGER);
+        addInject(SILVER, EntityType.SKELETON);
+        addInject(SILVER, EntityType.WITHER_SKELETON);
+        addInject(SILVER, EntityType.SKELETON_HORSE);
+        addInject(BRONZE, EntityType.CREEPER);
+        addInject(GOLD, EntityType.GHAST);
+        addInject(GOLD, EntityType.BLAZE);
+        addInject(SILVER, EntityType.HUSK);
+        addInject(BRONZE, EntityType.MAGMA_CUBE);
+        addInject(BRONZE, EntityType.ZOMBIFIED_PIGLIN);
+        addInject(BRONZE, EntityType.ZOGLIN);
+        addInject(BRONZE, EntityType.DROWNED);
+        addInject(GOLD, EntityType.GUARDIAN);
+        addInject(MITHRIL, EntityType.ELDER_GUARDIAN);
+        addInject(BRONZE, EntityType.SLIME);
+        addInject(BRONZE, EntityType.STRAY);
+        addInject(SILVER, EntityType.ENDERMAN);
+        addInject(SILVER, EntityType.SPIDER);
+        addInject(GOLD, EntityType.CAVE_SPIDER);
 
         // Ambient
         add(TolkienEntities.ENTITY_TTM_RAT.get(), noLoot());
@@ -1315,10 +1334,6 @@ public class EntityLootGenerator extends EntityLoot {
         return knownEntities;
     }
 
-    public String getName() {
-        return NAME + " - Entity";
-    }
-
     private static LootPool.Builder createCoinPool(Item type) {
         return LootPool.lootPool().setRolls(ConstantValue.exactly(1))
                 .add(LootItem.lootTableItem(type)
@@ -1337,7 +1352,7 @@ public class EntityLootGenerator extends EntityLoot {
                 .when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.25F, 0.03F));
     }
 
-        private void addInject(LootPool.Builder pool, EntityType<?> entityType) {
+    private void addInject(LootPool.Builder pool, EntityType<?> entityType) {
         addInject(LootTable.lootTable().withPool(pool).setParamSet(LootContextParamSets.ENTITY), TolkienMobs.createRL(entityType.getDefaultLootTable().getPath()));
     }
 
@@ -1346,5 +1361,9 @@ public class EntityLootGenerator extends EntityLoot {
             throw new IllegalStateException(MessageFormat.format("{} is not present in LootHandler.INJECT_LIST and will not be injected at runtime!", location));
         }
         add(new ResourceLocation(location.getNamespace(), "inject/" + location.getPath()), builder);
+    }
+
+    public String getName() {
+        return NAME + " - Entity";
     }
 }
