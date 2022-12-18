@@ -11,6 +11,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 /** Borrowed from Konarinn */
+@SuppressWarnings({ "unchecked", "removal" })
 public class SwampHagModel extends AnimatedGeoModel<SwampHagEntity> {
     @Override
     public ResourceLocation getModelLocation(SwampHagEntity object) {

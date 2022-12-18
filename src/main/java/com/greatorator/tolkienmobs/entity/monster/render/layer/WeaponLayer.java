@@ -46,7 +46,6 @@ public abstract class WeaponLayer<T extends LivingEntity & IAnimatable> extends 
         if (heldItemStack != null && !heldItemStack.isEmpty() && boneName.equals(armPart)) {
             poseStack.pushPose();
             this.moveAndRotateMatrixToMatchBone(poseStack, bone);
-            // poseStack.translate((bone.getPositionX() * 0.1f) - (0.2f * 0.1f), (bone.getPositionY() * 0.1f) + (0.8f * 0.1f), (bone.getPositionZ() * 0.1f) + (3f * 0.1f) - 0.3f);
             poseStack.scale(1F, 1F, 1F);
             Minecraft.getInstance().gameRenderer.itemInHandRenderer.renderItem(this.tolkienEntity, heldItemStack,
                     ItemTransforms.TransformType.THIRD_PERSON_RIGHT_HAND, false, poseStack, this.rtb,
@@ -67,7 +66,7 @@ public abstract class WeaponLayer<T extends LivingEntity & IAnimatable> extends 
     }
 
     protected void moveAndRotateMatrixToMatchBone(PoseStack stack, GeoBone bone) {
-        stack.translate(((float) 0.38), 0.95, -0.2);
+        stack.translate((bone.getPositionX()) - (-3.5f * 0.1f), (bone.getPositionY()) + (9.1f * 0.1f), (bone.getPositionZ()) - 0.2F);
         float xRot = bone.getRotationX() * (180 / (float) Math.PI);
         float yRot = bone.getRotationY() * (180 / (float) Math.PI);
         float zRot = bone.getRotationZ() * (180 / (float) Math.PI);

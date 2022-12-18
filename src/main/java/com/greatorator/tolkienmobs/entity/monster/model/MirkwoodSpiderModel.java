@@ -43,7 +43,7 @@ public class MirkwoodSpiderModel extends AnimatedGeoModel<MirkwoodSpiderEntity> 
         IBone head = this.getAnimationProcessor().getBone("head");
         IBone webbing = this.getAnimationProcessor().getBone("webbing");
 
-        webbing.setHidden(!entity.getRanged());
+        webbing.setHidden(!entity.isWebShooting());
 
         head.setRotationY(extraDataOfType.get(0).netHeadYaw * Mth.DEG_TO_RAD);
     }

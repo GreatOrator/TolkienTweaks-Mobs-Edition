@@ -2,7 +2,6 @@ package com.greatorator.tolkienmobs.entity.monster;
 
 import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import com.greatorator.tolkienmobs.entity.ai.goal.RangedWebAttackGoal;
-import com.greatorator.tolkienmobs.handler.interfaces.GoalSelectorAccessor;
 import com.greatorator.tolkienmobs.handler.interfaces.TrapsTarget;
 import com.greatorator.tolkienmobs.handler.interfaces.WebShooter;
 import com.greatorator.tolkienmobs.init.TolkienSounds;
@@ -19,7 +18,6 @@ import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
-import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.player.Player;
@@ -45,7 +43,7 @@ public class MirkwoodSpiderEntity extends MonsterEntity implements IAnimatable, 
     private static final EntityDataAccessor<Boolean> WEB_SHOOTING = SynchedEntityData.defineId(MirkwoodSpiderEntity.class, EntityDataSerializers.BOOLEAN);
     private RangedWebAttackGoal<?> rangedWebAttackGoal;
     private LeapAtTargetGoal leapAtTargetGoal;
-    private MeleeAttackGoal meleeAttackGoal;
+    private MirkwoodSpiderEntity.MirkwoodSpiderEntityAttackGoal meleeAttackGoal;
     public int targetTrappedCounter = 0;
 
     public MirkwoodSpiderEntity(EntityType<? extends MonsterEntity> type, Level level) {
@@ -60,26 +58,11 @@ public class MirkwoodSpiderEntity extends MonsterEntity implements IAnimatable, 
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        ((GoalSelectorAccessor) this.goalSelector)
-                .getAvailableGoals()
-                .stream()
-                .filter(pg -> pg.getPriority() == 3 && pg.getGoal() instanceof LeapAtTargetGoal)
-                .findFirst()
-                .ifPresent(pg -> {
-                    this.leapAtTargetGoal = (LeapAtTargetGoal) pg.getGoal();
-                });
-        this.goalSelector.addGoal(4, new MirkwoodSpiderEntity.MirkwoodSpiderEntityAttackGoal(this));
-        ((GoalSelectorAccessor) this.goalSelector)
-                .getAvailableGoals()
-                .stream()
-                .filter(pg -> pg.getPriority() == 4 && pg.getGoal() instanceof MeleeAttackGoal)
-                .findFirst()
-                .ifPresent(pg -> {
-                    this.meleeAttackGoal = (MeleeAttackGoal) pg.getGoal();
-                });
+        this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
         this.rangedWebAttackGoal = new RangedWebAttackGoal<>(this, 1.0D, 60, 20.0F);
+        this.meleeAttackGoal = new MirkwoodSpiderEntity.MirkwoodSpiderEntityAttackGoal(this);
         this.targetSelector.addGoal(2, new MirkwoodSpiderEntity.MirkwoodSpiderEntityTargetGoal<>(this, Player.class));
-        this.targetSelector.addGoal(3, new MirkwoodSpiderEntity.MirkwoodSpiderEntityTargetGoal<>(this, IronGolem.class));
+        this.targetSelector.addGoal(3, new MirkwoodSpiderEntity.MirkwoodSpiderEntityTargetGoal<>(this, LivingEntity.class));
     }
 
     public static AttributeSupplier.Builder createAttributes() {

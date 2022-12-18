@@ -4,7 +4,6 @@ import com.greatorator.tolkienmobs.entity.BossEntity;
 import com.greatorator.tolkienmobs.entity.ai.goal.RangedWebAttackGoal;
 import com.greatorator.tolkienmobs.event.entity.SpiderEvent;
 import com.greatorator.tolkienmobs.event.server.ServerEvents;
-import com.greatorator.tolkienmobs.handler.interfaces.GoalSelectorAccessor;
 import com.greatorator.tolkienmobs.handler.interfaces.TrapsTarget;
 import com.greatorator.tolkienmobs.handler.interfaces.WebShooter;
 import com.greatorator.tolkienmobs.init.TolkienPotions;
@@ -38,7 +37,6 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
-import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.CaveSpider;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.player.Player;
@@ -99,25 +97,10 @@ public class ShelobEntity extends BossEntity implements IAnimatable, WebShooter 
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
-        ((GoalSelectorAccessor) this.goalSelector)
-                .getAvailableGoals()
-                .stream()
-                .filter(pg -> pg.getPriority() == 3 && pg.getGoal() instanceof LeapAtTargetGoal)
-                .findFirst()
-                .ifPresent(pg -> {
-                    this.leapAtTargetGoal = (LeapAtTargetGoal) pg.getGoal();
-                });
-        ((GoalSelectorAccessor) this.goalSelector)
-                .getAvailableGoals()
-                .stream()
-                .filter(pg -> pg.getPriority() == 4 && pg.getGoal() instanceof MeleeAttackGoal)
-                .findFirst()
-                .ifPresent(pg -> {
-                    this.meleeAttackGoal = (MeleeAttackGoal) pg.getGoal();
-                });
-        this.goalSelector.addGoal(4, new ShelobEntity.ShelobAttackGoal(this));
+        this.rangedWebAttackGoal = new RangedWebAttackGoal<>(this, 1.0D, 60, 20.0F);
+        this.meleeAttackGoal = new ShelobEntity.ShelobAttackGoal(this);
         this.targetSelector.addGoal(2, new ShelobEntity.ShelobTargetGoal<>(this, Player.class));
-        this.targetSelector.addGoal(3, new ShelobEntity.ShelobTargetGoal<>(this, IronGolem.class));
+        this.targetSelector.addGoal(3, new ShelobEntity.ShelobTargetGoal<>(this, LivingEntity.class));
     }
 
     @Override
