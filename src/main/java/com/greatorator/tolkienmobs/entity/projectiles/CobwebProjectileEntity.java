@@ -33,6 +33,7 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import static software.bernie.geckolib3.core.builder.ILoopType.EDefaultLoopTypes.LOOP;
 
+@SuppressWarnings({ "unchecked", "removal", "rawtypes" })
 public class CobwebProjectileEntity extends Projectile implements IAnimatable {
     AnimationFactory factory = GeckoLibUtil.createFactory(this);
 

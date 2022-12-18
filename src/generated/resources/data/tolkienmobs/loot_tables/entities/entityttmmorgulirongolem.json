@@ -7,23 +7,66 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "tolkienmobs:random_trinket"
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
+                "max": 1.0
+              },
+              "add": false
+            }
+          ],
+          "name": "tolkienmobs:trinket_charm"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:killed_by_player"
+            }
+          ],
+          "name": "tolkienmobs:trinket_charm"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance_with_looting",
+          "chance": 0.25,
+          "looting_multiplier": 0.03
+        }
+      ]
+    },
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 70,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
-                "min": 0.0,
-                "max": 2.0
+                "min": 1.0,
+                "max": 5.0
               },
               "add": false
-            },
+            }
+          ],
+          "name": "tolkienmobs:item_coin_mithril"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
             {
-              "function": "minecraft:looting_enchant",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 0.0,
-                "max": 1.0
-              }
+              "condition": "minecraft:killed_by_player"
             }
           ],
           "name": "tolkienmobs:item_coin_mithril"
@@ -31,7 +74,9 @@
       ],
       "conditions": [
         {
-          "condition": "minecraft:killed_by_player"
+          "condition": "minecraft:random_chance_with_looting",
+          "chance": 0.25,
+          "looting_multiplier": 0.03
         }
       ]
     },
