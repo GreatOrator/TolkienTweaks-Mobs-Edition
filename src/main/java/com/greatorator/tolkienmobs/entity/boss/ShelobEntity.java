@@ -1,9 +1,14 @@
 package com.greatorator.tolkienmobs.entity.boss;
 
 import com.greatorator.tolkienmobs.entity.BossEntity;
+import com.greatorator.tolkienmobs.entity.ai.goal.RangedWebAttackGoal;
 import com.greatorator.tolkienmobs.event.entity.SpiderEvent;
 import com.greatorator.tolkienmobs.event.server.ServerEvents;
+import com.greatorator.tolkienmobs.handler.interfaces.GoalSelectorAccessor;
+import com.greatorator.tolkienmobs.handler.interfaces.TrapsTarget;
+import com.greatorator.tolkienmobs.handler.interfaces.WebShooter;
 import com.greatorator.tolkienmobs.init.TolkienPotions;
+import com.greatorator.tolkienmobs.init.TolkienSounds;
 import com.greatorator.tolkienmobs.utils.MathUtility;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
@@ -26,13 +31,16 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.navigation.WallClimberNavigation;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.monster.CaveSpider;
+import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
@@ -48,20 +56,31 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 import java.util.Objects;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
 @SuppressWarnings({ "unchecked", "rawtypes", "removal" })
-public class ShelobEntity extends BossEntity implements IAnimatable {
+public class ShelobEntity extends BossEntity implements IAnimatable, WebShooter {
     private final AnimationFactory factory = new AnimationFactory(this);
     private static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(ShelobEntity.class, EntityDataSerializers.BYTE);
+    private static final EntityDataAccessor<Boolean> WEB_SHOOTING = SynchedEntityData.defineId(ShelobEntity.class, EntityDataSerializers.BOOLEAN);
+    private RangedWebAttackGoal<?> rangedWebAttackGoal;
+    private LeapAtTargetGoal leapAtTargetGoal;
+    private MeleeAttackGoal meleeAttackGoal;
+    public int targetTrappedCounter = 0;
     private long nextAbilityUse = 0L;
     private final static long coolDown = 15000L;
 
     public ShelobEntity(EntityType<? extends BossEntity> type, Level level) {
         super(type, level);
         this.setPersistenceRequired();
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 0.84375F;
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -78,13 +97,25 @@ public class ShelobEntity extends BossEntity implements IAnimatable {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new FloatGoal(this));
+        super.registerGoals();
         this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
+        ((GoalSelectorAccessor) this.goalSelector)
+                .getAvailableGoals()
+                .stream()
+                .filter(pg -> pg.getPriority() == 3 && pg.getGoal() instanceof LeapAtTargetGoal)
+                .findFirst()
+                .ifPresent(pg -> {
+                    this.leapAtTargetGoal = (LeapAtTargetGoal) pg.getGoal();
+                });
+        ((GoalSelectorAccessor) this.goalSelector)
+                .getAvailableGoals()
+                .stream()
+                .filter(pg -> pg.getPriority() == 4 && pg.getGoal() instanceof MeleeAttackGoal)
+                .findFirst()
+                .ifPresent(pg -> {
+                    this.meleeAttackGoal = (MeleeAttackGoal) pg.getGoal();
+                });
         this.goalSelector.addGoal(4, new ShelobEntity.ShelobAttackGoal(this));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.8D));
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new ShelobEntity.ShelobTargetGoal<>(this, Player.class));
         this.targetSelector.addGoal(3, new ShelobEntity.ShelobTargetGoal<>(this, IronGolem.class));
     }
@@ -248,7 +279,71 @@ public class ShelobEntity extends BossEntity implements IAnimatable {
 
     protected void defineSynchedData() {
         super.defineSynchedData();
+        this.entityData.define(WEB_SHOOTING, false);
         this.entityData.define(DATA_FLAGS_ID, (byte)0);
+    }
+
+    @Override
+    protected void customServerAiStep() {
+        super.customServerAiStep();
+        this.reassessAttackGoals();
+    }
+
+    private void reassessAttackGoals() {
+        LivingEntity target = this.getTarget();
+        if(this.meleeAttackGoal != null
+                && this.rangedWebAttackGoal != null
+                && target != null){
+            if(!this.isTargetTrapped()){
+                this.goalSelector.removeGoal(this.meleeAttackGoal);
+                if(this.leapAtTargetGoal != null){
+                    this.goalSelector.removeGoal(this.leapAtTargetGoal);
+                }
+                this.goalSelector.addGoal(4, (Goal) this.rangedWebAttackGoal);
+            } else{
+                this.goalSelector.removeGoal((Goal) this.rangedWebAttackGoal);
+                if(this.leapAtTargetGoal != null){
+                    this.goalSelector.addGoal(3, this.leapAtTargetGoal);
+                }
+                this.goalSelector.addGoal(4, this.meleeAttackGoal);
+            }
+        }
+    }
+
+    @Override
+    public boolean isTargetTrapped() {
+        return this.targetTrappedCounter > 0;
+    }
+
+    @Override
+    public void setWebShooting(boolean webShooting) {
+        this.playSound(TolkienSounds.spiderShoot.get(), this.getSoundVolume(), this.getVoicePitch());
+        this.entityData.set(WEB_SHOOTING, webShooting);
+    }
+
+    @Override
+    public boolean isWebShooting() {
+        return this.entityData.get(WEB_SHOOTING);
+    }
+
+    @Override
+    public void setTargetTrapped(boolean trapped, boolean notifyOthers) {
+        TargetingConditions spiderTargeting = TargetingConditions.forCombat().range(10.0D).ignoreInvisibilityTesting();
+
+        if (notifyOthers) {
+            List<Spider> spiders = this.level.getNearbyEntities(Spider.class, spiderTargeting, this, this.getBoundingBox().inflate(10.0D));
+
+            for(Spider spider : spiders) {
+                if (spider instanceof TrapsTarget && this.getTarget() != null && spider.getTarget() != null && spider.getTarget() == this.getTarget()) {
+                    ((TrapsTarget)spider).setTargetTrapped(trapped, false);
+                }
+            }
+        }
+        if (trapped) {
+            this.targetTrappedCounter = 20;
+        } else {
+            this.targetTrappedCounter = 0;
+        }
     }
 
     /** Animation region */
@@ -262,8 +357,9 @@ public class ShelobEntity extends BossEntity implements IAnimatable {
         }else if (this.swinging && !this.getRanged()){
             event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
             return PlayState.CONTINUE;
-        }else if (this.isAggressive() && this.getRanged()) {
+        }else if (this.isAggressive() && this.isWebShooting()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("shooting", false));
+            this.entityData.set(WEB_SHOOTING, false);
             return PlayState.CONTINUE;
         }
         return PlayState.CONTINUE;

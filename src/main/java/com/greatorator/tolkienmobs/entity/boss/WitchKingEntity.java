@@ -28,6 +28,11 @@ public class WitchKingEntity extends BossEntity {
         this.setPersistenceRequired();
     }
 
+    @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 2.275F;
+    }
+
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 300.0D)

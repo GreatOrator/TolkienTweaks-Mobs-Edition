@@ -4,15 +4,9 @@ import com.greatorator.tolkienmobs.entity.MonsterEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 
 public class BrigandEntity extends MonsterEntity {
@@ -24,9 +18,8 @@ public class BrigandEntity extends MonsterEntity {
     }
 
     @Override
-    protected void populateDefaultEquipmentSlots(DifficultyInstance instance) {
-        super.populateDefaultEquipmentSlots(instance);
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.IRON_SWORD));
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 1.75F;
     }
 
     @Override

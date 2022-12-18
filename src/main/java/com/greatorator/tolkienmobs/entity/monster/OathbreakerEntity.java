@@ -6,9 +6,7 @@ import com.greatorator.tolkienmobs.init.TolkienSounds;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.MobType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.goal.FleeSunGoal;
 import net.minecraft.world.entity.ai.goal.RestrictSunGoal;
 import net.minecraft.world.item.ItemStack;
@@ -20,6 +18,11 @@ public class OathbreakerEntity extends MonsterEntity {
     }
 
     @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 1.75F;
+    }
+
+    @Override
     protected void populateDefaultEquipmentSlots(DifficultyInstance instance) {
         super.populateDefaultEquipmentSlots(instance);
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(TolkienItems.SWORD_MORGULIRON.get()));
@@ -27,6 +30,7 @@ public class OathbreakerEntity extends MonsterEntity {
 
     @Override
     protected void registerGoals() {
+        super.registerGoals();
         this.goalSelector.addGoal(2, new RestrictSunGoal(this));
         this.goalSelector.addGoal(3, new FleeSunGoal(this, 1.0D));
     }

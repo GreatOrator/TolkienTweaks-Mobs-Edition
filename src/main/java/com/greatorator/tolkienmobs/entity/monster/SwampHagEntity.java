@@ -1,246 +1,265 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-//
-//public class SwampHagEntity extends AbstractRaiderEntity implements IRangedAttackMob {
-//    private static final UUID SPEED_MODIFIER_DRINKING_UUID = UUID.fromString("D220EDA9-3E8C-4E3C-9400-665313E3D0B4");
-//    private static final AttributeModifier SPEED_MODIFIER_DRINKING;
-//    private static final DataParameter<Boolean> DATA_USING_ITEM;
-//    private int usingTime;
-//    private static final DataParameter<Integer> SWAMPHAG_TYPE = EntityDataManager.defineId(SwampHagEntity.class, DataSerializers.INT);
-//    public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
-//        option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/swamphag/swamp_hag1.png"));
-//        option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/swamphag/swamp_hag2.png"));
-//        option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/swamphag/swamp_hag3.png"));
-//        option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/swamphag/swamp_hag4.png"));
-//    });
-//
-//    public SwampHagEntity(EntityType<? extends AbstractRaiderEntity> p_i50143_1_, World p_i50143_2_) {
-//        super(p_i50143_1_, p_i50143_2_);
-//    }
-//
-//    @Override
-//    protected void registerGoals() {
-//        super.registerGoals();
-//        ToggleableNearestAttackableTargetGoal<PlayerEntity> attackPlayersGoal = new ToggleableNearestAttackableTargetGoal(this, PlayerEntity.class, 10, true, false, (Predicate) null);
-//        this.goalSelector.addGoal(1, new SwimGoal(this));
-//        this.goalSelector.addGoal(2, new RangedAttackGoal(this, 1.0D, 60, 10.0F));
-//        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-//        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-//        this.goalSelector.addGoal(3, new LookRandomlyGoal(this));
-//        this.targetSelector.addGoal(1, new HurtByTargetGoal(this, new Class[]{AbstractRaiderEntity.class}));
-//        this.targetSelector.addGoal(3, attackPlayersGoal);
-//    }
-//
-//    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-//        return MonsterEntity.createMonsterAttributes()
-//                .add(Attributes.MAX_HEALTH, 26.0D)
-//                .add(Attributes.MOVEMENT_SPEED, 0.25D)
-//                .add(Attributes.ATTACK_DAMAGE, 3.0D)
-//                .add(Attributes.ARMOR, 5.0D);
-//    }
-//
-//    @Override
-//    protected SoundEvent getAmbientSound() {
-//        return SoundEvents.WITCH_AMBIENT;
-//    }
-//
-//    @Override
-//    protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-//        return SoundEvents.WITCH_HURT;
-//    }
-//
-//    @Override
-//    protected SoundEvent getDeathSound() {
-//        return SoundEvents.WITCH_DEATH;
-//    }
-//
-//    public void setUsingItem(boolean p_82197_1_) {
-//        this.getEntityData().set(DATA_USING_ITEM, p_82197_1_);
-//    }
-//
-//    public boolean isDrinkingPotion() {
-//        return (Boolean)this.getEntityData().get(DATA_USING_ITEM);
-//    }
-//
-//    @Override
-//    public void aiStep() {
-//            if (this.isDrinkingPotion()) {
-//                if (this.usingTime-- <= 0) {
-//                    this.setUsingItem(false);
-//                    ItemStack itemStack = this.getMainHandItem();
-//                    this.setItemSlot(EquipmentSlotType.MAINHAND, ItemStack.EMPTY);
-//                    if (itemStack.getItem() == Items.POTION) {
-//                        List<EffectInstance> lvt_2_1_ = PotionUtils.getMobEffects(itemStack);
-//                        if (lvt_2_1_ != null) {
-//                            Iterator var3 = lvt_2_1_.iterator();
-//
-//                            while(var3.hasNext()) {
-//                                EffectInstance lvt_4_1_ = (EffectInstance)var3.next();
-//                                this.addEffect(new EffectInstance(lvt_4_1_));
-//                            }
-//                        }
-//                    }
-//
-//                    this.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(SPEED_MODIFIER_DRINKING);
-//                }
-//            } else {
-//                Potion lvt_1_2_ = null;
-//                if (this.random.nextFloat() < 0.15F && this.isEyeInFluid(FluidTags.WATER) && !this.hasEffect(Effects.WATER_BREATHING)) {
-//                    lvt_1_2_ = Potions.WATER_BREATHING;
-//                } else if (this.random.nextFloat() < 0.15F && (this.isOnFire() || this.getLastDamageSource() != null && this.getLastDamageSource().isFire()) && !this.hasEffect(Effects.FIRE_RESISTANCE)) {
-//                    lvt_1_2_ = Potions.FIRE_RESISTANCE;
-//                } else if (this.random.nextFloat() < 0.05F && this.getHealth() < this.getMaxHealth()) {
-//                    lvt_1_2_ = Potions.HEALING;
-//                } else if (this.random.nextFloat() < 0.5F && this.getTarget() != null && !this.hasEffect(Effects.MOVEMENT_SPEED) && this.getTarget().distanceToSqr(this) > 121.0D) {
-//                    lvt_1_2_ = Potions.SWIFTNESS;
-//                }
-//
-//                if (lvt_1_2_ != null) {
-//                    this.setItemSlot(EquipmentSlotType.MAINHAND, PotionUtils.setPotion(new ItemStack(Items.POTION), lvt_1_2_));
-//                    this.usingTime = this.getMainHandItem().getUseDuration();
-//                    this.setUsingItem(true);
-//                    if (!this.isSilent()) {
-//                        this.level.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), SoundEvents.WITCH_DRINK, this.getSoundSource(), 1.0F, 0.8F + this.random.nextFloat() * 0.4F);
-//                    }
-//
-//                    ModifiableAttributeInstance lvt_2_2_ = this.getAttribute(Attributes.MOVEMENT_SPEED);
-//                    lvt_2_2_.removeModifier(SPEED_MODIFIER_DRINKING);
-//                    lvt_2_2_.addTransientModifier(SPEED_MODIFIER_DRINKING);
-//                }
-//            }
-//
-//            if (this.random.nextFloat() < 7.5E-4F) {
-//                this.level.broadcastEntityEvent(this, (byte)15);
-//            }
-//        super.aiStep();
-//    }
-//
-//    @OnlyIn(Dist.CLIENT)
-//    @Override
-//    public void handleEntityEvent(byte p_70103_1_) {
-//        if (p_70103_1_ == 15) {
-//            for(int lvt_2_1_ = 0; lvt_2_1_ < this.random.nextInt(35) + 10; ++lvt_2_1_) {
-//                this.level.addParticle(ParticleTypes.WITCH, this.getX() + this.random.nextGaussian() * 0.12999999523162842D, this.getBoundingBox().maxY + 0.5D + this.random.nextGaussian() * 0.12999999523162842D, this.getZ() + this.random.nextGaussian() * 0.12999999523162842D, 0.0D, 0.0D, 0.0D);
-//            }
-//        } else {
-//            super.handleEntityEvent(p_70103_1_);
-//        }
-//
-//    }
-//
-//    @Override
-//    protected float getDamageAfterMagicAbsorb(DamageSource p_70672_1_, float p_70672_2_) {
-//        p_70672_2_ = super.getDamageAfterMagicAbsorb(p_70672_1_, p_70672_2_);
-//        if (p_70672_1_.getEntity() == this) {
-//            p_70672_2_ = 0.0F;
-//        }
-//
-//        if (p_70672_1_.isMagic()) {
-//            p_70672_2_ = (float)((double)p_70672_2_ * 0.15D);
-//        }
-//
-//        return p_70672_2_;
-//    }
-//
-//    @Override
-//    public void performRangedAttack(LivingEntity p_82196_1_, float p_82196_2_) {
-//        if (!this.isDrinkingPotion()) {
-//            Vector3d lvt_3_1_ = p_82196_1_.getDeltaMovement();
-//            double lvt_4_1_ = p_82196_1_.getX() + lvt_3_1_.x - this.getX();
-//            double lvt_6_1_ = p_82196_1_.getEyeY() - 1.100000023841858D - this.getY();
-//            double lvt_8_1_ = p_82196_1_.getZ() + lvt_3_1_.z - this.getZ();
-//            float lvt_10_1_ = MathHelper.sqrt(lvt_4_1_ * lvt_4_1_ + lvt_8_1_ * lvt_8_1_);
-//            Potion lvt_11_1_ = Potions.HARMING;
-//            if (lvt_10_1_ >= 8.0F && !p_82196_1_.hasEffect(Effects.MOVEMENT_SLOWDOWN)) {
-//                lvt_11_1_ = Potions.SLOWNESS;
-//            } else if (p_82196_1_.getHealth() >= 8.0F && !p_82196_1_.hasEffect(Effects.POISON)) {
-//                lvt_11_1_ = Potions.POISON;
-//            } else if (lvt_10_1_ <= 3.0F && !p_82196_1_.hasEffect(Effects.WEAKNESS) && this.random.nextFloat() < 0.25F) {
-//                lvt_11_1_ = Potions.WEAKNESS;
-//            }
-//
-//            PotionEntity lvt_12_1_ = new PotionEntity(this.level, this);
-//            lvt_12_1_.setItem(PotionUtils.setPotion(new ItemStack(Items.SPLASH_POTION), lvt_11_1_));
-//            lvt_12_1_.xRot -= -20.0F;
-//            lvt_12_1_.shoot(lvt_4_1_, lvt_6_1_ + (double)(lvt_10_1_ * 0.2F), lvt_8_1_, 0.75F, 8.0F);
-//            if (!this.isSilent()) {
-//                this.level.playSound((PlayerEntity)null, this.getX(), this.getY(), this.getZ(), SoundEvents.WITCH_THROW, this.getSoundSource(), 1.0F, 0.8F + this.random.nextFloat() * 0.4F);
-//            }
-//
-//            this.level.addFreshEntity(lvt_12_1_);
-//        }
-//    }
-//
-//    @Override
-//    protected float getStandingEyeHeight(Pose p_213348_1_, EntitySize p_213348_2_) {
-//        return 1.62F;
-//    }
-//
-//    @Override
-//    public boolean canBeLeader() {
-//        return false;
-//    }
-//
-//    static {
-//        SPEED_MODIFIER_DRINKING = new AttributeModifier(SPEED_MODIFIER_DRINKING_UUID, "Drinking speed penalty", -0.25D, AttributeModifier.Operation.ADDITION);
-//        DATA_USING_ITEM = EntityDataManager.defineId(SwampHagEntity.class, DataSerializers.BOOLEAN);
-//    }
-//
-//    @Override
-//    public SoundEvent getCelebrateSound() {
-//        return null;
-//    }
-//
-//    @Override
-//    public void applyRaidBuffs(int i, boolean b) {
-//
-//    }
-//
-//    /**
-//     * Region for determining random skin
-//     */
-//    public ResourceLocation getSwampHagTypeName() {
-//        return TEXTURE_BY_ID.getOrDefault(this.getSwampHagType(), TEXTURE_BY_ID.get(1));
-//    }
-//
-//    public int getSwampHagType() {
-//        return this.entityData.get(SWAMPHAG_TYPE);
-//    }
-//
-//    public void setSwampHagType(int type) {
-//        if (type < 0 || type >= 5) {
-//            type = this.random.nextInt(4);
-//        }
-//
-//        this.entityData.set(SWAMPHAG_TYPE, type);
-//    }
-//
-//    @Nullable
-//    @Override
-//    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-//        int job = TTMRand.getRandomInteger(5, 1);
-//        this.setSwampHagType(job);
-//        this.populateDefaultEquipmentSlots(difficultyIn);
-//
-//        return super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-//    }
-//
-//    @Override
-//    protected void defineSynchedData() {
-//        super.defineSynchedData();
-//        this.getEntityData().define(DATA_USING_ITEM, false);
-//        this.entityData.define(SWAMPHAG_TYPE, 3);
-//    }
-//
-//    @Override
-//    public void addAdditionalSaveData(CompoundNBT compound) {
-//        super.addAdditionalSaveData(compound);
-//        compound.putInt("SwampHagType", this.getSwampHagType());
-//    }
-//
-//    @Override
-//    public void readAdditionalSaveData(CompoundNBT compound) {
-//        super.readAdditionalSaveData(compound);
-//        this.setSwampHagType(compound.getInt("SwampHagType"));
-//    }
-//}
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
+import com.greatorator.tolkienmobs.entity.ai.target.SwampHagNearestAttackableTargetGoal;
+import com.greatorator.tolkienmobs.entity.ai.target.SwampHagNearestHealableRaiderTargetGoal;
+import com.greatorator.tolkienmobs.init.TolkienEntities;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ThrownPotion;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import software.bernie.geckolib3.core.AnimationState;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
+
+import java.util.List;
+import java.util.function.Predicate;
+
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
+public class SwampHagEntity extends MonsterEntity implements IAnimatable {
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private static final EntityDataAccessor<Boolean> DATA_HEALING = SynchedEntityData.defineId(SwampHagEntity.class, EntityDataSerializers.BOOLEAN);
+    private SwampHagNearestHealableRaiderTargetGoal<MonsterEntity> healRaidersGoal;
+    private SwampHagNearestAttackableTargetGoal<Player> attackPlayersGoal;
+    private int healingTime;
+
+    public SwampHagEntity(EntityType<? extends MonsterEntity> type, Level level) {
+        super(type, level);
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 1.4375F;
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 30.0D)
+                .add(Attributes.ATTACK_DAMAGE, 8.0f)
+                .add(Attributes.ATTACK_SPEED, 2.0f)
+                .add(Attributes.MOVEMENT_SPEED, 0.3D)
+                .add(Attributes.ARMOR, 5.0D);
+    }
+
+    @Override
+    protected void registerGoals() {
+        super.registerGoals();
+        this.attackPlayersGoal = new SwampHagNearestAttackableTargetGoal<>(this, Player.class, 10, true, false, (Predicate<LivingEntity>)null);
+        this.healRaidersGoal = new SwampHagNearestHealableRaiderTargetGoal<>(this, MonsterEntity.class, true, (entity) -> {
+            return entity != null  && entity.getType() != TolkienEntities.ENTITY_TTM_SWAMPHAG.get();
+        });
+        this.targetSelector.addGoal(2, this.healRaidersGoal);
+        this.targetSelector.addGoal(3, this.attackPlayersGoal);
+    }
+
+    @Override
+    public void aiStep() {
+        if (!this.level.isClientSide && this.isAlive()) {
+            this.healRaidersGoal.decrementCooldown();
+            if (this.healRaidersGoal.getCooldown() <= 0) {
+                this.attackPlayersGoal.setCanAttack(true);
+            } else {
+                this.attackPlayersGoal.setCanAttack(false);
+            }
+
+            if (this.isHealing()) {
+                if (this.healingTime-- <= 0) {
+                    this.setHealing(false);
+                    ItemStack itemstack = this.getMainHandItem();
+                    this.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+                    if (itemstack.is(Items.POTION)) {
+                        List<MobEffectInstance> list = PotionUtils.getMobEffects(itemstack);
+                        if (list != null) {
+                            for(MobEffectInstance mobeffectinstance : list) {
+                                this.addEffect(new MobEffectInstance(mobeffectinstance));
+                            }
+                        }
+                    }
+                }
+            } else {
+                Potion potion = null;
+                if (this.random.nextFloat() < 0.15F && this.isEyeInFluid(FluidTags.WATER) && !this.hasEffect(MobEffects.WATER_BREATHING)) {
+                    potion = Potions.WATER_BREATHING;
+                } else if (this.random.nextFloat() < 0.15F && (this.isOnFire() || this.getLastDamageSource() != null && this.getLastDamageSource().isFire()) && !this.hasEffect(MobEffects.FIRE_RESISTANCE)) {
+                    potion = Potions.FIRE_RESISTANCE;
+                } else if (this.random.nextFloat() < 0.05F && this.getHealth() < this.getMaxHealth()) {
+                    potion = Potions.HEALING;
+                } else if (this.random.nextFloat() < 0.5F && this.getTarget() != null && !this.hasEffect(MobEffects.MOVEMENT_SPEED) && this.getTarget().distanceToSqr(this) > 121.0D) {
+                    potion = Potions.SWIFTNESS;
+                }
+
+                if (potion != null) {
+                    this.setItemSlot(EquipmentSlot.MAINHAND, PotionUtils.setPotion(new ItemStack(Items.POTION), potion));
+                    this.healingTime = this.getMainHandItem().getUseDuration();
+                    this.setHealing(true);
+                    if (!this.isSilent()) {
+                        this.level.playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.WITCH_DRINK, this.getSoundSource(), 1.0F, 0.8F + this.random.nextFloat() * 0.4F);
+                    }
+                }
+            }
+
+            if (this.random.nextFloat() < 7.5E-4F) {
+                this.level.broadcastEntityEvent(this, (byte)15);
+            }
+        }
+
+        super.aiStep();
+    }
+
+    @Override
+    public void performRangedAttack(LivingEntity entity, float p_34144_) {
+        if (!this.isHealing()) {
+            Vec3 vec3 = entity.getDeltaMovement();
+            double d0 = entity.getX() + vec3.x - this.getX();
+            double d1 = entity.getEyeY() - (double)1.1F - this.getY();
+            double d2 = entity.getZ() + vec3.z - this.getZ();
+            double d3 = Math.sqrt(d0 * d0 + d2 * d2);
+            Potion potion = Potions.HARMING;
+            if (entity instanceof MonsterEntity) {
+                if (entity.getHealth() <= 4.0F) {
+                    potion = Potions.HEALING;
+                } else {
+                    potion = Potions.REGENERATION;
+                }
+                this.setTarget((LivingEntity)null);
+            } else if (d3 >= 8.0D && !entity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
+                potion = Potions.SLOWNESS;
+            } else if (entity.getHealth() >= 8.0F && !entity.hasEffect(MobEffects.POISON)) {
+                potion = Potions.POISON;
+            } else if (d3 <= 3.0D && !entity.hasEffect(MobEffects.WEAKNESS) && this.random.nextFloat() < 0.25F) {
+                potion = Potions.WEAKNESS;
+            }
+
+            ThrownPotion thrownpotion = new ThrownPotion(this.level, this);
+            thrownpotion.setItem(PotionUtils.setPotion(new ItemStack(Items.SPLASH_POTION), potion));
+            thrownpotion.setXRot(thrownpotion.getXRot() - -20.0F);
+            thrownpotion.shoot(d0, d1 + d3 * 0.2D, d2, 0.75F, 8.0F);
+            if (!this.isSilent()) {
+                this.level.playSound((Player)null, this.getX(), this.getY(), this.getZ(), SoundEvents.WITCH_THROW, this.getSoundSource(), 1.0F, 0.8F + this.random.nextFloat() * 0.4F);
+            }
+
+            this.level.addFreshEntity(thrownpotion);
+        }
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.getEntityData().define(DATA_HEALING, false);
+    }
+
+    public void setHealing(boolean healing) {
+        this.getEntityData().set(DATA_HEALING, healing);
+    }
+
+    public boolean isHealing() {
+        return this.getEntityData().get(DATA_HEALING);
+    }
+
+    @Override
+    public void handleEntityEvent(byte p_34138_) {
+        if (p_34138_ == 15) {
+            for(int i = 0; i < this.random.nextInt(35) + 10; ++i) {
+                this.level.addParticle(ParticleTypes.WITCH, this.getX() + this.random.nextGaussian() * (double)0.13F, this.getBoundingBox().maxY + 0.5D + this.random.nextGaussian() * (double)0.13F, this.getZ() + this.random.nextGaussian() * (double)0.13F, 0.0D, 0.0D, 0.0D);
+            }
+        } else {
+            super.handleEntityEvent(p_34138_);
+        }
+    }
+
+    @Override
+    protected float getDamageAfterMagicAbsorb(DamageSource p_34149_, float p_34150_) {
+        p_34150_ = super.getDamageAfterMagicAbsorb(p_34149_, p_34150_);
+        if (p_34149_.getEntity() == this) {
+            p_34150_ = 0.0F;
+        }
+
+        if (p_34149_.isMagic()) {
+            p_34150_ *= 0.15F;
+        }
+
+        return p_34150_;
+    }
+
+    @Override
+    public ItemStack getHeldItem() {
+        return super.getHeldItem();
+    }
+
+    @Override
+    public void setHeldItem(ItemStack heldItem) {
+    }
+
+    /** Animation */
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            return PlayState.CONTINUE;
+        }
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+        return PlayState.CONTINUE;
+    }
+
+    private PlayState attackPredicate(AnimationEvent event) {
+        if (this.getRanged() && event.getController().getAnimationState().equals(AnimationState.Stopped)){
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
+            this.ranged = false;
+        }else if (this.isHealing() && event.getController().getAnimationState().equals(AnimationState.Stopped)) {
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack_heal", false));
+            this.setHealing(false);
+        }
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void registerControllers(AnimationData data) {
+        data.addAnimationController(new AnimationController(this, "controller",
+                0, this::predicate));
+        data.addAnimationController(new AnimationController(this, "attackController",
+                0, this::attackPredicate));
+    }
+
+    @Override
+    public AnimationFactory getFactory() {
+        return this.factory;
+    }
+
+    /** Sounds */
+    protected SoundEvent getAmbientSound() {
+        return SoundEvents.WITCH_AMBIENT;
+    }
+
+    protected SoundEvent getHurtSound(DamageSource p_34154_) {
+        return SoundEvents.WITCH_HURT;
+    }
+
+    protected SoundEvent getDeathSound() {
+        return SoundEvents.WITCH_DEATH;
+    }
+}

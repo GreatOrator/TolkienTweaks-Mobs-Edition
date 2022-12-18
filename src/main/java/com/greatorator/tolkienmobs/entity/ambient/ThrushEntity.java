@@ -22,10 +22,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Item;
@@ -61,6 +58,11 @@ public class ThrushEntity extends BirdEntity {
     }
 
     @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 0.1875F;
+    }
+
+    @Override
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(2, new BirdSitWhenOrderedToGoal(this));
@@ -75,11 +77,6 @@ public class ThrushEntity extends BirdEntity {
     @Override
     public ThrushEntity getBreedOffspring(@Nonnull ServerLevel serverLevel, @Nonnull AgeableMob ageableMob) {
         return TolkienEntities.ENTITY_TTM_THRUSH.get().create(serverLevel);
-    }
-
-    public static boolean checkThrushSpawn(EntityType<ThrushEntity> entityType, LevelAccessor accessor, MobSpawnType spawnType, BlockPos pos, Random random) {
-        int chance = 200; //1 in x
-        return random.nextInt(chance) == 0 && checkMobSpawnRules(entityType, accessor, spawnType, pos, random);
     }
 
     @Override
@@ -230,6 +227,7 @@ public class ThrushEntity extends BirdEntity {
         this.setInSittingPose(this.orderedToSit);
     }
 
+    /** Sounds */
     @Nullable
     @Override
     public SoundEvent getAmbientSound() {
@@ -267,5 +265,11 @@ public class ThrushEntity extends BirdEntity {
     @Override
     public SoundSource getSoundSource() {
         return SoundSource.NEUTRAL;
+    }
+
+    /** Spawn */
+    public static boolean checkThrushSpawn(EntityType<ThrushEntity> entityType, LevelAccessor accessor, MobSpawnType spawnType, BlockPos pos, Random random) {
+        int chance = 200; //1 in x
+        return random.nextInt(chance) == 0 && checkMobSpawnRules(entityType, accessor, spawnType, pos, random);
     }
 }

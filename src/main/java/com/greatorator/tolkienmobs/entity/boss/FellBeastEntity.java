@@ -77,6 +77,11 @@ public class FellBeastEntity extends DragonEntity {
     }
 
     @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 3.5625F;
+    }
+
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         entityData.define(BREATHING_FIRE, false);
@@ -147,11 +152,6 @@ public class FellBeastEntity extends DragonEntity {
     @Override
     public boolean isImmobile() {
         return super.isImmobile();
-    }
-
-    @Override
-    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
-        return getBbHeight() + 0.5f;
     }
 
     @Override

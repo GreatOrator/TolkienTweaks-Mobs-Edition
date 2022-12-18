@@ -28,6 +28,7 @@ public class TolkienSounds {
 
     //Sounds - Blocks, Miscellaneous & Ambient
     public static final RegistryObject<SoundEvent> sound_Boulder_Shoot = addSound("entity.boulder.shoot");
+    public static final RegistryObject<SoundEvent> sound_Web_Shoot = addSound("entity.web.shoot");
     public static final RegistryObject<SoundEvent> sound_demonic_laughter = addSound("mob.demonlaugh");
     public static final RegistryObject<SoundEvent> sound_evil_witch_laugh = addSound("mob.evilwitchlaugh");
     public static final RegistryObject<SoundEvent> sound_ghostly_lament = addSound("mob.ghostlylament");
@@ -43,6 +44,9 @@ public class TolkienSounds {
     public static final RegistryObject<SoundEvent> hype_horn = addSound("hype_horn");
     public static final RegistryObject<SoundEvent> lightningbug_ambient = addSound("lightningbug_ambient");
     public static final RegistryObject<SoundEvent> arda_portal = addSound("arda_portal");
+
+    // Sounds - Mirkwood Spider
+    public static final RegistryObject<SoundEvent> spiderShoot = addSound("entity.mirkwoodspider.shoot");
 
     //Sounds - Mumakil
     public static final RegistryObject<SoundEvent> soundAmbientMumakil = addSound("mob.mumakil.say");

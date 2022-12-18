@@ -56,6 +56,11 @@ public class FrogEntity extends AmbientEntity implements IAnimatable {
     }
 
     @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 0.24375F;
+    }
+
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(1, new FrogEntity.FrogPanicGoal(this, 2.2D));

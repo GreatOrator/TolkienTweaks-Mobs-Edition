@@ -77,6 +77,11 @@ public class BalrogEntity extends BossEntity implements IAnimatable {
         this.setPersistenceRequired();
     }
 
+    @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 3.1875F;
+    }
+
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 300.0D)
@@ -166,6 +171,7 @@ public class BalrogEntity extends BossEntity implements IAnimatable {
 
     @Override
     protected void registerGoals() {
+        super.registerGoals();
         this.goalSelector.addGoal(1, new SwitchCombatGoal(this, 6.0D, 12.0D));
         this.goalSelector.addGoal(2, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 0.6D));

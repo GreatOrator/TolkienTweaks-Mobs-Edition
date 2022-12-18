@@ -3,9 +3,11 @@
 	"animations": {
 		"animation.arda_staff.idle": {
 			"loop": true,
-			"animation_length": 3,
 			"bones": {
 				"orb": {
+					"rotation": {
+						"vector": ["math.sin(query.anim_time * 50) * 150", "math.cos(query.anim_time * 50) * 150", "math.sin(query.anim_time * 50) * 150"]
+					},
 					"position": {
 						"vector": [0, "math.sin(query.anim_time*120)", 0]
 					}

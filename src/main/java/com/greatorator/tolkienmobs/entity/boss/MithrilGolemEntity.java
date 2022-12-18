@@ -16,10 +16,7 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.NeutralMob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -56,6 +53,11 @@ public class MithrilGolemEntity extends BossEntity implements IAnimatable, Neutr
     public MithrilGolemEntity(EntityType<? extends BossEntity> type, Level level) {
         super(type, level);
         this.setPersistenceRequired();
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 2.875F;
     }
 
     public static AttributeSupplier.Builder createAttributes() {

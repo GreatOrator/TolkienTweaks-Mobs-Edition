@@ -35,6 +35,11 @@ public class NazgulEntity extends MonsterEntity {
         this.setPersistenceRequired();
     }
 
+    @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 1.925F;
+    }
+
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 150.0D)

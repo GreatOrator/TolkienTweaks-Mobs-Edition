@@ -51,6 +51,11 @@ public class SquirrelEntity extends AmbientEntity implements IAnimatable {
     }
 
     @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 0.475F;
+    }
+
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(1, new SquirrelEntity.SquirrelPanicGoal(this, 2.2D));

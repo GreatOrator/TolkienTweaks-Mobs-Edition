@@ -14,6 +14,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
+@SuppressWarnings({ "unchecked", "removal" })
 public class HumanModel extends AnimatedGeoModel<HumanEntity> {
     @Override
     public ResourceLocation getModelLocation(HumanEntity object) {

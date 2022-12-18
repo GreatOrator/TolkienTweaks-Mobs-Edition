@@ -5,7 +5,9 @@ import com.greatorator.tolkienmobs.init.TolkienSounds;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -17,10 +19,16 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import javax.annotation.Nullable;
 
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class DwarfEntity extends VillagerEntity implements IAnimatable {
     private final AnimationFactory factory = new AnimationFactory(this);
     public DwarfEntity(EntityType<? extends VillagerEntity> type, Level level) {
         super(type, level);
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 1.29375F;
     }
 
     @Nullable
@@ -53,7 +61,6 @@ public class DwarfEntity extends VillagerEntity implements IAnimatable {
         return PlayState.CONTINUE;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController(this, "controller",

@@ -59,6 +59,11 @@ public class GoblinKingEntity extends BossEntity implements IAnimatable {
         this.setPersistenceRequired();
     }
 
+    @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 1.0625F;
+    }
+
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 120.0D)

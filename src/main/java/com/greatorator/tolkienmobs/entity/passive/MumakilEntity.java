@@ -1,10 +1,6 @@
 package com.greatorator.tolkienmobs.entity.passive;
 
 import com.greatorator.tolkienmobs.entity.HerdEntity;
-import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyFollowParentGoal;
-import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyHurtByTargetGoal;
-import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyNearPlayerGoal;
-import com.greatorator.tolkienmobs.entity.ai.goal.mumakil.BabyPanicGoal;
 import com.greatorator.tolkienmobs.init.TolkienEntities;
 import com.greatorator.tolkienmobs.init.TolkienSounds;
 import net.minecraft.core.BlockPos;
@@ -20,12 +16,12 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Bee;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -60,6 +56,19 @@ public class MumakilEntity extends HerdEntity implements IAnimatable {
         this.maxUpStep = 1.0f;
     }
 
+    @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 2.5F;
+    }
+
+    @Override
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(2, new MumakilMeleeAttackGoal(this, 1.2D, false));
+        this.goalSelector.addGoal(5, new MumakilDrinkWaterGoal(this));
+        this.goalSelector.addGoal(6, new MumakilMoveToWaterGoal(this, 1.0D, 8, 4));
+    }
+
     public static AttributeSupplier.Builder createAttributes() {
         return Mob.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 50.0D)
@@ -79,23 +88,6 @@ public class MumakilEntity extends HerdEntity implements IAnimatable {
     @Override
     protected PathNavigation createNavigation(Level level) {
         return new GroundPathNavigation(this, level);
-    }
-
-    @Override
-    protected void registerGoals() {
-        super.registerGoals();
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, Bee.class, 8.0f, 1.5, 1.5));
-        this.goalSelector.addGoal(2, new MumakilMeleeAttackGoal(this, 1.2D, false));
-        this.goalSelector.addGoal(3, new BabyPanicGoal(this, 2.0D));
-        this.goalSelector.addGoal(4, new BabyFollowParentGoal(this, 1.25D, 24.0D, 6.0D, 12.0D));
-        this.goalSelector.addGoal(5, new MumakilDrinkWaterGoal(this));
-        this.goalSelector.addGoal(6, new MumakilMoveToWaterGoal(this, 1.0D, 8, 4));
-        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0));
-        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 6.0f));
-        this.goalSelector.addGoal(9, new RandomLookAroundGoal(this));
-        this.targetSelector.addGoal(1, new BabyHurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new BabyNearPlayerGoal(this, 0.5F));
     }
 
     @Override

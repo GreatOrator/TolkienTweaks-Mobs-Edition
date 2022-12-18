@@ -23,6 +23,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.function.Consumer;
 
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class CatalystItem extends BaseItem implements IAnimatable {
     public AnimationFactory factory = new AnimationFactory(this);
 

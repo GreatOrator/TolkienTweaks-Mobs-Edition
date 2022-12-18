@@ -1,7 +1,9 @@
 package com.greatorator.tolkienmobs.entity.merchant;
 
 import com.greatorator.tolkienmobs.entity.WanderingEntity;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -11,10 +13,16 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
 public class DesertDwellerEntity extends WanderingEntity implements IAnimatable{
     private final AnimationFactory factory = new AnimationFactory(this);
     public DesertDwellerEntity(EntityType<? extends DesertDwellerEntity> type, Level level) {
         super(type, level);
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 1.75F;
     }
 
     /** Animation */
@@ -27,7 +35,6 @@ public class DesertDwellerEntity extends WanderingEntity implements IAnimatable{
         return PlayState.CONTINUE;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController(this, "controller",

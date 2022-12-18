@@ -176,6 +176,24 @@
       "tolkienmobs:mob/troll/troll_step4"
     ]
   },
+  "entity.mirkwoodspider.shoot":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:mob/mirkwoodspider/shoot1",
+      "tolkienmobs:mob/mirkwoodspider/shoot2"
+    ]
+  },
+  "entity.web.shoot":
+  {
+    "category": "neutral",
+    "sounds":
+    [
+      "tolkienmobs:entity/ammo/web_impact1",
+      "tolkienmobs:entity/ammo/web_impact2"
+    ]
+  },
   "entity.boulder.shoot":
   {
     "category": "neutral",

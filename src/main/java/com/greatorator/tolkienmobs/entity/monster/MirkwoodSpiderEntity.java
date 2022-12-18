@@ -1,251 +1,268 @@
 package com.greatorator.tolkienmobs.entity.monster;
 
-//
-//public class MirkwoodSpiderEntity extends MonsterEntity {
-//    private static final DataParameter<Integer> MIRKWOODSPIDER_TYPE = EntityDataManager.defineId(MirkwoodSpiderEntity.class, DataSerializers.INT);
-//    private static final DataParameter<Byte> DATA_FLAGS_ID = EntityDataManager.defineId(MirkwoodSpiderEntity.class, DataSerializers.BYTE);
-//    public static final Map<Integer, ResourceLocation> TEXTURE_BY_ID = Util.make(Maps.newHashMap(), (option) -> {
-//        option.put(1, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mirkwoodspider.png"));
-//        option.put(2, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mirkwoodspider.png"));
-//        option.put(3, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mirkwoodspider.png"));
-//        option.put(4, new ResourceLocation(TolkienMobs.MODID, "textures/entity/mirkwoodspider.png"));
-//    });
-//
-//    public MirkwoodSpiderEntity(EntityType<? extends net.minecraft.entity.monster.MonsterEntity> type, World worldIn) {
-//        super(type, worldIn);
-//    }
-//
-//    @Override
-//    protected void registerGoals() {
-//        this.goalSelector.addGoal(1, new SwimGoal(this));
-//        this.goalSelector.addGoal(3, new LeapAtTargetGoal(this, 0.4F));
-//        this.goalSelector.addGoal(4, new MirkwoodSpiderEntity.AttackGoal(this));
-//        this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
-//        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-//        this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
-//        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-//        this.targetSelector.addGoal(2, new MirkwoodSpiderEntity.TargetGoal<>(this, PlayerEntity.class));
-//        this.targetSelector.addGoal(3, new MirkwoodSpiderEntity.TargetGoal<>(this, IronGolemEntity.class));
-//    }
-//
-//    @Override
-//    public double getPassengersRidingOffset() {
-//        return (double)(this.getBbHeight() * 0.5F);
-//    }
-//
-//    @Override
-//    protected PathNavigator createNavigation(World p_175447_1_) {
-//        return new ClimberPathNavigator(this, p_175447_1_);
-//    }
-//
-//    @Override
-//    public void tick() {
-//        super.tick();
-//        if (!this.level.isClientSide) {
-//            this.setClimbing(this.horizontalCollision);
-//        }
-//
-//    }
-//
-//    public static AttributeModifierMap.MutableAttribute registerAttributes() {
-//        return net.minecraft.entity.monster.MonsterEntity.createMonsterAttributes()
-//                .add(Attributes.MAX_HEALTH, 26.0D)
-//                .add(Attributes.MOVEMENT_SPEED, (double)0.3F)
-//                .add(Attributes.ATTACK_DAMAGE, 3.0D)
-//                .add(Attributes.ARMOR, 5.0D);
-//    }
-//
-//    @Override
-//    protected SoundEvent getAmbientSound() {
-//        return SoundEvents.SPIDER_AMBIENT;
-//    }
-//
-//    @Override
-//    protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-//        return SoundEvents.SPIDER_HURT;
-//    }
-//
-//    @Override
-//    protected SoundEvent getDeathSound() {
-//        return SoundEvents.SPIDER_DEATH;
-//    }
-//
-//    @Override
-//    protected void playStepSound(BlockPos p_180429_1_, BlockState p_180429_2_) {
-//        this.playSound(SoundEvents.SPIDER_STEP, 0.15F, 1.0F);
-//    }
-//
-//    @Override
-//    public boolean onClimbable() {
-//        return this.isClimbing();
-//    }
-//
-//    @Override
-//    public void makeStuckInBlock(BlockState p_213295_1_, Vector3d p_213295_2_) {
-//        if (!p_213295_1_.is(Blocks.COBWEB)) {
-//            super.makeStuckInBlock(p_213295_1_, p_213295_2_);
-//        }
-//
-//    }
-//
-//    @Override
-//    public CreatureAttribute getMobType() {
-//        return CreatureAttribute.ARTHROPOD;
-//    }
-//
-//    @Override
-//    public boolean canBeAffected(EffectInstance p_70687_1_) {
-//        if (p_70687_1_.getEffect() == Effects.POISON) {
-//            net.minecraftforge.event.entity.living.PotionEvent.PotionApplicableEvent event = new net.minecraftforge.event.entity.living.PotionEvent.PotionApplicableEvent(this, p_70687_1_);
-//            net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event);
-//            return event.getResult() == net.minecraftforge.eventbus.api.Event.Result.ALLOW;
-//        }
-//        return super.canBeAffected(p_70687_1_);
-//    }
-//
-//    public boolean isClimbing() {
-//        return (this.entityData.get(DATA_FLAGS_ID) & 1) != 0;
-//    }
-//
-//    public void setClimbing(boolean p_70839_1_) {
-//        byte b0 = this.entityData.get(DATA_FLAGS_ID);
-//        if (p_70839_1_) {
-//            b0 = (byte)(b0 | 1);
-//        } else {
-//            b0 = (byte)(b0 & -2);
-//        }
-//
-//        this.entityData.set(DATA_FLAGS_ID, b0);
-//    }
-//
-//    @Override
-//    protected float getStandingEyeHeight(Pose p_213348_1_, EntitySize p_213348_2_) {
-//        return 0.65F;
-//    }
-//
-//    static class AttackGoal extends MeleeAttackGoal {
-//        public AttackGoal(MirkwoodSpiderEntity p_i46676_1_) {
-//            super(p_i46676_1_, 1.0D, true);
-//        }
-//
-//        @Override
-//        public boolean canUse() {
-//            return super.canUse() && !this.mob.isVehicle();
-//        }
-//
-//        @Override
-//        public boolean canContinueToUse() {
-//            float f = this.mob.getBrightness();
-//            if (f >= 0.5F && this.mob.getRandom().nextInt(100) == 0) {
-//                this.mob.setTarget((LivingEntity)null);
-//                return false;
-//            } else {
-//                return super.canContinueToUse();
-//            }
-//        }
-//
-//        @Override
-//        protected double getAttackReachSqr(LivingEntity p_179512_1_) {
-//            return (double)(4.0F + p_179512_1_.getBbWidth());
-//        }
-//    }
-//
-//    public static class GroupData implements ILivingEntityData {
-//        public Effect effect;
-//
-//        public void setRandomEffect(Random p_111104_1_) {
-//            int i = p_111104_1_.nextInt(5);
-//            if (i <= 1) {
-//                this.effect = Effects.MOVEMENT_SPEED;
-//            } else if (i <= 2) {
-//                this.effect = Effects.DAMAGE_BOOST;
-//            } else if (i <= 3) {
-//                this.effect = Effects.REGENERATION;
-//            } else if (i <= 4) {
-//                this.effect = Effects.INVISIBILITY;
-//            }
-//
-//        }
-//    }
-//
-//    static class TargetGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
-//        public TargetGoal(MirkwoodSpiderEntity p_i45818_1_, Class<T> p_i45818_2_) {
-//            super(p_i45818_1_, p_i45818_2_, true);
-//        }
-//
-//        @Override
-//        public boolean canUse() {
-//            float f = this.mob.getBrightness();
-//            return f >= 0.5F ? false : super.canUse();
-//        }
-//    }
-//
-//    /**
-//     * Region for determining random skin
-//     */
-//    public ResourceLocation getMirkwoodSpiderTypeName() {
-//        return TEXTURE_BY_ID.getOrDefault(this.getMirkwoodSpiderType(), TEXTURE_BY_ID.get(1));
-//    }
-//
-//    public int getMirkwoodSpiderType() {
-//        return this.entityData.get(MIRKWOODSPIDER_TYPE);
-//    }
-//
-//    public void setMirkwoodSpiderType(int type) {
-//        if (type < 0 || type >= 5) {
-//            type = this.random.nextInt(4);
-//        }
-//
-//        this.entityData.set(MIRKWOODSPIDER_TYPE, type);
-//    }
-//
-//    @Nullable
-//    @Override
-//    public ILivingEntityData finalizeSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-//        int job = TTMRand.getRandomInteger(5, 1);
-//        this.setMirkwoodSpiderType(job);
-//        this.populateDefaultEquipmentSlots(difficultyIn);
-//        spawnDataIn = super.finalizeSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-//        if (worldIn.getRandom().nextInt(100) == 0) {
-//            SkeletonEntity skeletonentity = EntityType.SKELETON.create(this.level);
-//            skeletonentity.moveTo(this.getX(), this.getY(), this.getZ(), this.yRot, 0.0F);
-//            skeletonentity.finalizeSpawn(worldIn, difficultyIn, reason, (ILivingEntityData)null, (CompoundNBT)null);
-//            skeletonentity.startRiding(this);
-//        }
-//
-//        if (spawnDataIn == null) {
-//            spawnDataIn = new MirkwoodSpiderEntity.GroupData();
-//            if (worldIn.getDifficulty() == Difficulty.HARD && worldIn.getRandom().nextFloat() < 0.1F * difficultyIn.getSpecialMultiplier()) {
-//                ((MirkwoodSpiderEntity.GroupData)spawnDataIn).setRandomEffect(worldIn.getRandom());
-//            }
-//        }
-//
-//        if (spawnDataIn instanceof MirkwoodSpiderEntity.GroupData) {
-//            Effect effect = ((MirkwoodSpiderEntity.GroupData)spawnDataIn).effect;
-//            if (effect != null) {
-//                this.addEffect(new EffectInstance(effect, Integer.MAX_VALUE));
-//            }
-//        }
-//
-//        return spawnDataIn;
-//    }
-//
-//    @Override
-//    protected void defineSynchedData() {
-//        super.defineSynchedData();
-//        this.entityData.define(DATA_FLAGS_ID, (byte)0);
-//        this.entityData.define(MIRKWOODSPIDER_TYPE, 3);
-//    }
-//
-//    @Override
-//    public void addAdditionalSaveData(CompoundNBT compound) {
-//        super.addAdditionalSaveData(compound);
-//        compound.putInt("MirkwoodSpiderType", this.getMirkwoodSpiderType());
-//    }
-//
-//    @Override
-//    public void readAdditionalSaveData(CompoundNBT compound) {
-//        super.readAdditionalSaveData(compound);
-//        this.setMirkwoodSpiderType(compound.getInt("MirkwoodSpiderType"));
-//    }
-//}
+import com.greatorator.tolkienmobs.entity.MonsterEntity;
+import com.greatorator.tolkienmobs.entity.ai.goal.RangedWebAttackGoal;
+import com.greatorator.tolkienmobs.handler.interfaces.GoalSelectorAccessor;
+import com.greatorator.tolkienmobs.handler.interfaces.TrapsTarget;
+import com.greatorator.tolkienmobs.handler.interfaces.WebShooter;
+import com.greatorator.tolkienmobs.init.TolkienSounds;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.LeapAtTargetGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.monster.Skeleton;
+import net.minecraft.world.entity.monster.Spider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import software.bernie.geckolib3.core.AnimationState;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib3.util.GeckoLibUtil;
+
+import javax.annotation.Nullable;
+import java.util.List;
+
+@SuppressWarnings({ "unchecked", "rawtypes", "removal" })
+public class MirkwoodSpiderEntity extends MonsterEntity implements IAnimatable, WebShooter {
+    private final AnimationFactory factory = GeckoLibUtil.createFactory(this);
+    private static final EntityDataAccessor<Boolean> WEB_SHOOTING = SynchedEntityData.defineId(MirkwoodSpiderEntity.class, EntityDataSerializers.BOOLEAN);
+    private RangedWebAttackGoal<?> rangedWebAttackGoal;
+    private LeapAtTargetGoal leapAtTargetGoal;
+    private MeleeAttackGoal meleeAttackGoal;
+    public int targetTrappedCounter = 0;
+
+    public MirkwoodSpiderEntity(EntityType<? extends MonsterEntity> type, Level level) {
+        super(type, level);
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 0.53125F;
+    }
+
+    @Override
+    protected void registerGoals() {
+        super.registerGoals();
+        ((GoalSelectorAccessor) this.goalSelector)
+                .getAvailableGoals()
+                .stream()
+                .filter(pg -> pg.getPriority() == 3 && pg.getGoal() instanceof LeapAtTargetGoal)
+                .findFirst()
+                .ifPresent(pg -> {
+                    this.leapAtTargetGoal = (LeapAtTargetGoal) pg.getGoal();
+                });
+        this.goalSelector.addGoal(4, new MirkwoodSpiderEntity.MirkwoodSpiderEntityAttackGoal(this));
+        ((GoalSelectorAccessor) this.goalSelector)
+                .getAvailableGoals()
+                .stream()
+                .filter(pg -> pg.getPriority() == 4 && pg.getGoal() instanceof MeleeAttackGoal)
+                .findFirst()
+                .ifPresent(pg -> {
+                    this.meleeAttackGoal = (MeleeAttackGoal) pg.getGoal();
+                });
+        this.rangedWebAttackGoal = new RangedWebAttackGoal<>(this, 1.0D, 60, 20.0F);
+        this.targetSelector.addGoal(2, new MirkwoodSpiderEntity.MirkwoodSpiderEntityTargetGoal<>(this, Player.class));
+        this.targetSelector.addGoal(3, new MirkwoodSpiderEntity.MirkwoodSpiderEntityTargetGoal<>(this, IronGolem.class));
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Mob.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 26.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.3F)
+                .add(Attributes.ATTACK_DAMAGE, 3.0D)
+                .add(Attributes.ARMOR, 5.0D);
+    }
+
+    /** Animation region */
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("walk", true));
+            return PlayState.CONTINUE;
+        }else if (!event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+            return PlayState.CONTINUE;
+        }
+        return PlayState.CONTINUE;
+    }
+
+    private PlayState attackPredicate(AnimationEvent event) {
+        if (!this.isWebShooting() && event.getController().getAnimationState().equals(AnimationState.Stopped)){
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack", false));
+            this.swinging =false;
+        }else if (this.isWebShooting() && event.getController().getAnimationState().equals(AnimationState.Stopped)) {
+            event.getController().markNeedsReload();
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("attack_web", false));
+            this.entityData.set(WEB_SHOOTING, false);
+        }
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void registerControllers(AnimationData data) {
+        data.addAnimationController(new AnimationController(this, "controller",
+                0, this::predicate));
+        data.addAnimationController(new AnimationController(this, "attackController",
+                0, this::attackPredicate));
+    }
+
+    @Override
+    public AnimationFactory getFactory() {
+        return this.factory;
+    }
+
+    /** Goals */
+    static class MirkwoodSpiderEntityAttackGoal extends MeleeAttackGoal {
+        public MirkwoodSpiderEntityAttackGoal(MirkwoodSpiderEntity p_33822_) {
+            super(p_33822_, 1.0D, true);
+        }
+
+        public boolean canUse() {
+            return super.canUse() && !this.mob.isVehicle();
+        }
+
+        public boolean canContinueToUse() {
+            float f = this.mob.getBrightness();
+            if (f >= 0.5F && this.mob.getRandom().nextInt(100) == 0) {
+                this.mob.setTarget((LivingEntity)null);
+                return false;
+            } else {
+                return super.canContinueToUse();
+            }
+        }
+
+        protected double getAttackReachSqr(LivingEntity p_33825_) {
+            return (double)(4.0F + p_33825_.getBbWidth());
+        }
+    }
+
+    static class MirkwoodSpiderEntityTargetGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
+        public MirkwoodSpiderEntityTargetGoal(MirkwoodSpiderEntity p_33832_, Class<T> p_33833_) {
+            super(p_33832_, p_33833_, true);
+        }
+
+        public boolean canUse() {
+            float f = this.mob.getBrightness();
+            return f >= 0.5F ? false : super.canUse();
+        }
+    }
+
+    @Override
+    protected void customServerAiStep() {
+        super.customServerAiStep();
+        this.reassessAttackGoals();
+    }
+
+    private void reassessAttackGoals() {
+        LivingEntity target = this.getTarget();
+        if(this.meleeAttackGoal != null
+                && this.rangedWebAttackGoal != null
+                && target != null){
+            if(!this.isTargetTrapped()){
+                this.goalSelector.removeGoal(this.meleeAttackGoal);
+                if(this.leapAtTargetGoal != null){
+                    this.goalSelector.removeGoal(this.leapAtTargetGoal);
+                }
+                this.goalSelector.addGoal(4, (Goal) this.rangedWebAttackGoal);
+            } else{
+                this.goalSelector.removeGoal((Goal) this.rangedWebAttackGoal);
+                if(this.leapAtTargetGoal != null){
+                    this.goalSelector.addGoal(3, this.leapAtTargetGoal);
+                }
+                this.goalSelector.addGoal(4, this.meleeAttackGoal);
+            }
+        }
+    }
+
+    @Override
+    public boolean isTargetTrapped() {
+        return this.targetTrappedCounter > 0;
+    }
+
+    @Override
+    public void setWebShooting(boolean webShooting) {
+        this.playSound(TolkienSounds.spiderShoot.get(), this.getSoundVolume(), this.getVoicePitch());
+        this.entityData.set(WEB_SHOOTING, webShooting);
+    }
+
+    @Override
+    public boolean isWebShooting() {
+        return this.entityData.get(WEB_SHOOTING);
+    }
+
+    @Override
+    public void setTargetTrapped(boolean trapped, boolean notifyOthers) {
+        TargetingConditions spiderTargeting = TargetingConditions.forCombat().range(10.0D).ignoreInvisibilityTesting();
+
+        if (notifyOthers) {
+            List<Spider> spiders = this.level.getNearbyEntities(Spider.class, spiderTargeting, this, this.getBoundingBox().inflate(10.0D));
+
+            for(Spider spider : spiders) {
+                if (spider instanceof TrapsTarget && this.getTarget() != null && spider.getTarget() != null && spider.getTarget() == this.getTarget()) {
+                    ((TrapsTarget)spider).setTargetTrapped(trapped, false);
+                }
+            }
+        }
+        if (trapped) {
+            this.targetTrappedCounter = 20;
+        } else {
+            this.targetTrappedCounter = 0;
+        }
+    }
+
+
+    /** Miscellaneous */
+    @Nullable
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor accessor, DifficultyInstance instance, MobSpawnType type, @Nullable SpawnGroupData data, @Nullable CompoundTag tag) {
+        data = super.finalizeSpawn(accessor, instance, type, data, tag);
+
+        if (accessor.getRandom().nextInt(100) == 0) {
+            Skeleton skeleton = EntityType.SKELETON.create(this.level);
+            skeleton.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
+            skeleton.finalizeSpawn(accessor, instance, type, (SpawnGroupData)null, (CompoundTag)null);
+            skeleton.startRiding(this);
+        }
+
+        return data;
+    }
+
+    @Override
+    public void baseTick() {
+        super.baseTick();
+        if (this.targetTrappedCounter > 0) {
+            this.targetTrappedCounter --;
+        }
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(WEB_SHOOTING, false);
+    }
+
+    @Override
+    public ItemStack getHeldItem() {
+        return super.getHeldItem();
+    }
+
+    @Override
+    public void setHeldItem(ItemStack heldItem) {
+    }
+}

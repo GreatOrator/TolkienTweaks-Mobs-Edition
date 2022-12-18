@@ -7,8 +7,10 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -25,9 +27,6 @@ import java.util.Random;
 
 @SuppressWarnings({"removal" })
 public class CrebainEntity extends BirdEntity {
-    public CrebainEntity(EntityType<? extends BirdEntity> entityType, Level world) {
-        super(entityType, world);
-    }
     private final MeleeAttackGoal meleeGoal = new MeleeAttackGoal(this, 1.2D, false) {
         public void stop() {
             super.stop();
@@ -40,6 +39,16 @@ public class CrebainEntity extends BirdEntity {
         }
     };
     private boolean scheduleWeaponGoalUpdate = true;
+
+    public CrebainEntity(EntityType<? extends BirdEntity> entityType, Level world) {
+        super(entityType, world);
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
+        return 0.1875F;
+    }
+
 
     @Override
     public boolean isOrderedToSit() {

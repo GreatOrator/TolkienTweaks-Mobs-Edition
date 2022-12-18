@@ -805,22 +805,22 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienEntities.EGG_TTMELEMENTALGOLEM.get(), "Elemental Golem Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_GOBLIN.get(), "Goblin");
         add(TolkienEntities.EGG_TTMGOBLIN.get(), "Goblin Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_SWAMPHAG.get(), "Swamp Hag");
-//        add(TolkienEntities.EGG_TTMSWAMPHAG.get(), "Swamp Hag Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_MIRKWOODSPIDER.get(), "Mirkwood Spider");
-//        add(TolkienEntities.EGG_TTMMIRKWOODSPIDER.get(), "Mirkwood Spider Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_TROLL.get(), "Cave Troll");
-//        add(TolkienEntities.EGG_TTMTROLL.get(), "Cave Troll Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_WARG.get(), "Warg");
-//        add(TolkienEntities.EGG_TTMWARG.get(), "Warg Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_MORDORORC.get(), "Mordor Orc");
-//        add(TolkienEntities.EGG_TTMMORDORORC.get(), "Mordor Orc Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_HURON.get(), "Huron");
-//        add(TolkienEntities.EGG_TTMHURON.get(), "Huron Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_URUKHAI.get(), "Uruk Hai");
-//        add(TolkienEntities.EGG_TTMURUKHAI.get(), "Uruk Hai Spawn Egg");
-//        add(TolkienEntities.ENTITY_TTM_MINOTAUR.get(), "Minotaur");
-//        add(TolkienEntities.EGG_TTMMINOTAUR.get(), "Minotaur Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_HURON.get(), "Huron");
+        add(TolkienEntities.EGG_TTMHURON.get(), "Huron Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_MINOTAUR.get(), "Minotaur");
+        add(TolkienEntities.EGG_TTMMINOTAUR.get(), "Minotaur Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_MORDORORC.get(), "Mordor Orc");
+        add(TolkienEntities.EGG_TTMMORDORORC.get(), "Mordor Orc Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_TROLL.get(), "Cave Troll");
+        add(TolkienEntities.EGG_TTMTROLL.get(), "Cave Troll Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_SWAMPHAG.get(), "Swamp Hag");
+        add(TolkienEntities.EGG_TTMSWAMPHAG.get(), "Swamp Hag Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_WARG.get(), "Warg");
+        add(TolkienEntities.EGG_TTMWARG.get(), "Warg Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_URUKHAI.get(), "Uruk Hai");
+        add(TolkienEntities.EGG_TTMURUKHAI.get(), "Uruk Hai Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_MIRKWOODSPIDER.get(), "Mirkwood Spider");
+        add(TolkienEntities.EGG_TTMMIRKWOODSPIDER.get(), "Mirkwood Spider Spawn Egg");
 
         // Boss
         add(TolkienEntities.ENTITY_TTM_WATCHER.get(), "Watcher of the Water");

@@ -14,6 +14,7 @@ import software.bernie.geckolib3.model.provider.data.EntityModelData;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
+@SuppressWarnings({ "unchecked", "removal" })
 public class DesertDwellerModel extends AnimatedGeoModel<DesertDwellerEntity> {
     @Override
     public ResourceLocation getModelLocation(DesertDwellerEntity object) {

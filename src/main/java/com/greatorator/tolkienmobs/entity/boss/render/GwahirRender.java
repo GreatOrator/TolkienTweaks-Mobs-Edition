@@ -30,7 +30,7 @@ public class GwahirRender extends GeoEntityRenderer<GwahirEntity> {
                                     MultiBufferSource renderTypeBuffer, VertexConsumer vertexBuilder, int packedLightIn,
                                     ResourceLocation textureLocation) {
 
-        stack.scale(1.2F, 1.2F, 1.2F);
+        stack.scale(1.6F, 1.6F, 1.6F);
 
         return super.getRenderType(animatable, partialTicks, stack, renderTypeBuffer, vertexBuilder, packedLightIn, textureLocation);
     }

@@ -47,9 +47,7 @@ public class TolkienMobs {
 	    j.
 	    k.
     2. Categories
-	    a. Entities (Implementation)
-	    	1. Handful of monster entities remaining
-        b. World Generation (Implementation)
+        a. World Generation (Implementation)
             a. Add Fell Beast to dark tower structure and Morgul Crystal
             b. Possible village generation using house structures by race type
             c. Root systems on trees (mallorn, fangornoak and mirkwood)
@@ -73,8 +71,11 @@ public class TolkienMobs {
         q. Remade Desert Dweller as a wandering trader
         r. Animations added to Arda Staff
         s. New Watcher Model
-        t. New Shelob Model
-        u. New Fell Beast model and improved attack
+        t. New Shelob Model and AI
+        u. New Fell Beast model and AI
+        v. Updated Warg Model
+        w. New Swamp hag model
+        x. Updated Mirkwood Spider Model and AI
     */
 
     public TolkienMobs() {

@@ -44,7 +44,7 @@ public class DeepClawEntity extends MonsterEntity {
 
     @Override
     protected float getStandingEyeHeight(@Nonnull Pose pose, @Nonnull EntityDimensions dimensions) {
-        return 0.5F;
+        return 0.3125F;
     }
 
     /** Animation region */
