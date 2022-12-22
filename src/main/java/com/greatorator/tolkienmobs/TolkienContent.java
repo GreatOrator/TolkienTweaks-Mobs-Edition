@@ -41,8 +41,9 @@ public class TolkienContent {
         TreeFeatureConfig.TREE_DECORATORS.register(modBus);
         TreeFeatureConfig.TRUNK_PLACERS.register(modBus);
         TreeFeatureConfig.PLACEMENT_MODIFIERS.register(modBus);
+        TolkienFeatures.FEATURES.register(modBus);
+        TolkienStructures.STRUCTURES.register(modBus);
 //        TolkienBiomes.BIOMES.register(modBus);
-//        TolkienStructures.STRUCTURES.register(modBus);
         modBus.addGenericListener(MenuType.class, TolkienContainers::registerContainers);
     }
 }

@@ -1,14 +1,25 @@
 package com.greatorator.tolkienmobs.world.gen.feature.config;
 
+import com.greatorator.tolkienmobs.utils.BresenhamIteratorUtility;
+import com.greatorator.tolkienmobs.utils.FeatureLogicUtility;
+import com.greatorator.tolkienmobs.utils.FeaturePlacerUtility;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+import java.util.function.BiConsumer;
 
-public class RootConfig {
+public class RootConfig extends TreeDecorator {
     private static final SimpleStateProvider EMPTY = BlockStateProvider.simple(Blocks.AIR.defaultBlockState());
     public static final Codec<RootConfig> CODEC = RecordCodecBuilder.create(
             instance -> instance.group(
@@ -57,5 +68,34 @@ public class RootConfig {
         this.rootBlock = rootBlock;
         this.hasSurfaceRoots = true;
         this.surfaceBlock = surfaceBlock;
+    }
+
+    @Override
+    protected TreeDecoratorType<RootConfig> type() {
+        return TreeFeatureConfig.TREE_ROOTS.get();
+    }
+
+    @Override
+    public void place(LevelSimulatedReader worldReader, BiConsumer<BlockPos, BlockState> worldPlacer, Random random, List<BlockPos> trunkBlocks, List<BlockPos> leafBlocks) {
+        if (trunkBlocks.isEmpty())
+            return;
+
+        int numBranches = this.strands + random.nextInt(this.addExtraStrands + 1);
+        float offset = random.nextFloat();
+        BlockPos startPos = trunkBlocks.get(0);
+
+        if (this.hasSurfaceRoots) {
+            for (int i = 0; i < numBranches; i++) {
+                BlockPos dest = FeatureLogicUtility.translate(startPos.below(i + 2), this.length, 0.3 * i + (double) offset, 0.8);
+
+                FeaturePlacerUtility.traceExposedRoot(worldReader, worldPlacer, random, this.surfaceBlock, this.rootBlock, new BresenhamIteratorUtility(startPos.below(), dest));
+            }
+        } else {
+            for (int i = 0; i < numBranches; i++) {
+                BlockPos dest = FeatureLogicUtility.translate(startPos.below(i + 2), this.length, 0.3 * i + (double) offset, 0.8);
+
+                FeaturePlacerUtility.traceRoot(worldReader, worldPlacer, random, this.rootBlock, new BresenhamIteratorUtility(startPos.below(), dest));
+            }
+        }
     }
 }

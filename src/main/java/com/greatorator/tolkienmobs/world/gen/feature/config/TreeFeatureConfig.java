@@ -2,8 +2,6 @@ package com.greatorator.tolkienmobs.world.gen.feature.config;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.greatorator.tolkienmobs.world.gen.TolkienFeatures;
-import com.greatorator.tolkienmobs.world.gen.feature.MiscFeature;
 import com.greatorator.tolkienmobs.world.gen.placers.BranchingLargeTrunkPlacer;
 import com.greatorator.tolkienmobs.world.gen.placers.BranchingTrunkPlacer;
 import com.greatorator.tolkienmobs.world.gen.placers.SpheroidFoliagePlacer;
@@ -12,22 +10,15 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
-import net.minecraft.world.level.levelgen.feature.featuresize.ThreeLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
-import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.treedecorators.LeaveVineDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
-import net.minecraft.world.level.levelgen.feature.treedecorators.TrunkVineDecorator;
-import net.minecraft.world.level.levelgen.feature.trunkplacers.*;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.registries.DeferredRegister;
@@ -36,11 +27,9 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.OptionalInt;
 import java.util.Random;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
-import static com.greatorator.tolkienmobs.world.gen.feature.MiscFeature.*;
 
 public class TreeFeatureConfig implements FeatureConfiguration {
     public static final Codec<TreeFeatureConfig> codecTFTreeConfig = RecordCodecBuilder.create(instance -> instance.group(
@@ -92,13 +81,11 @@ public class TreeFeatureConfig implements FeatureConfiguration {
     public static final DeferredRegister<PlacementModifierType<?>> PLACEMENT_MODIFIERS = DeferredRegister.create(Registry.PLACEMENT_MODIFIER_REGISTRY, MODID);
     public static final DeferredRegister<TrunkPlacerType<?>> TRUNK_PLACERS = DeferredRegister.create(Registry.TRUNK_PLACER_TYPE_REGISTRY, MODID);
 
-    private final static int LEAF_SHAG_FACTOR = 24;
-    private static final int canopyDistancing = 5;
-
     public static final RegistryObject<FoliagePlacerType<SpheroidFoliagePlacer>> FOLIAGE_SPHEROID = FOLIAGE_PLACER_REGISTER.register("spheroid_foliage_placer", () -> new FoliagePlacerType<>(SpheroidFoliagePlacer.CODEC));
     public static final RegistryObject<TrunkPlacerType<BranchingTrunkPlacer>> TRUNK_BRANCHING = TRUNK_PLACERS.register("branching_trunk_placer", () -> new TrunkPlacerType<>(BranchingTrunkPlacer.CODEC));
     public static final RegistryObject<TrunkPlacerType<BranchingLargeTrunkPlacer>> TRUNK_BRANCHING_LARGE = TRUNK_PLACERS.register("branching_large_trunk_placer", () -> new TrunkPlacerType<>(BranchingLargeTrunkPlacer.CODEC));
     public static final RegistryObject<TreeDecoratorType<TrunkConfig>> TRUNK_DECORATOR = TREE_DECORATORS.register("trunk_decorator", () -> new TreeDecoratorType<>(TrunkConfig.CODEC));
+    public static final RegistryObject<TreeDecoratorType<RootConfig>> TREE_ROOTS = TREE_DECORATORS.register("tree_roots", () -> new TreeDecoratorType<>(RootConfig.CODEC));
 
     public void forcePlacement() {
         this.forcePlacement = true;
@@ -162,108 +149,6 @@ public class TreeFeatureConfig implements FeatureConfiguration {
         public TreeFeatureConfig build() {
             return new TreeFeatureConfig(trunkProvider, leavesProvider, branchProvider, rootsProvider, baseHeight, chanceFirstFive, chanceSecondFive, hasLeaves, checkWater, decorators, sapling);
         }
-    }
-
-    public static final class TreeConfigurations {
-        public static final TreeConfiguration MIRKWOOD = new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(TolkienFeatures.States.MIRKWOOD_LOG),
-                new ForkingTrunkPlacer(9, 3, 3),
-                BlockStateProvider.simple(TolkienFeatures.States.MIRKWOOD_LEAVES),
-                new SpheroidFoliagePlacer(4.5f, 2.25f, ConstantInt.of(0), 1, 0, 0.45f, (int) (LEAF_SHAG_FACTOR * 1.5f)),
-                new TwoLayersFeatureSize(1, 0, 1))
-                .ignoreVines()
-                .build();
-
-        public static final TreeConfiguration MALLORN = new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(TolkienFeatures.States.MALLORN_LOG),
-                new BranchingLargeTrunkPlacer(6, 3, 3, 5, new BranchesConfig(4, 0, 10, 4, 0.23, 0.23), MALLORN_ROOTS, false),
-                BlockStateProvider.simple(TolkienFeatures.States.MALLORN_LEAVES),
-                new FancyFoliagePlacer(ConstantInt.of(4), ConstantInt.of(4), 4),
-                new ThreeLayersFeatureSize(5, 1, 0, 1, 2, OptionalInt.empty()))
-                .decorators(ImmutableList.of(MiscFeature.LIGHTNINGBUG))
-                .ignoreVines()
-                .build();
-
-        public static final TreeConfiguration FANGORNOAK = new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(TolkienFeatures.States.FANGORNOAK_LOG),
-                new BranchingLargeTrunkPlacer(6, 3, 3, 5, new BranchesConfig(4, 0, 10, 4, 0.23, 0.23), FANGORNOAK_ROOTS, false),
-                BlockStateProvider.simple(TolkienFeatures.States.FANGORNOAK_LEAVES),
-                new FancyFoliagePlacer(ConstantInt.of(4), ConstantInt.of(4), 4),
-                new TwoLayersFeatureSize(1, 0, 1))
-                .decorators(ImmutableList.of(TrunkVineDecorator.INSTANCE, LeaveVineDecorator.INSTANCE))
-                .build();
-
-        public static final TreeConfiguration OLDFORESTOAK = new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(TolkienFeatures.States.DARK_OAK_LOGS),
-                new BranchingLargeTrunkPlacer(6, 3, 3, 5, new BranchesConfig(4, 0, 10, 4, 0.23, 0.23), OLDFOREST_ROOTS, false),
-                BlockStateProvider.simple(TolkienFeatures.States.DARK_OAK_LEAVES),
-                new FancyFoliagePlacer(ConstantInt.of(4), ConstantInt.of(4), 4),
-                new TwoLayersFeatureSize(1, 0, 1))
-                .decorators(ImmutableList.of(LeaveVineDecorator.INSTANCE))
-                .build();
-
-        public static final TreeConfiguration CULUMALDA = new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(TolkienFeatures.States.CULUMALDA_LOG),
-                new StraightTrunkPlacer(5, 2, 0),
-                BlockStateProvider.simple(TolkienFeatures.States.CULUMALDA_LEAVES),
-                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
-                new TwoLayersFeatureSize(1, 0, 1))
-                .ignoreVines()
-                .build();
-
-        public static final TreeConfiguration LEBETHRON = new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(TolkienFeatures.States.LEBETHRON_LOG),
-                new FancyTrunkPlacer(5, 11, 0),
-                BlockStateProvider.simple(TolkienFeatures.States.LEBETHRON_LEAVES),
-                new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4),
-                new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)))
-                .ignoreVines()
-                .build();
-
-        public static final TreeConfiguration CULUMALDA_FIRIEN = new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(TolkienFeatures.States.CULUMALDA_LOG),
-                new BranchingLargeTrunkPlacer(6, 3, 3, 5, new BranchesConfig(4, 0, 10, 4, 0.23, 0.23), CULUMALDA_ROOTS, false),
-                BlockStateProvider.simple(TolkienFeatures.States.CULUMALDA_LEAVES),
-                new FancyFoliagePlacer(ConstantInt.of(4), ConstantInt.of(4), 4),
-                new ThreeLayersFeatureSize(5, 1, 0, 1, 2, OptionalInt.empty()))
-                .ignoreVines()
-                .build();
-
-        public static final TreeConfiguration LEBETHRON_FIRIEN = new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(TolkienFeatures.States.LEBETHRON_LOG),
-                new BranchingLargeTrunkPlacer(6, 3, 3, 5, new BranchesConfig(4, 0, 10, 4, 0.23, 0.23), LEBETHRON_ROOTS, false),
-                BlockStateProvider.simple(TolkienFeatures.States.LEBETHRON_LEAVES),
-                new FancyFoliagePlacer(ConstantInt.of(4), ConstantInt.of(4), 4),
-                new ThreeLayersFeatureSize(5, 1, 0, 1, 2, OptionalInt.empty()))
-                .ignoreVines()
-                .build();
-
-        public static final TreeConfiguration DEADTREE = new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(TolkienFeatures.States.DEADWOOD_LOG),
-                new FancyTrunkPlacer(3, 11, 0),
-                BlockStateProvider.simple(TolkienFeatures.States.AIR),
-                new FancyFoliagePlacer(ConstantInt.of(2), ConstantInt.of(4), 4),
-                new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)))
-                .ignoreVines()
-                .build();
-
-        public static final TreeConfiguration MUSHROOM_BLOOM_DECAY = new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(TolkienFeatures.States.MUSHROOM_STEM),
-                new BranchingTrunkPlacer(3, 5, 4, 6, new BranchesConfig(3, 1, 9, 1, 0.3, 0.2), true),
-                BlockStateProvider.simple(TolkienFeatures.States.CAP_BLOOM_DECAY),
-                new SpheroidFoliagePlacer(4.25f, 0f, ConstantInt.of(1), 1, 0, 0f, 0),
-                new TwoLayersFeatureSize(11, 0, canopyDistancing))
-                .ignoreVines()
-                .build();
-
-        public static final TreeConfiguration MUSHROOM_DECAY_BLOOM = new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(TolkienFeatures.States.MUSHROOM_STEM),
-                new BranchingTrunkPlacer(4, 5, 4, 6, new BranchesConfig(3, 1, 9, 1, 0.3, 0.2), true),
-                BlockStateProvider.simple(TolkienFeatures.States.CAP_DECAY_BLOOM),
-                new SpheroidFoliagePlacer(4.25f, 1.75f, ConstantInt.of(1), 0, 0, -0.45f, 0),
-                new TwoLayersFeatureSize(11, 0, canopyDistancing))
-                .ignoreVines()
-                .build();
     }
 
     private static <P extends FoliagePlacer> FoliagePlacerType<P> registerFoliage(ResourceLocation name, Codec<P> codec) {

@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "tolkienmobs:ttmhouse_elven",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 1234567890,
+    "spacing": 10,
+    "separation": 5,
+    "type": "minecraft:random_spread"
+  }
+}

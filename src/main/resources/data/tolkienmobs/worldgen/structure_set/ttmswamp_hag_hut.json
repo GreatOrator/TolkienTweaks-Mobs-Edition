@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "tolkienmobs:ttmswamp_hag_hut",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 481284127,
+    "spacing": 20,
+    "separation": 10,
+    "type": "minecraft:random_spread"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "tolkienmobs:ttmwargpit",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 188808256,
+    "spacing": 10,
+    "separation": 5,
+    "type": "minecraft:random_spread"
+  }
+}

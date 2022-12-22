@@ -39,7 +39,7 @@ public class TolkienMobs {
         b. EntityLootGenerator (Attempting to process loot for other mods in workspace)
 	    c. BackPack fluid handler capability crash
 	    d. Spawner not rendering mob in list
-		r. Trinket Names not translating properly
+		e. Trinket Names not translating properly
 	    f. FirePlace not processing recipes
 	    g. Trinket Table not processing recipes
 	    h.
@@ -51,31 +51,7 @@ public class TolkienMobs {
             b. Possible village generation using house structures by race type
             c. Root systems on trees (mallorn, fangornoak and mirkwood)
     3. Stuff Added
-        a. Lightning Bug
-        b. Lanterns
-        c. Coin Pouch and Key Ring will now auto collect items if activated
-        d. new potion base for this mod's potions
-        e. Deepslate versions of ore
-        f. Barrels for all wood types
-        g. Added blocks to mineable with tools
-        h. Added Mithril and Morgul Iron walls
-        i. Ammolite Panes
-        j. Refactoring of tags to fix some block weirdness
-        k. Trinket Table (Block only so far)
-        l. Random trinkets for loot drops/chests
-        m. Proper molten fluid implementation
-        n. Arda Dimension added along with portal
-        o. Arda Staff for portal activation
-        p. Hobbit Ring for speeding up crop growth
-        q. Remade Desert Dweller as a wandering trader
-        r. Animations added to Arda Staff
-        s. New Watcher Model
-        t. New Shelob Model and AI
-        u. New Fell Beast model and AI
-        v. Updated Warg Model
-        w. New Swamp hag model
-        x. Updated Mirkwood Spider Model and AI
-        y. Removed tornado effect in lieu of actual attack
+        a. 
     */
 
     public TolkienMobs() {

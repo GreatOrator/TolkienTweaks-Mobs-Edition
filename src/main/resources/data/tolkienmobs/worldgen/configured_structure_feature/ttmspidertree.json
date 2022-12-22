@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:village",
+
+  "config": {
+    "start_pool": "tolkienmobs:ttmspidertree",
+    "size": 2
+  },
+  "biomes": "#tolkienmobs:has_structure/ttmspidertree_biomes",
+  "adapt_noise": true,
+  "spawn_overrides": {
+    "monster": {
+      "bounding_box": "piece",
+      "spawns": [
+        {
+          "type": "tolkienmobs:entityttmmirkwoodspider",
+          "weight": 1,
+          "minCount": 1,
+          "maxCount": 6
+        }
+      ]
+    }
+  }
+}

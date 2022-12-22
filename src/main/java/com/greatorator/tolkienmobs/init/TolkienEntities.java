@@ -325,6 +325,7 @@ public class TolkienEntities {
             "entityttmgollum",
             () -> EntityType.Builder.of(GollumEntity::new, MobCategory.CREATURE)
                     .sized(0.625F, 1.5625F)
+                    .fireImmune()
                     .build(new ResourceLocation(MODID, "entityttmgollum").toString())
     );
     public static final RegistryObject<EntityType<ShadowfaxEntity>> ENTITY_TTM_SHADOWFAX = ENTITY.register(

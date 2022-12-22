@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "tolkienmobs:ttmhouse_hobbit",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 385132341,
+    "spacing": 10,
+    "separation": 5,
+    "type": "minecraft:random_spread"
+  }
+}

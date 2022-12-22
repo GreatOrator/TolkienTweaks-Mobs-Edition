@@ -31,6 +31,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -53,11 +54,17 @@ public class FrogEntity extends AmbientEntity implements IAnimatable {
 
     public FrogEntity(EntityType<? extends AmbientEntity> type, Level level) {
         super(type, level);
+        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
     }
 
     @Override
     protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
         return 0.24375F;
+    }
+
+    @Override
+    public boolean canBreatheUnderwater() {
+        return true;
     }
 
     @Override

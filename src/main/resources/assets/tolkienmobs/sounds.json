@@ -200,8 +200,8 @@
     "category": "neutral",
     "sounds":
     [
-      "tolkienmobs:entity/ammo/web_impact1",
-      "tolkienmobs:entity/ammo/web_impact2"
+      "tolkienmobs:mob/ammo/web_impact1",
+      "tolkienmobs:mob/ammo/web_impact2"
     ]
   },
   "entity.boulder.shoot":
@@ -209,7 +209,7 @@
     "category": "neutral",
     "sounds":
     [
-      "tolkienmobs:entity/ammo/ammo_boulder_shoot"
+      "tolkienmobs:mob/ammo/ammo_boulder_shoot"
     ]
   },
   "mob.dwarf.idle":

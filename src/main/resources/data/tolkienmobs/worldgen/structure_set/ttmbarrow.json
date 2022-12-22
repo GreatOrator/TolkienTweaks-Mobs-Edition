@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "tolkienmobs:ttmbarrow",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 987654321,
+    "spacing": 10,
+    "separation": 5,
+    "type": "minecraft:random_spread"
+  }
+}

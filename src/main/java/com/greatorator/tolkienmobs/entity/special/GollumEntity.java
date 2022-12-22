@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -47,11 +48,17 @@ public class GollumEntity extends MonsterEntity implements IAnimatable {
 
     public GollumEntity(EntityType<? extends Monster> type, Level level) {
         super(type, level);
+        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
     }
 
     @Override
     protected float getStandingEyeHeight(Pose poseIn, EntityDimensions sizeIn) {
         return 1.3125F;
+    }
+
+    @Override
+    public boolean canBreatheUnderwater() {
+        return true;
     }
 
     @Override

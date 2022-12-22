@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "tolkienmobs:ttmdark_tower",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 211506422,
+    "spacing": 40,
+    "separation": 35,
+    "type": "minecraft:random_spread"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "tolkienmobs:ttmhouse_human",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 264205014,
+    "spacing": 10,
+    "separation": 5,
+    "type": "minecraft:random_spread"
+  }
+}

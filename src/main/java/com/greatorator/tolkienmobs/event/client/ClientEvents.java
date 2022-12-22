@@ -8,12 +8,15 @@ import com.greatorator.tolkienmobs.init.TolkienKeys;
 import com.greatorator.tolkienmobs.init.TolkienPotions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -260,12 +263,10 @@ public class ClientEvents {
         return Minecraft.getInstance();
     }
 
-
     @SubscribeEvent
     public static void onKeyPress(InputEvent.KeyInputEvent event) {
-        if (TolkienKeys.KEY_OPEN_BACKPACK.isDown()) {
-            Minecraft mc = Minecraft.getInstance();
-            System.out.println("EXAMPLE KEY PRESSED");
+        if (TolkienKeys.KEY_BACKPACK.consumeClick()) {
+            getClient().player.sendMessage(new TranslatableComponent("key.tolkienmobs.backpack_key").withStyle(ChatFormatting.BLUE), Util.NIL_UUID);
         }
     }
 }

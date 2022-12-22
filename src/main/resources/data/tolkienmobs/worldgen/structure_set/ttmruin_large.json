@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "tolkienmobs:ttmruin_large",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 249904528,
+    "spacing": 10,
+    "separation": 5,
+    "type": "minecraft:random_spread"
+  }
+}

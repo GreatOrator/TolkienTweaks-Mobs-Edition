@@ -2,24 +2,22 @@ package com.greatorator.tolkienmobs.init;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ClientRegistry;
+import net.minecraftforge.client.settings.KeyConflictContext;
+import org.lwjgl.glfw.GLFW;
 
-import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
-
+@OnlyIn(Dist.CLIENT)
 public final class TolkienKeys {
     public static final String KEY_CATEGORY = "key.category.tolkienmobs";
-    public static KeyMapping KEY_OPEN_BACKPACK;
+    public static final String KEY_OPEN_BACKPACK = "key.tolkienmobs.backpack_key";
 
-    private TolkienKeys() {
-    }
+    public static final KeyMapping KEY_BACKPACK = new KeyMapping(KEY_OPEN_BACKPACK, KeyConflictContext.IN_GAME,
+            InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_B, KEY_CATEGORY);
+
 
     public static void init() {
-        KEY_OPEN_BACKPACK = registerKey("backpack_key", KEY_CATEGORY, InputConstants.KEY_B);
-    }
-
-    private static KeyMapping registerKey(String name, String category, int keycode) {
-        final var key = new KeyMapping("key." + MODID + "." + name, keycode, category);
-        ClientRegistry.registerKeyBinding(key);
-        return key;
+        ClientRegistry.registerKeyBinding(TolkienKeys.KEY_BACKPACK);
     }
 }

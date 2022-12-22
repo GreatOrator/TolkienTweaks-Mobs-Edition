@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:village",
+
+  "config": {
+    "start_pool": "tolkienmobs:ttmhouse_hobbit",
+    "size": 2
+  },
+  "biomes": "#tolkienmobs:has_structure/ttmhouse_hobbit_biomes",
+  "adapt_noise": true,
+  "spawn_overrides": {
+    "creature": {
+      "bounding_box": "piece",
+      "spawns": [
+        {
+          "type": "tolkienmobs:entityttmhobbit",
+          "weight": 1,
+          "minCount": 1,
+          "maxCount": 2
+        }
+      ]
+    }
+  }
+}

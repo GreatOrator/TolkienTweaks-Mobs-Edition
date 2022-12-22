@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "tolkienmobs:ttmminotaurmaze",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "salt": 138448349,
+    "spacing": 40,
+    "separation": 35,
+    "type": "minecraft:random_spread"
+  }
+}
