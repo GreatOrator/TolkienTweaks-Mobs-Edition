@@ -109,23 +109,18 @@ public class BackpackTile extends TileBCore implements MenuProvider, IInteractTi
         }
 
         if (size != sizeUpgrade.get()) {
-            LOGGER.info("sizeUpgrade Changed? " + size);
             sizeUpgrade.set(size);
         }
         if (craft != craftUpgrade.get()) {
-            LOGGER.info("craftUpgrade Changed? " + craft);
             craftUpgrade.set(craft);
         }
         if (tank != tankUpgrade.get()) {
-            LOGGER.info("tankUpgrade Changed? " + tank);
             tankUpgrade.set(tank);
         }
         if (bed != bedUpgrade.get()) {
-            LOGGER.info("bedUpgrade Changed? " + bed);
             bedUpgrade.set(bed);
         }
         if (fire != fireUpgrade.get()) {
-            LOGGER.info("fireUpgrade Changed? " + fire);
             fireUpgrade.set(fire);
         }
     }

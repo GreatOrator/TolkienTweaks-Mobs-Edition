@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.entity.item;
 
+import com.greatorator.tolkienmobs.entity.boss.FellBeastEntity;
 import com.greatorator.tolkienmobs.init.TolkienEntities;
-import com.greatorator.tolkienmobs.world.server.TolkienServerLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
@@ -9,11 +9,13 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
@@ -27,15 +29,15 @@ public class MorgulCrystalEntity extends Entity {
    private static final EntityDataAccessor<Boolean> DATA_SHOW_BOTTOM = SynchedEntityData.defineId(MorgulCrystalEntity.class, EntityDataSerializers.BOOLEAN);
    public int time;
 
-   public MorgulCrystalEntity(EntityType<? extends MorgulCrystalEntity> p_i50231_1_, Level p_i50231_2_) {
-      super(p_i50231_1_, p_i50231_2_);
+   public MorgulCrystalEntity(EntityType<? extends MorgulCrystalEntity> type, Level level) {
+      super(type, level);
       this.blocksBuilding = true;
       this.time = this.random.nextInt(100000);
    }
 
-   public MorgulCrystalEntity(Level p_i1699_1_, double p_i1699_2_, double p_i1699_4_, double p_i1699_6_) {
-      this(TolkienEntities.MORGUL_CRYSTAL.get(), p_i1699_1_);
-      this.setPos(p_i1699_2_, p_i1699_4_, p_i1699_6_);
+   public MorgulCrystalEntity(Level level, double x, double y, double z) {
+      this(TolkienEntities.MORGUL_CRYSTAL.get(), level);
+      this.setPos(x, y, z);
    }
 
    @Override
@@ -52,32 +54,31 @@ public class MorgulCrystalEntity extends Entity {
    @Override
    public void tick() {
       ++this.time;
-      if (this.level instanceof TolkienServerLevel) {
+      if (this.level instanceof ServerLevel) {
          BlockPos blockpos = this.blockPosition();
-//         if (((TolkienServerLevel)this.level).fellbeastFight() != null && this.level.getBlockState(blockpos).isAir()) {
-//            this.level.setBlockAndUpdate(blockpos, BaseFireBlock.getState(this.level, blockpos));
-//         }
+         if (this.level.getBlockState(blockpos).isAir()) {
+            this.level.setBlockAndUpdate(blockpos, BaseFireBlock.getState(this.level, blockpos));
+         }
       }
-
    }
 
    @Override
-   protected void addAdditionalSaveData(CompoundTag p_213281_1_) {
+   protected void addAdditionalSaveData(CompoundTag tag) {
       if (this.getBeamTarget() != null) {
-         p_213281_1_.put("BeamTarget", NbtUtils.writeBlockPos(this.getBeamTarget()));
+         tag.put("BeamTarget", NbtUtils.writeBlockPos(this.getBeamTarget()));
       }
 
-      p_213281_1_.putBoolean("ShowBottom", this.showsBottom());
+      tag.putBoolean("ShowBottom", this.showsBottom());
    }
 
    @Override
-   protected void readAdditionalSaveData(CompoundTag p_70037_1_) {
-      if (p_70037_1_.contains("BeamTarget", 10)) {
-         this.setBeamTarget(NbtUtils.readBlockPos(p_70037_1_.getCompound("BeamTarget")));
+   protected void readAdditionalSaveData(CompoundTag tag) {
+      if (tag.contains("BeamTarget", 10)) {
+         this.setBeamTarget(NbtUtils.readBlockPos(tag.getCompound("BeamTarget")));
       }
 
-      if (p_70037_1_.contains("ShowBottom", 1)) {
-         this.setShowBottom(p_70037_1_.getBoolean("ShowBottom"));
+      if (tag.contains("ShowBottom", 1)) {
+         this.setShowBottom(tag.getBoolean("ShowBottom"));
       }
 
    }
@@ -88,43 +89,40 @@ public class MorgulCrystalEntity extends Entity {
    }
 
    @Override
-   public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
-      if (this.isInvulnerableTo(p_70097_1_)) {
+   public boolean hurt(DamageSource source, float amount) {
+      if (this.isInvulnerableTo(source)) {
          return false;
-//      } else if (p_70097_1_.getEntity() instanceof FellBeastEntity) {
-//         return false;
+      } else if (source.getEntity() instanceof FellBeastEntity) {
+         return false;
       } else {
          if (!this.isRemoved() && !this.level.isClientSide) {
             this.remove(Entity.RemovalReason.KILLED);
-            if (!p_70097_1_.isExplosion()) {
+            if (!source.isExplosion()) {
                this.level.explode((Entity)null, this.getX(), this.getY(), this.getZ(), 6.0F, Explosion.BlockInteraction.DESTROY);
             }
-
-//            this.onDestroyedBy(p_70097_1_);
+            this.onDestroyedBy(source);
          }
-
          return true;
       }
    }
 
-//   @Override
-//   public void kill() {
-//      this.onDestroyedBy(DamageSource.GENERIC);
-//      super.kill();
-//   }
+   @Override
+   public void kill() {
+      this.onDestroyedBy(DamageSource.GENERIC);
+      super.kill();
+   }
 
-//   private void onDestroyedBy(DamageSource p_184519_1_) {
-//      if (this.level instanceof TolkienServerLevel) {
+   private void onDestroyedBy(DamageSource source) {
+      if (this.level instanceof ServerLevel) {
 //         FellBeastFightManager fellbeastfightmanager = ((TolkienServerLevel)this.level).fellbeastFight();
 //         if (fellbeastfightmanager != null) {
-//            fellbeastfightmanager.onCrystalDestroyed(this, p_184519_1_);
+//            fellbeastfightmanager.onCrystalDestroyed(this, source);
 //         }
-//      }
-//
-//   }
+      }
+   }
 
-   public void setBeamTarget(@Nullable BlockPos p_184516_1_) {
-      this.getEntityData().set(DATA_BEAM_TARGET, Optional.ofNullable(p_184516_1_));
+   public void setBeamTarget(@Nullable BlockPos blockPos) {
+      this.getEntityData().set(DATA_BEAM_TARGET, Optional.ofNullable(blockPos));
    }
 
    @Nullable
@@ -132,8 +130,8 @@ public class MorgulCrystalEntity extends Entity {
       return this.getEntityData().get(DATA_BEAM_TARGET).orElse((BlockPos)null);
    }
 
-   public void setShowBottom(boolean p_184517_1_) {
-      this.getEntityData().set(DATA_SHOW_BOTTOM, p_184517_1_);
+   public void setShowBottom(boolean show) {
+      this.getEntityData().set(DATA_SHOW_BOTTOM, show);
    }
 
    public boolean showsBottom() {
@@ -142,8 +140,8 @@ public class MorgulCrystalEntity extends Entity {
 
    @OnlyIn(Dist.CLIENT)
    @Override
-   public boolean shouldRenderAtSqrDistance(double p_70112_1_) {
-      return super.shouldRenderAtSqrDistance(p_70112_1_) || this.getBeamTarget() != null;
+   public boolean shouldRenderAtSqrDistance(double distance) {
+      return super.shouldRenderAtSqrDistance(distance) || this.getBeamTarget() != null;
    }
 
    @Nonnull

@@ -43,10 +43,9 @@ public class MithrilBarrelBlock extends BaseEntityBlock {
    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult trace) {
       if (!world.isClientSide) {
          BlockEntity tileEntity = world.getBlockEntity(pos);
-         boolean flag = state.getValue(MithrilBarrelBlock.OPEN);
 
          if (tileEntity instanceof MithrilBarrelTile) {
-            state.cycle(MithrilBarrelBlock.OPEN);
+            state.setValue(OPEN, true);
             world.playSound((Player)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 0.5F, world.random.nextFloat() * 0.1F + 0.9F);
             NetworkHooks.openGui((ServerPlayer) entity, (MithrilBarrelTile) tileEntity, pos);
             PiglinAi.angerNearbyPiglins(entity, true);

@@ -40,16 +40,17 @@ import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 public class LockableDoubleChestBlock extends BlockBCore implements EntityBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
-    protected static final VoxelShape LOCKABLE_SHAPE_N = Block.box(-15.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D);
-    protected static final VoxelShape LOCKABLE_SHAPE_S = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 31.0D);
-    protected static final VoxelShape LOCKABLE_SHAPE_E = Block.box(1.0D, 0.0D, -15.0D, 15.0D, 15.0D, 15.0D);
-    protected static final VoxelShape LOCKABLE_SHAPE_W = Block.box(1.0D, 0.0D, 1.0D, 31.0D, 15.0D, 15.0D);
+    protected static final VoxelShape LOCKABLE_SHAPE_N = Block.box(-7.0D, 0.0D, 1.0D, 23.0D, 15.0D, 15.0D);
+    protected static final VoxelShape LOCKABLE_SHAPE_S = Block.box(1.0D, 0.0D, -7.0D, 15.0D, 15.0D, 23.0D);
+    protected static final VoxelShape LOCKABLE_SHAPE_E = Block.box(1.0D, 0.0D, -7.0D, 15.0D, 15.0D, 23.0D);
+    protected static final VoxelShape LOCKABLE_SHAPE_W = Block.box(-7.0D, 0.0D, 1.0D, 23.0D, 15.0D, 15.0D);
 
     public LockableDoubleChestBlock(Properties properties) {
         super(properties);
         setBlockEntity(() -> TolkienTiles.LOCKABLE_DOUBLE_CHEST_TILE.get(), true); //<-- The boolean (true) specifies that this tile needs to tick. If your tile implemented ITickableTileEntity in 1.16 then this needs to be true
-        this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.FALSE));
+        this.registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.FALSE).setValue(OPEN, Boolean.FALSE));
     }
 
     @SuppressWarnings("deprecation")
@@ -76,11 +77,11 @@ public class LockableDoubleChestBlock extends BlockBCore implements EntityBlock 
                         uses--;
                         KeyBaseItem.setUses(stack, uses);
                     }
+                    state.setValue(OPEN, true);
                     ((LockableDoubleChestTile) tile).onRightClick(player, hand);
-                    world.playSound((Player) null, pos, SoundEvents.CHEST_OPEN, SoundSource.BLOCKS, 0.3F, 0.5F);
                 } else {
                     player.sendMessage(new TranslatableComponent(MODID + ".msg.wrong_key").withStyle(ChatFormatting.RED), Util.NIL_UUID);
-                    world.playSound((Player) null, pos, SoundEvents.CHAIN_PLACE, SoundSource.BLOCKS, 0.3F, 0.5F);
+                    world.playSound((Player) null, pos, SoundEvents.CHEST_LOCKED, SoundSource.BLOCKS, 0.3F, 0.5F);
                 }
             }
             return InteractionResult.CONSUME;
@@ -106,7 +107,7 @@ public class LockableDoubleChestBlock extends BlockBCore implements EntityBlock 
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, WATERLOGGED);
+        builder.add(FACING, WATERLOGGED, OPEN);
         super.createBlockStateDefinition(builder);
     }
 

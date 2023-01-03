@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.block;
 
 import com.brandon3055.brandonscore.blocks.BlockBCore;
 import com.greatorator.tolkienmobs.init.*;
-import com.greatorator.tolkienmobs.world.dimension.ArdaTeleporter;
+import com.greatorator.tolkienmobs.world.components.dimension.ArdaTeleporter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceKey;

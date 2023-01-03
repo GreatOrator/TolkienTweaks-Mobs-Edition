@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs;
 
 import com.greatorator.tolkienmobs.init.*;
-import com.greatorator.tolkienmobs.world.gen.feature.config.TreeFeatureConfig;
+import com.greatorator.tolkienmobs.world.components.config.TreeFeatureConfig;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -41,7 +41,7 @@ public class TolkienContent {
         TreeFeatureConfig.TREE_DECORATORS.register(modBus);
         TreeFeatureConfig.TRUNK_PLACERS.register(modBus);
         TreeFeatureConfig.PLACEMENT_MODIFIERS.register(modBus);
-        TolkienFeatures.FEATURES.register(modBus);
+        TolkienBiomeFeatures.FEATURES.register(modBus);
         TolkienStructures.STRUCTURES.register(modBus);
 //        TolkienBiomes.BIOMES.register(modBus);
         modBus.addGenericListener(MenuType.class, TolkienContainers::registerContainers);

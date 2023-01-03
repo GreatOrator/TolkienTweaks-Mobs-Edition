@@ -1,44 +1,24 @@
 package com.greatorator.tolkienmobs.entity.tile.render;
 
-import com.greatorator.tolkienmobs.block.LockableTreasureChestBlock;
 import com.greatorator.tolkienmobs.entity.tile.LockableTreasureChestTile;
+import com.greatorator.tolkienmobs.entity.tile.model.LockableTreasureChestModel;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Quaternion;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
 
-public class LockableTreasureChestTileRender implements BlockEntityRenderer<LockableTreasureChestTile> {
-    public LockableTreasureChestTileRender(BlockEntityRendererProvider.Context context) {
+import javax.annotation.Nullable;
 
+public class LockableTreasureChestTileRender extends GeoBlockRenderer<LockableTreasureChestTile> {
+    public LockableTreasureChestTileRender(BlockEntityRendererProvider.Context rendererProvider) {
+        super(rendererProvider, new LockableTreasureChestModel());
     }
 
     @Override
-    public void render(LockableTreasureChestTile te, float partialTicks, PoseStack mStack, MultiBufferSource getter, int packedLight, int packedOverlay) {
-        BlockState state = te.getBlockState();
-        Direction facing = state.getValue(LockableTreasureChestBlock.FACING);
-
-        mStack.pushPose();
-        mStack.translate(0.5, 0.5, 0.5);
-        mStack.mulPose(new Quaternion(90, 0, 0, true));
-
-        switch (facing) {
-            case NORTH:
-                mStack.mulPose(new Quaternion(0, 0, 90, true));
-                break;
-            case SOUTH:
-                mStack.mulPose(new Quaternion(0, 0, -90, true));
-                break;
-            case WEST:
-                mStack.mulPose(new Quaternion(0, 0, 90, true));
-                break;
-            case EAST:
-                mStack.mulPose(new Quaternion(0, 0, 180, true));
-                break;
-        }
-
-        mStack.popPose();
+    public RenderType getRenderType(LockableTreasureChestTile animatable, float partialTicks, PoseStack stack, @Nullable MultiBufferSource renderTypeBuffer, @Nullable VertexConsumer vertexBuilder, int packedLightIn, ResourceLocation textureLocation) {
+        return RenderType.entityTranslucent(getTextureLocation(animatable));
     }
 }

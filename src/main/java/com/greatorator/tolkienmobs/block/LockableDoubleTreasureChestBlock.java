@@ -41,10 +41,10 @@ public class LockableDoubleTreasureChestBlock extends BlockBCore implements Enti
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    protected static final VoxelShape LOCKABLE_SHAPE_N = Block.box(-15.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D);
-    protected static final VoxelShape LOCKABLE_SHAPE_S = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 31.0D);
-    protected static final VoxelShape LOCKABLE_SHAPE_E = Block.box(1.0D, 0.0D, -15.0D, 15.0D, 15.0D, 15.0D);
-    protected static final VoxelShape LOCKABLE_SHAPE_W = Block.box(1.0D, 0.0D, 1.0D, 31.0D, 15.0D, 15.0D);
+    protected static final VoxelShape LOCKABLE_SHAPE_N = Block.box(-7.0D, 0.0D, 1.0D, 23.0D, 15.0D, 15.0D);
+    protected static final VoxelShape LOCKABLE_SHAPE_S = Block.box(1.0D, 0.0D, -7.0D, 15.0D, 15.0D, 23.0D);
+    protected static final VoxelShape LOCKABLE_SHAPE_E = Block.box(1.0D, 0.0D, -7.0D, 15.0D, 15.0D, 23.0D);
+    protected static final VoxelShape LOCKABLE_SHAPE_W = Block.box(-7.0D, 0.0D, 1.0D, 23.0D, 15.0D, 15.0D);
 
     public LockableDoubleTreasureChestBlock(Properties properties) {
         super(properties);
@@ -77,10 +77,9 @@ public class LockableDoubleTreasureChestBlock extends BlockBCore implements Enti
                         KeyBaseItem.setUses(stack, uses);
                     }
                     ((LockableDoubleTreasureChestTile) tile).onRightClick(player, hand);
-                    world.playSound((Player) null, pos, SoundEvents.CHEST_OPEN, SoundSource.BLOCKS, 0.3F, 0.5F);
                 } else {
                     player.sendMessage(new TranslatableComponent(MODID + ".msg.wrong_key").withStyle(ChatFormatting.RED), Util.NIL_UUID);
-                    world.playSound((Player) null, pos, SoundEvents.CHAIN_PLACE, SoundSource.BLOCKS, 0.3F, 0.5F);
+                    world.playSound((Player) null, pos, SoundEvents.CHEST_LOCKED, SoundSource.BLOCKS, 0.3F, 0.5F);
                 }
             }
             return InteractionResult.CONSUME;

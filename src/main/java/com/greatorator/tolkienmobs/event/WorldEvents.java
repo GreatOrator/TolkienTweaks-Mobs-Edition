@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.event;
 
-import com.greatorator.tolkienmobs.world.gen.feature.placement.OrePlacement;
+import com.greatorator.tolkienmobs.world.components.placements.OrePlacement;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

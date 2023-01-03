@@ -978,5 +978,23 @@
         "stream": true
       }
     ]
+  },
+  "chest_open": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "tolkienmobs:block/chest_open",
+        "stream": true
+      }
+    ]
+  },
+  "chest_close": {
+    "category": "block",
+    "sounds": [
+      {
+        "name": "tolkienmobs:block/chest_close",
+        "stream": true
+      }
+    ]
   }
 }

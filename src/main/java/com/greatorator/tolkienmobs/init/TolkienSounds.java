@@ -45,6 +45,8 @@ public class TolkienSounds {
     public static final RegistryObject<SoundEvent> hype_horn = addSound("hype_horn");
     public static final RegistryObject<SoundEvent> lightningbug_ambient = addSound("lightningbug_ambient");
     public static final RegistryObject<SoundEvent> arda_portal = addSound("arda_portal");
+    public static final RegistryObject<SoundEvent> chest_close = addSound("chest_close");
+    public static final RegistryObject<SoundEvent> chest_open = addSound("chest_open");
 
     // Sounds - Mirkwood Spider
     public static final RegistryObject<SoundEvent> spiderShoot = addSound("entity.mirkwoodspider.shoot");

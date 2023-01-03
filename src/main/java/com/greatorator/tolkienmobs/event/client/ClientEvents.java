@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.event.client;
 
 import com.brandon3055.brandonscore.api.render.GuiHelper;
 import com.greatorator.tolkienmobs.block.SleepingBagBlock;
-import com.greatorator.tolkienmobs.block.models.ChameleonBakedModel;
+import com.greatorator.tolkienmobs.block.function.ChameleonBakedModel;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
 import com.greatorator.tolkienmobs.init.TolkienKeys;
 import com.greatorator.tolkienmobs.init.TolkienPotions;

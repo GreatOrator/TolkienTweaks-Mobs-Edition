@@ -230,10 +230,10 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.CAMO_CHEST_BLOCK.get());
         blockItem(TolkienBlocks.CAMO_SPAWNER_BLOCK.get());
         blockItem(TolkienBlocks.MILESTONE_BLOCK.get());
-        blockItem(TolkienBlocks.LOCKABLE_CHEST_BLOCK.get());
-        blockItem(TolkienBlocks.LOCKABLE_TREASURE_CHEST_BLOCK.get());
-        blockItem(TolkienBlocks.LOCKABLE_DOUBLE_CHEST_BLOCK.get());
-        blockItem(TolkienBlocks.LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK.get());
+//        blockItem(TolkienBlocks.LOCKABLE_CHEST_BLOCK.get());
+//        blockItem(TolkienBlocks.LOCKABLE_TREASURE_CHEST_BLOCK.get());
+//        blockItem(TolkienBlocks.LOCKABLE_DOUBLE_CHEST_BLOCK.get());
+//        blockItem(TolkienBlocks.LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK.get());
         blockItem(TolkienBlocks.ROCKPILE.get());
         blockItem(TolkienBlocks.LIGHTNINGBUG_BLOCK.get());
 

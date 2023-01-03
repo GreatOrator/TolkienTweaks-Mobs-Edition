@@ -2,7 +2,7 @@ package com.greatorator.tolkienmobs.block;
 
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
 import com.greatorator.tolkienmobs.init.TolkienTags;
-import com.greatorator.tolkienmobs.world.gen.feature.TreeFeature;
+import com.greatorator.tolkienmobs.world.components.feature.TreeFeature;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;

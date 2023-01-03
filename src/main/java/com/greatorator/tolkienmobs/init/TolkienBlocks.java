@@ -1,8 +1,8 @@
 package com.greatorator.tolkienmobs.init;
 
 import com.greatorator.tolkienmobs.block.*;
-import com.greatorator.tolkienmobs.world.gen.feature.TreeFeature;
-import com.greatorator.tolkienmobs.world.trees.*;
+import com.greatorator.tolkienmobs.world.components.feature.TreeFeature;
+import com.greatorator.tolkienmobs.world.components.feature.trees.growers.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffects;
