@@ -7,8 +7,8 @@
 				"texture_width": 128,
 				"texture_height": 128,
 				"visible_bounds_width": 5,
-				"visible_bounds_height": 2,
-				"visible_bounds_offset": [0, 0, 0]
+				"visible_bounds_height": 4,
+				"visible_bounds_offset": [0, 1, 0]
 			},
 			"bones": [
 				{
@@ -61,7 +61,7 @@
 				{
 					"name": "pully",
 					"parent": "brace",
-					"pivot": [-8, 0, 20.62742],
+					"pivot": [0.25, 23.25, 0.12742],
 					"cubes": [
 						{"origin": [-1.68687, 21.31761, -1], "size": [4, 4, 2], "pivot": [0.31313, 23.31761, 0], "rotation": [0, 0, -22.5], "uv": [86, 58]}
 					]
@@ -82,7 +82,22 @@
 								"up": {"uv": [47.5, 27.75], "uv_size": [16, 16]},
 								"down": {"uv": [63.5, 43.75], "uv_size": [-16, -16]}
 							}
-						},
+						}
+					]
+				},
+				{
+					"name": "bucket",
+					"parent": "well",
+					"pivot": [2.75, 17.75, -0.12258],
+					"cubes": [
+						{"origin": [4.8, 12, -2], "size": [1, 5, 4], "uv": [118, 6]},
+						{"origin": [-0.2, 12, -2], "size": [1, 5, 4], "uv": [118, 6]},
+						{"origin": [-0.2, 12, -3], "size": [6, 5, 1], "uv": [114, 0]},
+						{"origin": [-0.2, 12, 2], "size": [6, 5, 1], "uv": [114, 0]},
+						{"origin": [0.8, 12, -2], "size": [4, 1, 4], "uv": [83, 51]},
+						{"origin": [4.8, 17, -2], "size": [1, 2, 4], "uv": [86, 9]},
+						{"origin": [-0.2, 17, -2], "size": [1, 2, 4], "uv": [86, 9]},
+						{"origin": [-1.2, 17.3, -0.5], "size": [8, 1, 1], "uv": [71, 33]},
 						{
 							"origin": [0.5, 15, -2.5],
 							"size": [5, 1, 5],
@@ -98,23 +113,8 @@
 					]
 				},
 				{
-					"name": "bucket",
-					"parent": "well",
-					"pivot": [-8, 0, 20.62742],
-					"cubes": [
-						{"origin": [4.8, 12, -2], "size": [1, 5, 4], "uv": [118, 6]},
-						{"origin": [-0.2, 12, -2], "size": [1, 5, 4], "uv": [118, 6]},
-						{"origin": [-0.2, 12, -3], "size": [6, 5, 1], "uv": [114, 0]},
-						{"origin": [-0.2, 12, 2], "size": [6, 5, 1], "uv": [114, 0]},
-						{"origin": [0.8, 12, -2], "size": [4, 1, 4], "uv": [83, 51]},
-						{"origin": [4.8, 17, -2], "size": [1, 2, 4], "uv": [86, 9]},
-						{"origin": [-0.2, 17, -2], "size": [1, 2, 4], "uv": [86, 9]},
-						{"origin": [-1.2, 17.3, -0.5], "size": [8, 1, 1], "uv": [71, 33]}
-					]
-				},
-				{
 					"name": "rope2",
-					"parent": "bucket",
+					"parent": "well",
 					"pivot": [-8, 0, 20.62742],
 					"cubes": [
 						{"origin": [-22, 14.5, -2], "size": [4, 4, 4], "inflate": 0.3, "uv": [60, 40]}
@@ -139,7 +139,7 @@
 				{
 					"name": "rope",
 					"parent": "rope2",
-					"pivot": [-8, 0, 20.62742],
+					"pivot": [3, 22, 0.12742],
 					"cubes": [
 						{"origin": [2.3, 17, -0.5], "size": [1, 5, 1], "inflate": 0.1, "uv": [124, 56]}
 					]
