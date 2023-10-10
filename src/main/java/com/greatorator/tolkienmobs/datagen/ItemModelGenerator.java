@@ -230,10 +230,6 @@ public class ItemModelGenerator extends ItemModelProvider {
         blockItem(TolkienBlocks.CAMO_CHEST_BLOCK.get());
         blockItem(TolkienBlocks.CAMO_SPAWNER_BLOCK.get());
         blockItem(TolkienBlocks.MILESTONE_BLOCK.get());
-//        blockItem(TolkienBlocks.LOCKABLE_CHEST_BLOCK.get());
-//        blockItem(TolkienBlocks.LOCKABLE_TREASURE_CHEST_BLOCK.get());
-//        blockItem(TolkienBlocks.LOCKABLE_DOUBLE_CHEST_BLOCK.get());
-//        blockItem(TolkienBlocks.LOCKABLE_DOUBLE_TREASURE_CHEST_BLOCK.get());
         blockItem(TolkienBlocks.ROCKPILE.get());
         blockItem(TolkienBlocks.LIGHTNINGBUG_BLOCK.get());
 
@@ -454,6 +450,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(TolkienEntities.EGG_TTMURUKHAI.get());
         eggItem(TolkienEntities.EGG_TTMSWAMPHAG.get());
         eggItem(TolkienEntities.EGG_TTMMIRKWOODSPIDER.get());
+        eggItem(TolkienEntities.EGG_TTMROCKGOLEM.get());
 
         // Boss
         eggItem(TolkienEntities.EGG_TTMWATCHER.get());
@@ -477,6 +474,7 @@ public class ItemModelGenerator extends ItemModelProvider {
         eggItem(TolkienEntities.EGG_TTMNAZGUL.get());
         eggItem(TolkienEntities.EGG_TTMNAZGULSTEED.get());
         eggItem(TolkienEntities.EGG_TTMGREATEAGLE.get());
+        eggItem(TolkienEntities.EGG_TTMISTARI.get());
     }
 
     private ItemModelBuilder simpleMod(ModelFile itemGenerated, String name) {

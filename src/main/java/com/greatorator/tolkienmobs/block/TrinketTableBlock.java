@@ -144,8 +144,6 @@ public class TrinketTableBlock extends BlockBCore implements EntityBlock {
         super.createBlockStateDefinition(builder);
     }
 
-
-
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection());

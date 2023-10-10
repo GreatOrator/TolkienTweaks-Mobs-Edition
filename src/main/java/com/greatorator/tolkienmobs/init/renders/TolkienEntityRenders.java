@@ -66,6 +66,7 @@ public class TolkienEntityRenders {
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_WARG.get(), WargRender::new);
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_URUKHAI.get(), UrukHaiRender::new);
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_MIRKWOODSPIDER.get(), MirkwoodSpiderRender::new);
+        event.registerEntityRenderer(TolkienEntities.ENTITY_ROCKGOLEM.get(), RockGolemRender::new);
 
         // Boss
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_WATCHER.get(), WatcherRender::new);
@@ -89,6 +90,7 @@ public class TolkienEntityRenders {
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_NAZGUL.get(), NazgulRender::new);
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_NAZGULSTEED.get(), NazgulSteedRender::new);
         event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_GREAT_EAGLE.get(), GreatEagleRender::new);
+        event.registerEntityRenderer(TolkienEntities.ENTITY_TTM_ISTARI.get(), IstariRender::new);
 
         // Ammo
         event.registerEntityRenderer(TolkienEntities.AMMO_ARROW_GALADHRIM.get(), GaladhrimArrowRender::new);

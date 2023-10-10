@@ -4,19 +4,15 @@ import com.brandon3055.brandonscore.api.render.GuiHelper;
 import com.greatorator.tolkienmobs.block.SleepingBagBlock;
 import com.greatorator.tolkienmobs.block.function.ChameleonBakedModel;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
-import com.greatorator.tolkienmobs.init.TolkienKeys;
 import com.greatorator.tolkienmobs.init.TolkienPotions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.BlockModelShaper;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,7 +26,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
@@ -261,12 +256,5 @@ public class ClientEvents {
 
     public static Minecraft getClient() {
         return Minecraft.getInstance();
-    }
-
-    @SubscribeEvent
-    public static void onKeyPress(InputEvent.KeyInputEvent event) {
-        if (TolkienKeys.KEY_BACKPACK.consumeClick()) {
-            getClient().player.sendMessage(new TranslatableComponent("key.tolkienmobs.backpack_key").withStyle(ChatFormatting.BLUE), Util.NIL_UUID);
-        }
     }
 }

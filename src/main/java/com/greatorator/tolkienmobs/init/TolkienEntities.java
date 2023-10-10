@@ -242,6 +242,12 @@ public class TolkienEntities {
                     .sized(1.25F, 0.8125F)
                     .build(new ResourceLocation(MODID, "entityttmmirkwoodspider").toString())
     );
+    public static final RegistryObject<EntityType<RockGolemEntity>> ENTITY_ROCKGOLEM = ENTITY.register(
+            "entityttmrockgolem",
+            () -> EntityType.Builder.of(RockGolemEntity::new, MobCategory.MONSTER)
+                    .sized(2.5F, 3.875F)
+                    .build(new ResourceLocation(MODID, "entityttmrockgolem").toString())
+    );
 
     /** Boss */
     public static final RegistryObject<EntityType<WatcherEntity>> ENTITY_TTM_WATCHER = ENTITY.register(
@@ -352,6 +358,12 @@ public class TolkienEntities {
                     .sized(1.225F, 1.6625F)
                     .build(new ResourceLocation(MODID, "entityttmgreateagle").toString())
     );
+    public static final RegistryObject<EntityType<IstariEntity>> ENTITY_TTM_ISTARI = ENTITY.register(
+            "entityttmistari",
+            () -> EntityType.Builder.of(IstariEntity::new, MobCategory.CREATURE)
+                    .sized(0.75F, 2.0F)
+                    .build(new ResourceLocation(MODID, "entityttmistari").toString())
+    );
 
     /** Ammo */
     public static final RegistryObject<EntityType<GaladhrimArrowEntity>> AMMO_ARROW_GALADHRIM = ENTITY.register("ammo_arrow_galadhrim", () -> EntityType.Builder.<GaladhrimArrowEntity>of(GaladhrimArrowEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).build(MODID + ":ammo_arrow_galadhrim"));
@@ -413,6 +425,7 @@ public class TolkienEntities {
     public static RegistryObject<ForgeSpawnEggItem> EGG_TTMWARG = EGG_ITEMS.register("entityttmwarg", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_WARG, 585619, 2703752, new Item.Properties().tab(spawnGroup)));
     public static RegistryObject<ForgeSpawnEggItem> EGG_TTMURUKHAI = EGG_ITEMS.register("entityttmurukhai", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_URUKHAI, 585619, 698898, new Item.Properties().tab(spawnGroup)));
     public static RegistryObject<ForgeSpawnEggItem> EGG_TTMMIRKWOODSPIDER = EGG_ITEMS.register("entityttmmirkwoodspider", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_MIRKWOODSPIDER, 585619, 16211457, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMROCKGOLEM = EGG_ITEMS.register("entityttmrockgolem", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_ROCKGOLEM, 585619, 7893889, new Item.Properties().tab(spawnGroup)));
 
     /** Boss */
     public static RegistryObject<ForgeSpawnEggItem> EGG_TTMWATCHER = EGG_ITEMS.register("entityttmwatcher", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_WATCHER, 15673963, 7405383, new Item.Properties().tab(spawnGroup)));
@@ -431,11 +444,12 @@ public class TolkienEntities {
     public static RegistryObject<ForgeSpawnEggItem> EGG_TTMGOAT = EGG_ITEMS.register("entityttmgoat", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_GOAT, 7668978, 14289362, new Item.Properties().tab(spawnGroup)));
 
     /** Special */
-    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMGOLLUM = EGG_ITEMS.register("entityttmgollum", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_GOLLUM, 2576351, 5600397, new Item.Properties().tab(spawnGroup)));
-    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMSHADOWFAX = EGG_ITEMS.register("entityttmshadowfax", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_SHADOWFAX, 2576351, 2301661, new Item.Properties().tab(spawnGroup)));
-    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMNAZGUL = EGG_ITEMS.register("entityttmnazgul", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_NAZGUL, 2576351, 14289362, new Item.Properties().tab(spawnGroup)));
-    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMNAZGULSTEED = EGG_ITEMS.register("entityttmnazgulsteed", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_NAZGULSTEED, 2576351, 14088652, new Item.Properties().tab(spawnGroup)));
-    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMGREATEAGLE = EGG_ITEMS.register("entityttmgreateagle", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_GREAT_EAGLE, 2576351, 9467561, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMGOLLUM = EGG_ITEMS.register("entityttmgollum", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_GOLLUM, 2576351, 16121867, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMSHADOWFAX = EGG_ITEMS.register("entityttmshadowfax", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_SHADOWFAX, 2576351, 5600397, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMNAZGUL = EGG_ITEMS.register("entityttmnazgul", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_NAZGUL, 2576351, 7405383, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMNAZGULSTEED = EGG_ITEMS.register("entityttmnazgulsteed", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_NAZGULSTEED, 2576351, 14289362, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMGREATEAGLE = EGG_ITEMS.register("entityttmgreateagle", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_GREAT_EAGLE, 2576351, 12198412, new Item.Properties().tab(spawnGroup)));
+    public static RegistryObject<ForgeSpawnEggItem> EGG_TTMISTARI = EGG_ITEMS.register("entityttmistari", () -> new ForgeSpawnEggItem(TolkienEntities.ENTITY_TTM_ISTARI, 2576351, 16739362, new Item.Properties().tab(spawnGroup)));
 
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         /* Attribute Registry */
@@ -475,6 +489,7 @@ public class TolkienEntities {
         event.put(ENTITY_TTM_URUKHAI.get(), UrukHaiEntity.createAttributes().build());
         event.put(ENTITY_TTM_SWAMPHAG.get(), SwampHagEntity.createAttributes().build());
         event.put(ENTITY_TTM_MIRKWOODSPIDER.get(), MirkwoodSpiderEntity.createAttributes().build());
+        event.put(ENTITY_ROCKGOLEM.get(), RockGolemEntity.createAttributes().build());
 
         // Boss
         event.put(ENTITY_TTM_WATCHER.get(), WatcherEntity.createAttributes().build());
@@ -498,6 +513,7 @@ public class TolkienEntities {
         event.put(ENTITY_TTM_NAZGUL.get(), NazgulEntity.createAttributes().build());
         event.put(ENTITY_TTM_NAZGULSTEED.get(), NazgulSteedEntity.createAttributes().build());
         event.put(ENTITY_TTM_GREAT_EAGLE.get(), GreatEagleEntity.createAttributes().build());
+        event.put(ENTITY_TTM_ISTARI.get(), IstariEntity.createAttributes().build());
     }
 
     public static void registerSpawnPlacement() {
@@ -538,6 +554,7 @@ public class TolkienEntities {
         SpawnPlacements.register(ENTITY_TTM_URUKHAI.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         SpawnPlacements.register(ENTITY_TTM_SWAMPHAG.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
         SpawnPlacements.register(ENTITY_TTM_MIRKWOODSPIDER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+        SpawnPlacements.register(ENTITY_ROCKGOLEM.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
 
         //Passive
         SpawnPlacements.register(ENTITY_TTM_MUMAKIL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MumakilEntity::checkMumakilSpawn);

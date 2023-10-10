@@ -1,11 +1,11 @@
 {
-  "name": "tolkienmobs:ttmminotaurmaze",
+  "name": "tolkienmobs:maze_pool/start_pool",
   "fallback": "minecraft:empty",
   "elements": [
     {
-      "weight": 80,
+      "weight": 50,
       "element": {
-        "location": "tolkienmobs:maze/ttmminotaurmaze",
+        "location": "tolkienmobs:maze",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
@@ -14,7 +14,16 @@
     {
       "weight": 50,
       "element": {
-        "location": "tolkienmobs:maze/ttmminotaurmaze_side",
+        "location": "minecraft:center",
+        "processors": "minecraft:empty",
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element"
+      }
+    },
+    {
+      "weight": 50,
+      "element": {
+        "location": "minecraft:corner",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

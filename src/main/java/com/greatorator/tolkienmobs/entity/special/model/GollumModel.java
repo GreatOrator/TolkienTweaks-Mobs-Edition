@@ -15,8 +15,6 @@ import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 /** ModelGollum - GreatOrator */
 @SuppressWarnings({ "unchecked", "removal" })
 public class GollumModel extends AnimatedGeoModel<GollumEntity> {
-    private final ResourceLocation mobTexture = new ResourceLocation(MODID, "textures/entity/birds/entitygreateagle.png");
-
     @Override
     public ResourceLocation getModelLocation(GollumEntity object) {
         return new ResourceLocation(MODID, "geo/special/gollum.geo.json");

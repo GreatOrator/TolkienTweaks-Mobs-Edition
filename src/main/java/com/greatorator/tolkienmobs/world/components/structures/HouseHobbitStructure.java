@@ -20,7 +20,7 @@ import java.util.Optional;
 public class HouseHobbitStructure extends StructureFeature<JigsawConfiguration> {
     public static final Codec<JigsawConfiguration> CODEC = RecordCodecBuilder.create((codec) -> {
         return codec.group(
-                StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(JigsawConfiguration::startPool),
+                StructureTemplatePool.CODEC.fieldOf("start_pool.json").forGetter(JigsawConfiguration::startPool),
                 Codec.intRange(0, 30).fieldOf("size").forGetter(JigsawConfiguration::maxDepth)
         ).apply(codec, JigsawConfiguration::new);
     });

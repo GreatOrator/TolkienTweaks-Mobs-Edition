@@ -213,6 +213,7 @@ public class BlockLootGenerator extends BlockLoot {
         dropSelf(TolkienBlocks.BARREL_LEBETHRON.get());
         dropSelf(TolkienBlocks.BARREL_DEADWOOD.get());
         dropSelf(TolkienBlocks.BARREL_FANGORNOAK.get());
+        dropSelf(TolkienBlocks.WELL.get());
 
         // Blocks - Sleeping Bags
         add(TolkienBlocks.SLEEPING_BAG_RED.get(), block -> createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));

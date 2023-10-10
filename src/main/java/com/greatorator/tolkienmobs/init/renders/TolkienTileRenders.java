@@ -22,6 +22,7 @@ public class TolkienTileRenders {
         BlockEntityRenderers.register(LOCKABLE_TREASURE_CHEST_TILE.get(), LockableTreasureChestTileRender::new);
         BlockEntityRenderers.register(LOCKABLE_DOUBLE_CHEST_TILE.get(), LockableDoubleChestTileRender::new);
         BlockEntityRenderers.register(LOCKABLE_DOUBLE_TREASURE_CHEST_TILE.get(), LockableDoubleTreasureChestTileRender::new);
+        BlockEntityRenderers.register(WELL_TILE.get(), WellTileRender::new);
     }
 
     public String getName() {

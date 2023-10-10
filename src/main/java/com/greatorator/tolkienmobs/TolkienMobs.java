@@ -51,7 +51,9 @@ public class TolkienMobs {
             b. Possible village generation using house structures by race type
             c. Root systems on trees (mallorn, fangornoak and mirkwood)
     3. Stuff Added
-        a. 
+        a. Well (decoration block)
+        b. Istari mob (can be helpful when fighting other mobs if it's around)
+        c. Rock Golem
     */
 
     public TolkienMobs() {

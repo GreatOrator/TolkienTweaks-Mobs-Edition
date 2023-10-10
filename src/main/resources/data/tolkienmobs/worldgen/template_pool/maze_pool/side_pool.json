@@ -1,20 +1,20 @@
 {
-  "name": "tolkienmobs:ttmspider_cave_main",
+  "name": "tolkienmobs:maze_pool/side_pool",
   "fallback": "minecraft:empty",
   "elements": [
     {
-      "weight": 80,
+      "weight": 1,
       "element": {
-        "location": "tolkienmobs:cave/ttmspider_cave_main",
+        "location": "tolkienmobs:maze",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"
       }
     },
     {
-      "weight": 50,
+      "weight": 1,
       "element": {
-        "location": "tolkienmobs:cave/ttmspider_cave",
+        "location": "tolkienmobs:maze_side",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

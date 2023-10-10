@@ -1,12 +1,12 @@
 {
   "structures": [
     {
-      "structure": "tolkienmobs:ttmspider_cave_main",
+      "structure": "tolkienmobs:maze",
       "weight": 1
     }
   ],
   "placement": {
-    "salt": 482507941,
+    "salt": 138448349,
     "spacing": 40,
     "separation": 35,
     "type": "minecraft:random_spread"

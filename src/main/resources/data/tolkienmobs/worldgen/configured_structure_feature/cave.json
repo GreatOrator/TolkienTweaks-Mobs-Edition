@@ -1,30 +1,17 @@
 {
   "type": "minecraft:village",
-
   "config": {
-    "start_pool": "tolkienmobs:ttmminotaurmaze",
+    "start_pool": "tolkienmobs:cave_pool/start_pool",
     "size": 2
   },
-  "biomes": "#tolkienmobs:has_structure/ttmminotaurmaze_biomes",
+  "biomes": "#tolkienmobs:has_structure/cave_main_biomes",
   "adapt_noise": true,
   "spawn_overrides": {
     "monster": {
       "bounding_box": "piece",
       "spawns": [
         {
-          "type": "tolkienmobs:entityttmminotaur",
-          "weight": 1,
-          "minCount": 1,
-          "maxCount": 1
-        },
-        {
-          "type": "tolkienmobs:entityttmmimicchest",
-          "weight": 1,
-          "minCount": 1,
-          "maxCount": 2
-        },
-        {
-          "type": "tolkienmobs:entityttmgoblinking",
+          "type": "tolkienmobs:entityttmshelob",
           "weight": 1,
           "minCount": 1,
           "maxCount": 1

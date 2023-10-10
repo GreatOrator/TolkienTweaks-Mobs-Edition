@@ -244,6 +244,7 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienBlocks.CAMO_CHEST_BLOCK.get(), "Camouflage Chest");
         add(TolkienBlocks.CAMO_SPAWNER_BLOCK.get(), "Camouflage Spawner");
         add(TolkienBlocks.MILESTONE_BLOCK.get(), "Fast-travel Milestone");
+        add(TolkienBlocks.WELL.get(), "Water Well");
         add(TolkienBlocks.LOCKABLE_CHEST_BLOCK.get(), "Lockable Chest");
         add(TolkienBlocks.LOCKABLE_TREASURE_CHEST_BLOCK.get(), "Lockable Treasure Chest");
         add(TolkienBlocks.LOCKABLE_DOUBLE_CHEST_BLOCK.get(), "Lockable Double Chest");
@@ -816,6 +817,8 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienEntities.EGG_TTMURUKHAI.get(), "Uruk Hai Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_MIRKWOODSPIDER.get(), "Mirkwood Spider");
         add(TolkienEntities.EGG_TTMMIRKWOODSPIDER.get(), "Mirkwood Spider Spawn Egg");
+        add(TolkienEntities.ENTITY_ROCKGOLEM.get(), "Rock Golem");
+        add(TolkienEntities.EGG_TTMROCKGOLEM.get(), "Rock Golem Spawn Egg");
 
         // Boss
         add(TolkienEntities.ENTITY_TTM_WATCHER.get(), "Watcher of the Water");
@@ -856,6 +859,8 @@ public class LangGenerator extends LanguageProvider {
         add(TolkienEntities.EGG_TTMNAZGULSTEED.get(), "Nazgul Steed Spawn Egg");
         add(TolkienEntities.ENTITY_TTM_GREAT_EAGLE.get(), "Great Eagle");
         add(TolkienEntities.EGG_TTMGREATEAGLE.get(), "Great Eagle Spawn Egg");
+        add(TolkienEntities.ENTITY_TTM_ISTARI.get(), "Istari");
+        add(TolkienEntities.EGG_TTMISTARI.get(), "Istari Spawn Egg");
     }
 
     private void chatMessages() {

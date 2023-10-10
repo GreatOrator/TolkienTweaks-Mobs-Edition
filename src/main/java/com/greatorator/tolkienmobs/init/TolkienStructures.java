@@ -21,10 +21,10 @@ public class TolkienStructures {
     public static final RegistryObject<StructureFeature<?>> TTMHOUSE_HOBBIT = STRUCTURES.register("ttmhouse_hobbit", HouseHobbitStructure::new);
     public static final RegistryObject<StructureFeature<?>> TTMHOUSE_HUMAN = STRUCTURES.register("ttmhouse_human", HouseHumanStructure::new);
     public static final RegistryObject<StructureFeature<?>> TTMINN_DESERT = STRUCTURES.register("ttminn_desert", DesertInnStructure::new);
-    public static final RegistryObject<StructureFeature<?>> TTMMINOTAUR_MAZE = STRUCTURES.register("ttmminotaurmaze", MinotaurMazeStructure::new);
+    public static final RegistryObject<StructureFeature<?>> TTMMINOTAUR_MAZE = STRUCTURES.register("maze", MinotaurMazeStructure::new);
     public static final RegistryObject<StructureFeature<?>> TTMRUIN_LARGE = STRUCTURES.register("ttmruin_large", LargeRuinStructure::new);
     public static final RegistryObject<StructureFeature<?>> TTMRUIN_SMALL = STRUCTURES.register("ttmruin_small", SmallRuinStructure::new);
-    public static final RegistryObject<StructureFeature<?>> TTMSPIDER_CAVE = STRUCTURES.register("ttmspider_cave_main", SpiderCaveStructure::new);
+    public static final RegistryObject<StructureFeature<?>> TTMSPIDER_CAVE = STRUCTURES.register("cave_main", SpiderCaveStructure::new);
     public static final RegistryObject<StructureFeature<?>> TTMSPIDER_TREE = STRUCTURES.register("ttmspidertree", SpiderTreeStructure::new);
     public static final RegistryObject<StructureFeature<?>> TTMSWAMP_HAG_HUT = STRUCTURES.register("ttmswamp_hag_hut", SwampHagHutStructure::new);
     public static final RegistryObject<StructureFeature<?>> TTMWARG_PIT = STRUCTURES.register("ttmwargpit", WargPitStructure::new);

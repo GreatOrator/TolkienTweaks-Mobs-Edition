@@ -1,32 +1,62 @@
 {
   "variants": {
-    "facing=north,waterlogged=false": {
+    "facing=north,open=false,waterlogged=false": {
       "model": "tolkienmobs:block/lockable_treasure_chest_block"
     },
-    "facing=south,waterlogged=false": {
+    "facing=south,open=false,waterlogged=false": {
       "model": "tolkienmobs:block/lockable_treasure_chest_block",
       "y": 180
     },
-    "facing=west,waterlogged=false": {
+    "facing=west,open=false,waterlogged=false": {
       "model": "tolkienmobs:block/lockable_treasure_chest_block",
       "y": 270
     },
-    "facing=east,waterlogged=false": {
+    "facing=east,open=false,waterlogged=false": {
       "model": "tolkienmobs:block/lockable_treasure_chest_block",
       "y": 90
     },
-    "facing=north,waterlogged=true": {
+    "facing=north,open=true,waterlogged=false": {
       "model": "tolkienmobs:block/lockable_treasure_chest_block"
     },
-    "facing=south,waterlogged=true": {
+    "facing=south,open=true,waterlogged=false": {
       "model": "tolkienmobs:block/lockable_treasure_chest_block",
       "y": 180
     },
-    "facing=west,waterlogged=true": {
+    "facing=west,open=true,waterlogged=false": {
       "model": "tolkienmobs:block/lockable_treasure_chest_block",
       "y": 270
     },
-    "facing=east,waterlogged=true": {
+    "facing=east,open=true,waterlogged=false": {
+      "model": "tolkienmobs:block/lockable_treasure_chest_block",
+      "y": 90
+    },
+    "facing=north,open=false,waterlogged=true": {
+      "model": "tolkienmobs:block/lockable_treasure_chest_block"
+    },
+    "facing=south,open=false,waterlogged=true": {
+      "model": "tolkienmobs:block/lockable_treasure_chest_block",
+      "y": 180
+    },
+    "facing=west,open=false,waterlogged=true": {
+      "model": "tolkienmobs:block/lockable_treasure_chest_block",
+      "y": 270
+    },
+    "facing=east,open=false,waterlogged=true": {
+      "model": "tolkienmobs:block/lockable_treasure_chest_block",
+      "y": 90
+    },
+    "facing=north,open=true,waterlogged=true": {
+      "model": "tolkienmobs:block/lockable_treasure_chest_block"
+    },
+    "facing=south,open=true,waterlogged=true": {
+      "model": "tolkienmobs:block/lockable_treasure_chest_block",
+      "y": 180
+    },
+    "facing=west,open=true,waterlogged=true": {
+      "model": "tolkienmobs:block/lockable_treasure_chest_block",
+      "y": 270
+    },
+    "facing=east,open=true,waterlogged=true": {
       "model": "tolkienmobs:block/lockable_treasure_chest_block",
       "y": 90
     }

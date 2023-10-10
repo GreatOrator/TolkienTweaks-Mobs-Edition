@@ -236,6 +236,7 @@ public class TolkienItems {
     public static RegistryObject<Item> ELVEN_LANTERN_ITEM = ITEMS.register("elven_lantern", () -> new ItemBlockBCore(ELVEN_LANTERN.get(), new Item.Properties().stacksTo(1).tab(decoGroup)));
     public static RegistryObject<Item> MORGUL_LANTERN_ITEM = ITEMS.register("morgul_lantern", () -> new ItemBlockBCore(MORGUL_LANTERN.get(), new Item.Properties().stacksTo(1).tab(decoGroup)));
     public static RegistryObject<Item> TRINKET_TABLE_ITEM = ITEMS.register("trinket_table", () -> new ItemBlockBCore(TRINKET_TABLE.get(), new Item.Properties().stacksTo(1).tab(decoGroup)));
+    public static RegistryObject<Item> WELL_ITEM = ITEMS.register("well_block", () -> new ItemBlockBCore(WELL.get(), new Item.Properties().stacksTo(1).tab(decoGroup)));
 
     // Blocks - Sleeping Bags
     public static RegistryObject<Item> SLEEPING_BAG_BLUE_ITEM = ITEMS.register("sleeping_bag_blue", () -> new BaseBlock(SLEEPING_BAG_BLUE.get(), new Item.Properties().tab(decoGroup)).setHasLore());
@@ -302,7 +303,7 @@ public class TolkienItems {
     public static RegistryObject<Item> ITEM_REMAINS = ITEMS.register("item_remains", () -> new BaseItem(new Item.Properties().stacksTo(16).tab(questGroup)).setHasLore());
     public static RegistryObject<Item> ITEM_RUNE_STONE = ITEMS.register("item_rune_stone", () -> new BaseItem(new Item.Properties().stacksTo(8).tab(questGroup)).setEffectOverride().setHasLore());
 
-    // Dev Tools
+    // Tools
     public static RegistryObject<Item> ITEM_DEV_TOOL = ITEMS.register("item_dev_tool", () -> new BaseItem(new Item.Properties().stacksTo(1).tab(toolsGroup)).setEffectOverride().setHasLore());
     public static RegistryObject<Item> ITEM_DEV_DEBUG_TOOL = ITEMS.register("item_dev_debug_tool", () -> new BaseItem(new Item.Properties().stacksTo(1).tab(toolsGroup)).setEffectOverride().setHasLore());
     public static RegistryObject<Item> ARDA_STAFF = ITEMS.register("arda_staff", () -> new CatalystItem(new Item.Properties().stacksTo(1).tab(toolsGroup).rarity(Rarity.RARE)).setHasLore());

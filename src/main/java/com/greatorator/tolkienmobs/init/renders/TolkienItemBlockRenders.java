@@ -104,6 +104,7 @@ public class TolkienItemBlockRenders {
             ItemBlockRenderTypes.setRenderLayer(ELVEN_LANTERN.get(), TolkienItemBlockRenders::isGlassLanternValidLayer);
             ItemBlockRenderTypes.setRenderLayer(MORGUL_LANTERN.get(), TolkienItemBlockRenders::isGlassLanternValidLayer);
             ItemBlockRenderTypes.setRenderLayer(TRINKET_TABLE.get(), cutoutMipped);
+            ItemBlockRenderTypes.setRenderLayer(WELL.get(), cutoutMipped);
         }
     public static boolean isGlassLanternValidLayer(RenderType layerToCheck) {
         return layerToCheck == RenderType.cutout() || layerToCheck == RenderType.translucent();
