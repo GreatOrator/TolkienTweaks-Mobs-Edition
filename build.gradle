@@ -1,79 +1,30 @@
-buildscript {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        maven { url = "https://maven.minecraftforge.net/" }
-        maven {
-            url = 'https://repo.spongepowered.org/repository/maven-public/'
-            content { includeGroup "org.spongepowered" }
-        }
-    }
-    dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:5.1.+'
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
-    }
-}
+import groovy.json.JsonOutput
 
 plugins {
     id 'java'
     id 'maven-publish'
-    id "net.covers1624.signing" version '1.1.4'
+    id 'signing'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'net.neoforged.gradle' version '[6.0.18,6.2)'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'org.spongepowered.mixin'
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+    withSourcesJar()
+}
 
 group = "com.greatorator.tolkienmobs"
 archivesBaseName = "TolkienMobs"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+sourceSets.main.resources.srcDirs += "src/main/generated"
 
-//Add generated resources to main resources.
-sourceSets.main.resources.srcDirs += "src/generated/resources"
-
-def signProps = [:]
-if (System.getenv("KEY_STORE")) {
-    println "Using Env variables for jar signing."
-    signProps['keyStore'] = System.getenv("KEY_STORE")
-    file(System.getenv("KEY_STORE_PROPS")).withReader {
-        def props = new Properties()
-        props.load(it)
-        signProps.putAll(props)
-    }
-} else if (project.hasProperty('keyStore')) {
-    println "Using Project properties for jar signing."
-    signProps['keyStore'] = project.getProperty('keyStore')
-    signProps['storePass'] = project.getProperty('keyStorePass')
-    signProps['alias'] = project.getProperty('keyStoreAlias')
-    signProps['keyPass'] = project.getProperty('keyStoreKeyPass')
-} else {
-    println 'No signing secrets found, build will not be signed.'
-}
-
-mod_version = "${mod_version}." + (System.getenv("BUILD_NUMBER") ?: "3")
-
+mod_version = "${mod_version}." + (System.getenv("BUILD_NUMBER") ?: "9999")
 version = "${mc_version}-${mod_version}"
-group = 'com.greatorator'
-archivesBaseName = "${mod_id}"
-
-repositories {
-    mavenLocal()
-    maven { // Code Chicken Lib
-        url = "https://maven.covers1624.net/"
-    }
-    maven { // Curios
-        url = "https://maven.theillusivec4.top/"
-    }
-    maven { // JEI
-        url = "https://dvs1.progwml6.com/files/maven"
-    }
-    maven { // Patchouli
-        url 'https://maven.blamejared.com/'
-    }
-    maven { // GeckoLib
-        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
-    }
-}
+println "Starting build of ${archivesBaseName}, Version: ${mod_version}"
+println "Using Forge: ${neo_version}, for Minecraft: ${mc_version}"
 
 minecraft {
     mappings channel: 'official', version: mc_version
@@ -89,105 +40,193 @@ minecraft {
         }
         data {
             workingDirectory file('run')
-            args '--mod', 'tolkienmobs', '--all', '--output', file("src/generated/resources"), '--existing', file("src/main/resources")
+            args '--mod', 'tolkienmobs', '--all', '--output', file("src/main/generated"), '--existing', file("src/main/resources")
             mods { tolkienmobs { source sourceSets.main } }
         }
     }
 }
 
-
-dependencies {
-    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
-
-    implementation fg.deobf("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal")
-    implementation fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
-    implementation fg.deobf("top.theillusivec4.curios:curios-forge:${mc_version}-${curios_version}")
-    implementation fg.deobf("com.brandon3055.brandonscore:BrandonsCore:${mc_version}-${bcore_version}:universal")
-    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.56')
-
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+mixin {
+    add(sourceSets.main, "mixins.tolkienmobs.refmap.json")
 }
 
-signing {
-    if (!signProps.isEmpty()) {
-        jars {
-            sign jar
-            after reobfJar
+configurations {
+    annotationProcessor.extendsFrom minecraft
+}
 
-            keyStore = signProps.keyStore
-            alias = signProps.alias
-            storePass = signProps.storePass
-            keyPass = signProps.keyPass
-        }
+repositories {
+    mavenLocal()
+    maven { url = "https://maven.covers1624.net/" }
+    maven { url = "https://dvs1.progwml6.com/files/maven" }
+    maven { url = "https://maven.cil.li/" }
+    maven { url = "https://maven.theillusivec4.top/" }
+    maven { url = "https://squiddev.cc/maven/" }
+    maven { url = "https://maven.blamejared.com/" }
+//    maven { url = "https://modmaven.dev/" }
+}
+
+dependencies {
+    minecraft "net.neoforged:forge:${mc_version}-${neo_version}"
+
+    implementation fg.deobf("com.brandon3055.brandonscore:BrandonsCore:${mc_version}-${bcore_version}:universal")
+    implementation fg.deobf("io.codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal")
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+
+    compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}"))
+    compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}"))
+    runtimeOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}"))
+
+    compileOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api"))
+    runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}"))
+}
+
+test {
+    useJUnitPlatform()
+}
+
+processResources {
+    inputs.property 'mod_version', mod_version
+    inputs.property 'mc_version', mc_version
+    inputs.property 'ccl_version', ccl_version
+    inputs.property 'bcore_version', bcore_version
+
+    filesMatching('META-INF/mods.toml') {
+        expand 'file': ['jarVersion': mod_version],
+                'mc_version': mc_version,
+                'neo_version': neo_version,
+                'bcore_version': bcore_version,
+                'cct_version': cct_version,
+                'lang_version': neo_version.split('\\.')[0],
+                'ccl_version': "[${ccl_version.replace(".+", "")},${ccl_version_max})"
+    }
+}
+
+def publishingMetadata = project.layout.buildDirectory.file("libs/$archivesBaseName-$version-publishing.json")
+def publishingMetadataTask = tasks.register("publishingMetadata") {
+    outputs.file(publishingMetadata)
+    doFirst {
+        publishingMetadata.get().asFile.text = JsonOutput.prettyPrint(JsonOutput.toJson([
+                [
+                        'displayName' : "Tolkien Tweaks - Mobs Edition ${version}",
+                        'mcVersion'   : "${mc_version}",
+                        'version'     : "${mod_version}",
+                        'classifier'  : 'universal',
+                        'modLoader'   : ['neoforge', 'forge'],
+                        'dependencies': [
+                                [
+                                        'modId'       : 'codechickenlib',
+                                        'type'        : 'required',
+                                        'modrinthId'  : '2gq0ALnz',
+                                        'curseforgeId': 'codechicken-lib-1-8'
+                                ],
+                                [
+                                        'modId'       : 'brandonscore',
+                                        'type'        : 'required',
+                                        'modrinthId'  : 'iFDWVIFV',
+                                        'curseforgeId': 'brandons-core'
+                                ]
+                        ]
+                ]
+        ]))
     }
 }
 
 jar {
+    finalizedBy 'reobfJar'
+    finalizedBy 'signJar'
+    archiveClassifier = 'universal'
     manifest {
-        attributes([
-                'Specification-Title'     : "${mod_name}",
-                'Specification-Vendor'    : 'GreatOrator',
-                'Specification-Version'   : "${mc_version}",
-                'Implementation-Title'    : "${mod_id}",
-                'Implementation-Vendor'   : 'GreatOrator',
-                'Implementation-Version'  : "${mod_version}",
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
+        attributes 'Specification-Title': archivesBaseName
+        attributes 'Specification-Vendor': 'greatorator'
+        attributes 'Specification-Version': "1"
+        attributes 'Implementation-Title': archivesBaseName
+        attributes 'Implementation-Vendor': 'greatorator'
+        attributes 'Implementation-Version': version
+        attributes 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        attributes 'MixinConfigs': 'mixins.tolkienmobs.json'
     }
+    from file("LICENSE")
 }
 
-task srcJar(type: Jar) {
-    build.dependsOn it
-    from sourceSets.main.allSource
-    classifier = 'sources'
+tasks.register("signJar") {
+    dependsOn("jar")
+    dependsOn("reobfJar")
+
+    doFirst {
+        def args = [:]
+        args['jar'] = jar.archiveFile.get().asFile
+        if (System.getenv("KEY_STORE")) {
+            args['keyStore'] = System.getenv("KEY_STORE")
+            file(System.getenv("KEY_STORE_PROPS")).withReader {
+                def props = new Properties()
+                props.load(it)
+                args.putAll(props)
+            }
+        } else if (project.hasProperty('keyStore')) {
+            args['keyStore'] = project.getProperty('keyStore')
+            args['alias'] = project.getProperty('keyStoreAlias')
+            args['storePass'] = project.getProperty('keyStorePass')
+            args['keyPass'] = project.getProperty('keyStoreKeyPass')
+        } else {
+            println "No signing properties."
+            state.setOutcome(org.gradle.api.internal.tasks.TaskExecutionOutcome.UP_TO_DATE)
+            didWork = false
+            return
+        }
+        project.ant.invokeMethod('signjar', args)
+    }
 }
 
 publishing {
     repositories {
         if (System.getenv('MAVEN_PASS')) {
             maven {
-                url "https://maven-upload.covers1624.net/"
+                url "https://nexus.covers1624.net/repository/maven-releases/"
                 credentials {
-                    username 'covers1624'
+                    username 'greatorator'
                     password System.getenv('MAVEN_PASS')
                 }
             }
         }
     }
     publications {
-        TolkienMobs(MavenPublication) {
+        tolkienmobs(MavenPublication) {
             groupId project.group
             artifactId project.archivesBaseName
             version project.version
             artifact jar
-            artifact srcJar
-
+            artifact sourcesJar
+            artifact(publishingMetadata) {
+                builtBy publishingMetadataTask
+                classifier 'publishing'
+            }
             pom {
                 name = archivesBaseName
                 description = archivesBaseName
-                //The publish plugin doesn't like GString's here apparently..
-                url = "https://github.com/GreatOrator/TolkienTweaks-Mobs".toString()
+                url = "https://github.com/greatorator/${archivesBaseName}"
                 scm {
-                    url = "https://github.com/GreatOrator/TolkienTweaks-Mobs".toString()
-                    connection = "scm:git:git://github.com/GreatOrator/TolkienTweaks-Mobs.git".toString()
-                    connection = "scm:git:git@github.com:GreatOrator/TolkienTweaks-Mobs.git".toString()
+                    url = "https://github.com/greatorator/${archivesBaseName}"
+                    connection = "scm:git:git://github.com/greatorator/${archivesBaseName}.git"
+                    connection = "scm:git:git@github.com:greatorator/${archivesBaseName}.git"
                 }
 
                 issueManagement {
                     system = 'github'
-                    url = "https://github.com/GreatOrator/TolkienTweaks-Mobs/issues".toString()
+                    url = "https://github.com/greatorator/${archivesBaseName}/issues"
                 }
                 licenses {
                     license {
-                        name = "MIT License"
-                        url = "https://github.com/GreatOrator/TolkienTweaks-Mobs/blob/master/LICENSE"
+                        name = "CoFH \"Don't Be a Jerk\" License"
+                        url = "https://github.com/greatorator/Draconic-Evolution/blob/master/LICENSE"
                         distribution = 'Repo'
                     }
                 }
                 developers {
                     developer {
-                        id = 'GreatOrator'
-                        name = 'GreatOrator'
+                        id = 'greatorator'
+                        name = 'greatorator'
                     }
                 }
             }
@@ -195,33 +234,19 @@ publishing {
     }
 }
 
-
-/**
- * Polls the 'compile' configuration for a dependency with the given module name
- * and resolves, and returns its version. E.g: '1.2.+' will resolve to '1.2.3.4'
- *
- * @param module The module to search for.
- * @param chop If the string should be chopped on the last '-' in its string.
- * @param configuration The name of the configuration to search.
- * @param errorMissing If an error should be thrown if it can't be found.
- * @return The version string, '0' if 'errorMissing' is false and nothing was found.
- */
-def resolve(module, chop = true, configuration = 'compile', errorMissing = true) {
-    //Copy and lenient resolve the configuration, Forge cant be resolved at this time so lenient is required.
-    def filtered = configurations.getByName(configuration).copy().incoming.artifactView({ it.lenient = true }).artifacts
-            .findAll { it.id.componentIdentifier.module == module }
-            .collect { it.id.componentIdentifier.version }
-    if (filtered.size() > 1) {
-        println "WARNING: Found ${filtered.size()} Dependencies with ModuleName '${module}' in configuration '${configuration.name}'"
+signing {
+    if (System.getenv('GPG_PRIVATE_KEY')) {
+        useInMemoryPgpKeys(
+                new File(System.getenv('GPG_PRIVATE_KEY')).text,
+                System.getenv('GPG_PRIVATE_KEY_PASS')
+        )
+    } else if (project.hasProperty('gpgPrivateKey')) {
+        useInMemoryPgpKeys(
+                new File(project.getProperty('gpgPrivateKey')).text,
+                project.getProperty('gpgPrivateKeyPass')
+        )
+    } else {
+        return
     }
-    if (errorMissing && filtered.isEmpty()) {
-        throw new RuntimeException("Failed resolve dependency version for '${module}'")
-    }
-    if (filtered.isEmpty()) return "0"
-    def version = filtered.first() as String
-    if (chop) {
-        def idx = version.lastIndexOf('-')
-        return version.substring(idx + 1)
-    }
-    return version
+    sign publishing.publications.tolkienmobs
 }
