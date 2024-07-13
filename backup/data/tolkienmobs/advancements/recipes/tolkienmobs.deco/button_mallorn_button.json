@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:button_mallorn_button"
+    ]
+  },
+  "criteria": {
+    "has_planks_mallorn": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:planks_mallorn"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:button_mallorn_button"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_planks_mallorn",
+      "has_the_recipe"
+    ]
+  ]
+}

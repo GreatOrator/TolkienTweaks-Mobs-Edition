@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:planks_lebethron"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:pressure_plate_lebethron"
+  }
+}

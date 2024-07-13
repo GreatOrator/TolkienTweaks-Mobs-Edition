@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:leaves_mirkwood"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:leafpile_mirkwood",
+    "count": 3
+  }
+}

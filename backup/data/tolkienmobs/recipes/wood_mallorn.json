@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:log_mallorn"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:wood_mallorn",
+    "count": 3
+  }
+}

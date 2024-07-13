@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:item_golem_stone_summon"
+    ]
+  },
+  "criteria": {
+    "has_golem_stones": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:item_golem_stone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:item_golem_stone_summon"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_golem_stones",
+      "has_the_recipe"
+    ]
+  ]
+}

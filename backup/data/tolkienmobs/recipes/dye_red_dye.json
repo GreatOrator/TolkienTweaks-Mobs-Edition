@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tolkienmobs:flower_mirkwood"
+    }
+  ],
+  "result": {
+    "item": "minecraft:red_dye",
+    "count": 2
+  }
+}

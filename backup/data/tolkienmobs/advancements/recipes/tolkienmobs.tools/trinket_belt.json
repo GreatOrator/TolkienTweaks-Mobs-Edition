@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:trinket_belt"
+    ]
+  },
+  "criteria": {
+    "has_mithril": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:ingot_mithril"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:trinket_belt"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mithril",
+      "has_the_recipe"
+    ]
+  ]
+}

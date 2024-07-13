@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "tolkienmobs:item/trinket_amulet",
+    "layer1": "tolkienmobs:item/trinket_amulet_gem"
+  }
+}

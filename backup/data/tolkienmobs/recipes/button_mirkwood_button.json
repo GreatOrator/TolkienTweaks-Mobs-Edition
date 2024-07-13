@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tolkienmobs:planks_mirkwood"
+    }
+  ],
+  "result": {
+    "item": "tolkienmobs:mirkwood_button"
+  }
+}

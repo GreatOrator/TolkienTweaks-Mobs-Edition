@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:torch_torch_fangornoak"
+    ]
+  },
+  "criteria": {
+    "has_planks_fangornoak": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:planks_fangornoak"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:torch_torch_fangornoak"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_planks_fangornoak",
+      "has_the_recipe"
+    ]
+  ]
+}

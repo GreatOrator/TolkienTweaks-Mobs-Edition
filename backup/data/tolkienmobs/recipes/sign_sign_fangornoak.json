@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    " - "
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:planks_fangornoak"
+    },
+    "-": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:sign_fangornoak",
+    "count": 3
+  }
+}

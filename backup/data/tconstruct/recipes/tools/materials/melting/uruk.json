@@ -1,0 +1,15 @@
+{
+  "type": "tconstruct:material_melting",
+  "conditions": [
+    {
+      "modid": "tconstruct",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "input": "tolkienmobs:uruk",
+  "temperature": 700,
+  "result": {
+    "fluid": "tolkienmobs:molten_morguliron",
+    "amount": 90
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:dye_white_dye"
+    ]
+  },
+  "criteria": {
+    "has_flower_niphredil": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:flower_niphredil"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:dye_white_dye"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_flower_niphredil",
+      "has_the_recipe"
+    ]
+  ]
+}

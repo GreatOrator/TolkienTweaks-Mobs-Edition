@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:block_hallowed"
+    ]
+  },
+  "criteria": {
+    "has_ammolite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:gem_ammolite"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:block_hallowed"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_ammolite",
+      "has_the_recipe"
+    ]
+  ]
+}

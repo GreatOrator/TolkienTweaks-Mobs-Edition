@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ZAZ",
+    "MZM"
+  ],
+  "key": {
+    "M": {
+      "item": "tolkienmobs:leather_mumakil"
+    },
+    "A": {
+      "item": "tolkienmobs:gem_ammolite"
+    },
+    "Z": {
+      "item": "minecraft:leather"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:coin_pouch"
+  }
+}

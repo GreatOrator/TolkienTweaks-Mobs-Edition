@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tolkienmobs:upgrade_item_backpack_upgrade_base"
+    ]
+  },
+  "criteria": {
+    "has_mumakil_leather": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "tolkienmobs:leather_mumakil"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tolkienmobs:upgrade_item_backpack_upgrade_base"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mumakil_leather",
+      "has_the_recipe"
+    ]
+  ]
+}

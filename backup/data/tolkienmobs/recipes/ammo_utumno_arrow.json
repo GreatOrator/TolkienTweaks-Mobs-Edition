@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "MAM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:arrow"
+    },
+    "A": {
+      "item": "tolkienmobs:ingot_morguliron"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:ammo_utumno_arrow",
+    "count": 8
+  }
+}

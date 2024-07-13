@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#-#",
+    "# #"
+  ],
+  "key": {
+    "#": {
+      "item": "tolkienmobs:ingot_mithril"
+    },
+    "-": {
+      "item": "tolkienmobs:gem_ammolite"
+    }
+  },
+  "result": {
+    "item": "tolkienmobs:boots_mithril"
+  }
+}
