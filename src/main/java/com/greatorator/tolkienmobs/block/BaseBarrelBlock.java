@@ -46,7 +46,7 @@ public class BaseBarrelBlock extends BaseEntityBlock {
             if (tileEntity instanceof BaseBarrelTile) {
                 state.cycle(BaseBarrelBlock.OPEN);
                 world.playSound((Player)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 0.5F, world.random.nextFloat() * 0.1F + 0.9F);
-                NetworkHooks.openGui((ServerPlayer) entity, (BaseBarrelTile) tileEntity, pos);
+                NetworkHooks.openScreen((ServerPlayer) entity, (BaseBarrelTile) tileEntity, pos);
                 PiglinAi.angerNearbyPiglins(entity, true);
             }
             return InteractionResult.CONSUME;

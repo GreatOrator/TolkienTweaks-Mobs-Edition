@@ -46,7 +46,7 @@ public class TolkienWallSignBlock extends TolkienSignBlock {
     @SuppressWarnings("deprecation")
     @Override
     public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos) {
-        return reader.getBlockState(pos.relative(state.getValue(FACING).getOpposite())).getMaterial().isSolid();
+        return true;
     }
 
     @Nullable

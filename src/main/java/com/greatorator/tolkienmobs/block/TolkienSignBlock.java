@@ -28,6 +28,11 @@ public class TolkienSignBlock extends SignBlock {
     }
 
     @Override
+    public float getYRotationDegrees(BlockState blockState) {
+        return 0;
+    }
+
+    @Override
     public WoodType type() {
         return this.type;
     }

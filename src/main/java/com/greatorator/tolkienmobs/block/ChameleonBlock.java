@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.brandon3055.brandonscore.blocks.BlockBCore;
+import com.brandon3055.brandonscore.blocks.EntityBlockBCore;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -25,7 +25,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nonnull;
 import java.util.*;
 
-public class ChameleonBlock<C> extends BlockBCore implements SimpleWaterloggedBlock {
+public class ChameleonBlock<C> extends EntityBlockBCore implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;

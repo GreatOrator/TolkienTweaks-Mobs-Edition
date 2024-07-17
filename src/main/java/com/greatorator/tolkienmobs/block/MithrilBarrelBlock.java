@@ -47,7 +47,7 @@ public class MithrilBarrelBlock extends BaseEntityBlock {
          if (tileEntity instanceof MithrilBarrelTile) {
             state.setValue(OPEN, true);
             world.playSound((Player)null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BARREL_OPEN, SoundSource.BLOCKS, 0.5F, world.random.nextFloat() * 0.1F + 0.9F);
-            NetworkHooks.openGui((ServerPlayer) entity, (MithrilBarrelTile) tileEntity, pos);
+            NetworkHooks.openScreen((ServerPlayer) entity, (MithrilBarrelTile) tileEntity, pos);
             PiglinAi.angerNearbyPiglins(entity, true);
          }
          return InteractionResult.CONSUME;
@@ -76,7 +76,6 @@ public class MithrilBarrelBlock extends BaseEntityBlock {
    }
 
    @SuppressWarnings("deprecation")
-   @Override
    public void tick(BlockState blockState, ServerLevel level, BlockPos blockPos, Random random) {
       BlockEntity tileentity = level.getBlockEntity(blockPos);
    }

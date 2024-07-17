@@ -24,7 +24,6 @@ public class RockPileBlock extends BushBlock {
         return SHAPE.move(vector3d.x, vector3d.y, vector3d.z);
     }
 
-    @Override
     public BlockBehaviour.OffsetType getOffsetType() {
         return BlockBehaviour.OffsetType.XZ;
     }

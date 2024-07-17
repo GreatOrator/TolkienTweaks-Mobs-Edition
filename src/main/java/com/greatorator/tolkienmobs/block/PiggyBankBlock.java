@@ -1,6 +1,6 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.brandon3055.brandonscore.blocks.BlockBCore;
+import com.brandon3055.brandonscore.blocks.EntityBlockBCore;
 import com.greatorator.tolkienmobs.entity.tile.PiggyBankTile;
 import com.greatorator.tolkienmobs.init.TolkienTiles;
 import net.minecraft.core.BlockPos;
@@ -13,7 +13,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -26,7 +25,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 
-public class PiggyBankBlock extends BlockBCore implements EntityBlock {
+public class PiggyBankBlock extends EntityBlockBCore {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty FULL = BooleanProperty.create("full");
 
@@ -66,7 +65,7 @@ public class PiggyBankBlock extends BlockBCore implements EntityBlock {
             BlockEntity tileEntity = world.getBlockEntity(pos);
 
             if (tileEntity instanceof PiggyBankTile) {
-                NetworkHooks.openGui((ServerPlayer) entity, (PiggyBankTile) tileEntity, pos);
+                NetworkHooks.openScreen((ServerPlayer) entity, (PiggyBankTile) tileEntity, pos);
             }
             return InteractionResult.CONSUME;
         }

@@ -7,7 +7,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -39,7 +38,7 @@ public class HallowedBlock extends Block
                 FakePlayer fakePlayer = FakePlayerFactory.getMinecraft((ServerLevel) worldIn);
                 entityIn.hurt(TolkienDamageRegister.causeHallowedDamage(fakePlayer), 3.0F);
             }else {
-                entityIn.hurt(DamageSource.MAGIC, 2.0F);
+                entityIn.hurt(worldIn.damageSources().magic(), 2.0F);
             }
         }
 

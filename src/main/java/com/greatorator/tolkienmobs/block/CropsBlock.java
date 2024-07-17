@@ -36,7 +36,6 @@ public class CropsBlock extends CropBlock {
         return TolkienItems.PIPEWEED_SEEDS.get();
     }
 
-    @Override
     public void fillItemCategory(CreativeModeTab group, NonNullList<ItemStack> items) {
         items.add(new ItemStack(this));
     }

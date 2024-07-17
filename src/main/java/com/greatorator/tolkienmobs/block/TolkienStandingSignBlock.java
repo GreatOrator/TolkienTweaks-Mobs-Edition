@@ -32,7 +32,7 @@ public class TolkienStandingSignBlock extends TolkienSignBlock {
     @SuppressWarnings("deprecation")
     @Override
     public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos) {
-        return reader.getBlockState(pos.below()).getMaterial().isSolid();
+        return true;
     }
 
     @Override

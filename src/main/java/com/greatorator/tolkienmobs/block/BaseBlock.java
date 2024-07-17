@@ -3,7 +3,6 @@ package com.greatorator.tolkienmobs.block;
 import com.brandon3055.brandonscore.blocks.ItemBlockBCore;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -31,7 +30,7 @@ public class BaseBlock extends ItemBlockBCore {
     public void appendHoverText(ItemStack stack, @Nullable Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
         if (hasLore) {
-            tooltip.add(new TranslatableComponent(getDescriptionId() + ".lore").withStyle(ChatFormatting.GOLD));
+            tooltip.add(Component.translatable(getDescriptionId() + ".lore").withStyle(ChatFormatting.GOLD));
         }
     }
 

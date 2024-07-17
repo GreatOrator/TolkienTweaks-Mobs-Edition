@@ -43,7 +43,7 @@ public class StonePathBlock extends Block
     @Override
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         BlockState blockstate = worldIn.getBlockState(pos.above());
-        return !blockstate.getMaterial().isSolid() || blockstate.getBlock() instanceof FenceGateBlock || blockstate.getBlock() instanceof MovingPistonBlock;
+        return blockstate.getBlock() instanceof FenceGateBlock || blockstate.getBlock() instanceof MovingPistonBlock;
     }
 
     @Override
@@ -56,7 +56,6 @@ public class StonePathBlock extends Block
         return SHAPE;
     }
 
-    @Override
     public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random rand) {
         if (!state.canSurvive(worldIn, pos)) {
             turnToCobble(state, worldIn, pos);

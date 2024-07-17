@@ -1,14 +1,13 @@
 package com.greatorator.tolkienmobs.block;
 
-import com.brandon3055.brandonscore.blocks.BlockBCore;
+import com.brandon3055.brandonscore.blocks.EntityBlockBCore;
 import com.greatorator.tolkienmobs.entity.tile.LockableDoubleTreasureChestTile;
 import com.greatorator.tolkienmobs.init.TolkienTiles;
 import com.greatorator.tolkienmobs.item.keys.KeyBaseItem;
 import net.minecraft.ChatFormatting;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -20,7 +19,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -37,7 +35,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 
-public class LockableDoubleTreasureChestBlock extends BlockBCore implements EntityBlock {
+public class LockableDoubleTreasureChestBlock extends EntityBlockBCore {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
@@ -71,14 +69,14 @@ public class LockableDoubleTreasureChestBlock extends BlockBCore implements Enti
                         if (uses == 0) {
                             stack.shrink(1);
                             world.playSound((Player) null, pos, SoundEvents.ITEM_BREAK, SoundSource.BLOCKS, 0.3F, 0.6F);
-                            player.sendMessage(new TranslatableComponent(MODID + ".msg.key_used").withStyle(ChatFormatting.RED), Util.NIL_UUID);
+                            player.sendSystemMessage(Component.translatable(MODID + ".msg.key_used").withStyle(ChatFormatting.RED));
                         }
                         uses--;
                         KeyBaseItem.setUses(stack, uses);
                     }
                     ((LockableDoubleTreasureChestTile) tile).onRightClick(player, hand);
                 } else {
-                    player.sendMessage(new TranslatableComponent(MODID + ".msg.wrong_key").withStyle(ChatFormatting.RED), Util.NIL_UUID);
+                    player.sendSystemMessage(Component.translatable(MODID + ".msg.wrong_key").withStyle(ChatFormatting.RED));
                     world.playSound((Player) null, pos, SoundEvents.CHEST_LOCKED, SoundSource.BLOCKS, 0.3F, 0.5F);
                 }
             }

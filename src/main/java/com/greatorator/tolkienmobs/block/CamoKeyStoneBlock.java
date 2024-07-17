@@ -125,7 +125,6 @@ public class CamoKeyStoneBlock extends ChameleonBlock<CamoKeyStoneTile> implemen
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    @Override
     @OnlyIn(Dist.CLIENT)
     public void animateTick(BlockState blockState, Level worldIn, BlockPos pos, Random random) {
         if (blockState.getValue(POWERED) && random.nextFloat() < 0.25F) {

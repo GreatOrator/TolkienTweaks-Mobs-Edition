@@ -113,7 +113,6 @@ public class LightningBugBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @OnlyIn(Dist.CLIENT)
-    @Override
     public void animateTick(BlockState state, Level worldIn, BlockPos pos, Random random) {
         double rx = pos.getX() + worldIn.random.nextFloat();
         double ry = pos.getY() + worldIn.random.nextFloat();

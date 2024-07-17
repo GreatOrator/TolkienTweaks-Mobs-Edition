@@ -26,7 +26,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.Cancelable;
 
 import javax.annotation.Nullable;
@@ -109,21 +109,21 @@ public class ArdaPortalBlock extends BlockBCore {
                 entity.setPortalCooldown();
             }
             else {
-                if(!entity.level.isClientSide && !pos.equals(entity.portalEntrancePos)) {
+                if(!entity.level().isClientSide && !pos.equals(entity.portalEntrancePos)) {
                     entity.portalEntrancePos = pos.immutable();
                 }
-                Level entityWorld = entity.level;
+                Level entityWorld = entity.level();
                 if(entityWorld != null) {
                     MinecraftServer minecraftserver = entityWorld.getServer();
-                    ResourceKey<Level> destination = entity.level.dimension() == TolkienDimensions.ARDA_KEY
+                    ResourceKey<Level> destination = entity.level().dimension() == TolkienDimensions.ARDA_KEY
                             ? Level.OVERWORLD : TolkienDimensions.ARDA_KEY;
                     if(minecraftserver != null) {
                         ServerLevel destinationWorld = minecraftserver.getLevel(destination);
                         if(destinationWorld != null && minecraftserver.isNetherEnabled() && !entity.isPassenger()) {
-                            entity.level.getProfiler().push("arda_portal");
+                            entity.level().getProfiler().push("arda_portal");
                             entity.setPortalCooldown();
                             entity.changeDimension(destinationWorld, new ArdaTeleporter(destinationWorld));
-                            entity.level.getProfiler().pop();
+                            entity.level().getProfiler().pop();
                         }
                     }
                 }
@@ -132,7 +132,6 @@ public class ArdaPortalBlock extends BlockBCore {
     }
 
     @OnlyIn(Dist.CLIENT)
-    @Override
     public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
         if (rand.nextInt(100) == 0) {
             worldIn.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D,
