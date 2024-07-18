@@ -23,7 +23,7 @@ public class LockableDoubleChestContainer extends ContainerBCTile<LockableDouble
     public List<SlotCheckValid2> mainSlots = new ArrayList<>();
 
     public LockableDoubleChestContainer(int windowId, Inventory playerInv, FriendlyByteBuf extraData) {
-        this(TolkienContainers.LOCKABLE_DOUBLE_CHEST_CONTAINER, windowId, playerInv, getClientTile(extraData));
+        this(TolkienContainers.LOCKABLE_DOUBLE_CHEST_CONTAINER, windowId, playerInv, getClientTile(playerInv, extraData));
         //^^ Don't forget this!
     }
 

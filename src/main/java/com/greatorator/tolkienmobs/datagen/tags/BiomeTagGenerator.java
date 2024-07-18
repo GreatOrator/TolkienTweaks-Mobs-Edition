@@ -1,26 +1,27 @@
 package com.greatorator.tolkienmobs.datagen.tags;
 
-import net.minecraft.data.DataGenerator;
+import com.greatorator.tolkienmobs.TolkienMobs;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import java.util.concurrent.CompletableFuture;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 
 public class BiomeTagGenerator extends BiomeTagsProvider {
-    public BiomeTagGenerator(DataGenerator generatorIn, String modId, @Nullable ExistingFileHelper existingFileHelper) {
-        super(generatorIn, modId, existingFileHelper);
+    public BiomeTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper helper) {
+        super(output, provider, TolkienMobs.MODID, helper);
     }
 
-    @Override
-    protected void addTags() {
+
+        @Override
+    protected void addTags(HolderLookup.Provider provider) {
 //        tag(IS_FOREST).add(TolkienBiomes.BIOME_FANGORN);
 
     }
 
-    @Nonnull
     @Override
     public String getName() {
         return NAME + " - Biome Tags";

@@ -1,17 +1,11 @@
 package com.greatorator.tolkienmobs.container.gui;
 
+import codechicken.lib.gui.modular.ModularGuiContainer;
 import codechicken.lib.render.CCRenderState;
 import codechicken.lib.render.RenderUtils;
 import codechicken.lib.vec.Vector3;
 import codechicken.lib.vec.Vertex5;
-import com.brandon3055.brandonscore.client.BCGuiSprites;
 import com.brandon3055.brandonscore.client.gui.GuiToolkit;
-import com.brandon3055.brandonscore.client.gui.modulargui.GuiElement;
-import com.brandon3055.brandonscore.client.gui.modulargui.GuiElementManager;
-import com.brandon3055.brandonscore.client.gui.modulargui.ModularGuiContainer;
-import com.brandon3055.brandonscore.client.gui.modulargui.baseelements.GuiButton;
-import com.brandon3055.brandonscore.client.gui.modulargui.guielements.GuiTexture;
-import com.brandon3055.brandonscore.client.gui.modulargui.lib.GuiAlign;
 import com.brandon3055.brandonscore.client.gui.modulargui.templates.TGuiBase;
 import com.brandon3055.brandonscore.inventory.SlotMover;
 import com.brandon3055.brandonscore.utils.MathUtils;
@@ -25,10 +19,8 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.client.ForgeHooksClient;
-import net.minecraftforge.fluids.FluidAttributes;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import org.apache.logging.log4j.LogManager;
@@ -47,7 +39,9 @@ import static net.minecraft.ChatFormatting.GRAY;
 public class BackpackScreen extends ModularGuiContainer<BackpackContainer> {
     public static final Logger LOGGER = LogManager.getLogger("TolkienMobs");
     public static RenderType FLUID_RENDER_TYPE = RenderUtils.getFluidRenderType();
-    protected GuiToolkit<BackpackScreen> toolkit = new GuiToolkit<>(this, 257, 207).setTranslationPrefix("gui.tolkienmobs.backpack");
+    protected GuiToolkit toolkit = new GuiToolkit("gui.tolkienmobs.backpack");
+    public static final int GUI_WIDTH = 257;
+    public static final int GUI_HEIGHT = 207;
     private final BackpackTile tile;
     private static boolean displayUpgrades = false;
 

@@ -21,7 +21,7 @@ public class CamoFluidContainer extends ContainerBCTile<CamoFluidTile> {
     public List<Slot> mainSlots = new ArrayList<>();
 
     public CamoFluidContainer(int windowId, Inventory playerInv, FriendlyByteBuf extraData) {
-        this(TolkienContainers.CAMO_FLUID_CONTAINER, windowId, playerInv, getClientTile(extraData));
+        this(TolkienContainers.CAMO_FLUID_CONTAINER, windowId, playerInv, getClientTile(playerInv, extraData));
         //^^ Don't forget this!
     }
 

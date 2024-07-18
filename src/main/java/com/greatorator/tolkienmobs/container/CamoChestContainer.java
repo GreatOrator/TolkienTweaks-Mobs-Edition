@@ -21,7 +21,7 @@ public class CamoChestContainer extends ContainerBCTile<CamoChestTile> {
     public List<Slot> mainSlots = new ArrayList<>();
 
     public CamoChestContainer(int windowId, Inventory playerInv, FriendlyByteBuf extraData) {
-        this(TolkienContainers.CAMO_CHEST_CONTAINER, windowId, playerInv, getClientTile(extraData));
+        this(TolkienContainers.CAMO_CHEST_CONTAINER, windowId, playerInv, getClientTile(playerInv, extraData));
         //^^ Don't forget this!
     }
 

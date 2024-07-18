@@ -1,30 +1,32 @@
 package com.greatorator.tolkienmobs.datagen.tags;
 
+import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.TolkienItems;
 import com.greatorator.tolkienmobs.init.TolkienTags;
 import com.greatorator.tolkienmobs.integration.IntegrationHelper;
 import com.greatorator.tolkienmobs.integration.curios.CuriosIntegration;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import java.util.concurrent.CompletableFuture;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 import static com.greatorator.tolkienmobs.init.TolkienTags.items.*;
 
 public class ItemTagGenerator extends ItemTagsProvider {
-    public ItemTagGenerator(DataGenerator dataGenerator, BlockTagsProvider blockTagProvider, String modId, @Nullable ExistingFileHelper existingFileHelper) {
-    super(dataGenerator, blockTagProvider, modId, existingFileHelper);
+    public ItemTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> future, CompletableFuture<TagLookup<Block>> provider, ExistingFileHelper helper) {
+        super(output, future, provider, TolkienMobs.MODID, helper);
     }
 
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
         tag(RAW_MATERIALS_MITHRIL).add(TolkienItems.RAW_MITHRIL.get());
         tag(RAW_MATERIALS_MORGULIRON).add(TolkienItems.RAW_MORGULIRON.get());
         tag(Tags.Items.RAW_MATERIALS).addTags(RAW_MATERIALS_MITHRIL, RAW_MATERIALS_MORGULIRON);

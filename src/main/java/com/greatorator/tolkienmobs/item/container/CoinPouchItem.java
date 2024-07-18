@@ -22,9 +22,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.*;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
@@ -53,7 +57,7 @@ public class CoinPouchItem extends Item {
         }
 
         PlayerSlot slot = new PlayerSlot(player, hand);
-        NetworkHooks.openGui((ServerPlayer) player, new KeyRingContainer.Provider(itemStack, slot), slot::toBuff);
+        NetworkHooks.openScreen((ServerPlayer) player, new KeyRingContainer.Provider(itemStack, slot), slot::toBuff);
 
         return new InteractionResultHolder<>(InteractionResult.PASS, itemStack);
     }
@@ -88,7 +92,7 @@ public class CoinPouchItem extends Item {
         if (world.isClientSide()) return InteractionResult.SUCCESS;
 
         IItemHandler tileInventory;
-        LazyOptional<IItemHandler> capability = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side);
+        LazyOptional<IItemHandler> capability = tileEntity.getCapability(ForgeCapabilities.ITEM_HANDLER, side);
         if (capability.isPresent()) {
             tileInventory = capability.orElseThrow(AssertionError::new);
         } else if (tileEntity instanceof Container) {
@@ -121,7 +125,7 @@ public class CoinPouchItem extends Item {
 
     @Nullable
     private static IItemHandler getItemStackHandlerCoinPouch(ItemStack itemStack) {
-        LazyOptional<IItemHandler> optional = itemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
+        LazyOptional<IItemHandler> optional = itemStack.getCapability(ForgeCapabilities.ITEM_HANDLER);
         if (optional.isPresent()) {
             return optional.orElseThrow(RuntimeException::new);
         }
@@ -144,7 +148,7 @@ public class CoinPouchItem extends Item {
     }
 
     public static ItemStack addCoinToInventory(ItemStack keyHolder, ItemStack coin) {
-        IItemHandler handler = keyHolder.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).orElse(new ItemStackHandler(CoinPouchContainer.SLOTS));
+        IItemHandler handler = keyHolder.getCapability(ForgeCapabilities.ITEM_HANDLER, null).orElse(new ItemStackHandler(CoinPouchContainer.SLOTS));
         List<Integer> emptySlots = new ArrayList<>();
         for (int i = 0; i < handler.getSlots(); i++) {
             ItemStack stackInSlot = handler.getStackInSlot(i);

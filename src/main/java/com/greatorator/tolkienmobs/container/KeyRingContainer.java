@@ -7,7 +7,6 @@ import com.greatorator.tolkienmobs.init.TolkienContainers;
 import com.greatorator.tolkienmobs.item.container.KeyRingItem;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -17,6 +16,7 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
@@ -26,8 +26,6 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
-
-import static net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
 
 public class KeyRingContainer extends ContainerBCore<KeyRingItem> {
     public List<Slot> playerSlots = new ArrayList<>();
@@ -51,7 +49,7 @@ public class KeyRingContainer extends ContainerBCore<KeyRingItem> {
     }
 
     private void initItemHandler() {
-        LazyOptional<IItemHandler> optional = stack.getCapability(ITEM_HANDLER_CAPABILITY);
+        LazyOptional<IItemHandler> optional = stack.getCapability(ForgeCapabilities.ITEM_HANDLER);
         stackItemHandler = optional.orElseThrow(RuntimeException::new);
     }
 
@@ -77,7 +75,7 @@ public class KeyRingContainer extends ContainerBCore<KeyRingItem> {
         if (stack != slot.getStackInSlot(player)) {
             return false;
         }
-        if (stackItemHandler != stack.getCapability(ITEM_HANDLER_CAPABILITY).orElse(null)) {
+        if (stackItemHandler != stack.getCapability(ForgeCapabilities.ITEM_HANDLER).orElse(null)) {
             return false; //I don't think this is actually possible... But just in case.
         }
         return true;
@@ -86,7 +84,7 @@ public class KeyRingContainer extends ContainerBCore<KeyRingItem> {
     @OnlyIn(Dist.CLIENT)
     public void clientTick() {
         ItemStack stack = slot.getStackInSlot(player);
-        if (stack != this.stack && !stack.isEmpty() && stack.getCapability(ITEM_HANDLER_CAPABILITY).isPresent()) {
+        if (stack != this.stack && !stack.isEmpty() && stack.getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent()) {
             this.stack = stack; //Because the client side stack is invalidated every time the server sends an update.
             initItemHandler();
         }
@@ -96,7 +94,7 @@ public class KeyRingContainer extends ContainerBCore<KeyRingItem> {
     public void initializeContents(int stateId, List<ItemStack> stacks, ItemStack carried) {
         super.initializeContents(stateId, stacks, carried);
         ItemStack stack = slot.getStackInSlot(player);
-        if (stack != this.stack && !stack.isEmpty() && stack.getCapability(ITEM_HANDLER_CAPABILITY).isPresent()) {
+        if (stack != this.stack && !stack.isEmpty() && stack.getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent()) {
             this.stack = stack; //Because the client side stack is invalidated every time the server sends an update.
             initItemHandler();
         }
@@ -106,7 +104,7 @@ public class KeyRingContainer extends ContainerBCore<KeyRingItem> {
     public void setItem(int slotID, int stateId, ItemStack stack) {
         super.setItem(slotID, stateId, stack);
         stack = slot.getStackInSlot(player);
-        if (stack != this.stack && !stack.isEmpty() && stack.getCapability(ITEM_HANDLER_CAPABILITY).isPresent()) {
+        if (stack != this.stack && !stack.isEmpty() && stack.getCapability(ForgeCapabilities.ITEM_HANDLER).isPresent()) {
             this.stack = stack; //Because the client side stack is invalidated every time the server sends an update.
             initItemHandler();
         }
@@ -129,7 +127,7 @@ public class KeyRingContainer extends ContainerBCore<KeyRingItem> {
 
         @Override
         public Component getDisplayName() {
-            return stack.getHoverName().plainCopy().append(" ").append(new TranslatableComponent("gui.tolkienmobs.key_ring.title"));
+            return stack.getHoverName().plainCopy().append(" ").append(Component.translatable("gui.tolkienmobs.key_ring.title"));
         }
         @Nullable
         @Override

@@ -10,7 +10,7 @@ import com.greatorator.tolkienmobs.init.TolkienPotions;
 import com.greatorator.tolkienmobs.recipe.FireplaceRecipeBuilder;
 import com.greatorator.tolkienmobs.recipe.TrinketRecipeBuilder;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -30,6 +30,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
 
+import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 
 /**
@@ -39,12 +40,12 @@ public class RecipeGenerator extends RecipeProvider {
     protected static final ImmutableList<ItemLike> MITHRIL_SMELTABLES = ImmutableList.of(TolkienItems.ORE_MITHRIL_ITEM.get(), TolkienItems.ORE_END_MITHRIL_ITEM.get(), TolkienItems.ORE_NETHER_MITHRIL_ITEM.get(), TolkienItems.ORE_DEEPSLATE_MITHRIL_ITEM.get(), TolkienItems.RAW_MITHRIL.get());
     protected static final ImmutableList<ItemLike> MORGULIRON_SMELTABLES = ImmutableList.of(TolkienItems.ORE_MORGULIRON_ITEM.get(), TolkienItems.ORE_END_MORGULIRON_ITEM.get(), TolkienItems.ORE_NETHER_MORGULIRON_ITEM.get(), TolkienItems.ORE_DEEPSLATE_MORGULIRON_ITEM.get(), TolkienItems.RAW_MORGULIRON.get());
 
-    public RecipeGenerator(DataGenerator generatorIn) {
-        super(generatorIn);
+    public RecipeGenerator(PackOutput generatorIn) {
+        super(generatorIn, MODID);
     }
 
     @Override
-    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void registerRecipes(Consumer<FinishedRecipe> consumer) {
         components(consumer);
         specialty(consumer);
         magic(consumer);

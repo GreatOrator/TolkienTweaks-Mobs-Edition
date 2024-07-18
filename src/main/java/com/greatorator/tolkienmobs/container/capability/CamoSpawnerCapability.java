@@ -7,6 +7,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -17,7 +18,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.eventbus.api.Event;
 
 import javax.annotation.Nullable;
@@ -98,7 +100,7 @@ public class CamoSpawnerCapability extends BaseSpawner {
                     Mob mobEntity = entity instanceof Mob ? (Mob) entity : null;
                     entity.moveTo(entity.getX(), entity.getY(), entity.getZ(), level.random.nextFloat() * 360.0F, 0.0F);
 
-                    if (mobEntity == null || canEntitySpawnSpawner(mobEntity, getLevel(), (float) entity.getX(), (float) entity.getY(), (float) entity.getZ(), this)) {
+                    if (mobEntity == null || canEntitySpawnSpawner(mobEntity, (ServerLevel) tile.getLevel(), (float) entity.getX(), (float) entity.getY(), (float) entity.getZ(), this)) {
                         if (!tile.requirePlayer.get() && entity instanceof Mob) {
                             ((Mob) entity).setPersistenceRequired();
                             entity.getPersistentData().putLong("TTMSpawnedMob", System.currentTimeMillis());
@@ -157,13 +159,13 @@ public class CamoSpawnerCapability extends BaseSpawner {
         }
     }
 
-    public boolean canEntitySpawnSpawner(Mob entity, Level world, float x, float y, float z, BaseSpawner spawner) {
-        Event.Result result = ForgeEventFactory.canEntitySpawn(entity, world, x, y, z, spawner, MobSpawnType.SPAWNER);
-        if (result == Event.Result.DEFAULT) {
-            return (tile.ignoreSpawnReq.get() || entity.checkSpawnRules(world, MobSpawnType.SPAWNER));
-        } else {
-            return result == Event.Result.ALLOW;
+    public boolean canEntitySpawnSpawner(Mob entity, ServerLevel level, float x, float y, float z, BaseSpawner spawner) {
+        var event = new MobSpawnEvent.PositionCheck(entity, level, MobSpawnType.SPAWNER, null);
+        MinecraftForge.EVENT_BUS.post(event);
+        if (event.getResult() == Event.Result.DEFAULT) {
+            return (tile.ignoreSpawnReq.get() || entity.checkSpawnRules(level, MobSpawnType.SPAWNER)) && entity.checkSpawnObstruction(level);
         }
+        return event.getResult() == Event.Result.ALLOW;
     }
 
     private void resetTimer() {
@@ -184,7 +186,7 @@ public class CamoSpawnerCapability extends BaseSpawner {
     @Nullable
     @OnlyIn(Dist.CLIENT)
     @Override
-    public Entity getOrCreateDisplayEntity(Level world) {
+    public Entity getOrCreateDisplayEntity(Level pLevel, RandomSource pRandom, BlockPos pPos) {
         if (this.displayEntity == null) {
             this.displayEntity = EntityType.loadEntityRecursive(this.nextSpawnData.getEntityToSpawn(), this.getLevel(), Function.identity());
             if (this.nextSpawnData.getEntityToSpawn().size() == 1 && this.nextSpawnData.getEntityToSpawn().contains("id", 8) && this.displayEntity instanceof Mob) {

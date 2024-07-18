@@ -6,9 +6,11 @@ import com.greatorator.tolkienmobs.handler.functions.TrinketRandomlyFunction;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
 import com.greatorator.tolkienmobs.init.TolkienEntities;
 import com.greatorator.tolkienmobs.init.TolkienItems;
-import net.minecraft.data.loot.EntityLoot;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.loot.EntityLootSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -29,10 +31,11 @@ import javax.annotation.Nonnull;
 import java.text.MessageFormat;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 
-public class EntityLootGenerator extends EntityLoot {
+public class EntityLootGenerator extends EntityLootSubProvider {
     private final Set<EntityType<?>> knownEntities = new HashSet<>();
     private static final LootPool.Builder BRONZE = createCoinPool(TolkienItems.ITEM_COIN_BRONZE.get());
     private static final LootPool.Builder SILVER = createCoinPool(TolkienItems.ITEM_COIN_SILVER.get());
@@ -50,6 +53,10 @@ public class EntityLootGenerator extends EntityLoot {
     private static final LootPool.Builder HAT = createTrinketPool(TolkienItems.TRINKET_HAT.get());
     private static final LootPool.Builder CLOAK = createTrinketPool(TolkienItems.TRINKET_CLOAK.get());
 
+    protected EntityLootGenerator() {
+        super(FeatureFlags.REGISTRY.allFlags());
+    }
+
     @Override
     protected void add(@Nonnull EntityType<?> entity, @Nonnull LootTable.Builder builder) {
         super.add(entity, builder);
@@ -57,7 +64,7 @@ public class EntityLootGenerator extends EntityLoot {
     }
 
     @Override
-    protected void addTables() {
+    public void generate() {
         //Adding stuff to vanilla entity loot tables
         addInject(BRONZE, EntityType.ZOMBIE);
         addInject(BRONZE, EntityType.ZOMBIE_VILLAGER);
@@ -1016,8 +1023,8 @@ public class EntityLootGenerator extends EntityLoot {
     }
 
     @Override
-    public Set<EntityType<?>> getKnownEntities() {
-        return knownEntities;
+    protected Stream<EntityType<?>> getKnownEntityTypes() {
+        return BuiltInRegistries.ENTITY_TYPE.stream();
     }
 
     private static LootPool.Builder createCoinPool(Item type) {

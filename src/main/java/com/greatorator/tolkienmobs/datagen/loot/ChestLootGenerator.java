@@ -1,7 +1,7 @@
 package com.greatorator.tolkienmobs.datagen.loot;
 
 import com.greatorator.tolkienmobs.init.TolkienItems;
-import net.minecraft.data.loot.ChestLoot;
+import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -17,9 +17,9 @@ import java.util.function.BiConsumer;
 import static com.greatorator.tolkienmobs.TolkienMobs.MODID;
 import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 
-public class ChestLootGenerator extends ChestLoot {
+public class ChestLootGenerator implements LootTableSubProvider {
     @Override
-    public void accept(BiConsumer<ResourceLocation, LootTable.Builder> registrar) {
+    public void generate(BiConsumer<ResourceLocation, LootTable.Builder> registrar) {
         //Adding stuff to vanilla chest loot tables
         createInjectPool(registrar, "shipwreck_supply", LootTable.lootTable()
                 .withPool(LootPool.lootPool()

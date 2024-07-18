@@ -40,7 +40,7 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
     private final ResultContainer resultInventory = new ResultContainer();
 
     public BackpackContainer(int windowId, Inventory playerInv, FriendlyByteBuf extraData) {
-        this(TolkienContainers.BACKPACK_CONTAINER, windowId, playerInv, getClientTile(extraData));
+        this(TolkienContainers.BACKPACK_CONTAINER, windowId, playerInv, getClientTile(playerInv, extraData));
         //^^ Don't forget this!
     }
 
@@ -93,7 +93,7 @@ public class BackpackContainer extends ContainerBCTile<BackpackTile> {
             if (optional.isPresent()) {
                 CraftingRecipe icraftingrecipe = optional.get();
                 if (resultInventory.setRecipeUsed(world, serverplayerentity, icraftingrecipe)) {
-                    itemstack = icraftingrecipe.assemble(craftingInventory);
+                    itemstack = icraftingrecipe.assemble(craftingInventory, world.registryAccess());
                 }
             }
 

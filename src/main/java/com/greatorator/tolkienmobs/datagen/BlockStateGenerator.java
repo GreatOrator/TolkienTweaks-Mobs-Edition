@@ -39,7 +39,7 @@ public class BlockStateGenerator extends BlockStateProvider {
 
 
     public BlockStateGenerator(DataGenerator gen, ExistingFileHelper exFileHelper) {
-        super(gen, MODID, exFileHelper);
+        super(gen.getPackOutput(), MODID, exFileHelper);
         this.provider = this.itemModels();
     }
 

@@ -6,7 +6,7 @@ import com.greatorator.tolkienmobs.init.TolkienEntities;
 import com.greatorator.tolkienmobs.init.TolkienFluids;
 import com.greatorator.tolkienmobs.init.TolkienItems;
 import net.minecraft.ChatFormatting;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -19,7 +19,7 @@ import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
  * Created by brandon3055 on 21/5/20.
  */
 public class LangGenerator extends LanguageProvider {
-    public LangGenerator(DataGenerator gen) {
+    public LangGenerator(PackOutput gen) {
         super(gen, TolkienMobs.MODID, "en_us");
     }
 

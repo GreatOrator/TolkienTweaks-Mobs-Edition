@@ -5,8 +5,8 @@ import com.greatorator.tolkienmobs.block.CropsBlock;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
 import com.greatorator.tolkienmobs.init.TolkienItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
-import net.minecraft.core.Registry;
-import net.minecraft.data.loot.BlockLoot;
+import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
@@ -22,16 +22,21 @@ import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.Objects;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 
-public class BlockLootGenerator extends BlockLoot {
+public class BlockLootGenerator extends BlockLootSubProvider {
     private static final LootItemCondition.Builder CROP_DROP = LootItemBlockStatePropertyCondition.hasBlockStateProperties(TolkienBlocks.PIPEWEED.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropsBlock.AGE, 7));
 
-    protected void addTables() {
+    protected BlockLootGenerator() {
+        super(Set.of(), FeatureFlags.REGISTRY.allFlags());
+    }
+    protected void generate() {
         // Blocks - Metals & Gems
         dropSelf(TolkienBlocks.BLOCK_MITHRIL.get());
         dropSelf(TolkienBlocks.RAW_MITHRIL_BLOCK.get());
@@ -265,12 +270,12 @@ public class BlockLootGenerator extends BlockLoot {
         dropOther(TolkienBlocks.FANGORNOAK_WALL_SIGN.get(), TolkienItems.FANGORNOAK_SIGN_ITEM.get());
     }
 
-    protected static LootTable.Builder createMushroomBlockDrop(Block block, ItemLike like) {
+    protected LootTable.Builder createMushroomBlockDrop(Block block, ItemLike like) {
         return createSilkTouchDispatchTable(block, applyExplosionDecay(block, LootItem.lootTableItem(like).apply(SetItemCountFunction.setCount(UniformGenerator.between(-6.0F, 2.0F))).apply(LimitCount.limitCount(IntRange.lowerBound(0)))));
     }
 
     protected Iterable<Block> getKnownBlocks() {
-        return Registry.BLOCK.stream().filter(block -> Objects.requireNonNull(block.getRegistryName()).getNamespace().equals(TolkienMobs.MODID)).collect(Collectors.toList());
+        return ForgeRegistries.BLOCKS.getEntries().stream().filter(e -> e.getKey().location().getNamespace().equals(TolkienMobs.MODID)).map(Map.Entry::getValue).collect(Collectors.toList());
     }
 
     public String getName() {

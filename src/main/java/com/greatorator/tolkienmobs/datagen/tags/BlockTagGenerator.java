@@ -1,27 +1,30 @@
 package com.greatorator.tolkienmobs.datagen.tags;
 
+import com.greatorator.tolkienmobs.TolkienMobs;
 import com.greatorator.tolkienmobs.init.TolkienBlocks;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.concurrent.CompletableFuture;
 
 import static com.greatorator.tolkienmobs.TolkienMobs.NAME;
 import static com.greatorator.tolkienmobs.init.TolkienTags.blocks.*;
 import static com.greatorator.tolkienmobs.init.TolkienTags.tagkeys.BLACKLIST_HARVEST;
 
 public class BlockTagGenerator extends BlockTagsProvider {
-    public BlockTagGenerator(DataGenerator generatorIn, String modId, @Nullable ExistingFileHelper existingFileHelper) {
-        super(generatorIn, modId, existingFileHelper);
+    public BlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, TolkienMobs.MODID, existingFileHelper);
     }
 
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider pProvider) {
         tag(STORAGE_BLOCKS_MITHRIL).add(TolkienBlocks.BLOCK_MITHRIL.get(), TolkienBlocks.RAW_MITHRIL_BLOCK.get());
         tag(STORAGE_BLOCKS_MORGULIRON).add(TolkienBlocks.BLOCK_MORGULIRON.get(), TolkienBlocks.RAW_MORGULIRON_BLOCK.get());
             tag(Tags.Blocks.STORAGE_BLOCKS).addTags(STORAGE_BLOCKS_MITHRIL, STORAGE_BLOCKS_MORGULIRON);
